@@ -47,6 +47,7 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
         ],
@@ -54,7 +55,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/feedback',
         subheader: 'feedback',
-        children: [{ pathname: '/joy-ui/react-alert' }, { pathname: '/joy-ui/react-modal' }],
+        children: [
+          { pathname: '/joy-ui/react-alert' },
+          { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-modal' },
+        ],
       },
       {
         pathname: '/joy-ui/components/surfaces',

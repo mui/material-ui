@@ -84,9 +84,6 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       lineHeight: theme.vars.lineHeight.md,
@@ -96,7 +93,7 @@ const TextareaRoot = styled('div', {
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -115,17 +112,15 @@ const TextareaRoot = styled('div', {
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${textareaClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${textareaClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
         },
@@ -177,6 +172,7 @@ const TextareaStartDecorator = styled('div', {
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockEnd: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
 }));
 
 const TextareaEndDecorator = styled('div', {
@@ -189,6 +185,7 @@ const TextareaEndDecorator = styled('div', {
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockStart: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
 }));
 
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
@@ -205,12 +202,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     getInputProps,
     component,
     componentsProps = {},
+    formControl,
     focused,
-    formControlContext,
-    error: errorState,
-    disabled: disabledState,
-    size = 'md',
-    color = 'neutral',
+    error: errorProp = false,
+    disabled: disabledProp = false,
+    size: sizeProp = 'md',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
     endDecorator,
@@ -219,13 +216,29 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+
   const ownerState = {
     ...props,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
@@ -253,6 +266,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
       minRows,
       maxRows,
       ...componentsProps.textarea,
+    },
+    additionalProps: {
+      id: formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     ownerState,
     className: [classes.textarea, inputStateClasses],
@@ -304,6 +321,10 @@ Textarea.propTypes /* remove-proptypes */ = {
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
   /**
    * Trailing adornment for this input.
    */

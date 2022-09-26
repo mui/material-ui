@@ -5,7 +5,7 @@ import { SliderUnstyledTypeMap } from './SliderUnstyled.types';
  *
  * Demos:
  *
- * - [Unstyled slider](https://mui.com/base/react-slider/)
+ * - [Unstyled Slider](https://mui.com/base/react-slider/)
  *
  * API:
  *

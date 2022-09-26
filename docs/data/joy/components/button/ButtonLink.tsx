@@ -7,7 +7,7 @@ import OpenInNew from '@mui/icons-material/OpenInNew';
 export default function IconButtons() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-      <Button component="a" href="#as-link" startIcon={<OpenInNew />}>
+      <Button component="a" href="#as-link" startDecorator={<OpenInNew />}>
         Open in new tab
       </Button>
       <IconButton aria-label="Open in new tab" component="a" href="#as-link">

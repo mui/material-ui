@@ -74,7 +74,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   } = props;
 
   // all props with defaults
-  // consider extracting to hook an reusing the lint rule for the varints
+  // consider extracting to hook an reusing the lint rule for the variants
   const ownerState = {
     ...props,
     marks: marksProp,

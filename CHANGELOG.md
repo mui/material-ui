@@ -1,5 +1,126 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.6
+
+<!-- generated comparing v5.10.5..master -->
+
+_Sep 19, 2022_
+
+A big thanks to the 11 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.6`
+
+- [TextField] Fix conflict with `Bootstrap` even when label is not defined (#34343) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.46`
+
+#### Breaking changes
+
+- [button][joy] Replace `start/endIcon` prop with `start/endDecorator` (#34288) @hbjORbj
+
+  **BREAKING CHANGE**: replace `start/endIcon` with `start/endDecorator`.
+
+  ```jsx
+  // before
+  <Button startIcon={...} endIcon={...} />
+
+  // after
+  <Button startDecorator={...} endDecorator={...} />
+  ```
+
+#### Changes
+
+- [Joy] Adjust the `Input` and `Textarea` styles (#34281) @siriwatknp
+- [menu][joy] Set disablePortal default to false (#34283) @tomasz-sodzawiczny
+
+### `@mui/base@5.0.0-alpha.98`
+
+#### Breaking changes
+
+- [Select][base] Add event parameter to the onChange callback (#34158) @michaldudak
+
+  The SelectUnstyled and MultiSelectUnstyled `onChange` callbacks did not have event as the first parameter, leading to inconsistency with other components and native HTML elements.
+  This PR adds the event parameter as the first one and moves the newly selected value to the second position. Because of this, it's a breaking change.
+  This also affects Select from Joy UI.
+
+  ```jsx
+  // before
+  <SelectUnstyled onChange={(newValue) => { /* ... */ }} />
+
+  // after
+  <SelectUnstyled onChange={(event, newValue) => { /* ... */ }} />
+  ```
+
+### Docs
+
+- [blog] The Date Pickers gets a stable v5 release (#34152) @alexfauquette
+- [blog] Improve image handling (#34222) @oliviertassinari
+- [blog] Correct 2021 survey data interpretation (#34291) @samuelsycamore
+- [docs] Remove expired AospExtended showcase @oliviertassinari
+- [docs] Link the OpenSSF Best Practices card (#34331) @oliviertassinari
+- [docs] Fix 301 link to external projects @oliviertassinari
+- [docs] Move 12 component names to Title Case (#34188) @oliviertassinari
+- [docs] Fix broken links (#34320) @alexfauquette
+- [docs] Add notification for MUI Base announcement post (#34295) @samuelsycamore
+- [website] Fix MUI X subscribe email border style (#34330) @oliviertassinari
+- [website] Improve security header @oliviertassinari
+
+### Core
+
+- [core] Lock file maintenance (#34161) @renovate[bot]
+- [core] Issue template: move reproduction steps to the top (#34279) @Janpot
+- [core] Create shared Next.js baseline config (#34259) @oliviertassinari
+- [core] In `typescript-to-proptypes`, respect the value pass to the generic (#34311) @flaviendelangle
+
+All contributors of this release in alphabetical order: @alexfauquette, @flaviendelangle, @hbjORbj, @Janpot, @michaldudak, @oliviertassinari, @renovate[bot], @samuelsycamore, @siriwatknp, @tomasz-sodzawiczny, @ZeeshanTamboli
+
+## 5.10.5
+
+<!-- generated comparing v5.10.4..master -->
+
+_Sep 12, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Blog post](https://mui.com/blog/introducing-mui-base/) for announcing the release of the MUI Base package is out thanks to @michaldudak.
+- 🚀 Added [`Alert`](https://mui.com/joy-ui/react-alert/), [`Modal`](https://mui.com/joy-ui/react-modal/), [`ListSubheader`](https://mui.com/joy-ui/react-list-subheader/), [`FormControl`](https://mui.com/joy-ui/react-form-control/), [`CircularProgress`](https://mui.com/joy-ui/react-circular-progress/) components to Joy UI (#33859) @hbjORbj @siriwatknp
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.5`
+
+- &#8203;<!-- 05 -->[ListItemText] Fix variant mapping in `primaryTypography` (#33880) @iamxukai
+- &#8203;<!-- 03 -->[Timeline] Add left and right aligned timeline demos in docs (#34156) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.45`
+
+- &#8203;<!-- 20 -->[Joy UI] Add `CircularProgress` component (#33869) @hbjORbj
+- &#8203;<!-- 19 -->[Joy UI] Add `FormControl` component (#34187) @siriwatknp
+- &#8203;<!-- 18 -->[Joy UI] Add `ListSubheader` component (#34191) @siriwatknp
+- &#8203;<!-- 17 -->[Joy UI] Add `Modal` component (#34043) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Fix list value of false or 0 (zero) text is incorrectly grey (#34255) @kushagra010
+- &#8203;<!-- 09 -->[Joy] Adjust typography decorator margin (#34257) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes (#34193) @siriwatknp
+- &#8203;<!-- 07 -->[Radio][joy] Integrate with form control (#34277) @siriwatknp
+- &#8203;<!-- 06 -->[Joy][textarea] Pass `textarea` props from `componentsProps` (#34223) @HexM7
+
+### Docs
+
+- &#8203;<!-- 16 -->[blog] Introducing MUI Base (#33778) @michaldudak
+- &#8203;<!-- 13 -->[docs] Fix spelling error (#34209) @ChrystianDeMatos
+- &#8203;<!-- 12 -->[docs] Improve link to the security policy (#34219) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix typo in Joy UI's `Usage` docs (#34200) @zillion504
+- &#8203;<!-- 02 -->[website] Add Lukas to the about page (#34284) @LukasTy
+- &#8203;<!-- 01 -->[website] Update diamond sponsor URL (#34256) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 04 -->[test] Replace argos-cli with @argos-ci/core (#34178) @michaldudak
+- &#8203;<!-- 15 -->[core] Create a script to generate codeowners (#34175) @michaldudak
+- &#8203;<!-- 14 -->[core] Add RFC GH issue template (#33871) @bytasv
+
+All contributors of this release in alphabetical order: @bytasv, @ChrystianDeMatos, @hbjORbj, @HexM7, @iamxukai, @kushagra010, @LukasTy, @michaldudak, @oliviertassinari, @siriwatknp, @ZeeshanTamboli, @zillion504
+
 ## 5.10.4
 
 <!-- generated comparing v5.10.3..master -->

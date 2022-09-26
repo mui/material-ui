@@ -313,7 +313,7 @@ However, styled components is popular. We will work on better supporting it.
 This data is **incredibly valuable** for our team.
 Again, thank you for participating!
 We want to work on the problems that resonate the most with our users.
-[It's clear](#4-how-can-we-improve-material-ui-for-you) that we should:
+[It's clear](#4-how-can-we-improve-mui-for-you) that we should:
 
 1. Support more components
 2. Improve the customization

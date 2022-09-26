@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, fireEvent } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip, { chipClasses as classes } from '@mui/joy/Chip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -98,6 +99,15 @@ describe('<Chip />', () => {
       const { getByRole } = render(<Chip onClick={() => {}} />);
 
       expect(getByRole('button')).toBeVisible();
+    });
+
+    it('should call onClick', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<Chip onClick={handleClick} />);
+
+      fireEvent.click(getByRole('button'));
+
+      expect(handleClick.callCount).to.equal(1);
     });
 
     it('renders action element when `componentsProps.action` is provided', () => {
