@@ -47,6 +47,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     endDecorator?: React.ReactNode;
     /**
+     * Element action click handler.
+     */
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
      * @default 'md'

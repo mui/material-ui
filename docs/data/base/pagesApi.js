@@ -2,6 +2,7 @@ module.exports = [
   { pathname: '/base/api/badge-unstyled' },
   { pathname: '/base/api/button-unstyled' },
   { pathname: '/base/api/click-away-listener' },
+  { pathname: '/base/api/focus-trap' },
   { pathname: '/base/api/form-control-unstyled' },
   { pathname: '/base/api/input-unstyled' },
   { pathname: '/base/api/menu-item-unstyled' },
@@ -22,5 +23,4 @@ module.exports = [
   { pathname: '/base/api/tabs-unstyled' },
   { pathname: '/base/api/tab-unstyled' },
   { pathname: '/base/api/textarea-autosize' },
-  { pathname: '/base/api/trap-focus' },
 ];
