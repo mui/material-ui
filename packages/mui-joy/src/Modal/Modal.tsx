@@ -11,7 +11,7 @@ import {
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import Portal from '@mui/base/Portal';
-import TrapFocus from '@mui/base/TrapFocus';
+import FocusTrap from '@mui/base/FocusTrap';
 import { ModalManager } from '@mui/base/ModalUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { getModalUtilityClass } from './modalClasses';
@@ -268,7 +268,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
          */}
         <ModalRoot {...rootProps}>
           {!hideBackdrop ? <ModalBackdrop {...backdropProps} /> : null}
-          <TrapFocus
+          <FocusTrap
             disableEnforceFocus={disableEnforceFocus}
             disableAutoFocus={disableAutoFocus}
             disableRestoreFocus={disableRestoreFocus}
@@ -281,7 +281,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
                   tabIndex: -1,
                 }),
               })}
-          </TrapFocus>
+          </FocusTrap>
         </ModalRoot>
       </Portal>
     </CloseModalContext.Provider>
