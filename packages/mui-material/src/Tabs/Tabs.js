@@ -16,8 +16,6 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -243,10 +241,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
-    components = {
-      ScrollButtonStart: KeyboardArrowLeft,
-      ScrollButtonEnd: KeyboardArrowRight,
-    },
+    components = {},
     componentsProps = {},
     allowScrollButtonsMobile = false,
     indicatorColor = 'primary',
@@ -826,10 +821,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The components used for ScrollButtonStart, ScrollButtonEnd item type
-   * @default {
-   *   ScrollButtonStart: KeyboardArrowLeft,
-   *   ScrollButtonEnd: KeyboardArrowRight,
-   * }
+   * @default {}
    */
   components: PropTypes.shape({
     ScrollButtonEnd: PropTypes.elementType,

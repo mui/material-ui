@@ -14,10 +14,7 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
   classes?: Partial<TabScrollButtonClasses>;
   /**
    * The components used for ScrollButtonStart, ScrollButtonEnd item type
-   * @default {
-   *   ScrollButtonStart: KeyboardArrowLeft,
-   *   ScrollButtonEnd: KeyboardArrowRight,
-   * }
+   * @default {}
    */
   components?: {
     ScrollButtonStart?: React.ElementType;

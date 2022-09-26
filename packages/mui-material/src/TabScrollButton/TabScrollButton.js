@@ -49,10 +49,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
   const {
     className,
-    components = {
-      ScrollButtonStart: KeyboardArrowLeft,
-      ScrollButtonEnd: KeyboardArrowRight,
-    },
+    components = {},
     componentsProps = {},
     direction,
     orientation,
@@ -66,9 +63,9 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const ownerState = { isRtl, ...props };
 
   const classes = useUtilityClasses(ownerState);
-  const ScrollButtonStart = components.ScrollButtonStart;
-  const ScrollButtonEnd = components.ScrollButtonEnd;
-  const getDefaultProps = (icon) => {
+  const ScrollButtonStart = components.ScrollButtonStart ?? KeyboardArrowLeft;
+  const ScrollButtonEnd = components.ScrollButtonEnd ?? KeyboardArrowRight;
+  const getIconProps = (icon) => {
     switch (icon) {
       case KeyboardArrowLeft:
         return { fontSize: 'small', ...componentsProps?.scrollButtonStart };
@@ -94,9 +91,9 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       {...other}
     >
       {direction === 'left' ? (
-        <ScrollButtonStart {...getDefaultProps(ScrollButtonStart)} />
+        <ScrollButtonStart {...getIconProps(ScrollButtonStart)} />
       ) : (
-        <ScrollButtonEnd {...getDefaultProps(ScrollButtonEnd)} />
+        <ScrollButtonEnd {...getIconProps(ScrollButtonEnd)} />
       )}
     </TabScrollButtonRoot>
   );
@@ -121,10 +118,7 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The components used for ScrollButtonStart, ScrollButtonEnd item type
-   * @default {
-   *   ScrollButtonStart: KeyboardArrowLeft,
-   *   ScrollButtonEnd: KeyboardArrowRight,
-   * }
+   * @default {}
    */
   components: PropTypes.shape({
     ScrollButtonEnd: PropTypes.elementType,

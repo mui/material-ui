@@ -15,7 +15,7 @@
         "name": "shape",
         "description": "{ ScrollButtonEnd?: elementType, ScrollButtonStart?: elementType }"
       },
-      "default": "{\n  ScrollButtonStart: KeyboardArrowLeft,\n  ScrollButtonEnd: KeyboardArrowRight,\n}"
+      "default": "{}"
     },
     "componentsProps": {
       "type": {

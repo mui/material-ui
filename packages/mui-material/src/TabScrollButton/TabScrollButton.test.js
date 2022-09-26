@@ -51,7 +51,7 @@ describe('<TabScrollButton />', () => {
       expect(getAllByTestId('KeyboardArrowRightIcon').length).to.equal(1);
     });
 
-    it('should render with the ArrowBackIcon icon', () => {
+    it('should render with the custom start icon', () => {
       const { getAllByTestId } = render(
         <TabScrollButton
           {...defaultProps}
@@ -65,7 +65,7 @@ describe('<TabScrollButton />', () => {
       expect(getAllByTestId('ArrowBackIcon').length).to.equal(1);
     });
 
-    it('should render with the ArrowForwardIcon icon', () => {
+    it('should render with the end icon', () => {
       const { getAllByTestId } = render(
         <TabScrollButton
           {...defaultProps}
