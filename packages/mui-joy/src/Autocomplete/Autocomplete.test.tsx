@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { describeConformance, createRenderer, screen, act, fireEvent } from 'test/utils';
 import Autocomplete, { autocompleteClasses as classes } from '@mui/joy/Autocomplete';
 import Input from '@mui/joy/Input';
+import Chip from '@mui/joy/Chip';
 import { ThemeProvider } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
@@ -430,6 +431,106 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.click(getAllByTestId('CancelIcon')[1]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+    });
+
+    it.skip('navigates between different tags', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          defaultValue={options as any}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <Input {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(secondSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      expect(firstSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <Input {...params} autoFocus />}
+          multiple
+          inputValue="tw"
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should close listbox on pressing left or right keys when inputValue is empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <Input {...params} autoFocus />}
+          multiple
+          inputValue=""
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+    });
+
+    it('should not crash if a tag is missing', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          defaultValue={options as any}
+          options={options}
+          value={options}
+          renderTags={(value, getTagProps) =>
+            value
+              .filter((x, index) => index === 1)
+              .map((option, index) => <Chip {...getTagProps({ index })}>{option.title}</Chip>)
+          }
+          onChange={handleChange}
+          renderInput={(params) => <Input {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const [firstSelectedValue] = screen.getAllByRole('button');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      // skip value "two"
+      expect(firstSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
+      expect(textbox).toHaveFocus();
     });
   });
 });
