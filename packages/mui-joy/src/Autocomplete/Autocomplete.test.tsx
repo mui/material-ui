@@ -1328,4 +1328,19 @@ describe('Joy <Autocomplete />', () => {
       expect(textbox).toBeVisible();
     });
   });
+
+  describe('prop: disableClearable', () => {
+    it('should not render the clear button', () => {
+      const { queryByTitle, container } = render(
+        <Autocomplete
+          disableClearable
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      expect(queryByTitle('Clear')).to.equal(null);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+    });
+  });
 });
