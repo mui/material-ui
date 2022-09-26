@@ -32,7 +32,7 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "@babel/core": "^7.19.0",
+    "@babel/core": "^7.19.1",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.18.6",
     "@babel/types": "^7.19.0",
