@@ -115,9 +115,9 @@ describe('e2e', () => {
     await browser.close();
   });
 
-  describe('<TrapFocus />', () => {
+  describe('<FocusTrap />', () => {
     it('should loop the tab key', async () => {
-      await renderFixture('TrapFocus/OpenTrapFocus');
+      await renderFixture('FocusTrap/OpenFocusTrap');
 
       await expect(screen.getByTestId('root')).toHaveFocus();
 
@@ -138,7 +138,7 @@ describe('e2e', () => {
     });
 
     it('should loop the tab key after activation', async () => {
-      await renderFixture('TrapFocus/DefaultOpenLazyTrapFocus');
+      await renderFixture('FocusTrap/DefaultOpenLazyFocusTrap');
 
       await expect(screen.getByTestId('initial-focus')).toHaveFocus();
 
@@ -153,7 +153,7 @@ describe('e2e', () => {
     });
 
     it('should focus on first focus element after last has received a tab click', async () => {
-      await renderFixture('TrapFocus/OpenTrapFocus');
+      await renderFixture('FocusTrap/OpenFocusTrap');
 
       await page.keyboard.press('Tab');
       await expect(screen.getByText('x')).toHaveFocus();
@@ -164,7 +164,7 @@ describe('e2e', () => {
     });
 
     it('should be able to be tabbed straight through when rendered closed', async () => {
-      await renderFixture('TrapFocus/ClosedTrapFocus');
+      await renderFixture('FocusTrap/ClosedFocusTrap');
 
       await expect(screen.getByText('initial focus')).toHaveFocus();
       await page.keyboard.press('Tab');
