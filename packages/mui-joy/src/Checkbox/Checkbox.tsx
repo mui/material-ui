@@ -448,6 +448,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   overlay: PropTypes.bool,
   /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
+  /**
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
@@ -471,6 +475,15 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The icon when `checked` is false.
    */
   uncheckedIcon: PropTypes.node,
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'solid'
