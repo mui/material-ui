@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.25.2"
+    "playwright": "1.26.0"
   }
 }
