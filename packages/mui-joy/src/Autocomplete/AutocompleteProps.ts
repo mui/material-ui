@@ -280,7 +280,11 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
 > extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {}
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
+  onKeyDown?: (
+    event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
+  ) => void;
+}
 
 export interface AutocompleteOwnerState<
   T,
