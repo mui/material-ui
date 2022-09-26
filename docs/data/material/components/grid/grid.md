@@ -156,8 +156,8 @@ The spacing between items is implemented with a negative margin. This might lead
 ### white-space: nowrap
 
 The initial setting on flex items is `min-width: auto`.
-It's causing a positioning conflict when the children is using `white-space: nowrap;`.
-You can experience the issue with:
+This causes a positioning conflict when children use `white-space: nowrap;`.
+You can reproduce the issue with:
 
 ```jsx
 <Grid item xs>
