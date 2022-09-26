@@ -77,4 +77,19 @@ describe('Joy <Autocomplete />', () => {
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
   });
+
+  describe('prop: loading', () => {
+    it('should show a loading message when open', () => {
+      render(
+        <Autocomplete
+          options={[]}
+          freeSolo
+          loading
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(document.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
+    });
+  });
 });
