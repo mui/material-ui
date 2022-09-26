@@ -88,13 +88,23 @@ describe('getInitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bright');
   });
 
-  describe('[option: `enableSystem`]', () => {
-    it('should set dark color scheme to body, given `enableSystem` is true and prefers-color-scheme is `dark`', () => {
+  it('defaultMode: `dark`', () => {
+    const { container } = render(
+      getInitColorSchemeScript({
+        defaultMode: 'dark',
+      }),
+    );
+    eval(container.firstChild.textContent);
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
+  });
+
+  describe('defaultMode: `system`', () => {
+    it('should set dark color scheme to body, given prefers-color-scheme is `dark`', () => {
       window.matchMedia = createMatchMedia(true);
 
       const { container } = render(
         getInitColorSchemeScript({
-          enableSystem: true,
+          defaultMode: 'system',
           defaultDarkColorScheme: 'trueDark',
         }),
       );
@@ -102,12 +112,12 @@ describe('getInitColorSchemeScript', () => {
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('trueDark');
     });
 
-    it('should set light color scheme to body, given `enableSystem` is true and prefers-color-scheme is NOT `dark`', () => {
+    it('should set light color scheme to body, given prefers-color-scheme is NOT `dark`', () => {
       window.matchMedia = createMatchMedia(false);
 
       const { container } = render(
         getInitColorSchemeScript({
-          enableSystem: true,
+          defaultMode: 'system',
           defaultLightColorScheme: 'yellow',
         }),
       );

@@ -406,6 +406,16 @@ const teamMembers: Array<Profile> = [
     about: 'Learning and experimenting 📚',
     github: 'LukasTy',
   },
+  {
+    src: '/static/branding/about/bilal.png',
+    name: 'Bilal Shafi',
+    title: 'MUI X Engineer',
+    location: 'Islamabad, Pakistan',
+    locationCountry: 'pk',
+    about: 'DIY 🛠️, Learning 📚 and 🏓',
+    twitter: 'MBilalShafi',
+    github: 'MBilalShafi',
+  },
 ];
 
 const contributors = [

@@ -89,7 +89,6 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     <SvgIconRoot
       as={component}
       className={clsx(classes.root, className)}
-      ownerState={ownerState}
       focusable="false"
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : true}
@@ -97,6 +96,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       ref={ref}
       {...other}
       {...(!inheritViewBox && { viewBox })}
+      ownerState={ownerState}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
