@@ -3633,10 +3633,10 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
-"@types/react-swipeable-views-utils@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.3.tgz#e39fbaae1204a99f28fd3cca773915c9903ecad3"
-  integrity sha512-6A5yfh/XXAl1d/V1kBLhNJtH/GjMny0Ps6GJoOSDjRpBQu71v/xEjATWfmCtMBcVhR3xEn7p4zfi+fi6cV5dQA==
+"@types/react-swipeable-views-utils@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.4.tgz#2a48da267b48467887b146178673f4020dec5b1e"
+  integrity sha512-v0nDk6mMIPAu/kaEnqQpDz2Z7O8ewqy2in7xwobcAAkUKKsdw3MSWFW1BkQ+dPgTrBnj/KXUzx3ZIS6UYviwyA==
   dependencies:
     "@material-ui/types" "^4.0.0"
     "@types/react" "*"
