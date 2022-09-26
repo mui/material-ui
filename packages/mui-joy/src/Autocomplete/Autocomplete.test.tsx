@@ -960,4 +960,372 @@ describe('Joy <Autocomplete />', () => {
       expect(textbox.value).to.equal('test');
     });
   });
+
+  describe('when popup open', () => {
+    it('closes the popup if Escape is pressed ', () => {
+      const handleClose = spy();
+      render(
+        <Autocomplete
+          onClose={handleClose}
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    it('does not close the popup when option selected if Control is pressed', () => {
+      const handleClose = spy();
+      const { getAllByRole } = render(
+        <Autocomplete
+          onClose={handleClose}
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      fireEvent.click(options[0], { ctrlKey: true });
+      expect(handleClose.callCount).to.equal(0);
+    });
+
+    it('does not close the popup when option selected if Meta is pressed', () => {
+      const handleClose = spy();
+      const { getAllByRole } = render(
+        <Autocomplete
+          onClose={handleClose}
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      fireEvent.click(options[0], { metaKey: true });
+      expect(handleClose.callCount).to.equal(0);
+    });
+
+    it('moves focus to the first option on ArrowDown', () => {
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(getByRole('combobox')).to.have.attribute(
+        'aria-activedescendant',
+        getAllByRole('option')[0].getAttribute('id')!,
+      );
+    });
+
+    it('moves focus to the last option on ArrowUp', () => {
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowUp' });
+      const options = getAllByRole('option');
+      expect(getByRole('combobox')).to.have.attribute(
+        'aria-activedescendant',
+        options[options.length - 1].getAttribute('id')!,
+      );
+    });
+
+    it('should ignore keydown event until the IME is confirmed', function test() {
+      // TODO: Often times out in Firefox 78.
+      // Is this slow because of testing-library or because of the implementation?
+      this.timeout(4000);
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['가1', '가2']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      const listbox = getByRole('listbox');
+      // Actual Behavior when "가" (Korean) is entered and press the arrow down key once on macOS/Chrome
+      fireEvent.change(textbox, { target: { value: '가' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 229 });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 40 });
+
+      checkHighlightIs(listbox, '가1');
+    });
+  });
+
+  describe('prop: openOnFocus', () => {
+    it('enables open on input focus', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          openOnFocus
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      const combobox = getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).toHaveFocus();
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+
+      act(() => {
+        (document.activeElement as HTMLElement).blur();
+      });
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).not.toHaveFocus();
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).toHaveFocus();
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+    });
+  });
+
+  describe('listbox wrapping behavior', () => {
+    it('wraps around when navigating the list by default', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+
+      const options = getAllByRole('option');
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.attribute(
+        'aria-activedescendant',
+        options[options.length - 1].getAttribute('id')!,
+      );
+    });
+
+    it('selects the first item if on the last item and pressing up by default', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      const options = screen.getAllByRole('option');
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
+    });
+
+    describe('prop: includeInputInList', () => {
+      it('considers the textbox the predessor of the first option when pressing Up', () => {
+        render(
+          <Autocomplete
+            includeInputInList
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <Input {...params} autoFocus />}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+
+        expect(textbox).toHaveFocus();
+        expect(textbox).not.to.have.attribute('aria-activedescendant');
+      });
+
+      it('considers the textbox the successor of the last option when pressing Down', () => {
+        render(
+          <Autocomplete
+            includeInputInList
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <Input {...params} autoFocus />}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+        expect(textbox).toHaveFocus();
+        expect(textbox).not.to.have.attribute('aria-activedescendant');
+      });
+    });
+
+    describe('prop: disableListWrap', () => {
+      it('keeps focus on the first item if focus is on the first item and pressing Up', () => {
+        render(
+          <Autocomplete
+            disableListWrap
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <Input {...params} autoFocus />}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+
+        expect(textbox).toHaveFocus();
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          screen.getAllByRole('option')[0].getAttribute('id')!,
+        );
+      });
+
+      it('focuses the last item when pressing Up when no option is active', () => {
+        render(
+          <Autocomplete
+            disableListWrap
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <Input {...params} autoFocus />}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        fireEvent.keyDown(textbox, { key: 'ArrowUp' });
+
+        const options = screen.getAllByRole('option');
+        expect(textbox).toHaveFocus();
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          options[options.length - 1].getAttribute('id')!,
+        );
+      });
+
+      it('keeps focus on the last item if focus is on the last item and pressing Down', () => {
+        render(
+          <Autocomplete
+            disableListWrap
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <Input {...params} autoFocus />}
+          />,
+        );
+        const textbox = screen.getByRole('combobox');
+
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+        const options = screen.getAllByRole('option');
+        expect(textbox).toHaveFocus();
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          options[options.length - 1].getAttribute('id')!,
+        );
+      });
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('should disable the input', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      const input = getByRole('combobox');
+      expect(input).to.have.property('disabled', true);
+    });
+
+    it('should disable the popup button', () => {
+      const { queryByTitle } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      expect((queryByTitle('Open') as HTMLButtonElement).disabled).to.equal(true);
+    });
+
+    it('should not render the clear button', () => {
+      const { queryByTitle } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      expect(queryByTitle('Clear')).to.equal(null);
+    });
+
+    it('should not apply the hasClearIcon class', () => {
+      const { container } = render(
+        <Autocomplete
+          disabled
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+    });
+
+    it('should close the popup when disabled is true', () => {
+      const { setProps } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).not.to.equal(null);
+      setProps({ disabled: true });
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
+    it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', () => {
+      const { setProps } = render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <Input {...params} />}
+          value="one"
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      setProps({ disabled: true });
+      expect(textbox).toBeVisible();
+    });
+  });
 });
