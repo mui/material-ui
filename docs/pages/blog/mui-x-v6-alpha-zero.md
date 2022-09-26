@@ -6,7 +6,7 @@ authors: ['josefreitas']
 tags: ['MUI X', 'News']
 ---
 
-We’re kicking off the development of MUI X v6. Both the Data Grid and Date Pickers are getting a new major version. We want to share our plans and invite you to join us on this next step.
+We’re kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0). Both the Data Grid and Date Pickers are getting a new major version. We want to share our plans and invite you to join us on this next step.
 
 :::warning
 
