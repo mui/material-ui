@@ -1,15 +1,16 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
-import { BreadcrumbsProps, BreadcrumbsTypeMap } from './BreadcrumbsProps';
+import { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
+import { BreadcrumbsProps, BreadcrumbsOwnerState, BreadcrumbsTypeMap } from './BreadcrumbsProps';
 
-const useUtilityClasses = (ownerState: BreadcrumbsProps) => {
+const useUtilityClasses = (ownerState: BreadcrumbsOwnerState) => {
   const { size } = ownerState;
 
   const slots = {
@@ -23,12 +24,10 @@ const useUtilityClasses = (ownerState: BreadcrumbsProps) => {
 };
 
 const BreadcrumbsRoot = styled('nav', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    return [{ [`& .${breadcrumbsClasses.li}`]: styles.li }, styles.root];
-  },
-})<{ ownerState: BreadcrumbsProps }>(({ theme, ownerState }) => ({
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: BreadcrumbsOwnerState }>(({ theme, ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     '--Breadcrumbs-gap': '0.25rem',
     fontSize: theme.vars.fontSize.sm,
@@ -48,10 +47,10 @@ const BreadcrumbsRoot = styled('nav', {
 }));
 
 const BreadcrumbsOl = styled('ol', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Ol',
   overridesResolver: (props, styles) => styles.ol,
-})<{ ownerState: BreadcrumbsProps }>({
+})<{ ownerState: BreadcrumbsOwnerState }>({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -61,11 +60,17 @@ const BreadcrumbsOl = styled('ol', {
   listStyle: 'none',
 });
 
+const BreadcrumbsLi = styled('li', {
+  name: 'JoyBreadcrumbs',
+  slot: 'Ol',
+  overridesResolver: (props, styles) => styles.ol,
+})<{ ownerState: BreadcrumbsOwnerState }>({});
+
 const BreadcrumbsSeparator = styled('li', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Separator',
   overridesResolver: (props, styles) => styles.separator,
-})<{ ownerState: BreadcrumbsProps }>({
+})<{ ownerState: BreadcrumbsOwnerState }>({
   display: 'flex',
   userSelect: 'none',
   marginInline: 'var(--Breadcrumbs-gap)',
@@ -74,10 +79,18 @@ const BreadcrumbsSeparator = styled('li', {
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const props = useThemeProps<typeof inProps & BreadcrumbsProps>({
     props: inProps,
-    name: 'MuiBreadcrumbs',
+    name: 'JoyBreadcrumbs',
   });
 
-  const { children, className, component = 'nav', size = 'md', separator = '/', ...other } = props;
+  const {
+    children,
+    className,
+    component = 'nav',
+    componentsProps = {},
+    size = 'md',
+    separator = '/',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -88,36 +101,60 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const listRef = React.useRef<HTMLOListElement>(null);
+  const rootProps = useSlotProps({
+    elementType: BreadcrumbsRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: clsx(classes.root, className),
+  });
+
+  const olProps = useSlotProps({
+    elementType: BreadcrumbsOl,
+    externalSlotProps: componentsProps.ol,
+    ownerState,
+    className: classes.ol,
+  });
+
+  const liProps = useSlotProps({
+    elementType: BreadcrumbsLi,
+    externalSlotProps: componentsProps.li,
+    ownerState,
+    className: classes.li,
+  });
+
+  const separatorProps = useSlotProps({
+    elementType: BreadcrumbsSeparator,
+    externalSlotProps: componentsProps.separator,
+    ownerState,
+    additionalProps: {
+      'aria-hidden': true,
+    },
+    className: classes.separator,
+  });
 
   const allItems = React.Children.toArray(children)
     .filter((child) => {
       return React.isValidElement(child);
     })
     .map((child, index) => (
-      <li className={classes.li} key={`child-${index}`}>
+      <BreadcrumbsLi key={`child-${index}`} {...liProps}>
         {child}
-      </li>
+      </BreadcrumbsLi>
     ));
 
   return (
-    <BreadcrumbsRoot
-      ref={ref}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
+    <BreadcrumbsRoot {...rootProps}>
+      <BreadcrumbsOl {...olProps}>
         {allItems.reduce((acc: React.ReactNode[], current: React.ReactNode, index: number) => {
           if (index < allItems.length - 1) {
             acc = acc.concat(
               current,
-              <BreadcrumbsSeparator
-                aria-hidden
-                key={`separator-${index}`}
-                className={classes.separator}
-                ownerState={ownerState}
-              >
+              <BreadcrumbsSeparator key={`separator-${index}`} {...separatorProps}>
                 {separator}
               </BreadcrumbsSeparator>,
             );
@@ -149,6 +186,16 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the component.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    li: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    ol: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * Custom separator node.
    * @default '/'

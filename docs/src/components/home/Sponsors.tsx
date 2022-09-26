@@ -11,6 +11,7 @@ export default function Sponsors() {
   return (
     <Container sx={{ py: { xs: 4, md: 8 } }}>
       <SectionHeadline
+        id="sponsors"
         overline="Sponsors"
         title={
           <Typography variant="h2" sx={{ my: 1 }}>

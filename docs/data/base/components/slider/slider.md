@@ -6,7 +6,7 @@ githubLabel: 'component: slider'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 ---
 
-# Unstyled slider
+# Unstyled Slider
 
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>
@@ -16,6 +16,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
+
+{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -36,7 +38,7 @@ export default function MyApp() {
 ### Basics
 
 The following demo shows how to create and style two basic sliders.
-Notice that both are set to a default value of 10 with the `defaultValue` prop, and the the second slider cannot be adjusted due to the `disabled` prop:
+Notice that both are set to a default value of 10 with the `defaultValue` prop, and the second slider cannot be adjusted due to the `disabled` prop:
 
 {{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
 

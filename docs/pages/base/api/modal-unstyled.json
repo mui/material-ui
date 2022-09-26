@@ -42,6 +42,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-modal/\">Modal</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-modal/\">Unstyled Modal</a></li></ul>",
   "cssComponent": false
 }

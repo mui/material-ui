@@ -5,7 +5,7 @@ components: InputUnstyled
 githubLabel: 'component: input'
 ---
 
-# Unstyled input
+# Unstyled Input
 
 <p class="description">The InputUnstyled component provides users with a field to enter and edit text.</p>
 
@@ -13,6 +13,8 @@ githubLabel: 'component: input'
 
 An input is a UI element that accepts text data from the user.
 The `InputUnstyled` component replaces the native HTML `<input>` tag, and can also be transformed into a `<textarea>` as needed.
+
+{{"demo": "UnstyledInputIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 

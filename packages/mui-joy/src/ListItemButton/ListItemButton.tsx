@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled, useThemeProps } from '../styles';
 import {
-  ListItemButtonProps,
+  ListItemButtonOwnerState,
   ExtendListItemButton,
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
@@ -14,7 +14,7 @@ import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItem
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
 
   const slots = {
@@ -42,12 +42,14 @@ export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
-}>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',
+    }),
+    ...(ownerState.disabled && {
+      '--List-decorator-color':
+        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
     }),
     boxSizing: 'border-box',
     position: 'relative',
@@ -74,7 +76,9 @@ export const ListItemButtonRoot = styled('div', {
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: ownerState.row ? 'none' : 1,
+    flexGrow: ownerState.row ? 0 : 1,
+    flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
+    flexShrink: 0,
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
