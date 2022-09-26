@@ -14,6 +14,8 @@ import { SxProps } from '../styles/types';
 import { IconButtonOwnerState } from '../IconButton';
 import { AutocompleteListboxProps } from '../AutocompleteListbox/AutocompleteListboxProps';
 
+export type AutocompleteSlot = keyof ComponentsProps;
+
 export type {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,

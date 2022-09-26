@@ -196,7 +196,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   });
 
   const {
-    className,
     clearIcon = <ClearIcon fontSize="md" />,
     clearText = 'Clear',
     closeText = 'Close',
