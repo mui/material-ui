@@ -5,6 +5,7 @@ import { describeConformance, createRenderer, screen, act, fireEvent } from 'tes
 import Autocomplete, { autocompleteClasses as classes } from '@mui/joy/Autocomplete';
 import Input from '@mui/joy/Input';
 import Chip from '@mui/joy/Chip';
+import ChipDelete from '@mui/joy/ChipDelete';
 import { ThemeProvider } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
@@ -433,7 +434,7 @@ describe('Joy <Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
 
-    it.skip('navigates between different tags', () => {
+    it('navigates between different tags', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       render(
@@ -515,7 +516,11 @@ describe('Joy <Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => <Chip {...getTagProps({ index })}>{option.title}</Chip>)
+              .map((option, index) => (
+                <Chip key={index} endDecorator={<ChipDelete {...getTagProps({ index })} />}>
+                  {option.title}
+                </Chip>
+              ))
           }
           onChange={handleChange}
           renderInput={(params) => <Input {...params} autoFocus />}

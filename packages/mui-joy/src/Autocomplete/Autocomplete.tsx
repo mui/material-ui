@@ -297,24 +297,27 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   let startDecorator;
 
   if (multiple && (value as Array<unknown>).length > 0) {
-    const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => ({
-      disabled,
-      size,
-      ...getTagProps(params),
-    });
+    const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => {
+      const { onDelete, ...tagProps } = getTagProps(params);
+      return {
+        disabled,
+        size,
+        onClick: onDelete,
+        ...tagProps,
+      };
+    };
 
     if (renderTags) {
       startDecorator = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
       startDecorator = (value as Array<unknown>).map((option, index) => {
-        const { onDelete, ...tagProps } = getCustomizedTagProps({ index });
         return (
           <Chip
+            key={index}
             size={size}
             variant="soft"
             color="neutral"
-            endDecorator={<ChipDelete onClick={onDelete} />}
-            {...tagProps}
+            endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
           >
             {getOptionLabel(option)}
           </Chip>

@@ -28,7 +28,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   disabled: boolean;
   'data-tag-index': number;
   tabIndex: -1;
-  onDelete: (event: any) => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export interface AutocompleteRenderOptionState {
