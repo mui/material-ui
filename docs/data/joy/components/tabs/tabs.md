@@ -19,7 +19,7 @@ Joy UI provides four tabs-related components:
 - `Tab`: A button to toggle a selected tab.
 - `TabPanel`: A pane that displays on the screen when its value matches with the selected tab.
 
-{{"demo": "TabsUsage.js", "hideToolbar": true}}
+{{"demo": "TabsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

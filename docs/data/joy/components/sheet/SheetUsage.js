@@ -27,6 +27,7 @@ export default function SheetUsage() {
             width: 250,
             height: 200,
             m: 1,
+            mb: 4,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
