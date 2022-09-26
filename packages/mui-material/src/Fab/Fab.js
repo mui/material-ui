@@ -9,7 +9,7 @@ import fabClasses, { getFabUtilityClass } from './fabClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { color, variant, classes, size, disabled } = ownerState;
+  const { color, variant, classes, size } = ownerState;
 
   const slots = {
     root: [
