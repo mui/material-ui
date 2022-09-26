@@ -1498,4 +1498,252 @@ describe('Joy <Autocomplete />', () => {
       );
     });
   });
+
+  describe('prop: options', () => {
+    it('should keep focus on selected option and not reset to top option when options updated', () => {
+      const { setProps } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'two'
+
+      checkHighlightIs(listbox, 'two');
+
+      // three option is added and autocomplete re-renders, reset the highlight
+      setProps({ options: ['one', 'two', 'three'] });
+      checkHighlightIs(listbox, null);
+    });
+
+    it('should not select undefined', () => {
+      const handleChange = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          onChange={handleChange}
+          openOnFocus
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      const input = getByRole('combobox');
+      fireEvent.click(input);
+
+      const listbox = getByRole('listbox');
+      const firstOption = listbox.querySelector('li');
+      fireEvent.click(firstOption!);
+
+      expect(handleChange.args[0][1]).to.equal('one');
+    });
+
+    it('should work if options are the default data structure', () => {
+      const options = [
+        {
+          label: 'one',
+        },
+      ];
+      const handleChange = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          onChange={handleChange}
+          openOnFocus
+          options={options}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+
+      const input = getByRole('combobox');
+      fireEvent.click(input);
+
+      const listbox = getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+
+      expect(htmlOptions[0].innerHTML).to.equal('one');
+    });
+
+    it("should display a 'no options' message if no options are available", () => {
+      const { getByRole } = render(
+        <Autocomplete open options={[]} renderInput={(params) => <Input {...params} />} />,
+      );
+
+      const combobox = getByRole('combobox');
+      const textbox = getByRole('combobox');
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(combobox).not.to.have.attribute('aria-owns');
+      expect(textbox).not.to.have.attribute('aria-controls');
+      expect(document.querySelector(`.${classes.noOptions}`)).to.have.text('No options');
+    });
+  });
+
+  describe('enter', () => {
+    it('select a single value when enter is pressed', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          openOnFocus
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('one');
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('select multiple value when enter is pressed', () => {
+      const handleChange = spy();
+      const options = [{ name: 'one' }, { name: 'two ' }];
+      render(
+        <Autocomplete
+          multiple
+          onChange={handleChange}
+          openOnFocus
+          options={options}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+    });
+  });
+
+  describe('prop: autoComplete', () => {
+    it('add a completion string', () => {
+      render(
+        <Autocomplete
+          autoComplete
+          openOnFocus
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.change(document.activeElement as HTMLInputElement, { target: { value: 'O' } });
+
+      expect((document.activeElement as HTMLInputElement).value).to.equal('O');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      expect((document.activeElement as HTMLInputElement).value).to.equal('one');
+      expect((document.activeElement as HTMLInputElement).selectionStart).to.equal(1);
+      expect((document.activeElement as HTMLInputElement).selectionEnd).to.equal(3);
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+
+      expect((document.activeElement as HTMLInputElement).value).to.equal('one');
+      expect((document.activeElement as HTMLInputElement).selectionStart).to.equal(3);
+      expect((document.activeElement as HTMLInputElement).selectionEnd).to.equal(3);
+    });
+  });
+
+  describe('click input', () => {
+    it('when `openOnFocus` toggles if empty', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          openOnFocus
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      const combobox = getByRole('combobox');
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      fireEvent.mouseDown(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+    });
+
+    it('selects all the first time', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          value="one"
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      const textbox = getByRole('combobox') as HTMLInputElement;
+      fireEvent.click(textbox);
+      expect(textbox.selectionStart).to.equal(0);
+      expect(textbox.selectionEnd).to.equal(3);
+    });
+
+    it('should focus the input when clicking on the open action', () => {
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          value="one"
+          options={['one', 'two']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+      fireEvent.click(textbox);
+      expect(textbox).toHaveFocus();
+
+      act(() => {
+        textbox.blur();
+      });
+      fireEvent.click(queryByTitle('Open')!);
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should maintain list box open clicking on input when it is not empty', () => {
+      const { getByRole, getAllByRole } = render(
+        <Autocomplete options={['one']} renderInput={(params) => <Input {...params} />} />,
+      );
+      const combobox = getByRole('combobox');
+      const textbox = getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      const options = getAllByRole('option');
+      fireEvent.click(options[0]);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox); // Open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      fireEvent.mouseDown(textbox); // Remain open listbox
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should not toggle list box', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          value="one"
+          options={['one']}
+          renderInput={(params) => <Input {...params} />}
+        />,
+      );
+      const combobox = getByRole('combobox');
+      const textbox = getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      fireEvent.mouseDown(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+    });
+  });
 });
