@@ -2,6 +2,7 @@
 product: joy-ui
 title: React Select component
 githubLabel: 'component: select'
+waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 unstyled: /base/react-select/
 ---
 
@@ -136,11 +137,12 @@ The `FormControl` automatically generates a unique id that links the select with
 Alternatively, you can do it manually by targeting the button slot:
 
 ```jsx
-<label htmlFor="unique-id">Label</label>
+<label htmlFor="select-button" id="select-label">Label</label>
 <Select
   componentsProps={{
     button: {
-      id: 'unique-id',
+      id: 'select-button',
+      'aria-labelledby': 'select-label select-button',
     }
   }}
 >
