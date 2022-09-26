@@ -20,9 +20,11 @@ export default function TextareaAutosizeSuspense() {
   const [showRoute, setShowRoute] = React.useState(false);
 
   return (
-    <React.Suspense fallback={null}>
+    <React.Fragment>
       <Button onClick={() => setShowRoute((r) => !r)}>Toggle view</Button>
-      {showRoute ? <LazyRoute /> : <TextareaAutosize />}
-    </React.Suspense>
+      <React.Suspense fallback={null}>
+        {showRoute ? <LazyRoute /> : <TextareaAutosize />}
+      </React.Suspense>
+    </React.Fragment>
   );
 }
