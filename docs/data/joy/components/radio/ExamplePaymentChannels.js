@@ -54,7 +54,7 @@ export default function ExamplePaymentChannels() {
           sx={{
             borderRadius: 'sm',
             boxShadow: 'sm',
-            bgcolor: '#fff',
+            bgcolor: 'background.body',
           }}
         >
           {['Credit Card', 'Paypal', 'QR Code'].map((value, index) => (

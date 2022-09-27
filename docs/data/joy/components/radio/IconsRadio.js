@@ -42,7 +42,7 @@ export default function IconsRadio() {
           variant="outlined"
           sx={{
             borderRadius: 'md',
-            bgcolor: 'background.surface',
+            bgcolor: 'background.body',
             boxShadow: 'sm',
             display: 'flex',
             flexDirection: 'column',

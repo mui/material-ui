@@ -108,4 +108,4 @@ It supports mouse and keyboard navigation between menu items.
 
 This example is quite common in dashboard applications where the side navigation is shrunk into icons, and the menu is triggered by hovering them.
 
-{{"demo": "MenuIconSideNavExample.js", "bg": true}}
+{{"demo": "MenuIconSideNavExample.js"}}

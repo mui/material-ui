@@ -39,6 +39,7 @@ export default function OverlayRadio() {
               alignItems: 'start',
               boxShadow: 'sm',
               borderRadius: 'md',
+              bgcolor: 'background.body',
               gap: 1.5,
             }}
           >

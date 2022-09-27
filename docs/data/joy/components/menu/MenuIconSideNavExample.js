@@ -134,7 +134,7 @@ export default function MenuIconSideNavExample() {
     }, 200);
   };
   return (
-    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
+    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20, bgcolor: 'background.body' }}>
       <List>
         <ListItem>
           <MenuButton

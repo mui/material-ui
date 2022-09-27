@@ -14,7 +14,6 @@ export default function RadioPositionEnd() {
       <List
         sx={{
           minWidth: 240,
-          bgcolor: '#fff',
           '--List-gap': '0.5rem',
           '--List-item-paddingY': '1rem',
           '--List-item-radius': '8px',
@@ -22,7 +21,11 @@ export default function RadioPositionEnd() {
         }}
       >
         {['Individual', 'Team', 'Enterprise'].map((item, index) => (
-          <ListItem variant="outlined" key={item} sx={{ boxShadow: 'sm' }}>
+          <ListItem
+            variant="outlined"
+            key={item}
+            sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
+          >
             <ListItemDecorator>
               {[<Person />, <People />, <Apartment />][index]}
             </ListItemDecorator>
