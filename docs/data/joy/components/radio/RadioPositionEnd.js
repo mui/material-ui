@@ -14,14 +14,15 @@ export default function RadioPositionEnd() {
       <List
         sx={{
           minWidth: 240,
+          bgcolor: '#fff',
           '--List-gap': '0.5rem',
           '--List-item-paddingY': '1rem',
           '--List-item-radius': '8px',
           '--List-decorator-size': '32px',
         }}
       >
-        {['Individual', 'Team', 'Interprise'].map((item, index) => (
-          <ListItem variant="outlined" key={item}>
+        {['Individual', 'Team', 'Enterprise'].map((item, index) => (
+          <ListItem variant="outlined" key={item} sx={{ boxShadow: 'sm' }}>
             <ListItemDecorator>
               {[<Person />, <People />, <Apartment />][index]}
             </ListItemDecorator>
