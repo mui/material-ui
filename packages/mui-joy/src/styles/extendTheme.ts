@@ -236,7 +236,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
       divider: `rgba(${getCssVar('palette-neutral-mainChannel')} / 0.28)`,
-      focusVisible: getCssVar('palette-primary-200'),
+      focusVisible: getCssVar('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
     shadowChannel: '187 187 187',
@@ -608,7 +608,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
         main: '500' as keyof PaletteRange,
-        light: '100' as keyof PaletteRange,
+        light: '200' as keyof PaletteRange,
         dark: '900' as keyof PaletteRange,
       };
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
