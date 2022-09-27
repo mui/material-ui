@@ -21,6 +21,7 @@ const NotchedOutlineRoot = styled('fieldset')({
 
 const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
   float: 'unset', // Fix conflict with bootstrap
+  width: 'auto', // Fix conflict with bootstrap
   overflow: 'hidden', // Fix Horizontal scroll when label too long
   ...(!ownerState.withLabel && {
     padding: 0,
@@ -32,7 +33,6 @@ const NotchedOutlineLegend = styled('legend')(({ ownerState, theme }) => ({
   }),
   ...(ownerState.withLabel && {
     display: 'block', // Fix conflict with normalize.css and sanitize.css
-    width: 'auto', // Fix conflict with bootstrap
     padding: 0,
     height: 11, // sync with `lineHeight` in `legend` styles
     fontSize: '0.75em',

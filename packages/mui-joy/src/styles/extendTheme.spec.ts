@@ -17,6 +17,7 @@ import { ChipOwnerState } from '@mui/joy/Chip';
 import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
 import { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { ContainerProps } from '@mui/joy/Container';
+import { DividerOwnerState } from '@mui/joy/Divider';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
 import { FormLabelOwnerState } from '@mui/joy/FormLabel';
@@ -274,6 +275,14 @@ extendTheme({
           expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
+        startDecorator: ({ ownerState }) => {
+          expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
       },
     },
     JoyCard: {
@@ -427,6 +436,17 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ContainerProps & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyDivider: {
+      defaultProps: {
+        orientation: 'vertical',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DividerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

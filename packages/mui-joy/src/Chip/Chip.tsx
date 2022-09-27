@@ -10,7 +10,6 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
-import ChipDelete from '../ChipDelete';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -206,7 +205,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     color = 'primary',
     component,
     onClick,
-    onDelete,
     disabled = false,
     size = 'md',
     variant = 'solid',
@@ -259,6 +257,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     additionalProps: {
       'aria-labelledby': id,
       as: resolvedActionProps?.component,
+      onClick,
     },
     ownerState,
     className: classes.action,
@@ -297,12 +296,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
           <ChipStartDecorator {...startDecoratorProps}>{startDecorator}</ChipStartDecorator>
         )}
 
-        {(endDecorator || onDelete) && (
-          <ChipEndDecorator {...endDecoratorProps}>
-            {endDecorator}
-            {onDelete ? <ChipDelete onClick={onDelete} /> : null}
-          </ChipEndDecorator>
-        )}
+        {endDecorator && <ChipEndDecorator {...endDecoratorProps}>{endDecorator}</ChipEndDecorator>}
       </ChipRoot>
     </ChipContext.Provider>
   );
@@ -355,14 +349,9 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   endDecorator: PropTypes.node,
   /**
-   * @ignore
+   * Element action click handler.
    */
   onClick: PropTypes.func,
-  /**
-   * Callback fired when the delete icon is clicked.
-   * If set, the delete icon will be shown.
-   */
-  onDelete: PropTypes.func,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.

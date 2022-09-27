@@ -39,7 +39,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Unstyled switch](https://mui.com/base/react-switch/)
+ * - [Unstyled Switch](https://mui.com/base/react-switch/)
  *
  * API:
  *

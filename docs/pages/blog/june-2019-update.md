@@ -8,7 +8,7 @@ tags: ['Company']
 
 Here are the most significant improvements in June:
 
-- 💄 We have introduced a new [ButtonGroup](/material-ui/react-button/#grouped-buttons) component.
+- 💄 We have introduced a new [ButtonGroup](/material-ui/react-button-group/) component.
   ![ButtonGroup](/static/blog/june-2019-update/button-group.png)
 
 - 💄 The [Slider](/material-ui/react-slider/) component has been overhauled and enhanced with range support. It was also moved from the lab to the core.

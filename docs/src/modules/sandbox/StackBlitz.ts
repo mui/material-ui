@@ -24,7 +24,7 @@ const createReactApp = (demo: {
 
   const { dependencies } = SandboxDependencies(demo, {
     // Waiting for https://github.com/stackblitz/core/issues/437
-    // commitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+    // commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
 
   return {
