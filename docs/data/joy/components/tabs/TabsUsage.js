@@ -5,6 +5,7 @@ import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 
 export default function TabsUsage() {
+  const [index, setIndex] = React.useState(0);
   return (
     <JoyUsageDemo
       componentName="Tabs"
@@ -12,7 +13,7 @@ export default function TabsUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'soft',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
           codeBlockDisplay: false,
         },
@@ -44,11 +45,26 @@ export default function TabsUsage() {
         )
       }
       renderDemo={({ size, ...props }) => (
-        <Tabs size={size} defaultValue={1}>
+        <Tabs size={size} value={index} sx={{ borderRadius: 'lg' }}>
           <TabList {...props}>
-            <Tab value={1}>Tab A</Tab>
-            <Tab value={2}>Tab B</Tab>
-            <Tab value={3}>Tab C</Tab>
+            <Tab
+              variant={index === 0 ? 'soft' : 'plain'}
+              color={index === 0 ? 'primary' : 'neutral'}
+            >
+              Tab A
+            </Tab>
+            <Tab
+              variant={index === 1 ? 'soft' : 'plain'}
+              color={index === 1 ? 'primary' : 'neutral'}
+            >
+              Tab B
+            </Tab>
+            <Tab
+              variant={index === 2 ? 'soft' : 'plain'}
+              color={index === 2 ? 'primary' : 'neutral'}
+            >
+              Tab C
+            </Tab>
           </TabList>
         </Tabs>
       )}

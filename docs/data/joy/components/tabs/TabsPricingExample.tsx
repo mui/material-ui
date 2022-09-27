@@ -11,7 +11,11 @@ export default function TabsPricingExample() {
       size="sm"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={{ width: 343, '--Tabs-gap': '0px' }}
+      sx={(theme) => ({
+        width: 343,
+        '--Tabs-gap': '0px',
+        borderRadius: 'lg',
+      })}
     >
       <TabList
         variant="outlined"
@@ -47,8 +51,8 @@ export default function TabsPricingExample() {
         <Tab>Pro</Tab>
         <Tab>Premium</Tab>
       </TabList>
-      <TabPanel value={0}>
-        <Typography level="inherit" mt={2}>
+      <TabPanel value={0} sx={{ p: 3 }}>
+        <Typography level="inherit">
           Get started with the industry-standard React UI library, MIT-licensed.
         </Typography>
         <Typography textColor="success.400" fontSize="xl3" fontWeight="xl" my={1}>
@@ -58,8 +62,8 @@ export default function TabsPricingExample() {
           </Typography>
         </Typography>
       </TabPanel>
-      <TabPanel value={1}>
-        <Typography level="inherit" mt={2}>
+      <TabPanel value={1} sx={{ p: 3 }}>
+        <Typography level="inherit">
           Best for professional developers building enterprise or data-rich
           applications.
         </Typography>
@@ -70,8 +74,8 @@ export default function TabsPricingExample() {
           </Typography>
         </Typography>
       </TabPanel>
-      <TabPanel value={2}>
-        <Typography level="inherit" mt={2}>
+      <TabPanel value={2} sx={{ p: 3 }}>
+        <Typography level="inherit">
           The most advanced features for data-rich applications, as well as the
           highest priority for support.
         </Typography>
