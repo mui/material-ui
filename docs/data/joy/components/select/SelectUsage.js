@@ -32,7 +32,7 @@ export default function SelectUsage() {
         {
           propName: 'placeholder',
           knob: 'input',
-          defaultValue: 'Choose one...',
+          defaultValue: 'Choose one…',
           codeBlockDisplay: true,
         },
         {

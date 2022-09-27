@@ -241,7 +241,9 @@ interface UseListboxOptionSlotOwnProps {
   'aria-selected': React.AriaAttributes['aria-selected'];
   id?: string;
   onClick: React.MouseEventHandler;
+  onPointerOver: React.PointerEventHandler;
   role: React.AriaRole;
+  tabIndex?: number;
 }
 
 export type UseListboxOptionSlotProps<TOther = {}> = Omit<
