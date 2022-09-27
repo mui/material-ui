@@ -2,10 +2,26 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
+import composeClasses from '@mui/base/composeClasses';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import autocompleteOptionClasses from './autocompleteOptionClasses';
+import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
+
+const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
+  const { color, variant } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
+  };
+
+  return composeClasses(slots, getAutocompleteOptionUtilityClass, {});
+};
 
 export const AutocompleteOptionRoot = styled(ListItemButtonRoot as unknown as 'li', {
   name: 'JoyAutocompleteOption',
@@ -42,12 +58,15 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     variant,
   };
 
+  const classes = useUtilityClasses(ownerState);
+
   return (
     <AutocompleteOptionRoot
       ref={ref}
       as={component}
       ownerState={ownerState}
-      className={clsx(autocompleteOptionClasses.root, className)}
+      className={clsx(classes.root, className)}
+      role="option"
       {...other}
     >
       {children}
