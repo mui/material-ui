@@ -372,9 +372,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       thickness: '2px',
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
-        outlineOffset: `calc(${getCssVar(
-          'focus-thickness',
-        )} * -1 * var(--_focus-outline-inside, 0))`, // reset user agent stylesheet
+        outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness')})`,
         outline: `${getCssVar('focus-thickness')} solid ${getCssVar('palette-focusVisible')}`,
       },
     },
