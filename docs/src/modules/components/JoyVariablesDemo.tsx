@@ -135,6 +135,7 @@ export default function JoyVariablesDemo(props: {
           flexBasis: 240,
           flexGrow: 1,
           borderRadius: 'sm',
+          boxShadow: 'md',
         }}
       >
         <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
