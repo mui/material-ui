@@ -11,7 +11,7 @@ import {
 } from '@mui/base/AutocompleteUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SxProps } from '../styles/types';
-import { IconButtonOwnerState } from '../IconButton';
+import { IconButtonOwnerState } from '../IconButton/IconButtonProps';
 import { AutocompleteListboxProps } from '../AutocompleteListbox/AutocompleteListboxProps';
 
 export type AutocompleteSlot = keyof ComponentsProps;
