@@ -23,7 +23,8 @@ const FormLabelRoot = styled('label', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormLabelProps }>(({ theme }) => ({
   WebkitTapHighlightColor: 'transparent',
-  display: 'flex',
+  alignSelf: 'flex-start', // to not fill the block space. It seems like a bug when clicking on empty space (within the label area), even though it is not.
+  display: 'inline-flex',
   alignItems: 'center',
   flexWrap: 'wrap',
   userSelect: 'none',
