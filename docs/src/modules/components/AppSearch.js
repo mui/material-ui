@@ -466,6 +466,7 @@ export default function AppSearch() {
               },
             },
             '& .DocSearch-Cancel': {
+              cursor: 'pointer',
               display: 'block',
               alignSelf: 'center',
               height: '1.5rem',
