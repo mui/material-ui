@@ -109,6 +109,7 @@ const ChipRoot = styled('div', {
           {
             '--variant-borderWidth': '0px',
             color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+            WebkitTapHighlightColor: 'transparent',
           },
         ]),
   ];
