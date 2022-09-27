@@ -67,6 +67,7 @@ const SelectRoot = styled('div', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--_focus-outline-inside': 1, // to prevent the focus outline from being cut by overflow
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,

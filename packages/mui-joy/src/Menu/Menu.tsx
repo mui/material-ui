@@ -34,6 +34,7 @@ const MenuRoot = styled(ListRoot, {
 })<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--_focus-outline-inside': 1, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
