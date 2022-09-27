@@ -46,7 +46,8 @@ describe('Joy <Autocomplete />', () => {
       ThemeProvider,
       refInstanceof: window.HTMLDivElement,
       muiName: 'JoyAutocomplete',
-      testDeepOverrides: { slotName: 'listbox', slotClassName: classes.listbox },
+      testDeepOverrides: { slotName: 'popupIndicator', slotClassName: classes.popupIndicator },
+      testVariantProps: { size: 'lg' },
       skip: ['componentsProp', 'classesRoot'],
     }),
   );
