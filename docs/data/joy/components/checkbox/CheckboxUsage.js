@@ -10,13 +10,13 @@ export default function CheckboxUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'outlined',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'neutral',
+          defaultValue: 'primary',
         },
         {
           propName: 'size',

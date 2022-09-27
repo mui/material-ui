@@ -14,13 +14,13 @@ export default function RadioUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'outlined',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'neutral',
+          defaultValue: 'primary',
         },
         {
           propName: 'size',
