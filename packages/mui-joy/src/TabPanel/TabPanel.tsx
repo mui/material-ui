@@ -43,6 +43,7 @@ const TabPanelRoot = styled('div', {
     fontSize: theme.vars.fontSize.lg,
   }),
   flexGrow: 1,
+  fontFamily: theme.vars.fontFamily.body,
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
