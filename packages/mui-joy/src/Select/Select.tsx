@@ -447,7 +447,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     additionalProps: {
       'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledby,
+      'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
       id: id ?? formControl?.htmlFor,
       name,
     },
