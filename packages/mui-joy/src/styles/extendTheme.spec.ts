@@ -131,6 +131,13 @@ extendTheme({
           >(ownerState);
           return {};
         },
+        option: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
         loading: ({ ownerState }) => {
           expectType<
             AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,

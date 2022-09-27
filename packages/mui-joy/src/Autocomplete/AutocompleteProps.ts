@@ -13,6 +13,7 @@ import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SxProps } from '../styles/types';
 import { IconButtonOwnerState } from '../IconButton/IconButtonProps';
 import { AutocompleteListboxProps } from '../AutocompleteListbox/AutocompleteListboxProps';
+import { AutocompleteOptionProps } from '../AutocompleteOption/AutocompleteOptionProps';
 
 export type AutocompleteSlot = keyof ComponentsProps;
 
@@ -94,7 +95,7 @@ interface ComponentsProps {
     {
       component?: React.ElementType;
       sx?: SxProps;
-    } & Pick<AutocompleteListboxProps, 'color' | 'variant'>,
+    } & Pick<AutocompleteOptionProps, 'color' | 'variant'>,
     AutocompleteOwnerState<any, any, any, any>
   >;
   loading?: SlotComponentProps<
