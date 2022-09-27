@@ -46,7 +46,7 @@ export const FormControlRoot = styled('div', {
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
-    '--FormHelperText-fontSize': theme.vars.fontSize.md,
+    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
