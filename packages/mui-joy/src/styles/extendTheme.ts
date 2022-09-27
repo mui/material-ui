@@ -369,10 +369,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       xl3: 900,
     },
     focus: {
+      thickness: '2px',
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
-        outlineOffset: getCssVar('focus-outlineOffset', '0px'), // reset user agent stylesheet
-        outline: `4px solid ${getCssVar('palette-focusVisible')}`,
+        outlineOffset: `calc(${getCssVar('focus-thickness')} * -1 * var(--_outline-inside, 0))`, // reset user agent stylesheet
+        outline: `${getCssVar('focus-thickness')} solid ${getCssVar('palette-focusVisible')}`,
       },
     },
     lineHeight: {
