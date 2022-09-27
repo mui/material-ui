@@ -1,10 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
+import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
 import { styled, useThemeProps } from '../styles';
-import autocompleteOptionClasses from './autocompleteListboxClasses';
+import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
 import {
   AutocompleteListboxOwnerState,
   AutocompleteListboxTypeMap,
@@ -12,6 +14,20 @@ import {
 import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
+
+const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
+  const { variant, color, size } = ownerState;
+  const slots = {
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
+  };
+
+  return composeClasses(slots, getAutocompleteListboxUtilityClass, {});
+};
 
 export const AutocompleteListboxRoot = styled(ListRoot, {
   name: 'JoyAutocompleteListbox',
@@ -59,7 +75,6 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     color = 'neutral',
     variant = 'outlined',
     size = 'md',
-    className,
     ...other
   } = props;
 
@@ -86,6 +101,8 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     }
   });
 
+  const classes = useUtilityClasses(ownerState);
+
   const rootProps = useSlotProps({
     elementType: AutocompleteListbox,
     externalSlotProps: {},
@@ -94,8 +111,9 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     additionalProps: {
       ref,
       as: component,
+      role: 'listbox',
     },
-    className: autocompleteOptionClasses.root,
+    className: classes.root,
   });
 
   return <AutocompleteListboxRoot {...rootProps}>{children}</AutocompleteListboxRoot>;
