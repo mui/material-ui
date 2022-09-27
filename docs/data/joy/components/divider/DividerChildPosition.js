@@ -22,6 +22,7 @@ export default function DividerChildPosition() {
         max={100}
         step={1}
         valueLabelDisplay="on"
+        valueLabelFormat={(value) => `${value}%`}
         onChange={(event, value) => setPosition(value)}
       />
     </Box>
