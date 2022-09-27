@@ -192,4 +192,20 @@ describe('e2e', () => {
       );
     });
   });
+
+  describe('<TextareaAutosize />', () => {
+    // https://github.com/mui/material-ui/issues/32640
+    it('should handle suspense without error', async () => {
+      const pageErrors: string[] = [];
+      page.on('pageerror', (err) => pageErrors.push(err.name));
+
+      await renderFixture('TextareaAutosize/TextareaAutosizeSuspense');
+      expect(await page.isVisible('textarea')).to.equal(true);
+      await page.click('button');
+      expect(await page.isVisible('textarea')).to.equal(false);
+      await page.waitForTimeout(200); // Wait for debounce to fire (166)
+
+      expect(pageErrors.length).to.equal(0);
+    });
+  });
 });

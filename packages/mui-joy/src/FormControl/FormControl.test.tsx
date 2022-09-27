@@ -152,6 +152,18 @@ describe('<FormControl />', () => {
       expect(getByLabelText('label')).toBeVisible();
     });
 
+    it('should labeledby form label', () => {
+      const { container, getByRole } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <Select />
+        </FormControl>,
+      );
+
+      const label = container.querySelector('label');
+      expect(getByRole('button')).to.have.attribute('aria-labelledby', label?.id);
+    });
+
     it('should inherit color prop from FormControl', () => {
       const { getByTestId } = render(
         <FormControl color="success">
