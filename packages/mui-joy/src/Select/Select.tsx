@@ -71,7 +71,7 @@ const SelectRoot = styled('div', {
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
-      '--Select-focusedThickness': '2px',
+      '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       '--Select-indicator-color': theme.vars.palette.text.tertiary,
