@@ -217,6 +217,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           p: 3,
           background: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
           backdropFilter: 'blur(8px)',
+          minWidth: '280px',
         }}
       >
         <Box
