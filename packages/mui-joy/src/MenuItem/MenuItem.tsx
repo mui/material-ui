@@ -14,7 +14,7 @@ import {
 } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible?: boolean }) => {
   const { focusVisible, disabled, selected } = ownerState;
   // Does not need to create state clases: focusVisible, disabled, and selected because ListItemButton already takes care of them.
   // Otherwise, there will be duplicated classes.
