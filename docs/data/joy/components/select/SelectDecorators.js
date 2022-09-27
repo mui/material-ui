@@ -10,7 +10,7 @@ export default function SelectDecorators() {
       placeholder="Select a pet…"
       startDecorator={<FavoriteBorder />}
       endDecorator={
-        <Chip size="sm" color="danger" variant="soft" sx={{ mr: -1 }}>
+        <Chip size="sm" color="danger" variant="soft">
           +5
         </Chip>
       }

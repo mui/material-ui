@@ -18,12 +18,7 @@ const grey = {
 };
 
 const Root = styled('div')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
   position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-  color: #000;
 `;
 
 const Toggle = styled('div')(
@@ -33,19 +28,16 @@ const Toggle = styled('div')(
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   min-width: 320px;
-  padding: 12px;
   border-radius: 12px;
   text-align: left;
   line-height: 1.5;
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: var(--color, ${theme.palette.mode === 'dark' ? grey[900] : '#fff'});
-  margin: 0.5em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: default;
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;

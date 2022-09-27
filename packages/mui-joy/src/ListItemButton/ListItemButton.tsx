@@ -51,6 +51,7 @@ export const ListItemButtonRoot = styled('div', {
       '--List-decorator-color':
         theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
     }),
+    WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
     position: 'relative',
     display: 'flex',

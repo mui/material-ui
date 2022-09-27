@@ -96,7 +96,7 @@ export interface LinkOwnerState extends LinkProps {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the element is rendered by a Typography component.
    */

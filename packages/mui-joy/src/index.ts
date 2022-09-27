@@ -52,6 +52,9 @@ export * from './ChipDelete';
 export { default as Container } from './Container';
 export * from './Container';
 
+export { default as Divider } from './Divider';
+export * from './Divider';
+
 export { default as FormHelperText } from './FormHelperText';
 export * from './FormHelperText';
 

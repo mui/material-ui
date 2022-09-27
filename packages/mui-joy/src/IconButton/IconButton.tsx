@@ -60,6 +60,7 @@ export const IconButtonRoot = styled('button', {
       fontSize: theme.vars.fontSize.lg,
       paddingInline: '0.375rem',
     }),
+    WebkitTapHighlightColor: 'transparent',
     paddingBlock: 0,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,

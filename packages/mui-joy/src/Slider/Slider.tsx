@@ -598,7 +598,9 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
                     open === index || active === index || valueLabelDisplay === 'on',
                 })}
               >
-                {value}
+                {typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat}
               </SliderValueLabel>
             ) : null}
           </SliderThumb>
