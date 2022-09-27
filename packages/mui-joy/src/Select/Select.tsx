@@ -242,13 +242,25 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Icon-fontSize': '1.125rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Icon-fontSize': '1.25rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Icon-fontSize': '1.5rem',
+  }),
   color: 'var(--Select-indicator-color)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-});
+  [`.${selectClasses.endDecorator} + &`]: {
+    marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+}));
 
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
