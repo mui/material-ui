@@ -112,13 +112,13 @@ const StyledAppBar = styled(AppBar, {
     borderStyle: 'solid',
     borderColor:
       theme.palette.mode === 'dark'
-        ? alpha(theme.palette.primary[100], 0.08)
+        ? alpha(theme.palette.primary[100], 0.05)
         : theme.palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
     background:
       theme.palette.mode === 'dark'
-        ? alpha(theme.palette.primaryDark[900], 0.7)
+        ? alpha(theme.palette.primaryDark[900], 0.5)
         : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
   };

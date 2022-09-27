@@ -154,7 +154,7 @@ PersistScroll.propTypes = {
 };
 
 const ToolbarDiv = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1.45, 2),
+  padding: theme.spacing(2, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
   display: 'flex',
@@ -384,7 +384,7 @@ export default function AppNavDrawer(props) {
                 borderRight: '1px solid',
                 borderColor: (theme) =>
                   theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primary[100], 0.08)
+                    ? alpha(theme.palette.primary[100], 0.1)
                     : theme.palette.grey[200],
               }}
             >
@@ -474,7 +474,7 @@ export default function AppNavDrawer(props) {
           sx={{
             borderColor: (theme) =>
               theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
+                ? alpha(theme.palette.primary[100], 0.05)
                 : theme.palette.grey[100],
           }}
         />
@@ -499,6 +499,12 @@ export default function AppNavDrawer(props) {
           PaperProps={{
             className: 'algolia-drawer',
             component: AppNavPaperComponent,
+          }}
+          sx={{
+            background: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[200], 0.5)
+                : 'rgba(255,255,255,0.7)',
           }}
         >
           <PersistScroll slot="swipeable" enabled={mobileOpen}>
