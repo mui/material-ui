@@ -7,7 +7,7 @@ export default function TextareaValidator() {
     <Box sx={{ p: 2 }}>
       <Textarea
         placeholder="Type in here…"
-        defaultValue="Try to put the text more than 4 lines."
+        defaultValue="Try to put text longer than 4 lines."
         minRows={2}
         maxRows={4}
       />
