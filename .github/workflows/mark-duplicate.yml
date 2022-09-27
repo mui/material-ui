@@ -4,8 +4,11 @@ on:
   issue_comment:
     types: [created]
 
+permissions: {}
 jobs:
   mark-duplicate:
+    permissions:
+      issues: write # to update issues (actions-cool/issues-helper)
     runs-on: ubuntu-latest
     permissions:
       contents: read
