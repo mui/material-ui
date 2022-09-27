@@ -14,7 +14,7 @@ import CloseModalContext from '../Modal/CloseModalContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolean }) => {
   const { variant, color, disabled, focusVisible, size } = ownerState;
 
   const slots = {

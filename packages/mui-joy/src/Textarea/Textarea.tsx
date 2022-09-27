@@ -40,7 +40,7 @@ const TextareaRoot = styled('div', {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderOpacity': 0.5,
-      '--Textarea-focusedThickness': '2px',
+      '--Textarea-focusedThickness': theme.vars.focus.thickness,
       '--Textarea-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       ...(ownerState.size === 'sm' && {
