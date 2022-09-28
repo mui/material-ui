@@ -3,6 +3,7 @@ import { OverridableStringUnion } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
 import {
   useAutocomplete,
+  AutocompleteValue,
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -158,6 +159,11 @@ interface AutocompleteOwnProps<
    * @default {}
    */
   componentsProps?: ComponentsProps;
+  /**
+   * The default value. Use when the component is not controlled.
+   * @default props.multiple ? [] : null
+   */
+  defaultValue?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * If `true`, the component is disabled.
    * @default false

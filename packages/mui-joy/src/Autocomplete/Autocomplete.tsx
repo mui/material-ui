@@ -622,7 +622,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
-  defaultValue: /* @typescript-to-proptypes-ignore */ chainPropTypes(PropTypes.any, (props) => {
+  defaultValue: chainPropTypes(PropTypes.any, (props) => {
     if (props.multiple && props.defaultValue !== undefined && !Array.isArray(props.defaultValue)) {
       return new Error(
         [
