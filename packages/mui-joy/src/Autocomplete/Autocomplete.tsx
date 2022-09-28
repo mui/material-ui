@@ -600,6 +600,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     listbox: PropTypes.elementType,
     loading: PropTypes.elementType,
     noOptions: PropTypes.elementType,
+    option: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
@@ -613,6 +614,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -620,7 +622,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
-  defaultValue: chainPropTypes(PropTypes.any, (props) => {
+  defaultValue: /* @typescript-to-proptypes-ignore */ chainPropTypes(PropTypes.any, (props) => {
     if (props.multiple && props.defaultValue !== undefined && !Array.isArray(props.defaultValue)) {
       return new Error(
         [
@@ -781,6 +783,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
