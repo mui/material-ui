@@ -22,8 +22,8 @@ describe('Joy <AutocompleteListbox />', () => {
   }));
 
   it('should have ul tag', () => {
-    const { getByRole } = render(<AutocompleteListbox />);
-    expect(getByRole('listbox')).to.have.tagName('ul');
+    const { container } = render(<AutocompleteListbox />);
+    expect(container.firstChild).to.have.tagName('ul');
   });
 
   it('should have root className', () => {
@@ -43,12 +43,12 @@ describe('Joy <AutocompleteListbox />', () => {
   });
 
   it('should render with the variant class', () => {
-    const { getByRole } = render(<AutocompleteListbox variant="outlined" />);
-    expect(getByRole('listbox')).to.have.class(classes.variantOutlined);
+    const { container } = render(<AutocompleteListbox variant="outlined" />);
+    expect(container.firstChild).to.have.class(classes.variantOutlined);
   });
 
   it('should render with primary color class', () => {
-    const { getByRole } = render(<AutocompleteListbox color="primary" />);
-    expect(getByRole('listbox')).to.have.class(classes.colorPrimary);
+    const { container } = render(<AutocompleteListbox color="primary" />);
+    expect(container.firstChild).to.have.class(classes.colorPrimary);
   });
 });
