@@ -13,15 +13,12 @@ export { default as unstable_composeClasses } from './composeClasses';
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
+export { default as FocusTrap } from './FocusTrap';
+
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
-
-export { default as FocusTrap } from './FocusTrap';
-
-export { default as FormControlUnstyled } from './FormControlUnstyled';
-export * from './FormControlUnstyled';
 
 export { default as InputUnstyled } from './InputUnstyled';
 export * from './InputUnstyled';
@@ -75,3 +72,35 @@ export { default as TabUnstyled } from './TabUnstyled';
 export * from './TabUnstyled';
 
 export { default as TextareaAutosize } from './TextareaAutosize';
+
+export * from './useAutocomplete';
+
+export * from './useBadge';
+
+export * from './useButton';
+
+export * from './useControllableReducer';
+
+export * from './useFormControlUnstyledContext';
+
+export * from './useInput';
+
+export * from './useListbox';
+
+export * from './useMenu';
+
+export * from './useMenuItem';
+
+export * from './useSelect';
+
+export * from './useSlider';
+
+export * from './useSwitch';
+
+export * from './useTab';
+
+export * from './useTabPanel';
+
+export * from './useTabs';
+
+export * from './useTabsList';
