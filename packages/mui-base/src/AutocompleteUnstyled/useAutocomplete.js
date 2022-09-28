@@ -72,9 +72,9 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 export default function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    _isActiveElementInListbox = defaultIsActiveElementInListbox,
+    unstable_isActiveElementInListbox = defaultIsActiveElementInListbox,
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    _classNamePrefix = 'Mui',
+    unstable_classNamePrefix = 'Mui',
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
@@ -333,10 +333,12 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector(`[role="option"].${_classNamePrefix}-focused`);
+    const prev = listboxRef.current.querySelector(
+      `[role="option"].${unstable_classNamePrefix}-focused`,
+    );
     if (prev) {
-      prev.classList.remove(`${_classNamePrefix}-focused`);
-      prev.classList.remove(`${_classNamePrefix}-focusVisible`);
+      prev.classList.remove(`${unstable_classNamePrefix}-focused`);
+      prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -357,9 +359,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.classList.add(`${_classNamePrefix}-focused`);
+    option.classList.add(`${unstable_classNamePrefix}-focused`);
     if (reason === 'keyboard') {
-      option.classList.add(`${_classNamePrefix}-focusVisible`);
+      option.classList.add(`${unstable_classNamePrefix}-focusVisible`);
     }
 
     // Scroll active descendant into view.
@@ -868,7 +870,7 @@ export default function useAutocomplete(props) {
 
   const handleBlur = (event) => {
     // Ignore the event when using the scrollbar with IE11
-    if (_isActiveElementInListbox(listboxRef)) {
+    if (unstable_isActiveElementInListbox(listboxRef)) {
       inputRef.current.focus();
       return;
     }

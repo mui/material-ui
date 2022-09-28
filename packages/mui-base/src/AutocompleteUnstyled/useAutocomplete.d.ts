@@ -45,13 +45,13 @@ export interface UseAutocompleteProps<
    * @internal The prefix of the state class name, temporary for Joy UI
    * @default 'Mui'
    */
-  _classNamePrefix?: string;
+  unstable_classNamePrefix?: string;
   /**
    * @internal
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
    */
-  _isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.

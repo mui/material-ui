@@ -283,8 +283,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ...props,
     id: formControl?.htmlFor,
     componentName: 'Autocomplete',
-    _classNamePrefix: 'Joy',
-    _isActiveElementInListbox: defaultIsActiveElementInListbox,
+    unstable_classNamePrefix: 'Joy',
+    unstable_isActiveElementInListbox: defaultIsActiveElementInListbox,
   });
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
