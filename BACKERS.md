@@ -26,7 +26,6 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
   <a href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 8px;">
     <img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code">
   </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="blokt" href="https://blokt.com/" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://pbs.twimg.com/profile_images/927547020134502405/zY3QPxmz_200x200.jpg" alt="blokt" title="Leading Cryptocurrency News"></a>
 </p>
 
 via [OpenCollective](https://opencollective.com/material-ui)
