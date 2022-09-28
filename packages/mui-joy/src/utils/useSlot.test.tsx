@@ -45,8 +45,8 @@ describe('useSlot', () => {
         className?: string;
         component?: React.ElementType;
         href?: string;
-        slots?: { root?: React.ElementType; decorator?: React.ElementType };
-        slotsProps?: {
+        components?: { root?: React.ElementType; decorator?: React.ElementType };
+        componentsProps?: {
           root?: SlotComponentProps<'button', Record<string, any>, {}>;
           decorator?: SlotComponentProps<'span', { size?: 'sm' | 'md' } & Record<string, any>, {}>;
         };
@@ -92,7 +92,7 @@ describe('useSlot', () => {
 
     it('should append classes', () => {
       const { getByRole } = render(
-        <Item className="foo-bar" slotsProps={{ decorator: { className: 'foo-bar' } }} />,
+        <Item className="foo-bar" componentsProps={{ decorator: { className: 'foo-bar' } }} />,
       );
       expect(getByRole('button')).to.have.class('root');
       expect(getByRole('button')).to.have.class('foo-bar');
@@ -106,13 +106,13 @@ describe('useSlot', () => {
     });
 
     it('slot ownerstate should be overriable', () => {
-      const { getByRole } = render(<Item slotsProps={{ decorator: { size: 'sm' } }} />);
+      const { getByRole } = render(<Item componentsProps={{ decorator: { size: 'sm' } }} />);
       expect(getByRole('button').firstChild).to.have.class('size-sm');
     });
 
-    it('slotsProps has higher priority', () => {
+    it('componentsProps has higher priority', () => {
       const { getByRole } = render(
-        <Item data-item="foo" slotsProps={{ root: { 'data-item': 'bar' } }} />,
+        <Item data-item="foo" componentsProps={{ root: { 'data-item': 'bar' } }} />,
       );
       expect(getByRole('button')).to.have.attribute('data-item', 'bar');
     });
@@ -122,15 +122,15 @@ describe('useSlot', () => {
       expect(getByRole('link')).toBeVisible();
     });
 
-    it('use slotsProps `component` over `component` prop', () => {
+    it('use componentsProps `component` over `component` prop', () => {
       const { getByRole } = render(
-        <Item component="div" slotsProps={{ root: { component: 'a', href: '/' } }} />,
+        <Item component="div" componentsProps={{ root: { component: 'a', href: '/' } }} />,
       );
       expect(getByRole('link')).toBeVisible();
     });
 
     it('can change decorator leaf component', () => {
-      const { getByRole } = render(<Item slotsProps={{ decorator: { component: 'div' } }} />);
+      const { getByRole } = render(<Item componentsProps={{ decorator: { component: 'div' } }} />);
       expect(getByRole('button').firstChild).to.have.tagName('div');
     });
   });
@@ -179,13 +179,15 @@ describe('useSlot', () => {
 
     it('the listbox slot should be replaceable', () => {
       const Listbox = () => <ul />;
-      const { getByRole } = render(<Item slots={{ listbox: Listbox }} />);
+      const { getByRole } = render(<Item components={{ listbox: Listbox }} />);
       expect(getByRole('list')).toBeVisible();
       expect(getByRole('list')).not.to.have.attribute('class');
     });
 
     it('the listbox leaf component can be changed', () => {
-      const { getByRole } = render(<Item open slotsProps={{ listbox: { component: 'div' } }} />);
+      const { getByRole } = render(
+        <Item open componentsProps={{ listbox: { component: 'div' } }} />,
+      );
       expect(getByRole('menu')).to.have.tagName('div');
     });
   });

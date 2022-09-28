@@ -32,8 +32,8 @@ export default function useSlot<
   ExternalSlotProps extends { component?: React.ElementType },
   ExternalForwardedProps extends {
     component?: React.ElementType;
-    slots?: Partial<Record<T, React.ElementType>>;
-    slotsProps?: Partial<
+    components?: Partial<Record<T, React.ElementType>>;
+    componentsProps?: Partial<
       Record<
         T,
         | WithCommonProps<ExternalSlotProps>
@@ -80,13 +80,13 @@ export default function useSlot<
      * For overriding the component's ownerState for the slot.
      * This is required for some components that need styling via `ownerState`.
      *
-     * It is a function because `slotsProps.{slot}` can be a function which has to be resolved first.
+     * It is a function because `componentsProps.{slot}` can be a function which has to be resolved first.
      */
     getSlotOwnerState?: (
       mergedProps: SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
-          Exclude<Exclude<ExternalForwardedProps['slotsProps'], undefined>[T], undefined>
+          Exclude<Exclude<ExternalForwardedProps['componentsProps'], undefined>[T], undefined>
         >,
     ) => SlotOwnerState;
     /**
@@ -106,14 +106,14 @@ export default function useSlot<
   } = parameters;
   const {
     component: rootComponent,
-    slots = { [name]: undefined },
-    slotsProps = { [name]: undefined },
+    components = { [name]: undefined },
+    componentsProps = { [name]: undefined },
     ...other
   } = externalForwardedProps;
 
-  // `slotsProps[name]` can be a callback that receives the component's ownerState.
+  // `componentsProps[name]` can be a callback that receives the component's ownerState.
   // `resolvedComponentsProps` is always a plain object.
-  const resolvedComponentsProps = resolveComponentProps(slotsProps[name], ownerState);
+  const resolvedComponentsProps = resolveComponentProps(componentsProps[name], ownerState);
 
   const {
     props: { component: slotComponent, ...mergedProps },
@@ -155,5 +155,5 @@ export default function useSlot<
     finalOwnerState as OwnerState & SlotOwnerState,
   );
 
-  return [slots[name] || elementType, props] as [ElementType, typeof props];
+  return [components[name] || elementType, props] as [ElementType, typeof props];
 }
