@@ -125,6 +125,7 @@ export const ListRoot = styled('ul', {
           }),
     },
     {
+      boxSizing: 'border-box',
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',

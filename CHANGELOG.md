@@ -1,5 +1,83 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.7
+
+<!-- generated comparing v5.10.6..master -->
+
+_Sep 26, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Divider](https://mui.com/joy-ui/react-divider/) component is added to Joy UI (#34403) @siriwatknp
+
+### `@mui/material@5.10.7`
+
+- [CssVarsProvider] Exclude dark mode variables from `:root` stylesheet (#34131) @siriwatknp
+- [Chip] Add chip classes (#33801) @pratikkarad
+- [Slider] Fix typo in the comments in the source (#34452) @HexM7
+- [SvgIcon] Fix passing an ownerState to SvgIcon changes the font size (#34429) @ZeeshanTamboli
+- [Stepper] Fix optional label is not centered when `alternativeLabel` is used (#34335) @ZeeshanTamboli
+- [Tooltip] Add undefined, null or false in `title` (#34289) @abhinav-22-tech
+- Make @emotion/\* fully supported in all Material UI components (#34451) @garronej
+
+### `@mui/system@5.10.7`
+
+- [system] Fix parsing of hsla colors in getLuminance (#34437) @ptrfrncsmrph
+- [system] Fix incorrect type of `shape.borderRadius` in theme (#34076) @ZeeshanTamboli
+- [system] Replace `enableSystem` with `defaultMode` (#33960) @siriwatknp
+
+### `@mui/material@5.0.0-alpha.101`
+
+- [deps] Move @mui/types to dependencies (#34384) @Methuselah96
+
+### `@mui/base@5.0.0-alpha.99`
+
+#### Breaking changes
+
+- [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
+
+  ```diff
+  - import TrapFocus from ‘@mui/base/TrapFocus’;
+  + import FocusTrap from ‘@mui/base/FocusTrap’;
+  ```
+
+#### Changes
+
+- [MultiSelect] Require a single tap to select an item on mobile Chrome (#33932) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.47`
+
+- [Checkbox] spread `value`, `required`, and `readOnly` to input (#34477) @siriwatknp
+- [Chip] Fix unbinded `onClick` prop (#34455) @HexM7
+- [Divider] Add `Divider` component (#34403) @siriwatknp
+- [Radio] spread `readOnly` and `required` to input (#34478) @siriwatknp
+
+### Docs
+
+- [blog] MUI Base announcement typo fixed (#34409) @prakhargupta1
+- [blog] Fix typo in date-pickers v5 stable (#34386) @alexfauquette
+- [blog] Update date on date pickers v5 release blog post (#34406) @joserodolfofreitas
+- [docs] Update `useMenu` and `useMenuItem` hooks demo (#34166) @ZeeshanTamboli
+- [docs] Update the guide for migrating to TSS (#34417) @garronej
+- [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
+- [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
+- [docs] Standardize all MUI Core "Installation" pages (#34168) @samuelsycamore
+- [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
+- [docs] Fix Select `onChange` call (#34408) @siriwatknp
+- [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
+- [docs] Improve social sharing of docs pages (#34346) @oliviertassinari
+- [docs] Refine the use of MUI vs. Material UI (#34345) @oliviertassinari
+- [docs] Send feedback directly to a dedicated slack channel (#34196) @alexfauquette
+- [website] Adds Bilal to about page (#34412) @MBilalShafi
+- [website] Add date range picker to pricing table (#34399) @joserodolfofreitas
+
+### Core
+
+- [core] Document some types in @mui/styled-engine-sc (#34413) @mnajdova
+- [core] Add yml support to prettier (#33980) @Janpot
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @alexfauquette, @CodingItWrong, @Dustin-Digitar, @garronej, @HexM7, @howlettt, @Janpot, @joserodolfofreitas, @kabernardes, @MBilalShafi, @Methuselah96, @michaldudak, @mnajdova, @oliviertassinari, @prakhargupta1, @pratikkarad, @ptrfrncsmrph, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.10.6
 
 <!-- generated comparing v5.10.5..master -->
