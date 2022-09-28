@@ -1,7 +1,7 @@
+import * as React from 'react';
 import { PopperUnstyledProps } from '@mui/base';
 import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
