@@ -12,6 +12,7 @@ import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
 import ListProvider from './ListProvider';
+import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
   const { variant, color, size, nesting, row, instanceSize } = ownerState;
@@ -87,6 +88,7 @@ export const ListRoot = styled('ul', {
       marginInlineStart: 'var(--NestedList-marginLeft)',
       marginInlineEnd: 'var(--NestedList-marginRight)',
       marginBlockStart: 'var(--List-gap)',
+      marginBlockEnd: 'initial', // reset user agent stylesheet.
     },
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
@@ -108,7 +110,7 @@ export const ListRoot = styled('ul', {
         ? {
             ...(ownerState.wrap
               ? {
-                  padding: 'var(--List-padding)',
+                  padding: 'var(--List-padding)', // Fallback is not needed for row-wrap List
                   marginInlineStart: 'calc(-1 * var(--List-gap))',
                   marginBlockStart: 'calc(-1 * var(--List-gap))',
                 }
@@ -123,6 +125,7 @@ export const ListRoot = styled('ul', {
           }),
     },
     {
+      boxSizing: 'border-box',
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
@@ -141,6 +144,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
   const menuContext = React.useContext(MenuUnstyledContext);
   const selectContext = React.useContext(SelectUnstyledContext);
+  const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -150,7 +154,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     className,
     children,
-    size = 'md',
+    size = inProps.size ?? 'md',
     row = false,
     wrap = false,
     variant = 'plain',
@@ -159,9 +163,19 @@ const List = React.forwardRef(function List(inProps, ref) {
     ...other
   } = props;
 
-  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
+  let role;
+  if (menuContext || selectContext) {
+    role = 'group';
+  }
+  if (radioGroupContext) {
+    role = 'presentation';
+  }
+  if (roleProp) {
+    role = roleProp;
+  }
 
   const ownerState = {
+    ...props,
     instanceSize: inProps.size,
     size,
     nesting,
@@ -170,7 +184,6 @@ const List = React.forwardRef(function List(inProps, ref) {
     variant,
     color,
     role,
-    ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -182,6 +195,7 @@ const List = React.forwardRef(function List(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       role={role}
+      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
       {...other}
     >
       <ComponentListContext.Provider

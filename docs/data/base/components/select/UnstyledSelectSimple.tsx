@@ -130,7 +130,7 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
+const CustomSelect = React.forwardRef(function CustomSelect<TValue extends {}>(
   props: SelectUnstyledProps<TValue>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
@@ -142,7 +142,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
   };
 
   return <SelectUnstyled {...props} ref={ref} components={components} />;
-}) as <TValue>(
+}) as <TValue extends {}>(
   props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
 

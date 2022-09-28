@@ -28,7 +28,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
-     * The props used for each slot inside the Input.
+     * The props used for each slot inside the component.
      * @default {}
      */
     componentsProps?: ComponentsProps;
@@ -46,6 +46,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Element placed after the children.
      */
     endDecorator?: React.ReactNode;
+    /**
+     * Element action click handler.
+     */
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
@@ -82,5 +86,5 @@ export interface ChipOwnerState extends ChipProps {
   /**
    * If `true`, the action slot's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

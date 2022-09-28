@@ -19,7 +19,7 @@ githubLabel: 'hook: useMediaQuery'
 
 ## 简单的媒体查询
 
-你应该将媒体查询提供给 hook 作为第一个参数。 The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
+你应该将媒体查询提供给 hook 作为第一个参数。 The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 

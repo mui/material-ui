@@ -79,7 +79,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  *
  * Demos:
  *
- * - [Drawers](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *

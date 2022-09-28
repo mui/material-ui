@@ -10,6 +10,7 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioOwnerState) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
@@ -24,7 +25,7 @@ const useUtilityClasses = (ownerState: RadioOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    radio: ['radio', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
     icon: ['icon'],
     action: [
       'action',
@@ -235,6 +236,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onChange,
     onFocus,
     onFocusVisible,
+    readOnly,
     required,
     color,
     variant = 'outlined',
@@ -243,23 +245,42 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     value,
     ...other
   } = props;
-  const id = useId(idOverride);
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const id = useId(idOverride ?? formControl?.htmlFor);
   const radioGroup = React.useContext(RadioGroupContext);
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
-  const size = inProps.size || radioGroup.size || sizeProp;
-  const name = inProps.name || radioGroup.name || nameProp;
-  const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
-  const overlay = inProps.overlay || radioGroup.overlay || overlayProp;
+  const activeColor = formControl?.error
+    ? 'danger'
+    : inProps.color ?? formControl?.color ?? color ?? 'primary';
+  const inactiveColor = formControl?.error
+    ? 'danger'
+    : inProps.color ?? formControl?.color ?? color ?? 'neutral';
+  const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
+  const name = inProps.name || radioGroup?.name || nameProp;
+  const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
+  const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
 
   const radioChecked =
     typeof checkedProp === 'undefined' && !!value
-      ? areEqualValues(radioGroup.value, value)
+      ? areEqualValues(radioGroup?.value, value)
       : checkedProp;
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp,
+    disabled: disabledProp ?? formControl?.disabled,
     onBlur,
     onChange,
     onFocus,
@@ -278,7 +299,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
-    row: radioGroup.row,
+    row: radioGroup?.row,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -318,14 +339,17 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const radioInputProps = useSlotProps({
     elementType: RadioInput,
-    getSlotProps: () => getInputProps({ onChange: radioGroup.onChange }),
+    getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     externalSlotProps: componentsProps.input,
     className: classes.input,
     additionalProps: {
       type: 'radio',
       id,
       name,
+      readOnly,
+      required,
       value: String(value),
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     ownerState,
   });
@@ -395,7 +419,7 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -457,6 +481,10 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default false;
    */
   overlay: PropTypes.bool,
+  /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
   /**
    * If `true`, the `input` element is required.
    */

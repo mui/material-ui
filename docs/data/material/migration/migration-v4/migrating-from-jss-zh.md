@@ -207,29 +207,6 @@ npm install tss-react
 yarn add tss-react
 ```
 
-你还需要编辑你的提供者:
-
-```diff
- import { render } from 'react-dom';
--import { StylesProvider } from '@material-ui/core/styles';
-+import createCache from '@emotion/cache';
-+import { CacheProvider } from "@emotion/react";
-
-+export const muiCache = createCache({
-+  'key': 'mui',
-+  'prepend': true,
-+});
-
- render(
--  <StylesProvider injectFirst>
-+  <CacheProvider value={muiCache}>
-     <Root />
--  </StylesProvider>,
-+  </CacheProvider>,
-   document.getElementById('root')
- );
-```
-
 #### Codemod
 
 我们提供了[一个codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-tss-react)来帮助将JSS样式迁移到`tss-react` API。

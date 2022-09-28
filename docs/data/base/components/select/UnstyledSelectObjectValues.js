@@ -187,14 +187,16 @@ export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState(characters[0]);
   return (
     <div>
-      <CustomSelect value={character} onChange={setCharacter}>
+      <CustomSelect
+        value={character}
+        onChange={(e, newValue) => setCharacter(newValue)}
+      >
         {characters.map((c) => (
           <StyledOption key={c.name} value={c}>
             {c.name}
           </StyledOption>
         ))}
       </CustomSelect>
-
       <Paragraph>Selected character:</Paragraph>
       <Pre>{JSON.stringify(character, null, 2)}</Pre>
     </div>

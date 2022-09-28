@@ -30,7 +30,7 @@ const pages = [
         subheader: 'inputs',
         children: [
           { pathname: '/joy-ui/react-button' },
-          { pathname: '/joy-ui/react-text-field' },
+          { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-radio-button' },
@@ -47,6 +47,7 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
         ],
@@ -54,7 +55,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/feedback',
         subheader: 'feedback',
-        children: [{ pathname: '/joy-ui/react-alert' }],
+        children: [
+          { pathname: '/joy-ui/react-alert' },
+          { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-modal' },
+        ],
       },
       {
         pathname: '/joy-ui/components/surfaces',

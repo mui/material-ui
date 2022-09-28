@@ -34,7 +34,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
       componentsProps?: ComponentsProps;
@@ -96,7 +96,7 @@ export interface LinkOwnerState extends LinkProps {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the element is rendered by a Typography component.
    */

@@ -37,7 +37,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.25em), 0.5rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),
@@ -49,7 +49,7 @@ const EndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.25em), 0.5rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),
@@ -229,7 +229,7 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({

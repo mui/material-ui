@@ -57,24 +57,24 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
-        '--Icon-fontSize': '0.875rem',
+          'calc(min(1.125rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 1.5rem) / 1.714)', // 0.875rem by default
         '--Chip-minHeight': '1.5rem',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
-        '--Chip-decorator-childHeight': 'min(1.5rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': '1.125rem',
+        '--Chip-decorator-childHeight': 'min(1.375rem, var(--Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2rem) / 1.778)', // 1.125rem by default
         '--Chip-minHeight': '2rem',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
-        '--Chip-decorator-childHeight': 'min(2rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': '1.25rem',
+        '--Chip-decorator-childHeight': 'min(1.75rem, var(--Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2.5rem) / 2)', // 1.25rem by default
         '--Chip-minHeight': '2.5rem',
         fontSize: theme.vars.fontSize.md,
       }),
@@ -215,7 +215,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const ownerState: ChipOwnerState = {
     ...props,
     component,
-    onClick,
     disabled,
     size,
     color,
@@ -256,6 +255,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     additionalProps: {
       'aria-labelledby': id,
       as: resolvedActionProps?.component,
+      onClick,
     },
     ownerState,
     className: classes.action,
@@ -327,7 +327,7 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -347,7 +347,7 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   endDecorator: PropTypes.node,
   /**
-   * @ignore
+   * Element action click handler.
    */
   onClick: PropTypes.func,
   /**

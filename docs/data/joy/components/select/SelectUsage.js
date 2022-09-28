@@ -32,7 +32,7 @@ export default function SelectUsage() {
         {
           propName: 'placeholder',
           knob: 'input',
-          defaultValue: 'Choose one...',
+          defaultValue: 'Choose one…',
           codeBlockDisplay: true,
         },
         {
@@ -49,7 +49,7 @@ export default function SelectUsage() {
           {...props}
           action={action}
           value={value}
-          onChange={setValue}
+          onChange={(e, newValue) => setValue(newValue)}
           {...(value && {
             endDecorator: (
               <IconButton
