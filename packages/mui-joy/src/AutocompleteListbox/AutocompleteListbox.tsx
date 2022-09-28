@@ -36,7 +36,7 @@ export const AutocompleteListboxRoot = styled(ListRoot, {
 })<{ ownerState: AutocompleteListboxOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--focus-outline-offset': 1, // to prevent the focus outline from being cut by overflow
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
