@@ -121,12 +121,12 @@ const ButtonRoot = styled(ButtonBase, {
           },
         }),
       ...(ownerState.variant === 'contained' && {
-        backgroundColor: (theme.vars || theme).palette.grey.A100,
+        backgroundColor: (theme.vars || theme).palette.grey[400],
         boxShadow: (theme.vars || theme).shadows[4],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           boxShadow: (theme.vars || theme).shadows[2],
-          backgroundColor: (theme.vars || theme).palette.grey[300],
+          backgroundColor: (theme.vars || theme).palette.grey[400],
         },
       }),
       ...(ownerState.variant === 'contained' &&
@@ -186,7 +186,7 @@ const ButtonRoot = styled(ButtonBase, {
         ? // this is safe because grey does not change between default light/dark mode
           theme.vars.palette.text.primary
         : theme.palette.getContrastText?.(theme.palette.grey[300]),
-      backgroundColor: (theme.vars || theme).palette.grey[300],
+      backgroundColor: (theme.vars || theme).palette.grey[500],
       boxShadow: (theme.vars || theme).shadows[2],
     }),
     ...(ownerState.variant === 'contained' &&
