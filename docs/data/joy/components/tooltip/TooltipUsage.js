@@ -26,10 +26,15 @@ export default function TooltipUsage() {
           options: ['sm', 'md', 'lg'],
           defaultValue: 'md',
         },
+        {
+          propName: 'arrow',
+          knob: 'switch',
+          defaultValue: false,
+        },
       ]}
       renderDemo={(props) => (
         <Tooltip title="Delete" {...props}>
-          <IconButton>
+          <IconButton size="lg" variant="plain" color="neutral">
             <DeleteIcon />
           </IconButton>
         </Tooltip>
