@@ -137,7 +137,9 @@ describe('useSlot', () => {
 
   describe('multiple slots with unstyled popper', () => {
     const ItemRoot = styled('div')({});
-    const ItemListbox = styled('ul')({});
+    const ItemListbox = styled('ul')({
+      margin: 'initial', // prevent Popper error.
+    });
     const ItemOption = styled('div')({});
 
     const Item = (props: {
