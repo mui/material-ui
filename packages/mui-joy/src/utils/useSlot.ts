@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { appendOwnerState, mergeSlotProps, resolveComponentProps } from '@mui/base/utils';
+import {
+  appendOwnerState,
+  resolveComponentProps,
+  unstable_mergeSlotProps as mergeSlotProps,
+} from '@mui/base/utils';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -13,11 +17,18 @@ type EventHandlers = Record<string, React.EventHandler<any>>;
 
 type ExtractComponentProps<P> = P extends infer T | ((ownerState: any) => infer T) ? T : never;
 
+/**
+ * An internal function to create a Joy UI slot.
+ *
+ * This is an advanced version of MUI Base `useSlotProps` because Joy UI allows leaf component to be customized via `component` prop
+ * while MUI Base does not need to support leaf component customization.
+ *
+ */
 export default function useSlot<
   T extends string,
   ElementType extends React.ElementType,
   SlotProps,
-  OwnerState,
+  OwnerState extends {},
   ExternalSlotProps extends { component?: React.ElementType },
   ExternalForwardedProps extends {
     component?: React.ElementType;
@@ -30,36 +41,68 @@ export default function useSlot<
       >
     >;
   },
-  ExtraOwnerState,
   AdditionalProps,
+  SlotOwnerState extends {},
+  InternalForwardedProps,
 >(
+  /**
+   * The slot's name. All Joy UI components should have `root` slot.
+   *
+   * If the name is `root`, the logic behaves differently from other slots,
+   * e.g. the `externalForwardedProps` are spread to `root` slot but not other slots.
+   */
   name: T,
   parameters: (T extends 'root' ? { ref: React.ForwardedRef<any> } : {}) & {
+    /**
+     * The slot's className
+     */
     className: ClassValue | ClassValue[];
+    /**
+     * The slot's default styled-component
+     */
     elementType: ElementType;
+    /**
+     * The component's ownerState
+     */
     ownerState: OwnerState;
+    /**
+     * The `other` props from the consumer. It has to contain `component`, `components`, and `componentsProps`.
+     * The function will use those props to calculate the final leaf component and the returned props.
+     *
+     * If the slot is not `root`, the rest of the `externalForwardedProps` are neglect.
+     */
     externalForwardedProps: ExternalForwardedProps;
     getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
-    externalOwnerState?: (
+    additionalProps?: WithCommonProps<AdditionalProps>;
+
+    // Joy UI specifics
+    /**
+     * For overriding the component's ownerState for the slot.
+     * This is required for some components that need styling via `ownerState`.
+     *
+     * It is a function because `componentsProps.{slot}` can be a function which has to be resolved first.
+     */
+    getSlotOwnerState?: (
       mergedProps: SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
           Exclude<Exclude<ExternalForwardedProps['componentsProps'], undefined>[T], undefined>
         >,
-    ) => ExtraOwnerState;
-    additionalProps?: WithCommonProps<AdditionalProps>;
-    internalForwardedProps?: any;
+    ) => SlotOwnerState;
+    /**
+     * For setting default leaf component of a nested styled-component and any default props.
+     */
+    internalForwardedProps?: InternalForwardedProps;
   },
 ) {
   const {
     className,
     elementType,
-    getSlotProps,
     ownerState,
     externalForwardedProps,
-    externalOwnerState,
-    additionalProps,
+    getSlotOwnerState,
     internalForwardedProps,
+    ...useSlotPropsParams
   } = parameters;
   const {
     component: rootComponent,
@@ -67,6 +110,9 @@ export default function useSlot<
     componentsProps = { [name]: undefined },
     ...other
   } = externalForwardedProps;
+
+  // `componentsProps[name]` can be a callback that receives the component's ownerState.
+  // `resolvedComponentsProps` is always a plain object.
   const resolvedComponentsProps = resolveComponentProps(componentsProps[name], ownerState);
 
   const {
@@ -74,8 +120,7 @@ export default function useSlot<
     internalRef,
   } = mergeSlotProps({
     className,
-    getSlotProps,
-    additionalProps,
+    ...useSlotPropsParams,
     externalForwardedProps: name === 'root' ? other : undefined,
     externalSlotProps: resolvedComponentsProps,
   });
@@ -88,22 +133,26 @@ export default function useSlot<
     ),
   ) as ((instance: any | null) => void) | null;
 
-  const finalOwnerState = externalOwnerState
-    ? { ...ownerState, ...externalOwnerState(mergedProps as any) }
+  const finalOwnerState = getSlotOwnerState
+    ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
     : ownerState;
+
+  const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
+    | React.ElementType
+    | undefined;
 
   const props = appendOwnerState(
     elementType,
     {
       ...internalForwardedProps,
-      ...(mergedProps as T extends 'root'
-        ? SlotProps & ExternalSlotProps & AdditionalProps & ExternalForwardedProps
-        : SlotProps & ExternalSlotProps & AdditionalProps),
-      as: ((name === 'root' ? rootComponent || slotComponent : slotComponent) ||
-        internalForwardedProps?.as) as React.ElementType | undefined,
+      ...(mergedProps as { className: string } & SlotProps &
+        ExternalSlotProps &
+        AdditionalProps &
+        (T extends 'root' ? ExternalForwardedProps : {})),
+      as: LeafComponent || (internalForwardedProps as { as?: React.ElementType })?.as,
       ref,
     },
-    finalOwnerState,
+    finalOwnerState as OwnerState & SlotOwnerState,
   );
 
   return [components[name] || elementType, props] as [ElementType, typeof props];

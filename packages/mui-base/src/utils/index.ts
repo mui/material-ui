@@ -4,5 +4,5 @@ export { default as extractEventHandlers } from './extractEventHandlers';
 export { default as isHostComponent } from './isHostComponent';
 export { default as resolveComponentProps } from './resolveComponentProps';
 export { default as useSlotProps } from './useSlotProps';
-export { default as mergeSlotProps } from './mergeSlotProps';
+export { default as unstable_mergeSlotProps } from './mergeSlotProps';
 export * from './types';
