@@ -5,7 +5,7 @@ import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import Box from '@mui/joy/Box';
-import Input, { inputClasses } from '@mui/joy/Input';
+import Input from '@mui/joy/Input';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -159,14 +159,7 @@ export default function GitHubLabel() {
                   size="sm"
                   autoFocus
                   placeholder="Filter labels"
-                  sx={{
-                    '--Input-radius': '4px',
-                    '--Input-focusedThickness': '1px',
-                    [`&.${inputClasses.focused}`]: {
-                      boxShadow: (theme) =>
-                        `0 0 0 3px ${theme.vars.palette.focusVisible}`,
-                    },
-                  }}
+                  sx={{ '--Input-radius': '4px' }}
                 />
               )}
               renderOption={(props, option, { selected }) => (
