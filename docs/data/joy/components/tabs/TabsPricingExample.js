@@ -11,11 +11,11 @@ export default function TabsPricingExample() {
       size="sm"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={(theme) => ({
+      sx={{
         width: 343,
         '--Tabs-gap': '0px',
         borderRadius: 'lg',
-      })}
+      }}
     >
       <TabList
         variant="outlined"
