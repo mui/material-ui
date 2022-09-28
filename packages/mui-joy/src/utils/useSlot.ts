@@ -93,6 +93,11 @@ export default function useSlot<
           Exclude<Exclude<ExternalForwardedProps['componentsProps'], undefined>[T], undefined>
         >,
     ) => SlotOwnerState;
+    /**
+     * props forward to `T` only if leaf component is not provided.
+     * e.g. Autocomplete's listbox uses PopperUnstyled + StyledComponent
+     */
+    internalForwardedProps?: any;
   },
 ) {
   const {
@@ -101,6 +106,7 @@ export default function useSlot<
     ownerState,
     externalForwardedProps,
     getSlotOwnerState,
+    internalForwardedProps,
     ...useSlotPropsParams
   } = parameters;
   const {
@@ -141,6 +147,8 @@ export default function useSlot<
   const props = appendOwnerState(
     elementType,
     {
+      ...(name === 'root' && !rootComponent && !components[name] && internalForwardedProps),
+      ...(name !== 'root' && !components[name] && internalForwardedProps),
       ...(mergedProps as { className: string } & SlotProps &
         ExternalSlotProps &
         AdditionalProps &

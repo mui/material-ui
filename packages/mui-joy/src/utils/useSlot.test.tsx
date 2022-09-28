@@ -173,6 +173,9 @@ describe('useSlot', () => {
           role: 'menu',
           anchorEl: () => document.createElement('div'),
         },
+        internalForwardedProps: {
+          component: ItemListbox,
+        },
       });
       const [SlotOption, optionProps] = useSlot('option', {
         className: 'option',
@@ -186,7 +189,7 @@ describe('useSlot', () => {
       return (
         <React.Fragment>
           <SlotRoot {...rootProps} />
-          <SlotListbox component={ItemListbox} {...listboxProps}>
+          <SlotListbox {...listboxProps}>
             <SlotOption as="li" {...optionProps} />
           </SlotListbox>
         </React.Fragment>
@@ -202,10 +205,13 @@ describe('useSlot', () => {
     });
 
     it('the listbox slot should be replaceable', () => {
-      const Listbox = () => <ul />;
+      const Listbox = ({ component }: { component?: React.ElementType }) => (
+        <ul data-component={component} />
+      );
       const { getByRole } = render(<Item components={{ listbox: Listbox }} />);
       expect(getByRole('list')).toBeVisible();
       expect(getByRole('list')).not.to.have.attribute('class');
+      expect(getByRole('list')).not.to.have.attribute('data-component');
     });
 
     it('the listbox leaf component can be changed', () => {

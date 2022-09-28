@@ -416,6 +416,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       open: popupOpen,
       modifiers: cachedModifiers,
     },
+    internalForwardedProps: {
+      component: AutocompleteListbox,
+    },
   });
 
   const [SlotLoading, loadingProps] = useSlot('loading', {
@@ -467,12 +470,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       variant: mergedProps.variant || 'plain',
       color: mergedProps.color || 'neutral',
     }),
+    additionalProps: {
+      as: 'li',
+    },
   });
 
   const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption as="li" {...optionProps}>
-      {getOptionLabel(option)}
-    </SlotOption>
+    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
   );
 
   const renderOption = renderOptionProp || defaultRenderOption;
@@ -521,7 +525,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       {anchorEl ? (
         // `nested` is for grouped options use case.
         <ListProvider nested>
-          <SlotListbox component={AutocompleteListbox} {...listboxProps}>
+          <SlotListbox {...listboxProps}>
             {groupedOptions.map((option, index) => {
               if (groupBy) {
                 const typedOption = option as AutocompleteGroupedOption;
