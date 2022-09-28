@@ -18,23 +18,7 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
-<p style="display: flex;">
-  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes"></a>
-  <a href="https://bitsrc.io" rel="noopener" target="_blank"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code"></a>
-</p>
-
 via [OpenCollective](https://opencollective.com/material-ui)
-
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/0/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/0/avatar.svg" alt="0/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/1/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/1/avatar.svg" alt="1/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/2/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/2/avatar.svg" alt="2/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/3/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/3/avatar.svg" alt="3/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/4/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/4/avatar.svg" alt="4/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/5/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/5/avatar.svg" alt="5/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/6/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/6/avatar.svg" alt="6/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/7/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/7/avatar.svg" alt="7/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/8/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/8/avatar.svg" alt="8/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/9/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/9/avatar.svg" alt="9/" /></a>
 
 ## Silver Sponsors
 
@@ -44,17 +28,6 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/0/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/0/avatar.svg" alt="0/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/1/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/1/avatar.svg" alt="1/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/2/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/2/avatar.svg" alt="2/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/3/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/3/avatar.svg" alt="3/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/4/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/4/avatar.svg" alt="4/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/5/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/5/avatar.svg" alt="5/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/6/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/6/avatar.svg" alt="6/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/7/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/7/avatar.svg" alt="7/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/8/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/8/avatar.svg" alt="8/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/silver-sponsors/9/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/silver-sponsors/9/avatar.svg" alt="9/" /></a>
-
 ## Bronze Sponsors
 
 Bronze Sponsors are those who have pledged $100/month to $250/month to Material-UI.
@@ -62,27 +35,6 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
-
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/0/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/0/avatar.svg" alt="0/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/1/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/1/avatar.svg" alt="1/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/2/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/2/avatar.svg" alt="2/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/3/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/3/avatar.svg" alt="3/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/4/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/4/avatar.svg" alt="4/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/5/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/5/avatar.svg" alt="5/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/6/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/6/avatar.svg" alt="6/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/7/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/7/avatar.svg" alt="7/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/8/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/8/avatar.svg" alt="8/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/9/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/9/avatar.svg" alt="9/" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/10/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/10/avatar.svg" alt="10" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/11/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/11/avatar.svg" alt="11" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/12/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/12/avatar.svg" alt="12" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/13/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/13/avatar.svg" alt="13" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/14/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/14/avatar.svg" alt="14" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/15/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/15/avatar.svg" alt="15" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/16/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/16/avatar.svg" alt="16" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/17/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/17/avatar.svg" alt="17" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/18/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/18/avatar.svg" alt="18" /></a>
-<a href="https://opencollective.com/material-ui/tiers/bronze-sponsors/19/website" rel="noopener" target="_blank"><img src="https://opencollective.com/material-ui/tiers/bronze-sponsors/19/avatar.svg" alt="19" /></a>
 
 ## Backers
 
@@ -100,8 +52,6 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
 
 via [OpenCollective](https://opencollective.com/material-ui)
-
-<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=60&width=800"></object>
 
 ## Why?
 
