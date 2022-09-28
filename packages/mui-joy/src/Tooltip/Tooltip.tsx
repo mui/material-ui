@@ -1,3 +1,6 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import {
   appendOwnerState,
   PopperUnstyled,
@@ -12,9 +15,6 @@ import {
   unstable_useId as useId,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
