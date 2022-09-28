@@ -46,7 +46,7 @@ export default function MarkdownDocs(props) {
   const t = useTranslate();
 
   const localizedDoc = docs[userLanguage] || docs.en;
-  const { description, location, rendered, title, toc, headers } = localizedDoc;
+  const { description, location, rendered, title, toc } = localizedDoc;
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
