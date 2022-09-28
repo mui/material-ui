@@ -69,8 +69,8 @@ export default function Playground() {
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             maxHeight: 360,
             overflow: 'auto',
+            px: 0.5,
             '--List-gap': '8px',
-            '--_outline-inside': '1',
             '& > li:first-child': {
               mt: 'var(--List-gap)',
             },

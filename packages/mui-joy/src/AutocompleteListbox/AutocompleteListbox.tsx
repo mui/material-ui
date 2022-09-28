@@ -36,7 +36,7 @@ export const AutocompleteListboxRoot = styled(ListRoot, {
 })<{ ownerState: AutocompleteListboxOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--_outline-inside': '1', // to prevent the focus outline from being cut by overflow
+    '--focus-outline-offset': 1, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
@@ -52,6 +52,9 @@ export const AutocompleteListboxRoot = styled(ListRoot, {
     overflow: 'auto',
     maxHeight: '40vh',
     position: 'relative', // to make sure that the listbox is positioned for grouped options to work.
+    '&:empty': {
+      visibility: 'hidden',
+    },
     [`& .${listItemClasses.nested}, & .${listItemClasses.nested} .${listClasses.root}`]: {
       // For grouped options autocomplete:
       // Force the position to make the scroll into view logic works because the `element.offsetTop` should reference to the listbox, not the grouped list.
