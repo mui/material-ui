@@ -19,25 +19,7 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
-<p style="display: flex; justify-content: center;">
-  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 8px;">
-    <img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes">
-  </a>
-  <a href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 8px;">
-    <img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code">
-  </a>
-</p>
-
 via [OpenCollective](https://opencollective.com/material-ui)
-
-<p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group">
-  </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="localize" href="https://localizejs.com" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=65" alt="localize" title="Application translation & localization platform">
-  </a>
-</p>
 
 ## Silver Sponsors
 
@@ -47,10 +29,6 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-<p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsors.svg?avatarHeight=70&width=600">Silver Sponsors</object>
-</p>
-
 ## Bronze Sponsors
 
 Bronze Sponsors are those who have pledged $100/month to $250/month to Material-UI.
@@ -58,10 +36,6 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
-
-<p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsors.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
-</p>
 
 ## Backers
 
@@ -81,10 +55,6 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
 
 via [OpenCollective](https://opencollective.com/material-ui)
-
-<p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600">Backers</object>
-</p>
 
 ## Why?
 
