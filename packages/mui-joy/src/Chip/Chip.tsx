@@ -73,7 +73,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
-        '--Chip-decorator-childHeight': 'min(2rem, var(--Chip-minHeight))',
+        '--Chip-decorator-childHeight': 'min(1.75rem, var(--Chip-minHeight))',
         '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2.5rem) / 2)', // 1.25rem by default
         '--Chip-minHeight': '2.5rem',
         fontSize: theme.vars.fontSize.md,

@@ -40,7 +40,7 @@ const InputRoot = styled('div', {
       '--Input-radius': theme.vars.radius.sm,
       '--Input-gap': '0.5rem',
       '--Input-placeholderOpacity': 0.5,
-      '--Input-focusedThickness': '2px',
+      '--Input-focusedThickness': theme.vars.focus.thickness,
       '--Input-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       ...(ownerState.size === 'sm' && {

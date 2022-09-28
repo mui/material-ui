@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
@@ -14,12 +15,17 @@ import {
 } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
-  const { focusVisible, disabled, selected } = ownerState;
-  // Does not need to create state clases: focusVisible, disabled, and selected because ListItemButton already takes care of them.
-  // Otherwise, there will be duplicated classes.
+const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible?: boolean }) => {
+  const { focusVisible, disabled, selected, color, variant } = ownerState;
   const slots = {
-    root: ['root', focusVisible && 'focusVisible', disabled && 'disabled', selected && 'selected'],
+    root: [
+      'root',
+      focusVisible && 'focusVisible',
+      disabled && 'disabled',
+      selected && 'selected',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, {});

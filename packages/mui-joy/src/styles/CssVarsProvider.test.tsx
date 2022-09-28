@@ -629,7 +629,6 @@ describe('[Joy] CssVarsProvider', () => {
     it('should contain only `focus.thickness` in theme.vars', () => {
       const Consumer = () => {
         const theme = useTheme();
-        // @ts-expect-error
         return <div>{JSON.stringify(theme.vars.focus)}</div>;
       };
 
@@ -640,7 +639,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).not.to.equal(
-        JSON.stringify({ focus: { thickness: '4px' } }),
+        JSON.stringify({ focus: { thickness: '2px' } }),
       );
     });
   });

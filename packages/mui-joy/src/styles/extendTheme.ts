@@ -236,7 +236,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
       divider: `rgba(${getCssVar('palette-neutral-mainChannel')} / 0.28)`,
-      focusVisible: getCssVar('palette-primary-200'),
+      focusVisible: getCssVar('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
     shadowChannel: '187 187 187',
@@ -369,10 +369,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       xl3: 900,
     },
     focus: {
-      thickness: '4px',
+      thickness: '2px',
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
-        outlineOffset: `calc(${getCssVar('focus-thickness')} * -1 * var(--_outline-inside, 0))`, // reset user agent stylesheet
+        outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness')})`,
         outline: `${getCssVar('focus-thickness')} solid ${getCssVar('palette-focusVisible')}`,
       },
     },
@@ -608,7 +608,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
         main: '500' as keyof PaletteRange,
-        light: '100' as keyof PaletteRange,
+        light: '200' as keyof PaletteRange,
         dark: '900' as keyof PaletteRange,
       };
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
