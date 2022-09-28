@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { flushSync } from "react-dom";
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@mui/utils';
 import { useThemeProps } from '@mui/system';
@@ -234,7 +235,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
     claimedSwipeInstance = null;
     touchDetected.current = false;
-    setMaybeSwiping(false);
+    flushSync(() => {
+      setMaybeSwiping(false);
+    });
 
     // The swipe wasn't started.
     if (!swipeInstance.current.isSwiping) {
@@ -488,7 +491,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;
 
-    setMaybeSwiping(true);
+    flushSync(() => {
+      setMaybeSwiping(true);
+    });
+
     if (!open && paperRef.current) {
       // The ref may be null when a parent component updates while swiping.
       setPosition(
@@ -554,6 +560,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
             ...BackdropProps,
             ref: backdropRef,
           },
+          keepMounted: true,
           ...ModalPropsProp,
         }}
         hideBackdrop={hideBackdrop}
