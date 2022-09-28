@@ -1,8 +1,8 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
+import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 
 export default function OverflowCard() {
@@ -22,6 +22,7 @@ export default function OverflowCard() {
       <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
         California
       </Typography>
+      <Divider />
       <CardOverflow
         variant="soft"
         sx={{
@@ -29,15 +30,13 @@ export default function OverflowCard() {
           gap: 1.5,
           py: 1.5,
           px: 'var(--Card-padding)',
-          borderTop: '1px solid',
-          borderColor: 'neutral.outlinedBorder',
           bgcolor: 'background.level1',
         }}
       >
         <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
           6.3k views
         </Typography>
-        <Box sx={{ width: 2, bgcolor: 'divider' }} />
+        <Divider orientation="vertical" />
         <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
           1 hour ago
         </Typography>

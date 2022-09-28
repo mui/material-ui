@@ -10,7 +10,7 @@ import Apartment from '@mui/icons-material/Apartment';
 
 export default function RadioPositionEnd() {
   return (
-    <RadioGroup name="people" defaultValue="Individual">
+    <RadioGroup aria-label="Your plan" name="people" defaultValue="Individual">
       <List
         sx={{
           minWidth: 240,

@@ -17,6 +17,8 @@ export * from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 
+export { default as FocusTrap } from './FocusTrap';
+
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
@@ -74,5 +76,3 @@ export { default as TabUnstyled } from './TabUnstyled';
 export * from './TabUnstyled';
 
 export { default as TextareaAutosize } from './TextareaAutosize';
-
-export { default as TrapFocus } from './TrapFocus';

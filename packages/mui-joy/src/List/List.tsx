@@ -12,6 +12,7 @@ import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
 import ListProvider from './ListProvider';
+import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
   const { variant, color, size, nesting, row, instanceSize } = ownerState;
@@ -124,6 +125,7 @@ export const ListRoot = styled('ul', {
           }),
     },
     {
+      boxSizing: 'border-box',
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
@@ -142,6 +144,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
   const menuContext = React.useContext(MenuUnstyledContext);
   const selectContext = React.useContext(SelectUnstyledContext);
+  const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -160,7 +163,16 @@ const List = React.forwardRef(function List(inProps, ref) {
     ...other
   } = props;
 
-  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
+  let role;
+  if (menuContext || selectContext) {
+    role = 'group';
+  }
+  if (radioGroupContext) {
+    role = 'presentation';
+  }
+  if (roleProp) {
+    role = roleProp;
+  }
 
   const ownerState = {
     ...props,

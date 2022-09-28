@@ -104,7 +104,10 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   /**
    * Callback fired when an option is selected.
    */
-  onChange?: (value: TValue | null) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
   /**
    * Function that customizes the rendering of the selected value.
    */
@@ -128,7 +131,7 @@ export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TVal
   /**
    * If `true`, the select button's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the select dropdown is open.
    */

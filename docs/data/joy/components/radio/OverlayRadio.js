@@ -1,35 +1,26 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
+import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
-import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
 
 export default function OverlayRadio() {
   return (
-    <Box>
-      <Typography
-        id="member"
-        mb={2}
-        level="body3"
-        textTransform="uppercase"
-        fontWeight="xl"
-        sx={{ letterSpacing: '0.15rem' }}
-      >
-        Members
-      </Typography>
+    <FormControl>
+      <FormLabel>Members</FormLabel>
       <RadioGroup
         overlay
         name="member"
-        aria-labelledby="member"
         defaultValue="person1"
         row
-        sx={{ gap: 2 }}
+        sx={{ gap: 2, mt: 1 }}
       >
         {[1, 2, 3].map((num) => (
           <Sheet
+            component="label"
             key={num}
             variant="outlined"
             sx={{
@@ -44,7 +35,6 @@ export default function OverlayRadio() {
             }}
           >
             <Radio
-              id={`person${num}`}
               value={`person${num}`}
               sx={{
                 mt: -1,
@@ -54,11 +44,11 @@ export default function OverlayRadio() {
                 '--Radio-action-radius': (theme) => theme.vars.radius.md,
               }}
             />
-            <Avatar src={`/static/images/avatar/${num}.jpg`} />
-            <FormLabel htmlFor={`person${num}`}>Person {num}</FormLabel>
+            <Avatar alt={`person${num}`} src={`/static/images/avatar/${num}.jpg`} />
+            <Typography level="body2">Person {num}</Typography>
           </Sheet>
         ))}
       </RadioGroup>
-    </Box>
+    </FormControl>
   );
 }

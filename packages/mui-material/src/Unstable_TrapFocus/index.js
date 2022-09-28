@@ -1,1 +1,1 @@
-export { default } from '@mui/base/TrapFocus';
+export { default } from '@mui/base/FocusTrap';

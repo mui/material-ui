@@ -42,7 +42,8 @@ describe('Joy <Input />', () => {
 
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
-      const { container } = render(<Input disabled />);
+      const { container, getByRole } = render(<Input disabled />);
+      expect(getByRole('textbox')).to.have.attribute('disabled');
       expect(container.firstChild).to.have.class(classes.disabled);
     });
 

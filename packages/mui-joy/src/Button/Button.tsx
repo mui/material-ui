@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
-import { ExtendButton, ButtonTypeMap, ButtonOwnerState } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -22,8 +22,8 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    startIcon: ['startIcon'],
-    endIcon: ['endIcon'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
@@ -35,22 +35,24 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   return composedClasses;
 };
 
-const ButtonStartIcon = styled('span', {
+const ButtonStartDecorator = styled('span', {
   name: 'JoyButton',
-  slot: 'StartIcon',
-  overridesResolver: (props, styles) => styles.startIcon,
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
 });
 
-const ButtonEndIcon = styled('span', {
+const ButtonEndDecorator = styled('span', {
   name: 'JoyButton',
-  slot: 'EndIcon',
-  overridesResolver: (props, styles) => styles.endIcon,
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
@@ -63,6 +65,7 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      '--CircularProgress-size': 'var(--Icon-fontSize)',
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
         '--Button-gap': '0.375rem',
@@ -87,6 +90,7 @@ export const ButtonRoot = styled('button', {
         paddingBlock: '0.375rem',
         paddingInline: '1.5rem',
       }),
+      WebkitTapHighlightColor: 'transparent',
       borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
       border: 'none',
@@ -133,8 +137,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'solid',
     size = 'md',
     fullWidth = false,
-    startIcon,
-    endIcon,
+    startDecorator,
+    endDecorator,
     ...other
   } = props;
 
@@ -181,25 +185,30 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className: classes.root,
   });
 
-  const startIconProps = useSlotProps({
-    elementType: ButtonStartIcon,
-    externalSlotProps: componentsProps.startIcon,
+  const startDecoratorProps = useSlotProps({
+    elementType: ButtonStartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
     ownerState,
-    className: classes.startIcon,
+    className: classes.startDecorator,
   });
 
-  const endIconProps = useSlotProps({
-    elementType: ButtonEndIcon,
-    externalSlotProps: componentsProps.endIcon,
+  const endDecoratorProps = useSlotProps({
+    elementType: ButtonEndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
     ownerState,
-    className: classes.endIcon,
+    className: classes.endDecorator,
   });
 
   return (
     <ButtonRoot {...rootProps}>
-      {startIcon && <ButtonStartIcon {...startIconProps}>{startIcon}</ButtonStartIcon>}
+      {startDecorator && (
+        <ButtonStartDecorator {...startDecoratorProps}>{startDecorator}</ButtonStartDecorator>
+      )}
+
       {children}
-      {endIcon && <ButtonEndIcon {...endIconProps}>{endIcon}</ButtonEndIcon>}
+      {endDecorator && (
+        <ButtonEndDecorator {...endDecoratorProps}>{endDecorator}</ButtonEndDecorator>
+      )}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
@@ -242,9 +251,9 @@ Button.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    endIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the component is disabled.
@@ -254,7 +263,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * Element placed after the children.
    */
-  endIcon: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * @ignore
    */
@@ -274,7 +283,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * Element placed before the children.
    */
-  startIcon: PropTypes.node,
+  startDecorator: PropTypes.node,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
