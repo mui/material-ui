@@ -28,12 +28,12 @@ export default function useSlot<
   T extends string,
   ElementType extends React.ElementType,
   SlotProps,
-  OwnerState,
+  OwnerState extends {},
   ExternalSlotProps extends { component?: React.ElementType },
   ExternalForwardedProps extends {
     component?: React.ElementType;
-    components?: Partial<Record<T, React.ElementType>>;
-    componentsProps?: Partial<
+    slots?: Partial<Record<T, React.ElementType>>;
+    slotsProps?: Partial<
       Record<
         T,
         | WithCommonProps<ExternalSlotProps>
@@ -42,8 +42,8 @@ export default function useSlot<
     >;
   },
   AdditionalProps,
-  ExtraOwnerState,
-  InternalForwardedProps extends { as?: React.ElementType },
+  SlotOwnerState extends {},
+  InternalForwardedProps,
 >(
   /**
    * The slot's name. All Joy UI components should have `root` slot.
@@ -80,15 +80,15 @@ export default function useSlot<
      * For overriding the component's ownerState for the slot.
      * This is required for some components that need styling via `ownerState`.
      *
-     * It is a function because `componentsProps.{slot}` can be a function which has to be resolved first.
+     * It is a function because `slotsProps.{slot}` can be a function which has to be resolved first.
      */
-    externalOwnerState?: (
+    getSlotOwnerState?: (
       mergedProps: SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
-          Exclude<Exclude<ExternalForwardedProps['componentsProps'], undefined>[T], undefined>
+          Exclude<Exclude<ExternalForwardedProps['slotsProps'], undefined>[T], undefined>
         >,
-    ) => ExtraOwnerState;
+    ) => SlotOwnerState;
     /**
      * For setting default leaf component of a nested styled-component and any default props.
      */
@@ -100,17 +100,20 @@ export default function useSlot<
     elementType,
     ownerState,
     externalForwardedProps,
-    externalOwnerState,
+    getSlotOwnerState,
     internalForwardedProps,
     ...useSlotPropsParams
   } = parameters;
   const {
     component: rootComponent,
-    components = { [name]: undefined },
-    componentsProps = { [name]: undefined },
+    slots = { [name]: undefined },
+    slotsProps = { [name]: undefined },
     ...other
   } = externalForwardedProps;
-  const resolvedComponentsProps = resolveComponentProps(componentsProps[name], ownerState);
+
+  // `slotsProps[name]` can be a callback that receives the component's ownerState.
+  // `resolvedComponentsProps` is always a plain object.
+  const resolvedComponentsProps = resolveComponentProps(slotsProps[name], ownerState);
 
   const {
     props: { component: slotComponent, ...mergedProps },
@@ -130,11 +133,11 @@ export default function useSlot<
     ),
   ) as ((instance: any | null) => void) | null;
 
-  const finalOwnerState = externalOwnerState
-    ? { ...ownerState, ...externalOwnerState(mergedProps as any) }
+  const finalOwnerState = getSlotOwnerState
+    ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
     : ownerState;
 
-  const LeafComponent = (name === 'root' ? rootComponent || slotComponent : slotComponent) as
+  const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
     | undefined;
 
@@ -142,14 +145,15 @@ export default function useSlot<
     elementType,
     {
       ...internalForwardedProps,
-      ...(mergedProps as T extends 'root'
-        ? SlotProps & ExternalSlotProps & AdditionalProps & ExternalForwardedProps
-        : SlotProps & ExternalSlotProps & AdditionalProps),
-      as: LeafComponent || internalForwardedProps?.as,
+      ...(mergedProps as { className: string } & SlotProps &
+        ExternalSlotProps &
+        AdditionalProps &
+        (T extends 'root' ? ExternalForwardedProps : {})),
+      as: LeafComponent || (internalForwardedProps as { as?: React.ElementType })?.as,
       ref,
     },
-    finalOwnerState,
+    finalOwnerState as OwnerState & SlotOwnerState,
   );
 
-  return [components[name] || elementType, props] as [ElementType, typeof props];
+  return [slots[name] || elementType, props] as [ElementType, typeof props];
 }
