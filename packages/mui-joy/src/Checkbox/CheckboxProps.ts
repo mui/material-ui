@@ -33,7 +33,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       className?: string;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
       componentsProps?: ComponentsProps;
@@ -92,6 +92,11 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The icon when `checked` is false.
        */
       uncheckedIcon?: React.ReactNode;
+      /**
+       * The value of the component. The DOM API casts this to a string.
+       * The browser uses "on" as the default value.
+       */
+      value?: React.AllHTMLAttributes<HTMLInputElement>['value'];
     };
   defaultComponent: D;
 }
@@ -107,5 +112,5 @@ export interface CheckboxOwnerState extends CheckboxProps {
   /**
    * If `true`, the checkbox's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

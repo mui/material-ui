@@ -101,7 +101,7 @@ export default function MuiProductSelector() {
           role="menuitem"
           icon={<IconImage name="product-core" />}
           name="MUI Core"
-          description="Ready-to-use foundational components, free forever."
+          description="Ready-to-use foundational React components, free forever."
         />
         <Box sx={{ ml: '36px', pl: 2, pt: 1.5, position: 'relative' }}>
           <Stack
@@ -163,7 +163,7 @@ export default function MuiProductSelector() {
         </Link>
       </li>
       {/* @ts-ignore */}
-      {process.env.STAGING === true ? (
+      {process.env.DEPLOY_ENV === 'production' ? null : (
         <li role="none">
           <Link
             href={ROUTES.toolpadDocs}
@@ -188,12 +188,12 @@ export default function MuiProductSelector() {
               role="menuitem"
               icon={<IconImage name="product-toolpad" />}
               name="MUI Toolpad"
-              description="Low-code tool builder, powered by MUI."
+              description="Low-code admin builder."
               chip={<Chip size="small" label="Alpha" color="grey" />}
             />
           </Link>
         </li>
-      ) : null}
+      )}
     </React.Fragment>
   );
 }

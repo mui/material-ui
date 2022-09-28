@@ -3,7 +3,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
@@ -51,6 +54,8 @@ const CardRoot = styled('div', {
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
     '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    // Divider integration
+    '--Divider-inset': 'calc(-1 * var(--Card-padding))',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
@@ -120,13 +125,21 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           if (!React.isValidElement(child)) {
             return child;
           }
+          const extraProps: Record<string, any> = {};
+          if (isMuiElement(child, ['Divider'])) {
+            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+
+            const orientation = row ? 'vertical' : 'horizontal';
+            extraProps.orientation =
+              'orientation' in child.props ? child.props.orientation : orientation;
+          }
           if (index === 0) {
-            return React.cloneElement(child, { 'data-first-child': '' });
+            extraProps['data-first-child'] = '';
           }
           if (index === React.Children.count(children) - 1) {
-            return React.cloneElement(child, { 'data-last-child': '' });
+            extraProps['data-last-child'] = '';
           }
-          return child;
+          return React.cloneElement(child, extraProps);
         })}
       </CardRoot>
     </CardRowContext.Provider>

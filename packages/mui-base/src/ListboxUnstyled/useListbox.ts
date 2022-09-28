@@ -86,6 +86,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
     dispatch({
       type: ActionTypes.optionsChange,
+      event: null,
       options,
       previousOptions: previousOptions.current,
       props: propsWithDefaults,
@@ -101,6 +102,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     (option: TOption | TOption[] | null) => {
       dispatch({
         type: ActionTypes.setValue,
+        event: null,
         value: option,
       });
     },
@@ -111,6 +113,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     (option: TOption | null) => {
       dispatch({
         type: ActionTypes.setHighlight,
+        event: null,
         highlight: option,
       });
     },
@@ -135,9 +138,9 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       });
     };
 
-  const createHandleOptionMouseOver =
+  const createHandleOptionPointerOver =
     (option: TOption, other: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent) => {
+    (event: React.PointerEvent) => {
       other.onMouseOver?.(event);
       if (event.defaultPrevented) {
         return;
@@ -203,6 +206,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
         dispatch({
           type: ActionTypes.textNavigation,
+          event,
           searchString: textCriteria.searchString,
           props: propsWithDefaults,
         });
@@ -294,11 +298,11 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       ...otherHandlers,
       'aria-disabled': optionState.disabled || undefined,
       'aria-selected': optionState.selected,
-      tabIndex: getOptionTabIndex(optionState),
       id: optionIdGenerator(option, index),
       onClick: createHandleOptionClick(option, otherHandlers),
-      onMouseOver: createHandleOptionMouseOver(option, otherHandlers),
+      onPointerOver: createHandleOptionPointerOver(option, otherHandlers),
       role: 'option',
+      tabIndex: getOptionTabIndex(optionState),
     };
   };
 

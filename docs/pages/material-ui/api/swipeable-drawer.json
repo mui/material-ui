@@ -29,6 +29,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SwipeableDrawer/SwipeableDrawer.js",
   "inheritance": { "component": "Drawer", "pathname": "/material-ui/api/drawer/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false
 }

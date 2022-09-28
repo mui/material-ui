@@ -9,6 +9,12 @@ export interface BreadcrumbsClasses {
   li: string;
   /** Styles applied to the separator element. */
   separator: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type BreadcrumbsClassKey = keyof BreadcrumbsClasses;
@@ -22,6 +28,9 @@ const breadcrumbsClasses: BreadcrumbsClasses = generateUtilityClasses('MuiBreadc
   'ol',
   'li',
   'separator',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default breadcrumbsClasses;

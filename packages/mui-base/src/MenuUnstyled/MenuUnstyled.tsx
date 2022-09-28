@@ -28,7 +28,7 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/)
+ * - [Unstyled Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *

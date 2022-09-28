@@ -8,7 +8,7 @@ import {
 import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type ButtonSlot = 'root' | 'startIcon' | 'endIcon';
+export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -18,8 +18,8 @@ export interface ButtonPropsSizeOverrides {}
 
 interface ComponentsProps {
   root?: SlotComponentProps<'button', { sx?: SxProps }, ButtonOwnerState>;
-  startIcon?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
-  endIcon?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
 }
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -36,7 +36,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
-     * The props used for each slot inside the AspectRatio.
+     * The props used for each slot inside the component.
      * @default {}
      */
     componentsProps?: ComponentsProps;
@@ -48,7 +48,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     /**
      * Element placed after the children.
      */
-    endIcon?: React.ReactNode;
+    endDecorator?: React.ReactNode;
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
@@ -70,7 +70,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     /**
      * Element placed before the children.
      */
-    startIcon?: React.ReactNode;
+    startDecorator?: React.ReactNode;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -104,7 +104,7 @@ export interface ButtonOwnerState extends ButtonProps {
   /**
    * If `true`, the button's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }
 
 export type ExtendButton<M extends OverridableTypeMap> = ((

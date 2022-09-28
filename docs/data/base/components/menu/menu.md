@@ -6,7 +6,7 @@ githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Unstyled menu
+# Unstyled Menu
 
 <p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
