@@ -23,6 +23,13 @@ type ExtractComponentProps<P> = P extends infer T | ((ownerState: any) => infer 
  * This is an advanced version of MUI Base `useSlotProps` because Joy UI allows leaf component to be customized via `component` prop
  * while MUI Base does not need to support leaf component customization.
  *
+ * @param {string} name: name of the slot
+ * @param {object} parameters
+ * @returns {[Slot, slotProps]} The slot's React component and the slot's props
+ *
+ * Note: the returned slot's props
+ * - will never contain `component` prop.
+ * - might contain `as` prop.
  */
 export default function useSlot<
   T extends string,
@@ -32,14 +39,12 @@ export default function useSlot<
   ExternalSlotProps extends { component?: React.ElementType },
   ExternalForwardedProps extends {
     component?: React.ElementType;
-    components?: Partial<Record<T, React.ElementType>>;
-    componentsProps?: Partial<
-      Record<
-        T,
+    components?: { [k in T]?: React.ElementType };
+    componentsProps?: {
+      [k in T]?:
         | WithCommonProps<ExternalSlotProps>
-        | ((ownerState: OwnerState) => WithCommonProps<ExternalSlotProps>)
-      >
-    >;
+        | ((ownerState: OwnerState) => WithCommonProps<ExternalSlotProps>);
+    };
   },
   AdditionalProps,
   SlotOwnerState extends {},
@@ -140,7 +145,9 @@ export default function useSlot<
         ExternalSlotProps &
         AdditionalProps &
         (T extends 'root' ? ExternalForwardedProps : {})),
-      as: LeafComponent,
+      ...(LeafComponent && {
+        as: LeafComponent,
+      }),
       ref,
     },
     finalOwnerState as OwnerState & SlotOwnerState,

@@ -138,13 +138,19 @@ describe('useSlot', () => {
   describe('multiple slots with unstyled popper', () => {
     const ItemRoot = styled('div')({});
     const ItemListbox = styled('ul')({});
+    const ItemOption = styled('div')({});
 
     const Item = (props: {
       component?: React.ElementType;
-      components?: { root?: React.ElementType; listbox?: React.ElementType };
+      components?: {
+        root?: React.ElementType;
+        listbox?: React.ElementType;
+        option?: React.ElementType;
+      };
       componentsProps?: {
         root?: SlotComponentProps<'button', Record<string, any>, {}>;
         listbox?: SlotComponentProps<'span', Record<string, any>, {}>;
+        option?: SlotComponentProps<'div', Record<string, any>, {}>;
       };
     }) => {
       const ref = React.useRef(null);
@@ -166,10 +172,21 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
       });
+      const [SlotOption, optionProps] = useSlot('option', {
+        className: 'option',
+        elementType: ItemOption,
+        externalForwardedProps: props,
+        ownerState: {},
+        additionalProps: {
+          role: 'menuitem',
+        },
+      });
       return (
         <React.Fragment>
           <SlotRoot {...rootProps} />
-          <SlotListbox component={ItemListbox} {...listboxProps} />
+          <SlotListbox component={ItemListbox} {...listboxProps}>
+            <SlotOption as="li" {...optionProps} />
+          </SlotListbox>
         </React.Fragment>
       );
     };
@@ -179,6 +196,7 @@ describe('useSlot', () => {
       expect(getByRole('menu')).toBeVisible();
       expect(getByRole('menu')).to.have.tagName('ul');
       expect(getByRole('menu')).to.have.class('listbox');
+      expect(getByRole('menuitem')).to.have.tagName('li');
     });
 
     it('the listbox slot should be replaceable', () => {
@@ -191,6 +209,11 @@ describe('useSlot', () => {
     it('the listbox leaf component can be changed', () => {
       const { getByRole } = render(<Item componentsProps={{ listbox: { component: 'div' } }} />);
       expect(getByRole('menu')).to.have.tagName('div');
+    });
+
+    it('the option leaf component can be changed', () => {
+      const { getByRole } = render(<Item componentsProps={{ option: { component: 'div' } }} />);
+      expect(getByRole('menuitem')).to.have.tagName('div');
     });
   });
 });
