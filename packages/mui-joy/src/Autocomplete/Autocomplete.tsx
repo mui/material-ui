@@ -97,7 +97,7 @@ const AutocompleteRoot = styled('div', {
         },
       },
       [`& .${inputClasses.root}`]: {
-        paddingInlineEnd: `calc(var(--Autocomplete-endDecorator-count, 0) * var(--Input-decorator-childHeight) + 2 * var(--internal-paddingBlock))`,
+        paddingInlineEnd: `calc(var(--Autocomplete-endDecorator-count, 0) * var(--Input-decorator-childHeight) + 2 * var(--unstable_Input-paddingBlock))`,
       },
       [`& .${inputClasses.input}`]: {
         minWidth: 30,
@@ -114,7 +114,7 @@ const AutocompleteRoot = styled('div', {
       [`& .${inputClasses.root}`]: {
         flexWrap: 'wrap',
         paddingInlineStart: 0,
-        paddingBlockEnd: 'var(--internal-paddingBlock)',
+        paddingBlockEnd: 'var(--unstable_Input-paddingBlock)',
       },
       [`& .${inputClasses.startDecorator}`]: {
         display: 'contents',
@@ -122,12 +122,12 @@ const AutocompleteRoot = styled('div', {
       },
       [`& .${inputClasses.input}`]: {
         marginInlineStart: 'var(--Input-paddingInline)',
-        marginBlockEnd: 'calc(-1 * var(--internal-paddingBlock))',
+        marginBlockEnd: 'calc(-1 * var(--unstable_Input-paddingBlock))',
       },
       [`& .${chipClasses.root}`]: {
         // TODO: use flexbox `gap` on the root slot later.
-        marginInlineStart: 'var(--internal-paddingBlock)',
-        marginBlockStart: 'var(--internal-paddingBlock)',
+        marginInlineStart: 'var(--unstable_Input-paddingBlock)',
+        marginBlockStart: 'var(--unstable_Input-paddingBlock)',
       },
     },
   ];
@@ -188,7 +188,7 @@ const AutocompleteLimitTag = styled('span', {
   overridesResolver: (props, styles) => styles.noOptions,
 })<{ ownerState: OwnerState }>({
   marginInlineStart: 'calc(var(--Input-paddingInline) / 2)',
-  marginBlockStart: 'var(--internal-paddingBlock)',
+  marginBlockStart: 'var(--unstable_Input-paddingBlock)',
 });
 
 const Autocomplete = React.forwardRef(function Autocomplete(

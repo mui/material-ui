@@ -65,10 +65,10 @@ const InputRoot = styled('div', {
       // variables for controlling child components
       '--Input-decorator-childOffset':
         'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
-      '--internal-paddingBlock':
+      '--unstable_Input-paddingBlock':
         'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
       '--Input-decorator-childRadius':
-        'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
+        'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--unstable_Input-paddingBlock), min(var(--unstable_Input-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
       '--Button-minHeight': 'var(--Input-decorator-childHeight)',
       '--IconButton-size': 'var(--Input-decorator-childHeight)',
       '--Button-radius': 'var(--Input-decorator-childRadius)',
@@ -167,7 +167,7 @@ const InputStartDecorator = styled('span', {
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
   display: 'inherit',
   alignItems: 'center',
-  paddingBlock: 'var(--internal-paddingBlock)', // for wrapping Autocomplete's tags
+  paddingBlock: 'var(--unstable_Input-paddingBlock)', // for wrapping Autocomplete's tags
   flexWrap: 'wrap', // for wrapping Autocomplete's tags
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,

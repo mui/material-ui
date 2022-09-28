@@ -43,10 +43,10 @@ const ChipRoot = styled('div', {
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
         'min(calc(var(--Chip-paddingInline) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
-      '--internal-paddingBlock':
+      '--unstable_Chip-paddingBlock':
         'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
-        'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
+        'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--unstable_Chip-paddingBlock), min(var(--unstable_Chip-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
