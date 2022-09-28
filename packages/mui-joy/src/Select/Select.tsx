@@ -67,7 +67,6 @@ const SelectRoot = styled('div', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
-      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
@@ -191,7 +190,7 @@ const SelectListbox = styled(ListRoot, {
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--_outline-inside': '1', // to prevent the focus outline from being cut by overflow
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
