@@ -68,5 +68,5 @@ export interface ListOwnerState extends ListProps {
    * @internal
    * If `true`, the element is rendered in a nested list item.
    */
-  nesting: boolean | string;
+  nesting?: boolean | string;
 }

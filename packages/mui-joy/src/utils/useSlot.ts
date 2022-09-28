@@ -43,7 +43,6 @@ export default function useSlot<
   },
   AdditionalProps,
   SlotOwnerState extends {},
-  InternalForwardedProps,
 >(
   /**
    * The slot's name. All Joy UI components should have `root` slot.
@@ -89,10 +88,6 @@ export default function useSlot<
           Exclude<Exclude<ExternalForwardedProps['componentsProps'], undefined>[T], undefined>
         >,
     ) => SlotOwnerState;
-    /**
-     * For setting default leaf component of a nested styled-component and any default props.
-     */
-    internalForwardedProps?: InternalForwardedProps;
   },
 ) {
   const {
@@ -101,7 +96,6 @@ export default function useSlot<
     ownerState,
     externalForwardedProps,
     getSlotOwnerState,
-    internalForwardedProps,
     ...useSlotPropsParams
   } = parameters;
   const {
@@ -127,10 +121,8 @@ export default function useSlot<
 
   const ref = useForkRef(
     internalRef,
-    useForkRef(
-      resolvedComponentsProps?.ref,
-      name === 'root' ? (parameters as unknown as { ref: any }).ref : undefined,
-    ),
+    // @ts-ignore `ref` is required for the 'root' slot
+    useForkRef(resolvedComponentsProps?.ref, name === 'root' ? parameters.ref : undefined),
   ) as ((instance: any | null) => void) | null;
 
   const finalOwnerState = getSlotOwnerState
@@ -144,12 +136,11 @@ export default function useSlot<
   const props = appendOwnerState(
     elementType,
     {
-      ...internalForwardedProps,
       ...(mergedProps as { className: string } & SlotProps &
         ExternalSlotProps &
         AdditionalProps &
         (T extends 'root' ? ExternalForwardedProps : {})),
-      as: LeafComponent || (internalForwardedProps as { as?: React.ElementType })?.as,
+      as: LeafComponent,
       ref,
     },
     finalOwnerState as OwnerState & SlotOwnerState,

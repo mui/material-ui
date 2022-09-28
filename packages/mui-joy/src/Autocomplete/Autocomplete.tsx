@@ -1,9 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import { chainPropTypes, integerPropType } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import PopperUnstyled, {
+  PopperUnstyledProps,
+  PopperUnstyledTypeMap,
+} from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -349,10 +353,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotProps: getClearProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
     externalForwardedProps: other,
     ownerState,
-    externalOwnerState: (mergedProps) => ({
+    getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || 'plain',
-      color: mergedProps.variant || 'neutral',
+      color: mergedProps.color || 'neutral',
     }),
     additionalProps: {
       'aria-label': clearText,
@@ -367,10 +371,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       getPopupIndicatorProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
     externalForwardedProps: other,
     ownerState,
-    externalOwnerState: (mergedProps) => ({
+    getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || 'plain',
-      color: mergedProps.variant || 'neutral',
+      color: mergedProps.color || 'neutral',
     }),
     additionalProps: {
       disabled,
@@ -404,11 +408,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
-    elementType: PopperUnstyled,
+    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
     getSlotProps: getListboxProps,
     externalForwardedProps: other,
     ownerState,
-    externalOwnerState: (mergedProps) => ({
+    getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || 'outlined',
       color: mergedProps.variant || 'neutral',
@@ -418,9 +422,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disablePortal,
       open: popupOpen,
       modifiers: cachedModifiers,
-    },
-    internalForwardedProps: {
-      component: AutocompleteListbox,
     },
   });
 
@@ -469,17 +470,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     elementType: AutocompleteOption,
     externalForwardedProps: other,
     ownerState,
-    externalOwnerState: (mergedProps) => ({
+    getSlotOwnerState: (mergedProps) => ({
       variant: mergedProps.variant || 'plain',
       color: mergedProps.color || 'neutral',
     }),
-    internalForwardedProps: {
-      as: 'li',
-    },
   });
 
   const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
+    <SlotOption as="li" {...optionProps}>
+      {getOptionLabel(option)}
+    </SlotOption>
   );
 
   const renderOption = renderOptionProp || defaultRenderOption;
@@ -528,7 +528,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       {anchorEl ? (
         // `nested` is for grouped options use case.
         <ListProvider nested>
-          <SlotListbox {...listboxProps}>
+          <SlotListbox component={AutocompleteListbox} {...listboxProps}>
             {groupedOptions.map((option, index) => {
               if (groupBy) {
                 const typedOption = option as AutocompleteGroupedOption;

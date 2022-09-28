@@ -139,39 +139,43 @@ describe('useSlot', () => {
     const ItemRoot = styled('div')({});
     const ItemListbox = styled('ul')({});
 
-    const Item = ({ open = false, ...other }) => {
+    const Item = (props: {
+      component?: React.ElementType;
+      components?: { root?: React.ElementType; listbox?: React.ElementType };
+      componentsProps?: {
+        root?: SlotComponentProps<'button', Record<string, any>, {}>;
+        listbox?: SlotComponentProps<'span', Record<string, any>, {}>;
+      };
+    }) => {
       const ref = React.useRef(null);
       const [SlotRoot, rootProps] = useSlot('root', {
         ref,
         className: 'root',
         elementType: ItemRoot,
-        externalForwardedProps: other,
+        externalForwardedProps: props,
         ownerState: {},
       });
       const [SlotListbox, listboxProps] = useSlot('listbox', {
         className: 'listbox',
         elementType: PopperUnstyled,
-        externalForwardedProps: other,
+        externalForwardedProps: props,
         ownerState: {},
         additionalProps: {
-          open,
+          open: true,
           role: 'menu',
-          anchorEl: ref.current,
-        },
-        internalForwardedProps: {
-          component: ItemListbox,
+          anchorEl: () => document.createElement('div'),
         },
       });
       return (
         <React.Fragment>
           <SlotRoot {...rootProps} />
-          <SlotListbox {...listboxProps} />
+          <SlotListbox component={ItemListbox} {...listboxProps} />
         </React.Fragment>
       );
     };
 
     it('should render popper with styled-component', () => {
-      const { getByRole } = render(<Item open />);
+      const { getByRole } = render(<Item />);
       expect(getByRole('menu')).toBeVisible();
       expect(getByRole('menu')).to.have.tagName('ul');
       expect(getByRole('menu')).to.have.class('listbox');
@@ -185,9 +189,7 @@ describe('useSlot', () => {
     });
 
     it('the listbox leaf component can be changed', () => {
-      const { getByRole } = render(
-        <Item open componentsProps={{ listbox: { component: 'div' } }} />,
-      );
+      const { getByRole } = render(<Item componentsProps={{ listbox: { component: 'div' } }} />);
       expect(getByRole('menu')).to.have.tagName('div');
     });
   });
