@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { flushSync } from "react-dom";
+import { flushSync } from 'react-dom';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@mui/utils';
 import { useThemeProps } from '@mui/system';
