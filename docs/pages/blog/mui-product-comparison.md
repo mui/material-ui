@@ -1,7 +1,7 @@
 ---
 title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, MUI Base, MUI X, and Toolpad for your next project.
-date: 2022-09-15T00:00:00.000Z
+date: 2022-10-03T00:00:00.000Z
 authors: ['samuelsycamore']
 card: false
 tags: ['Product']
@@ -42,10 +42,10 @@ Get started in the [Material UI docs](/material-ui/getting-started/overview/).
 
 #### Key features
 
-- Material Design: Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design.
-- Comprehensiveness: with over 50 foundational components and counting, you've got everything you need to ship new features fast.
-- Maturity: Material UI's age and maturity rival that of React itself, with its origins spanning all the way back to 2014.
-- Community: Over 2,500 open-source contributors have made this library what it is today.
+- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design.
+- **Comprehensiveness:** with over 50 foundational components and counting, you've got everything you need to ship new features fast.
+- **Maturity:** Material UI's age and maturity rival that of React itself, with its origins spanning all the way back to 2014.
+- **Community:** Over 2,500 open-source contributors have made this library what it is today.
 
 #### Ideal use cases
 
@@ -64,17 +64,20 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 
 #### Key features
 
-- Modern design: Joy UI's default styles align better with modern sensibilities than Material Design's more conservative take.
-- Flexibility: Customize with ease, and leverage the power of CSS variables to ensure consistency when making pixel-perfect adjustments.
+- **Innovative design:** Free from the constraints of Material Design, Joy UI is where we can innovate and experiment with fresh new ideas in design, UX, and DX.
+- **Flexibility:** Customize with ease, and leverage the power of CSS variables to ensure consistency when making pixel-perfect adjustments.
 
 #### Ideal use cases
 
 - Projects that don't require Material Design
+- Designs that would benefit from less opinionated defaults when customizing
+- Client-facing apps that need to look and feel distinctly like _your_ brand
 
 ### MUI Base
 
 MUI Base is a library of headless ("unstyled") React UI components.
-These components were extracted from Material UI, and are now available as a standalone package. They feature the same robust engineering but without any default styling solution or theme.
+These components were extracted from Material UI, and are now available as a standalone package.
+They feature the same robust engineering but without any default styling solution or theme.
 
 MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
@@ -82,9 +85,17 @@ Get started in the [MUI Base docs](/base/getting-started/overview/).
 
 #### Key features
 
+- **Total control over styles:** Unlike Material UI and Joy UI, MUI Base doesn't ship with any default styles or styling solution.
+  Write CSS however you'd prefer—vanilla, modules, styled-components—or integrate a styling library like Tailwind CSS or Emotion.
+- **Hooks for fully custom components:** When pre-built components aren't flexible enough, low-level hooks enable you to quickly add sophisticated functionality to your custom components.
+- **Accessibility:** MUI Base components are built with accessibility in mind. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
+- **The core of MUI Core:** MUI Base serves as the scaffold for Joy UI components, and future versions Material UI will also be built with MUI Base as the foundation.
+
 #### Ideal use cases
 
 - Implementing fully custom designs
+- Creating custom components within a Material UI or Joy UI app
+- Adding functionality to fully custom components
 
 ### MUI System
 
