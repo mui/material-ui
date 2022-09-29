@@ -9,7 +9,7 @@ function Root(props: PopperUnstyledRootSlotProps) {
 
 const styledPopper = <PopperUnstyled components={{ Root }} open />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

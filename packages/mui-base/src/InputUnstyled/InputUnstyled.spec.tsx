@@ -23,7 +23,7 @@ const InputInput = React.forwardRef(function InputInput(
 
 const styledInput = <InputUnstyled components={{ Root: InputRoot, Input: InputInput }} />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

@@ -167,7 +167,7 @@ const BottomNavigationTest = () => {
   );
 };
 
-const IconButtonTest = () => (
+const iconButtonTest = () => (
   <div>
     <IconButton aria-label="delete">
       <FakeIcon />
@@ -187,7 +187,7 @@ const IconButtonTest = () => (
   </div>
 );
 
-const IconButtonAsLinkTest = () => {
+const iconButtonAsLinkTest = () => {
   const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>((props, ref) => (
     <ReactRouterLink {...props} ref={ref} />
   ));

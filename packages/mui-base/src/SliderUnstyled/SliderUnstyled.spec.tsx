@@ -77,7 +77,7 @@ const Input = React.forwardRef(function Input(
 
 const styledSlider = <SliderUnstyled components={{ Root, Track, Rail, Thumb, Mark, MarkLabel }} />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (
