@@ -1,5 +1,5 @@
 import pagesApi from './pagesApi';
-import { MuiPage } from "../../src/MuiPage";
+import { MuiPage } from '../../src/MuiPage';
 
 const pages: MuiPage[] = [
   {
