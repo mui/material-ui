@@ -22,12 +22,10 @@ describe('<Container />', () => {
 
   describe('prop: maxWidth', () => {
     it('should support different maxWidth values', () => {
-      const { container: firstContainer } = render(<Container {...defaultProps} />);
-      expect(firstContainer.firstChild).to.have.class(classes.maxWidthLg);
-      const { container: secondContainer } = render(
-        <Container {...defaultProps} maxWidth={false} />,
-      );
-      expect(secondContainer.firstChild).not.to.have.class(classes.maxWidthLg);
+      const { container, setProps } = render(<Container {...defaultProps} />);
+      expect(container.firstChild).to.have.class(classes.maxWidthLg);
+      setProps({ maxWidth: false });
+      expect(container.firstChild).not.to.have.class(classes.maxWidthLg);
     });
   });
 });
