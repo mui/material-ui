@@ -75,14 +75,17 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' && {
-        color: (theme.vars || theme).palette[ownerState.color].main,
+        color: (theme.vars || theme).palette?.[ownerState.color]?.main,
         ...(!ownerState.disableRipple && {
           '&:hover': {
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
                   theme.vars.palette.action.hoverOpacity
                 })`
-              : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+              : alpha(
+                  theme.palette?.[ownerState.color]?.main ?? theme.palette.action.active,
+                  theme.palette.action.hoverOpacity,
+                ),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
