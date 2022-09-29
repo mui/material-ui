@@ -4,7 +4,9 @@ import LinearProgress from '@mui/joy/LinearProgress';
 
 export default function LinearProgressColors() {
   return (
-    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+    <Box
+      sx={{ display: 'flex', gap: 2, alignItems: 'center', flexDirection: 'column' }}
+    >
       <LinearProgress color="primary" />
       <LinearProgress color="neutral" />
       <LinearProgress color="danger" />
