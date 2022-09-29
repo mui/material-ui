@@ -65,11 +65,12 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 #### Key features
 
 - **Innovative design:** Free from the constraints of Material Design, Joy UI is where we can innovate and experiment with fresh new ideas in design, UX, and DX.
+
 - **Flexibility:** Customize with ease, and leverage the power of CSS variables to ensure consistency when making pixel-perfect adjustments.
 
 #### Ideal use cases
 
-- Projects that don't require Material Design
+- Projects that don't involve Material Design
 - Designs that would benefit from less opinionated defaults when customizing
 - Client-facing apps that need to look and feel distinctly like _your_ brand
 
@@ -101,9 +102,9 @@ Get started in the [MUI Base docs](/base/getting-started/overview/).
 
 MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and MUI Base.
 
-The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the sx prop.
+The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the `sx` prop.
 This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant const definitions with styled-components.
-It also gives you direct access to your theme's custom design tokens to ensure consistency in one-off styles. Learn more on the sx prop page.
+It also gives you direct access to your theme's custom design tokens to ensure consistency in one-off styles.
 
 Get started in the [MUI System docs](/system/getting-started/overview/).
 
@@ -120,13 +121,21 @@ They feature advanced functionality for data-rich applications and a wide range 
 
 Get started in the [MUI X docs](/x/introduction/).
 
-### Key features
+### Data Grid
 
-### Ideal use cases
+#### Key features
+
+#### Ideal use cases
 
 - data-rich applications
 - data analytics tools
 - admin tools
+
+### Date and Time Pickers
+
+#### Key features
+
+#### Ideal use cases
 
 ## MUI Toolpad
 
@@ -137,7 +146,3 @@ Drag and drop pre-built UI components, connect your data sources, and your app i
 ### Key features
 
 ### Ideal use cases
-
-## CTA
-
-what do we want readers to do after finishing this article?
