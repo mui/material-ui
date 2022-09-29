@@ -23,6 +23,7 @@ import { GridProps } from '@mui/joy/Grid';
 import { IconButtonOwnerState } from '@mui/joy/IconButton';
 import { InputOwnerState } from '@mui/joy/Input';
 import { LinkOwnerState } from '@mui/joy/Link';
+import { LinearProgressOwnerState } from '@mui/joy/LinearProgress';
 import { ListOwnerState } from '@mui/joy/List';
 import { ListDividerOwnerState } from '@mui/joy/ListDivider';
 import { ListSubheaderOwnerState } from '@mui/joy/ListSubheader';
@@ -314,8 +315,9 @@ extendTheme({
     },
     JoyCircularProgress: {
       defaultProps: {
-        variant: 'solid',
+        variant: 'soft',
         color: 'primary',
+        size: 'md'
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -471,6 +473,33 @@ extendTheme({
         },
         endDecorator: ({ ownerState }) => {
           expectType<LinkOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyLinearProgress: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+        size: 'md'
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        track: ({ ownerState }) => {
+          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        progress: ({ ownerState }) => {
+          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },
