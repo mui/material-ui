@@ -2,7 +2,7 @@
 
 <p class="description">Learn the basics of using Joy UI components.</p>
 
-## Getting started
+## Quickstart
 
 The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy-ui/react-button/) component:
 

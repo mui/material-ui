@@ -2,7 +2,7 @@
 
 <p class="description">Learn the basics of working with Material UI components.</p>
 
-## Getting started
+## Quickstart
 
 The following code snippet demonstrates a simple app that uses the Material UI [Button](/material-ui/react-button/) component:
 

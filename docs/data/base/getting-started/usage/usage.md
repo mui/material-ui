@@ -2,7 +2,7 @@
 
 <p class="description">Learn the basics of working with MUI Base components.</p>
 
-## Getting started
+## Quickstart
 
 The following code snippet demonstrates a simple app that uses the MUI Base [Button](/base/react-button/) component:
 
