@@ -75,7 +75,7 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 
 ### MUI Base
 
-MUI Base is a library of headless ("unstyled") React UI components.
+MUI Base is a library of headless ("unstyled") React UI components and hooks.
 These components were extracted from Material UI, and are now available as a standalone package.
 They feature the same robust engineering but without any default styling solution or theme.
 
