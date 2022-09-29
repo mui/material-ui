@@ -626,7 +626,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         popperRef={popperRef}
         open={childNode ? open : false}
         id={id}
-        transition
         {...interactiveWrapperListeners}
         {...popperProps}
         className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
