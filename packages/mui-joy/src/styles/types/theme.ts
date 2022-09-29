@@ -51,6 +51,7 @@ export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
 export interface ThemeScales {
   radius: Radius;
   shadow: Shadow;
+  focus: { thickness: string };
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;

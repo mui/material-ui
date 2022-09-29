@@ -4,10 +4,9 @@ title: Unstyled React Select components and hook
 components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
-packageName: '@mui/base'
 ---
 
-# Unstyled select
+# Unstyled Select
 
 <p class="description">The select components let you create lists of options for users to choose from.</p>
 
@@ -17,6 +16,8 @@ A select is a UI element that gives users a list of options to choose from.
 
 MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`.
 It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
+
+{{"demo": "UnstyledSelectIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 
@@ -147,7 +148,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 The following example shows a select that opens when hovered over or focused.
@@ -168,6 +169,11 @@ It can be controlled by a mouse/touch or a keyboard.
 The `SelectUnstyled` component can be used with non-string values:
 
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
+
+If you use a SelectUnstyled with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
+You can change this behavior with the help of the `getSerializedValue` prop.
+
+{{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
 
 ### Selected value appearance
 

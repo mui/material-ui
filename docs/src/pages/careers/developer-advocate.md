@@ -6,7 +6,6 @@
 
 - Location: Remote (preference for UTC-7 to UTC+2).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -32,7 +31,7 @@ We need talented people to keep that going!
 
 We are looking for a dedicated educator and experienced developer to join us as a Developer Advocate to help people get familiar with and use MUI most effectively.
 
-In our [last developer survey](/blog/2021-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
+In our [last developer survey](/blog/2021-developer-survey-results/#5-how-can-we-improve-mui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
 We have underinvested in this area for too long.
 Your mission will be to be the voice of the developers of the community inside the company.
 We are looking for someone that can contribute to the following outcomes:

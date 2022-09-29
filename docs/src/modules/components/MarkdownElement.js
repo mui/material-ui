@@ -23,7 +23,7 @@ const Root = styled('div')(({ theme }) => ({
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
-    maxHeight: '350px',
+    maxHeight: '400px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
@@ -173,7 +173,7 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
     },
     '& .optional': {
-      color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      color: theme.palette.mode === 'light' ? '#45529f' : '#a5b3ff',
     },
     '& .prop-type': {
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',

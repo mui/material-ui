@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
 import { getFormLabelUtilityClass } from './formLabelClasses';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -21,15 +22,18 @@ const FormLabelRoot = styled('label', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormLabelProps }>(({ theme }) => ({
+  WebkitTapHighlightColor: 'transparent',
+  alignSelf: 'var(--FormLabel-alignSelf)', // to not fill the block space. It seems like a bug when clicking on empty space (within the label area), even though it is not.
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
+  userSelect: 'none',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
   fontWeight: theme.vars.fontWeight.md,
   lineHeight: theme.vars.lineHeight.md,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
-  margin: 'var(--FormLabel-margin, 0 0 0.25rem 0)',
+  margin: 'var(--FormLabel-margin, 0px)',
 }));
 
 const AsteriskComponent = styled('span', {
@@ -46,28 +50,45 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'JoyFormLabel',
   });
 
-  const { children, className, component, required = false, ...other } = props;
+  const { children, component = 'label', componentsProps = {}, ...other } = props;
+  const formControl = React.useContext(FormControlContext);
+  const required = inProps.required ?? formControl?.required ?? false;
 
   const ownerState = {
     ...props,
+    required,
   };
 
   const classes = useUtilityClasses();
 
+  const rootProps = useSlotProps({
+    elementType: FormLabelRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+      htmlFor: formControl?.htmlFor,
+      id: formControl?.labelId,
+    },
+    className: classes.root,
+  });
+
+  const asteriskProps = useSlotProps({
+    elementType: AsteriskComponent,
+    externalSlotProps: componentsProps.asterisk,
+    ownerState,
+    additionalProps: {
+      'aria-hidden': true,
+    },
+    className: classes.asterisk,
+  });
+
   return (
-    <FormLabelRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
+    <FormLabelRoot {...rootProps}>
       {children}
-      {required && (
-        <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
-          &thinsp;{'*'}
-        </AsteriskComponent>
-      )}
+      {required && <AsteriskComponent {...asteriskProps}>&thinsp;{'*'}</AsteriskComponent>}
     </FormLabelRoot>
   );
 }) as OverridableComponent<FormLabelTypeMap>;
@@ -82,14 +103,18 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the component.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    asterisk: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The asterisk is added if required=`true`
    */

@@ -27,7 +27,7 @@ Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](/core/):
   - [MUI Base](/base/getting-started/overview/): the unstyled version of the components.
-  - [MUI System](/system/basics/): our most recent take on styling for React components.
+  - [MUI System](/system/getting-started/overview/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](/x/): as mentioned, a growing set of advanced components.
   Today, the flagship is the [Data Grid](/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
@@ -43,7 +43,6 @@ Some criteria for applying to this role:
 - Location: fully remote (preference for UTC-6 to UTC +3).
 - Type of work: full-time (as a contractor or employee, [depending primarily on location](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
 - Level: [3 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
-- Start date: immediately.
 
 We need someone experienced enough to help two different teams with hard problems.
 You'll be responsible for ensuring that the MUI Toolpad and MUI X teams have spot-on design and product work.

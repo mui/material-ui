@@ -54,7 +54,7 @@ const IconButtonRoot = styled(ButtonBase, {
     ...(!ownerState.disableRipple && {
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.active} / ${theme.vars.palette.action.hoverOpacity})`
+          ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
           : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {

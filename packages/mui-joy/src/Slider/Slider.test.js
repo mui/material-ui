@@ -13,14 +13,8 @@ describe('<Slider />', () => {
     ThemeProvider,
     muiName: 'JoySlider',
     refInstanceof: window.HTMLSpanElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'classesRoot',
-      'propsSpread',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    testVariantProps: { color: 'success' },
+    skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeDefaultProps'],
   }));
 
   it('should render the rail as the first child of the Slider', () => {
@@ -30,5 +24,13 @@ describe('<Slider />', () => {
 
     expect(root.childNodes[0]).to.have.property('tagName', 'SPAN');
     expect(root.childNodes[0]).to.have.class(classes.rail);
+  });
+
+  it('should show formatted label', () => {
+    const { getByText } = render(
+      <Slider value={10} valueLabelDisplay="on" valueLabelFormat={(value) => `${value}px`} />,
+    );
+
+    expect(getByText('10px')).toBeVisible();
   });
 });

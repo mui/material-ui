@@ -28,8 +28,15 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       alternativeLabel && 'alternativeLabel',
     ],
-    iconContainer: ['iconContainer', alternativeLabel && 'alternativeLabel'],
-    labelContainer: ['labelContainer'],
+    iconContainer: [
+      'iconContainer',
+      active && 'active',
+      completed && 'completed',
+      error && 'error',
+      disabled && 'disabled',
+      alternativeLabel && 'alternativeLabel',
+    ],
+    labelContainer: ['labelContainer', alternativeLabel && 'alternativeLabel'],
   };
 
   return composeClasses(slots, getStepLabelUtilityClass, classes);
@@ -77,7 +84,6 @@ const StepLabelLabel = styled('span', {
     fontWeight: 500,
   },
   [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
     marginTop: 16,
   },
   [`&.${stepLabelClasses.error}`]: {
@@ -105,6 +111,9 @@ const StepLabelLabelContainer = styled('span', {
 })(({ theme }) => ({
   width: '100%',
   color: (theme.vars || theme).palette.text.secondary,
+  [`&.${stepLabelClasses.alternativeLabel}`]: {
+    textAlign: 'center',
+  },
 }));
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {

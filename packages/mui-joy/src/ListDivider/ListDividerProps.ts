@@ -23,9 +23,14 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
      */
     inset?: OverridableStringUnion<
-      'gutter' | 'startDecorator' | 'startContent',
+      'context' | 'gutter' | 'startDecorator' | 'startContent',
       ListDividerInsetOverrides
     >;
+    /**
+     * The component orientation.
+     * @default 'horizontal'
+     */
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -40,3 +45,16 @@ export type ListDividerProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListDividerTypeMap<P, D>, D>;
+
+export interface ListDividerOwnerState extends ListDividerProps {
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+  /**
+   * @internal
+   * The divider is wrapped by a horizontal list.
+   */
+  row: boolean;
+}

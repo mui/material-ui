@@ -9,7 +9,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
-Material UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://material.io/design/motion/) básicos para os componentes de sua aplicação.
+Material-UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://material.io/design/motion/) básicos para os componentes de sua aplicação.
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -57,7 +57,7 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 ## Child requirement
 
-- Para um melhor suporte a renderização no servidor, Material UI provê uma propriedade `style` para o elemento filho de alguns componentes de transição, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
+- Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o elemento filho de alguns componentes de transição, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React. Fragment` is not allowed).
 
@@ -89,7 +89,7 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 
 ## Propriedade TransitionComponent
 
-Alguns componentes do Material UI usam essas transições internamente. Estas aceitam uma propriedade `TransitionComponent` para customizar a transição padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
+Alguns componentes do Material-UI usam essas transições internamente. Estas aceitam uma propriedade `TransitionComponent` para customizar a transição padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
 - Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.

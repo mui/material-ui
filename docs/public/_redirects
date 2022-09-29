@@ -217,9 +217,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /pt/components/about-the-lab/ /pt/material-ui/about-the-lab/ 301
 /zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301
-/components/trap-focus/ /base/react-trap-focus/ 301
-/pt/components/trap-focus/ /pt/base/react-trap-focus/ 301
-/zh/components/trap-focus/ /zh/base/react-trap-focus/ 301
+/components/focus-trap/ /base/react-focus-trap/ 301
+/pt/components/focus-trap/ /pt/base/react-focus-trap/ 301
+/zh/components/focus-trap/ /zh/base/react-focus-trap/ 301
 /system/box/ /system/react-box/ 301
 /:lang/system/box/ /:lang/system/react-box/ 301
 ### React plural
@@ -292,9 +292,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/* /material-ui/react-:splat 301
 /pt/components/* /pt/material-ui/react-:splat 301
 /zh/components/* /zh/material-ui/react-:splat 301
-/api/unstable-trap-focus/ /base/api/trap-focus/ 301
-/pt/api/unstable-trap-focus/ /pt/base/api/trap-focus/ 301
-/zh/api/unstable-trap-focus/ /zh/base/api/trap-focus/ 301
+/api/unstable-trap-focus/ /base/api/focus-trap/ 301
+/pt/api/unstable-trap-focus/ /pt/base/api/focus-trap/ 301
+/zh/api/unstable-trap-focus/ /zh/base/api/focus-trap/ 301
 /api/click-away-listener/ /base/api/click-away-listener/ 301
 /pt/api/click-away-listener/ /pt/base/api/click-away-listener/ 301
 /zh/api/click-away-listener/ /zh/base/api/click-away-listener/ 301
@@ -379,14 +379,23 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/joy-ui/core-features/automatic-adjustment/ /:lang/joy-ui/main-features/automatic-adjustment/ 301
 /joy-ui/core-features/perfect-dark-mode/ /joy-ui/main-features/perfect-dark-mode/ 301
 /:lang/joy-ui/core-features/perfect-dark-mode/ /:lang/joy-ui/main-features/perfect-dark-mode/ 301
+/system/basics/ /system/getting-started/overview/ 301
+/system/the-sx-prop/ /system/getting-started/the-sx-prop/ 301
+/system/advanced/ /system/getting-started/custom-components/ 301
+/:lang/base/react-trap-focus/ /:lang/base/react-focus-trap/ 301
+/:lang/base/api/trap-focus/ /:lang/base/api/focus-trap/ 301
+/base/react-trap-focus/ /base/react-focus-trap/ 301
+/base/api/trap-focus/ /base/api/focus-trap/ 301
 # 2023
 
 # Proxies
 
 ## MUI Store
 /store-asset/* https://mui-store.netlify.app/:splat 200
-/legal/* https://mui-store.netlify.app/legal/:splat 200
 /store/* https://mui-store.netlify.app/store/:splat 200
+/r/store-* https://mui-store.netlify.app/r/store-:splat 200
+/legal/* https://mui-store.netlify.app/legal/:splat 200
+/r/legal-* https://mui-store.netlify.app/r/legal-:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,

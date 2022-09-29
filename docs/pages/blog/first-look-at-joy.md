@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<img src="/static/blog/first-look-at-joy/card.png" style="width: 796px; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." />
+<a href="/joy-ui/getting-started/overview/"><img src="/static/blog/first-look-at-joy/card.png" style="width: 692px; aspect-ratio: 2/1; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." /></a>
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system.
 If not, then this post will give you a first look at **Joy UI**－MUI's new starting point for your design system!
@@ -52,7 +52,7 @@ This sounds bold at first, but the more we experiment the more it starts to make
 What this means is that you're able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
 The four variants available in the components are `solid`, `soft`, `outlined`, and `plain`.
 
-<img src="/static/blog/first-look-at-joy/global-variants.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of button component using all available variants." />
+<a href="/joy-ui/react-button/#variants"><img src="/static/blog/first-look-at-joy/global-variants.png" style="width: 692px; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of button component using all available variants." /></a>
 
 ```jsx
 <Button variant="solid">
@@ -67,7 +67,7 @@ We meticulously constructed the CSS variables for each component so you can seam
 One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
 These small details mean the components adapt to different scenarios, which saves considerable time when customizing the components by avoiding manual adjustments.
 
-<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
+<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 692px; margin-top: 16px; margin-bottom: 8px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
 
 <p class="blog-description">When customizing the input's border radius, the icon button inside of it adapts automatically.</p>
 
@@ -136,21 +136,21 @@ Follow the templates' CodeSandbox or live demo links to experiment with Joy UI f
 
 ### Email
 
-<img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email application mockup built with Joy UI" />
+<a href="/joy-ui/getting-started/templates/email/"><img src="/static/blog/first-look-at-joy/email.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of an email application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/email/)
 - [CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)
 
 ### File management
 
-<img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management application mockup built with Joy UI" />
+<a href="/joy-ui/getting-started/templates/files/"><img src="/static/blog/first-look-at-joy/files.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of file management application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/files/)
 - [CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)
 
 ### Team management
 
-<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management application mockup built with Joy UI" />
+<a href="/joy-ui/getting-started/templates/team/"><img src="/static/blog/first-look-at-joy/people.png" style="width: 692px; margin-top: 8px; margin-bottom: 16px;" loading="lazy" alt="Screenshot of a team management application mockup built with Joy UI" /></a>
 
 - [Live demo](/joy-ui/getting-started/templates/team/)
 - [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)

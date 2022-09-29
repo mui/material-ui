@@ -4,16 +4,17 @@ title: Unstyled React Switch component and hook
 components: SwitchUnstyled
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
-packageName: '@mui/base'
 ---
 
-# Unstyled switch
+# Unstyled Switch
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
 ## Introduction
 
 The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.
+
+{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

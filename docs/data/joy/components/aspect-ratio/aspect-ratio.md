@@ -10,11 +10,11 @@ title: React Aspect Ratio component
 ## Introduction
 
 `AspectRatio` is a wrapper component that allows you to rapidly control its content aspect ratio.
-Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accomodate the content.
+Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accommodate the content.
 
 :::info
-**Note:** A [native CSS `aspect-radio`property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but we're not using it yet due to limited browser support.
-Once that increases significantly, we'll switch over to it.
+**Note:** A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but MUI is not using it yet due to limited browser support.
+Once the support increases significantly, MUI will switch over to it.
 :::
 
 ## Component
@@ -35,6 +35,16 @@ The default aspect ratio is `16/9`.
 Make sure that the content you want to fit the aspect ratio is its first direct child.
 
 {{"demo": "BasicRatio.js"}}
+
+### Variants
+
+The aspect ratio component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
+
+{{"demo": "VariantsRatio.js"}}
+
+:::success
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
 
 ### Ratio
 

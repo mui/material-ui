@@ -8,7 +8,7 @@ export default function ButtonVariables() {
     <JoyVariablesDemo
       componentName="Button"
       renderCode={(formattedSx) => `<Button
-  startIcon={<FavoriteBorder />}${formattedSx ? `${formattedSx}>` : '\n>'}`}
+  startDecorator={<FavoriteBorder />}${formattedSx ? `${formattedSx}>` : '\n>'}`}
       data={[
         {
           var: '--Button-gap',
@@ -16,7 +16,7 @@ export default function ButtonVariables() {
         },
       ]}
       renderDemo={(sx) => (
-        <Button sx={sx} startIcon={<FavoriteBorder />}>
+        <Button sx={sx} startDecorator={<FavoriteBorder />}>
           Favorite
         </Button>
       )}

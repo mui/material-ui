@@ -29,6 +29,8 @@ importRegressionFixtures.keys().forEach((path) => {
 const blacklist = [
   'docs-joy-getting-started-templates/TemplateCollection.png',
   'docs-joy-core-features-automatic-adjustment/ListThemes.png',
+  'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -248,7 +250,7 @@ function FixtureRenderer({ component: FixtureComponent }) {
 }
 
 FixtureRenderer.propTypes = {
-  component: PropTypes.element,
+  component: PropTypes.elementType,
 };
 
 function App(props) {

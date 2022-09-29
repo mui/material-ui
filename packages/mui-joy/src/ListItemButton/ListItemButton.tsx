@@ -6,14 +6,15 @@ import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled, useThemeProps } from '../styles';
 import {
-  ListItemButtonProps,
+  ListItemButtonOwnerState,
   ExtendListItemButton,
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
 
   const slots = {
@@ -41,16 +42,20 @@ export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
-}>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',
     }),
+    ...(ownerState.disabled && {
+      '--List-decorator-color':
+        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    }),
+    WebkitTapHighlightColor: 'transparent',
     boxSizing: 'border-box',
     position: 'relative',
     display: 'flex',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
@@ -72,7 +77,9 @@ export const ListItemButtonRoot = styled('div', {
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: ownerState.row ? 'none' : 1,
+    flexGrow: ownerState.row ? 0 : 1,
+    flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
+    flexShrink: 0,
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
@@ -106,6 +113,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
+    orientation = 'horizontal',
     role,
     selected = false,
     color = selected ? 'primary' : 'neutral',
@@ -137,6 +145,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
+    orientation,
     row,
     selected,
     variant,
@@ -147,16 +156,18 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const rootProps = getRootProps();
 
   return (
-    <ListItemButtonRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...rootProps}
-      role={role ?? rootProps.role}
-    >
-      {children}
-    </ListItemButtonRoot>
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <ListItemButtonRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+        {...rootProps}
+        role={role ?? rootProps.role}
+      >
+        {children}
+      </ListItemButtonRoot>
+    </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
 
@@ -221,6 +232,11 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */

@@ -18,8 +18,8 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses MUI's default `theme` if no theme is available in React context.
-2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) and [`variants`](/material-ui/customization/theme-components/#adding-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
-3. It adds support for the [the `sx` prop](/system/basics/#the-sx-prop) (can be skipped).
+2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) and [`variants`](/material-ui/customization/theme-components/#creating-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+3. It adds support for the [the `sx` prop](/system/getting-started/the-sx-prop/) (can be skipped).
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account all props used internally in the MUI components: `ownerState`, `theme`, `sx`, and `as`.
 
 ## API
@@ -99,7 +99,7 @@ export default styled;
 The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either Emotion or styled-components.
 It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
 
-The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
+The [`sx`](/system/getting-started/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
 
 Therefore, you will notice the following differences:
 

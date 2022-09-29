@@ -17,7 +17,7 @@ export default function ButtonThemes() {
   const rootPresets = {
     dense: {
       '--List-item-minHeight': '27px',
-      '--List-decorator-width': '28px',
+      '--List-decorator-size': '28px',
       '--List-item-radius': '5px',
       '--List-gap': '5px',
       '--List-padding': '10px',
@@ -33,7 +33,7 @@ export default function ButtonThemes() {
       '--List-item-minHeight': '48px',
       '--List-padding': '8px',
       '--List-gap': '8px',
-      '--List-nestedInsetStart': 'var(--List-decorator-width)',
+      '--List-nestedInsetStart': 'var(--List-decorator-size)',
     },
   };
   const nestedPresets = {
@@ -115,7 +115,7 @@ export default function ButtonThemes() {
               },
             }}
             value={preset}
-            onChange={setPreset}
+            onChange={(event, newValue) => setPreset(newValue)}
             sx={{ minWidth: 160 }}
           >
             <Option value="">Default</Option>

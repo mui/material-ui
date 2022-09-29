@@ -4,10 +4,9 @@ title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
-packageName: '@mui/base'
 ---
 
-# Unstyled menu
+# Unstyled Menu
 
 <p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
@@ -18,6 +17,8 @@ It renders an unordered list (`<ul>`) by default.
 
 Use `MenuItemUnstyled` to add items to the menu.
 These are rendered as `<li>` elements.
+
+{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -126,7 +127,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 The following demo shows how to build a menu using hooks:

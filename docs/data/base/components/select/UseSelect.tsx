@@ -3,24 +3,20 @@ import { useSelect, SelectOption } from '@mui/base';
 import { styled } from '@mui/system';
 
 const grey = {
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
 };
 
 const Root = styled('div')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
   position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-  color: #000;
 `;
 
 const Toggle = styled('div')(
@@ -30,24 +26,19 @@ const Toggle = styled('div')(
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   min-width: 320px;
-  background: var(--color, ${theme.palette.mode === 'dark' ? grey[900] : '#fff'});
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  box-shadow: ${
-    theme.palette.mode === 'dark'
-      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
-      : `0 5px 13px -3px ${grey[200]}`
-  };
-  border-radius: 0.75em;
-  margin: 0.5em;
-  padding: 10px;
+  border-radius: 12px;
   text-align: left;
   line-height: 1.5;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: var(--color, ${theme.palette.mode === 'dark' ? grey[900] : '#fff'});
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: default;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
 
   & .placeholder {
     opacity: 0.8;
@@ -60,25 +51,24 @@ const Listbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
+  min-height: calc(1.5em + 22px);
+  min-width: 320px;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: left;
+  line-height: 1.5;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   padding: 5px;
   margin: 5px 0 0 0;
-  list-style: none;
   position: absolute;
   height: auto;
-  transition: opacity 0.1s ease;
   width: 100%;
-  box-shadow: ${
-    theme.palette.mode === 'dark'
-      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
-      : `0 5px 13px -3px ${grey[200]}`
-  };
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   z-index: 1;
   outline: 0px;
+  list-style: none;
 
   &.hidden {
     opacity: 0;
