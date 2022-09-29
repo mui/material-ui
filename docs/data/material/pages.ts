@@ -1,6 +1,7 @@
 import pagesApi from './pagesApi';
+import { MuiPage } from "../../src/MuiPage";
 
-const pages = [
+const pages: MuiPage[] = [
   {
     pathname: '/material-ui/getting-started',
     icon: 'DescriptionIcon',

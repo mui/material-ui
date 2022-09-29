@@ -32,6 +32,11 @@ export interface MuiPage {
    * Overrides the default page title.
    */
   title?: string;
+  /**
+   * Indicates if the feature has been recently released.
+   * @default false
+   */
+  newFeature?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {
