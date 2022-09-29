@@ -187,6 +187,14 @@ extendTheme({
           expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
+        startDecorator: ({ ownerState }) => {
+          expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
       },
     },
     JoyCard: {
