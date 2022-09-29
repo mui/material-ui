@@ -4,7 +4,7 @@
 
 ## Quickstart
 
-The following code snippet demonstrates a simple app that uses the MUI Base [Button](/base/react-button/) component:
+The following code snippet demonstrates a simple app that uses the MUI Base [Unstyled Button](/base/react-button/) component:
 
 ```jsx
 import * as React from 'react';
