@@ -27,9 +27,6 @@ export function createFilterOptions(config = {}) {
 
   return (options, { inputValue, getOptionLabel }) => {
     let input = trim ? inputValue.trim() : inputValue;
-    if (!input) {
-      return typeof limit === 'number' ? options.slice(0, limit) : options;
-    }
     if (ignoreCase) {
       input = input.toLowerCase();
     }
@@ -37,17 +34,21 @@ export function createFilterOptions(config = {}) {
       input = stripDiacritics(input);
     }
 
-    const filteredOptions = options.filter((option) => {
-      let candidate = (stringify || getOptionLabel)(option);
-      if (ignoreCase) {
-        candidate = candidate.toLowerCase();
-      }
-      if (ignoreAccents) {
-        candidate = stripDiacritics(candidate);
-      }
+    const filteredOptions = !input
+      ? options
+      : options.filter((option) => {
+          let candidate = (stringify || getOptionLabel)(option);
+          if (ignoreCase) {
+            candidate = candidate.toLowerCase();
+          }
+          if (ignoreAccents) {
+            candidate = stripDiacritics(candidate);
+          }
 
-      return matchFrom === 'start' ? candidate.indexOf(input) === 0 : candidate.indexOf(input) > -1;
-    });
+          return matchFrom === 'start'
+            ? candidate.indexOf(input) === 0
+            : candidate.indexOf(input) > -1;
+        });
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
