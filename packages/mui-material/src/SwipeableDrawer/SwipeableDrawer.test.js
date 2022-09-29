@@ -59,7 +59,7 @@ const NullPaper = React.forwardRef(function NullPaper(props, ref) {
 });
 
 describe('<SwipeableDrawer />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { render, clock } = createRenderer({ clock: 'fake' });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},
@@ -224,6 +224,81 @@ describe('<SwipeableDrawer />', () => {
             ],
           });
           expect(handleClose.callCount).to.equal(1);
+        });
+
+        it('should open at correct position when swiping', function test() {
+          if (/jsdom/.test(window.navigator.userAgent)) {
+            // Need layout
+            this.skip();
+          }
+          const handleClose = spy();
+          const handleOpen = spy();
+          const { getByTestId, setProps } = render(
+            <SwipeableDrawer
+              anchor={params.anchor}
+              onOpen={handleOpen}
+              onClose={handleClose}
+              open={false}
+              PaperProps={{ component: FakePaper }}
+              transitionDuration={0}
+            >
+              <div data-testid="drawer">SwipeableDrawer</div>
+            </SwipeableDrawer>,
+          );
+
+          const testParam = params.anchor === 'left' || params.anchor === 'right' ? 'x' : 'y';
+
+          const DRAG_STARTED_SIGNAL = 20; // Same as in SwipeableDrawer
+          const DRAWER_SIZE = 250;
+          const bodyMargin = document.body.getBoundingClientRect().x;
+          const absoluteBodyWidth = bodyWidth + bodyMargin * 2;
+
+          const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
+
+          fireEvent.touchStart(swipeArea, {
+            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[0] })],
+          });
+
+          let startPosition = -1 * (DRAWER_SIZE - DRAG_STARTED_SIGNAL); // default value for left & top anchor
+
+          if (params.anchor === 'right') {
+            startPosition = absoluteBodyWidth - DRAG_STARTED_SIGNAL;
+          }
+
+          if (params.anchor === 'bottom') {
+            startPosition = windowHeight - DRAG_STARTED_SIGNAL;
+          }
+          // The 20 comes from the DRAG_STARTED_SIGNAL, defined in the SwipeableDrawer
+          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(startPosition);
+
+          fireEvent.touchMove(swipeArea, {
+            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
+          });
+
+          fireEvent.touchMove(swipeArea, {
+            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] })],
+          });
+
+          fireEvent.touchEnd(swipeArea, {
+            changedTouches: [
+              new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] }),
+            ],
+          });
+
+          expect(handleOpen.callCount).to.equal(1);
+          setProps({ open: true });
+
+          let endPosition = 0; // default value for left & top anchor
+
+          if (params.anchor === 'right') {
+            endPosition = absoluteBodyWidth - DRAWER_SIZE;
+          }
+
+          if (params.anchor === 'bottom') {
+            endPosition = windowHeight - DRAWER_SIZE;
+          }
+
+          expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(endPosition);
         });
 
         it('should stay closed when not swiping far enough', () => {
