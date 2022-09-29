@@ -59,6 +59,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/react-alert' },
           { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-linear-progress' },
           { pathname: '/joy-ui/react-modal' },
         ],
       },

@@ -1,0 +1,6 @@
+<LinearProgress color="primary" />
+<LinearProgress color="neutral" />
+<LinearProgress color="danger" />
+<LinearProgress color="info" />
+<LinearProgress color="success" />
+<LinearProgress color="warning" />
