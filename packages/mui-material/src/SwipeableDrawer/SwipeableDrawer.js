@@ -563,7 +563,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
           // Ensures that paperRef.current will be defined inside the touch start event handler
           // See https://github.com/mui/material-ui/issues/30414 for more information
           ...(variant === 'temporary' && {
-            keepMounted: true
+            keepMounted: true,
           }),
           ...ModalPropsProp,
         }}
