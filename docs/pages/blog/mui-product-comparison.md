@@ -65,7 +65,6 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 #### Key features
 
 - **Innovative design:** Free from the constraints of Material Design, Joy UI is where we can innovate and experiment with fresh new ideas in design, UX, and DX.
-
 - **Flexibility:** Customize with ease, and leverage the power of CSS variables to ensure consistency when making pixel-perfect adjustments.
 
 #### Ideal use cases
