@@ -23,7 +23,7 @@ describe('<Tooltip />', () => {
       testComponentPropWith: 'span',
       testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
-      skip: ['componentProp', 'componentsProp', 'rootClass', 'reactTestRenderer'],
+      skip: ['componentProp', 'componentsProp', 'rootClass', 'reactTestRenderer', 'themeVariants'],
     }),
   );
 
