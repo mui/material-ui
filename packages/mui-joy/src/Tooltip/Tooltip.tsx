@@ -21,19 +21,18 @@ import useThemeProps from '../styles/useThemeProps';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipOwnerState, TooltipProps, TooltipTypeMap } from './TooltipProps';
 
-const useUtilityClasses = (ownerState: TooltipProps & { touch?: boolean }) => {
-  const { disableInteractive, arrow, touch, placement, variant, color, size } = ownerState;
+const useUtilityClasses = (ownerState: TooltipProps) => {
+  const { disableInteractive, arrow, placement, variant, color, size } = ownerState;
 
   const slots = {
-    popper: ['popper', !disableInteractive && 'popperInteractive', arrow && 'popperArrow'],
-    tooltip: [
-      'tooltip',
-      arrow && 'tooltipArrow',
-      touch && 'touch',
-      placement && `tooltipPlacement${capitalize(placement.split('-')[0])}`,
+    root: [
+      'root',
+      placement && `placement${capitalize(placement.split('-')[0])}`,
       size && `size${capitalize(size)}`,
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
+      !disableInteractive && 'rootInteractive',
+      arrow && 'rootArrow',
     ],
     arrow: ['arrow'],
   };
@@ -43,9 +42,9 @@ const useUtilityClasses = (ownerState: TooltipProps & { touch?: boolean }) => {
 
 const TooltipRoot = styled('div', {
   name: 'JoyTooltip',
-  slot: 'Popper',
-  overridesResolver: (props, styles) => styles.popper,
-})<{ ownerState: TooltipProps & { touch?: boolean } }>(({ ownerState, theme }) => {
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: TooltipProps }>(({ ownerState, theme }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
@@ -199,8 +198,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    PopperComponent: PopperComponentProp,
-    PopperProps = {},
+    RootComponent: RootComponentProp,
+    RootProps = {},
     title,
     color = 'neutral',
     variant = 'solid',
@@ -526,22 +525,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       },
     ];
 
-    if (PopperProps.popperOptions?.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
+    if (RootProps.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(RootProps.popperOptions.modifiers);
     }
 
     return {
-      ...PopperProps.popperOptions,
+      ...RootProps.popperOptions,
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef, PopperProps]);
+  }, [arrowRef, RootProps]);
 
   const ownerState = {
     ...props,
     arrow,
     disableInteractive,
     placement,
-    PopperComponentProp,
+    RootComponentProp,
     touch: ignoreNonTouchEvents.current,
     color,
     variant,
@@ -550,12 +549,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const PopperComponent = components.Popper ?? TooltipRoot;
+  const RootComponent = components.Root ?? TooltipRoot;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
   const popperProps = appendOwnerState(
-    PopperComponent,
-    { ...PopperProps, ...componentsProps.popper },
+    RootComponent,
+    { ...RootProps, ...componentsProps.root },
     ownerState,
   );
 
@@ -591,7 +590,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         id={id}
         {...interactiveWrapperListeners}
         {...popperProps}
-        className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
+        className={clsx(classes.root, RootProps?.className, componentsProps.root?.className)}
         popperOptions={popperOptions}
         ownerState={ownerState}
       >
@@ -641,18 +640,16 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   components: PropTypes.shape({
     Arrow: PropTypes.elementType,
-    Popper: PropTypes.elementType,
-    Tooltip: PropTypes.elementType,
+    Root: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.popper` prop values win over `PopperProps` if both are applied.
+   * Note that `componentsProps.root` prop values win over `RootProps` if both are applied.
    * @default {}
    */
   componentsProps: PropTypes.shape({
     arrow: PropTypes.object,
-    popper: PropTypes.object,
-    tooltip: PropTypes.object,
+    root: PropTypes.object,
   }),
   /**
    * Set to `true` if the `title` acts as an accessible description.
@@ -753,15 +750,15 @@ Tooltip.propTypes /* remove-proptypes */ = {
     'top',
   ]),
   /**
-   * The component used for the popper.
+   * The component used for the root.
    * @default Popper
    */
-  PopperComponent: PropTypes.elementType,
+  RootComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+   * Props applied to the Root component
    * @default {}
    */
-  PopperProps: PropTypes.object,
+  RootProps: PropTypes.object,
   /**
    * The size of the component.
    * @default 'md'
