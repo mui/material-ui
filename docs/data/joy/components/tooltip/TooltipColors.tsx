@@ -24,32 +24,32 @@ export default function TooltipColors() {
           gap: 1,
         }}
       >
-        <Tooltip title="Delete" color="primary">
+        <Tooltip title="Delete" color="primary" variant={variant}>
           <Button variant="plain" color="primary">
             Primary
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="neutral">
+        <Tooltip title="Delete" color="neutral" variant={variant}>
           <Button variant="plain" color="neutral">
             Neutral
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="danger">
+        <Tooltip title="Delete" color="danger" variant={variant}>
           <Button variant="plain" color="danger">
             Danger
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="info">
+        <Tooltip title="Delete" color="info" variant={variant}>
           <Button variant="plain" color="info">
             Info
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="success">
+        <Tooltip title="Delete" color="success" variant={variant}>
           <Button variant="plain" color="success">
             Success
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="warning">
+        <Tooltip title="Delete" color="warning" variant={variant}>
           <Button variant="plain" color="warning">
             Warning
           </Button>
