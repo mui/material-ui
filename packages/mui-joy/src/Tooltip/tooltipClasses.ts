@@ -35,6 +35,8 @@ export interface TooltipClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
   /** Styles applied to the root element if `variant="soft"`. */
@@ -67,6 +69,7 @@ const tooltipClasses: TooltipClasses = generateUtilityClasses('JoyTooltip', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'variantPlain',
   'variantOutlined',
   'variantSoft',
   'variantSolid',
