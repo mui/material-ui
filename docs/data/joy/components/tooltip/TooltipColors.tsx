@@ -6,9 +6,10 @@ import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
+import { VariantProp } from '@mui/joy/styles';
 
 export default function TooltipColors() {
-  const [variant, setVariant] = React.useState('solid');
+  const [variant, setVariant] = React.useState<VariantProp>('solid');
   return (
     <Box
       sx={{
@@ -77,7 +78,7 @@ export default function TooltipColors() {
           aria-labelledby="variant-label"
           name="variant"
           value={variant}
-          onChange={(event) => setVariant(event.target.value)}
+          onChange={(event) => setVariant(event.target.value as VariantProp)}
         >
           <Radio label="Solid" value="solid" />
           <Radio label="Soft" value="soft" />
