@@ -119,7 +119,7 @@ interface JoyUsageDemoProps<ComponentProps> {
      * - `input`: render <input />
      * - `radio`: render group of radios
      */
-    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio' | 'number';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio' | 'number' | 'placement';
     /**
      * The options for these knobs: `select` and `radio`
      */
@@ -521,6 +521,105 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     },
                   }}
                 />
+              );
+            }
+            if (knob === 'placement') {
+              return (
+                <FormControl>
+                  <FormLabel>Placement</FormLabel>
+                  <RadioGroup
+                    name="placement"
+                    value={resolvedValue}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.value,
+                      }))
+                    }
+                  >
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: '40px 1fr 1fr 1fr 40px',
+                        gridTemplateRows: 'repeat(5, 20px)',
+                        gridAutoFlow: 'row dense',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          gridRow: '2 / -2',
+                          gridColumn: '2 / -2',
+                          fontSize: 'sm',
+                          border: '1px solid',
+                          borderColor: 'divider',
+                          borderRadius: 'sm',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          fontWeight: 'md',
+                          color: 'text.secondary',
+                        }}
+                      >
+                        {resolvedValue}
+                      </Box>
+                      {/* void */}
+                      <Box />
+                      <Box sx={{ gridColumn: '-1 / -2', gridRow: '1' }} />
+                      <Box sx={{ gridRow: '-1 / -2', gridColumn: '1' }} />
+                      {/* void */}
+                      {[
+                        'top-start',
+                        'top',
+                        'top-end',
+                        'left-start',
+                        'right-start',
+                        'left',
+                        'right',
+                        'left-end',
+                        'right-end',
+                        'bottom-start',
+                        'bottom',
+                        'bottom-end',
+                      ].map((placement) => (
+                        <Sheet
+                          key={placement}
+                          variant="soft"
+                          color="neutral"
+                          sx={{
+                            position: 'relative',
+                            height: '14px',
+                            width: 32,
+                            borderRadius: 'xs',
+                            mx: 0.5,
+                            ...(placement.match(/^(top|bottom)$/) && {
+                              justifySelf: 'center',
+                            }),
+                            ...(placement.match(/^(top-end|bottom-end)$/) && {
+                              justifySelf: 'flex-end',
+                            }),
+                          }}
+                        >
+                          <Radio
+                            value={placement}
+                            overlay
+                            disableIcon
+                            componentsProps={{
+                              action: ({ checked }) => ({
+                                sx: (theme) => ({
+                                  ...(checked && {
+                                    ...theme.variants.solid.primary,
+                                    '&:hover': theme.variants.solid.primary,
+                                  }),
+                                }),
+                              }),
+                            }}
+                          />
+                        </Sheet>
+                      ))}
+                    </Box>
+                  </RadioGroup>
+                </FormControl>
               );
             }
             return null;

@@ -12,13 +12,13 @@ export default function TooltipUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'soft',
+          defaultValue: 'solid',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',
@@ -27,7 +27,17 @@ export default function TooltipUsage() {
           defaultValue: 'md',
         },
         {
+          propName: 'placement',
+          knob: 'placement',
+          defaultValue: 'bottom',
+        },
+        {
           propName: 'arrow',
+          knob: 'switch',
+          defaultValue: false,
+        },
+        {
+          propName: 'open',
           knob: 'switch',
           defaultValue: false,
         },
