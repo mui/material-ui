@@ -1,7 +1,7 @@
+import * as React from 'react';
 import { PopperUnstyledProps } from '@mui/base';
 import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
@@ -28,7 +28,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Tooltip reference element.
      */
-    children: PropTypes.node;
+    children: React.ReactElement;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
