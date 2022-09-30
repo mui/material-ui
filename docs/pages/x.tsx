@@ -12,7 +12,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import XPlans from 'docs/src/components/productX/XPlans';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-export default function Home() {
+export default function X() {
   return (
     <BrandingProvider>
       <Head
