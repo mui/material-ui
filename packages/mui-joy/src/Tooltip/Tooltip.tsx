@@ -6,6 +6,7 @@ import {
   PopperUnstyled,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
+import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
@@ -16,9 +17,10 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
 import styled from '../styles/styled';
+import { Theme } from '../styles/types';
 import useThemeProps from '../styles/useThemeProps';
 import { getTooltipUtilityClass } from './tooltipClasses';
-import { TooltipProps, TooltipTypeMap } from './TooltipProps';
+import { TooltipOwnerState, TooltipProps, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipProps & { touch?: boolean }) => {
   const { disableInteractive, arrow, touch, placement, variant, color, size } = ownerState;
@@ -208,7 +210,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   } = props;
 
   const [childNode, setChildNode] = React.useState<HTMLElement>();
-  const [arrowRef, setArrowRef] = React.useState(null);
+  const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
   const ignoreNonTouchEvents = React.useRef(false);
 
   const disableInteractive = disableInteractiveProp || followCursor;
@@ -561,7 +563,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ArrowComponent,
     { ...componentsProps.arrow },
     ownerState,
-  );
+  ) as MUIStyledCommonProps<Theme> & { ownerState: TooltipOwnerState };
 
   return (
     <React.Fragment>
