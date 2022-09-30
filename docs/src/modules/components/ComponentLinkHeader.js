@@ -35,14 +35,14 @@ const defaultPackageNames = {
 };
 
 export default function ComponentLinkHeader(props) {
-  const { headers, options } = props;
+  const {
+    markdown: { headers },
+    design,
+  } = props;
   const t = useTranslate();
 
-  let packageName = props.headers.packageName;
-  if (!packageName) {
-    const { product } = props.headers;
-    packageName = defaultPackageNames[product] || '@mui/material';
-  }
+  const packageName =
+    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
 
   return (
     <Root>
@@ -124,7 +124,7 @@ export default function ComponentLinkHeader(props) {
           />
         </li>
       ) : null}
-      {options.design !== false ? (
+      {design !== false ? (
         <React.Fragment>
           <li>
             <Chip
@@ -184,6 +184,8 @@ export default function ComponentLinkHeader(props) {
 }
 
 ComponentLinkHeader.propTypes = {
-  headers: PropTypes.object.isRequired,
-  options: PropTypes.object.isRequired,
+  design: PropTypes.bool,
+  markdown: PropTypes.shape({
+    headers: PropTypes.object.isRequired,
+  }).isRequired,
 };

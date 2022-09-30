@@ -987,6 +987,18 @@ describe('<Slider />', () => {
     expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
   });
 
+  it('should correctly display mark labels when ranges slider have the same start and end', () => {
+    const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
+
+    const { container, setProps } = render(
+      <Slider value={[100, 100]} marks={getMarks([100, 100])} />,
+    );
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
+
+    setProps({ value: [40, 60], marks: getMarks([40, 60]) });
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
+  });
+
   it('should pass "name" and "value" as part of the event.target for onChange', () => {
     const handleChange = stub().callsFake((event) => event.target);
     const { getByRole } = render(

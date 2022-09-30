@@ -1,6 +1,7 @@
 import pagesApi from './pagesApi';
+import { MuiPage } from '../../src/MuiPage';
 
-const pages = [
+const pages: MuiPage[] = [
   {
     pathname: '/material-ui/getting-started',
     icon: 'DescriptionIcon',
@@ -220,7 +221,19 @@ const pages = [
         pathname: '/material-ui/experimental-api/classname-generator',
         title: 'ClassName generator',
       },
-      { pathname: '/material-ui/experimental-api/css-variables', title: 'CSS variables' },
+      {
+        pathname: '/material-ui/experimental-api/css-theme-variables',
+        subheader: 'CSS theme variables',
+        children: [
+          { pathname: '/material-ui/experimental-api/css-theme-variables/overview' },
+          { pathname: '/material-ui/experimental-api/css-theme-variables/usage' },
+          { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
+          {
+            pathname: '/material-ui/experimental-api/css-theme-variables/migration',
+            title: 'Migrating to CSS theme variables',
+          },
+        ],
+      },
     ],
   },
   {
