@@ -4,14 +4,14 @@ import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
+export type RootProps = Omit<PopperUnstyledProps, 'direction'> & {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps;
 };
 
-export type TooltipSlot = 'popper' | 'tooltip' | 'arrow';
+export type TooltipSlot = 'root' | 'arrow';
 
 export interface TooltipPropsVariantOverrides {}
 export interface TooltipPropsColorOverrides {}
@@ -40,20 +40,16 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default {}
      */
     components?: {
-      Popper?: React.ElementType;
-      Tooltip?: React.ElementType;
+      Root?: React.ElementType;
       Arrow?: React.ElementType;
     };
     /**
      * The props used for each slot inside the Tooltip.
-     * Note that `componentsProps.popper` prop values win over `PopperProps` if both are applied.
+     * Note that `componentsProps.root` prop values win over `RootProps` if both are applied.
      * @default {}
      */
     componentsProps?: {
-      popper?: Partial<PopperProps> & TooltipComponentsPropsOverrides;
-      tooltip?: React.HTMLProps<HTMLDivElement> &
-        MUIStyledCommonProps &
-        TooltipComponentsPropsOverrides;
+      root?: Partial<RootProps> & TooltipComponentsPropsOverrides;
       arrow?: React.HTMLProps<HTMLSpanElement> &
         MUIStyledCommonProps &
         TooltipComponentsPropsOverrides;
@@ -156,15 +152,15 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'top-start'
       | 'top';
     /**
-     * The component used for the popper.
+     * The component used for the root.
      * @default Popper
      */
-    PopperComponent?: React.JSXElementConstructor<PopperProps>;
+    RootComponent?: React.JSXElementConstructor<RootProps>;
     /**
-     * Props applied to the [`Popper`](/material-ui/api/popper/) element.
+     * Props applied to the Root component
      * @default {}
      */
-    PopperProps?: Partial<PopperProps>;
+    RootProps?: Partial<RootProps>;
     /**
      * The size of the component.
      * @default 'md'

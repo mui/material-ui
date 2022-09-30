@@ -923,11 +923,7 @@ extendTheme({
         color: 'primary',
       },
       styleOverrides: {
-        popper: ({ ownerState }) => {
-          expectType<TooltipOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
-          return {};
-        },
-        tooltip: ({ ownerState }) => {
+        root: ({ ownerState }) => {
           expectType<TooltipOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
