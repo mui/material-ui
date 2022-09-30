@@ -338,7 +338,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       return;
     }
 
-    startMaybeSwiping();
+    startMaybeSwiping(true);
 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
@@ -508,7 +508,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // logic for if swipe should be ignored:
       // if disableSwipeToOpen
       // if target != swipeArea, and target is not a child of paper ref
-      // if is a child of paper ref, but `allowSwipeInChildren` disallows it
+      // if is a child of paper ref, and `allowSwipeInChildren` does not allow it
       if (
         disableSwipeToOpen ||
         !(
