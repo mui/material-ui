@@ -31,7 +31,7 @@ We need talented people to keep that going!
 
 We are looking for a dedicated educator and experienced developer to join us as a Developer Advocate to help people get familiar with and use MUI most effectively.
 
-In our [last developer survey](/blog/2021-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
+In our [last developer survey](/blog/2021-developer-survey-results/#5-how-can-we-improve-mui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
 We have underinvested in this area for too long.
 Your mission will be to be the voice of the developers of the community inside the company.
 We are looking for someone that can contribute to the following outcomes:

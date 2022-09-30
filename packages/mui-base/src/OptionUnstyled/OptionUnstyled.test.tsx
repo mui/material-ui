@@ -14,6 +14,7 @@ const dummyGetOptionProps = () => ({
   'aria-selected': false,
   label: '',
   onClick: () => {},
+  onPointerOver: () => {},
   role: 'option',
   value: '',
 });

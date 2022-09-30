@@ -87,6 +87,12 @@ It has no accessibility or UX implications.
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
+### Helper text
+
+To add a description to the checkbox, use `FormControl` and `FormHelperText`. The checkbox will be linked to the helper text via `aria-describedby` attribute.
+
+{{"demo": "HelperTextCheckbox.js"}}
+
 ### Group
 
 To group multiple checkboxes, use `role="group"` on the wrapper component.

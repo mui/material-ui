@@ -416,3 +416,5 @@ export { default as generateUtilityClass } from '@mui/base/generateUtilityClass'
 export * from '@mui/base/generateUtilityClass';
 
 export { default as generateUtilityClasses } from '@mui/base/generateUtilityClasses';
+
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';

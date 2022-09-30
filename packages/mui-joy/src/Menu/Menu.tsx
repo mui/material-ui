@@ -34,6 +34,7 @@ const MenuRoot = styled(ListRoot, {
 })<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
@@ -43,7 +44,7 @@ const MenuRoot = styled(ListRoot, {
     ...scopedVariables,
     boxShadow: theme.vars.shadow.md,
     overflow: 'auto',
-    zIndex: 1000,
+    zIndex: 1300, // the same value as Material UI Menu. TODO: revisit the appropriate value later.
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
@@ -62,7 +63,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     children,
     component,
     color = 'neutral',
-    disablePortal = true,
+    disablePortal = false,
     keepMounted = false,
     id,
     onClose,

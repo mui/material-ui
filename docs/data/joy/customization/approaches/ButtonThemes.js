@@ -560,7 +560,7 @@ export default function ButtonThemes() {
               }}
               size="sm"
               value={design}
-              onChange={setDesign}
+              onChange={(event, newValue) => setDesign(newValue)}
               sx={{ minWidth: 160 }}
             >
               <Option value="github">GitHub</Option>
