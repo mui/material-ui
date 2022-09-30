@@ -17,7 +17,7 @@ import {
 } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
+import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipProps & { touch?: boolean }) => {
@@ -40,142 +40,101 @@ const useUtilityClasses = (ownerState: TooltipProps & { touch?: boolean }) => {
   return composeClasses(slots, getTooltipUtilityClass, {});
 };
 
-const TooltipPopper = styled(PopperUnstyled, {
+const TooltipRoot = styled('div', {
   name: 'JoyTooltip',
   slot: 'Popper',
   overridesResolver: (props, styles) => styles.popper,
-})<{ ownerState: TooltipProps & { touch?: boolean } }>(({ ownerState, open }) => ({
-  zIndex: 1500,
-  pointerEvents: 'none', // disable jss-rtl plugin
-  ...(!ownerState.disableInteractive && {
-    pointerEvents: 'auto',
-  }),
-  ...(!open && {
+})<{ ownerState: TooltipProps & { touch?: boolean } }>(({ ownerState, theme }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    ...(ownerState.size === 'sm' && {
+      '--Icon-fontSize': '1rem',
+      '--Tooltip-arrow-size': '8px',
+      padding: theme.spacing(0.5, 0.625),
+      fontSize: theme.vars.fontSize.xs,
+      lineHeight: theme.vars.lineHeight.sm,
+    }),
+    ...(ownerState.size === 'md' && {
+      '--Icon-fontSize': '1.125rem',
+      '--Tooltip-arrow-size': '10px',
+      padding: theme.spacing(0.625, 0.75),
+      fontSize: theme.vars.fontSize.sm,
+      fontWeight: theme.vars.fontWeight.md,
+      lineHeight: theme.vars.lineHeight.sm,
+    }),
+    ...(ownerState.size === 'lg' && {
+      '--Icon-fontSize': '1.25rem',
+      '--Tooltip-arrow-size': '12px',
+      padding: theme.spacing(0.75, 1),
+      fontSize: theme.vars.fontSize.md,
+      fontWeight: theme.vars.fontWeight.md,
+      lineHeight: theme.vars.lineHeight.md,
+    }),
+    zIndex: 1500,
     pointerEvents: 'none',
-  }),
-  ...(ownerState.arrow && {
-    [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
-      top: 0,
-      marginTop: '-0.71em',
-      '&::before': {
-        transformOrigin: '0 100%',
-      },
-    },
-    [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
-      bottom: 0,
-      marginBottom: '-0.71em',
-      '&::before': {
-        transformOrigin: '100% 0',
-      },
-    },
-    [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-      left: 0,
-      marginLeft: '-0.71em',
-      height: '1em',
-      width: '0.71em',
-      '&::before': {
-        transformOrigin: '100% 100%',
-      },
-    },
-    [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-      right: 0,
-      marginRight: '-0.71em',
-      height: '1em',
-      width: '0.71em',
-      '&::before': {
-        transformOrigin: '0 0',
-      },
-    },
-  }),
-}));
-
-const TooltipTooltip = styled('div', {
-  name: 'JoyTooltip',
-  slot: 'Tooltip',
-  overridesResolver: (props, styles) => styles.tooltip,
-})<{ ownerState: TooltipProps & { touch?: boolean } }>(({ theme, ownerState }) => ({
-  '--Tooltip-radius': theme.vars.radius.sm,
-  ...(ownerState.size === 'sm' && {
-    '--Tooltip-padding': '0.25rem',
-    '--Icon-fontSize': '1rem',
-    fontSize: theme.vars.fontSize.xs,
-    lineHeight: theme.vars.lineHeight.sm,
-  }),
-  ...(ownerState.size === 'md' && {
-    '--Tooltip-padding': '0.5rem',
-    '--Icon-fontSize': '1.125rem',
-    fontSize: theme.vars.fontSize.sm,
-    fontWeight: theme.vars.fontWeight.md,
-    lineHeight: theme.vars.lineHeight.sm,
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--Tooltip-padding': '0.75rem',
-    '--Icon-fontSize': '1.25rem',
-    fontSize: theme.vars.fontSize.md,
-    fontWeight: theme.vars.fontWeight.md,
-    lineHeight: theme.vars.lineHeight.md,
-  }),
-  fontFamily: theme.vars.fontFamily.body,
-  lineHeight: theme.vars.lineHeight.md,
-  margin: 2,
-  wordWrap: 'break-word',
-  padding: `var(--Tooltip-padding)`,
-  borderRadius: 'var(--Tooltip-radius)',
-  ...(ownerState.arrow && {
+    borderRadius: theme.vars.radius.xs,
+    boxShadow: theme.vars.shadow.sm,
+    fontFamily: theme.vars.fontFamily.body,
+    wordWrap: 'break-word',
     position: 'relative',
-    margin: 0,
-  }),
-  [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-    transformOrigin: 'right center',
-    marginRight: '14px',
-    ...(ownerState.touch && {
-      marginRight: '24px',
+    ...(!ownerState.disableInteractive && {
+      pointerEvents: 'auto',
     }),
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-    transformOrigin: 'left center',
-    marginLeft: '14px',
-    ...(ownerState.touch && {
-      marginLeft: '24px',
+    ...(!ownerState.open && {
+      pointerEvents: 'none',
     }),
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-    transformOrigin: 'center bottom',
-    marginBottom: '14px',
-    ...(ownerState.touch && {
-      marginBottom: '24px',
+    ...variantStyle,
+    ...(!variantStyle.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.surface,
     }),
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-    transformOrigin: 'center top',
-    marginTop: '14px',
-    ...(ownerState.touch && {
-      marginTop: '24px',
-    }),
-  },
-  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-}));
+  };
+});
 
 const TooltipArrow = styled('span', {
   name: 'JoyTooltip',
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,
-})<{ ownerState: TooltipProps }>(({ theme, ownerState }) => ({
-  overflow: 'hidden',
-  position: 'absolute',
-  width: '1em',
-  height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
-  boxSizing: 'border-box',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  '&::before': {
-    content: '""',
-    margin: 'auto',
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    transform: 'rotate(45deg)',
-  },
-}));
+})<{ ownerState: TooltipProps }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--unstable_Tooltip-arrow-rotation': 0,
+    width: 'var(--Tooltip-arrow-size)',
+    height: 'var(--Tooltip-arrow-size)',
+    boxSizing: 'border-box',
+    // use psuedo element because Popper controls the `transform` property of the arrow.
+    '&:before': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      width: 0,
+      height: 0,
+      border: 'calc(var(--Tooltip-arrow-size) / 2) solid',
+      borderLeftColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      borderRadius: `0px 2px 0px 0px`,
+      boxShadow: `var(--variant-borderWidth) calc(-1 * var(--variant-borderWidth)) 0px 0px ${variantStyle.borderColor}`,
+      transformOrigin: 'center center',
+      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
+    },
+    ...(ownerState.placement?.includes('bottom') && {
+      top: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
+    }),
+    ...(ownerState.placement?.includes('top') && {
+      '--unstable_Tooltip-arrow-rotation': 2,
+      bottom: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+    }),
+    ...(ownerState.placement?.includes('left') && {
+      '--unstable_Tooltip-arrow-rotation': 1,
+      right: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+    }),
+    ...(ownerState.placement?.includes('right') && {
+      '--unstable_Tooltip-arrow-rotation': 3,
+      left: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+    }),
+  };
+});
 
 let hystersisOpen = false;
 let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
@@ -242,8 +201,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     PopperComponent: PopperComponentProp,
     PopperProps = {},
     title,
-    color = 'primary',
-    variant = 'soft',
+    color = 'neutral',
+    variant = 'solid',
     size = 'md',
     ...other
   } = props;
@@ -466,7 +425,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }
 
   const positionRef = React.useRef({ x: 0, y: 0 });
-  const popperRef = React.useRef();
+  const popperRef = React.useRef(null);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
     const childrenProps = children.props;
@@ -552,7 +511,15 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         enabled: Boolean(arrowRef),
         options: {
           element: arrowRef,
-          padding: 4,
+          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+          // make the arrow looks nice with the Tooltip's border radius
+          padding: 6,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
         },
       },
     ];
@@ -581,19 +548,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const PopperComponent = components.Popper ?? TooltipPopper;
-  const TooltipComponent = components.Tooltip ?? TooltipTooltip;
+  const PopperComponent = components.Popper ?? TooltipRoot;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
   const popperProps = appendOwnerState(
     PopperComponent,
     { ...PopperProps, ...componentsProps.popper },
-    ownerState,
-  );
-
-  const tooltipProps = appendOwnerState(
-    TooltipComponent,
-    { ...componentsProps.tooltip },
     ownerState,
   );
 
@@ -606,20 +566,21 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <PopperComponent
-        as={PopperComponentProp}
+      <PopperUnstyled
+        component={TooltipRoot}
         placement={placement}
         anchorEl={
           followCursor
             ? {
-                getBoundingClientRect: () => ({
-                  top: positionRef.current.y,
-                  left: positionRef.current.x,
-                  right: positionRef.current.x,
-                  bottom: positionRef.current.y,
-                  width: 0,
-                  height: 0,
-                }),
+                getBoundingClientRect: () =>
+                  ({
+                    top: positionRef.current.y,
+                    left: positionRef.current.x,
+                    right: positionRef.current.x,
+                    bottom: positionRef.current.y,
+                    width: 0,
+                    height: 0,
+                  } as DOMRect),
               }
             : childNode
         }
@@ -630,21 +591,17 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         {...popperProps}
         className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
         popperOptions={popperOptions}
+        ownerState={ownerState}
       >
-        <TooltipComponent
-          {...tooltipProps}
-          className={clsx(classes.tooltip, componentsProps.tooltip?.className)}
-        >
-          {title}
-          {arrow ? (
-            <ArrowComponent
-              {...tooltipArrowProps}
-              className={clsx(classes.arrow, componentsProps.arrow?.className)}
-              ref={setArrowRef}
-            />
-          ) : null}
-        </TooltipComponent>
-      </PopperComponent>
+        {title}
+        {arrow ? (
+          <TooltipArrow
+            {...tooltipArrowProps}
+            className={clsx(classes.arrow, componentsProps.arrow?.className)}
+            ref={setArrowRef}
+          />
+        ) : null}
+      </PopperUnstyled>
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
