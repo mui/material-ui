@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
@@ -25,7 +24,7 @@ export default function InteractiveCard() {
           alt=""
         />
       </AspectRatio>
-      <Box>
+      <div>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
           Yosemite Park
         </Typography>
@@ -47,7 +46,7 @@ export default function InteractiveCard() {
         >
           Cool weather all day long
         </Chip>
-      </Box>
+      </div>
     </Card>
   );
 }
