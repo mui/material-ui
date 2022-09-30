@@ -108,11 +108,12 @@ export interface PaletteText {
 }
 export interface PaletteBackground {
   body: string;
-  common: string;
+  surface: string;
   level1: string;
   level2: string;
   level3: string;
   tooltip: string;
+  backdrop: string;
 }
 
 export interface ColorPalettePropOverrides {}

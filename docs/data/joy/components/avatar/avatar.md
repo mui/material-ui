@@ -14,7 +14,7 @@ The avatar component is usually seen for displaying user information in places s
 
 {{"demo": "AvatarUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -33,6 +33,20 @@ export default function MyApp() {
 The avatar components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "AvatarSizes.js"}}
+
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
+### Variants
+
+The avatar component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
+
+{{"demo": "AvatarVariants.js"}}
+
+:::success
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
 
 ### Initials
 

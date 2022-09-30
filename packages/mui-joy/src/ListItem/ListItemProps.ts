@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
-import { ListItemClasses } from './listItemClasses';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
@@ -20,10 +19,6 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemClasses>;
     /**
      * The element to display at the start of ListItem.
      */
@@ -61,3 +56,25 @@ export type ListItemProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemTypeMap<P, D>, D>;
+
+export interface ListItemOwnerState extends ListItemProps {
+  /**
+   * If `true`, the element is rendered in a horizontal list.
+   * @internal
+   */
+  row: boolean;
+  /**
+   * If `true`, the element is rendered in a wrapped list.
+   * @internal
+   */
+  wrap: boolean;
+  /**
+   * If `true`, the element is rendered in a nested list item.
+   */
+  nesting: boolean | string;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+}

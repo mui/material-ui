@@ -14,7 +14,7 @@ export type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
 export interface TablePaginationUnstyledComponentsPropsOverrides {}
 
-interface TablePaginationUnstyledOwnProps {
+export interface TablePaginationUnstyledOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -168,11 +168,6 @@ export type TablePaginationUnstyledProps<
   D extends React.ElementType = TablePaginationUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

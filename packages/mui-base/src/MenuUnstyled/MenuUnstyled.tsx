@@ -1,11 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
   MenuUnstyledRootSlotProps,
+  MenuUnstyledTypeMap,
 } from './MenuUnstyled.types';
 import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
 import useMenu from './useMenu';
@@ -26,16 +28,15 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/)
+ * - [Unstyled Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
  * - [MenuUnstyled API](https://mui.com/base/api/menu-unstyled/)
  */
-const MenuUnstyled = React.forwardRef(function MenuUnstyled(
-  props: MenuUnstyledProps & React.HTMLAttributes<HTMLElement>,
-  forwardedRef: React.Ref<any>,
-) {
+const MenuUnstyled = React.forwardRef(function MenuUnstyled<
+  BaseComponentType extends React.ElementType = MenuUnstyledTypeMap['defaultComponent'],
+>(props: MenuUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
   const {
     actions,
     anchorEl,
@@ -120,7 +121,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       </Listbox>
     </Root>
   );
-});
+}) as OverridableComponent<MenuUnstyledTypeMap>;
 
 MenuUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -147,18 +148,22 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * The components used for each slot inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   components: PropTypes.shape({
     Listbox: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The props used for each slot inside the Menu.
+   * @default {}
    */
   componentsProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

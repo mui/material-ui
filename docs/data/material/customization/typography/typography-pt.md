@@ -2,7 +2,7 @@
 
 <p class="description">O tema fornece um conjunto de tipos de tamanhos que funcionam bem juntos e também com a grade de leiaute.</p>
 
-## Família da fonte
+## Fonte
 
 Você pode alterar a família de fontes com a propriedade `theme.typography.fontFamily`.
 
@@ -37,7 +37,7 @@ Para fontes auto-hospedadas, baixe os arquivos de fonte em formatos `ttf`, `woff
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
 ```
 
-Em seguida, você precisa alterar o tema para usar essa nova fonte. Para definir globalmente Raleway como uma fonte, o componente [`CssBaseline`](/material-ui/react-css-baseline/) pode ser usado (ou qualquer outra solução CSS de sua escolha).
+Em seguida, você precisa alterar o tema para usar essa nova fonte. In order to globally define Raleway as a font face, the [`CssBaseline`](/material-ui/react-css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```jsx
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -81,9 +81,9 @@ Observe que se você deseja adicionar declarações `@font-face` adicionais, voc
 
 ## Tamanho da fonte
 
-Material UI usa a unidade `rem` para o tamanho da fonte. O tamanho da fonte padrão do elemento `<html>` do navegador é `16px`, mas os navegadores têm a opção de alterar esse valor, a unidade `rem` nos permite acomodar as configurações do usuário, resultando em um melhor suporte de acessibilidade. Os usuários alteram as configurações de tamanho da fonte por vários motivos, desde problemas de visão, até a escolha de configurações ideais para dispositivos que podem ser muito diferentes em tamanho e distância de visualização.
+Material-UI usa a unidade `rem` para o tamanho da fonte. O tamanho da fonte padrão do elemento `<html>` do navegador é `16px`, mas os navegadores têm a opção de alterar esse valor, a unidade `rem` nos permite acomodar as configurações do usuário, resultando em um melhor suporte de acessibilidade. Os usuários alteram as configurações de tamanho da fonte por vários motivos, desde problemas de visão, até a escolha de configurações ideais para dispositivos que podem ser muito diferentes em tamanho e distância de visualização.
 
-Para alterar o tamanho da fonte do Material UI, você pode definir a propriedade `fontSize`. O valor padrão é `14px`.
+Para alterar o tamanho da fonte do Material-UI, você pode definir a propriedade `fontSize`. O valor padrão é `14px`.
 
 ```js
 const theme = createTheme({
@@ -108,7 +108,7 @@ O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
 ### Tamanhos de fonte responsivo
 
-As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. Você pode usar [consultas de mídia](/material-ui/customization/breakpoints/#api) dentro delas:
+As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. You can use [media queries](/material-ui/customization/breakpoints/#api) inside them:
 
 ```js
 const theme = createTheme();
@@ -126,11 +126,11 @@ theme.typography.h3 = {
 
 {{"demo": "CustomResponsiveFontSizes.js"}}
 
-Para automatizar estas configurações, você pode usar a função auxiliar [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme), para fazer a tipografia responsiva em relação aos tamanhos da fonte no tema.
+To automate this setup, you can use the [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
 {{"demo": "ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/material-ui/customization/breakpoints/):
+Você pode ver isso em ação no exemplo abaixo. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/material-ui/customization/breakpoints/):
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -149,14 +149,15 @@ Para ser feito: [#15251](https://github.com/mui/material-ui/issues/15251).
 
 Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por exemplo, quando usando a [simplificação de 10px](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+Alterar o tamanho da fonte pode prejudicar a acessibilidade. Most browsers agreed on the default size of 16px, but the user can change it. Por exemplo, alguém com deficiência visual pode ter definido o tamanho da fonte padrão do navegador para algo maior.
+:::
 
 The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material UI what's the font-size on the html element is.
+    // Tell Material-UI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -168,13 +169,13 @@ html {
 }
 ```
 
-_Você precisa aplicar o CSS acima no elemento html desta página para ver a demonstração abaixo renderizada corretamente_
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "FontSizeTheme.js"}}
 
 ## Variantes
 
-O objeto de tipografia vem com [13 variantes](/material-ui/react-typography/#component) por padrão:
+The typography object comes with [13 variants](/material-ui/react-typography/#component) by default:
 
 - h1
 - h2
@@ -190,7 +191,7 @@ O objeto de tipografia vem com [13 variantes](/material-ui/react-typography/#com
 - caption
 - overline
 
-Cada uma dessas variantes pode ser customizada individualmente:
+Each of these variants can be customized individually:
 
 ```js
 const theme = createTheme({
@@ -210,11 +211,11 @@ const theme = createTheme({
 
 {{"demo": "TypographyVariants.js"}}
 
-## Adding & disabling variants
+## Adicionando & desativando variantes
 
-In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+Além de usar as variantes de tipografia padrão, você pode adicionar variantes personalizadas ou desabilitar as que não precisar. O que você precisa fazer:
 
-**Step 1. Update the theme's typography object**
+**Passo 1. Atualizar o tema da tipografia de um objeto**
 
 ```js
 const theme = createTheme({
@@ -228,11 +229,13 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Update the necessary typings (if you are using TypeScript)**
+**Passo 2. Atualize as tipagens necessárias (se você estiver usando TypeScript)**
 
-> If you aren't using TypeScript you should skip this step.
+:::info
+Se você não estiver usando o TypeScript, pule esta etapa.
+:::
 
-Você precisa ter certeza de que as tipagens para as variantes da propriedade `typography` e a `variant` `Typography`'s reflete o novo conjunto de variantes.
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
@@ -257,7 +260,7 @@ declare module '@material-ui/core/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Passo 3. Agora você pode usar a nova variante criada**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
@@ -270,4 +273,4 @@ declare module '@material-ui/core/Typography' {
 
 ## Valores padrão
 
-Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/material-ui/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).
+Você pode explorar os valores padrão da tipografia usando [o explorador de temas](/material-ui/customization/default-theme/?expand-path=$.typography) ou abrindo o console de ferramentas de desenvolvimento nesta página (`window.theme.typography`).

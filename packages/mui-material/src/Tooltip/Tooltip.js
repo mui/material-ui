@@ -198,9 +198,7 @@ const TooltipArrow = styled('span', {
   width: '1em',
   height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
   boxSizing: 'border-box',
-  color: theme.vars
-    ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.9)`
-    : alpha(theme.palette.grey[700], 0.9),
+  color: theme.vars ? theme.vars.palette.Tooltip.bg : alpha(theme.palette.grey[700], 0.9),
   '&::before': {
     content: '""',
     margin: 'auto',
@@ -372,14 +370,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       return;
     }
 
-    // Workaround for https://github.com/facebook/react/issues/7769
-    if (!childNode) {
-      setChildNode(event.currentTarget);
-    }
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
-    else {
+    if (childNode) {
       childNode.removeAttribute('title');
     }
 
@@ -424,6 +418,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleFocus = (event) => {
     // Workaround for https://github.com/facebook/react/issues/7769
+    // The autoFocus of React might trigger the event before the componentDidMount.
+    // We need to account for this eventuality.
     if (!childNode) {
       setChildNode(event.currentTarget);
     }
@@ -502,7 +498,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleRef = useForkRef(children.ref, handleFocusRef);
 
   // There is no point in displaying an empty tooltip.
-  if (title === '') {
+  if (typeof title !== 'number' && !title) {
     open = false;
   }
 
@@ -876,9 +872,9 @@ Tooltip.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Tooltip title. Zero-length titles string are never displayed.
+   * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
-  title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
+  title: PropTypes.node,
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

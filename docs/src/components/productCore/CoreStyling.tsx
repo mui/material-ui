@@ -56,9 +56,9 @@ const code = `
         borderRadius: 1,
         display: 'flex',
         typography: 'caption',
-        bgcolor: (theme) => 
+        bgcolor: (theme) =>
           theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50',
-        color: (theme) => 
+        color: (theme) =>
           theme.palette.mode === 'dark' ? '#fff' : 'primary.700',
       }}
     >

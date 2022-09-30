@@ -160,8 +160,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       // ResizeObserver's handler that runs because of the change in the layout is trying to
       // access a dom node that is no longer there (as the fallback component is being shown instead).
       // See https://github.com/mui/material-ui/issues/32640
-      // TODO: Add tests that will ensure the component is not failing when
-      // replaced by Suspense with a fallback, once React is updated to version 18
       if (inputRef.current) {
         syncHeightWithFlushSycn();
       }

@@ -28,7 +28,7 @@ export interface UseInputParameters {
   value?: unknown;
 }
 
-interface UseInputRootSlotOwnProps {
+export interface UseInputRootSlotOwnProps {
   onClick: React.MouseEventHandler | undefined;
 }
 
@@ -38,7 +38,7 @@ export type UseInputRootSlotProps<TOther = {}> = Omit<
 > &
   UseInputRootSlotOwnProps;
 
-interface UseInputInputSlotOwnProps {
+export interface UseInputInputSlotOwnProps {
   'aria-invalid': React.AriaAttributes['aria-invalid'];
   defaultValue: string | number | readonly string[] | undefined;
   ref: React.Ref<HTMLInputElement>;

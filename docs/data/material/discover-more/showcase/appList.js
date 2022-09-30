@@ -82,16 +82,6 @@ const appList = [
     dateAdded: '2018-01-31',
   },
   {
-    title: 'AospExtended Download center',
-    description:
-      'A download center that hosts all the official builds of AospExtended ROM, ' +
-      'for supported devices for different android versions.',
-    image: 'aexdownloadcenter.jpg',
-    link: 'https://downloads.aospextended.com/',
-    similarWebVisits: 200,
-    dateAdded: '2018-01-28',
-  },
-  {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
@@ -214,7 +204,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.ml/',
+    link: 'https://www.comet.com/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },

@@ -85,7 +85,7 @@ const MyComponent = React.forwardRef((props, ref) {
 export default Main() {
   return (
     <Fade>
-      {/* MyComponent must the only child */}
+      {/* MyComponent must be the only child */}
       <MyComponent />
     </Fade>
   );

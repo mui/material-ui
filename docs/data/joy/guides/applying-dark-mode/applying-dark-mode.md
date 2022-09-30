@@ -34,7 +34,7 @@ function ModeToggle() {
 
 ### Avoid hydration mismatch
 
-Makre sure to render the UI when the page is mounted on the client.
+Make sure to render the UI when the page is mounted on the client.
 
 This is because the `mode` will only be available to the client-side (it is `undefined` on the server).
 If you try to render your UI based on the server, before mounting on the client, you'll see a hydration mismatch error.
@@ -67,7 +67,7 @@ If you try to render your UI based on the server, before mounting on the client,
 
 ### Avoiding screen flickering
 
-To prevent [the UI of flickering](/joy-ui/main-features/perfect-dark-mode/#current-problem-the-flickering), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
+To prevent [the UI of flickering](/joy-ui/main-features/perfect-dark-mode/#the-current-flickering-problem), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
 
 ### Next.js
 

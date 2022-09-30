@@ -154,18 +154,6 @@ const openRolesData = [
         url: '/careers/react-support-engineer/',
       },
       {
-        title: 'React Engineer - Core',
-        description:
-          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
-      },
-      {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
@@ -194,6 +182,18 @@ const nextRolesData = [
         description:
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
+      },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+        url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
       },
     ],
   },
@@ -286,8 +286,8 @@ function CareersContent() {
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
-            barrier, making design skills accessible.
+            Our mission is to enable developers at every level of ability to build great UIs,
+            faster.
           </Typography>
         </Box>
       </Container>
@@ -583,7 +583,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <CareersContent />
       </main>
       <Divider />

@@ -6,7 +6,6 @@ import ListDivider from '@mui/joy/ListDivider';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 
 export default function ExamplePaymentChannels() {
@@ -31,6 +30,7 @@ export default function ExamplePaymentChannels() {
           Pay with
         </Typography>
         <Switch
+          component="label"
           size="sm"
           endDecorator="Row view"
           checked={row}
@@ -49,26 +49,24 @@ export default function ExamplePaymentChannels() {
         name="example-payment-channel"
         defaultValue="Paypal"
       >
-        <Sheet
+        <List
+          component="div"
           variant="outlined"
+          row={row}
           sx={{
             borderRadius: 'sm',
             boxShadow: 'sm',
-            // use logical properties to support writing modes
-            ...(row ? { paddingInline: '6px' } : { paddingBlock: '6px' }),
           }}
         >
-          <List row={row}>
-            {['Credit Card', 'Paypal', 'QR Code'].map((value, index) => (
-              <React.Fragment key={value}>
-                {index !== 0 && <ListDivider />}
-                <ListItem>
-                  <Radio id={value} value={value} label={value} />
-                </ListItem>
-              </React.Fragment>
-            ))}
-          </List>
-        </Sheet>
+          {['Credit Card', 'Paypal', 'QR Code'].map((value, index) => (
+            <React.Fragment key={value}>
+              {index !== 0 && <ListDivider />}
+              <ListItem>
+                <Radio id={value} value={value} label={value} />
+              </ListItem>
+            </React.Fragment>
+          ))}
+        </List>
       </RadioGroup>
     </Box>
   );

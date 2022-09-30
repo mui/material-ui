@@ -2,17 +2,28 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useControlled as useControlled,
+  unstable_useId as useId,
+} from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
-import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
+import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
+import FormControlContext from '../FormControl/FormControlContext';
 
-const useUtilityClasses = (ownerState: RadioGroupProps) => {
-  const { row } = ownerState;
+const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
+  const { row, size, variant, color } = ownerState;
   const slots = {
-    root: ['root', row && 'row'],
+    root: [
+      'root',
+      row && 'row',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getRadioGroupUtilityClass, {});
@@ -22,7 +33,7 @@ const RadioGroupRoot = styled('div', {
   name: 'JoyRadioGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioGroupProps }>(({ ownerState }) => ({
+})<{ ownerState: RadioGroupOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--RadioGroup-gap': '0.625rem',
   }),
@@ -34,6 +45,8 @@ const RadioGroupRoot = styled('div', {
   }),
   display: 'flex',
   flexDirection: ownerState.row ? 'row' : 'column',
+  borderRadius: theme.vars.radius.sm,
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
@@ -52,11 +65,12 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     overlay,
     value: valueProp,
     onChange,
-    color,
-    variant,
+    color = 'neutral',
+    variant = 'plain',
     size = 'md',
     row = false,
-    ...otherProps
+    role = 'radiogroup',
+    ...other
   } = props;
 
   const [value, setValueState] = useControlled({
@@ -68,6 +82,9 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const ownerState = {
     row,
     size,
+    variant,
+    color,
+    role,
     ...props,
   };
 
@@ -83,15 +100,27 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   const name = useId(nameProp);
 
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
   return (
     <RadioGroupContext.Provider
       value={{
-        color,
         disableIcon,
         overlay,
         row,
         size,
-        variant,
         name,
         value,
         onChange: handleChange,
@@ -99,21 +128,30 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     >
       <RadioGroupRoot
         ref={ref}
-        role="radiogroup"
-        {...otherProps}
+        role={role}
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
+        // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labellable element
+        // MDN: "If it is not a labelable element, then the for attribute has no effect"
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
+        id={formControl?.htmlFor}
+        aria-labelledby={formControl?.labelId}
+        aria-describedby={formControl?.['aria-describedby']}
+        {...other}
       >
-        {React.Children.map(children, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let Radio knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-                'data-parent': 'RadioGroup',
-              })
-            : child,
-        )}
+        <FormControlContext.Provider value={undefined}>
+          {React.Children.map(children, (child, index) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let Radio knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
+                  'data-parent': 'RadioGroup',
+                } as Record<string, string>)
+              : child,
+          )}
+        </FormControlContext.Provider>
       </RadioGroupRoot>
     </RadioGroupContext.Provider>
   );
@@ -168,6 +206,10 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
    */
   overlay: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * If `true`, flex direction is set to 'row'.
    * @default false

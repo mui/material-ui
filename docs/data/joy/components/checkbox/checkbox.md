@@ -16,7 +16,11 @@ For toggling between on and off or single option selection, consider using a swi
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+:::success
+To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
+:::
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -83,6 +87,12 @@ It has no accessibility or UX implications.
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
+### Helper text
+
+To add a description to the checkbox, use `FormControl` and `FormHelperText`. The checkbox will be linked to the helper text via `aria-describedby` attribute.
+
+{{"demo": "HelperTextCheckbox.js"}}
+
 ### Group
 
 To group multiple checkboxes, use `role="group"` on the wrapper component.
@@ -119,3 +129,7 @@ Don't forget to use the `label` prop to ensure proper checkbox accessibility.
 You can use checkboxes to create a chip alike design, most often used to filter between different options.
 
 {{"demo": "ExampleChoiceChipCheckbox.js"}}
+
+### Viewport checklist
+
+{{"demo": "ExampleButtonCheckbox.js"}}

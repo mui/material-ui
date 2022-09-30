@@ -15,7 +15,7 @@ There are two main use cases for using them together:
 
 Additionally, keep these in mind when using them together:
 
-- Both of them use [MUI System](/system/basics/) as their syle engine, which uses React context for theming.
+- Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
 - Joy UI requires wrapping your application with the `CssVarsProvider` component but you're able to import it from either @mui/joy or @mui/material.
 
 ## Case A: Joy UI in a Material UI project

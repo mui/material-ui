@@ -1,34 +1,24 @@
 import * as React from 'react';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListSubheader from '@mui/joy/ListSubheader';
 import ListItemButton from '@mui/joy/ListItemButton';
-import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
 export default function StickyList() {
   return (
     <Sheet
       sx={{
-        bgcolor: 'transparent',
         width: 320,
         maxHeight: 300,
         overflow: 'auto',
       }}
     >
-      <List sx={{ '--List-padding': '8px' }}>
+      <List>
         {[...Array(5)].map((_, categoryIndex) => (
           <ListItem nested key={categoryIndex}>
-            <ListItem component="div" sticky>
-              <Typography
-                id={`sticky-list-demo-${categoryIndex}`}
-                level="body3"
-                textTransform="uppercase"
-                fontWeight="lg"
-              >
-                Category {categoryIndex + 1}
-              </Typography>
-            </ListItem>
-            <List aria-labelledby={`sticky-list-demo-${categoryIndex}`}>
+            <ListSubheader sticky>Category {categoryIndex + 1}</ListSubheader>
+            <List>
               {[...Array(10)].map((__, index) => (
                 <ListItem key={index}>
                   <ListItemButton>Subitem {index + 1}</ListItemButton>

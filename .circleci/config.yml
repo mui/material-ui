@@ -7,8 +7,8 @@ parameters:
     description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
     type: boolean
     default: false
-  react-dist-tag:
-    description: The dist-tag of react to be used
+  react-version:
+    description: The version of react to be used
     type: string
     default: stable
   workflow:
@@ -22,10 +22,10 @@ parameters:
 
 defaults: &defaults
   parameters:
-    react-dist-tag:
-      description: The dist-tag of react to be used
+    react-version:
+      description: The version of react to be used
       type: string
-      default: << pipeline.parameters.react-dist-tag >>
+      default: << pipeline.parameters.react-version >>
     test-gate:
       description: A particular type of tests that should be run
       type: string
@@ -39,12 +39,12 @@ defaults: &defaults
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
-    REACT_DIST_TAG: << parameters.react-dist-tag >>
+    REACT_VERSION: << parameters.react-version >>
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:12.22
+    - image: cimg/node:14.20
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -72,7 +72,7 @@ commands:
       - run:
           name: Resolve react version
           command: |
-            node scripts/use-react-dist-tag
+            node scripts/use-react-version
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
@@ -99,7 +99,7 @@ commands:
             - restore_cache:
                 name: Restore playwright cache
                 keys:
-                  - v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                  - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -117,7 +117,7 @@ commands:
           steps:
             - save_cache:
                 name: Save playwright cache
-                key: v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
                 paths:
                   # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
                   # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
@@ -132,7 +132,7 @@ jobs:
       - when:
           # Install can be "dirty" when running with non-default versions of React
           condition:
-            equal: [<< parameters.react-dist-tag >>, stable]
+            equal: [<< parameters.react-version >>, stable]
           steps:
             - run:
                 name: Should not have any git not staged
@@ -191,7 +191,7 @@ jobs:
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_DIST_TAG-jsdom"
+            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
   test_lint:
     <<: *defaults
     steps:
@@ -260,6 +260,7 @@ jobs:
           command: |
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
+            yarn workspace @mui/joy typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
@@ -341,7 +342,7 @@ jobs:
   test_browser:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -363,7 +364,7 @@ jobs:
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_DIST_TAG-browser"
+            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-browser"
       - store_artifacts:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
@@ -371,7 +372,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -390,7 +391,7 @@ jobs:
   test_e2e_website:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -405,7 +406,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -432,7 +433,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -486,7 +487,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -510,7 +511,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -534,7 +535,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -558,7 +559,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -582,7 +583,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -606,7 +607,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -634,7 +635,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -736,7 +737,7 @@ jobs:
   test_benchmark:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:v1.23.2-focal
+      - image: mcr.microsoft.com/playwright:v1.26.0-focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -822,6 +823,23 @@ workflows:
       equal: [profile, << pipeline.parameters.workflow >>]
     jobs:
       - test_profile
+  react-17:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test_unit:
+          react-version: ^17.0.0
+      - test_browser:
+          react-version: ^17.0.0
+      - test_regressions:
+          react-version: ^17.0.0
+      - test_e2e:
+          react-version: ^17.0.0
   react-next:
     triggers:
       - schedule:
@@ -832,13 +850,13 @@ workflows:
                 - master
     jobs:
       - test_unit:
-          react-dist-tag: next
+          react-version: next
       - test_browser:
-          react-dist-tag: next
+          react-version: next
       - test_regressions:
-          react-dist-tag: next
+          react-version: next
       - test_e2e:
-          react-dist-tag: next
+          react-version: next
   typescript-next:
     triggers:
       - schedule:

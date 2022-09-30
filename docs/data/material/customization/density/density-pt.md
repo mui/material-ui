@@ -1,6 +1,6 @@
 # Densidade
 
-<p class="description">Como aplicar densidade aos componentes de Material UI.</p>
+<p class="description">Como aplicar densidade aos componentes de Material-UI.</p>
 
 ## Aplicando densidade
 
@@ -30,7 +30,7 @@ Os seguintes componentes possuem propriedades que aplicam maior densidade:
 
 ## Explore a densidade do tema
 
-Esta ferramenta permite aplicar densidade via espaçamento e propriedades de componentes. Você pode navegar e ver como isso se aplica à sensação geral dos componentes do Material UI.
+Esta ferramenta permite aplicar densidade via espaçamento e propriedades de componentes. Você pode navegar e ver como isso se aplica à sensação geral dos componentes do Material-UI.
 
 Se você ativar alta densidade, um tema personalizado será aplicado a documentação. Este tema é apenas para fins de demonstração. Você _não deve_ aplicar este tema para todo o seu aplicativo, isso pode impactar negativamente a experiência do usuário. The [Material Design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
 

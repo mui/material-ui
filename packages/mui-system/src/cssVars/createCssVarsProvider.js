@@ -27,6 +27,7 @@ export default function createCssVarsProvider(options) {
     enableColorScheme: designSystemEnableColorScheme = true,
     shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
     resolveTheme,
+    excludeVariablesFromRoot,
   } = options;
 
   if (
@@ -156,7 +157,15 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
-        defaultColorSchemeStyleSheet[colorSchemeSelector] = css;
+        if (excludeVariablesFromRoot) {
+          const excludedVariables = {};
+          excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
+            excludedVariables[cssVar] = css[cssVar];
+            delete css[cssVar];
+          });
+          defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
+        }
+        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
       } else {
         otherColorSchemesStyleSheet[
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`

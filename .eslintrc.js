@@ -219,6 +219,7 @@ module.exports = {
         // components that are defined in test are isolated enough
         // that they don't need type-checking
         'react/prop-types': 'off',
+        'react/no-unused-prop-types': 'off',
       },
     },
     {
@@ -226,7 +227,7 @@ module.exports = {
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
-          { allow: ['MUI', 'Twitter', 'GitHub', 'StackOverflow'] },
+          { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
         ],
       },
     },
@@ -275,7 +276,6 @@ module.exports = {
             ],
           },
         ],
-        'react/prop-types': 'off',
       },
     },
     // Files used for generating TypeScript declaration files (#ts-source-files)

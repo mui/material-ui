@@ -1,34 +1,25 @@
 import * as React from 'react';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { styled, ColorPaletteProp } from '@mui/joy/styles';
+import { ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
+import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
 import Switch from '@mui/joy/Switch';
+import Select from '@mui/joy/Select';
+import Option, { optionClasses } from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
 import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-
-const Select = styled('select')(({ theme }) => ({
-  padding: '0.25rem',
-  border: 'none',
-  borderRadius: theme.radius.sm,
-  width: '100%',
-  minHeight: '2rem',
-  ...theme.typography.body2,
-  ...theme.variants.outlined.neutral,
-  [theme.focus.selector]: {
-    borderColor: theme.vars.palette.primary[500],
-    boxShadow: `inset 0 0 0 1px ${theme.vars.palette.primary[500]}`,
-    outline: 'none',
-  },
-}));
+import CheckRounded from '@mui/icons-material/CheckRounded';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -40,11 +31,16 @@ const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) 
   return equal;
 };
 
-function createCode(data: {
-  name: string;
-  props: Record<string, string | number | boolean>;
-  childrenAccepted?: boolean;
-}) {
+const defaultGetCodeBlock = (code: string) => code;
+
+function createCode(
+  data: {
+    name: string;
+    props: Record<string, string | number | boolean>;
+    childrenAccepted?: boolean;
+  },
+  getCodeBlock = defaultGetCodeBlock,
+) {
   const { props: inProps, name, childrenAccepted } = data;
   const closedJsx = childrenAccepted ? '>' : '/>';
   let code = `<${name}`;
@@ -80,14 +76,22 @@ function createCode(data: {
       }
     });
     if (children) {
-      code = `${code}>\n  ${children}\n</${name}>`;
+      code = `${code}${props.length > 2 ? `\n>` : '>'}\n  ${children}\n</${name}>`;
     } else {
       code = `${code}${props.length > 2 ? `\n${closedJsx}` : `${childrenAccepted ? '>' : ' />'}`}`;
     }
   }
 
-  return code;
+  return getCodeBlock(code);
 }
+
+export const prependLinesSpace = (code: string, size: number = 2) => {
+  const newCode: string[] = [];
+  code.split('\n').forEach((line) => {
+    newCode.push(`${Array(size).fill(' ').join('')}${line}`);
+  });
+  return newCode.join('\n');
+};
 
 interface JoyUsageDemoProps<ComponentProps> {
   /**
@@ -104,7 +108,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop
+     * Name of the prop, e.g. 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**
@@ -115,7 +119,7 @@ interface JoyUsageDemoProps<ComponentProps> {
      * - `input`: render <input />
      * - `radio`: render group of radios
      */
-    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio' | 'number';
     /**
      * The options for these knobs: `select` and `radio`
      */
@@ -129,10 +133,16 @@ interface JoyUsageDemoProps<ComponentProps> {
      */
     defaultValue?: string | number | boolean;
     /**
-     * If true, the prop with defaultValue will always display in the code block.
+     * If not specify (`undefined`), the prop displays when user change the value
+     * If `true`, the prop with defaultValue will always display in the code block.
+     * If `false`, the prop does not display in the code block.
      */
-    codeBlockDisplay?: true;
+    codeBlockDisplay?: boolean;
   }>;
+  /**
+   * A function to override the code block result.
+   */
+  getCodeBlock?: (code: string, props: ComponentProps) => string;
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
@@ -141,29 +151,36 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   childrenAccepted = false,
   data,
   renderDemo,
+  getCodeBlock = defaultGetCodeBlock,
 }: JoyUsageDemoProps<T>) {
-  const defaultProps = {} as { [k in keyof T]: any };
   const initialProps = {} as { [k in keyof T]: any };
-  const staticProps = {} as { [k in keyof T]: any };
+  let demoProps = {} as { [k in keyof T]: any };
+  let codeBlockProps = {} as { [k in keyof T]: any };
   data.forEach((p) => {
-    defaultProps[p.propName] = p.defaultValue;
+    demoProps[p.propName] = p.defaultValue;
     if (p.codeBlockDisplay) {
       initialProps[p.propName] = p.defaultValue;
     }
     if (!p.knob) {
-      staticProps[p.propName] = p.defaultValue;
+      codeBlockProps[p.propName] = p.defaultValue;
     }
   });
   const [props, setProps] = React.useState<T>(initialProps as T);
+  demoProps = { ...demoProps, ...props };
+  codeBlockProps = { ...props, ...codeBlockProps };
+  data.forEach((p) => {
+    if (p.codeBlockDisplay === false) {
+      delete codeBlockProps[p.propName];
+    }
+  });
   return (
     <Box
       sx={{
         mt: 2,
         flexGrow: 1,
-        maxWidth: 'calc(100% + 24px)',
+        maxWidth: '100%',
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        flexWrap: 'wrap',
+        flexDirection: { xs: 'column', md: 'row' },
         gap: 2,
         '& .markdown-body pre': {
           margin: 0,
@@ -171,7 +188,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0 }}>
         <Box
           sx={{
             flexGrow: 1,
@@ -181,15 +198,18 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             p: 1,
           }}
         >
-          {renderDemo({ ...defaultProps, ...props })}
+          {renderDemo(demoProps)}
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode({
-              name: componentName,
-              props: { ...props, ...staticProps },
-              childrenAccepted,
-            })}
+            code={createCode(
+              {
+                name: componentName,
+                props: codeBlockProps,
+                childrenAccepted,
+              },
+              (code) => getCodeBlock(code, demoProps),
+            )}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
@@ -198,7 +218,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       <Sheet
         variant="outlined"
         sx={{
-          flexGrow: 1,
+          flexShrink: 0,
           gap: 2,
           p: 2,
           borderRadius: 'sm',
@@ -234,6 +254,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             display: 'flex',
             flexDirection: 'column',
             gap: 2.5,
+            [`& .${formLabelClasses.root}`]: {
+              fontWeight: 'lg',
+            },
           }}
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
@@ -243,46 +266,52 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'switch') {
               return (
-                <Switch
+                <FormControl
                   key={propName}
-                  checked={Boolean(resolvedValue)}
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: event.target.checked,
-                    }))
-                  }
-                  endDecorator={propName}
                   size="sm"
-                  sx={{
-                    textTransform: 'capitalize',
-                    alignSelf: 'flex-start',
-                    '--Switch-track-background': (theme) =>
-                      `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
-                    '&:hover': {
+                  orientation="horizontal"
+                  sx={{ justifyContent: 'space-between' }}
+                >
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <Switch
+                    checked={Boolean(resolvedValue)}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.checked,
+                      }))
+                    }
+                    endDecorator={resolvedValue ? 'True' : 'False'}
+                    componentsProps={{
+                      endDecorator: {
+                        sx: {
+                          minWidth: 30,
+                        },
+                      },
+                    }}
+                    sx={{
+                      fontSize: 'xs',
+                      color: 'text.secondary',
+                      textTransform: 'capitalize',
                       '--Switch-track-background': (theme) =>
-                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
-                    },
-                  }}
-                />
+                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
+                      '&:hover': {
+                        '--Switch-track-background': (theme) =>
+                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'radio') {
               const labelId = `${componentName}-${propName}`;
               return (
-                <Box key={propName}>
-                  <Typography
-                    id={labelId}
-                    fontSize="xs"
-                    fontWeight="md"
-                    sx={{ mb: 1, textTransform: 'capitalize' }}
-                  >
-                    {propName}
-                  </Typography>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
                     row
                     name={labelId}
-                    aria-labelledby={labelId}
                     value={resolvedValue}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -315,19 +344,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       );
                     })}
                   </RadioGroup>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'color') {
               return (
-                <Box key={propName} sx={{ mb: 1 }}>
-                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
-                    Color
-                  </Typography>
+                <FormControl key={propName} sx={{ mb: 1 }} size="sm">
+                  <FormLabel>Color</FormLabel>
                   <RadioGroup
                     row
                     name={`${componentName}-color`}
-                    aria-labelledby={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -395,41 +421,51 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       );
                     })}
                   </RadioGroup>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'select') {
-              const selectId = `${componentName}-${propName}`;
               return (
-                <Box key={propName}>
-                  <Typography
-                    component="label"
-                    fontSize="xs"
-                    fontWeight="lg"
-                    mb={1}
-                    htmlFor={selectId}
-                    sx={{ textTransform: 'capitalize' }}
-                  >
-                    {propName}
-                  </Typography>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Select
-                    id={selectId}
+                    placeholder="Select a variant..."
+                    componentsProps={{
+                      listbox: {
+                        sx: {
+                          '--List-decorator-size': '24px',
+                        },
+                      },
+                    }}
                     value={(resolvedValue || 'none') as string}
-                    onChange={(event) =>
+                    onChange={(event, val) =>
                       setProps((latestProps) => ({
                         ...latestProps,
-                        [propName]: event.target.value,
+                        [propName]: val,
                       }))
                     }
                   >
-                    {!resolvedValue && <option value="none">{''}</option>}
                     {options.map((value) => (
-                      <option key={value} value={value}>
+                      <Option
+                        key={value}
+                        value={value}
+                        label={value}
+                        sx={{
+                          [`&.${optionClasses.selected}`]: {
+                            [`& .${listItemDecoratorClasses.root}`]: {
+                              opacity: 1,
+                            },
+                          },
+                        }}
+                      >
+                        <ListItemDecorator sx={{ opacity: 0 }}>
+                          <CheckRounded />
+                        </ListItemDecorator>
                         {value}
-                      </option>
+                      </Option>
                     ))}
                   </Select>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'input') {
@@ -438,11 +474,44 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   key={propName}
                   label={propName}
                   size="sm"
-                  value={resolvedValue || ''}
+                  value={
+                    typeof props[propName] === 'string'
+                      ? props[propName] || ''
+                      : String(defaultValue) || ''
+                  }
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
-                      [propName]: event.target.value || undefined,
+                      [propName]: event.target.value,
+                    }))
+                  }
+                  sx={{
+                    textTransform: 'capitalize',
+                    [`& .${inputClasses.root}`]: {
+                      bgcolor: 'background.body',
+                    },
+                  }}
+                />
+              );
+            }
+            if (knob === 'number') {
+              return (
+                <TextField
+                  key={propName}
+                  label={propName}
+                  size="sm"
+                  type="number"
+                  value={
+                    typeof props[propName] === 'number'
+                      ? (props[propName] as number)
+                      : (defaultValue as string)
+                  }
+                  onChange={(event) =>
+                    setProps((latestProps) => ({
+                      ...latestProps,
+                      [propName]: Number.isNaN(event.target.valueAsNumber)
+                        ? undefined
+                        : event.target.valueAsNumber,
                     }))
                   }
                   sx={{

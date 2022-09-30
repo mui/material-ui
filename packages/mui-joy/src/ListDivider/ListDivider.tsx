@@ -5,55 +5,61 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListDividerProps, ListDividerTypeMap } from './ListDividerProps';
+import Divider from '../Divider/Divider';
+import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: ListDividerProps) => {
+const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   const slots = {
-    root: ['root', ownerState.inset && `inset${capitalize(ownerState.inset)}`],
+    root: [
+      'root',
+      // `insetContext` class is already produced by Divider
+      ownerState.inset && ownerState.inset !== 'context' && `inset${capitalize(ownerState.inset)}`,
+    ],
   };
 
   return composeClasses(slots, getListDividerUtilityClass, {});
 };
 
-const ListDividerRoot = styled('li', {
+const ListDividerRoot = styled(Divider, {
   name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListDividerProps & { row: boolean; 'data-first-child'?: boolean } }>(
-  ({ theme, ownerState }) => ({
-    border: 'none', // reset the border for `hr` tag
-    ...(ownerState.row && {
-      '--List-divider-marginX': 'calc(var(--List-gap) + var(--List-divider-gap))',
-      borderInlineStart: '1px solid',
-      marginBlock: 0,
-      marginInline: 'var(--List-divider-marginX)',
-    }),
-    ...(!ownerState.row && {
-      // by default, the divider line is stretched from edge-to-edge of the List
-      // spacing between ListItem can be controlled by `--List-divider-gap` on the List
-      ...(ownerState['data-first-child'] === undefined && {
-        marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
-      }),
-      marginBlockEnd: 'var(--List-divider-gap)',
-      marginInline: 'calc(-1 * var(--List-padding))',
-      ...(ownerState.inset === 'gutter' && {
-        marginInlineStart: 'var(--List-item-paddingLeft)',
-        marginInlineEnd: 'var(--List-item-paddingRight)',
-      }),
-      ...(ownerState.inset === 'startDecorator' && {
-        marginInlineStart: 'var(--List-item-paddingLeft)',
-      }),
-      ...(ownerState.inset === 'startContent' && {
-        marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
-      }),
-      borderBlockEnd: '1px solid',
-    }),
-    borderColor: theme.vars.palette.divider,
-    listStyle: 'none',
+})<{ ownerState: ListDividerOwnerState }>(({ ownerState }) => ({
+  ...(ownerState.inset === 'context' && {
+    '--Divider-inset': 'calc(-1 * var(--List-padding))',
   }),
-);
+  ...(ownerState.row && {
+    marginInline: 'var(--List-divider-gap)',
+    ...(ownerState.inset === 'gutter' && {
+      marginBlock: 'var(--List-item-paddingY)',
+    }),
+    ...(ownerState['data-first-child'] === undefined && {
+      // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
+      marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+    }),
+  }),
+  ...(!ownerState.row && {
+    // by default, the divider line is stretched from edge-to-edge of the List
+    // spacing between ListItem can be controlled by `--List-divider-gap` on the List
+    ...(ownerState['data-first-child'] === undefined && {
+      // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
+      marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+    }),
+    marginBlockEnd: 'var(--List-divider-gap)',
+    ...(ownerState.inset === 'gutter' && {
+      marginInlineStart: 'var(--List-item-paddingLeft)',
+      marginInlineEnd: 'var(--List-item-paddingRight)',
+    }),
+    ...(ownerState.inset === 'startDecorator' && {
+      marginInlineStart: 'var(--List-item-paddingLeft)',
+    }),
+    ...(ownerState.inset === 'startContent' && {
+      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-size))',
+    }),
+  }),
+}));
 
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -63,24 +69,33 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
 
   const row = React.useContext(RowListContext);
 
-  const { component, className, children, inset, ...other } = props;
+  const {
+    component = 'li',
+    className,
+    children,
+    inset = 'context',
+    orientation = row ? 'vertical' : 'horizontal',
+    ...other
+  } = props;
 
   const ownerState = {
+    ...props,
     inset,
     row,
-    ...props,
+    orientation,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
     <ListDividerRoot
+      // @ts-ignore
       ref={ref}
-      as={component}
+      {...(inset === 'context' && { inset })}
+      component={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      role="separator"
-      aria-orientation={row ? 'horizontal' : 'vertical'}
+      orientation={orientation}
       {...other}
     >
       {children}
@@ -111,13 +126,19 @@ ListDivider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The empty space on the side(s) of the divider.
-   * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
+   * The empty space on the side(s) of the divider in a vertical list.
+   *
+   * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
   ]),
+  /**
+   * The component orientation.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

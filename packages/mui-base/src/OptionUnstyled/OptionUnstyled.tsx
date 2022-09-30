@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
-import { OptionUnstyledProps, OptionUnstyledOwnerState } from './OptionUnstyled.types';
+import {
+  OptionUnstyledProps,
+  OptionUnstyledOwnerState,
+  OptionUnstyledType,
+} from './OptionUnstyled.types';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
@@ -93,7 +97,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OptionUnstyledType;
 
 OptionUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -105,10 +109,8 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
    */
   component: PropTypes.elementType,
   /**
@@ -120,7 +122,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the OptionUnstyled.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -147,12 +149,10 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
  * - [OptionUnstyled API](https://mui.com/base/api/option-unstyled/)
  */
-export default React.memo(OptionUnstyled) as <TValue>(
-  props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default React.memo(OptionUnstyled) as OptionUnstyledType;

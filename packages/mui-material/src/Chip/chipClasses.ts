@@ -7,10 +7,18 @@ export interface ChipClasses {
   sizeSmall: string;
   /** Styles applied to the root element if `size="medium"`. */
   sizeMedium: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
@@ -33,6 +41,10 @@ export interface ChipClasses {
   outlinedPrimary: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: string;
+  /** Styles applied to the root element if `variant="filled"` and `color="primary"`. */
+  filledPrimary: string;
+  /** Styles applied to the root element if `variant="filled"` and `color="secondary"`. */
+  filledSecondary: string;
   /** Styles applied to the avatar element. */
   avatar: string;
   /** Styles applied to the avatar element if `size="small"`. */
@@ -73,6 +85,10 @@ export interface ChipClasses {
   deleteIconOutlinedColorPrimary: string;
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
   deleteIconOutlinedColorSecondary: string;
+  /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
+  deleteIconFilledColorPrimary: string;
+  /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
+  deleteIconFilledColorSecondary: string;
   /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
 }
@@ -87,8 +103,12 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'root',
   'sizeSmall',
   'sizeMedium',
+  'colorError',
+  'colorInfo',
   'colorPrimary',
   'colorSecondary',
+  'colorSuccess',
+  'colorWarning',
   'disabled',
   'clickable',
   'clickableColorPrimary',
@@ -100,6 +120,8 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'filled',
   'outlinedPrimary',
   'outlinedSecondary',
+  'filledPrimary',
+  'filledSecondary',
   'avatar',
   'avatarSmall',
   'avatarMedium',
@@ -120,6 +142,8 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'deleteIconColorSecondary',
   'deleteIconOutlinedColorPrimary',
   'deleteIconOutlinedColorSecondary',
+  'deleteIconFilledColorPrimary',
+  'deleteIconFilledColorSecondary',
   'focusVisible',
 ]);
 

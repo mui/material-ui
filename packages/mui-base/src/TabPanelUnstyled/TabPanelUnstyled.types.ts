@@ -46,11 +46,6 @@ export type TabPanelUnstyledProps<
   D extends React.ElementType = TabPanelUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabPanelUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

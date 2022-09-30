@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type AvatarSlot = 'root' | 'img' | 'fallback';
@@ -7,6 +8,12 @@ export type AvatarSlot = 'root' | 'img' | 'fallback';
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
 export interface AvatarPropsSizeOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, AvatarOwnerState>;
+  img?: SlotComponentProps<'img', { sx?: SxProps }, AvatarOwnerState>;
+  fallback?: SlotComponentProps<'svg', { sx?: SxProps }, AvatarOwnerState>;
+}
 
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -20,6 +27,11 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * This can be an element, or just a string.
      */
     children?: React.ReactNode;
+    /**
+     * The props used for each slot inside the component.
+     * @default {}
+     */
+    componentsProps?: ComponentsProps;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
@@ -64,3 +76,10 @@ export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<AvatarTypeMap<P, D>, D>;
+
+export interface AvatarOwnerState extends AvatarProps {
+  /**
+   * The avatar is wrapped by AvatarGroup component.
+   */
+  grouped: boolean;
+}

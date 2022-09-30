@@ -2,7 +2,6 @@
 product: system
 title: React Grid component
 githubLabel: 'component: Grid'
-packageName: '@mui/system'
 ---
 
 # Grid
@@ -56,7 +55,7 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
-The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true, "hideToolbar": true}}
 
@@ -128,8 +127,8 @@ If you specify custom breakpoints to the theme, you can use those names as grid 
 The custom breakpoints affect both the size and offset props:
 
 ```diff
-- <Grid xs={6} xsOffset={2} sm={4} smOffset={2} md={3} mdOffset={3}>
-+ <Grid mobile={6} mobileOffset={2} tablet={4} tabletOffset={2} laptop={3} laptopOffset={3}>
+-<Grid xs={6} xsOffset={2}>
++<Grid mobile={6} mobileOffset={2}>
 ```
 
 :::
@@ -155,6 +154,18 @@ declare module '@mui/system' {
   }
 }
 ```
+
+## Prevent scrollbar
+
+If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
+
+To prevent the scrollbar, set `disableEqualOverflow` prop to `true`. It will enable negative margin only on the top and left sides of the grid which remove overflow on the right-hand side.
+
+{{"demo": "OverflowGrid.js", "bg": true}}
+
+:::warning
+You should avoid adding borders or background to the grid when `disableEqualOverflow: true` because the negative margin (applied only at the top and left sides) makes the grid visually misaligned.
+:::
 
 ## Limitations
 

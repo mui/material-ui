@@ -89,6 +89,39 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
+    it('should not display if the title is a false', () => {
+      const { queryByRole } = render(
+        <Tooltip title={false} open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should not display if the title is a null', () => {
+      const { queryByRole } = render(
+        <Tooltip title={null} open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should not display if the title is an undefined', () => {
+      const { queryByRole } = render(
+        <Tooltip title={undefined} open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+
     it('should label the child when closed', () => {
       render(
         <Tooltip title="the title">
@@ -432,23 +465,6 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);
-    });
-
-    it('should handle `onMouseOver` forwarding', () => {
-      const handleMouseOver = spy();
-      const { getByRole } = render(
-        <Tooltip enterDelay={100} title="Tooltip">
-          <button id="testChild" type="submit" onMouseOver={handleMouseOver}>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-
-      fireEvent.mouseOver(getByRole('button'));
-      clock.tick(100);
-
-      expect(getByRole('tooltip')).toBeVisible();
-      expect(handleMouseOver.callCount).to.equal(1);
     });
   });
 

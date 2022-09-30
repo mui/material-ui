@@ -17,32 +17,27 @@ const faqData = [
     summary: 'How do I know if I need to buy a license?',
     detail: (
       <React.Fragment>
-        If you are in doubt, check the license file of the npm package you're installing.
-        <br />
-        <br />
-        For instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">
-          @mui/x-data-grid
-        </Link>{' '}
-        is MIT while{' '}
-        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is
-        commercial.
+        If you are in doubt, check the license file of the npm package you're installing. For
+        instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">@mui/x-data-grid</Link> is
+        an MIT License (free) while{' '}
+        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is a
+        Commercial License.
       </React.Fragment>
     ),
   },
   {
-    summary: 'How many developer seats do I need?',
+    summary: 'How many developer licenses do I need?',
     detail: (
       <React.Fragment>
-        The number of seats purchased on your license must correspond to the number of concurrent
-        developers contributing changes to the front-end code of the projects that uses MUI X Pro or
-        Premium.
+        The number of licenses purchased must correspond to the number of concurrent developers
+        contributing changes to the front-end code of projects that use MUI X Pro or Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
-        render 10K rows of data in a table and allow users to group, filter, and sort. The dev team
-        adds MUI X Pro to the project to satisfy that requirement. 5 front-end and 10 back-end
+        render 10k rows of data in a table and allow users to group, filter, and sort. The dev team
+        adds MUI X Pro to the project to satisfy this requirement. 5 front-end and 10 back-end
         developers are working on 'AppA'. Only 1 developer is tasked with configuring and modifying
-        the data grid. The front-end developers and only are contributing code to the front-end.
+        the data grid. Only the front-end developers are contributing code to the front-end so
         Company 'A' purchases 5 licenses.
         <br />
         <br />
@@ -56,9 +51,34 @@ const faqData = [
         <Link
           target="_blank"
           rel="noopener"
-          href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
+          href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
         >
           The clause in the EULA.
+        </Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Why must we license developers not using the software directly?',
+    detail: (
+      <React.Fragment>
+        Our pricing model requires all developers working on a project using MUI X Pro or Premium to
+        be licensed. This is intended to make it easier for you and your team to know if the right
+        number of developers are licensed.
+        <br />
+        <br />
+        Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
+        through a wrapper library) to be licensed.
+        <br />
+        <br />
+        The price point per developer is adjusted to be lower than if only direct use needed a
+        license.{' '}
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The relevant EULA clause.
         </Link>
       </React.Fragment>
     ),
@@ -246,14 +266,15 @@ export default function FAQ() {
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
+          {renderItem(3)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(3)}
           {renderItem(4)}
           {renderItem(5)}
+          {renderItem(6)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(6)}
+          {renderItem(7)}
           <Paper
             variant="outlined"
             sx={{

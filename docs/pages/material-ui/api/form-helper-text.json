@@ -17,8 +17,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+        "name": "union",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       }
     }
   },
@@ -46,6 +46,6 @@
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-material/src/FormHelperText/FormHelperText.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

@@ -251,7 +251,7 @@ Use a string to provide an explicit px value.
 
 The Box system props have an optional alternative API in v5, using the `sx` prop.
 
-Check out the System docs to learn more about [the tradeoffs of this API](/system/basics/#api-tradeoff).
+Check out the System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
 
 ```jsx
 <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -739,6 +739,22 @@ const theme = createTheme({
 });
 ```
 
+### Change negative margins
+
+The negative margins apply only to the top and left sides of the grid container.
+If you need negative margins on all sides, we recommend using the new Grid v2 instead:
+
+```diff
+- import Grid from '@mui/material/Grid';
++ import Grid from '@mui/material/Unstable_Grid2';
+```
+
+To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
+
+:::info
+Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
+:::
+
 ## GridList
 
 ### ✅ Rename GridList component
@@ -785,7 +801,7 @@ Use CSS `object-fit`. For IE11 support either use a polyfill such as
 
 ### Replace deprecated component
 
-This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
+This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
 :::warning
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
@@ -1962,7 +1978,7 @@ This change removes the confusion with the built-in `Omit` helper introduced in 
 
 The built-in `Omit`, while similar, is non-distributive.
 This leads to differences when applied to union types.
-[See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+[See this Stack Overflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
 ```diff
 -import { Omit } from '@mui/types';
