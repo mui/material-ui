@@ -13,7 +13,6 @@ import {
   unstable_useControlled as useControlled,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useId as useId,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
 import styled from '../styles/styled';
@@ -193,7 +192,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     enterNextDelay = 0,
     enterTouchDelay = 700,
     followCursor = false,
-    id: idProp,
+    id,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -232,8 +231,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   let open = openState;
-
-  const id = useId(idProp);
 
   const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
   const stopTouchInteraction = React.useCallback(() => {
