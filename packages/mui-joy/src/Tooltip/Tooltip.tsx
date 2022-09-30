@@ -419,7 +419,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleUseRef = useForkRef(setChildNode, ref);
   const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
-  const handleRef = useForkRef(children.ref, handleFocusRef);
+  const handleRef = useForkRef(
+    (children as unknown as { ref: React.Ref<HTMLElement> }).ref,
+    handleFocusRef,
+  );
 
   // There is no point in displaying an empty tooltip.
   if (typeof title !== 'number' && !title) {
@@ -621,7 +624,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * Tooltip reference element.
    */
-  children: PropTypes.any.isRequired,
+  children: PropTypes.element.isRequired,
   /**
    * @ignore
    */
