@@ -386,6 +386,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/base/api/trap-focus/ /:lang/base/api/focus-trap/ 301
 /base/react-trap-focus/ /base/react-focus-trap/ 301
 /base/api/trap-focus/ /base/api/focus-trap/ 301
+/material-ui/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
+
 # 2023
 
 # Proxies
