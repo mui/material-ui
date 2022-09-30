@@ -9,7 +9,7 @@ This migration offers a solution to a longstanding issue in which a user who pre
 
 ### Without a custom theme
 
-If you haven't used [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), simply wrap you application with the new provider:
+If you aren't using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), then all you need to do is wrap your application with the `CssVarsProvider`:
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';

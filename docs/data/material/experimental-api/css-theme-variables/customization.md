@@ -116,7 +116,7 @@ const theme = extendTheme({
 ```
 
 :::warning
-Don't use comma(`,`) as a separator because the result is not a valid CSS color:
+Don't use a comma (`,`) as a separator because the channel colors use empty spaces to define [transparency](https://www.w3.org/TR/css-color-4/#transparency):
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, // 🚫 this does not work
