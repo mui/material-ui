@@ -2,7 +2,7 @@
 
 <p class="description">Learn how to import and style Joy UI components to build a simple login page.</p>
 
-This tutorial will walk you through how to set up the user interface for a basic login page using Joy UI.
+This tutorial will walk you through how to set up a user interface for a basic login page using Joy UI.
 
 By the end, you should understand how to:
 
@@ -19,34 +19,35 @@ This tutorial assumes that you've already:
 
 ## Import the Sheet component for structure
 
-To create the structure for the login page, we'll use the `Sheet` component, which is simply an HTML div that supports the global variant feature.
+The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports Joy UI's [global variants feature](/joy-ui/main-features/global-variants/), helping to ensure consistency across your app.
 
-Try playing around with different variant values to see how they look like.
-You can use `solid`, `soft`, `outlined`, or `plain`.
+Import Sheet and add it to your app as shown below.
+Notice that Joy UI components must be nested within `<CssVarsProvider />`:
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 
-function App() {
+export default function App() {
   return (
     <CssVarsProvider>
       <Sheet variant="outlined">Welcome!</Sheet>
     </CssVarsProvider>
   );
 }
-
-export default App;
 ```
 
-:::info
-**Don't forget:** always render Joy UI components inside the `<CssVarsProvider/>` component.
+:::success
+Try playing around with different `variant` values to see the available styles.
+In addition to `outlined`, you can also use `solid`, `soft`, or `plain`—these are Joy UI's [global variants](/joy-ui/main-features/global-variants/), and they're available on all components.
 :::
 
 ### Add styles with the sx prop
 
-Every Joy UI component accepts the `sx` prop, which allows a shorthand syntax for writing CSS.
+All Joy UI components accept [the `sx` prop](/system/getting-started/the-sx-prop/), which gives you access to a shorthand syntax for writing CSS.
 It's great for creating one-off customizations or rapidly experimenting with different styles.
+
+Replace your basic Sheet from the previous step with the following `sx`-styled Sheet:
 
 ```jsx
 <Sheet
@@ -67,64 +68,72 @@ It's great for creating one-off customizations or rapidly experimenting with dif
 </Sheet>
 ```
 
-Don't worry if you're confused about the `sx` prop's syntax at this moment.
-You'll get the hang of it as you use it more.
-Check the [MUI System's documentation](/system/getting-started/the-sx-prop/) to learn more about its foundation.
+:::success
+Try changing some of the values for the CSS properties above based on the patterns you observe to see how `sx` works.
+To go deeper, read about the `sx` prop in the [MUI System documentation](/system/getting-started/the-sx-prop/).
+:::
 
 ## Add text with the Typography component
 
-The `Typography` component supports the `level` prop, allowing you to choose between a pre-defined scale of typography values.
-Joy UI provides 13 typography levels out of the box: `display 1 | display 2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`.
+The [Typography](/joy-ui/react-typography/) component replaces HTML header, paragraph, and span tags to help maintain a consistent hierarchy of text on the page.
 
-You can also change which HTML tag gets rendered in each `Typography` component using the `component` prop.
+:::info
+The `level` prop gives you access to a pre-defined scale of typographic values.
+Joy UI provides 13 typography levels out of the box:
+
+`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
+
+:::
+
+Add an import for Typography with the rest of your imports:
 
 ```jsx
-// ...other imports
 import Typography from '@mui/joy/Typography';
-
-<Sheet
-  sx={...}
->
-  <div>
-    <Typography level="h4" component="h1">
-      <b>Welcome!</b>
-    </Typography>
-    <Typography level="body2">Sign in to continue</Typography>
-  </div>
-</Sheet>;
 ```
 
-## Add TextField for user inputs
-
-The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components.
+Replace `Welcome!` inside your Sheet component with this `<div>`:
 
 ```jsx
-// ...other imports
-import TextField from '@mui/joy/TextField';
+<div>
+  <Typography level="h4" component="h1">
+    Welcome!
+  </Typography>
+  <Typography level="body2">Sign in to continue</Typography>
+</div>
+```
 
-<Sheet
-  sx={
-    {
-      // ...
-    }
-  }
->
-  ...typography
-  <TextField
-    // html input attribute
-    name="email"
-    type="email"
-    placeholder="johndoe@email.com"
-    // pass down to FormLabel as children
-    label="Email"
-  />
-  <TextField
-    name="password"
-    type="password"
-    placeholder="password"
-    label="Password"
-  />
-</Sheet>;
+:::success
+Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
+(In the example above, the first Typography component renders an `<h1>` with the typographic values of an `<h4>`.)
+:::
+
+## Add Text Field for user inputs
+
+The Text Field component bundles together the Form Control, Form Label, Input, and Form Helper Text components to provide you with a sophisticated field for user input.
+
+Add an import for Text Field with the rest of your imports:
+
+```jsx
+import TextField from '@mui/joy/TextField';
+```
+
+Insert these two Text Fields below the `<div>` from the previous step, inside the Sheet:
+
+```jsx
+<TextField
+  // html input attribute
+  name="email"
+  type="email"
+  placeholder="johndoe@email.com"
+  // pass down to FormLabel as children
+  label="Email"
+/>
+<TextField
+  name="password"
+  type="password"
+  placeholder="password"
+  label="Password"
+/>
 ```
 
 ## Import Button and Link for user actions
