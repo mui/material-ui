@@ -382,7 +382,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           {...PaperProps}
           ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
-          style={isPositioned ? undefined : { visibility: 'hidden' }}
+          {...isPositioned ? undefined : { style: { ...PaperProps.style, visibility: 'hidden' } }}
           ownerState={ownerState}
         >
           {children}
