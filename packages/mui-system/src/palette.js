@@ -3,7 +3,7 @@ import compose from './compose';
 
 function transform(value, userValue) {
   if (process.env.NODE_ENV !== 'production') {
-    if (userValue === 'grey') {
+    if (value !== userValue && userValue === 'grey') {
       console.warn(
         [
           `MUI: Because "grey" is both a CSS color and part of the theme's color palette, the palette is being prioritized.`,
