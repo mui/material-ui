@@ -6,9 +6,11 @@ function transform(value, userValue) {
     if (value !== userValue && userValue === 'grey') {
       console.warn(
         [
-          `MUI: Because "grey" is both a CSS color and part of the theme's color palette, the palette is being prioritized.`,
+          `MUI: Because "grey" is both a CSS color and part of the theme's` +
+            'color palette, the palette is being prioritized.',
           '',
-          'Either specify a palette shade (e.g. "grey.500") or use a different CSS color to disambiguate.',
+          'To disambiguate, either specify a palette shade (e.g. "grey.500"), '
+            + 'use a different CSS color, or use the `style` prop.',
         ].join('\n'),
       );
     }
