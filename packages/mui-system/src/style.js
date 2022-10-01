@@ -36,7 +36,7 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
   }
 
   if (transform) {
-    value = transform(value);
+    value = transform(value, userValue);
   }
 
   return value;
