@@ -304,6 +304,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     setPositioningStyles();
   };
 
+  // Ensure that the menu doesn't appear until the positioning styles have been set.
+  // Related to the effect that calls `setPositioningStyles` directly below this one.
+  const [isPositioned, setIsPositioned] = React.useState(open);
+  React.useEffect(() => {
+    setIsPositioned(open);
+  }, [open]);
+
   React.useEffect(() => {
     if (open) {
       setPositioningStyles();
@@ -364,7 +371,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     >
       <TransitionComponent
         appear
-        in={open}
+        in={open && isPositioned}
         onEntering={handleEntering}
         timeout={transitionDuration}
         {...TransitionProps}
