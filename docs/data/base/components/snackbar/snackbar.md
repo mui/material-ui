@@ -13,7 +13,7 @@ githubLabel: 'component: snackbar'
 
 A snackbar provides users with a brief, temporary message about app processes without interrupting their activity or experience.
 
-The `SnackbarUnstyled` component is built to appear in the corner or center of the screen to inform users about an action that the app is taking.
+The `SnackbarUnstyled` component is built to appear on-screen to inform users about an action that the app is taking.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -32,10 +32,6 @@ export default function MyApp() {
 ```
 
 ### Basics
-
-:::info
-Snackbars are differentiated from other kinds of popups and alerts in that they are _informational, temporary, and contextual_ (Source: [Material Design—Snackbars](https://material.io/components/snackbars)).
-:::
 
 `SnackbarUnstyled` doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without requiring the user to take action.
 
