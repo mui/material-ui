@@ -10,21 +10,14 @@ By the end, you should understand how to:
 2. add styles to Joy UI components
 3. create a button to toggle light and dark modes
 
-:::info
-This tutorial does _not_ cover theming and general component customization.
-Learn more about [different customization approaches](/joy-ui/customization/approaches/) after you're done on this page.
-:::
-
 ## Prerequisites
 
-This tutorial assumes:
+This tutorial assumes that you've already:
 
-- you've already set up a React app—try [Create React App](https://create-react-app.dev/) if you need a boilerplate
-- you've installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions
+- set up a React app—try [Create React App](https://create-react-app.dev/) if you need a boilerplate
+- installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions
 
-## Building the login page
-
-### 1. Creating the basic layout
+## Import the Sheet component for structure
 
 To create the structure for the login page, we'll use the `Sheet` component, which is simply an HTML div that supports the global variant feature.
 
@@ -50,7 +43,7 @@ export default App;
 **Don't forget:** always render Joy UI components inside the `<CssVarsProvider/>` component.
 :::
 
-### 2. Using the `sx` prop for quick styling
+### Add styles with the sx prop
 
 Every Joy UI component accepts the `sx` prop, which allows a shorthand syntax for writing CSS.
 It's great for creating one-off customizations or rapidly experimenting with different styles.
@@ -78,7 +71,7 @@ Don't worry if you're confused about the `sx` prop's syntax at this moment.
 You'll get the hang of it as you use it more.
 Check the [MUI System's documentation](/system/getting-started/the-sx-prop/) to learn more about its foundation.
 
-### 3. Using `Typography` to create a welcome text
+## Add text with the Typography component
 
 The `Typography` component supports the `level` prop, allowing you to choose between a pre-defined scale of typography values.
 Joy UI provides 13 typography levels out of the box: `display 1 | display 2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`.
@@ -101,7 +94,7 @@ import Typography from '@mui/joy/Typography';
 </Sheet>;
 ```
 
-### 4. Using `TextField` to create user name and password inputs
+## Add TextField for user inputs
 
 The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components.
 
@@ -134,7 +127,7 @@ import TextField from '@mui/joy/TextField';
 </Sheet>;
 ```
 
-### 5. Using `Button` and `Link` for actions
+## Import Button and Link for user actions
 
 The `Button` component has `solid` and `primary` as its default variant and color, respectively.
 Play around with changing their values to see how each variant differs from one another.
@@ -174,7 +167,7 @@ import Link from '@mui/joy/Link';
 
 <!-- TODO: Add the result image -->
 
-## 🎁 Bonus: Setting up dark mode
+## 🎁 Bonus: Build a toggle for light and dark mode
 
 Joy UI provides an effortless way to toggle between modes by using the React hook `useColorScheme`.
 All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
@@ -228,3 +221,8 @@ export default function App() {
 :::
 
 Congratulations 🎉! You've built your first good looking UI with Joy UI!
+
+:::info
+This tutorial does _not_ cover theming and general component customization.
+Learn more about [different customization approaches](/joy-ui/customization/approaches/) when you're ready to go deeper on this topic.
+:::
