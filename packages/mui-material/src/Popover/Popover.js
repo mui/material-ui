@@ -278,6 +278,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold],
   );
 
+  const [isPositioned, setIsPositioned] = React.useState(open);
+
   const setPositioningStyles = React.useCallback(() => {
     const element = paperRef.current;
 
@@ -294,6 +296,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       element.style.left = positioning.left;
     }
     element.style.transformOrigin = positioning.transformOrigin;
+    setIsPositioned(true);
   }, [getPositioningStyle]);
 
   const handleEntering = (element, isAppearing) => {
@@ -304,12 +307,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     setPositioningStyles();
   };
 
-  // Ensure that the menu doesn't appear until the positioning styles have been set.
-  // Related to the effect that calls `setPositioningStyles` directly below this one.
-  const [isPositioned, setIsPositioned] = React.useState(open);
-  React.useEffect(() => {
-    setIsPositioned(open);
-  }, [open]);
+  const handleExited = () => {
+    setIsPositioned(false);
+  };
 
   React.useEffect(() => {
     if (open) {
@@ -371,8 +371,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     >
       <TransitionComponent
         appear
-        in={open && isPositioned}
+        in={open}
         onEntering={handleEntering}
+        onExited={handleExited}
         timeout={transitionDuration}
         {...TransitionProps}
       >
@@ -381,6 +382,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           {...PaperProps}
           ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
+          style={isPositioned ? undefined : { visibility: 'hidden' }}
           ownerState={ownerState}
         >
           {children}
