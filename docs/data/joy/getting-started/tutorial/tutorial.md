@@ -1,19 +1,26 @@
-# Tutorial
+# Introductory tutorial
 
-<p class="description">Quickly learn how to create a login page using Joy UI components.</p>
+<p class="description">Learn how to import and style Joy UI components to build a simple login page.</p>
 
-In this small tutorial, you'll learn how to:
+This tutorial will walk you through how to set up the user interface for a basic login page using Joy UI.
 
-1. Import Joy UI components.
-2. Build a basic login page with them.
-3. Toggle light and dark mode.
+By the end, you should understand how to:
 
-The only **prerequesite** is [having Joy UI installed](/joy-ui/getting-started/installation/).
+1. import Joy UI components into your React app
+2. add styles to Joy UI components
+3. create a button to toggle light and dark modes
 
-:::warning
-⚠️ **Note:** We won't cover theming and general component customization at this moment.
-Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
+:::info
+This tutorial does _not_ cover theming and general component customization.
+Learn more about [different customization approaches](/joy-ui/customization/approaches/) after you're done on this page.
 :::
+
+## Prerequisites
+
+This tutorial assumes:
+
+- you've already set up a React app—try [Create React App](https://create-react-app.dev/) if you need a boilerplate
+- you've installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions
 
 ## Building the login page
 
