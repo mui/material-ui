@@ -525,7 +525,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'placement') {
               return (
-                <FormControl>
+                <FormControl key={propName}>
                   <FormLabel>Placement</FormLabel>
                   <RadioGroup
                     name="placement"
@@ -554,6 +554,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                           border: '1px solid',
                           borderColor: 'divider',
                           borderRadius: 'sm',
+                          alignSelf: 'stretch',
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'center',
