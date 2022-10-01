@@ -9,8 +9,8 @@ function transform(value, userValue) {
           `MUI: Because "grey" is both a CSS color and part of the theme's` +
             'color palette, the palette is being prioritized.',
           '',
-          'To disambiguate, either specify a palette shade (e.g. "grey.500"), '
-            + 'use a different CSS color, or use the `style` prop.',
+          'To disambiguate, either specify a palette shade (e.g. "grey.500"), ' +
+            'use a different CSS color, or use the `style` prop.',
         ].join('\n'),
       );
     }
