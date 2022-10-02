@@ -1,9 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
 const deepRed = {
   50: '#ff6b6b',
   100: '#ff5e5e', 
@@ -20,5 +14,4 @@ const deepRed = {
   A400: '#d62f2f', 
   A700: '#ff0000' 
 };
-var _default = deepRed;
-exports.default = _default;
+export default deepRed;
