@@ -21,6 +21,7 @@ import {
   generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
+  generateDirectionClasses,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridTypeMap, GridOwnerState } from './GridProps';
@@ -62,13 +63,12 @@ export default function createGrid(
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
-
     const slots = {
       root: [
         'root',
         container && 'container',
-        direction !== 'row' && `direction-xs-${String(direction)}`,
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
+        ...generateDirectionClasses(direction),
         ...generateSizeClassNames(gridSize),
         ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],
