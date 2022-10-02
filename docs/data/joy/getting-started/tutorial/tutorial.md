@@ -15,7 +15,7 @@ By the end, you should understand how to:
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **< >** icon underneath to see the full source code:
+Here's what the final product looks like—click on the **< >** icon underneath the demo to see the full source code:
 
 {{"demo": "LoginFinal.js", "hideToolbar": false, "bg": true}}
 
@@ -31,6 +31,7 @@ This tutorial assumes that you've already:
 The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports Joy UI's [global variants feature](/joy-ui/main-features/global-variants/), helping to ensure consistency across your app.
 
 Import Sheet and add it to your app as shown below.
+(If you're using Create React App, for example, all of this code should go in `App.js`.)
 Notice that Joy UI components must be nested within `<CssVarsProvider />`:
 
 ```jsx
@@ -177,18 +178,20 @@ Notice that the Link is appended to the Typography inside of [the `endDecorator`
 </Typography>
 ```
 
-<!-- TODO: Add the result image -->
-
 ## 🎁 Bonus: Build a toggle for light and dark mode
 
-Joy UI provides an effortless way to toggle between modes by using the React hook `useColorScheme`.
-All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
+The `useColorScheme` hook greatly simplifies the implementation of a toggle button for switching between light and dark mode in an app.
+It also enables Joy UI to ensure that the user-selected mode (which is stored in `localStorage` by default) stays in sync across browser tabs.
+
+Add `useColorScheme` to your import from `@mui/joy/styles`:
 
 ```jsx
-import React from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-// ...other imports
+```
 
+Next, create a light/dark mode toggle button by adding the following code snippet in between your imports and your `App()`:
+
+```jsx
 const ModeToggle = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -217,123 +220,23 @@ const ModeToggle = () => {
     </Button>
   );
 };
+```
 
-export default function App() {
+Finally, add your newly built `<ModeToggle />` button above `<Sheet />`:
+
+```diff
+ export default function App() {
   return (
     <CssVarsProvider>
-      <ModeToggle />
++      <ModeToggle />
       <Sheet>...</Sheet>
     </CssVarsProvider>
   );
 }
 ```
 
-:::info
-💡 **Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
-:::
-
-## Putting it all together
-
-Your completed app should look like this:
-
-```jsx
-import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
-import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
-
-const ModeToggle = () => {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  // necessary for server-side rendering
-  // because mode is undefined on the server
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
-
-  return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-    >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
-  );
-};
-
-export default function App() {
-  return (
-    <CssVarsProvider>
-      <ModeToggle />
-      <Sheet
-        sx={{
-          maxWidth: 400,
-          mx: 'auto', // margin left & right
-          my: 4, // margin top & botom
-          py: 3, // padding top & bottom
-          px: 2, // padding left & right
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 2,
-          borderRadius: 'sm',
-          boxShadow: 'md',
-        }}
-        variant="outlined"
-      >
-        <div>
-          <Typography level="h4" component="h1">
-            <b>Welcome!</b>
-          </Typography>
-          <Typography level="body2">Sign in to continue.</Typography>
-        </div>
-        <TextField
-          // html input attribute
-          name="email"
-          type="email"
-          placeholder="johndoe@email.com"
-          // pass down to FormLabel as children
-          label="Email"
-        />
-        <TextField
-          name="password"
-          type="password"
-          placeholder="password"
-          label="Password"
-        />
-        <Button
-          sx={{
-            mt: 1, // margin top
-          }}
-        >
-          Log in
-        </Button>
-        <Typography
-          endDecorator={<Link href="/sign-up">Sign up</Link>}
-          fontSize="sm"
-          sx={{ alignSelf: 'center' }}
-        >
-          Don't have an account?
-        </Typography>
-      </Sheet>
-    </CssVarsProvider>
-  );
-}
-```
-
-Congratulations 🎉! You've built your first good looking UI with Joy UI!
+Your app should now look like the [interactive demo](#interactive-demo) at the top of the page.
+Great job making it all the way to the end!
 
 :::info
 This tutorial does _not_ cover theming and general component customization.
