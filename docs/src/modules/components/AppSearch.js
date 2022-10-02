@@ -133,7 +133,7 @@ const NewStartScreen = () => {
     },
   ];
   return (
-    <div className="DocSearch-NewStartScreen">
+    <React.Fragment>
       {startScreenOptions.map(({ category, items }) => (
         <div key={category.name} className="DocSearch-NewStartScreenCategory">
           <div className="DocSearch-NewStartScreenTitle">
@@ -150,7 +150,7 @@ const NewStartScreen = () => {
           ))}
         </div>
       ))}
-    </div>
+    </React.Fragment>
   );
 };
 
@@ -256,8 +256,10 @@ export default function AppSearch() {
       const dropDown = document.querySelector('.DocSearch-Dropdown');
       const isExisting = document.querySelector('.DocSearch-NewStartScreen');
       if (dropDown && !isExisting) {
-        const root = createRoot(dropDown);
-        root.render(<NewStartScreen />);
+        const div = document.createElement('div');
+        div.setAttribute('class', 'DocSearch-NewStartScreen');
+        createRoot(div).render(<NewStartScreen />);
+        dropDown.insertBefore(div, dropDown.firstChild);
       }
     };
     // add transition to Modal
