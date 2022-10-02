@@ -2740,19 +2740,19 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
-"@nrwl/cli@14.7.13":
-  version "14.7.13"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.7.13.tgz#32ab43fd2cc385e573496a45f1cc9bc95a2e5e9e"
-  integrity sha512-roEowDw1TxNsfL/pv752pO/gZrxhfpO1BUQ47madKn/ujupzVe/ropufrT7taDntwQMcHWLrHG3lJyqOexUJIA==
+"@nrwl/cli@14.8.2":
+  version "14.8.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.8.2.tgz#ec521f30d16771f50b87e3d9d0383465bedf5d4d"
+  integrity sha512-I+oblryFkZJYk9TMsBWNdN0SV7OjsiD80gD1WjA1KXEQiFVfopYgwErBrxoenodncXrMFRCk/QR9U5F+23+Vow==
   dependencies:
-    nx "14.7.13"
+    nx "14.8.2"
 
-"@nrwl/tao@14.7.13":
-  version "14.7.13"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-14.7.13.tgz#66a77ffab4869a6b79a4456b4d2915c7bb866445"
-  integrity sha512-nZzbMCNC5UK/Tf7kRbAqdLF5PSqom6aGd3q9m1TKbpxu9ufE5jvK0mF4EDvVJO7LCBnWaLgpZOINRfRPBLGueA==
+"@nrwl/tao@14.8.2":
+  version "14.8.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-14.8.2.tgz#edf90da3af4f317e26498882a25dba3cce34cbba"
+  integrity sha512-a4+O307YZJf1H6CDQFGs4DoUvl7xUFSJo2rNHoR9jDlWU+Ug3n0iivX7Fih6Ui0gX4ocEpRwzNMmJhEmEq1BYw==
   dependencies:
-    nx "14.7.13"
+    nx "14.8.2"
 
 "@octokit/auth-token@^2.4.4":
   version "2.5.0"
@@ -11734,13 +11734,13 @@ nwsapi@^2.2.0:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.2.tgz#e5418863e7905df67d51ec95938d67bf801f0bb0"
   integrity sha512-90yv+6538zuvUMnN+zCr8LuV6bPFdq50304114vJYJ8RDyK8D5O9Phpbd6SZWgI7PwzmmfN1upeOJlvybDSgCw==
 
-nx@14.7.13, "nx@>=14.6.1 < 16", nx@^14.7.13:
-  version "14.7.13"
-  resolved "https://registry.yarnpkg.com/nx/-/nx-14.7.13.tgz#1c71c0a2b574cdfadf146650b57807cda7d7d789"
-  integrity sha512-NWeZ2fDjx6rkueA/lbu6tK4qfSvp6xrvQtv81Cpyae8BhhkoI36QoxkySJVBetIY/MypDPSl9JHqJwkBju4PQw==
+nx@14.8.2, "nx@>=14.6.1 < 16", nx@^14.8.2:
+  version "14.8.2"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-14.8.2.tgz#b285a09368418c4c0fa55c2d5ee411fe1fd3706b"
+  integrity sha512-pPijBoeybsIlCD8FMH8WTns+pcIL+0ZOh/+otUX2LfVsi+ppH33GUxO9QVLPrLcyGaoHhwil4hYBxPIQ7Z1r2g==
   dependencies:
-    "@nrwl/cli" "14.7.13"
-    "@nrwl/tao" "14.7.13"
+    "@nrwl/cli" "14.8.2"
+    "@nrwl/tao" "14.8.2"
     "@parcel/watcher" "2.0.4"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^3.0.0-rc.18"
