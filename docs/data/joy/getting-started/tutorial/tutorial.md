@@ -8,9 +8,16 @@ You'll also encounter key features of Joy UI such as global variants, the `sx` p
 
 By the end, you should understand how to:
 
-1. import Joy UI components into your React app
-2. add styles to Joy UI components
-3. toggle light and dark mode with `useColorScheme`
+1. import and customize Joy UI components
+2. add styles to Joy UI components with `sx`
+3. override default HTML elements with `component`
+4. toggle light and dark mode with `useColorScheme`
+
+## Interactive demo
+
+Here's what the final product looks like—click on the **< >** icon underneath to see the full source code:
+
+{{"demo": "LoginFinal.js", "hideToolbar": false, "bg": true}}
 
 ## Prerequisites
 
