@@ -101,7 +101,7 @@ Replace `Welcome!` inside your Sheet component with this `<div>`:
   <Typography level="h4" component="h1">
     Welcome!
   </Typography>
-  <Typography level="body2">Sign in to continue</Typography>
+  <Typography level="body2">Sign in to continue.</Typography>
 </div>
 ```
 
@@ -141,40 +141,33 @@ Insert these two Text Fields below the `<div>` from the previous step, inside th
 
 ## Import Button and Link for user actions
 
-The `Button` component has `solid` and `primary` as its default variant and color, respectively.
-Play around with changing their values to see how each variant differs from one another.
-Try `plain`, `outlined`, or `soft`.
+The Button and Link components replace the HTML `<button>` and `<a>` tags, respectively, giving you access to global variants, the `sx` and `component` props, and more.
 
-We'll also use a `Link` component inside the `endDecorator` prop of the `Typography` component to pull off the sign up anchor link.
+Add the following imports with the rest in your app:
 
 ```jsx
-// ...other imports
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
+```
 
-<Sheet
-  sx={
-    {
-      // ...
-    }
-  }
+Add the following Button, Typography, and Link components after the Text Fields from the previous step, still nested inside the Sheet.
+Notice that the Link is appended to the Typography inside of [the `endDecorator` prop](/joy-ui/react-typography/#decorators):
+
+```jsx
+<Button
+  sx={{
+    mt: 1, // margin top
+  }}
 >
-  ...typography and text-fields
-  <Button
-    sx={{
-      mt: 1, // margin top
-    }}
-  >
-    Log in
-  </Button>
-  <Typography
-    endDecorator={<Link href="/sign-up">Sign up</Link>}
-    fontSize="sm"
-    sx={{ alignSelf: 'center' }}
-  >
-    Don't have an account?
-  </Typography>
-</Sheet>;
+  Log in
+</Button>
+<Typography
+  endDecorator={<Link href="/sign-up">Sign up</Link>}
+  fontSize="sm"
+  sx={{ alignSelf: 'center' }}
+>
+  Don't have an account?
+</Typography>
 ```
 
 <!-- TODO: Add the result image -->
@@ -297,7 +290,7 @@ export default function App() {
           <Typography level="h4" component="h1">
             <b>Welcome!</b>
           </Typography>
-          <Typography level="body2">Sign in to continue</Typography>
+          <Typography level="body2">Sign in to continue.</Typography>
         </div>
         <TextField
           // html input attribute
