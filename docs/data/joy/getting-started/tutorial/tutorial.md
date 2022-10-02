@@ -1,6 +1,6 @@
 # Introductory tutorial
 
-<p class="description">Learn how to import and style Joy UI components to build a simple login page.</p>
+<p class="description">Learn how to import and style Joy UI components to build a simple login page with light and dark modes.</p>
 
 This tutorial will walk you through how to assemble the UI for a basic login page using Joy UI.
 You'll be introduced to several common components as well as some of the props you can use to control their styles.
@@ -120,7 +120,7 @@ Try changing the values for the `level` and `component` props to see how they af
 
 ## Add Text Field for user inputs
 
-The Text Field component bundles together the Form Control, Form Label, Input, and Form Helper Text components to provide you with a sophisticated field for user input.
+The [Text Field](/joy-ui/react-text-field/) component bundles together the Form Control, Form Label, Input, and Form Helper Text components to provide you with a sophisticated field for user input.
 
 Add an import for Text Field with the rest of your imports:
 
@@ -149,7 +149,7 @@ Insert these two Text Fields below the `<div>` from the previous step, inside th
 
 ## Import Button and Link for user actions
 
-The Button and Link components replace the HTML `<button>` and `<a>` tags, respectively, giving you access to global variants, the `sx` and `component` props, and more.
+The [Button](/joy-ui/react-button/) and [Link](/joy-ui/react-link/) components replace the HTML `<button>` and `<a>` tags, respectively, giving you access to global variants, the `sx` and `component` props, and more.
 
 Add the following imports with the rest in your app:
 
@@ -180,7 +180,7 @@ Notice that the Link is appended to the Typography inside of [the `endDecorator`
 
 ## 🎁 Bonus: Build a toggle for light and dark mode
 
-The `useColorScheme` hook greatly simplifies the implementation of a toggle button for switching between light and dark mode in an app.
+The `useColorScheme` hook aids in the implementation of a toggle button for switching between light and dark mode in an app.
 It also enables Joy UI to ensure that the user-selected mode (which is stored in `localStorage` by default) stays in sync across browser tabs.
 
 Add `useColorScheme` to your import from `@mui/joy/styles`:
@@ -238,7 +238,28 @@ Finally, add your newly built `<ModeToggle />` button above `<Sheet />`:
 Your app should now look like the [interactive demo](#interactive-demo) at the top of the page.
 Great job making it all the way to the end!
 
-:::info
-This tutorial does _not_ cover theming and general component customization.
-Learn more about [different customization approaches](/joy-ui/customization/approaches/) when you're ready to go deeper on this topic.
-:::
+## Summary
+
+Here's a recap of the components used:
+
+- [Sheet](/joy-ui/react-sheet/)
+- [Typography](/joy-ui/react-typography/)
+- [Button](/joy-ui/react-button/)
+- [Link](/joy-ui/react-link/)
+- [Text Field](/joy-ui/react-text-field/)
+
+Here are some of the major features introduced:
+
+- [global variants](/joy-ui/main-features/global-variants/)
+- [the `sx` prop](/system/getting-started/the-sx-prop/)
+- [dark mode](/joy-ui/guides/applying-dark-mode/)
+
+## Next steps
+
+This tutorial does not cover theming or general component customization.
+Learn more about [different customization approaches](/joy-ui/customization/approaches/) and when to apply them.
+
+To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
+
+Are you migrating from Material UI?
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/guides/using-joy-ui-and-material-ui-together/).
