@@ -93,7 +93,6 @@ export default function createCssVarsProvider(options) {
       storageWindow,
     });
     const resolvedColorScheme = (() => {
-      // used to calculate the theme for both client & server side
       if (!colorScheme) {
         // This scope occurs on the server
         if (defaultMode === 'dark') {
@@ -228,7 +227,6 @@ export default function createCssVarsProvider(options) {
     return (
       <ColorSchemeContext.Provider
         value={{
-          // the `mode` in the context will be undefined on the server.
           mode,
           setMode,
           lightColorScheme,
