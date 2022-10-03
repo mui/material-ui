@@ -7,13 +7,13 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('Joy <Button />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
+  describeConformance(<Button startDecorator="icon">Conformance?</Button>, () => ({
     render,
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'JoyButton',
-    testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
+    testDeepOverrides: { slotName: 'startDecorator', slotClassName: classes.startDecorator },
     testVariantProps: { variant: 'solid', fullWidth: true },
     testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
@@ -76,21 +76,21 @@ describe('Joy <Button />', () => {
     expect(button).to.have.class(classes.fullWidth);
   });
 
-  it('should render a button with startIcon', () => {
-    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+  it('should render a button with startDecorator', () => {
+    const { getByRole } = render(<Button startDecorator={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const startIcon = button.querySelector(`.${classes.startIcon}`);
+    const startDecorator = button.querySelector(`.${classes.startDecorator}`);
 
     expect(button).to.have.class(classes.root);
-    expect(startIcon).not.to.have.class(classes.endIcon);
+    expect(startDecorator).not.to.have.class(classes.endDecorator);
   });
 
-  it('should render a button with endIcon', () => {
-    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+  it('should render a button with endDecorator', () => {
+    const { getByRole } = render(<Button endDecorator={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const endIcon = button.querySelector(`.${classes.endIcon}`);
+    const endDecorator = button.querySelector(`.${classes.endDecorator}`);
 
     expect(button).to.have.class(classes.root);
-    expect(endIcon).not.to.have.class(classes.startIcon);
+    expect(endDecorator).not.to.have.class(classes.startDecorator);
   });
 });

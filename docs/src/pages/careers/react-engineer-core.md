@@ -1,4 +1,4 @@
-# React Engineer - Core
+# React Engineer - Core (future role)
 
 <p class="description">You will strengthen the core components team, e.g. collaborate with the community to land contributions.</p>
 

@@ -31,7 +31,7 @@ export default function BasicMenu() {
         variant="outlined"
         color="neutral"
         onClick={handleClick}
-        endIcon={<ArrowDropDown />}
+        endDecorator={<ArrowDropDown />}
       >
         Size
       </Button>

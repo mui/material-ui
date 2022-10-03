@@ -391,26 +391,30 @@ export default function DemoToolbar(props) {
   });
 
   const devMenuItems = [];
-  if (process.env.STAGING === true) {
+  if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
     /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env.STAGING never changes
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
 
-    const defaultReviewID = process.env.GIT_REVIEW_ID ?? '20000';
+    if (process.env.PULL_REQUEST_ID) {
+      devMenuItems.push(
+        <MenuItem
+          key="link-deploy-preview"
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="link-deploy-preview"
+          component="a"
+          href={`https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+          target="_blank"
+          rel="noopener nofollow"
+          onClick={handleMoreClose}
+        >
+          demo on PR #{process.env.PULL_REQUEST_ID}
+        </MenuItem>,
+      );
+    }
+
     devMenuItems.push(
-      <MenuItem
-        key="link-deploy-preview"
-        data-ga-event-category="demo"
-        data-ga-event-label={demoOptions.demo}
-        data-ga-event-action="link-deploy-preview"
-        component="a"
-        href={`https://deploy-preview-${defaultReviewID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
-        target="_blank"
-        rel="noopener nofollow"
-        onClick={handleMoreClose}
-      >
-        demo on PR #{defaultReviewID}
-      </MenuItem>,
       <MenuItem
         key="link-next"
         data-ga-event-category="demo"
@@ -451,7 +455,6 @@ export default function DemoToolbar(props) {
         demo on&#160;<code>master</code>
       </MenuItem>,
     );
-
     /* eslint-enable material-ui/no-hardcoded-labels */
   }
 

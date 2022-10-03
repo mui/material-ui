@@ -123,7 +123,9 @@ module.exports = async function demoLoader() {
   const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
 
   const demos = {};
+  const components = {};
   const demoModuleIDs = new Set();
+  const componentModuleIDs = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -145,6 +147,7 @@ module.exports = async function demoLoader() {
         `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
         '',
       )}`;
+
       const moduleFilepath = path.join(
         path.dirname(this.resourcePath),
         moduleID.replace(/\//g, path.sep),
@@ -187,17 +190,36 @@ module.exports = async function demoLoader() {
     }),
   );
 
-  /**
-   * @param {string} moduleID
-   */
-  function getDemoIdentifier(moduleID) {
-    return moduleIDToJSIdentifier(moduleID);
-  }
+  const componentNames = Array.from(
+    new Set(
+      docs.en.rendered
+        .filter((markdownOrComponentConfig) => {
+          return (
+            typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.component
+          );
+        })
+        .map((componentConfig) => {
+          return componentConfig.component;
+        }),
+    ),
+  );
+
+  componentNames.forEach((componentName) => {
+    const moduleID = path.join(this.rootContext, 'src', componentName);
+
+    components[moduleID] = componentName;
+    componentModuleIDs.add(moduleID);
+  });
 
   const transformed = `
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
-        return `import ${getDemoIdentifier(moduleID)} from '${moduleID}';`;
+        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
+      })
+      .join('\n')}
+    ${Array.from(componentModuleIDs)
+      .map((moduleID) => {
+        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
 
@@ -205,9 +227,14 @@ module.exports = async function demoLoader() {
     export const demos = ${JSON.stringify(demos, null, 2)};
     export const demoComponents = {${Array.from(demoModuleIDs)
       .map((moduleID) => {
-        return `${JSON.stringify(moduleID)}: ${getDemoIdentifier(moduleID)},`;
+        return `${JSON.stringify(moduleID)}: ${moduleIDToJSIdentifier(moduleID)},`;
       })
       .join('\n')}};
+        export const srcComponents = {${Array.from(componentModuleIDs)
+          .map((moduleID) => {
+            return `${JSON.stringify(components[moduleID])}: ${moduleIDToJSIdentifier(moduleID)},`;
+          })
+          .join('\n')}};
   `;
 
   return transformed;

@@ -85,6 +85,7 @@ function HookButton(props) {
 }
 
 const NakedButton = (props) => <button type="submit" {...props} />;
+// eslint-disable-next-line react/no-unknown-property
 const EmotionCssButton = (props) => <button type="submit" css={emotionCss} {...props} />;
 
 suite

@@ -6,7 +6,7 @@ githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 ---
 
-# Unstyled select
+# Unstyled Select
 
 <p class="description">The select components let you create lists of options for users to choose from.</p>
 

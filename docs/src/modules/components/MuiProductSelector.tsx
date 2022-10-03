@@ -163,7 +163,7 @@ export default function MuiProductSelector() {
         </Link>
       </li>
       {/* @ts-ignore */}
-      {process.env.STAGING === true ? (
+      {process.env.DEPLOY_ENV === 'production' ? null : (
         <li role="none">
           <Link
             href={ROUTES.toolpadDocs}
@@ -193,7 +193,7 @@ export default function MuiProductSelector() {
             />
           </Link>
         </li>
-      ) : null}
+      )}
     </React.Fragment>
   );
 }

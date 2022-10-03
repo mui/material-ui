@@ -40,7 +40,7 @@ const InputRoot = styled('div', {
       '--Input-radius': theme.vars.radius.sm,
       '--Input-gap': '0.5rem',
       '--Input-placeholderOpacity': 0.5,
-      '--Input-focusedThickness': '2px',
+      '--Input-focusedThickness': theme.vars.focus.thickness,
       '--Input-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       ...(ownerState.size === 'sm' && {
@@ -68,7 +68,7 @@ const InputRoot = styled('div', {
       '--internal-paddingBlock':
         'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
       '--Input-decorator-childRadius':
-        'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Input-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Input-radius) / 2))',
       '--Button-minHeight': 'var(--Input-decorator-childHeight)',
       '--IconButton-size': 'var(--Input-decorator-childHeight)',
       '--Button-radius': 'var(--Input-decorator-childRadius)',
@@ -85,9 +85,6 @@ const InputRoot = styled('div', {
       alignItems: 'center',
       paddingInline: `var(--Input-paddingInline)`,
       borderRadius: 'var(--Input-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       ...(ownerState.size === 'sm' && {
@@ -95,7 +92,7 @@ const InputRoot = styled('div', {
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -114,17 +111,15 @@ const InputRoot = styled('div', {
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${inputClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${inputClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
@@ -174,8 +169,12 @@ const InputStartDecorator = styled('span', {
   alignItems: 'center',
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
+  ...(ownerState.disabled && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
   }),
 }));
 
@@ -191,6 +190,10 @@ const InputEndDecorator = styled('span', {
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  cursor: 'initial',
+  ...(ownerState.disabled && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+  }),
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
