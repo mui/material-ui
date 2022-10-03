@@ -11,7 +11,7 @@ import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References'
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-export default function Home() {
+export default function Core() {
   return (
     <BrandingProvider>
       <Head
