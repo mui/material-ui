@@ -535,6 +535,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         name={name}
         ref={inputRef}
         aria-hidden
+        aria-label={ariaLabel}
+        aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         onChange={handleChange}
         tabIndex={-1}
         disabled={disabled}
