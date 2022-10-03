@@ -464,7 +464,10 @@ export default function AppNavDrawer(props) {
               versionSelector={renderVersionSelector([
                 // DATE_PICKERS_VERSION is set from the X repo
                 { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
-                { text: 'v5', href: `https://mui.com${languagePrefix}/x/react-date-pickers/getting-started/` },
+                {
+                  text: 'v5',
+                  href: `https://mui.com${languagePrefix}/x/react-date-pickers/getting-started/`,
+                },
               ])}
             />
           )}
