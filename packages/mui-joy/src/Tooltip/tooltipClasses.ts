@@ -3,10 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface TooltipClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element unless `disableInteractive={true}`. */
-  rootInteractive: string;
   /** Styles applied to the root element if `arrow={true}`. */
-  rootArrow: string;
+  hasArrow: string;
   /** Styles applied to the arrow element. */
   arrow: string;
   /** Styles applied to the root element if `placement` contains "left". */
@@ -54,7 +52,7 @@ export function getTooltipUtilityClass(slot: string): string {
 const tooltipClasses: TooltipClasses = generateUtilityClasses('JoyTooltip', [
   'root',
   'rootInteractive',
-  'rootArrow',
+  'hasArrow',
   'placementLeft',
   'placementRight',
   'placementTop',

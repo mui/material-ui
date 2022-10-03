@@ -22,17 +22,15 @@ import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipOwnerState, TooltipProps, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipProps) => {
-  const { disableInteractive, arrow, placement, variant, color, size } = ownerState;
+  const { arrow, placement, variant, color, size } = ownerState;
 
   const slots = {
     root: [
       'root',
-      placement && `placement${capitalize(placement.split('-')[0])}`,
       size && `size${capitalize(size)}`,
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
-      !disableInteractive && 'rootInteractive',
-      arrow && 'rootArrow',
+      arrow && 'hasArrow',
     ],
     arrow: ['arrow'],
   };
