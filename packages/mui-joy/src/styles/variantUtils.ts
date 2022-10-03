@@ -1,4 +1,5 @@
 import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
@@ -237,7 +238,11 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   return result;
 };
 
-export const createPlainOverride = (theme: ThemeFragment) => {
+export const createPlainOverride = (
+  theme: ThemeFragment & {
+    getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
+  },
+) => {
   const getCssVar = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
@@ -250,7 +255,7 @@ export const createPlainOverride = (theme: ThemeFragment) => {
       result = {
         ...result,
         [color]: {
-          '[data-mui-color-scheme="light"] &': {
+          [theme.getColorSchemeSelector('light')]: {
             [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
             [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
               `palette-${color}-darkChannel`,
@@ -259,7 +264,7 @@ export const createPlainOverride = (theme: ThemeFragment) => {
               `palette-${color}-darkChannel`,
             )} / 0.64)`,
           },
-          '[data-mui-color-scheme="dark"] &': {
+          [theme.getColorSchemeSelector('dark')]: {
             [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
             [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
@@ -275,7 +280,11 @@ export const createPlainOverride = (theme: ThemeFragment) => {
   return result;
 };
 
-export const createSoftOverride = (theme: ThemeFragment) => {
+export const createSoftOverride = (
+  theme: ThemeFragment & {
+    getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
+  },
+) => {
   const getCssVar = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
@@ -289,7 +298,7 @@ export const createSoftOverride = (theme: ThemeFragment) => {
         ...result,
         [color]: {
           '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
-          '[data-mui-color-scheme="light"] &': {
+          [theme.getColorSchemeSelector('light')]: {
             [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.1)`,
@@ -324,7 +333,7 @@ export const createSoftOverride = (theme: ThemeFragment) => {
             )} / 0.2)`,
 
             '--variant-softColor': getCssVar(`palette-${color}-700`),
-            '--variant-softBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+            '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.4)`,
             '--variant-softHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-softHoverBg': getCssVar(`palette-${color}-200`),
             '--variant-softActiveBg': getCssVar(`palette-${color}-300`),
@@ -345,7 +354,7 @@ export const createSoftOverride = (theme: ThemeFragment) => {
               `palette-${color}-darkChannel`,
             )} / 0.12)`,
           },
-          '[data-mui-color-scheme="dark"] &': {
+          [theme.getColorSchemeSelector('dark')]: {
             [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.1)`,

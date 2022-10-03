@@ -16,7 +16,7 @@ import { Variants, VariantOverrides, VariantOverrideConfig } from './types/varia
 import { Theme, ThemeCssVar, ThemeScales } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import { createVariant } from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -533,7 +533,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   const { palette: firstColorSchemePalette } = Object.entries(colorSchemes)[0][1];
-  const variantInput = { palette: firstColorSchemePalette, prefix: cssVarPrefix, getCssVar };
+  const variantInput = { palette: firstColorSchemePalette, cssVarPrefix, getCssVar };
 
   const theme = {
     colorSchemes,
@@ -589,11 +589,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidHover: createVariant('solidHover', variantInput),
         solidActive: createVariant('solidActive', variantInput),
         solidDisabled: createVariant('solidDisabled', variantInput),
-        // variant overrides
-        plainOverrides: createTextOverrides(variantInput),
-        outlinedOverrides: createTextOverrides(variantInput),
-        softOverrides: createTextOverrides(variantInput),
-        solidOverrides: createContainedOverrides(variantInput),
       },
       variantsInput,
     ),

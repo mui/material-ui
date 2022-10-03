@@ -65,6 +65,7 @@ export const getThemeWithVars = (
       shadow,
       palette,
     },
+    getColorSchemeSelector: () => '&',
   } as unknown as Theme;
 };
 
