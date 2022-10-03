@@ -50,6 +50,7 @@ const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   loading: createLoading({ width: 360, height: 212 }),
 });
 
+// TODO Revert #34541 when https://github.com/mui/mui-x/pull/6362 is released
 // const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
 //   ssr: false,
 //   loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
