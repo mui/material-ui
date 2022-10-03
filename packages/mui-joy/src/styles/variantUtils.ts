@@ -102,87 +102,6 @@ const createPrefixVar = (cssVarPrefix: string | undefined | null) => {
     `--${cssVarPrefix ? `${cssVarPrefix}-` : ''}${cssVar.replace(/^--/, '')}`;
 };
 
-export const createTextOverrides = (theme: ThemeFragment) => {
-  const { cssVarPrefix, getCssVar } = theme;
-  const cssVarPrefixVar = createPrefixVar(cssVarPrefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(
-            `palette-${color}-overrideTextPrimary`,
-          ),
-          [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(
-            `palette-${color}-overrideTextSecondary`,
-          ),
-          [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(
-            `palette-${color}-overrideTextTertiary`,
-          ),
-        },
-      };
-    }
-  });
-  return result;
-};
-
-export const createContainedOverrides = (theme: ThemeFragment) => {
-  const { cssVarPrefix, getCssVar } = theme;
-  const cssVarPrefixVar = createPrefixVar(cssVarPrefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [cssVarPrefixVar('--palette-text-primary')]: '#fff',
-          [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
-          [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
-          '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
-
-          '--variant-plainColor': getCssVar(`palette-${color}-100`),
-          '--variant-plainHoverColor': `#fff`,
-          '--variant-plainHoverBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-plainActiveBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
-
-          '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
-          '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
-          '--variant-outlinedHoverColor': `#fff`,
-          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
-          '--variant-outlinedHoverBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
-
-          '--variant-softColor': '#fff',
-          '--variant-softBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-softHoverBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-softActiveBg': `rgba(255 255 255 / 0.08)`,
-          '--variant-softDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-softDisabledBg': `rgba(255 255 255 / 0.08)`,
-
-          '--variant-solidBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
-          '--variant-solidHoverBg': 'rgba(0 0 0 / 0.32)',
-          '--variant-solidActiveBg': 'rgba(0 0 0 / 0.48)',
-          '--variant-solidDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-solidDisabledBg': `rgba(255 255 255 / 0.08)`,
-        },
-      };
-    }
-  });
-  return result;
-};
-
 export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
   if (theme) {
@@ -238,48 +157,6 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   return result;
 };
 
-export const createPlainOverride = (
-  theme: ThemeFragment & {
-    getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  },
-) => {
-  const getCssVar = createGetCssVar(theme.cssVarPrefix);
-  const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
-  Object.entries(theme.palette).forEach((entry) => {
-    const [color, colorPalette] = entry as [
-      DefaultColorPalette,
-      string | number | Record<string, any>,
-    ];
-    if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          [theme.getColorSchemeSelector('light')]: {
-            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
-            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
-              `palette-${color}-darkChannel`,
-            )} / 0.72)`,
-            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
-              `palette-${color}-darkChannel`,
-            )} / 0.64)`,
-          },
-          [theme.getColorSchemeSelector('dark')]: {
-            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
-            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
-              `palette-${color}-lightChannel`,
-            )} / 0.72)`,
-            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
-              `palette-${color}-lightChannel`,
-            )} / 0.6)`,
-          },
-        },
-      };
-    }
-  });
-  return result;
-};
-
 export const createSoftOverride = (
   theme: ThemeFragment & {
     getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
@@ -302,11 +179,27 @@ export const createSoftOverride = (
             [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.1)`,
+            [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.08)`,
+            [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.2)`,
+            [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.32)`,
+            [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.48)`,
+            [cssVarPrefixVar('--palette-background-tooltip')]: getCssVar(`palette-${color}-800`),
             [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
             [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-700`),
             [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
               `palette-${color}-darkChannel`,
             )} / 0.64)`,
+            [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.32)`,
             '--variant-plainColor': getCssVar(`palette-${color}-600`),
             '--variant-plainHoverColor': getCssVar(`palette-${color}-700`),
             '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.16)`,
@@ -318,7 +211,7 @@ export const createSoftOverride = (
             '--variant-outlinedColor': getCssVar(`palette-${color}-600`),
             '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
             '--variant-outlinedHoverColor': getCssVar(`palette-${color}-700`),
-            '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-500`),
+            '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
             '--variant-outlinedHoverBg': `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.16)`,
@@ -333,7 +226,7 @@ export const createSoftOverride = (
             )} / 0.2)`,
 
             '--variant-softColor': getCssVar(`palette-${color}-700`),
-            '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.4)`,
+            '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.56)`,
             '--variant-softHoverColor': getCssVar(`palette-${color}-800`),
             '--variant-softHoverBg': getCssVar(`palette-${color}-200`),
             '--variant-softActiveBg': getCssVar(`palette-${color}-300`),
@@ -342,9 +235,9 @@ export const createSoftOverride = (
             )} / 0.6)`,
             '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
 
-            '--variant-solidColor': '#fff',
+            '--variant-solidColor': getCssVar('palette-common-white'),
             '--variant-solidBg': getCssVar(`palette-${color}-700`),
-            '--variant-solidHoverColor': '#fff',
+            '--variant-solidHoverColor': getCssVar('palette-common-white'),
             '--variant-solidHoverBg': getCssVar(`palette-${color}-600`),
             '--variant-solidActiveBg': getCssVar(`palette-${color}-500`),
             '--variant-solidDisabledColor': `rgba(${getCssVar(
@@ -358,6 +251,19 @@ export const createSoftOverride = (
             [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.1)`,
+            [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.08)`,
+            [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.2)`,
+            [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.4)`,
+            [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+              `palette-${color}-mainChannel`,
+            )} / 0.6)`,
+            [cssVarPrefixVar('--palette-background-tooltip')]: getCssVar(`palette-${color}-500`),
             [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
             [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
@@ -365,8 +271,11 @@ export const createSoftOverride = (
             [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
             )} / 0.6)`,
+            [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+              `palette-${color}-lightChannel`,
+            )} / 0.2)`,
             '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.88)`,
-            '--variant-plainHoverColor': '#fff',
+            '--variant-plainHoverColor': getCssVar('palette-common-white'),
             '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.16)`,
             '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
             '--variant-plainDisabledColor': `rgba(${getCssVar(
@@ -374,7 +283,7 @@ export const createSoftOverride = (
             )} / 0.6)`,
 
             '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.88)`,
-            '--variant-outlinedHoverColor': '#fff',
+            '--variant-outlinedHoverColor': getCssVar('palette-common-white'),
             '--variant-outlinedBg': 'initial',
             '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
             '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-600`),
@@ -435,9 +344,23 @@ export const createSolidOverride = (theme: ThemeFragment) => {
         [color]: {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
           [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
+          [cssVarPrefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.08)',
+          [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.2)`,
+          [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.32)`,
+          [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.4)`,
+          [cssVarPrefixVar('--palette-background-tooltip')]: getCssVar(`palette-${color}-900`),
           [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-common-white`),
           [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
           [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
+          [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+            `palette-${color}-lightChannel`,
+          )} / 0.32)`,
           '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
           '--variant-plainColor': getCssVar(`palette-${color}-50`),
@@ -447,9 +370,9 @@ export const createSolidOverride = (theme: ThemeFragment) => {
           '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
 
           '--variant-outlinedColor': getCssVar(`palette-${color}-50`),
-          '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.5)`,
           '--variant-outlinedHoverColor': `#fff`,
-          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
           '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.12)`,
           '--variant-outlinedActiveBg': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
@@ -459,9 +382,9 @@ export const createSolidOverride = (theme: ThemeFragment) => {
 
           '--variant-softColor': getCssVar(`palette-${color}-50`),
           '--variant-softHoverColor': getCssVar(`palette-common-white`),
-          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-darkChannel`)} / 0.32)`,
-          '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.12)`,
-          '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
+          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.24)`,
+          '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
+          '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.2)`,
           '--variant-softDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
           )} / 0.6)`,

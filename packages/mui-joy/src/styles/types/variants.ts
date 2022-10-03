@@ -68,8 +68,8 @@ export interface VariantOverrideSoft extends Record<ColorPaletteProp, CSSObject>
 export interface VariantOverrideSolid extends Record<ColorPaletteProp, CSSObject> {}
 
 export interface VariantOverrides {
-  plain: VariantOverridePlain;
-  outlined: VariantOverrideOutlined;
+  plain?: VariantOverridePlain;
+  outlined?: VariantOverrideOutlined;
   soft: VariantOverrideSoft;
   solid: VariantOverrideSolid;
 }

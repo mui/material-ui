@@ -1,7 +1,7 @@
 import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import extendTheme from './extendTheme';
-import { createPlainOverride, createSoftOverride, createSolidOverride } from './variantUtils';
+import { createSoftOverride, createSolidOverride } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
@@ -23,8 +23,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     // `variantOverrides` need to be generated after the theme's palette has been calculated.
     mergedTheme.variantOverrides = deepmerge(
       {
-        plain: createPlainOverride(mergedTheme),
-        outlined: createPlainOverride(mergedTheme),
         soft: createSoftOverride(mergedTheme),
         solid: createSolidOverride(mergedTheme),
       },

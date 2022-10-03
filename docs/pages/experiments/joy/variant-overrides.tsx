@@ -2,6 +2,7 @@ import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
@@ -81,12 +82,18 @@ export default function JoyVariant() {
             <Typography level="body3" mb={1}>
               text.tertiary
             </Typography>
+            <Divider />
             <Button variant="solid">solid</Button>
             <Button variant="soft">soft</Button>
             <Button variant="outlined">outlined</Button>
             <Button variant="plain">plain</Button>
+            <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
           </Sheet>
-          <Sheet variant="soft" color="success" enableVariantOverride>
+          <Sheet variant="soft" color="primary" enableVariantOverride>
             <Sheet
               variant="soft"
               sx={{
@@ -104,40 +111,16 @@ export default function JoyVariant() {
             <Typography level="body3" mb={1}>
               text.tertiary
             </Typography>
+            <Divider />
             <Button variant="solid">solid</Button>
             <Button variant="soft">soft</Button>
             <Button variant="outlined">outlined</Button>
             <Button variant="plain">plain</Button>
-          </Sheet>
-          <Sheet variant="plain" color="danger" enableVariantOverride>
-            <Typography>text.primary</Typography>
-            <Typography level="body2">text.secondary</Typography>
-            <Typography level="body3" mb={1}>
-              text.tertiary
-            </Typography>
-            <Button color="danger" variant="solid">
-              solid
-            </Button>
-            <Button color="danger" variant="soft">
-              soft
-            </Button>
-            <Button color="danger" variant="outlined">
-              outlined
-            </Button>
-            <Button color="danger" variant="plain">
-              plain
-            </Button>
-          </Sheet>
-          <Sheet variant="outlined" color="primary" enableVariantOverride>
-            <Typography>text.primary</Typography>
-            <Typography level="body2">text.secondary</Typography>
-            <Typography level="body3" mb={1}>
-              text.tertiary
-            </Typography>
-            <Button variant="solid">solid</Button>
-            <Button variant="soft">soft</Button>
-            <Button variant="outlined">outlined</Button>
-            <Button variant="plain">plain</Button>
+            <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
           </Sheet>
         </Box>
       </Box>

@@ -2,12 +2,7 @@ import { deepmerge } from '@mui/utils';
 import extendTheme from './extendTheme';
 import type { CssVarsThemeOptions, ColorSystemOptions } from './extendTheme';
 import type { Theme, RuntimeColorSystem } from './types';
-import {
-  createVariant,
-  createPlainOverride,
-  createSoftOverride,
-  createSolidOverride,
-} from './variantUtils';
+import { createVariant, createSoftOverride, createSolidOverride } from './variantUtils';
 
 export const getThemeWithVars = (
   themeInput?: Omit<CssVarsThemeOptions, 'colorSchemes'> & ColorSystemOptions,
@@ -94,8 +89,6 @@ defaultTheme.variants = deepmerge(
 );
 defaultTheme.variantOverrides = deepmerge(
   {
-    plain: createPlainOverride(defaultTheme),
-    outlined: createPlainOverride(defaultTheme),
     soft: createSoftOverride(defaultTheme),
     solid: createSolidOverride(defaultTheme),
   },
