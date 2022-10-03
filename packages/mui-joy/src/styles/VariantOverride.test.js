@@ -28,7 +28,7 @@ describe('VariantOverride', () => {
 
   it('createSolidOverride automatically create solid override if the variable is in the correct format', () => {
     const result = createSolidOverride({
-      prefix: 'foo',
+      cssVarPrefix: 'foo',
       palette: {
         primary: {
           plainColor: '',
@@ -50,7 +50,7 @@ describe('VariantOverride', () => {
         '--variant-softBg': 'rgba(var(--foo-palette-secondary-darkChannel) / 0.32)',
       },
       alternate: {
-        '--variant-solidBg': 'var(--foo-palette-alternate-50)',
+        '--variant-solidBg': 'var(--foo-palette-common-white)',
       },
     });
   });

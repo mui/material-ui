@@ -615,7 +615,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         // Need type casting due to module augmentation inside the repo
         main: '500' as keyof PaletteRange,
         light: '200' as keyof PaletteRange,
-        dark: '900' as keyof PaletteRange,
+        dark: '800' as keyof PaletteRange,
       };
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);

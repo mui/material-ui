@@ -91,18 +91,19 @@ export const createVariantStyle = (
 };
 
 interface ThemeFragment {
-  prefix?: string;
+  cssVarPrefix?: string;
   getCssVar: (...args: any[]) => string;
   palette: Record<string, any>;
 }
 
-const createPrefixVar = (prefix: string | undefined | null) => {
-  return (cssVar: string) => `--${prefix ? `${prefix}-` : ''}${cssVar.replace(/^--/, '')}`;
+const createPrefixVar = (cssVarPrefix: string | undefined | null) => {
+  return (cssVar: string) =>
+    `--${cssVarPrefix ? `${cssVarPrefix}-` : ''}${cssVar.replace(/^--/, '')}`;
 };
 
 export const createTextOverrides = (theme: ThemeFragment) => {
-  const { prefix, getCssVar } = theme;
-  const prefixVar = createPrefixVar(prefix);
+  const { cssVarPrefix, getCssVar } = theme;
+  const cssVarPrefixVar = createPrefixVar(cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -113,11 +114,13 @@ export const createTextOverrides = (theme: ThemeFragment) => {
       result = {
         ...result,
         [color]: {
-          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-overrideTextPrimary`),
-          [prefixVar('--palette-text-secondary')]: getCssVar(
+          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(
+            `palette-${color}-overrideTextPrimary`,
+          ),
+          [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(
             `palette-${color}-overrideTextSecondary`,
           ),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(
+          [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(
             `palette-${color}-overrideTextTertiary`,
           ),
         },
@@ -128,8 +131,8 @@ export const createTextOverrides = (theme: ThemeFragment) => {
 };
 
 export const createContainedOverrides = (theme: ThemeFragment) => {
-  const { prefix, getCssVar } = theme;
-  const prefixVar = createPrefixVar(prefix);
+  const { cssVarPrefix, getCssVar } = theme;
+  const cssVarPrefixVar = createPrefixVar(cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -140,9 +143,9 @@ export const createContainedOverrides = (theme: ThemeFragment) => {
       result = {
         ...result,
         [color]: {
-          [prefixVar('--palette-text-primary')]: '#fff',
-          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
+          [cssVarPrefixVar('--palette-text-primary')]: '#fff',
+          [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
+          [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
           '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
           '--variant-plainColor': getCssVar(`palette-${color}-100`),
@@ -235,8 +238,8 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
 };
 
 export const createPlainOverride = (theme: ThemeFragment) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+  const getCssVar = createGetCssVar(theme.cssVarPrefix);
+  const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -248,20 +251,20 @@ export const createPlainOverride = (theme: ThemeFragment) => {
         ...result,
         [color]: {
           '[data-mui-color-scheme="light"] &': {
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
-            [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
               `palette-${color}-darkChannel`,
             )} / 0.72)`,
-            [prefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
               `palette-${color}-darkChannel`,
             )} / 0.64)`,
           },
           '[data-mui-color-scheme="dark"] &': {
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
-            [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
+            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
             )} / 0.72)`,
-            [prefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
             )} / 0.6)`,
           },
@@ -273,8 +276,8 @@ export const createPlainOverride = (theme: ThemeFragment) => {
 };
 
 export const createSoftOverride = (theme: ThemeFragment) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+  const getCssVar = createGetCssVar(theme.cssVarPrefix);
+  const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -287,12 +290,12 @@ export const createSoftOverride = (theme: ThemeFragment) => {
         [color]: {
           '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
           '[data-mui-color-scheme="light"] &': {
-            [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.1)`,
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
-            [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-700`),
-            [prefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-800`),
+            [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-700`),
+            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
               `palette-${color}-darkChannel`,
             )} / 0.64)`,
             '--variant-plainColor': getCssVar(`palette-${color}-600`),
@@ -343,14 +346,14 @@ export const createSoftOverride = (theme: ThemeFragment) => {
             )} / 0.12)`,
           },
           '[data-mui-color-scheme="dark"] &': {
-            [prefixVar('--palette-background-body')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
               `palette-${color}-mainChannel`,
             )} / 0.1)`,
-            [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
-            [prefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
+            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
             )} / 0.72)`,
-            [prefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
               `palette-${color}-lightChannel`,
             )} / 0.6)`,
             '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.88)`,
@@ -409,8 +412,8 @@ export const createSoftOverride = (theme: ThemeFragment) => {
 };
 
 export const createSolidOverride = (theme: ThemeFragment) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+  const getCssVar = createGetCssVar(theme.cssVarPrefix);
+  const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -422,10 +425,10 @@ export const createSolidOverride = (theme: ThemeFragment) => {
         ...result,
         [color]: {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
-          [prefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
-          [prefixVar('--palette-text-primary')]: '#fff',
-          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
-          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
+          [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
+          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-common-white`),
+          [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
+          [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
           '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
           '--variant-plainColor': getCssVar(`palette-${color}-50`),
@@ -446,7 +449,7 @@ export const createSolidOverride = (theme: ThemeFragment) => {
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
           '--variant-softColor': getCssVar(`palette-${color}-50`),
-          '--variant-softHoverColor': '#fff',
+          '--variant-softHoverColor': getCssVar(`palette-common-white`),
           '--variant-softBg': `rgba(${getCssVar(`palette-${color}-darkChannel`)} / 0.32)`,
           '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.12)`,
           '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
@@ -456,10 +459,10 @@ export const createSolidOverride = (theme: ThemeFragment) => {
           '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.08)`,
 
           '--variant-solidColor': getCssVar(`palette-${color}-600`),
-          '--variant-solidBg': getCssVar(`palette-${color}-50`),
+          '--variant-solidBg': getCssVar(`palette-common-white`),
           '--variant-solidHoverColor': getCssVar(`palette-${color}-700`),
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-100`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-200`),
+          '--variant-solidHoverBg': getCssVar(`palette-common-white`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-100`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
           )} / 0.6)`,
