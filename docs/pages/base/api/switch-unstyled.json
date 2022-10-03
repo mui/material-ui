@@ -28,6 +28,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SwitchUnstyled/SwitchUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-switch/\">Unstyled switch</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-switch/\">Unstyled Switch</a></li></ul>",
   "cssComponent": false
 }

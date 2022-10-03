@@ -486,7 +486,7 @@ export default function TeamExample() {
                 <Button
                   size="sm"
                   variant="plain"
-                  endIcon={<KeyboardArrowRightRoundedIcon fontSize="small" />}
+                  endDecorator={<KeyboardArrowRightRoundedIcon fontSize="small" />}
                   sx={{ px: 1, mt: 1 }}
                 >
                   Expand

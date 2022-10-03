@@ -223,15 +223,7 @@ export default function XComponents() {
                         Subscribe to our newsletter to get first-hand info about the development and
                         release of new components.
                       </Typography>
-                      <EmailSubscribe
-                        sx={{
-                          '& > div': {
-                            maxWidth: 'initial',
-                            border: '1px solid',
-                            borderColor: 'primaryDark.600',
-                          },
-                        }}
-                      />
+                      <EmailSubscribe />
                     </Frame.Info>
                   </ThemeProvider>
                 </Frame>

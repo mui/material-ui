@@ -6,7 +6,7 @@ githubLabel: 'component: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 ---
 
-# Unstyled tabs
+# Unstyled Tabs
 
 <p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
 

@@ -9,11 +9,11 @@ import createGenerateClassName from '../createGenerateClassName';
 
 function Test() {
   const options = React.useContext(StylesContext);
-  return <span options={options} />;
+  return <span data-options={options} />;
 }
 
 function getOptions(wrapper) {
-  return wrapper.find('span').props().options;
+  return wrapper.find('span').props()['data-options'];
 }
 
 describe('StylesProvider', () => {
