@@ -24,8 +24,8 @@ describe('defaultTheme', () => {
         'shadow',
         'typography',
         'variants',
-        'variantOverrides',
-        'variantOverrideConfig',
+        'variantInversion',
+        'variantInversionConfig',
         'vars',
         'cssVarPrefix',
       ]).to.includes(field);

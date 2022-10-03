@@ -157,7 +157,7 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   return result;
 };
 
-export const createSoftOverride = (
+export const createSoftInversion = (
   theme: ThemeFragment & {
     getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
   },
@@ -329,7 +329,7 @@ export const createSoftOverride = (
   return result;
 };
 
-export const createSolidOverride = (theme: ThemeFragment) => {
+export const createSolidInversion = (theme: ThemeFragment) => {
   const getCssVar = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;

@@ -62,17 +62,17 @@ export interface Variants {
   solidDisabled: VariantSolidDisabled;
 }
 
-export interface VariantOverridePlain extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOverrideOutlined extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOverrideSoft extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOverrideSolid extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantPlainInversion extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOutlinedInversion extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantSoftInversion extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantSolidInversion extends Record<ColorPaletteProp, CSSObject> {}
 
 export interface VariantOverrides {
-  plain?: VariantOverridePlain;
-  outlined?: VariantOverrideOutlined;
-  soft: VariantOverrideSoft;
-  solid: VariantOverrideSolid;
+  plain?: VariantPlainInversion;
+  outlined?: VariantOutlinedInversion;
+  soft: VariantSoftInversion;
+  solid: VariantSolidInversion;
 }
 
-export interface VariantOverrideConfig
+export interface VariantInversionConfig
   extends Partial<Record<VariantProp, Array<VariantProp> | undefined>> {}

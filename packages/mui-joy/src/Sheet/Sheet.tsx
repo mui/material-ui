@@ -9,7 +9,7 @@ import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
-import { VariantOverrideProvider, useVariantOverride } from '../styles/VariantOverride';
+import { VariantInversionProvider, useVariantInversion } from '../styles/VariantInversion';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { variant, color } = ownerState;
@@ -50,8 +50,8 @@ export const SheetRoot = styled('div', {
       position: 'relative',
     },
     variantStyle,
-    ownerState.enableVariantOverride &&
-      theme.variantOverrides[ownerState.variant!]?.[ownerState.color!],
+    ownerState.enableVariantInversion &&
+      theme.variantInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -66,17 +66,17 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     color: colorProp = 'neutral',
     component = 'div',
     variant = 'plain',
-    enableVariantOverride = false,
+    enableVariantInversion = false,
     ...other
   } = props;
-  const { getColor } = useVariantOverride(variant);
+  const { getColor } = useVariantInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
-    enableVariantOverride,
+    enableVariantInversion,
     variant,
   };
 
@@ -92,8 +92,8 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     />
   );
 
-  if (enableVariantOverride) {
-    return <VariantOverrideProvider variant={variant}>{result}</VariantOverrideProvider>;
+  if (enableVariantInversion) {
+    return <VariantInversionProvider variant={variant}>{result}</VariantInversionProvider>;
   }
   return result;
 }) as OverridableComponent<SheetTypeMap>;
@@ -128,7 +128,7 @@ Sheet.propTypes /* remove-proptypes */ = {
    * If `true`, the component create CSS variables that can override children with `context` color.
    * @default false
    */
-  enableVariantOverride: PropTypes.bool,
+  enableVariantInversion: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

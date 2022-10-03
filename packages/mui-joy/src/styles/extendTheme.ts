@@ -12,7 +12,7 @@ import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
-import { Variants, VariantOverrides, VariantOverrideConfig } from './types/variants';
+import { Variants, VariantOverrides, VariantInversionConfig } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScales } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
@@ -54,8 +54,8 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
-  variantOverrides?: Partial2Level<VariantOverrides>;
-  variantOverrideConfig?: VariantOverrideConfig;
+  variantInversion?: Partial2Level<VariantOverrides>;
+  variantInversionConfig?: VariantInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
@@ -595,7 +595,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-    variantOverrideConfig: {
+    variantInversionConfig: {
       soft: ['plain', 'outlined', 'soft', 'solid'],
       solid: ['plain', 'outlined', 'soft', 'solid'],
     },

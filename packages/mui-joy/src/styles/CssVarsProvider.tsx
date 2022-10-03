@@ -1,11 +1,11 @@
 import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import extendTheme from './extendTheme';
-import { createSoftOverride, createSolidOverride } from './variantUtils';
+import { createSoftInversion, createSolidInversion } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/^(typography|variants|breakpoints|variantOverrides|variantOverrideConfig)$/) ||
+  !!keys[0].match(/^(typography|variants|breakpoints|variantInversion|variantInversionConfig)$/) ||
   (keys[0] === 'focus' && keys[1] !== 'thickness');
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
@@ -20,13 +20,13 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   resolveTheme: (mergedTheme: Theme) => {
-    // `variantOverrides` need to be generated after the theme's palette has been calculated.
-    mergedTheme.variantOverrides = deepmerge(
+    // `variantInversion` need to be generated after the theme's palette has been calculated.
+    mergedTheme.variantInversion = deepmerge(
       {
-        soft: createSoftOverride(mergedTheme),
-        solid: createSolidOverride(mergedTheme),
+        soft: createSoftInversion(mergedTheme),
+        solid: createSolidInversion(mergedTheme),
       },
-      mergedTheme.variantOverrides,
+      mergedTheme.variantInversion,
       { clone: false },
     );
     return mergedTheme;

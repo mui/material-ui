@@ -20,7 +20,7 @@ describe('extendTheme', () => {
         'radius',
         'shadow',
         'typography',
-        'variantOverrideConfig',
+        'variantInversionConfig',
         'variants',
         'cssVarPrefix',
       ]).to.includes(field);

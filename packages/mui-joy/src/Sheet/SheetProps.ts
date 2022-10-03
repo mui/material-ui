@@ -22,7 +22,7 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * If `true`, the component create CSS variables that can override children with `context` color.
      * @default false
      */
-    enableVariantOverride?: boolean;
+    enableVariantInversion?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

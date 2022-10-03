@@ -5,7 +5,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
-import { useVariantOverride } from '../styles/VariantOverride';
+import { useVariantInversion } from '../styles/VariantInversion';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 
@@ -142,7 +142,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     endDecorator,
     ...other
   } = props;
-  const { getColor } = useVariantOverride(variant);
+  const { getColor } = useVariantInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);

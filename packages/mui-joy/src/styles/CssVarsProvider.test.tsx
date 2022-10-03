@@ -558,10 +558,10 @@ describe('[Joy] CssVarsProvider', () => {
       );
     });
 
-    it('contain expected variantOverrides', function test() {
+    it('contain expected variantInversion', function test() {
       const Text = () => {
         const theme = useTheme();
-        return <div>{Object.keys(theme.variantOverrides).join(',')}</div>;
+        return <div>{Object.keys(theme.variantInversion).join(',')}</div>;
       };
 
       const { container } = render(

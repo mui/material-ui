@@ -65,7 +65,7 @@ export default function JoyVariant() {
             },
           }}
         >
-          <Sheet variant="solid" color="primary" enableVariantOverride>
+          <Sheet variant="solid" color="primary" enableVariantInversion>
             <Sheet
               sx={{
                 bgcolor: 'background.body',
@@ -93,7 +93,7 @@ export default function JoyVariant() {
             <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
             <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
           </Sheet>
-          <Sheet variant="soft" color="primary" enableVariantOverride>
+          <Sheet variant="soft" color="primary" enableVariantInversion>
             <Sheet
               variant="soft"
               sx={{

@@ -4,12 +4,12 @@ import sinon from 'sinon';
 import { createRenderer } from 'test/utils';
 import useThemeProps from './useThemeProps';
 import ThemeProvider from './ThemeProvider';
-import VariantOverride, { useVariantOverride } from './VariantOverride';
-import { createSolidOverride } from './variantUtils';
+import VariantOverride, { useVariantInversion } from './VariantInversion';
+import { createSolidInversion } from './variantUtils';
 
-const Parent = ({ children, enableVariantOverride }) => (
+const Parent = ({ children, enableVariantInversion }) => (
   <VariantOverride.Provider
-    value={enableVariantOverride ? ['plain', 'outlined', 'soft', 'solid'] : undefined}
+    value={enableVariantInversion ? ['plain', 'outlined', 'soft', 'solid'] : undefined}
   >
     {children}
   </VariantOverride.Provider>
@@ -18,7 +18,7 @@ const Parent = ({ children, enableVariantOverride }) => (
 const Child = (inProps) => {
   // eslint-disable-next-line material-ui/mui-name-matches-component-name
   const props = useThemeProps({ name: 'Child', props: inProps });
-  const { getColor } = useVariantOverride(props.variant);
+  const { getColor } = useVariantInversion(props.variant);
   const finalColor = getColor(inProps.color, props.color || 'default');
   return finalColor;
 };
@@ -26,8 +26,8 @@ const Child = (inProps) => {
 describe('VariantOverride', () => {
   const { render } = createRenderer();
 
-  it('createSolidOverride automatically create solid override if the variable is in the correct format', () => {
-    const result = createSolidOverride({
+  it('createSolidInversion automatically create solid override if the variable is in the correct format', () => {
+    const result = createSolidInversion({
       cssVarPrefix: 'foo',
       palette: {
         primary: {
@@ -62,7 +62,7 @@ describe('VariantOverride', () => {
 
   it('use the default color if not enable', () => {
     const { container } = render(
-      <Parent variant="solid" enableVariantOverride={false}>
+      <Parent variant="solid" enableVariantInversion={false}>
         <Child variant="plain" />
       </Parent>,
     );
@@ -72,7 +72,7 @@ describe('VariantOverride', () => {
   describe('variant override enabled', () => {
     it('use instance color if provided', () => {
       const { container } = render(
-        <Parent variant="solid" enableVariantOverride>
+        <Parent variant="solid" enableVariantInversion>
           <Child variant="plain" color="primary" />
         </Parent>,
       );
@@ -82,7 +82,7 @@ describe('VariantOverride', () => {
     describe('parent variant override', () => {
       it('solid', () => {
         const { container } = render(
-          <Parent variant="solid" enableVariantOverride>
+          <Parent variant="solid" enableVariantInversion>
             <Child variant="plain" />
           </Parent>,
         );
@@ -91,7 +91,7 @@ describe('VariantOverride', () => {
 
       it('soft', () => {
         const { container } = render(
-          <Parent variant="soft" enableVariantOverride>
+          <Parent variant="soft" enableVariantInversion>
             <Child variant="plain" />
           </Parent>,
         );
@@ -113,7 +113,7 @@ describe('VariantOverride', () => {
     it('use "context" color even though theme default props is configured', () => {
       const { container } = render(
         <ThemeProvider theme={{ components: { Child: { defaultProps: { color: 'primary' } } } }}>
-          <Parent variant="solid" enableVariantOverride>
+          <Parent variant="solid" enableVariantInversion>
             <Child variant="plain" />
           </Parent>
         </ThemeProvider>,
