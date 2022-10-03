@@ -1,6 +1,6 @@
 ---
-title: MUI X v6.0.0-alpha.0
-description: We’re kicking off the development of the next version.
+title: A major update is coming for the advanced components.
+description: Improved customization and usability. We’re kicking off the development of MUI X v6.
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'News']
