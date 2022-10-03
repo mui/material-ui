@@ -11,7 +11,7 @@ import Download from '@mui/icons-material/Download';
 import InsertLink from '@mui/icons-material/InsertLink';
 import Crop from '@mui/icons-material/Crop';
 
-export default function LevelOfImportancy() {
+export default function LevelOfImportance() {
   return (
     <Box
       sx={{
