@@ -96,7 +96,7 @@
     "@types/format-util": "^1.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^16.2.15",
-    "@types/lodash": "^4.14.185",
+    "@types/lodash": "^4.14.186",
     "@types/mocha": "^9.1.1",
     "@types/prettier": "^2.7.1",
     "@types/react": "^18.0.21",
