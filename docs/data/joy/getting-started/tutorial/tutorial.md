@@ -1,52 +1,64 @@
-# Tutorial
+# Introductory tutorial
 
-<p class="description">Quickly learn how to create a login page using Joy UI components.</p>
+<p class="description">Learn how to import and style Joy UI components to build a simple login page with light and dark modes.</p>
 
-In this small tutorial, you'll learn how to:
+This tutorial will walk you through how to assemble the UI for a basic login page using Joy UI.
+You'll be introduced to several common components as well as some of the props you can use to control their styles.
+You'll also encounter key features of Joy UI such as global variants, the `sx` prop, and the `useColorScheme` hook.
 
-1. Import Joy UI components.
-2. Build a basic login page with them.
-3. Toggle light and dark mode.
+By the end, you should understand how to:
 
-The only **prerequesite** is [having Joy UI installed](/joy-ui/getting-started/installation/).
+1. import and customize Joy UI components
+2. add styles to Joy UI components with `sx`
+3. override default HTML elements with `component`
+4. toggle light and dark mode with `useColorScheme`
 
-:::warning
-⚠️ **Note:** We won't cover theming and general component customization at this moment.
-Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
-:::
+## Interactive demo
 
-## Building the login page
+Here's what the final product looks like—click on the **< >** icon underneath the demo to see the full source code:
 
-### 1. Creating the basic layout
+{{"demo": "LoginFinal.js", "hideToolbar": false, "bg": true}}
 
-To create the structure for the login page, we'll use the `Sheet` component, which is simply an HTML div that supports the global variant feature.
+## Prerequisites
 
-Try playing around with different variant values to see how they look like.
-You can use `solid`, `soft`, `outlined`, or `plain`.
+This tutorial assumes that you've already:
+
+- set up a React app—try [Create React App](https://create-react-app.dev/) if you need a boilerplate
+- installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions
+
+## Import the Sheet component for structure
+
+The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports Joy UI's [global variants feature](/joy-ui/main-features/global-variants/), helping to ensure consistency across your app.
+
+Import Sheet and add it to your app as shown below.
+(If you're using Create React App, for example, all of this code should go in `App.js`.)
+Notice that Joy UI components must be nested within `<CssVarsProvider />`:
 
 ```jsx
+import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 
-function App() {
+export default function App() {
   return (
     <CssVarsProvider>
       <Sheet variant="outlined">Welcome!</Sheet>
     </CssVarsProvider>
   );
 }
-
-export default App;
 ```
 
-:::info
-**Don't forget:** always render Joy UI components inside the `<CssVarsProvider/>` component.
+:::success
+Try playing around with different `variant` values to see the available styles.
+In addition to `outlined`, you can also use `solid`, `soft`, or `plain`—these are Joy UI's [global variants](/joy-ui/main-features/global-variants/), and they're available on all components.
 :::
 
-### 2. Using the `sx` prop for quick styling
+### Add styles with the sx prop
 
-Every Joy UI component accepts the `sx` prop, which allows a shorthand syntax for writing CSS.
+All Joy UI components accept [the `sx` prop](/system/getting-started/the-sx-prop/), which gives you access to a shorthand syntax for writing CSS.
 It's great for creating one-off customizations or rapidly experimenting with different styles.
+
+Replace your basic Sheet from the previous step with the following `sx`-styled Sheet:
 
 ```jsx
 <Sheet
@@ -67,116 +79,119 @@ It's great for creating one-off customizations or rapidly experimenting with dif
 </Sheet>
 ```
 
-Don't worry if you're confused about the `sx` prop's syntax at this moment.
-You'll get the hang of it as you use it more.
-Check the [MUI System's documentation](/system/getting-started/the-sx-prop/) to learn more about its foundation.
+:::success
+Try changing some of the values for the CSS properties above based on the patterns you observe.
+To go deeper, read about the `sx` prop in the [MUI System documentation](/system/getting-started/the-sx-prop/).
+:::
 
-### 3. Using `Typography` to create a welcome text
+## Add text with the Typography component
 
-The `Typography` component supports the `level` prop, allowing you to choose between a pre-defined scale of typography values.
-Joy UI provides 13 typography levels out of the box: `display 1 | display 2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`.
+The [Typography](/joy-ui/react-typography/) component replaces HTML header, paragraph, and span tags to help maintain a consistent hierarchy of text on the page.
 
-You can also change which HTML tag gets rendered in each `Typography` component using the `component` prop.
+:::info
+The `level` prop gives you access to a pre-defined scale of typographic values.
+Joy UI provides 13 typographic levels out of the box:
+
+`display1 | display2 | h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | body4 | body5`
+
+:::
+
+Add an import for Typography with the rest of your imports:
 
 ```jsx
-// ...other imports
 import Typography from '@mui/joy/Typography';
-
-<Sheet
-  sx={...}
->
-  <div>
-    <Typography level="h4" component="h1">
-      <b>Welcome!</b>
-    </Typography>
-    <Typography level="body2">Sign in to continue</Typography>
-  </div>
-</Sheet>;
 ```
 
-### 4. Using `TextField` to create user name and password inputs
-
-The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperText` components.
+Replace `Welcome!` inside your Sheet component with this `<div>`:
 
 ```jsx
-// ...other imports
+<div>
+  <Typography level="h4" component="h1">
+    Welcome!
+  </Typography>
+  <Typography level="body2">Sign in to continue.</Typography>
+</div>
+```
+
+:::success
+Try changing the values for the `level` and `component` props to see how they affect the typographic values and the elements rendered.
+(Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
+:::
+
+## Add Text Field for user inputs
+
+The [Text Field](/joy-ui/react-text-field/) component bundles together the Form Control, Form Label, Input, and Form Helper Text components to provide you with a sophisticated field for user input.
+
+Add an import for Text Field with the rest of your imports:
+
+```jsx
 import TextField from '@mui/joy/TextField';
-
-<Sheet
-  sx={
-    {
-      // ...
-    }
-  }
->
-  ...typography
-  <TextField
-    // html input attribute
-    name="email"
-    type="email"
-    placeholder="johndoe@email.com"
-    // pass down to FormLabel as children
-    label="Email"
-  />
-  <TextField
-    name="password"
-    type="password"
-    placeholder="password"
-    label="Password"
-  />
-</Sheet>;
 ```
 
-### 5. Using `Button` and `Link` for actions
-
-The `Button` component has `solid` and `primary` as its default variant and color, respectively.
-Play around with changing their values to see how each variant differs from one another.
-Try `plain`, `outlined`, or `soft`.
-
-We'll also use a `Link` component inside the `endDecorator` prop of the `Typography` component to pull off the sign up anchor link.
+Insert these two Text Fields below the `<div>` from the previous step, inside the Sheet:
 
 ```jsx
-// ...other imports
+<TextField
+  // html input attribute
+  name="email"
+  type="email"
+  placeholder="johndoe@email.com"
+  // pass down to FormLabel as children
+  label="Email"
+/>
+<TextField
+  name="password"
+  type="password"
+  placeholder="password"
+  label="Password"
+/>
+```
+
+## Import Button and Link for user actions
+
+The [Button](/joy-ui/react-button/) and [Link](/joy-ui/react-link/) components replace the HTML `<button>` and `<a>` tags, respectively, giving you access to global variants, the `sx` and `component` props, and more.
+
+Add the following imports with the rest in your app:
+
+```jsx
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-
-<Sheet
-  sx={
-    {
-      // ...
-    }
-  }
->
-  ...typography and text-fields
-  <Button
-    sx={{
-      mt: 1, // margin top
-    }}
-  >
-    Log in
-  </Button>
-  <Typography
-    endDecorator={<Link href="/sign-up">Sign up</Link>}
-    fontSize="sm"
-    sx={{ alignSelf: 'center' }}
-  >
-    Don't have an account?
-  </Typography>
-</Sheet>;
 ```
 
-<!-- TODO: Add the result image -->
-
-## 🎁 Bonus: Setting up dark mode
-
-Joy UI provides an effortless way to toggle between modes by using the React hook `useColorScheme`.
-All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
+Add the following Button, Typography, and Link components after the Text Fields from the previous step, still nested inside the Sheet.
+Notice that the Link is appended to the Typography inside of [the `endDecorator` prop](/joy-ui/react-typography/#decorators):
 
 ```jsx
-import React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-// ...other imports
+<Button
+  sx={{
+    mt: 1, // margin top
+  }}
+>
+  Log in
+</Button>
+<Typography
+  endDecorator={<Link href="/sign-up">Sign up</Link>}
+  fontSize="sm"
+  sx={{ alignSelf: 'center' }}
+>
+  Don't have an account?
+</Typography>
+```
 
+## 🎁 Bonus: Build a toggle for light and dark mode
+
+The `useColorScheme` hook aids in the implementation of a toggle button for switching between light and dark mode in an app.
+It also enables Joy UI to ensure that the user-selected mode (which is stored in `localStorage` by default) stays in sync across browser tabs.
+
+Add `useColorScheme` to your import from `@mui/joy/styles`:
+
+```jsx
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+```
+
+Next, create a light/dark mode toggle button by adding the following code snippet in between your imports and your `App()`:
+
+```jsx
 const ModeToggle = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -205,19 +220,46 @@ const ModeToggle = () => {
     </Button>
   );
 };
+```
 
-export default function App() {
+Finally, add your newly built `<ModeToggle />` button above `<Sheet />`:
+
+```diff
+ export default function App() {
   return (
     <CssVarsProvider>
-      <ModeToggle />
++      <ModeToggle />
       <Sheet>...</Sheet>
     </CssVarsProvider>
   );
 }
 ```
 
-:::info
-💡 **Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
-:::
+Your app should now look like the [interactive demo](#interactive-demo) at the top of the page.
+Great job making it all the way to the end!
 
-Congratulations 🎉! You've built your first good looking UI with Joy UI!
+## Summary
+
+Here's a recap of the components used:
+
+- [Sheet](/joy-ui/react-sheet/)
+- [Typography](/joy-ui/react-typography/)
+- [Button](/joy-ui/react-button/)
+- [Link](/joy-ui/react-link/)
+- [Text Field](/joy-ui/react-text-field/)
+
+Here are some of the major features introduced:
+
+- [global variants](/joy-ui/main-features/global-variants/)
+- [the `sx` prop](/system/getting-started/the-sx-prop/)
+- [dark mode](/joy-ui/guides/applying-dark-mode/)
+
+## Next steps
+
+This tutorial does not cover theming or general component customization.
+Learn more about [different customization approaches](/joy-ui/customization/approaches/) and when to apply them.
+
+To see some more sophisticated examples of Joy UI in action, check out our [collection of templates](/joy-ui/getting-started/templates/).
+
+Are you migrating from Material UI?
+Learn how to work with [Joy UI and Material UI together in one app](/joy-ui/guides/using-joy-ui-and-material-ui-together/).
