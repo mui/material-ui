@@ -38,7 +38,6 @@ const theme = createTheme(
 |:----------------------- |:----------- |:------ |
 | Amharic                 | am-ET       | `amET` |
 | Arabic (Egypt)          | ar-EG       | `arEG` |
-| Arabic (Saudi Arabia)   | ar-SA       | `arSA` |
 | Arabic (Sudan)          | ar-SD       | `arSD` |
 | 亚美尼亚语                   | hy-AM       | `hyAM` |
 | 阿塞拜疆语                   | az-AZ       | `azAZ` |
