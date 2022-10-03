@@ -39,7 +39,7 @@ const vars = [
   },
 ];
 
-export default function GroupedAvatars() {
+export default function CardVariables() {
   const [sx, setSx] = React.useState({});
   return (
     <Box
@@ -71,16 +71,20 @@ export default function GroupedAvatars() {
           <CardOverflow>
             <AspectRatio>
               <img
+                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198"
+                srcSet="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198&dpr=2 2x"
+                loading="lazy"
                 alt=""
-                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&auto=format&fit=crop&w=2148"
               />
             </AspectRatio>
           </CardOverflow>
           <Box sx={{ mt: -3, width: 48 }}>
             <AspectRatio ratio="1">
               <img
+                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=48"
+                srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=48&dpr=2 2x"
+                loading="lazy"
                 alt=""
-                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&auto=format&fit=crop&w=3387"
               />
             </AspectRatio>
           </Box>
@@ -100,7 +104,9 @@ export default function GroupedAvatars() {
         >
           <CardCover>
             <img
-              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&auto=format&fit=crop&w=2148"
+              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198"
+              srcSet="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198&dpr=2 2x"
+              loading="lazy"
               alt=""
             />
           </CardCover>

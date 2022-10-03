@@ -16,7 +16,7 @@ export default function DribbbleShot() {
   return (
     <Card
       sx={{
-        minWidth: 300,
+        width: 300,
         bgcolor: 'initial',
         boxShadow: 'none',
         '--Card-padding': '0px',
@@ -26,15 +26,10 @@ export default function DribbbleShot() {
         <AspectRatio ratio="4/3">
           <figure>
             <img
+              src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?auto=format&fit=crop&w=300"
+              srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?auto=format&fit=crop&w=300&dpr=2 2x"
+              loading="lazy"
               alt="Yosemite by Casey Horner"
-              width="330"
-              height="247"
-              sizes="338px"
-              data-sizes="auto"
-              data-srcset="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
-              data-src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
-              src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
-              srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
             />
           </figure>
         </AspectRatio>
