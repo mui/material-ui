@@ -151,7 +151,7 @@
     "karma-mocha": "^2.0.1",
     "karma-sourcemap-loader": "^0.3.8",
     "karma-webpack": "^5.0.0",
-    "lerna": "^5.5.2",
+    "lerna": "^5.5.4",
     "lodash": "^4.17.21",
     "markdownlint-cli": "^0.32.2",
     "mocha": "^10.0.0",
