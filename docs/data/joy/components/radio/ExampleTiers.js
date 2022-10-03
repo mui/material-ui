@@ -20,7 +20,7 @@ export default function ExampleTiers() {
         name="tiers"
         sx={{ gap: 1, '& > div': { p: 1, flexDirection: 'row', gap: 2 } }}
       >
-        <FormControl>
+        <FormControl size="sm">
           <Radio overlay value="small" />
           <div>
             <FormLabel>Small</FormLabel>
@@ -38,7 +38,7 @@ export default function ExampleTiers() {
             </FormHelperText>
           </div>
         </FormControl>
-        <FormControl>
+        <FormControl size="lg">
           <Radio overlay value="large" />
           <div>
             <FormLabel>Large</FormLabel>

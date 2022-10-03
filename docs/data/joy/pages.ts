@@ -47,6 +47,7 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
         ],

@@ -67,10 +67,11 @@ const SelectRoot = styled('div', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
-      '--Select-focusedThickness': '2px',
+      '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       '--Select-indicator-color': theme.vars.palette.text.tertiary,
@@ -98,7 +99,7 @@ const SelectRoot = styled('div', {
       '--internal-paddingBlock':
         'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
       '--Select-decorator-childRadius':
-        'max((var(--Select-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Select-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Select-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decorator-childHeight)',
       '--IconButton-size': 'var(--Select-decorator-childHeight)',
       '--Button-radius': 'var(--Select-decorator-childRadius)',
@@ -241,13 +242,25 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Icon-fontSize': '1.125rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Icon-fontSize': '1.25rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Icon-fontSize': '1.5rem',
+  }),
   color: 'var(--Select-indicator-color)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-});
+  [`.${selectClasses.endDecorator} + &`]: {
+    marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+}));
 
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
@@ -434,7 +447,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     additionalProps: {
       'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledby,
+      'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
       id: id ?? formControl?.htmlFor,
       name,
     },

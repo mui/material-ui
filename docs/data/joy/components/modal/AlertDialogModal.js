@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Divider from '@mui/joy/Divider';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import DeleteForever from '@mui/icons-material/DeleteForever';
@@ -36,6 +37,7 @@ export default function AlertDialogModal() {
           >
             Confirmation
           </Typography>
+          <Divider sx={{ my: 2 }} />
           <Typography
             id="alert-dialog-modal-description"
             textColor="text.tertiary"

@@ -153,6 +153,7 @@ module.exports = withDocsInfra({
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     LIB_VERSION: pkg.version,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
+    SLACK_FEEDBACKS_TOKEN: process.env.SLACK_FEEDBACKS_TOKEN,
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,

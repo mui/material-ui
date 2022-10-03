@@ -142,6 +142,13 @@ describe('<Fab />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
+  it('should pass disabled class to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Fab disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
+  });
+
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon data-testid="icon" className={childClassName} />;
