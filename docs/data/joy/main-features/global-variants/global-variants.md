@@ -1,12 +1,12 @@
 # Global variants
 
-<p class="description">Joy UI enables consistent look and feel across all components by using global variants.</p>
+<p class="description">Joy UI provides a set of global variants to ensure consistency across your app.</p>
 
-Every Joy UI component has the same set of 4 global variants.
-All of them are pulling styles from the same place, ensuring then that each variant looks the same across both "native" and custom components.
-That way, you get a consistent look and feel throughout your design system.
+All Joy UI components accept four global variables: `solid`, `soft`, `outlined`, and `plain`.
 
-The different design of each variant is mostly achieve using different combination of values for the `color`, `background`, and `border` CSS properties.
+These variables all pull their styles from a single source, helping you to ensure a consistent look and feel across both pre-built Joy UI components and any custom components you might assemble.
+
+Under the hood, these global variants are primarily differentiated by the values for their `color`, `background`, and `border` CSS properties.
 
 ## Types of variants
 
