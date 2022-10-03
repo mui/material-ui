@@ -68,7 +68,7 @@ const InputRoot = styled('div', {
       '--internal-paddingBlock':
         'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
       '--Input-decorator-childRadius':
-        'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Input-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Input-radius) / 2))',
       '--Button-minHeight': 'var(--Input-decorator-childHeight)',
       '--IconButton-size': 'var(--Input-decorator-childHeight)',
       '--Button-radius': 'var(--Input-decorator-childRadius)',
@@ -173,6 +173,9 @@ const InputStartDecorator = styled('span', {
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
+  ...(ownerState.disabled && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+  }),
 }));
 
 const InputEndDecorator = styled('span', {
@@ -188,6 +191,9 @@ const InputEndDecorator = styled('span', {
   marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   cursor: 'initial',
+  ...(ownerState.disabled && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+  }),
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {

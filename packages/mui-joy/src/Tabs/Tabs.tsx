@@ -31,7 +31,7 @@ const TabsRoot = styled(SheetRoot, {
   name: 'JoyTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     '--Tabs-gap': '3px',
   }),
@@ -41,7 +41,6 @@ const TabsRoot = styled(SheetRoot, {
   ...(ownerState.size === 'lg' && {
     '--Tabs-gap': '0.5rem',
   }),
-  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   display: 'flex',
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
