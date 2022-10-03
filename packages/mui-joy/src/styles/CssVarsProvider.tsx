@@ -9,16 +9,21 @@ import {
 } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
+const shouldSkipGeneratingVar = (keys: string[]) =>
+  !!keys[0].match(/^(typography|variants|breakpoints|variantOverrides|variantOverrideConfig)$/) ||
+  (keys[0] === 'focus' && keys[1] !== 'thickness');
+
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme,
-  Theme
+  DefaultColorScheme | ExtendedColorScheme
 >({
   theme: extendTheme(),
+  attribute: 'data-joy-color-scheme',
+  modeStorageKey: 'joy-mode',
+  colorSchemeStorageKey: 'joy-color-scheme',
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
-  prefix: 'joy',
   resolveTheme: (mergedTheme: Theme) => {
     // `variants` need to be generated after the theme's palette has been calculated.
     mergedTheme.variants = deepmerge(
@@ -57,13 +62,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     );
     return mergedTheme;
   },
-  shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' ||
-    keys[0] === 'variants' ||
-    keys[0] === 'variantOverrides' ||
-    keys[0] === 'variantOverrideConfig' ||
-    keys[0] === 'focus' ||
-    keys[0] === 'breakpoints',
+  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };

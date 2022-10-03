@@ -13,7 +13,6 @@ type InputRootKeys =
   | 'error'
   | 'required'
   | 'fullWidth'
-  | 'inputRef'
   | 'placeholder'
   | 'defaultValue'
   | 'value'
@@ -25,7 +24,8 @@ type InputRootKeys =
   | 'color'
   | 'size'
   | 'startDecorator'
-  | 'endDecorator';
+  | 'endDecorator'
+  | 'sx';
 
 export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
@@ -73,3 +73,5 @@ export type TextFieldProps<
     component?: React.ElementType;
   },
 > = OverrideProps<TextFieldTypeMap<P, D>, D>;
+
+export interface TextFieldOwnerState extends TextFieldProps {}

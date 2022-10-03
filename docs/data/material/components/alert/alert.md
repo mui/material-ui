@@ -3,7 +3,7 @@ product: material-ui
 title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alert
@@ -60,13 +60,16 @@ Two additional variants are available – outlined, and filled:
 
 {{"demo": "OutlinedAlerts.js"}}
 
+When using an outlined alert with the [`Snackbar` component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the alert by default.
+You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the `Alert` component.
+
 ### Filled
 
 {{"demo": "FilledAlerts.js"}}
 
 ## Toast
 
-You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Color
 
@@ -76,7 +79,7 @@ The `color` prop will override the default color for the specified severity.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
 When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
 

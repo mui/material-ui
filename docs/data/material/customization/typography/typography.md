@@ -158,7 +158,9 @@ To be done: [#15251](https://github.com/mui/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::warning
+⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
 which tells MUI what the font-size on the `<html>` element is.
@@ -241,7 +243,9 @@ const theme = createTheme({
 
 **Step 2. Update the necessary typings (if you are using TypeScript)**
 
-> If you aren't using TypeScript you should skip this step.
+:::info
+If you aren't using TypeScript you should skip this step.
+:::
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 

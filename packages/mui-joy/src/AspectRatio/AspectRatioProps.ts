@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type AspectRatioSlot = 'root';
+export type AspectRatioSlot = 'root' | 'content';
 
 export interface AspectRatioPropsColorOverrides {}
 export interface AspectRatioPropsVariantOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, AspectRatioOwnerState>;
+  content?: SlotComponentProps<'div', { sx?: SxProps }, AspectRatioOwnerState>;
+}
 
 export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -20,13 +26,18 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     children?: React.ReactNode;
     /**
+     * The props used for each slot inside the component.
+     * @default {}
+     */
+    componentsProps?: ComponentsProps;
+    /**
      * The minimum calculated height of the element (not the CSS height).
      */
-    min?: number | string;
+    minHeight?: number | string;
     /**
      * The maximum calculated height of the element (not the CSS height).
      */
-    max?: number | string;
+    maxHeight?: number | string;
     /**
      * The CSS object-fit value of the first-child.
      */
@@ -54,3 +65,5 @@ export type AspectRatioProps<
   D extends React.ElementType = AspectRatioTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<AspectRatioTypeMap<P, D>, D>;
+
+export interface AspectRatioOwnerState extends AspectRatioProps {}

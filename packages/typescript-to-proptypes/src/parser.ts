@@ -68,6 +68,13 @@ export function parseFromProgram(
   }
 
   const shouldInclude: ParserOptions['shouldInclude'] = (data) => {
+    // ref is a reserved prop name in React
+    // e.g. https://github.com/reactjs/rfcs/pull/107
+    // no need to add a prop-type
+    if (data.name === 'ref') {
+      return false;
+    }
+
     if (parserOptions.shouldInclude) {
       const result = parserOptions.shouldInclude(data);
       if (result !== undefined) {
@@ -75,7 +82,7 @@ export function parseFromProgram(
       }
     }
 
-    return data.name !== 'ref';
+    return true;
   };
 
   const shouldResolveObject: ParserOptions['shouldResolveObject'] = (data) => {
@@ -179,12 +186,6 @@ export function parseFromProgram(
       return t.createObjectType({ jsDoc: undefined });
     }
 
-    const defaultGenericType = type.getDefault();
-    // This is generic type – use default type <T = SomeDefaultType>
-    if (defaultGenericType) {
-      return checkType(defaultGenericType, location, typeStack, name);
-    }
-
     {
       const typeNode = type as any;
 
@@ -260,6 +261,21 @@ export function parseFromProgram(
       });
 
       return node.types.length === 1 ? node.types[0] : node;
+    }
+
+    if (type.flags & ts.TypeFlags.TypeParameter) {
+      const baseConstraintOfType = checker.getBaseConstraintOfType(type);
+
+      if (baseConstraintOfType) {
+        if (
+          baseConstraintOfType.flags & ts.TypeFlags.Object &&
+          baseConstraintOfType.symbol.members?.size === 0
+        ) {
+          return t.createAnyType({ jsDoc: getDocumentation(type.symbol) });
+        }
+
+        return checkType(baseConstraintOfType!, location, typeStack, name);
+      }
     }
 
     if (type.flags & ts.TypeFlags.String) {
@@ -414,15 +430,24 @@ export function parseFromProgram(
         // so we just pick the first and ignore the rest
         checker.getTypeOfSymbolAtLocation(symbol, declaration)
       : checker.getTypeOfSymbolAtLocation(symbol, location);
-    // get `React.ElementType` from `C extends React.ElementType`
-    const declaredType =
-      declaration !== undefined ? checker.getTypeAtLocation(declaration) : undefined;
-    const baseConstraintOfType =
-      declaredType !== undefined ? checker.getBaseConstraintOfType(declaredType) : undefined;
-    const type =
-      baseConstraintOfType !== undefined && baseConstraintOfType !== declaredType
-        ? baseConstraintOfType
-        : symbolType;
+
+    let type: ts.Type;
+    if (declaration === undefined) {
+      type = symbolType;
+    } else {
+      const declaredType = checker.getTypeAtLocation(declaration);
+      const baseConstraintOfType = checker.getBaseConstraintOfType(declaredType);
+
+      if (baseConstraintOfType === undefined || baseConstraintOfType === declaredType) {
+        type = symbolType;
+      }
+      // get `React.ElementType` from `C extends React.ElementType`
+      else if (baseConstraintOfType.aliasSymbol?.escapedName === 'ElementType') {
+        type = baseConstraintOfType;
+      } else {
+        type = symbolType;
+      }
+    }
 
     if (!type) {
       throw new Error('No types found');

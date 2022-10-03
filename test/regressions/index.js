@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
-import FEATURE_TOGGLE from '../../docs/src/featureToggle';
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -28,6 +27,10 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  'docs-joy-getting-started-templates/TemplateCollection.png',
+  'docs-joy-core-features-automatic-adjustment/ListThemes.png',
+  'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
+  'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -165,6 +168,10 @@ function excludeDemoFixture(suite, name) {
     return true;
   }
 
+  if (suite.includes('docs-joy') && name.match(/(Variables|Usage)$/)) {
+    return true;
+  }
+
   return blacklist.some((pattern) => {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
@@ -191,10 +198,7 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-let importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
-if (FEATURE_TOGGLE.enable_product_scope) {
-  importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
-}
+const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
@@ -245,6 +249,10 @@ function FixtureRenderer({ component: FixtureComponent }) {
   return null;
 }
 
+FixtureRenderer.propTypes = {
+  component: PropTypes.elementType,
+};
+
 function App(props) {
   const { fixtures } = props;
 
@@ -274,7 +282,11 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: ['Roboto:300,400,500,700', 'Public Sans:300,400,500,700', 'Material+Icons'],
+        families: [
+          'Roboto:300,400,500,700',
+          'Public Sans:300,400,500,600,700,800,900',
+          'Material+Icons',
+        ],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],

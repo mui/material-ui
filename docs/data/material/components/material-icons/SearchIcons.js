@@ -297,6 +297,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
             <Markdown
+              copyButtonHidden
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
@@ -487,7 +488,7 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.searchAsync(value).then((results) => {
+          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.

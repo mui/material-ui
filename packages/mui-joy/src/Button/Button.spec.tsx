@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import MuiLink from '@mui/material/Link';
+import JoyLink from '@mui/material/Link';
 import Button from '@mui/joy/Button';
 
 <Button>Button</Button>;
@@ -41,7 +41,7 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 
 <Button component="a" href="/" />;
 <Button component={NextLink} href="/" />;
-<Button component={MuiLink} href="/" />;
+<Button component={JoyLink} href="/" />;
 
 function CustomLink({
   children,
@@ -73,14 +73,14 @@ function Icon() {
 <Button
   variant="solid"
   color="success"
-  endIcon={<Icon />}
+  endDecorator={<Icon />}
   sx={{ width: 'var(--Button-minHeight)' }}
 >
   <Icon />
 </Button>;
-<Button variant="solid" startIcon={<Icon />} size="sm">
+<Button variant="solid" startDecorator={<Icon />} size="sm">
   Add to cart
 </Button>;
-<Button variant="outlined" endIcon={<Icon />} color="success">
+<Button variant="outlined" endDecorator={<Icon />} color="success">
   Checkout
 </Button>;

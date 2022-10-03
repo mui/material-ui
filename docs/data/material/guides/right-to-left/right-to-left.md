@@ -49,7 +49,9 @@ When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl
 npm install stylis stylis-plugin-rtl
 ```
 
-> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
+:::warning
+**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
+:::
 
 In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
 
@@ -61,9 +63,9 @@ Having installed the plugin in your project, MUI components still require it to 
 
 ### 4. Load the rtl plugin
 
-#### 4.1 emotion
+#### 4.1 Emotion
 
-If you use emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
+If you use Emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree.
 The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
 
 ```jsx
@@ -132,7 +134,7 @@ _Use the direction toggle button on the top right corner to flip the whole docum
 
 ## Opting out of rtl transformation
 
-### emotion & styled-components
+### Emotion & styled-components
 
 You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
 

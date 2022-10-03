@@ -1,19 +1,23 @@
 # Installation
 
-<p class="description">Install MUI Base, the unstyled components & foundation hooks for building accessible UIs.</p>
+<p class="description">Install MUI Base, a library of headless ("unstyled") React UI components and low-level hooks.</p>
+
+Run one of the following commands to add MUI Base to your project:
 
 ## npm
 
-To install and save in your `package.json` dependencies, run:
+```sh
+npm install @mui/base
+```
+
+## yarn
 
 ```sh
-// with npm
-npm install @mui/base
-
-// with yarn
 yarn add @mui/base
 ```
 
+## Peer dependencies
+
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+[`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.

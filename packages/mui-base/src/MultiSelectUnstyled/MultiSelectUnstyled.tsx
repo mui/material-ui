@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
@@ -11,11 +10,12 @@ import {
   MultiSelectUnstyledOwnerState,
   MultiSelectUnstyledPopperSlotProps,
   MultiSelectUnstyledRootSlotProps,
+  MultiSelectUnstyledType,
 } from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
 import { SelectChild, SelectOption } from '../SelectUnstyled/useSelect.types';
-import { appendOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import {
   SelectUnstyledContext,
@@ -23,10 +23,27 @@ import {
 } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
-import { WithOptionalOwnerState } from '../utils/types';
+import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+}
+
+function defaultFormValueProvider<TValue>(selectedOptions: SelectOption<TValue>[]) {
+  if (selectedOptions.length === 0) {
+    return '';
+  }
+
+  if (
+    selectedOptions.every(
+      (o) =>
+        typeof o.value === 'string' || typeof o.value === 'number' || typeof o.value === 'boolean',
+    )
+  ) {
+    return selectedOptions.map((o) => String(o.value));
+  }
+
+  return JSON.stringify(selectedOptions.map((o) => o.value));
 }
 
 function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
@@ -49,24 +66,35 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
 
 /**
  * The foundation for building custom-styled multi-selection select components.
+ *
+ * Demos:
+ *
+ * - [Unstyled Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
-const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
+const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue extends {}>(
   props: MultiSelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
+    getSerializedValue = defaultFormValueProvider,
+    listboxId,
     listboxOpen: listboxOpenProp,
+    name,
     onChange,
     onListboxOpenChange,
+    optionStringifier = defaultOptionStringifier,
     value: valueProp,
     ...other
   } = props;
@@ -94,16 +122,11 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const ListboxRoot = components.Listbox ?? 'ul';
   const Popper = components.Popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
-  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
+  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -126,17 +149,16 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     getOptionState,
     value,
   } = useSelect<TValue>({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
-    listboxId: componentsProps.listbox?.id,
-    listboxRef: handleListboxRef,
+    listboxId,
     multiple: true,
     onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
+    optionStringifier,
     value: valueProp,
   });
 
@@ -161,42 +183,40 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   }, [options, value]);
 
   const buttonProps: WithOptionalOwnerState<MultiSelectUnstyledRootSlotProps<TValue>> =
-    appendOwnerState(
-      Button,
-      {
-        ...getButtonProps(),
-        ...other,
-        ...componentsProps.root,
-        className: clsx(className, componentsProps.root?.className, classes.root),
-      },
+    useSlotProps({
+      elementType: Button,
+      getSlotProps: getButtonProps,
+      externalSlotProps: componentsProps.root,
+      externalForwardedProps: other,
       ownerState,
-    );
+      className: classes.root,
+    });
 
   const listboxProps: WithOptionalOwnerState<MultiSelectUnstyledListboxSlotProps<TValue>> =
-    appendOwnerState(
-      ListboxRoot,
-      {
-        ...getListboxProps(),
-        ...componentsProps.listbox,
-        className: clsx(componentsProps.listbox?.className, classes.listbox),
+    useSlotProps({
+      elementType: ListboxRoot,
+      getSlotProps: getListboxProps,
+      externalSlotProps: componentsProps.listbox,
+      additionalProps: {
+        ref: listboxRef,
       },
       ownerState,
-    );
+      className: classes.listbox,
+    });
 
-  // Popper must be a (non-host) component, therefore ownerState will be present within the props
-  const popperProps: MultiSelectUnstyledPopperSlotProps<TValue> = appendOwnerState(
-    Popper,
-    {
-      open: listboxOpen,
+  const popperProps: MultiSelectUnstyledPopperSlotProps<TValue> = useSlotProps({
+    elementType: Popper,
+    externalSlotProps: componentsProps.popper,
+    additionalProps: {
       anchorEl: buttonRef.current,
-      placement: 'bottom-start' as const,
       disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom-start' as const,
       role: undefined,
-      ...componentsProps.popper,
-      className: clsx(componentsProps.popper?.className, classes.popper),
     },
     ownerState,
-  ) as MultiSelectUnstyledPopperSlotProps<TValue>;
+    className: classes.popper,
+  });
 
   const context: SelectUnstyledContextType = {
     getOptionProps,
@@ -206,7 +226,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
+      <Button {...buttonProps}>{renderValue(selectedOptions)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
@@ -216,9 +236,11 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
           </ListboxRoot>
         </Popper>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOptions)} />}
     </React.Fragment>
   );
-});
+}) as MultiSelectUnstyledType;
 
 MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -235,11 +257,8 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
@@ -257,9 +276,9 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    popper: PropTypes.object,
-    root: PropTypes.object,
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the select will be initially open.
@@ -277,10 +296,26 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * A function to convert the currently selected values to a type accepted by HTML input.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected values can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
+  /**
    * Controls the open state of the select's listbox.
    * @default undefined
    */
   listboxOpen: PropTypes.bool,
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
   /**
    * Callback fired when an option is selected.
    */
@@ -290,6 +325,14 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * Use in controlled mode (see listboxOpen).
    */
   onListboxOpenChange: PropTypes.func,
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier: PropTypes.func,
   /**
    * Function that customizes the rendering of the selected values.
    */
@@ -301,17 +344,4 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes.array,
 } as any;
 
-/**
- * The foundation for building custom-styled multi-selection select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
- */
-export default MultiSelectUnstyled as <TValue extends {}>(
-  props: MultiSelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default MultiSelectUnstyled;

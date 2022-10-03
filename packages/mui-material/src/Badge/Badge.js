@@ -258,7 +258,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         Badge: BadgeBadge,
         ...components,
       }}
-      className={clsx(className, classes.root, componentsProps.root?.className)}
+      className={clsx(componentsProps.root?.className, classes.root, className)}
       componentsProps={{
         root: {
           ...componentsProps.root,
@@ -353,8 +353,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    badge: PropTypes.object,
-    root: PropTypes.object,
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the badge is invisible.

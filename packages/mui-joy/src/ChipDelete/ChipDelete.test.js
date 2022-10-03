@@ -13,10 +13,11 @@ describe('<ChipDelete />', () => {
     inheritComponent: 'button',
     render,
     ThemeProvider,
-    muiName: 'MuiChipDelete',
+    muiName: 'JoyChipDelete',
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 

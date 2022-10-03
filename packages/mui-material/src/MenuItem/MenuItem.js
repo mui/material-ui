@@ -68,41 +68,49 @@ const MenuItemRoot = styled(ButtonBase, {
     paddingRight: 16,
   }),
   ...(ownerState.divider && {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundClip: 'padding-box',
   }),
   '&:hover': {
     textDecoration: 'none',
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: (theme.vars || theme).palette.action.hover,
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
   },
   [`&.${menuItemClasses.selected}`]: {
-    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     [`&.${menuItemClasses.focusVisible}`]: {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-      ),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
     },
   },
   [`&.${menuItemClasses.selected}:hover`]: {
-    backgroundColor: alpha(
-      theme.palette.primary.main,
-      theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-    ),
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+      : alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
   },
   [`&.${menuItemClasses.focusVisible}`]: {
-    backgroundColor: theme.palette.action.focus,
+    backgroundColor: (theme.vars || theme).palette.action.focus,
   },
   [`&.${menuItemClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
   [`& + .${dividerClasses.root}`]: {
     marginTop: theme.spacing(1),
@@ -148,6 +156,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     focusVisibleClassName,
     role = 'menuitem',
     tabIndex: tabIndexProp,
+    className,
     ...other
   } = props;
 
@@ -194,6 +203,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         tabIndex={tabIndex}
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        className={clsx(classes.root, className)}
         {...other}
         ownerState={ownerState}
         classes={classes}
@@ -221,6 +231,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

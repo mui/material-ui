@@ -27,6 +27,7 @@ describe('defaultTheme', () => {
         'variantOverrides',
         'variantOverrideConfig',
         'vars',
+        'cssVarPrefix',
       ]).to.includes(field);
     });
   });

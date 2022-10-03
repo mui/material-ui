@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: SvgIconProps) => {
 };
 
 const SvgIconRoot = styled('svg', {
-  name: 'MuiSvgIcon',
+  name: 'JoySvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SvgIconProps & { instanceFontSize: SvgIconProps['fontSize'] } }>(
@@ -35,6 +35,7 @@ const SvgIconRoot = styled('svg', {
           '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
         }),
       userSelect: 'none',
+      margin: 'var(--Icon-margin)',
       width: '1em',
       height: '1em',
       display: 'inline-block',
@@ -56,7 +57,7 @@ const SvgIconRoot = styled('svg', {
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & SvgIconProps>({
     props: inProps,
-    name: 'MuiSvgIcon',
+    name: 'JoySvgIcon',
   });
 
   const {
@@ -88,7 +89,6 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     <SvgIconRoot
       as={component}
       className={clsx(classes.root, className)}
-      ownerState={ownerState}
       focusable="false"
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : true}
@@ -96,6 +96,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       ref={ref}
       {...other}
       {...(!inheritViewBox && { viewBox })}
+      ownerState={ownerState}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
@@ -149,7 +150,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
     'xl4',
     'xl5',
     'xl6',
+    'xl7',
     'xs',
+    'xs2',
+    'xs3',
   ]),
   /**
    * Applies a color attribute to the SVG element.

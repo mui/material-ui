@@ -60,7 +60,7 @@ const AccordionRoot = styled(Paper, {
         height: 1,
         content: '""',
         opacity: 1,
-        backgroundColor: theme.palette.divider,
+        backgroundColor: (theme.vars || theme).palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
@@ -85,7 +85,7 @@ const AccordionRoot = styled(Paper, {
         },
       },
       [`&.${accordionClasses.disabled}`]: {
-        backgroundColor: theme.palette.action.disabledBackground,
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       },
     };
   },
@@ -93,12 +93,12 @@ const AccordionRoot = styled(Paper, {
     ...(!ownerState.square && {
       borderRadius: 0,
       '&:first-of-type': {
-        borderTopLeftRadius: theme.shape.borderRadius,
-        borderTopRightRadius: theme.shape.borderRadius,
+        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
       },
       '&:last-of-type': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-        borderBottomRightRadius: theme.shape.borderRadius,
+        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
         // Fix a rendering issue on Edge
         '@supports (-ms-ime-align: auto)': {
           borderBottomLeftRadius: 0,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
+import Container from '@mui/joy/Container';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';

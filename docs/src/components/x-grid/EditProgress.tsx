@@ -2,14 +2,10 @@ import * as React from 'react';
 import { GridRenderEditCellParams } from '@mui/x-data-grid';
 import { debounce } from '@mui/material/utils';
 import { alpha } from '@mui/material/styles';
-import Slider from '@mui/material/Slider';
+import Slider, { SliderValueLabelProps } from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 
-function ValueLabelComponent(props: {
-  open: boolean;
-  value: number;
-  children: React.ReactElement;
-}) {
+function ValueLabelComponent(props: SliderValueLabelProps) {
   const { children, open, value } = props;
   return (
     <Tooltip open={open} enterTouchDelay={0} placement="top" title={value} arrow>
@@ -23,7 +19,7 @@ export default function EditProgress(props: GridRenderEditCellParams) {
   const [valueState, setValueState] = React.useState(Number(value));
 
   const updateCellEditProps = React.useCallback(
-    (newValue) => {
+    (newValue: number | number[]) => {
       api.setEditCellValue({ id, field, value: newValue });
     },
     [api, field, id],

@@ -8,7 +8,10 @@
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ badge?: object, root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "invisible": { "type": { "name": "bool" } },
@@ -19,8 +22,8 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.js",
+  "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-badge/\">Badge</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-badge/\">Unstyled badge</a></li></ul>",
   "cssComponent": false
 }

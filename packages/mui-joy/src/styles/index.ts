@@ -1,4 +1,7 @@
-// export * from './types';
+// reexports from system for module augmentation
+export type { BreakpointOverrides } from '@mui/system';
+
+// Joy typings
 export type { ColorSchemeOverrides, SupportedColorScheme } from './types/colorScheme';
 export type {
   ColorSystem,
@@ -29,6 +32,7 @@ export type {
   TypographySystem,
   TypographySystemOverrides,
 } from './types/typography';
+export type { Components } from './components';
 export type {
   VariantPlain,
   VariantPlainHover,
@@ -50,8 +54,19 @@ export type {
   Variants,
   VariantProp,
 } from './types/variants';
-export type { Theme } from './types/theme';
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript } from './CssVarsProvider';
+export type {
+  Theme,
+  ThemeVars,
+  ThemeScales,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+} from './types/theme';
+export {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript,
+  shouldSkipGeneratingVar,
+} from './CssVarsProvider';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
@@ -59,4 +74,5 @@ export { default as useThemeProps } from './useThemeProps';
 export { sx as experimental_sx } from './styleFunctionSx';
 export { VariantOverrideProvider, useVariantOverride } from './VariantOverride';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
-export type { ThemeInput } from './extendTheme';
+export type { CssVarsThemeOptions } from './extendTheme';
+export { default as StyledEngineProvider } from './StyledEngineProvider';

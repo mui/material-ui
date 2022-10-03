@@ -36,25 +36,21 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
  * result will be the stylesheet based on the palette tokens
  * @example {
  *   color: '--token',
- *   backgroundColor: '--token'
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  * @example {
  *   cursor: 'pointer',
- *   '&:hover': {
- *      color: '--token',
- *   }
- * }
- * @example {
- *   '&:active': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '1px',
  * }
  * @example {
  *   pointerEvents: 'none',
  *   cursor: 'default',
- *   '&.Mui-disabled': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  */
 export const createVariantStyle = (
@@ -68,28 +64,22 @@ export const createVariantStyle = (
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
         if (variantVar.includes('Hover')) {
-          if (!result['&:hover']) {
-            result.cursor = 'pointer';
-            result['&:hover'] = {};
-          }
-          assignCss(result['&:hover'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Active')) {
-          if (!result['&:active']) {
-            result['&:active'] = {};
-          }
-          assignCss(result['&:active'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Disabled')) {
-          if (!result['&.Mui-disabled']) {
-            result['&.Mui-disabled'] = {
-              pointerEvents: 'none',
-              cursor: 'default',
-            };
-          }
-          assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
+          result.cursor = 'pointer';
+        }
+        if (variantVar.includes('Disabled')) {
+          result.pointerEvents = 'none';
+          result.cursor = 'default';
+        }
+        if (variantVar.match(/(Hover|Active|Disabled)/)) {
+          assignCss(result as any, variantVar, cssVar);
         } else {
+          // initial state
+          if (!result['--variant-borderWidth']) {
+            result['--variant-borderWidth'] = '0px';
+          }
           if (variantVar.includes('Border')) {
-            result['--variant-outlinedBorderWidth'] = '1px';
-            result.border = 'var(--variant-outlinedBorderWidth) solid';
+            result['--variant-borderWidth'] = '1px';
+            result.border = 'var(--variant-borderWidth) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);
@@ -100,35 +90,109 @@ export const createVariantStyle = (
   return result;
 };
 
+interface ThemeFragment {
+  prefix?: string;
+  getCssVar: (...args: any[]) => string;
+  palette: Record<string, any>;
+}
+
 const createPrefixVar = (prefix: string | undefined | null) => {
   return (cssVar: string) => `--${prefix ? `${prefix}-` : ''}${cssVar.replace(/^--/, '')}`;
 };
 
-interface Theme {
-  prefix?: string;
-  palette: Record<DefaultColorPalette, PaletteRange>;
-  vars: { palette: Record<DefaultColorPalette, PaletteRange> };
-}
+export const createTextOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-overrideTextPrimary`),
+          [prefixVar('--palette-text-secondary')]: getCssVar(
+            `palette-${color}-overrideTextSecondary`,
+          ),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(
+            `palette-${color}-overrideTextTertiary`,
+          ),
+        },
+      };
+    }
+  });
+  return result;
+};
 
-export const createVariant = (variant: VariantKey, theme?: Theme) => {
+export const createContainedOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: '#fff',
+          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
+          '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
+
+          '--variant-plainColor': getCssVar(`palette-${color}-100`),
+          '--variant-plainHoverColor': `#fff`,
+          '--variant-plainHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-plainActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
+
+          '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
+          '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedHoverColor': `#fff`,
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
+          '--variant-outlinedHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
+
+          '--variant-softColor': '#fff',
+          '--variant-softBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-softHoverBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-softActiveBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-softDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-softDisabledBg': `rgba(255 255 255 / 0.08)`,
+
+          '--variant-solidBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-solidHoverBg': 'rgba(0 0 0 / 0.32)',
+          '--variant-solidActiveBg': 'rgba(0 0 0 / 0.48)',
+          '--variant-solidDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-solidDisabledBg': `rgba(255 255 255 / 0.08)`,
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
-
   if (theme) {
-    Object.entries(theme.palette).forEach((entry) => {
+    const { getCssVar, palette } = theme;
+    Object.entries(palette).forEach((entry) => {
       const [color, colorPalette] = entry as [
         Exclude<DefaultColorPalette, 'context'>,
         string | number | Record<string, any>,
       ];
-      if (isVariantPalette(colorPalette)) {
+      if (isVariantPalette(colorPalette) && typeof colorPalette === 'object') {
         result = {
           ...result,
-          [color]: createVariantStyle(
-            variant,
-            // cannot use theme.vars because it is created from all color schemes.
-            // @example developer provides `primary.outlinedActiveBorder` to only dark mode.
-            //          theme.vars.palette.primary.outlinedActiveBorder always exists regardless of the current color scheme.
-            theme.palette[color],
-            (variantVar) => theme.vars.palette[color][variantVar],
+          [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
+            getCssVar(`palette-${color}-${variantVar}`),
           ),
         };
       }
@@ -170,7 +234,7 @@ export const createVariant = (variant: VariantKey, theme?: Theme) => {
   return result;
 };
 
-export const createPlainOverride = (theme: Theme) => {
+export const createPlainOverride = (theme: ThemeFragment) => {
   const getCssVar = createGetCssVar(theme.prefix);
   const prefixVar = createPrefixVar(theme.prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
@@ -208,7 +272,7 @@ export const createPlainOverride = (theme: Theme) => {
   return result;
 };
 
-export const createSoftOverride = (theme: Theme) => {
+export const createSoftOverride = (theme: ThemeFragment) => {
   const getCssVar = createGetCssVar(theme.prefix);
   const prefixVar = createPrefixVar(theme.prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
@@ -344,7 +408,7 @@ export const createSoftOverride = (theme: Theme) => {
   return result;
 };
 
-export const createSolidOverride = (theme: Theme) => {
+export const createSolidOverride = (theme: ThemeFragment) => {
   const getCssVar = createGetCssVar(theme.prefix);
   const prefixVar = createPrefixVar(theme.prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;

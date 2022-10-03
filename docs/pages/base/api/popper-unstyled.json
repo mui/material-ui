@@ -8,6 +8,14 @@
       }
     },
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
@@ -44,6 +52,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-popper/\">Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-popper/\">Unstyled Popper</a></li></ul>",
   "cssComponent": false
 }

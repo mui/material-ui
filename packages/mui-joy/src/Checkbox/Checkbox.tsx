@@ -1,18 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { getCheckboxUtilityClass } from './checkboxClasses';
-import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
+import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
+import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
 import { TypographyContext } from '../Typography/Typography';
+import FormControlContext from '../FormControl/FormControlContext';
 
-const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
 
   const slots = {
@@ -25,8 +26,13 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    checkbox: ['checkbox', disabled && 'disabled'], // disabled class is necessary for displaying global variant
-    action: ['action', disableIcon && disabled && 'disabled', focusVisible && 'focusVisible'], // add disabled class to action element for displaying global variant
+    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    action: [
+      'action',
+      checked && 'checked',
+      disableIcon && disabled && 'disabled', // add disabled class to action element for displaying global variant
+      focusVisible && 'focusVisible',
+    ],
     input: ['input'],
     label: ['label'],
   };
@@ -35,10 +41,10 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
 };
 
 const CheckboxRoot = styled('span', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CheckboxProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: CheckboxOwnerState }>(({ ownerState, theme }) => ({
   '--Icon-fontSize': 'var(--Checkbox-size)',
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
@@ -55,31 +61,27 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
-  ...(ownerState.label &&
-    !ownerState.disableIcon && {
-      // add some space at the end to not have focus overlapping the label
-      paddingInlineEnd: 'var(--Checkbox-gap)',
-    }),
   position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
-  '&.Mui-disabled': {
+  color: theme.vars.palette.text.primary,
+  [`&.${checkboxClasses.disabled}`]: {
     color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
   },
   ...(ownerState.disableIcon && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-    '&.Mui-disabled': {
+    [`&.${checkboxClasses.disabled}`]: {
       color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
     },
   }),
 }));
 
 const CheckboxCheckbox = styled('span', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Checkbox',
   overridesResolver: (props, styles) => styles.checkbox,
-})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
     boxSizing: 'border-box',
     borderRadius: theme.vars.radius.xs,
@@ -99,18 +101,21 @@ const CheckboxCheckbox = styled('span', {
   ...(!ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+        {
+          [`&.${checkboxClasses.disabled}`]:
+            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
       ]
     : []),
 ]);
 
 const CheckboxAction = styled('span', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
     borderRadius: `var(--Checkbox-action-radius, ${
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
@@ -129,18 +134,21 @@ const CheckboxAction = styled('span', {
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+        {
+          [`&.${checkboxClasses.disabled}`]:
+            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
       ]
     : []),
 ]);
 
 const CheckboxInput = styled('input', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: CheckboxProps }>(() => ({
+})<{ ownerState: CheckboxOwnerState }>(() => ({
   margin: 0,
   opacity: 0,
   position: 'absolute',
@@ -150,10 +158,10 @@ const CheckboxInput = styled('input', {
 }));
 
 const CheckboxLabel = styled('label', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: CheckboxProps }>(({ ownerState }) => ({
+})<{ ownerState: CheckboxOwnerState }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
   ...(ownerState.disableIcon
@@ -172,7 +180,7 @@ const defaultIndeterminateIcon = <IndeterminateIcon />;
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiCheckbox',
+    name: 'JoyCheckbox',
   });
 
   const {
@@ -180,11 +188,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     uncheckedIcon,
     checkedIcon = defaultCheckedIcon,
     label,
-    className,
     component,
     componentsProps = {},
     defaultChecked,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
     disableIcon = false,
     overlay,
     id: idOverride,
@@ -195,13 +202,33 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     onChange,
     onFocus,
     onFocusVisible,
+    readOnly,
     required,
-    color,
+    value,
+    color: colorProp,
     variant,
-    size = 'md',
-    ...otherProps
+    size: sizeProp = 'md',
+    ...other
   } = props;
-  const id = useId(idOverride);
+
+  const formControl = React.useContext(FormControlContext);
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const id = useId(idOverride ?? formControl?.htmlFor);
 
   const useCheckboxProps = {
     checked: checkedProp,
@@ -235,32 +262,67 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: CheckboxRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  const checkboxProps = useSlotProps({
+    elementType: CheckboxCheckbox,
+    externalSlotProps: componentsProps.checkbox,
+    ownerState,
+    className: classes.checkbox,
+  });
+
+  const actionProps = useSlotProps({
+    elementType: CheckboxAction,
+    externalSlotProps: componentsProps.action,
+    ownerState,
+    className: classes.action,
+  });
+
+  const inputProps = useSlotProps({
+    elementType: CheckboxInput,
+    getSlotProps: getInputProps,
+    externalSlotProps: componentsProps.input,
+    ownerState,
+    additionalProps: {
+      id,
+      name,
+      value,
+      readOnly,
+      required,
+      'aria-describedby': formControl?.['aria-describedby'],
+      ...(indeterminate && {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked#values
+        'aria-checked': 'mixed' as const,
+      }),
+    },
+    className: classes.input,
+  });
+
+  const labelProps = useSlotProps({
+    elementType: CheckboxLabel,
+    externalSlotProps: componentsProps.label,
+    ownerState,
+    additionalProps: {
+      htmlFor: id,
+    },
+    className: classes.label,
+  });
+
   return (
-    <CheckboxRoot
-      ref={ref}
-      {...otherProps}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-    >
-      <CheckboxCheckbox
-        {...componentsProps?.checkbox}
-        ownerState={ownerState}
-        className={clsx(classes.checkbox, componentsProps.checkbox?.className)}
-      >
-        <CheckboxAction
-          {...componentsProps?.action}
-          ownerState={ownerState}
-          className={clsx(classes.action, componentsProps.action?.className)}
-        >
-          <CheckboxInput
-            {...componentsProps?.input}
-            ownerState={ownerState}
-            {...getInputProps(componentsProps.input)}
-            id={id}
-            name={name}
-            className={clsx(classes.input, componentsProps.input?.className)}
-          />
+    <CheckboxRoot {...rootProps}>
+      <CheckboxCheckbox {...checkboxProps}>
+        <CheckboxAction {...actionProps}>
+          <CheckboxInput {...inputProps} />
         </CheckboxAction>
         {indeterminate && !checked && !disableIcon && indeterminateIcon}
         {checked && !disableIcon && checkedIcon}
@@ -268,14 +330,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       </CheckboxCheckbox>
       {label && (
         <TypographyContext.Provider value>
-          <CheckboxLabel
-            {...componentsProps?.label}
-            htmlFor={id}
-            ownerState={ownerState}
-            className={clsx(classes.label, componentsProps.label?.className)}
-          >
-            {label}
-          </CheckboxLabel>
+          <CheckboxLabel {...labelProps}>{label}</CheckboxLabel>
         </TypographyContext.Provider>
       )}
     </CheckboxRoot>
@@ -318,15 +373,15 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    action: PropTypes.object,
-    checkbox: PropTypes.object,
-    input: PropTypes.object,
-    label: PropTypes.object,
-    root: PropTypes.object,
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    checkbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default checked state. Use when the component is not controlled.
@@ -393,6 +448,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   overlay: PropTypes.bool,
   /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
+  /**
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
@@ -417,11 +476,20 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   uncheckedIcon: PropTypes.node,
   /**
+   * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  /**
    * The variant to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

@@ -171,8 +171,10 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|ts|tsx)$/,
             use: {
-              loader: 'istanbul-instrumenter-loader',
-              options: { esModules: true },
+              loader: 'babel-loader',
+              options: {
+                plugins: ['babel-plugin-istanbul'],
+              },
             },
             enforce: 'post',
             exclude: /node_modules/,
@@ -187,6 +189,8 @@ module.exports = function setKarmaConfig(config) {
           path: false,
           // needed by enzyme > cheerio
           stream: false,
+          // required by enzyme > cheerio > parse5
+          util: require.resolve('util/'),
         },
       },
       // TODO: 'browserslist:modern'

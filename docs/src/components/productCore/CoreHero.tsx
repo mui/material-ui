@@ -206,9 +206,9 @@ export default function Hero() {
             <GradientText>free forever</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of components, ready-to-use, free forever, and with accessibility
-            always in mind. We&apos;ve built the foundational UI blocks for your design system so
-            you don&apos;t have to.
+            Get a growing list of React components, ready-to-use, free forever, and with
+            accessibility always in mind. We&apos;ve built the foundational UI blocks for your
+            design system so you don&apos;t have to.
           </Typography>
           <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
         </Box>
@@ -217,7 +217,7 @@ export default function Hero() {
         p: 3,
         minWidth: 2000,
         flexDirection: 'column',
-        overflow: 'scroll',
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <ThemeProvider

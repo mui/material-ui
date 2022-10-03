@@ -11,10 +11,9 @@ describe('<CardContent />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCardContent',
+    muiName: 'JoyCardContent',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'solid' },
-    skip: ['classesRoot', 'componentsProp'],
+    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
   }));
 });

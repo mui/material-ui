@@ -12,7 +12,7 @@
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
     "disabled": { "type": { "name": "bool" } },
@@ -25,6 +25,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/TabUnstyled/TabUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-tabs/\">Tabs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-tabs/\">Unstyled Tabs</a></li></ul>",
   "cssComponent": false
 }

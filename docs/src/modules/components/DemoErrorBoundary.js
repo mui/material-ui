@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
  * Based on https://github.com/sindresorhus/new-github-issue-url/blob/061fa0ddb7d51f3b96d3a0f6a6bebb196f105a7b/index.js
  * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
  */
-function newGithubIssueUrl(options) {
+function newGitHubIssueUrl(options) {
   const url = `https://github.com/${options.user}/${options.repo}/issues/new`;
 
   const query = Object.keys(options)
@@ -37,7 +37,7 @@ export default class DemoErrorBoundary extends React.Component {
     if (error) {
       const title = `[docs] Demo ${name} crashes`;
       const searchQuery = encodeURIComponent(`is:issue ${title}`);
-      const issueLink = newGithubIssueUrl({
+      const issueLink = newGitHubIssueUrl({
         user: 'mui',
         repo: 'material-ui',
         title,
@@ -55,7 +55,7 @@ export default class DemoErrorBoundary extends React.Component {
 | Tech         | Version |
 |--------------|---------|
 | MUI  | v${process.env.LIB_VERSION}  |
-| netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
+| Netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
 | Browser      | ${
           typeof window !== 'undefined' && window.navigator
             ? window.navigator.userAgent

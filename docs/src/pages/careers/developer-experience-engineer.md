@@ -1,12 +1,11 @@
-# Developer Experience Engineer
+# Developer Experience Engineer - Core
 
 <p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-7 to UTC+2).
+- Location: Remote (preference for UTC-6 to UTC+2).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
@@ -31,7 +30,7 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-Developer Experience matters, [a lot](https://future.a16z.com/the-case-for-developer-experience/).
+Developer Experience matters, [a lot](https://future.com/the-case-for-developer-experience/).
 We are looking for somebody to build the best developer experience ever created around a component library, earning the love of developers everywhere.
 This is about focusing on the outcome: success, that developers can have a wonderful workflow with our product.
 
@@ -45,7 +44,8 @@ We are looking for someone that can contribute to the following outcomes:
 
 You have a lot of feedback, more than we can process. It's an opportunity to challenge the state of the art in the React component dev tool space.
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
@@ -94,9 +94,9 @@ For the right candidate:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Developer%20Experience%20Engineer&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)

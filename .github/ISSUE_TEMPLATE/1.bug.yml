@@ -24,22 +24,13 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Current behavior 😯
-      description: Describe what happens instead of the expected behavior.
-  - type: textarea
-    attributes:
-      label: Expected behavior 🤔
-      description: Describe what should happen.
-  - type: textarea
-    attributes:
       label: Steps to reproduce 🕹
       description: |
-        Provide a link to a live example (you can use codesandbox.io) and an unambiguous set of steps to reproduce this bug.
-        Include code to reproduce, if relevant (which it most likely is).
+        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug.
+             
+        As a starting point, we recommend you browse our [documentation](https://mui.com/material-ui/getting-started/installation/), and [select](https://mui.com/static/docs/forking-an-example.png) the closest example to your use case.
 
-        You can use the official codesandbox template as a starting point: https://mui.com/r/issue-template.
-
-        If you have an issue concerning TypeScript please start from this TypeScript playground: https://mui.com/r/ts-issue-template.
+        Or you can use the [official template](https://mui.com/r/issue-template) to build a reproduction case.
 
         Issues that we can't reproduce will be closed.
       value: |
@@ -48,7 +39,14 @@ body:
         1.
         2.
         3.
-        4.
+  - type: textarea
+    attributes:
+      label: Current behavior 😯
+      description: Describe what happens instead of the expected behavior.
+  - type: textarea
+    attributes:
+      label: Expected behavior 🤔
+      description: Describe what should happen.
   - type: textarea
     attributes:
       label: Context 🔦
@@ -59,7 +57,7 @@ body:
       description: Run `npx @mui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
       value: |
         <details>
-          <summary>`npx @mui/envinfo`</summary>
+          <summary><code>npx @mui/envinfo</code></summary>
 
         ```
           Don't forget to mention which browser you used.

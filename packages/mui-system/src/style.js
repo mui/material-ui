@@ -2,13 +2,13 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 
-export function getPath(obj, path) {
+export function getPath(obj, path, checkVars = true) {
   if (!path || typeof path !== 'string') {
     return null;
   }
 
   // Check if CSS variables are used
-  if (obj && obj.vars) {
+  if (obj && obj.vars && checkVars) {
     const val = `vars.${path}`
       .split('.')
       .reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);

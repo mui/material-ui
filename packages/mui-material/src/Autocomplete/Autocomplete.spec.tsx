@@ -60,6 +60,12 @@ function MyAutocomplete<
   freeSolo
 />;
 
+// Test for getInputProps return type
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+/>;
+
 interface Tag {
   color: string;
   label: string;
@@ -82,7 +88,12 @@ function AutocompleteComponentsProps() {
     <Autocomplete
       options={['one', 'two', 'three']}
       renderInput={(params) => <TextField {...params} />}
-      componentsProps={{ paper: { elevation: 2 } }}
+      componentsProps={{
+        clearIndicator: { size: 'large' },
+        paper: { elevation: 2 },
+        popper: { placement: 'bottom-end' },
+        popupIndicator: { size: 'large' },
+      }}
     />
   );
 }

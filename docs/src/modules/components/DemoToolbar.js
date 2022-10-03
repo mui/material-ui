@@ -19,12 +19,13 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
-import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
+import codeSandbox from '../sandbox/CodeSandbox';
+import stackBlitz from '../sandbox/StackBlitz';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -264,32 +265,10 @@ export default function DemoToolbar(props) {
   };
 
   const handleCodeSandboxClick = () => {
-    const demoConfig = getDemoConfig(demoData);
-    const parameters = compress({
-      files: {
-        'package.json': {
-          content: {
-            name: demoConfig.title,
-            description: demoConfig.description,
-            dependencies: demoConfig.dependencies,
-            devDependencies: {
-              'react-scripts': 'latest',
-              ...demoConfig.devDependencies,
-            },
-            main: demoConfig.main,
-            scripts: demoConfig.scripts,
-            // We used `title` previously but only inference from `name` is documented.
-            // TODO revisit once https://github.com/codesandbox/codesandbox-client/issues/4983 is resolved.
-            title: demoConfig.title,
-          },
-        },
-        ...Object.keys(demoConfig.files).reduce((files, name) => {
-          files[name] = { content: demoConfig.files[name] };
-          return files;
-        }, {}),
-      },
-    });
+    const { files } = codeSandbox.createReactApp(demoData);
+    const parameters = compress({ files });
 
+    // ref: https://codesandbox.io/docs/api/#define-api
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -306,14 +285,15 @@ export default function DemoToolbar(props) {
   };
 
   const handleStackBlitzClick = () => {
-    const demoConfig = getDemoConfig(demoData, {
-      indexPath: 'index.html',
-      previewPackage: false,
-    });
+    const demoConfig = stackBlitz.createReactApp(demoData);
+
+    // ref: https://developer.stackblitz.com/docs/platform/post-api/
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
-    form.action = 'https://stackblitz.com/run';
+    form.action = `https://stackblitz.com/run?file=demo.${
+      codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'js'
+    }`;
     addHiddenInput(form, 'project[template]', 'create-react-app');
     addHiddenInput(form, 'project[title]', demoConfig.title);
     addHiddenInput(
@@ -411,26 +391,30 @@ export default function DemoToolbar(props) {
   });
 
   const devMenuItems = [];
-  if (process.env.STAGING === true) {
+  if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
     /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env.STAGING never changes
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
 
-    const defaultReviewID = process.env.GIT_REVIEW_ID ?? '20000';
+    if (process.env.PULL_REQUEST_ID) {
+      devMenuItems.push(
+        <MenuItem
+          key="link-deploy-preview"
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="link-deploy-preview"
+          component="a"
+          href={`https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+          target="_blank"
+          rel="noopener nofollow"
+          onClick={handleMoreClose}
+        >
+          demo on PR #{process.env.PULL_REQUEST_ID}
+        </MenuItem>,
+      );
+    }
+
     devMenuItems.push(
-      <MenuItem
-        key="link-deploy-preview"
-        data-ga-event-category="demo"
-        data-ga-event-label={demoOptions.demo}
-        data-ga-event-action="link-deploy-preview"
-        component="a"
-        href={`https://deploy-preview-${defaultReviewID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
-        target="_blank"
-        rel="noopener nofollow"
-        onClick={handleMoreClose}
-      >
-        demo on PR #{defaultReviewID}
-      </MenuItem>,
       <MenuItem
         key="link-next"
         data-ga-event-category="demo"
@@ -471,7 +455,6 @@ export default function DemoToolbar(props) {
         demo on&#160;<code>master</code>
       </MenuItem>,
     );
-
     /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
@@ -511,6 +494,9 @@ export default function DemoToolbar(props) {
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[700]
                     : theme.palette.grey[200],
+                '&.Mui-disabled': {
+                  opacity: 0.5,
+                },
               }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}

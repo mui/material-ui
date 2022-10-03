@@ -2,7 +2,9 @@
 
 <p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
-> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+:::info
+API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+:::
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 

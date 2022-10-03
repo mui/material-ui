@@ -13,8 +13,10 @@ describe('<Typography />', () => {
     ThemeProvider,
     render,
     refInstanceof: window.HTMLParagraphElement,
-    muiName: 'MuiTypography',
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    muiName: 'JoyTypography',
+    testVariantProps: { level: 'body3' },
+    testCustomVariant: true,
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should render the text', () => {

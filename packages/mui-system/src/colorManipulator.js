@@ -50,7 +50,7 @@ function intToHex(int) {
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
 export function decomposeColor(color) {
@@ -101,7 +101,7 @@ export function decomposeColor(color) {
 /**
  * Returns a channel created from the input color.
  *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {string} - The channel for the color, that can be used in rgba or hsla colors
  */
 export const colorChannel = (color) => {
@@ -115,7 +115,7 @@ export const colorChannel = (color) => {
 /**
  * Converts a color object with type and values to a string.
  * @param {object} color - Decomposed color
- * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'
+ * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla', 'color'
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
@@ -189,7 +189,10 @@ export function hslToRgb(color) {
 export function getLuminance(color) {
   color = decomposeColor(color);
 
-  let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
+  let rgb =
+    color.type === 'hsl' || color.type === 'hsla'
+      ? decomposeColor(hslToRgb(color)).values
+      : color.values;
   rgb = rgb.map((val) => {
     if (color.type !== 'color') {
       val /= 255; // normalized

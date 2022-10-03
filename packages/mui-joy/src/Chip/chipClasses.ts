@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ChipClasses {
   /** Styles applied to the root element. */
@@ -48,10 +48,10 @@ export interface ChipClasses {
 export type ChipClassKey = keyof ChipClasses;
 
 export function getChipUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiChip', slot);
+  return generateUtilityClass('JoyChip', slot);
 }
 
-const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
+const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
   'root',
   'clickable',
   'colorPrimary',

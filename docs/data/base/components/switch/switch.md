@@ -1,43 +1,106 @@
 ---
 product: base
-title: React Switch component
+title: Unstyled React Switch component and hook
 components: SwitchUnstyled
 githubLabel: 'component: switch'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#switch
-packageName: '@mui/base'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
 
-# Switch
+# Unstyled Switch
 
-<p class="description">The Switch component lets you toggle the state of a single setting on or off.</p>
+<p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
-Switches can be used on either desktop or mobile but it has been the preferred way for toggling settings in the latter.
-To make the switch accessible, you should ensure the corresponding label reflects the current state of the switch.
+## Introduction
+
+The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.
+
+{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## SwitchUnstyled
+## Component
+
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+
+export default function MyApp() {
+  return <SwitchUnstyled />;
+}
 ```
 
-The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
-You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc.
-It is also possible to replace these default components by other HTML elements or custom components.
+### Basics
 
-There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
+The following demo shows how to assign styles and props to the `SwitchUnstyled` component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
-## useSwitch
+### Anatomy
 
-For the ultimate customizability, a `useSwitch` hook is available.
-It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
+The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
+
+```html
+<span class="MuiSwitch-root">
+  <span class="MuiSwitch-track"></span>
+  <span class="MuiSwitch-thumb"></span>
+  <input type="checkbox" class="MuiSwitch-input" />
+</span>
+```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components.
+See [Usage](/base/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
+<SwitchUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<SwitchUnstyled components={{ Root: 'div', Track: 'div' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
+
+```jsx
+<SwitchUnstyled componentsProps={{ thumb: { className: 'my-thumb' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
+## Hook
+
+```js
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
+
+The `useSwitch` hook lets you apply the functionality of `SwitchUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+:::
 
 ### Basic example
 
@@ -46,3 +109,7 @@ import { useSwitch } from '@mui/base/SwitchUnstyled';
 ### Customized look and feel
 
 {{"demo": "UseSwitchesCustom.js"}}
+
+## Accessibility
+
+To make the switch component accessible, you should ensure that the corresponding labels reflect the current state of the switch.

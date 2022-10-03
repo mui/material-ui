@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import { useSwitch, UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { useSwitch, UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 
 const blue = {
   500: '#007FFF',
@@ -19,11 +19,11 @@ const BasicSwitchRoot = styled('span')(
   position: relative;
   display: inline-block;
   width: 40px;
-  height: 20px;
+  height: 24px;
   margin: 10px;
-  background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
-  border-radius: 10px;
   cursor: pointer;
+  border-radius: 16px;
+  background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
 
   &.Switch-disabled {
     opacity: 0.4;
@@ -50,14 +50,16 @@ const BasicSwitchInput = styled('input')`
 
 const BasicSwitchThumb = styled('span')`
   display: block;
-  width: 14px;
-  height: 14px;
-  top: 3px;
-  left: 3px;
+  width: 16px;
+  height: 16px;
+  top: 4px;
+  left: 4px;
   border-radius: 16px;
   background-color: #fff;
   position: relative;
-  transition: all 200ms ease;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
 
   &.Switch-focusVisible {
     background-color: ${grey[500]};
@@ -65,13 +67,13 @@ const BasicSwitchThumb = styled('span')`
   }
 
   &.Switch-checked {
-    left: 22px;
-    top: 3px;
+    left: 20px;
+    top: 4px;
     background-color: #fff;
   }
 `;
 
-function BasicSwitch(props: UseSwitchProps) {
+function BasicSwitch(props: UseSwitchParameters) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {

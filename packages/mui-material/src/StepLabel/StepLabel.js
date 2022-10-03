@@ -28,8 +28,15 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       alternativeLabel && 'alternativeLabel',
     ],
-    iconContainer: ['iconContainer', alternativeLabel && 'alternativeLabel'],
-    labelContainer: ['labelContainer'],
+    iconContainer: [
+      'iconContainer',
+      active && 'active',
+      completed && 'completed',
+      error && 'error',
+      disabled && 'disabled',
+      alternativeLabel && 'alternativeLabel',
+    ],
+    labelContainer: ['labelContainer', alternativeLabel && 'alternativeLabel'],
   };
 
   return composeClasses(slots, getStepLabelUtilityClass, classes);
@@ -69,19 +76,18 @@ const StepLabelLabel = styled('span', {
     duration: theme.transitions.duration.shortest,
   }),
   [`&.${stepLabelClasses.active}`]: {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     fontWeight: 500,
   },
   [`&.${stepLabelClasses.completed}`]: {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     fontWeight: 500,
   },
   [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
     marginTop: 16,
   },
   [`&.${stepLabelClasses.error}`]: {
-    color: theme.palette.error.main,
+    color: (theme.vars || theme).palette.error.main,
   },
 }));
 
@@ -104,7 +110,10 @@ const StepLabelLabelContainer = styled('span', {
   overridesResolver: (props, styles) => styles.labelContainer,
 })(({ theme }) => ({
   width: '100%',
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
+  [`&.${stepLabelClasses.alternativeLabel}`]: {
+    textAlign: 'center',
+  },
 }));
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {

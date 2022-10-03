@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { SxProps } from '../styles/types';
 
-export type FormLabelSlot = 'root' | 'asterisk' | 'separator';
+export type FormLabelSlot = 'root' | 'asterisk';
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'label', { sx?: SxProps }, FormLabelOwnerState>;
+  asterisk?: SlotComponentProps<'span', { sx?: SxProps }, FormLabelOwnerState>;
+}
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
   props: P & {
@@ -10,6 +16,11 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
      * The content of the component.
      */
     children?: React.ReactNode;
+    /**
+     * The props used for each slot inside the component.
+     * @default {}
+     */
+    componentsProps?: ComponentsProps;
     /**
      * The asterisk is added if required=`true`
      */
@@ -28,3 +39,5 @@ export type FormLabelProps<
     component?: React.ElementType;
   },
 > = OverrideProps<FormLabelTypeMap<P, D>, D>;
+
+export interface FormLabelOwnerState extends FormLabelProps {}

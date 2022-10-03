@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@mui/base/AutocompleteUnstyled';
+import { spy } from 'sinon';
 
 describe('useAutocomplete', () => {
   const { render } = createRenderer();
@@ -141,6 +142,16 @@ describe('useAutocomplete', () => {
           expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal(
             options,
           );
+        });
+      });
+
+      describe('empty', () => {
+        it('does not call getOptionLabel if filter is empty', () => {
+          const getOptionLabelSpy = spy(getOptionLabel);
+          expect(
+            filterOptions(options, { inputValue: '', getOptionLabel: getOptionLabelSpy }),
+          ).to.deep.equal(options);
+          expect(getOptionLabelSpy.callCount).to.equal(0);
         });
       });
 
@@ -304,5 +315,40 @@ describe('useAutocomplete', () => {
 
       expect(input.value).to.equal('free');
     });
+  });
+
+  it('should allow tuples or arrays as value when multiple=false', () => {
+    const Test = () => {
+      const defaultValue = ['bar'];
+
+      const { getClearProps, getInputProps } = useAutocomplete({
+        defaultValue,
+        disableClearable: false,
+        getOptionLabel: ([val]) => val,
+        isOptionEqualToValue: (option, value) => {
+          if (option === value) {
+            return true;
+          }
+          return option[0] === value[0];
+        },
+        multiple: false,
+        options: [['foo'], defaultValue, ['baz']],
+      });
+
+      return (
+        <div>
+          <input {...getInputProps()} />
+          <button data-testid="button" {...getClearProps()} />;
+        </div>
+      );
+    };
+
+    const { getByTestId } = render(<Test />);
+
+    const button = getByTestId('button');
+
+    expect(() => {
+      fireEvent.click(button);
+    }).not.to.throw();
   });
 });

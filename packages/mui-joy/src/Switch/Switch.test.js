@@ -11,24 +11,20 @@ describe('<Switch />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiSwitch',
+    muiName: 'JoySwitch',
+    inheritComponent: 'div',
     testDeepOverrides: [
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
       { slotName: 'thumb', slotClassName: classes.thumb },
     ],
-    refInstanceof: window.HTMLSpanElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'classesRoot',
-      'propsSpread',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
 
-  it('should pass componentProps down to slots', () => {
+  it('should pass `componentsProps` down to slots', () => {
     const { container } = render(
       <Switch
         data-testid="root-switch"

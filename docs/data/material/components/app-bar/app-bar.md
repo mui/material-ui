@@ -34,6 +34,10 @@ A side searchbar.
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
+## Responsive App bar with Drawer
+
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
 ## App bar with a primary search field
 
 A primary searchbar.
@@ -109,7 +113,7 @@ The app bar elevates on scroll to communicate that the user is not at the top of
 
 ### Back to top
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+A floating action button appears on scroll to make it easy to get back to the top of the page.
 
 {{"demo": "BackToTop.js", "iframe": true}}
 

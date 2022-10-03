@@ -74,46 +74,26 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('has CSS variable prefix', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
-        theme: {
-          colorSchemes: { light: { fontSize: 16 } },
-        },
-        defaultColorScheme: 'light',
-        prefix: 'mui',
-      });
-      const Text = () => {
-        const theme = useTheme();
-        return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
-      };
-      render(
-        <CssVarsProvider>
-          <Text />
-        </CssVarsProvider>,
-      );
-
-      expect(screen.getByTestId('text').textContent).to.equal('var(--mui-fontSize)');
-    });
-
-    it('provide getCssVar util', () => {
+    it('provide getColorSchemeSelector util', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
         },
         defaultColorScheme: 'light',
-        prefix: 'mui',
       });
       const Text = () => {
         const theme = useTheme();
-        return <div data-testid={`text`}>{theme.getCssVar('palette-primary-500')}</div>;
+        return <div data-testid={`text`}>{theme.getColorSchemeSelector('light')}</div>;
       };
       render(
-        <CssVarsProvider>
+        <CssVarsProvider attribute="data-custom-color-scheme">
           <Text />
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('text').textContent).to.equal('var(--mui-palette-primary-500)');
+      expect(screen.getByTestId('text').textContent).to.equal(
+        '[data-custom-color-scheme="light"] &',
+      );
     });
 
     it('can access to allColorSchemes', () => {
@@ -176,7 +156,7 @@ describe('createCssVarsProvider', () => {
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
-      expect(document.documentElement.getAttribute('data-mui-color-scheme')).to.equal('dark');
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
     });
 
     it('display error if non-existed colorScheme is set', () => {
@@ -550,6 +530,28 @@ describe('createCssVarsProvider', () => {
 
       expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('light');
     });
+
+    it('does not crash if documentNode is null', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+
+      expect(() => render(<CssVarsProvider documentNode={null} />)).not.to.throw();
+    });
+
+    it('does not crash if colorSchemeNode is null', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+
+      expect(() => render(<CssVarsProvider colorSchemeNode={null} />)).not.to.throw();
+    });
   });
 
   describe('Storage', () => {
@@ -609,7 +611,24 @@ describe('createCssVarsProvider', () => {
       );
 
       expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
-      expect(global.localStorage.setItem.calledWith(customModeStorageKey, 'dark')).to.equal(true);
+    });
+
+    it('support custom storage window', () => {
+      const storageWindow = {
+        addEventListener: (key, handler) => {
+          if (key === 'storage') {
+            handler({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'dark' });
+          }
+        },
+        removeEventListener: () => {},
+      };
+      render(
+        <CssVarsProvider storageWindow={storageWindow}>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('current-mode')).to.have.text('dark');
     });
   });
 
@@ -789,14 +808,18 @@ describe('createCssVarsProvider', () => {
           colorSchemes: { light: { fontSize: 16 } },
         },
         defaultColorScheme: 'light',
-        prefix: 'mui',
       });
       const Text = () => {
         const theme = useTheme();
         return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
       };
       render(
-        <CssVarsProvider prefix="foo-bar">
+        <CssVarsProvider
+          theme={{
+            cssVarPrefix: 'foo-bar',
+            colorSchemes: { light: { fontSize: 16 } },
+          }}
+        >
           <Text />
         </CssVarsProvider>,
       );

@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SwitchClasses {
   /** Styles applied to the root element. */
@@ -46,10 +46,10 @@ export interface SwitchClasses {
 export type SwitchClassKey = keyof SwitchClasses;
 
 export function getSwitchUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSwitch', slot);
+  return generateUtilityClass('JoySwitch', slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
+const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
   'root',
   'checked',
   'disabled',

@@ -7,6 +7,8 @@ const pages = [
     children: [
       { pathname: '/base/getting-started/overview', title: 'Overview' },
       { pathname: '/base/getting-started/installation', title: 'Installation' },
+      { pathname: '/base/getting-started/usage', title: 'Usage' },
+      { pathname: '/base/getting-started/customization', title: 'Customization' },
     ],
   },
   {
@@ -26,6 +28,16 @@ const pages = [
         ],
       },
       {
+        pathname: '/base/components/data-display',
+        subheader: 'data-display',
+        children: [
+          {
+            pathname: '/base/react-badge',
+            title: 'Badge',
+          },
+        ],
+      },
+      {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
         children: [
@@ -39,13 +51,13 @@ const pages = [
         subheader: 'utils',
         children: [
           { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/base/react-focus-trap', title: 'Focus Trap' },
           { pathname: '/base/react-form-control', title: 'Form control' },
           { pathname: '/base/react-modal', title: 'Modal' },
           { pathname: '/base/react-no-ssr', title: 'No SSR' },
           { pathname: '/base/react-popper', title: 'Popper' },
           { pathname: '/base/react-portal', title: 'Portal' },
           { pathname: '/base/react-textarea-autosize', title: 'Textarea autosize' },
-          { pathname: '/base/react-trap-focus', title: 'Trap focus' },
         ],
       },
     ],
@@ -55,6 +67,17 @@ const pages = [
     pathname: '/base/api',
     icon: 'CodeIcon',
     children: pagesApi,
+  },
+  {
+    pathname: '/base/guides',
+    title: 'How To Guides',
+    icon: 'VisibilityIcon',
+    children: [
+      {
+        pathname: '/base/guides/working-with-tailwind-css',
+        title: 'Working with Tailwind CSS',
+      },
+    ],
   },
 ];
 

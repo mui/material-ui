@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
-    "className": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
@@ -17,6 +16,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/FormControlUnstyled/FormControlUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-form-control/\">Form control</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-form-control/\">Unstyled Form Control</a></li></ul>",
   "cssComponent": false
 }

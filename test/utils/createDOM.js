@@ -16,13 +16,14 @@ const whitelist = [
   'Node',
   'Performance',
   'document',
+  'DocumentFragment',
 ];
 const blacklist = ['sessionStorage', 'localStorage'];
 
 function createDOM() {
   const dom = new JSDOM('', {
     pretendToBeVisual: true,
-    url: 'http://localhost', // https://github.com/jsdom/jsdom/issues/2383
+    url: 'http://localhost',
   });
   global.window = dom.window;
   // Not yet supported: https://github.com/jsdom/jsdom/issues/2152

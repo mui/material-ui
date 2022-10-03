@@ -1,8 +1,8 @@
 # Usage
 
-<p class="description">Get started with React and MUI in no time.</p>
+<p class="description">Get started with React and Material UI in no time.</p>
 
-MUI components work in isolation.
+Material UI components work in isolation.
 **They are self-supporting**, and will only inject the styles they need to display.
 They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
 
@@ -15,7 +15,6 @@ Here's a quick example to get you started, **it's literally all you need**:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
@@ -29,11 +28,11 @@ Yes, this really is all you need to get started, as you can see in this live and
 
 ## Globals
 
-MUI usage experience can be improved with a handful of important globals that you'll need to be aware of.
+Material UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsive meta tag
 
-MUI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries.
+Material UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries.
 To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element.
 
 ```html
@@ -42,12 +41,12 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 
 ### CssBaseline
 
-MUI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
+Material UI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
-## Versioned Documentation
+## Versioned documentation
 
-This documentation always reflects the latest stable version of MUI.
+This documentation always reflects the latest stable version of Material UI.
 You can find older versions of the documentation on a [separate page](https://mui.com/versions/).
 
 ## Next steps

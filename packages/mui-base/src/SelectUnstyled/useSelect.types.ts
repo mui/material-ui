@@ -28,7 +28,6 @@ export function isOptionGroup<TValue>(
 }
 
 interface UseSelectCommonProps<TValue> {
-  buttonComponent?: React.ElementType;
   buttonRef?: React.Ref<Element>;
   disabled?: boolean;
   listboxId?: string;
@@ -42,14 +41,20 @@ interface UseSelectCommonProps<TValue> {
 export interface UseSelectSingleParameters<TValue> extends UseSelectCommonProps<TValue> {
   defaultValue?: TValue | null;
   multiple?: false;
-  onChange?: (value: TValue | null) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
   value?: TValue | null;
 }
 
 export interface UseSelectMultiParameters<TValue> extends UseSelectCommonProps<TValue> {
   defaultValue?: TValue[];
   multiple: true;
-  onChange?: (value: TValue[]) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue[],
+  ) => void;
   value?: TValue[];
 }
 

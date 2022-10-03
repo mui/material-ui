@@ -58,18 +58,14 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.deletableColorSecondary);
     });
 
-    it('should render with the root and the primary class', () => {
-      const { container } = render(<Chip color="primary" />);
+    it('should render with the color class name based on the color prop', () => {
+      const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorPrimary);
-    });
-
-    it('should render with the root and the secondary class', () => {
-      const { container } = render(<Chip color="secondary" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorSecondary);
+      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].forEach((color) => {
+        const { container } = render(<Chip color={color} />);
+        const chip = container.querySelector(`.${classes.root}`);
+        expect(chip).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 
@@ -149,7 +145,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.outlinedPrimary);
     });
 
-    it('should render with the root and clickable secondary class', () => {
+    it('should render with the root and outlined clickable secondary class', () => {
       const { getByRole } = render(
         <Chip color="secondary" label="My Chip" onClick={() => {}} variant="outlined" />,
       );
@@ -159,6 +155,36 @@ describe('<Chip />', () => {
       expect(button).to.have.class(classes.colorSecondary);
       expect(button).to.have.class(classes.clickable);
       expect(button).to.have.class(classes.clickableColorSecondary);
+      expect(button).to.have.class(classes.outlined);
+      expect(button).to.have.class(classes.outlinedSecondary);
+    });
+
+    it('should render with the root and filled clickable primary class', () => {
+      const { getByRole } = render(
+        <Chip color="primary" label="My Chip" onClick={() => {}} variant="filled" />,
+      );
+
+      const chip = getByRole('button');
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.clickable);
+      expect(chip).to.have.class(classes.clickableColorPrimary);
+      expect(chip).to.have.class(classes.filled);
+      expect(chip).to.have.class(classes.filledPrimary);
+    });
+
+    it('should render with the root and filled clickable secondary class', () => {
+      const { getByRole } = render(
+        <Chip color="secondary" label="My Chip" onClick={() => {}} variant="filled" />,
+      );
+
+      const chip = getByRole('button');
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorSecondary);
+      expect(chip).to.have.class(classes.clickable);
+      expect(chip).to.have.class(classes.clickableColorSecondary);
+      expect(chip).to.have.class(classes.filled);
+      expect(chip).to.have.class(classes.filledSecondary);
     });
   });
 
@@ -287,23 +313,16 @@ describe('<Chip />', () => {
   });
 
   describe('prop: deleteIcon', () => {
-    it('should render a default icon with the root, deletable, deleteIcon and deleteIconOutlinedColorSecondary classes', () => {
-      const { getByRole, getByTestId } = render(
-        <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
-      );
-
-      const icon = getByTestId('CancelIcon');
-      expect(getByRole('button')).to.contain(icon);
-      expect(icon).to.have.class(classes.deleteIcon);
-    });
-
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
       const { getByRole, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
       );
 
+      const chip = getByRole('button');
       const icon = getByTestId('CancelIcon');
-      expect(getByRole('button')).to.contain(icon);
+
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.contain(icon);
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
@@ -333,6 +352,46 @@ describe('<Chip />', () => {
       const icon = getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorSecondary);
+    });
+
+    it('should render default icon with the root, deletable, deleteIcon primary class and deleteIcon filled primary class', () => {
+      const { container, getByTestId } = render(
+        <Chip
+          label="Custom delete icon Chip"
+          onDelete={() => {}}
+          color="primary"
+          variant="filled"
+        />,
+      );
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorPrimary);
+      const icon = getByTestId('CancelIcon');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconColorPrimary);
+      expect(icon).to.have.class(classes.deleteIconFilledColorPrimary);
+    });
+
+    it('should render default icon with the root, deletable, deleteIcon primary class and deleteIcon outlined primary class', () => {
+      const { container, getByTestId } = render(
+        <Chip
+          label="Custom delete icon Chip"
+          onDelete={() => {}}
+          color="primary"
+          variant="outlined"
+        />,
+      );
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorPrimary);
+      const icon = getByTestId('CancelIcon');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconColorPrimary);
+      expect(icon).to.have.class(classes.deleteIconOutlinedColorPrimary);
     });
 
     it('accepts a custom icon', () => {

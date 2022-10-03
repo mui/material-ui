@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/system';
 
 const Label = styled('label')({
   display: 'block',
@@ -8,8 +8,8 @@ const Label = styled('label')({
 
 const Input = styled('input')(({ theme }) => ({
   width: 200,
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.getContrastText(theme.palette.background.paper),
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
+  color: theme.palette.mode === 'light' ? '#000' : '#fff',
 }));
 
 const Listbox = styled('ul')(({ theme }) => ({
@@ -19,11 +19,11 @@ const Listbox = styled('ul')(({ theme }) => ({
   zIndex: 1,
   position: 'absolute',
   listStyle: 'none',
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
   overflow: 'auto',
   maxHeight: 200,
   border: '1px solid rgba(0,0,0,.25)',
-  '& li[data-focus="true"]': {
+  '& li.Mui-focused': {
     backgroundColor: '#4a8df6',
     color: 'white',
     cursor: 'pointer',

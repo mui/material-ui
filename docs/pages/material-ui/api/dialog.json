@@ -5,7 +5,9 @@
     "aria-labelledby": { "type": { "name": "string" } },
     "BackdropComponent": {
       "type": { "name": "elementType" },
-      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})"
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>components.Backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -73,6 +75,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialogs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
   "cssComponent": false
 }

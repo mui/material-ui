@@ -21,7 +21,27 @@ describe('extendTheme', () => {
         'shadow',
         'typography',
         'variantOverrideConfig',
+        'variants',
+        'cssVarPrefix',
       ]).to.includes(field);
     });
+  });
+
+  it('should have joy default css var prefix', () => {
+    const theme = extendTheme();
+    expect(theme.cssVarPrefix).to.equal('joy');
+    expect(theme.typography.body1.fontSize).to.equal('var(--joy-fontSize-md)');
+  });
+
+  it('should have custom css var prefix', () => {
+    const theme = extendTheme({ cssVarPrefix: 'foo' });
+    expect(theme.cssVarPrefix).to.equal('foo');
+    expect(theme.typography.body1.fontSize).to.equal('var(--foo-fontSize-md)');
+  });
+
+  it('should have no css var prefix', () => {
+    const theme = extendTheme({ cssVarPrefix: '' });
+    expect(theme.cssVarPrefix).to.equal('');
+    expect(theme.typography.body1.fontSize).to.equal('var(--fontSize-md)');
   });
 });

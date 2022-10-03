@@ -15,6 +15,10 @@
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
+    "size": {
+      "type": { "name": "enum", "description": "'normal'<br>&#124;&nbsp;'small'" },
+      "default": "'normal'"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -57,6 +61,6 @@
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/material-ui/api/form-label/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

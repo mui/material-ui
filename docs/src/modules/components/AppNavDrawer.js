@@ -17,120 +17,18 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import IconImage from 'docs/src/components/icon/IconImage';
-import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
+import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import joyPkgJson from '../../../../packages/mui-joy/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
-
-const shouldShowJoy =
-  process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST ||
-  FEATURE_TOGGLE.enable_joy_scope;
-
-const LinksWrapper = styled('div')(({ theme }) => {
-  return {
-    paddingLeft: theme.spacing(5.5),
-    paddingTop: theme.spacing(1.5),
-    height: shouldShowJoy ? 162 : 124,
-    '& > a': {
-      position: 'relative',
-      display: 'flex',
-      minHeight: 40,
-      flexDirection: 'column',
-      alignItems: 'initial',
-      padding: theme.spacing(0, 1),
-      paddingTop: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-      transition: theme.transitions.create(),
-      '&:hover': {
-        paddingBottom: theme.spacing(3.5),
-        backgroundColor:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
-        '& .MuiTypography-body2': {
-          opacity: 1,
-          transform: 'translateY(0px)',
-        },
-      },
-      '& .MuiTypography-body1': {
-        zIndex: 1,
-      },
-      '& .MuiTypography-body2': {
-        opacity: 0,
-        position: 'absolute',
-        top: '28px',
-        transition: theme.transitions.create(),
-      },
-      '& svg': {
-        width: 18,
-        height: 18,
-      },
-    },
-  };
-});
-
-const ProductLabel = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(0.3),
-  fontSize: theme.typography.pxToRem(12),
-  fontWeight: theme.typography.fontWeightBold,
-  textTransform: 'uppercase',
-  letterSpacing: '.05rem',
-  color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-}));
-
-function ProductSubMenu(props) {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: 2,
-      }}
-    >
-      <Box
-        sx={{
-          '& circle': {
-            fill: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[100],
-          },
-        }}
-      >
-        {props.icon}
-      </Box>
-      <div>
-        <Typography color="text.primary" variant="body2" fontWeight="700">
-          {props.name}
-        </Typography>
-        <Typography color="text.secondary" variant="body2">
-          {props.description}
-        </Typography>
-      </div>
-    </Box>
-  );
-}
-
-ProductSubMenu.propTypes = {
-  description: PropTypes.string,
-  icon: PropTypes.element,
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-};
 
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -142,7 +40,6 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
-  /* eslint-disable material-ui/no-hardcoded-labels */
   return (
     <React.Fragment>
       <Button
@@ -181,95 +78,14 @@ function ProductDrawerButton(props) {
         }}
         PaperProps={{
           sx: {
-            width: { xs: 340, sm: 480 },
-            '& ul': {
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-            },
-            '& li:not(:last-of-type)': {
-              borderBottom: '1px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primary[100], 0.08)
-                  : theme.palette.grey[100],
-            },
-            '& a': { textDecoration: 'none' },
-            '& li': {
-              p: 2,
-            },
-            '& li:last-of-type': {
-              p: 0,
-            },
+            width: { xs: 340, sm: 'auto' },
           },
         }}
       >
-        <li role="none">
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-core" />}
-            name="MUI Core"
-            description="Ready-to-use foundational components, free forever."
-          />
-          <LinksWrapper>
-            <Link href={ROUTES.materialDocs} sx={{ my: -0.5 }}>
-              <ProductLabel>Material UI</ProductLabel>
-              <Typography color="text.secondary" variant="body2">
-                {"React components that implement Google's Material Design."}
-              </Typography>
-            </Link>
-            {shouldShowJoy && (
-              <Link href={ROUTES.joyDocs} sx={{ my: -0.5 }}>
-                <ProductLabel>Joy UI</ProductLabel>
-                <Typography color="text.secondary" variant="body2">
-                  React components for building your design system.
-                </Typography>
-              </Link>
-            )}
-            <Link href={ROUTES.baseDocs} sx={{ mb: -0.5 }}>
-              <ProductLabel>MUI Base</ProductLabel>
-              <Typography color="text.secondary" variant="body2">
-                Unstyled React components and low-level hooks.
-              </Typography>
-            </Link>
-            <Link href={ROUTES.systemDocs}>
-              <ProductLabel>MUI System</ProductLabel>
-              <Typography color="text.secondary" variant="body2">
-                CSS utilities for rapidly laying out custom designs.
-              </Typography>
-            </Link>
-          </LinksWrapper>
-        </li>
-        <li role="none">
-          <Link
-            href={ROUTES.advancedComponents}
-            sx={{
-              p: 2,
-              width: '100%',
-              '&:hover': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-            }}
-          >
-            <ProductSubMenu
-              role="menuitem"
-              icon={<IconImage name="product-advanced" />}
-              name={
-                <Box component="span" display="inline-flex" alignItems="center">
-                  MUI&nbsp;X
-                </Box>
-              }
-              description="Advanced and powerful components for complex use cases."
-            />
-          </Link>
-        </li>
+        <MuiProductSelector />
       </Menu>
     </React.Fragment>
   );
-  /* eslint-enable material-ui/no-hardcoded-labels */
 }
 
 ProductDrawerButton.propTypes = {
@@ -419,6 +235,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={firstChild.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -445,6 +262,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -472,8 +290,7 @@ export default function AppNavDrawer(props) {
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const isProductScoped = isNewLocation(router.asPath);
-    const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+    const { canonicalAs } = pathnameToLanguage(router.asPath);
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
@@ -508,25 +325,6 @@ export default function AppNavDrawer(props) {
                   width: 18,
                   height: 18,
                 },
-                ...(!isProductScoped && {
-                  px: 1,
-                  py: 0.4,
-                  border: `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[200]
-                  }`,
-                  '&:hover': {
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[600]
-                        : theme.palette.grey[300],
-                    background:
-                      theme.palette.mode === 'dark'
-                        ? alpha(theme.palette.primaryDark[700], 0.4)
-                        : theme.palette.grey[50],
-                  },
-                }),
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
@@ -575,14 +373,15 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref onClick={onClose}>
+          <NextLink href="/" passHref>
             <Box
               component="a"
+              onClick={onClose}
               aria-label={t('goToHome')}
               sx={{
                 pr: '12px',
                 mr: '4px',
-                borderRight: isProductScoped ? '1px solid' : '0px',
+                borderRight: '1px solid',
                 borderColor: (theme) =>
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.primary[100], 0.08)
@@ -592,19 +391,7 @@ export default function AppNavDrawer(props) {
               <SvgMuiLogo width={30} />
             </Box>
           </NextLink>
-          {!isProductScoped &&
-            renderVersionSelector(
-              [
-                { text: `v${process.env.LIB_VERSION}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ],
-              { mr: 2 },
-            )}
-          {asPathWithoutLang.startsWith('/material-ui/') && (
+          {canonicalAs.startsWith('/material-ui/') && (
             <ProductIdentifier
               name="Material UI"
               metadata="MUI Core"
@@ -621,7 +408,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/joy-ui/') && (
+          {canonicalAs.startsWith('/joy-ui/') && (
             <ProductIdentifier
               name="Joy UI"
               metadata="MUI Core"
@@ -630,7 +417,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
+          {canonicalAs.startsWith('/system/') && (
             <ProductIdentifier
               name="MUI System"
               metadata="MUI Core"
@@ -644,7 +431,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/base/') && (
+          {canonicalAs.startsWith('/base/') && (
             <ProductIdentifier
               name="MUI Base"
               metadata="MUI Core"
@@ -653,11 +440,11 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/x/advanced-components') && (
+          {canonicalAs.startsWith('/x/introduction/') && (
             <ProductIdentifier name="Advanced components" metadata="MUI X" />
           )}
-          {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
-            asPathWithoutLang.startsWith('/x/api/data-grid')) && (
+          {(canonicalAs.startsWith('/x/react-data-grid/') ||
+            canonicalAs.startsWith('/x/api/data-grid/')) && (
             <ProductIdentifier
               name="Data Grid"
               metadata="MUI X"
@@ -668,8 +455,8 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
-            asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
+          {(canonicalAs.startsWith('/x/react-date-pickers/') ||
+            canonicalAs.startsWith('/x/api/date-pickers/')) && (
             <ProductIdentifier
               name="Date pickers"
               metadata="MUI X"
@@ -678,6 +465,9 @@ export default function AppNavDrawer(props) {
                 { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
               ])}
             />
+          )}
+          {canonicalAs.startsWith('/toolpad/') && (
+            <ProductIdentifier name="Toolpad" metadata="MUI Toolpad" />
           )}
         </ToolbarDiv>
         <Divider
@@ -688,7 +478,7 @@ export default function AppNavDrawer(props) {
                 : theme.palette.grey[100],
           }}
         />
-        <DiamondSponsors spot="drawer" />
+        <DiamondSponsors />
         {navItems}
       </React.Fragment>
     );

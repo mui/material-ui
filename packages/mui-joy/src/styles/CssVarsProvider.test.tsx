@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { CssVarsProvider, useTheme } from '@mui/joy/styles';
+import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -27,6 +27,26 @@ describe('[Joy] CssVarsProvider', () => {
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
+  });
+
+  describe('shouldSkipGeneratingVar', () => {
+    it('skip typography', () => {
+      expect(shouldSkipGeneratingVar(['typography'])).to.equal(true);
+    });
+
+    it('skip variants', () => {
+      expect(shouldSkipGeneratingVar(['variants'])).to.equal(true);
+    });
+
+    it('skip breakpoints', () => {
+      expect(shouldSkipGeneratingVar(['breakpoints'])).to.equal(true);
+    });
+
+    it('skip focus', () => {
+      expect(shouldSkipGeneratingVar(['focus'])).to.equal(true);
+      expect(shouldSkipGeneratingVar(['focus', 'selector'])).to.equal(true);
+      expect(shouldSkipGeneratingVar(['focus', 'thickness'])).to.equal(false);
+    });
   });
 
   describe('All CSS vars', () => {
@@ -329,9 +349,12 @@ describe('[Joy] CssVarsProvider', () => {
       expect(screen.getByTestId('palette-background').textContent).to.equal(
         JSON.stringify({
           body: 'var(--joy-palette-background-body)',
+          surface: 'var(--joy-palette-background-surface)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
+          tooltip: 'var(--joy-palette-background-tooltip)',
+          backdrop: 'var(--joy-palette-background-backdrop)',
         }),
       );
       expect(screen.getByTestId('palette-focusVisible').textContent).to.equal(
@@ -361,6 +384,8 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
+          xs3: 'var(--joy-fontSize-xs3)',
+          xs2: 'var(--joy-fontSize-xs2)',
           xs: 'var(--joy-fontSize-xs)',
           sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
@@ -371,6 +396,7 @@ describe('[Joy] CssVarsProvider', () => {
           xl4: 'var(--joy-fontSize-xl4)',
           xl5: 'var(--joy-fontSize-xl5)',
           xl6: 'var(--joy-fontSize-xl6)',
+          xl7: 'var(--joy-fontSize-xl7)',
         }),
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
@@ -388,6 +414,8 @@ describe('[Joy] CssVarsProvider', () => {
           md: 'var(--joy-fontWeight-md)',
           lg: 'var(--joy-fontWeight-lg)',
           xl: 'var(--joy-fontWeight-xl)',
+          xl2: 'var(--joy-fontWeight-xl2)',
+          xl3: 'var(--joy-fontWeight-xl3)',
         }),
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
@@ -468,7 +496,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('selector,default');
+      expect(container.firstChild?.textContent).to.equal('thickness,selector,default');
     });
   });
 
@@ -485,7 +513,9 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('h1,h2,h3,h4,h5,h6,body1,body2,body3');
+      expect(container.firstChild?.textContent).to.equal(
+        'display1,display2,h1,h2,h3,h4,h5,h6,body1,body2,body3,body4,body5',
+      );
     });
   });
 
@@ -520,6 +550,10 @@ describe('[Joy] CssVarsProvider', () => {
           'solidHover',
           'solidActive',
           'solidDisabled',
+          'plainOverrides',
+          'outlinedOverrides',
+          'softOverrides',
+          'solidOverrides',
         ].join(','),
       );
     });
@@ -609,11 +643,10 @@ describe('[Joy] CssVarsProvider', () => {
       expect(container.firstChild?.textContent).not.to.equal('typography');
     });
 
-    it('should not contain `focus` in theme.vars', () => {
+    it('should contain only `focus.thickness` in theme.vars', () => {
       const Consumer = () => {
         const theme = useTheme();
-        // @ts-expect-error
-        return <div>{theme.vars.focus ? 'focus' : ''}</div>;
+        return <div>{JSON.stringify(theme.vars.focus)}</div>;
       };
 
       const { container } = render(
@@ -622,7 +655,9 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).not.to.equal('focus');
+      expect(container.firstChild?.textContent).not.to.equal(
+        JSON.stringify({ focus: { thickness: '2px' } }),
+      );
     });
   });
 });

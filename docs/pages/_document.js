@@ -7,7 +7,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { getInitColorSchemeScript } from '@mui/joy/styles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -29,9 +29,10 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
-const PRODUCTION_DEPLOYEMENT = !process.env.PULL_REQUEST && process.env.NODE_ENV === 'production';
+const PRODUCTION_GA =
+  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
-const GOOGLE_ANALYTICS_ID = PRODUCTION_DEPLOYEMENT ? 'UA-106598593-2' : 'UA-106598593-3';
+const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
 
 export default class MyDocument extends Document {
   render() {
@@ -64,10 +65,6 @@ export default class MyDocument extends Document {
             rel="canonical"
             href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
-          {/* TODO remove post migration */}
-          {!FEATURE_TOGGLE.enable_redirects && canonicalAs.startsWith('/material-ui/') ? (
-            <meta name="robots" content="noindex,nofollow" />
-          ) : null}
           <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
@@ -146,6 +143,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          {getInitColorSchemeScript({ enableSystem: true })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
@@ -153,7 +151,7 @@ export default class MyDocument extends Document {
               __html: `
                 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
                 window.ga('create','${GOOGLE_ANALYTICS_ID}',{
-                  sampleRate: ${PRODUCTION_DEPLOYEMENT ? 80 : 100},
+                  sampleRate: ${PRODUCTION_GA ? 80 : 100},
                 });
               `,
             }}

@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import NoSsr from '@mui/material/NoSsr';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -14,7 +15,7 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
+import BackToTop from 'docs/src/modules/components/BackToTop';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -27,7 +28,7 @@ const Main = styled('main', {
     },
   }),
   [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - var(--MuiDocs-navDrawer-width))`,
+    width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
 }));
 
@@ -43,17 +44,15 @@ const StyledAppContainer = styled(AppContainer, {
       '&& .description.ad': {
         marginBottom: 40,
       },
-      ...(!disableToc && {
-        [theme.breakpoints.up('sm')]: {
-          width: `calc(100% - var(--MuiDocs-toc-width))`,
-        },
-      }),
-      ...(!disableToc && {
-        [theme.breakpoints.up('lg')]: {
-          paddingLeft: '60px',
-          paddingRight: '60px',
-        },
-      }),
+    }),
+    ...(!disableToc && {
+      [theme.breakpoints.up('sm')]: {
+        width: 'calc(100% - var(--MuiDocs-toc-width))',
+      },
+      [theme.breakpoints.up('lg')]: {
+        paddingLeft: '60px',
+        paddingRight: '60px',
+      },
     }),
   };
 });
@@ -83,39 +82,39 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
-  const isNewDocs = isNewLocation(router.asPath);
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   let productName = 'MUI';
-  if (asPathWithoutLang.startsWith('/material-ui')) {
+  if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  }
-  if (asPathWithoutLang.startsWith('/base')) {
+  } else if (canonicalAs.startsWith('/base/')) {
     productName = 'MUI Base';
-  }
-  if (asPathWithoutLang.startsWith('/x')) {
+  } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
-  }
-  if (asPathWithoutLang.startsWith('/system')) {
+  } else if (canonicalAs.startsWith('/system/')) {
     productName = 'MUI System';
-  }
-  if (asPathWithoutLang.startsWith('/toolpad')) {
+  } else if (canonicalAs.startsWith('/toolpad/')) {
     productName = 'MUI Toolpad';
+  } else if (canonicalAs.startsWith('/joy-ui/')) {
+    productName = 'Joy UI';
   }
 
   return (
-    // TODO: remove the condition after post-migration (This is to prevent the new urls from being indexed by the old docsearch app)
-    <AppFrame className={isNewDocs ? 'exclude-docsearch-indexing' : ''}>
+    <AppFrame>
       <GlobalStyles
         styles={{
           ':root': {
             '--MuiDocs-navDrawer-width': '300px',
             '--MuiDocs-toc-width': '240px',
-            '--MuiDocs-header-height': '64px',
           },
         }}
       />
       <AdManager>
-        <Head title={`${title} - ${productName}`} description={description} />
+        <Head
+          title={`${title} - ${productName}`}
+          description={description}
+          largeCard={false}
+          card="https://mui.com/static/logo.png"
+        />
         {disableAd ? null : (
           <AdGuest>
             <Ad />
@@ -136,6 +135,7 @@ function AppLayoutDocs(props) {
           </StyledAppContainer>
         </Main>
       </AdManager>
+      <BackToTop />
     </AppFrame>
   );
 }

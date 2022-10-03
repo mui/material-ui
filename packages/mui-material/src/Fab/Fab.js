@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -20,12 +20,18 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  return composeClasses(slots, getFabUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getFabUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
 const FabRoot = styled(ButtonBase, {
   name: 'MuiFab',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
@@ -50,28 +56,30 @@ const FabRoot = styled(ButtonBase, {
     minWidth: 0,
     width: 56,
     height: 56,
-    zIndex: theme.zIndex.fab,
-    boxShadow: theme.shadows[6],
+    zIndex: (theme.vars || theme).zIndex.fab,
+    boxShadow: (theme.vars || theme).shadows[6],
     '&:active': {
-      boxShadow: theme.shadows[12],
+      boxShadow: (theme.vars || theme).shadows[12],
     },
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
+    color: theme.vars
+      ? theme.vars.palette.text.primary
+      : theme.palette.getContrastText?.(theme.palette.grey[300]),
+    backgroundColor: (theme.vars || theme).palette.grey[300],
     '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
+      backgroundColor: (theme.vars || theme).palette.grey.A100,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.palette.grey[300],
+        backgroundColor: (theme.vars || theme).palette.grey[300],
       },
       textDecoration: 'none',
     },
     [`&.${fabClasses.focusVisible}`]: {
-      boxShadow: theme.shadows[6],
+      boxShadow: (theme.vars || theme).shadows[6],
     },
     [`&.${fabClasses.disabled}`]: {
-      color: theme.palette.action.disabled,
-      boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.action.disabledBackground,
+      color: (theme.vars || theme).palette.action.disabled,
+      boxShadow: (theme.vars || theme).shadows[0],
+      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
     },
     ...(ownerState.size === 'small' && {
       width: 40,
@@ -112,14 +120,14 @@ const FabRoot = styled(ButtonBase, {
   ({ theme, ownerState }) => ({
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' &&
-      theme.palette[ownerState.color] != null && {
-        color: theme.palette[ownerState.color].contrastText,
-        backgroundColor: theme.palette[ownerState.color].main,
+      (theme.vars || theme).palette[ownerState.color] != null && {
+        color: (theme.vars || theme).palette[ownerState.color].contrastText,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
         '&:hover': {
-          backgroundColor: theme.palette[ownerState.color].dark,
+          backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: theme.palette[ownerState.color].main,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
           },
         },
       }),
@@ -163,6 +171,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       {...other}
+      classes={classes}
     >
       {children}
     </FabRoot>
@@ -192,15 +201,18 @@ Fab.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
-  color: PropTypes.oneOf([
-    'default',
-    'error',
-    'info',
-    'inherit',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'default',
+      'error',
+      'info',
+      'inherit',
+      'primary',
+      'secondary',
+      'success',
+      'warning',
+    ]),
+    PropTypes.string,
   ]),
   /**
    * The component used for the root node.

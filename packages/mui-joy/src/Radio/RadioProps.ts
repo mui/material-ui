@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type RadioSlot = 'root' | 'radio' | 'action' | 'input' | 'label';
+export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label';
 
 export interface RadioPropsVariantOverrides {}
 
@@ -11,9 +12,18 @@ export interface RadioPropsColorOverrides {}
 
 export interface RadioPropsSizeOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
+  radio?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
+  icon?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
+  action?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
+  input?: SlotComponentProps<'input', { sx?: SxProps }, RadioOwnerState>;
+  label?: SlotComponentProps<'label', { sx?: SxProps }, RadioOwnerState>;
+}
+
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    UseSwitchProps & {
+    UseSwitchParameters & {
       /**
        * The icon to display when the component is checked.
        */
@@ -28,16 +38,10 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       component?: React.ElementType;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: {
-        root?: React.ComponentPropsWithRef<'span'>;
-        radio?: React.ComponentPropsWithRef<'span'>;
-        action?: React.ComponentPropsWithRef<'span'>;
-        input?: React.ComponentPropsWithRef<'input'>;
-        label?: React.ComponentPropsWithRef<'label'>;
-      };
+      componentsProps?: ComponentsProps;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
@@ -79,7 +83,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The variant to use.
        * @default 'outlined'
        */
-      variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, RadioPropsVariantOverrides>;
+      variant?: OverridableStringUnion<VariantProp, RadioPropsVariantOverrides>;
       /**
        * The value of the component. The DOM API casts this to a string.
        */
@@ -94,3 +98,25 @@ export type RadioProps<
     component?: React.ElementType;
   },
 > = OverrideProps<RadioTypeMap<P, D>, D>;
+
+export interface RadioOwnerState extends RadioProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * @internal
+   * The value from the RadioGroup component.
+   */
+  row?: boolean;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: string;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-parent'?: string;
+}

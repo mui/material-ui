@@ -3,7 +3,13 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "enableColorScheme": { "type": { "name": "bool" } }
+    "enableColorScheme": { "type": { "name": "bool" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ScopedCssBaseline",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
@@ -11,6 +17,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ScopedCssBaseline/ScopedCssBaseline.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">Css baseline</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">CSS Baseline</a></li></ul>",
   "cssComponent": false
 }
