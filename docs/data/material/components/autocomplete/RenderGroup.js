@@ -4,7 +4,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { styled, lighten, darken } from '@mui/system';
 
 const GroupHeader = styled('div')(({ theme }) => {
-  console.log(theme);
   return {
     position: 'sticky',
     top: '-8px',
