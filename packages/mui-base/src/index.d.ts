@@ -63,6 +63,9 @@ export * from './SelectUnstyled';
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 
+export { default as SnackbarUnstyled } from './SnackbarUnstyled';
+export * from './SnackbarUnstyled';
+
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';
 
