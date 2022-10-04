@@ -39,7 +39,7 @@ export default function TooltipUsage() {
         {
           propName: 'open',
           knob: 'switch',
-          defaultValue: false,
+          defaultValue: true,
         },
       ]}
       renderDemo={(props) => (
