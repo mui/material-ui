@@ -1,11 +1,12 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertTypeMap } from './AlertProps';
 
@@ -104,7 +105,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     children,
     className,
     component = 'div',
-    color = 'primary',
+    color: colorProp = 'primary',
     role = 'alert',
     variant = 'soft',
     size = 'md',
@@ -112,6 +113,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     endDecorator,
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

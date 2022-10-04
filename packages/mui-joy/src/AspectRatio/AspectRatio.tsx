@@ -6,6 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
@@ -96,10 +97,12 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     minHeight,
     maxHeight,
     objectFit = 'cover',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'soft',
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

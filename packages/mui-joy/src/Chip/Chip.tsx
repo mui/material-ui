@@ -7,6 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useVariantInversion } from '../styles/VariantInversion';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
@@ -200,7 +201,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     children,
     className,
     componentsProps = {},
-    color = 'primary',
+    color: colorProp = 'primary',
     component,
     onClick,
     disabled = false,
@@ -210,6 +211,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     endDecorator,
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!componentsProps.action;
   const ownerState: ChipOwnerState = {

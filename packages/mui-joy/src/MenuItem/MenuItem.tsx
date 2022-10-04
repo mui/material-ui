@@ -6,6 +6,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import {
   MenuItemProps,
@@ -52,10 +53,12 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled: disabledProp = false,
     component = 'li',
     selected = false,
-    color = selected ? 'primary' : 'neutral',
+    color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,

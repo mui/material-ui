@@ -6,6 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useVariantInversion } from '../styles/VariantInversion';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarOwnerState, AvatarTypeMap } from './AvatarProps';
@@ -157,8 +158,9 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children: childrenProp,
     ...other
   } = props;
-  const color = inProps.color || groupContext?.color || colorProp;
   const variant = inProps.variant || groupContext?.variant || variantProp;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color || groupContext?.color, colorProp);
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;

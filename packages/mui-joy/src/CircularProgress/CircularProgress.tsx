@@ -8,6 +8,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import {
   CircularProgressProps,
@@ -193,7 +194,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     component = 'span',
     children,
     className,
-    color = 'primary',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -201,6 +202,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     value = determinate ? 0 : 25, // `25` is the 1/4 of the circle.
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

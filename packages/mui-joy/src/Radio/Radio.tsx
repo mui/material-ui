@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useVariantInversion } from '../styles/VariantInversion';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
@@ -238,13 +239,14 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onFocusVisible,
     readOnly,
     required,
-    color,
+    color: colorProp,
     variant = 'outlined',
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
 
   const formControl = React.useContext(FormControlContext);
 
@@ -264,10 +266,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? color ?? 'primary';
+    : inProps.color ?? formControl?.color ?? colorProp ?? 'primary';
   const inactiveColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? color ?? 'neutral';
+    : inProps.color ?? formControl?.color ?? colorProp ?? 'neutral';
   const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
@@ -289,12 +291,14 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
 
+  const color = getColor(inProps.color, checked ? activeColor : inactiveColor);
+
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
-    color: checked ? activeColor : inactiveColor,
+    color,
     variant,
     size,
     disableIcon,

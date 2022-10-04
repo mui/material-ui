@@ -20,6 +20,7 @@ import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
@@ -325,7 +326,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);

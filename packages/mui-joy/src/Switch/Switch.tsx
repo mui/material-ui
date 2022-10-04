@@ -6,6 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps, Theme } from '../styles';
+import { useVariantInversion } from '../styles/VariantInversion';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -258,7 +259,11 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   const useSwitchProps = {
     checked: checkedProp,

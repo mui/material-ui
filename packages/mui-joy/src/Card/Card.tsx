@@ -9,6 +9,7 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -92,7 +93,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
     size = 'md',
     variant = 'plain',
@@ -100,6 +101,8 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     row = false,
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

@@ -8,6 +8,11 @@ const VariantOverride = React.createContext<undefined | Array<VariantProp>>(unde
 export const useVariantInversion = (childVariant: VariantProp | undefined) => {
   const overriableVariants = React.useContext(VariantOverride);
   return {
+    /**
+     * Resolve the `color` value for the component.
+     * @param {ColorPaletteProp | 'inherit' | undefined} instanceColorProp The color defined on the instance.
+     * @param {ColorPaletteProp | 'inherit' | undefined} defaultColorProp The default color to use when variant inversion is not enabled.
+     */
     getColor: (
       instanceColorProp: ColorPaletteProp | 'inherit' | undefined,
       defaultColorProp: ColorPaletteProp | 'inherit' | undefined,

@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useVariantInversion } from '../styles/VariantInversion';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
 
@@ -176,12 +177,15 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   }
 
   const {
-    color = colorProp,
+    color: internalColor = colorProp,
     size = sizeProp,
     anchorOrigin = anchorOriginProp,
     variant = variantProp,
     badgeInset = badgeInsetProp,
   } = invisible ? prevProps : props;
+
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, internalColor);
 
   const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
   const classes = useUtilityClasses(ownerState);

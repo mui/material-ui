@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useVariantInversion } from '../styles/VariantInversion';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
@@ -214,7 +215,11 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const formControl = React.useContext(FormControlContext);
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;

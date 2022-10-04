@@ -9,6 +9,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
@@ -152,12 +153,14 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested = false,
     sticky = false,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     startAction,
     endAction,
     role: roleProp,
     ...other
   } = props;
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const [subheaderId, setSubheaderId] = React.useState('');
 

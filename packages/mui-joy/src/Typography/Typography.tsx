@@ -8,6 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useVariantInversion } from '../styles/VariantInversion';
 import { getTypographyUtilityClass } from './typographyClasses';
 
 export const TypographyContext = React.createContext(false);
@@ -144,7 +145,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const color = colorThemeProp || (variant ? 'neutral' : undefined);
+  const { getColor } = useVariantInversion(variant);
+  const color = getColor(inProps.color, colorThemeProp || (variant ? 'neutral' : undefined));
 
   const level = nesting ? inProps.level || 'inherit' : levelProp;
 
