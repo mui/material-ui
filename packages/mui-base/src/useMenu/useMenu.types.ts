@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseListboxRootSlotProps } from '@mui/base/useListbox';
+import { UseListboxRootSlotProps } from '../useListbox';
 
 export interface MenuItemMetadata {
   id: string;

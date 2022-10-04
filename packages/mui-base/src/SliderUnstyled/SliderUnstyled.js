@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
+import useSlider, { valueToPercent } from '../useSlider';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';

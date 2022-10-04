@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useTab from '@mui/base/useTab';
+import useTab from '../useTab';
 import composeClasses from '../composeClasses';
 import { getTabUnstyledUtilityClass } from './tabUnstyledClasses';
 import {

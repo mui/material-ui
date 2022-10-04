@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import useMenuItem from '@mui/base/useMenuItem';
+import useMenuItem from '../useMenuItem';
 import {
   MenuItemUnstyledOwnerState,
   MenuItemUnstyledProps,

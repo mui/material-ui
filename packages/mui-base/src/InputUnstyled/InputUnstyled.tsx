@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import useInput from '@mui/base/useInput';
+import useInput from '../useInput';
 import isHostComponent from '../utils/isHostComponent';
 import classes from './inputUnstyledClasses';
 import {

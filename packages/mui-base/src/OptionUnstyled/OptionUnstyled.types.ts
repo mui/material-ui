@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import { OptionState } from '@mui/base/useListbox';
-import { UseSelectOptionSlotProps } from '@mui/base/useSelect';
+import { OptionState } from '../useListbox';
+import { UseSelectOptionSlotProps } from '../useSelect';
 import { SlotComponentProps } from '../utils';
 
 export interface OptionUnstyledComponentsPropsOverrides {}

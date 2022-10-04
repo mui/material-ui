@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { OptionState } from '@mui/base/useListbox';
+import { OptionState } from '../useListbox';
 import composeClasses from '../composeClasses';
 import {
   OptionUnstyledProps,

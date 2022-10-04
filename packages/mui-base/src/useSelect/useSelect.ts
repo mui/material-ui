@@ -3,14 +3,14 @@ import {
   unstable_useControlled as useControlled,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import useButton from '@mui/base/useButton';
+import useButton from '../useButton';
 import {
   ListboxReducer,
   useListbox,
   defaultListboxReducer,
   ActionTypes,
   UseListboxParameters,
-} from '@mui/base/useListbox';
+} from '../useListbox';
 import {
   SelectOption,
   UseSelectButtonSlotProps,

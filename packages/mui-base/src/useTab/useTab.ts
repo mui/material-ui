@@ -1,4 +1,4 @@
-import useButton from '@mui/base/useButton';
+import useButton from '../useButton';
 import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import { UseTabParameters, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';

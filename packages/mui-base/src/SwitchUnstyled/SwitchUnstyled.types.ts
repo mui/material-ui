@@ -1,5 +1,5 @@
 import { OverrideProps, Simplify } from '@mui/types';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from '@mui/base/useSwitch';
+import { UseSwitchInputSlotProps, UseSwitchParameters } from '../useSwitch';
 import { SlotComponentProps } from '../utils';
 
 export interface SwitchUnstyledComponentsPropsOverrides {}

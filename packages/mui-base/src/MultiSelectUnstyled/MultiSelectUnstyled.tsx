@@ -4,7 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
+import useSelect, { SelectChild, SelectOption } from '../useSelect';
 import {
   MultiSelectUnstyledProps,
   MultiSelectUnstyledListboxSlotProps,

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OptionState } from '@mui/base/useListbox';
-import { SelectOption, UseSelectOptionSlotProps } from '@mui/base/useSelect';
+import { OptionState } from '../useListbox';
+import { SelectOption, UseSelectOptionSlotProps } from '../useSelect';
 
 export interface SelectUnstyledContextType {
   getOptionState: (value: SelectOption<any>) => OptionState;

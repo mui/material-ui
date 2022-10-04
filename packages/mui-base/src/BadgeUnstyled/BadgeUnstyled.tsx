@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import useBadge from '@mui/base/useBadge';
+import useBadge from '../useBadge';
 import composeClasses from '../composeClasses';
 import { getBadgeUnstyledUtilityClass } from './badgeUnstyledClasses';
 import {

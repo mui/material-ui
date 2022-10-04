@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
-import { UseButtonParameters, UseButtonRootSlotProps } from '@mui/base/useButton';
+import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
 
 export interface ButtonUnstyledActions {

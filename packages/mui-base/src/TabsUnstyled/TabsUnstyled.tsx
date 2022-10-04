@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import useTabs from '@mui/base/useTabs';
+import useTabs from '../useTabs';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';

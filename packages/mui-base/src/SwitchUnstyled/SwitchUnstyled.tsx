@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import useSwitch from '@mui/base/useSwitch';
+import useSwitch from '../useSwitch';
 import composeClasses from '../composeClasses';
 import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 import {

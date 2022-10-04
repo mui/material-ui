@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import useMenu from '@mui/base/useMenu';
+import useMenu from '../useMenu';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,

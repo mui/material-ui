@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
-import useButton from '@mui/base/useButton';
+import useButton from '../useButton';
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import { UseMenuItemParameters } from './useMenuItem.types';
 

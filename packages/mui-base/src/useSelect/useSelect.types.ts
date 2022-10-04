@@ -1,10 +1,6 @@
 import React from 'react';
-import { UseButtonRootSlotProps } from '@mui/base/useButton';
-import {
-  OptionState,
-  UseListboxOptionSlotProps,
-  UseListboxRootSlotProps,
-} from '@mui/base/useListbox';
+import { UseButtonRootSlotProps } from '../useButton';
+import { OptionState, UseListboxOptionSlotProps, UseListboxRootSlotProps } from '../useListbox';
 import { EventHandlers } from '../utils/types';
 
 export interface SelectOption<TValue> {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
-import { UseInputParameters, UseInputRootSlotProps } from '@mui/base/useInput';
+import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
 import { SlotComponentProps } from '../utils';
 

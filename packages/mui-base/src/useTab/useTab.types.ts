@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseButtonRootSlotProps } from '@mui/base/useButton';
+import { UseButtonRootSlotProps } from '../useButton';
 
 export interface UseTabParameters {
   /**

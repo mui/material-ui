@@ -5,7 +5,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
   Mark,
-} from '@mui/base/useSlider';
+} from '../useSlider';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
