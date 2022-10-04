@@ -256,18 +256,26 @@ export default function VariantInversion() {
   const [enabled, setEnabled] = React.useState(true);
   return (
     <CssVarsProvider theme={customTheme}>
-      <Box sx={{ my: 5, display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}>
+      <Box
+        sx={{ my: '10vh', display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}
+      >
         <Chip size="sm" variant="soft" color="danger">
           Introducing
         </Chip>
         <Typography level="h2">Variant Inversion</Typography>
-        <Typography maxWidth={400} textAlign="center" textColor="text.secondary">
+        <Typography textAlign="center" textColor="text.secondary">
           An opt-in feature that inverts the color of the children to match the parent&apos;s
           variant.
         </Typography>
       </Box>
       <Box
-        sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, maxWidth: 'xl', px: 2 }}
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', lg: 'row' },
+          maxWidth: 'xl',
+          px: 2,
+          mx: 'auto',
+        }}
       >
         <Box
           sx={{
