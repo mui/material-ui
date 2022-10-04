@@ -387,6 +387,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base/react-trap-focus/ /base/react-focus-trap/ 301
 /base/api/trap-focus/ /base/api/focus-trap/ 301
 /material-ui/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
+/joy-ui/main-features/perfect-dark-mode/ /joy-ui/main-features/dark-mode-optimization/ 301
 
 # 2023
 

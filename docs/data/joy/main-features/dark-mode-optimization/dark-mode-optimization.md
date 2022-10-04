@@ -1,8 +1,8 @@
-# Perfect dark mode
+# Dark mode optimization
 
-<p class="description">Joy UI's solution for perfect dark mode on server-side rendering.</p>
+<p class="description">Joy UI uses CSS variables to ensure that server-rendered apps can load in dark mode on first render.</p>
 
-Joy UI is optimized so that end users who select dark mode as their default never see a flash of light mode when the app first renders.
+Joy UI is optimized so that end users who select dark mode as their preferred color scheme never see a flash of light mode when the app first renders.
 This is a common problem for server-side-rendered (SSR) apps and sites built with static-site generators (SSGs).
 
 To solve this problem, Joy UI uses CSS variables to render all color schemes at build time so that the user's preferred mode can be served to them on first load.
@@ -27,7 +27,7 @@ Solving this problem required us to take a novel approach to styling and theming
 
 Thanks to Joy UI's built-in support for CSS variables, your app can render all of its color schemes at build time, so that the user's preference can be injected _before_ the DOM is rendered in the browser.
 
-Joy UI provides the `getInitColorSchemeScript()` function to make this flash-free dark mode possible in React frameworks like Next.js, Gatsby, and Remix.
+Joy UI provides the `getInitColorSchemeScript()` function to make this flash-free dark mode possible with React frameworks like Next.js, Gatsby, and Remix.
 This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
 
 The code snippet below shows this works with Next.js—see the [Applying dark mode](/joy-ui/guides/applying-dark-mode/) page for more details on usage with other frameworks:

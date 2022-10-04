@@ -15,7 +15,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/main-features/global-variants' },
           { pathname: '/joy-ui/main-features/automatic-adjustment' },
-          { pathname: '/joy-ui/main-features/perfect-dark-mode' },
+          { pathname: '/joy-ui/main-features/dark-mode-optimization' },
         ],
       },
     ],
