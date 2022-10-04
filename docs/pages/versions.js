@@ -21,27 +21,28 @@ function formatVersion(version) {
     .join('.');
 }
 
-async function getBranches() {
-  const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
+// async function getBranches() {
+//   const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
 
-  const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
-    headers: {
-      Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
-    },
-  });
-  const text = await result.text();
+//   const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
+//     headers: {
+//       Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
+//     },
+//   });
+//   const text = await result.text();
 
-  if (result.status !== 200) {
-    throw new Error(text);
-  }
+//   if (result.status !== 200) {
+//     throw new Error(text);
+//   }
 
-  return JSON.parse(text);
-}
+//   return JSON.parse(text);
+// }
 
 Page.getInitialProps = async () => {
   const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
-  const branches = await getBranches();
+  // const branches = await getBranches();
+  const branches = [];
   /**
    * @type {import('docs/src/pages/versions/VersionsContext').VersionsContextValue}
    */
