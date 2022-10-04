@@ -21,6 +21,11 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, CardPropsColorOverrides>;
     /**
+     * If `true`, the component create CSS variables that invert the children's variant tokens.
+     * @default false
+     */
+    enableVariantInversion?: boolean;
+    /**
      * If `true`, flex direction is set to 'row'.
      * @default false
      */

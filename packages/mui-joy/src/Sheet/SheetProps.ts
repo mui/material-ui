@@ -19,7 +19,7 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, SheetPropsColorOverrides>;
     /**
-     * If `true`, the component create CSS variables that can override children with `context` color.
+     * If `true`, the component create CSS variables that invert the children's variant tokens.
      * @default false
      */
     enableVariantInversion?: boolean;

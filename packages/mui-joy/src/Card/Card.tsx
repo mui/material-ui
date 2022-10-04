@@ -9,7 +9,7 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { VariantInversionProvider, useVariantInversion } from '../styles/VariantInversion';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -83,6 +83,8 @@ const CardRoot = styled('div', {
     flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ownerState.enableVariantInversion &&
+    theme.variantInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
 const Card = React.forwardRef(function Card(inProps, ref) {
@@ -95,6 +97,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     className,
     color: colorProp = 'neutral',
     component = 'div',
+    enableVariantInversion = false,
     size = 'md',
     variant = 'plain',
     children,
@@ -115,7 +118,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
+  const result = (
     <CardRowContext.Provider value={row}>
       <CardRoot
         as={component}
@@ -147,6 +150,11 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       </CardRoot>
     </CardRowContext.Provider>
   );
+
+  if (enableVariantInversion) {
+    return <VariantInversionProvider variant={variant}>{result}</VariantInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {
