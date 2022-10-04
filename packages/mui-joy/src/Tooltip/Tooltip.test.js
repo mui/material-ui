@@ -11,7 +11,7 @@ describe('<Tooltip />', () => {
 
   describeConformance(
     <Tooltip title="Hello World" open>
-      <button>Hello World</button>
+      <Button>button</Button>
     </Tooltip>,
     () => ({
       classes,
@@ -20,16 +20,17 @@ describe('<Tooltip />', () => {
       ThemeProvider,
       muiName: 'JoyTooltip',
       refInstanceof: window.HTMLButtonElement,
+      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
       testComponentPropWith: 'span',
       testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
       skip: [
+        'rootClass',
         'componentProp',
         'componentsProp',
-        'rootClass',
-        'reactTestRenderer',
         'themeVariants',
-        'themeStyleOverrides',
+        // react-transition-group issue
+        'reactTestRenderer',
       ],
     }),
   );
