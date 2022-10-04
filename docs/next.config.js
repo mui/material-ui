@@ -168,7 +168,7 @@ module.exports = withDocsInfra({
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV !== 'production') {
+        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV === 'production') {
           return;
         }
         // The blog is not translated
