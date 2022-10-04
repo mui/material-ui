@@ -1,11 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  appendOwnerState,
-  PopperUnstyled,
-  unstable_composeClasses as composeClasses,
-} from '@mui/base';
+import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -15,14 +12,14 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
+import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
 import styled from '../styles/styled';
-import { Theme } from '../styles/types';
 import useThemeProps from '../styles/useThemeProps';
 import { getTooltipUtilityClass } from './tooltipClasses';
-import { TooltipOwnerState, TooltipProps, TooltipTypeMap } from './TooltipProps';
+import { TooltipComponentsPropsOverrides, TooltipProps, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipProps) => {
-  const { arrow, placement, variant, color, size } = ownerState;
+  const { arrow, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -547,23 +544,27 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const RootComponent = components.Root ?? TooltipRoot;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
-  const popperProps = appendOwnerState(
-    RootComponent,
-    { ...RootProps, ...componentsProps.root },
+  const popperProps = useSlotProps({
+    elementType: RootComponent,
+    externalSlotProps: { ...RootProps, ...componentsProps.root },
     ownerState,
-  );
+    className: clsx(classes.root, RootProps?.className, componentsProps.root?.className),
+  });
 
-  const tooltipArrowProps = appendOwnerState(
-    ArrowComponent,
-    { ...componentsProps.arrow },
+  const tooltipArrowProps = useSlotProps({
+    elementType: ArrowComponent,
+    externalSlotProps: componentsProps.arrow as WithCommonProps<
+      React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps & TooltipComponentsPropsOverrides
+    >,
     ownerState,
-  ) as MUIStyledCommonProps<Theme> & { ownerState: TooltipOwnerState };
+    className: clsx(classes.arrow, componentsProps.arrow?.className),
+  });
 
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
       <PopperUnstyled
-        component={TooltipRoot}
+        component={RootComponent}
         placement={placement}
         anchorEl={
           followCursor
@@ -585,7 +586,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         id={id}
         {...interactiveWrapperListeners}
         {...popperProps}
-        className={clsx(classes.root, RootProps?.className, componentsProps.root?.className)}
         popperOptions={popperOptions}
         ownerState={ownerState}
       >
@@ -595,6 +595,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             {...tooltipArrowProps}
             className={clsx(classes.arrow, componentsProps.arrow?.className)}
             ref={setArrowRef}
+            ownerState={ownerState}
           />
         ) : null}
       </PopperUnstyled>
