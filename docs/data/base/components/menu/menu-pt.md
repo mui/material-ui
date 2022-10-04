@@ -104,8 +104,8 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hooks
 
 ```jsx
-import useMenu from '@mui/base/useMenu';
-import useMenuItem from '@mui/base/useMenuItem';
+import { useMenu } from '@mui/base/MenuUnstyled';
+import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 ```
 
 The `useMenu` and `useMenuItem` hooks let you apply the functionality of the menu components to fully custom components. They return props to be placed on the custom components, along with fields representing the components' internal states.
