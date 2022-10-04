@@ -20,7 +20,7 @@ export default function MyApp() {
 ```
 
 You can play around with this code in the interactive Code Sandbox demo below.
-Try changing the `variant` on the Button to `"outlined"` to see how the style changes:
+Try changing the `variant` on the Button to `outlined` to see how the style changes:
 
 {{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
 

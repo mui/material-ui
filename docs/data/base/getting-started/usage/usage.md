@@ -24,6 +24,16 @@ Try importing an [Unstyled Input](/base/react-input/) component and adding it to
 
 {{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
 
+## Responsive meta tag
+
+MUI Base is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
+
+To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element:
+
+```html
+<meta name="viewport" content="initial-scale=1, width=device-width" />
+```
+
 ## Components vs. hooks
 
 MUI Base includes two kinds of building blocks: **components** and **hooks**.
