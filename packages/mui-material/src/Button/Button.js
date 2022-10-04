@@ -78,7 +78,15 @@ const ButtonRoot = styled(ButtonBase, {
   ({ theme, ownerState }) => ({
     ...theme.typography.button,
     minWidth: 64,
-    padding: '6px 16px',
+    ...(ownerState.size === 'small' && {
+      padding: '4px 5px',
+    }),
+    ...(ownerState.size === 'medium' && {
+      padding: '6px 16px',
+    }),
+    ...(ownerState.size === 'large' && {
+      padding: '7px 21px',
+    }),
     borderRadius: (theme.vars || theme).shape.borderRadius,
     transition: theme.transitions.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
