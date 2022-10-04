@@ -210,7 +210,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           }
 
           return (
-            <React.Fragment key={mark.value}>
+            <React.Fragment key={index}>
               <Mark
                 data-index={index}
                 {...markProps}
