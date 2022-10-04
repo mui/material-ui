@@ -506,22 +506,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" nested href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date picker" />,
-  'date-picker/range': <ColumnHead label="Date range picker" />,
+  'date-picker/simple': <ColumnHead label="Date Picker" />,
+  'date-picker/range': <ColumnHead label="Date Range Picker" />,
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: (
+  'core-support': (
     <ColumnHead
       {...{
-        label: 'Community support for MUI Core',
+        label: 'Technical support for MUI Core',
         tooltip:
-          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+          'Support for MUI Core (e.g. Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
     />
   ),
-  'bugs/features': (
+  'x-support': (
     <ColumnHead
       {...{
         label: 'Technical support for MUI X',
@@ -621,8 +621,8 @@ const communityData: Record<string, React.ReactNode> = {
   'mui-x-updates': yes,
   'mui-x-development': yes,
   // Support
-  community: yes,
-  'bugs/features': yes,
+  'core-support': <Info value="Community" />,
+  'x-support': <Info value="Community" />,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
@@ -679,8 +679,8 @@ const proData: Record<string, React.ReactNode> = {
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  community: yes,
-  'bugs/features': <Info value={yes} metadata="Priority over Community" />,
+  'core-support': <Info value="Community" />,
+  'x-support': <Info value={yes} metadata="Priority over Community" />,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
@@ -737,8 +737,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  community: yes,
-  'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
+  'core-support': pending,
+  'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': (
@@ -1034,7 +1034,7 @@ export default function PricingTable({
             },
           }}
         >
-          Data grid
+          Data Grid
         </Button>
       </Box>
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
@@ -1142,9 +1142,9 @@ export default function PricingTable({
       {divider}
       {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>
-      {renderRow('community')}
+      {renderRow('core-support')}
       {divider}
-      {renderRow('bugs/features')}
+      {renderRow('x-support')}
       {divider}
       {renderRow('support-duration')}
       {divider}
