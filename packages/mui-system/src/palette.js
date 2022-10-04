@@ -2,18 +2,8 @@ import style from './style';
 import compose from './compose';
 
 function transform(value, userValue) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (value !== userValue && userValue === 'grey') {
-      console.warn(
-        [
-          `MUI: Because "grey" is both a CSS color and part of the theme's` +
-            'color palette, the palette is being prioritized.',
-          '',
-          'To disambiguate, either specify a palette shade (e.g. "grey.500") ' +
-            'or use a different CSS color (e.g. "gray").',
-        ].join('\n'),
-      );
-    }
+  if (userValue === 'grey') {
+    return userValue;
   }
   return value;
 }
