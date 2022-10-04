@@ -17,7 +17,7 @@ When using icons or buttons within an Input component, Joy UI automatically adju
 
 {{"demo": "InputIntegration.js"}}
 
-If you customize their CSS variables, Joy UI ensures that their spacing and radii follow those of the Input:
+If you customize their respective CSS variables, Joy UI ensures that their spacing and radii follow those of the Input:
 
 {{"demo": "InputVariables.js"}}
 
