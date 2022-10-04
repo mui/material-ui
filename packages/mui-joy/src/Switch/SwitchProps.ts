@@ -70,5 +70,5 @@ export interface SwitchOwnerState extends SwitchProps {
   /**
    * If `true`, the switch's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

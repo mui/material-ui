@@ -40,7 +40,7 @@ const TextareaRoot = styled('div', {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderOpacity': 0.5,
-      '--Textarea-focusedThickness': '2px',
+      '--Textarea-focusedThickness': theme.vars.focus.thickness,
       '--Textarea-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       ...(ownerState.size === 'sm' && {
@@ -69,7 +69,7 @@ const TextareaRoot = styled('div', {
       '--internal-paddingBlock':
         'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
       '--Textarea-decorator-childRadius':
-        'max((var(--Textarea-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Textarea-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Textarea-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
       '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
       '--Button-radius': 'var(--Textarea-decorator-childRadius)',
