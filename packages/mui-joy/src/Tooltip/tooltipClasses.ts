@@ -51,7 +51,6 @@ export function getTooltipUtilityClass(slot: string): string {
 
 const tooltipClasses: TooltipClasses = generateUtilityClasses('JoyTooltip', [
   'root',
-  'rootInteractive',
   'hasArrow',
   'placementLeft',
   'placementRight',
