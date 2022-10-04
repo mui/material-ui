@@ -544,7 +544,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const RootComponent = components.Root ?? TooltipRoot;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
-  const popperProps = useSlotProps({
+  const rootProps = useSlotProps({
     elementType: RootComponent,
     externalSlotProps: { ...RootProps, ...componentsProps.root },
     ownerState,
@@ -585,7 +585,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         open={childNode ? open : false}
         id={id}
         {...interactiveWrapperListeners}
-        {...popperProps}
+        {...rootProps}
         popperOptions={popperOptions}
         ownerState={ownerState}
       >
