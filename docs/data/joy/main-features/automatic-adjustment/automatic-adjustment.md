@@ -48,10 +48,10 @@ When a second Typography component is nested inside, it will automatically rende
 </Typography>
 ```
 
-### ListItem
+### List Item
 
-The ListItem component renders as an `<li>` tag by default.
-If its parent List component is not a `<menu>`, `<ul>`, or `<ol>`, then the ListItem will correct itself and render as a `<div>` instead.
+The List Item component renders as an `<li>` tag by default.
+If its parent List component is not a `<menu>`, `<ul>`, or `<ol>`, then the List Item will correct itself and render as a `<div>` instead.
 
 ```js
 <List component="div">
