@@ -6,7 +6,7 @@ O Material UI está disponível como um [pacote npm](https://www.npmjs.com/packa
 
 ## npm
 
-Para instalar e salvar as dependências do seu `pacote.json`, execute o seguinte comando **npm** abaixo:
+Para instalar e salvar as dependências do seu `package.json`, execute o seguinte comando **npm** abaixo:
 
 ```sh
 npm install @mui/material @emotion/react @emotion/styled
