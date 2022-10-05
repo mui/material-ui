@@ -330,6 +330,35 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      *     color: '#fff',
      *   }),
      * }
+     *
+     * -------------------------------------------------------------------------------------------------
+     * 💡 This util should be used in an array if the styles contain psuedo classes or nested selectors:
+     *
+     * ❌ There is a chance that the upper selectors could be overridden
+     * {
+     *    // the whole selector could be overridden
+     *   '&::before': {
+     *     color: ...
+     *   },
+     *   ...theme.applyDarkStyles({
+     *      '&::before': {
+     *        color: ...
+     *      }
+     *   })
+     * }
+     *
+     * ✅ use an array (supports in both emotion and styled-components)
+     * Only the `color` will be overridden in dark mode.
+     *  [
+     *    '&::before': {
+     *      color: ...
+     *    },
+     *    theme.applyDarkStyles({
+     *      '&::before': {
+     *        color: ...
+     *      }
+     *    })
+     *  ]
      */
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       if ((this as Theme).vars) {
@@ -544,7 +573,7 @@ export function getThemedComponents(): ThemeOptions {
             {
               color: (theme.vars || theme).palette.primary[600],
               '&:hover': {
-                color: (theme.vars || theme).palette.text.action,
+                color: (theme.vars || theme).palette.primary[700],
               },
               fontWeight: 700,
               display: 'inline-flex',
@@ -559,7 +588,7 @@ export function getThemedComponents(): ThemeOptions {
             theme.applyDarkStyles({
               color: (theme.vars || theme).palette.primary[300],
               '&:hover': {
-                color: (theme.vars || theme).palette.text.actionHover,
+                color: (theme.vars || theme).palette.primary[200],
               },
             }),
           ],
