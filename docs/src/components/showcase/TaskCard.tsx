@@ -21,6 +21,7 @@ export default function TaskCard() {
           flexDirection: 'column',
           p: 2.5,
           background: `linear-gradient(to right bottom, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[700]} 120%)`,
+          boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
         })}
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
