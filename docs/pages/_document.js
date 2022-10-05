@@ -7,7 +7,6 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
 import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
 
 // You can find a benchmark of the available CSS minifiers under
@@ -144,7 +143,6 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {getJoyInitColorSchemeScript({ enableSystem: true })}
           {getMuiInitColorSchemeScript({ enableSystem: true })}
           <Main />
           <script
