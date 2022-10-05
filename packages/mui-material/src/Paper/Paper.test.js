@@ -50,7 +50,7 @@ describe('<Paper />', () => {
     });
   });
 
-  it('should set the elevation elevation class', () => {
+  it('should set the elevation class', () => {
     const { getByTestId, setProps } = render(
       <Paper data-testid="root" elevation={16}>
         Hello World
@@ -67,6 +67,17 @@ describe('<Paper />', () => {
     setProps({ elevation: 2 });
 
     expect(root).to.have.class(classes.elevation2);
+  });
+
+  it('should set the elevation class with custom variants', () => {
+    const { getByTestId } = render(
+      <Paper data-testid="root" elevation={10} variant="custom">
+        Hello World
+      </Paper>,
+    );
+    const root = getByTestId('root');
+
+    expect(root).to.have.class(classes.elevation10);
   });
 
   it('allows custom elevations via theme.shadows', () => {

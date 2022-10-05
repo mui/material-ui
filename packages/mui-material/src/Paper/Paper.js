@@ -24,12 +24,7 @@ const useUtilityClasses = (ownerState) => {
   const { square, elevation, variant, classes } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      variant,
-      !square && 'rounded',
-      variant === 'elevation' && `elevation${elevation}`,
-    ],
+    root: ['root', variant, !square && 'rounded', elevation > 0 && `elevation${elevation}`],
   };
 
   return composeClasses(slots, getPaperUtilityClass, classes);
@@ -45,7 +40,7 @@ const PaperRoot = styled('div', {
       styles.root,
       styles[ownerState.variant],
       !ownerState.square && styles.rounded,
-      ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
+      ownerState.variant !== 'outlined' && styles[`elevation${ownerState.elevation}`],
     ];
   },
 })(({ theme, ownerState }) => ({
@@ -58,7 +53,7 @@ const PaperRoot = styled('div', {
   ...(ownerState.variant === 'outlined' && {
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
   }),
-  ...(ownerState.variant === 'elevation' && {
+  ...(ownerState.variant !== 'outlined' && {
     boxShadow: (theme.vars || theme).shadows[ownerState.elevation],
     ...(!theme.vars &&
       theme.palette.mode === 'dark' && {
@@ -76,14 +71,7 @@ const PaperRoot = styled('div', {
 const Paper = React.forwardRef(function Paper(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiPaper' });
 
-  const {
-    className,
-    component = 'div',
-    elevation = 1,
-    square = false,
-    variant = 'elevation',
-    ...other
-  } = props;
+  const { className, component = 'div', elevation = 1, square = false, variant, ...other } = props;
 
   const ownerState = {
     ...props,
