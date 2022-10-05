@@ -43,13 +43,13 @@ Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/
 **npm:**
 
 ```sh
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled --save
 ```
 
 **yarn:**
 
 ```sh
-yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/material @emotion/react @emotion/styled --save
 ```
 
 <details>
@@ -71,13 +71,13 @@ MUI Base is available as an [npm package](https://www.npmjs.com/package/@mui/bas
 **npm:**
 
 ```sh
-npm install @mui/base
+npm install @mui/base --save
 ```
 
 **yarn:**
 
 ```sh
-yarn add @mui/base
+yarn add @mui/base --save
 ```
 
 **Note**: MUI Base is still in alpha.
@@ -90,13 +90,13 @@ MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/s
 **npm:**
 
 ```sh
-npm install @mui/system @emotion/react @emotion/styled
+npm install @mui/system @emotion/react @emotion/styled --save
 ```
 
 **yarn:**
 
 ```sh
-yarn add @mui/system @emotion/react @emotion/styled
+yarn add @mui/system @emotion/react @emotion/styled --save
 ```
 
 Or if you want to use `styled-components` as a styling engine:
@@ -104,13 +104,13 @@ Or if you want to use `styled-components` as a styling engine:
 **npm:**
 
 ```sh
-npm install @mui/material @mui/styled-engine-sc styled-components
+npm install @mui/material @mui/styled-engine-sc styled-components --save
 ```
 
 **yarn:**
 
 ```sh
-yarn add @mui/material @mui/styled-engine-sc styled-components
+yarn add @mui/material @mui/styled-engine-sc styled-components --save
 ```
 
 Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -154,10 +154,16 @@ Here is an example of a basic app using Material UI's `Button` component:
 
 ```jsx
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import { Container, Button } from '@mui/material';
 
 function App() {
-  return <Button variant="contained">Hello World</Button>;
+  return (
+    <>
+      <Container>
+        <Button variant="contained">Hello, World!</Button>
+      </Container>
+    </>
+  )
 }
 ```
 
