@@ -5,12 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 
-interface ThemeModeToggleProps {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}
-
-const CssVarsModeToggle = (props: ThemeModeToggleProps) => {
+const CssVarsModeToggle = (props: { onChange: (checked: boolean) => void }) => {
   const [mounted, setMounted] = React.useState(false);
   const { mode, setMode } = useColorScheme();
   React.useEffect(() => {
@@ -23,7 +18,7 @@ const CssVarsModeToggle = (props: ThemeModeToggleProps) => {
         disableTouchRipple
         disabled={!mode}
         onClick={() => {
-          props.onChange(!props.checked);
+          props.onChange(mode === 'light');
           setMode(mode === 'dark' ? 'light' : 'dark');
         }}
       >
@@ -39,9 +34,13 @@ const CssVarsModeToggle = (props: ThemeModeToggleProps) => {
   );
 };
 
-export default function ThemeModeToggle(props: ThemeModeToggleProps) {
+export default function ThemeModeToggle(props: {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}) {
   const theme = useTheme();
   if (theme.vars) {
+    // Temporaly renders conditionally because `useColorScheme` could not be used in the pages that haven't migrated to CSS theme variables.
     return <CssVarsModeToggle {...props} />;
   }
   return (

@@ -244,12 +244,25 @@ export function ThemeProvider(props) {
   }, [theme]);
 
   useEnhancedEffect(() => {
+    // track usage of dark mode in google analytics
     if (theme.palette.mode === 'dark') {
       document.body.classList.remove('mode-light');
       document.body.classList.add('mode-dark');
     } else {
       document.body.classList.remove('mode-dark');
       document.body.classList.add('mode-light');
+    }
+  }, [theme.palette.mode]);
+
+  useEnhancedEffect(() => {
+    // temporarily synchronize with docs CssVarsProvider because not all pages support CSS theme variables at the moment.
+    // this effect can be removed once all pages are migrated.
+    if (theme.palette.mode === 'dark') {
+      localStorage.setItem('mui-mode', 'dark');
+      document.documentElement.style.setProperty('color-scheme', 'dark');
+    } else {
+      localStorage.setItem('mui-mode', 'light');
+      document.documentElement.style.setProperty('color-scheme', 'light');
     }
   }, [theme.palette.mode]);
 
