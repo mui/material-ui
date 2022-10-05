@@ -78,14 +78,14 @@ const ButtonRoot = styled(ButtonBase, {
   ({ theme, ownerState }) => ({
     ...theme.typography.button,
     minWidth: 64,
+    padding: '6px 16px',
     ...(ownerState.size === 'small' && {
-      padding: '4px 5px',
-    }),
-    ...(ownerState.size === 'medium' && {
-      padding: '6px 16px',
+      padding: '4px 10px',
+      fontSize: theme.typography.pxToRem(13),
     }),
     ...(ownerState.size === 'large' && {
-      padding: '7px 21px',
+      padding: '8px 22px',
+      fontSize: theme.typography.pxToRem(15),
     }),
     borderRadius: (theme.vars || theme).shape.borderRadius,
     transition: theme.transitions.create(
@@ -224,16 +224,6 @@ const ButtonRoot = styled(ButtonBase, {
     ...(ownerState.size === 'large' &&
       ownerState.variant === 'outlined' && {
         padding: '7px 21px',
-        fontSize: theme.typography.pxToRem(15),
-      }),
-    ...(ownerState.size === 'small' &&
-      ownerState.variant === 'contained' && {
-        padding: '4px 10px',
-        fontSize: theme.typography.pxToRem(13),
-      }),
-    ...(ownerState.size === 'large' &&
-      ownerState.variant === 'contained' && {
-        padding: '8px 22px',
         fontSize: theme.typography.pxToRem(15),
       }),
     ...(ownerState.fullWidth && {
