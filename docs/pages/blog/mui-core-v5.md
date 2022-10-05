@@ -235,7 +235,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/s/stupefied-mclaren-ho4zs?file=/src/App.tsx">Codesandbox</a></p>
 
-**Second**, you can add [custom variants](/material-ui/customization/theme-components/#adding-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
+**Second**, you can add [custom variants](/material-ui/customization/theme-components/#creating-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -458,7 +458,7 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 We are very excited to introduce a new product line to the MUI family: [**MUI X**](/x/)!
 We have recently released our [first stable version](https://github.com/mui/mui-x/releases/tag/v4.0.0).
 
-MUI X embodies our initiative to solve the main pain point developers have reported two years in a row during our developer's survey: [2020](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), [2019](/blog/2019-developer-survey-results/#4-how-can-we-improve-material-ui-for-you).
+MUI X embodies our initiative to solve the main pain point developers have reported two years in a row during our developer's survey: [2020](/blog/2020-developer-survey-results/#5-how-can-we-improve-mui-for-you), [2019](/blog/2019-developer-survey-results/#4-how-can-we-improve-mui-for-you).
 We have heard you, you want **more components**.
 
 But, in practice, we wouldn't probably cover all the possible components you might need. It would be a titanic task.
@@ -583,7 +583,7 @@ We have moved six components from the lab to the main component package, after o
 - [Rating](/material-ui/react-rating/)
 - [Skeleton](/material-ui/react-skeleton/)
 - [Speed Dial](/material-ui/react-speed-dial/)
-- [Toggle button](/material-ui/react-toggle-button/)
+- [Toggle Button](/material-ui/react-toggle-button/)
 
 ### New in the lab
 
@@ -594,7 +594,7 @@ Having a separate lab package allows us to release breaking changes when necessa
 The following components are now available in the lab:
 
 - [LoadingButton](/material-ui/react-button/#loading-buttons). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
-- [TrapFocus](/base/react-trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
+- [FocusTrap](/base/react-focus-trap/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
 - [Masonry](/material-ui/react-masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
   <a href="/material-ui/react-masonry/"><img loading="lazy" src="/static/blog/mui-core-v5/masonry.png" alt="Screenshot of the Masonry component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>

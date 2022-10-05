@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import sinon from 'sinon';
+import { spy } from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
 import { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
@@ -232,10 +232,38 @@ describe('MultiSelectUnstyled', () => {
     });
   });
 
+  describe('prop: onChange', () => {
+    it('is called when the Select value changes', () => {
+      const handleChange = spy();
+
+      const { getByRole, getByText } = render(
+        <MultiSelectUnstyled defaultValue={[1]} onChange={handleChange}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const button = getByRole('button');
+      act(() => {
+        button.click();
+      });
+
+      const optionTwo = getByText('Two');
+      act(() => {
+        optionTwo.click();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.haveOwnProperty('type', 'click');
+      expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
+      expect(handleChange.args[0][1]).to.deep.equal([1, 2]);
+    });
+  });
+
   it('does not call onChange if `value` is modified externally', () => {
     function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
       const [value, setValue] = React.useState([1]);
-      const handleChange = (newValue: number[]) => {
+      const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
         setValue(newValue);
         onChange(newValue);
       };
@@ -251,7 +279,7 @@ describe('MultiSelectUnstyled', () => {
       );
     }
 
-    const onChange = sinon.spy();
+    const onChange = spy();
     const { getByText } = render(<TestComponent onChange={onChange} />);
 
     const button = getByText('Update value');
@@ -270,7 +298,7 @@ describe('MultiSelectUnstyled', () => {
           </button>
           <MultiSelectUnstyled
             value={value}
-            onChange={setValue}
+            onChange={(_, v) => setValue(v)}
             componentsProps={{
               root: {
                 'data-testid': 'select',

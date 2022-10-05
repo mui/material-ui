@@ -5,20 +5,23 @@ import Select from '@mui/joy/Select';
 <Select defaultListboxOpen />;
 <Select
   value=""
-  onChange={(val) => {
+  onChange={(e, val) => {
+    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
     expectType<string | null, typeof val>(val);
   }}
 />;
 <Select
   value={2}
-  onChange={(val) => {
+  onChange={(e, val) => {
+    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
     expectType<number | null, typeof val>(val);
   }}
 />;
 // any object
 <Select
   value={{ name: '' }}
-  onChange={(val) => {
+  onChange={(e, val) => {
+    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
     expectType<{ name: string } | null, typeof val>(val);
   }}
 />;
@@ -30,7 +33,7 @@ interface Value {
 <Select<Value>
   // @ts-expect-error the provided value type does not match the Value
   value={{ name: '' }}
-  onChange={(val) => {
+  onChange={(e, val) => {
     expectType<Value | null, typeof val>(val);
   }}
 />;

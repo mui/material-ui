@@ -8,11 +8,11 @@ githubLabel: 'package: icons'
 
 # Material Icons
 
-<p class="description">2,000+ ready-to-use React Material Icons from the official website.</p>
+<p class="description">2,100+ ready-to-use React Material Icons from the official website.</p>
 
 The following npm package,
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material),
-includes the 2,000+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
 
 :::info
 The `@mui/icons-material` package depends on `@mui/material`, which requires Emotion packages.

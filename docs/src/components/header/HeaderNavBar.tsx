@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import { unstable_debounce as debounce } from '@mui/utils';
@@ -22,7 +23,7 @@ const Navigation = styled('nav')(({ theme }) => [
     '& li': {
       color: (theme.vars || theme).palette.text.primary,
       ...theme.typography.body2,
-      fontWeight: 700,
+      fontWeight: theme.typography.fontWeightBold,
       '& > a, & > div': {
         display: 'inline-block',
         color: 'inherit',
@@ -55,17 +56,24 @@ const Navigation = styled('nav')(({ theme }) => [
   }),
 ]);
 
-const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
+const PRODUCT_IDS = [
+  'product-core',
+  'product-advanced',
+  'product-templates',
+  'product-design',
+  'product-toolpad',
+];
 
 type ProductSubMenuProps = {
   icon: React.ReactElement;
   name: React.ReactNode;
   description: React.ReactNode;
+  chip?: React.ReactNode;
   href: string;
 } & Omit<JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
-  function ProductSubMenu({ icon, name, description, href, ...props }, ref) {
+  function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {
     return (
       <Box
         component={Link}
@@ -76,6 +84,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
             display: 'flex',
             alignItems: 'center',
             py: 2,
+            pr: 3,
             '&:hover, &:focus': {
               backgroundColor: (theme.vars || theme).palette.grey[50],
               outline: 'none',
@@ -112,14 +121,15 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           {icon}
         </Box>
-        <div>
-          <Typography color="text.primary" variant="body2" fontWeight={700}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography color="text.primary" variant="body2" fontWeight="bold">
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
             {description}
           </Typography>
-        </div>
+        </Box>
+        {chip}
       </Box>
     );
   },
@@ -307,7 +317,7 @@ export default function HeaderNavBar() {
                         href={ROUTES.productCore}
                         icon={<IconImage name="product-core" />}
                         name="MUI Core"
-                        description="Ready-to-use foundational components, free forever."
+                        description="Ready-to-use foundational React components, free forever."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
@@ -341,6 +351,18 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-designkits" />}
                         name="Design kits"
                         description="Our components available in your favorite design tool."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[4]}
+                        role="menuitem"
+                        href={ROUTES.productToolpad}
+                        icon={<IconImage name="product-toolpad" />}
+                        name="MUI Toolpad"
+                        chip={<Chip label="Alpha" size="small" color="grey" />}
+                        description="Low-code admin builder."
                         onKeyDown={handleKeyDown}
                       />
                     </li>

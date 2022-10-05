@@ -66,7 +66,7 @@ const ModeToggle = () => {
 
 ### Avoiding screen flickering
 
-To prevent [the UI of flickering](/joy-ui/core-features/perfect-dark-mode/#current-problem-the-flickering), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
+To prevent [the UI of flickering](/joy-ui/core-features/perfect-dark-mode/#the-current-flickering-problem), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
 
 ### Next.js
 

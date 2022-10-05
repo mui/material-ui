@@ -16,6 +16,7 @@ describe('Joy <Tabs />', () => {
     muiName: 'JoyTabs',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

@@ -44,6 +44,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Radio/Radio.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-radio-button/\">Radio buttons</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-radio-button/\">Radio button</a></li></ul>",
   "cssComponent": false
 }

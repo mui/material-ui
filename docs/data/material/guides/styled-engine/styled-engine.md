@@ -45,7 +45,7 @@ If you are using yarn, you can configure it using a package resolution:
 
 As package resolutions are not available in npm at this moment, you need to update you bundler's config to add this alias. Here is an example of how you can do it, if you use `webpack`:
 
-**webpack.alias.js**
+**webpack.config.js**
 
 ```diff
  module.exports = {

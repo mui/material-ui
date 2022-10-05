@@ -10,8 +10,8 @@ import { useRouter } from 'next/router';
 // So we can write code like:
 //
 // <Button
-//   ga-event-category="demo"
-//   ga-event-action="expand"
+//   data-ga-event-category="demo"
+//   data-ga-event-action="expand"
 // >
 //   Foo
 // </Button>

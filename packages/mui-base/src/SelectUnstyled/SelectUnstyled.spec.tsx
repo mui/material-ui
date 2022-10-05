@@ -27,12 +27,12 @@ const SelectUnstyledComponentsPropsOverridesTest = (
   />
 );
 
-function CustomRoot<TValue>(props: SelectUnstyledRootSlotProps<TValue>) {
+function CustomRoot<TValue extends {}>(props: SelectUnstyledRootSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
 }
 
-function CustomPopper<TValue>(props: SelectUnstyledPopperSlotProps<TValue>) {
+function CustomPopper<TValue extends {}>(props: SelectUnstyledPopperSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <PopperUnstyled {...other} />;
 }

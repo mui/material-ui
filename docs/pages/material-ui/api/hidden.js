@@ -8,14 +8,12 @@ export default function Page(props) {
   return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
-export function getStaticProps() {
+Page.getInitialProps = () => {
   const req = require.context('docs/translations/api-docs/hidden', false, /hidden.*.json$/);
   const descriptions = mapApiPageTranslations(req);
 
   return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
+    descriptions,
+    pageContent: jsonPageContent,
   };
-}
+};

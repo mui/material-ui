@@ -263,7 +263,7 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  * Demos:
  *
  * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
- * - [Text fields](https://mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *

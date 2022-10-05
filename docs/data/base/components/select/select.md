@@ -6,7 +6,7 @@ githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 ---
 
-# Unstyled select
+# Unstyled Select
 
 <p class="description">The select components let you create lists of options for users to choose from.</p>
 
@@ -16,6 +16,8 @@ A select is a UI element that gives users a list of options to choose from.
 
 MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`.
 It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
+
+{{"demo": "UnstyledSelectIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 
@@ -146,7 +148,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 The following example shows a select that opens when hovered over or focused.

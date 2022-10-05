@@ -46,7 +46,7 @@ const theme = createTheme({
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
 
-The output shown in the color sample can be pasted directly into a [`createTheme()`](/material-ui/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/material-ui/customization/theming/#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createTheme()`](/material-ui/customization/theming/#createtheme-options-args-theme) function (to be used with [`ThemeProvider`](/material-ui/customization/theming/#theme-provider)):
 
 ```jsx
 import { createTheme } from '@mui/core/styles';

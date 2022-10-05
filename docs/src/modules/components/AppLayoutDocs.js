@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import NoSsr from '@mui/material/NoSsr';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -81,22 +82,20 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   let productName = 'MUI';
-  if (asPathWithoutLang.startsWith('/material-ui')) {
+  if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  }
-  if (asPathWithoutLang.startsWith('/base')) {
+  } else if (canonicalAs.startsWith('/base/')) {
     productName = 'MUI Base';
-  }
-  if (asPathWithoutLang.startsWith('/x')) {
+  } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
-  }
-  if (asPathWithoutLang.startsWith('/system')) {
+  } else if (canonicalAs.startsWith('/system/')) {
     productName = 'MUI System';
-  }
-  if (asPathWithoutLang.startsWith('/toolpad')) {
+  } else if (canonicalAs.startsWith('/toolpad/')) {
     productName = 'MUI Toolpad';
+  } else if (canonicalAs.startsWith('/joy-ui/')) {
+    productName = 'Joy UI';
   }
 
   return (
@@ -110,7 +109,12 @@ function AppLayoutDocs(props) {
         }}
       />
       <AdManager>
-        <Head title={`${title} - ${productName}`} description={description} />
+        <Head
+          title={`${title} - ${productName}`}
+          description={description}
+          largeCard={false}
+          card="https://mui.com/static/logo.png"
+        />
         {disableAd ? null : (
           <AdGuest>
             <Ad />

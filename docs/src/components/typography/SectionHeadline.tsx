@@ -1,18 +1,19 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 
-export default function SectionHeadline({
-  overline,
-  title,
-  description,
-}: {
+interface SectionHeadlineProps {
+  description?: React.ReactNode;
+  id?: string;
   overline: React.ReactNode;
   title: React.ReactNode;
-  description?: React.ReactNode;
-}) {
+}
+
+export default function SectionHeadline(props: SectionHeadlineProps) {
+  const { description, id, overline, title } = props;
   return (
     <React.Fragment>
       <Typography
+        id={id}
         component="h2"
         fontWeight="bold"
         variant="body2"

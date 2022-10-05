@@ -4,7 +4,7 @@ import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type MenuSlot = 'root' | 'listbox';
+export type MenuSlot = 'root';
 
 export interface MenuPropsSizeOverrides {}
 export interface MenuPropsColorOverrides {}
@@ -55,3 +55,5 @@ export type MenuProps<
   D extends React.ElementType = MenuTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<MenuTypeMap<P, D>, D>;
+
+export interface MenuOwnerState extends MenuProps {}

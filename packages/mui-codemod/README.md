@@ -993,8 +993,15 @@ npx @mui/codemod v5.0.0/theme-options <path>
 Renames `type` to `mode`.
 
 ```diff
-- { palette: { type: 'dark' } }
-+ { palette: { mode: 'dark' } }
+ {
+   palette: {
+-    type: 'dark',
++    mode: 'dark',
+   },
+ }
+```
+
+```diff
 -theme.palette.type === 'dark'
 +theme.palette.mode === 'dark'
 ```

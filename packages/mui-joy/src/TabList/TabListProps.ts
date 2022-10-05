@@ -45,6 +45,12 @@ export type TabListProps<
 > = OverrideProps<TabListTypeMap<P, D>, D>;
 
 export type TabListOwnerState = TabListProps & {
+  /**
+   * If `true`, the Tabs' direction is "rtl".
+   */
   isRtl: boolean;
+  /**
+   * The orientation of the Tabs.
+   */
   orientation: 'horizontal' | 'vertical';
 };

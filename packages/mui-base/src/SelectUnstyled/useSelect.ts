@@ -153,7 +153,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
 
   const createHandleListboxBlur =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
-      otherHandlers?.blur?.(event);
+      otherHandlers?.onBlur?.(event);
       if (!event.defaultPrevented) {
         onOpenChange?.(false);
       }
@@ -208,31 +208,39 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   let useListboxParameters: UseListboxParameters<SelectOption<TValue>>;
 
   if (props.multiple) {
+    const onChangeMultiple = onChange as (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue[],
+    ) => void;
     useListboxParameters = {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
       listboxRef: handleListboxRef,
       multiple: true,
-      onChange: (newOptions) => {
+      onChange: (e, newOptions) => {
         const newValues = newOptions.map((o) => o.value);
         setValue(newValues);
-        (onChange as (value: TValue[]) => void)?.(newValues);
+        onChangeMultiple?.(e, newValues);
       },
       options,
       optionStringifier,
       value: selectedOption as SelectOption<TValue>[],
     };
   } else {
+    const onChangeSingle = onChange as (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue | null,
+    ) => void;
     useListboxParameters = {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
       listboxRef: handleListboxRef,
       multiple: false,
-      onChange: (option: SelectOption<TValue> | null) => {
+      onChange: (e, option: SelectOption<TValue> | null) => {
         setValue(option?.value ?? null);
-        (onChange as (value: TValue | null) => void)?.(option?.value ?? null);
+        onChangeSingle?.(e, option?.value ?? null);
       },
       options,
       optionStringifier,

@@ -5,7 +5,7 @@ components: InputUnstyled
 githubLabel: 'component: input'
 ---
 
-# Unstyled input
+# Unstyled Input
 
 <p class="description">The InputUnstyled component provides users with a field to enter and edit text.</p>
 
@@ -13,6 +13,8 @@ githubLabel: 'component: input'
 
 An input is a UI element that accepts text data from the user.
 The `InputUnstyled` component replaces the native HTML `<input>` tag, and can also be transformed into a `<textarea>` as needed.
+
+{{"demo": "UnstyledInputIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 
@@ -103,7 +105,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 The demo below shows how to use the `useInput` hook to create a custom input component that receives all the necessary props:

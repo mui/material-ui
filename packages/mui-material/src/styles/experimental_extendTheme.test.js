@@ -247,6 +247,7 @@ describe('experimental_extendTheme', () => {
       expect(theme.colorSchemes.light.overlays).to.have.length(0);
       expect(theme.colorSchemes.dark.overlays).to.have.length(25);
 
+      expect(theme.colorSchemes.dark.overlays[0]).to.equal(undefined);
       expect(theme.colorSchemes.dark.overlays[24]).to.equal(
         'linear-gradient(rgba(255 255 255 / 0.16), rgba(255 255 255 / 0.16))',
       );

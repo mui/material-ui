@@ -124,6 +124,14 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      * variants from those tokens.
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
+    /**
+     * @internal
+     * A function that returns a list of variables that will be excluded from the `colorSchemeSelector` (:root by default)
+     *
+     * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
+     * This is introduced to fix https://github.com/mui/material-ui/issues/34084
+     */
+    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
 ): CreateCssVarsProviderResult<ColorScheme>;
 

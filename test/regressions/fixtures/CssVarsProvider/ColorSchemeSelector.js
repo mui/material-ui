@@ -15,12 +15,13 @@ const { CssVarsProvider } = createCssVarsProvider({
   },
   defaultColorScheme: {
     light: 'light',
+    dark: 'dark',
   },
 });
 
-export default function DarkModeSpecificity() {
+export default function ColorSchemeSelector() {
   return (
-    <CssVarsProvider modeStorageKey="dark-mode-specificity">
+    <CssVarsProvider>
       <Box
         sx={(theme) => ({
           p: 2,

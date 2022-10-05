@@ -54,6 +54,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popper/Popper.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menus</a></li>\n<li><a href=\"/material-ui/react-popper/\">Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menu</a></li>\n<li><a href=\"/material-ui/react-popper/\">Popper</a></li></ul>",
   "cssComponent": false
 }

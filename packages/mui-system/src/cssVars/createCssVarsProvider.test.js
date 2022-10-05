@@ -611,7 +611,6 @@ describe('createCssVarsProvider', () => {
       );
 
       expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
-      expect(global.localStorage.setItem.calledWith(customModeStorageKey, 'dark')).to.equal(true);
     });
 
     it('support custom storage window', () => {

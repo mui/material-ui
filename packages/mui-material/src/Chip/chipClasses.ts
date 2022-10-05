@@ -7,10 +7,18 @@ export interface ChipClasses {
   sizeSmall: string;
   /** Styles applied to the root element if `size="medium"`. */
   sizeMedium: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
@@ -95,8 +103,12 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'root',
   'sizeSmall',
   'sizeMedium',
+  'colorError',
+  'colorInfo',
   'colorPrimary',
   'colorSecondary',
+  'colorSuccess',
+  'colorWarning',
   'disabled',
   'clickable',
   'clickableColorPrimary',

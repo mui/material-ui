@@ -13558,7 +13558,7 @@ _May 24, 2015_
 
 ### Breaking Changes
 
-- Refactored all CSS into Javascript (#30, #316)
+- Refactored all CSS into JavaScript (#30, #316)
   - All Material UI components now have their styles defined inline. This solves
     many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js)
     such as polluting the global namespace with classes that really should be

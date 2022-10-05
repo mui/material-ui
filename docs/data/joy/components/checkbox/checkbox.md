@@ -16,6 +16,10 @@ For toggling between on and off or single option selection, consider using a swi
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true}}
 
+:::success
+To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -82,6 +86,12 @@ It has no accessibility or UX implications.
 :::
 
 {{"demo": "IndeterminateCheckbox.js"}}
+
+### Helper text
+
+To add a description to the checkbox, use `FormControl` and `FormHelperText`. The checkbox will be linked to the helper text via `aria-describedby` attribute.
+
+{{"demo": "HelperTextCheckbox.js"}}
 
 ### Group
 

@@ -2525,6 +2525,22 @@ describe('<Autocomplete />', () => {
       expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
       expect(popupIndicator).to.have.class('my-class');
     });
+
+    it('should keep AutocompletePopper mounted if keepMounted is true in popper props', () => {
+      // Autocomplete is not opened
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popper: { 'data-testid': 'popperRoot', keepMounted: true },
+          }}
+        />,
+      );
+
+      const popperRoot = screen.getByTestId('popperRoot');
+      expect(popperRoot.style.display).to.equal('none');
+    });
   });
 
   describe('prop: readOnly', () => {

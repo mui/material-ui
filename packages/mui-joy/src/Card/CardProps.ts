@@ -48,3 +48,5 @@ export type CardProps<
   D extends React.ElementType = CardTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<CardTypeMap<P, D>, D>;
+
+export interface CardOwnerState extends CardProps {}

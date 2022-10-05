@@ -58,6 +58,6 @@
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-material/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/material-ui/api/table-cell/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Tables</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
   "cssComponent": false
 }

@@ -173,7 +173,7 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
     },
     '& .optional': {
-      color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      color: theme.palette.mode === 'light' ? '#45529f' : '#a5b3ff',
     },
     '& .prop-type': {
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',

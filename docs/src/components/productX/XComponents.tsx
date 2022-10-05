@@ -26,7 +26,7 @@ import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
-const DEMOS = ['Data grid', 'Date range picker', 'Tree view', 'Sparkline', 'Charts'];
+const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
 const WIP = DEMOS.slice(1);
 
 const AspectRatioImage = styled('div', {
@@ -223,15 +223,7 @@ export default function XComponents() {
                         Subscribe to our newsletter to get first-hand info about the development and
                         release of new components.
                       </Typography>
-                      <EmailSubscribe
-                        sx={{
-                          '& > div': {
-                            maxWidth: 'initial',
-                            border: '1px solid',
-                            borderColor: 'primaryDark.600',
-                          },
-                        }}
-                      />
+                      <EmailSubscribe />
                     </Frame.Info>
                   </ThemeProvider>
                 </Frame>

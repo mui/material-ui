@@ -5,6 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
+import { OptionState } from '@mui/base/ListboxUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type OptionSlot = 'root';
@@ -62,6 +63,8 @@ export type OptionProps<
     component?: React.ElementType;
   },
 > = OverrideProps<OptionTypeMap<P, D>, D>;
+
+export interface OptionOwnerState extends Omit<OptionProps, 'disabled'>, OptionState {}
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,

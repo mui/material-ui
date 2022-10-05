@@ -26,6 +26,7 @@ describe('<Link />', () => {
     refInstanceof: window.HTMLAnchorElement,
     testVariantProps: { color: 'primary', variant: 'plain' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
+    testCustomVariant: true,
     skip: [
       'classesRoot',
       'componentsProp',

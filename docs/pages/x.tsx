@@ -12,12 +12,12 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import XPlans from 'docs/src/components/productX/XPlans';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-export default function Home() {
+export default function X() {
   return (
     <BrandingProvider>
       <Head
         title="MUI X: Performant advanced components"
-        description="We are kicking it off with the most powerful Data Grid on the market and there's a lot more to come. Build complex applications with our advanced React components."
+        description="Build data-rich applications using a growing list of advanced React components. We're kicking it off with the most powerful Data Grid on the market."
         card="/static/social-previews/x-preview.jpg"
       />
       <AppHeaderBanner />

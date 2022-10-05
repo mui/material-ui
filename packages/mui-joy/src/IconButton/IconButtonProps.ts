@@ -75,6 +75,13 @@ export type IconButtonProps<
   },
 > = OverrideProps<IconButtonTypeMap<P, D>, D>;
 
+export interface IconButtonOwnerState extends IconButtonProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+}
+
 export type ExtendIconButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendIconButtonTypeMap<M>, 'a'>,
 ) => JSX.Element) &
