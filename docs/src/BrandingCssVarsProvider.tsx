@@ -61,7 +61,7 @@ const ColorSchemeAdjustment = () => {
     };
   }, []);
   return null;
-}
+};
 
 export default function BrandingCssVarsProvider({ children }: { children: React.ReactNode }) {
   return (
