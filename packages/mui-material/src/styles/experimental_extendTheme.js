@@ -9,6 +9,12 @@ import {
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import { getOverlayAlpha } from '../Paper/Paper';
+import md3CommonPalette from './md3/palette';
+import createMd3LightColorScheme from './md3/createLightColorScheme';
+import createMd3DarkColorScheme from './md3/createDarkColorScheme';
+import md3Typescale from './md3/typescale';
+import md3Typeface from './md3/typeface';
+import md3State from './md3/states';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -33,15 +39,60 @@ function setColor(obj, key, defaultValue) {
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options = {}, ...args) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'mui',
+    useMaterialYou = false,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
+
+  const md3LightPalette = {
+    ...md3CommonPalette,
+    ...createMd3LightColorScheme(getCssVar),
+  };
+
+  const md3DarkPalette = {
+    ...md3CommonPalette,
+    ...createMd3DarkColorScheme(getCssVar),
+  };
 
   const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
     ...input,
-    ...(colorSchemesInput.light && { palette: colorSchemesInput.light?.palette }),
+    ...(useMaterialYou && {
+      useMaterialYou: true,
+      palette: { md3: md3LightPalette },
+      typescale: md3Typescale,
+      typeface: md3Typeface,
+      state: md3State,
+      shape: {
+        borderRadius: 100,
+        ...input?.shape,
+      },
+    }),
+    ...(colorSchemesInput.light && {
+      palette: {
+        ...colorSchemesInput.light?.palette,
+        ...(useMaterialYou && {
+          md3: {
+            ...md3LightPalette,
+            ...colorSchemesInput.light?.palette?.md3,
+          },
+        }),
+      },
+    }),
   });
   const { palette: darkPalette } = createThemeWithoutVars({
-    palette: { mode: 'dark', ...colorSchemesInput.dark?.palette },
+    palette: {
+      mode: 'dark',
+      ...colorSchemesInput.dark?.palette,
+      ...(useMaterialYou && {
+        md3: {
+          ...md3DarkPalette,
+          ...colorSchemesInput.dark?.palette?.md3,
+        },
+      }),
+    },
   });
 
   let theme = {
@@ -274,10 +325,10 @@ export default function extendTheme(options = {}, ...args) {
       }
 
       // Text colors: text.primary, text.secondary
-      if (colors.primary) {
+      if (colors.primary && typeof colors.primary === 'string') {
         palette[color].primaryChannel = colorChannel(colors.primary);
       }
-      if (colors.secondary) {
+      if (colors.secondary && typeof colors.primary === 'string') {
         palette[color].secondaryChannel = colorChannel(colors.secondary);
       }
 

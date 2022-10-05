@@ -75,163 +75,205 @@ const ButtonRoot = styled(ButtonBase, {
     ];
   },
 })(
-  ({ theme, ownerState }) => ({
-    ...theme.typography.button,
-    minWidth: 64,
-    padding: '6px 16px',
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    transition: theme.transitions.create(
-      ['background-color', 'box-shadow', 'border-color', 'color'],
-      {
-        duration: theme.transitions.duration.short,
-      },
-    ),
-    '&:hover': {
-      textDecoration: 'none',
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-        : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-      ...(ownerState.variant === 'text' &&
-        ownerState.color !== 'inherit' && {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.hoverOpacity
-              })`
-            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+  ({ theme, ownerState }) => {
+    if (theme.useMaterialYou) {
+      return {
+        padding: '10px 24px',
+        fontFamily: (theme.vars || theme).typescale.label.large.family,
+        fontWeight: (theme.vars || theme).typescale.label.large.weight,
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        ...(ownerState.variant === 'filled' && {
+          backgroundColor: (theme.vars || theme).palette.md3.colors.primary,
+          color: (theme.vars || theme).palette.md3.colors.onPrimary,
+          '&:hover': {
+            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+            opacity: (theme.vars || theme).state.hover.stateLayerOpacity,
+          },
+          '&:active': {
+            opacity: (theme.vars || theme).state.pressed.stateLayerOpacity,
+          },
+          [`&.${buttonClasses.focusVisible}`]: {
+            opacity: (theme.vars || theme).state.focus.stateLayerOpacity,
           },
         }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color !== 'inherit' && {
-          border: `1px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
-                theme.vars.palette.action.hoverOpacity
-              })`
-            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
-          },
+        ...(ownerState.variant === 'filledTonal' && {
+          backgroundColor: (theme.vars || theme).palette.md3.colors.secondaryContainer,
+          color: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
         }),
-      ...(ownerState.variant === 'contained' && {
-        backgroundColor: (theme.vars || theme).palette.grey.A100,
-        boxShadow: (theme.vars || theme).shadows[4],
+        ...(ownerState.variant === 'outlined' && {
+          border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
+          color: (theme.vars || theme).palette.md3.colors.primary,
+        }),
+        ...(ownerState.variant === 'elevated' && {
+          background: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
+            (theme.vars || theme).palette.md3.colors.surface
+          }`,
+          color: (theme.vars || theme).palette.md3.colors.primary,
+          boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
+        }),
+        ...(ownerState.variant === 'text' && {
+          color: (theme.vars || theme).palette.md3.colors.primary,
+        }),
+      };
+    }
+    return {
+      ...theme.typography.button,
+      minWidth: 64,
+      padding: '6px 16px',
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+      transition: theme.transitions.create(
+        ['background-color', 'box-shadow', 'border-color', 'color'],
+        {
+          duration: theme.transitions.duration.short,
+        },
+      ),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
+          : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          boxShadow: (theme.vars || theme).shadows[2],
-          backgroundColor: (theme.vars || theme).palette.grey[300],
+          backgroundColor: 'transparent',
         },
+        ...(ownerState.variant === 'text' &&
+          ownerState.color !== 'inherit' && {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                  theme.vars.palette.action.hoverOpacity
+                })`
+              : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          }),
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.color !== 'inherit' && {
+            border: `1px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                  theme.vars.palette.action.hoverOpacity
+                })`
+              : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          }),
+        ...(ownerState.variant === 'contained' && {
+          backgroundColor: (theme.vars || theme).palette.grey.A100,
+          boxShadow: (theme.vars || theme).shadows[4],
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            boxShadow: (theme.vars || theme).shadows[2],
+            backgroundColor: (theme.vars || theme).palette.grey[300],
+          },
+        }),
+        ...(ownerState.variant === 'contained' &&
+          ownerState.color !== 'inherit' && {
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+            },
+          }),
+      },
+      '&:active': {
+        ...(ownerState.variant === 'contained' && {
+          boxShadow: (theme.vars || theme).shadows[8],
+        }),
+      },
+      [`&.${buttonClasses.focusVisible}`]: {
+        ...(ownerState.variant === 'contained' && {
+          boxShadow: (theme.vars || theme).shadows[6],
+        }),
+      },
+      [`&.${buttonClasses.disabled}`]: {
+        color: (theme.vars || theme).palette.action.disabled,
+        ...(ownerState.variant === 'outlined' && {
+          border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+        }),
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.color === 'secondary' && {
+            border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+          }),
+        ...(ownerState.variant === 'contained' && {
+          color: (theme.vars || theme).palette.action.disabled,
+          boxShadow: (theme.vars || theme).shadows[0],
+          backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+        }),
+      },
+      ...(ownerState.variant === 'text' && {
+        padding: '6px 8px',
+      }),
+      ...(ownerState.variant === 'text' &&
+        ownerState.color !== 'inherit' && {
+          color: (theme.vars || theme).palette[ownerState.color].main,
+        }),
+      ...(ownerState.variant === 'outlined' && {
+        padding: '5px 15px',
+        border: '1px solid currentColor',
+      }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color !== 'inherit' && {
+          color: (theme.vars || theme).palette[ownerState.color].main,
+          border: theme.vars
+            ? `1px solid rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+            : `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
+        }),
+      ...(ownerState.variant === 'contained' && {
+        color: theme.vars
+          ? // this is safe because grey does not change between default light/dark mode
+            theme.vars.palette.text.primary
+          : theme.palette.getContrastText?.(theme.palette.grey[300]),
+        backgroundColor: (theme.vars || theme).palette.grey[300],
+        boxShadow: (theme.vars || theme).shadows[2],
       }),
       ...(ownerState.variant === 'contained' &&
         ownerState.color !== 'inherit' && {
-          backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-          },
+          color: (theme.vars || theme).palette[ownerState.color].contrastText,
+          backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
         }),
-    },
-    '&:active': {
-      ...(ownerState.variant === 'contained' && {
-        boxShadow: (theme.vars || theme).shadows[8],
+      ...(ownerState.color === 'inherit' && {
+        color: 'inherit',
+        borderColor: 'currentColor',
       }),
-    },
-    [`&.${buttonClasses.focusVisible}`]: {
-      ...(ownerState.variant === 'contained' && {
-        boxShadow: (theme.vars || theme).shadows[6],
-      }),
-    },
-    [`&.${buttonClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-      ...(ownerState.variant === 'outlined' && {
-        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-      }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color === 'secondary' && {
-          border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
+      ...(ownerState.size === 'small' &&
+        ownerState.variant === 'text' && {
+          padding: '4px 5px',
+          fontSize: theme.typography.pxToRem(13),
         }),
-      ...(ownerState.variant === 'contained' && {
-        color: (theme.vars || theme).palette.action.disabled,
-        boxShadow: (theme.vars || theme).shadows[0],
-        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+      ...(ownerState.size === 'large' &&
+        ownerState.variant === 'text' && {
+          padding: '8px 11px',
+          fontSize: theme.typography.pxToRem(15),
+        }),
+      ...(ownerState.size === 'small' &&
+        ownerState.variant === 'outlined' && {
+          padding: '3px 9px',
+          fontSize: theme.typography.pxToRem(13),
+        }),
+      ...(ownerState.size === 'large' &&
+        ownerState.variant === 'outlined' && {
+          padding: '7px 21px',
+          fontSize: theme.typography.pxToRem(15),
+        }),
+      ...(ownerState.size === 'small' &&
+        ownerState.variant === 'contained' && {
+          padding: '4px 10px',
+          fontSize: theme.typography.pxToRem(13),
+        }),
+      ...(ownerState.size === 'large' &&
+        ownerState.variant === 'contained' && {
+          padding: '8px 22px',
+          fontSize: theme.typography.pxToRem(15),
+        }),
+      ...(ownerState.fullWidth && {
+        width: '100%',
       }),
-    },
-    ...(ownerState.variant === 'text' && {
-      padding: '6px 8px',
-    }),
-    ...(ownerState.variant === 'text' &&
-      ownerState.color !== 'inherit' && {
-        color: (theme.vars || theme).palette[ownerState.color].main,
-      }),
-    ...(ownerState.variant === 'outlined' && {
-      padding: '5px 15px',
-      border: '1px solid currentColor',
-    }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.color !== 'inherit' && {
-        color: (theme.vars || theme).palette[ownerState.color].main,
-        border: theme.vars
-          ? `1px solid rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
-          : `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
-      }),
-    ...(ownerState.variant === 'contained' && {
-      color: theme.vars
-        ? // this is safe because grey does not change between default light/dark mode
-          theme.vars.palette.text.primary
-        : theme.palette.getContrastText?.(theme.palette.grey[300]),
-      backgroundColor: (theme.vars || theme).palette.grey[300],
-      boxShadow: (theme.vars || theme).shadows[2],
-    }),
-    ...(ownerState.variant === 'contained' &&
-      ownerState.color !== 'inherit' && {
-        color: (theme.vars || theme).palette[ownerState.color].contrastText,
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-      }),
-    ...(ownerState.color === 'inherit' && {
-      color: 'inherit',
-      borderColor: 'currentColor',
-    }),
-    ...(ownerState.size === 'small' &&
-      ownerState.variant === 'text' && {
-        padding: '4px 5px',
-        fontSize: theme.typography.pxToRem(13),
-      }),
-    ...(ownerState.size === 'large' &&
-      ownerState.variant === 'text' && {
-        padding: '8px 11px',
-        fontSize: theme.typography.pxToRem(15),
-      }),
-    ...(ownerState.size === 'small' &&
-      ownerState.variant === 'outlined' && {
-        padding: '3px 9px',
-        fontSize: theme.typography.pxToRem(13),
-      }),
-    ...(ownerState.size === 'large' &&
-      ownerState.variant === 'outlined' && {
-        padding: '7px 21px',
-        fontSize: theme.typography.pxToRem(15),
-      }),
-    ...(ownerState.size === 'small' &&
-      ownerState.variant === 'contained' && {
-        padding: '4px 10px',
-        fontSize: theme.typography.pxToRem(13),
-      }),
-    ...(ownerState.size === 'large' &&
-      ownerState.variant === 'contained' && {
-        padding: '8px 22px',
-        fontSize: theme.typography.pxToRem(15),
-      }),
-    ...(ownerState.fullWidth && {
-      width: '100%',
-    }),
-  }),
+    };
+  },
   ({ ownerState }) =>
     ownerState.disableElevation && {
       boxShadow: 'none',

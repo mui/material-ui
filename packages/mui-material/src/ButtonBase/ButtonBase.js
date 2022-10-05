@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
@@ -72,6 +73,7 @@ export const ButtonBaseRoot = styled('button', {
  */
 const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
+  const { useMaterialYou } = useTheme();
   const {
     action,
     centerRipple = false,
@@ -79,9 +81,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     className,
     component = 'button',
     disabled = false,
-    disableRipple = false,
-    disableTouchRipple = false,
-    focusRipple = false,
+    disableRipple = useMaterialYou || false,
+    disableTouchRipple = useMaterialYou || false,
+    focusRipple = useMaterialYou || false,
     focusVisibleClassName,
     LinkComponent = 'a',
     onBlur,

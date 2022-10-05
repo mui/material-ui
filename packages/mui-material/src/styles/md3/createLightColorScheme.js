@@ -1,0 +1,35 @@
+// convert all these values to CSS vars
+const createLightColorScheme = (getCssVar) => ({
+  colors: {
+    surfaceTint: getCssVar('palette-md3-primary-40'),
+    onErrorContainer: getCssVar('palette-md3-error-10'),
+    onError: getCssVar('palette-md3-error-100'),
+    errorContainer: getCssVar('palette-md3-error-90'),
+    onTertiaryContainer: getCssVar('palette-md3-tertiary-10'),
+    onTertiary: getCssVar('palette-md3-tertiary-100'),
+    tertiaryContainer: getCssVar('palette-md3-tertiary-90'),
+    tertiary: getCssVar('palette-md3-tertiary-40'),
+    shadow: getCssVar('palette-md3-common-black'),
+    error: getCssVar('palette-md3-error-40'),
+    outline: getCssVar('palette-md3-neutralVariant-50'),
+    onBackground: getCssVar('palette-md3-neutral-10'),
+    background: getCssVar('palette-md3-neutral-99'),
+    inverseOnSurface: getCssVar('palette-md3-neutral-95'),
+    inverseSurface: getCssVar('palette-md3-neutral-20'),
+    onSurfaceVariant: getCssVar('palette-md3-neutralVariant-30'),
+    onSurface: getCssVar('palette-md3-neutral-10'),
+    surfaceVariant: getCssVar('palette-md3-neutralVariant-90'),
+    surface: getCssVar('palette-md3-neutral-99'),
+    onSecondaryContainer: getCssVar('palette-md3-secondary-10'),
+    onSecondary: getCssVar('palette-md3-secondary-100'),
+    secondaryContainer: getCssVar('palette-md3-secondary-90'),
+    secondary: getCssVar('palette-md3-secondary-40'),
+    inversePrimary: getCssVar('palette-md3-primary-80'),
+    onPrimaryContainer: getCssVar('palette-md3-primary-10'),
+    onPrimary: getCssVar('palette-md3-primary-100'),
+    primaryContainer: getCssVar('palette-md3-primary-90'),
+    primary: getCssVar('palette-md3-primary-40'),
+  },
+});
+
+export default createLightColorScheme;
