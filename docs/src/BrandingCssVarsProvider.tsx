@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
@@ -49,12 +49,27 @@ const theme = extendTheme({
   ...getThemedComponents(),
 });
 
+const ColorSchemeAdjustment = () => {
+  useEnhancedEffect(() => {
+    return () => {
+      // Due to the change in https://github.com/mui/material-ui/pull/29946, the color-scheme is reset to the previous value when CssVarsProvider unmounts.
+      // I'm still not sure if it is the expected behavior or our docs is an edge case.
+
+      // make sure that the color-scheme does not change after the component unmounted.
+      const mode = localStorage.getItem('mui-mode');
+      document.documentElement.style.setProperty('color-scheme', mode);
+    };
+  }, []);
+  return null;
+}
+
 export default function BrandingCssVarsProvider({ children }: { children: React.ReactNode }) {
   return (
     <CssVarsProvider theme={theme} disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
       {children}
+      <ColorSchemeAdjustment />
     </CssVarsProvider>
   );
 }
