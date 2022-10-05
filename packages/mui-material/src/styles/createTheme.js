@@ -56,6 +56,15 @@ function createTheme(options = {}, ...args) {
         borderRadius: 100,
         ...shapeInput,
       },
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+            disableTouchRipple: true,
+            focusRipple: false,
+          },
+        },
+      },
     }),
   });
 
