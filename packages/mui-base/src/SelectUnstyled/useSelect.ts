@@ -99,7 +99,8 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const createHandleButtonClick =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
       otherHandlers?.onClick?.(event);
-      if (!event.defaultPrevented && !ignoreClick.current) {
+      const isImage = event.target instanceof HTMLImageElement;
+      if (!event.defaultPrevented && !ignoreClick.current && !isImage) {
         onOpenChange?.(!open);
       }
 
