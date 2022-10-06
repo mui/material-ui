@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
-  experimental_extendTheme,
+  experimental_extendMD3Theme as extendMD3Theme,
   Experimental_CssVarsProvider as CssVarsProvider,
   Tooltip,
   IconButton,
   Button,
-  createTheme,
+  experimental_createMD3Theme as createMD3Theme,
   ThemeProvider,
   useColorScheme,
   Stack,
@@ -58,18 +58,10 @@ const DemoComponents = () => {
   );
 };
 
-const cssVarsTheme = experimental_extendTheme({
-  useMaterialYou: true,
-});
+const cssVarsTheme = extendMD3Theme();
 
-const lightTheme = createTheme({
-  useMaterialYou: true,
-});
-
-const darkTheme = createTheme({
-  palette: { mode: 'dark' },
-  useMaterialYou: true,
-});
+const lightTheme = createMD3Theme();
+const darkTheme = createMD3Theme({ palette: { mode: 'dark' } });
 
 export default function App() {
   const [mode, setMode] = React.useState('light');

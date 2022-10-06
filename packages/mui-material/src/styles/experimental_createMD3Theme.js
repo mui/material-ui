@@ -8,6 +8,10 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
+import createMd3Palette from './md3/createMd3Palette';
+import md3Typescale from './md3/typescale';
+import md3Typeface from './md3/typeface';
+import md3State from './md3/states';
 
 function createTheme(options = {}, ...args) {
   const {
@@ -18,6 +22,7 @@ function createTheme(options = {}, ...args) {
     transitions: transitionsInput = {},
     typography: typographyInput = {},
     shape: shapeInput,
+    useMaterialYou = true,
     ...other
   } = options;
 
@@ -29,6 +34,9 @@ function createTheme(options = {}, ...args) {
   }
 
   const palette = createPalette(paletteInput);
+  if (useMaterialYou) {
+    palette.md3 = createMd3Palette(palette.md3, paletteInput.mode);
+  }
   const systemTheme = systemCreateTheme(options);
 
   let muiTheme = deepmerge(systemTheme, {
@@ -39,6 +47,25 @@ function createTheme(options = {}, ...args) {
     typography: createTypography(palette, typographyInput),
     transitions: createTransitions(transitionsInput),
     zIndex: { ...zIndex },
+    ...(useMaterialYou && {
+      useMaterialYou: true,
+      state: md3State,
+      typescale: md3Typescale,
+      typeface: md3Typeface,
+      shape: {
+        borderRadius: 100,
+        ...shapeInput,
+      },
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+            disableTouchRipple: true,
+            focusRipple: false,
+          },
+        },
+      },
+    }),
   });
 
   muiTheme = deepmerge(muiTheme, other);
