@@ -161,7 +161,9 @@ export default function createCssVarsProvider(options) {
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
         theme = { ...theme, ...parsedScheme };
-        theme.palette.colorScheme = key;
+        if (theme.palette) {
+          theme.palette.colorScheme = key;
+        }
       }
       if (key === resolvedDefaultColorScheme) {
         if (excludeVariablesFromRoot) {
@@ -174,7 +176,7 @@ export default function createCssVarsProvider(options) {
         }
         defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = {
           // 4.2 the CSS color-scheme is attached using the `mode` defined in the palette, if enabled.
-          ...(enableColorScheme && { colorScheme: scheme.palette.mode }),
+          ...(enableColorScheme && { colorScheme: scheme.palette?.mode }),
           ...css,
         };
       } else {
@@ -182,7 +184,7 @@ export default function createCssVarsProvider(options) {
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
         ] = {
           // 4.2 same as other color schemes.
-          ...(enableColorScheme && { colorScheme: scheme.palette.mode }),
+          ...(enableColorScheme && { colorScheme: scheme.palette?.mode }),
           ...css,
         };
       }
