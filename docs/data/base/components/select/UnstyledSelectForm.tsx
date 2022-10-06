@@ -157,7 +157,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue extends {}>(
   props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
 
-export default function UnstyledSelectSimple() {
+export default function UnstyledSelectForm() {
   return (
     <div>
       <Box sx={{ mb: 2 }}>
