@@ -10,15 +10,15 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 
 function createLoading(sx: BoxProps['sx']) {
-  return () => (
-    <Box
+  return function() {
+  return <Box
       sx={{
         borderRadius: 1,
         bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
         ...sx,
       }}
     />
-  );
+};
 }
 
 const TaskCard = dynamic(() => import('../showcase/TaskCard'), {

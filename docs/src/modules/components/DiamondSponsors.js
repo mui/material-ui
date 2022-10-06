@@ -80,7 +80,7 @@ export default function DiamondSponsors() {
           data-ga-event-action="drawer"
           data-ga-event-label="octopus"
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
-          rel="noopener noreferrer sponsored"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <img
@@ -97,7 +97,7 @@ export default function DiamondSponsors() {
           data-ga-event-action="drawer"
           data-ga-event-label="doit"
           href="https://www.doit-intl.com/flexsave/?utm_source=materialui&utm_medium=referral"
-          rel="noopener noreferrer sponsored"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <img
@@ -114,7 +114,7 @@ export default function DiamondSponsors() {
           data-ga-event-action="drawer"
           data-ga-event-label="zesty.io"
           href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
-          rel="noopener noreferrer sponsored"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <img

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PopperUnstyled, { PopperPlacementType } from '@mui/base/PopperUnstyled';
 
-const Radio = ({ value, ...props }: JSX.IntrinsicElements['input']) => (
-  <span>
+function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
+  return <span>
     <input
       type="radio"
       id={`placement-${value}-radio`}
@@ -13,14 +13,14 @@ const Radio = ({ value, ...props }: JSX.IntrinsicElements['input']) => (
     />
     <label htmlFor={`placement-${value}-radio`}>{value}</label>
   </span>
-);
+}
 
-const PlacementForm = ({
+function PlacementForm({
   setPlacement,
 }: {
   setPlacement: (placement: PopperPlacementType) => void;
-}) => (
-  <div
+}) {
+  return <div
     style={{
       backgroundColor: 'rgba(0,0,0,0.04)',
       borderRadius: '4px',
@@ -84,7 +84,7 @@ const PlacementForm = ({
       ))}
     </div>
   </div>
-);
+}
 
 export default function PlacementPopper() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);

@@ -2,8 +2,8 @@ import * as React from 'react';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 
-const Root = (props: BoxProps) => (
-  <Box
+function Root(props: BoxProps) {
+  return <Box
     {...props}
     sx={[
       {
@@ -20,10 +20,10 @@ const Root = (props: BoxProps) => (
       ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
     ]}
   />
-);
+}
 
-const Header = (props: BoxProps) => (
-  <Box
+function Header(props: BoxProps) {
+  return <Box
     component="header"
     className="Header"
     {...props}
@@ -46,10 +46,10 @@ const Header = (props: BoxProps) => (
       ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
     ]}
   />
-);
+}
 
-const SideNav = (props: BoxProps) => (
-  <Box
+function SideNav(props: BoxProps) {
+  return <Box
     component="nav"
     className="Navigation"
     {...props}
@@ -67,10 +67,10 @@ const SideNav = (props: BoxProps) => (
       ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
     ]}
   />
-);
+}
 
-const SidePane = (props: BoxProps) => (
-  <Box
+function SidePane(props: BoxProps) {
+  return <Box
     className="Inbox"
     {...props}
     sx={[
@@ -86,22 +86,22 @@ const SidePane = (props: BoxProps) => (
       ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
     ]}
   />
-);
+}
 
-const Main = (props: BoxProps) => (
-  <Box
+function Main(props: BoxProps) {
+  return <Box
     component="main"
     className="Main"
     {...props}
     sx={[{ p: 2 }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]}
   />
-);
+}
 
-const SideDrawer = ({
+function SideDrawer({
   onClose,
   ...props
-}: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> }) => (
-  <Box
+}: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> }) {
+  return <Box
     {...props}
     sx={[
       { position: 'fixed', zIndex: 1200, width: '100%', height: '100%' },
@@ -130,7 +130,7 @@ const SideDrawer = ({
       {props.children}
     </Sheet>
   </Box>
-);
+}
 
 export default {
   Root,

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ListItem from '@mui/material/ListItem';
 import FormLabel from '@mui/material/FormLabel';
 
-const ListHeader = ({ sx = [], children }) => (
-  <ListItem
+function ListHeader({ sx = [], children }) {
+  return <ListItem
     sx={[
       {
         width: 'auto',
@@ -16,7 +16,7 @@ const ListHeader = ({ sx = [], children }) => (
   >
     <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
   </ListItem>
-);
+}
 
 ListHeader.propTypes = {
   children: PropTypes.node,

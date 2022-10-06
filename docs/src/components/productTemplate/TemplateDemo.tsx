@@ -22,8 +22,8 @@ import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 
-const ActionArea = (props: ButtonBaseProps) => (
-  <ButtonBase
+function ActionArea(props: ButtonBaseProps) {
+  return <ButtonBase
     {...props}
     sx={{
       width: 100,
@@ -49,7 +49,7 @@ const ActionArea = (props: ButtonBaseProps) => (
       ...props.sx,
     }}
   />
-);
+}
 
 export default function TemplateDemo() {
   const globalTheme = useTheme();

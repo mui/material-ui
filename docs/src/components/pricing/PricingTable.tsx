@@ -175,7 +175,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   );
 }
 
-const ColumnHead = ({
+function ColumnHead({
   label,
   metadata,
   tooltip,
@@ -187,7 +187,7 @@ const ColumnHead = ({
   tooltip?: string;
   nested?: boolean;
   href?: string;
-}) => {
+}) {
   const text = (
     <Typography
       {...(href && {
@@ -239,10 +239,10 @@ const ColumnHead = ({
       )}
     </Box>
   );
-};
+}
 
-const ColumnHeadHighlight = (props: BoxProps) => (
-  <Box
+function ColumnHeadHighlight(props: BoxProps) {
+  return <Box
     {...props}
     sx={{
       p: 2,
@@ -260,10 +260,10 @@ const ColumnHeadHighlight = (props: BoxProps) => (
       ...props.sx,
     }}
   />
-);
+}
 
-const Recommended = (props: BoxProps) => (
-  <Box
+function Recommended(props: BoxProps) {
+  return <Box
     {...props}
     sx={{
       typography: 'caption',
@@ -282,10 +282,10 @@ const Recommended = (props: BoxProps) => (
   >
     Recommended
   </Box>
-);
+}
 
-const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) => (
-  <Box
+function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) {
+  return <Box
     {...props}
     sx={{
       py: 2,
@@ -306,14 +306,14 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       ...props.sx,
     }}
   />
-);
+}
 
-const RowHead = ({
+function RowHead({
   children,
   startIcon,
   ...props
-}: BoxProps & { startIcon?: React.ReactElement }) => (
-  <Box
+}: BoxProps & { startIcon?: React.ReactElement }) {
+  return <Box
     {...props}
     sx={{
       justifyContent: 'flex-start',
@@ -331,7 +331,7 @@ const RowHead = ({
     {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
     {children}
   </Box>
-);
+}
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
@@ -758,8 +758,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
 };
 
-const RowCategory = (props: BoxProps) => (
-  <Box
+function RowCategory(props: BoxProps) {
+  return <Box
     {...props}
     sx={{
       typography: 'caption',
@@ -774,15 +774,15 @@ const RowCategory = (props: BoxProps) => (
       ...props.sx,
     }}
   />
-);
+}
 
-const StickyHead = ({
+function StickyHead({
   container,
   disableCalculation = false,
 }: {
   container: React.MutableRefObject<HTMLElement | null>;
   disableCalculation?: boolean;
-}) => {
+}) {
   const [hidden, setHidden] = React.useState(true);
   React.useEffect(() => {
     function handleScroll() {
@@ -852,7 +852,7 @@ const StickyHead = ({
       </Container>
     </Box>
   );
-};
+}
 
 const divider = <Divider />;
 const nestedDivider = <Divider sx={{ ml: 1 }} />;
