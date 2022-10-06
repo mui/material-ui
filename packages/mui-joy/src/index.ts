@@ -53,7 +53,6 @@ export { default as Container } from './Container';
 export * from './Container';
 
 export { default as CssBaseline } from './CssBaseline';
-// eslint-disable-next-line import/export
 export * from './CssBaseline';
 
 export { default as Divider } from './Divider';
