@@ -75,15 +75,6 @@ export default function createCssVarsProvider(options) {
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
-    const resolvedDefaultColorScheme = (() => {
-      if (typeof defaultColorScheme === 'string') {
-        return defaultColorScheme;
-      }
-      if (defaultMode === 'dark') {
-        return defaultColorScheme.dark;
-      }
-      return defaultColorScheme.light;
-    })();
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
@@ -165,6 +156,15 @@ export default function createCssVarsProvider(options) {
           theme.palette.colorScheme = key;
         }
       }
+      const resolvedDefaultColorScheme = (() => {
+        if (typeof defaultColorScheme === 'string') {
+          return defaultColorScheme;
+        }
+        if (defaultMode === 'dark') {
+          return defaultColorScheme.dark;
+        }
+        return defaultColorScheme.light;
+      })();
       if (key === resolvedDefaultColorScheme) {
         if (excludeVariablesFromRoot) {
           const excludedVariables = {};
