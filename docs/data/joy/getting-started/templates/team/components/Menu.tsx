@@ -101,8 +101,8 @@ const Menu = ({
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Root: Popper, Listbox }}
-        componentsProps={{ root: { placement: 'bottom-end' }, listbox: { id } }}
+        slots={{ root: Popper, listbox: Listbox }}
+        slotProps={{ root: { placement: 'bottom-end' }, listbox: { id } }}
       >
         {menus.map(({ label, active, ...item }) => {
           const menuItem = (
