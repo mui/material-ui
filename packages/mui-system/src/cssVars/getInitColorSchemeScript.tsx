@@ -11,16 +11,18 @@ export interface GetInitColorSchemeScriptOptions {
    */
   enableColorScheme?: boolean;
   /**
-   * If `true`, the initial color scheme is set to the user's prefers-color-scheme mode
-   * @default false
+   * The mode to be used for the first visit
+   * @default 'light'
    */
-  enableSystem?: boolean;
+  defaultMode?: 'light' | 'dark' | 'system';
   /**
    * The default color scheme to be used on the light mode
+   * @default 'light'
    */
   defaultLightColorScheme?: string;
   /**
    * The default color scheme to be used on the dark mode
+   * * @default 'dark'
    */
   defaultDarkColorScheme?: string;
   /**
@@ -48,7 +50,7 @@ export interface GetInitColorSchemeScriptOptions {
 export default function getInitColorSchemeScript(options?: GetInitColorSchemeScriptOptions) {
   const {
     enableColorScheme = true,
-    enableSystem = false,
+    defaultMode = 'light',
     defaultLightColorScheme = 'light',
     defaultDarkColorScheme = 'dark',
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -61,10 +63,10 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
-        var mode = localStorage.getItem('${modeStorageKey}');
+        var mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
         var cssColorScheme = mode;
         var colorScheme = '';
-        if (mode === 'system' || (!mode && !!${enableSystem})) {
+        if (mode === 'system') {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           if (mql.matches) {

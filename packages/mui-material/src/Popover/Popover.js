@@ -374,6 +374,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           {...PaperProps}
           ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
+          ownerState={ownerState}
         >
           {children}
         </PopoverPaper>

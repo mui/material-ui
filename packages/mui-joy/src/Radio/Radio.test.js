@@ -35,6 +35,18 @@ describe('<Radio />', () => {
     expect(getByRole('radio')).to.have.property('name', 'bar');
   });
 
+  it('renders a `role="radio"` with the required attribute', () => {
+    const { getByRole } = render(<Radio name="bar" required />);
+
+    expect(getByRole('radio')).to.have.attribute('required');
+  });
+
+  it('renders a `role="radio"` with the readOnly attribute', () => {
+    const { getByRole } = render(<Radio name="bar" readOnly />);
+
+    expect(getByRole('radio')).to.have.attribute('readonly');
+  });
+
   it('renders a `role="radio"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Radio />);
 

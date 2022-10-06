@@ -103,7 +103,7 @@ export interface RadioOwnerState extends RadioProps {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * @internal
    * The value from the RadioGroup component.

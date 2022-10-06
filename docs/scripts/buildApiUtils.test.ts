@@ -150,7 +150,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Unstyled button',
+            name: 'Unstyled Button',
             demoPathname: '/base/react-button/',
           },
         ]);

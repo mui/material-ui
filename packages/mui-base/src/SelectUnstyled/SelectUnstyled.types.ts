@@ -97,7 +97,10 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
   /**
    * Callback fired when an option is selected.
    */
-  onChange?: (value: TValue | null) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
   /**
    * A function used to convert the option label to a string.
    * It's useful when labels are elements and need to be converted to plain text

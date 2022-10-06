@@ -99,15 +99,15 @@ const DOCS = [
     href: ROUTES.advancedComponents,
   },
   // @ts-ignore
-  ...(process.env.STAGING === true
-    ? [
+  ...(process.env.DEPLOY_ENV === 'production'
+    ? []
+    : [
         {
           name: 'MUI Toolpad',
           description: 'Low-code admin builder.',
           href: ROUTES.toolpadDocs,
         },
-      ]
-    : []),
+      ]),
 ];
 
 export default function HeaderNavDropdown() {

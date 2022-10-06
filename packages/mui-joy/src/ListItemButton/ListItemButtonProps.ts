@@ -98,12 +98,12 @@ export interface ListItemButtonOwnerState extends ListItemButtonProps {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the element is rendered in a horizontal list.
    * @internal
    */
-  row: boolean;
+  row?: boolean;
   /**
    * @internal
    * The internal prop for controlling CSS margin of the element.

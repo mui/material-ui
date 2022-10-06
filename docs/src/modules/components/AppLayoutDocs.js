@@ -109,7 +109,12 @@ function AppLayoutDocs(props) {
         }}
       />
       <AdManager>
-        <Head title={`${title} - ${productName}`} description={description} />
+        <Head
+          title={`${title} - ${productName}`}
+          description={description}
+          largeCard={false}
+          card="https://mui.com/static/logo.png"
+        />
         {disableAd ? null : (
           <AdGuest>
             <Ad />

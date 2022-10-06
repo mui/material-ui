@@ -46,6 +46,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
+    'aria-labelledby': ariaLabelledby,
     className,
     component,
     classes: classesProp,
@@ -74,7 +75,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   } = props;
 
   // all props with defaults
-  // consider extracting to hook an reusing the lint rule for the varints
+  // consider extracting to hook an reusing the lint rule for the variants
   const ownerState = {
     ...props,
     marks: marksProp,
@@ -210,7 +211,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           }
 
           return (
-            <React.Fragment key={mark.value}>
+            <React.Fragment key={index}>
               <Mark
                 data-index={index}
                 {...markProps}
@@ -282,6 +283,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-valuenow={scale(value)}
+                  aria-labelledby={ariaLabelledby}
                   aria-valuetext={
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }

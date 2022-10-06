@@ -112,7 +112,7 @@ describe('Joy <Select />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should get selected value from the 1st argument', () => {
+    it('should get selected value from the 2nd argument', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="0">
@@ -127,7 +127,7 @@ describe('Joy <Select />', () => {
       });
 
       expect(onChangeHandler.calledOnce).to.equal(true);
-      expect(onChangeHandler.args[0][0]).to.equal('1');
+      expect(onChangeHandler.args[0][1]).to.equal('1');
     });
 
     it('should not be called if selected element has the current value (value did not change)', () => {
