@@ -4,20 +4,6 @@
     "autoFocus": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ Input?: elementType, Root?: elementType, Textarea?: elementType }"
-      },
-      "default": "{}"
-    },
-    "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
-      },
-      "default": "{}"
-    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
@@ -31,6 +17,14 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "number" } },
+    "slotProps": { "type": { "name": "object" }, "default": "{}" },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
+      },
+      "default": "{}"
+    },
     "startAdornment": { "type": { "name": "node" } },
     "type": {
       "type": {

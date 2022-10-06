@@ -35,8 +35,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     autoFocus,
     className,
     component,
-    components = {},
-    componentsProps = {},
     defaultValue,
     disabled,
     endAdornment,
@@ -57,6 +55,8 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     value,
     type: typeProp,
     rows,
+    slotProps = {},
+    slots = {},
     minRows,
     maxRows,
     ...other
@@ -123,11 +123,11 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     type,
   };
 
-  const Root = component ?? components.Root ?? 'div';
+  const Root = component ?? slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref: forwardedRef,
@@ -136,12 +136,12 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     className: [classes.root, rootStateClasses, className],
   });
 
-  const Input = multiline ? components.Textarea ?? 'textarea' : components.Input ?? 'input';
+  const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: componentsProps.input,
+    externalSlotProps: slotProps.input,
     additionalProps: {
       rows: multiline ? rows : undefined,
       ...(multiline &&
@@ -215,24 +215,6 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Textarea: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -314,6 +296,21 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.number,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.object,
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for this input.
    */
