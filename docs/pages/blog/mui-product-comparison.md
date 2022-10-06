@@ -31,6 +31,8 @@ It grew out of Material UI, and that library's legacy lives on in the name of th
 But this repo contains much more than just Material UI these days.
 More recent additions include Joy UI and MUI Base, as well as our in-house styling solution, MUI System.
 
+MUI Core is open source, and we invite you to contribute wherever you see fit!
+
 ### Material UI
 
 Material UI is an open-source React component library that implements Google's Material Design.
@@ -123,12 +125,18 @@ Get started in the [MUI System docs](/system/getting-started/overview/).
 
 MUI X is a collection of advanced UI components, including the Data Grid and the Date and Time Pickers.
 
-These components are significantly more complex than the ones found in the MUI Core libraries.
+These components are significantly more complex than those found in the MUI Core libraries.
 They feature advanced functionality for data-rich applications and a wide range of other use cases.
 
 Get started in the [MUI X docs](/x/introduction/).
 
 ### Data Grid
+
+The MUI X Data Grid is a fast and extensible React data table that's built to handle massive sets of data for management and analysis.
+It features an intuitive API for real-time updates and accessibility, as well as theming and custom templates.
+
+MUI is open core—base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
+See [Licensing](/x/introduction/licensing/) for details.
 
 #### Key features
 
@@ -139,6 +147,9 @@ Get started in the [MUI X docs](/x/introduction/).
 - admin tools
 
 ### Date and Time Pickers
+
+The MUI X Date and Time Pickers are a collection of React UI components that let users select dates and times from dialogs and text field dropdowns.
+Components include the Date Picker, Time Picker, Date Range Picker, and Date Time Picker, with more on the way.
 
 #### Key features
 
