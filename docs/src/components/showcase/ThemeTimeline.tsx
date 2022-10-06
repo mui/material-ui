@@ -20,9 +20,9 @@ export default function BasicTimeline() {
           p: 2,
           display: 'flex',
           alignItems: 'flex-start',
-          [theme.getColorSchemeSelector('dark')]: {
+          ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.800',
-          },
+          }),
         })}
       >
         <Box
@@ -34,10 +34,10 @@ export default function BasicTimeline() {
             textAlign: 'center',
             bgcolor: 'primary.50',
             color: 'primary.main',
-            [theme.getColorSchemeSelector('dark')]: {
+            ...theme.applyDarkStyles({
               bgcolor: 'primary.700',
               color: '#fff',
-            },
+            }),
           })}
         >
           1
@@ -49,9 +49,9 @@ export default function BasicTimeline() {
               sx={(theme) => ({
                 mb: 1,
                 color: 'text.secondary',
-                [theme.getColorSchemeSelector('dark')]: {
+                ...theme.applyDarkStyles({
                   color: 'grey.400',
-                },
+                }),
               })}
             >
               Use the sx prop to add these properties:
@@ -59,39 +59,44 @@ export default function BasicTimeline() {
             <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
           </Box>
           <Timeline
-            sx={(theme) => ({
-              pl: 0,
-              py: 0,
-              my: 0,
-              [`& .${timelineItemClasses.root}`]: {
-                minHeight: 36,
-                '&:before': {
-                  display: 'none',
+            sx={[
+              {
+                pl: 0,
+                py: 0,
+                my: 0,
+                [`& .${timelineItemClasses.root}`]: {
+                  minHeight: 36,
+                  '&:before': {
+                    display: 'none',
+                  },
+                },
+                [`& .${timelineDotClasses.root}`]: {
+                  zIndex: 1,
+                  padding: '3px',
+                  boxShadow: 'none',
+                  margin: '15px 0',
+                  border: 'none',
+                  bgcolor: 'primary.500',
+                },
+                [`& .${timelineConnectorClasses.root}`]: {
+                  margin: '-15px 0',
+                  bgcolor: 'primary.50',
+                },
+                [`& .${timelineContentClasses.root}`]: {
+                  fontSize: '0.875rem',
+                  color: 'grey.800',
                 },
               },
-              [`& .${timelineDotClasses.root}`]: {
-                zIndex: 1,
-                padding: '3px',
-                boxShadow: 'none',
-                margin: '15px 0',
-                border: 'none',
-                bgcolor: 'primary.500',
-              },
-              [`& .${timelineConnectorClasses.root}`]: {
-                margin: '-15px 0',
-                bgcolor: 'primary.50',
-                [theme.getColorSchemeSelector('dark')]: {
-                  bgcolor: 'primaryDark.700',
-                },
-              },
-              [`& .${timelineContentClasses.root}`]: {
-                fontSize: '0.875rem',
-                color: 'grey.800',
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'grey.100',
-                },
-              },
-            })}
+              (theme) =>
+                theme.applyDarkStyles({
+                  [`& .${timelineConnectorClasses.root}`]: {
+                    bgcolor: 'primaryDark.700',
+                  },
+                  [`& .${timelineContentClasses.root}`]: {
+                    color: 'grey.100',
+                  },
+                }),
+            ]}
           >
             <TimelineItem>
               <TimelineSeparator>

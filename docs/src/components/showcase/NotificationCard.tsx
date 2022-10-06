@@ -15,9 +15,9 @@ export default function NotificationCard() {
           display: 'flex',
           p: 1.5,
           maxWidth: 283,
-          [theme.getColorSchemeSelector('dark')]: {
+          ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.800',
-          },
+          }),
         })}
       >
         <Avatar

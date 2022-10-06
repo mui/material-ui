@@ -12,43 +12,52 @@ export default function ThemeAccordion() {
   return (
     <Fade in timeout={700}>
       <Box
-        sx={(theme) => ({
-          [`& .${accordionClasses.root}`]: {
-            bgcolor: '#fff',
-            [theme.getColorSchemeSelector('dark')]: {
-              bgcolor: 'primaryDark.800',
-            },
-            [`&.${accordionClasses.expanded}`]: {
-              margin: 0,
-            },
-            '&:not(:first-of-type)': {
-              marginTop: '-1px',
-            },
-          },
-          [`& .${accordionSummaryClasses.root}`]: {
-            [`&.${accordionSummaryClasses.expanded}`]: {
-              minHeight: 'auto',
-            },
-            [`& .${accordionSummaryClasses.content}`]: {
-              flexDirection: 'column',
-              margin: '20px 0 !important',
-              '& svg': {
-                marginTop: '3px',
-                marginRight: '20px',
-                color: 'grey.500',
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'grey.300',
-                },
+        sx={[
+          {
+            [`& .${accordionClasses.root}`]: {
+              bgcolor: '#fff',
+              [`&.${accordionClasses.expanded}`]: {
+                margin: 0,
+              },
+              '&:not(:first-of-type)': {
+                marginTop: '-1px',
               },
             },
-            [`& .${accordionSummaryClasses.expandIconWrapper}`]: {
-              color: 'primary.500',
+            [`& .${accordionSummaryClasses.root}`]: {
+              [`&.${accordionSummaryClasses.expanded}`]: {
+                minHeight: 'auto',
+              },
+              [`& .${accordionSummaryClasses.content}`]: {
+                flexDirection: 'column',
+                margin: '20px 0 !important',
+                '& svg': {
+                  marginTop: '3px',
+                  marginRight: '20px',
+                  color: 'grey.500',
+                },
+              },
+              [`& .${accordionSummaryClasses.expandIconWrapper}`]: {
+                color: 'primary.500',
+              },
+            },
+            [`& .${accordionDetailsClasses.root}`]: {
+              paddingTop: 0,
             },
           },
-          [`& .${accordionDetailsClasses.root}`]: {
-            paddingTop: 0,
-          },
-        })}
+          (theme) =>
+            theme.applyDarkStyles({
+              [`& .${accordionClasses.root}`]: {
+                bgcolor: 'primaryDark.800',
+              },
+              [`& .${accordionSummaryClasses.root}`]: {
+                [`& .${accordionSummaryClasses.content}`]: {
+                  '& svg': {
+                    color: 'grey.300',
+                  },
+                },
+              },
+            }),
+        ]}
       >
         <Accordion variant="outlined">
           <AccordionSummary

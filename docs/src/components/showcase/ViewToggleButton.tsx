@@ -31,9 +31,9 @@ export default function ViewToggleButton() {
       aria-label="view"
       sx={(theme) => ({
         bgcolor: '#fff',
-        [theme.getColorSchemeSelector('dark')]: {
+        ...theme.applyDarkStyles({
           bgcolor: 'primaryDark.800',
-        },
+        }),
       })}
     >
       {views.map((item) => (
@@ -41,18 +41,21 @@ export default function ViewToggleButton() {
           key={item}
           value={item}
           aria-label={item}
-          sx={(theme) => ({
-            color: 'grey.400',
-            [theme.getColorSchemeSelector('dark')]: {
-              color: '#fff',
-            },
-            [`&.${toggleButtonClasses.selected}`]: {
-              color: 'primary.500',
-              [theme.getColorSchemeSelector('dark')]: {
-                color: 'primary.300',
+          sx={[
+            {
+              color: 'grey.400',
+              [`&.${toggleButtonClasses.selected}`]: {
+                color: 'primary.500',
               },
             },
-          })}
+            (theme) =>
+              theme.applyDarkStyles({
+                color: '#fff',
+                [`&.${toggleButtonClasses.selected}`]: {
+                  color: 'primary.300',
+                },
+              }),
+          ]}
         >
           {viewIcons[item]}
         </ToggleButton>

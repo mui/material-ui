@@ -13,9 +13,9 @@ const Placeholder = () => (
       height: { xs: 1484, sm: 825, md: 605 },
       borderRadius: 1,
       bgcolor: 'grey.100',
-      [theme.getColorSchemeSelector('dark')]: {
+      ...theme.applyDarkStyles({
         bgcolor: 'primaryDark.900',
-      },
+      }),
     })}
   />
 );

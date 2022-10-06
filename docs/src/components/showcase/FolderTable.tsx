@@ -83,21 +83,24 @@ export default function BasicTable() {
     <TableContainer
       component={Paper}
       variant="outlined"
-      sx={(theme) => ({
-        maxWidth: 260,
-        [theme.getColorSchemeSelector('dark')]: {
-          bgcolor: 'primaryDark.800',
-        },
-        [`& .${tableCellClasses.root}`]: {
-          borderColor: 'grey.200',
-          [theme.getColorSchemeSelector('dark')]: {
-            borderColor: 'primaryDark.500',
+      sx={[
+        {
+          maxWidth: 260,
+          [`& .${tableCellClasses.root}`]: {
+            borderColor: 'grey.200',
+          },
+          [`& .${tableCellClasses.sizeSmall}`]: {
+            padding: '0.625rem 1rem',
           },
         },
-        [`& .${tableCellClasses.sizeSmall}`]: {
-          padding: '0.625rem 1rem',
-        },
-      })}
+        (theme) =>
+          theme.applyDarkStyles({
+            bgcolor: 'primaryDark.800',
+            [`& .${tableCellClasses.root}`]: {
+              borderColor: 'primaryDark.500',
+            },
+          }),
+      ]}
     >
       <Table aria-label="folder table" size="small">
         <TableHead>
@@ -134,9 +137,9 @@ export default function BasicTable() {
                     sx={(theme: Theme) => ({
                       mr: 1,
                       color: 'grey.300',
-                      [theme.getColorSchemeSelector('dark')]: {
+                      ...theme.applyDarkStyles({
                         color: 'primary.700',
-                      },
+                      }),
                     })}
                     fontSize="small"
                   />{' '}
