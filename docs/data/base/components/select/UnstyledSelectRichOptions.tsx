@@ -542,7 +542,7 @@ const countries = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Province of China',
+    label: 'Taiwan, Republic of China',
     phone: '886',
   },
   {
