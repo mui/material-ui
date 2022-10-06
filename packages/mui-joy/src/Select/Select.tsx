@@ -423,7 +423,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     elementType: SelectRoot,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!listboxOpen && event.target !== buttonRef.current && !event.isPropagationStopped()) {
+        if (
+          !listboxOpen &&
+          !buttonRef.current?.contains(event.target as Node) &&
+          !event.isPropagationStopped()
+        ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
           handleOpenChange(true);
