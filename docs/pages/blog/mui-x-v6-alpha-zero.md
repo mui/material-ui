@@ -1,12 +1,12 @@
 ---
-title: A major update is coming for the advanced components.
-description: Improved customization and usability. We’re kicking off the development of MUI X v6.
+title: A major update is coming for MUI X—and you can get involved
+description: Let us know what you want to see in MUI X v6 as we begin the alpha phase of development.
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'News']
 ---
 
-We’re kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0). Both the Data Grid and the Date and Time Pickers are getting a new major version. We want to share our plans and invite you to join us on this next step.
+We’re kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0). Both the Data Grid and the Date and Time Pickers will get a new major version. We want to share our plans and invite you to join us on this next step.
 
 :::warning
 It’s important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
@@ -65,7 +65,7 @@ The following is a list of enhancements in the pipeline for v6. It contains the 
 
   - [New column menu](https://github.com/mui/mui-x/issues/4929).
   - [New column visibility panel](https://github.com/mui/mui-x/issues/5700).
-  - [Column Resize Bar only on hover](https://github.com/mui/mui-x/issues/1623).
+  - [Column resize bar only on hover](https://github.com/mui/mui-x/issues/1623).
 
 - **Rockstar feature**
   - [Copy and paste from/to multiple cells](https://github.com/mui/mui-x/issues/199).
