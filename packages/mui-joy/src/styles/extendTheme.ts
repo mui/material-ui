@@ -243,8 +243,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shadowChannel: '187 187 187',
   };
   const darkColorSystem = {
-    mode: 'dark',
     palette: {
+      mode: 'dark',
       primary: {
         ...colors.blue,
         ...createDarkModeVariantVariables('primary'),
