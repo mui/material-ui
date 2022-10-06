@@ -3,16 +3,31 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
-export const html = (theme, enableColorScheme) => ({
-  WebkitFontSmoothing: 'antialiased', // Antialiasing.
-  MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-  // Change from `box-sizing: content-box` so that `width`
-  // is not affected by `padding` or `border`.
-  boxSizing: 'border-box',
-  // Fix font resize problem in iOS
-  WebkitTextSizeAdjust: '100%',
-  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
-});
+export const html = (theme, enableColorScheme) => {
+  const styleSheets = {};
+  if (enableColorScheme) {
+    if (theme.vars) {
+      // The CssBaseline is wrapped inside a CssVarsProvider
+      Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+        styleSheets[theme.getColorSchemeSelector(key)] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      });
+    } else {
+      styleSheets.colorScheme = theme.palette.mode;
+    }
+  }
+  return {
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
+    // Change from `box-sizing: content-box` so that `width`
+    // is not affected by `padding` or `border`.
+    boxSizing: 'border-box',
+    // Fix font resize problem in iOS
+    WebkitTextSizeAdjust: '100%',
+    ...styleSheets,
+  };
+};
 
 export const body = (theme) => ({
   color: (theme.vars || theme).palette.text.primary,
