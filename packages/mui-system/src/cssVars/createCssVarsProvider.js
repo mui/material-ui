@@ -307,12 +307,23 @@ export default function createCssVarsProvider(options) {
     theme: PropTypes.object,
   };
 
+  const defaultLightColorScheme =
+    typeof designSystemColorScheme === 'string'
+      ? designSystemColorScheme
+      : designSystemColorScheme.light;
+  const defaultDarkColorScheme =
+    typeof designSystemColorScheme === 'string'
+      ? designSystemColorScheme
+      : designSystemColorScheme.dark;
+
   const getInitColorSchemeScript = (params) =>
     systemGetInitColorSchemeScript({
       attribute: defaultAttribute,
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
+      defaultMode: designSystemMode,
+      defaultLightColorScheme,
+      defaultDarkColorScheme,
       modeStorageKey: defaultModeStorageKey,
-      enableColorScheme: designSystemEnableColorScheme,
       ...params,
     });
 
