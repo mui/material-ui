@@ -51,13 +51,29 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 const sliderColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const color = ownerState.color;
+    const basicStyles = theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
+    const styles =
+      theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Slider-track-background': theme.vars.palette[color!]?.[`solid${data.state || ''}Bg`],
-      '--Slider-track-color': '#fff',
+      ...(styles.border && {
+        '--variant-borderWidth': styles['--variant-borderWidth'],
+      }),
+      '--Slider-track-color': styles.color,
+      '--Slider-thumb-background': styles.color,
+      '--Slider-thumb-color': styles.backgroundColor || theme.vars.palette.background.level2,
+      '--Slider-rail-borderColor': styles.borderColor,
       '--Slider-rail-background': theme.vars.palette.background.level2,
-      '--Slider-thumb-background': theme.vars.palette[color!]?.[`solid${data.state || ''}Color`],
-      '--Slider-thumb-color': theme.vars.palette[color!]?.[`plain${data.state || ''}Color`],
+      '--Slider-track-background': styles.backgroundColor,
+      ...(!basicStyles.backgroundColor &&
+        !data.state && {
+          '--Slider-rail-background': theme.vars.palette.background.surface,
+          '--Slider-track-background': theme.vars.palette.background.level2,
+        }),
+      ...(!basicStyles.backgroundColor &&
+        data.state && {
+          '--Slider-rail-background': theme.vars.palette.background.surface,
+          '--Slider-track-background': styles.backgroundColor,
+        }),
     };
   };
 
@@ -69,6 +85,7 @@ const SliderRoot = styled('span', {
   const getColorVariables = sliderColorVariables({ theme, ownerState });
   return [
     {
+      '--variant-borderWidth': '0px',
       '--Slider-size': 'max(42px, max(var(--Slider-thumb-size), var(--Slider-track-size)))', // Reach 42px touch target, about ~8mm on screen.
       '--Slider-track-radius': 'var(--Slider-size)',
       '--Slider-mark-background': theme.vars.palette.text.tertiary,
@@ -109,7 +126,7 @@ const SliderRoot = styled('span', {
           transition: 'none',
         },
       },
-      boxSizing: 'content-box',
+      boxSizing: 'border-box',
       display: 'inline-block',
       position: 'relative',
       cursor: 'pointer',
@@ -142,6 +159,8 @@ const SliderRail = styled('span', {
       ownerState.track === 'inverted'
         ? 'var(--Slider-track-background)'
         : 'var(--Slider-rail-background)',
+    border: 'var(--variant-borderWidth) solid',
+    borderColor: 'var(--Slider-rail-borderColor)',
     borderRadius: 'var(--Slider-track-radius)',
     ...(ownerState.orientation === 'horizontal' && {
       height: 'var(--Slider-track-size)',
@@ -173,6 +192,8 @@ const SliderTrack = styled('span', {
       display: 'block',
       position: 'absolute',
       color: 'var(--Slider-track-color)',
+      border: 'var(--variant-borderWidth) solid',
+      borderColor: 'var(--Slider-rail-borderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
@@ -395,6 +416,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     isRtl = false,
     color = 'primary',
     size = 'md',
+    variant = 'solid',
     ...other
   } = props;
 
@@ -415,6 +437,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     valueLabelFormat,
     color,
     size,
+    variant,
   } as SliderOwnerState;
 
   const {
