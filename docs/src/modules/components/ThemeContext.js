@@ -259,10 +259,8 @@ export function ThemeProvider(props) {
     // this effect can be removed once all pages are migrated.
     if (theme.palette.mode === 'dark') {
       localStorage.setItem('mui-mode', 'dark');
-      document.documentElement.style.setProperty('color-scheme', 'dark');
     } else {
       localStorage.setItem('mui-mode', 'light');
-      document.documentElement.style.setProperty('color-scheme', 'light');
     }
   }, [theme.palette.mode]);
 
