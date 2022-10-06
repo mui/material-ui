@@ -21,7 +21,7 @@ const Badge = React.forwardRef(function Badge(
   return <span data-showzero={ownerState.showZero} {...other} ref={ref} />;
 });
 
-const styledBadge = <BadgeUnstyled components={{ Root, Badge }} />;
+const styledBadge = <BadgeUnstyled slots={{ root: Root, badge: Badge }} />;
 
 const PolymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;

@@ -36,6 +36,11 @@
       "default": "'rectangular'"
     },
     "showZero": { "type": { "name": "bool" } },
+    "slotProps": { "type": { "name": "object" }, "default": "{}" },
+    "slots": {
+      "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
