@@ -11,7 +11,10 @@ export const html = (theme, enableColorScheme) => ({
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
+  // enableColorScheme has no effect if wrapped inside CssVarsProvider
+  // because the `theme.palette.mode` could be different between server and the client.
+  // Cause the stylesheet to be created twice for server-rendered applications.
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({

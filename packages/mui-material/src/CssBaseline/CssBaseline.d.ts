@@ -10,6 +10,9 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
    * Enable `color-scheme` CSS property to use `theme.palette.mode`.
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
+   *
+   * This flag has no effect if the CssBaseline is wrapped inside [CssVarsProvider](https://mui.com/material-ui/experimental-api/css-theme-variables/usage/#getting-started)
+   *
    * @default false
    */
   enableColorScheme?: boolean;
