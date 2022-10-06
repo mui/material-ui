@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { deepmerge } from '@mui/utils';
 import { GlobalStyles } from '@mui/styled-engine';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
@@ -161,6 +161,7 @@ export default function createCssVarsProvider(options) {
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
         theme = { ...theme, ...parsedScheme };
+        theme.palette.colorScheme = key;
       }
       if (key === resolvedDefaultColorScheme) {
         if (excludeVariablesFromRoot) {
@@ -171,11 +172,19 @@ export default function createCssVarsProvider(options) {
           });
           defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
         }
-        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
+        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = {
+          // 4.2 the CSS color-scheme is attached using the `mode` defined in the palette, if enabled.
+          ...(enableColorScheme && { colorScheme: scheme.palette.mode }),
+          ...css,
+        };
       } else {
         otherColorSchemesStyleSheet[
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
-        ] = css;
+        ] = {
+          // 4.2 same as other color schemes.
+          ...(enableColorScheme && { colorScheme: scheme.palette.mode }),
+          ...css,
+        };
       }
     });
 
@@ -188,25 +197,7 @@ export default function createCssVarsProvider(options) {
       }
     }, [colorScheme, attribute, colorSchemeNode]);
 
-    // 5.2 CSS color-scheme for telling the browser to render built-in elements according to its value: `light` or `dark`
-    // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
-    useEnhancedEffect(() => {
-      if (!mode || !enableColorScheme || !colorSchemeNode) {
-        return undefined;
-      }
-      const priorColorScheme = colorSchemeNode.style.getPropertyValue('color-scheme');
-      if (mode === 'system') {
-        colorSchemeNode.style.setProperty('color-scheme', systemMode);
-      } else {
-        colorSchemeNode.style.setProperty('color-scheme', mode);
-      }
-
-      return () => {
-        colorSchemeNode.style.setProperty('color-scheme', priorColorScheme);
-      };
-    }, [mode, systemMode, enableColorScheme, colorSchemeNode]);
-
-    // 5.3 Remove the CSS transition when color scheme changes to create instant experience.
+    // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
     React.useEffect(() => {
       let timer;
@@ -232,18 +223,12 @@ export default function createCssVarsProvider(options) {
         hasMounted.current = false;
       };
     }, []);
-    // ----------------------------------------------------------------------
-
-    // 6. Assign `mode` and `colorScheme`
-    if (theme.palette) {
-      theme.palette.mode = calculatedMode; // existing Material UI property
-      theme.palette.colorScheme = calculatedColorScheme; // new property
-    }
 
     return (
       <ColorSchemeContext.Provider
         value={{
           mode,
+          systemMode,
           setMode,
           lightColorScheme,
           darkColorScheme,
