@@ -225,6 +225,7 @@ module.exports = {
         'react/no-unused-prop-types': 'off',
 
         'react/function-component-definition': 'off',
+        'prefer-regex-literals': 'off',
       },
     },
     {
