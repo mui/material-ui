@@ -1,4 +1,4 @@
-import createTheme from '../styles/createTheme';
+import { createTheme } from '@mui/material';
 
 createTheme({
   components: {
