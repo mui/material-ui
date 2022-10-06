@@ -70,7 +70,7 @@ function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) 
 CssBaseline.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * You can wrap a node.
@@ -83,6 +83,6 @@ CssBaseline.propTypes /* remove-proptypes */ = {
    * @default false
    */
   enableColorScheme: PropTypes.bool,
-};
+} as any;
 
 export default CssBaseline;
