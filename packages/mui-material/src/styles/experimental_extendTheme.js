@@ -340,6 +340,17 @@ export default function extendTheme(options = {}, ...args) {
         palette[color].selectedChannel = colorChannel(colors.selected);
       }
     });
+
+    // Needs to be handled better, the values are now hardcoded to the default values for these tokens
+    if (useMaterialYou) {
+      if (key === 'light') {
+        palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['40']);
+        palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['90']);
+      } else {
+        palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['80']);
+        palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['30']);
+      }
+    }
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);

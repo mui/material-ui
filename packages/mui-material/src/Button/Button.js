@@ -82,28 +82,112 @@ const ButtonRoot = styled(ButtonBase, {
         fontFamily: (theme.vars || theme).typescale.label.large.family,
         fontWeight: (theme.vars || theme).typescale.label.large.weight,
         borderRadius: (theme.vars || theme).shape.borderRadius,
+
+        // Filled varaint
         ...(ownerState.variant === 'filled' && {
           backgroundColor: (theme.vars || theme).palette.md3.colors.primary,
           color: (theme.vars || theme).palette.md3.colors.onPrimary,
           '&:hover': {
             boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-            opacity: (theme.vars || theme).state.hover.stateLayerOpacity,
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                  } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.primary,
+                    1 - theme.state.hover.stateLayerOpacity,
+                  ),
+                }),
           },
           '&:active': {
-            opacity: (theme.vars || theme).state.pressed.stateLayerOpacity,
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                  } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.primary,
+                    1 - theme.state.pressed.stateLayerOpacity,
+                  ),
+                }),
           },
           [`&.${buttonClasses.focusVisible}`]: {
-            opacity: (theme.vars || theme).state.focus.stateLayerOpacity,
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                  } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.primary,
+                    1 - theme.state.focus.stateLayerOpacity,
+                  ),
+                }),
           },
         }),
+
+        // Filled tonal varitant
         ...(ownerState.variant === 'filledTonal' && {
           backgroundColor: (theme.vars || theme).palette.md3.colors.secondaryContainer,
           color: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
+          '&:hover': {
+            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+                  } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.secondaryContainer,
+                    1 - theme.state.hover.stateLayerOpacity,
+                  ),
+                }),
+          },
+          '&:active': {
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+                  } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.secondaryContainer,
+                    1 - theme.state.pressed.stateLayerOpacity,
+                  ),
+                }),
+          },
+          [`&.${buttonClasses.focusVisible}`]: {
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+                  } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.secondaryContainer,
+                    1 - theme.state.focus.stateLayerOpacity,
+                  ),
+                }),
+          },
         }),
+
+        // Outlined varaiant
         ...(ownerState.variant === 'outlined' && {
           border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
           color: (theme.vars || theme).palette.md3.colors.primary,
         }),
+
+        // Elevated variant
         ...(ownerState.variant === 'elevated' && {
           background: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
             (theme.vars || theme).palette.md3.colors.surface
@@ -111,8 +195,61 @@ const ButtonRoot = styled(ButtonBase, {
           color: (theme.vars || theme).palette.md3.colors.primary,
           boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
         }),
+
+        // Text variant
         ...(ownerState.variant === 'text' && {
           color: (theme.vars || theme).palette.md3.colors.primary,
+        }),
+
+        // State styles for text, outlined, elevated variants
+        ...((ownerState.variant === 'text' ||
+          ownerState.variant === 'outlined' ||
+          ownerState.variant === 'elevated') && {
+          '&:hover': {
+            ...(ownerState.variant === 'elevated' && {
+              boxShadow: theme.shadows[4],
+            }),
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                  } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.primary,
+                    theme.state.hover.stateLayerOpacity,
+                  ),
+                }),
+          },
+          '&:active': {
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                  } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.primary,
+                    theme.state.pressed.stateLayerOpacity,
+                  ),
+                }),
+          },
+          [`&.${buttonClasses.focusVisible}`]: {
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                  } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors.primary,
+                    theme.state.focus.stateLayerOpacity,
+                  ),
+                }),
+          },
         }),
       };
     }

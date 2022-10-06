@@ -52,7 +52,9 @@ const DemoComponents = () => {
   return (
     <Stack direction="row" gap={1}>
       {variants.map((variant) => (
-        <Button variant={variant as ButtonProps['variant']}>{capitalize(variant as string)}</Button>
+        <Button key={variant} variant={variant as ButtonProps['variant']}>
+          {capitalize(variant as string)}
+        </Button>
       ))}
     </Stack>
   );
