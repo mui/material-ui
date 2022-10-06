@@ -82,7 +82,6 @@ const ButtonRoot = styled(ButtonBase, {
         fontFamily: (theme.vars || theme).typescale.label.large.family,
         fontWeight: (theme.vars || theme).typescale.label.large.weight,
         borderRadius: (theme.vars || theme).shape.borderRadius,
-
         // Filled varaint
         ...(ownerState.variant === 'filled' && {
           backgroundColor: (theme.vars || theme).palette.md3.colors.primary,
@@ -131,7 +130,6 @@ const ButtonRoot = styled(ButtonBase, {
                 }),
           },
         }),
-
         // Filled tonal varitant
         ...(ownerState.variant === 'filledTonal' && {
           backgroundColor: (theme.vars || theme).palette.md3.colors.secondaryContainer,
@@ -180,13 +178,11 @@ const ButtonRoot = styled(ButtonBase, {
                 }),
           },
         }),
-
         // Outlined varaiant
         ...(ownerState.variant === 'outlined' && {
           border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
           color: (theme.vars || theme).palette.md3.colors.primary,
         }),
-
         // Elevated variant
         ...(ownerState.variant === 'elevated' && {
           background: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
@@ -195,12 +191,10 @@ const ButtonRoot = styled(ButtonBase, {
           color: (theme.vars || theme).palette.md3.colors.primary,
           boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
         }),
-
         // Text variant
         ...(ownerState.variant === 'text' && {
           color: (theme.vars || theme).palette.md3.colors.primary,
         }),
-
         // State styles for text, outlined, elevated variants
         ...((ownerState.variant === 'text' ||
           ownerState.variant === 'outlined' ||
