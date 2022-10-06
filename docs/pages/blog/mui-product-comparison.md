@@ -1,7 +1,7 @@
 ---
 title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, MUI Base, MUI X, and Toolpad for your next project.
-date: 2022-10-03T00:00:00.000Z
+date: 2022-10-13T00:00:00.000Z
 authors: ['samuelsycamore']
 card: false
 tags: ['Product']
@@ -109,7 +109,15 @@ Get started in the [MUI System docs](/system/getting-started/overview/).
 
 #### Key features
 
+- **Faster prototyping:** The `sx` prop lets you apply styles directly to a component by writing the CSS you already know.
+  This makes it a great tool for quickly assembling a prototype or styling a one-off component that doesn't need to be reused.
+- **Write less code:** `sx` lets you avoid writing unnecessary styled-components code, and as such it can replace dozens of lines of code.
+  Check out [Why use MUI System?](/system/getting-started/usage/#why-use-mui-system) for an example.
+
 #### Ideal use cases
+
+- Quickly prototyping custom styles in Material UI, Joy UI, or MUI Base
+- Creating one-off custom components
 
 ## MUI X
 
