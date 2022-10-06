@@ -92,8 +92,8 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-const ProductIdentifier = ({ name, metadata, versionSelector }) => (
-  <Box sx={{ flexGrow: 1 }}>
+function ProductIdentifier({ name, metadata, versionSelector }) {
+  return <Box sx={{ flexGrow: 1 }}>
     <Typography
       sx={(theme) => ({
         ml: 1,
@@ -111,7 +111,7 @@ const ProductIdentifier = ({ name, metadata, versionSelector }) => (
       {versionSelector}
     </Box>
   </Box>
-);
+}
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,

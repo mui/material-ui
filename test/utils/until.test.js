@@ -95,7 +95,7 @@ describe('until', () => {
   class Bar extends React.Component {
     static childContextTypes = { quux: PropTypes.bool };
 
-    getChildContext = () => ({ quux: true });
+    getChildContext() { return { quux: true }; });
 
     render() {
       return <Foo />;

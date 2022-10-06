@@ -11,8 +11,7 @@ import TimelineOppositeContent, {
 
 export default function OppositeContentTimeline() {
   return (
-    <React.Fragment>
-      <Timeline
+    <Timeline
         sx={{
           [`& .${timelineOppositeContentClasses.root}`]: {
             flex: 0.2,
@@ -39,6 +38,5 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Code</TimelineContent>
         </TimelineItem>
       </Timeline>
-    </React.Fragment>
   );
 }

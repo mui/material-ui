@@ -6,7 +6,7 @@ import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -33,7 +33,7 @@ const ModeToggle = () => {
       {mode === 'light' ? 'Turn dark' : 'Turn light'}
     </Button>
   );
-};
+}
 
 export default function App() {
   return (
