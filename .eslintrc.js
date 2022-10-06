@@ -161,7 +161,10 @@ module.exports = {
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
 
+    // We re-export default in many places
     'no-restricted-exports': 'off',
+    // some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
+    'import/no-relative-packages': 'off',
   },
   overrides: [
     {
