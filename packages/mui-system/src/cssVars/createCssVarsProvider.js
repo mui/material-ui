@@ -24,7 +24,6 @@ export default function createCssVarsProvider(options) {
     defaultMode: designSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
-    enableColorScheme: designSystemEnableColorScheme = true,
     shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
     resolveTheme,
     excludeVariablesFromRoot,
@@ -60,7 +59,6 @@ export default function createCssVarsProvider(options) {
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
-    enableColorScheme = designSystemEnableColorScheme,
     storageWindow = typeof window === 'undefined' ? undefined : window,
     documentNode = typeof document === 'undefined' ? undefined : document,
     colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
@@ -174,19 +172,11 @@ export default function createCssVarsProvider(options) {
           });
           defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
         }
-        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = {
-          // 4.2 the CSS color-scheme is attached using the `mode` defined in the palette, if enabled.
-          ...(enableColorScheme && { colorScheme: scheme.palette?.mode }),
-          ...css,
-        };
+        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
       } else {
         otherColorSchemesStyleSheet[
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
-        ] = {
-          // 4.2 same as other color schemes.
-          ...(enableColorScheme && { colorScheme: scheme.palette?.mode }),
-          ...css,
-        };
+        ] = css;
       }
     });
 
@@ -284,10 +274,6 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to
      */
     documentNode: PropTypes.any,
-    /**
-     * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-     */
-    enableColorScheme: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */
