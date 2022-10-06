@@ -30,7 +30,7 @@ Thanks to Joy UI's built-in support for CSS variables, your app can render all o
 Joy UI provides the `getInitColorSchemeScript()` function to make this flash-free dark mode possible with React frameworks like Next.js, Gatsby, and Remix.
 This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
 
-The code snippet below shows this works with Next.js—see the [Applying dark mode](/joy-ui/guides/applying-dark-mode/) page for more details on usage with other frameworks:
+The code snippet below shows how this works with Next.js—see the [Applying dark mode](/joy-ui/guides/applying-dark-mode/) page for more details on usage with other frameworks:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
