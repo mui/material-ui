@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { ThemeOptions, Theme } from './createTheme';
 
 /**
