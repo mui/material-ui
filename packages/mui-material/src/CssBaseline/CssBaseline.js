@@ -3,45 +3,17 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
-export const html = (theme, enableColorScheme) => {
-  const styleSheets = {};
-  if (enableColorScheme) {
-    if (theme.vars) {
-      // The CssBaseline is wrapped inside a CssVarsProvider
-      Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-        styleSheets[theme.getColorSchemeSelector(key)] = {
-          colorScheme: scheme.palette?.mode,
-        };
-      });
-    } else {
-      styleSheets.colorScheme = theme.palette.mode;
-    }
-  }
-  return {
-    WebkitFontSmoothing: 'antialiased',
-    MozOsxFontSmoothing: 'grayscale',
-    // Change from `box-sizing: content-box` so that `width`
-    // is not affected by `padding` or `border`.
-    boxSizing: 'border-box',
-    // Fix font resize problem in iOS
-    WebkitTextSizeAdjust: '100%',
-    ...styleSheets,
-  };
-};
-
-export const body = (theme) => ({
-  color: (theme.vars || theme).palette.text.primary,
-  ...theme.typography.body1,
-  backgroundColor: (theme.vars || theme).palette.background.default,
-  '@media print': {
-    // Save printer ink.
-    backgroundColor: (theme.vars || theme).palette.common.white,
-  },
-});
-
 export const styles = (theme, enableColorScheme = false) => {
-  let defaultStyles = {
-    html: html(theme, enableColorScheme),
+  const defaultStyles = {
+    html: {
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
+      // Change from `box-sizing: content-box` so that `width`
+      // is not affected by `padding` or `border`.
+      boxSizing: 'border-box',
+      // Fix font resize problem in iOS
+      WebkitTextSizeAdjust: '100%',
+    },
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -50,7 +22,13 @@ export const styles = (theme, enableColorScheme = false) => {
     },
     body: {
       margin: 0, // Remove the margin in all browsers.
-      ...body(theme),
+      color: (theme.vars || theme).palette.text.primary,
+      ...theme.typography.body1,
+      backgroundColor: (theme.vars || theme).palette.background.default,
+      '@media print': {
+        // Save printer ink.
+        backgroundColor: (theme.vars || theme).palette.common.white,
+      },
       // Add support for document.body.requestFullScreen().
       // Other elements, if background transparent, are not supported.
       '&::backdrop': {
@@ -59,12 +37,28 @@ export const styles = (theme, enableColorScheme = false) => {
     },
   };
 
-  const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
-  if (themeOverrides) {
-    defaultStyles = [defaultStyles, themeOverrides];
+  const colorSchemeStyles = {};
+  if (enableColorScheme) {
+    if (theme.vars) {
+      // The CssBaseline is wrapped inside a CssVarsProvider
+      Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+        colorSchemeStyles[theme.getColorSchemeSelector(key).replace(' &', '')] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      });
+    } else {
+      colorSchemeStyles.html = {
+        colorScheme: theme.palette.mode,
+      };
+    }
   }
 
-  return defaultStyles;
+  const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
+  if (themeOverrides) {
+    return [defaultStyles, colorSchemeStyles, themeOverrides];
+  }
+
+  return [defaultStyles, colorSchemeStyles];
 };
 
 /**
