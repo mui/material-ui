@@ -128,15 +128,13 @@ MUI X is a collection of advanced UI components, including the Data Grid and the
 These components are significantly more complex than those found in the MUI Core libraries.
 They feature advanced functionality for data-rich applications and a wide range of other use cases.
 
-Get started in the [MUI X docs](/x/introduction/).
+MUI X is open core—base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
+See [Licensing](/x/introduction/licensing/) for details.
 
 ### Data Grid
 
 The MUI X Data Grid is a fast and extensible React data table that's built to handle massive sets of data for management and analysis.
 It features an intuitive API for real-time updates and accessibility, as well as theming and custom templates.
-
-MUI is open core—base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
-See [Licensing](/x/introduction/licensing/) for details.
 
 #### Key features
 
