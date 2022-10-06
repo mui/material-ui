@@ -66,7 +66,7 @@ const darkTheme = createMD3Theme({ palette: { mode: 'dark' } });
 export default function App() {
   const [mode, setMode] = React.useState('light');
   return (
-    <>
+    <React.Fragment>
       <CssVarsProvider theme={cssVarsTheme}>
         <ModeSwitcher setMode={setMode} />
         <h1>Css variables - Material You theme</h1>
@@ -76,6 +76,6 @@ export default function App() {
         <h1>Theme provider - Material You theme</h1>
         <DemoComponents />
       </ThemeProvider>
-    </>
+    </React.Fragment>
   );
 }
