@@ -9,12 +9,12 @@ import {
   ThemeProvider,
   useColorScheme,
   Stack,
-  ButtonProps
+  ButtonProps,
 } from '@mui/material';
 import { unstable_capitalize as capitalize } from 'packages/mui-utils';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
-import type {} from '@mui/material/styles/MaterialYouModuleAugmentation'; 
+import type {} from '@mui/material/styles/MaterialYouModuleAugmentation';
 
 const ModeSwitcher = ({ setMode: setModeProp }: { setMode: (arg: string) => void }) => {
   const { mode, setMode } = useColorScheme();
