@@ -146,7 +146,7 @@ CustomContent.propTypes = {
 };
 
 function CustomTreeItem(props) {
-  return <TreeItem ContentComponent={CustomContent} {...props} />
+  return <TreeItem ContentComponent={CustomContent} {...props} />;
 }
 
 export default function BarTreeView() {

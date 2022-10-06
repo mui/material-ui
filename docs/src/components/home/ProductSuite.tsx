@@ -12,15 +12,17 @@ import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
-  return function() {
-  return <Box
-      sx={{
-        borderRadius: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-        ...sx,
-      }}
-    />
-};
+  return function () {
+    return (
+      <Box
+        sx={{
+          borderRadius: 1,
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
+          ...sx,
+        }}
+      />
+    );
+  };
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {

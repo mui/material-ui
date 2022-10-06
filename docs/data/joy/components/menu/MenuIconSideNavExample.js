@@ -25,15 +25,7 @@ const modifiers = [
   },
 ];
 
-function MenuButton({
-  children,
-  menu,
-  open,
-  onOpen,
-  onLeaveMenu,
-  label,
-  ...props
-}) {
+function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props }) {
   const buttonRef = React.useRef(null);
   const isOnButton = React.useRef(false);
   const menuActions = React.useRef(null);

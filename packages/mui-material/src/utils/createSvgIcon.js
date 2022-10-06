@@ -6,10 +6,12 @@ import SvgIcon from '../SvgIcon';
  */
 export default function createSvgIcon(path, displayName) {
   function Component(props, ref) {
-  return <SvgIcon data-testid={`${displayName}Icon`} ref={ref} {...props}>
-      {path}
-    </SvgIcon>
-}
+    return (
+      <SvgIcon data-testid={`${displayName}Icon`} ref={ref} {...props}>
+        {path}
+      </SvgIcon>
+    );
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     // Need to set `displayName` on the inner component for React.memo.

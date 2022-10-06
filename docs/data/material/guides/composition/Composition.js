@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
 
 function WrappedIcon(props) {
-  return <Icon {...props} />
+  return <Icon {...props} />;
 }
 
 WrappedIcon.muiName = 'Icon';

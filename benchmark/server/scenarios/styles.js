@@ -85,11 +85,11 @@ function HookButton(props) {
 }
 
 function NakedButton(props) {
-  return <button type="submit" {...props} />
+  return <button type="submit" {...props} />;
 }
- 
+
 function EmotionCssButton(props) {
-  return <button type="submit" css={emotionCss} {...props} />
+  return <button type="submit" css={emotionCss} {...props} />;
 }
 
 suite

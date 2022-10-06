@@ -8,13 +8,15 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function Placeholder() {
-  return <Box
-    sx={{
-      height: { xs: 1484, sm: 825, md: 605 },
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.100'),
-      borderRadius: 1,
-    }}
-  />
+  return (
+    <Box
+      sx={{
+        height: { xs: 1484, sm: 825, md: 605 },
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.100'),
+        borderRadius: 1,
+      }}
+    />
+  );
 }
 
 const MaterialDesignComponents = dynamic(() => import('./MaterialDesignComponents'), {

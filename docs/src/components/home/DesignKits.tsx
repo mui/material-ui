@@ -94,28 +94,30 @@ const DesignToolLogo = React.forwardRef<
 });
 
 export function PrefetchDesignKitImages() {
-  return <Box
-    sx={{
-      width: 0,
-      height: 0,
-      position: 'fixed',
-      top: -1000,
-      zIndex: -1,
-      '& > img': {
-        position: 'absolute',
-      },
-    }}
-  >
-    <img src="/static/branding/design-kits/designkits1.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits2.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits3.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits-figma.png" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
-  </Box>
+  return (
+    <Box
+      sx={{
+        width: 0,
+        height: 0,
+        position: 'fixed',
+        top: -1000,
+        zIndex: -1,
+        '& > img': {
+          position: 'absolute',
+        },
+      }}
+    >
+      <img src="/static/branding/design-kits/designkits1.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits2.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits3.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits-figma.png" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
+    </Box>
+  );
 }
 
 const defaultSlideUp = {

@@ -121,7 +121,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 });
 
 function CustomTreeItem(props: TreeItemProps) {
-  return <TreeItem ContentComponent={CustomContent} {...props} />
+  return <TreeItem ContentComponent={CustomContent} {...props} />;
 }
 
 export default function BarTreeView() {

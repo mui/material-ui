@@ -51,7 +51,7 @@ ListItemLink.propTypes = {
 };
 
 function LinkRouter(props) {
-  return <Link {...props} component={RouterLink} />
+  return <Link {...props} component={RouterLink} />;
 }
 
 function Page() {

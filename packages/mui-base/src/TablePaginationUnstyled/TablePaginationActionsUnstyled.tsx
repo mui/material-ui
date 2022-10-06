@@ -10,16 +10,16 @@ import {
 } from './TablePaginationActionsUnstyled.types';
 
 function LastPageIconDefault() {
-  return <span>{'⇾|'}</span>
+  return <span>{'⇾|'}</span>;
 }
 function FirstPageIconDefault() {
-  return <span>{'|⇽'}</span>
+  return <span>{'|⇽'}</span>;
 }
 function NextPageIconDefault() {
-  return <span>{'⇾'}</span>
+  return <span>{'⇾'}</span>;
 }
 function BackPageIconDefault() {
-  return <span>{'⇽'}</span>
+  return <span>{'⇽'}</span>;
 }
 
 function defaultGetAriaLabel(type: ItemAriaLabelType) {

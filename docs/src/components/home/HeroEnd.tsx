@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 function Placeholder() {
-  return <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />
+  return <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
 }
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 
