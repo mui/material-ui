@@ -21,6 +21,7 @@ module.exports = {
   extends: [
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'airbnb',
     'airbnb-typescript',
     'prettier',
   ],
@@ -159,6 +160,8 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
+
+    'no-restricted-exports': 'off',
   },
   overrides: [
     {
@@ -220,6 +223,8 @@ module.exports = {
         // that they don't need type-checking
         'react/prop-types': 'off',
         'react/no-unused-prop-types': 'off',
+
+        'react/function-component-definition': 'off',
       },
     },
     {
@@ -342,6 +347,8 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
+
+        'react/function-component-definition': 'off',
       },
     },
     {
