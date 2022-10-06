@@ -130,7 +130,7 @@ function AppLayoutDocs(props) {
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>
-              <AppLayoutDocsFooter />
+              <AppLayoutDocsFooter tableOfContents={toc} />
             </NoSsr>
           </StyledAppContainer>
         </Main>

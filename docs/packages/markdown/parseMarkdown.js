@@ -249,6 +249,7 @@ function createRender(context) {
         `<a aria-labelledby="${hash}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
+        `<button data-feedback-hash="${hash}">Comment</button>`,
         `</h${level}>`,
       ].join('');
     };

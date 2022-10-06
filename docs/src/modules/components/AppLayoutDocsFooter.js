@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
@@ -10,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
 import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -19,6 +21,7 @@ import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useFeedbackState } from 'docs/src/modules/components/FeedbackContext';
 
 const Footer = styled('footer')(({ theme }) => {
   return {
@@ -242,18 +245,37 @@ function usePageNeighbours() {
   return { prevPage, nextPage };
 }
 
-export default function AppLayoutDocsFooter() {
+export default function AppLayoutDocsFooter(props) {
+  const { tableOfContents = [] } = props;
+
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const { activePage } = React.useContext(PageContext);
   const [rating, setRating] = React.useState();
   const [comment, setComment] = React.useState('');
-  const [commentOpen, setCommentOpen] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
+  const {
+    section: commentedSection,
+    isOpen: commentOpen,
+    setIsOpen: setCommentOpen,
+    updateSection,
+  } = useFeedbackState();
 
   const { nextPage, prevPage } = usePageNeighbours();
+
+  const sectionOptions = React.useMemo(
+    () =>
+      tableOfContents.flatMap((section) => [
+        {
+          hash: section.hash,
+          text: section.text,
+        },
+        ...section.children.map(({ hash, text }) => ({ hash, text })),
+      ]),
+    [tableOfContents],
+  );
 
   const setCurrentRatingFromCookie = React.useCallback(() => {
     if (activePage !== null) {
@@ -291,6 +313,10 @@ export default function AppLayoutDocsFooter() {
     setComment(event.target.value);
   };
 
+  const handleChangeSection = (event) => {
+    updateSection(event.target.value);
+  };
+
   const handleSubmitComment = (event) => {
     event.preventDefault();
     setCommentOpen(false);
@@ -309,6 +335,23 @@ export default function AppLayoutDocsFooter() {
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
+
+  React.useEffect(() => {
+    const eventListener = (event) => {
+      const feedbackHash = event.target.getAttribute('data-feedback-hash');
+      if (feedbackHash) {
+        const section = sectionOptions.find((item) => item.hash === feedbackHash);
+        updateSection(section);
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }
+    };
+    document.addEventListener('click', eventListener);
+    return () => {
+      document.removeEventListener('click', eventListener);
+    };
+  }, [sectionOptions, updateSection]);
 
   const hidePagePagination = activePage === null || activePage.ordered === false;
 
@@ -390,6 +433,24 @@ export default function AppLayoutDocsFooter() {
                 {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
               </Typography>
               <TextField
+                select
+                size="small"
+                margin="dense"
+                name="commentedSection"
+                fullWidth
+                value={commentedSection?.hash || ''}
+                onChange={handleChangeSection}
+                inputProps={{
+                  'aria-label': t('feedbackSectionLabel'),
+                }}
+                placeholder={t('feedbackSectionPlaceholder')}
+              >
+                <MenuItem value="">{t('feedbackNoSectionSelected')}</MenuItem>
+                {sectionOptions.map((section) => (
+                  <MenuItem value={section.hash}>{section.text}</MenuItem>
+                ))}
+              </TextField>
+              <TextField
                 multiline
                 margin="dense"
                 name="comment"
@@ -420,3 +481,7 @@ export default function AppLayoutDocsFooter() {
     </React.Fragment>
   );
 }
+
+AppLayoutDocsFooter.propTypes = {
+  tableOfContents: PropTypes.array,
+};
