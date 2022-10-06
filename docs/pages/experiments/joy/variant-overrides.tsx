@@ -11,7 +11,7 @@ import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 
-function ColorSchemePicker() {
+const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -36,10 +36,10 @@ function ColorSchemePicker() {
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
   );
-}
+};
 
 // how to add more color and use with variants
-function Tile({
+const Tile = ({
   children,
   variant = 'soft',
   color = 'primary',
@@ -48,7 +48,7 @@ function Tile({
 }: {
   variant?: 'soft' | 'solid';
   color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) {
+} & Omit<BoxProps, 'color'>) => {
   return (
     <Box
       sx={[
@@ -62,7 +62,7 @@ function Tile({
       {children}
     </Box>
   );
-}
+};
 
 export default function JoyVariant() {
   const renderContent = (variant: VariantProp, color: ColorPaletteProp) => (

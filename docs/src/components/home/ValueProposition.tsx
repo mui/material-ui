@@ -38,7 +38,7 @@ const content = [
   },
 ];
 
-function ValueProposition() {
+const ValueProposition = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <SectionHeadline
@@ -74,6 +74,6 @@ function ValueProposition() {
       </Grid>
     </Container>
   );
-}
+};
 
 export default ValueProposition;

@@ -15,7 +15,7 @@ export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS, DESIGNKITS_CUSTOMERS, TEMPLATES_CUS
 
 const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
-function References({
+const References = ({
   companies,
 }: {
   companies:
@@ -23,7 +23,7 @@ function References({
     | typeof ADVANCED_CUSTOMERS
     | typeof DESIGNKITS_CUSTOMERS
     | typeof TEMPLATES_CUSTOMERS;
-}) {
+}) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -49,6 +49,6 @@ function References({
       </Typography>
     </Container>
   );
-}
+};
 
 export default References;

@@ -30,7 +30,7 @@ const content = [
   },
 ];
 
-function DesignKitValues() {
+const DesignKitValues = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <Typography variant="body2" color="primary" fontWeight="bold">
@@ -65,6 +65,6 @@ function DesignKitValues() {
       </Grid>
     </Container>
   );
-}
+};
 
 export default DesignKitValues;

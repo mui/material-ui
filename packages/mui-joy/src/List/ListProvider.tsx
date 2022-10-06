@@ -47,12 +47,12 @@ export interface ListProviderProps {
 }
 
 // internal component
-function ListProvider({
+const ListProvider = ({
   children,
   nested,
   row = false,
   wrap = false,
-}: React.PropsWithChildren<ListProviderProps>) {
+}: React.PropsWithChildren<ListProviderProps>) => {
   const baseProviders = (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
@@ -71,6 +71,6 @@ function ListProvider({
     return baseProviders;
   }
   return <NestedListContext.Provider value={nested}>{baseProviders}</NestedListContext.Provider>;
-}
+};
 
 export default ListProvider;

@@ -93,8 +93,8 @@ const DesignToolLogo = React.forwardRef<
   );
 });
 
-export function PrefetchDesignKitImages() {
-  return <Box
+export const PrefetchDesignKitImages = () => (
+  <Box
     sx={{
       width: 0,
       height: 0,
@@ -116,7 +116,7 @@ export function PrefetchDesignKitImages() {
     <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
     <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
   </Box>
-}
+);
 
 const defaultSlideUp = {
   '0%': {

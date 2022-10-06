@@ -8,8 +8,8 @@ interface ListHeaderProps {
   sx?: SxProps<Theme>;
 }
 
-function ListHeader({ sx = [], children }: ListHeaderProps) {
-  return <ListItem
+const ListHeader = ({ sx = [], children }: ListHeaderProps) => (
+  <ListItem
     sx={[
       {
         width: 'auto',
@@ -21,7 +21,7 @@ function ListHeader({ sx = [], children }: ListHeaderProps) {
   >
     <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
   </ListItem>
-}
+);
 
 export default function PassingSxProp() {
   return (

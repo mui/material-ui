@@ -24,7 +24,7 @@ export interface DialogTitleProps {
   onClose: () => void;
 }
 
-function BootstrapDialogTitle(props: DialogTitleProps) {
+const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
 
   return (
@@ -46,7 +46,7 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
       ) : null}
     </DialogTitle>
   );
-}
+};
 
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);

@@ -10,7 +10,7 @@ import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from "docs/scripts/helpers";
+} from '../docs/scripts/helpers';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',

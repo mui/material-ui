@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-function BootstrapDialogTitle(props) {
+const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
@@ -41,7 +41,7 @@ function BootstrapDialogTitle(props) {
       ) : null}
     </DialogTitle>
   );
-}
+};
 
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,

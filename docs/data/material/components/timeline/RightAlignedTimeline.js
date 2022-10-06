@@ -9,7 +9,8 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 export default function OppositeContentTimeline() {
   return (
-    <Timeline
+    <React.Fragment>
+      <Timeline
         sx={{
           [`& .${timelineContentClasses.root}`]: {
             flex: 0.2,
@@ -36,5 +37,6 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Code</TimelineContent>
         </TimelineItem>
       </Timeline>
+    </React.Fragment>
   );
 }

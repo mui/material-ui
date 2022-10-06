@@ -12,15 +12,15 @@ import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
-  return function() {
-  return <Box
+  return () => (
+    <Box
       sx={{
         borderRadius: 1,
         bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
         ...sx,
       }}
     />
-};
+  );
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
@@ -32,7 +32,7 @@ const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
-function ProductSuite() {
+const ProductSuite = () => {
   const [productIndex, setProductIndex] = React.useState(0);
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -90,6 +90,6 @@ function ProductSuite() {
       </Container>
     </Box>
   );
-}
+};
 
 export default ProductSuite;

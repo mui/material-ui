@@ -9,18 +9,10 @@ import {
   TablePaginationActionsUnstyledTypeMap,
 } from './TablePaginationActionsUnstyled.types';
 
-function LastPageIconDefault() {
-  return <span>{'⇾|'}</span>
-}
-function FirstPageIconDefault() {
-  return <span>{'|⇽'}</span>
-}
-function NextPageIconDefault() {
-  return <span>{'⇾'}</span>
-}
-function BackPageIconDefault() {
-  return <span>{'⇽'}</span>
-}
+const LastPageIconDefault = () => <span>{'⇾|'}</span>;
+const FirstPageIconDefault = () => <span>{'|⇽'}</span>;
+const NextPageIconDefault = () => <span>{'⇾'}</span>;
+const BackPageIconDefault = () => <span>{'⇽'}</span>;
 
 function defaultGetAriaLabel(type: ItemAriaLabelType) {
   return `Go to ${type} page`;

@@ -41,7 +41,7 @@ import teamTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 
-function ColorSchemeToggle() {
+const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -67,7 +67,7 @@ function ColorSchemeToggle() {
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
-}
+};
 
 function TeamNav() {
   return (

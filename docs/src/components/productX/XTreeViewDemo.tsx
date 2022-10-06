@@ -191,11 +191,11 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-function TreeItem(props: TreeItemProps & {
+const TreeItem = (
+  props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
-  }) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />
-}
+  },
+) => <StyledTreeItem ContentComponent={CustomContent} {...props} />;
 
 export default function XDateRangeDemo() {
   return (

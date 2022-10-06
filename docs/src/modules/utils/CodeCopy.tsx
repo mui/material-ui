@@ -38,7 +38,7 @@ export const useCodeCopy = () => {
   };
 };
 
-function InitCodeCopy() {
+const InitCodeCopy = () => {
   const rootNode = React.useContext(CodeBlockContext);
   const router = useRouter();
   React.useEffect(() => {
@@ -131,7 +131,7 @@ function InitCodeCopy() {
     return undefined;
   }, [rootNode, router.pathname]);
   return null;
-}
+};
 
 interface CodeCopyProviderProps {
   children: React.ReactNode;
@@ -141,7 +141,7 @@ interface CodeCopyProviderProps {
  * Place <CodeCopyProvider> at the page level. It will check the keydown event and try to initiate copy click if rootNode exist.
  * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
  */
-export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
+export const CodeCopyProvider = ({ children }: CodeCopyProviderProps) => {
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
@@ -177,4 +177,4 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       {children}
     </CodeBlockContext.Provider>
   );
-}
+};

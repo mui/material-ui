@@ -34,7 +34,7 @@ interface SlotVariablesProps {
   defaultOpen?: boolean;
 }
 
-function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVariablesProps) {
+const SlotVariables = ({ slot, data, renderField, defaultOpen = false }: SlotVariablesProps) => {
   const [open, setOpen] = React.useState(defaultOpen);
   return (
     <React.Fragment>
@@ -76,7 +76,7 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
       )}
     </React.Fragment>
   );
-}
+};
 
 export default function JoyVariablesDemo(props: {
   componentName: string;

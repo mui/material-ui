@@ -56,7 +56,7 @@ interface Profile {
   twitter?: string;
 }
 
-function Person(props: Profile & { sx?: PaperProps['sx'] }) {
+const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
   return (
     <Paper variant="outlined" sx={{ p: 2, height: '100%', ...props.sx }}>
       <Box
@@ -179,9 +179,9 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
       )}
     </Paper>
   );
-}
+};
 
-function Widget({
+const Widget = ({
   children,
   title,
   icon,
@@ -189,7 +189,7 @@ function Widget({
   children: React.ReactNode;
   title: string;
   icon: React.ReactElement;
-}) {
+}) => {
   return (
     <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
@@ -201,7 +201,7 @@ function Widget({
       {children}
     </Paper>
   );
-}
+};
 
 const teamMembers: Array<Profile> = [
   {

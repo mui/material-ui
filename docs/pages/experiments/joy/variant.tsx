@@ -49,7 +49,7 @@ declare module '@mui/joy/styles' {
 }
 
 // how to add more color and use with variants
-function Tile({
+const Tile = ({
   children,
   variant = 'soft',
   color = 'primary',
@@ -58,7 +58,7 @@ function Tile({
 }: {
   variant?: 'soft' | 'solid';
   color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) {
+} & Omit<BoxProps, 'color'>) => {
   return (
     <Box
       sx={[
@@ -72,7 +72,7 @@ function Tile({
       {children}
     </Box>
   );
-}
+};
 
 export default function JoyVariant() {
   return (

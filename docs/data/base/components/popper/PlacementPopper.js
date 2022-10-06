@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 
-function Radio({ value, ...props }) {
-  return <span>
+const Radio = ({ value, ...props }) => (
+  <span>
     <input
       type="radio"
       id={`placement-${value}-radio`}
@@ -14,7 +14,7 @@ function Radio({ value, ...props }) {
     />
     <label htmlFor={`placement-${value}-radio`}>{value}</label>
   </span>
-}
+);
 
 Radio.propTypes = {
   value: PropTypes.oneOfType([
@@ -24,8 +24,8 @@ Radio.propTypes = {
   ]),
 };
 
-function PlacementForm({ setPlacement }) {
-  return <div
+const PlacementForm = ({ setPlacement }) => (
+  <div
     style={{
       backgroundColor: 'rgba(0,0,0,0.04)',
       borderRadius: '4px',
@@ -89,7 +89,7 @@ function PlacementForm({ setPlacement }) {
       ))}
     </div>
   </div>
-}
+);
 
 PlacementForm.propTypes = {
   setPlacement: PropTypes.func.isRequired,

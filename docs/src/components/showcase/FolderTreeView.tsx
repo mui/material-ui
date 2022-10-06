@@ -150,11 +150,11 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
   },
 }));
 
-function CustomTreeItem(props: TreeItemProps & {
+const CustomTreeItem = (
+  props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
-  }) {
-  return <StyledTreeItem ContentComponent={CustomContent} {...props} />
-}
+  },
+) => <StyledTreeItem ContentComponent={CustomContent} {...props} />;
 
 export default function FolderTreeView() {
   return (

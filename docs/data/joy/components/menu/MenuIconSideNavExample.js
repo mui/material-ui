@@ -25,7 +25,7 @@ const modifiers = [
   },
 ];
 
-function MenuButton({
+const MenuButton = ({
   children,
   menu,
   open,
@@ -33,7 +33,7 @@ function MenuButton({
   onLeaveMenu,
   label,
   ...props
-}) {
+}) => {
   const buttonRef = React.useRef(null);
   const isOnButton = React.useRef(false);
   const menuActions = React.useRef(null);
@@ -113,7 +113,7 @@ function MenuButton({
       })}
     </React.Fragment>
   );
-}
+};
 
 export default function MenuIconSideNavExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);

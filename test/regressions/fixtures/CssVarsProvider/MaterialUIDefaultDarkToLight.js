@@ -8,13 +8,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 
-function LightMode() {
+const LightMode = () => {
   const { setMode } = useColorScheme();
   React.useEffect(() => {
     setMode('light');
   }, [setMode]);
   return null;
-}
+};
 
 export default function MaterialUIDefaultDark() {
   return (

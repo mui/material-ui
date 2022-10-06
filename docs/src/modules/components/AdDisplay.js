@@ -29,7 +29,7 @@ export default function AdDisplay(props) {
       <a
         href={ad.link}
         target="_blank"
-        rel="noopener"
+        rel="noopener sponsored"
         {...(ad.label
           ? {
               'data-ga-event-category': 'ad',

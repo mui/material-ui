@@ -275,7 +275,9 @@ describe('<Box />', () => {
 
   it('adds the utility mui class', () => {
     const { getByTestId } = render(
-      <Box data-testid="regular-box" />,
+      <React.Fragment>
+        <Box data-testid="regular-box" />
+      </React.Fragment>,
     );
 
     expect(getByTestId('regular-box')).to.have.class('MuiBox-root');

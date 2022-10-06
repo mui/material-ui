@@ -23,13 +23,13 @@ const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
   },
 });
 
-function DarkMode() {
+const DarkMode = () => {
   const { setMode } = useColorScheme();
   React.useEffect(() => {
     setMode('dark');
   }, [setMode]);
   return null;
-}
+};
 
 export default function DarkModeSpecificity() {
   return (
