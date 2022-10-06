@@ -9,14 +9,12 @@ import {
   ThemeProvider,
   useColorScheme,
   Stack,
-  ButtonProps,
 } from '@mui/material';
 import { unstable_capitalize as capitalize } from 'packages/mui-utils';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
-import type {} from '@mui/material/styles/MaterialYouModuleAugmentation';
 
-const ModeSwitcher = ({ setMode: setModeProp }: { setMode: (arg: string) => void }) => {
+const ModeSwitcher = ({ setMode: setModeProp }) => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -52,8 +50,8 @@ const DemoComponents = () => {
   return (
     <Stack direction="row" gap={1}>
       {variants.map((variant) => (
-        <Button key={variant} variant={variant as ButtonProps['variant']}>
-          {capitalize(variant as string)}
+        <Button key={variant} variant={variant}>
+          {capitalize(variant)}
         </Button>
       ))}
     </Stack>
