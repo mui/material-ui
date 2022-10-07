@@ -39,7 +39,13 @@ describe('<InputBase />', () => {
 
   it('should add the right class when size is small', () => {
     const { container } = render(<InputBase size="small" />);
-    expect(container.firstChild).to.have.class(classes.sizeSmall);
+    expect(container.firstChild).to.have.class('MuiInputBase-sizeSmall');
+  });
+
+  it('should add the right class when size is custom added', () => {
+    const { container } = render(<InputBase size="custom" />);
+
+    expect(container.firstChild).to.have.class('MuiInputBase-sizeCustom');
   });
 
   describe('multiline', () => {
@@ -352,7 +358,7 @@ describe('<InputBase />', () => {
             <InputBase />
           </FormControl>,
         );
-        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
+        expect(container.querySelector('input')).to.have.class('MuiInputBase-inputSizeSmall');
       });
 
       it('should be overridden by props', () => {
@@ -364,10 +370,10 @@ describe('<InputBase />', () => {
           );
         }
         const { container, setProps } = render(<InputBaseInFormWithMargin />);
-        expect(container.querySelector('input')).not.to.have.class(classes.inputSizeSmall);
+        expect(container.querySelector('input')).not.to.have.class('MuiInputBase-inputSizeSmall');
 
         setProps({ size: 'small' });
-        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
+        expect(container.querySelector('input')).to.have.class('MuiInputBase-inputSizeSmall');
       });
 
       it('has an inputHiddenLabel class to further reduce margin', () => {

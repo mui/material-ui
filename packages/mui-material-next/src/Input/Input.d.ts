@@ -162,7 +162,7 @@ export interface InputOwnProps {
   /**
    * The size of the component.
    */
-  size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium' | string, InputBasePropsSizeOverrides>;
   /**
    * The props used for each slot inside the Input.
    * @default {}

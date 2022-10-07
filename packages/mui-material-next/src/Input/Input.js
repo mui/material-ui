@@ -37,7 +37,7 @@ const inputOverridesResolver = (props, styles) => {
 
   return [
     styles.input,
-    ownerState.size === 'small' && styles.inputSizeSmall,
+    ownerState.size !== 'medium' && styles[`inputSize${capitalize(ownerState.size)}`],
     ownerState.multiline && styles.inputMultiline,
     ownerState.type === 'search' && styles.inputTypeSearch,
     ownerState.startAdornment && styles.inputAdornedStart,
@@ -509,7 +509,10 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The props used for each slot inside the Input.
    * @default {}

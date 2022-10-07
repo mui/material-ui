@@ -68,7 +68,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The size of the component.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<'small' | 'medium', FormControlPropsSizeOverrides>;
+    size?: OverridableStringUnion<'small' | 'medium' | string, FormControlPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

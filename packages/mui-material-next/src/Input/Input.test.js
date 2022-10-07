@@ -28,7 +28,7 @@ describe('<Input />', () => {
 
   it('should add the right class when size is small', () => {
     const { container } = render(<Input size="small" />);
-    expect(container.firstChild).to.have.class(classes.sizeSmall);
+    expect(container.firstChild).to.have.class('MuiInput-sizeSmall');
   });
 
   describe('multiline', () => {

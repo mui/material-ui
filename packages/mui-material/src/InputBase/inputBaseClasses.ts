@@ -16,8 +16,6 @@ export interface InputBaseClasses {
   adornedEnd: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the input element if `size="small"`. */
-  sizeSmall: string;
   /** Styles applied to the root element if `multiline={true}`. */
   multiline: string;
   /** Styles applied to the root element if the color is secondary. */
@@ -30,8 +28,6 @@ export interface InputBaseClasses {
   readOnly: string;
   /** Styles applied to the input element. */
   input: string;
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall: string;
   /** Styles applied to the input element if `multiline={true}`. */
   inputMultiline: string;
   /** Styles applied to the input element if `type="search"`. */
@@ -58,14 +54,12 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'adornedStart',
   'adornedEnd',
   'error',
-  'sizeSmall',
   'multiline',
   'colorSecondary',
   'fullWidth',
   'hiddenLabel',
   'readOnly',
   'input',
-  'inputSizeSmall',
   'inputMultiline',
   'inputTypeSearch',
   'inputAdornedStart',

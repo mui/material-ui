@@ -19,16 +19,12 @@ export interface FilledInputClasses {
   adornedEnd: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the input element if `size="small"`. */
-  sizeSmall: string;
   /** Styles applied to the root element if `multiline={true}`. */
   multiline: string;
   /** Styles applied to the root element if `hiddenLabel={true}`. */
   hiddenLabel: string;
   /** Styles applied to the input element. */
   input: string;
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall: string;
   /** Styles applied to the `input` if in `<FormControl hiddenLabel />`. */
   inputHiddenLabel: string;
   /** Styles applied to the input element if `multiline={true}`. */

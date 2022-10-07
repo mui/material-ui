@@ -17,16 +17,12 @@ export interface InputClasses {
   underline: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the input element if `size="small"`. */
-  sizeSmall: string;
   /** Styles applied to the root element if `multiline={true}`. */
   multiline: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
   /** Styles applied to the input element. */
   input: string;
-  /** Styles applied to the input element if `size="small"`. */
-  inputSizeSmall: string;
   /** Styles applied to the input element if `multiline={true}`. */
   inputMultiline: string;
   /** Styles applied to the input element if `type="search"`. */
