@@ -18,12 +18,12 @@ function Button(props: TablePaginationActionsUnstyledButtonSlotProps) {
 
 const styledTablePaginationActions = (
   <TablePaginationActionsUnstyled
-    components={{
-      Root,
-      BackButton: Button,
-      NextButton: Button,
-      FirstButton: Button,
-      LastButton: Button,
+    slots={{
+      root: Root,
+      backButton: Button,
+      nextButton: Button,
+      firstButton: Button,
+      lastButton: Button,
     }}
     count={10}
     getItemAriaLabel={() => ''}
