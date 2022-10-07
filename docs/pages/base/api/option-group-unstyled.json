@@ -1,22 +1,16 @@
 {
   "props": {
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ Label?: elementType, List?: elementType, Root?: elementType }"
-      },
-      "default": "{}"
-    },
-    "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ label?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
-      },
-      "default": "{}"
-    },
     "disabled": { "type": { "name": "bool" } },
-    "label": { "type": { "name": "node" } }
+    "label": { "type": { "name": "node" } },
+    "slotProps": { "type": { "name": "object" }, "default": "{}" },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ label?: elementType, list?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    }
   },
   "name": "OptionGroupUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

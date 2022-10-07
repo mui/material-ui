@@ -172,14 +172,14 @@ const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
   props: OptionGroupUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
-  const components: OptionGroupUnstyledProps['components'] = {
-    Root: StyledGroupRoot,
-    Label: StyledGroupHeader,
-    List: StyledGroupOptions,
-    ...props.components,
+  const slots: OptionGroupUnstyledProps['slots'] = {
+    root: StyledGroupRoot,
+    label: StyledGroupHeader,
+    list: StyledGroupOptions,
+    ...props.slots,
   };
 
-  return <OptionGroupUnstyled {...props} ref={ref} components={components} />;
+  return <OptionGroupUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 export default function UnstyledSelectGrouping() {
