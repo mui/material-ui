@@ -2,20 +2,6 @@
   "props": {
     "autoFocus": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ Listbox?: elementType, Popper?: elementType, Root?: elementType }"
-      },
-      "default": "{}"
-    },
-    "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
-      },
-      "default": "{}"
-    },
     "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
@@ -27,6 +13,14 @@
     "onListboxOpenChange": { "type": { "name": "func" } },
     "optionStringifier": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
     "renderValue": { "type": { "name": "func" } },
+    "slotProps": { "type": { "name": "object" }, "default": "{}" },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    },
     "value": { "type": { "name": "any" } }
   },
   "name": "SelectUnstyled",

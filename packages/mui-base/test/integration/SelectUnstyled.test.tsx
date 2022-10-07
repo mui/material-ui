@@ -30,7 +30,7 @@ describe('<SelectUnstyled> integration', () => {
     });
 
     const { getByRole } = render(
-      <SelectUnstyled components={{ Listbox: SelectListbox }}>
+      <SelectUnstyled slots={{ listbox: SelectListbox }}>
         <Option value="1">1</Option>
         <Option value="2">2</Option>
         <Option value="3">3</Option>

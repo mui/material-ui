@@ -158,14 +158,14 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 function CustomSelect(props: SelectUnstyledProps<string>) {
-  const components: SelectUnstyledProps<string>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<string>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
