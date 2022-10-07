@@ -11,8 +11,6 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '@mui/material/styles/styled';
-import useTouchRipple from '@mui/material/useTouchRipple';
-import TouchRipple from './TouchRipple';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -92,194 +90,175 @@ export const ButtonRoot = styled('button', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative',
-  boxSizing: 'border-box',
-  WebkitTapHighlightColor: 'transparent',
-  backgroundColor: 'transparent', // Reset default value
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-  border: 0,
-  margin: 0, // Remove the margin in Safari
-  cursor: 'pointer',
-  userSelect: 'none',
-  verticalAlign: 'middle',
-  MozAppearance: 'none', // Reset
-  WebkitAppearance: 'none', // Reset
-  textDecoration: 'none',
-  // So we take precedent over the style of a native <a /> element.
-  color: 'inherit',
-  '&::-moz-focus-inner': {
-    borderStyle: 'none', // Remove Firefox dotted outline.
-  },
-  [`&.${buttonClasses.disabled}`]: {
-    pointerEvents: 'none', // Disable link interactions
-    cursor: 'default',
-  },
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  ...theme.typography.button,
-  minWidth: 64,
-  padding: '6px 16px',
-  borderRadius: theme.shape.borderRadius,
-  transition: theme.transitions.create(
-    ['background-color', 'box-shadow', 'border-color', 'color'],
-    { duration: theme.transitions.duration.short },
-  ),
-  '&:hover': {
-    textDecoration: 'none',
-    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
-    },
-    ...(ownerState.variant === 'text' &&
-      ownerState.color !== 'inherit' && {
-        backgroundColor: alpha(
-          theme.palette[ownerState.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.color !== 'inherit' && {
-        border: `1px solid ${theme.palette[ownerState.color].main}`,
-        backgroundColor: alpha(
-          theme.palette[ownerState.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      }),
-    ...(ownerState.variant === 'contained' && {
-      backgroundColor: theme.palette.grey.A100,
-      boxShadow: theme.shadows[4],
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        boxShadow: theme.shadows[2],
-        backgroundColor: theme.palette.grey[300],
-      },
-    }),
-    ...(ownerState.variant === 'contained' &&
-      ownerState.color !== 'inherit' && {
-        backgroundColor: theme.palette[ownerState.color].dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette[ownerState.color].main,
-        },
-      }),
-  },
-  '&:active': {
-    ...(ownerState.variant === 'contained' && {
-      boxShadow: theme.shadows[8],
-    }),
-  },
-  [`&.${buttonClasses.focusVisible}`]: {
-    ...(ownerState.variant === 'contained' && {
-      boxShadow: theme.shadows[6],
-    }),
-  },
-  [`&.${buttonClasses.disabled}`]: {
-    color: theme.palette.action.disabled,
-    ...(ownerState.variant === 'outlined' && {
-      border: `1px solid ${theme.palette.action.disabledBackground}`,
-    }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.color === 'secondary' && {
-        border: `1px solid ${theme.palette.action.disabled}`,
-      }),
-    ...(ownerState.variant === 'contained' && {
-      color: theme.palette.action.disabled,
-      boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.action.disabledBackground,
-    }),
-  },
-  ...(ownerState.variant === 'text' && {
-    padding: '6px 8px',
-  }),
-  ...(ownerState.variant === 'text' &&
-    ownerState.color !== 'inherit' && {
-      color: theme.palette[ownerState.color].main,
-    }),
-  ...(ownerState.variant === 'outlined' && {
-    padding: '5px 15px',
-    border: `1px solid ${
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-    }`,
-  }),
-  ...(ownerState.variant === 'outlined' &&
-    ownerState.color !== 'inherit' && {
-      color: theme.palette[ownerState.color].main,
-      border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
-    }),
-  ...(ownerState.variant === 'contained' && {
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
-    boxShadow: theme.shadows[2],
-  }),
-  ...(ownerState.variant === 'contained' &&
-    ownerState.color !== 'inherit' && {
-      color: theme.palette[ownerState.color].contrastText,
-      backgroundColor: theme.palette[ownerState.color].main,
-    }),
-  ...(ownerState.color === 'inherit' && {
-    color: 'inherit',
-    borderColor: 'currentColor',
-  }),
-  ...(ownerState.size === 'small' &&
-    ownerState.variant === 'text' && {
-      padding: '4px 5px',
-      fontSize: theme.typography.pxToRem(13),
-    }),
-  ...(ownerState.size === 'large' &&
-    ownerState.variant === 'text' && {
-      padding: '8px 11px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  ...(ownerState.size === 'small' &&
-    ownerState.variant === 'outlined' && {
-      padding: '3px 9px',
-      fontSize: theme.typography.pxToRem(13),
-    }),
-  ...(ownerState.size === 'large' &&
-    ownerState.variant === 'outlined' && {
-      padding: '7px 21px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  ...(ownerState.size === 'small' &&
-    ownerState.variant === 'contained' && {
-      padding: '4px 10px',
-      fontSize: theme.typography.pxToRem(13),
-    }),
-  ...(ownerState.size === 'large' &&
-    ownerState.variant === 'contained' && {
-      padding: '8px 22px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  ...(ownerState.disableElevation && {
-    boxShadow: 'none',
+  border: 'none',
+  outline: 'none',
+  padding: '10px 24px',
+  fontFamily: (theme.vars || theme).typescale.label.large.family,
+  fontWeight: (theme.vars || theme).typescale.label.large.weight,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
+  // Filled varaint
+  ...(ownerState.variant === 'filled' && {
+    backgroundColor: (theme.vars || theme).palette.md3.colors.primary,
+    color: (theme.vars || theme).palette.md3.colors.onPrimary,
     '&:hover': {
-      boxShadow: 'none',
-    },
-    [`&.${buttonClasses.focusVisible}`]: {
-      boxShadow: 'none',
+      boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${
+              (theme.vars || theme).palette.md3.colors.primaryChannel
+            } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.primary,
+              1 - theme.state.hover.stateLayerOpacity,
+            ),
+          }),
     },
     '&:active': {
-      boxShadow: 'none',
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${
+              (theme.vars || theme).palette.md3.colors.primaryChannel
+            } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.primary,
+              1 - theme.state.pressed.stateLayerOpacity,
+            ),
+          }),
     },
-    [`&.${buttonClasses.disabled}`]: {
-      boxShadow: 'none',
+    [`&.${buttonClasses.focusVisible}`]: {
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${
+              (theme.vars || theme).palette.md3.colors.primaryChannel
+            } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.primary,
+              1 - theme.state.focus.stateLayerOpacity,
+            ),
+          }),
+    },
+  }),
+  // Filled tonal varitant
+  ...(ownerState.variant === 'filledTonal' && {
+    backgroundColor: (theme.vars || theme).palette.md3.colors.secondaryContainer,
+    color: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
+    '&:hover': {
+      boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${
+              (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+            } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.secondaryContainer,
+              1 - theme.state.hover.stateLayerOpacity,
+            ),
+          }),
+    },
+    '&:active': {
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${
+              (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+            } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.secondaryContainer,
+              1 - theme.state.pressed.stateLayerOpacity,
+            ),
+          }),
+    },
+    [`&.${buttonClasses.focusVisible}`]: {
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${
+              (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+            } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.secondaryContainer,
+              1 - theme.state.focus.stateLayerOpacity,
+            ),
+          }),
+    },
+  }),
+  // Outlined varaiant
+  ...(ownerState.variant === 'outlined' && {
+    border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
+    color: (theme.vars || theme).palette.md3.colors.primary,
+    background: 'transparent',
+  }),
+  // Elevated variant
+  ...(ownerState.variant === 'elevated' && {
+    background: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
+      (theme.vars || theme).palette.md3.colors.surface
+    }`,
+    color: (theme.vars || theme).palette.md3.colors.primary,
+    boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
+  }),
+  // Text variant
+  ...(ownerState.variant === 'text' && {
+    color: (theme.vars || theme).palette.md3.colors.primary,
+    background: 'transparent',
+  }),
+  // State styles for text, outlined, elevated variants
+  ...((ownerState.variant === 'text' ||
+    ownerState.variant === 'outlined' ||
+    ownerState.variant === 'elevated') && {
+    '&:hover': {
+      ...(ownerState.variant === 'elevated' && {
+        boxShadow: theme.shadows[4],
+      }),
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
+              (theme.vars || theme).state.hover.stateLayerOpacity
+            })`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.primary,
+              theme.state.hover.stateLayerOpacity,
+            ),
+          }),
+    },
+    '&:active': {
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
+              (theme.vars || theme).state.pressed.stateLayerOpacity
+            })`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.primary,
+              theme.state.pressed.stateLayerOpacity,
+            ),
+          }),
+    },
+    [`&.${buttonClasses.focusVisible}`]: {
+      ...(theme.vars
+        ? {
+            backgroundColor: `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
+              (theme.vars || theme).state.focus.stateLayerOpacity
+            })`,
+          }
+        : {
+            backgroundColor: alpha(
+              theme.palette.md3.colors.primary,
+              theme.state.focus.stateLayerOpacity,
+            ),
+          }),
     },
   }),
 }));
@@ -331,9 +310,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     component = 'button',
     disabled = false,
     disableElevation = false,
-    disableFocusRipple = false,
-    disableRipple = false,
-    disableTouchRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
@@ -355,7 +331,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     size = 'medium',
     startIcon: startIconProp,
     tabIndex = 0,
-    TouchRippleProps,
     type,
     variant = 'text',
     ...other
@@ -363,8 +338,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const buttonRef = React.useRef(null);
   const handleRef = useForkRef(buttonRef, ref);
-
-  const rippleRef = React.useRef(null);
 
   let ComponentProp = component;
 
@@ -389,29 +362,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     [setFocusVisible],
   );
 
-  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
-    disabled,
-    disableFocusRipple,
-    disableRipple,
-    disableTouchRipple,
-    focusVisible,
-    rippleRef,
-  });
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
-        console.error(
-          [
-            'MUI: The `component` prop provided to Button is invalid.',
-            'Please make sure the children prop is rendered in this custom component.',
-          ].join('\n'),
-        );
-      }
-    }, [enableTouchRipple]);
-  }
-
   const ownerState = {
     ...props,
     centerRipple,
@@ -419,9 +369,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     component,
     disabled,
     disableElevation,
-    disableFocusRipple,
-    disableRipple,
-    disableTouchRipple,
     focusVisible,
     fullWidth,
     size,
@@ -449,16 +396,12 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...getRootProps(getRippleHandlers(props))}
+      {...getRootProps(props)}
       {...other}
     >
       {startIcon}
       {children}
       {endIcon}
-      {enableTouchRipple ? (
-        /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
-      ) : null}
     </ButtonRoot>
   );
 });
@@ -473,12 +416,6 @@ Button.propTypes /* remove-proptypes */ = {
    * It exposes the `focusVisible()` action.
    */
   action: refType,
-  /**
-   * If `true`, the ripples are centered.
-   * They won't start at the cursor interaction position.
-   * @default false
-   */
-  centerRipple: PropTypes.bool,
   /**
    * The content of the component.
    */
@@ -514,24 +451,6 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableElevation: PropTypes.bool,
-  /**
-   * If `true`, the  keyboard focus ripple is disabled.
-   * @default false
-   */
-  disableFocusRipple: PropTypes.bool,
-  /**
-   * If `true`, the ripple effect is disabled.
-   *
-   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
-   * @default false
-   */
-  disableRipple: PropTypes.bool,
-  /**
-   * If `true`, the touch ripple effect is disabled.
-   * @default false
-   */
-  disableTouchRipple: PropTypes.bool,
   /**
    * Element placed after the children.
    */
@@ -637,10 +556,6 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
-  /**
-   * Props applied to the `TouchRipple` element.
-   */
-  TouchRippleProps: PropTypes.object,
   /**
    * @ignore
    */

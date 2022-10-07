@@ -8,7 +8,6 @@ import {
 } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material';
-import { TouchRippleProps } from './TouchRipple';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
@@ -28,12 +27,6 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * It exposes the `focusVisible()` action.
      */
     action?: React.Ref<ButtonActions>;
-    /**
-     * If `true`, the ripples are centered.
-     * They won't start at the cursor interaction position.
-     * @default false
-     */
-    centerRipple?: boolean;
     /**
      * The content of the component.
      */
@@ -60,24 +53,6 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * @default false
      */
     disableElevation?: boolean;
-    /**
-     * If `true`, the  keyboard focus ripple is disabled.
-     * @default false
-     */
-    disableFocusRipple?: boolean;
-    /**
-     * If `true`, the ripple effect is disabled.
-     *
-     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
-     * @default false
-     */
-    disableRipple?: boolean;
-    /**
-     * If `true`, the touch ripple effect is disabled.
-     * @default false
-     */
-    disableTouchRipple?: boolean;
     /**
      * Element placed after the children.
      */
@@ -130,15 +105,11 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
-     * Props applied to the `TouchRipple` element.
-     */
-    TouchRippleProps?: Partial<TouchRippleProps>;
-    /**
      * The variant to use.
      * @default 'text'
      */
     variant?: OverridableStringUnion<
-      'text' | 'outlined' | 'contained',
+      'text' | 'outlined' | 'filled' | 'filledTonal' | 'elevated',
       ButtonPropsVariantOverrides
     >;
   };
