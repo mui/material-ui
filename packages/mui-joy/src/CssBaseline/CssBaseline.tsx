@@ -12,20 +12,16 @@ function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) 
     <React.Fragment>
       <GlobalStyles
         styles={(theme: Theme) => {
-          const styleSheets: Record<string, any> = {};
+          const colorSchemeStyles: Record<string, any> = {};
           if (enableColorScheme) {
-            if (theme.vars) {
-              // The CssBaseline is wrapped inside a CssVarsProvider
-              (
-                Object.entries(theme.colorSchemes) as Array<[DefaultColorScheme, ColorSystem]>
-              ).forEach(([key, scheme]) => {
-                styleSheets[theme.getColorSchemeSelector(key)] = {
-                  colorScheme: scheme.palette?.mode,
-                };
-              });
-            } else {
-              styleSheets.colorScheme = theme.palette.mode;
-            }
+            // The CssBaseline is wrapped inside a CssVarsProvider
+            (
+              Object.entries(theme.colorSchemes) as Array<[DefaultColorScheme, ColorSystem]>
+            ).forEach(([key, scheme]) => {
+              colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+                colorScheme: scheme.palette?.mode,
+              };
+            });
           }
           return {
             html: {
@@ -36,7 +32,6 @@ function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) 
               boxSizing: 'border-box',
               // Fix font resize problem in iOS
               WebkitTextSizeAdjust: '100%',
-              ...styleSheets,
             },
             '*, *::before, *::after': {
               boxSizing: 'inherit',
@@ -56,9 +51,10 @@ function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) 
               // Add support for document.body.requestFullScreen().
               // Other elements, if background transparent, are not supported.
               '&::backdrop': {
-                backgroundColor: theme.vars.palette.background.tooltip,
+                backgroundColor: theme.vars.palette.background.backdrop,
               },
             },
+            ...colorSchemeStyles,
           };
         }}
       />

@@ -3,6 +3,41 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
+export const colorScheme = (theme, enableColorScheme) => {
+  if (!enableColorScheme || !theme.colorSchemes) {
+    return {};
+  }
+  const colorSchemeStyles = {};
+  Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+    colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+      colorScheme: scheme.palette?.mode,
+    };
+  });
+  return colorSchemeStyles;
+};
+
+export const html = (theme, enableColorScheme) => ({
+  WebkitFontSmoothing: 'antialiased', // Antialiasing.
+  MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+  // Change from `box-sizing: content-box` so that `width`
+  // is not affected by `padding` or `border`.
+  boxSizing: 'border-box',
+  // Fix font resize problem in iOS
+  WebkitTextSizeAdjust: '100%',
+  // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
+});
+
+export const body = (theme) => ({
+  color: (theme.vars || theme).palette.text.primary,
+  ...theme.typography.body1,
+  backgroundColor: (theme.vars || theme).palette.background.default,
+  '@media print': {
+    // Save printer ink.
+    backgroundColor: (theme.vars || theme).palette.common.white,
+  },
+});
+
 export const styles = (theme, enableColorScheme = false) => {
   const defaultStyles = {
     html: {
@@ -35,6 +70,7 @@ export const styles = (theme, enableColorScheme = false) => {
         backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
+    ...colorScheme(theme, enableColorScheme),
   };
 
   const colorSchemeStyles = {};
