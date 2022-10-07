@@ -10,10 +10,20 @@ export interface StepContextType {
   disabled: boolean;
 }
 
+const defaultStepContext: StepContextType = {
+  index: 0,
+  last: false,
+  expanded: false,
+  icon: null,
+  active: false,
+  completed: false,
+  disabled: false,
+};
+
 /**
  * Provides information about the current step in Stepper.
  */
-const StepContext = React.createContext<StepContextType | {}>({});
+const StepContext = React.createContext<StepContextType>(defaultStepContext);
 
 if (process.env.NODE_ENV !== 'production') {
   StepContext.displayName = 'StepContext';
@@ -23,7 +33,7 @@ if (process.env.NODE_ENV !== 'production') {
  * Returns the current StepContext or an empty object if no StepContext
  * has been defined in the component tree.
  */
-export function useStepContext(): StepContextType | {} {
+export function useStepContext(): StepContextType {
   return React.useContext(StepContext);
 }
 
