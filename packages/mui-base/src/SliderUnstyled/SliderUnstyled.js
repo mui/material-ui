@@ -69,8 +69,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    components = {},
-    componentsProps = {},
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -115,28 +115,28 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? components.Root ?? 'span';
+  const Root = component ?? slots.root ?? 'span';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     ownerState,
     className: [classes.root, className],
   });
 
-  const Rail = components.Rail ?? 'span';
+  const Rail = slots.rail ?? 'span';
   const railProps = useSlotProps({
     elementType: Rail,
-    externalSlotProps: componentsProps.rail,
+    externalSlotProps: slotProps.rail,
     ownerState,
     className: classes.rail,
   });
 
-  const Track = components.Track ?? 'span';
+  const Track = slots.track ?? 'span';
   const trackProps = useSlotProps({
     elementType: Track,
-    externalSlotProps: componentsProps.track,
+    externalSlotProps: slotProps.track,
     additionalProps: {
       style: {
         ...axisProps[axis].offset(trackOffset),
@@ -147,41 +147,41 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     className: classes.track,
   });
 
-  const Thumb = components.Thumb ?? 'span';
+  const Thumb = slots.thumb ?? 'span';
   const thumbProps = useSlotProps({
     elementType: Thumb,
     getSlotProps: getThumbProps,
-    externalSlotProps: componentsProps.thumb,
+    externalSlotProps: slotProps.thumb,
     ownerState,
   });
 
-  const ValueLabel = components.ValueLabel ?? SliderValueLabelUnstyled;
+  const ValueLabel = slots.valueLabel ?? SliderValueLabelUnstyled;
   const valueLabelProps = useSlotProps({
     elementType: ValueLabel,
-    externalSlotProps: componentsProps.valueLabel,
+    externalSlotProps: slotProps.valueLabel,
     ownerState,
   });
 
-  const Mark = components.Mark ?? 'span';
+  const Mark = slots.mark ?? 'span';
   const markProps = useSlotProps({
     elementType: Mark,
-    externalSlotProps: componentsProps.mark,
+    externalSlotProps: slotProps.mark,
     ownerState,
     className: classes.mark,
   });
 
-  const MarkLabel = components.MarkLabel ?? 'span';
+  const MarkLabel = slots.markLabel ?? 'span';
   const markLabelProps = useSlotProps({
     elementType: MarkLabel,
-    externalSlotProps: componentsProps.markLabel,
+    externalSlotProps: slotProps.markLabel,
     ownerState,
   });
 
-  const Input = components.Input || 'input';
+  const Input = slots.input || 'input';
   const inputProps = useSlotProps({
     elementType: Input,
     getSlotProps: getHiddenInputProps,
-    externalSlotProps: componentsProps.input,
+    externalSlotProps: slotProps.input,
     ownerState,
   });
 
@@ -354,48 +354,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Mark: PropTypes.elementType,
-    MarkLabel: PropTypes.elementType,
-    Rail: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Thumb: PropTypes.elementType,
-    Track: PropTypes.elementType,
-    ValueLabel: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Slider.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        components: PropTypes.shape({
-          Root: PropTypes.elementType,
-        }),
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
-  }),
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
@@ -487,6 +445,26 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default (x) => x
    */
   scale: PropTypes.func,
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps: PropTypes.object,
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
