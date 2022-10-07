@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import { html, body, colorScheme } from '../CssBaseline/CssBaseline';
+import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -22,6 +22,14 @@ const ScopedCssBaselineRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme, ownerState }) => {
+  const colorSchemeStyles = {};
+  if (ownerState.enableColorScheme && theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
+        colorScheme: scheme.palette?.mode,
+      };
+    });
+  }
   return {
     ...html(theme, ownerState.enableColorScheme),
     ...body(theme),
@@ -31,7 +39,7 @@ const ScopedCssBaselineRoot = styled('div', {
     '& strong, & b': {
       fontWeight: theme.typography.fontWeightBold,
     },
-    ...colorScheme(theme, ownerState.enableColorScheme),
+    ...colorSchemeStyles,
   };
 });
 

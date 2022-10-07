@@ -3,19 +3,6 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
-export const colorScheme = (theme, enableColorScheme) => {
-  if (!enableColorScheme || !theme.colorSchemes) {
-    return {};
-  }
-  const colorSchemeStyles = {};
-  Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-    colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
-      colorScheme: scheme.palette?.mode,
-    };
-  });
-  return colorSchemeStyles;
-};
-
 export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
@@ -39,6 +26,14 @@ export const body = (theme) => ({
 });
 
 export const styles = (theme, enableColorScheme = false) => {
+  const colorSchemeStyles = {};
+  if (enableColorScheme && theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+        colorScheme: scheme.palette?.mode,
+      };
+    });
+  }
   let defaultStyles = {
     html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
@@ -56,7 +51,7 @@ export const styles = (theme, enableColorScheme = false) => {
         backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
-    ...colorScheme(theme, enableColorScheme),
+    ...colorSchemeStyles,
   };
 
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;

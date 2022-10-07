@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 
 export default function JoyCssBaseline() {
   return (
@@ -20,14 +19,6 @@ export default function JoyCssBaseline() {
           {/* The scrollbar should be dark */}
           <Box sx={{ height: 1000 }} />
         </Box>
-        <ScopedCssBaseline
-          enableColorScheme
-          data-mui-color-scheme="dark"
-          sx={{ width: 300, height: 100, overflow: 'scroll', bgcolor: 'background.paper' }}
-        >
-          {/* The scrollbar should be dark */}
-          <Box sx={{ height: 1000 }} />
-        </ScopedCssBaseline>
       </Box>
     </CssVarsProvider>
   );
