@@ -25,11 +25,7 @@ describe('<SelectUnstyled> integration', () => {
       ref: React.Ref<HTMLLIElement>,
     ) {
       return (
-        <OptionUnstyled
-          {...props}
-          ref={ref}
-          componentsProps={{ root: { style: { height: '50px' } } }}
-        />
+        <OptionUnstyled {...props} ref={ref} slotProps={{ root: { style: { height: '50px' } } }} />
       );
     });
 
