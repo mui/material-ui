@@ -4,7 +4,7 @@ import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
 export const styles = (theme, enableColorScheme = false) => {
-  const defaultStyles = {
+  let defaultStyles = {
     html: {
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale',
@@ -47,18 +47,18 @@ export const styles = (theme, enableColorScheme = false) => {
         };
       });
     } else {
-      colorSchemeStyles.html = {
-        colorScheme: theme.palette.mode,
-      };
+      defaultStyles.html.colorScheme = theme.palette.mode;
     }
   }
 
+  defaultStyles = { ...defaultStyles, ...colorSchemeStyles };
+
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
   if (themeOverrides) {
-    return [defaultStyles, colorSchemeStyles, themeOverrides];
+    defaultStyles = [defaultStyles, themeOverrides];
   }
 
-  return [defaultStyles, colorSchemeStyles];
+  return defaultStyles;
 };
 
 /**
