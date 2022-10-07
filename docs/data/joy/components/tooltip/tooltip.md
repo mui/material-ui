@@ -59,6 +59,12 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 {{"demo": "ArrowTooltips.js"}}
 
+## Common examples
+
+### Github tooltip
+
+{{"demo": "GithubTooltip.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
