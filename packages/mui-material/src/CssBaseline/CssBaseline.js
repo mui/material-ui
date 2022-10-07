@@ -4,7 +4,7 @@ import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
 export const colorScheme = (theme, enableColorScheme) => {
-  if (!enableColorScheme) {
+  if (!enableColorScheme || !theme.colorSchemes) {
     return {};
   }
   const colorSchemeStyles = {};
