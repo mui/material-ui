@@ -10,7 +10,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 
 function createLoading(sx: BoxProps['sx']) {
-  return function () {
+  return function Loading() {
     return (
       <Box
         sx={{

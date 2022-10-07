@@ -12,7 +12,7 @@ import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
-  return function () {
+  return function Loading() {
     return (
       <Box
         sx={{

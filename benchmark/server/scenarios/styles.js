@@ -89,6 +89,7 @@ function NakedButton(props) {
 }
 
 function EmotionCssButton(props) {
+  // eslint-disable-next-line react/no-unknown-property
   return <button type="submit" css={emotionCss} {...props} />;
 }
 
