@@ -3,17 +3,44 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
+export const colorScheme = (theme, enableColorScheme) => {
+  if (!enableColorScheme) {
+    return {};
+  }
+  const colorSchemeStyles = {};
+  Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+    colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+      colorScheme: scheme.palette?.mode,
+    };
+  });
+  return colorSchemeStyles;
+};
+
+export const html = (theme, enableColorScheme) => ({
+  WebkitFontSmoothing: 'antialiased', // Antialiasing.
+  MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+  // Change from `box-sizing: content-box` so that `width`
+  // is not affected by `padding` or `border`.
+  boxSizing: 'border-box',
+  // Fix font resize problem in iOS
+  WebkitTextSizeAdjust: '100%',
+  // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
+});
+
+export const body = (theme) => ({
+  color: (theme.vars || theme).palette.text.primary,
+  ...theme.typography.body1,
+  backgroundColor: (theme.vars || theme).palette.background.default,
+  '@media print': {
+    // Save printer ink.
+    backgroundColor: (theme.vars || theme).palette.common.white,
+  },
+});
+
 export const styles = (theme, enableColorScheme = false) => {
   let defaultStyles = {
-    html: {
-      WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale',
-      // Change from `box-sizing: content-box` so that `width`
-      // is not affected by `padding` or `border`.
-      boxSizing: 'border-box',
-      // Fix font resize problem in iOS
-      WebkitTextSizeAdjust: '100%',
-    },
+    html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -22,36 +49,15 @@ export const styles = (theme, enableColorScheme = false) => {
     },
     body: {
       margin: 0, // Remove the margin in all browsers.
-      color: (theme.vars || theme).palette.text.primary,
-      ...theme.typography.body1,
-      backgroundColor: (theme.vars || theme).palette.background.default,
-      '@media print': {
-        // Save printer ink.
-        backgroundColor: (theme.vars || theme).palette.common.white,
-      },
+      ...body(theme),
       // Add support for document.body.requestFullScreen().
       // Other elements, if background transparent, are not supported.
       '&::backdrop': {
         backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
+    ...colorScheme(theme, enableColorScheme),
   };
-
-  const colorSchemeStyles = {};
-  if (enableColorScheme) {
-    if (theme.vars) {
-      // The CssBaseline is wrapped inside a CssVarsProvider
-      Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-        colorSchemeStyles[theme.getColorSchemeSelector(key).replace(' &', '')] = {
-          colorScheme: scheme.palette?.mode,
-        };
-      });
-    } else {
-      defaultStyles.html.colorScheme = theme.palette.mode;
-    }
-  }
-
-  defaultStyles = { ...defaultStyles, ...colorSchemeStyles };
 
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
   if (themeOverrides) {

@@ -18,7 +18,7 @@ function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) 
             (
               Object.entries(theme.colorSchemes) as Array<[DefaultColorScheme, ColorSystem]>
             ).forEach(([key, scheme]) => {
-              colorSchemeStyles[theme.getColorSchemeSelector(key)] = {
+              colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
                 colorScheme: scheme.palette?.mode,
               };
             });
