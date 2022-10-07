@@ -40,6 +40,8 @@
       "default": "{}"
     },
     "popperRef": { "type": { "name": "custom", "description": "ref" } },
+    "slotProps": { "type": { "name": "object" } },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "sx": {
       "type": {
         "name": "union",
