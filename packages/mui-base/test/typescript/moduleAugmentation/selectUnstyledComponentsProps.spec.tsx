@@ -16,7 +16,7 @@ declare module '@mui/base' {
 // @ts-expect-error unknown variant
 <SelectUnstyled componentsProps={{ root: { variant: 'three' } }} />;
 
-<MultiSelectUnstyled componentsProps={{ root: { variant: 'a' } }} />;
+<MultiSelectUnstyled slotProps={{ root: { variant: 'a' } }} />;
 
 // @ts-expect-error unknown variant
-<MultiSelectUnstyled componentsProps={{ root: { variant: 'c' } }} />;
+<MultiSelectUnstyled slotProps={{ root: { variant: 'c' } }} />;
