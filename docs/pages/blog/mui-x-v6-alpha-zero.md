@@ -74,10 +74,17 @@ The following is a list of enhancements in the pipeline for v6. It contains the 
 
 - **Improved UX**  
    In the previous version we focused on developer experience and overall stability of the components. Now we’re tackling ways to improve usability.
+
   - [Remove the clock view on time pickers (for desktop)](https://github.com/mui/mui-x/issues/4483).
   - [Visually edit a range by dragging date markers](https://github.com/mui/mui-x/issues/5311).
   - [Range shortcuts](https://github.com/mui/mui-x/issues/4563).
   - [A new text input for date and time values, retiring the mask solution (early preview)](https://next.mui.com/x/react-date-pickers/date-field/).
+
+- **Improved Customizability**  
+   v6 will be packed with new customization abilities for the date pickers as well.
+  - [The new date fields are built over hooks and based on a headless approach](https://next.mui.com/x/react-date-pickers/date-field/#headless-usage).
+  - [Single Input for Date Range](https://github.com/mui/mui-x/issues/5193)
+  - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466)
 
 :::info
 You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
