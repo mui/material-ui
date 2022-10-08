@@ -93,4 +93,86 @@ describe('Joy <Button />', () => {
     expect(button).to.have.class(classes.root);
     expect(endDecorator).not.to.have.class(classes.startDecorator);
   });
+
+  describe('prop: loading', () => {
+    it('disables the button', () => {
+      const { getByRole } = render(<Button loading />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+
+    it('renders a progressbar', () => {
+      const { getByRole } = render(<Button loading>Submit</Button>);
+
+      const progressbar = getByRole('progressbar');
+      expect(progressbar).toBeVisible();
+    });
+  });
+
+  describe('prop: loadingIndicator', () => {
+    it('is not rendered by default', () => {
+      const { getByRole } = render(<Button loadingIndicator="loading">Test</Button>);
+
+      expect(getByRole('button')).to.have.text('Test');
+    });
+
+    it('is rendered properly when `loading` and children should not be visible', () => {
+      const { container, getByRole } = render(
+        <Button loadingIndicator="loading.." loading>
+          Test
+        </Button>,
+      );
+
+      expect(container.querySelector(`.${classes.loadingIndicator}`)).to.have.text('loading..');
+      expect(getByRole('button')).to.have.style('color', 'transparent');
+    });
+  });
+
+  describe('prop: loadingPosition', () => {
+    it('center is rendered by default', () => {
+      const { getByRole } = render(<Button loading>Test</Button>);
+      const loader = getByRole('progressbar');
+
+      expect(loader.parentElement).to.have.class(classes.loadingIndicatorCenter);
+    });
+
+    it('is rendered before the children when `loadingPosition=start` and startDecorator is not visible', () => {
+      const { getByRole } = render(
+        <Button
+          loading
+          startDecorator={<span>icon</span>}
+          loadingPosition="start"
+          loadingIndicator={<span role="progressbar">loading..</span>}
+        >
+          Test
+        </Button>,
+      );
+      const loader = getByRole('progressbar');
+      const button = getByRole('button');
+
+      expect(loader.parentElement).to.have.class(classes.loadingIndicatorStart);
+      expect(button.querySelector(`.${classes.startDecorator}`)).to.have.style('opacity', '0');
+      expect(button).to.have.text('iconloading..Test');
+    });
+
+    it('is rendered after the children when `loadingPosition=end` and endDecorator is not visible', () => {
+      const { getByRole } = render(
+        <Button
+          loading
+          endDecorator={<span>icon</span>}
+          loadingPosition="end"
+          loadingIndicator={<span role="progressbar">loading..</span>}
+        >
+          Test
+        </Button>,
+      );
+      const loader = getByRole('progressbar');
+      const button = getByRole('button');
+
+      expect(loader.parentElement).to.have.class(classes.loadingIndicatorEnd);
+      expect(button.querySelector(`.${classes.endDecorator}`)).to.have.style('opacity', '0');
+      expect(button).to.have.text('Testloading..icon');
+    });
+  });
 });

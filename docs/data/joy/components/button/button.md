@@ -70,6 +70,13 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting decorator
 
 {{"demo": "ButtonIcons.js"}}
 
+### Loading
+
+The loading buttons can show loading state and disable interactions.
+Toggle the loading switch to see the transition between the different states.
+
+{{"demo": "ButtonLoading.js"}}
+
 ### Icon button
 
 Use the `IconButton` component if you want width and height to be the same while not having a label.

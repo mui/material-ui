@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useButton } from '@mui/base/ButtonUnstyled';
@@ -5,12 +6,22 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
+import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
-    ownerState;
+  const {
+    color,
+    disabled,
+    focusVisible,
+    focusVisibleClassName,
+    fullWidth,
+    size,
+    variant,
+    loading,
+    loadingPosition,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -21,9 +32,20 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      loading && 'loading',
     ],
-    startDecorator: ['startDecorator'],
-    endDecorator: ['endDecorator'],
+    startDecorator: [
+      'startDecorator',
+      loading && loadingPosition && `startDecoratorLoading${capitalize(loadingPosition)}`,
+    ],
+    endDecorator: [
+      'endDecorator',
+      loading && loadingPosition && `endDecoratorLoading${capitalize(loadingPosition)}`,
+    ],
+    loadingIndicator: [
+      'loadingIndicator',
+      loading && loadingPosition && `loadingIndicator${capitalize(loadingPosition)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
@@ -41,7 +63,6 @@ const ButtonStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
-  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
 });
@@ -52,7 +73,6 @@ const ButtonEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
-  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
@@ -119,8 +139,79 @@ export const ButtonRoot = styled('button', {
       [`&.${buttonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
+    {
+      [`& .${buttonClasses.startDecoratorLoadingStart}, & .${buttonClasses.endDecoratorLoadingEnd}`]:
+        {
+          transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          opacity: 0,
+        },
+      ...(ownerState.loadingPosition === 'center' && {
+        transition:
+          'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        [`&.${buttonClasses.loading}`]: {
+          color: 'transparent',
+        },
+      }),
+      ...(ownerState.loadingPosition === 'start' &&
+        ownerState.fullWidth && {
+          [`& .${buttonClasses.startDecoratorLoadingStart}, & .${buttonClasses.endDecoratorLoadingEnd}`]:
+            {
+              transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+              opacity: 0,
+              marginRight: ownerState.size === 'sm' ? -11 : ownerState.size === 'md' ? -12 : -10,
+            },
+        }),
+      ...(ownerState.loadingPosition === 'end' &&
+        ownerState.fullWidth && {
+          [`& .${buttonClasses.startDecoratorLoadingStart}, & .${buttonClasses.endDecoratorLoadingEnd}`]:
+            {
+              transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+              opacity: 0,
+              marginLeft: ownerState.size === 'sm' ? -11 : ownerState.size === 'md' ? -12 : -10,
+            },
+        }),
+    },
   ];
 });
+
+const ButtonLoadingIndicator = styled('div', {
+  name: 'JoyButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      styles.loadingIndicator,
+      styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
+    ];
+  },
+})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => ({
+  position: 'absolute',
+  visibility: 'visible',
+  display: 'flex',
+  ...(ownerState.loadingPosition === 'start' && {
+    left: ownerState.size === 'sm' ? '0.75rem' : ownerState.size === 'md' ? '1rem' : '1.5rem',
+    '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  }),
+  ...(ownerState.loadingPosition === 'center' && {
+    left: '50%',
+    transform: 'translate(-50%)',
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!].color,
+  }),
+  ...(ownerState.loadingPosition === 'end' && {
+    right: ownerState.size === 'sm' ? '0.75rem' : ownerState.size === 'md' ? '1rem' : '1.5rem',
+    '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.fullWidth && {
+      position: 'relative',
+      left: ownerState.size === 'sm' ? -6 : ownerState.size === 'md' ? -8 : -12,
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.fullWidth && {
+      position: 'relative',
+      right: ownerState.size === 'sm' ? -6 : ownerState.size === 'md' ? -8 : -12,
+    }),
+}));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -139,6 +230,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     fullWidth = false,
     startDecorator,
     endDecorator,
+    loading = false,
+    loadingPosition = 'center',
+    loadingIndicator: loadingIndicatorProp,
+    disabled,
     ...other
   } = props;
 
@@ -147,8 +242,13 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
+    disabled: disabled || loading,
     ref: handleRef,
   });
+
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress color="primary" thickness={2} />
+  );
 
   React.useImperativeHandle(
     action,
@@ -169,6 +269,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
     size,
     focusVisible,
+    loading,
+    loadingPosition,
+    disabled: disabled || loading,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -199,13 +302,28 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className: classes.endDecorator,
   });
 
+  const buttonLoadingIndicatorProps = useSlotProps({
+    elementType: ButtonLoadingIndicator,
+    externalSlotProps: componentsProps.loadingIndicator,
+    ownerState,
+    className: classes.loadingIndicator,
+  });
+
+  const buttonLoadingIndicator = loading ? (
+    <ButtonLoadingIndicator {...buttonLoadingIndicatorProps}>
+      {loadingIndicator}
+    </ButtonLoadingIndicator>
+  ) : null;
+
   return (
     <ButtonRoot {...rootProps}>
       {startDecorator && (
         <ButtonStartDecorator {...startDecoratorProps}>{startDecorator}</ButtonStartDecorator>
       )}
 
-      {children}
+      {loadingPosition === 'end' ? children : buttonLoadingIndicator}
+      {loadingPosition === 'end' ? buttonLoadingIndicator : children}
+
       {endDecorator && (
         <ButtonEndDecorator {...endDecoratorProps}>{endDecorator}</ButtonEndDecorator>
       )}
@@ -252,6 +370,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loadingIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -273,6 +392,22 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   fullWidth: PropTypes.bool,
+  /**
+   * If `true`, the loading indicator is shown.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress color="primary" thickness={2} />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
    */
