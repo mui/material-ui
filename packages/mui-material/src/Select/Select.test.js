@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
+import { ClassNames } from '@emotion/react';
 import {
   describeConformance,
   ErrorBoundary,
   act,
   createRenderer,
   fireEvent,
-  screen,
+  screen
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
@@ -375,7 +376,7 @@ describe('<Select />', () => {
           'MUI: You have provided an out-of-range value `20` for the select component.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
+          'MUI: You have provided an out-of-range value `20` for the select component.',
           'MUI: You have provided an out-of-range value `20` for the select component.',
         ]);
       });
@@ -1440,4 +1441,31 @@ describe('<Select />', () => {
 
     expect(getByRole('button')).not.toHaveFocus();
   });
+
+  describe('Emotion compatibility', () => {
+    it('classes.select should overwrite built-in styles.', () => {
+      // This is pink
+      const color = 'rgb(255, 192, 204)';
+
+      const { getByTestId } = render(
+        <ClassNames>
+          {({ css }) => (
+            <Select
+              data-testid="root"
+              value={"0"}
+              classes={{ select: css({ backgroundColor: color }) }}
+            >
+              <MenuItem  value={"0"}>
+                This is the text of the menu item
+              </MenuItem>
+            </Select>
+          )}
+        </ClassNames>
+      );
+      const root = getByTestId("root");
+
+      expect(getComputedStyle(root).backgroundColor).to.equal(color);
+    });
+  });
+
 });
