@@ -23,10 +23,6 @@ module.exports = {
     }),
     // Avoid bundling the whole @mui/icons-material package. x2 the bundling speed.
     new webpack.IgnorePlugin({ resourceRegExp: /material-icons\/SearchIcons\.js/ }),
-    new webpack.ProvidePlugin({
-      // required by enzyme > cheerio > parse5 > util
-      process: 'process/browser',
-    }),
   ],
   module: {
     rules: [
