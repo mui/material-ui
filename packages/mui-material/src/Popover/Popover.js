@@ -280,11 +280,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   const setPositioningStyles = React.useCallback(() => {
     const element = paperRef.current;
-
     if (!element) {
       return;
     }
-
     const positioning = getPositioningStyle(element);
 
     if (positioning.top !== null) {
@@ -300,24 +298,14 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     if (onEntering) {
       onEntering(element, isAppearing);
     }
-
-    setPositioningStyles();
   };
-
-  React.useEffect(() => {
-    if (open) {
-      setPositioningStyles();
-    }
-  });
 
   React.useImperativeHandle(
     action,
     () =>
       open
         ? {
-            updatePosition: () => {
-              setPositioningStyles();
-            },
+            updatePosition: setPositioningStyles,
           }
         : null,
     [open, setPositioningStyles],
@@ -365,6 +353,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       <TransitionComponent
         appear
         in={open}
+        onEnter={setPositioningStyles}
         onEntering={handleEntering}
         timeout={transitionDuration}
         {...TransitionProps}
