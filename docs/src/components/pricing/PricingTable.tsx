@@ -737,7 +737,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="Eventually" />,
+  'core-support': <Info value={pending} metadata="Priority add-on" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
