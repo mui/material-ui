@@ -57,7 +57,7 @@ export type BaseProps<M extends OverridableTypeMap> =
  */
 // each component declares it's classes in a separate interface for proper JSDoc.
 export interface CommonProps extends StyledComponentProps<never> {
-  className?: string;
+  className?: string | undefined;
   style?: React.CSSProperties;
 }
 
