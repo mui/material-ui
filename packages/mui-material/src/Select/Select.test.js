@@ -8,7 +8,7 @@ import {
   act,
   createRenderer,
   fireEvent,
-  screen
+  screen,
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
@@ -376,7 +376,7 @@ describe('<Select />', () => {
           'MUI: You have provided an out-of-range value `20` for the select component.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-          'MUI: You have provided an out-of-range value `20` for the select component.',
+            'MUI: You have provided an out-of-range value `20` for the select component.',
           'MUI: You have provided an out-of-range value `20` for the select component.',
         ]);
       });
@@ -1452,20 +1452,17 @@ describe('<Select />', () => {
           {({ css }) => (
             <Select
               data-testid="root"
-              value={"0"}
+              value={'0'}
               classes={{ select: css({ backgroundColor: color }) }}
             >
-              <MenuItem  value={"0"}>
-                This is the text of the menu item
-              </MenuItem>
+              <MenuItem value={'0'}>This is the text of the menu item</MenuItem>
             </Select>
           )}
-        </ClassNames>
+        </ClassNames>,
       );
-      const root = getByTestId("root");
+      const root = getByTestId('root');
 
       expect(getComputedStyle(root).backgroundColor).to.equal(color);
     });
   });
-
 });
