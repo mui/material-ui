@@ -25,7 +25,7 @@ const theme = extendTheme({
   },
 });
 
-export default function JoyCssBaseline() {
+export default function MaterialScopedCssBaseline() {
   return (
     <CssVarsProvider theme={theme}>
       <ScopedCssBaseline

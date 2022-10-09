@@ -3,7 +3,7 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/s
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
-export default function JoyCssBaseline() {
+export default function MaterialCssBaseline() {
   return (
     <CssVarsProvider>
       <CssBaseline enableColorScheme />
