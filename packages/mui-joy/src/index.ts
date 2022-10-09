@@ -55,6 +55,9 @@ export * from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
 
+export { default as ScopedCssBaseline } from './ScopedCssBaseline';
+export * from './ScopedCssBaseline';
+
 export { default as Divider } from './Divider';
 export * from './Divider';
 
