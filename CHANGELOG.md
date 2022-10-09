@@ -376,7 +376,7 @@ _Aug 22, 2022_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).  
+- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).
   A couple of icons changed their appearance. See the difference [on this Argos build](https://app.argos-ci.com/mui/material-ui/builds/4428]).
 
 ### `@mui/material@5.10.2`
@@ -1966,8 +1966,8 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   `unstable_ClassNameGenerator` has been moved from `utils` to `className` folder to prevent all MUI Base module imports. If you use the module, please update the import as suggested in the diff below:
 
   ```diff
-  - import { unstable_ClassNameGenerator } from '@mui/material/utils';
-  + import { unstable_ClassNameGenerator } from '@mui/material/className';
+  -import { unstable_ClassNameGenerator } from '@mui/material/utils';
+  +import { unstable_ClassNameGenerator } from '@mui/material/className';
   ```
 
 #### Changes
@@ -2309,8 +2309,8 @@ A big thanks to the 22 contributors who made this release possible. Here are som
   3. Change the import paths of unstyled components from @mui/material to @mui/base, e.g.:
 
   ```diff
-  - @import ButtonUnstyled from '@mui/material/ButtonUnstyled';
-  + @import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+  -import ButtonUnstyled from '@mui/material/ButtonUnstyled';
+  +import ButtonUnstyled from '@mui/base/ButtonUnstyled';
   ```
 
 #### Changes
@@ -4353,12 +4353,12 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiTab-root">
-  - <span class="MuiTab-wrapper">
+   <button class="MuiTab-root">
+  -  <span class="MuiTab-wrapper">
       {icon}
       {label}
-  - </span>
-  </button>
+  -  </span>
+   </button>
   ```
 
 - [BottomNavigation] Remove wrapper from BottomNavigationAction (#26923) @siriwatknp
@@ -4366,14 +4366,14 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiBottomNavigationAction-root">
-  - <span class="MuiBottomNavigationAction-wrapper">
-      {icon}
-      <span class="MuiBottomNavigationAction-label">
-        {label}
-      </span>
-  - </span>
-  </button>
+   <button class="MuiBottomNavigationAction-root">
+  -  <span class="MuiBottomNavigationAction-wrapper">
+       {icon}
+       <span class="MuiBottomNavigationAction-label">
+         {label}
+       </span>
+  -  </span>
+   </button>
   ```
 
 #### Changes
