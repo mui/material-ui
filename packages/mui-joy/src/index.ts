@@ -1,6 +1,8 @@
 export { default as colors } from './colors';
 export * from './styles';
 
+export { default as GlobalStyles } from './GlobalStyles';
+
 export { default as AspectRatio } from './AspectRatio';
 export * from './AspectRatio';
 
