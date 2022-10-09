@@ -67,6 +67,21 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getRatingUtilityClass, classes);
 };
 
+function ignoreKeyboardEvents({ type, clientX, clientY, target }) {
+  if (type !== 'click') {
+    return false;
+  }
+
+  /* this is a workaround for Safari - Safari returns right and bottom corners of the element
+  as mouse coorinates on focus */
+  if (clientX > 0 && clientY > 0) {
+    const { bottom, right } = target.getBoundingClientRect();
+    return clientX + 1 === Math.round(right) && clientY + 1 === Math.round(bottom);
+  }
+
+  return clientX === 0 && clientY === 0;
+}
+
 const RatingRoot = styled('span', {
   name: 'MuiRating',
   slot: 'Root',
@@ -128,7 +143,6 @@ const RatingIcon = styled('span', {
   slot: 'Icon',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-
     return [
       styles.icon,
       ownerState.iconEmpty && styles.iconEmpty,
@@ -426,7 +440,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const handleClear = (event) => {
     // Ignore keyboard events
     // https://github.com/facebook/react/issues/7407
-    if (event.clientX === 0 && event.clientY === 0) {
+    const shouldIgnore = ignoreKeyboardEvents(event);
+    if (shouldIgnore) {
       return;
     }
 

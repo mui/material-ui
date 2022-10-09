@@ -102,7 +102,7 @@ export function teardown(doc: Document): void {
 function isFocusVisible(event: React.FocusEvent): boolean {
   const { target } = event;
   try {
-    return target.matches(':focus-visible');
+    return target.isEqualNode(document.activeElement);
   } catch (error) {
     // Browsers not implementing :focus-visible will throw a SyntaxError.
     // We use our own heuristic for those browsers.
