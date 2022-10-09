@@ -7,6 +7,7 @@ export const getThemeWithVars = (
   themeInput?: Omit<CssVarsThemeOptions, 'colorSchemes'> & ColorSystemOptions,
 ) => {
   const {
+    cssVarPrefix,
     colorSchemes,
     focus,
     fontFamily,
@@ -59,6 +60,7 @@ export const getThemeWithVars = (
       shadow,
       palette,
     },
+    getColorSchemeSelector: () => '&',
   } as unknown as Theme;
 };
 

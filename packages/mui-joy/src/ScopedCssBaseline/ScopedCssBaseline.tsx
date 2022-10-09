@@ -64,7 +64,7 @@ const ScopedCssBaselineRoot = styled('div', {
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps<typeof inProps & ScopedCssBaselineProps>({
     props: inProps,
-    name: 'MuiScopedCssBaseline',
+    name: 'JoyScopedCssBaseline',
   });
 
   const { className, component = 'div', disableColorScheme = false, ...other } = props;
