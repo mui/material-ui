@@ -17,7 +17,7 @@
 
 <div align="center">
 
-**[稳定版 V5.0](https://mui.com/)** | English | [简体中文](./README-zh_CN.md) 
+**[稳定版 V5.0](https://mui.com/)** | [English](./README.md) | 简体中文
 
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
