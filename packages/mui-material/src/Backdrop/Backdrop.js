@@ -68,7 +68,6 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
       <BackdropRoot
-        aria-hidden
         as={components.Root ?? component}
         className={clsx(classes.root, className)}
         ownerState={{ ...ownerState, ...componentsProps.root?.ownerState }}
