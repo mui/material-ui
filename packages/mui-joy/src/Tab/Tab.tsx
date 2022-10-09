@@ -43,7 +43,7 @@ const TabRoot = styled(ListItemButtonRoot, {
     ...(ownerState.selected && {
       boxShadow: theme.vars.shadow.sm,
       fontWeight: 'initial',
-      ...(!variantStyle.backgroundColor && {
+      ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.body,
         '&:hover': {
           backgroundColor: theme.vars.palette.background.body,

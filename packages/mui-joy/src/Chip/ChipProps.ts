@@ -86,5 +86,5 @@ export interface ChipOwnerState extends ChipProps {
   /**
    * If `true`, the action slot's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

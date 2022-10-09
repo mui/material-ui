@@ -21,7 +21,7 @@ function upperCaseFirst(string) {
  * @example moduleIDToJSIdentifier('../Box-new.js') === '$$$BoxNewJs'
  */
 function moduleIDToJSIdentifier(moduleID) {
-  const delimiter = /(\.|-|\/)/;
+  const delimiter = /(\.|-|\/|:)/;
   return moduleID
     .split(delimiter)
     .filter((part) => !delimiter.test(part))
@@ -125,7 +125,9 @@ module.exports = async function demoLoader() {
 
   const demos = {};
   const importedModuleIDs = new Set();
+  const components = {};
   const demoModuleIDs = new Set();
+  const componentModuleIDs = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -147,6 +149,7 @@ module.exports = async function demoLoader() {
         `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
         '',
       )}`;
+
       const moduleFilepath = path.join(
         path.dirname(this.resourcePath),
         moduleID.replace(/\//g, path.sep),
@@ -187,16 +190,42 @@ module.exports = async function demoLoader() {
     }),
   );
 
-  const transformed = ` 
-    ${Array.from(importedModuleIDs)
+  const componentNames = Array.from(
+    new Set(
+      docs.en.rendered
+        .filter((markdownOrComponentConfig) => {
+          return (
+            typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.component
+          );
+        })
+        .map((componentConfig) => {
+          return componentConfig.component;
+        }),
+    ),
+  );
+
+  componentNames.forEach((componentName) => {
+    const moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+
+    components[moduleID] = componentName;
+    componentModuleIDs.add(moduleID);
+  });
+
+  const transformed = `
+  ${Array.from(importedModuleIDs)
+    .map((moduleID) => {
+      return `import * as ${moduleIDToJSIdentifier(
+        moduleID.replace('@', '$'),
+      )} from '${moduleID}';`;
+    })
+    .join('\n')}
+
+    ${Array.from(demoModuleIDs)
       .map((moduleID) => {
-        return `import * as ${moduleIDToJSIdentifier(
-          moduleID.replace('@', '$'),
-        )} from '${moduleID}';`;
+        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
-    
-    ${Array.from(demoModuleIDs)
+    ${Array.from(componentModuleIDs)
       .map((moduleID) => {
         return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
       })
@@ -208,6 +237,12 @@ module.exports = async function demoLoader() {
     export const demoComponents = {${Array.from(demoModuleIDs)
       .map((moduleID) => {
         return `${JSON.stringify(moduleID)}: ${moduleIDToJSIdentifier(moduleID)},`;
+      })
+      .join('\n')}};
+    
+    export const srcComponents = {${Array.from(componentModuleIDs)
+      .map((moduleID) => {
+        return `${JSON.stringify(components[moduleID])}: ${moduleIDToJSIdentifier(moduleID)},`;
       })
       .join('\n')}};
 

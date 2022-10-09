@@ -16,6 +16,7 @@ module.exports = [
   { pathname: '/base/api/portal' },
   { pathname: '/base/api/select-unstyled' },
   { pathname: '/base/api/slider-unstyled' },
+  { pathname: '/base/api/snackbar-unstyled' },
   { pathname: '/base/api/switch-unstyled' },
   { pathname: '/base/api/table-pagination-unstyled' },
   { pathname: '/base/api/tab-panel-unstyled' },

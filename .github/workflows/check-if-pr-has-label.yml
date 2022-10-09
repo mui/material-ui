@@ -6,11 +6,11 @@ on:
 
 jobs:
   test-label-applied:
-  # Tests that label is added on the PR
+    # Tests that label is added on the PR
     runs-on: ubuntu-latest
     steps:
       - uses: mnajdova/github-action-required-labels@v2.1
         with:
           mode: minimum
           count: 1
-          labels: ""
+          labels: ''

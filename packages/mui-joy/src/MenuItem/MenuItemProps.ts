@@ -29,7 +29,7 @@ export interface MenuItemOwnerState extends MenuItemProps {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }
 
 export type ExtendMenuItem<M extends OverridableTypeMap> = ((

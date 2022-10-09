@@ -42,7 +42,7 @@ MUI Base offers two kinds of building blocks: unstyled components and hooks.
 Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
-You can, of course, still use [MUI System](https://mui.com/system/](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
+You can, of course, still use [MUI System](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
 Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for an example of using this library.
 
 In contrast to Material UI, MUI Base's components do not have any default styles.
