@@ -5,7 +5,7 @@
     "aria-labelledby": { "type": { "name": "string" } },
     "BackdropComponent": {
       "type": { "name": "elementType" },
-      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  'aria-hidden': true,\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
       "deprecationInfo": "Use <code>components.Backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
