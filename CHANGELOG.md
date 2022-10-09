@@ -93,8 +93,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
 
   ```diff
-  - import TrapFocus from ‘@mui/base/TrapFocus’;
-  + import FocusTrap from ‘@mui/base/FocusTrap’;
+  -import TrapFocus from '@mui/base/TrapFocus';
+  +import FocusTrap from '@mui/base/FocusTrap';
   ```
 
 #### Changes
