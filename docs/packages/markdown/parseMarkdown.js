@@ -249,7 +249,9 @@ function createRender(context) {
         `<a aria-labelledby="${hash}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
-        `<button data-feedback-hash="${hash}">Comment</button>`,
+        `<button class="comment-link-style" data-feedback-hash="${hash}">`,
+        '<svg><use xlink:href="#comment-link-icon" /></svg>',
+        `</button>`,
         `</h${level}>`,
       ].join('');
     };
@@ -459,6 +461,11 @@ ${headers.components
   <symbol id="anchor-link-icon" viewBox="0 0 16 16">
     <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
   </symbol>
+</svg>`);
+      rendered.unshift(`<svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+<symbol id="comment-link-icon" viewBox="0 0 24 24">
+  <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2.47l6.88-6.88c.2-.2.51-.2.71 0l1.77 1.77c.2.2.2.51 0 .71L8.47 14H6zm12 0h-7.5l2-2H18v2z" />
+</symbol>
 </svg>`);
 
       docs[userLanguage] = {
