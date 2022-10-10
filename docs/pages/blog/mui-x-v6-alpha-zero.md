@@ -82,7 +82,7 @@ The following is a list of enhancements in the pipeline for v6. It contains the 
 
 - **Improved Customizabilitys**  
    v6 will be packed with new customization abilities and support for new use cases.
-  - [The new date fields are built over hooks and based on a headless approach](https://next.mui.com/x/react-date-pickers/date-field/#headless-usage).
+  - [The new fields are based on a headless approach with custom hooks. (Documentation is coming soon)](https://next.mui.com/x/react-date-pickers/date-field/#headless-usage).
   - [Single Input for Date Range](https://github.com/mui/mui-x/issues/5193)
   - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466)
 
