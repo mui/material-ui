@@ -120,7 +120,6 @@ const ButtonRoot = styled(ButtonBase, {
           '--md-comp-button-container-color': containerColor[ownerState.variant],
           '--md-comp-button-container-shadow-color': '',
           '--md-comp-button-container-elevation': '',
-
           '--md-comp-button-label-text-color': labelTextColor[ownerState.variant],
           '--md-comp-button-label-text-font': (theme.vars || theme).typescale.label.large.family,
           '--md-comp-button-label-text-line-height': '',
@@ -128,7 +127,6 @@ const ButtonRoot = styled(ButtonBase, {
           '--md-comp-button-label-text-tracking': '',
           '--md-comp-button-label-text-weight': '',
           '--md-comp-button-icon-color': '',
-
           // disabled
           '--md-comp-button-disabled-container-color': disabeldContainerColor[ownerState.variant],
           '--md-comp-button-disabled-container-elevation': 'none', // Should be md.sys.elevation.level0
@@ -139,35 +137,25 @@ const ButtonRoot = styled(ButtonBase, {
 
           '--md-comp-button-disabled-icon-color': '',
           '--md-comp-button-disabled-icon-opacity': '',
-
           // hovered
           '--md-comp-button-hovered-container-state-layer-color': '',
           '--md-comp-button-hovered-container-state-layer-opacity': '',
           '--md-comp-button-hovered-container-elevation': '',
-
           '--md-comp-button-hovered-label-text-color': '',
-
           '--md-comp-button-hovered-icon-color': '',
-
           // focused
           '--md-comp-button-focused-container-state-layer-color': '',
           '--md-comp-button-focused-container-state-layer-opacity': '',
           '--md-comp-button-focused-container-elevation': '',
-
           '--md-comp-button-focused-label-text-color': '',
-
           '--md-comp-button-focused-icon-color': '',
-
           // pressed
           '--md-comp-button-pressed-container-state-layer-color': '',
           '--md-comp-button-pressed-container-state-layer-opacity': '',
           '--md-comp-button-pressed-container-elevation': '',
-
           '--md-comp-button-pressed-label-text-color': '',
-
           '--md-comp-button-pressed-icon-color': '',
         }),
-
         padding: '10px 24px',
         fontFamily: theme.vars
           ? 'var(--md-comp-button-label-text-font)'
