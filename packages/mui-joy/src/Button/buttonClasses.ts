@@ -41,18 +41,8 @@ export interface ButtonClasses {
   endDecorator: string;
   /** Styles applied to the root element if `loading={true}`. */
   loading: string;
-  /** Styles applied to the loadingIndicator element. */
-  loadingIndicator: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
+  /** Styles applied to the loadingIndicatorCenter element. */
   loadingIndicatorCenter: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
-  loadingIndicatorStart: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
-  loadingIndicatorEnd: string;
-  /** Styles applied to the endDecorator element if `loading={true}` and `loadingPosition="end"`. */
-  endDecoratorLoadingEnd: string;
-  /** Styles applied to the startDecorator element if `loading={true}` and `loadingPosition="start"`. */
-  startDecoratorLoadingStart: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -82,12 +72,7 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
   'startDecorator',
   'endDecorator',
   'loading',
-  'loadingIndicator',
   'loadingIndicatorCenter',
-  'loadingIndicatorStart',
-  'loadingIndicatorEnd',
-  'endDecoratorLoadingEnd',
-  'startDecoratorLoadingStart',
 ]);
 
 export default buttonClasses;

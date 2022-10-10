@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useButton } from '@mui/base/ButtonUnstyled';
@@ -20,7 +19,6 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
     size,
     variant,
     loading,
-    loadingPosition,
   } = ownerState;
 
   const slots = {
@@ -34,18 +32,9 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
       size && `size${capitalize(size)}`,
       loading && 'loading',
     ],
-    startDecorator: [
-      'startDecorator',
-      loading && loadingPosition && `startDecoratorLoading${capitalize(loadingPosition)}`,
-    ],
-    endDecorator: [
-      'endDecorator',
-      loading && loadingPosition && `endDecoratorLoading${capitalize(loadingPosition)}`,
-    ],
-    loadingIndicator: [
-      'loadingIndicator',
-      loading && loadingPosition && `loadingIndicator${capitalize(loadingPosition)}`,
-    ],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
+    loadingIndicatorCenter: ['loadingIndicatorCenter'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
@@ -63,6 +52,7 @@ const ButtonStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
 });
@@ -73,9 +63,25 @@ const ButtonEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
+
+const ButtonLoadingCenter = styled('span', {
+  name: 'JoyButton',
+  slot: 'LoadingCenter',
+  overridesResolver: (props, styles) => styles.loadingIndicatorCenter,
+})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => ({
+  display: 'inherit',
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+  ...(ownerState.disabled && {
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
+  }),
+}));
 
 export const ButtonRoot = styled('button', {
   name: 'JoyButton',
@@ -138,80 +144,16 @@ export const ButtonRoot = styled('button', {
     {
       [`&.${buttonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    {
-      [`& .${buttonClasses.startDecoratorLoadingStart}, & .${buttonClasses.endDecoratorLoadingEnd}`]:
-        {
-          transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-          opacity: 0,
-        },
       ...(ownerState.loadingPosition === 'center' && {
-        transition:
-          'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         [`&.${buttonClasses.loading}`]: {
+          transition:
+            'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           color: 'transparent',
         },
       }),
-      ...(ownerState.loadingPosition === 'start' &&
-        ownerState.fullWidth && {
-          [`& .${buttonClasses.startDecoratorLoadingStart}, & .${buttonClasses.endDecoratorLoadingEnd}`]:
-            {
-              transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-              opacity: 0,
-              marginRight: ownerState.size === 'sm' ? -11 : ownerState.size === 'md' ? -12 : -10,
-            },
-        }),
-      ...(ownerState.loadingPosition === 'end' &&
-        ownerState.fullWidth && {
-          [`& .${buttonClasses.startDecoratorLoadingStart}, & .${buttonClasses.endDecoratorLoadingEnd}`]:
-            {
-              transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-              opacity: 0,
-              marginLeft: ownerState.size === 'sm' ? -11 : ownerState.size === 'md' ? -12 : -10,
-            },
-        }),
     },
   ];
 });
-
-const ButtonLoadingIndicator = styled('div', {
-  name: 'JoyButton',
-  slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    return [
-      styles.loadingIndicator,
-      styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
-    ];
-  },
-})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => ({
-  position: 'absolute',
-  visibility: 'visible',
-  display: 'flex',
-  ...(ownerState.loadingPosition === 'start' && {
-    left: ownerState.size === 'sm' ? '0.75rem' : ownerState.size === 'md' ? '1rem' : '1.5rem',
-    '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
-  }),
-  ...(ownerState.loadingPosition === 'center' && {
-    left: '50%',
-    transform: 'translate(-50%)',
-    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!].color,
-  }),
-  ...(ownerState.loadingPosition === 'end' && {
-    right: ownerState.size === 'sm' ? '0.75rem' : ownerState.size === 'md' ? '1rem' : '1.5rem',
-    '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
-  }),
-  ...(ownerState.loadingPosition === 'start' &&
-    ownerState.fullWidth && {
-      position: 'relative',
-      left: ownerState.size === 'sm' ? -6 : ownerState.size === 'md' ? -8 : -12,
-    }),
-  ...(ownerState.loadingPosition === 'end' &&
-    ownerState.fullWidth && {
-      position: 'relative',
-      right: ownerState.size === 'sm' ? -6 : ownerState.size === 'md' ? -8 : -12,
-    }),
-}));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -247,7 +189,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress color="primary" thickness={2} />
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
   );
 
   React.useImperativeHandle(
@@ -302,30 +244,32 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className: classes.endDecorator,
   });
 
-  const buttonLoadingIndicatorProps = useSlotProps({
-    elementType: ButtonLoadingIndicator,
-    externalSlotProps: componentsProps.loadingIndicator,
+  const loadingIndicatorCenterProps = useSlotProps({
+    elementType: ButtonLoadingCenter,
+    externalSlotProps: componentsProps.loadingIndicatorCenter,
     ownerState,
-    className: classes.loadingIndicator,
+    className: classes.loadingIndicatorCenter,
   });
-
-  const buttonLoadingIndicator = loading ? (
-    <ButtonLoadingIndicator {...buttonLoadingIndicatorProps}>
-      {loadingIndicator}
-    </ButtonLoadingIndicator>
-  ) : null;
 
   return (
     <ButtonRoot {...rootProps}>
-      {startDecorator && (
-        <ButtonStartDecorator {...startDecoratorProps}>{startDecorator}</ButtonStartDecorator>
+      {(startDecorator || (loading && loadingPosition === 'start')) && (
+        <ButtonStartDecorator {...startDecoratorProps}>
+          {loading && loadingPosition === 'start' ? loadingIndicator : startDecorator}
+        </ButtonStartDecorator>
       )}
 
-      {loadingPosition === 'end' ? children : buttonLoadingIndicator}
-      {loadingPosition === 'end' ? buttonLoadingIndicator : children}
+      {children}
+      {loading && loadingPosition === 'center' && (
+        <ButtonLoadingCenter {...loadingIndicatorCenterProps}>
+          {loadingIndicator}
+        </ButtonLoadingCenter>
+      )}
 
-      {endDecorator && (
-        <ButtonEndDecorator {...endDecoratorProps}>{endDecorator}</ButtonEndDecorator>
+      {(endDecorator || (loading && loadingPosition === 'end')) && (
+        <ButtonEndDecorator {...endDecoratorProps}>
+          {loading && loadingPosition === 'end' ? loadingIndicator : endDecorator}
+        </ButtonEndDecorator>
       )}
     </ButtonRoot>
   );

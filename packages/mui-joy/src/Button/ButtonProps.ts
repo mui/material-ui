@@ -20,7 +20,7 @@ interface ComponentsProps {
   root?: SlotComponentProps<'button', { sx?: SxProps }, ButtonOwnerState>;
   startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
   endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
-  loadingIndicator?: SlotComponentProps<'div', { sx?: SxProps }, ButtonOwnerState>;
+  loadingIndicatorCenter?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
 }
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -93,7 +93,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     /**
      * The node should contain an element with `role="progressbar"` with an accessible name.
      * By default we render a `CircularProgress` that is labelled by the button itself.
-     * @default <CircularProgress color="primary" thickness={2} />
+     * @default <CircularProgress />
      */
     loadingIndicator?: React.ReactNode;
     /**

@@ -124,7 +124,9 @@ describe('Joy <Button />', () => {
         </Button>,
       );
 
-      expect(container.querySelector(`.${classes.loadingIndicator}`)).to.have.text('loading..');
+      expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
+        'loading..',
+      );
       expect(getByRole('button')).to.have.style('color', 'transparent');
     });
   });
@@ -137,7 +139,18 @@ describe('Joy <Button />', () => {
       expect(loader.parentElement).to.have.class(classes.loadingIndicatorCenter);
     });
 
-    it('is rendered before the children when `loadingPosition=start` and startDecorator is not visible', () => {
+    it('there should be only one loading indicator', () => {
+      const { getAllByRole } = render(
+        <Button loading startDecorator="🚀" endDecorator="👍">
+          Test
+        </Button>,
+      );
+      const loaders = getAllByRole('progressbar');
+
+      expect(loaders).to.have.length(1);
+    });
+
+    it('loading indicator with `position="start"` replaces the `startDecorator` content', () => {
       const { getByRole } = render(
         <Button
           loading
@@ -151,12 +164,11 @@ describe('Joy <Button />', () => {
       const loader = getByRole('progressbar');
       const button = getByRole('button');
 
-      expect(loader.parentElement).to.have.class(classes.loadingIndicatorStart);
-      expect(button.querySelector(`.${classes.startDecorator}`)).to.have.style('opacity', '0');
-      expect(button).to.have.text('iconloading..Test');
+      expect(loader).toBeVisible();
+      expect(button).to.have.text('loading..Test');
     });
 
-    it('is rendered after the children when `loadingPosition=end` and endDecorator is not visible', () => {
+    it('loading indicator with `position="end"` replaces the `startDecorator` content', () => {
       const { getByRole } = render(
         <Button
           loading
@@ -170,9 +182,8 @@ describe('Joy <Button />', () => {
       const loader = getByRole('progressbar');
       const button = getByRole('button');
 
-      expect(loader.parentElement).to.have.class(classes.loadingIndicatorEnd);
-      expect(button.querySelector(`.${classes.endDecorator}`)).to.have.style('opacity', '0');
-      expect(button).to.have.text('Testloading..icon');
+      expect(loader).toBeVisible();
+      expect(button).to.have.text('Testloading..');
     });
   });
 });
