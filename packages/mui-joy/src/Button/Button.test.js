@@ -117,7 +117,10 @@ describe('Joy <Button />', () => {
       expect(getByRole('button')).to.have.text('Test');
     });
 
-    it('is rendered properly when `loading` and children should not be visible', () => {
+    it('is rendered properly when `loading` and children should not be visible', function test() {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       const { container, getByRole } = render(
         <Button loadingIndicator="loading.." loading>
           Test
@@ -127,7 +130,7 @@ describe('Joy <Button />', () => {
       expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
         'loading..',
       );
-      expect(getByRole('button')).to.have.style('color', 'transparent');
+      expect(getByRole('button')).toHaveComputedStyle({ color: 'transparent' });
     });
   });
 
