@@ -322,7 +322,11 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the MultiSelect.
    * @default {}
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside the MultiSelect.
    * Either a string to use a HTML element or a component.

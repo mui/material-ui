@@ -181,7 +181,26 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Snackbar.
    * @default {}
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    clickAwayListener: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func,
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+    ]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside the Snackbar.
    * Either a string to use a HTML element or a component.

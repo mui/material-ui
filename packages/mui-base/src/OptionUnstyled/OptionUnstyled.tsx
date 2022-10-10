@@ -127,7 +127,9 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the OptionUnstyled.
    * @default {}
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.

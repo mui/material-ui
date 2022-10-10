@@ -77,7 +77,9 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TabsList.
    * @default {}
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside the TabsList.
    * Either a string to use a HTML element or a component.

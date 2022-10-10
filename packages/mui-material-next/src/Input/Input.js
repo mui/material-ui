@@ -514,7 +514,11 @@ Input.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+    textarea: PropTypes.object,
+  }),
   /**
    * The components used for each slot inside the Input.
    * Either a string to use a HTML element or a component.
