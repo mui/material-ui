@@ -114,7 +114,7 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-有关如何将`样式化组件配置`为样式引擎的更多信息，请访问我们的[`样式化引擎` 指南](https://mui.com/material-ui/guides/styled-engine/)。
+有关如何将`样式化组件配置`为样式引擎的更多信息，请访问我们的 [`样式化引擎`指南](https://mui.com/material-ui/guides/styled-engine/)。
 ## 赞助商
 
 ### 钻石赞助商 💎
@@ -164,53 +164,45 @@ function App() {
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-u9sy1h)
 
-## Questions
+## 如何提出问题
 
-For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
-Use the "mui" tag on Stack Overflow to make it easier for the community to find your question.
+对于不涉及更改代码库的操作方法问题，请使用堆栈溢出代替GitHub问题。在[Stack Overflow](https://stackoverflow.com/questions/tagged/mui)上使用“mui”标签，让社区更容易找到您的问题。
+## 项目实例
+我们的文档以[使用Material UI的示例项目集合](https://mui.com/material-ui/getting-started/example-projects/)为特色。
 
-## Examples
-
-Our documentation features [a collection of example projects using Material UI](https://mui.com/material-ui/getting-started/example-projects/).
-
-## Documentation
+## 文档
 
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
 - [MUI Base](https://mui.com/base/getting-started/overview/)
 - [MUI System](https://mui.com/system/getting-started/overview/)
 
-## Premium themes
+## 专业版主题
+您可以在[MUI 商店](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store)中找到完整的模板和主题。
 
-You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+## 捐献
 
-## Contributing
+阅读[贡献指南](/CONTRIBUTING.md)，了解我们的开发过程，如何提出错误修复和改进，以及如何构建和测试您的更改。
 
-Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
+为MUI Core贡献的不仅仅是问题和拉取请求！除了对代码库作出贡献之外，还有许多其他方式[支持MUI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project)。
+## 更新日志
 
-Contributing to MUI Core is about more than just issues and pull requests!
-There are many other ways to [support MUI](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) beyond contributing to the code base.
+[更改日志](https://github.com/mui/material-ui/releases)会定期更新，以反映每个新版本中的更改。
+## 规划
 
-## Changelog
+在我们的路线图中可以找到[未来规划](https://mui.com/material-ui/discover-more/roadmap/)、高优先级功能和增强功能。
+## 许可
 
-The [changelog](https://github.com/mui/material-ui/releases) is regularly updated to reflect what's changed in each new release.
-
-## Roadmap
-
-Future plans and high-priority features and enhancements can be found in our [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
-
-## License
-
-This project is licensed under the terms of the
+本项目根据
 [MIT license](/LICENSE).
 
-## Security
+## 安全
 
-For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
+有关受支持版本的详细信息以及报告安全问题的联系方式，请参阅[安全策略](https://github.com/mui/material-ui/security/policy)。
 
-## Sponsoring services
+## 赞助的服务商
 
-These great services sponsor MUI's core infrastructure:
+这些出色的服务商赞助了 MUI 的核心基础架构：
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
@@ -218,7 +210,7 @@ These great services sponsor MUI's core infrastructure:
   <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
 </picture>
 
-[GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
+[GitHub](https://github.com/)允许我们托管 Git 存储库并协调贡献。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
@@ -226,7 +218,7 @@ These great services sponsor MUI's core infrastructure:
   <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
 </picture>
 
-[Netlify](https://www.netlify.com/) lets us distribute the documentation.
+[Netlify](https://www.netlify.com/)允许我们分发文档。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/crowdin-darkmode.svg">
@@ -234,7 +226,7 @@ These great services sponsor MUI's core infrastructure:
   <img alt="Crowdin logo" src="/docs/public/static/readme/crowdin-darkmode.svg">
 </picture>
 
-[Crowdin](https://crowdin.com/) lets us translate the documentation.
+[Crowdin](https://crowdin.com/)让我们翻译文档。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
@@ -242,8 +234,8 @@ These great services sponsor MUI's core infrastructure:
   <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
 </picture>
 
-[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
+[BrowserStack](https://www.browserstack.com/)允许我们在真实的浏览器中进行测试。
 
 <img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
 
-[CodeCov](https://about.codecov.io/) lets us monitor test coverage.
+[CodeCov](https://about.codecov.io/)允许我们监控测试覆盖率。
