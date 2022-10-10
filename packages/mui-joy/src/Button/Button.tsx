@@ -314,7 +314,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loadingIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -344,7 +344,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The node should contain an element with `role="progressbar"` with an accessible name.
    * By default we render a `CircularProgress` that is labelled by the button itself.
-   * @default <CircularProgress color="primary" thickness={2} />
+   * @default <CircularProgress />
    */
   loadingIndicator: PropTypes.node,
   /**
