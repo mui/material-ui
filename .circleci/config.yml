@@ -240,6 +240,11 @@ jobs:
           command: |
             yarn extract-error-codes
             git diff --exit-code
+      - run:
+          name: '`yarn docs:link-check` changes committed?'
+          command: |
+            yarn docs:link-check
+            git diff --exit-code
   test_types:
     <<: *defaults
     resource_class: 'medium+'

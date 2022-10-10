@@ -1,0 +1,32 @@
+not found: https://mui.com/blog/material-ui-v4-is-out/#premium-themes-store-✨
+used in
+- pages/blog/mui-core-v5.md
+available anchors on the same page:
+material-ui-v4-is-out
+#customization
+#documentation
+#high-level-goals-for-v4
+#material-design
+#performance
+#premium-themes-store-%E2%9C%A8
+#preparing-for-the-future
+#summary
+#thank-you
+#whats-new
+#whats-next
+
+
+
+not found: https://mui.com/size-snapshot
+used in
+- data/material/guides/minimizing-bundle-size/minimizing-bundle-size.md
+- data/material/components/autocomplete/autocomplete.md
+- data/material/components/click-away-listener/click-away-listener.md
+- data/material/components/popper/popper.md
+- data/material/components/textarea-autosize/textarea-autosize.md
+- data/material/components/use-media-query/use-media-query.md
+available anchors on the same page:
+
+
+
+
