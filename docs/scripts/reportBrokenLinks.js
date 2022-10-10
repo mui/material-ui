@@ -53,8 +53,8 @@ const jsFilePathToUrl = (jsFilePath) => {
   const file = path.basename(jsFilePath);
 
   const root = folder.slice(jsFilePath.indexOf('/pages') + '/pages'.length);
-  const suffix = file.split('.').at(-1);
-  let page = `/${file.slice(0, file.length - 1 - suffix.length)}`;
+  const suffix = path.extname(file);
+  let page = `/${file.slice(0, file.length - suffix.length)}`;
 
   if (page === '/index') {
     page = '';
@@ -165,6 +165,11 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
   });
 };
 
+const getAnchor = (link) => {
+  const splittedPath = link.split('/');
+  return splittedPath[splittedPath.length - 1];
+};
+
 // {[url with hash]: true}
 const availableLinks = {};
 
@@ -196,7 +201,7 @@ Object.keys(usedLinks)
       Object.keys(availableLinks)
         .filter((link) => getPageUrlFromLink(link) === getPageUrlFromLink(linkKey))
         .sort()
-        .map((link) => link.split('/').at(-1))
+        .map(getAnchor)
         .join('\n'),
     );
     write('\n\n');
