@@ -14,6 +14,7 @@ describe('<ScopedCssBaseline />', () => {
     muiName: 'JoyScopedCssBaseline',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    testVariantProps: { disableColorScheme: true },
     skip: ['classesRoot', 'componentsProp'],
   }));
 });
