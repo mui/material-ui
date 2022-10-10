@@ -83,8 +83,8 @@ The following is a list of enhancements in the pipeline for v6. It contains the 
 - **Improved Customization**  
    v6 will be packed with new customization abilities and support for new use cases.
   - [The new fields are based on a headless approach with custom hooks. (Documentation is coming soon)](https://next.mui.com/x/react-date-pickers/date-field/#headless-usage).
-  - [Single Input for Date Range](https://github.com/mui/mui-x/issues/5193)
-  - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466)
+  - [Single Input for Date Range](https://github.com/mui/mui-x/issues/5193).
+  - [Enable customization through component slots on every component](https://github.com/mui/mui-x/issues/4466).
 
 :::info
 You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
