@@ -21,12 +21,13 @@ export default function createCssVarsProvider(options) {
     attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    defaultMode: desisgnSystemMode = 'light',
+    defaultMode: designSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     enableColorScheme: designSystemEnableColorScheme = true,
     shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
     resolveTheme,
+    excludeVariablesFromRoot,
   } = options;
 
   if (
@@ -56,7 +57,7 @@ export default function createCssVarsProvider(options) {
     modeStorageKey = defaultModeStorageKey,
     colorSchemeStorageKey = defaultColorSchemeStorageKey,
     attribute = defaultAttribute,
-    defaultMode = desisgnSystemMode,
+    defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
     enableColorScheme = designSystemEnableColorScheme,
@@ -156,6 +157,14 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
+        if (excludeVariablesFromRoot) {
+          const excludedVariables = {};
+          excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
+            excludedVariables[cssVar] = css[cssVar];
+            delete css[cssVar];
+          });
+          defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
+        }
         defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
       } else {
         otherColorSchemesStyleSheet[

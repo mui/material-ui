@@ -438,7 +438,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       },
                     }}
                     value={(resolvedValue || 'none') as string}
-                    onChange={(val) =>
+                    onChange={(event, val) =>
                       setProps((latestProps) => ({
                         ...latestProps,
                         [propName]: val,

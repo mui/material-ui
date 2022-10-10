@@ -23,7 +23,7 @@ It also includes `OptionUnstyled` for creating the options on the list, and `Opt
 
 - 🦍 Can be used as a controlled or uncontrolled component
 - 🧬 Accepts custom elements and non-string values for options
-- 🪆 Options can be grouped and nested
+- 🗃️ Options can be grouped and nested
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -53,6 +53,20 @@ The following demo shows how to create and style a select component.
 Note that it also uses [`PopperUnstyled`](/base/react-popper/) to render a popup for the list of options:
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
+
+#### Form submission
+
+The value(s) chosen in the Select can be posted to a server using a standard HTML form.
+When the `name` prop is set, the Unstyled Select will render a hidden input with the selected value.
+
+{{"demo": "UnstyledSelectForm.js" }}
+
+Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
+
+You can customize the value of this hidden input.
+See the [Object values](#object-values) section to learn how to do it.
+
+#### TypeScript caveat
 
 `SelectUnstyled` accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).

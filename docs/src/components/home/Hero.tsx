@@ -50,10 +50,11 @@ const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   loading: createLoading({ width: 360, height: 212 }),
 });
 
-const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
-  ssr: false,
-  loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
-});
+// TODO Revert #34541 when https://github.com/mui/mui-x/pull/6362 is released
+// const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
+//   ssr: false,
+//   loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
+// });
 const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
   ssr: false,
   loading: createLoading({ width: { md: 360, xl: 400 }, height: 48 }),
@@ -153,12 +154,15 @@ export default function Hero() {
                 <ThemeChip />
               </Box>
               <ThemeTimeline />
-              <FolderTable />
+              {/* Temporary moved FolderTable to the next column due to ThemeDatePicker automatic focus */}
+              {/* <FolderTable /> */}
             </Stack>
           )}
           {isMdUp && (
             <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <ThemeDatePicker />
+              {/* Temporary removed ThemeDatePicker due to layout crash from auto focus */}
+              {/* <ThemeDatePicker /> */}
+              <FolderTable />
               <ThemeTabs />
               <Box sx={{ display: 'flex' }}>
                 <Box sx={{ flexGrow: 1 }}>
