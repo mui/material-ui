@@ -216,7 +216,7 @@ The overhead added by using the `experimental_sx` utility is the same as if you 
 
 > Note: You can use `experimental_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
 
-## How to use components selector API
+## How to use components selector
 
 If you've ever used the `styled()` API of either [`emotion`](https://emotion.sh/docs/styled#targeting-another-emotion-component) or [`styled-components`](https://styled-components.com/docs/advanced#referring-to-other-components), you should have been able to use components as selectors.
 
