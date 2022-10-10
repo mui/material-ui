@@ -77,15 +77,111 @@ const ButtonRoot = styled(ButtonBase, {
 })(
   ({ theme, ownerState }) => {
     if (theme.useMaterialYou) {
+      const containerColor = {
+        elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
+          (theme.vars || theme).palette.md3.colors.surface
+        }`,
+        filled: (theme.vars || theme).palette.md3.colors.primary,
+        filledTonal: (theme.vars || theme).palette.md3.colors.secondaryContainer,
+        outlined: 'none',
+        text: 'none',
+      };
+
+      const labelTextColor = {
+        elevated: (theme.vars || theme).palette.md3.colors.primary,
+        filled: (theme.vars || theme).palette.md3.colors.onPrimary,
+        filledTonal: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
+        outlined: (theme.vars || theme).palette.md3.colors.primary,
+        text: (theme.vars || theme).palette.md3.colors.primary,
+      };
+
+      const disabeldContainerColor = {
+        elevated: theme.vars
+          ? `rgba(${theme.vars.palette.md3.colors.onSurfaceChannel} / 0.12)`
+          : alpha(theme.palette.md3.colors.onSurface, 0.12),
+        filled: theme.vars
+          ? `rgba(${theme.vars.palette.md3.colors.onSurfaceChannel} / 0.12)`
+          : alpha(theme.palette.md3.colors.onSurface, 0.12),
+        filledTonal: theme.vars
+          ? `rgba(${theme.vars.palette.md3.colors.onSurfaceChannel} / 0.12)`
+          : alpha(theme.palette.md3.colors.onSurface, 0.12),
+        outlined: 'none',
+        text: 'none',
+      };
+
+      const disabledLabelTextColor = theme.vars
+        ? `rgba(${theme.vars.palette.md3.colors.onSurfaceChannel} / 0.38)`
+        : alpha(theme.palette.md3.colors.onSurface, 0.38);
+
       return {
+        ...(theme.vars && {
+          // TODO: Define all button variables
+          // enabled
+          '--md-comp-button-container-color': containerColor[ownerState.variant],
+          '--md-comp-button-container-shadow-color': '',
+          '--md-comp-button-container-elevation': '',
+
+          '--md-comp-button-label-text-color': labelTextColor[ownerState.variant],
+          '--md-comp-button-label-text-font': (theme.vars || theme).typescale.label.large.family,
+          '--md-comp-button-label-text-line-height': '',
+          '--md-comp-button-label-text-size': '',
+          '--md-comp-button-label-text-tracking': '',
+          '--md-comp-button-label-text-weight': '',
+          '--md-comp-button-icon-color': '',
+
+          // disabled
+          '--md-comp-button-disabled-container-color': disabeldContainerColor[ownerState.variant],
+          '--md-comp-button-disabled-container-elevation': 'none', // Should be md.sys.elevation.level0
+          // '--md-comp-button-disabled-container-opacity': '', contained in the container color
+
+          '--md-comp-button-disabled-label-text-color': disabledLabelTextColor,
+          // '--md-comp-button-disabled-label-text-opacity': '', contained in the label text color
+
+          '--md-comp-button-disabled-icon-color': '',
+          '--md-comp-button-disabled-icon-opacity': '',
+
+          // hovered
+          '--md-comp-button-hovered-container-state-layer-color': '',
+          '--md-comp-button-hovered-container-state-layer-opacity': '',
+          '--md-comp-button-hovered-container-elevation': '',
+
+          '--md-comp-button-hovered-label-text-color': '',
+
+          '--md-comp-button-hovered-icon-color': '',
+
+          // focused
+          '--md-comp-button-focused-container-state-layer-color': '',
+          '--md-comp-button-focused-container-state-layer-opacity': '',
+          '--md-comp-button-focused-container-elevation': '',
+
+          '--md-comp-button-focused-label-text-color': '',
+
+          '--md-comp-button-focused-icon-color': '',
+
+          // pressed
+          '--md-comp-button-pressed-container-state-layer-color': '',
+          '--md-comp-button-pressed-container-state-layer-opacity': '',
+          '--md-comp-button-pressed-container-elevation': '',
+
+          '--md-comp-button-pressed-label-text-color': '',
+
+          '--md-comp-button-pressed-icon-color': '',
+        }),
+
         padding: '10px 24px',
-        fontFamily: (theme.vars || theme).typescale.label.large.family,
+        fontFamily: theme.vars
+          ? 'var(--md-comp-button-label-text-font)'
+          : theme.typescale.label.large.family,
         fontWeight: (theme.vars || theme).typescale.label.large.weight,
         borderRadius: (theme.vars || theme).shape.borderRadius,
+        background: theme.vars
+          ? 'var(--md-comp-button-container-color)'
+          : containerColor[ownerState.variant],
+        color: theme.vars
+          ? 'var(--md-comp-button-label-text-color)'
+          : labelTextColor[ownerState.variant],
         // Filled varaint
         ...(ownerState.variant === 'filled' && {
-          backgroundColor: (theme.vars || theme).palette.md3.colors.primary,
-          color: (theme.vars || theme).palette.md3.colors.onPrimary,
           '&:hover': {
             boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
             ...(theme.vars
@@ -132,8 +228,6 @@ const ButtonRoot = styled(ButtonBase, {
         }),
         // Filled tonal varitant
         ...(ownerState.variant === 'filledTonal' && {
-          backgroundColor: (theme.vars || theme).palette.md3.colors.secondaryContainer,
-          color: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
           '&:hover': {
             boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
             ...(theme.vars
@@ -181,19 +275,11 @@ const ButtonRoot = styled(ButtonBase, {
         // Outlined varaiant
         ...(ownerState.variant === 'outlined' && {
           border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
-          color: (theme.vars || theme).palette.md3.colors.primary,
         }),
         // Elevated variant
         ...(ownerState.variant === 'elevated' && {
-          background: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
-            (theme.vars || theme).palette.md3.colors.surface
-          }`,
           color: (theme.vars || theme).palette.md3.colors.primary,
           boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
-        }),
-        // Text variant
-        ...(ownerState.variant === 'text' && {
-          color: (theme.vars || theme).palette.md3.colors.primary,
         }),
         // State styles for text, outlined, elevated variants
         ...((ownerState.variant === 'text' ||
@@ -245,6 +331,22 @@ const ButtonRoot = styled(ButtonBase, {
                 }),
           },
         }),
+        [`&.${buttonClasses.disabled}`]: {
+          color: theme.vars
+            ? 'var(--md-comp-button-disabled-label-text-color)'
+            : disabledLabelTextColor,
+          background: theme.vars
+            ? 'var(--md-comp-button-disabled-container-color)'
+            : disabeldContainerColor[ownerState.variant],
+          boxShadow: theme.vars ? 'var(--md-comp-button-disabled-container-elevation)' : 'none',
+          ...(ownerState.variant === 'outlined' && {
+            border: `1px solid ${
+              theme.vars
+                ? `rgba(${theme.vars.palette.md3.colors.onSurfaceChannel} / 0.12)`
+                : alpha(theme.palette.md3.colors.onSurface, 0.12)
+            }`,
+          }),
+        },
       };
     }
     return {

@@ -355,9 +355,11 @@ export default function extendTheme(options = {}, ...args) {
       if (key === 'light') {
         palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['40']);
         palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['90']);
+        palette.md3.colors.onSurfaceChannel = colorChannel(palette.md3.neutral['10']);
       } else {
         palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['80']);
         palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['30']);
+        palette.md3.colors.onSurfaceChannel = colorChannel(palette.md3.neutral['90']);
       }
     }
   });

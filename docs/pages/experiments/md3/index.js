@@ -48,12 +48,23 @@ const ModeSwitcher = ({ setMode: setModeProp }) => {
 const variants = ['elevated', 'filled', 'filledTonal', 'outlined', 'text'];
 const DemoComponents = () => {
   return (
-    <Stack direction="row" gap={1}>
-      {variants.map((variant) => (
-        <Button key={variant} variant={variant}>
-          {capitalize(variant)}
-        </Button>
-      ))}
+    <Stack direction="column" gap={1}>
+      <h4>Enabled</h4>
+      <Stack direction="row" gap={1}>
+        {variants.map((variant) => (
+          <Button key={`${variant}-enabled`} variant={variant}>
+            {capitalize(variant)}
+          </Button>
+        ))}
+      </Stack>
+      <h4>Disabled</h4>
+      <Stack direction="row" gap={1}>
+        {variants.map((variant) => (
+          <Button key={`${variant}-disabled`} variant={variant} disabled>
+            {capitalize(variant)}
+          </Button>
+        ))}
+      </Stack>
     </Stack>
   );
 };
