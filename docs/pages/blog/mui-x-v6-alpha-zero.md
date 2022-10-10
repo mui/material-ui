@@ -92,7 +92,7 @@ You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the ful
 
 ## How to migrate?
 
-We’ve prepared a [migration guide](https://mui.com/x/react-data-grid/migration-v5/), and we’ll continuously update it as we make any breaking changes during the pre-releases. It lists every update you need to make to your code to use the most recent packages.
+We’ve prepared a [migration guide](https://deploy-preview-6235--material-ui-x.netlify.app/x/react-data-grid/migration-v5/), and we’ll continuously update it as we make any breaking changes during the pre-releases. It lists every update you need to make to your code to use the most recent packages.
 
 We highly encourage you to try the new version. It is, after all, an improvement over the solid foundation we established with v5.
 
