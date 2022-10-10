@@ -72,8 +72,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 ### Layout
 
 - `box-sizing` is set globally on the `<html>` element to `border-box`.
-  Every element—including `*::before` and `*::after` are declared to inherit this property,
-  which ensures that the declared width of the element is never exceeded due to padding or border.
+  Every element—including `*::before` and `*::after` are declared to inherit this property, which ensures that the declared width of the element is never exceeded due to padding or border.
 
 ### Color scheme
 
