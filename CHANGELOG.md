@@ -1,5 +1,50 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.9
+
+<!-- generated comparing v5.10.8..master -->
+
+_Oct 10, 2022_
+
+A big thanks to the 7 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.9`
+
+- &#8203;<!-- 16 -->[Grid v2][system] handle direction object prop for responsive design (#34574) @vanyaxk
+- &#8203;<!-- 03 -->[Slider] Fix unnecessary accessibility attribute in root element (#34610) @vanyaxk
+
+### `@mui/system@5.10.9`
+
+- &#8203;<!-- 02 -->[system] Fix typo in createCssVarsProvider (#34661) @HexM7
+
+### `@mui/base@5.0.0-alpha.101`
+
+- &#8203;<!-- 01 -->[TrapFocus] Restore the previously exported type from @mui/material (#34601) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.49`
+
+- &#8203;<!-- 04 -->[Joy] Add button loading functionality (#34658) @kushagra010
+
+### Docs
+
+- &#8203;<!-- 15 -->[blog] Blog post for MUI X v6 alpha zero (#34424) @joserodolfofreitas
+- &#8203;<!-- 09 -->[docs] Improve Joy UI tutorial demo (#34653) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Explain how SelectUnstyled renders a hidden input (#34638) @michaldudak
+- &#8203;<!-- 07 -->[docs] Fix Taiwan description (#34611) @oliviertassinari
+- &#8203;<!-- 06 -->[docs] Fix codesandbox export with dayjs (#34619) @oliviertassinari
+- &#8203;<!-- 05 -->[docs] Explain the purpose of renderGroup prop (#34066) @michaldudak
+
+### Core
+
+- &#8203;<!-- 14 -->[core] Make useForkRef variadic (#27939) @michaldudak
+- &#8203;<!-- 13 -->[core] Speedup of yarn install in the CI (#34632) @oliviertassinari
+- &#8203;<!-- 12 -->[core] Fix markdown loader on Windows (#34623) @michaldudak
+- &#8203;<!-- 11 -->[core] Update changelog for version v5.10.8 (#34593) @mnajdova
+- &#8203;<!-- 10 -->[core] Update root package.json version (#34592) @mnajdova
+
+All contributors of this release in alphabetical order: @HexM7, @joserodolfofreitas, @kushagra010, @michaldudak, @mnajdova, @oliviertassinari, @vanyaxk
+
 ## 5.10.8
 
 <!-- generated comparing v5.10.7..master -->
