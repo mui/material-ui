@@ -15,7 +15,8 @@
     "start": "next start",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `yarn docs:typescript:formatted'` instead && exit 1",
-    "typescript:transpile:dev": "echo 'Use `yarn docs:typescript'` instead && exit 1"
+    "typescript:transpile:dev": "echo 'Use `yarn docs:typescript'` instead && exit 1",
+    "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
     "@babel/core": "^7.19.3",
