@@ -46,6 +46,8 @@ const ModeSwitcher = ({ setMode: setModeProp }) => {
 };
 
 const variants = ['elevated', 'filled', 'filledTonal', 'outlined', 'text'];
+const colors = ['primary', 'secondary', 'tertiary'];
+
 const DemoComponents = () => {
   return (
     <Stack direction="column" gap={1}>
@@ -62,6 +64,28 @@ const DemoComponents = () => {
         {variants.map((variant) => (
           <Button key={`${variant}-disabled`} variant={variant} disabled>
             {capitalize(variant)}
+          </Button>
+        ))}
+      </Stack>
+      <h4>Colors</h4>
+      <Stack direction="row" gap={1}>
+        {colors.map((color) => (
+          <Button key={color} variant="filled" color={color}>
+            {capitalize(color)}
+          </Button>
+        ))}
+      </Stack>
+      <Stack direction="row" gap={1}>
+        {colors.map((color) => (
+          <Button key={color} variant="outlined" color={color}>
+            {capitalize(color)}
+          </Button>
+        ))}
+      </Stack>
+      <Stack direction="row" gap={1}>
+        {colors.map((color) => (
+          <Button key={color} variant="text" color={color}>
+            {capitalize(color)}
           </Button>
         ))}
       </Stack>

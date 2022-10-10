@@ -354,10 +354,14 @@ export default function extendTheme(options = {}, ...args) {
     if (useMaterialYou) {
       if (key === 'light') {
         palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['40']);
+        palette.md3.colors.secondaryChannel = colorChannel(palette.md3.secondary['40']);
+        palette.md3.colors.tertiaryChannel = colorChannel(palette.md3.tertiary['40']);
         palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['90']);
         palette.md3.colors.onSurfaceChannel = colorChannel(palette.md3.neutral['10']);
       } else {
         palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['80']);
+        palette.md3.colors.secondaryChannel = colorChannel(palette.md3.secondary['80']);
+        palette.md3.colors.tertiaryChannel = colorChannel(palette.md3.tertiary['80']);
         palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['30']);
         palette.md3.colors.onSurfaceChannel = colorChannel(palette.md3.neutral['90']);
       }

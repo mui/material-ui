@@ -81,7 +81,7 @@ const ButtonRoot = styled(ButtonBase, {
         elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
           (theme.vars || theme).palette.md3.colors.surface
         }`,
-        filled: (theme.vars || theme).palette.md3.colors.primary,
+        filled: (theme.vars || theme).palette.md3.colors[ownerState.color ?? 'primary'],
         filledTonal: (theme.vars || theme).palette.md3.colors.secondaryContainer,
         outlined: 'none',
         text: 'none',
@@ -89,10 +89,12 @@ const ButtonRoot = styled(ButtonBase, {
 
       const labelTextColor = {
         elevated: (theme.vars || theme).palette.md3.colors.primary,
-        filled: (theme.vars || theme).palette.md3.colors.onPrimary,
+        filled: (theme.vars || theme).palette.md3.colors[
+          `on${capitalize(ownerState.color ?? 'primary')}`
+        ],
         filledTonal: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
-        outlined: (theme.vars || theme).palette.md3.colors.primary,
-        text: (theme.vars || theme).palette.md3.colors.primary,
+        outlined: (theme.vars || theme).palette.md3.colors[ownerState.color ?? 'primary'],
+        text: (theme.vars || theme).palette.md3.colors[ownerState.color ?? 'primary'],
       };
 
       const disabeldContainerColor = {
@@ -175,12 +177,14 @@ const ButtonRoot = styled(ButtonBase, {
             ...(theme.vars
               ? {
                   backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                    (theme.vars || theme).palette.md3.colors[
+                      `${ownerState.color ?? 'primary'}Channel`
+                    ]
                   } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
                 }
               : {
                   backgroundColor: alpha(
-                    theme.palette.md3.colors.primary,
+                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
                     1 - theme.state.hover.stateLayerOpacity,
                   ),
                 }),
@@ -189,12 +193,14 @@ const ButtonRoot = styled(ButtonBase, {
             ...(theme.vars
               ? {
                   backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                    (theme.vars || theme).palette.md3.colors[
+                      `${ownerState.color ?? 'primary'}Channel`
+                    ]
                   } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
                 }
               : {
                   backgroundColor: alpha(
-                    theme.palette.md3.colors.primary,
+                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
                     1 - theme.state.pressed.stateLayerOpacity,
                   ),
                 }),
@@ -203,12 +209,14 @@ const ButtonRoot = styled(ButtonBase, {
             ...(theme.vars
               ? {
                   backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.primaryChannel
+                    (theme.vars || theme).palette.md3.colors[
+                      `${ownerState.color ?? 'primary'}Channel`
+                    ]
                   } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
                 }
               : {
                   backgroundColor: alpha(
-                    theme.palette.md3.colors.primary,
+                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
                     1 - theme.state.focus.stateLayerOpacity,
                   ),
                 }),
@@ -269,10 +277,7 @@ const ButtonRoot = styled(ButtonBase, {
           color: (theme.vars || theme).palette.md3.colors.primary,
           boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
         }),
-        // State styles for text, outlined, elevated variants
-        ...((ownerState.variant === 'text' ||
-          ownerState.variant === 'outlined' ||
-          ownerState.variant === 'elevated') && {
+        ...(ownerState.variant === 'elevated' && {
           '&:hover': {
             ...(ownerState.variant === 'elevated' && {
               boxShadow: theme.shadows[4],
@@ -314,6 +319,60 @@ const ButtonRoot = styled(ButtonBase, {
               : {
                   backgroundColor: alpha(
                     theme.palette.md3.colors.primary,
+                    theme.state.focus.stateLayerOpacity,
+                  ),
+                }),
+          },
+        }),
+        // State styles for text, outlined, elevated variants
+        ...((ownerState.variant === 'text' || ownerState.variant === 'outlined') && {
+          '&:hover': {
+            ...(ownerState.variant === 'elevated' && {
+              boxShadow: theme.shadows[4],
+            }),
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors[
+                      `${ownerState.color ?? 'primary'}Channel`
+                    ]
+                  } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
+                    theme.state.hover.stateLayerOpacity,
+                  ),
+                }),
+          },
+          '&:active': {
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors[
+                      `${ownerState.color ?? 'primary'}Channel`
+                    ]
+                  } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
+                    theme.state.pressed.stateLayerOpacity,
+                  ),
+                }),
+          },
+          [`&.${buttonClasses.focusVisible}`]: {
+            ...(theme.vars
+              ? {
+                  backgroundColor: `rgba(${
+                    (theme.vars || theme).palette.md3.colors[
+                      `${ownerState.color ?? 'primary'}Channel`
+                    ]
+                  } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`,
+                }
+              : {
+                  backgroundColor: alpha(
+                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
                     theme.state.focus.stateLayerOpacity,
                   ),
                 }),
