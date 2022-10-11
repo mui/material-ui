@@ -76,6 +76,11 @@ const pages = [
           { pathname: '/joy-ui/react-tabs' },
         ],
       },
+      {
+        pathname: '/joy-ui/components/utils',
+        subheader: 'utils',
+        children: [{ pathname: '/joy-ui/react-css-baseline' }],
+      },
     ],
   },
   {

@@ -307,8 +307,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }
 
-  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(ref, handleOwnRef);
+  const handleRef = useForkRef(ref, focusVisibleRef, buttonRef);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
