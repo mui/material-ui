@@ -114,7 +114,7 @@ async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
   if (!comment || comment.length < 10) {
-    return;
+    return 'ignored';
   }
 
   /**
@@ -160,7 +160,7 @@ async function postFeedbackOnSlack(data) {
   */
 
   const simpleSlackMessage = [
-    `New comment ${rating > 0 ? '👍' : '👎'}`,
+    `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
     `>${comment.split('\n').join('\n>')}`,
     `sent from ${window.location.href}${commentedSection.hash ? `#${commentedSection.hash}` : ''}${
       commentedSection.text ? ` (section ${commentedSection.text})` : ''
@@ -173,8 +173,10 @@ async function postFeedbackOnSlack(data) {
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       body: JSON.stringify({ text: simpleSlackMessage }),
     });
+    return 'sent';
   } catch (error) {
     console.error(error);
+    return null;
   }
 }
 
@@ -205,18 +207,22 @@ async function submitFeedback(page, rating, comment, language, commentedSection)
     language,
   };
 
-  await postFeedbackOnSlack({ ...data, commentedSection });
-  const result = await postFeedback(data);
-  if (result) {
-    document.cookie = `feedbackId=${result.id};path=/;max-age=31536000`;
-    setTimeout(async () => {
-      const userFeedback = await getUserFeedback(result.id);
-      if (userFeedback) {
-        document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
-      }
-    });
+  const resultSlack = await postFeedbackOnSlack({ ...data, commentedSection });
+  if (rating !== undefined) {
+    const resultVote = await postFeedback(data);
+    if (resultVote) {
+      document.cookie = `feedbackId=${resultVote.id};path=/;max-age=31536000`;
+      setTimeout(async () => {
+        const userFeedback = await getUserFeedback(resultVote.id);
+        if (userFeedback) {
+          document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
+        }
+      });
+    }
+    return resultSlack && resultVote;
   }
-  return result;
+
+  return resultSlack;
 }
 
 function getCurrentRating(pathname) {
