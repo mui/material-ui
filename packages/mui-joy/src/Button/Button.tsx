@@ -6,12 +6,21 @@ import { useSlotProps } from '@mui/base/utils';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
 import { useVariantInversion } from '../styles/VariantInversion';
+import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
-    ownerState;
+  const {
+    color,
+    disabled,
+    focusVisible,
+    focusVisibleClassName,
+    fullWidth,
+    size,
+    variant,
+    loading,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -22,9 +31,11 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      loading && 'loading',
     ],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
+    loadingIndicatorCenter: ['loadingIndicatorCenter'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
@@ -57,6 +68,21 @@ const ButtonEndDecorator = styled('span', {
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
+
+const ButtonLoadingCenter = styled('span', {
+  name: 'JoyButton',
+  slot: 'LoadingCenter',
+  overridesResolver: (props, styles) => styles.loadingIndicatorCenter,
+})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => ({
+  display: 'inherit',
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
+  ...(ownerState.disabled && {
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
+  }),
+}));
 
 export const ButtonRoot = styled('button', {
   name: 'JoyButton',
@@ -119,6 +145,13 @@ export const ButtonRoot = styled('button', {
     {
       [`&.${buttonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      ...(ownerState.loadingPosition === 'center' && {
+        [`&.${buttonClasses.loading}`]: {
+          transition:
+            'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          color: 'transparent',
+        },
+      }),
     },
   ];
 });
@@ -140,6 +173,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     fullWidth = false,
     startDecorator,
     endDecorator,
+    loading = false,
+    loadingPosition = 'center',
+    loadingIndicator: loadingIndicatorProp,
+    disabled,
     ...other
   } = props;
   const { getColor } = useVariantInversion(variant);
@@ -150,8 +187,13 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
+    disabled: disabled || loading,
     ref: handleRef,
   });
+
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
+  );
 
   React.useImperativeHandle(
     action,
@@ -172,6 +214,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
     size,
     focusVisible,
+    loading,
+    loadingPosition,
+    disabled: disabled || loading,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -202,15 +247,32 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className: classes.endDecorator,
   });
 
+  const loadingIndicatorCenterProps = useSlotProps({
+    elementType: ButtonLoadingCenter,
+    externalSlotProps: componentsProps.loadingIndicatorCenter,
+    ownerState,
+    className: classes.loadingIndicatorCenter,
+  });
+
   return (
     <ButtonRoot {...rootProps}>
-      {startDecorator && (
-        <ButtonStartDecorator {...startDecoratorProps}>{startDecorator}</ButtonStartDecorator>
+      {(startDecorator || (loading && loadingPosition === 'start')) && (
+        <ButtonStartDecorator {...startDecoratorProps}>
+          {loading && loadingPosition === 'start' ? loadingIndicator : startDecorator}
+        </ButtonStartDecorator>
       )}
 
       {children}
-      {endDecorator && (
-        <ButtonEndDecorator {...endDecoratorProps}>{endDecorator}</ButtonEndDecorator>
+      {loading && loadingPosition === 'center' && (
+        <ButtonLoadingCenter {...loadingIndicatorCenterProps}>
+          {loadingIndicator}
+        </ButtonLoadingCenter>
+      )}
+
+      {(endDecorator || (loading && loadingPosition === 'end')) && (
+        <ButtonEndDecorator {...endDecoratorProps}>
+          {loading && loadingPosition === 'end' ? loadingIndicator : endDecorator}
+        </ButtonEndDecorator>
       )}
     </ButtonRoot>
   );
@@ -255,6 +317,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -276,6 +339,22 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   fullWidth: PropTypes.bool,
+  /**
+   * If `true`, the loading indicator is shown.
+   * @default false
+   */
+  loading: PropTypes.bool,
+  /**
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * @default <CircularProgress />
+   */
+  loadingIndicator: PropTypes.node,
+  /**
+   * The loading indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
+   */
+  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
    */
