@@ -165,6 +165,9 @@ module.exports = {
     'no-restricted-exports': 'off',
     // some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
     'import/no-relative-packages': 'off',
+
+    // Avoid accidental auto-"fixes" https://github.com/jsx-eslint/eslint-plugin-react/issues/3458
+    'react/no-invalid-html-attribute': 'off',
   },
   overrides: [
     {
