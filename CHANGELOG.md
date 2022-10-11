@@ -6,12 +6,13 @@
 
 _Oct 10, 2022_
 
-A big thanks to the 7 contributors who made this release possible.
-This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+- 🚀 [Joy] Button loading functionality has been added by @kushagra010 (#34658)
+- And more 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.10.9`
 
-- &#8203;<!-- 16 -->[Grid v2][system] handle direction object prop for responsive design (#34574) @vanyaxk
+- &#8203;<!-- 16 -->[Grid v2][system] Handle direction object prop for responsive design (#34574) @vanyaxk
 - &#8203;<!-- 03 -->[Slider] Fix unnecessary accessibility attribute in root element (#34610) @vanyaxk
 
 ### `@mui/system@5.10.9`
