@@ -155,8 +155,6 @@ const useTabsList = (parameters: UseTabsListParameters) => {
   };
 
   const processChildren = React.useCallback(() => {
-    const valueToIndex = new Map();
-
     let childIndex = 0;
 
     const processedChildren = React.Children.map(children, (child) => {
@@ -176,7 +174,6 @@ const useTabsList = (parameters: UseTabsListParameters) => {
       }
 
       const childValue = child.props.value === undefined ? childIndex : child.props.value;
-      valueToIndex.set(childValue, childIndex);
 
       childIndex += 1;
 
