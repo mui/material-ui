@@ -16,7 +16,6 @@ const Parent = ({ children, enableVariantInversion }) => (
 );
 
 const Child = (inProps) => {
-  // eslint-disable-next-line material-ui/mui-name-matches-component-name
   const props = useThemeProps({ name: 'Child', props: inProps });
   const { getColor } = useVariantInversion(props.variant);
   const finalColor = getColor(inProps.color, props.color || 'default');
