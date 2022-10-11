@@ -247,7 +247,7 @@ export function ThemeProvider(props) {
   }, [theme]);
 
   useEnhancedEffect(() => {
-    // track usage of dark mode in google analytics
+    // To support light and dark mode images in the docs
     if (theme.palette.mode === 'dark') {
       document.body.classList.remove('mode-light');
       document.body.classList.add('mode-dark');
