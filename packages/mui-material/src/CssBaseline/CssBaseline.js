@@ -3,19 +3,6 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
-export const colorScheme = (theme, enableColorScheme) => {
-  if (!enableColorScheme || !theme.colorSchemes) {
-    return {};
-  }
-  const colorSchemeStyles = {};
-  Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-    colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
-      colorScheme: scheme.palette?.mode,
-    };
-  });
-  return colorSchemeStyles;
-};
-
 export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
@@ -57,13 +44,7 @@ export const styles = (theme, enableColorScheme = false) => {
     },
     body: {
       margin: 0, // Remove the margin in all browsers.
-      color: (theme.vars || theme).palette.text.primary,
-      ...theme.typography.body1,
-      backgroundColor: (theme.vars || theme).palette.background.default,
-      '@media print': {
-        // Save printer ink.
-        backgroundColor: (theme.vars || theme).palette.common.white,
-      },
+      ...body(theme),
       // Add support for document.body.requestFullScreen().
       // Other elements, if background transparent, are not supported.
       '&::backdrop': {
@@ -73,28 +54,12 @@ export const styles = (theme, enableColorScheme = false) => {
     ...colorSchemeStyles,
   };
 
-  const colorSchemeStyles = {};
-  if (enableColorScheme) {
-    if (theme.vars) {
-      // The CssBaseline is wrapped inside a CssVarsProvider
-      Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-        colorSchemeStyles[theme.getColorSchemeSelector(key).replace(' &', '')] = {
-          colorScheme: scheme.palette?.mode,
-        };
-      });
-    } else {
-      colorSchemeStyles.html = {
-        colorScheme: theme.palette.mode,
-      };
-    }
-  }
-
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
   if (themeOverrides) {
-    return [defaultStyles, colorSchemeStyles, themeOverrides];
+    defaultStyles = [defaultStyles, themeOverrides];
   }
 
-  return [defaultStyles, colorSchemeStyles];
+  return defaultStyles;
 };
 
 /**

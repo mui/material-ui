@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import { html, body, colorScheme } from '../CssBaseline/CssBaseline';
+import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
 const useUtilityClasses = (ownerState) => {
