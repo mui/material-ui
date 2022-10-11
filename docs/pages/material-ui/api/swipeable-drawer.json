@@ -2,7 +2,7 @@
   "props": {
     "onClose": { "type": { "name": "func" }, "required": true },
     "onOpen": { "type": { "name": "func" }, "required": true },
-    "open": { "type": { "name": "bool" }, "required": true },
+    "open": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "disableBackdropTransition": { "type": { "name": "bool" } },
     "disableDiscovery": { "type": { "name": "bool" } },
