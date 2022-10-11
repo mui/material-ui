@@ -111,7 +111,7 @@ async function postFeedback(data) {
 }
 
 async function postFeedbackOnSlack(data) {
-  const { rating, comment } = data;
+  const { rating, comment, commentedSection } = data;
 
   if (!comment || comment.length < 10) {
     return;
@@ -162,7 +162,9 @@ async function postFeedbackOnSlack(data) {
   const simpleSlackMessage = [
     `New comment ${rating > 0 ? '👍' : '👎'}`,
     `>${comment.split('\n').join('\n>')}`,
-    `sent from ${window.location.href}`,
+    `sent from ${window.location.href}${commentedSection.hash ? `#${commentedSection.hash}` : ''}${
+      commentedSection.text ? ` (section ${commentedSection.text})` : ''
+    }`,
   ].join('\n\n');
 
   try {
@@ -193,7 +195,7 @@ async function getUserFeedback(id) {
   }
 }
 
-async function submitFeedback(page, rating, comment, language) {
+async function submitFeedback(page, rating, comment, language, commentedSection) {
   const data = {
     id: getCookie('feedbackId'),
     page,
@@ -203,7 +205,7 @@ async function submitFeedback(page, rating, comment, language) {
     language,
   };
 
-  await postFeedbackOnSlack(data);
+  await postFeedbackOnSlack({ ...data, commentedSection });
   const result = await postFeedback(data);
   if (result) {
     document.cookie = `feedbackId=${result.id};path=/;max-age=31536000`;
@@ -289,7 +291,13 @@ export default function AppLayoutDocsFooter(props) {
       setSnackbarMessage(t('feedbackFailed'));
     }
 
-    const result = await submitFeedback(activePage.pathname, rating, comment, userLanguage);
+    const result = await submitFeedback(
+      activePage.pathname,
+      rating,
+      comment,
+      userLanguage,
+      commentedSection,
+    );
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
     } else {
