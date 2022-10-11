@@ -17,7 +17,7 @@ import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import NoSsr from '@mui/material/NoSsr';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -60,7 +60,7 @@ function AppSettingsDrawer(props) {
   const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   React.useEffect(() => {
-    const initialMode = getCookie('paletteMode') || 'system';
+    const initialMode = localStorage.getItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
     setMode(initialMode);
   }, [preferredMode]);
 
@@ -72,7 +72,7 @@ function AppSettingsDrawer(props) {
     setMode(paletteMode);
 
     if (paletteMode === 'system') {
-      localStorage.setItem('mui-mode', preferredMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
       changeTheme({ paletteMode: preferredMode });
     } else {
       localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables

@@ -175,7 +175,10 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteMode = getCookie('paletteMode') || preferredMode;
+      let nextPaletteMode = localStorage.getItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      if (nextPaletteMode === 'system') {
+        nextPaletteMode = preferredMode;
+      }
 
       dispatch({
         type: 'CHANGE',
@@ -251,16 +254,6 @@ export function ThemeProvider(props) {
     } else {
       document.body.classList.remove('mode-dark');
       document.body.classList.add('mode-light');
-    }
-  }, [theme.palette.mode]);
-
-  useEnhancedEffect(() => {
-    // temporarily synchronize with docs CssVarsProvider because not all pages support CSS theme variables at the moment.
-    // this effect can be removed once all pages are migrated.
-    if (theme.palette.mode === 'dark') {
-      localStorage.setItem('mui-mode', 'dark');
-    } else {
-      localStorage.setItem('mui-mode', 'light');
     }
   }, [theme.palette.mode]);
 

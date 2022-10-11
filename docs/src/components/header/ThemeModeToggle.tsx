@@ -7,7 +7,7 @@ import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 
 const CssVarsModeToggle = (props: { onChange: (checked: boolean) => void }) => {
   const [mounted, setMounted] = React.useState(false);
-  const { mode, setMode } = useColorScheme();
+  const { mode, systemMode, setMode } = useColorScheme();
   React.useEffect(() => {
     setMounted(true);
   }, []);
@@ -18,7 +18,7 @@ const CssVarsModeToggle = (props: { onChange: (checked: boolean) => void }) => {
         disableTouchRipple
         disabled={!mode}
         onClick={() => {
-          props.onChange(mode === 'light');
+          props.onChange(mode === 'light' || systemMode === 'light');
           setMode(mode === 'dark' ? 'light' : 'dark');
         }}
       >
