@@ -6,7 +6,7 @@ import CssBaseline from '@mui/joy/CssBaseline';
 export default function JoyCssBaseline() {
   return (
     <CssVarsProvider>
-      <CssBaseline enableColorScheme />
+      <CssBaseline />
       <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Box sx={{ width: 300, height: 100, overflow: 'scroll', bgcolor: 'background.level1' }}>
           {/* The scrollbar should be light */}

@@ -7,13 +7,13 @@ import { CssBaselineProps } from './CssBaselineProps';
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
-function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) {
+function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps) {
   return (
     <React.Fragment>
       <GlobalStyles
         styles={(theme: Theme) => {
           const colorSchemeStyles: Record<string, any> = {};
-          if (enableColorScheme) {
+          if (!disableColorScheme) {
             // The CssBaseline is wrapped inside a CssVarsProvider
             (
               Object.entries(theme.colorSchemes) as Array<[DefaultColorScheme, ColorSystem]>
@@ -37,7 +37,7 @@ function CssBaseline({ children, enableColorScheme = false }: CssBaselineProps) 
               boxSizing: 'inherit',
             },
             'strong, b': {
-              fontWeight: theme.vars.fontWeight.lg,
+              fontWeight: 'bold',
             },
             body: {
               margin: 0, // Remove the margin in all browsers.
@@ -73,12 +73,13 @@ CssBaseline.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
+   * Disable `color-scheme` CSS property.
+   *
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false
    */
-  enableColorScheme: PropTypes.bool,
+  disableColorScheme: PropTypes.bool,
 } as any;
 
 export default CssBaseline;

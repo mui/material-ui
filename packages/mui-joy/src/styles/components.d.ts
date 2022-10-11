@@ -45,6 +45,11 @@ import {
   CircularProgressSlot,
 } from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
+import {
+  ScopedCssBaselineProps,
+  ScopedCssBaselineOwnerState,
+  ScopedCssBaselineSlot,
+} from '../ScopedCssBaseline/ScopedCssBaselineProps';
 import { DividerProps, DividerOwnerState, DividerSlot } from '../Divider/DividerProps';
 import {
   FormControlProps,
@@ -218,6 +223,10 @@ export interface Components<Theme = unknown> {
   JoyContainer?: {
     defaultProps?: Partial<ContainerProps>;
     styleOverrides?: OverridesStyleRules<ContainerSlot, ContainerProps, Theme>;
+  };
+  JoyScopedCssBaseline?: {
+    defaultProps?: Partial<ScopedCssBaselineProps>;
+    styleOverrides?: OverridesStyleRules<ScopedCssBaselineSlot, ScopedCssBaselineOwnerState, Theme>;
   };
   JoyDivider?: {
     defaultProps?: Partial<DividerProps>;

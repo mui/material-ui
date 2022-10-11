@@ -39,16 +39,16 @@ export const body = (theme) => ({
 });
 
 export const styles = (theme, enableColorScheme = false) => {
-  const defaultStyles = {
-    html: {
-      WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale',
-      // Change from `box-sizing: content-box` so that `width`
-      // is not affected by `padding` or `border`.
-      boxSizing: 'border-box',
-      // Fix font resize problem in iOS
-      WebkitTextSizeAdjust: '100%',
-    },
+  const colorSchemeStyles = {};
+  if (enableColorScheme && theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+        colorScheme: scheme.palette?.mode,
+      };
+    });
+  }
+  let defaultStyles = {
+    html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -70,7 +70,7 @@ export const styles = (theme, enableColorScheme = false) => {
         backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
-    ...colorScheme(theme, enableColorScheme),
+    ...colorSchemeStyles,
   };
 
   const colorSchemeStyles = {};

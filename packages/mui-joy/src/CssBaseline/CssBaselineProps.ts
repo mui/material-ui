@@ -4,10 +4,11 @@ export interface CssBaselineProps {
    */
   children?: React.ReactNode;
   /**
-   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
+   * Disable `color-scheme` CSS property.
+   *
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false
    */
-  enableColorScheme?: boolean;
+  disableColorScheme?: boolean;
 }

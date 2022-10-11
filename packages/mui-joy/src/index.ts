@@ -1,6 +1,8 @@
 export { default as colors } from './colors';
 export * from './styles';
 
+export { default as GlobalStyles } from './GlobalStyles';
+
 export { default as AspectRatio } from './AspectRatio';
 export * from './AspectRatio';
 
@@ -54,6 +56,9 @@ export * from './Container';
 
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
+
+export { default as ScopedCssBaseline } from './ScopedCssBaseline';
+export * from './ScopedCssBaseline';
 
 export { default as Divider } from './Divider';
 export * from './Divider';
