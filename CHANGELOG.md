@@ -7,6 +7,7 @@
 _Oct 10, 2022_
 
 A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
 - 🚀 [Joy] Button loading functionality has been added by @kushagra010 (#34658)
 - And more 🐛 bug fixes and 📚 documentation improvements.
 
@@ -22,8 +23,9 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 - &#8203;<!-- 17 -->[system] Fix color-scheme implementation (#34639) @siriwatknp
 
   The `enableColorScheme` prop has been removed from `CssVarsProvider` and `getInitColorScheme` (both Material UI and Joy UI).
-  
+
   Migration:
+
   - **Material UI**: you can enable the CSS color scheme via `<CssBaseline enableColorScheme />`.
   - **Joy UI**: it is enabled automatically if you use `<CssBaseline />`, [see the docs](https://mui.com/joy-ui/react-css-baseline/).
 
