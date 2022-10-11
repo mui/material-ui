@@ -9,7 +9,6 @@ import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
-import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
@@ -45,7 +44,7 @@ export default function AppHeader() {
   const t = useTranslate();
 
   React.useEffect(() => {
-    const initialMode = getCookie('paletteMode') || 'system';
+    const initialMode = localStorage.getItem('mui-mode') || 'system';
     setMode(initialMode);
   }, []);
 
@@ -53,7 +52,7 @@ export default function AppHeader() {
     const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
 
-    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+    localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
     changeTheme({ paletteMode });
   };
 
