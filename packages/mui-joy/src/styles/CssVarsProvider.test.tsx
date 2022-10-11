@@ -550,10 +550,6 @@ describe('[Joy] CssVarsProvider', () => {
           'solidHover',
           'solidActive',
           'solidDisabled',
-          'plainOverrides',
-          'outlinedOverrides',
-          'softOverrides',
-          'solidOverrides',
         ].join(','),
       );
     });
@@ -570,9 +566,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal(
-        ['plain', 'outlined', 'soft', 'solid'].join(','),
-      );
+      expect(container.firstChild?.textContent).to.equal(['soft', 'solid'].join(','));
     });
   });
 
