@@ -141,7 +141,7 @@ const Root = styled('div')(({ theme }) => ({
       },
     },
     '& .comment-link-style': {
-      display: 'inline-block',
+      display: 'none',
       verticalAlign: 'middle',
       textAlign: 'center',
       lineHeight: '21.5px',
