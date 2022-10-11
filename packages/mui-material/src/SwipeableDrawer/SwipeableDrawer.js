@@ -669,6 +669,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func.isRequired,
   /**
    * If `true`, the component is shown.
+   * @default false
    */
   open: PropTypes.bool.isRequired,
   /**
