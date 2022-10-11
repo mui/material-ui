@@ -5,7 +5,7 @@ import { ColorPaletteProp, VariantProp } from './types';
 
 const VariantOverride = React.createContext<undefined | Array<VariantProp>>(undefined);
 
-export const useVariantInversion = (childVariant: VariantProp | undefined) => {
+export const useColorInversion = (childVariant: VariantProp | undefined) => {
   const overriableVariants = React.useContext(VariantOverride);
   return {
     getColor: (
@@ -24,15 +24,15 @@ export const useVariantInversion = (childVariant: VariantProp | undefined) => {
   };
 };
 
-interface VariantInversionProviderProps {
+interface ColorInversionProviderProps {
   children: React.ReactNode;
   variant?: VariantProp;
 }
 
-export const VariantInversionProvider = ({ children, variant }: VariantInversionProviderProps) => {
+export const ColorInversionProvider = ({ children, variant }: ColorInversionProviderProps) => {
   const theme = useSystemTheme(defaultTheme);
   return (
-    <VariantOverride.Provider value={variant ? theme.variantInversionConfig[variant] : undefined}>
+    <VariantOverride.Provider value={variant ? theme.colorInversionConfig[variant] : undefined}>
       {children}
     </VariantOverride.Provider>
   );

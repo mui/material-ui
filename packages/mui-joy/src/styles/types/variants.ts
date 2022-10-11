@@ -74,5 +74,5 @@ export interface VariantOverrides {
   solid: VariantSolidInversion;
 }
 
-export interface VariantInversionConfig
+export interface ColorInversionConfig
   extends Partial<Record<VariantProp, Array<VariantProp> | undefined>> {}

@@ -5,7 +5,7 @@ import { createSoftInversion, createSolidInversion } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/^(typography|variants|breakpoints|variantInversion|variantInversionConfig)$/) ||
+  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
   (keys[0] === 'focus' && keys[1] !== 'thickness');
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
@@ -20,13 +20,13 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   resolveTheme: (mergedTheme: Theme) => {
-    // `variantInversion` need to be generated after the theme's palette has been calculated.
-    mergedTheme.variantInversion = deepmerge(
+    // `colorInversion` need to be generated after the theme's palette has been calculated.
+    mergedTheme.colorInversion = deepmerge(
       {
         soft: createSoftInversion(mergedTheme),
         solid: createSolidInversion(mergedTheme),
       },
-      mergedTheme.variantInversion,
+      mergedTheme.colorInversion,
       { clone: false },
     );
     return mergedTheme;

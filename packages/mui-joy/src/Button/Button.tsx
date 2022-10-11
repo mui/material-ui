@@ -5,7 +5,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
@@ -179,7 +179,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disabled,
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
