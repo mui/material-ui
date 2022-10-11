@@ -40,7 +40,7 @@ const AspectRatioImage = styled('div', {
   margin: 'auto',
 }));
 
-const PrefetchImages = () => {
+function PrefetchImages() {
   function makeImg(component: 'sparkline' | 'chart', mode: string, num: number) {
     return {
       loading: 'lazy' as const,
@@ -76,7 +76,7 @@ const PrefetchImages = () => {
       ))}
     </Box>
   );
-};
+}
 
 export default function XComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);

@@ -35,7 +35,7 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
   );
 });
 
-const Frame = (props: BoxProps) => {
+function Frame(props: BoxProps) {
   return (
     <Box
       {...props}
@@ -54,7 +54,7 @@ const Frame = (props: BoxProps) => {
       }}
     />
   );
-};
+}
 
 Frame.Demo = FrameDemo;
 Frame.Info = FrameInfo;
