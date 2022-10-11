@@ -17,7 +17,18 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 ### `@mui/system@5.10.9`
 
+#### BREAKING CHANGE
+
 - &#8203;<!-- 17 -->[system] Fix color-scheme implementation (#34639) @siriwatknp
+
+  The `enableColorScheme` prop has been removed from `CssVarsProvider` and `getInitColorScheme` (both Material UI and Joy UI).
+  
+  Migration:
+  - **Material UI**: you can enable the CSS color scheme via `<CssBaseline enableColorScheme />`.
+  - **Joy UI**: it is enabled automatically if you use `<CssBaseline />`, [see the docs](https://mui.com/joy-ui/react-css-baseline/).
+
+#### Changes
+
 - &#8203;<!-- 02 -->[system] Fix typo in createCssVarsProvider (#34661) @HexM7
 
 ### `@mui/base@5.0.0-alpha.101`
