@@ -164,6 +164,7 @@ const Root = styled('div')(({ theme }) => ({
         width: '0.875rem',
         height: '0.875rem',
         fill: 'currentColor',
+        pointerEvents: 'none',
       },
     },
   },

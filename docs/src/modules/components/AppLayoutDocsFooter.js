@@ -21,7 +21,6 @@ import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import { useFeedbackState } from 'docs/src/modules/components/FeedbackContext';
 
 const Footer = styled('footer')(({ theme }) => {
   return {
@@ -245,6 +244,8 @@ function usePageNeighbours() {
   return { prevPage, nextPage };
 }
 
+const EMPTY_SECTION = { hash: '', text: '' };
+
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
 
@@ -256,12 +257,8 @@ export default function AppLayoutDocsFooter(props) {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
-  const {
-    section: commentedSection,
-    isOpen: commentOpen,
-    setIsOpen: setCommentOpen,
-    updateSection,
-  } = useFeedbackState();
+  const [commentOpen, setCommentOpen] = React.useState(false);
+  const [commentedSection, setCommentedSection] = React.useState(EMPTY_SECTION);
 
   const { nextPage, prevPage } = usePageNeighbours();
 
@@ -314,7 +311,9 @@ export default function AppLayoutDocsFooter(props) {
   };
 
   const handleChangeSection = (event) => {
-    updateSection(event.target.value);
+    const section =
+      sectionOptions.find((item) => item.hash === event.target.value) || EMPTY_SECTION;
+    setCommentedSection(section);
   };
 
   const handleSubmitComment = (event) => {
@@ -340,8 +339,9 @@ export default function AppLayoutDocsFooter(props) {
     const eventListener = (event) => {
       const feedbackHash = event.target.getAttribute('data-feedback-hash');
       if (feedbackHash) {
-        const section = sectionOptions.find((item) => item.hash === feedbackHash);
-        updateSection(section);
+        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        setCommentOpen(true);
+        setCommentedSection(section);
         if (inputRef.current) {
           inputRef.current.focus();
         }
@@ -351,7 +351,7 @@ export default function AppLayoutDocsFooter(props) {
     return () => {
       document.removeEventListener('click', eventListener);
     };
-  }, [sectionOptions, updateSection]);
+  }, [sectionOptions]);
 
   const hidePagePagination = activePage === null || activePage.ordered === false;
 
