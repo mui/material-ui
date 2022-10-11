@@ -17,6 +17,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 ### `@mui/system@5.10.9`
 
+- &#8203;<!-- 17 -->[system] Fix color-scheme implementation (#34639) @siriwatknp
 - &#8203;<!-- 02 -->[system] Fix typo in createCssVarsProvider (#34661) @HexM7
 
 ### `@mui/base@5.0.0-alpha.101`
@@ -29,6 +30,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 
 ### Docs
 
+- &#8203;<!-- 18 -->[docs] Revert #34541 (#34700) @michaldudak
 - &#8203;<!-- 15 -->[blog] Blog post for MUI X v6 alpha zero (#34424) @joserodolfofreitas
 - &#8203;<!-- 09 -->[docs] Improve Joy UI tutorial demo (#34653) @oliviertassinari
 - &#8203;<!-- 08 -->[docs] Explain how SelectUnstyled renders a hidden input (#34638) @michaldudak
