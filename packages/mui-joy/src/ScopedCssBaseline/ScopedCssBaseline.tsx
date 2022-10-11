@@ -1,58 +1,81 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import { html, body } from '../CssBaseline/CssBaseline';
+import { DefaultColorScheme, ColorSystem } from '../styles/types';
+import {
+  ScopedCssBaselineTypeMap,
+  ScopedCssBaselineOwnerState,
+  ScopedCssBaselineProps,
+} from './ScopedCssBaselineProps';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
-const useUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
-
+const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getScopedCssBaselineUtilityClass, classes);
+  return composeClasses(slots, getScopedCssBaselineUtilityClass, {});
 };
 
 const ScopedCssBaselineRoot = styled('div', {
-  name: 'MuiScopedCssBaseline',
+  name: 'JoyScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, ownerState }) => {
-  const colorSchemeStyles = {};
-  if (ownerState.enableColorScheme && theme.colorSchemes) {
-    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
-      colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
-        colorScheme: scheme.palette?.mode,
-      };
-    });
+})<{ ownerState: ScopedCssBaselineOwnerState }>(({ theme, ownerState }) => {
+  const colorSchemeStyles: Record<string, any> = {};
+  if (!ownerState.disableColorScheme && theme.colorSchemes) {
+    (Object.entries(theme.colorSchemes) as Array<[DefaultColorScheme, ColorSystem]>).forEach(
+      ([key, scheme]) => {
+        colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      },
+    );
   }
   return {
-    ...html(theme, ownerState.enableColorScheme),
-    ...body(theme),
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
+    // Change from `box-sizing: content-box` so that `width`
+    // is not affected by `padding` or `border`.
+    boxSizing: 'border-box',
+    // Fix font resize problem in iOS
+    WebkitTextSizeAdjust: '100%',
+    color: theme.vars.palette.text.primary,
+    ...(theme.typography.body1 as any),
+    backgroundColor: theme.vars.palette.background.body,
+    '@media print': {
+      // Save printer ink.
+      backgroundColor: theme.vars.palette.common.white,
+    },
     '& *, & *::before, & *::after': {
       boxSizing: 'inherit',
     },
     '& strong, & b': {
-      fontWeight: theme.typography.fontWeightBold,
+      fontWeight: 'bold',
     },
     ...colorSchemeStyles,
   };
 });
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
-  const { className, component = 'div', enableColorScheme, ...other } = props;
+  const props = useThemeProps<typeof inProps & ScopedCssBaselineProps>({
+    props: inProps,
+    name: 'JoyScopedCssBaseline',
+  });
+
+  const { className, component = 'div', disableColorScheme = false, ...other } = props;
 
   const ownerState = {
     ...props,
     component,
+    disableColorScheme,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses();
 
   return (
     <ScopedCssBaselineRoot
@@ -63,21 +86,17 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
       {...other}
     />
   );
-});
+}) as OverridableComponent<ScopedCssBaselineTypeMap>;
 
 ScopedCssBaseline.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component.
+   * You can wrap a node.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -88,11 +107,13 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
+   * Disable `color-scheme` CSS property.
+   *
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
+   * @default false
    */
-  enableColorScheme: PropTypes.bool,
+  disableColorScheme: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -101,6 +122,6 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default ScopedCssBaseline;
