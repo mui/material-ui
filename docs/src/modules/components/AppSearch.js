@@ -85,7 +85,7 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
-const NewStartScreen = () => {
+function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
@@ -152,7 +152,7 @@ const NewStartScreen = () => {
       ))}
     </div>
   );
-};
+}
 
 function DocSearcHit(props) {
   const { children, hit } = props;

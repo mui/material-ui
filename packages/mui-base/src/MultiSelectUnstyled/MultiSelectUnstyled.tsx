@@ -126,7 +126,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     setButtonDefined(element != null);
   }, []);
 
-  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
+  const handleButtonRef = useForkRef(forwardedRef, buttonRef, handleButtonRefChange);
 
   React.useEffect(() => {
     if (autoFocus) {

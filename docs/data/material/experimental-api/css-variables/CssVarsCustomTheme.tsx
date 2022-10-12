@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
 
-const ColorSchemePicker = () => {
+function ColorSchemePicker() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -34,7 +34,7 @@ const ColorSchemePicker = () => {
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
   );
-};
+}
 
 const theme = experimental_extendTheme({
   colorSchemes: {

@@ -151,7 +151,7 @@ import {
   useColorScheme,
 } from '@mui/material/styles';
 
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   return (
     <Button
@@ -166,7 +166,7 @@ const ModeToggle = () => {
       {mode === 'light' ? 'Turn dark' : 'Turn light'}
     </Button>
   );
-};
+}
 
 const theme = extendTheme({
   // ...your custom theme
