@@ -833,6 +833,14 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default (x) => x
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  /**
+   * The variant to use.
+   * @default 'solid'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Slider;
