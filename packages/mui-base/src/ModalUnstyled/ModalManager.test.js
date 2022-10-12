@@ -167,6 +167,39 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
+    describe('shadow dom', () => {
+      let shadowContainer;
+      let container2;
+
+      beforeEach(() => {
+        shadowContainer = document.createElement('div');
+        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
+        container2 = document.createElement('div');
+        shadowRoot.appendChild(container2);
+      });
+
+      afterEach(() => {
+        document.body.removeChild(shadowContainer);
+      });
+
+      it('should scroll body when parent is shadow root', () => {
+        const modal = {};
+
+        container2.style.overflow = 'scroll';
+
+        document.body.appendChild(shadowContainer);
+        modalManager.add(modal, container2);
+        modalManager.mount(modal, {});
+
+        expect(container2.style.overflow).to.equal('scroll');
+        expect(document.body.style.overflow).to.equal('hidden');
+        modalManager.remove(modal);
+
+        expect(container2.style.overflow).to.equal('scroll');
+        expect(document.body.style.overflow).to.equal('');
+      });
+    });
+
     describe('restore styles', () => {
       let container2;
 

@@ -4,7 +4,7 @@ title: Componente React para Caixa de seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: checkbox'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
 
 # Caixa de seleção
@@ -53,7 +53,9 @@ Uma caixa de seleção só pode ter dois estados em um formulário: marcado ou d
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+:::warning
+⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+:::
 
 ## Posicionamento do rótulo
 
@@ -63,13 +65,13 @@ Uma caixa de seleção só pode ter dois estados em um formulário: marcado ou d
 
 ## Posicionamento do rótulo
 
-Você pode alterar o posicionamento do rótulo:
+You can change the placement of the label:
 
 {{"demo": "FormControlLabelPosition.js"}}
 
 ## Caixa de seleção customizada
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedCheckbox.js"}}
 
@@ -82,9 +84,9 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
 
-- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/material-ui/api/form-control-label/)).
+- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx

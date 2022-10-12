@@ -54,7 +54,6 @@ describe('<SliderUnstyled />', () => {
         expectedClassName: classes.rail,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   it('forwards style props on the Root component', () => {
@@ -281,6 +280,49 @@ describe('<SliderUnstyled />', () => {
       expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(2);
       expect(container.querySelectorAll(`.${classes.markLabel}`)[0].textContent).to.equal('0');
       expect(container.querySelectorAll(`.${classes.markLabel}`)[1].textContent).to.equal('100');
+    });
+  });
+
+  describe('ARIA', () => {
+    it('should have the correct aria attributes', () => {
+      const { getByRole, container } = render(
+        <SliderUnstyled
+          value={50}
+          valueLabelDisplay="auto"
+          marks={[
+            {
+              value: 0,
+              label: 0,
+            },
+            {
+              value: 50,
+              label: 50,
+            },
+            {
+              value: 100,
+              label: 100,
+            },
+          ]}
+          aria-label="a slider"
+          aria-labelledby="a slider label"
+        />,
+      );
+
+      const sliderWrapperElement = container.firstChild;
+      const slider = getByRole('slider');
+      const markLabels = container.querySelectorAll(`.${classes.markLabel}`);
+      const input = container.querySelector('input');
+      expect(slider).to.have.attribute('aria-valuemin', '0');
+      expect(slider).to.have.attribute('aria-valuemax', '100');
+      expect(slider).to.have.attribute('aria-valuenow', '50');
+      expect(slider).to.have.attribute('aria-labelledby');
+
+      expect(markLabels[0]).to.have.attribute('aria-hidden', 'true');
+
+      expect(sliderWrapperElement).not.to.have.attribute('aria-labelledby');
+      expect(input).to.have.attribute('aria-labelledby', 'a slider label');
+      expect(input).to.have.attribute('aria-label', 'a slider');
+      expect(input).to.have.attribute('aria-valuenow', '50');
     });
   });
 });

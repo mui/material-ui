@@ -29,7 +29,6 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
-          name: 'BasicButtons Material Demo',
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
@@ -71,7 +70,6 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
-          name: 'BasicButtons Material Demo',
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {

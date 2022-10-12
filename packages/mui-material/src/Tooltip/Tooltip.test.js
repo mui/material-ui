@@ -89,6 +89,39 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
+    it('should not display if the title is a false', () => {
+      const { queryByRole } = render(
+        <Tooltip title={false} open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should not display if the title is a null', () => {
+      const { queryByRole } = render(
+        <Tooltip title={null} open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should not display if the title is an undefined', () => {
+      const { queryByRole } = render(
+        <Tooltip title={undefined} open>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(queryByRole('tooltip')).to.equal(null);
+    });
+
     it('should label the child when closed', () => {
       render(
         <Tooltip title="the title">

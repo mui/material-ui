@@ -1,4 +1,4 @@
-# Support Agent - Store
+# Support Agent - Store (future role)
 
 <p class="description">You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.</p>
 
@@ -6,7 +6,6 @@
 
 - Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -70,4 +69,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Agent%20-%20Store&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/79a9b5ec-6fb3-41ec-b48b-0a792ced7c19/application?utm_source=ZNRrPGBkqO)

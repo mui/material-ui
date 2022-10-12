@@ -120,6 +120,8 @@ export interface AutocompleteProps<
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
     paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
   };
   /**
    * If `true`, the component is disabled.

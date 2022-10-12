@@ -1,8 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import {
-  CalendarPicker as XCalendarPicker,
-  CalendarPickerProps,
-} from '@mui/x-date-pickers/CalendarPicker';
 
 let warnedOnce = false;
 
@@ -11,7 +8,6 @@ const warn = () => {
     console.warn(
       [
         'MUI: The CalendarPicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
-        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
         '',
         "You should use `import { CalendarPicker } from '@mui/x-date-pickers'`",
         "or `import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker'`",
@@ -31,13 +27,17 @@ type CalendarPickerComponent = (<TDate>(
 /**
  * @ignore - do not document.
  */
-const CalendarPicker = React.forwardRef(function DeprecatedCalendarPicker<TDate>(
-  props: CalendarPickerProps<TDate>,
-  ref: React.Ref<any>,
-) {
+const CalendarPicker = React.forwardRef(function DeprecatedCalendarPicker() {
   warn();
 
-  return <XCalendarPicker ref={ref} {...props} />;
+  return null;
 }) as CalendarPickerComponent;
 
 export default CalendarPicker;
+
+export const calendarPickerClasses = {};
+
+export type CalendarPickerClassKey = any;
+export type CalendarPickerClasses = any;
+export type CalendarPickerProps<TDate> = Record<any, any>;
+export type CalendarPickerView = 'year' | 'day' | 'month';

@@ -26,7 +26,6 @@ describe('OptionGroupUnstyled', () => {
     },
     skip: [
       'ownerStatePropagation', // the component does not have its own state
-      'componentsPropsCallbacks', // not implemented yet
     ],
   }));
 });

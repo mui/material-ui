@@ -9,7 +9,8 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
   props: P & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
-     * @deprecated Use `components.Backdrop` instead.
+     * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+     * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
      * @default styled(Backdrop, {
      *   name: 'MuiModal',
      *   slot: 'Backdrop',
@@ -36,7 +37,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['componentsProps']>['root'];
 
-export const ModalRoot: React.FC<ModalRootProps>;
+export declare const ModalRoot: React.FC<ModalRootProps>;
 
 export type ModalClassKey = keyof NonNullable<ModalTypeMap['props']['classes']>;
 
@@ -65,7 +66,7 @@ declare const Modal: ExtendModalUnstyled<ModalTypeMap>;
 
 export type ModalClasses = Record<ModalClassKey, string>;
 
-export const modalClasses: ModalClasses;
+export declare const modalClasses: ModalClasses;
 
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],

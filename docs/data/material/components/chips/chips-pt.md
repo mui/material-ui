@@ -53,7 +53,7 @@ Você pode usar as seguintes ações.
 
 You can add ornaments to the beginning of the component.
 
-Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
 
 ### Avatar chip
 

@@ -20,7 +20,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
 - New styling solution using CSS-in-JS (better [customization](/material-ui/customization/how-to-customize/) power, better performance)
 - New theme handling (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui/material-ui))
+- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://app.argos-ci.com/mui/material-ui/builds))
 - Full [server-side rendering](/material-ui/guides/server-rendering/) support
 - Wide range of [supported browsers](/material-ui/getting-started/supported-platforms/)
 

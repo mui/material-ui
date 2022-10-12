@@ -101,7 +101,7 @@ export default function ThemeSlider() {
                   color: mode === 'dark' ? grey[50] : grey[500],
                   fontWeight: 700,
                   padding: 0,
-                  left: '1rem',
+                  left: '2rem',
                   '&.MuiSlider-valueLabelOpen': {
                     transform: 'none',
                     top: 'initial',

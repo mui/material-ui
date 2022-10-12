@@ -20,6 +20,9 @@ export * from './generateUtilityClass';
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 export * from './generateUtilityClasses';
 
+export { default as FocusTrap } from './FocusTrap';
+export * from './FocusTrap';
+
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
@@ -60,8 +63,14 @@ export * from './SelectUnstyled';
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 
+export { default as SnackbarUnstyled } from './SnackbarUnstyled';
+export * from './SnackbarUnstyled';
+
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';
+
+export { default as TablePaginationUnstyled } from './TablePaginationUnstyled';
+export * from './TablePaginationUnstyled';
 
 export { default as TabPanelUnstyled } from './TabPanelUnstyled';
 export * from './TabPanelUnstyled';
@@ -77,6 +86,3 @@ export * from './TabUnstyled';
 
 export { default as TextareaAutosize } from './TextareaAutosize';
 export * from './TextareaAutosize';
-
-export { default as TrapFocus } from './TrapFocus';
-export * from './TrapFocus';

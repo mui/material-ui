@@ -1,4 +1,4 @@
-import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
@@ -94,15 +94,15 @@ export const createVariantStyle = (
   return result;
 };
 
-interface Theme {
+interface ThemeFragment {
   prefix?: string;
-  palette: Record<DefaultColorPalette, PaletteRange>;
-  vars: { palette: Record<DefaultColorPalette, PaletteRange> };
+  getCssVar: (...args: string[]) => string;
+  palette: Record<string, any>;
 }
 
-export const createTextOverrides = (theme: Theme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+export const createTextOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -127,9 +127,9 @@ export const createTextOverrides = (theme: Theme) => {
   return result;
 };
 
-export const createContainedOverrides = (theme: Theme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+export const createContainedOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -179,25 +179,20 @@ export const createContainedOverrides = (theme: Theme) => {
   return result;
 };
 
-export const createVariant = (variant: VariantKey, theme?: Theme) => {
+export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
-
   if (theme) {
-    Object.entries(theme.palette).forEach((entry) => {
+    const { getCssVar, palette } = theme;
+    Object.entries(palette).forEach((entry) => {
       const [color, colorPalette] = entry as [
         Exclude<DefaultColorPalette, 'context'>,
         string | number | Record<string, any>,
       ];
-      if (isVariantPalette(colorPalette)) {
+      if (isVariantPalette(colorPalette) && typeof colorPalette === 'object') {
         result = {
           ...result,
-          [color]: createVariantStyle(
-            variant,
-            // cannot use theme.vars because it is created from all color schemes.
-            // @example developer provides `primary.outlinedActiveBorder` to only dark mode.
-            //          theme.vars.palette.primary.outlinedActiveBorder always exists regardless of the current color scheme.
-            theme.palette[color],
-            (variantVar) => theme.vars.palette[color][variantVar],
+          [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
+            getCssVar(`palette-${color}-${variantVar}`),
           ),
         };
       }

@@ -114,7 +114,7 @@ export default function Navigation() {
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decorator-width': '32px',
+            '--List-decorator-size': '32px',
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >

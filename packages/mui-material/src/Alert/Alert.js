@@ -52,28 +52,55 @@ const AlertRoot = styled(Paper, {
     padding: '6px 16px',
     ...(color &&
       ownerState.variant === 'standard' && {
-        color: getColor(theme.palette[color].light, 0.6),
-        backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
-        [`& .${alertClasses.icon}`]: {
-          color:
-            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
-        },
+        color: theme.vars
+          ? theme.vars.palette.Alert[`${color}Color`]
+          : getColor(theme.palette[color].light, 0.6),
+        backgroundColor: theme.vars
+          ? theme.vars.palette.Alert[`${color}StandardBg`]
+          : getBackgroundColor(theme.palette[color].light, 0.9),
+        [`& .${alertClasses.icon}`]: theme.vars
+          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+          : {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].main
+                  : theme.palette[color].light,
+            },
       }),
     ...(color &&
       ownerState.variant === 'outlined' && {
-        color: getColor(theme.palette[color].light, 0.6),
-        border: `1px solid ${theme.palette[color].light}`,
-        [`& .${alertClasses.icon}`]: {
-          color:
-            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
-        },
+        color: theme.vars
+          ? theme.vars.palette.Alert[`${color}Color`]
+          : getColor(theme.palette[color].light, 0.6),
+        border: `1px solid ${(theme.vars || theme).palette[color].light}`,
+        [`& .${alertClasses.icon}`]: theme.vars
+          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+          : {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].main
+                  : theme.palette[color].light,
+            },
       }),
     ...(color &&
       ownerState.variant === 'filled' && {
-        color: '#fff',
         fontWeight: theme.typography.fontWeightMedium,
-        backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
+        ...(theme.vars
+          ? {
+              color: theme.vars.palette.Alert[`${color}FilledColor`],
+              backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+            }
+          : {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].dark
+                  : theme.palette[color].main,
+              color: theme.palette.getContrastText(
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].dark
+                  : theme.palette[color].main,
+              ),
+            }),
       }),
   };
 });

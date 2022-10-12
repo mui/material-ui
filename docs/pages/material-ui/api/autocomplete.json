@@ -20,7 +20,10 @@
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ clearIndicator?: object, paper?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+      },
       "default": "{}"
     },
     "defaultValue": {

@@ -82,16 +82,6 @@ const appList = [
     dateAdded: '2018-01-31',
   },
   {
-    title: 'AospExtended Download center',
-    description:
-      'A download center that hosts all the official builds of AospExtended ROM, ' +
-      'for supported devices for different android versions.',
-    image: 'aexdownloadcenter.jpg',
-    link: 'https://downloads.aospextended.com/',
-    similarWebVisits: 200,
-    dateAdded: '2018-01-28',
-  },
-  {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
@@ -214,7 +204,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.ml/',
+    link: 'https://www.comet.com/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },
@@ -387,7 +377,7 @@ const appList = [
     title: 'HiFiveWork',
     description: 'HiFiveWork, the cool tool for leave management',
     image: 'hifivework.png',
-    link: 'https://www.hifivework.com/#/',
+    link: 'https://hifivework.com/',
     dateAdded: '2020-01-08',
   },
   {
@@ -446,6 +436,16 @@ const appList = [
     image: 'mqtt-explorer.png',
     stars: 1600,
     dateAdded: '2019-03-25',
+  },
+  {
+    title: 'refine FineFoods demo',
+    description: 'A full-featured Admin panel app',
+    image: 'refine-finefoods.jpg',
+    link: 'https://example.mui.admin.refine.dev/',
+    source:
+      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
+    stars: 2415,
+    dateAdded: '2022-06-21',
   },
 ];
 

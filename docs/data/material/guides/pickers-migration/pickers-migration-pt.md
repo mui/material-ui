@@ -2,17 +2,19 @@
 
 <p class="description">@material-ui/pickers foi movido para o @material-ui/lab.</p>
 
-> **⚠️ Os componentes seletores de data foram reescritos**. Na maioria dos lugares, a lógica foi reescrita do zero, então não é possível especificar aqui toda a lista de mudanças. Aqui está uma visão geral dos conceitos mais importantes que foram alterados. Se você vai atualizar, o caminho mais fácil pode ser identificar o uso de cada seletor em sua base de código, e reescreva-os um de cada vez. Não se esqueça de executar seus testes depois de cada um!
+:::warning
+**⚠️ The date picker components were rewritten**. In most places, the logic was rewritten from scratch, so it isn't possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to upgrade, the easiest way might be to go through each picker usage in your codebase, and rewrite them one at a time. Don't forget to run your tests after each!
+:::
 
-Este guia é uma visão geral dos conceitos principais que foram alterados de seletores na v3.2.10.
+This guide is an overview of the core concepts that were changed from pickers v3.2.10.
 
 ## Instalação
 
-You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
 ## Importações
 
-A versão `keyboard` dos seletores não está mais publicada. Todas as versões dos seletores de dispositivos móveis e desktop implementam a entrada do teclado para acessibilidade.
+The `keyboard` version of pickers is no longer published. All versions of mobile and desktop pickers implement keyboard input for accessibility.
 
 ```diff
 -import { KeyboardDatePicker } from '@material-ui/pickers';
@@ -22,7 +24,7 @@ A versão `keyboard` dos seletores não está mais publicada. Todas as versões 
 +<DatePicker />
 ```
 
-Além disso, em vez de fornecer uma propriedade `variant`, eles foram movidos para diferentes importações, significando que seu pacote não incluirá um `Dialog` se você estiver usando apenas o seletor de desktop.
+Also, instead of providing a `variant` prop, these were moved to different imports, meaning that your bundle won't include `Dialog` if you are using only the desktop picker.
 
 - `<DesktopDatePicker />` – Somente visualização em desktop.
 - `<MobileDatePicker />` – Somente visualização em dispositivos móveis.
@@ -37,20 +39,20 @@ Além disso, em vez de fornecer uma propriedade `variant`, eles foram movidos pa
 +<DesktopDatePicker />
 ```
 
-A mesma convenção se aplica para `TimePicker` – `<DesktopTimePicker>` e `<MobileTimePicker />`.
+The same convention applies to `TimePicker` – `<DesktopTimePicker>` and `<MobileTimePicker />`.
 
 ## MuiPickersUtilsProvider
 
-O `MuiPickersUtilsProvider` foi removido em favor do `LocalizationProvider`. Além disso, os seletores não exigem que você instale adaptadores de date-io manualmente. Tudo está incluído no `lab`.
+The `MuiPickersUtilsProvider` was removed in favor of `LocalizationProvider`. Also, pickers do not require you to install date-io adapters manually. Everything is included with the `lab`.
 
-❌ Antes:
+❌ Before:
 
 ```js
 import AdapterDateFns from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ```
 
-✅ Depois:
+✅ After:
 
 ```jsx
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -68,14 +70,14 @@ function App() {
 
 ## Renderizando input
 
-Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica o uso de componentes de entrada de texto sem Material UI.
+We introduced a new **required** `renderInput` prop. This simplifies using non-MUI text field input components.
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />
 <TimePicker renderInput={(props) => <TextField {...props} />} />
 ```
 
-Anteriormente, propriedades eram espalhadas no componentes `<TextField />`. De agora em diante você precisará usar a nova propriedade `renderInput` para fornecer as propriedades:
+Previously, props were spread on the `<TextField />` component. From now on you will need to use the new `renderInput` prop to provide these:
 
 ```diff
  <DatePicker
@@ -87,11 +89,11 @@ Anteriormente, propriedades eram espalhadas no componentes `<TextField />`. De a
 
 ## Gerenciamento do estado
 
-A lógica de gerenciamento de estado/valor para seletores foi reescrita do zero. Seletores agora vão chamar a propriedade `onChange` quando cada visualização do seletor de data estiver sido concluída. O manipulador `onError` esta também totalmente diferente. Verifique a integração dos seus seletores com formulários, porque pode haver alguma questão referente a integração.
+The state/value management logic for pickers was rewritten from scratch. Pickers will now call the `onChange` prop when each view of the date picker ends is completed. The `onError` handler is also completely different. Triple-check your pickers with forms integration, because form-integration issues can be subtle.
 
 ## Nenhuma máscara necessária
 
-Máscara já não é necessária. Além disso, se a máscara fornecida não for válida, os seletores irão simplesmente ignorar a máscara e permitir entradas arbitrárias.
+Mask is no longer required. Also, if your provided mask is not valid, pickers will just ignore the mask, and allow arbitrary input.
 
 ```jsx
 <DatePicker
@@ -114,10 +116,10 @@ Máscara já não é necessária. Além disso, se a máscara fornecida não for 
 
 ## E muito mais
 
-- `````diff <DatePicker
+- ````diff <DatePicker
   -  format="DD-MMM-YYYY"
-  +  inputFormat="DD-MMM-YYYY" ``` ```` `````
+  +  inputFormat="DD-MMM-YYYY" ``` ````
 
-Há muitas mudanças, tenha cuidado, certifique-se de que seus testes e build passe. No evento em que você tem um uso avançado do seletor de data, provavelmente será mais simples reescrevê-lo.
+There are many changes, be careful, make sure your tests, and build pass. In the event you have an advanced usage of the date picker, it will likely be simpler to rewrite it.
 
-Por favor, abra um pull request para melhorar o guia se você notar uma oportunidade para fazer isso.
+Please open a pull request to improve the guide if you notice an opportunity for doing such.

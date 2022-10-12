@@ -73,6 +73,7 @@
       "colorSecondary",
       "fullWidth",
       "hiddenLabel",
+      "readOnly",
       "input",
       "inputSizeSmall",
       "inputMultiline",
@@ -93,6 +94,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/InputBase/InputBase.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

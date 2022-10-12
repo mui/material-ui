@@ -39,7 +39,6 @@ export default function CheckboxChip() {
                 startDecorator={
                   checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />
                 }
-                sx={{ '--Chip-radius': '4px' }}
               >
                 <Checkbox
                   variant="outlined"

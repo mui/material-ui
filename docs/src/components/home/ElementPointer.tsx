@@ -9,7 +9,7 @@ export const withPointer = <T extends React.ElementType>(
   Component: T,
   options: { id: string; name: string },
 ) => {
-  const WithPointer = (props: unknown) => {
+  function WithPointer(props: object) {
     const root = React.useRef<null | HTMLElement>(null);
     const handleMouseOver = React.useContext(PointerContext);
     return (
@@ -31,7 +31,7 @@ export const withPointer = <T extends React.ElementType>(
         />
       </React.Fragment>
     );
-  };
+  }
 
   return WithPointer as T;
 };

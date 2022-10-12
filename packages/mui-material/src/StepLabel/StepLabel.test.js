@@ -201,4 +201,32 @@ describe('<StepLabel />', () => {
       expect(getByTestId('label')).to.have.class('step-label-test');
     });
   });
+
+  describe('renders <StepIcon> with the className completed', () => {
+    it('renders with completed className when completed', () => {
+      const CustomizedIcon = () => <div data-testid="custom-icon" />;
+      const { container } = render(
+        <Step completed>
+          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+        </Step>,
+      );
+
+      const icon = container.querySelector(`.${classes.iconContainer}`);
+      expect(icon).to.have.class(classes.completed);
+    });
+  });
+
+  describe('renders <StepIcon> with the className active', () => {
+    it('renders with active className when active', () => {
+      const CustomizedIcon = () => <div data-testid="custom-icon" />;
+      const { container } = render(
+        <Step active>
+          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+        </Step>,
+      );
+
+      const icon = container.querySelector(`.${classes.iconContainer}`);
+      expect(icon).to.have.class(classes.active);
+    });
+  });
 });

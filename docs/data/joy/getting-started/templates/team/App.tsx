@@ -41,7 +41,7 @@ import teamTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 
-const ColorSchemeToggle = () => {
+function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -67,7 +67,7 @@ const ColorSchemeToggle = () => {
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
-};
+}
 
 function TeamNav() {
   return (
@@ -443,7 +443,7 @@ export default function TeamExample() {
                   </Box>
                 </Box>
                 <ListDivider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-width': '48px' }}>
+                <List sx={{ '--List-decorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -486,7 +486,7 @@ export default function TeamExample() {
                 <Button
                   size="sm"
                   variant="plain"
-                  endIcon={<KeyboardArrowRightRoundedIcon fontSize="small" />}
+                  endDecorator={<KeyboardArrowRightRoundedIcon fontSize="small" />}
                   sx={{ px: 1, mt: 1 }}
                 >
                   Expand

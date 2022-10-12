@@ -11,7 +11,7 @@ export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
   showZero: boolean;
 };
 
-interface BadgeUnstyledOwnProps {
+export interface BadgeUnstyledOwnProps {
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
@@ -81,8 +81,9 @@ export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableCompo
 
 export type BadgeUnstyledProps<
   D extends React.ElementType = BadgeUnstyledTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BadgeUnstyledTypeMap<P, D>, D>;
+> = OverrideProps<BadgeUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
 
 export type BadgeUnstyledRootSlotProps = {
   children?: React.ReactNode;

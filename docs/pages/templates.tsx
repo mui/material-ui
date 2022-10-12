@@ -22,7 +22,7 @@ export default function Templates() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <TemplateHero />
         <References companies={TEMPLATES_CUSTOMERS} />
         <ValueProposition />

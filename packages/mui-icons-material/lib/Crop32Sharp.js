@@ -12,7 +12,7 @@ var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M21 4H3v16h18V4zm-2 14H5V6h14v12z"
+  d: "M21 6H3v12h18V6zm-2 10H5V8h14v8z"
 }), 'Crop32Sharp');
 
 exports.default = _default;

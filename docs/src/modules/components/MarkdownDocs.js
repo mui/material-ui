@@ -1,20 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@mui/utils';
-import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import BrandingProvider from 'docs/src/BrandingProvider';
-
-// TODO: Only import on demand via @mui/markdown/loader
-const markdownComponents = {
-  'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
-};
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -30,16 +25,28 @@ function JoyModeObserver({ mode }) {
   return null;
 }
 
-function MarkdownDocs(props) {
+JoyModeObserver.propTypes = {
+  mode: PropTypes.oneOf(['light', 'dark']),
+};
+
+export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+  const {
+    disableAd = false,
+    disableToc = false,
+    demos = {},
+    docs,
+    demoComponents,
+    srcComponents,
+  } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
-  const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
+  const localizedDoc = docs[userLanguage] || docs.en;
+  const { description, location, rendered, title, toc } = localizedDoc;
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
@@ -66,10 +73,16 @@ function MarkdownDocs(props) {
           }
 
           if (renderedMarkdownOrDemo.component) {
-            const Component = markdownComponents[renderedMarkdownOrDemo.component];
+            const name = renderedMarkdownOrDemo.component;
+            const Component = srcComponents?.[name];
+
+            if (Component === undefined) {
+              throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
+            }
+
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <Component headers={headers} options={renderedMarkdownOrDemo} />
+                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
               </Wrapper>
             );
           }
@@ -135,10 +148,9 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
   MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
 }
-
-export default MarkdownDocs;

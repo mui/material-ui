@@ -77,6 +77,12 @@ async function main() {
   await fse.emptyDir(screenshotDir);
 
   describe('visual regressions', () => {
+    beforeEach(async () => {
+      await page.evaluate(() => {
+        localStorage.clear();
+      });
+    });
+
     after(async () => {
       await browser.close();
     });

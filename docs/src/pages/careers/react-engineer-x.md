@@ -1,4 +1,4 @@
-# React Engineer - X
+# React Engineer - X (future role)
 
 <p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
 
@@ -6,7 +6,6 @@
 
 - Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
@@ -70,7 +69,7 @@ Depending on the day, you'll:
 
 ### The best parts of this job
 
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
+- **You'll be at the cutting-edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
 - **Your role will be key to making MUI the go-to UI framework** for building applications, websites, and design systems with React.
 
@@ -126,4 +125,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/77584e4c-9379-45f3-a294-6e50bf250383/application?utm_source=ZNRrPGBkqO)

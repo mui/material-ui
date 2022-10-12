@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useListbox } from '@mui/base/ListboxUnstyled';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { SinonSpy, spy } from 'sinon';
+import { useListbox } from '@mui/base/ListboxUnstyled';
+import { createRenderer, createEvent, fireEvent } from 'test/utils';
 
 describe('useListbox', () => {
   const { render } = createRenderer();
@@ -55,5 +56,73 @@ describe('useListbox', () => {
       const listboxes = getAllByRole('listbox');
       expect(listboxes[0].id).not.to.equal(listboxes[1].id);
     });
+  });
+
+  describe('preventing default behavior on keyDown', () => {
+    ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown', 'Enter', ' '].forEach((key) =>
+      it(`prevents default behavior when ${key} is pressed in activeDescendant focus management mode`, () => {
+        const Listbox = () => {
+          const { getRootProps } = useListbox({ options: [], focusManagement: 'activeDescendant' });
+          return <div {...getRootProps()} />;
+        };
+
+        const { getByRole } = render(<Listbox />);
+        const listbox = getByRole('listbox');
+        listbox.focus();
+
+        const event = createEvent.keyDown(listbox, {
+          key,
+        });
+
+        event.preventDefault = spy();
+        fireEvent(listbox, event);
+
+        expect((event.preventDefault as SinonSpy).calledOnce).to.equal(true);
+      }),
+    );
+
+    ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].forEach((key) =>
+      it(`prevents default behavior when ${key} is pressed in DOM focus management mode`, () => {
+        const Listbox = () => {
+          const { getRootProps } = useListbox({ options: [], focusManagement: 'DOM' });
+          return <div {...getRootProps()} />;
+        };
+
+        const { getByRole } = render(<Listbox />);
+        const listbox = getByRole('listbox');
+        listbox.focus();
+
+        const event = createEvent.keyDown(listbox, {
+          key,
+        });
+
+        event.preventDefault = spy();
+        fireEvent(listbox, event);
+
+        expect((event.preventDefault as SinonSpy).calledOnce).to.equal(true);
+      }),
+    );
+
+    ['Enter', ' '].forEach((key) =>
+      it(`does not prevent default behavior when ${key} is pressed in DOM focus management mode`, () => {
+        const Listbox = () => {
+          const { getRootProps } = useListbox({ options: [], focusManagement: 'DOM' });
+          return <div {...getRootProps()} />;
+        };
+
+        const { getByRole } = render(<Listbox />);
+        const listbox = getByRole('listbox');
+        listbox.focus();
+
+        const event = createEvent.keyDown(listbox, {
+          key,
+        });
+
+        event.preventDefault = spy();
+        fireEvent(listbox, event);
+
+        expect((event.preventDefault as SinonSpy).notCalled).to.equal(true);
+      }),
+    );
   });
 });

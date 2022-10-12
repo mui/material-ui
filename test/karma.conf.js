@@ -171,8 +171,10 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.(js|ts|tsx)$/,
             use: {
-              loader: 'istanbul-instrumenter-loader',
-              options: { esModules: true },
+              loader: 'babel-loader',
+              options: {
+                plugins: ['babel-plugin-istanbul'],
+              },
             },
             enforce: 'post',
             exclude: /node_modules/,

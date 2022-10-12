@@ -64,6 +64,7 @@ const useUtilityClasses = (ownerState) => {
     fullWidth,
     hiddenLabel,
     multiline,
+    readOnly,
     size,
     startAdornment,
     type,
@@ -83,6 +84,7 @@ const useUtilityClasses = (ownerState) => {
       startAdornment && 'adornedStart',
       endAdornment && 'adornedEnd',
       hiddenLabel && 'hiddenLabel',
+      readOnly && 'readOnly',
     ],
     input: [
       'input',
@@ -94,6 +96,7 @@ const useUtilityClasses = (ownerState) => {
       hiddenLabel && 'inputHiddenLabel',
       startAdornment && 'inputAdornedStart',
       endAdornment && 'inputAdornedEnd',
+      readOnly && 'readOnly',
     ],
   };
 
@@ -138,7 +141,7 @@ export const InputBaseComponent = styled('input', {
     color: 'currentColor',
     ...(theme.vars
       ? {
-          opacity: theme.vars.opacity.placeholder,
+          opacity: theme.vars.opacity.inputPlaceholder,
         }
       : {
           opacity: light ? 0.42 : 0.5,
@@ -154,7 +157,7 @@ export const InputBaseComponent = styled('input', {
 
   const placeholderVisible = theme.vars
     ? {
-        opacity: theme.vars.opacity.placeholder,
+        opacity: theme.vars.opacity.inputPlaceholder,
       }
     : {
         opacity: light ? 0.42 : 0.5,
@@ -300,9 +303,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       }
     }
   }, []);
-  const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
-  const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);
-  const handleInputRef = useForkRef(inputRef, handleInputRefProp);
+
+  const handleInputRef = useForkRef(
+    inputRef,
+    inputRefProp,
+    inputPropsProp.ref,
+    handleInputRefWarning,
+  );
 
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();

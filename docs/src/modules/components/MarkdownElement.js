@@ -23,6 +23,7 @@ const Root = styled('div')(({ theme }) => ({
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
+    maxHeight: '400px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
@@ -46,6 +47,7 @@ const Root = styled('div')(({ theme }) => ({
   // block code
   '& code[class*="language-"]': {
     color: '#fff',
+    padding: 0,
     backgroundColor: blueDark[800],
   },
   '& h1': {
@@ -102,7 +104,6 @@ const Root = styled('div')(({ theme }) => ({
     }),
   },
   '& h1, & h2, & h3, & h4': {
-    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& code': {
       fontSize: 'inherit',
       lineHeight: 'inherit',
@@ -172,7 +173,7 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
     },
     '& .optional': {
-      color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      color: theme.palette.mode === 'light' ? '#45529f' : '#a5b3ff',
     },
     '& .prop-type': {
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
@@ -412,13 +413,13 @@ const Root = styled('div')(({ theme }) => ({
     position: 'relative',
     '&:hover': {
       '& .MuiCode-copy': {
-        opacity: 1,
+        display: 'block',
       },
     },
   },
   '& .MuiCode-copy': {
     minWidth: 64,
-    opacity: 0,
+    display: 'none',
     backgroundColor: alpha(blueDark[600], 0.5),
     cursor: 'pointer',
     position: 'absolute',

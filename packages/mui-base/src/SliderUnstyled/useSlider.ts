@@ -251,7 +251,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     onFocus: handleFocusVisible,
     ref: focusVisibleRef,
   } = useIsFocusVisible();
-  const [focusVisible, setFocusVisible] = React.useState(-1);
+  const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
   const sliderRef = React.useRef<HTMLSpanElement>();
   const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
@@ -262,7 +262,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       const index = Number(event.currentTarget.getAttribute('data-index'));
       handleFocusVisible(event);
       if (isFocusVisibleRef.current === true) {
-        setFocusVisible(index);
+        setFocusedThumbIndex(index);
       }
       setOpen(index);
       otherHandlers?.onFocus?.(event);
@@ -271,7 +271,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       handleBlurVisible(event);
       if (isFocusVisibleRef.current === false) {
-        setFocusVisible(-1);
+        setFocusedThumbIndex(-1);
       }
       setOpen(-1);
       otherHandlers?.onBlur?.(event);
@@ -290,8 +290,8 @@ export default function useSlider(parameters: UseSliderParameters) {
   if (disabled && active !== -1) {
     setActive(-1);
   }
-  if (disabled && focusVisible !== -1) {
-    setFocusVisible(-1);
+  if (disabled && focusedThumbIndex !== -1) {
+    setFocusedThumbIndex(-1);
   }
 
   const createHandleHiddenInputChange =
@@ -344,7 +344,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       }
 
       setValueState(newValue);
-      setFocusVisible(index);
+      setFocusedThumbIndex(index);
 
       if (handleChange) {
         handleChange(event, newValue, index);
@@ -364,11 +364,9 @@ export default function useSlider(parameters: UseSliderParameters) {
   const getFingerNewValue = ({
     finger,
     move = false,
-    values: values2,
   }: {
     finger: { x: number; y: number };
     move?: boolean;
-    values: number[];
   }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider!.getBoundingClientRect();
@@ -398,7 +396,7 @@ export default function useSlider(parameters: UseSliderParameters) {
 
     if (range) {
       if (!move) {
-        activeIndex = findClosest(values2, newValue)!;
+        activeIndex = findClosest(values, newValue)!;
       } else {
         activeIndex = previousIndex.current!;
       }
@@ -407,14 +405,14 @@ export default function useSlider(parameters: UseSliderParameters) {
       if (disableSwap) {
         newValue = clamp(
           newValue,
-          values2[activeIndex - 1] || -Infinity,
-          values2[activeIndex + 1] || Infinity,
+          values[activeIndex - 1] || -Infinity,
+          values[activeIndex + 1] || Infinity,
         );
       }
 
       const previousValue = newValue;
       newValue = setValueIndex({
-        values: values2,
+        values,
         newValue,
         index: activeIndex,
       });
@@ -449,7 +447,6 @@ export default function useSlider(parameters: UseSliderParameters) {
     const { newValue, activeIndex } = getFingerNewValue({
       finger,
       move: true,
-      values,
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
@@ -459,7 +456,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       setDragging(true);
     }
 
-    if (handleChange) {
+    if (handleChange && newValue !== valueDerived) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -472,7 +469,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, move: true, values });
+    const { newValue } = getFingerNewValue({ finger, move: true });
 
     setActive(-1);
     if (nativeEvent.type === 'touchend') {
@@ -505,7 +502,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     }
     const finger = trackFinger(nativeEvent, touchId);
     if (finger !== false) {
-      const { newValue, activeIndex } = getFingerNewValue({ finger, values });
+      const { newValue, activeIndex } = getFingerNewValue({ finger });
       focusThumb({ sliderRef, activeIndex, setActive });
 
       setValueState(newValue);
@@ -572,7 +569,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       event.preventDefault();
       const finger = trackFinger(event, touchId);
       if (finger !== false) {
-        const { newValue, activeIndex } = getFingerNewValue({ finger, values });
+        const { newValue, activeIndex } = getFingerNewValue({ finger });
         focusThumb({ sliderRef, activeIndex, setActive });
 
         setValueState(newValue);
@@ -633,12 +630,9 @@ export default function useSlider(parameters: UseSliderParameters) {
       onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
     };
 
-    const mergedEventHandlers = {
+    return {
       ...otherHandlers,
       ...ownEventHandlers,
-    };
-    return {
-      ...mergedEventHandlers,
     };
   };
 
@@ -666,7 +660,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step,
+      step: parameters.step ?? undefined,
       disabled,
       ...mergedEventHandlers,
       style: {
@@ -684,7 +678,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     axis: axis as keyof typeof axisProps,
     axisProps,
     dragging,
-    focusVisible,
+    focusedThumbIndex,
     getHiddenInputProps,
     getRootProps,
     getThumbProps,

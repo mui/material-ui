@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 import { expectType } from '@mui/types';
+import { FormControlUnstyledRootSlotProps } from './FormControlUnstyled.types';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
@@ -33,3 +34,14 @@ const FormControlUnstyledTest = () => (
     />
   </div>
 );
+
+function Root(props: FormControlUnstyledRootSlotProps) {
+  const { ownerState, children, ...other } = props;
+  return (
+    <div data-filled={ownerState.filled} {...other}>
+      {children as React.ReactNode}
+    </div>
+  );
+}
+
+const StyledFormControl = <FormControlUnstyled components={{ Root }} />;

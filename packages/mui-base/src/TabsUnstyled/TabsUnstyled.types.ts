@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 interface TabsUnstyledComponentsPropsOverrides {}
 
@@ -45,12 +46,12 @@ export interface TabsUnstyledOwnProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TabsUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<'div', TabsUnstyledComponentsPropsOverrides, TabsUnstyledOwnerState>;
   };
   /**
    * Callback invoked when new value is being set.
    */
-  onChange?: (event: React.SyntheticEvent, value: number | string) => void;
+  onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.
@@ -67,11 +68,6 @@ export type TabsUnstyledProps<
   D extends React.ElementType = TabsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabsUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

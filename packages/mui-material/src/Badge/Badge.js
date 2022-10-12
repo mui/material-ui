@@ -258,7 +258,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         Badge: BadgeBadge,
         ...components,
       }}
-      className={clsx(className, classes.root, componentsProps.root?.className)}
+      className={clsx(componentsProps.root?.className, classes.root, className)}
       componentsProps={{
         root: {
           ...componentsProps.root,

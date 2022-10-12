@@ -49,7 +49,7 @@ declare module '@mui/joy/styles' {
 }
 
 // how to add more color and use with variants
-const Tile = ({
+function Tile({
   children,
   variant = 'soft',
   color = 'primary',
@@ -58,7 +58,7 @@ const Tile = ({
 }: {
   variant?: 'soft' | 'solid';
   color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) => {
+} & Omit<BoxProps, 'color'>) {
   return (
     <Box
       sx={[
@@ -72,7 +72,7 @@ const Tile = ({
       {children}
     </Box>
   );
-};
+}
 
 export default function JoyVariant() {
   return (
@@ -146,8 +146,8 @@ export default function JoyVariant() {
         </Box>
       </CssVarsProvider>
       <CssVarsProvider
-        prefix="strapi"
         theme={extendTheme({
+          cssVarPrefix: 'strapi',
           colorSchemes: {
             light: {
               palette: {
@@ -337,8 +337,8 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       light: {
         palette: {
@@ -416,8 +416,8 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       light: {
         palette: {
@@ -604,8 +604,8 @@ declare module '@mui/joy/styles' {
               component={MarkdownElement}
               code={`
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       // ...
     },
@@ -700,8 +700,8 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       light: {
         palette: {

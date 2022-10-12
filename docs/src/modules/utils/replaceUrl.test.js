@@ -4,7 +4,6 @@ import replaceUrl, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceUrl';
-import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceUrl', () => {
   it('replace material related pathname', () => {
@@ -252,11 +251,7 @@ describe('replaceUrl', () => {
     expect(replaceUrl(`/api/button-unstyled`, '/base/api/button-unstyled')).to.equal(
       `/base/api/button-unstyled`,
     );
-    if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/system/styles/api/`);
-    } else {
-      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/styles/api/`);
-    }
+    expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/system/styles/api/`);
   });
 
   it('[i18n] only replace links for new routes (/material-ui/* & /x/*)', () => {
@@ -272,11 +267,7 @@ describe('replaceUrl', () => {
     expect(replaceUrl(`/zh/api/button-unstyled`, '/zh/base/api/button-unstyled')).to.equal(
       `/zh/base/api/button-unstyled`,
     );
-    if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(replaceUrl(`/zh/styles/api/`, `/system/basics`)).to.equal(`/zh/system/styles/api/`);
-    } else {
-      expect(replaceUrl(`/styles/api/`, `/system/basics`)).to.equal(`/styles/api/`);
-    }
+    expect(replaceUrl(`/zh/styles/api/`, `/system/basics`)).to.equal(`/zh/system/styles/api/`);
   });
 
   it('does not replace for old routes', () => {

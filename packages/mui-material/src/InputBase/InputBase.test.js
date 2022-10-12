@@ -122,6 +122,16 @@ describe('<InputBase />', () => {
     });
   });
 
+  describe('prop: readonly', () => {
+    it('should render a readonly <input />', () => {
+      const { getByRole } = render(<InputBase readOnly />);
+      const input = getByRole('textbox');
+      expect(input).to.have.class(classes.input);
+      expect(input).to.have.class(classes.readOnly);
+      expect(input).to.have.property('readOnly');
+    });
+  });
+
   it('should fire event callbacks', () => {
     const handleChange = spy();
     const handleFocus = spy();

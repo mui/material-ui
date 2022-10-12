@@ -1,5 +1,13 @@
 import React from "react";
+
+/*
+Test makeStyles comment
+ */
 import { makeStyles } from "@material-ui/core";
+/*
+clsx comment that will not be preserved since the import is being removed (not just replaced)
+and is not at the beginning of the file.
+ */
 import clsx from "clsx";
 
 const useStyles = makeStyles(() => ({

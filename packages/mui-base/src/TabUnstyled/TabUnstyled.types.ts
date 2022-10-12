@@ -1,6 +1,7 @@
 import { OverrideProps, Simplify } from '@mui/types';
 import React from 'react';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
+import { SlotComponentProps } from '../utils';
 import { UseTabRootSlotProps } from './useTab.types';
 
 interface TabUnstyledComponentsPropsOverrides {}
@@ -28,7 +29,7 @@ export interface TabUnstyledOwnProps
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TabUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<'div', TabUnstyledComponentsPropsOverrides, TabUnstyledOwnerState>;
   };
 }
 
@@ -36,11 +37,6 @@ export type TabUnstyledProps<
   D extends React.ElementType = TabUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

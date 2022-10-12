@@ -1,4 +1,8 @@
 import React from "react";
+
+/*
+Test makeStyles comment
+ */
 import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()((_theme, _params, classes) => ({

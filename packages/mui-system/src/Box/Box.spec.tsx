@@ -56,22 +56,22 @@ function ThemeCallbackTest() {
 function CssVariablesWithNestedSelectors() {
   <Box
     sx={(theme) => ({
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
     })}
   />;
   <Box
     sx={(theme) => ({
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: theme.palette.primary.main,
-        '--md-palette-primary-main': (t) => theme.palette.primary.main,
-        '--md-spacing': (t) => theme.shape.borderRadius,
+        '--mui-palette-primary-main': (t) => theme.palette.primary.main,
+        '--mui-spacing': (t) => theme.shape.borderRadius,
       },
     })}
   />;
   <Box
     sx={{
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: '#EE0000',
       },
@@ -79,7 +79,7 @@ function CssVariablesWithNestedSelectors() {
   />;
   <Box
     sx={{
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '& .foo-bar': {
         backgroundColor: '#EE0000',
       },

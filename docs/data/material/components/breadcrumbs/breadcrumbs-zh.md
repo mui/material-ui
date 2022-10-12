@@ -3,7 +3,7 @@ product: material-ui
 title: React Breadcrumbs（面包屑导航）组件
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
 ---
 
 # Breadcrumbs 面包屑导航
@@ -38,7 +38,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 ## 自定义的面包屑导航
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBreadcrumbs.js"}}
 
@@ -48,7 +48,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
 
 请务必在`面包屑导航`组件上加上 `aria-label` 的描述。
 

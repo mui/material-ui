@@ -6,7 +6,6 @@
 
 - Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -50,7 +49,7 @@ Depending on the day, you'll:
   - You will help all individuals understand their primary role within the wider organization.
   - You will partner with Finance for budgeting/compensation purposes. You will manage compensation, benefits, leave, and other people-related matters.
   - You will shape a strategy that aligns and moves MUI towards continued growth, innovation, and improvement.
-- **Improve employees experience**.
+- **Improve employees' experience**.
   - You will work on the employee engagement survey results.
   - You will reduce the admin burden.
   - You will own the Retreat. Bring our remote team together. Being a fully distributed remote team has its challenges. You organize team events, make sure everybody has what they need to be productive, and find creative ways to engage as a team.
@@ -86,4 +85,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=People%20Operations%20Manager&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/b46968b7-dde3-4b91-9785-a05aa0a816d8/application?utm_source=ZNRrPGBkqO)

@@ -38,7 +38,7 @@ export default function FlexRowRatio() {
         borderRadius: 'sm',
       }}
     >
-      <List sx={{ py: 'var(--List-gap)' }}>
+      <List sx={{ py: 'var(--List-divider-gap)' }}>
         {data.map((item, index) => (
           <React.Fragment key={item.title}>
             <ListItem>

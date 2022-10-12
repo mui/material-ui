@@ -7,6 +7,7 @@ export type IconImageProps = {
   name:
     | 'product-core'
     | 'product-advanced'
+    | 'product-toolpad'
     | 'product-templates'
     | 'product-designkits'
     | 'block-green'

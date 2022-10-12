@@ -19,7 +19,7 @@ export default function EditProgress(props: GridRenderEditCellParams) {
   const [valueState, setValueState] = React.useState(Number(value));
 
   const updateCellEditProps = React.useCallback(
-    (newValue) => {
+    (newValue: number | number[]) => {
       api.setEditCellValue({ id, field, value: newValue });
     },
     [api, field, id],

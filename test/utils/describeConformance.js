@@ -214,6 +214,7 @@ export function testReactTestRenderer(element) {
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
  * @property {object} [testVariantProps]
  * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
+ * @property {boolean} [testCustomVariant] - The component supports custom variant
  */
 
 function throwMissingPropError(field) {
@@ -522,7 +523,7 @@ function testThemeVariants(element, getOptions) {
       }
 
       const testStyle = {
-        marginTop: '13px',
+        mixBlendMode: 'darken',
       };
 
       const theme = createTheme({
@@ -547,6 +548,40 @@ function testThemeVariants(element, getOptions) {
 
       expect(getByTestId('with-props')).to.toHaveComputedStyle(testStyle);
       expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
+    });
+
+    it('supports custom variant', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { muiName, testCustomVariant, render, ThemeProvider = MDThemeProvider } = getOptions();
+
+      if (!testCustomVariant) {
+        return;
+      }
+
+      const theme = createTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              root: ({ ownerState }) => ({
+                ...(ownerState.variant === 'unknown' && {
+                  mixBlendMode: 'darken',
+                }),
+              }),
+            },
+          },
+        },
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          {React.cloneElement(element, { variant: 'unknown', 'data-testid': 'custom-variant' })}
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('custom-variant')).toHaveComputedStyle({ mixBlendMode: 'darken' });
     });
   });
 }

@@ -80,7 +80,12 @@ function Demo() {
           false,
           true,
         )}
-        {item(theme.palette.background.paper, 'palette.background.paper')}
+        {item(
+          theme.palette.background.paper,
+          'palette.background.paper',
+          false,
+          true,
+        )}
       </Grid>
       <Typography gutterBottom sx={{ mt: 4, mb: 1.5 }}>
         Divider

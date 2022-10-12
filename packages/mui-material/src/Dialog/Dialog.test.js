@@ -207,6 +207,27 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).to.have.class(classes.paperWidthXs);
     });
+
+    it('should use the right className when maxWidth={false}', () => {
+      render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
+    });
+
+    it('should apply the correct max-width styles when maxWidth={false}', () => {
+      render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+
+      expect(screen.getByTestId('paper')).toHaveComputedStyle({
+        maxWidth: 'calc(100% - 64px)',
+      });
+    });
   });
 
   describe('prop: fullWidth', () => {

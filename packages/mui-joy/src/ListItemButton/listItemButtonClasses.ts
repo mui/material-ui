@@ -1,8 +1,12 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListItemButtonClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the root element, if `orientation="vertical"`. */
+  vertical: string;
+  /** Styles applied to the root element, if `orientation="horizontal"`. */
+  horizontal: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -41,6 +45,8 @@ export function getListItemButtonUtilityClass(slot: string): string {
 
 const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('JoyListItemButton', [
   'root',
+  'horizontal',
+  'vertical',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',

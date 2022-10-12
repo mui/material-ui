@@ -29,7 +29,8 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     disableIcon?: boolean;
     /**
-     * The `name` attribute of the input.
+     * The name used to reference the value of the control.
+     * If you don't provide this prop, it falls back to a randomly generated name.
      */
     name?: string;
     /**
@@ -75,3 +76,5 @@ export type RadioGroupProps<
     component?: React.ElementType;
   },
 > = OverrideProps<RadioGroupTypeMap<P, D>, D>;
+
+export interface RadioGroupOwnerState extends RadioGroupProps {}

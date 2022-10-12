@@ -40,22 +40,23 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   disableTransitionOnChange?: boolean;
   /**
-   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-   * @default true
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
    */
-  enableColorScheme?: boolean;
-  /**
-   * CSS variable prefix
-   * @default ''
-   */
-  prefix?: string;
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
-export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeInput> {
+export interface CreateCssVarsProviderResult<ColorScheme extends string> {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       Partial<CssVarsProviderConfig<ColorScheme>> & {
-        theme?: ThemeInput;
+        theme?: {
+          cssVarPrefix?: string;
+          colorSchemes: Record<ColorScheme, Record<string, any>>;
+        };
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
@@ -83,10 +84,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 
-export default function createCssVarsProvider<
-  ColorScheme extends string,
-  ThemeInput extends { colorSchemes?: Partial<Record<ColorScheme, any>> },
->(
+export default function createCssVarsProvider<ColorScheme extends string>(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
      * Design system default theme
@@ -115,22 +113,22 @@ export default function createCssVarsProvider<
      */
     theme: any;
     /**
-     * A function to determine if the key, value should be attached as CSS Variable
-     * `keys` is an array that represents the object path keys.
-     *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-     *  then, keys = ['foo', 'bar']
-     *        value = 'var(--test)'
-     */
-    shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-    /**
      * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
      *
      * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
      * variants from those tokens.
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
+    /**
+     * @internal
+     * A function that returns a list of variables that will be excluded from the `colorSchemeSelector` (:root by default)
+     *
+     * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
+     * This is introduced to fix https://github.com/mui/material-ui/issues/34084
+     */
+    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
-): CreateCssVarsProviderResult<ColorScheme, ThemeInput>;
+): CreateCssVarsProviderResult<ColorScheme>;
 
 // disable automatic export
 export {};

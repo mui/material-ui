@@ -153,6 +153,9 @@ export * from './FormLabel';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
+export { default as Unstable_Grid2 } from './Unstable_Grid2';
+export * from './Unstable_Grid2';
+
 export { default as Grow } from './Grow';
 export * from './Grow';
 
@@ -413,3 +416,5 @@ export { default as generateUtilityClass } from '@mui/base/generateUtilityClass'
 export * from '@mui/base/generateUtilityClass';
 
 export { default as generateUtilityClasses } from '@mui/base/generateUtilityClasses';
+
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';

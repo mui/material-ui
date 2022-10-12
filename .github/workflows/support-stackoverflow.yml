@@ -1,5 +1,5 @@
 # Configuration for support-requests - https://github.com/dessant/support-requests
-name: 'Support StackOverflow'
+name: 'Support Stack Overflow'
 
 on:
   issues:
@@ -16,7 +16,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Label used to mark issues as support requests
-          support-label: 'support: StackOverflow'
+          support-label: 'support: Stack Overflow'
           # Comment to post on issues marked as support requests. Add a link
           # to a support page, or set to `false` to disable
           issue-comment: |
@@ -27,7 +27,7 @@ jobs:
 
             For support, please check out https://mui.com/getting-started/support/. Thanks!
 
-            If you have a question on StackOverflow, you are welcome to link to it here, it might help others.
+            If you have a question on Stack Overflow, you are welcome to link to it here, it might help others.
             If your issue is subsequently confirmed as a bug, and the report follows the issue template, it can be reopened.
           close-issue: true
           lock-issue: false

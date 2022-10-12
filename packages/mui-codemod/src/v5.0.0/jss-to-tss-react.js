@@ -157,25 +157,33 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
     }
   }
 }
-
+function addCommentsToNode(node, commentsToAdd, addToBeginning = false) {
+  if (!node.comments) {
+    node.comments = [];
+  }
+  if (addToBeginning) {
+    node.comments.unshift(...commentsToAdd);
+  } else {
+    node.comments.push(...commentsToAdd);
+  }
+}
 function addCommentsToDeclaration(declaration, commentsToAdd) {
   let commentsPath = declaration;
   if (declaration.parentPath.node.type === 'ExportNamedDeclaration') {
     commentsPath = declaration.parentPath;
   }
-  if (!commentsPath.node.comments) {
-    commentsPath.node.comments = [];
-  }
-  commentsPath.node.comments.push(...commentsToAdd);
+  addCommentsToNode(commentsPath.node, commentsToAdd);
 }
-function addComments(j, path, commentsToAdd) {
+function addCommentsToClosestDeclaration(j, path, commentsToAdd) {
   j(path)
     .closest(j.VariableDeclaration)
     .forEach((declaration) => {
       addCommentsToDeclaration(declaration, commentsToAdd);
     });
 }
-
+function getFirstNode(j, root) {
+  return root.find(j.Program).get('body', 0).node;
+}
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -185,7 +193,7 @@ export default function transformer(file, api, options) {
 
   const root = j(file.source);
   const printOptions = options.printOptions || { quote: 'single' };
-
+  const originalFirstNode = getFirstNode(j, root);
   let importsChanged = false;
   let foundCreateStyles = false;
   let foundMakeStyles = false;
@@ -195,6 +203,7 @@ export default function transformer(file, api, options) {
    */
   root.find(j.ImportDeclaration).forEach((path) => {
     const importSource = path.node.source.value;
+    const originalComments = path.node.comments;
     if (
       importSource === '@material-ui/core/styles' ||
       importSource === '@material-ui/core' ||
@@ -252,6 +261,7 @@ export default function transformer(file, api, options) {
       );
       importsChanged = true;
     }
+    path.node.comments = originalComments;
   });
   if (!importsChanged) {
     return file.source;
@@ -267,7 +277,16 @@ export default function transformer(file, api, options) {
             clsxOrClassnamesName = specifier.local.name;
           }
         });
+        let commentsToPreserve = null;
+        if (originalFirstNode === path.node) {
+          // For a removed import, only preserve the comments if it is the first node in the file,
+          // otherwise the comments are probably about the removed import and no longer relevant.
+          commentsToPreserve = path.node.comments;
+        }
         j(path).remove();
+        if (commentsToPreserve) {
+          addCommentsToNode(getFirstNode(j, root), commentsToPreserve, true);
+        }
       }
     });
     /**
@@ -308,7 +327,7 @@ export default function transformer(file, api, options) {
             stylesExpression = newStylesExpression;
           },
         );
-        addComments(j, path, commentsToAdd);
+        addCommentsToClosestDeclaration(j, path, commentsToAdd);
         let makeStylesIdentifier = 'makeStyles';
         if (isTypeScript && (nestedKeys.length > 0 || paramsTypes !== null)) {
           let paramsTypeString = 'void';
@@ -344,7 +363,7 @@ export default function transformer(file, api, options) {
                 true,
               ),
             ];
-            addComments(j, path, comments);
+            addCommentsToClosestDeclaration(j, path, comments);
           });
       });
     /**
@@ -444,7 +463,7 @@ export default function transformer(file, api, options) {
           transformStylesExpression(j, commentsToAdd, styles, nestedKeys, (newStylesExpression) => {
             path.node.callee.arguments[0] = newStylesExpression;
           });
-          addComments(j, path, commentsToAdd);
+          addCommentsToClosestDeclaration(j, path, commentsToAdd);
         }
         const component = path.node.arguments[0];
         withStylesCall.arguments.unshift(component);
@@ -463,7 +482,7 @@ export default function transformer(file, api, options) {
             path.node.init = newStylesExpression;
           },
         );
-        addComments(j, path, commentsToAdd);
+        addCommentsToClosestDeclaration(j, path, commentsToAdd);
       });
     });
   }

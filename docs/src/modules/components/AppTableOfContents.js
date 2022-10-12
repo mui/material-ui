@@ -218,7 +218,7 @@ export default function AppTableOfContents(props) {
         <TableOfContentsBanner />
         {showAddJob && (
           <Link
-            href="/careers/"
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
             underline="none"
             sx={(theme) => ({
               mb: 2,

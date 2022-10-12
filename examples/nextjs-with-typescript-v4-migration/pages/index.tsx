@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home: NextPage = () => {
+export default function Home() {
   const classes = useStyles();
 
   return (
@@ -35,6 +34,4 @@ const Home: NextPage = () => {
       </div>
     </Container>
   );
-};
-
-export default Home;
+}

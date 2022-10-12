@@ -73,3 +73,5 @@ export type TextFieldProps<
     component?: React.ElementType;
   },
 > = OverrideProps<TextFieldTypeMap<P, D>, D>;
+
+export interface TextFieldOwnerState extends TextFieldProps {}

@@ -9,6 +9,7 @@ import SliderUnstyled, {
   SliderUnstyledTrackSlotProps,
   SliderUnstyledValueLabelSlotProps,
 } from '@mui/base/SliderUnstyled';
+import { expectType } from '@mui/types';
 
 const Root = React.forwardRef(function Root(
   props: SliderUnstyledRootSlotProps,
@@ -38,7 +39,7 @@ const Thumb = React.forwardRef(function Thumb(
   props: SliderUnstyledThumbSlotProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { 'data-index': index, ownerState, ...other } = props;
+  const { 'data-index': index, 'data-focusvisible': focusVisible, ownerState, ...other } = props;
   return <div data-track={ownerState.track} {...other} ref={ref} />;
 });
 
@@ -75,3 +76,36 @@ const Input = React.forwardRef(function Input(
 });
 
 const styledSlider = <SliderUnstyled components={{ Root, Track, Rail, Thumb, Mark, MarkLabel }} />;
+
+const PolymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+
+  return (
+    <div>
+      {/* @ts-expect-error */}
+      <SliderUnstyled invalidProp={0} />
+
+      <SliderUnstyled component="a" href="#" />
+
+      <SliderUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      {/* @ts-expect-error */}
+      <SliderUnstyled component={CustomComponent} />
+
+      <SliderUnstyled
+        component="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+      />
+
+      <SliderUnstyled<'button'>
+        component="button"
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onMouseDown={(e) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+          e.currentTarget.checkValidity();
+        }}
+      />
+    </div>
+  );
+};

@@ -211,7 +211,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           variant: 'standard',
           input: <InputBase />,
           ...selectProps,
-          id: selectId,
           ...(SelectProps.native ? {} : { labelId }),
           'aria-labelledby': labelId,
           className: clsx(classes.select, SelectProps.className),
@@ -242,6 +241,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           ...toolbarProps,
         },
       }}
+      selectId={selectId}
+      labelId={labelId}
       ref={ref}
       {...other}
       className={clsx(classes.root, className)}

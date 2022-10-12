@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces, MIT-licensed.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
@@ -30,7 +29,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data-rich applications, and the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -176,7 +175,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   );
 }
 
-const ColumnHead = ({
+function ColumnHead({
   label,
   metadata,
   tooltip,
@@ -188,7 +187,7 @@ const ColumnHead = ({
   tooltip?: string;
   nested?: boolean;
   href?: string;
-}) => {
+}) {
   const text = (
     <Typography
       {...(href && {
@@ -240,99 +239,103 @@ const ColumnHead = ({
       )}
     </Box>
   );
-};
+}
 
-const ColumnHeadHighlight = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      p: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-      borderRadius: '10px 10px 0 0',
-      borderWidth: '1px 1px 0 1px',
-      borderStyle: 'solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[900], 0.5)
-          : alpha(theme.palette.grey[50], 0.5),
-      ...props.sx,
-    }}
-  />
-);
-
-const Recommended = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      typography: 'caption',
-      color: 'primary.500',
-      p: '2px 8px',
-      border: '1px solid',
-      borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
-      position: 'absolute',
-      top: 0,
-      left: 20,
-      transform: 'translateY(-50%)',
-      ...props.sx,
-    }}
-  >
-    Recommended
-  </Box>
-);
-
-const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) => (
-  <Box
-    {...props}
-    sx={{
-      py: 2,
-      px: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      ...(highlighted && {
-        borderWidth: '0 1px 0 1px',
+function ColumnHeadHighlight(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        p: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        borderRadius: '10px 10px 0 0',
+        borderWidth: '1px 1px 0 1px',
         borderStyle: 'solid',
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
         bgcolor: (theme) =>
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[900], 0.5)
             : alpha(theme.palette.grey[50], 0.5),
-      }),
-      ...props.sx,
-    }}
-  />
-);
+        ...props.sx,
+      }}
+    />
+  );
+}
 
-const RowHead = ({
-  children,
-  startIcon,
-  ...props
-}: BoxProps & { startIcon?: React.ReactElement }) => (
-  <Box
-    {...props}
-    sx={{
-      justifyContent: 'flex-start',
-      borderRadius: 1,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-      p: 1,
-      transition: 'none',
-      typography: 'body2',
-      fontWeight: 700,
-      display: 'flex',
-      alignItems: 'center',
-      ...props.sx,
-    }}
-  >
-    {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
-    {children}
-  </Box>
-);
+function Recommended(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        typography: 'caption',
+        color: 'primary.500',
+        p: '2px 8px',
+        border: '1px solid',
+        borderRadius: 2,
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
+        position: 'absolute',
+        top: 0,
+        left: 20,
+        transform: 'translateY(-50%)',
+        ...props.sx,
+      }}
+    >
+      Recommended
+    </Box>
+  );
+}
+
+function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        py: 2,
+        px: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        ...(highlighted && {
+          borderWidth: '0 1px 0 1px',
+          borderStyle: 'solid',
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? alpha(theme.palette.primaryDark[900], 0.5)
+              : alpha(theme.palette.grey[50], 0.5),
+        }),
+        ...props.sx,
+      }}
+    />
+  );
+}
+
+function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: React.ReactElement }) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        justifyContent: 'flex-start',
+        borderRadius: 1,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+        p: 1,
+        transition: 'none',
+        typography: 'body2',
+        fontWeight: 700,
+        display: 'flex',
+        alignItems: 'center',
+        ...props.sx,
+      }}
+    >
+      {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
+      {children}
+    </Box>
+  );
+}
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
@@ -391,13 +394,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/row-height/" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/row-spanning/" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/row-ordering/" />
+  ),
+  'data-grid/row-pinning': (
+    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
     <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
@@ -510,13 +516,21 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
+  community: (
+    <ColumnHead
+      {...{
+        label: 'Community support for MUI Core',
+        tooltip:
+          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+      }}
+    />
+  ),
   'bugs/features': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI X',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),
@@ -577,6 +591,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
+  'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
@@ -634,6 +649,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
@@ -662,7 +678,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
-  'date-picker/range': pending,
+  'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
@@ -691,6 +707,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
@@ -713,13 +730,13 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/tree-data': yes,
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
-  'data-grid/aggregation': pending,
+  'data-grid/aggregation': yes,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
-  'date-picker/range': pending,
+  'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
@@ -745,31 +762,33 @@ const premiumData: Record<string, React.ReactNode> = {
   'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
 };
 
-const RowCategory = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      typography: 'caption',
-      display: 'block',
-      fontWeight: 500,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-      py: 1,
-      ml: 1,
-      pl: 1.5,
-      borderBottom: '1px solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
-      ...props.sx,
-    }}
-  />
-);
+function RowCategory(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        typography: 'caption',
+        display: 'block',
+        fontWeight: 500,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+        py: 1,
+        ml: 1,
+        pl: 1.5,
+        borderBottom: '1px solid',
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
+        ...props.sx,
+      }}
+    />
+  );
+}
 
-const StickyHead = ({
+function StickyHead({
   container,
   disableCalculation = false,
 }: {
   container: React.MutableRefObject<HTMLElement | null>;
   disableCalculation?: boolean;
-}) => {
+}) {
   const [hidden, setHidden] = React.useState(true);
   React.useEffect(() => {
     function handleScroll() {
@@ -839,7 +858,7 @@ const StickyHead = ({
       </Container>
     </Box>
   );
-};
+}
 
 const divider = <Divider />;
 const nestedDivider = <Divider sx={{ ml: 1 }} />;
@@ -1050,6 +1069,8 @@ export default function PricingTable({
         {renderRow('data-grid/row-height')}
         {nestedDivider}
         {renderRow('data-grid/row-reordering')}
+        {nestedDivider}
+        {renderRow('data-grid/row-pinning')}
         {nestedDivider}
         {renderRow('data-grid/row-spanning')}
         {nestedDivider}

@@ -25,6 +25,8 @@ describe('extendTheme', () => {
         'typography',
         'variants',
         'vars',
+        'cssVarPrefix',
+        'getColorSchemeSelector',
       ]).to.includes(field);
     });
   });
