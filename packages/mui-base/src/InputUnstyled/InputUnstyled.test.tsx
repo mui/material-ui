@@ -31,6 +31,11 @@ describe('<InputUnstyled />', () => {
     expect(screen.getByRole('textbox')).to.have.tagName('textarea');
   });
 
+  it('should set spellCheck if type is password', () => {
+    render(<InputUnstyled type="password" />);
+    expect(document.querySelector('input')).to.have.attribute('spellcheck', 'false');
+  });
+
   describe('prop: multiline', () => {
     it('should pass the rows prop to the underlying textarea when multiline=true', () => {
       const { getByRole } = render(<InputUnstyled multiline rows={5} />);

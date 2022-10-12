@@ -505,7 +505,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const rootProps = componentsProps.root || {};
 
   const Input = components.Input || InputBaseComponent;
-  inputProps = { ...inputProps, ...componentsProps.input };
+  inputProps = {
+    ...(type === 'password' ? { spellCheck: false } : {}),
+    ...inputProps,
+    ...componentsProps.input,
+  };
 
   return (
     <React.Fragment>

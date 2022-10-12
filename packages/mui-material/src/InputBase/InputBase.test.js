@@ -37,6 +37,11 @@ describe('<InputBase />', () => {
     expect(container.firstChild).to.have.class(classes.sizeSmall);
   });
 
+  it('should set spellCheck if type is password', () => {
+    render(<InputBase type="password" />);
+    expect(document.querySelector('input')).to.have.attribute('spellcheck', 'false');
+  });
+
   describe('multiline', () => {
     it('should render a `textbox` with `aria-multiline`', () => {
       render(<InputBase multiline />);

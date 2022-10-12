@@ -186,6 +186,7 @@ export default function useInput(parameters: UseInputParameters) {
     };
 
     return {
+      ...(mergedEventHandlers.type === 'password' ? { spellCheck: false } : {}),
       ...mergedEventHandlers,
       'aria-invalid': error || undefined,
       defaultValue: defaultValue as string | number | readonly string[] | undefined,
