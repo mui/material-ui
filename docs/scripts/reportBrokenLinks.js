@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const path = require('path');
 const fse = require('fs-extra');
 const { createRender } = require('@mui/markdown');
@@ -15,7 +16,7 @@ function write(text) {
 
 function save() {
   const fileContents = [...buffer, ''].join('\n');
-  fse.writeFileSync(path.join(docsSpaceRoot, 'broken-links.txt'), fileContents);
+  fse.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
 }
 
 // Use renderer to extract all links into a markdown document
@@ -185,6 +186,7 @@ function getPageUrlFromLink(link) {
   return rep;
 }
 
+write('Broken links found by `yarn docs:link-check` that exist:\n');
 Object.keys(usedLinks)
   .filter((link) => link.startsWith('/'))
   .filter((link) => !availableLinks[link])
@@ -193,17 +195,18 @@ Object.keys(usedLinks)
   .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
   .sort()
   .forEach((linkKey) => {
-    write(`not found: https://mui.com${linkKey}`);
-    write(`used in`);
-    usedLinks[linkKey].forEach((f) => write(`- ${path.relative(docsSpaceRoot, f)}`));
-    write('available anchors on the same page:');
-    write(
+    write(`- https://mui.com${linkKey}`);
+    console.log(`https://mui.com${linkKey}`);
+    console.log(`used in`);
+    usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));
+    console.log('available anchors on the same page:');
+    console.log(
       Object.keys(availableLinks)
         .filter((link) => getPageUrlFromLink(link) === getPageUrlFromLink(linkKey))
         .sort()
         .map(getAnchor)
         .join('\n'),
     );
-    write('\n\n');
+    console.log('\n\n');
   });
 save();
