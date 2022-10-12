@@ -21,6 +21,10 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
        */
       actions?: React.Ref<MenuUnstyledActions>;
       /**
+       * A menu button that will open the menu when users interact on it.
+       */
+      button?: React.ReactElement;
+      /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */

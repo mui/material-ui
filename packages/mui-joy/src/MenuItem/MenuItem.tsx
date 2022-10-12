@@ -7,6 +7,7 @@ import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
+import { MenuCloseContext } from '../Menu/Menu';
 import {
   MenuItemProps,
   MenuItemOwnerState,
@@ -46,6 +47,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   });
 
   const row = React.useContext(RowListContext);
+  const handleClose = React.useContext(MenuCloseContext);
 
   const {
     children,
@@ -77,7 +79,13 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const rootProps = useSlotProps({
     elementType: MenuItemRoot,
-    getSlotProps: getRootProps,
+    getSlotProps: (handlers) =>
+      getRootProps({
+        onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+          handlers.onClick?.(event);
+          handleClose?.();
+        },
+      }),
     externalSlotProps: {},
     additionalProps: {
       as: component,

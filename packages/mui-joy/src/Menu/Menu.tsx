@@ -1,6 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useControlled as useControlled,
+  unstable_useId as useId,
+  HTMLElementType,
+  refType,
+} from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
@@ -11,6 +17,8 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
+
+export const MenuCloseContext = React.createContext<(() => void) | undefined>(undefined);
 
 const useUtilityClasses = (ownerState: MenuProps) => {
   const { open, variant, color, size } = ownerState;
@@ -60,19 +68,31 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const {
     actions,
     anchorEl,
+    button,
     children,
     component,
     color = 'neutral',
     disablePortal = false,
     keepMounted = false,
-    id,
+    id: idProp,
     onClose,
-    open = false,
+    open: openProp,
     modifiers,
     variant = 'outlined',
     size = 'md',
     ...other
   } = props;
+
+  const [open, setOpen] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'Menu',
+    state: 'open',
+  });
+
+  const id = useId(idProp);
+  const menuButtonId = useId(`${id}-button`);
+  const menuButtonRef = React.useRef<HTMLButtonElement | null>(null);
 
   // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
   const cachedModifiers = React.useMemo(
@@ -88,6 +108,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiers],
   );
 
+  const handleClose = React.useCallback(() => {
+    setOpen(false);
+    menuButtonRef.current?.focus(); // TODO: the onClose should provide the `reason` so that the Menu can decide if the button should be focused.
+  }, [setOpen]);
+
   const {
     registerItem,
     unregisterItem,
@@ -98,7 +123,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     highlightLastItem,
   } = useMenu({
     open,
-    onClose,
+    onClose: () => {
+      onClose?.();
+      handleClose();
+    },
     listboxId: id,
   });
 
@@ -131,7 +159,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     getSlotProps: getListboxProps,
     externalSlotProps: {},
     additionalProps: {
-      anchorEl,
+      'aria-labelledby': menuButtonId,
+      anchorEl: anchorEl || menuButtonRef.current,
       open,
       disablePortal,
       keepMounted,
@@ -153,11 +182,37 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   };
 
   return (
-    <PopperUnstyled {...rootProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider nested>{children}</ListProvider>
-      </MenuUnstyledContext.Provider>
-    </PopperUnstyled>
+    <React.Fragment>
+      {button &&
+        React.cloneElement(button, {
+          'aria-controls': open ? id : undefined,
+          'aria-haspopup': 'true',
+          'aria-expanded': open ? 'true' : undefined,
+          id: menuButtonId,
+          ref: menuButtonRef,
+          onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+            button.props?.onClick?.(event);
+            setOpen(!open);
+          },
+          onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => {
+            button.props?.onKeyDown?.(event);
+            if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+              event.preventDefault();
+              setOpen(true);
+              if (event.key === 'ArrowUp') {
+                highlightLastItem();
+              }
+            }
+          },
+        })}
+      <PopperUnstyled {...rootProps}>
+        <MenuCloseContext.Provider value={handleClose}>
+          <MenuUnstyledContext.Provider value={contextValue}>
+            <ListProvider nested>{children}</ListProvider>
+          </MenuUnstyledContext.Provider>
+        </MenuCloseContext.Provider>
+      </PopperUnstyled>
+    </React.Fragment>
   );
 }) as OverridableComponent<MenuTypeMap>;
 
