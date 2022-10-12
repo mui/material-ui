@@ -13,6 +13,7 @@
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
     "icons": "rimraf public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
+    "create-playground": "cpy --cwd=./scripts/ playground.template.tsx ../pages/playground --rename=index.tsx",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `yarn docs:typescript:formatted'` instead && exit 1",
     "typescript:transpile:dev": "echo 'Use `yarn docs:typescript'` instead && exit 1"
