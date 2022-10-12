@@ -49,11 +49,6 @@ export default function ThemeModeToggle(props: {
         color="primary"
         disableTouchRipple
         onClick={() => {
-          try {
-            localStorage.setItem('mui-mode', props.checked ? 'light' : 'dark');
-          } catch (error) {
-            // do nothing
-          }
           props.onChange(!props.checked);
         }}
       >
