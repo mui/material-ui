@@ -64,7 +64,6 @@
       "formControl",
       "focused",
       "disabled",
-      "readOnly",
       "adornedStart",
       "adornedEnd",
       "error",
@@ -85,8 +84,8 @@
     "globalClasses": {
       "focused": "Mui-focused",
       "disabled": "Mui-disabled",
-      "readOnly": "Mui-readOnly",
-      "error": "Mui-error"
+      "error": "Mui-error",
+      "readOnly": "Mui-readOnly"
     },
     "name": "MuiInputBase"
   },

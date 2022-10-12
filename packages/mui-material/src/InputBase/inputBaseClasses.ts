@@ -9,8 +9,6 @@ export interface InputBaseClasses {
   focused: string;
   /** Styles applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the root element if `readOnly={true}`. */
-  readOnly: string;
   /** Styles applied to the root element if `startAdornment` is provided. */
   adornedStart: string;
   /** Styles applied to the root element if `endAdornment` is provided. */
@@ -56,7 +54,6 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'formControl',
   'focused',
   'disabled',
-  'readOnly',
   'adornedStart',
   'adornedEnd',
   'error',
