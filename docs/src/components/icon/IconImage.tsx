@@ -50,24 +50,24 @@ export default function IconImage(props: IconImageProps) {
   React.useEffect(() => {
     setMounted(true);
   }, []);
-  let width = '';
-  let height = '';
+  let width;
+  let height;
   let category = '';
   let mode = `-${theme.palette.mode}`;
   if (name.startsWith('product-')) {
-    width = '36';
-    height = '36';
+    width = 36;
+    height = 36;
   }
   if (name.startsWith('block-')) {
     category = 'pricing/';
     mode = '';
-    width = '13';
-    height = '15';
+    width = 13;
+    height = 15;
   }
   if (['yes', 'no', 'time'].indexOf(name) !== -1) {
     category = 'pricing/';
-    width = '18';
-    height = '18';
+    width = 18;
+    height = 18;
   }
   if (
     [
@@ -95,8 +95,8 @@ export default function IconImage(props: IconImageProps) {
     category = 'companies/';
   }
   if (!mounted && !!theme.vars) {
-    // Prevent hydration mismatch
-    return <Box sx={{ width, height, display: 'inline-block', verticalAlign: 'bottom' }} />;
+    // Prevent hydration mismatch between the light and dark mode image source.
+    return <Box sx={{ width, height, display: 'inline-block' }} />;
   }
   const element = (
     <Img
