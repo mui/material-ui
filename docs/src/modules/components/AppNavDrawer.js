@@ -296,7 +296,7 @@ export default function AppNavDrawer(props) {
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
-    const renderVersionSelector = (versions = [], sx) => {
+    const renderVersionSelector = (versions, sx) => {
       if (!versions?.length) {
         return null;
       }
