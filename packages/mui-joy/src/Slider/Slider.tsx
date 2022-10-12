@@ -63,10 +63,10 @@ const sliderColorVariables =
       }),
       '--Slider-track-color': styles.color,
       '--Slider-thumb-background': styles.color,
-      '--Slider-thumb-color': styles.backgroundColor || theme.vars.palette.background.level2,
+      '--Slider-thumb-color': styles.backgroundColor || theme.vars.palette.background.surface,
+      '--Slider-track-background': styles.backgroundColor || theme.vars.palette.background.surface,
       '--Slider-rail-borderColor': styles.borderColor,
       '--Slider-rail-background': theme.vars.palette.background.level2,
-      '--Slider-track-background': styles.backgroundColor,
     };
   };
 
