@@ -492,8 +492,7 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, {key: 'Delete'});
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
-      expect(textbox).toHaveFocus();
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     })
 
     it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
