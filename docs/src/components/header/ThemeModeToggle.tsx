@@ -5,7 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 
-const CssVarsModeToggle = (props: { onChange: (checked: boolean) => void }) => {
+function CssVarsModeToggle(props: { onChange: (checked: boolean) => void }) {
   const [mounted, setMounted] = React.useState(false);
   const { mode, systemMode, setMode } = useColorScheme();
   React.useEffect(() => {
@@ -32,7 +32,7 @@ const CssVarsModeToggle = (props: { onChange: (checked: boolean) => void }) => {
       </IconButton>
     </Tooltip>
   );
-};
+}
 
 export default function ThemeModeToggle(props: {
   checked: boolean;
