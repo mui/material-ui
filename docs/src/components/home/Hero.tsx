@@ -10,20 +10,22 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 
 function createLoading(sx: BoxProps['sx']) {
-  return () => (
-    <Box
-      sx={[
-        (theme) => ({
-          borderRadius: 1,
-          bgcolor: 'grey.100',
-          ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.800',
+  return function Loading() {
+    return (
+      <Box
+        sx={[
+          (theme) => ({
+            borderRadius: 1,
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+            }),
           }),
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    />
-  );
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
+    );
+  };
 }
 
 const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
@@ -54,12 +56,10 @@ const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   ssr: false,
   loading: createLoading({ width: 360, height: 212 }),
 });
-
-// TODO Revert #34541 when https://github.com/mui/mui-x/pull/6362 is released
-// const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
-//   ssr: false,
-//   loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
-// });
+const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
+});
 const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
   ssr: false,
   loading: createLoading({ width: { md: 360, xl: 400 }, height: 48 }),
@@ -159,15 +159,12 @@ export default function Hero() {
                 <ThemeChip />
               </Box>
               <ThemeTimeline />
-              {/* Temporary moved FolderTable to the next column due to ThemeDatePicker automatic focus */}
-              {/* <FolderTable /> */}
+              <FolderTable />
             </Stack>
           )}
           {isMdUp && (
             <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              {/* Temporary removed ThemeDatePicker due to layout crash from auto focus */}
-              {/* <ThemeDatePicker /> */}
-              <FolderTable />
+              <ThemeDatePicker />
               <ThemeTabs />
               <Box sx={{ display: 'flex' }}>
                 <Box sx={{ flexGrow: 1 }}>
