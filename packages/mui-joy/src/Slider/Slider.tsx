@@ -58,22 +58,15 @@ const sliderColorVariables =
       ...(styles.border && {
         '--variant-borderWidth': styles['--variant-borderWidth'],
       }),
+      ...(basicStyles.border && {
+        '--Slider-thumb-shadow': `0 0 0 var(--variant-borderWidth) ${styles.borderColor}`,
+      }),
       '--Slider-track-color': styles.color,
       '--Slider-thumb-background': styles.color,
       '--Slider-thumb-color': styles.backgroundColor || theme.vars.palette.background.level2,
       '--Slider-rail-borderColor': styles.borderColor,
       '--Slider-rail-background': theme.vars.palette.background.level2,
       '--Slider-track-background': styles.backgroundColor,
-      ...(!basicStyles.backgroundColor &&
-        !data.state && {
-          '--Slider-rail-background': theme.vars.palette.background.surface,
-          '--Slider-track-background': theme.vars.palette.background.level2,
-        }),
-      ...(!basicStyles.backgroundColor &&
-        data.state && {
-          '--Slider-rail-background': theme.vars.palette.background.surface,
-          '--Slider-track-background': styles.backgroundColor,
-        }),
     };
   };
 
@@ -241,7 +234,7 @@ const SliderThumb = styled('span', {
   backgroundColor: 'var(--Slider-thumb-background)',
   // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
   transition:
-    'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   [theme.focus.selector]: theme.focus.default,
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
