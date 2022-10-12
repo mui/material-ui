@@ -498,7 +498,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={clsx(classes.root, className)}
+      className={clsx(
+        classes.root,
+        {
+          // TODO v6: remove this class as it duplicates with the gloabl state class Mui-readOnly
+          'MuiRating-readOnly': readOnly,
+        },
+        className,
+      )}
       ownerState={ownerState}
       role={readOnly ? 'img' : null}
       aria-label={readOnly ? getLabelText(value) : null}
