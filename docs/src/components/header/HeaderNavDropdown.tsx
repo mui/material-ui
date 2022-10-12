@@ -20,7 +20,7 @@ const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolea
       border: 'none',
       width: '100%',
       backgroundColor: 'transparent',
-      color: theme.palette.text.secondary,
+      color: (theme.vars || theme).palette.text.secondary,
       cursor: 'pointer',
       display: 'flex',
       alignItems: 'center',
