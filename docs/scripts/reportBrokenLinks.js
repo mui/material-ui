@@ -4,21 +4,6 @@ const fse = require('fs-extra');
 const { createRender } = require('@mui/markdown');
 const { marked } = require('marked');
 
-const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/'];
-
-const docsSpaceRoot = path.join(__dirname, '../');
-
-const buffer = [];
-
-function write(text) {
-  buffer.push(text);
-}
-
-function save() {
-  const fileContents = [...buffer, ''].join('\n');
-  fse.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
-}
-
 // Use renderer to extract all links into a markdown document
 const getPageLinks = (markdown) => {
   const hrefs = [];
@@ -168,45 +153,66 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
 
 const getAnchor = (link) => {
   const splittedPath = link.split('/');
-  return splittedPath[splittedPath.length - 1];
+  const potentialAnchor = splittedPath[splittedPath.length - 1];
+  return potentialAnchor.includes('#') ? potentialAnchor : '';
 };
 
-// {[url with hash]: true}
-const availableLinks = {};
+// Export usefull method for doing similar checks in other repositories
+module.exports = { parseDocFolder, getAnchor };
 
-// {[url with hash]: list of files using this link}
-const usedLinks = {};
+/**
+ * The remaining pat to the code is specific to this repository
+ */
+const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/'];
 
-parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
-// TODO: Allows to run on documents of /mui/material-ui from /mui/mui-x
-// parseDocFolder(path.join(ROOT, process.env.MUI_X_PATH, "docs/pages/"), availableLinks, usedLinks);
+const docsSpaceRoot = path.join(__dirname, '../');
+
+const buffer = [];
+function write(text) {
+  buffer.push(text);
+}
+
+function save(lines) {
+  const fileContents = [...lines, ''].join('\n');
+  fse.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
+}
 
 function getPageUrlFromLink(link) {
   const [rep] = link.split('/#');
   return rep;
 }
 
-write('Broken links found by `yarn docs:link-check` that exist:\n');
-Object.keys(usedLinks)
-  .filter((link) => link.startsWith('/'))
-  .filter((link) => !availableLinks[link])
-  // unstyled sections are added by scripts (can not be found in markdown)
-  .filter((link) => !link.includes('#unstyled'))
-  .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
-  .sort()
-  .forEach((linkKey) => {
-    write(`- https://mui.com${linkKey}`);
-    console.log(`https://mui.com${linkKey}`);
-    console.log(`used in`);
-    usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));
-    console.log('available anchors on the same page:');
-    console.log(
-      Object.keys(availableLinks)
-        .filter((link) => getPageUrlFromLink(link) === getPageUrlFromLink(linkKey))
-        .sort()
-        .map(getAnchor)
-        .join('\n'),
-    );
-    console.log('\n\n');
-  });
-save();
+if (require.main === module) {
+  // {[url with hash]: true}
+  const availableLinks = {};
+
+  // {[url with hash]: list of files using this link}
+  const usedLinks = {};
+
+  parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
+
+  write('Broken links found by `yarn docs:link-check` that exist:\n');
+  Object.keys(usedLinks)
+    .filter((link) => link.startsWith('/'))
+    .filter((link) => !availableLinks[link])
+    // unstyled sections are added by scripts (can not be found in markdown)
+    .filter((link) => !link.includes('#unstyled'))
+    .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
+    .sort()
+    .forEach((linkKey) => {
+      write(`- https://mui.com${linkKey}`);
+      console.log(`https://mui.com${linkKey}`);
+      console.log(`used in`);
+      usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));
+      console.log('available anchors on the same page:');
+      console.log(
+        Object.keys(availableLinks)
+          .filter((link) => getPageUrlFromLink(link) === getPageUrlFromLink(linkKey))
+          .sort()
+          .map(getAnchor)
+          .join('\n'),
+      );
+      console.log('\n\n');
+    });
+  save(buffer);
+}
