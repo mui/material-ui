@@ -88,7 +88,7 @@ export default function XDateRangeDemo() {
             }}
           >
             <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-              Available in alpha!
+              v5 stable release available!
             </Typography>
             <Chip
               label="See docs"
@@ -98,11 +98,6 @@ export default function XDateRangeDemo() {
               sx={{ fontWeight: 500, cursor: 'pointer' }}
             />
           </Box>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Subscribe to our newsletter to get first-hand info about the development and release of
-            new components.
-          </Typography>
-          <EmailSubscribe />
         </Frame.Info>
       </ThemeProvider>
     </Frame>
