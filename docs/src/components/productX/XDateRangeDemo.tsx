@@ -1,17 +1,16 @@
-import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import { ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import * as React from 'react';
 
 const startDate = new Date();
 startDate.setDate(10);
