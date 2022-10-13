@@ -39,7 +39,7 @@ function NoSsr(props: NoSsrProps) {
 
   // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
   return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
-};
+}
 
 NoSsr.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
