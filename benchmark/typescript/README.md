@@ -12,5 +12,5 @@ yarn tsc benchmark/typescript/scenarios/Baseline.tsx --generateTrace baseline-tr
 yarn tsc benchmark/typescript/scenarios/OverridableComponent.ts --generateTrace overridable-component-trace --incremental false
 ```
 
-Using `chrome://about` you can load the `trace.json` files and compare the times.
+Using `chrome://tracing` or https://ui.perfetto.dev/ you can load the `trace.json` files and compare the times.
 You can use the screenshots of what you see in your pull request description.
