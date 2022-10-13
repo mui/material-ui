@@ -21,7 +21,7 @@ import { NoSsrProps } from './NoSsr.types';
  *
  * - [NoSsr API](https://mui.com/base/api/no-ssr/)
  */
-const NoSsr = (props: NoSsrProps) => {
+function NoSsr(props: NoSsrProps) {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
 
