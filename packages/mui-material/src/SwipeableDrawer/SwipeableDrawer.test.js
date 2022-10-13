@@ -268,7 +268,6 @@ describe('<SwipeableDrawer />', () => {
           if (params.anchor === 'bottom') {
             startPosition = windowHeight - DRAG_STARTED_SIGNAL;
           }
-          // The 20 comes from the DRAG_STARTED_SIGNAL, defined in the SwipeableDrawer
           expect(getByTestId('drawer').getBoundingClientRect()[testParam]).to.equal(startPosition);
 
           fireEvent.touchMove(swipeArea, {
