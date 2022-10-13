@@ -88,7 +88,7 @@ export default function XDateRangeDemo() {
             }}
           >
             <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-              v5 stable release available!
+              Available now for your project.
             </Typography>
             <Chip
               label="See docs"
