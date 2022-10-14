@@ -109,8 +109,8 @@ yarn docs:create-playground && yarn start
 
 You can now access it locally: http://localhost:3000/playground/.
 
-You can create as many playgrounds as you want by going to the /docs/pages/playground/ folder and duplicating index.tsx to a different `<file_name>`.
-These playgrounds will be accessible under: `http://localhost:3000/playground/<file_name>`.
+You can create as many playgrounds as you want by going to the `/docs/pages/playground/` folder and duplicating the index.tsx file with a different name: `<file_name>.tsx`.
+The new playground will be accessible under: `http://localhost:3000/playground/<file_name>`.
 
 ### How to increase the chance of being accepted?
 
