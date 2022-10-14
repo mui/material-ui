@@ -204,7 +204,7 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 +const inputGlobalStyles = <GlobalStyles styles={...} />;
 
- const Input = (props) => {
+ function Input(props) {
    return (
      <React.Fragment>
 -      <GlobalStyles styles={...} />
