@@ -476,6 +476,33 @@ describe('SelectUnstyled', () => {
     });
   });
 
+  describe('prop: renderValue', () => {
+    it('renders the selected values using the renderValue prop', () => {
+      const { getByRole } = render(
+        <SelectUnstyled
+          defaultValue={1}
+          renderValue={(value) => `${value?.label} (${value?.value})`}
+        >
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One (1)');
+    });
+
+    it('renders the selected values as a label if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <SelectUnstyled defaultValue={1}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One');
+    });
+  });
+
   it('closes the listbox without selecting an option when focus is lost', () => {
     const { getByRole, getByTestId } = render(
       <div>

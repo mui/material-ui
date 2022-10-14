@@ -56,7 +56,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-const ToggleButtons = () => {
+function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
     <ToggleButtonGroup
@@ -81,9 +81,9 @@ const ToggleButtons = () => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-};
+}
 
-const TabsDemo = () => {
+function TabsDemo() {
   const [index, setIndex] = React.useState(0);
   return (
     <Paper>
@@ -99,9 +99,9 @@ const TabsDemo = () => {
       </Tabs>
     </Paper>
   );
-};
+}
 
-const BadgeVisibilityDemo = () => {
+function BadgeVisibilityDemo() {
   const [count, setCount] = React.useState(1);
   return (
     <Paper
@@ -145,9 +145,9 @@ const BadgeVisibilityDemo = () => {
       </div>
     </Paper>
   );
-};
+}
 
-const SwitchToggleDemo = () => {
+function SwitchToggleDemo() {
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
   return (
     <Box
@@ -158,9 +158,9 @@ const SwitchToggleDemo = () => {
       <ToggleButtons />
     </Box>
   );
-};
+}
 
-const SlideDemo = () => {
+function SlideDemo() {
   const [value, setValue] = React.useState([30, 60]);
   return (
     <Stack spacing={2} direction="row" alignItems="center">
@@ -181,7 +181,7 @@ const SlideDemo = () => {
       />
     </Stack>
   );
-};
+}
 
 export default function Hero() {
   return (

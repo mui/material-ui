@@ -70,6 +70,24 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting decorator
 
 {{"demo": "ButtonIcons.js"}}
 
+### Loading
+
+Enable `loading` prop to show button's loading state. The button will be `disabled` when it is in the loading state.
+
+The default loading indicator uses the [`CircularProgress`](/joy-ui/react-circular-progress/) component which can be customized using the `loadingIndicator` prop.
+
+{{"demo": "ButtonLoading.js"}}
+
+### Loading position
+
+The `loadingPosition` prop supports 3 values:
+
+- `center` (default): The loading indicator element is wrapped inside the button's `loadingIndicatorCenter` slot to create a proper style.
+- `start`: The loading indicator replaces the **start** decorator's content when the button is in loading state.
+- `end`: The loading indicator replaces the **end** decorator's content when the button is in loading state.
+
+{{"demo": "ButtonLoadingPosition.js"}}
+
 ### Icon button
 
 Use the `IconButton` component if you want width and height to be the same while not having a label.

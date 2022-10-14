@@ -93,13 +93,14 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     onChange,
     onListboxOpenChange,
     optionStringifier = defaultOptionStringifier,
+    renderValue: renderValueProp,
     slotProps = {},
     slots = {},
     value: valueProp,
     ...other
   } = props;
 
-  const renderValue = props.renderValue ?? defaultRenderMultipleValues;
+  const renderValue = renderValueProp ?? defaultRenderMultipleValues;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);

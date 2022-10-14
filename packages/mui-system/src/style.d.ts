@@ -8,7 +8,10 @@ export interface StyleOptions<PropKey> {
    * dot access in `Theme`
    */
   themeKey?: string;
-  transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
+  transform?: (
+    cssValue: unknown,
+    userValue: unknown,
+  ) => number | string | React.CSSProperties | CSSObject;
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,

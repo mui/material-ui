@@ -1,55 +1,40 @@
 import * as React from 'react';
 import PopperUnstyled, { PopperPlacementType } from '@mui/base/PopperUnstyled';
 
-const Radio = ({ value, ...props }: JSX.IntrinsicElements['input']) => (
-  <span>
-    <input
-      type="radio"
-      id={`placement-${value}-radio`}
-      name="placement"
-      value={value}
-      style={{ margin: '0 0.375rem 0 1rem' }}
-      {...props}
-    />
-    <label htmlFor={`placement-${value}-radio`}>{value}</label>
-  </span>
-);
+function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
+  return (
+    <span>
+      <input
+        type="radio"
+        id={`placement-${value}-radio`}
+        name="placement"
+        value={value}
+        style={{ margin: '0 0.375rem 0 1rem' }}
+        {...props}
+      />
+      <label htmlFor={`placement-${value}-radio`}>{value}</label>
+    </span>
+  );
+}
 
-const PlacementForm = ({
+function PlacementForm({
   setPlacement,
 }: {
   setPlacement: (placement: PopperPlacementType) => void;
-}) => (
-  <div
-    style={{
-      backgroundColor: 'rgba(0,0,0,0.04)',
-      borderRadius: '4px',
-      padding: '0.5rem',
-    }}
-  >
-    <div style={{ textAlign: 'center' }}>
-      <b>Placement value:</b>
-    </div>
-    <div style={{ textAlign: 'center', padding: '0.5rem 0px' }}>
-      {['top-start', 'top', 'top-end'].map((value) => (
-        <Radio
-          key={value}
-          value={value}
-          onChange={(event) => {
-            setPlacement(event.target.value as PopperPlacementType);
-          }}
-        />
-      ))}
-    </div>
+}) {
+  return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        padding: '0.5rem 0px',
+        backgroundColor: 'rgba(0,0,0,0.04)',
+        borderRadius: '4px',
+        padding: '0.5rem',
       }}
     >
-      <div>
-        {['left-start', 'left', 'left-end'].map((value) => (
+      <div style={{ textAlign: 'center' }}>
+        <b>Placement value:</b>
+      </div>
+      <div style={{ textAlign: 'center', padding: '0.5rem 0px' }}>
+        {['top-start', 'top', 'top-end'].map((value) => (
           <Radio
             key={value}
             value={value}
@@ -59,11 +44,42 @@ const PlacementForm = ({
           />
         ))}
       </div>
-      <div>
-        {['right-start', 'right', 'right-end'].map((value) => (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '0.5rem 0px',
+        }}
+      >
+        <div>
+          {['left-start', 'left', 'left-end'].map((value) => (
+            <Radio
+              key={value}
+              value={value}
+              onChange={(event) => {
+                setPlacement(event.target.value as PopperPlacementType);
+              }}
+            />
+          ))}
+        </div>
+        <div>
+          {['right-start', 'right', 'right-end'].map((value) => (
+            <Radio
+              key={value}
+              value={value}
+              onChange={(event) => {
+                setPlacement(event.target.value as PopperPlacementType);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      <div style={{ textAlign: 'center', padding: '0.5rem 0px' }}>
+        {['bottom-start', 'bottom', 'bottom-end'].map((value) => (
           <Radio
             key={value}
             value={value}
+            defaultChecked={value === 'bottom'}
             onChange={(event) => {
               setPlacement(event.target.value as PopperPlacementType);
             }}
@@ -71,20 +87,8 @@ const PlacementForm = ({
         ))}
       </div>
     </div>
-    <div style={{ textAlign: 'center', padding: '0.5rem 0px' }}>
-      {['bottom-start', 'bottom', 'bottom-end'].map((value) => (
-        <Radio
-          key={value}
-          value={value}
-          defaultChecked={value === 'bottom'}
-          onChange={(event) => {
-            setPlacement(event.target.value as PopperPlacementType);
-          }}
-        />
-      ))}
-    </div>
-  </div>
-);
+  );
+}
 
 export default function PlacementPopper() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
