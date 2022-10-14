@@ -350,7 +350,7 @@ function TopLayoutBlog(props) {
     "@id": "https://mui.com/blog/"
   }
 }
-            `,
+`,
         }}
       />
     </BrandingProvider>
