@@ -25,6 +25,7 @@
     "docs:size-why": "cross-env DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:start": "yarn workspace docs start",
     "docs:i18n": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/i18n.js",
+    "docs:link-check": "yarn workspace docs link-check",
     "docs:typescript": "yarn docs:typescript:formatted --watch",
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/formattedTSDemos",
