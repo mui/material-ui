@@ -169,10 +169,10 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
 
 ```diff
-<Autocomplete
-- getOptionSelected={(option, value) => option.title === value.title}
-+ isOptionEqualToValue={(option, value) => option.title === value.title}
-/>
+ <Autocomplete
+-  getOptionSelected={(option, value) => option.title === value.title}
++  isOptionEqualToValue={(option, value) => option.title === value.title}
+ />
 ```
 
 <!-- #default-branch-switch -->
@@ -211,22 +211,22 @@ Renames the badge's props.
 -<Badge overlap="rectangle">
 +<Badge overlap="circular">
 +<Badge overlap="rectangular">
-<Badge classes={{
-- anchorOriginTopRightRectangle: 'className',
-- anchorOriginBottomRightRectangle: 'className',
-- anchorOriginTopLeftRectangle: 'className',
-- anchorOriginBottomLeftRectangle: 'className',
-- anchorOriginTopRightCircle: 'className',
-- anchorOriginBottomRightCircle: 'className',
-- anchorOriginTopLeftCircle: 'className',
-+ anchorOriginTopRightRectangular: 'className',
-+ anchorOriginBottomRightRectangular: 'className',
-+ anchorOriginTopLeftRectangular: 'className',
-+ anchorOriginBottomLeftRectangular: 'className',
-+ anchorOriginTopRightCircular: 'className',
-+ anchorOriginBottomRightCircular: 'className',
-+ anchorOriginTopLeftCircular: 'className',
-}}>
+ <Badge classes={{
+-  anchorOriginTopRightRectangle: 'className',
+-  anchorOriginBottomRightRectangle: 'className',
+-  anchorOriginTopLeftRectangle: 'className',
+-  anchorOriginBottomLeftRectangle: 'className',
+-  anchorOriginTopRightCircle: 'className',
+-  anchorOriginBottomRightCircle: 'className',
+-  anchorOriginTopLeftCircle: 'className',
++  anchorOriginTopRightRectangular: 'className',
++  anchorOriginBottomRightRectangular: 'className',
++  anchorOriginTopLeftRectangular: 'className',
++  anchorOriginBottomLeftRectangular: 'className',
++  anchorOriginTopRightCircular: 'className',
++  anchorOriginBottomRightCircular: 'className',
++  anchorOriginTopLeftCircular: 'className',
+ }}>
 ```
 
 <!-- #default-branch-switch -->
@@ -440,10 +440,10 @@ You can find more details about this breaking change in [the migration guide](ht
 Adds `prepend: true` to Emotion `createCache`
 
 ```diff
-const cache = emotionCreateCache({
-  key: 'css',
-+ prepend: true,
-});
+ const cache = emotionCreateCache({
+   key: 'css',
++  prepend: true,
+ });
 ```
 
 ```sh
@@ -542,7 +542,7 @@ You can find more details about this breaking change in [the migration guide](ht
 Replace JSS styling with `makeStyles` or `withStyles` to `styled` API.
 
 ```diff
-import Typography from '@material-ui/core/Typography';
+ import Typography from '@material-ui/core/Typography';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { styled } from '@material-ui/core/styles';
 
@@ -583,17 +583,17 @@ import Typography from '@material-ui/core/Typography';
 +  },
 +}))
 
-export const MyCard = () => {
-  const classes = useStyles();
-  return (
--   <div className={classes.root}>
-+   <Root className={classes.root}>
-      <Typography className={classes.content}>...</Typography>
-      <Button className={classes.cta}>Go</Button>
-+   </Root>
--   </div>
-  )
-}
+ export const MyCard = () => {
+   const classes = useStyles();
+   return (
+-    <div className={classes.root}>
++    <Root className={classes.root}>
+       <Typography className={classes.content}>...</Typography>
+       <Button className={classes.cta}>Go</Button>
+-    </div>
++    </Root>
+   )
+ }
 ```
 
 ```sh
@@ -661,11 +661,11 @@ Migrate JSS styling with `makeStyles` or `withStyles` to the corresponding `tss-
          The Background take the primary theme color when the mouse hovers the parent.
          I am smaller than the other child.
        </div>
-    </div>
-  );
-}
+     </div>
+   );
+ }
 
-export default App;
+ export default App;
 ```
 
 ```sh
@@ -731,7 +731,7 @@ Moves JSS imports to `@material-ui/styles`
 +import withStyles from '@material-ui/styles/withStyles';
 +import withTheme from '@material-ui/styles/withTheme';
 +import getStylesCreator from '@material-ui/styles/getStylesCreator';
-import mergeClasses from '@material-ui/styles/mergeClasses';
+ import mergeClasses from '@material-ui/styles/mergeClasses';
 ```
 
 ```sh
@@ -758,10 +758,10 @@ You can find more details about this breaking change in [the migration guide](ht
 Removes `disableBackdropClick` and `onEscapeKeyDown` from `<Modal>`
 
 ```diff
-<Modal
-- disableBackdropClick
-- onEscapeKeyDown={handleEscapeKeyDown}
-/>
+ <Modal
+-  disableBackdropClick
+-  onEscapeKeyDown={handleEscapeKeyDown}
+ />
 ```
 
 ```sh
@@ -1100,7 +1100,7 @@ npx @mui/codemod v5.0.0/use-autocomplete <path>
 Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
 
 ```diff
-<Dialog
+ <Dialog
 -  onEnter={onEnter}
 -  onEntered={onEntered}
 -  onEntering={onEntering}
@@ -1115,7 +1115,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 +    onExited,
 +    onExiting,
 +  }}
-/>
+ />
 ```
 
 <!-- #default-branch-switch -->
@@ -1159,9 +1159,9 @@ npx @mui/codemod v5.0.0/variant-prop <path>
 Removes imported `withMobileDialog`, and inserts hardcoded version to prevent application crash.
 
 ```diff
-- import withMobileDialog from '@material-ui/core/withMobileDialog';
-+ // FIXME checkout https://mui.com/material-ui/migration/v5-component-changes/#dialog
-+ const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
+-import withMobileDialog from '@material-ui/core/withMobileDialog';
++// FIXME checkout https://mui.com/material-ui/migration/v5-component-changes/#dialog
++const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
 ```
 
 ```sh
@@ -1175,9 +1175,9 @@ You can find more details about this breaking change in [the migration guide](ht
 Removes `withWidth` import, and inserts hardcoded version to prevent application crash.
 
 ```diff
-- import withWidth from '@material-ui/core/withWidth';
-+ // FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-+ const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
+-import withWidth from '@material-ui/core/withWidth';
++// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
++const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 ```
 
 ```sh
@@ -1228,7 +1228,7 @@ Replace every occurrence of `material-ui` related package with the new package n
 **Dependencies**
 
 ```diff
-// package.json
+  // package.json
 -"@material-ui/core": "next",
 -"@material-ui/icons": "next",
 -"@material-ui/lab": "next",
@@ -1271,7 +1271,7 @@ This codemod tries to perform a basic expression simplification which can be imp
 -const spacing = theme.spacing.unit / 5;
 +const spacing = theme.spacing(0.2);
 
-// Limitation
+ // Limitation
 -const spacing = theme.spacing.unit * 5 * 5;
 +const spacing = theme.spacing(5) * 5;
 ```
@@ -1411,11 +1411,11 @@ MUI v0.15.0 is reorganizing the folder distribution of the project.
 The diff should look like this:
 
 ```diff
-// From the source
+ // From the source
 -import FlatButton from 'material-ui/src/flat-button';
 +import FlatButton from 'material-ui/src/FlatButton';
 
-// From npm
+ // From npm
 -import RaisedButton from 'material-ui/lib/raised-button';
 +import RaisedButton from 'material-ui/RaisedButton';
 ```

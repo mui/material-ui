@@ -392,14 +392,14 @@ Example of fix:
 -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
-function handleRender(req, res) {
-+ // Create a sheets instance.
-+ const sheets = new ServerStyleSheets();
+ function handleRender(req, res) {
++  // Create a sheets instance.
++  const sheets = new ServerStyleSheets();
 
-  //…
+   //…
 
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+   // Render the component to a string.
+   const html = ReactDOMServer.renderToString(
 ```
 
 ### [v4] React class name hydration mismatch
@@ -428,14 +428,14 @@ This generator needs to behave identically on the server and on the client. For 
   -// Create a new class name generator.
   -const generateClassName = createGenerateClassName();
 
-  function handleRender(req, res) {
-  + // Create a new class name generator.
-  + const generateClassName = createGenerateClassName();
+   function handleRender(req, res) {
+  +  // Create a new class name generator.
+  +  const generateClassName = createGenerateClassName();
 
-    //…
+     //…
 
-    // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
+     // Render the component to a string.
+     const html = ReactDOMServer.renderToString(
   ```
 
 - You need to verify that your client and server are running the **exactly the same version** of MUI.
