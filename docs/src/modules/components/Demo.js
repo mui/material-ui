@@ -250,10 +250,23 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   height: theme.spacing(4),
   pointerEvents: 'none',
 }));
+
 export default function Demo(props) {
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const { demo, demoOptions, disableAd, githubLocation, mode } = props;
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (demoOptions.hideToolbar === false) {
+      throw new Error(
+        [
+          '"hiddenToolbar": false is already the default.',
+          `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+  }
+
   const t = useTranslate();
   const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
@@ -339,7 +352,7 @@ export default function Demo(props) {
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(isJoy && { mode })}>
+      <Wrapper {...(isJoy ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>

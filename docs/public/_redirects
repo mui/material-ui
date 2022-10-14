@@ -3,6 +3,7 @@
 /inbox* / 301
 /trash / 301
 /spam / 301
+/sign-up / 301
 
 /size-snapshot https://s3.eu-central-1.amazonaws.com/mui-org-ci/artifacts/master/latest/size-snapshot.json 200
 

@@ -17,10 +17,7 @@ export const replaceMaterialLinks = (url: string) => {
   if (isNewLocation(url)) {
     return url;
   }
-  return url.replace(
-    new RegExp(`(guides|customization|getting-started|discover-more)`),
-    'material-ui/$1',
-  );
+  return url.replace(/(guides|customization|getting-started|discover-more)/, 'material-ui/$1');
 };
 
 export const replaceComponentLinks = (url: string) => {

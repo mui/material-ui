@@ -354,8 +354,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
-  const handleRef = useForkRef(handleFocusRef, ref);
+  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
