@@ -1,10 +1,17 @@
 const straightQuotes = require('./packages/markdownlint-rule-mui/straight-quotes');
 const gitDiff = require('./packages/markdownlint-rule-mui/git-diff');
 
+// https://github.com/DavidAnson/markdownlint#rules--aliases
 module.exports = {
   config: {
     default: true,
     MD004: false, // MD004/ul-style. Buggy
+    MD009: {
+      // MD009/no-trailing-spaces
+      br_spaces: 0,
+      strict: true,
+      list_item_empty_lines: false,
+    },
     MD013: false, // MD013/line-length. Already handled by Prettier.
     MD014: false, // MD014/commands-show-output. It's OK.
     MD024: { siblings_only: true }, // MD024/no-duplicate-heading/no-duplicate-header
@@ -31,6 +38,7 @@ module.exports = {
     '**/node_modules/**',
     '**/*-zh.md',
     '**/*-pt.md',
+    '**/build/**',
     '.github/PULL_REQUEST_TEMPLATE.md',
   ],
 };

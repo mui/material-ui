@@ -1701,7 +1701,8 @@ All contributors of this release in alphabetical order: @abhinav-22-tech, @ainat
 
 _Apr 18, 2022_
 
-A big thanks to the 11 contributors who made this release possible. This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 11 contributors who made this release possible.
+This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.6.2`
 
@@ -1760,7 +1761,7 @@ All contributors of this release in alphabetical order: @abaker93, @cherniavskii
 
 _Apr 11, 2022_
 
-A big thanks to the 8 contributors who made this release possible.  
+A big thanks to the 8 contributors who made this release possible.
 This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.6.1`
