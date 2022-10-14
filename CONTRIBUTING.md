@@ -94,20 +94,23 @@ Changes to the docs will hot reload the site.
 
 ### Trying changes on the playground
 
-While we recommand to try your changes on the documentation site, it's not always ideal.
-You can face problems this way:
+While we recommend to try your changes on the documentation site—it's not always ideal.
+You might face following problems:
 
 - updating the existing demos prevent you to work in isolation on a single instance of the component
 - emptying an existing page to try your changes in isolation lead to a noisy `git diff`
 - static linters will report issues that you might not care about.
 
-To solve these problems, you can use the playground:
+To solve these problems—you can use the playground:
 
 ```sh
 yarn docs:create-playground && yarn start
 ```
 
-You can now access it locally http://localhost:3000/playground/.
+You can now access it locally: http://localhost:3000/playground/.
+
+You can create as many playgrounds as you want by going to the /docs/pages/playground/ folder and duplicating index.tsx to a different `<file_name>`.
+These playgrounds will be accessible under: `http://localhost:3000/playground/<file_name>`.
 
 ### How to increase the chance of being accepted?
 
