@@ -13,6 +13,8 @@ import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import capitalize from '../utils/capitalize';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
@@ -169,6 +171,10 @@ describe('<Tabs />', () => {
         value={0}
         variant="scrollable"
         scrollButtons
+        components={{
+          ScrollButtonStart: ArrowBackIcon,
+          ScrollButtonEnd: ArrowForwardIcon,
+        }}
         componentsProps={{
           scrollButtonEnd: { 'data-testid': 'test-label-scrollButtonEnd' },
           scrollButtonStart: { 'data-testid': 'test-label-scrollButtonStart' },
