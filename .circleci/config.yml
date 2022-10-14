@@ -346,6 +346,7 @@ jobs:
             exit 0
   test_browser:
     <<: *defaults
+    resource_class: 'medium+'
     docker:
       - image: mcr.microsoft.com/playwright:v1.26.1-focal
         environment:
