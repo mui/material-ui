@@ -1,5 +1,5 @@
 export { default } from './PopperUnstyled';
-export {
+export type {
   PopperPlacementType,
   PopperUnstyledTransitionProps,
   PopperUnstyledChildrenProps,

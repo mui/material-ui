@@ -114,12 +114,13 @@ export interface PopperUnstyledOwnProps {
   ownerState?: PopperUnstyledOwnerState;
 }
 
-export type PopperUnstyledOwnerState = Record<string, any>
+export interface PopperUnstyledOwnerState extends PopperUnstyledOwnProps {}
 
 export interface PopperUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & PopperUnstyledOwnProps;
   defaultComponent: D;
 }
+
 export type PopperUnstyledProps<
   D extends React.ElementType = PopperUnstyledTypeMap['defaultComponent'],
   P = {},
