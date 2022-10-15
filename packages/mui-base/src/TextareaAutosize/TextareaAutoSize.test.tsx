@@ -13,26 +13,34 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
 
-  describeConformance(<TextareaAutosize minRows={1}/>, () => ({
-    inheritComponent: 'textarea',
-    refInstanceof: window.HTMLTextAreaElement,
+  describeConformance(
+    <TextareaAutosize minRows={1} />,
+    () =>
+      ({
+        inheritComponent: 'textarea',
+        refInstanceof: window.HTMLTextAreaElement,
 
-    skip: [
-      'rootClass',
-      'componentProp',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-    ],
-  } as any));
+        skip: [
+          'rootClass',
+          'componentProp',
+          'componentsProp',
+          'themeDefaultProps',
+          'themeStyleOverrides',
+          'themeVariants',
+        ],
+      } as any),
+  );
 
   describe('layout', () => {
     const getComputedStyleStub: any = {};
     function setLayout(
       input: HTMLInputElement,
       shadow: HTMLTextAreaElement,
-      { getComputedStyle, scrollHeight, lineHeight: lineHeightArg }: { getComputedStyle: object, scrollHeight: number, lineHeight: number | (() => number) },
+      {
+        getComputedStyle,
+        scrollHeight,
+        lineHeight: lineHeightArg,
+      }: { getComputedStyle: object; scrollHeight: number; lineHeight: number | (() => number) },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
 
@@ -62,8 +70,10 @@ describe('<TextareaAutosize />', () => {
       clock.withFakeTimers();
 
       it('should handle the resize event', () => {
-        const { container } = render(<TextareaAutosize minRows={1}/>);
-        const input: HTMLInputElement= container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+        const { container } = render(<TextareaAutosize minRows={1} />);
+        const input: HTMLInputElement = container.querySelector(
+          'textarea[aria-hidden=null]',
+        ) as HTMLInputElement;
         const shadow = container.querySelector('textarea[aria-hidden=true]');
         expect(input.style).to.have.property('height', '');
         expect(input.style).to.have.property('overflow', '');
@@ -87,7 +97,9 @@ describe('<TextareaAutosize />', () => {
     it('should update when uncontrolled', () => {
       const handleChange = spy();
       const { container } = render(<TextareaAutosize minRows={1} onChange={handleChange} />);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       expect(input.style).to.have.property('height', '0px');
       expect(input.style).to.have.property('overflow', 'hidden');
@@ -109,8 +121,10 @@ describe('<TextareaAutosize />', () => {
 
     it('should take the border into account with border-box', () => {
       const border = 5;
-      const { container, forceUpdate } = render(<TextareaAutosize minRows={1}/>);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1} />);
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       expect(input.style).to.have.property('height', '0px');
       expect(input.style).to.have.property('overflow', 'hidden');
@@ -129,8 +143,10 @@ describe('<TextareaAutosize />', () => {
 
     it('should take the padding into account with content-box', () => {
       const padding = 5;
-      const { container, forceUpdate } = render(<TextareaAutosize minRows={1}/>);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1} />);
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -149,7 +165,9 @@ describe('<TextareaAutosize />', () => {
       const minRows = 3;
       const lineHeight = 15;
       const { container, forceUpdate } = render(<TextareaAutosize minRows={minRows} />);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -167,7 +185,9 @@ describe('<TextareaAutosize />', () => {
       const maxRows = 3;
       const lineHeight = 15;
       const { container, forceUpdate } = render(<TextareaAutosize minRows={1} maxRows={maxRows} />);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -185,7 +205,9 @@ describe('<TextareaAutosize />', () => {
       const maxRows = 3;
       const lineHeight = 15;
       const { container, forceUpdate } = render(<TextareaAutosize minRows={1} maxRows={maxRows} />);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -221,8 +243,12 @@ describe('<TextareaAutosize />', () => {
 
     it('should update its height when the "maxRows" prop changes', () => {
       const lineHeight = 15;
-      const { container, forceUpdate, setProps } = render(<TextareaAutosize minRows={1} maxRows={3} />);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const { container, forceUpdate, setProps } = render(
+        <TextareaAutosize minRows={1} maxRows={3} />,
+      );
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -241,8 +267,10 @@ describe('<TextareaAutosize />', () => {
 
     it('should not sync height if container width is 0px', () => {
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize minRows={1}/>);
-      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1} />);
+      const input: HTMLInputElement = container.querySelector(
+        'textarea[aria-hidden=null]',
+      ) as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
 
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
@@ -274,7 +302,9 @@ describe('<TextareaAutosize />', () => {
     describe('warnings', () => {
       it('warns if layout is unstable but not crash', () => {
         const { container, forceUpdate } = render(<TextareaAutosize minRows={1} maxRows={3} />);
-        const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
+        const input: HTMLInputElement = container.querySelector(
+          'textarea[aria-hidden=null]',
+        ) as HTMLInputElement;
         const shadow = container.querySelector('textarea[aria-hidden=true]');
         let index = 0;
         setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
@@ -292,7 +322,9 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'MUI: Too many re-renders.',
-          ...(strictModeDoubleLoggingSupressed ? ['MUI: Too many re-renders.', 'MUI: Too many re-renders.'] : [])
+          ...(strictModeDoubleLoggingSupressed
+            ? ['MUI: Too many re-renders.', 'MUI: Too many re-renders.']
+            : []),
         ]);
       });
     });
