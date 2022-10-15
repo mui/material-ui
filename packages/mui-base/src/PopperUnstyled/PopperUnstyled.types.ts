@@ -1,12 +1,23 @@
+import { OverrideProps } from '@mui/types';
+import { Instance, Options, OptionsGeneric, VirtualElement } from '@popperjs/core';
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
-import { Instance, VirtualElement, Options, OptionsGeneric } from '@popperjs/core';
 import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
 interface PopperUnstyledComponentsPropsOverrides {}
+
+export interface PopperUnstyledTransitionProps {
+  in: boolean;
+  onEnter: () => void;
+  onExited: () => void;
+}
+
+export interface PopperUnstyledChildrenProps {
+  placement: PopperPlacementType;
+  TransitionProps?: PopperUnstyledTransitionProps
+}
 
 export interface PopperUnstyledOwnProps {
   /**
@@ -21,14 +32,7 @@ export interface PopperUnstyledOwnProps {
    */
   children?:
     | React.ReactNode
-    | ((props: {
-        placement: PopperPlacementType;
-        TransitionProps?: {
-          in: boolean;
-          onEnter: () => {};
-          onExited: () => {};
-        };
-      }) => React.ReactNode);
+    | ((props: PopperUnstyledChildrenProps) => React.ReactNode);
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -106,19 +110,42 @@ export interface PopperUnstyledOwnProps {
    * @default false
    */
   transition?: boolean;
+
+  ownerState?: PopperUnstyledOwnerState;
 }
 
-export interface PopperUnstyledOwnerState extends PopperUnstyledOwnProps {}
+export type PopperUnstyledOwnerState = Record<string, any>
 
 export interface PopperUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & PopperUnstyledOwnProps;
   defaultComponent: D;
 }
-
 export type PopperUnstyledProps<
   D extends React.ElementType = PopperUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<PopperUnstyledTypeMap<P, D>, D> & {
+  component?: D;
+};
+
+export type PopperTooltipOwnProps =
+  Omit<
+    PopperUnstyledOwnProps,
+    'container'
+    | 'keepMounted'
+    | 'transition'
+  > & {
+    TransitionProps?: PopperUnstyledTransitionProps;
+  }
+
+export interface PopperTooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & PopperTooltipOwnProps;
+  defaultComponent: D;
+};
+
+export type PopperTooltipProps<
+  D extends React.ElementType = PopperTooltipTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<PopperTooltipTypeMap<P, D>, D> & {
   component?: D;
 };
 
@@ -127,17 +154,3 @@ export interface PopperUnstyledRootSlotProps {
   ref: React.Ref<any>;
   ownerState: PopperUnstyledOwnerState;
 }
-/**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
- *
- * Demos:
- *
- * - [Unstyled Popper](https://mui.com/base/react-popper/)
- *
- * API:
- *
- * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
- */
-declare const PopperUnstyled: OverridableComponent<PopperUnstyledTypeMap>;
-
-export default PopperUnstyled;

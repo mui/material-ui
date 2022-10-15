@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -7,14 +8,18 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { createPopper } from '@popperjs/core';
+import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import { getPopperUnstyledUtilityClass } from './popperUnstyledClasses';
-import { useSlotProps } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PopperPlacementType, PopperTooltipProps, PopperTooltipTypeMap, PopperUnstyledChildrenProps, PopperUnstyledRootSlotProps, PopperUnstyledTransitionProps, PopperUnstyledTypeMap } from './PopperUnstyled.types';
 
-function flipPlacement(placement, direction) {
+function flipPlacement(
+  placement?: PopperPlacementType,
+  direction?: 'ltr' | 'rtl',
+) {
   if (direction === 'ltr') {
     return placement;
   }
@@ -33,7 +38,9 @@ function flipPlacement(placement, direction) {
   }
 }
 
-function resolveAnchorEl(anchorEl) {
+function resolveAnchorEl(
+  anchorEl: VirtualElement | (() => VirtualElement)
+): any {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
@@ -47,8 +54,10 @@ const useUtilityClasses = () => {
 
 const defaultPopperOptions = {};
 
-/* eslint-disable react/prop-types */
-const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
+const PopperTooltip = React.forwardRef(function PopperTooltip(
+  props: PopperTooltipProps,
+  ref: React.ForwardedRef<any>,
+) {
   const {
     anchorEl,
     children,
@@ -67,23 +76,23 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     ...other
   } = props;
 
-  const tooltipRef = React.useRef(null);
+  const tooltipRef = React.useRef<HTMLElement | null>(null);
   const ownRef = useForkRef(tooltipRef, ref);
 
-  const popperRef = React.useRef(null);
+  const popperRef = React.useRef<Instance | null>(null);
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
   const handlePopperRefRef = React.useRef(handlePopperRef);
   useEnhancedEffect(() => {
     handlePopperRefRef.current = handlePopperRef;
   }, [handlePopperRef]);
-  React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
+  React.useImperativeHandle(popperRefProp, () => popperRef.current!, []);
 
   const rtlPlacement = flipPlacement(initialPlacement, direction);
   /**
    * placement initialized from prop but can change during lifetime if modifiers.flip.
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
-  const [placement, setPlacement] = React.useState(rtlPlacement);
+  const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -96,7 +105,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       return undefined;
     }
 
-    const handlePopperUpdate = (data) => {
+    const handlePopperUpdate = (data: State) => {
       setPlacement(data.placement);
     };
 
@@ -124,7 +133,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       }
     }
 
-    let popperModifiers = [
+    let popperModifiers: Partial<Modifier<any, any>>[] = [
       {
         name: 'preventOverflow',
         options: {
@@ -154,21 +163,21 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolveAnchorEl(anchorEl), tooltipRef.current, {
+    const popper = createPopper(resolveAnchorEl(anchorEl), tooltipRef.current!, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
     });
 
-    handlePopperRefRef.current(popper);
+    handlePopperRefRef.current!(popper);
 
     return () => {
       popper.destroy();
-      handlePopperRefRef.current(null);
+      handlePopperRefRef.current!(null);
     };
   }, [anchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
 
-  const childProps = { placement };
+  const childProps: PopperUnstyledChildrenProps = { placement: placement! };
 
   if (TransitionProps !== null) {
     childProps.TransitionProps = TransitionProps;
@@ -176,7 +185,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
 
   const classes = useUtilityClasses();
   const Root = component ?? slots.root ?? 'div';
-  const rootProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<PopperUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
@@ -195,13 +204,23 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   return (
     <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
   );
-});
-/* eslint-enable react/prop-types */
+}) as OverridableComponent<PopperTooltipTypeMap>;
 
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
+ *
+ * Demos:
+ *
+ * - [Unstyled Popper](https://mui.com/base/react-popper/)
+ *
+ * API:
+ *
+ * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
  */
-const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
+const PopperUnstyled = React.forwardRef(function PopperUnstyled(
+  props,
+  ref,
+) {
   const {
     anchorEl,
     children,
@@ -238,6 +257,14 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   // If neither are provided let the Modal take care of choosing the container
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
+  const display = !open && keepMounted && (!transition || exited) ? 'none' : undefined
+  const transitionProps: PopperUnstyledTransitionProps | undefined = transition
+    ? {
+        in: open,
+        onEnter: handleEnter,
+        onExited: handleExited,
+    }
+    : undefined
 
   return (
     <Portal disablePortal={disablePortal} container={container}>
@@ -258,24 +285,17 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
           // Fix Popper.js display issue
           top: 0,
           left: 0,
-          display: !open && keepMounted && (!transition || exited) ? 'none' : null,
-          ...style,
+          display,
+          ...style
         }}
-        TransitionProps={
-          transition
-            ? {
-                in: open,
-                onEnter: handleEnter,
-                onExited: handleExited,
-              }
-            : null
-        }
+        TransitionProps={transitionProps}
+
       >
         {children}
       </PopperTooltip>
     </Portal>
   );
-});
+}) as OverridableComponent<PopperUnstyledTypeMap>;
 
 PopperUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -294,7 +314,7 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
       if (props.open) {
         const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
 
-        if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+        if (resolvedAnchorEl  && resolvedAnchorEl.nodeType === 1) {
           const box = resolvedAnchorEl.getBoundingClientRect();
 
           if (

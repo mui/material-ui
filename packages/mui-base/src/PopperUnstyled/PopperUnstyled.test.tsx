@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, createMount, describeConformanceUnstyled, screen } from 'test/utils';
 import PopperUnstyled, { popperUnstyledClasses } from '@mui/base/PopperUnstyled';
 
+
 describe('<PopperUnstyled />', () => {
   const { render } = createRenderer();
   const mount = createMount();
@@ -14,6 +15,8 @@ describe('<PopperUnstyled />', () => {
   };
 
   describeConformanceUnstyled(<PopperUnstyled {...defaultProps} />, () => ({
+    muiName: 'PopperUnstyled',
+    classes: {},
     inheritComponent: 'div',
     render,
     mount,
@@ -30,7 +33,7 @@ describe('<PopperUnstyled />', () => {
   }));
 
   it('should pass ownerState to overridable component', () => {
-    const CustomComponent = React.forwardRef(({ ownerState }, ref) => (
+    const CustomComponent = React.forwardRef<HTMLDivElement, any>(({ ownerState }, ref) => (
       <div ref={ref} data-testid={ownerState.foo} />
     ));
     render(
