@@ -138,7 +138,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
       if (typeof value === 'string' || typeof value === 'number') {
         if (
           !shouldSkipGeneratingVar ||
-          (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
+          !shouldSkipGeneratingVar(keys, value)
         ) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
