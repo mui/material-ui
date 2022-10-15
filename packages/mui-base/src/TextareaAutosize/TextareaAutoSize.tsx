@@ -6,7 +6,24 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
-import { StyleStateProps, TextareaAutosizeProps } from './textareaAutoSize.types';
+
+export interface TextareaAutosizeProps {
+  style?: {},
+  className?: string,
+  placeholder?: string,
+  onChange?: (e: React.FormEvent<HTMLTextAreaElement>) => void,
+  maxRows?: number | undefined,
+  minRows: number | undefined,
+  rows?:  number | undefined,
+  value?: string | string[] | number,
+  defaultValue?: string | string[] | number
+}
+
+export interface StyleStateProps{
+  outerHeightStyle?: number,
+  overflow?: boolean,
+  
+}
 
 function getStyleValue(computedStyle: object, property: string): number {
   return parseInt(computedStyle[property as keyof typeof computedStyle], 10) || 0;
@@ -44,7 +61,7 @@ const TextareaAutosize = React.forwardRef((props: TextareaAutosizeProps, ref: Re
   const [state, setState] = React.useState({} as StyleStateProps);
 
   const getUpdatedState = React.useCallback(() => {
-    const input: HTMLInputElement | null = inputRef.current;
+    const input: HTMLInputElement = inputRef.current as HTMLInputElement;
     const containerWindow = ownerWindow(input || undefined);
     const computedStyle = containerWindow.getComputedStyle(input as HTMLInputElement);
 
@@ -53,10 +70,10 @@ const TextareaAutosize = React.forwardRef((props: TextareaAutosizeProps, ref: Re
       return {};
     }
 
-    const inputShallow: HTMLTextAreaElement = shadowRef.current || new HTMLTextAreaElement;
+    const inputShallow: HTMLTextAreaElement = shadowRef.current as HTMLTextAreaElement;
     inputShallow.style.width = computedStyle.width;
     inputShallow.value = input && input.value || props.placeholder || 'x';
-    if (inputShallow && inputShallow.value?.slice(-1) === '\n') {
+    if (inputShallow && inputShallow.value.slice(-1) === '\n') {
       // Certain fonts which overflow the line height will cause the textarea
       // to report a different scrollHeight depending on whether the last line
       // is empty. Make it non-empty to avoid this issue.
@@ -235,4 +252,3 @@ const TextareaAutosize = React.forwardRef((props: TextareaAutosizeProps, ref: Re
 
 });
 export default TextareaAutosize;
-export { TextareaAutosizeProps }

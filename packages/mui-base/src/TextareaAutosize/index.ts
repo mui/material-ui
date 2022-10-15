@@ -1,1 +1,1 @@
-export { default, TextareaAutosizeProps } from './TextareaAutosize';
+export { default } from './TextareaAutoSize';

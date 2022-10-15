@@ -13,7 +13,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
 
-  describeConformance(<TextareaAutosize />, () => ({
+  describeConformance(<TextareaAutosize minRows={1}/>, () => ({
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
 
@@ -62,11 +62,11 @@ describe('<TextareaAutosize />', () => {
       clock.withFakeTimers();
 
       it('should handle the resize event', () => {
-        const { container } = render(<TextareaAutosize />);
-        const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+        const { container } = render(<TextareaAutosize minRows={1}/>);
+        const input: HTMLInputElement= container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
         const shadow = container.querySelector('textarea[aria-hidden=true]');
-        expect(input?.style).to.have.property('height', '');
-        expect(input?.style).to.have.property('overflow', '');
+        expect(input.style).to.have.property('height', '');
+        expect(input.style).to.have.property('overflow', '');
 
         setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
           getComputedStyle: {
@@ -79,18 +79,18 @@ describe('<TextareaAutosize />', () => {
 
         clock.tick(166);
 
-        expect(input?.style).to.have.property('height', '30px');
-        expect(input?.style).to.have.property('overflow', 'hidden');
+        expect(input.style).to.have.property('height', '30px');
+        expect(input.style).to.have.property('overflow', 'hidden');
       });
     });
 
     it('should update when uncontrolled', () => {
       const handleChange = spy();
-      const { container } = render(<TextareaAutosize onChange={handleChange} />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container } = render(<TextareaAutosize minRows={1} onChange={handleChange} />);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
-      expect(input?.style).to.have.property('height', '0px');
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', '0px');
+      expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -99,21 +99,21 @@ describe('<TextareaAutosize />', () => {
         lineHeight: 15,
       });
       act(() => {
-        input?.focus();
+        input.focus();
       });
       fireEvent.change(document.activeElement as Element, { target: { value: 'a' } });
-      expect(input?.style).to.have.property('height', '30px');
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', '30px');
+      expect(input.style).to.have.property('overflow', 'hidden');
       expect(handleChange.callCount).to.equal(1);
     });
 
     it('should take the border into account with border-box', () => {
       const border = 5;
-      const { container, forceUpdate } = render(<TextareaAutosize />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1}/>);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
-      expect(input?.style).to.have.property('height', '0px');
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', '0px');
+      expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -123,14 +123,14 @@ describe('<TextareaAutosize />', () => {
         lineHeight: 15,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${30 + border}px`);
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', `${30 + border}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
     });
 
     it('should take the padding into account with content-box', () => {
       const padding = 5;
-      const { container, forceUpdate } = render(<TextareaAutosize />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1}/>);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -141,15 +141,15 @@ describe('<TextareaAutosize />', () => {
         lineHeight: 15,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${30 + padding}px`);
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', `${30 + padding}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
     });
 
     it('should have at least height of "minRows"', () => {
       const minRows = 3;
       const lineHeight = 15;
       const { container, forceUpdate } = render(<TextareaAutosize minRows={minRows} />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -159,15 +159,15 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * minRows}px`);
-      expect(input?.style).to.have.property('overflow', '');
+      expect(input.style).to.have.property('height', `${lineHeight * minRows}px`);
+      expect(input.style).to.have.property('overflow', '');
     });
 
     it('should have at max "maxRows" rows', () => {
       const maxRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1} maxRows={maxRows} />);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -177,15 +177,15 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * maxRows}px`);
-      expect(input?.style).to.have.property('overflow', '');
+      expect(input.style).to.have.property('height', `${lineHeight * maxRows}px`);
+      expect(input.style).to.have.property('overflow', '');
     });
 
     it('should show scrollbar when having more rows than "maxRows"', () => {
       const maxRows = 3;
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1} maxRows={maxRows} />);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -195,8 +195,8 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * 2}px`);
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -205,8 +205,8 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * 3}px`);
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', `${lineHeight * 3}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -215,14 +215,14 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * 3}px`);
-      expect(input?.style).to.have.property('overflow', '');
+      expect(input.style).to.have.property('height', `${lineHeight * 3}px`);
+      expect(input.style).to.have.property('overflow', '');
     });
 
     it('should update its height when the "maxRows" prop changes', () => {
       const lineHeight = 15;
-      const { container, forceUpdate, setProps } = render(<TextareaAutosize maxRows={3} />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container, forceUpdate, setProps } = render(<TextareaAutosize minRows={1} maxRows={3} />);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -232,17 +232,17 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * 3}px`);
-      expect(input?.style).to.have.property('overflow', '');
+      expect(input.style).to.have.property('height', `${lineHeight * 3}px`);
+      expect(input.style).to.have.property('overflow', '');
       setProps({ maxRows: 2 });
-      expect(input?.style).to.have.property('height', `${lineHeight * 2}px`);
-      expect(input?.style).to.have.property('overflow', '');
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', '');
     });
 
     it('should not sync height if container width is 0px', () => {
       const lineHeight = 15;
-      const { container, forceUpdate } = render(<TextareaAutosize />);
-      const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+      const { container, forceUpdate } = render(<TextareaAutosize minRows={1}/>);
+      const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
       const shadow = container.querySelector('textarea[aria-hidden=true]');
 
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
@@ -254,8 +254,8 @@ describe('<TextareaAutosize />', () => {
       });
       forceUpdate();
 
-      expect(input?.style).to.have.property('height', `${lineHeight * 2}px`);
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
 
       setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
         getComputedStyle: {
@@ -267,14 +267,14 @@ describe('<TextareaAutosize />', () => {
       });
 
       forceUpdate();
-      expect(input?.style).to.have.property('height', `${lineHeight * 2}px`);
-      expect(input?.style).to.have.property('overflow', 'hidden');
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
     });
 
     describe('warnings', () => {
       it('warns if layout is unstable but not crash', () => {
-        const { container, forceUpdate } = render(<TextareaAutosize maxRows={3} />);
-        const input: HTMLInputElement | null = container.querySelector('textarea[aria-hidden=null]');
+        const { container, forceUpdate } = render(<TextareaAutosize minRows={1} maxRows={3} />);
+        const input: HTMLInputElement = container.querySelector('textarea[aria-hidden=null]') as HTMLInputElement;
         const shadow = container.querySelector('textarea[aria-hidden=true]');
         let index = 0;
         setLayout(input as HTMLInputElement, shadow as HTMLTextAreaElement, {
