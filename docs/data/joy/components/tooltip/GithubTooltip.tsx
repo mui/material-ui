@@ -64,7 +64,6 @@ export default function GithubTooltip() {
       }
       variant="outlined"
       size="lg"
-      open
       arrow
     >
       <Link
