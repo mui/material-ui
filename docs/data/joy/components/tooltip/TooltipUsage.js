@@ -43,8 +43,8 @@ export default function TooltipUsage() {
         },
       ]}
       renderDemo={(props) => (
-        <Tooltip title="Delete" {...props}>
-          <IconButton size="lg" variant="plain" color="neutral">
+        <Tooltip title="This is a tooltip" {...props}>
+          <IconButton size="lg" variant="soft" color="neutral">
             <DeleteIcon />
           </IconButton>
         </Tooltip>
