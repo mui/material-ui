@@ -65,7 +65,7 @@ function AppSettingsDrawer(props) {
     try {
       initialMode = localStorage.getItem('mui-mode') || initialMode;
     } catch (error) {
-      // eslint-disable-next-line no-empty
+      // do nothing
     }
     setMode(initialMode);
   }, [preferredMode]);
