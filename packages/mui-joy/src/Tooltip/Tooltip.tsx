@@ -1,8 +1,6 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
+import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
 import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -12,10 +10,12 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getTooltipUtilityClass } from './tooltipClasses';
+import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipComponentsPropsOverrides, TooltipProps, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipProps) => {
@@ -110,21 +110,21 @@ const TooltipArrow = styled('span', {
       transformOrigin: 'center center',
       transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
     },
-    ...(ownerState.placement?.includes('bottom') && {
+    [`.${tooltipClasses.root}[data-popper-placement*="bottom"] &`]: {
       top: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
-    }),
-    ...(ownerState.placement?.includes('top') && {
+    },
+    [`.${tooltipClasses.root}[data-popper-placement*="top"] &`]: {
       '--unstable_Tooltip-arrow-rotation': 2,
       bottom: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
-    }),
-    ...(ownerState.placement?.includes('left') && {
+    },
+    [`.${tooltipClasses.root}[data-popper-placement*="left"] &`]: {
       '--unstable_Tooltip-arrow-rotation': 1,
       right: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
-    }),
-    ...(ownerState.placement?.includes('right') && {
+    },
+    [`.${tooltipClasses.root}[data-popper-placement*="right"] &`]: {
       '--unstable_Tooltip-arrow-rotation': 3,
       left: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
-    }),
+    },
   };
 });
 
