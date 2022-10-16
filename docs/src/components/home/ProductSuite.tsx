@@ -50,18 +50,12 @@ function ProductSuite() {
     <Box
       ref={ref}
       sx={(theme) => ({
-        ...(!theme.vars
-          ? {
-              bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50',
-            }
-          : {
-              bgcolor: 'grey.50',
-              [theme.getColorSchemeSelector('dark')]: {
-                bgcolor: 'primaryDark.900',
-              },
-            }),
+        bgcolor: 'grey.50',
         py: { xs: 4, sm: 6, md: 8 },
         overflow: 'hidden',
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+        }),
       })}
     >
       <Container>
