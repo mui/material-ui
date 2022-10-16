@@ -50,22 +50,18 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 
 const sliderColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
-  (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const basicStyles = theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
+  (data: { state?: 'Hover' | 'Disabled' | 'Active' } = {}) => {
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
       ...(styles.border && {
         '--variant-borderWidth': styles['--variant-borderWidth'],
       }),
-      ...(basicStyles.border && {
-        '--Slider-thumb-shadow': `0 0 0 var(--variant-borderWidth) ${styles.borderColor}`,
-      }),
       '--Slider-track-color': styles.color,
       '--Slider-thumb-background': styles.color,
       '--Slider-thumb-color': styles.backgroundColor || theme.vars.palette.background.surface,
       '--Slider-track-background': styles.backgroundColor || theme.vars.palette.background.surface,
-      '--Slider-rail-borderColor': styles.borderColor,
+      '--Slider-track-borderColor': styles.borderColor,
       '--Slider-rail-background': theme.vars.palette.background.level2,
     };
   };
@@ -78,7 +74,7 @@ const SliderRoot = styled('span', {
   const getColorVariables = sliderColorVariables({ theme, ownerState });
   return [
     {
-      '--variant-borderWidth': '0px',
+      '--variant-borderWidth': '0px', // prevent using --variant-borderWidth from the outer scope
       '--Slider-size': 'max(42px, max(var(--Slider-thumb-size), var(--Slider-track-size)))', // Reach 42px touch target, about ~8mm on screen.
       '--Slider-track-radius': 'var(--Slider-size)',
       '--Slider-mark-background': theme.vars.palette.text.tertiary,
@@ -108,6 +104,9 @@ const SliderRoot = styled('span', {
       ...getColorVariables(),
       '&:hover': {
         ...getColorVariables({ state: 'Hover' }),
+      },
+      '&:active': {
+        ...getColorVariables({ state: 'Active' }),
       },
       [`&.${sliderClasses.disabled}`]: {
         pointerEvents: 'none',
@@ -152,8 +151,10 @@ const SliderRail = styled('span', {
       ownerState.track === 'inverted'
         ? 'var(--Slider-track-background)'
         : 'var(--Slider-rail-background)',
-    border: 'var(--variant-borderWidth) solid',
-    borderColor: 'var(--Slider-rail-borderColor)',
+    border:
+      ownerState.track === 'inverted'
+        ? 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)'
+        : 'initial',
     borderRadius: 'var(--Slider-track-radius)',
     ...(ownerState.orientation === 'horizontal' && {
       height: 'var(--Slider-track-size)',
@@ -185,8 +186,10 @@ const SliderTrack = styled('span', {
       display: 'block',
       position: 'absolute',
       color: 'var(--Slider-track-color)',
-      border: 'var(--variant-borderWidth) solid',
-      borderColor: 'var(--Slider-rail-borderColor)',
+      border:
+        ownerState.track === 'inverted'
+          ? 'initial'
+          : 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
@@ -226,10 +229,9 @@ const SliderThumb = styled('span', {
   justifyContent: 'center',
   width: 'var(--Slider-thumb-width)',
   height: 'var(--Slider-thumb-size)',
+  border: 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
   borderRadius: 'var(--Slider-thumb-radius)',
   boxShadow: 'var(--Slider-thumb-shadow)',
-  border: '2px solid',
-  borderColor: 'var(--Slider-thumb-color)',
   color: 'var(--Slider-thumb-color)',
   backgroundColor: 'var(--Slider-thumb-background)',
   // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
@@ -244,6 +246,20 @@ const SliderThumb = styled('span', {
     left: '50%',
     transform: 'translate(-50%, 50%)',
   }),
+  '&::before': {
+    // use pseudo element to create thumb's ring
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    background: 'transparent', // to not block the thumb's child
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    border: '2px solid',
+    borderColor: 'var(--Slider-thumb-color)',
+    borderRadius: 'inherit',
+  },
 }));
 
 const SliderMark = styled('span', {
