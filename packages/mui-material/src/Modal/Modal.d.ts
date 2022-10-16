@@ -14,7 +14,6 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
      * @default styled(Backdrop, {
      *   name: 'MuiModal',
      *   slot: 'Backdrop',
-     *   'aria-hidden': true,
      *   overridesResolver: (props, styles) => {
      *     return styles.backdrop;
      *   },

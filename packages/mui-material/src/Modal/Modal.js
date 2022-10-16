@@ -37,7 +37,6 @@ const ModalRoot = styled('div', {
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',
   slot: 'Backdrop',
-  'aria-hidden': true,
   overridesResolver: (props, styles) => {
     return styles.backdrop;
   },
@@ -118,6 +117,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
           ...(!isHostComponent(Root) && { as: component, theme }),
         }),
         backdrop: () => ({
+          'aria-hidden': true,
           ...BackdropProps,
           ...resolveComponentProps(componentsProps.backdrop, ownerState),
         }),
