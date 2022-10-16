@@ -13,77 +13,88 @@ export default function ThemeDatePicker() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Fade in timeout={700}>
         <Box
-          sx={(theme) => ({
-            '& > div': {
-              border: '1px solid',
-              borderColor: 'grey.200',
-              borderRadius: 1,
-              [theme.getColorSchemeSelector('dark')]: {
-                borderColor: 'primaryDark.500',
+          sx={[
+            {
+              '& > div': {
+                border: '1px solid',
+                borderColor: 'grey.200',
+                borderRadius: 1,
               },
-            },
-            '& > div > div > div': {
-              width: '100%',
-            },
-            [`& .${iconButtonClasses.root}`]: {
-              color: 'primary.500',
-              [theme.getColorSchemeSelector('dark')]: {
-                color: 'primary.300',
+              '& > div > div > div': {
+                width: '100%',
               },
-            },
-            '& .MuiPickerStaticWrapper-root': {
-              bgcolor: '#fff',
-              [theme.getColorSchemeSelector('dark')]: {
-                bgcolor: 'primaryDark.800',
+              [`& .${iconButtonClasses.root}`]: {
+                color: 'primary.500',
               },
-            },
-            '& .MuiPickerStaticWrapper-content': {
-              bgcolor: 'initial',
-            },
-            '& .MuiCalendarPicker-root': {
-              width: '100%',
-              '& .MuiTypography-caption': {
-                color: 'grey.700',
-                height: 24,
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'grey.600',
+              '& .MuiPickerStaticWrapper-root': {
+                bgcolor: '#fff',
+              },
+              '& .MuiPickerStaticWrapper-content': {
+                bgcolor: 'initial',
+              },
+              '& .MuiCalendarPicker-root': {
+                width: '100%',
+                '& .MuiTypography-caption': {
+                  color: 'grey.700',
+                  height: 24,
                 },
-              },
-              '[role="presentation"]': {
-                '& .MuiIconButton-root': {
-                  padding: 0,
+                '[role="presentation"]': {
+                  '& .MuiIconButton-root': {
+                    padding: 0,
+                  },
                 },
-              },
-              '& .PrivatePickersSlideTransition-root': {
-                minHeight: 180,
-              },
-              '& .PrivatePickersYear-yearButton': {
-                fontSize: '0.875rem',
-              },
-              '& [role="row"]': {
-                justifyContent: 'space-around',
-              },
-              '& .MuiCalendarPicker-viewTransitionContainer > div > div': {
-                justifyContent: 'space-around',
-              },
-              '& .MuiPickersDay-root': {
-                width: 24,
-                height: 24,
-                fontWeight: 500,
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'primary.200',
+                '& .PrivatePickersSlideTransition-root': {
+                  minHeight: 180,
                 },
-                '&.Mui-selected': {
-                  color: '#fff',
+                '& .PrivatePickersYear-yearButton': {
+                  fontSize: '0.875rem',
                 },
-                '&.MuiPickersDay-today': {
-                  '&:not(.Mui-selected)': {
-                    borderColor: 'primary.main',
+                '& [role="row"]': {
+                  justifyContent: 'space-around',
+                },
+                '& .MuiCalendarPicker-viewTransitionContainer > div > div': {
+                  justifyContent: 'space-around',
+                },
+                '& .MuiPickersDay-root': {
+                  width: 24,
+                  height: 24,
+                  fontWeight: 500,
+                  '&:not(:hover)': {
+                    bgcolor: 'transparent',
+                  },
+                  '&.Mui-selected': {
+                    color: '#fff',
+                    bgcolor: 'primary.main',
+                  },
+                  '&.MuiPickersDay-today': {
+                    '&:not(.Mui-selected)': {
+                      borderColor: 'primary.main',
+                    },
                   },
                 },
               },
             },
-          })}
+            (theme) =>
+              theme.applyDarkStyles({
+                '& > div': {
+                  borderColor: 'primaryDark.500',
+                },
+                [`& .${iconButtonClasses.root}`]: {
+                  color: 'primary.300',
+                },
+                '& .MuiPickerStaticWrapper-root': {
+                  bgcolor: 'primaryDark.800',
+                },
+                '& .MuiCalendarPicker-root': {
+                  '& .MuiTypography-caption': {
+                    color: 'grey.600',
+                  },
+                  '& .MuiPickersDay-root': {
+                    color: 'primary.200',
+                  },
+                },
+              }),
+          ]}
         >
           <StaticDatePicker
             displayStaticWrapperAs="desktop"
