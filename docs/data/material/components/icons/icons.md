@@ -18,7 +18,7 @@ MUI provides icons support in three ways:
 
 ## Material SVG icons
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below).
+Google has created over 2,100 official Material icons, each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/material-ui/material-icons/).
 
@@ -58,7 +58,7 @@ Import icons using one of these two options:
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
-Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
+Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 

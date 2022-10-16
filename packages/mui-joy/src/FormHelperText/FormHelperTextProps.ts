@@ -29,3 +29,5 @@ export type FormHelperTextProps<
     component?: React.ElementType;
   },
 > = OverrideProps<FormHelperTextTypeMap<P, D>, D>;
+
+export interface FormHelperTextOwnerState extends FormHelperTextProps {}

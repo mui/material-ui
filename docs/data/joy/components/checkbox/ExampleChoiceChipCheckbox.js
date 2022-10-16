@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
+import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
@@ -16,7 +16,7 @@ export default function ExampleChoiceChipCheckbox() {
       </Typography>
       <Box role="group" aria-labelledby="rank">
         <List
-          orientation="horizontal"
+          row
           wrap
           sx={{
             '--List-gap': '8px',
@@ -49,13 +49,15 @@ export default function ExampleChoiceChipCheckbox() {
                       setValue((val) => val.filter((text) => text !== item));
                     }
                   }}
-                  sx={{
-                    [`&.${checkboxClasses.checked}`]: {
-                      [`& .${checkboxClasses.action}`]: {
-                        border: '1px solid',
-                        borderColor: 'primary.500',
-                      },
-                    },
+                  componentsProps={{
+                    action: ({ checked }) => ({
+                      sx: checked
+                        ? {
+                            border: '1px solid',
+                            borderColor: 'primary.500',
+                          }
+                        : {},
+                    }),
                   }}
                 />
               </ListItem>

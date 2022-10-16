@@ -2,7 +2,6 @@
 product: system
 title: React Grid component
 githubLabel: 'component: Grid'
-packageName: '@mui/system'
 ---
 
 # Grid

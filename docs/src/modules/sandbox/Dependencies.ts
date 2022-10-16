@@ -26,7 +26,7 @@ export default function SandboxDependencies(
    * @param deps - list of dependency as `name => version`
    */
   function addTypeDeps(deps: Record<string, string>): void {
-    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled'];
+    const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled', 'dayjs'];
     const packagesWithDTPackage = Object.keys(deps)
       .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
       // All the MUI packages come with bundled types
@@ -110,7 +110,7 @@ export default function SandboxDependencies(
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
     if ((window as any).muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined;
+      const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
       versions = (window as any).muiDocConfig.csbGetVersions(versions, { muiCommitRef });
     }
 

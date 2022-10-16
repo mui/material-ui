@@ -17,6 +17,10 @@ should be made clear from the corresponding inline label.
 
 {{"demo": "SwitchUsage.js", "hideToolbar": true}}
 
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -37,9 +41,17 @@ To create a controlled switch, use the `checked` and `onChange` props.
 
 {{"demo": "SwitchControlled.js"}}
 
+:::info
+By default, the color of the switch changes from `neutral` to `primary` when it is checked unless you specify the `color` prop directly to the component.
+:::
+
 ### Label
 
-Use the `Switch` component inside the `Typography`'s `endDecorator` prop for having labels.
+When a `Switch` is used together with `FormControl` and `FormLabel`, the switch is labelled automatically. You can also use `FormHelperText` to include a description to the switch as well.
+
+{{"demo": "SwitchControl.js"}}
+
+An alternative way is to place the `Switch` component inside a label element. The `Typography` is used in this case to leverage the typography scale from the theme.
 
 {{"demo": "SwitchLabel.js"}}
 
@@ -54,6 +66,10 @@ To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
 Target the track's children using the `componentsProps` prop to display a text inside of it.
 
 {{"demo": "ExampleTrackChild.js"}}
+
+:::warning
+The track text **should not** be used to label the switch, you should use [proper methods](#label) to achieve it.
+:::
 
 ### Thumb child
 

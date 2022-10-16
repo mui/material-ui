@@ -11,6 +11,7 @@ const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
   400: '#3399FF',
+  500: '#007FFF',
   600: '#0072E5',
 };
 
@@ -30,21 +31,24 @@ const grey = {
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
+  font-weight: 400;
+  border-radius: 12px;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   display: flex;
-  font-weight: 500;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 8px;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   align-items: center;
   justify-content: center;
 
+
   &.${inputUnstyledClasses.focused} {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    border-color: ${blue[400]};
   }
 `,
 );
@@ -65,14 +69,17 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const IconButton = styled(ButtonUnstyled)`
+const IconButton = styled(ButtonUnstyled)(
+  ({ theme }) => `
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
   background: inherit;
   cursor: pointer;
-`;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[700]};
+  `,
+);
 
 const InputAdornment = styled('div')`
   margin: 8px;

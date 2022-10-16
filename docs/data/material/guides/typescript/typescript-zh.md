@@ -6,7 +6,7 @@
 
 <!-- #default-branch-switch -->
 
-MUI requires a minimum version of TypeScript 3.5. MUI requires a minimum version of TypeScript 3.5. Material UI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
+MUI requires a minimum version of TypeScript 3.5. Material-UI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
 
 请查看 [Create React App with TypeScript](https://github.com/mui/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
@@ -35,6 +35,22 @@ MUI requires a minimum version of TypeScript 3.5. MUI requires a minimum version
 
 Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
-## `component` 属性的用法
+## Complications with the `component` prop
 
-然而，如果您尝试根据主题来构建样式，那么类型扩展会再次显示其不怎么雅观的部分：
+Because of some TypeScript limitations, using the `component` prop can be problematic if you are creating your custom component based on the Material UI's components. For the composition of the components, you will likely need to use one of these two options:
+
+1. Wrap the Material UI component in order to enhance it
+2. Use the `styled()` utility in order to customize the styles of the component
+
+If you are using the first option, take a look at the [composition guide](/material-ui/guides/composition/#with-typescript) for more details.
+
+If you are using the `styled()` utility (regardless of whether it comes from `@mui/material` or `@emotion/styled`), you will need to cast the resulting component as shown below:
+
+```tsx
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+
+const CustomButton = styled(Button)({
+  // your custom styles go here
+}) as typeof Button;
+```

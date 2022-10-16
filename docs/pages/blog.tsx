@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   };
 };
 
-const PostPreview = (props: BlogPost) => {
+function PostPreview(props: BlogPost) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
@@ -176,7 +176,7 @@ const PostPreview = (props: BlogPost) => {
       </Box>
     </React.Fragment>
   );
-};
+}
 
 const PAGE_SIZE = 5;
 
@@ -249,7 +249,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         disableAlternateLocale
       />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog

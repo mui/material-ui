@@ -1,20 +1,26 @@
 ---
 product: material-ui
-title: Ícones Material
-components: Icon, SvgIcon
+components: Ícone, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
-githubLabel: 'ícones'
+githubLabel: 'pacote: ícones'
 ---
 
 # Ícones Material
 
-<p class="description">2,000+ React Material icons ready-to-use from the official website.</p>
+<p class="description">Mais de 2.000 Ícones Materiais Prontos para usar a partir do site oficial.</p>
 
-The following npm package, [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material), includes the 2,000+ official [Material icons](https://fonts.google.com/icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+O pacote npm, [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material), conta com mais de 2,000 [Ícones Material](https://fonts.google.com/icons?icon.set=Material+Icons) convertidos em componentes [`SvgIcon`](/material-ui/api/svg-icon/).
+
+:::info
+The `@mui/icons-material` package depends on `@mui/material`, which requires Emotion packages.
+
+If you don't use Material UI in your project yet, install the icons package with `npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`.  
+See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 {{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
 
-ℹ️ A pesquisa suporta sinônimos. Try searching for "hamburger" or "logout".
+ℹ️ The search supports synonyms. Try searching for "hamburger" or "logout".

@@ -26,6 +26,7 @@ describe('extendTheme', () => {
         'variants',
         'vars',
         'cssVarPrefix',
+        'getColorSchemeSelector',
       ]).to.includes(field);
     });
   });

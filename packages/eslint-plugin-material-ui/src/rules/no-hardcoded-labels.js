@@ -8,6 +8,27 @@ module.exports = {
       'literal-label':
         "Don't use hardcoded labels. Prefer translated values by using `useTranslate`. New translations should be added to `docs/translations/translations.json`.",
     },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          allow: {
+            oneOf: [
+              {
+                type: 'array',
+                items: {
+                  type: 'string',
+                },
+              },
+              {
+                type: 'string',
+              },
+            ],
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const { allow: allowOption = [] } = context.options[0] || {};

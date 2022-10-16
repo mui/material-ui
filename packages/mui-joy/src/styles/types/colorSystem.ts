@@ -113,6 +113,7 @@ export interface PaletteBackground {
   level2: string;
   level3: string;
   tooltip: string;
+  backdrop: string;
 }
 
 export interface ColorPalettePropOverrides {}
@@ -134,6 +135,7 @@ export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
 
 export interface Palette {
+  mode: 'light' | 'dark';
   primary: PalettePrimary;
   neutral: PaletteNeutral;
   danger: PaletteDanger;

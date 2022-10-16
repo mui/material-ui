@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: Componente React para Campo de Texto
-components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+title: Text field React component
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
-# Campo de texto
+# Text field
 
 <p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 
@@ -37,14 +37,13 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Multilinha
 
-The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element. Unless the</code>rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
-You can use the <code>minRows` and `maxRows` props to bound it.
+The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element. Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)). You can use the &lt;code&gt;minRows</code> and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
 ## Seleção
 
-A propriedade `select` faz com que o campo de texto use internamente um componente [Select](/material-ui/react-select/).
+The `select` prop makes the text field use the [Select](/material-ui/react-select/) component internally.
 
 {{"demo": "SelectTextFields.js"}}
 
@@ -90,7 +89,7 @@ O componente pode ser controlado ou não controlado.
 
 ## Componentes
 
-O componente `TextField` é composto por componentes menores ([`FormControl`](/material-ui/api/form-control/), [`Input`](/material-ui/api/input/), [`FilledInput`](/material-ui/api/filled-input/), [`InputLabel`](/material-ui/api/input-label/), [`OutlinedInput`](/material-ui/api/outlined-input/), e [`FormHelperText`](/material-ui/api/form-helper-text/)) que você pode aproveitar diretamente para customizar significativamente os campos do seu formulário.
+`TextField` is composed of smaller components ( [`FormControl`](/material-ui/api/form-control/), [`Input`](/material-ui/api/input/), [`FilledInput`](/material-ui/api/filled-input/), [`InputLabel`](/material-ui/api/input-label/), [`OutlinedInput`](/material-ui/api/outlined-input/), and [`FormHelperText`](/material-ui/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
 
 Você também pode ter notado que algumas propriedades de campo nativas do HTML input estão faltando no componente `TextField`. Isto é intencional. The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. Ainda, você pode usar `inputProps` (`InputProps` e `InputLabelProps`) se você quiser evitar algum boilerplate.
 
@@ -108,11 +107,11 @@ A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 ## Campos customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedInputs.js"}}
 
-Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Abaixo há um exemplo usando o componente [`InputBase`](/material-ui/api/input-base/), inspirado pelo Google Maps.
+Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/material-ui/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
@@ -181,7 +180,7 @@ The floating label is absolutely positioned. It won't impact the layout of the p
 
 Campos com type="number" tem problemas potenciais de usabilidade:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
 - A funcionalidade de rolagem para incrementar/decrementar o número, pode causar alterações acidentais difíceis de notar
 
 e muito mais - consulte [este artigo](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) da equipe GOV.UK Design System para obter uma explicação mais detalhada.
@@ -278,5 +277,7 @@ For more advanced use cases, you might be able to take advantage of:
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
 - [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material UI com [React Final Form](https://final-form.org/react).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material UI com [Redux Form](https://redux-form.com/).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
+- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

@@ -2,13 +2,13 @@ import * as React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
-import { demos, docs, demoComponents } from 'docs/src/pages/versions/versions.md?@mui/markdown';
+import * as pageProps from 'docs/src/pages/versions/versions.md?@mui/markdown';
 
 export default function Page(props) {
   const { versions } = props;
   return (
     <VersionsContext.Provider value={versions}>
-      <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />
+      <MarkdownDocs {...pageProps} />
     </VersionsContext.Provider>
   );
 }
@@ -38,7 +38,7 @@ async function getBranches() {
   return JSON.parse(text);
 }
 
-export async function getStaticProps() {
+Page.getInitialProps = async () => {
   const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
   const branches = await getBranches();
@@ -78,5 +78,5 @@ export async function getStaticProps() {
     });
   }
 
-  return { props: { versions: sortedUniqBy(versions, 'version') } };
-}
+  return { versions: sortedUniqBy(versions, 'version') };
+};

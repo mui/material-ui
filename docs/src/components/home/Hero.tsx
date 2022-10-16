@@ -10,15 +10,17 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 
 function createLoading(sx: BoxProps['sx']) {
-  return () => (
-    <Box
-      sx={{
-        borderRadius: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-        ...sx,
-      }}
-    />
-  );
+  return function Loading() {
+    return (
+      <Box
+        sx={{
+          borderRadius: 1,
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
+          ...sx,
+        }}
+      />
+    );
+  };
 }
 
 const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
@@ -49,7 +51,6 @@ const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   ssr: false,
   loading: createLoading({ width: 360, height: 212 }),
 });
-
 const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
   ssr: false,
   loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),

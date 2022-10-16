@@ -210,7 +210,7 @@ describe('replaceHtmlLinks', () => {
 <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
 <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/system/basics/">System</a></li>
+<li><a href="/system/getting-started/overview/">System</a></li>
 </ul>
     `),
     ).to.equal(`
@@ -229,7 +229,7 @@ describe('replaceHtmlLinks', () => {
 <li><a href="/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
 <li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
 <li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/system/basics/">System</a></li>
+<li><a href="/system/getting-started/overview/">System</a></li>
 </ul>
     `);
   });
@@ -275,7 +275,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/system/basics/">System</a></li>
+    <li><a href="/system/getting-started/overview/">System</a></li>
     <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/customization/theme-components/#default-props">default props</a>
     <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
@@ -300,7 +300,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/x/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/system/basics/">System</a></li>
+    <li><a href="/system/getting-started/overview/">System</a></li>
     <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/material-ui/customization/theme-components/#default-props">default props</a>
     <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
@@ -328,7 +328,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/zh/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/zh/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/zh/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/zh/system/basics/">System</a></li>
+    <li><a href="/zh/system/getting-started/overview/">System</a></li>
     <a href="/zh/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/zh/customization/theme-components/#default-props">default props</a>
     <a data-no-markdown-link="true" tabindex="0" href="/zh/getting-started/usage/">Get started</a>
@@ -350,7 +350,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/zh/material-ui/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
     <li><a href="/zh/x/api/data-grid/data-grid/">DataGrid</a></li>
     <li><a href="/zh/x/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/zh/system/basics/">System</a></li>
+    <li><a href="/zh/system/getting-started/overview/">System</a></li>
     <a href="/zh/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/zh/material-ui/customization/theme-components/#default-props">default props</a>
     <a data-no-markdown-link="true" tabindex="0" href="/zh/material-ui/getting-started/usage/">Get started</a>

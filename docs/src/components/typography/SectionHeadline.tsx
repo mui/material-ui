@@ -2,20 +2,21 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-export default function SectionHeadline({
-  overline,
-  title,
-  description,
-}: {
+interface SectionHeadlineProps {
+  description?: React.ReactNode;
+  id?: string;
   overline: React.ReactNode;
   title: React.ReactNode;
-  description?: React.ReactNode;
-}) {
+}
+
+export default function SectionHeadline(props: SectionHeadlineProps) {
+  const { description, id, overline, title } = props;
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
-  const overlineColor = mode === 'dark' ? 'primary.400' : 'primary.600';
+  const overlineColor = mode === 'dark' ? 'primary.300' : 'primary.600';
   const titleColor = mode === 'dark' ? 'grey.100' : 'primaryDark.900';
   const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
+
   return (
     <React.Fragment>
       <Typography
@@ -24,6 +25,7 @@ export default function SectionHeadline({
         fontWeight="bold"
         variant="body2"
         sx={{ mb: 1 }}
+        id={id}
       >
         {overline}
       </Typography>

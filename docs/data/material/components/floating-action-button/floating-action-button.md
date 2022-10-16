@@ -1,12 +1,12 @@
 ---
 product: material-ui
-title: React Fab component
+title: React Floating Action Button (FAB) component
 components: Fab
 githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
-# Floating action button
+# Floating Action Button
 
 <p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListSubheader from '@mui/joy/ListSubheader';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Switch from '@mui/joy/Switch';
@@ -21,23 +22,15 @@ export default function NestedList() {
       />
       <List
         variant="outlined"
+        size={small ? 'sm' : undefined}
         sx={{
           width: 200,
           borderRadius: 'sm',
         }}
       >
         <ListItem nested>
-          <ListItem component="div">
-            <Typography
-              id="nested-list-demo-1"
-              level="body3"
-              textTransform="uppercase"
-              fontWeight="lg"
-            >
-              Category 1
-            </Typography>
-          </ListItem>
-          <List aria-labelledby="nested-list-demo-1" size={small ? 'sm' : undefined}>
+          <ListSubheader>Category 1</ListSubheader>
+          <List>
             <ListItem>
               <ListItemButton>Subitem 1</ListItemButton>
             </ListItem>
@@ -47,17 +40,8 @@ export default function NestedList() {
           </List>
         </ListItem>
         <ListItem nested>
-          <ListItem component="div">
-            <Typography
-              id="nested-list-demo-2"
-              level="body3"
-              textTransform="uppercase"
-              fontWeight="lg"
-            >
-              Category 2
-            </Typography>
-          </ListItem>
-          <List aria-labelledby="nested-list-demo-2" size={small ? 'sm' : undefined}>
+          <ListSubheader>Category 2</ListSubheader>
+          <List>
             <ListItem>
               <ListItemButton>Subitem 1</ListItemButton>
             </ListItem>

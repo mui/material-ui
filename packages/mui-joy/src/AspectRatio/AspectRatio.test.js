@@ -17,6 +17,7 @@ describe('<AspectRatio />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 

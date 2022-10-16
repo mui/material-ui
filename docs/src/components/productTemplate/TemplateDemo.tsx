@@ -22,34 +22,36 @@ import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 
-const ActionArea = (props: ButtonBaseProps) => (
-  <ButtonBase
-    {...props}
-    sx={{
-      width: 100,
-      height: 100,
-      borderRadius: '50%',
-      transition: '0.2s',
-      '&.Mui-disabled': {
-        opacity: 0,
-      },
-      '& > svg': { transition: '0.2s' },
-      backdropFilter: 'blur(4px)',
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primary[500], 0.5)
-          : alpha(theme.palette.primaryDark[500], 0.5),
-      '&:hover, &:focus': {
-        '& > svg': { fontSize: 28 },
-      },
-      position: 'absolute',
-      top: 'calc(50% - 50px)',
-      color: '#fff',
-      p: 1.5,
-      ...props.sx,
-    }}
-  />
-);
+function ActionArea(props: ButtonBaseProps) {
+  return (
+    <ButtonBase
+      {...props}
+      sx={{
+        width: 100,
+        height: 100,
+        borderRadius: '50%',
+        transition: '0.2s',
+        '&.Mui-disabled': {
+          opacity: 0,
+        },
+        '& > svg': { transition: '0.2s' },
+        backdropFilter: 'blur(4px)',
+        bgcolor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primary[500], 0.5)
+            : alpha(theme.palette.primaryDark[500], 0.5),
+        '&:hover, &:focus': {
+          '& > svg': { fontSize: 28 },
+        },
+        position: 'absolute',
+        top: 'calc(50% - 50px)',
+        color: '#fff',
+        p: 1.5,
+        ...props.sx,
+      }}
+    />
+  );
+}
 
 export default function TemplateDemo() {
   const globalTheme = useTheme();

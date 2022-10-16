@@ -53,6 +53,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbars</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
   "cssComponent": false
 }

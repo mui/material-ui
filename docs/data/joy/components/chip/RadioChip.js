@@ -18,7 +18,7 @@ export default function RadioChip() {
         <RadioGroup
           name="best-movie"
           aria-labelledby="best-movie"
-          orientation="horizontal"
+          row
           sx={{ flexWrap: 'wrap', gap: 1 }}
         >
           {[

@@ -37,7 +37,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['componentsProps']>['root'];
 
-export const ModalRoot: React.FC<ModalRootProps>;
+export declare const ModalRoot: React.FC<ModalRootProps>;
 
 export type ModalClassKey = keyof NonNullable<ModalTypeMap['props']['classes']>;
 
@@ -66,7 +66,7 @@ declare const Modal: ExtendModalUnstyled<ModalTypeMap>;
 
 export type ModalClasses = Record<ModalClassKey, string>;
 
-export const modalClasses: ModalClasses;
+export declare const modalClasses: ModalClasses;
 
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],

@@ -48,11 +48,13 @@ export default function ToggleButtonSizes() {
         '& > :not(style) + :not(style)': { mt: 2 },
       }}
     >
-      <ToggleButtonGroup size="small" {...control}>
+      <ToggleButtonGroup size="small" {...control} aria-label="Small sizes">
         {children}
       </ToggleButtonGroup>
-      <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
-      <ToggleButtonGroup size="large" {...control}>
+      <ToggleButtonGroup {...control} aria-label="Medium sizes">
+        {children}
+      </ToggleButtonGroup>
+      <ToggleButtonGroup size="large" {...control} aria-label="Large sizes">
         {children}
       </ToggleButtonGroup>
     </Box>

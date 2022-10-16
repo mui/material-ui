@@ -1,26 +1,46 @@
 # Dark mode
 
-<p class="description">MUI comes with two palette modes: light (the default) and dark.</p>
+<p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
 
-Você pode deixar o tema escuro definindo `mode: 'dark'`.
+## Dark mode by default
+
+You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
 
 ```js
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
+
+function App() {
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <main>This app is using the dark mode</main>
+    </ThemeProvider>
+  );
+}
+
+export default App;
 ```
 
-While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following:
+Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-> Note: The colors are modified only if you use the default palette. If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The following section explains how you can do it.
+Adding `<CssBaseline />` inside of the `<ThemeProvider>` component will also enable dark mode for the app's background.
 
-## Dark mode with custom palette
+:::info
+**Note:** setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, make sure that you have the correct values based on the `mode`. The next section explains how to do this.
+:::
 
-The easiest way of how you can implement your custom palette that depends on mode is to have a dedicated function that will return the palette based on the mode. For example:
+## Dark mode with a custom palette
+
+To use custom palettes for light and dark modes, you can create a function that will return the correct palette depending on the selected mode, as shown here:
 
 ```ts
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -56,29 +76,29 @@ const getDesignTokens = (mode: PaletteMode) => ({
 You can see on the example that there are different colors used based on whether the mode is light or dark. The next step is to use this function when creating the theme.
 
 ```tsx
-import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
+export default function App() {
+  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const colorMode = React.useMemo(
+    () => ({
+      // The dark mode switch would invoke this method
+      toggleColorMode: () => {
+        setMode((prevMode: PaletteMode) =>
+          prevMode === 'light' ? 'dark' : 'light',
+        );
+      },
+    }),
+    [],
   );
 
+  // Update the theme only if the mode changes
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Page />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 ```
@@ -89,17 +109,17 @@ Here is a fully working example:
 
 ## Toggling color mode
 
-You can use the React context to toggle the mode with a button inside your page.
+To give your users a way to toggle between modes, you can add React's context to a button's `onClick` event, as shown in the following demo:
 
 {{"demo": "ToggleColorMode.js", "defaultCodeOpen": false}}
 
 ## System preference
 
-Usuários podem especificar uma preferência por um tema claro ou escuro. O método pelo qual o usuário expressa a sua preferência pode variar. Pode ser uma configuração de sistema exposta pelo Sistema Operacional, ou uma configuração controlada pelo Agente de Usuário.
+Users might have a preference for light or dark mode that they've set through their operating system—either systemwide, or for a single user agent.
 
-Você pode utilizar essa preferência dinamicamente com o hook [useMediaQuery](/material-ui/react-use-media-query/) e a consulta de mídia [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+You can make use of this preference with the [useMediaQuery](/material-ui/react-use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
 
-Por exemplo, você pode ativar o modo escuro automaticamente:
+The following demo shows how to enable dark mode automatically by checking for the user's preference in their OS or browser settings:
 
 ```jsx
 import * as React from 'react';

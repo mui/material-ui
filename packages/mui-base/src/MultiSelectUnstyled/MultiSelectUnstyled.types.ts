@@ -49,9 +49,28 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
    */
   defaultValue?: TValue[];
   /**
+   * A function to convert the currently selected values to a type accepted by HTML input.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected values can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectOption<TValue>[],
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * Callback fired when an option is selected.
    */
-  onChange?: (value: TValue[]) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue[],
+  ) => void;
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier?: (option: SelectOption<TValue>) => string;
   /**
    * Function that customizes the rendering of the selected values.
    */
@@ -96,14 +115,15 @@ export interface MultiSelectUnstyledType {
   propTypes?: any;
 }
 
-export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyledProps<TValue> {
+export interface MultiSelectUnstyledOwnerState<TValue extends {}>
+  extends MultiSelectUnstyledProps<TValue> {
   active: boolean;
   disabled: boolean;
   open: boolean;
   focusVisible: boolean;
 }
 
-export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
+export type MultiSelectUnstyledRootSlotProps<TValue extends {}> = Simplify<
   UseSelectButtonSlotProps & {
     className?: string;
     children?: React.ReactNode;
@@ -111,7 +131,7 @@ export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
   }
 >;
 
-export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
+export type MultiSelectUnstyledListboxSlotProps<TValue extends {}> = Simplify<
   UseSelectListboxSlotProps & {
     className?: string;
     children?: React.ReactNode;
@@ -119,7 +139,7 @@ export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
   }
 >;
 
-export type MultiSelectUnstyledPopperSlotProps<TValue> = {
+export type MultiSelectUnstyledPopperSlotProps<TValue extends {}> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
   className?: string;

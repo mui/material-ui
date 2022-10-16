@@ -220,7 +220,10 @@ TableCell.propTypes /* remove-proptypes */ = {
    * Specify the size of the cell.
    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Set aria-sort direction.
    */
@@ -237,7 +240,10 @@ TableCell.propTypes /* remove-proptypes */ = {
    * Specify the cell type.
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
-  variant: PropTypes.oneOf(['body', 'footer', 'head']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['body', 'footer', 'head']),
+    PropTypes.string,
+  ]),
 };
 
 export default TableCell;

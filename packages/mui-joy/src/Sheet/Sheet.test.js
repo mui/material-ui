@@ -17,6 +17,7 @@ describe('<Sheet />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 

@@ -3,7 +3,6 @@ product: base
 title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
-packageName: '@mui/base'
 ---
 
 # Portal

@@ -27,7 +27,7 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *

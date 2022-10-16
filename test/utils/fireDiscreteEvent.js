@@ -45,9 +45,9 @@ function withMissingActWarningsIgnored(callback) {
 // Note that using `fireEvent` from `@testing-library/dom` would not work since /react configures both `fireEvent` to use `act` as a wrapper.
 // -----------------------------------------
 
-export function click(element) {
+export function click(element, options) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.click(element);
+    fireEvent.click(element, options);
   });
 }
 
@@ -74,7 +74,7 @@ export function keyUp(element, options) {
 }
 
 /**
- * @param {Element} element
+ * @param {Element | Node | Document | Window} element
  * @param {{}} [options]
  * @returns {void}
  */
@@ -85,7 +85,7 @@ export function mouseDown(element, options) {
 }
 
 /**
- * @param {Element} element
+ * @param {Element | Node | Document | Window} element
  * @param {{}} [options]
  * @returns {void}
  */
