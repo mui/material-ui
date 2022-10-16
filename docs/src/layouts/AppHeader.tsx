@@ -44,7 +44,12 @@ export default function AppHeader() {
   const t = useTranslate();
 
   React.useEffect(() => {
-    const initialMode = localStorage.getItem('mui-mode') || 'system';
+    let initialMode = 'system';
+    try {
+      initialMode = localStorage.getItem('mui-mode') || initialMode;
+    } catch (error) {
+      // eslint-disable-next-line no-empty
+    }
     setMode(initialMode);
   }, []);
 

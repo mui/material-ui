@@ -60,7 +60,13 @@ function AppSettingsDrawer(props) {
   const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   React.useEffect(() => {
-    const initialMode = localStorage.getItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    let initialMode = 'system';
+    try {
+      initialMode = localStorage.getItem('mui-mode') || initialMode;
+    } catch (error) {
+      // eslint-disable-next-line no-empty
+    }
     setMode(initialMode);
   }, [preferredMode]);
 
