@@ -1,9 +1,7 @@
 import * as React from 'react';
-import ModalUnstyled, {
-  ModalUnstyledRootSlotProps,
-  ModalUnstyledBackdropSlotProps,
-} from '@mui/base/ModalUnstyled';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { expectType } from '@mui/types';
+import { ModalUnstyledBackdropSlotProps, ModalUnstyledRootSlotProps } from './ModalUnstyled.types';
 
 function Root(props: ModalUnstyledRootSlotProps) {
   const { ownerState, ...other } = props;

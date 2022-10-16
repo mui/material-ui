@@ -5,7 +5,7 @@ import ModalUnstyled, { modalUnstyledClasses as classes } from '@mui/base/ModalU
 
 describe('<ModalUnstyled />', () => {
   const { render } = createRenderer();
-  let savedBodyStyle;
+  let savedBodyStyle: CSSStyleDeclaration;
 
   before(() => {
     savedBodyStyle = document.body.style;

@@ -8,6 +8,12 @@ import {
   unstable_createChainedFunction as createChainedFunction,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
+import {
+  ModalUnstyledOwnerState,
+  ModalUnstyledOwnProps,
+  ModalUnstyledProps,
+  ModalUnstyledTypeMap,
+} from '@mui/base/ModalUnstyled/ModalUnstyled.types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
@@ -15,7 +21,7 @@ import FocusTrap from '../FocusTrap';
 import { getModalUtilityClass } from './modalUnstyledClasses';
 import { useSlotProps } from '../utils';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
   const { open, exited, classes } = ownerState;
 
   const slots = {
@@ -25,12 +31,12 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getModalUtilityClass, classes);
 };
 
-function getContainer(container) {
+function getContainer(container: ModalUnstyledOwnProps['container']) {
   return typeof container === 'function' ? container() : container;
 }
 
-function getHasTransition(props) {
-  return props.children ? props.children.props.hasOwnProperty('in') : false;
+function getHasTransition(children: ModalUnstyledOwnProps['children']) {
+  return children ? children.props.hasOwnProperty('in') : false;
 }
 
 // A modal manager used to track and manage the state of open Modals.
@@ -40,17 +46,27 @@ const defaultManager = new ModalManager();
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * - [Dialog](/material-ui/api/dialog/)
- * - [Drawer](/material-ui/api/drawer/)
- * - [Menu](/material-ui/api/menu/)
- * - [Popover](/material-ui/api/popover/)
+ * *   [Dialog](/material-ui/api/dialog/)
+ * *   [Drawer](/material-ui/api/drawer/)
+ * *   [Menu](/material-ui/api/menu/)
+ * *   [Popover](/material-ui/api/popover/)
  *
  * If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
+ *
+ * Demos:
+ *
+ * - [Unstyled Modal](/base/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalUnstyled API](/base/api/modal-unstyled/)
  */
-const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
+const ModalUnstyled = React.forwardRef(function ModalUnstyled<
+  BaseComponentType extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
+>(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
   const {
     children,
     classes: classesProp,
@@ -81,11 +97,14 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   } = props;
 
   const [exited, setExited] = React.useState(true);
-  const modal = React.useRef({});
-  const mountNodeRef = React.useRef(null);
-  const modalRef = React.useRef(null);
-  const handleRef = useForkRef(modalRef, ref);
-  const hasTransition = getHasTransition(props);
+  const mountNodeRef = React.useRef<Node | null>(null);
+  const modalRef = React.useRef<Element>(null);
+  const handleRef = useForkRef(modalRef, forwardedRef);
+  const modal = React.useRef<{
+    modalRef?: typeof modalRef.current;
+    mountNode?: typeof mountNodeRef.current;
+  }>({});
+  const hasTransition = getHasTransition(children);
 
   const ariaHiddenProp = props['aria-hidden'] ?? true;
 
@@ -100,7 +119,9 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     manager.mount(getModal(), { disableScrollLock });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
-    modalRef.current.scrollTop = 0;
+    if (modalRef.current) {
+      modalRef.current.scrollTop = 0;
+    }
   };
 
   const handleOpen = useEventCallback(() => {
@@ -116,10 +137,10 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
 
   const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
 
-  const handlePortalRef = useEventCallback((node) => {
+  const handlePortalRef = useEventCallback((node: Node) => {
     mountNodeRef.current = node;
 
-    if (!node) {
+    if (!node || !modalRef.current) {
       return;
     }
 
@@ -148,7 +169,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
 
-  const ownerState = {
+  const ownerState: ModalUnstyledOwnerState = {
     ...props,
     classes: classesProp,
     closeAfterTransition,
@@ -185,7 +206,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     }
   };
 
-  const handleBackdropClick = (event) => {
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) {
       return;
     }
@@ -199,7 +220,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     }
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (onKeyDown) {
       onKeyDown(event);
     }
@@ -224,7 +245,11 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     }
   };
 
-  const childProps = {};
+  const childProps: {
+    onEnter?: () => void;
+    onExited?: () => void;
+    tabIndex?: string;
+  } = {};
   if (children.props.tabIndex === undefined) {
     childProps.tabIndex = '-1';
   }
@@ -249,7 +274,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     ownerState,
   });
 
-  const BackdropComponent = components.Backdrop;
+  const BackdropComponent = components?.Backdrop || 'div';
   const backdropProps = useSlotProps({
     elementType: BackdropComponent,
     externalSlotProps: componentsProps.backdrop,
@@ -292,7 +317,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
 ModalUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A single child content element.
@@ -308,8 +333,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * @ignore
    */
   component: PropTypes.elementType,
   /**
@@ -405,13 +429,9 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   onClose: PropTypes.func,
   /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
-};
+  open: PropTypes.bool,
+} as any;
 
 export default ModalUnstyled;

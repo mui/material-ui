@@ -2,9 +2,21 @@ import { expect } from 'chai';
 import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils';
 import ModalManager from './ModalManager';
 
+interface Modal {
+  mount: Element;
+  modalRef: Element;
+}
+
+function getDummyModal(): Modal {
+  return {
+    mount: document.createElement('div'),
+    modalRef: document.createElement('div'),
+  };
+}
+
 describe('ModalManager', () => {
-  let modalManager;
-  let container1;
+  let modalManager: ModalManager;
+  let container1: HTMLDivElement;
 
   before(() => {
     modalManager = new ModalManager();
@@ -26,7 +38,7 @@ describe('ModalManager', () => {
   });
 
   it('should add a modal only once', () => {
-    const modal = {};
+    const modal = getDummyModal();
     const modalManager2 = new ModalManager();
     const idx = modalManager2.add(modal, container1);
     modalManager2.mount(modal, {});
@@ -35,14 +47,14 @@ describe('ModalManager', () => {
   });
 
   describe('managing modals', () => {
-    let modal1;
-    let modal2;
-    let modal3;
+    let modal1: Modal;
+    let modal2: Modal;
+    let modal3: Modal;
 
     before(() => {
-      modal1 = { modalRef: document.createElement('div') };
-      modal2 = { modalRef: document.createElement('div') };
-      modal3 = { modalRef: document.createElement('div') };
+      modal1 = getDummyModal();
+      modal2 = getDummyModal();
+      modal3 = getDummyModal();
     });
 
     it('should add modal1', () => {
@@ -94,13 +106,13 @@ describe('ModalManager', () => {
     });
 
     it('should not do anything', () => {
-      const idx = modalManager.remove({ nonExisting: true });
+      const idx = modalManager.remove(getDummyModal());
       expect(idx).to.equal(-1);
     });
   });
 
   describe('overflow', () => {
-    let fixedNode;
+    let fixedNode: HTMLDivElement;
 
     beforeEach(() => {
       container1.style.paddingRight = '20px';
@@ -119,7 +131,7 @@ describe('ModalManager', () => {
     it('should handle the scroll', () => {
       fixedNode.style.paddingRight = '14px';
 
-      const modal = {};
+      const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
@@ -144,7 +156,7 @@ describe('ModalManager', () => {
       });
       document.body.appendChild(container2);
 
-      const modal = {};
+      const modal = getDummyModal();
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
       expect(container2.style.overflow).to.equal('hidden');
@@ -155,7 +167,7 @@ describe('ModalManager', () => {
     });
 
     it('should restore styles correctly if none existed before', () => {
-      const modal = {};
+      const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
@@ -168,8 +180,8 @@ describe('ModalManager', () => {
     });
 
     describe('shadow dom', () => {
-      let shadowContainer;
-      let container2;
+      let shadowContainer: HTMLDivElement;
+      let container2: HTMLDivElement;
 
       beforeEach(() => {
         shadowContainer = document.createElement('div');
@@ -183,7 +195,7 @@ describe('ModalManager', () => {
       });
 
       it('should scroll body when parent is shadow root', () => {
-        const modal = {};
+        const modal = getDummyModal();
 
         container2.style.overflow = 'scroll';
 
@@ -201,7 +213,7 @@ describe('ModalManager', () => {
     });
 
     describe('restore styles', () => {
-      let container2;
+      let container2: HTMLDivElement;
 
       beforeEach(() => {
         container2 = document.createElement('div');
@@ -212,7 +224,7 @@ describe('ModalManager', () => {
       });
 
       it('should restore styles correctly if overflow existed before', () => {
-        const modal = {};
+        const modal = getDummyModal();
 
         container2.style.overflow = 'scroll';
 
@@ -237,7 +249,7 @@ describe('ModalManager', () => {
       });
 
       it('should restore styles correctly if overflow-x existed before', () => {
-        const modal = {};
+        const modal = getDummyModal();
 
         container2.style.overflowX = 'hidden';
 
@@ -266,8 +278,8 @@ describe('ModalManager', () => {
   });
 
   describe('multi container', () => {
-    let container3;
-    let container4;
+    let container3: HTMLDivElement;
+    let container4: HTMLDivElement;
 
     beforeEach(() => {
       container3 = document.createElement('div');
@@ -281,8 +293,8 @@ describe('ModalManager', () => {
 
     it('should work will multiple containers', () => {
       modalManager = new ModalManager();
-      const modal1 = {};
-      const modal2 = {};
+      const modal1 = getDummyModal();
+      const modal2 = getDummyModal();
       modalManager.add(modal1, container3);
       modalManager.mount(modal1, {});
       expect(container3.children[0]).toBeAriaHidden();
@@ -306,7 +318,7 @@ describe('ModalManager', () => {
 
   describe('container aria-hidden', () => {
     let modalRef1;
-    let container2;
+    let container2: HTMLDivElement;
 
     beforeEach(() => {
       container2 = document.createElement('div');
@@ -392,17 +404,17 @@ describe('ModalManager', () => {
     });
 
     it('should remove aria-hidden on siblings', () => {
-      const modal = { modalRef: container2.children[0] };
+      const modal = { ...getDummyModal(), modalRef: container2.children[0] };
 
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
       expect(container2.children[0]).not.toBeAriaHidden();
-      modalManager.remove(modal, container2);
+      modalManager.remove(modal);
       expect(container2.children[0]).toBeAriaHidden();
     });
 
     it('should keep previous aria-hidden siblings hidden', () => {
-      const modal = { modalRef: container2.children[0] };
+      const modal = { ...getDummyModal(), modalRef: container2.children[0] };
       const sibling1 = document.createElement('div');
       const sibling2 = document.createElement('div');
 
@@ -414,7 +426,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container2);
       modalManager.mount(modal, {});
       expect(container2.children[0]).not.toBeAriaHidden();
-      modalManager.remove(modal, container2);
+      modalManager.remove(modal);
       expect(container2.children[0]).toBeAriaHidden();
       expect(container2.children[1]).toBeAriaHidden();
       expect(container2.children[2]).not.toBeAriaHidden();
