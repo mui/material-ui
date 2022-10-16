@@ -1,0 +1,4 @@
+Broken links found by `yarn docs:link-check` that exist:
+
+- https://mui.com/blog/material-ui-v4-is-out/#premium-themes-store-✨
+- https://mui.com/size-snapshot
