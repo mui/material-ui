@@ -475,7 +475,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('deletes a tag when pressing the delete key', () => {
+    it('only deletes a focused tag when pressing the delete key', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       render(
@@ -488,10 +488,20 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
+      const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
+      // test to make sure the delete does not delete when at the end of value.length
       fireEvent.keyDown(textbox, { key: 'Delete' });
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+
+      // expect on focused tag for the tag to the right to be deleted  
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      expect(secondSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(textbox, { key: 'Delete'});
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      expect(handleChange.args[0][1]).to.deep.equal(options[0]);
     });
 
     it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
