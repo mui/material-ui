@@ -40,11 +40,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   disableTransitionOnChange?: boolean;
   /**
-   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-   * @default true
-   */
-  enableColorScheme?: boolean;
-  /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
    *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
@@ -124,6 +119,14 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      * variants from those tokens.
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
+    /**
+     * @internal
+     * A function that returns a list of variables that will be excluded from the `colorSchemeSelector` (:root by default)
+     *
+     * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
+     * This is introduced to fix https://github.com/mui/material-ui/issues/34084
+     */
+    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
 ): CreateCssVarsProviderResult<ColorScheme>;
 

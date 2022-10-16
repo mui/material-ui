@@ -45,7 +45,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
  *
  * Demos:
  *
- * - [Tables](https://mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *

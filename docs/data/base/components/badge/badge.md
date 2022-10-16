@@ -3,7 +3,6 @@ product: base
 title: Unstyled React Badge component and hook
 components: BadgeUnstyled
 githubLabel: 'component: badge'
-packageName: '@mui/base'
 ---
 
 # Unstyled badge
@@ -16,6 +15,8 @@ A badge is a small descriptor for UI elements.
 It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
 
 The `BadgeUnstyled` component creates a badge that is applied to its child element.
+
+{{"demo": "UnstyledBadgeIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -106,7 +107,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 ## Customization

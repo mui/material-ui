@@ -9,14 +9,15 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListItemProps, ListItemTypeMap } from './ListItemProps';
+import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
-import ListOrientationContext from '../List/ListOrientationContext';
+import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
+import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
 
-const useUtilityClasses = (ownerState: ListItemProps & { nesting: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
   const slots = {
     root: [
@@ -38,13 +39,7 @@ const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListItemProps & {
-    orientation: 'horizontal' | 'vertical';
-    wrap: boolean;
-    'data-first-child'?: string;
-  };
-}>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
     '--List-itemButton-marginInline': `calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))`,
@@ -78,13 +73,14 @@ const ListItemRoot = styled('li', {
     boxSizing: 'border-box',
     borderRadius: 'var(--List-item-radius)',
     display: 'flex',
+    flex: 'none',
     position: 'relative',
     paddingBlockStart: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
     paddingBlockEnd: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
     paddingInlineStart: 'var(--List-item-paddingLeft)',
     paddingInlineEnd: 'var(--List-item-paddingRight)',
     ...(ownerState['data-first-child'] === undefined && {
-      ...(ownerState.orientation === 'horizontal'
+      ...(ownerState.row
         ? {
             marginInlineStart: 'var(--List-gap)',
           }
@@ -92,7 +88,7 @@ const ListItemRoot = styled('li', {
             marginBlockStart: 'var(--List-gap)',
           }),
     }),
-    ...(ownerState.orientation === 'horizontal' &&
+    ...(ownerState.row &&
       ownerState.wrap && {
         marginInlineStart: 'var(--List-gap)',
         marginBlockStart: 'var(--List-gap)',
@@ -101,6 +97,7 @@ const ListItemRoot = styled('li', {
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
+      // sticky in list item can be found in grouped options
       position: 'sticky',
       top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
@@ -144,12 +141,12 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const menuContext = React.useContext(MenuUnstyledContext);
 
   const listComponent = React.useContext(ComponentListContext);
-  const orientation = React.useContext(ListOrientationContext);
+  const row = React.useContext(RowListContext);
   const wrap = React.useContext(WrapListContext);
   const nesting = React.useContext(NestedListContext);
 
   const {
-    component,
+    component: componentProp,
     className,
     children,
     nested = false,
@@ -158,66 +155,81 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     color = 'neutral',
     startAction,
     endAction,
+    role: roleProp,
     ...other
   } = props;
+
+  const [subheaderId, setSubheaderId] = React.useState('');
+
+  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
+  const component =
+    componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
+
+  let role = menuContext ? 'none' : undefined;
+
+  if (listComponent) {
+    // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+    // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+    role = { menu: 'none', menubar: 'none', group: 'presentation' }[listRole];
+  }
+  if (roleProp) {
+    role = roleProp;
+  }
 
   const ownerState = {
     sticky,
     startAction,
     endAction,
-    orientation,
+    row,
     wrap,
     variant,
     color,
     nesting,
     nested,
+    component,
+    role,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   return (
-    <NestedListContext.Provider value={nested}>
-      <ListItemRoot
-        ref={ref}
-        as={component || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined)}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        role={{ menu: 'none', menubar: 'none', group: 'presentation' }[listRole]}
-        {...(menuContext && {
-          // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-          // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
-          role: 'none',
-        })}
-        {...other}
-      >
-        {startAction && (
-          <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
-            {startAction}
-          </ListItemStartAction>
-        )}
+    <ListSubheaderDispatch.Provider value={setSubheaderId}>
+      <NestedListContext.Provider value={nested ? subheaderId || true : false}>
+        <ListItemRoot
+          ref={ref}
+          as={component}
+          className={clsx(classes.root, className)}
+          ownerState={ownerState}
+          role={role}
+          {...other}
+        >
+          {startAction && (
+            <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
+              {startAction}
+            </ListItemStartAction>
+          )}
 
-        {React.Children.map(children, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let ListItem knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-                ...(isMuiElement(child, ['ListItem']) && {
-                  // The ListItem of ListItem should not be 'li'
-                  component: child.props.component || 'div',
-                }),
-              })
-            : child,
-        )}
+          {React.Children.map(children, (child, index) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let ListItem knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(isMuiElement(child, ['ListItem']) && {
+                    // The ListItem of ListItem should not be 'li'
+                    component: child.props.component || 'div',
+                  }),
+                })
+              : child,
+          )}
 
-        {endAction && (
-          <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
-            {endAction}
-          </ListItemEndAction>
-        )}
-      </ListItemRoot>
-    </NestedListContext.Provider>
+          {endAction && (
+            <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
+              {endAction}
+            </ListItemEndAction>
+          )}
+        </ListItemRoot>
+      </NestedListContext.Provider>
+    </ListSubheaderDispatch.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
@@ -231,10 +243,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -242,7 +250,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -257,6 +268,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   nested: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The element to display at the start of ListItem.
    */
@@ -278,7 +293,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 // @ts-ignore internal logic to prevent <li> in <li>

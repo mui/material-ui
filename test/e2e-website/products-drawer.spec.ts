@@ -17,7 +17,7 @@ test('able to navigate between products', async ({ page }) => {
 
   await expect(page.locator('#mui-product-menu a[href^="/system/"]')).toHaveAttribute(
     'href',
-    '/system/basics/',
+    '/system/getting-started/overview/',
   );
 
   await expect(page.locator('#mui-product-menu a[href^="/x/introduction/"]')).toBeVisible();

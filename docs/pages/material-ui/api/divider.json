@@ -56,6 +56,6 @@
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-material/src/Divider/Divider.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Dividers</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Divider</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
   "cssComponent": false
 }

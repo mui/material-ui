@@ -6,7 +6,7 @@
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "elevation": "Shadow depth, corresponds to <code>dp</code> in the spec. It accepts values between 0 and 24 inclusive.",
     "square": "Se <code>true</code>, cantos arredondados são desabilitados.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "A variante a usar."
   },
   "classDescriptions": {

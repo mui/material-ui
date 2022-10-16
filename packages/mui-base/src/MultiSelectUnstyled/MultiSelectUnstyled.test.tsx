@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import sinon from 'sinon';
+import { spy } from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
-import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
@@ -129,31 +129,189 @@ describe('MultiSelectUnstyled', () => {
     });
   });
 
-  it('does not call onChange if `value` is modified externally', () => {
-    function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
-      const [value, setValue] = React.useState([1]);
-      const handleChange = (newValue: number[]) => {
-        setValue(newValue);
-        onChange(newValue);
+  describe('form submission', () => {
+    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2,3');
       };
 
-      return (
-        <div>
-          <button onClick={() => setValue([1, 2])}>Update value</button>
-          <MultiSelectUnstyled value={value} onChange={handleChange}>
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled defaultValue={[2, 3]} name="test-select">
             <OptionUnstyled value={1}>1</OptionUnstyled>
             <OptionUnstyled value={2}>2</OptionUnstyled>
+            <OptionUnstyled value={3}>3</OptionUnstyled>
           </MultiSelectUnstyled>
-        </div>
+          <button type="submit">Submit</button>
+        </form>,
       );
-    }
 
-    const onChange = sinon.spy();
-    const { getByText } = render(<TestComponent onChange={onChange} />);
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
 
-    const button = getByText('Update value');
-    act(() => button.click());
-    expect(onChange.notCalled).to.equal(true);
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2; 3');
+      };
+
+      const customFormValueProvider = (options: SelectOption<number>[]) =>
+        options.map((o) => o.value).join('; ');
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled
+            defaultValue={[2, 3]}
+            name="test-select"
+            getSerializedValue={customFormValueProvider}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+            <OptionUnstyled value={3}>3</OptionUnstyled>
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+
+    it('formats the object values as JSON before posting', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('[{"firstName":"Olivia"}]');
+      };
+
+      const options = [
+        { value: { firstName: 'Alice' }, label: 'Alice' },
+        { value: { firstName: 'Olivia' }, label: 'Olivia' },
+      ];
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled defaultValue={[options[1].value]} name="test-select">
+            {options.map((o) => (
+              <OptionUnstyled key={o.value.firstName} value={o.value}>
+                {o.label}
+              </OptionUnstyled>
+            ))}
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('is called when the Select value changes', () => {
+      const handleChange = spy();
+
+      const { getByRole, getByText } = render(
+        <MultiSelectUnstyled defaultValue={[1]} onChange={handleChange}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const button = getByRole('button');
+      act(() => {
+        button.click();
+      });
+
+      const optionTwo = getByText('Two');
+      act(() => {
+        optionTwo.click();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.haveOwnProperty('type', 'click');
+      expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
+      expect(handleChange.args[0][1]).to.deep.equal([1, 2]);
+    });
+
+    it('does not call onChange if `value` is modified externally', () => {
+      function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
+        const [value, setValue] = React.useState([1]);
+        const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
+          setValue(newValue);
+          onChange(newValue);
+        };
+
+        return (
+          <div>
+            <button onClick={() => setValue([1, 2])}>Update value</button>
+            <MultiSelectUnstyled value={value} onChange={handleChange}>
+              <OptionUnstyled value={1}>1</OptionUnstyled>
+              <OptionUnstyled value={2}>2</OptionUnstyled>
+            </MultiSelectUnstyled>
+          </div>
+        );
+      }
+
+      const onChange = spy();
+      const { getByText } = render(<TestComponent onChange={onChange} />);
+
+      const button = getByText('Update value');
+      act(() => button.click());
+      expect(onChange.notCalled).to.equal(true);
+    });
+  });
+
+  describe('prop: renderValue', () => {
+    it('renders the selected values using the renderValue prop', () => {
+      const { getByRole } = render(
+        <MultiSelectUnstyled
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One (1), Two (2)');
+    });
+
+    it('renders the selected values as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <MultiSelectUnstyled defaultValue={[1, 2]}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One, Two');
+    });
   });
 
   it('sets a value correctly when interacted by a user and external code', () => {
@@ -167,7 +325,7 @@ describe('MultiSelectUnstyled', () => {
           </button>
           <MultiSelectUnstyled
             value={value}
-            onChange={setValue}
+            onChange={(_, v) => setValue(v)}
             componentsProps={{
               root: {
                 'data-testid': 'select',

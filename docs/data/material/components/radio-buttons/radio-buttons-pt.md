@@ -4,14 +4,14 @@ title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
 # Botões de opção
 
 <p class="description">Botões de opção permitem o usuário selecionar uma das opções de um conjunto.</p>
 
-Use [botões de opção](https://material.io/design/components/selection-controls.html#radio-buttons) quando um usuário precisar ver todas as opções disponíveis. Se várias opções podem ser suprimidas da visualização, considere usar um menu suspenso (dropdown), pois ele utiliza menos espaço.
+Use [botões de opção](https://material.io/design/components/selection-controls.html#radio-buttons) quando um usuário precisar ver todas as opções disponíveis. If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
 
 Os botões de opção devem ter a opção comum e mais usada selecionada por padrão.
 
@@ -65,7 +65,7 @@ Em geral, os botões de opção devem ter um valor selecionado por padrão. Se e
 
 ## Opções customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedRadios.js"}}
 
@@ -97,9 +97,9 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/)
 
-- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/material-ui/api/form-control-label/)).
+- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx

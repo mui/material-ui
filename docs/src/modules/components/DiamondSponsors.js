@@ -113,7 +113,7 @@ export default function DiamondSponsors() {
           data-ga-event-category="sponsor"
           data-ga-event-action="drawer"
           data-ga-event-label="zesty.io"
-          href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
+          href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >

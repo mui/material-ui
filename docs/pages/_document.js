@@ -29,9 +29,10 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
-const PRODUCTION_DEPLOYEMENT = !process.env.PULL_REQUEST && process.env.NODE_ENV === 'production';
+const PRODUCTION_GA =
+  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
-const GOOGLE_ANALYTICS_ID = PRODUCTION_DEPLOYEMENT ? 'UA-106598593-2' : 'UA-106598593-3';
+const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
 
 export default class MyDocument extends Document {
   render() {
@@ -150,7 +151,7 @@ export default class MyDocument extends Document {
               __html: `
                 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
                 window.ga('create','${GOOGLE_ANALYTICS_ID}',{
-                  sampleRate: ${PRODUCTION_DEPLOYEMENT ? 80 : 100},
+                  sampleRate: ${PRODUCTION_GA ? 80 : 100},
                 });
               `,
             }}

@@ -17,6 +17,7 @@ describe('<ChipDelete />', () => {
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 

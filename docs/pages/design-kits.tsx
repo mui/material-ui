@@ -23,7 +23,7 @@ export default function DesignKits() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <DesignKitHero />
         <References companies={DESIGNKITS_CUSTOMERS} />
         <DesignKitValues />

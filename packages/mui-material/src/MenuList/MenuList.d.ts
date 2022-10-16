@@ -49,7 +49,7 @@ export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['class
  *
  * Demos:
  *
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *

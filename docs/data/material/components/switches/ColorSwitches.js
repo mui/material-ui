@@ -15,7 +15,7 @@ const GreenSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
+const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
 export default function ColorSwitches() {
   return (

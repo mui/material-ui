@@ -142,7 +142,7 @@ export default function Experiments({ experiments }) {
   );
 }
 
-export function getStaticProps() {
+Experiments.getInitialProps = () => {
   const experiments = [];
   const req = require.context('./', true, /^\.\/.*(?<!index)\.(js|tsx)$/);
 
@@ -151,8 +151,6 @@ export function getStaticProps() {
   });
 
   return {
-    props: {
-      experiments,
-    },
+    experiments,
   };
-}
+};

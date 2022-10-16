@@ -1,6 +1,6 @@
 ---
 title: Material UI v1 is out 🎉
-description: Material UI v1 is out 🎉
+description: It has taken us two years to do it, but Material UI v1 has finally arrived!
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Company']
@@ -62,7 +62,7 @@ Many people discover web development through Material UI but it's also used in p
 
 <p class="blog-description">Lighthouse report of the Material UI documentation homepage</p>
 
-- **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://www.argos-ci.com/mui/material-ui) thanks to [Argos-CI](https://www.argos-ci.com/).
+- **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://app.argos-ci.com/mui/material-ui/builds) thanks to [Argos-CI](https://www.argos-ci.com/).
 
 ![An example [BrowserStack](https://www.browserstack.com/) build](https://cdn-images-1.medium.com/max/2000/1*bnWGqotk36ivrYTp3dY7fA.png)
 

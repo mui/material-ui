@@ -6,9 +6,9 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
-import { AvatarGroupProps, AvatarGroupTypeMap } from './AvatarGroupProps';
+import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './AvatarGroupProps';
 
-export const AvatarGroupContext = React.createContext<undefined | AvatarGroupProps>(undefined);
+export const AvatarGroupContext = React.createContext<undefined | AvatarGroupOwnerState>(undefined);
 
 const useUtilityClasses = () => {
   const slots = {
@@ -22,7 +22,7 @@ const AvatarGroupGroupRoot = styled('div', {
   name: 'JoyAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AvatarGroupProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: AvatarGroupOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--AvatarGroup-gap': '-0.375rem',
     '--Avatar-ringSize': '2px',

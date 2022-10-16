@@ -3,7 +3,6 @@ product: base
 title: Textarea Autosize React component
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
-packageName: '@mui/base'
 ---
 
 # Textarea autosize

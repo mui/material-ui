@@ -11,7 +11,7 @@ function callUseSlotProps<
   ElementType extends React.ElementType,
   SlotProps,
   ExternalForwardedProps,
-  ExternalSlotProps,
+  ExternalSlotProps extends Record<string, unknown>,
   AdditionalProps,
   OwnerState,
 >(

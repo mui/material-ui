@@ -1,12 +1,12 @@
 ---
 product: material-ui
-title: React Bottom Navigation（底部导航栏）组件
+title: Bottom navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 
-# Bottom Navigation 底部导航栏
+# Bottom navigation
 
 <p class="description">使用底部导航栏，您可以在应用程序的主要导航项之间跳转。</p>
 
@@ -14,13 +14,13 @@ materialDesign: https://material.io/components/bottom-navigation
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Bottom Navigation 底部导航栏
+## Bottom navigation
 
 当只有**三个**导航项时，导航栏会始终显示图标和文本标签。
 
 {{"demo": "SimpleBottomNavigation.js", "bg": true}}
 
-## 无标签的底部导航栏
+## Bottom navigation with no label
 
 如果有**四个**或**五个**导航项，那些未被选中的导航项会以图标的样式显示。
 
@@ -34,4 +34,4 @@ materialDesign: https://material.io/components/bottom-navigation
 
 ## 第三方路由库
 
-一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 这里是 [更详细的指南](/material-ui/guides/routing/)。
+一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/material-ui/guides/routing/).

@@ -14,6 +14,7 @@ describe('Joy <IconButton />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'JoyIconButton',
     testVariantProps: { variant: 'solid', color: 'success' },
+    testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

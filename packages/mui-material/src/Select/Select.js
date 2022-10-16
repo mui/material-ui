@@ -83,40 +83,45 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
-  return React.cloneElement(InputComponent, {
-    // Most of the logic is implemented in `SelectInput`.
-    // The `Select` component is a simple API wrapper to expose something better to play with.
-    inputComponent,
-    inputProps: {
-      children,
-      IconComponent,
-      variant,
-      type: undefined, // We render a select. We can ignore the type provided by the `Input`.
-      multiple,
-      ...(native
-        ? { id }
-        : {
-            autoWidth,
-            defaultOpen,
-            displayEmpty,
-            labelId,
-            MenuProps,
-            onClose,
-            onOpen,
-            open,
-            renderValue,
-            SelectDisplayProps: { id, ...SelectDisplayProps },
-          }),
-      ...inputProps,
-      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
-      ...(input ? input.props.inputProps : {}),
-    },
-    ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
-    ref: inputComponentRef,
-    className: clsx(InputComponent.props.className, className),
-    variant,
-    ...other,
-  });
+  return (
+    <React.Fragment>
+      {React.cloneElement(InputComponent, {
+        // Most of the logic is implemented in `SelectInput`.
+        // The `Select` component is a simple API wrapper to expose something better to play with.
+        inputComponent,
+        inputProps: {
+          children,
+          IconComponent,
+          variant,
+          type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+          multiple,
+          ...(native
+            ? { id }
+            : {
+                autoWidth,
+                defaultOpen,
+                displayEmpty,
+                labelId,
+                MenuProps,
+                onClose,
+                onOpen,
+                open,
+                renderValue,
+                SelectDisplayProps: { id, ...SelectDisplayProps },
+              }),
+          ...inputProps,
+          classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
+          ...(input ? input.props.inputProps : {}),
+        },
+        ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
+        ref: inputComponentRef,
+        className: clsx(InputComponent.props.className, className),
+        // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
+        ...(!input && { variant }),
+        ...other,
+      })}
+    </React.Fragment>
+  );
 });
 
 Select.propTypes /* remove-proptypes */ = {

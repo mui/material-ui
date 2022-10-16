@@ -3,24 +3,27 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { CardOrientationContext } from './CardContext';
+import { CardRowContext } from './CardContext';
 
 const useUtilityClasses = (ownerState: CardProps) => {
-  const { size, variant, color, orientation } = ownerState;
+  const { size, variant, color, row } = ownerState;
 
   const slots = {
     root: [
       'root',
-      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      row && 'row',
     ],
   };
 
@@ -51,6 +54,8 @@ const CardRoot = styled('div', {
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
     '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    // Divider integration
+    '--Divider-inset': 'calc(-1 * var(--Card-padding))',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
@@ -74,7 +79,7 @@ const CardRoot = styled('div', {
     transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
@@ -92,7 +97,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     size = 'md',
     variant = 'plain',
     children,
-    orientation = 'vertical',
+    row = false,
     ...other
   } = props;
 
@@ -100,7 +105,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ...props,
     color,
     component,
-    orientation,
+    row,
     size,
     variant,
   };
@@ -108,7 +113,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <CardOrientationContext.Provider value={orientation}>
+    <CardRowContext.Provider value={row}>
       <CardRoot
         as={component}
         ownerState={ownerState}
@@ -120,16 +125,24 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           if (!React.isValidElement(child)) {
             return child;
           }
+          const extraProps: Record<string, any> = {};
+          if (isMuiElement(child, ['Divider'])) {
+            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+
+            const orientation = row ? 'vertical' : 'horizontal';
+            extraProps.orientation =
+              'orientation' in child.props ? child.props.orientation : orientation;
+          }
           if (index === 0) {
-            return React.cloneElement(child, { 'data-first-child': '' });
+            extraProps['data-first-child'] = '';
           }
           if (index === React.Children.count(children) - 1) {
-            return React.cloneElement(child, { 'data-last-child': '' });
+            extraProps['data-last-child'] = '';
           }
-          return child;
+          return React.cloneElement(child, extraProps);
         })}
       </CardRoot>
-    </CardOrientationContext.Provider>
+    </CardRowContext.Provider>
   );
 }) as OverridableComponent<CardTypeMap>;
 
@@ -161,13 +174,13 @@ Card.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The flow direction of the content.
-   * @default 'vertical'
+   * If `true`, flex direction is set to 'row'.
+   * @default false
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  row: PropTypes.bool,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

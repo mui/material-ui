@@ -251,7 +251,7 @@ Use a string to provide an explicit px value.
 
 The Box system props have an optional alternative API in v5, using the `sx` prop.
 
-Check out the System docs to learn more about [the tradeoffs of this API](/system/basics/#api-tradeoff).
+Check out the System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
 
 ```jsx
 <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -801,7 +801,7 @@ Use CSS `object-fit`. For IE11 support either use a polyfill such as
 
 ### Replace deprecated component
 
-This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
+This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
 :::warning
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.

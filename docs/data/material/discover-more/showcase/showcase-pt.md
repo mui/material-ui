@@ -1,13 +1,9 @@
 # Casos de sucesso
 
-<p class="description">A seguir uma lista de algumas aplicações que estão utilizando Material UI.</p>
+<p class="description">Check out these public apps using Material UI to get inspired for your next project.</p>
 
-Você está usando MUI? [Compartilhe seu produto](https://github.com/mui/material-ui/issues/22426).
+Are you working with MUI's component libraries? [Show us what you're building](https://github.com/mui/material-ui/issues/22426)! We'd love to see it.
 
-Os sites que incluímos classificam-se bem em pelo menos uma destas dimensões:
-
-- Sem customização do Material Design
-- Alto tráfego
-- Código aberto
+This is a curated list of some of the best apps we've seen that show off what's possible with MUI's products.
 
 {{"demo": "Showcase.js", "hideToolbar": true, "bg": "inline"}}

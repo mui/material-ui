@@ -1,22 +1,17 @@
 [
   {
-    "id": 64,
-    "title": "<b>Premium passengers, please proceed to the boarding gate</b> 🚀",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/premium-plan-release/\">Check out our blog post</a> introducing the MUI X Premium plan, and the new licensing model."
-  },
-  {
-    "id": 65,
-    "title": "<b>Get a first look at Joy UI</b> 🚀",
-    "text": "Joy UI is MUI's new starting point for your design system. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out the blog post</a> to see what's in store for this new library."
-  },
-  {
-    "id": 66,
-    "title": "<b>MUI's company retreat in Tenerife</b> 🏝",
-    "text": "In late June 2022, MUI team members gathered in the Canary Islands for a company retreat. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"2022-tenerife-retreat/\" href=\"/blog/2022-tenerife-retreat/\">Check out the recap here</a>."
-  },
-  {
     "id": 67,
     "title": "<b>Aggregate data like in Excel, but easier!</b>",
     "text": "Aggregation functions and summary rows are now available in the MUI X Premium Data Grid. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"aggregation-functions\" href=\"/blog/aggregation-functions/\">Check out our blog post</a>."
+  },
+  {
+    "id": 68,
+    "title": "<b>Check out MUI Base today</b> 💥",
+    "text": "Love Material UI, but don't need Material Design? Try MUI Base, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-mui-base\" href=\"/blog/introducing-mui-base/\">Read more in this announcement</a>."
+  },
+  {
+    "id": 69,
+    "title": "<b>Date Pickers get a stable v5 release.</b>",
+    "text": "Migrate to the latest version for improved DX, customizability, and API consistency. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"date-pickers-stable-v5\" href=\"/blog/date-pickers-stable-v5/\">blog post</a> for details."
   }
 ]

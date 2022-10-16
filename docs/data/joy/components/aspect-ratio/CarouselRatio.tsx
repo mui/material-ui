@@ -40,7 +40,7 @@ export default function CarouselRatio() {
     >
       {data.map((item) => (
         <Card
-          orientation="horizontal"
+          row
           key={item.title}
           variant="outlined"
           sx={{

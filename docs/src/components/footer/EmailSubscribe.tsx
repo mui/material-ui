@@ -9,7 +9,11 @@ import FormLabel from '@mui/material/FormLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import CONFIG from 'docs/src/config';
+
+const NEWSLETTER_SUBSCRIBE_URL =
+  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging'
+    ? 'https://f0433e60.sibforms.com/serve/MUIEAHEhgYhMvLAw0tycwk1BQaIB-q0akob3JdtDBmHLhSR-jLheJ2T44LFCz27alz9wq_Nkdz9EK7Y8hzM1vQND9kTFyKkkhTIbEzXaH5d-_S9Fw4PXS1zAK8efPY6nhCdoAop1SKTeZ_GAPW5S0xBFQRLUGYbvvRgE4Q2Ki_f1KjbiCqaRuzmj_I3SD1r0CoR4INmK3CLtF4kF'
+    : 'https://f0433e60.sibforms.com/serve/MUIEAE9LexIU5u5hYkoDJ-Mc379-irLHNIlGEgCm5njkAwg6OYFfNQTd25n4SO6vJom9WvQ89GJ0sYBzFYswLRewcOvD_dRtoFycXIObP8SMm-kNO1CdXKaWEZutrfqMKygHb1Je1QBGrMUnJg8J5qVeCwa7rSPBN0A1_6Ug3SiGjgIlbiCcMVA4KbhaYTiBvKkaejlCjgZcLHBT';
 
 const Form = styled('form')({});
 
@@ -32,7 +36,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
-      await fetch(CONFIG.NEWSLETTER_SUBSCRIBE_URL, {
+      await fetch(NEWSLETTER_SUBSCRIBE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -124,7 +128,6 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             px: 1,
             py: 0.5,
             typography: 'body2',
-
             '&:hover': {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
@@ -135,7 +138,6 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                   ? '0 1px 2px 0 rgba(0 0 0 / 1)'
                   : '0 1px 2px 0 rgba(0 0 0 / 0.2)',
             },
-
             [`&.${inputBaseClasses.focused}`]: {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'

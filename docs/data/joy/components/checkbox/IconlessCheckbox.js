@@ -13,7 +13,7 @@ export default function IconlessCheckbox() {
       </Typography>
       <Box role="group" aria-labelledby="topping">
         <List
-          orientation="horizontal"
+          row
           wrap
           sx={{
             '--List-gap': '8px',

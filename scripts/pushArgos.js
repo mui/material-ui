@@ -1,18 +1,8 @@
-const util = require('util');
+/* eslint-disable no-console */
 const glob = require('fast-glob');
 const fse = require('fs-extra');
 const lodashChunk = require('lodash/chunk');
-const childProcess = require('child_process');
-
-const execFileNode = util.promisify(childProcess.execFile);
-
-function execFile(command, args) {
-  return execFileNode(command, args, {
-    cwd: process.cwd(),
-    env: process.env,
-    encoding: 'utf-8',
-  });
-}
+const argos = require('@argos-ci/core');
 
 const screenshotsBase = 'test/regressions/screenshots/chrome';
 const screenshotsTmp = 'test/regressions/screenshots/argos';
@@ -37,18 +27,20 @@ async function run() {
 
   for (let i = 0; i < chunks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
-    const argosResults = await execFile('argos', [
-      'upload',
-      `${screenshotsTmp}/${i}`,
-      '--token',
-      process.env.ARGOS_TOKEN,
-      '--batchCount',
-      chunks.length,
-      '--external-build-id',
-      process.env.CIRCLE_SHA1,
-    ]);
-    // eslint-disable-next-line no-console -- pipe stdout
-    console.log(argosResults.stdout);
+    const result = await argos.upload({
+      root: `${screenshotsTmp}/${i}`,
+      commit: process.env.CIRCLE_SHA1,
+      branch: process.env.CIRCLE_BRANCH,
+      token: process.env.ARGOS_TOKEN,
+      parallel: {
+        total: chunks.length,
+        nonce: process.env.CIRCLE_BUILD_NUM,
+      },
+    });
+
+    console.log(
+      `Batch of ${chunks[i].length} screenshots uploaded. Build URL: ${result.build.url}`,
+    );
   }
 }
 

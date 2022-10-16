@@ -160,7 +160,8 @@ export default function EmailContent() {
         <Card variant="outlined">
           <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
             <img
-              src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=2370"
+              src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80"
+              srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160 2x"
               alt="Yosemite National Park"
             />
           </AspectRatio>
@@ -168,12 +169,13 @@ export default function EmailContent() {
         <Card variant="outlined">
           <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
             <img
-              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=2370"
+              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&h=80"
+              srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&h=160 2x"
               alt="Yosemite National Park"
             />
           </AspectRatio>
         </Card>
-        <Card variant="outlined" orientation="horizontal">
+        <Card variant="outlined" row>
           <CardOverflow>
             <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
               <Box

@@ -33,13 +33,14 @@ const TabListRoot = styled(ListRoot, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListProps }>({
+})<{ ownerState: TabListOwnerState }>(({ theme }) => ({
   flexGrow: 'initial',
+  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
   ...scopedVariables,
-});
+}));
 
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({
@@ -60,6 +61,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
+  const row = orientation === 'horizontal';
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
@@ -69,6 +71,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
+    row,
     nesting: false,
   };
 
@@ -91,7 +94,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   return (
     // @ts-ignore conflicted ref types
     <TabListRoot {...tabsListRootProps}>
-      <ListProvider orientation={orientation} nested>
+      <ListProvider row={row} nested>
         {processedChildren}
       </ListProvider>
     </TabListRoot>
