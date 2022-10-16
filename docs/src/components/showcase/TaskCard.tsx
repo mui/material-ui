@@ -50,7 +50,11 @@ export default function TaskCard() {
           >
             <CodeRounded color="primary" />
           </Box>
-          <Typography variant="h6" component="div" sx={{ mt: 1.5, fontWeight: 500 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ mt: 1.5, fontWeight: 500, lineHeight: 1.2 }}
+          >
             Check the docs for getting every component API
           </Typography>
         </Box>
