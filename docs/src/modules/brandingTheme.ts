@@ -197,6 +197,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       grey: {
+        ...grey,
         ...(mode === 'light' && {
           main: grey[100],
           contrastText: grey[600],
