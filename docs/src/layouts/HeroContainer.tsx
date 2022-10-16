@@ -39,17 +39,8 @@ export default function HeroContainer({
               id="hero-container-right-area"
               aria-hidden="true"
               sx={[
-                (theme) => ({
-                  ...(!theme.vars
-                    ? {
-                        bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50',
-                      }
-                    : {
-                        bgcolor: 'grey.50',
-                        [theme.getColorSchemeSelector('dark')]: {
-                          bgcolor: 'primaryDark.900',
-                        },
-                      }),
+                {
+                  bgcolor: 'grey.50',
                   minWidth: '50vw',
                   minHeight: 500,
                   height: 'calc(100vh - 120px)',
@@ -58,7 +49,11 @@ export default function HeroContainer({
                   transition: 'max-height 0.3s',
                   position: 'relative',
                   overflow: 'hidden',
-                }),
+                },
+                (theme) =>
+                  theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.900',
+                  }),
                 ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
               ]}
             >

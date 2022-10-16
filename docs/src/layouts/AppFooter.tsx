@@ -109,16 +109,10 @@ export default function AppFooter() {
                   textTransform: 'uppercase',
                   color: '#fff',
                   letterSpacing: '0.1rem',
-                  ...(!theme.vars
-                    ? {
-                        bgcolor: theme.palette.mode === 'dark' ? 'success.900' : 'success.main',
-                      }
-                    : {
-                        bgcolor: 'success.main',
-                        [theme.getColorSchemeSelector('dark')]: {
-                          bgcolor: 'success.900',
-                        },
-                      }),
+                  bgcolor: 'success.main',
+                  ...theme.applyDarkStyles({
+                    bgcolor: 'success.900',
+                  }),
                 })}
               >
                 Hiring
