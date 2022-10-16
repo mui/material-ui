@@ -313,16 +313,22 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     row
                     name={labelId}
                     value={resolvedValue}
-                    onChange={(event) =>
+                    onChange={(event) => {
+                      let value: string | boolean = event.target.value;
+                      if (value === 'true') {
+                        value = true;
+                      } else if (value === 'false') {
+                        value = false;
+                      }
                       setProps((latestProps) => ({
                         ...latestProps,
-                        [propName]: event.target.value,
-                      }))
-                    }
+                        [propName]: value,
+                      }));
+                    }}
                     sx={{ flexWrap: 'wrap', gap: 1 }}
                   >
-                    {options.map((value) => {
-                      const checked = resolvedValue === value;
+                    {options.map((value: string) => {
+                      const checked = String(resolvedValue) === value;
                       return (
                         <Chip
                           key={value}

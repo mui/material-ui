@@ -38,7 +38,8 @@ export default function TooltipUsage() {
         },
         {
           propName: 'open',
-          knob: 'switch',
+          knob: 'radio',
+          options: ['false', 'true'],
           defaultValue: true,
         },
       ]}
