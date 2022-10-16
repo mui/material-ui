@@ -31,17 +31,17 @@ const theme = extendTheme({
   ...designTokens,
   typography: deepmerge(typography, {
     h1: {
-      '[data-mui-color-scheme="dark"] &': {
+      ':where([data-mui-color-scheme="dark"]) &': {
         color: 'initial',
       },
     },
     h2: {
-      '[data-mui-color-scheme="dark"] &': {
+      ':where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-grey-100)',
       },
     },
     h5: {
-      '[data-mui-color-scheme="dark"] &': {
+      ':where([data-mui-color-scheme="dark"]) &': {
         color: 'var(--muidocs-palette-primary-300)',
       },
     },
