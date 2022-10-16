@@ -303,7 +303,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   'aria-hidden': true,
    *   overridesResolver: (props, styles) => {
    *     return styles.backdrop;
    *   },
