@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int Reverse(int arr[], int n,int i, int j) {
+
+   while( i  < j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        i++;
+        j--;
+    }
+}
+int Display(int arr[], int n) {
+    for(int i = 0 ; i < n; i++){
+        cout<<arr[i]<<" ";
+    }
+}
+int main() {
+    int arr[] = {5, 9, 12, 24, 1, 15};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    Display(arr,n);
+    cout<<"\nReverse an array is : ";
+    Reverse(arr,n,0,n-1);
+    
+    return 0;
+}
