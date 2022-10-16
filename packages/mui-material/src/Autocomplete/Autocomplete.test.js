@@ -499,7 +499,10 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(textbox, { key: 'Delete' });
+      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      expect(firstSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options[0]);
     });
