@@ -495,11 +495,11 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
 
-      // expect on focused tag for the tag to the right to be deleted  
+      // expect on focused tag for the tag to the right to be deleted
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(textbox, { key: 'Delete'});
+      fireEvent.keyDown(textbox, { key: 'Delete' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options[0]);
     });
