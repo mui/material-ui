@@ -29,7 +29,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ### `@mui/joy@5.0.0-alpha.50`
 
-- &#8203;<!-- 11 -->[Select][Joy] Added hidden input element (#34657) @zee-bit
+- &#8203;<!-- 11 -->[Select][joy] Added hidden input element (#34657) @zee-bit
 - &#8203;<!-- 10 -->[Tooltip][joy] Add component (#34509) @hbjORbj
 
 ### `@mui/base@5.0.0-alpha.102`
