@@ -144,6 +144,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const lightColorSystem = {
     palette: {
+      mode: 'light',
       primary: {
         ...colors.blue,
         ...createLightModeVariantVariables('primary'),
@@ -245,6 +246,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
   const darkColorSystem = {
     palette: {
+      mode: 'dark',
       primary: {
         ...colors.blue,
         ...createDarkModeVariantVariables('primary'),

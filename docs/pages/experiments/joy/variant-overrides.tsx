@@ -9,7 +9,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 
-const ColorSchemePicker = () => {
+function ColorSchemePicker() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -34,7 +34,7 @@ const ColorSchemePicker = () => {
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
   );
-};
+}
 
 export default function JoyVariant() {
   return (
