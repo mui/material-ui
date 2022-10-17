@@ -39,17 +39,31 @@ export default function TooltipUsage() {
         {
           propName: 'open',
           knob: 'radio',
-          options: ['false', 'true'],
-          defaultValue: true,
+          options: ['false', 'undefined', 'true'],
+          labels: ['false', 'auto', 'true'],
+          defaultValue: undefined,
         },
       ]}
-      renderDemo={(props) => (
-        <Tooltip title="This is a tooltip" {...props}>
-          <IconButton size="lg" variant="soft" color="neutral">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+      renderDemo={(props) => {
+        return (
+          <React.Fragment>
+            {props.open === undefined && (
+              <Tooltip key="uncontrolled" title="This is a tooltip" {...props}>
+                <IconButton size="lg" variant="soft" color="neutral">
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+            {typeof props.open === 'boolean' && (
+              <Tooltip key="controlled" title="This is a tooltip" {...props}>
+                <IconButton size="lg" variant="soft" color="neutral">
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+          </React.Fragment>
+        );
+      }}
     />
   );
 }
