@@ -25,17 +25,17 @@ export default function TooltipColors() {
           gap: 1,
         }}
       >
-        <Tooltip title="Delete" color="primary" variant={variant}>
+        <Tooltip title="Delete" color="primary" placement="top" variant={variant}>
           <Button variant="plain" color="primary">
             Primary
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="neutral" variant={variant}>
+        <Tooltip title="Delete" color="neutral" placement="top" variant={variant}>
           <Button variant="plain" color="neutral">
             Neutral
           </Button>
         </Tooltip>
-        <Tooltip title="Delete" color="danger" variant={variant}>
+        <Tooltip title="Delete" color="danger" placement="top" variant={variant}>
           <Button variant="plain" color="danger">
             Danger
           </Button>
