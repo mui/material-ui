@@ -252,6 +252,7 @@ This change only affects MUI Base components.
 +  slotProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
  />;
 ```
+
 <!-- #default-branch-switch -->
 
 ```sh
