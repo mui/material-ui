@@ -119,7 +119,15 @@ interface JoyUsageDemoProps<ComponentProps> {
      * - `input`: render <input />
      * - `radio`: render group of radios
      */
-    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio' | 'number' | 'placement';
+    knob?:
+      | 'switch'
+      | 'color'
+      | 'select'
+      | 'input'
+      | 'radio'
+      | 'controlled'
+      | 'number'
+      | 'placement';
     /**
      * The options for these knobs: `select` and `radio`
      */
@@ -335,6 +343,59 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   >
                     {options.map((value: string, index: number) => {
                       const checked = String(resolvedValue) === value;
+                      return (
+                        <Chip
+                          key={value}
+                          variant="plain"
+                          color={checked ? 'primary' : 'neutral'}
+                          size="sm"
+                          sx={{ bgcolor: 'background.body' }}
+                        >
+                          <Radio
+                            size="sm"
+                            variant={checked ? 'solid' : 'outlined'}
+                            color={checked ? 'primary' : 'neutral'}
+                            label={<Typography>{labels?.[index] || value}</Typography>}
+                            value={value}
+                            disableIcon
+                            overlay
+                          />
+                        </Chip>
+                      );
+                    })}
+                  </RadioGroup>
+                </FormControl>
+              );
+            }
+            if (knob === 'controlled') {
+              const labelId = `${componentName}-${propName}`;
+              const finalValue =
+                resolvedValue === undefined ? 'uncontrolled' : String(resolvedValue);
+              return (
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <RadioGroup
+                    row
+                    name={labelId}
+                    value={finalValue}
+                    onChange={(event) => {
+                      let value: string | boolean | undefined = event.target.value;
+                      if (value === 'true') {
+                        value = true;
+                      } else if (value === 'false') {
+                        value = false;
+                      } else if (value === 'uncontrolled') {
+                        value = undefined;
+                      }
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: value,
+                      }));
+                    }}
+                    sx={{ flexWrap: 'wrap', gap: 1 }}
+                  >
+                    {['uncontrolled', 'true', 'false'].map((value, index) => {
+                      const checked = finalValue === value;
                       return (
                         <Chip
                           key={value}

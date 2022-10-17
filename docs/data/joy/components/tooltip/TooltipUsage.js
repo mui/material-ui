@@ -27,6 +27,10 @@ export default function TooltipUsage() {
           defaultValue: 'md',
         },
         {
+          propName: 'open',
+          knob: 'controlled',
+        },
+        {
           propName: 'placement',
           knob: 'placement',
           defaultValue: 'bottom',
@@ -36,34 +40,25 @@ export default function TooltipUsage() {
           knob: 'switch',
           defaultValue: false,
         },
-        {
-          propName: 'open',
-          knob: 'radio',
-          options: ['false', 'undefined', 'true'],
-          labels: ['false', 'auto', 'true'],
-          defaultValue: undefined,
-        },
       ]}
-      renderDemo={({ open, ...props }) => {
-        return (
-          <div>
-            {open === undefined && (
-              <Tooltip title="This is a tooltip" {...props}>
-                <IconButton size="lg" variant="soft" color="neutral">
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-            {typeof open === 'boolean' && (
-              <Tooltip title="This is a tooltip" open={open} {...props}>
-                <IconButton size="lg" variant="soft" color="neutral">
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-          </div>
-        );
-      }}
+      renderDemo={({ open, ...props }) => (
+        <React.Fragment>
+          {open === undefined && (
+            <Tooltip title="This is a tooltip" {...props}>
+              <IconButton size="lg" variant="soft" color="neutral">
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+          {typeof open === 'boolean' && (
+            <Tooltip title="This is a tooltip" open={open} {...props}>
+              <IconButton size="lg" variant="soft" color="neutral">
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+        </React.Fragment>
+      )}
     />
   );
 }
