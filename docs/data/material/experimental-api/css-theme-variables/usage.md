@@ -111,7 +111,7 @@ function App() {
   ```
 
   :::info
-  💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the default `--mui`.
+  💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
   :::
 
 ## Server-side rendering
