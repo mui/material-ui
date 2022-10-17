@@ -77,7 +77,7 @@ const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
   />
 );
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

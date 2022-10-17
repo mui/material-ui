@@ -14,7 +14,7 @@
 /coverage
 /docs/.env.local
 /docs/export
-/docs/pages/playground.tsx
+/docs/pages/playground/
 /examples/**/.cache
 /packages/mui-codemod/lib
 /packages/mui-envinfo/*.tgz

@@ -29,6 +29,18 @@ function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> |
   return selectedOption?.label ?? '';
 }
 
+function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
+}
+
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
 
@@ -279,6 +291,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
+    getSerializedValue = defaultFormValueProvider,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -415,8 +428,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
-    return options.find((o) => value === o.value);
+  const selectedOption = React.useMemo(() => {
+    return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
   const rootProps = useSlotProps({
@@ -540,7 +553,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         )}
 
         <SelectButton {...buttonProps}>
-          {selectedOptions ? renderValue(selectedOptions) : placeholder}
+          {selectedOption ? renderValue(selectedOption) : placeholder}
         </SelectButton>
         {endDecorator && (
           <SelectEndDecorator {...endDecoratorProps}>{endDecorator}</SelectEndDecorator>
@@ -557,6 +570,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
@@ -633,6 +648,12 @@ Select.propTypes /* remove-proptypes */ = {
    * Trailing adornment for the select.
    */
   endDecorator: PropTypes.node,
+  /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
   /**
    * The indicator(*) for the select.
    *    ________________

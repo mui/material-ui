@@ -18,15 +18,17 @@ export default function handleRequest(
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
-  const MuiRemixServer = () => (
-    <CacheProvider value={cache}>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <RemixServer context={remixContext} url={request.url} />
-      </ThemeProvider>
-    </CacheProvider>
-  );
+  function MuiRemixServer() {
+    return (
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <RemixServer context={remixContext} url={request.url} />
+        </ThemeProvider>
+      </CacheProvider>
+    );
+  }
 
   // Render the component to a string.
   const html = renderToString(<MuiRemixServer />);
