@@ -89,3 +89,10 @@ If you want to start with a more complete and real-world example, you could take
 
   - Create your MUI app in minutes.
   - You'll get a nice template, authentication, database integration, subscription payments, and more.
+
+- [Flatlogic Web App Generator](https://flatlogic.com/?via=material-ui):
+
+ - Select the stack for your web application (React and MUI, Node.js / Laravel for the back end, PostgreSQL or MySQL for database)
+ - Design the database schema and entity relations
+ - Generate your project
+ - Go with Flatlogic further in development or download the source code and develop the app by yourself
