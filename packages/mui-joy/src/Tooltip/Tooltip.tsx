@@ -1,21 +1,22 @@
-import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
-import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
-import { MUIStyledCommonProps } from '@mui/system';
-import { OverridableComponent } from '@mui/types';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import {
   unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
+  unstable_useId as useId,
 } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
+import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
+import { MUIStyledCommonProps } from '@mui/system';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
+import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipComponentsPropsOverrides, TooltipProps, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipProps) => {
@@ -79,6 +80,40 @@ const TooltipRoot = styled('div', {
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
+    '&::before': {
+      // acts as a invisible connector between the element and the tooltip
+      // so that the cursor can move to the tooltip without losing focus.
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      width: ownerState.placement?.match(/(top|bottom)/)
+        ? '100%'
+        : // 10px equals the default offset popper config
+          'calc(10px + var(--variant-borderWidth, 0px))',
+      height: ownerState.placement?.match(/(top|bottom)/)
+        ? 'calc(10px + var(--variant-borderWidth, 0px))'
+        : '100%',
+    },
+    '&[data-popper-placement*="bottom"]::before': {
+      top: 0,
+      left: 0,
+      transform: 'translateY(-100%)',
+    },
+    '&[data-popper-placement*="left"]::before': {
+      top: 0,
+      right: 0,
+      transform: 'translateX(100%)',
+    },
+    '&[data-popper-placement*="right"]::before': {
+      top: 0,
+      left: 0,
+      transform: 'translateX(-100%)',
+    },
+    '&[data-popper-placement*="top"]::before': {
+      bottom: 0,
+      left: 0,
+      transform: 'translateY(100%)',
+    },
   };
 });
 
@@ -110,18 +145,18 @@ const TooltipArrow = styled('span', {
       transformOrigin: 'center center',
       transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
     },
-    [`.${tooltipClasses.root}[data-popper-placement*="bottom"] &`]: {
+    '[data-popper-placement*="bottom"] &': {
       top: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
     },
-    [`.${tooltipClasses.root}[data-popper-placement*="top"] &`]: {
+    '[data-popper-placement*="top"] &': {
       '--unstable_Tooltip-arrow-rotation': 2,
       bottom: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
     },
-    [`.${tooltipClasses.root}[data-popper-placement*="left"] &`]: {
+    '[data-popper-placement*="left"] &': {
       '--unstable_Tooltip-arrow-rotation': 1,
       right: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
     },
-    [`.${tooltipClasses.root}[data-popper-placement*="right"] &`]: {
+    '[data-popper-placement*="right"] &': {
       '--unstable_Tooltip-arrow-rotation': 3,
       left: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
     },
@@ -183,7 +218,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     enterNextDelay = 0,
     enterTouchDelay = 700,
     followCursor = false,
-    id,
+    id: idProp,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -222,6 +257,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   let open = openState;
+
+  const id = useId(idProp);
 
   const prevUserSelect: React.MutableRefObject<string | undefined> = React.useRef();
   const stopTouchInteraction = React.useCallback(() => {
