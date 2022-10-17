@@ -291,7 +291,6 @@ export function alpha(color, value) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
-  
   if (color.charAt(0) === 'r') {
     color = decomposeColor(rgbToHsl(color));
   } else if (color.charAt(0) === '#'){
@@ -309,6 +308,7 @@ export function darken(color, coefficient) {
       color.values[i] *= 1 - coefficient;
     }
   }
+
   return recomposeColor(color);
 }
 
@@ -326,6 +326,7 @@ export function lighten(color, coefficient) {
   } else {
     color = decomposeColor(color);
   }
+
   coefficient = clamp(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
