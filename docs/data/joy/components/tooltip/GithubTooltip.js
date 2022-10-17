@@ -17,7 +17,7 @@ export default function GithubTooltip() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            maxWidth: 400,
+            maxWidth: 320,
             justifyContent: 'center',
             p: 1,
           }}
