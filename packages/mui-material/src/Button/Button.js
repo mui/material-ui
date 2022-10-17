@@ -111,281 +111,230 @@ const ButtonRoot = styled(ButtonBase, {
         text: 'none',
       };
 
+      const hoveredContainerColor = {
+        elevated: theme.vars
+          ? `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
+              (theme.vars || theme).state.hover.stateLayerOpacity
+            })`
+          : alpha(theme.palette.md3.colors.primary, theme.state.hover.stateLayerOpacity),
+        filled: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              1 - theme.state.hover.stateLayerOpacity,
+            ),
+        filledTonal: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+            } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`
+          : alpha(
+              theme.palette.md3.colors.secondaryContainer,
+              1 - theme.state.hover.stateLayerOpacity,
+            ),
+        outlined: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              theme.state.hover.stateLayerOpacity,
+            ),
+        text: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              theme.state.hover.stateLayerOpacity,
+            ),
+      };
+
+      const hoveredContainerElevation = {
+        elevated: theme.shadows[4], // not the correct value, need to be validated
+        filled: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+        filledTonal: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+        outlined: 'none',
+        text: 'none',
+      };
+
+      const pressedContainerColor = {
+        elevated: theme.vars
+          ? `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
+              (theme.vars || theme).state.pressed.stateLayerOpacity
+            })`
+          : alpha(theme.palette.md3.colors.primary, theme.state.pressed.stateLayerOpacity),
+        filled: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              1 - theme.state.pressed.stateLayerOpacity,
+            ),
+        filledTonal: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+            } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`
+          : alpha(
+              theme.palette.md3.colors.secondaryContainer,
+              1 - theme.state.pressed.stateLayerOpacity,
+            ),
+        outlined: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              theme.state.pressed.stateLayerOpacity,
+            ),
+        text: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              theme.state.pressed.stateLayerOpacity,
+            ),
+      };
+
+      const focusedContainerColor = {
+        elevated: theme.vars
+          ? `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
+              (theme.vars || theme).state.focus.stateLayerOpacity
+            })`
+          : alpha(theme.palette.md3.colors.primary, theme.state.focus.stateLayerOpacity),
+        filled: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              1 - theme.state.focus.stateLayerOpacity,
+            ),
+        filledTonal: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
+            } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`
+          : alpha(
+              theme.palette.md3.colors.secondaryContainer,
+              1 - theme.state.focus.stateLayerOpacity,
+            ),
+        outlined: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              theme.state.focus.stateLayerOpacity,
+            ),
+        text: theme.vars
+          ? `rgba(${
+              (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
+            } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`
+          : alpha(
+              theme.palette.md3.colors[ownerState.color ?? 'primary'],
+              theme.state.focus.stateLayerOpacity,
+            ),
+      };
+
+      const containerElevation = {
+        elevated: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+        filled: 'none', // md.sys.elevation.level0
+        filledTonal: 'none', // md.sys.elevation.level0
+        outlined: 'none', // md.sys.elevation.level0
+        text: 'none', // md.sys.elevation.level0
+      };
       const disabledLabelTextColor = theme.vars
         ? `rgba(${theme.vars.palette.md3.colors.onSurfaceChannel} / 0.38)`
         : alpha(theme.palette.md3.colors.onSurface, 0.38);
 
       return {
-        ...(theme.vars && {
-          // TODO: Define all button variables
-          // enabled
-          '--md-comp-button-container-color': containerColor[ownerState.variant],
-          '--md-comp-button-container-shadow-color': '',
-          '--md-comp-button-container-elevation': '',
-          '--md-comp-button-label-text-color': labelTextColor[ownerState.variant],
-          '--md-comp-button-label-text-font': (theme.vars || theme).typescale.label.large.family,
-          '--md-comp-button-label-text-line-height': '',
-          '--md-comp-button-label-text-size': '',
-          '--md-comp-button-label-text-tracking': '',
-          '--md-comp-button-label-text-weight': '',
-          '--md-comp-button-icon-color': '',
-          // disabled
-          '--md-comp-button-disabled-container-color': disabeldContainerColor[ownerState.variant],
-          '--md-comp-button-disabled-container-elevation': 'none', // Should be md.sys.elevation.level0
-          // '--md-comp-button-disabled-container-opacity': '', contained in the container color
+        // TODO:
+        // 1. The container state opacities are calculated in the background color for now
+        // 2. The elevations are not correctly implemented, as I still couldn't find an actual specification around their values
 
-          '--md-comp-button-disabled-label-text-color': disabledLabelTextColor,
-          // '--md-comp-button-disabled-label-text-opacity': '', contained in the label text color
+        // enabled
+        // '--md-comp-button-container-shadow-color': '',
+        '--md-comp-button-label-text-line-height': `calc(${
+          (theme.vars || theme).typescale.label.large.lineHeight
+        } / ${(theme.vars || theme).typescale.label.large.size})`,
+        '--md-comp-button-label-text-tracking': (theme.vars || theme).typescale.label.large
+          .tracking,
+        '--md-comp-button-icon-color': labelTextColor[ownerState.variant],
+        // disabled
+        // '--md-comp-button-disabled-container-opacity': '',
+        // '--md-comp-button-disabled-label-text-opacity': '',
+        '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
+        // '--md-comp-button-disabled-icon-opacity': '',
+        // hovered
+        // '--md-comp-button-hovered-container-state-layer-opacity': '',
+        '--md-comp-button-hovered-icon-color': labelTextColor[ownerState.variant], // same as default
+        // focused
+        // '--md-comp-button-focused-container-state-layer-opacity': '',
+        // '--md-comp-button-focused-container-elevation': '',
+        '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant], // same as default
+        // pressed
+        // '--md-comp-button-pressed-container-state-layer-opacity': '',
+        // '--md-comp-button-pressed-container-elevation': '',
+        '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant], // same as default
 
-          '--md-comp-button-disabled-icon-color': '',
-          '--md-comp-button-disabled-icon-opacity': '',
-          // hovered
-          '--md-comp-button-hovered-container-state-layer-color': '',
-          '--md-comp-button-hovered-container-state-layer-opacity': '',
-          '--md-comp-button-hovered-container-elevation': '',
-          '--md-comp-button-hovered-label-text-color': '',
-          '--md-comp-button-hovered-icon-color': '',
-          // focused
-          '--md-comp-button-focused-container-state-layer-color': '',
-          '--md-comp-button-focused-container-state-layer-opacity': '',
-          '--md-comp-button-focused-container-elevation': '',
-          '--md-comp-button-focused-label-text-color': '',
-          '--md-comp-button-focused-icon-color': '',
-          // pressed
-          '--md-comp-button-pressed-container-state-layer-color': '',
-          '--md-comp-button-pressed-container-state-layer-opacity': '',
-          '--md-comp-button-pressed-container-elevation': '',
-          '--md-comp-button-pressed-label-text-color': '',
-          '--md-comp-button-pressed-icon-color': '',
-        }),
         padding: '10px 24px',
-        fontFamily: theme.vars
-          ? 'var(--md-comp-button-label-text-font)'
-          : theme.typescale.label.large.family,
-        fontWeight: (theme.vars || theme).typescale.label.large.weight,
+        fontFamily: `var(--md-comp-button-label-text-font, ${
+          (theme.vars || theme).typescale.label.large.family
+        })`,
+        fontWeight: `var(--md-comp-button-label-text-weight, ${
+          (theme.vars || theme).typescale.label.large.weight
+        })`,
+        fontSize: `var(--md-comp-button-label-text-size, ${
+          (theme.vars || theme).typescale.label.large.size
+        }${theme.vars ? '' : 'px'})`,
+        // lineHeight: 'var(--md-comp-button-label-text-line-height)', Needs to be lineHeight / font size
+        letterSpacing: 0, // should be dinamically calculated from the tracking
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        background: theme.vars
-          ? 'var(--md-comp-button-container-color)'
-          : containerColor[ownerState.variant],
-        color: theme.vars
-          ? 'var(--md-comp-button-label-text-color)'
-          : labelTextColor[ownerState.variant],
-        // Filled varaint
-        ...(ownerState.variant === 'filled' && {
-          '&:hover': {
-            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors[
-                      `${ownerState.color ?? 'primary'}Channel`
-                    ]
-                  } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
-                    1 - theme.state.hover.stateLayerOpacity,
-                  ),
-                }),
-          },
-          '&:active': {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors[
-                      `${ownerState.color ?? 'primary'}Channel`
-                    ]
-                  } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
-                    1 - theme.state.pressed.stateLayerOpacity,
-                  ),
-                }),
-          },
-          [`&.${buttonClasses.focusVisible}`]: {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors[
-                      `${ownerState.color ?? 'primary'}Channel`
-                    ]
-                  } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
-                    1 - theme.state.focus.stateLayerOpacity,
-                  ),
-                }),
-          },
-        }),
-        // Filled tonal varitant
-        ...(ownerState.variant === 'filledTonal' && {
-          '&:hover': {
-            boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
-                  } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors.secondaryContainer,
-                    1 - theme.state.hover.stateLayerOpacity,
-                  ),
-                }),
-          },
-          '&:active': {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
-                  } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors.secondaryContainer,
-                    1 - theme.state.pressed.stateLayerOpacity,
-                  ),
-                }),
-          },
-          [`&.${buttonClasses.focusVisible}`]: {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.secondaryContainerChannel
-                  } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors.secondaryContainer,
-                    1 - theme.state.focus.stateLayerOpacity,
-                  ),
-                }),
-          },
-        }),
+        background: `var(--md-comp-button-container-color, ${containerColor[ownerState.variant]})`,
+        color: `var(--md-comp-button-label-text-color, ${labelTextColor[ownerState.variant]})`,
+        boxShadow: `var(--md-comp-button-container-elevation, ${
+          containerElevation[ownerState.variant]
+        })`,
         // Outlined varaiant
         ...(ownerState.variant === 'outlined' && {
           border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
         }),
-        // Elevated variant
-        ...(ownerState.variant === 'elevated' && {
-          color: (theme.vars || theme).palette.md3.colors.primary,
-          boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)', // elevation.lightingColor.1
-        }),
-        ...(ownerState.variant === 'elevated' && {
-          '&:hover': {
-            ...(ownerState.variant === 'elevated' && {
-              boxShadow: theme.shadows[4],
-            }),
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.primaryChannel
-                  } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors.primary,
-                    theme.state.hover.stateLayerOpacity,
-                  ),
-                }),
-          },
-          '&:active': {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.primaryChannel
-                  } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors.primary,
-                    theme.state.pressed.stateLayerOpacity,
-                  ),
-                }),
-          },
-          [`&.${buttonClasses.focusVisible}`]: {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors.primaryChannel
-                  } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors.primary,
-                    theme.state.focus.stateLayerOpacity,
-                  ),
-                }),
-          },
-        }),
-        // State styles for text, outlined, elevated variants
-        ...((ownerState.variant === 'text' || ownerState.variant === 'outlined') && {
-          '&:hover': {
-            ...(ownerState.variant === 'elevated' && {
-              boxShadow: theme.shadows[4],
-            }),
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors[
-                      `${ownerState.color ?? 'primary'}Channel`
-                    ]
-                  } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
-                    theme.state.hover.stateLayerOpacity,
-                  ),
-                }),
-          },
-          '&:active': {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors[
-                      `${ownerState.color ?? 'primary'}Channel`
-                    ]
-                  } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
-                    theme.state.pressed.stateLayerOpacity,
-                  ),
-                }),
-          },
-          [`&.${buttonClasses.focusVisible}`]: {
-            ...(theme.vars
-              ? {
-                  backgroundColor: `rgba(${
-                    (theme.vars || theme).palette.md3.colors[
-                      `${ownerState.color ?? 'primary'}Channel`
-                    ]
-                  } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`,
-                }
-              : {
-                  backgroundColor: alpha(
-                    theme.palette.md3.colors[ownerState.color ?? 'primary'],
-                    theme.state.focus.stateLayerOpacity,
-                  ),
-                }),
-          },
-        }),
+        '&:hover': {
+          color: `var(--md-comp-button-hovered-label-text-color, ${
+            labelTextColor[ownerState.variant]
+          })`,
+          backgroundColor: `var(--md-comp-button-hovered-container-state-layer-color, ${
+            hoveredContainerColor[ownerState.variant]
+          })`,
+          boxShadow: `var(--md-comp-button-hovered-container-elevation, ${
+            hoveredContainerElevation[ownerState.variant]
+          })`,
+        },
+        '&:active': {
+          color: `var(--md-comp-button-pressed-label-text-color, ${
+            labelTextColor[ownerState.variant]
+          })`,
+          backgroundColor: `var(--md-comp-button-pressed-container-state-layer-color, ${
+            pressedContainerColor[ownerState.variant]
+          })`,
+        },
+        [`&.${buttonClasses.focusVisible}`]: {
+          color: `var(--md-comp-button-focused-label-text-color, ${
+            labelTextColor[ownerState.variant]
+          })`,
+          backgroundColor: `var(--md-comp-button-focused-container-state-layer-color, ${
+            focusedContainerColor[ownerState.variant]
+          })`,
+        },
         [`&.${buttonClasses.disabled}`]: {
-          color: theme.vars
-            ? 'var(--md-comp-button-disabled-label-text-color)'
-            : disabledLabelTextColor,
-          background: theme.vars
-            ? 'var(--md-comp-button-disabled-container-color)'
-            : disabeldContainerColor[ownerState.variant],
-          boxShadow: theme.vars ? 'var(--md-comp-button-disabled-container-elevation)' : 'none',
+          color: `var(--md-comp-button-disabled-label-text-color, ${disabledLabelTextColor})`,
+          background: `var(--md-comp-button-disabled-container-color, ${
+            disabeldContainerColor[ownerState.variant]
+          })`,
+          boxShadow: 'var(--md-comp-button-disabled-container-elevation, none)', // Should be md.sys.elevation.level0
           ...(ownerState.variant === 'outlined' && {
             border: `1px solid ${
               theme.vars

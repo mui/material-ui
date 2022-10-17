@@ -11,6 +11,8 @@ const mdSysTypescale = {
     large: {
       family: 'Roboto',
       weight: '500',
+      lineHeight: 20,
+      size: 14,
     },
   },
   body: {
