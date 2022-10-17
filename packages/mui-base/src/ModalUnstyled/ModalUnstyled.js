@@ -11,7 +11,7 @@ import {
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from '../TrapFocus';
+import FocusTrap from '../FocusTrap';
 import { getModalUtilityClass } from './modalUnstyledClasses';
 import { useSlotProps } from '../utils';
 
@@ -275,7 +275,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
        */}
       <Root {...rootProps}>
         {!hideBackdrop && BackdropComponent ? <BackdropComponent {...backdropProps} /> : null}
-        <TrapFocus
+        <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
           disableRestoreFocus={disableRestoreFocus}
@@ -283,7 +283,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
           open={open}
         >
           {React.cloneElement(children, childProps)}
-        </TrapFocus>
+        </FocusTrap>
       </Root>
     </Portal>
   );

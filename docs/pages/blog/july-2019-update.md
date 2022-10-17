@@ -8,9 +8,9 @@ tags: ['Company']
 
 Here are the most significant improvements in July:
 
-- 🌳 We have introduced a new [Tree view component](/material-ui/react-tree-view/) in the lab. Big thanks to Josh for it.
+- 🌳 We have introduced a new [Tree View component](/material-ui/react-tree-view/) in the lab. Big thanks to Josh for it.
 
-  ![Tree view](/static/blog/july-2019-update/tree-view.gif)
+  ![Tree View](/static/blog/july-2019-update/tree-view.gif)
 
 - 💄 We have added support for [vertical tabs](/material-ui/react-tabs/#vertical-tabs).
 

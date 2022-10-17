@@ -6,7 +6,7 @@ githubLabel: 'component: slider'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 ---
 
-# Unstyled slider
+# Unstyled Slider
 
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>

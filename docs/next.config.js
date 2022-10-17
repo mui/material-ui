@@ -1,51 +1,19 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
+const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
-const reactStrictMode = true;
-if (reactStrictMode) {
-  // eslint-disable-next-line no-console
-  console.log(`Using React.StrictMode.`);
-}
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
-const isDeployPreview = process.env.PULL_REQUEST === 'true';
+const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 // For crowdin PRs we want to build all locales for testing.
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
-const staging =
-  process.env.REPOSITORY_URL === undefined ||
-  // The linked repository url comes from https://app.netlify.com/sites/material-ui/settings/deploys
-  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
-
-if (staging) {
-  // eslint-disable-next-line no-console
-  console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
-}
-
-const baseline = {
-  experimental: {
-    scrollRestoration: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    // Motivated by https://github.com/vercel/next.js/issues/7687
-    ignoreBuildErrors: true,
-  },
-  trailingSlash: true,
-  // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
-  optimizeFonts: false,
-};
-
-module.exports = {
-  ...baseline,
-  baseline, // Exported so the other projects can use this configuration directly.
+module.exports = withDocsInfra({
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -182,19 +150,12 @@ module.exports = {
     };
   },
   env: {
-    COMMIT_REF: process.env.COMMIT_REF,
-    ENABLE_AD_IN_DEV_MODE: process.env.ENABLE_AD_IN_DEV_MODE,
     GITHUB_AUTH: process.env.GITHUB_AUTH,
-    GIT_REVIEW_ID: process.env.REVIEW_ID,
     LIB_VERSION: pkg.version,
-    NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL || 'http://localhost:3000',
-    NETLIFY_SITE_NAME: process.env.SITE_NAME || 'material-ui',
-    PULL_REQUEST: process.env.PULL_REQUEST === 'true',
     FEEDBACK_URL: process.env.FEEDBACK_URL,
-    // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
+    SLACK_FEEDBACKS_TOKEN: process.env.SLACK_FEEDBACKS_TOKEN,
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    STAGING: staging,
     BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -207,7 +168,7 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/experiments') && !staging) {
+        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV !== 'production') {
           return;
         }
         // The blog is not translated
@@ -247,7 +208,6 @@ module.exports = {
 
     return map;
   },
-  reactStrictMode,
   // rewrites has no effect when run `next export` for production
   rewrites: async () => {
     return [
@@ -257,4 +217,4 @@ module.exports = {
       { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
   },
-};
+});

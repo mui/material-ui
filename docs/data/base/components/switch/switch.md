@@ -6,7 +6,7 @@ githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
 
-# Unstyled switch
+# Unstyled Switch
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 

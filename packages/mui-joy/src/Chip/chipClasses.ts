@@ -37,6 +37,8 @@ export interface ChipClasses {
   sizeLg: string;
   /** Styles applied to the startDecorator element if supplied. */
   startDecorator: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
   /** Styles applied to the root element if `variant="soft"`. */
@@ -71,6 +73,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
   'sizeMd',
   'sizeLg',
   'startDecorator',
+  'variantPlain',
   'variantSolid',
   'variantSoft',
   'variantOutlined',

@@ -1710,7 +1710,13 @@ export default function DataTable() {
             </Typography>
           </Box>
           <Box sx={{ height: 200 }}>
-            <DataGrid rows={rows} columns={columns} hideFooter density="compact" />
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              hideFooter
+              density="compact"
+              experimentalFeatures={{ newEditingApi: true }}
+            />
           </Box>
         </Paper>
       }

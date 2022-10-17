@@ -14,7 +14,7 @@ export interface OptionPropsVariantOverrides {}
 
 export interface OptionPropsColorOverrides {}
 
-export interface OptionTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.

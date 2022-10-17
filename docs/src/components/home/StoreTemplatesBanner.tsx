@@ -110,7 +110,7 @@ const StoreTemplateImage = React.forwardRef<
   );
 });
 
-export const PrefetchStoreTemplateImages = () => {
+export function PrefetchStoreTemplateImages() {
   function makeImg(mode: string, num: number) {
     return {
       loading: 'lazy' as const,
@@ -140,7 +140,7 @@ export const PrefetchStoreTemplateImages = () => {
       ))}
     </Box>
   );
-};
+}
 
 const defaultSlideDown = {
   '0%': {

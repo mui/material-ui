@@ -1,23 +1,25 @@
-import * as React from 'react';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { ColorPaletteProp } from '@mui/joy/styles';
+import Check from '@mui/icons-material/Check';
+import CheckRounded from '@mui/icons-material/CheckRounded';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
-import Typography from '@mui/joy/Typography';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
-import RadioGroup from '@mui/joy/RadioGroup';
-import Radio, { radioClasses } from '@mui/joy/Radio';
-import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
-import Switch from '@mui/joy/Switch';
-import Select from '@mui/joy/Select';
-import Option, { optionClasses } from '@mui/joy/Option';
-import Sheet from '@mui/joy/Sheet';
-import Check from '@mui/icons-material/Check';
-import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
-import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-import CheckRounded from '@mui/icons-material/CheckRounded';
+import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
+import Option, { optionClasses } from '@mui/joy/Option';
+import Radio, { radioClasses } from '@mui/joy/Radio';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Select from '@mui/joy/Select';
+import Sheet from '@mui/joy/Sheet';
+import { ColorPaletteProp } from '@mui/joy/styles';
+import Switch from '@mui/joy/Switch';
+import TextField from '@mui/joy/TextField';
+import Typography from '@mui/joy/Typography';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import * as React from 'react';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -117,11 +119,23 @@ interface JoyUsageDemoProps<ComponentProps> {
      * - `input`: render <input />
      * - `radio`: render group of radios
      */
-    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?:
+      | 'switch'
+      | 'color'
+      | 'select'
+      | 'input'
+      | 'radio'
+      | 'controlled'
+      | 'number'
+      | 'placement';
     /**
      * The options for these knobs: `select` and `radio`
      */
     options?: Array<string>;
+    /**
+     * The labels for these knobs: `radio`
+     */
+    labels?: Array<string>;
     /**
      * The default value to be used by the components.
      * If exists, it will be injected to the `renderDemo` callback but it will not show
@@ -252,66 +266,83 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             display: 'flex',
             flexDirection: 'column',
             gap: 2.5,
+            [`& .${formLabelClasses.root}`]: {
+              fontWeight: 'lg',
+            },
           }}
         >
-          {data.map(({ propName, knob, options = [], defaultValue }) => {
+          {data.map(({ propName, knob, options = [], defaultValue, labels }) => {
             const resolvedValue = props[propName] ?? defaultValue;
             if (!knob) {
               return null;
             }
             if (knob === 'switch') {
               return (
-                <Switch
+                <FormControl
                   key={propName}
-                  checked={Boolean(resolvedValue)}
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: event.target.checked,
-                    }))
-                  }
-                  endDecorator={propName}
                   size="sm"
-                  sx={{
-                    textTransform: 'capitalize',
-                    alignSelf: 'flex-start',
-                    '--Switch-track-background': (theme) =>
-                      `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
-                    '&:hover': {
+                  orientation="horizontal"
+                  sx={{ justifyContent: 'space-between' }}
+                >
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <Switch
+                    checked={Boolean(resolvedValue)}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.checked,
+                      }))
+                    }
+                    endDecorator={resolvedValue ? 'True' : 'False'}
+                    componentsProps={{
+                      endDecorator: {
+                        sx: {
+                          minWidth: 30,
+                        },
+                      },
+                    }}
+                    sx={{
+                      fontSize: 'xs',
+                      color: 'text.secondary',
+                      textTransform: 'capitalize',
                       '--Switch-track-background': (theme) =>
-                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
-                    },
-                  }}
-                />
+                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
+                      '&:hover': {
+                        '--Switch-track-background': (theme) =>
+                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'radio') {
               const labelId = `${componentName}-${propName}`;
               return (
-                <Box key={propName}>
-                  <Typography
-                    id={labelId}
-                    fontSize="xs"
-                    fontWeight="md"
-                    sx={{ mb: 1, textTransform: 'capitalize' }}
-                  >
-                    {propName}
-                  </Typography>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
                     row
                     name={labelId}
-                    aria-labelledby={labelId}
                     value={resolvedValue}
-                    onChange={(event) =>
+                    onChange={(event) => {
+                      let value: string | boolean | undefined = event.target.value;
+                      if (value === 'true') {
+                        value = true;
+                      } else if (value === 'false') {
+                        value = false;
+                      } else if (value === 'undefined') {
+                        value = undefined;
+                      }
                       setProps((latestProps) => ({
                         ...latestProps,
-                        [propName]: event.target.value,
-                      }))
-                    }
+                        [propName]: value,
+                      }));
+                    }}
                     sx={{ flexWrap: 'wrap', gap: 1 }}
                   >
-                    {options.map((value) => {
-                      const checked = resolvedValue === value;
+                    {options.map((value: string, index: number) => {
+                      const checked = String(resolvedValue) === value;
                       return (
                         <Chip
                           key={value}
@@ -324,7 +355,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             size="sm"
                             variant={checked ? 'solid' : 'outlined'}
                             color={checked ? 'primary' : 'neutral'}
-                            label={<Typography>{value}</Typography>}
+                            label={<Typography>{labels?.[index] || value}</Typography>}
                             value={value}
                             disableIcon
                             overlay
@@ -333,19 +364,69 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       );
                     })}
                   </RadioGroup>
-                </Box>
+                </FormControl>
+              );
+            }
+            if (knob === 'controlled') {
+              const labelId = `${componentName}-${propName}`;
+              const finalValue =
+                resolvedValue === undefined ? 'uncontrolled' : String(resolvedValue);
+              return (
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <RadioGroup
+                    row
+                    name={labelId}
+                    value={finalValue}
+                    onChange={(event) => {
+                      let value: string | boolean | undefined = event.target.value;
+                      if (value === 'true') {
+                        value = true;
+                      } else if (value === 'false') {
+                        value = false;
+                      } else if (value === 'uncontrolled') {
+                        value = undefined;
+                      }
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: value,
+                      }));
+                    }}
+                    sx={{ flexWrap: 'wrap', gap: 1 }}
+                  >
+                    {['uncontrolled', 'true', 'false'].map((value, index) => {
+                      const checked = finalValue === value;
+                      return (
+                        <Chip
+                          key={value}
+                          variant="plain"
+                          color={checked ? 'primary' : 'neutral'}
+                          size="sm"
+                          sx={{ bgcolor: 'background.body' }}
+                        >
+                          <Radio
+                            size="sm"
+                            variant={checked ? 'solid' : 'outlined'}
+                            color={checked ? 'primary' : 'neutral'}
+                            label={<Typography>{labels?.[index] || value}</Typography>}
+                            value={value}
+                            disableIcon
+                            overlay
+                          />
+                        </Chip>
+                      );
+                    })}
+                  </RadioGroup>
+                </FormControl>
               );
             }
             if (knob === 'color') {
               return (
-                <Box key={propName} sx={{ mb: 1 }}>
-                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
-                    Color
-                  </Typography>
+                <FormControl key={propName} sx={{ mb: 1 }} size="sm">
+                  <FormLabel>Color</FormLabel>
                   <RadioGroup
                     row
                     name={`${componentName}-color`}
-                    aria-labelledby={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -413,30 +494,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       );
                     })}
                   </RadioGroup>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'select') {
-              const selectId = `${componentName}-${propName}`;
               return (
-                <Box key={propName}>
-                  <Typography
-                    component="label"
-                    fontSize="xs"
-                    fontWeight="lg"
-                    mb={1}
-                    id={selectId}
-                    sx={{ textTransform: 'capitalize' }}
-                  >
-                    {propName}
-                  </Typography>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Select
-                    size="sm"
                     placeholder="Select a variant..."
                     componentsProps={{
-                      button: {
-                        'aria-labelledby': selectId,
-                      },
                       listbox: {
                         sx: {
                           '--List-decorator-size': '24px',
@@ -444,7 +511,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       },
                     }}
                     value={(resolvedValue || 'none') as string}
-                    onChange={(val) =>
+                    onChange={(event, val) =>
                       setProps((latestProps) => ({
                         ...latestProps,
                         [propName]: val,
@@ -471,7 +538,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       </Option>
                     ))}
                   </Select>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'input') {
@@ -498,6 +565,135 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     },
                   }}
                 />
+              );
+            }
+            if (knob === 'number') {
+              return (
+                <TextField
+                  key={propName}
+                  label={propName}
+                  size="sm"
+                  type="number"
+                  value={
+                    typeof props[propName] === 'number'
+                      ? (props[propName] as number)
+                      : (defaultValue as string)
+                  }
+                  onChange={(event) =>
+                    setProps((latestProps) => ({
+                      ...latestProps,
+                      [propName]: Number.isNaN(event.target.valueAsNumber)
+                        ? undefined
+                        : event.target.valueAsNumber,
+                    }))
+                  }
+                  sx={{
+                    textTransform: 'capitalize',
+                    [`& .${inputClasses.root}`]: {
+                      bgcolor: 'background.body',
+                    },
+                  }}
+                />
+              );
+            }
+            if (knob === 'placement') {
+              return (
+                <FormControl key={propName}>
+                  <FormLabel>Placement</FormLabel>
+                  <RadioGroup
+                    name="placement"
+                    value={resolvedValue}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.value,
+                      }))
+                    }
+                  >
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: '40px 1fr 1fr 1fr 40px',
+                        gridTemplateRows: 'repeat(5, 20px)',
+                        gridAutoFlow: 'row dense',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          gridRow: '2 / -2',
+                          gridColumn: '2 / -2',
+                          fontSize: 'sm',
+                          border: '1px solid',
+                          borderColor: 'divider',
+                          borderRadius: 'sm',
+                          alignSelf: 'stretch',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          fontWeight: 'md',
+                          color: 'text.secondary',
+                        }}
+                      >
+                        {resolvedValue}
+                      </Box>
+                      {/* void */}
+                      <Box />
+                      <Box sx={{ gridColumn: '-1 / -2', gridRow: '1' }} />
+                      <Box sx={{ gridRow: '-1 / -2', gridColumn: '1' }} />
+                      {/* void */}
+                      {[
+                        'top-start',
+                        'top',
+                        'top-end',
+                        'left-start',
+                        'right-start',
+                        'left',
+                        'right',
+                        'left-end',
+                        'right-end',
+                        'bottom-start',
+                        'bottom',
+                        'bottom-end',
+                      ].map((placement) => (
+                        <Sheet
+                          key={placement}
+                          variant="soft"
+                          color="neutral"
+                          sx={{
+                            position: 'relative',
+                            height: '14px',
+                            width: 32,
+                            borderRadius: 'xs',
+                            mx: 0.5,
+                            ...(placement.match(/^(top|bottom)$/) && {
+                              justifySelf: 'center',
+                            }),
+                            ...(placement.match(/^(top-end|bottom-end)$/) && {
+                              justifySelf: 'flex-end',
+                            }),
+                          }}
+                        >
+                          <Radio
+                            value={placement}
+                            overlay
+                            disableIcon
+                            componentsProps={{
+                              action: ({ checked }) => ({
+                                sx: (theme) => ({
+                                  ...(checked && {
+                                    ...theme.variants.solid.primary,
+                                    '&:hover': theme.variants.solid.primary,
+                                  }),
+                                }),
+                              }),
+                            }}
+                          />
+                        </Sheet>
+                      ))}
+                    </Box>
+                  </RadioGroup>
+                </FormControl>
               );
             }
             return null;

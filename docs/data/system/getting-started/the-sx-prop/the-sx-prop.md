@@ -267,10 +267,11 @@ const style = {
 export default function App() {
   return <Button sx={style}>Example</Button>;
 }
-//    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
-//    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
-//      Property 'flexDirection' is incompatible with index signature.
-//        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
+
+// Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'
+// Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'
+//   Property 'flexDirection' is incompatible with index signature
+//     Type 'string' is not assignable to type 'SystemStyleObject<Theme>'
 ```
 
 The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide.

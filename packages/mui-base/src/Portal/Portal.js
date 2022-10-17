@@ -48,7 +48,11 @@ const Portal = React.forwardRef(function Portal(props, ref) {
     return children;
   }
 
-  return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
+  return (
+    <React.Fragment>
+      {mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode}
+    </React.Fragment>
+  );
 });
 
 Portal.propTypes /* remove-proptypes */ = {

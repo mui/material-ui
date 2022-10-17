@@ -46,7 +46,7 @@ const UList = styled('ul')({
 const PRODUCTS = [
   {
     name: 'MUI Core',
-    description: 'Ready-to-use foundational components, free forever.',
+    description: 'Ready-to-use foundational React components, free forever.',
     href: ROUTES.productCore,
   },
   {
@@ -64,17 +64,12 @@ const PRODUCTS = [
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
-  // @ts-ignore
-  ...(process.env.STAGING === true
-    ? [
-        {
-          name: 'MUI Toolpad',
-          description: 'Low-code tool builder, powered by MUI.',
-          href: ROUTES.productToolpad,
-          chip: 'Alpha',
-        },
-      ]
-    : []),
+  {
+    name: 'MUI Toolpad',
+    description: 'Low-code admin builder.',
+    href: ROUTES.productToolpad,
+    chip: 'Alpha',
+  },
 ];
 
 const DOCS = [
@@ -104,15 +99,15 @@ const DOCS = [
     href: ROUTES.advancedComponents,
   },
   // @ts-ignore
-  ...(process.env.STAGING === true
-    ? [
+  ...(process.env.DEPLOY_ENV === 'production'
+    ? []
+    : [
         {
           name: 'MUI Toolpad',
-          description: 'Low-code tool builder, powered by MUI.',
+          description: 'Low-code admin builder.',
           href: ROUTES.toolpadDocs,
         },
-      ]
-    : []),
+      ]),
 ];
 
 export default function HeaderNavDropdown() {

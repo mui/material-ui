@@ -4,7 +4,9 @@ import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-const Placeholder = () => <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
+function Placeholder() {
+  return <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
+}
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 
 export default function HeroEnd() {

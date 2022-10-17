@@ -31,7 +31,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Button = React.forwardRef(function Button<TValue>(
+const Button = React.forwardRef(function Button<TValue extends {}>(
   props: SelectUnstyledRootSlotProps<TValue>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
@@ -143,7 +143,7 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
+const CustomSelect = React.forwardRef(function CustomSelect<TValue extends {}>(
   props: SelectUnstyledProps<TValue>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
