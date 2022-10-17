@@ -69,7 +69,11 @@ import {
   IconButtonSlot,
 } from '../IconButton/IconButtonProps';
 import { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
-import { LinearProgressProps, LinearProgressOwnerState, LinearProgressSlot } from '../LinearProgress/LinearProgressProps';
+import {
+  LinearProgressProps,
+  LinearProgressOwnerState,
+  LinearProgressSlot,
+} from '../LinearProgress/LinearProgressProps';
 import { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
 import {

@@ -317,7 +317,7 @@ extendTheme({
       defaultProps: {
         variant: 'soft',
         color: 'primary',
-        size: 'md'
+        size: 'md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -481,7 +481,7 @@ extendTheme({
       defaultProps: {
         variant: 'soft',
         color: 'primary',
-        size: 'md'
+        size: 'md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
