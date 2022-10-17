@@ -159,6 +159,8 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
+    // Currently not in recommended ruleset but catches real bugs.
+    'react/no-unstable-nested-components': 'error',
   },
   overrides: [
     {
