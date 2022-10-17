@@ -39,17 +39,31 @@ export default function TooltipUsage() {
         {
           propName: 'open',
           knob: 'radio',
-          options: ['false', 'true'],
-          defaultValue: true,
+          options: ['false', 'undefined', 'true'],
+          labels: ['false', 'auto', 'true'],
+          defaultValue: undefined,
         },
       ]}
-      renderDemo={(props) => (
-        <Tooltip title="This is a tooltip" {...props}>
-          <IconButton size="lg" variant="soft" color="neutral">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+      renderDemo={({ open, ...props }) => {
+        return (
+          <div>
+            {open === undefined && (
+              <Tooltip title="This is a tooltip" {...props}>
+                <IconButton size="lg" variant="soft" color="neutral">
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+            {typeof open === 'boolean' && (
+              <Tooltip title="This is a tooltip" open={open} {...props}>
+                <IconButton size="lg" variant="soft" color="neutral">
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+          </div>
+        );
+      }}
     />
   );
 }

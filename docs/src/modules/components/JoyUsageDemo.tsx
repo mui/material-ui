@@ -1,25 +1,25 @@
-import * as React from 'react';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { ColorPaletteProp } from '@mui/joy/styles';
+import Check from '@mui/icons-material/Check';
+import CheckRounded from '@mui/icons-material/CheckRounded';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
-import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
-import RadioGroup from '@mui/joy/RadioGroup';
-import Radio, { radioClasses } from '@mui/joy/Radio';
-import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
-import Switch from '@mui/joy/Switch';
-import Select from '@mui/joy/Select';
-import Option, { optionClasses } from '@mui/joy/Option';
-import Sheet from '@mui/joy/Sheet';
-import Check from '@mui/icons-material/Check';
-import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
-import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-import CheckRounded from '@mui/icons-material/CheckRounded';
+import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
+import Option, { optionClasses } from '@mui/joy/Option';
+import Radio, { radioClasses } from '@mui/joy/Radio';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Select from '@mui/joy/Select';
+import Sheet from '@mui/joy/Sheet';
+import { ColorPaletteProp } from '@mui/joy/styles';
+import Switch from '@mui/joy/Switch';
+import TextField from '@mui/joy/TextField';
+import Typography from '@mui/joy/Typography';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import * as React from 'react';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -124,6 +124,10 @@ interface JoyUsageDemoProps<ComponentProps> {
      * The options for these knobs: `select` and `radio`
      */
     options?: Array<string>;
+    /**
+     * The labels for these knobs: `radio`
+     */
+    labels?: Array<string>;
     /**
      * The default value to be used by the components.
      * If exists, it will be injected to the `renderDemo` callback but it will not show
@@ -259,7 +263,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             },
           }}
         >
-          {data.map(({ propName, knob, options = [], defaultValue }) => {
+          {data.map(({ propName, knob, options = [], defaultValue, labels }) => {
             const resolvedValue = props[propName] ?? defaultValue;
             if (!knob) {
               return null;
@@ -314,11 +318,13 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     name={labelId}
                     value={resolvedValue}
                     onChange={(event) => {
-                      let value: string | boolean = event.target.value;
+                      let value: string | boolean | undefined = event.target.value;
                       if (value === 'true') {
                         value = true;
                       } else if (value === 'false') {
                         value = false;
+                      } else if (value === 'undefined') {
+                        value = undefined;
                       }
                       setProps((latestProps) => ({
                         ...latestProps,
@@ -327,7 +333,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     }}
                     sx={{ flexWrap: 'wrap', gap: 1 }}
                   >
-                    {options.map((value: string) => {
+                    {options.map((value: string, index: number) => {
                       const checked = String(resolvedValue) === value;
                       return (
                         <Chip
@@ -341,7 +347,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             size="sm"
                             variant={checked ? 'solid' : 'outlined'}
                             color={checked ? 'primary' : 'neutral'}
-                            label={<Typography>{value}</Typography>}
+                            label={<Typography>{labels?.[index] || value}</Typography>}
                             value={value}
                             disableIcon
                             overlay
