@@ -5,6 +5,8 @@ import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
+export type { SelectOption } from '@mui/base/SelectUnstyled';
+
 export type SelectSlot =
   | 'root'
   | 'button'

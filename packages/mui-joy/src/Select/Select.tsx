@@ -428,7 +428,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
+  const selectedOption = React.useMemo(() => {
     return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
@@ -553,7 +553,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         )}
 
         <SelectButton {...buttonProps}>
-          {selectedOptions ? renderValue(selectedOptions) : placeholder}
+          {selectedOption ? renderValue(selectedOption) : placeholder}
         </SelectButton>
         {endDecorator && (
           <SelectEndDecorator {...endDecoratorProps}>{endDecorator}</SelectEndDecorator>
@@ -571,7 +571,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         </PopperUnstyled>
       )}
 
-      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOptions)} />}
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
