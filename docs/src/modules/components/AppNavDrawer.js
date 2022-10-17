@@ -443,7 +443,17 @@ export default function AppNavDrawer(props) {
             />
           )}
           {canonicalAs.startsWith('/x/introduction/') && (
-            <ProductIdentifier name="Advanced components" metadata="MUI X" />
+            <ProductIdentifier
+              name="Advanced components"
+              metadata="MUI X"
+              versionSelector={renderVersionSelector([
+                { text: `v5`, current: true },
+                {
+                  text: `v6-alpha`,
+                  href: `https://next.mui.com/x/introduction/`,
+                },
+              ])}
+            />
           )}
           {(canonicalAs.startsWith('/x/react-data-grid/') ||
             canonicalAs.startsWith('/x/api/data-grid/')) && (
