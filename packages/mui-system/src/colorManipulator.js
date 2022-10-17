@@ -295,7 +295,7 @@ export function darken(color, coefficient) {
   if (color.charAt(0) === 'r') {
     color = decomposeColor(rgbToHsl(color));
   } else if (color.charAt(0) === '#'){
-    color = decomposeColor(decomposeColor(rgbToHsl(hexToRgb(color))))
+    color = decomposeColor(rgbToHsl(hexToRgb(color)))
   } else {
     color = decomposeColor(color);
   }
@@ -322,7 +322,7 @@ export function lighten(color, coefficient) {
   if (color.charAt(0) === 'r') {
     color = decomposeColor(rgbToHsl(color));
   } else if (color.charAt(0) === '#'){
-    color = decomposeColor(decomposeColor(rgbToHsl(hexToRgb(color))))
+    color = decomposeColor(rgbToHsl(hexToRgb(color)))
   } else {
     color = decomposeColor(color);
   }
