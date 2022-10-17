@@ -293,7 +293,6 @@ export function alpha(color, value) {
 export function darken(color, coefficient) {
   
   if (color.charAt(0) === 'r') {
-    //Standardize darken to HSL
     color = decomposeColor(rgbToHsl(color));
   } else if (color.charAt(0) === '#'){
     color = decomposeColor(decomposeColor(rgbToHsl(hexToRgb(color))))
@@ -321,7 +320,6 @@ export function darken(color, coefficient) {
  */
 export function lighten(color, coefficient) {
   if (color.charAt(0) === 'r') {
-    //Standardize darken to HSL
     color = decomposeColor(rgbToHsl(color));
   } else if (color.charAt(0) === '#'){
     color = decomposeColor(decomposeColor(rgbToHsl(hexToRgb(color))))
