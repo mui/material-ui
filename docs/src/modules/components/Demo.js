@@ -195,7 +195,18 @@ const DemoRootJoy = joyStyled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    marginTop: theme.spacing(0),
+    borderRadius: 10,
+    ...(bg === 'outlined' && {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
+    /* Make no difference between the demo and the markdown. */
+    ...(bg === 'inline' && {
+      padding: theme.spacing(0),
+    }),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(1),
+    }),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
