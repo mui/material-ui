@@ -175,7 +175,7 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      let nextPaletteMode = localStorage.getItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      let nextPaletteMode = localStorage.getItem('mui-mode') || preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
       if (nextPaletteMode === 'system') {
         nextPaletteMode = preferredMode;
       }
