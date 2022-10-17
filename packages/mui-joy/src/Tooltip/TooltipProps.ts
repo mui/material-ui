@@ -152,16 +152,6 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'top-start'
       | 'top';
     /**
-     * The component used for the root.
-     * @default Popper
-     */
-    RootComponent?: React.JSXElementConstructor<RootProps>;
-    /**
-     * Props applied to the Root component
-     * @default {}
-     */
-    RootProps?: Partial<RootProps>;
-    /**
      * The size of the component.
      * @default 'md'
      */
@@ -188,4 +178,6 @@ export type TooltipProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TooltipTypeMap<P, D>, D>;
 
-export interface TooltipOwnerState extends TooltipProps {}
+export interface TooltipOwnerState extends TooltipProps {
+  touch: boolean;
+}

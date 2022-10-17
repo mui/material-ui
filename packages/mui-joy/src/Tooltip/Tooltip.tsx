@@ -17,18 +17,25 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getTooltipUtilityClass } from './tooltipClasses';
-import { TooltipComponentsPropsOverrides, TooltipProps, TooltipTypeMap } from './TooltipProps';
+import {
+  TooltipComponentsPropsOverrides,
+  TooltipProps,
+  TooltipOwnerState,
+  TooltipTypeMap,
+} from './TooltipProps';
 
-const useUtilityClasses = (ownerState: TooltipProps) => {
-  const { arrow, variant, color, size } = ownerState;
+const useUtilityClasses = (ownerState: TooltipOwnerState) => {
+  const { arrow, variant, color, size, placement, touch } = ownerState;
 
   const slots = {
     root: [
       'root',
+      arrow && 'tooltipArrow',
+      touch && 'touch',
       size && `size${capitalize(size)}`,
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
-      arrow && 'hasArrow',
+      `tooltipPlacement${capitalize(placement!.split('-')[0])}`,
     ],
     arrow: ['arrow'],
   };
@@ -40,7 +47,7 @@ const TooltipRoot = styled('div', {
   name: 'JoyTooltip',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TooltipProps }>(({ ownerState, theme }) => {
+})<{ ownerState: TooltipOwnerState }>(({ ownerState, theme }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     ...(ownerState.size === 'sm' && {
@@ -121,7 +128,7 @@ const TooltipArrow = styled('span', {
   name: 'JoyTooltip',
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,
-})<{ ownerState: TooltipProps }>(({ theme, ownerState }) => {
+})<{ ownerState: TooltipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--unstable_Tooltip-arrow-rotation': 0,
@@ -225,8 +232,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    RootComponent: RootComponentProp,
-    RootProps = {},
     title,
     color = 'neutral',
     variant = 'solid',
@@ -535,7 +540,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }
 
   const popperOptions = React.useMemo(() => {
-    let tooltipModifiers = [
+    const tooltipModifiers = [
       {
         name: 'arrow',
         enabled: Boolean(arrowRef),
@@ -554,22 +559,16 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       },
     ];
 
-    if (RootProps.popperOptions?.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(RootProps.popperOptions.modifiers);
-    }
-
     return {
-      ...RootProps.popperOptions,
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef, RootProps]);
+  }, [arrowRef]);
 
   const ownerState = {
     ...props,
     arrow,
     disableInteractive,
     placement,
-    RootComponentProp,
     touch: ignoreNonTouchEvents.current,
     color,
     variant,
@@ -583,9 +582,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const rootProps = useSlotProps({
     elementType: RootComponent,
-    externalSlotProps: { ...RootProps, ...componentsProps.root },
+    externalSlotProps: componentsProps.root,
     ownerState,
-    className: clsx(classes.root, RootProps?.className, componentsProps.root?.className),
+    className: clsx(classes.root, componentsProps.root?.className),
   });
 
   const tooltipArrowProps = useSlotProps({
@@ -782,16 +781,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
     'top-start',
     'top',
   ]),
-  /**
-   * The component used for the root.
-   * @default Popper
-   */
-  RootComponent: PropTypes.elementType,
-  /**
-   * Props applied to the Root component
-   * @default {}
-   */
-  RootProps: PropTypes.object,
   /**
    * The size of the component.
    * @default 'md'

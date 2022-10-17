@@ -4,9 +4,11 @@ export interface TooltipClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if `arrow={true}`. */
-  hasArrow: string;
+  tooltipArrow: string;
   /** Styles applied to the arrow element. */
   arrow: string;
+  /** Styles applied to the root element if the tooltip is opened by touch. */
+  touch: string;
   /** Styles applied to the root element if `placement` contains "left". */
   placementLeft: string;
   /** Styles applied to the root element if `placement` contains "right". */
@@ -51,12 +53,13 @@ export function getTooltipUtilityClass(slot: string): string {
 
 const tooltipClasses: TooltipClasses = generateUtilityClasses('JoyTooltip', [
   'root',
-  'hasArrow',
+  'tooltipArrow',
+  'arrow',
+  'touch',
   'placementLeft',
   'placementRight',
   'placementTop',
   'placementBottom',
-  'arrow',
   'colorPrimary',
   'colorDanger',
   'colorInfo',
