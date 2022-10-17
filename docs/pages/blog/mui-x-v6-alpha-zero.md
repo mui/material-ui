@@ -6,10 +6,10 @@ authors: ['josefreitas']
 tags: ['MUI X', 'News']
 ---
 
-We’re kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0). Both the Data Grid and the Date and Time Pickers will get a new major version. We want to share our plans and invite you to join us on this next step.
+We're kicking off the development of [MUI X v6](https://github.com/mui/mui-x/releases/tag/v6.0.0-alpha.0). Both the Data Grid and the Date and Time Pickers will get a new major version. We want to share our plans and invite you to join us on this next step.
 
 :::warning
-It’s important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
+It's important to note that only MUI X is getting a new version—MUI Core (including Material UI) will remain in v5 for now.
 You can rest assured that all MUI X v6 components will be fully compatible with MUI Core v5.
 ::::
 
@@ -17,7 +17,7 @@ You can rest assured that all MUI X v6 components will be fully compatible with 
 
 Before officially releasing v6, we'll go through a few months with pre-releases. We'll follow the current weekly release process and [semver versioning](https://semver.org/); the difference now is that instead of v5, we'll ship v6 pre-release packages.
 
-First, in the alpha phase, we’ll introduce all the breaking changes planned for this major. We’ll be exploring a bit, so it’s expected that some APIs will be unstable—not in terms of functionality, but we may need to rename or adjust parameters. This phase is planned to take about two months.
+First, in the alpha phase, we'll introduce all the breaking changes planned for this major. We'll be exploring a bit, so it's expected that some APIs will be unstable—not in terms of functionality, but we may need to rename or adjust parameters. This phase is planned to take about two months.
 
 Next comes the beta phase, where the APIs will be more stable, and we'll focus on fixing bugs and polishing the hard edges. This phase is planned to take about one month.
 
@@ -28,9 +28,9 @@ We operate in a dynamic environment that's subject to change, and the actual tim
 We may need to do more iterations in the interest of delivering the best possible product.
 :::
 
-Finally, we’ll release the first `v6.0.0` stable, and we’ll continue improving the components and adding features, but without making any new breaking changes until the next major version.
+Finally, we'll release the first `v6.0.0` stable, and we'll continue improving the components and adding features, but without making any new breaking changes until the next major version.
 We hope to reach the stable release by the end of 2022.
-We’re establishing a one-year cycle for major versions, meaning the next major will arrive about one year after this release.
+We're establishing a one-year cycle for major versions, meaning the next major will arrive about one year after this release.
 
 ## What happens to v5?
 
@@ -47,7 +47,7 @@ The next version's documentation is in the `next` subdomain.
 - [https://next.mui.com/x/react-data-grid/](https://next.mui.com/x/react-data-grid/)
 - [https://next.mui.com/x/react-date-pickers/](https://next.mui.com/x/react-date-pickers/)
 
-## What’s coming next?
+## What's coming next?
 
 The following is a list of enhancements in the pipeline for v6. It contains the highlights that will be included in the first versions.
 
@@ -61,7 +61,7 @@ The following is a list of enhancements in the pipeline for v6. It contains the 
   - [Use the Data Grid internal components outside the grid](https://github.com/mui/mui-x/issues/2522).
 
 - **Improved look & feel**  
-   We’re polishing edges in terms of design and usability.
+   We're polishing edges in terms of design and usability.
 
   - [New column menu](https://github.com/mui/mui-x/issues/4929).
   - [New column visibility panel](https://github.com/mui/mui-x/issues/5700).
@@ -73,7 +73,7 @@ The following is a list of enhancements in the pipeline for v6. It contains the 
 ### Date and Time Pickers
 
 - **Improved UX**  
-   In the previous version we focused on developer experience and overall stability of the components. Now we’re tackling ways to improve usability.
+   In the previous version we focused on developer experience and overall stability of the components. Now we're tackling ways to improve usability.
 
   - [Remove the clock view on time pickers (for desktop)](https://github.com/mui/mui-x/issues/4483).
   - [Visually edit a range by dragging date markers](https://github.com/mui/mui-x/issues/5311).
@@ -92,7 +92,7 @@ You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the ful
 
 ## How to migrate?
 
-We’ve prepared a [migration guide](https://deploy-preview-6235--material-ui-x.netlify.app/x/react-data-grid/migration-v5/), and we’ll continuously update it as we make any breaking changes during the pre-releases. It lists every update you need to make to your code to use the most recent packages.
+We've prepared a [migration guide](https://deploy-preview-6235--material-ui-x.netlify.app/x/react-data-grid/migration-v5/), and we'll continuously update it as we make any breaking changes during the pre-releases. It lists every update you need to make to your code to use the most recent packages.
 
 We highly encourage you to try the new version. It is, after all, an improvement over the solid foundation we established with v5.
 

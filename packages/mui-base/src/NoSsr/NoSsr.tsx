@@ -1,17 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { NoSsrProps } from './NoSsr.types';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
  *
  * This component can be useful in a variety of situations:
- * - Escape hatch for broken dependencies not supporting SSR.
- * - Improve the time-to-first paint on the client by only rendering above the fold.
- * - Reduce the rendering time on the server.
- * - Under too heavy server load, you can turn on service degradation.
+ *
+ * *   Escape hatch for broken dependencies not supporting SSR.
+ * *   Improve the time-to-first paint on the client by only rendering above the fold.
+ * *   Reduce the rendering time on the server.
+ * *   Under too heavy server load, you can turn on service degradation.
+ *
+ * Demos:
+ *
+ * - [No SSR](https://mui.com/base/react-no-ssr/)
+ *
+ * API:
+ *
+ * - [NoSsr API](https://mui.com/base/api/no-ssr/)
  */
-function NoSsr(props) {
+function NoSsr(props: NoSsrProps) {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
 
@@ -34,7 +44,7 @@ function NoSsr(props) {
 NoSsr.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * You can wrap a node.
@@ -51,11 +61,11 @@ NoSsr.propTypes /* remove-proptypes */ = {
    * @default null
    */
   fallback: PropTypes.node,
-};
+} as any;
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  NoSsr['propTypes' + ''] = exactProp(NoSsr.propTypes);
+  (NoSsr as any)['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }
 
 export default NoSsr;
