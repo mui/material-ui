@@ -27,7 +27,6 @@ Try changing the `variant` on the Button to `outlined` to see how the style chan
 ## Globals
 
 Since Material UI components are built to function in isolation, they don't require any kind of globally scoped styles.
-
 For a better user experience and developer experience, we recommend adding the following globals to your app.
 
 ### Responsive meta tag
@@ -44,3 +43,8 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 
 Material UI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing resets that are better tailored to fit Material UI than alternative global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
+
+### Default font
+
+Material UI uses the Roboto font by default.
+See [Installation—Roboto font](/material-ui/getting-started/installation/#roboto-font) for complete details.
