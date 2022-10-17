@@ -108,9 +108,6 @@ export function decomposeColor(color) {
     return decomposeColor(hexToRgb(color));
   }
   
-   if (color.charAt(0) === 'r') {
-    return decomposeColor(rgbToHsl(color));
-  }
 
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
@@ -294,7 +291,16 @@ export function alpha(color, value) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color, coefficient) {
-  color = decomposeColor(color);
+  
+  if (color.charAt(0) === 'r') {
+    //Standardize darken to HSL
+    color = decomposeColor(rgbToHsl(color));
+  } else if (color.charAt(0) === '#'){
+    color = decomposeColor(decomposeColor(rgbToHsl(hexToRgb(color))))
+  } else {
+    color = decomposeColor(color);
+  }
+   
   coefficient = clamp(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
@@ -314,15 +320,18 @@ export function darken(color, coefficient) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color, coefficient) {
-  color = decomposeColor(color);
+  if (color.charAt(0) === 'r') {
+    //Standardize darken to HSL
+    color = decomposeColor(rgbToHsl(color));
+  } else if (color.charAt(0) === '#'){
+    color = decomposeColor(decomposeColor(rgbToHsl(hexToRgb(color))))
+  } else {
+    color = decomposeColor(color);
+  }
   coefficient = clamp(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') !== -1) {
-    for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (255 - color.values[i]) * coefficient;
-    }
   } else if (color.type.indexOf('color') !== -1) {
     for (let i = 0; i < 3; i += 1) {
       color.values[i] += (1 - color.values[i]) * coefficient;
