@@ -9,16 +9,16 @@ export default function LinearProgressVariables() {
       componentName="LinearProgress"
       data={[
         {
-          var: '--LinearProgress-size',
-          defaultValue: '40px',
+          var: '--LinearProgress-height',
+          defaultValue: '7.5px',
         },
         {
           var: '--LinearProgress-track-thickness',
-          defaultValue: '6px',
+          defaultValue: '7.5px',
         },
         {
           var: '--LinearProgress-progress-thickness',
-          defaultValue: '6px',
+          defaultValue: '7.5px',
         },
       ]}
       renderDemo={(sx) => (
