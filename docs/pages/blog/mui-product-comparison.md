@@ -29,6 +29,7 @@ The Core is MUI's foundational product line.
 It grew out of Material UI, and that library's legacy lives on in the name of the repo on GitHub: [`mui/material-ui`](https://github.com/mui/material-ui).
 
 But this repo contains much more than just Material UI these days.
+We have disassembled Material UI to expose its best parts as isolated open-source projects.
 More recent additions include Joy UI and MUI Base, as well as our in-house styling solution, MUI System.
 
 MUI Core is open source, and we invite you to contribute wherever you see fit!
@@ -72,7 +73,7 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 #### Ideal use cases
 
 - Projects that don't involve Material Design
-- Designs that would benefit from less opinionated defaults when customizing
+- Design systems that would benefit from less opinionated defaults when customizing
 - Client-facing apps that need to look and feel distinctly like _your_ brand
 
 ### MUI Base
@@ -128,13 +129,13 @@ MUI X is a collection of advanced UI components, including the Data Grid and the
 These components are significantly more complex than those found in the MUI Core libraries.
 They feature advanced functionality for data-rich applications and a wide range of other use cases.
 
-MUI X is open core—base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
+MUI X is open-core. Base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
 See [Licensing](/x/introduction/licensing/) for details.
 
 ### Data Grid
 
-The MUI X Data Grid is a fast and extensible React data table that's built to handle massive sets of data for management and analysis.
-It features an intuitive API for real-time updates and accessibility, as well as theming and custom templates.
+The MUI X Data Grid is a fast and extensible React data table with advanced features for power users and complex use cases in data management and analysis.
+It features intuitive UI and API to display different views of a dataset, with support for real-time updates, accessibility, theming, and custom templates.
 
 #### Key features
 
@@ -146,7 +147,7 @@ It features an intuitive API for real-time updates and accessibility, as well as
 
 ### Date and Time Pickers
 
-The MUI X Date and Time Pickers are a collection of React UI components that let users select dates and times from dialogs and text field dropdowns.
+The MUI X Date and Time Pickers are a collection of React UI components that let users select dates and times from dialogs and text fields.
 Components include the Date Picker, Time Picker, Date Range Picker, and Date Time Picker, with more on the way.
 
 #### Key features
