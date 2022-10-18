@@ -17,7 +17,13 @@ export default function LinearProgressDeterminate() {
 
   return (
     <Box
-      sx={{ display: 'flex', gap: 2, alignItems: 'center', flexDirection: 'column' }}
+      sx={{
+        width: '100%',
+        display: 'flex',
+        gap: 2,
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
     >
       <LinearProgress determinate value={25} />
       <LinearProgress determinate value={50} />

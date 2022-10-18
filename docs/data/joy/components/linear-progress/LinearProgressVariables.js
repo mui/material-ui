@@ -1,6 +1,7 @@
 import * as React from 'react';
 import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import LinearProgress from '@mui/joy/LinearProgress';
+import Box from '@mui/joy/Box';
 
 export default function LinearProgressVariables() {
   return (
@@ -20,7 +21,11 @@ export default function LinearProgressVariables() {
           defaultValue: '6px',
         },
       ]}
-      renderDemo={(sx) => <LinearProgress sx={sx} />}
+      renderDemo={(sx) => (
+        <Box sx={{ width: 300 }}>
+          <LinearProgress sx={sx} />
+        </Box>
+      )}
     />
   );
 }
