@@ -344,7 +344,7 @@ export const ButtonRoot = styled('button', {
       border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
     }),
     '&:hover': {
-      '--md-comp-button-icon-color': '--md-comp-button-hovered-icon-color',
+      '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
       color: `var(--md-comp-button-hovered-label-text-color, ${
         labelTextColor[ownerState.variant]
       })`,
@@ -356,7 +356,7 @@ export const ButtonRoot = styled('button', {
       })`,
     },
     '&:active': {
-      '--md-comp-button-icon-color': '--md-comp-button-pressed-icon-color',
+      '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       color: `var(--md-comp-button-pressed-label-text-color, ${
         labelTextColor[ownerState.variant]
       })`,
@@ -365,7 +365,7 @@ export const ButtonRoot = styled('button', {
       })`,
     },
     [`&.${buttonClasses.focusVisible}`]: {
-      '--md-comp-button-icon-color': '--md-comp-button-focused-icon-color',
+      '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
       color: `var(--md-comp-button-focused-label-text-color, ${
         labelTextColor[ownerState.variant]
       })`,
@@ -375,7 +375,7 @@ export const ButtonRoot = styled('button', {
     },
     [`&.${buttonClasses.disabled}`]: {
       // Allows deverloper to specify the disabled icon color var
-      '--md-comp-button-icon-color': '--md-comp-button-disabled-icon-color',
+      '--md-comp-button-icon-color': 'var(--md-comp-button-disabled-icon-color)',
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
       color: `var(--md-comp-button-disabled-label-text-color, ${disabledLabelTextColor})`,
