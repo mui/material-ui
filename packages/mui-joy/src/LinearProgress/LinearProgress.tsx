@@ -92,22 +92,23 @@ const LinearProgressRoot = styled('span', {
       '--LinearProgress-height': '5px',
     }),
     ...(ownerState.size === 'md' && {
-      '--LinearProgress-track-thickness': '6.5px',
-      '--LinearProgress-progress-thickness': '6.5px',
-      '--_root-height': 'var(--LinearProgress-height, 6.5px)',
+      '--LinearProgress-track-thickness': '7.5px',
+      '--LinearProgress-progress-thickness': '7.5px',
+      '--_root-height': 'var(--LinearProgress-height, 7.5px)',
     }),
     ...(ownerState.instanceSize === 'md' && {
-      '--LinearProgress-height': '6.5px',
+      '--LinearProgress-height': '7.5px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--LinearProgress-track-thickness': '8px',
-      '--LinearProgress-progress-thickness': '8px',
-      '--_root-height': 'var(--LinearProgress-height, 8px)',
+      '--LinearProgress-track-thickness': '10px',
+      '--LinearProgress-progress-thickness': '10px',
+      '--_root-height': 'var(--LinearProgress-height, 10px)',
     }),
     ...(ownerState.instanceSize === 'lg' && {
-      '--LinearProgress-height': '8px',
+      '--LinearProgress-height': '10px',
     }),
     ...(ownerState.thickness && {
+      '--LinearProgress-height': `${ownerState.thickness}px`,
       '--LinearProgress-track-thickness': `${ownerState.thickness}px`,
       '--LinearProgress-progress-thickness': `${ownerState.thickness}px`,
     }),
@@ -139,6 +140,7 @@ const LinearProgressTrack = styled('span', {
   transformOrigin: 'left',
   backgroundColor: 'var(--LinearProgress-track-color)',
   borderRadius: 'inherit',
+  height: 'var(--LinearProgress-track-thickness)',
 });
 
 const LinearProgressProgress1 = styled('span', {
@@ -156,6 +158,7 @@ const LinearProgressProgress1 = styled('span', {
     transformOrigin: 'left',
     backgroundColor: 'var(--LinearProgress-progress-color)',
     borderRadius: 'inherit',
+    height: 'var(--LinearProgress-progress-thickness)',
   },
   ({ ownerState }) =>
     ownerState.determinate
@@ -183,6 +186,7 @@ const LinearProgressProgress2 = styled('span', {
     transformOrigin: 'left',
     backgroundColor: 'var(--LinearProgress-progress-color)',
     borderRadius: 'inherit',
+    height: 'var(--LinearProgress-progress-thickness)',
   },
   css`
     width: auto;
