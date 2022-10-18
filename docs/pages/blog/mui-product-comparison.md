@@ -29,10 +29,10 @@ The Core is MUI's foundational product line.
 It grew out of Material UI, and that library's legacy lives on in the name of the repo on GitHub: [`mui/material-ui`](https://github.com/mui/material-ui).
 
 But this repo contains much more than just Material UI these days.
-We have disassembled Material UI to expose its best parts as isolated open-source projects.
+We've carefully deconstructed this library to expose its best parts as isolated open-source projects.
 More recent additions include Joy UI and MUI Base, as well as our in-house styling solution, MUI System.
 
-MUI Core is open source, and we invite you to contribute wherever you see fit!
+MUI Core is open-source, and we invite you to contribute wherever you see fit!
 
 ### Material UI
 
@@ -78,7 +78,7 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 
 ### MUI Base
 
-MUI Base is a library of headless ("unstyled") React UI components and hooks.
+MUI Base is an open-source library of headless ("unstyled") React UI components and hooks.
 These components were extracted from Material UI, and are now available as a standalone package.
 They feature the same robust engineering but without any default styling solution or theme.
 
@@ -135,9 +135,13 @@ See [Licensing](/x/introduction/licensing/) for details.
 ### Data Grid
 
 The MUI X Data Grid is a fast and extensible React data table with advanced features for power users and complex use cases in data management and analysis.
-It features intuitive UI and API to display different views of a dataset, with support for real-time updates, accessibility, theming, and custom templates.
+It features an intuitive UI and corresponding API to display different views of a data set, with support for real-time updates, accessibility, theming, and custom templates.
 
 #### Key features
+
+- **Sophisticated data analysis:**
+- **Intuitive customization:**
+- **Accessibility:**
 
 #### Ideal use cases
 
@@ -152,7 +156,11 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 #### Key features
 
+**Third-party date library support:** Choose your favorite date library
+
 #### Ideal use cases
+
+- forms requiring date and time input from the user
 
 ## MUI Toolpad
 
@@ -162,4 +170,11 @@ Drag and drop pre-built UI components, connect your data sources, and your app i
 
 ### Key features
 
+**Build faster than ever:**
+**Use the components you already know:**
+**Extensible with code:**
+
 ### Ideal use cases
+
+- admin tools
+- rapid prototyping
