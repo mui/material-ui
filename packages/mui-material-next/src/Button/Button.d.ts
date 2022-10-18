@@ -61,7 +61,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * If `true`, allows a disabled button to receive focus.
      * @default false
      */
-    focusableWhenDisabled?: boolean;    
+    focusableWhenDisabled?: boolean;
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.

@@ -49,6 +49,7 @@ const ModeSwitcher = ({ setMode: setModeProp }) => {
 
 const variants = ['elevated', 'filled', 'filledTonal', 'outlined', 'text'];
 const colors = ['primary', 'secondary', 'tertiary'];
+const sizes = ['small', 'medium', 'large'];
 
 const DemoComponents = () => {
   return (
@@ -111,6 +112,21 @@ const DemoComponents = () => {
         <Button variant="outlined" disabled startIcon={<DeleteIcon />}>
           Delete
         </Button>
+      </Stack>
+      <h4>Sizes</h4>
+      <Stack direction="row" gap={1} alignItems="end">
+        {sizes.map((size) => (
+          <Button key={size} variant="filled" size={size} endIcon={<SendIcon />}>
+            {capitalize(size)}
+          </Button>
+        ))}
+      </Stack>
+      <Stack direction="row" gap={1} alignItems="end">
+        {sizes.map((size) => (
+          <Button key={size} variant="outlined" size={size} startIcon={<DeleteIcon />}>
+            {capitalize(size)}
+          </Button>
+        ))}
       </Stack>
     </Stack>
   );

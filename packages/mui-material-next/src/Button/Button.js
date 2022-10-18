@@ -329,10 +329,9 @@ export const ButtonRoot = styled('button', {
       (theme.vars || theme).typescale.label.large.weight
     })`,
     fontSize: `var(--md-comp-button-label-text-size, ${
-      (theme.vars || theme).typescale.label.large.size
-    }${theme.vars ? '' : 'px'})`,
+      theme.typography.pxToRem(theme.typescale.label.large.size) // the pxToRem should be moved to typescale in the future
+    })`,
     lineHeight: 'var(--md-comp-button-label-text-line-height)',
-    letterSpacing: letterSpacing,
     borderRadius: (theme.vars || theme).shape.borderRadius,
     background: `var(--md-comp-button-container-color, ${containerColor[ownerState.variant]})`,
     color: `var(--md-comp-button-label-text-color, ${labelTextColor[ownerState.variant]})`,
@@ -342,6 +341,26 @@ export const ButtonRoot = styled('button', {
     // Outlined varaiant
     ...(ownerState.variant === 'outlined' && {
       border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
+      padding: '9px 23px',
+    }),
+    // Sizes are not specified in Material You, this need to be revised
+    ...(ownerState.size === 'small' && {
+      fontSize: `var(--md-comp-button-label-text-size, ${
+        theme.typography.pxToRem(theme.typescale.label.large.size - 1) // the pxToRem should be moved to typescale in the future
+      })`,
+      padding: '8px 20px',
+      ...(ownerState.variant === 'outlined' && {
+        padding: '7px 19px',
+      }),
+    }),
+    ...(ownerState.size === 'large' && {
+      fontSize: `var(--md-comp-button-label-text-size, ${
+        theme.typography.pxToRem(theme.typescale.label.large.size + 1) // the pxToRem should be moved to typescale in the future
+      })`,
+      padding: '12px 26px',
+      ...(ownerState.variant === 'outlined' && {
+        padding: '11px 25px',
+      }),
     }),
     '&:hover': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
