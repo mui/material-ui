@@ -26,12 +26,6 @@ describe('<CircularProgress />', () => {
 
       expect(getByRole('progressbar')).to.have.class(classes.determinate);
     });
-
-    it('should render an indeterminate circular progress', () => {
-      const { getByRole } = render(<CircularProgress determinate={false} />);
-
-      expect(getByRole('progressbar')).to.have.class(classes.indeterminate);
-    });
   });
 
   describe('prop: variant', () => {
