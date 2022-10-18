@@ -17,7 +17,7 @@ import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
  *
  * Demos:
  *
- * - [Unstyled input](https://mui.com/base/react-input/)
+ * - [Unstyled Input](https://mui.com/base/react-input/)
  *
  * API:
  *

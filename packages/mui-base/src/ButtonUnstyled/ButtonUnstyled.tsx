@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Unstyled button](https://mui.com/base/react-button/)
+ * - [Unstyled Button](https://mui.com/base/react-button/)
  *
  * API:
  *

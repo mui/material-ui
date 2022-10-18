@@ -172,6 +172,7 @@ export default function XHero() {
                 hideFooter
                 loading={loading}
                 density="compact"
+                experimentalFeatures={{ newEditingApi: true }}
               />
             </Box>
           </Paper>

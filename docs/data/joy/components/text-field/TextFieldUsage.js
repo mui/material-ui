@@ -15,6 +15,11 @@ export default function TextFieldUsage() {
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
+          propName: 'color',
+          knob: 'color',
+          defaultValue: 'neutral',
+        },
+        {
           propName: 'size',
           knob: 'radio',
           options: ['sm', 'md', 'lg'],

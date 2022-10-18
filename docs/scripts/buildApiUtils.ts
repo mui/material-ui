@@ -98,6 +98,7 @@ const migratedBaseComponents = [
   'BadgeUnstyled',
   'ButtonUnstyled',
   'ClickAwayListener',
+  'FocusTrap',
   'InputUnstyled',
   'MenuItemUnstyled',
   'MenuUnstyled',
@@ -116,7 +117,6 @@ const migratedBaseComponents = [
   'TabsListUnstyled',
   'TabsUnstyled',
   'TabUnstyled',
-  'TrapFocus',
 ];
 
 function findMaterialUIDemos(

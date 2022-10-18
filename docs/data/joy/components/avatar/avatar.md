@@ -34,6 +34,20 @@ The avatar components comes with three sizes out of the box: `sm`, `md` (the def
 
 {{"demo": "AvatarSizes.js"}}
 
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
+### Variants
+
+The avatar component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
+
+{{"demo": "AvatarVariants.js"}}
+
+:::success
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
+
 ### Initials
 
 Use a string as children to display its initials on the avatar component.

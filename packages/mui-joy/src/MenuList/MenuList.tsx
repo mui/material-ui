@@ -32,6 +32,7 @@ const MenuListRoot = styled(ListRoot, {
 })<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
@@ -90,7 +91,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     variant,
     color,
     size,
-    instanceSize: size,
     nesting: false,
     row: false,
   };

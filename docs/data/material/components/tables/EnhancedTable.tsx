@@ -200,7 +200,7 @@ interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const { numSelected } = props;
 
   return (
@@ -248,7 +248,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       )}
     </Toolbar>
   );
-};
+}
 
 export default function EnhancedTable() {
   const [order, setOrder] = React.useState<Order>('asc');

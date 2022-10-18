@@ -167,7 +167,7 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-const EnhancedTableToolbar = (props) => {
+function EnhancedTableToolbar(props) {
   const { numSelected } = props;
 
   return (
@@ -216,7 +216,7 @@ const EnhancedTableToolbar = (props) => {
       )}
     </Toolbar>
   );
-};
+}
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,

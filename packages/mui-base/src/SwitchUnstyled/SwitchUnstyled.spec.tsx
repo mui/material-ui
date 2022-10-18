@@ -41,7 +41,7 @@ const Track = React.forwardRef(function Track(
 
 const styledSwitch = <SwitchUnstyled components={{ Root, Thumb, Track, Input }} />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

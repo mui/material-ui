@@ -61,7 +61,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
  *
  * Demos:
  *
- * - [Unstyled select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
@@ -119,7 +119,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     setButtonDefined(element != null);
   }, []);
 
-  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
+  const handleButtonRef = useForkRef(forwardedRef, buttonRef, handleButtonRefChange);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -278,7 +278,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the select is disabled.
    * @default false
@@ -330,7 +330,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  value: PropTypes.any,
 } as any;
 
 export default SelectUnstyled;

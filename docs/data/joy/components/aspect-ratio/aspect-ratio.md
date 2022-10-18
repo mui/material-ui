@@ -36,6 +36,16 @@ Make sure that the content you want to fit the aspect ratio is its first direct 
 
 {{"demo": "BasicRatio.js"}}
 
+### Variants
+
+The aspect ratio component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
+
+{{"demo": "VariantsRatio.js"}}
+
+:::success
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
+
 ### Ratio
 
 Use the `ratio` prop to change the aspect ratio.

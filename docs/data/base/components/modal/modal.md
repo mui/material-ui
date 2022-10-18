@@ -6,7 +6,7 @@ githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 ---
 
-# Unstyled modal
+# Unstyled Modal
 
 <p class="description">The ModalUnstyled component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 

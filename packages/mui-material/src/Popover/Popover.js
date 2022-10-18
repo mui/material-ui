@@ -278,6 +278,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold],
   );
 
+  const [isPositioned, setIsPositioned] = React.useState(open);
+
   const setPositioningStyles = React.useCallback(() => {
     const element = paperRef.current;
 
@@ -294,6 +296,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       element.style.left = positioning.left;
     }
     element.style.transformOrigin = positioning.transformOrigin;
+    setIsPositioned(true);
   }, [getPositioningStyle]);
 
   const handleEntering = (element, isAppearing) => {
@@ -302,6 +305,10 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     }
 
     setPositioningStyles();
+  };
+
+  const handleExited = () => {
+    setIsPositioned(false);
   };
 
   React.useEffect(() => {
@@ -366,6 +373,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         appear
         in={open}
         onEntering={handleEntering}
+        onExited={handleExited}
         timeout={transitionDuration}
         {...TransitionProps}
       >
@@ -374,6 +382,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           {...PaperProps}
           ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
+          {...(isPositioned ? undefined : { style: { ...PaperProps.style, opacity: 0 } })}
+          ownerState={ownerState}
         >
           {children}
         </PopoverPaper>

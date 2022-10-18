@@ -12,6 +12,7 @@ import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
 import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
   const { row, size, variant, color } = ownerState;
@@ -99,6 +100,20 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   const name = useId(nameProp);
 
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
   return (
     <RadioGroupContext.Provider
       value={{
@@ -117,18 +132,26 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
+        // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labellable element
+        // MDN: "If it is not a labelable element, then the for attribute has no effect"
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
+        id={formControl?.htmlFor}
+        aria-labelledby={formControl?.labelId}
+        aria-describedby={formControl?.['aria-describedby']}
         {...other}
       >
-        {React.Children.map(children, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let Radio knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-                ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
-                'data-parent': 'RadioGroup',
-              })
-            : child,
-        )}
+        <FormControlContext.Provider value={undefined}>
+          {React.Children.map(children, (child, index) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let Radio knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
+                  'data-parent': 'RadioGroup',
+                } as Record<string, string>)
+              : child,
+          )}
+        </FormControlContext.Provider>
       </RadioGroupRoot>
     </RadioGroupContext.Provider>
   );

@@ -6,7 +6,7 @@ githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Unstyled menu
+# Unstyled Menu
 
 <p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
@@ -108,7 +108,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 `MenuItemUnstyled` can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
-- `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation.
+- `Mui-focusVisible` - set when the MenuItem is highlighted via keyboard navigation.
   This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
 
 ## Hooks

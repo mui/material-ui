@@ -5,6 +5,8 @@ import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
+export type { SelectOption } from '@mui/base/SelectUnstyled';
+
 export type SelectSlot =
   | 'root'
   | 'button'
@@ -102,9 +104,20 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   defaultValue?: TValue | null;
 
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectOption<TValue> | null,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * Callback fired when an option is selected.
    */
-  onChange?: (value: TValue | null) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
   /**
    * Function that customizes the rendering of the selected value.
    */
@@ -116,7 +129,7 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
   /**
    * If `true`, the select button is active.
    */
@@ -128,7 +141,7 @@ export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
   /**
    * If `true`, the select button's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the select dropdown is open.
    */
