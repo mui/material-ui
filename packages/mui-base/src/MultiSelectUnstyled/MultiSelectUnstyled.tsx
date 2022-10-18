@@ -95,11 +95,12 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     onChange,
     onListboxOpenChange,
     optionStringifier = defaultOptionStringifier,
+    renderValue: renderValueProp,
     value: valueProp,
     ...other
   } = props;
 
-  const renderValue = props.renderValue ?? defaultRenderMultipleValues;
+  const renderValue = renderValueProp ?? defaultRenderMultipleValues;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -126,7 +127,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     setButtonDefined(element != null);
   }, []);
 
-  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
+  const handleButtonRef = useForkRef(forwardedRef, buttonRef, handleButtonRefChange);
 
   React.useEffect(() => {
     if (autoFocus) {

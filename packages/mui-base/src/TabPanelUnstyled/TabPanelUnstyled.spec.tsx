@@ -9,7 +9,7 @@ function Root(props: TabPanelUnstyledRootSlotProps) {
 
 const styledTabPanel = <TabPanelUnstyled components={{ Root }} value={0} />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

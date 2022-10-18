@@ -135,6 +135,7 @@ export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
 
 export interface Palette {
+  mode: 'light' | 'dark';
   primary: PalettePrimary;
   neutral: PaletteNeutral;
   danger: PaletteDanger;

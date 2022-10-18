@@ -12,15 +12,22 @@ import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
-  return () => (
-    <Box
-      sx={{
-        borderRadius: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-        ...sx,
-      }}
-    />
-  );
+  return function Loading() {
+    return (
+      <Box
+        sx={[
+          (theme) => ({
+            borderRadius: 1,
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+            }),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
+    );
+  };
 }
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
@@ -32,7 +39,7 @@ const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
-const ProductSuite = () => {
+function ProductSuite() {
   const [productIndex, setProductIndex] = React.useState(0);
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -42,11 +49,14 @@ const ProductSuite = () => {
   return (
     <Box
       ref={ref}
-      sx={{
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+      sx={(theme) => ({
+        bgcolor: 'grey.50',
         py: { xs: 4, sm: 6, md: 8 },
         overflow: 'hidden',
-      }}
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+        }),
+      })}
     >
       <Container>
         <Grid container spacing={2}>
@@ -90,6 +100,6 @@ const ProductSuite = () => {
       </Container>
     </Box>
   );
-};
+}
 
 export default ProductSuite;

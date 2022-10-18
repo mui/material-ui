@@ -180,7 +180,7 @@ Or use `var()` to refer to the CSS variable directly:
 ```
 
 :::info
-💡 If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the default `--mui`.
+💡 If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
 :::
 
 ### TypeScript
