@@ -5,7 +5,7 @@
 
 <h1 align="center">MUI Core</h1>
 
-**MUI Core** contains foundational React UI component libraries for shipping new features faster.
+**MUI Core** contains foundational React UI's component libraries for shipping new features faster.
 
 - [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
 
