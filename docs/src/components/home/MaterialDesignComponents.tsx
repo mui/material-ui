@@ -204,6 +204,8 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 
 export function buildTheme(theme: Theme): ThemeOptions {
   return {
+    // @ts-ignore force `vars` to be null, so that the demo components does not use the upper theme.
+    vars: null,
     palette: {
       ...theme.palette,
       primary: {
@@ -244,6 +246,15 @@ export function buildTheme(theme: Theme): ThemeOptions {
           disableElevation: true,
         },
         styleOverrides: {
+          text:
+            theme.palette.mode === 'dark'
+              ? {
+                  color: 'rgba(255 255 255 / 0.72)',
+                  '&:hover': {
+                    color: '#fff',
+                  },
+                }
+              : {},
           root: {
             borderRadius: '99px',
             fontWeight: 500,
@@ -471,9 +482,15 @@ export default function MaterialDesignComponents() {
   const [customized, setCustomized] = React.useState(false);
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
-  const [theme, setTheme] = React.useState(createTheme({ palette: { mode } }));
+  const [theme, setTheme] = React.useState(
+    createTheme({ palette: { mode }, vars: null } as ThemeOptions),
+  );
   React.useEffect(() => {
-    setTheme(createTheme(customized ? buildTheme(globalTheme) : { palette: { mode } }));
+    setTheme(
+      createTheme(
+        customized ? buildTheme(globalTheme) : ({ palette: { mode }, vars: null } as ThemeOptions),
+      ),
+    );
   }, [mode, customized, globalTheme]);
   return (
     <div>
@@ -541,7 +558,7 @@ export default function MaterialDesignComponents() {
                 open={Boolean(anchor)}
                 anchorEl={anchor}
                 onClose={() => setAnchor(null)}
-                PaperProps={{ variant: 'outlined' }}
+                PaperProps={{ variant: 'outlined', elevation: 0 }}
               >
                 <MenuItem>
                   <ListItemIcon>
