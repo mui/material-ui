@@ -129,6 +129,7 @@ import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabList
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
 import { TextFieldProps, TextFieldOwnerState, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
 import {
   TypographyProps,
   TypographyOwnerState,
@@ -352,6 +353,10 @@ export interface Components<Theme = unknown> {
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldOwnerState, Theme>;
+  };
+  JoyTooltip?: {
+    defaultProps?: Partial<TooltipProps>;
+    styleOverrides?: OverridesStyleRules<TooltipSlot, TooltipOwnerState, Theme>;
   };
   JoyTypography?: {
     defaultProps?: Partial<TypographyProps>;

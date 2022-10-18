@@ -187,6 +187,7 @@ export default function XDataGrid() {
               checkboxSelection
               disableSelectionOnClick
               pagination
+              experimentalFeatures={{ newEditingApi: true }}
             />
           </Paper>
           <Frame.Info

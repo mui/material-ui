@@ -29,7 +29,7 @@ const List = React.forwardRef(function List(
 
 const option = <OptionGroupUnstyled components={{ Root, Label, List }} />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (
