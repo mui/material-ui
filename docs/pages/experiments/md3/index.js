@@ -10,6 +10,8 @@ import {
   Stack,
 } from '@mui/material';
 import { unstable_capitalize as capitalize } from 'packages/mui-utils';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material-next';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
@@ -88,6 +90,27 @@ const DemoComponents = () => {
             {capitalize(color)}
           </Button>
         ))}
+      </Stack>
+      <h4>Extended buttons</h4>
+      <Stack direction="row" gap={1}>
+        {colors.map((color) => (
+          <Button key={color} variant="filled" color={color} endIcon={<SendIcon />}>
+            Send
+          </Button>
+        ))}
+        <Button variant="filled" disabled endIcon={<SendIcon />}>
+          Send
+        </Button>
+      </Stack>
+      <Stack direction="row" gap={1}>
+        {colors.map((color) => (
+          <Button key={color} variant="outlined" color={color} startIcon={<DeleteIcon />}>
+            Delete
+          </Button>
+        ))}
+        <Button variant="outlined" disabled startIcon={<DeleteIcon />}>
+          Delete
+        </Button>
       </Stack>
     </Stack>
   );
