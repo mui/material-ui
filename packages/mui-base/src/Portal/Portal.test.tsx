@@ -80,8 +80,8 @@ describe('<Portal />', () => {
       </div>,
     );
     const rootElement = document.querySelector('#test1');
-    expect(rootElement.contains(document.querySelector('.woofPortal1'))).to.equal(true);
-    expect(rootElement.contains(document.querySelector('.woofPortal2'))).to.equal(false);
+    expect((rootElement as any).contains(document.querySelector('.woofPortal1'))).to.equal(true);
+    expect((rootElement as any).contains(document.querySelector('.woofPortal2'))).to.equal(false);
   });
 
   it('should unmount when parent unmounts', () => {
@@ -89,15 +89,15 @@ describe('<Portal />', () => {
       const containerRef = React.useRef();
       return (
         <div>
-          <div ref={containerRef} />
-          <Portal container={() => containerRef.current}>
+          <div ref={containerRef as any} />
+          <Portal container={() => containerRef.current as any}>
             <div id="test1" />
           </Portal>
         </div>
       );
     }
 
-    function Parent(props) {
+    function Parent(props: { show?: true | undefined; }) {
       const { show = true } = props;
       return <div>{show ? <Child /> : null}</div>;
     }
@@ -129,7 +129,7 @@ describe('<Portal />', () => {
   });
 
   it('should change container on prop change', () => {
-    function ContainerTest(props) {
+    function ContainerTest(props: { containerElement?: false | undefined; disablePortal?: true | undefined; }) {
       const { containerElement = false, disablePortal = true } = props;
       const containerRef = React.useRef();
       const container = React.useCallback(
@@ -139,8 +139,8 @@ describe('<Portal />', () => {
 
       return (
         <span>
-          <strong ref={containerRef} />
-          <Portal disablePortal={disablePortal} container={container}>
+          <strong ref={containerRef as any} />
+          <Portal disablePortal={disablePortal} container={container as any}>
             <div id="test3" />
           </Portal>
         </span>
@@ -148,27 +148,27 @@ describe('<Portal />', () => {
     }
 
     const { setProps } = render(<ContainerTest />);
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
       disablePortal: true,
     });
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
       disablePortal: false,
     });
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('STRONG');
+    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('STRONG');
     setProps({
       containerElement: false,
       disablePortal: false,
     });
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
+    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('BODY');
   });
 
   it('should call ref after child effect', () => {
-    const callOrder = [];
-    const handleRef = (node) => {
+    const callOrder: string[] = [];
+    const handleRef = (node: any) => {
       if (node) {
         callOrder.push('ref');
       }
@@ -177,7 +177,7 @@ describe('<Portal />', () => {
       callOrder.push('effect');
     };
 
-    function Test(props) {
+    function Test(props: { container: any; }) {
       const { container } = props;
       const containerRef = React.useRef();
 

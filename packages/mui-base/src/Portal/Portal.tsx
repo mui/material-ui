@@ -27,7 +27,7 @@ function getContainer(container: Element | (() => Element | null) | null) {
  * - [Portal API](https://mui.com/base/api/portal/)
  */
 
-function FrontPortal(props: PortalProps, ref: React.ForwardedRef<HTMLElement>) {
+const Portal = React.forwardRef(function Portal(props: PortalProps, ref:React.ForwardedRef<Element>) {
   const { children, container = null, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState<Element | (() => Element | null) | null>(null);
   const handleRef = useForkRef(React.isValidElement(children) ? (children as any).ref : null, ref);
@@ -56,7 +56,7 @@ function FrontPortal(props: PortalProps, ref: React.ForwardedRef<HTMLElement>) {
       }
       return React.cloneElement(children, newProps);
     }
-    return children;
+    return <React.Fragment>children</React.Fragment>
   }
 
   return (
@@ -64,9 +64,7 @@ function FrontPortal(props: PortalProps, ref: React.ForwardedRef<HTMLElement>) {
       {mountNode ? ReactDOM.createPortal(children, mountNode as HTMLElement) : mountNode}
     </React.Fragment>
   );
-};
-
-const Portal = React.forwardRef((props: PortalProps, ref:React.ForwardedRef<Element>) => <FrontPortal {...props} ref={ref} />)
+})
 Portal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
@@ -96,7 +94,7 @@ Portal.propTypes /* remove-proptypes */ = {
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  (Portal as any)['propTypes' + ''] = exactProp(Portal.propTypes);
+  (Portal as any)['propTypes' + ''] = exactProp(Portal.propTypes as any);
 }
 
 export default Portal;
