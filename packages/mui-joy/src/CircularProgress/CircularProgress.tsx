@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
   const slots = {
     root: [
       'root',
-      determinate && 'indeterminate',
+      determinate ? 'determinate' : 'indeterminate',
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,

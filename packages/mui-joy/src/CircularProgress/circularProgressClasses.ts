@@ -5,6 +5,8 @@ export interface CircularProgressClasses {
   root: string;
   /** Styles applied to the root element if `determinate` is true. */
   determinate: string;
+  /** Styles applied to the root element if `determinate` is false. */
+  indeterminate: string;
   /** Styles applied to the svg element. */
   svg: string;
   /** Styles applied to the `track` element. */
@@ -50,6 +52,7 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
   [
     'root',
     'determinate',
+    'indeterminate',
     'svg',
     'track',
     'progress',
