@@ -1,0 +1,8 @@
+<Box sx={{ width: '100%', mr: 2 }}>
+  <LinearProgress determinate value={progress} />
+</Box>
+<Box sx={{ minWidth: 35 }}>
+  <Typography variant="soft" color="primary">{`${Math.round(
+    progress,
+  )}%`}</Typography>
+</Box>

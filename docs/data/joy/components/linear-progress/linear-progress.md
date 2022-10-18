@@ -68,6 +68,10 @@ Provides a number to `thickness` prop to control the bar's stroke width.
 
 {{"demo": "LinearProgressThickness.js"}}
 
+### With label
+
+{{"demo": "LinearProgressWithLabel.js"}}
+
 ## CSS variables
 
 Play around with all the CSS variables available on the component to see how the design changes.
