@@ -13,5 +13,10 @@
     "id": 69,
     "title": "<b>Date Pickers get a stable v5 release.</b>",
     "text": "Migrate to the latest version for improved DX, customizability, and API consistency. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"date-pickers-stable-v5\" href=\"/blog/date-pickers-stable-v5/\">blog post</a> for details."
+  },
+  {
+    "id": 70,
+    "title": "<b>A major update is coming for MUI X—and you can get involved</b>",
+    "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6-alpha-zero\" href=\"/blog/mui-x-v6-alpha-zero/\">blog post</a> for details, and let us know what you want to see in MUI X v6."
   }
 ]
