@@ -9,8 +9,10 @@ export interface LinearProgressClasses {
   indeterminate: string;
   /** Styles applied to the `track` element. */
   track: string;
-  /** Styles applied to the `progress` element. */
-  progress: string;
+  /** Styles applied to the `progress1` element. */
+  progress1: string;
+  /** Styles applied to the `progress2` element. */
+  progress2: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -50,7 +52,8 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Joy
   'determinate',
   'indeterminate',
   'track',
-  'progress',
+  'progress1',
+  'progress2',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
