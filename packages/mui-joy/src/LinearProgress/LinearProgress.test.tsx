@@ -14,7 +14,7 @@ describe('<LinearProgress />', () => {
     ThemeProvider,
     muiName: 'JoyLinearProgress',
     refInstanceof: window.HTMLSpanElement,
-    testVariantProps: { determinate: true },
+    testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
