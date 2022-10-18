@@ -496,7 +496,13 @@ extendTheme({
           );
           return {};
         },
-        progress: ({ ownerState }) => {
+        progress1: ({ ownerState }) => {
+          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        progress2: ({ ownerState }) => {
           expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );

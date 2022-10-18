@@ -15,7 +15,7 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 
-const progressKeyframe = keyframes`
+const progress1Keyframe = keyframes`
   0% {
     left: -35%;
     right: 100%;
@@ -32,6 +32,23 @@ const progressKeyframe = keyframes`
   }
 `;
 
+const progress2Keyframe = keyframes`
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+`;
+
 const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
   const { determinate, color, variant, size } = ownerState;
 
@@ -44,7 +61,8 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
       size && `size${capitalize(size)}`,
     ],
     track: ['track'],
-    progress: ['progress'],
+    progress1: ['progress1'],
+    progress2: ['progress2'],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, {});
@@ -66,20 +84,20 @@ const LinearProgressRoot = styled('span', {
     '--LinearProgress-percent': ownerState.value, // 0 - 100
     '--LinearProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
-      '--LinearProgress-track-thickness': '4px',
-      '--LinearProgress-progress-thickness': '4px',
-      '--_root-height': 'var(--LinearProgress-height, 4px)', // use --_root-height to let other components overrides via --LinearProgress-height
+      '--LinearProgress-track-thickness': '5px',
+      '--LinearProgress-progress-thickness': '5px',
+      '--_root-height': 'var(--LinearProgress-height, 5px)', // use --_root-height to let other components overrides via --LinearProgress-height
     }),
     ...(ownerState.instanceSize === 'sm' && {
-      '--LinearProgress-height': '4px',
+      '--LinearProgress-height': '5px',
     }),
     ...(ownerState.size === 'md' && {
-      '--LinearProgress-track-thickness': '6px',
-      '--LinearProgress-progress-thickness': '6px',
-      '--_root-height': 'var(--LinearProgress-height, 6px)',
+      '--LinearProgress-track-thickness': '6.5px',
+      '--LinearProgress-progress-thickness': '6.5px',
+      '--_root-height': 'var(--LinearProgress-height, 6.5px)',
     }),
     ...(ownerState.instanceSize === 'md' && {
-      '--LinearProgress-height': '6px',
+      '--LinearProgress-height': '6.5px',
     }),
     ...(ownerState.size === 'lg' && {
       '--LinearProgress-track-thickness': '8px',
@@ -93,19 +111,16 @@ const LinearProgressRoot = styled('span', {
       '--LinearProgress-track-thickness': `${ownerState.thickness}px`,
       '--LinearProgress-progress-thickness': `${ownerState.thickness}px`,
     }),
-    // internal variables
-    '--_thickness-diff':
-      'calc(var(--LinearProgress-track-thickness) - var(--LinearProgress-progress-thickness))',
-    '--_inner-size': 'calc(var(--_root-height) - 2 * var(--variant-borderWidth))',
     width: '100%',
     height: 'var(--_root-height)',
-    borderRadius: 'var(--_root-height)',
     margin: 'var(--LinearProgress-margin)',
     boxSizing: 'border-box',
     display: 'inline-flex',
     justifyContent: 'center',
+    borderRadius: 'var(--_root-height)',
     alignItems: 'center',
     position: 'relative',
+    overflow: 'hidden',
     color,
     ...rest,
   };
@@ -123,12 +138,13 @@ const LinearProgressTrack = styled('span', {
   top: 0,
   transformOrigin: 'left',
   backgroundColor: 'var(--LinearProgress-track-color)',
+  borderRadius: 'inherit',
 });
 
-const LinearProgressProgress = styled('span', {
+const LinearProgressProgress1 = styled('span', {
   name: 'JoyLinearProgress',
-  slot: 'progress',
-  overridesResolver: (props, styles) => styles.progress,
+  slot: 'progress1',
+  overridesResolver: (props, styles) => styles.progress1,
 })<{ ownerState: LinearProgressOwnerState }>(
   {
     width: '100%',
@@ -139,13 +155,39 @@ const LinearProgressProgress = styled('span', {
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
     backgroundColor: 'var(--LinearProgress-progress-color)',
+    borderRadius: 'inherit',
   },
   ({ ownerState }) =>
-    !ownerState.determinate &&
-    css`
-      width: auto;
-      animation: ${progressKeyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    `,
+    ownerState.determinate
+      ? {
+          transition: 'transform .4s linear',
+        }
+      : css`
+          width: auto;
+          animation: ${progress1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+        `,
+);
+
+const LinearProgressProgress2 = styled('span', {
+  name: 'JoyLinearProgress',
+  slot: 'progress2',
+  overridesResolver: (props, styles) => styles.progress2,
+})<{ ownerState: LinearProgressOwnerState }>(
+  {
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
+    backgroundColor: 'var(--LinearProgress-progress-color)',
+    borderRadius: 'inherit',
+  },
+  css`
+    width: auto;
+    animation: ${progress2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+  `,
 );
 
 /**
@@ -213,17 +255,32 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     className: classes.track,
   });
 
-  const progressProps = useSlotProps({
-    elementType: LinearProgressProgress,
-    externalSlotProps: componentsProps.progress,
+  const progress1Props = useSlotProps({
+    elementType: LinearProgressProgress1,
+    externalSlotProps: componentsProps.progress1,
     ownerState,
-    className: classes.progress,
+    className: classes.progress1,
+    ...(determinate && {
+      additionalProps: {
+        style: {
+          transform: `translateX(${value - 100}%)`,
+        },
+      },
+    }),
+  });
+
+  const progress2Props = useSlotProps({
+    elementType: LinearProgressProgress2,
+    externalSlotProps: componentsProps.progress2,
+    ownerState,
+    className: classes.progress2,
   });
 
   return (
     <LinearProgressRoot {...rootProps}>
       <LinearProgressTrack {...trackProps} />
-      <LinearProgressProgress {...progressProps} />
+      <LinearProgressProgress1 {...progress1Props} />
+      {!determinate && <LinearProgressProgress2 {...progress2Props} />}
     </LinearProgressRoot>
   );
 }) as OverridableComponent<LinearProgressTypeMap>;
