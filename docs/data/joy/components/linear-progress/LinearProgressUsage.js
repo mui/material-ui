@@ -36,7 +36,11 @@ export default function LinearProgressUsage() {
           defaultValue: 25,
         },
       ]}
-      renderDemo={(props) => <Box sx={{width:300}}><LinearProgress {...props} /></Box>}
+      renderDemo={(props) => (
+        <Box sx={{ width: 300 }}>
+          <LinearProgress {...props} />
+        </Box>
+      )}
     />
   );
 }
