@@ -15,7 +15,7 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 
-const trackKeyframe = keyframes`
+const progressKeyframe = keyframes`
   0% {
     left: -35%;
     right: 100%;
@@ -29,23 +29,6 @@ const trackKeyframe = keyframes`
   100% {
     left: 100%;
     right: -90%;
-  }
-`;
-
-const progressKeyframe = keyframes`
-  0% {
-    left: -200%;
-    right: 100%;
-  }
-
-  60% {
-    left: 107%;
-    right: -8%;
-  }
-
-  100% {
-    left: 107%;
-    right: -8%;
   }
 `;
 
@@ -83,8 +66,8 @@ const LinearProgressRoot = styled('span', {
     '--LinearProgress-percent': ownerState.value, // 0 - 100
     '--LinearProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
-      '--LinearProgress-track-thickness': '3px',
-      '--LinearProgress-progress-thickness': '3px',
+      '--LinearProgress-track-thickness': '4px',
+      '--LinearProgress-progress-thickness': '4px',
       '--_root-height': 'var(--LinearProgress-height, 4px)', // use --_root-height to let other components overrides via --LinearProgress-height
     }),
     ...(ownerState.instanceSize === 'sm' && {
@@ -114,7 +97,7 @@ const LinearProgressRoot = styled('span', {
     '--_thickness-diff':
       'calc(var(--LinearProgress-track-thickness) - var(--LinearProgress-progress-thickness))',
     '--_inner-size': 'calc(var(--_root-height) - 2 * var(--variant-borderWidth))',
-    width: 'calc(var(--_root-height) * 30)',
+    width: '100%',
     height: 'var(--_root-height)',
     borderRadius: 'var(--_root-height)',
     margin: 'var(--LinearProgress-margin)',
@@ -132,24 +115,15 @@ const LinearProgressTrack = styled('span', {
   name: 'JoyLinearProgress',
   slot: 'track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: LinearProgressOwnerState }>(
-  {
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor: 'var(--LinearProgress-track-color)',
-  },
-  ({ ownerState }) =>
-    !ownerState.determinate &&
-    css`
-      width: auto;
-      animation: ${trackKeyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    `,
-);
+})<{ ownerState: LinearProgressOwnerState }>({
+  width: '100%',
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transformOrigin: 'left',
+  backgroundColor: 'var(--LinearProgress-track-color)',
+});
 
 const LinearProgressProgress = styled('span', {
   name: 'JoyLinearProgress',
@@ -170,7 +144,7 @@ const LinearProgressProgress = styled('span', {
     !ownerState.determinate &&
     css`
       width: auto;
-      animation: ${progressKeyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+      animation: ${progressKeyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
     `,
 );
 
