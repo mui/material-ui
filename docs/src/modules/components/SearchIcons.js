@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
@@ -303,11 +304,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               language="js"
             />
           </Tooltip>
-          <ImportLink
-            color="text.secondary"
-            href="/material-ui/icons/"
-            variant="caption"
-          >
+          <ImportLink color="text.secondary" href="/material-ui/icons/" variant="caption">
             {t('searchIcons.learnMore')}
           </ImportLink>
           <DialogContent>
@@ -321,10 +318,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 <Grid container alignItems="flex-end" justifyContent="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
-                      <FontSizeComponent
-                        as={selectedIcon.Component}
-                        fontSize="small"
-                      />
+                      <FontSizeComponent as={selectedIcon.Component} fontSize="small" />
                     </Tooltip>
                   </Grid>
                   <Grid item>
@@ -334,28 +328,19 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize large">
-                      <FontSizeComponent
-                        as={selectedIcon.Component}
-                        fontSize="large"
-                      />
+                      <FontSizeComponent as={selectedIcon.Component} fontSize="large" />
                     </Tooltip>
                   </Grid>
                 </Grid>
                 <Grid container justifyContent="center">
-                  <ContextComponent
-                    component={selectedIcon.Component}
-                    contextColor="primary"
-                  />
+                  <ContextComponent component={selectedIcon.Component} contextColor="primary" />
                   <ContextComponent
                     component={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
-                  <ContextComponent
-                    component={selectedIcon.Component}
-                    contextColor="textPrimary"
-                  />
+                  <ContextComponent component={selectedIcon.Component} contextColor="textPrimary" />
                   <ContextComponent
                     component={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
@@ -521,17 +506,24 @@ export default function SearchIcons() {
     [theme, keys],
   );
 
-  const dialogSelectedIcon = useLatest(
-    selectedIcon ? allIconsMap[selectedIcon] : null,
-  );
+  const dialogSelectedIcon = useLatest(selectedIcon ? allIconsMap[selectedIcon] : null);
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
-      <Grid item xs={12} sm={3}>
-        <Form>
-          <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
-              (currentTheme) => {
+    <Box
+      sx={{
+        pt: 1,
+        pb: 3,
+        px: 3,
+        mb: 3,
+        borderRadius: '10px',
+        bgcolor: (t) => (t.palette.mode === 'dark' ? 'grey.900' : 'grey.100'),
+      }}
+    >
+      <Grid container sx={{ minHeight: 500 }}>
+        <Grid item xs={12} sm={3}>
+          <Form>
+            <RadioGroup>
+              {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map((currentTheme) => {
                 return (
                   <FormControlLabel
                     key={currentTheme}
@@ -545,34 +537,32 @@ export default function SearchIcons() {
                     label={currentTheme}
                   />
                 );
-              },
-            )}
-          </RadioGroup>
-        </Form>
+              })}
+            </RadioGroup>
+          </Form>
+        </Grid>
+        <Grid item xs={12} sm={9}>
+          <Paper>
+            <IconButton sx={{ padding: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+            <Input
+              autoFocus
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search icons…"
+              inputProps={{ 'aria-label': 'search icons' }}
+            />
+          </Paper>
+          <Typography sx={{ mb: 1 }}>{`${formatNumber(icons.length)} matching results`}</Typography>
+          <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        </Grid>
+        <DialogDetails
+          open={!!selectedIcon}
+          selectedIcon={dialogSelectedIcon}
+          handleClose={handleClose}
+        />
       </Grid>
-      <Grid item xs={12} sm={9}>
-        <Paper>
-          <IconButton sx={{ padding: '10px' }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-          <Input
-            autoFocus
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search icons…"
-            inputProps={{ 'aria-label': 'search icons' }}
-          />
-        </Paper>
-        <Typography sx={{ mb: 1 }}>{`${formatNumber(
-          icons.length,
-        )} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
-      </Grid>
-      <DialogDetails
-        open={!!selectedIcon}
-        selectedIcon={dialogSelectedIcon}
-        handleClose={handleClose}
-      />
-    </Grid>
+    </Box>
   );
 }
