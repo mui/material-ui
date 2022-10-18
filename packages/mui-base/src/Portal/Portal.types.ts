@@ -19,6 +19,3 @@ export type PortalProps = {
    */
   disablePortal?: boolean;
 }
-
-
-
