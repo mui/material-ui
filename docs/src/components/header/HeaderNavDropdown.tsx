@@ -109,16 +109,12 @@ const DOCS = [
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.advancedComponents,
   },
-  // @ts-ignore
-  ...(process.env.DEPLOY_ENV === 'production'
-    ? []
-    : [
-        {
-          name: 'MUI Toolpad',
-          description: 'Low-code admin builder.',
-          href: ROUTES.toolpadDocs,
-        },
-      ]),
+  {
+    name: 'MUI Toolpad',
+    description: 'Low-code admin builder.',
+    href: ROUTES.toolpadDocs,
+    chip: 'Alpha',
+  },
 ];
 
 export default function HeaderNavDropdown() {
@@ -265,7 +261,18 @@ export default function HeaderNavDropdown() {
                           noLinkStyle
                           sx={{ flexDirection: 'column', alignItems: 'initial' }}
                         >
-                          {item.name}
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                            {item.name}
+                            {item.chip ? (
+                              <Chip size="small" label={item.chip} color="grey" />
+                            ) : null}
+                          </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
                           </Typography>
