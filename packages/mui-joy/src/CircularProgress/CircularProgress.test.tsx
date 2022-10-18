@@ -20,6 +20,20 @@ describe('<CircularProgress />', () => {
     skip: ['classesRoot', 'componentsProp'],
   }));
 
+  describe('prop: determinate', () => {
+    it('should render a determinate circular progress', () => {
+      const { getByRole } = render(<CircularProgress determinate />);
+
+      expect(getByRole('progressbar')).to.have.class(classes.determinate);
+    });
+
+    it('should render an indeterminate circular progress', () => {
+      const { getByRole } = render(<CircularProgress determinate={false} />);
+
+      expect(getByRole('progressbar')).to.have.class(classes.indeterminate);
+    });
+  });
+
   describe('prop: variant', () => {
     it('soft by default', () => {
       const { getByRole } = render(<CircularProgress />);
