@@ -17,7 +17,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### `@mui/material@5.10.10`
 
 - [Popover] Fix paper position flash on open (#34546) @TheUnlocked
-- [Slider] Add global variant to slider (#34733) @siriwatknp
 - [SwipeableDrawer] Make component `defaultProps` overridable (#34643) @hbjORbj
 
 ### `@mui/system@5.10.10`
@@ -31,6 +30,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### `@mui/joy@5.0.0-alpha.50`
 
 - [Select][joy] Added hidden input element (#34657) @zee-bit
+- [Slider][joy] Add global variant to slider (#34733) @siriwatknp
 - [Tooltip][joy] Add component (#34509) @hbjORbj
 
 ### `@mui/base@5.0.0-alpha.102`
