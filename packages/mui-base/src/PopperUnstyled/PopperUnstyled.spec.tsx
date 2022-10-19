@@ -7,7 +7,7 @@ function Root(props: PopperUnstyledRootSlotProps) {
   return <div data-open={ownerState.open} {...other} />;
 }
 
-const styledPopper = <PopperUnstyled components={{ Root }} open />;
+const styledPopper = <PopperUnstyled slots={{ root: Root }} open />;
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;

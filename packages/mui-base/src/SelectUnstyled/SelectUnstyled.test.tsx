@@ -51,7 +51,7 @@ describe('SelectUnstyled', () => {
     ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<SelectUnstyled components={{ Root: 'div' }} />);
+        const { getByRole } = render(<SelectUnstyled slots={{ root: 'div' }} />);
         const button = getByRole('button');
         act(() => {
           button.focus();
@@ -66,7 +66,7 @@ describe('SelectUnstyled', () => {
 
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<SelectUnstyled components={{ Root: 'div' }} />);
+      const { getByRole } = render(<SelectUnstyled slots={{ root: 'div' }} />);
       const button = getByRole('button');
       act(() => {
         button.focus();

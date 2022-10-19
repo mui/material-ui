@@ -24,7 +24,7 @@ export type UseSlotPropsParameters<
    */
   elementType: ElementType;
   /**
-   * The `componentsProps.*` of the unstyled component.
+   * The `slotProps.*` of the unstyled component.
    */
   externalSlotProps:
     | ExternalSlotProps
