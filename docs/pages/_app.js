@@ -216,7 +216,6 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <LanguageNegotiation />
         <CodeCopyProvider>
           <CodeVariantProvider>
             <PageContext.Provider value={{ activePage, pages: productPages }}>

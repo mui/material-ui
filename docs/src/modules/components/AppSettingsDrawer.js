@@ -20,7 +20,7 @@ import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import NoSsr from '@mui/material/NoSsr';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -54,8 +54,6 @@ function AppSettingsDrawer(props) {
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const userLanguage = useUserLanguage();
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
 
@@ -189,41 +187,6 @@ function AppSettingsDrawer(props) {
             {t('settings.rtl')}
           </IconToggleButton>
         </ToggleButtonGroup>
-        <Heading gutterBottom>{t('settings.language')}</Heading>
-        <NoSsr defer>
-          <List>
-            {LANGUAGES_LABEL.map((language) => (
-              <ListItemButton
-                component="a"
-                divider
-                data-no-markdown-link="true"
-                href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
-                key={language.code}
-                onClick={handleLanguageClick(language)}
-                selected={userLanguage === language.code}
-                lang={language.code}
-                hrefLang={language.code}
-              >
-                {language.text}
-              </ListItemButton>
-            ))}
-            <ListItemButton
-              component="a"
-              href={
-                userLanguage === 'en'
-                  ? `${CROWDIN_ROOT_URL}`
-                  : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-              }
-              rel="noopener nofollow"
-              target="_blank"
-              key={userLanguage}
-              lang={userLanguage}
-              hrefLang="en"
-            >
-              {t('appFrame.helpToTranslate')}
-            </ListItemButton>
-          </List>
-        </NoSsr>
         <Heading gutterBottom>{t('settings.color')}</Heading>
         <Button
           component="a"
