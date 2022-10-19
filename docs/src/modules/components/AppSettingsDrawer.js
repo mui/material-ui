@@ -18,7 +18,6 @@ import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirection
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { useRouter } from 'next/router';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '20px 0 10px',
