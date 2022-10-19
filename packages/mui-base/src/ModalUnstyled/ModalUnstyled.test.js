@@ -21,7 +21,6 @@ describe('<ModalUnstyled />', () => {
       <div />
     </ModalUnstyled>,
     () => ({
-      classes,
       inheritComponent: 'div',
       render,
       mount,
@@ -29,12 +28,9 @@ describe('<ModalUnstyled />', () => {
       slots: {
         root: {
           expectedClassName: classes.root,
-          testWithElement: null,
         },
       },
       skip: [
-        'propsSpread',
-        'slotsProp',
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
