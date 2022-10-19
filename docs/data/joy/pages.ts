@@ -15,7 +15,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/main-features/global-variants' },
           { pathname: '/joy-ui/main-features/automatic-adjustment' },
-          { pathname: '/joy-ui/main-features/perfect-dark-mode' },
+          { pathname: '/joy-ui/main-features/dark-mode-optimization' },
         ],
       },
     ],
@@ -30,7 +30,8 @@ const pages = [
         subheader: 'inputs',
         children: [
           { pathname: '/joy-ui/react-button' },
-          { pathname: '/joy-ui/react-text-field' },
+          { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
+          { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-radio-button' },
           { pathname: '/joy-ui/react-select' },
@@ -46,8 +47,19 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
+          { pathname: '/joy-ui/react-tooltip' },
+        ],
+      },
+      {
+        pathname: '/joy-ui/components/feedback',
+        subheader: 'feedback',
+        children: [
+          { pathname: '/joy-ui/react-alert' },
+          { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-modal' },
         ],
       },
       {
@@ -64,6 +76,11 @@ const pages = [
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
         ],
+      },
+      {
+        pathname: '/joy-ui/components/utils',
+        subheader: 'utils',
+        children: [{ pathname: '/joy-ui/react-css-baseline' }],
       },
     ],
   },

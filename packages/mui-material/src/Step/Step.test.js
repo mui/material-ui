@@ -16,7 +16,7 @@ describe('<Step />', () => {
     muiName: 'MuiStep',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentsProp'],
   }));
 
   it('merges styles and other props into the root node', () => {

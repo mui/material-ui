@@ -6,13 +6,15 @@ githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
 
-# Unstyled switch
+# Unstyled Switch
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
 ## Introduction
 
 The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.
+
+{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -61,26 +63,22 @@ Use the `component` prop to override the root slot with a custom element:
 <SwitchUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SwitchUnstyled components={{ Root: 'div', Track: 'div' }} />
+<SwitchUnstyled slots={{ root: 'div', track: 'div' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
 
 ```jsx
-<SwitchUnstyled componentsProps={{ thumb: { className: 'my-thumb' } }} />
+<SwitchUnstyled slotProps={{ thumb: { className: 'my-thumb' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 

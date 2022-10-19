@@ -237,6 +237,30 @@ npx @mui/codemod v5.0.0/badge-overlap-value <path>
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#badge).
 
+#### `base-rename-components-to-slots`
+
+Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
+Also, changes `slots`' fields names to camelCase.
+
+This change only affects MUI Base components.
+
+```diff
+ <BadgeUnstyled
+-  components={{ Root, Badge: CustomBadge }}
++  slots={{ root: Root, badge: CustomBadge }}
+-  componentsProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
++  slotProps={{ root: { className: 'root' }, badge: { 'data-testid': 'badge' } }}
+ />;
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @mui/codemod v5.0.0/base-rename-components-to-slots <path>
+```
+
+The associated breaking change was done in [#34693](https://github.com/mui/material-ui/pull/34693).
+
 #### `box-borderradius-values`
 
 Updates the Box API from separate system props to `sx`.
@@ -993,8 +1017,15 @@ npx @mui/codemod v5.0.0/theme-options <path>
 Renames `type` to `mode`.
 
 ```diff
-- { palette: { type: 'dark' } }
-+ { palette: { mode: 'dark' } }
+ {
+   palette: {
+-    type: 'dark',
++    mode: 'dark',
+   },
+ }
+```
+
+```diff
 -theme.palette.type === 'dark'
 +theme.palette.mode === 'dark'
 ```

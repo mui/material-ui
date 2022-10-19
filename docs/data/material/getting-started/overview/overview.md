@@ -1,3 +1,7 @@
+---
+title: Overview
+---
+
 # Material UI - Overview
 
 <p class="description">Material UI is a library of React UI components that implements Google's Material Design.</p>
@@ -18,7 +22,7 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
 
 ## Advantages of Material UI
 
-- **Ship faster:** thousands of open-source [contributors](https://api7.ai/contributor-graph?chart=contributorOverTime&repo=mui-org/material-ui) have poured countless hours into these components.
+- **Ship faster:** Over 2,500 open-source [contributors](https://github.com/mui/material-ui/graphs/contributors) have poured countless hours into these components.
   Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
 - **Beautiful by default:** we're meticulous about our implementation of [Material Design](https://material.io/), ensuring that every Material UI component meets the highest standards of form and function,
   but diverge from the official spec where necessary to provide multiple great options.

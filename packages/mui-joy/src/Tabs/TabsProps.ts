@@ -41,7 +41,4 @@ export type TabsProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabsTypeMap<P, D>, D>;
 
-export type TabsOwnerState = TabsProps & {
-  orientation: 'horizontal' | 'vertical';
-  direction: 'ltr' | 'rtl';
-};
+export interface TabsOwnerState extends TabsProps {}

@@ -58,18 +58,14 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.deletableColorSecondary);
     });
 
-    it('should render with the root and the primary class', () => {
-      const { container } = render(<Chip color="primary" />);
+    it('should render with the color class name based on the color prop', () => {
+      const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorPrimary);
-    });
-
-    it('should render with the root and the secondary class', () => {
-      const { container } = render(<Chip color="secondary" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorSecondary);
+      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].forEach((color) => {
+        const { container } = render(<Chip color={color} />);
+        const chip = container.querySelector(`.${classes.root}`);
+        expect(chip).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 

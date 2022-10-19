@@ -3,7 +3,7 @@ import fetch from 'cross-fetch';
 import fse from 'fs-extra';
 import path from 'path';
 import * as mui from '@mui/icons-material';
-import synonyms from 'docs/data/material/components/material-icons/synonyms';
+import synonyms from 'docs/src/modules/components/synonyms';
 import myDestRewriter from '../../packages/mui-icons-material/renameFilters/material-design-icons';
 
 function not(a, b) {
@@ -21,8 +21,23 @@ async function run() {
     const data = JSON.parse(text.replace(")]}'", ''));
 
     const materialIcons = data.icons.reduce((acc, icon) => {
-      // remove the icon name strings from the tags
-      icon.tags = not(icon.tags, icon.name.replace('_'));
+      icon.tags = not(icon.tags, icon.name.replace('_')) // remove the icon name strings from the tags
+        .filter((t) => {
+          // remove invalid tags
+          if (
+            t.includes('Remove') ||
+            t.includes('Duplicate') ||
+            t.includes('Same as') ||
+            t.includes('remove others')
+          ) {
+            console.log(`Skipping invalid tag (${t}) in ${icon.name}`);
+            return false;
+          }
+
+          return true;
+        })
+        .map((t) => t.replace(/'/g, ''));
+
       // Fix names that can't be exported as ES modules.
       icon.name = myDestRewriter({ base: icon.name });
 
@@ -66,7 +81,7 @@ async function run() {
     newSynonyms += '};\n\nexport default synonyms;\n';
 
     fse.writeFile(
-      path.join(__dirname, `../../docs/data/material/components/material-icons/synonyms.js`),
+      path.join(__dirname, `../../docs/src/modules/components/synonyms.js`),
       newSynonyms,
     );
 

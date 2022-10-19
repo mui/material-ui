@@ -56,7 +56,7 @@ interface Profile {
   twitter?: string;
 }
 
-const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
+function Person(props: Profile & { sx?: PaperProps['sx'] }) {
   return (
     <Paper variant="outlined" sx={{ p: 2, height: '100%', ...props.sx }}>
       <Box
@@ -179,9 +179,9 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
       )}
     </Paper>
   );
-};
+}
 
-const Widget = ({
+function Widget({
   children,
   title,
   icon,
@@ -189,7 +189,7 @@ const Widget = ({
   children: React.ReactNode;
   title: string;
   icon: React.ReactElement;
-}) => {
+}) {
   return (
     <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
@@ -201,7 +201,7 @@ const Widget = ({
       {children}
     </Paper>
   );
-};
+}
 
 const teamMembers: Array<Profile> = [
   {
@@ -396,6 +396,25 @@ const teamMembers: Array<Profile> = [
     locationCountry: 'lt',
     about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
     github: 'bytasv',
+  },
+  {
+    src: '/static/branding/about/lukas.png',
+    name: 'Lukas Tyla',
+    title: 'MUI X Engineer',
+    location: 'Vilnius, Lithuania',
+    locationCountry: 'lt',
+    about: 'Learning and experimenting 📚',
+    github: 'LukasTy',
+  },
+  {
+    src: '/static/branding/about/bilal.png',
+    name: 'Bilal Shafi',
+    title: 'MUI X Engineer',
+    location: 'Islamabad, Pakistan',
+    locationCountry: 'pk',
+    about: 'DIY 🛠️, Learning 📚 and 🏓',
+    twitter: 'MBilalShafi',
+    github: 'MBilalShafi',
   },
 ];
 
@@ -827,7 +846,7 @@ export default function About() {
     <BrandingProvider>
       <Head
         title="About us - MUI"
-        description="MUI (formerly Material UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
       />
       <AppHeaderBanner />
       <AppHeader />

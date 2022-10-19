@@ -5,7 +5,6 @@ import sinon from 'sinon';
 import {
   extractApiPage,
   extractPackageFile,
-  getGenericComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
 } from './buildApiUtils';
@@ -84,63 +83,6 @@ describe('buildApiUtils', () => {
     });
   });
 
-  describe('getGenericComponentInfo', () => {
-    it('return correct apiPathname', () => {
-      const info = getGenericComponentInfo(
-        path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
-      );
-      sinon.assert.match(info, {
-        name: 'Button',
-        apiPathname: '/api/button/',
-        muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
-        ),
-      });
-
-      expect(info.getInheritance('ButtonBase')).to.deep.equal({
-        name: 'ButtonBase',
-        apiPathname: '/api/button-base/',
-      });
-
-      expect(info.getDemos()).to.deep.equal([
-        {
-          name: 'Button group',
-          demoPathname: '/components/button-group/',
-        },
-        {
-          name: 'Buttons',
-          demoPathname: '/components/buttons/',
-        },
-      ]);
-    });
-
-    it('Icon return correct Demos annotation', () => {
-      const info = getGenericComponentInfo(
-        path.join(process.cwd(), `/packages/mui-material/src/Icon/Icon.js`),
-      );
-      sinon.assert.match(info, {
-        name: 'Icon',
-        apiPathname: '/api/icon/',
-        muiName: 'MuiIcon',
-        apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
-        ),
-      });
-
-      expect(info.getDemos()).to.deep.equal([
-        {
-          name: 'Icons',
-          demoPathname: '/components/icons/',
-        },
-        {
-          name: 'Material icons',
-          demoPathname: '/components/material-icons/',
-        },
-      ]);
-    });
-  });
-
   describe('getMaterialComponentInfo', () => {
     it('return correct info for material component file', () => {
       const info = getMaterialComponentInfo(
@@ -169,11 +111,11 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Button group',
+            name: 'Button Group',
             demoPathname: '/material-ui/react-button-group/',
           },
           {
-            name: 'Buttons',
+            name: 'Button',
             demoPathname: '/material-ui/react-button/',
           },
         ]);
@@ -208,7 +150,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Button',
+            name: 'Unstyled Button',
             demoPathname: '/base/react-button/',
           },
         ]);

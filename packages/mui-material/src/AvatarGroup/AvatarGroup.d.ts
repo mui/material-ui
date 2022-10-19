@@ -18,6 +18,11 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   classes?: Partial<AvatarGroupClasses>;
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  /**
    * The props used for each slot inside the AvatarGroup.
    * @default {}
    */
@@ -58,7 +63,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *

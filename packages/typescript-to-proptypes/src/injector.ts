@@ -207,7 +207,7 @@ function plugin(
       // export { Component }
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
       path.insertAfter(babel.template.ast(placeholder));
-      path.parentPath.replaceWith(path.node);
+      path.parentPath!.replaceWith(path.node);
     } else if (!emptyPropTypes && babelTypes.isExportDefaultDeclaration(path.parent)) {
       // in:
       // export default function Component() {}
@@ -217,7 +217,7 @@ function plugin(
       // export default Component
       path.insertAfter(babel.template.ast(`export default ${nodeName};`));
       path.insertAfter(babel.template.ast(placeholder));
-      path.parentPath.replaceWith(path.node);
+      path.parentPath!.replaceWith(path.node);
     } else {
       path.insertAfter(babel.template.ast(placeholder));
     }

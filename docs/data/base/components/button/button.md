@@ -6,15 +6,17 @@ githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
-# Unstyled button
+# Unstyled Button
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
 `ButtonUnstyled` replaces the native HTML `<button>` element.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledButtonIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -32,7 +34,7 @@ export default function MyApp() {
 
 ### Basics
 
-`ButtonUnstyled` behaves similarly to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+`ButtonUnstyled` behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
@@ -64,26 +66,22 @@ Use the `component` prop to override the root slot with a custom element:
 
 If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<ButtonUnstyled components={{ Root: 'div' }} />
+<ButtonUnstyled slots={{ root: 'div' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-button` to the root slot:
 
 ```jsx
-<ButtonUnstyled componentsProps={{ root: { className: 'my-button' } }} />
+<ButtonUnstyled slotProps={{ root: { className: 'my-button' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` from the previous demo:
 
@@ -109,7 +107,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 The `useButton` hook requires the `ref` of the element it's used on.

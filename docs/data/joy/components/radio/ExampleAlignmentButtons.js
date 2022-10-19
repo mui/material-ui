@@ -7,7 +7,7 @@ import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 
-export default function RadioButtonsGroup() {
+export default function ExampleAlignmentButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
     <RadioGroup
@@ -20,6 +20,7 @@ export default function RadioButtonsGroup() {
     >
       {['left', 'center', 'right', 'justify'].map((item) => (
         <Box
+          key={item}
           sx={(theme) => ({
             position: 'relative',
             display: 'flex',
@@ -56,10 +57,10 @@ export default function RadioButtonsGroup() {
             variant={alignment === item ? 'solid' : 'plain'}
             componentsProps={{
               input: { 'aria-label': item },
-            }}
-            sx={{
-              [`& .${radioClasses.action}`]: { borderRadius: 0, transition: 'none' },
-              [`& .${radioClasses.label}`]: { lineHeight: 0 },
+              action: {
+                sx: { borderRadius: 0, transition: 'none' },
+              },
+              label: { sx: { lineHeight: 0 } },
             }}
           />
         </Box>

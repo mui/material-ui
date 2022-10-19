@@ -85,7 +85,7 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
-const NewStartScreen = () => {
+function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
@@ -105,7 +105,7 @@ const NewStartScreen = () => {
       },
       items: [
         { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text field', href: '/material-ui/react-text-field/' },
+        { name: 'Text Field', href: '/material-ui/react-text-field/' },
         { name: 'Button', href: '/material-ui/react-button/' },
       ],
     },
@@ -117,7 +117,7 @@ const NewStartScreen = () => {
       items: [
         { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
         { name: 'Theming', href: '/material-ui/customization/theming/' },
-        { name: 'Default Theme', href: '/material-ui/customization/default-theme/' },
+        { name: 'Default theme', href: '/material-ui/customization/default-theme/' },
       ],
     },
     {
@@ -152,7 +152,7 @@ const NewStartScreen = () => {
       ))}
     </div>
   );
-};
+}
 
 function DocSearcHit(props) {
   const { children, hit } = props;
@@ -468,6 +468,7 @@ export default function AppSearch() {
             '& .DocSearch-Cancel': {
               display: 'block',
               alignSelf: 'center',
+              cursor: 'pointer',
               height: '1.5rem',
               marginRight: theme.spacing(1),
               padding: theme.spacing(0.3, 0.8, 0.6, 0.8),

@@ -76,3 +76,10 @@ export type SvgIconProps<
     component?: React.ElementType;
   },
 > = OverrideProps<SvgIconTypeMap<P, D>, D>;
+
+export interface SvgIconOwnerState extends SvgIconProps {
+  /**
+   * The `size` specified explicitly on the instance.
+   */
+  instanceFontSize: SvgIconProps['fontSize'];
+}

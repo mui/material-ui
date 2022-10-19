@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expectType } from '@mui/types';
 import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

@@ -65,7 +65,7 @@ const iOS =
 />
 ```
 
-有关此部分的更多详情请查看 [模态框性能部分](/material-ui/react-modal/#performance)。
+More details in the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## 响应式的抽屉
 

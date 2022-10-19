@@ -1,4 +1,4 @@
-# Material UI 的不同版本
+# MUI 的不同版本
 
 <p class="description">你可以随时回到本页来切换你在查阅的不同版本的文档。</p>
 
@@ -10,78 +10,87 @@
 
 ## 最新的版本
 
-在这里您可以找到最新的尚未发布的文档和代码。 您可以使用它来查看即将实施的更新 , 并给 Material UI 的贡献者提供更好的反馈。
+在这里您可以找到最新的尚未发布的文档和代码。 您可以使用它来查看即将实施的更新 , 并给 MUI  的贡献者提供更好地反馈。
 
 {{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 版本控制方案
 
-稳定的版本保证了可重复使用的组件和库、教程、工具和学习教程不会意外的过时。 稳定性是 Material UI 生态系统蓬勃发展的关键。
+稳定的版本保证了可重复使用的组件和库、教程、工具和学习教程不会意外的过时。 稳定性是 MUI  生态系统蓬勃发展的关键。
 
-本文档包含了为您提供的一些前沿的 UI 库所遵循的练习， 在保持稳定的同时确保今后的变更总是以可预测的方式引进。
+This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced predictably.
 
-Material UI 遵循[语义化版本 2.0.0](https://semver.org/)。 Material UI 的版本号由三部分组成： `主版本号.次版本号.修订号`。 版本号的递增是根据发行的更改级别而定义的。
+MUI 遵循[语义化版本 2.0.0](https://semver.org/)。 MUI 的版本号由三部分组成： `主版本号.次版本号.修订号`。 版本号的递增是根据发行的更改级别而定义的。
 
-- **主版本**包含重要的新功能，更新时需要一些少量开发人员的支持。 当更新到一个新的主要的发行版本时，您可能需要运行更新脚本，重构代码，运行其他测试以及学习新的 API。
-- **次版本** 包含重要的新功能。 次要发行版本完全向后兼容；更新时不需要开发人员的支持，但您可以选择修改应用程序和库来使用新的版本中添加的新 API ，特征和功能。
-- **修订版本** 的更新风险低，包含了对 bug 的修复和较小的新功能。 更新时不需要开发人员的支持。
+- **Major releases** contain significant new features, some developer assistance is expected during the update. These releases include [breaking changes](#what-doesnt-count-as-a-breaking-change). When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
+- **次版本** 包含重要的新功能。 Minor releases are fully backward-compatible; no developer assistance is expected during the update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
+- **修订版本** 的更新风险低，包含了对 bug 的修复和较小的新功能。 No developer assistance is expected during the update.
+
+## What doesn't count as a breaking change?
+
+We call "breaking changes" those that require updating your codebase when upgrading to a new version, with the exception of:
+
+- **APIs starting with "unstable\_"**. These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
+- **APIs documented as experimental**. Same as the above.
+- **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
+- **Development warnings**. Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
+- **Pre-releases versions**. We provide pre-release versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period. If you use these versions, note that APIs may change before the stable release.
+- **Small CSS changes**. Visual design changes that have a very low probability of negatively impacting your UI are not considered breaking.
 
 ## 发布周期
 
-一个定期的发布周期可以帮助您规划和适应 Material UI 不断的演变。
+A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of MUI.
 
-通常情况下，你可以预期以下的发布周期：
+In general, you can expect the following release cycle:
 
-- 每12个月发布一个**主版本**。
-- 每个主版本会包含 1-3 个**次版本**。
-- 每周发布**修订**版本（随时都会对紧急错误的修复发布更新）。
+- A **major** release every 12 months.
+- 1-3 **minor** releases for each major release.
+- A **patch** release every week (anytime for an urgent bug fix).
 
 ## 发布时间表
 
-| 日期         | 版本     | 状态               |
-|:---------- |:------ |:---------------- |
-| 2018 年 5 月 | v1.0.0 | 已发布              |
-| 2018 年 9 月 | v3.0.0 | 已发布              |
-| 2019 年 5 月 | v4.0.0 | 已发布              |
-| 2021 年 9 月 | v5.0.0 | Work in progress |
+| 日期         | 版本     | 状态   |
+|:---------- |:------ |:---- |
+| 待定         | v6.0.0 | 暂未开发 |
+| 2021 年 9 月 | v6.0.0 | 已发布  |
+| 2019 年 5 月 | v4.0.0 | 已发布  |
+| 2018 年 9 月 | v3.0.0 | 已发布  |
+| 2018 年 5 月 | v1.0.0 | 已发布  |
 
-查看 [里程碑](https://github.com/mui/material-ui/milestones) 可以得到一个更详细的总览。
+You can follow the [milestones](https://github.com/mui/material-ui/milestones) for a more detailed overview.
 
-> ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
+> ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
 
-## 政策支持
+## Supported versions
 
 MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/guides/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/migration/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
 
-为了尽可能轻松地实现这些过渡：
+The current status of each MUI version is as follows:
 
-- 我们会尽量将破坏性的改变降到最低，并且尽可能提供一些辅助迁移的工具。
-- 请您遵循以下描述的弃用政策，这样就有时间将您的应用程序更新到最新版本的 API 和最佳的实践。
-- [MUI Core v3](https://v3.mui.com/): 🅧 No longer supported.
-- ~MUI Core v2 (never existed)~.
-- [MUI Core v1](https://v1.mui.com/): 🅧 No longer supported.
-- [MUI Core v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+- MUI Core v5: ✅ Active development and continuous support.
+- [Material UI v4](https://v4.mui.com/): ⚠️ Guaranteed Support for security issues and regressions.
+- [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
+- Material UI v2: 🅧 Never existed.
+- [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
+- [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
 
-For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#professional-support-premium).
+For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#paid-support).
 
-### 弃用政策
+### 长期支持 (LTS)
 
-MUI will continue to give security updates and regressions support (for example, if there's any regression caused by Chrome, React, etc) to the version prior to the current major until the next one is released.
+MUI will continue to provide security updates and support for regressions for one version prior to the current major version, for example regressions caused by external factors such as browser updates, or changes to upstream dependencies.
 
-## 弃用的实践
+## Deprecation practices
 
-**“破坏性变更”**有时是必要的，例如取消对某些 API 和功能的支持。
+Sometimes "breaking changes", such as the removal of support for select APIs and features, are necessary. To make these transitions as easy as possible:
 
-To make these transitions as easy as possible:
-
-- 我们会尽量在更新日志中公布过时的功能，并尽可能在运行时发出警告。
-- 当宣布一个弃用方案时，我们也会推荐一些更新的路径。
+- The number of breaking changes is minimized, and migration tools are provided when possible (e.g. codemods).
+- The deprecation policy described below is followed so that you have time to update your apps to the latest APIs and best practices.
 
 ### Deprecation policy
 
 - Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
-- 在弃用期间我们仍支持已有的稳定 API，所以您的代码将在此期间可以正常运行。
-- 而对于那些需要更新您的应用程序的同版本依赖（React），只会在主版本发布时介绍。
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.

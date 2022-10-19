@@ -1,5 +1,620 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.10
+
+<!-- generated comparing v5.10.9..master -->
+
+_Oct 18, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🖌 Thanks to the efforts of @bharatkashyap and @nihgwu, we now have editable demos across our docs (#34454)!
+- 🚀 The Tooltip component has been added to Joy UI by @hbjORbj (#34509).
+- ⚙️ We started converting the remaining JS components in MUI Base to TypeScript.
+  @mbayucot finished the first PR with the conversion of the NoSsr code (#34735).
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.10`
+
+- [Popover] Fix paper position flash on open (#34546) @TheUnlocked
+- [SwipeableDrawer] Make component `defaultProps` overridable (#34643) @hbjORbj
+
+### `@mui/system@5.10.10`
+
+- [system] Support CSS `grey` color in `sx` (#34548) @TheUnlocked
+
+### `@mui/styles@5.10.10`
+
+- [styles] Use memoized context in StylesProvider (#34637) @mohd-akram
+
+### `@mui/joy@5.0.0-alpha.50`
+
+- [Select][joy] Added hidden input element (#34657) @zee-bit
+- [Slider][joy] Add global variant to slider (#34733) @siriwatknp
+- [Tooltip][joy] Add component (#34509) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.102`
+
+- [MultiSelect][base] Prevent the renderValue prop from being propagated to the DOM (#34698) @michaldudak
+- [NoSsr] Convert code to TypeScript (#34735) @mbayucot
+
+### Docs
+
+- [docs] Fix the Autocomplete Highlighting example (#34184) @hayawata3626
+- [docs] Fix typos in Base (Menu, Tabs) and Joy UI (Chip) (#34803) @rvrvrv
+- [docs] Use new editing API in homepage demos (#34220) @m4theushw
+- [docs] Live demos (#34454) @bharatkashyap
+- [docs] Fix typos in Joy UI Switch (#34728) @ndresx
+- [docs] Avoid scrollbar in the code demos (#34741) @oliviertassinari
+- [docs] Revise the Joy UI "Automatic adjustment" page (#34614) @samuelsycamore
+- [docs] Revise and rename the Joy UI "Perfect dark mode" page (#34613) @samuelsycamore
+- [docs] Revise the Joy UI "Global variants" page (#34595) @samuelsycamore
+- [docs] Basic link verification at PR level (#34588) @alexfauquette
+- [docs] Add a missing comma in the customization example (#34617) @AbayKinayat
+- [website] Clarify Pro/Premium support (#34607) @oliviertassinari
+- [website] Fix home page dark mode flicker (#33545)
+- [website] Update the state of the date pickers on the landing page (#34750) @joserodolfofreitas
+
+### Core
+
+- [core] Clean conditionals (#34772) @pedroprado010
+- [core] Temporary remove the authorization (#34796) @siriwatknp
+- [core] Avoid slower CI run statues @oliviertassinari
+- [core] Improve the playground DX (#34739) @oliviertassinari
+- [core] Link Netlify in the danger comment (#34688) @oliviertassinari
+- [core] Fix CI after out of sync merge @oliviertassinari
+- [core] Enforce straight quote (#34686) @oliviertassinari
+- [core] Add code scanning via CodeQL (#34707) @DanailH
+- [core] Fix some upcoming eslint issues (#34727) @oliviertassinari
+- [core] Auto-fix upcoming eslint issues (#34644) @Janpot
+- [core] Move SearchIcons to docs src folder (#34802)
+- [test] Enable `react/no-unstable-nested-components` (#34518) @eps1lon
+
+All contributors of this release in alphabetical order: @AbayKinayat, @alexfauquette, @bharatkashyap, @DanailH, @eps1lon, @hayawata3626, @hbjORbj, @Janpot, @joserodolfofreitas, @m4theushw, @mbayucot, @michaldudak, @mohd-akram, @ndresx, @oliviertassinari, @pedroprado010, @rvrvrv, @samuelsycamore, @siriwatknp, @TheUnlocked, @zee-bit
+
+## 5.10.9
+
+<!-- generated comparing v5.10.8..master -->
+
+_Oct 10, 2022_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Joy] Button loading functionality has been added by @kushagra010 (#34658)
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.9`
+
+- &#8203;<!-- 16 -->[Grid v2][system] Handle direction object prop for responsive design (#34574) @vanyaxk
+- &#8203;<!-- 03 -->[Slider] Fix unnecessary accessibility attribute in root element (#34610) @vanyaxk
+
+### `@mui/system@5.10.9`
+
+#### BREAKING CHANGE
+
+- &#8203;<!-- 17 -->[system] Fix color-scheme implementation (#34639) @siriwatknp
+
+  The `enableColorScheme` prop has been removed from `CssVarsProvider` and `getInitColorScheme` (both Material UI and Joy UI).
+
+  Migration:
+
+  - **Material UI**: you can enable the CSS color scheme via `<CssBaseline enableColorScheme />`.
+  - **Joy UI**: it is enabled automatically if you use `<CssBaseline />`, [see the docs](https://mui.com/joy-ui/react-css-baseline/).
+
+#### Changes
+
+- &#8203;<!-- 02 -->[system] Fix typo in createCssVarsProvider (#34661) @HexM7
+
+### `@mui/base@5.0.0-alpha.101`
+
+- &#8203;<!-- 01 -->[TrapFocus] Restore the previously exported type from @mui/material (#34601) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.49`
+
+- &#8203;<!-- 04 -->[Joy] Add button loading functionality (#34658) @kushagra010
+
+### Docs
+
+- &#8203;<!-- 18 -->[docs] Revert #34541 (#34700) @michaldudak
+- &#8203;<!-- 15 -->[blog] Blog post for MUI X v6 alpha zero (#34424) @joserodolfofreitas
+- &#8203;<!-- 09 -->[docs] Improve Joy UI tutorial demo (#34653) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Explain how SelectUnstyled renders a hidden input (#34638) @michaldudak
+- &#8203;<!-- 07 -->[docs] Fix Taiwan description (#34611) @oliviertassinari
+- &#8203;<!-- 06 -->[docs] Fix codesandbox export with dayjs (#34619) @oliviertassinari
+- &#8203;<!-- 05 -->[docs] Explain the purpose of renderGroup prop (#34066) @michaldudak
+
+### Core
+
+- &#8203;<!-- 14 -->[core] Make useForkRef variadic (#27939) @michaldudak
+- &#8203;<!-- 13 -->[core] Speedup of yarn install in the CI (#34632) @oliviertassinari
+- &#8203;<!-- 12 -->[core] Fix markdown loader on Windows (#34623) @michaldudak
+- &#8203;<!-- 11 -->[core] Update changelog for version v5.10.8 (#34593) @mnajdova
+- &#8203;<!-- 10 -->[core] Update root package.json version (#34592) @mnajdova
+
+All contributors of this release in alphabetical order: @HexM7, @joserodolfofreitas, @kushagra010, @michaldudak, @mnajdova, @oliviertassinari, @vanyaxk
+
+## 5.10.8
+
+<!-- generated comparing v5.10.7..master -->
+
+_Oct 3, 2022_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [SnackbarUnstyled](https://mui.com/base/react-snackbar/) component & headless hook are added to MUI Base (#33227) @ZeeshanTamboli
+- 📚 [CSS variables documentation](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) for Material UI has been added by @siriwatknp (#33958)
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.8`
+
+- &#8203;<!-- 28 -->[Autocomplete] Skip filtering when list of options is loading (#33278) @ndebeiss
+- &#8203;<!-- 13 -->[Fab] Add `disabled` class to FAB button (#34245) @meenarama
+- &#8203;<!-- 09 -->[l10n] Add Arabic Saudi Arabia (ar-SA) locale (#33340) @rolule
+- &#8203;<!-- 08 -->[l10n] zhTW refinement (#33391) @Aporim2051
+- &#8203;<!-- 07 -->[Popover] Add `ownerState` on the paper slot (#34445) @kabernardes
+- &#8203;<!-- 05 -->[Slider] Fixed incorrect marks displayed due to duplicate keys in range (#33526) @kskd1804
+- &#8203;<!-- 03 -->[TextField] Fix typo in FormControlLabel declaration file (#34535) @hghmn
+
+### `@mui/base@5.0.0-alpha.100`
+
+- &#8203;<!-- 04 -->[SnackbarUnstyled] Create component and `useSnackbar` hook (#33227) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.48`
+
+- &#8203;<!-- 12 -->[Joy] Fix `variantPlain` classname missing in few components (#34534) @hbjORbj
+- &#8203;<!-- 11 -->[Joy] Fix input decorator color and list padding (#34586) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Miscellaneous fixes (#34492) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 27 -->[blog] Fix 404 link in base introduction @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix CI build (#34589) @mnajdova
+- &#8203;<!-- 20 -->[docs] Temporary remove date picker from home page (#34541) @siriwatknp
+- &#8203;<!-- 19 -->[docs] Revise and expand Joy UI "Tutorial" doc (#34569) @samuelsycamore
+- &#8203;<!-- 18 -->[docs] Fix SEO issues (#34537) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Add CSS variables documentation for Material UI (#33958) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Capitalize Material Design on the Breakpoints page (#34481) @Dustin-Digitar
+- &#8203;<!-- 15 -->[docs] Able to load doc components inside markdown files (#34243) @flaviendelangle
+- &#8203;<!-- 14 -->[docs] Use mouse pointer on esc button in the search modal (#34485) @minkyngkm
+- &#8203;<!-- 02 -->[website] Fix typo in pricing FAQ @oliviertassinari
+- &#8203;<!-- 01 -->[website] Move the React Engineer role from open to next (#34494) @mnajdova
+
+### Core
+
+- &#8203;<!-- 26 -->[core] Update root package.json version (#34592) @mnajdova
+- &#8203;<!-- 25 -->[core] Remove useless comment in fixtures (#34581) @Garz4
+- &#8203;<!-- 24 -->[core] Fix link to CODE_OF_CONDUCT.md (#34543) @peippo
+- &#8203;<!-- 23 -->[core] Remove outdated docsearch.js dependency (#34421) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Add `newFeature` to the typing of MuiPage (#34511) @flaviendelangle
+
+All contributors of this release in alphabetical order: @Aporim2051, @Dustin-Digitar, @flaviendelangle, @Garz4, @hbjORbj, @hghmn, @kabernardes, @kskd1804, @meenarama, @minkyngkm, @mnajdova, @ndebeiss, @oliviertassinari, @peippo, @rolule, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 5.10.7
+
+<!-- generated comparing v5.10.6..master -->
+
+_Sep 26, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Divider](https://mui.com/joy-ui/react-divider/) component is added to Joy UI (#34403) @siriwatknp
+
+### `@mui/material@5.10.7`
+
+- [CssVarsProvider] Exclude dark mode variables from `:root` stylesheet (#34131) @siriwatknp
+- [Chip] Add chip classes (#33801) @pratikkarad
+- [Slider] Fix typo in the comments in the source (#34452) @HexM7
+- [SvgIcon] Fix passing an ownerState to SvgIcon changes the font size (#34429) @ZeeshanTamboli
+- [Stepper] Fix optional label is not centered when `alternativeLabel` is used (#34335) @ZeeshanTamboli
+- [Tooltip] Add undefined, null or false in `title` (#34289) @abhinav-22-tech
+- Make @emotion/\* fully supported in all Material UI components (#34451) @garronej
+
+### `@mui/system@5.10.7`
+
+- [system] Fix parsing of hsla colors in getLuminance (#34437) @ptrfrncsmrph
+- [system] Fix incorrect type of `shape.borderRadius` in theme (#34076) @ZeeshanTamboli
+- [system] Replace `enableSystem` with `defaultMode` (#33960) @siriwatknp
+
+### `@mui/material@5.0.0-alpha.101`
+
+- [deps] Move @mui/types to dependencies (#34384) @Methuselah96
+
+### `@mui/base@5.0.0-alpha.99`
+
+#### Breaking changes
+
+- [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
+
+  ```diff
+  -import TrapFocus from '@mui/base/TrapFocus';
+  +import FocusTrap from '@mui/base/FocusTrap';
+  ```
+
+#### Changes
+
+- [MultiSelect] Require a single tap to select an item on mobile Chrome (#33932) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.47`
+
+- [Checkbox] spread `value`, `required`, and `readOnly` to input (#34477) @siriwatknp
+- [Chip] Fix unbinded `onClick` prop (#34455) @HexM7
+- [Divider] Add `Divider` component (#34403) @siriwatknp
+- [Radio] spread `readOnly` and `required` to input (#34478) @siriwatknp
+
+### Docs
+
+- [blog] MUI Base announcement typo fixed (#34409) @prakhargupta1
+- [blog] Fix typo in date-pickers v5 stable (#34386) @alexfauquette
+- [blog] Update date on date pickers v5 release blog post (#34406) @joserodolfofreitas
+- [docs] Update `useMenu` and `useMenuItem` hooks demo (#34166) @ZeeshanTamboli
+- [docs] Update the guide for migrating to TSS (#34417) @garronej
+- [docs] Fix typo in `Grid` docs (#34475) @Dustin-Digitar
+- [docs] Fix typo in `Back to top` section in AppBar docs (#34479) @Dustin-Digitar
+- [docs] Standardize all MUI Core "Installation" pages (#34168) @samuelsycamore
+- [docs] Fix webpack file name to the standard: `webpack.config.js` (#34446) @CodingItWrong
+- [docs] Fix Select `onChange` call (#34408) @siriwatknp
+- [docs] Notification for pickers blog - v5 stable (#34400) @joserodolfofreitas
+- [docs] Improve social sharing of docs pages (#34346) @oliviertassinari
+- [docs] Refine the use of MUI vs. Material UI (#34345) @oliviertassinari
+- [docs] Send feedback directly to a dedicated slack channel (#34196) @alexfauquette
+- [website] Adds Bilal to about page (#34412) @MBilalShafi
+- [website] Add date range picker to pricing table (#34399) @joserodolfofreitas
+
+### Core
+
+- [core] Document some types in @mui/styled-engine-sc (#34413) @mnajdova
+- [core] Add yml support to prettier (#33980) @Janpot
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @alexfauquette, @CodingItWrong, @Dustin-Digitar, @garronej, @HexM7, @howlettt, @Janpot, @joserodolfofreitas, @kabernardes, @MBilalShafi, @Methuselah96, @michaldudak, @mnajdova, @oliviertassinari, @prakhargupta1, @pratikkarad, @ptrfrncsmrph, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 5.10.6
+
+<!-- generated comparing v5.10.5..master -->
+
+_Sep 19, 2022_
+
+A big thanks to the 11 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.6`
+
+- [TextField] Fix conflict with `Bootstrap` even when label is not defined (#34343) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.46`
+
+#### Breaking changes
+
+- [button][joy] Replace `start/endIcon` prop with `start/endDecorator` (#34288) @hbjORbj
+
+  **BREAKING CHANGE**: replace `start/endIcon` with `start/endDecorator`.
+
+  ```jsx
+  // before
+  <Button startIcon={...} endIcon={...} />
+
+  // after
+  <Button startDecorator={...} endDecorator={...} />
+  ```
+
+#### Changes
+
+- [Joy] Adjust the `Input` and `Textarea` styles (#34281) @siriwatknp
+- [menu][joy] Set disablePortal default to false (#34283) @tomasz-sodzawiczny
+
+### `@mui/base@5.0.0-alpha.98`
+
+#### Breaking changes
+
+- [Select][base] Add event parameter to the onChange callback (#34158) @michaldudak
+
+  The SelectUnstyled and MultiSelectUnstyled `onChange` callbacks did not have event as the first parameter, leading to inconsistency with other components and native HTML elements.
+  This PR adds the event parameter as the first one and moves the newly selected value to the second position. Because of this, it's a breaking change.
+  This also affects Select from Joy UI.
+
+  ```jsx
+  // before
+  <SelectUnstyled onChange={(newValue) => { /* ... */ }} />
+
+  // after
+  <SelectUnstyled onChange={(event, newValue) => { /* ... */ }} />
+  ```
+
+### Docs
+
+- [blog] The Date Pickers gets a stable v5 release (#34152) @alexfauquette
+- [blog] Improve image handling (#34222) @oliviertassinari
+- [blog] Correct 2021 survey data interpretation (#34291) @samuelsycamore
+- [docs] Remove expired AospExtended showcase @oliviertassinari
+- [docs] Link the OpenSSF Best Practices card (#34331) @oliviertassinari
+- [docs] Fix 301 link to external projects @oliviertassinari
+- [docs] Move 12 component names to Title Case (#34188) @oliviertassinari
+- [docs] Fix broken links (#34320) @alexfauquette
+- [docs] Add notification for MUI Base announcement post (#34295) @samuelsycamore
+- [website] Fix MUI X subscribe email border style (#34330) @oliviertassinari
+- [website] Improve security header @oliviertassinari
+
+### Core
+
+- [core] Lock file maintenance (#34161) @renovate[bot]
+- [core] Issue template: move reproduction steps to the top (#34279) @Janpot
+- [core] Create shared Next.js baseline config (#34259) @oliviertassinari
+- [core] In `typescript-to-proptypes`, respect the value pass to the generic (#34311) @flaviendelangle
+
+All contributors of this release in alphabetical order: @alexfauquette, @flaviendelangle, @hbjORbj, @Janpot, @michaldudak, @oliviertassinari, @renovate[bot], @samuelsycamore, @siriwatknp, @tomasz-sodzawiczny, @ZeeshanTamboli
+
+## 5.10.5
+
+<!-- generated comparing v5.10.4..master -->
+
+_Sep 12, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Blog post](https://mui.com/blog/introducing-mui-base/) for announcing the release of the MUI Base package is out thanks to @michaldudak.
+- 🚀 Added [`Alert`](https://mui.com/joy-ui/react-alert/), [`Modal`](https://mui.com/joy-ui/react-modal/), [`ListSubheader`](https://mui.com/joy-ui/react-list-subheader/), [`FormControl`](https://mui.com/joy-ui/react-form-control/), [`CircularProgress`](https://mui.com/joy-ui/react-circular-progress/) components to Joy UI (#33859) @hbjORbj @siriwatknp
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.5`
+
+- &#8203;<!-- 05 -->[ListItemText] Fix variant mapping in `primaryTypography` (#33880) @iamxukai
+- &#8203;<!-- 03 -->[Timeline] Add left and right aligned timeline demos in docs (#34156) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.45`
+
+- &#8203;<!-- 20 -->[Joy UI] Add `CircularProgress` component (#33869) @hbjORbj
+- &#8203;<!-- 19 -->[Joy UI] Add `FormControl` component (#34187) @siriwatknp
+- &#8203;<!-- 18 -->[Joy UI] Add `ListSubheader` component (#34191) @siriwatknp
+- &#8203;<!-- 17 -->[Joy UI] Add `Modal` component (#34043) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Fix list value of false or 0 (zero) text is incorrectly grey (#34255) @kushagra010
+- &#8203;<!-- 09 -->[Joy] Adjust typography decorator margin (#34257) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes (#34193) @siriwatknp
+- &#8203;<!-- 07 -->[Radio][joy] Integrate with form control (#34277) @siriwatknp
+- &#8203;<!-- 06 -->[Joy][textarea] Pass `textarea` props from `componentsProps` (#34223) @HexM7
+
+### Docs
+
+- &#8203;<!-- 16 -->[blog] Introducing MUI Base (#33778) @michaldudak
+- &#8203;<!-- 13 -->[docs] Fix spelling error (#34209) @ChrystianDeMatos
+- &#8203;<!-- 12 -->[docs] Improve link to the security policy (#34219) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix typo in Joy UI's `Usage` docs (#34200) @zillion504
+- &#8203;<!-- 02 -->[website] Add Lukas to the about page (#34284) @LukasTy
+- &#8203;<!-- 01 -->[website] Update diamond sponsor URL (#34256) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 04 -->[test] Replace argos-cli with @argos-ci/core (#34178) @michaldudak
+- &#8203;<!-- 15 -->[core] Create a script to generate codeowners (#34175) @michaldudak
+- &#8203;<!-- 14 -->[core] Add RFC GH issue template (#33871) @bytasv
+
+All contributors of this release in alphabetical order: @bytasv, @ChrystianDeMatos, @hbjORbj, @HexM7, @iamxukai, @kushagra010, @LukasTy, @michaldudak, @oliviertassinari, @siriwatknp, @ZeeshanTamboli, @zillion504
+
+## 5.10.4
+
+<!-- generated comparing v5.10.3..master -->
+
+_Sep 5, 2022_
+
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added [`Alert`](https://mui.com/joy-ui/react-alert/) component to Joy UI (#33859) @hbjORbj
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.4`
+
+- &#8203;<!-- 22 -->[Avatar] Use structured / semantic markup for avatars and avatar groups (#33994) @paulschreiber
+- &#8203;<!-- 05 -->[Steps] Use structured / semantic markup for steps and steppers (#34138) @paulschreiber
+
+### `@mui/joy@5.0.0-alpha.44`
+
+- &#8203;<!-- 23 -->[Alert][joy] Add `Alert` component (#33859) @hbjORbj
+- &#8203;<!-- 08 -->[Joy] Make the description of `componentsProps` generic (#34140) @hbjORbj
+- &#8203;<!-- 07 -->[Joy] Add tests / classes for `Breadcrumbs` component (#33860) @hbjORbj
+- &#8203;<!-- 06 -->[Select][joy] Fix forwarding listbox `component` prop (#34172) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.96`
+
+- &#8203;<!-- 21 -->[Select][base] Fix type issues that appeared with TS 4.8 (#34132) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 15 -->[docs] Add `mui-color-input`, `mui-chips-input` and `mui-tel-input` into the related projects page (#34123) @viclafouch
+- &#8203;<!-- 14 -->[docs] Update sponsors (#34157) @hbjORbj
+- &#8203;<!-- 13 -->[docs] Move 5 component names to Title Case (#34118) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Fix the color contrast on optional API methods (#34127) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix crash due to using wrong variable (#34171) @siriwatknp
+- &#8203;<!-- 10 -->[docs] Fix a few Base typos (#33986) @ropereraLK
+- &#8203;<!-- 09 -->[docs] Revise Joy UI "Overview" page copy (#34087) @samuelsycamore
+- &#8203;<!-- 20 -->[blog] Fix social cards (#34160) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Allow deep linking to sponsors @oliviertassinari
+- &#8203;<!-- 02 -->[website] Update job descriptions (#34134) @DanailH
+- &#8203;<!-- 01 -->[website] Link Toolpad landing page @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 19 -->[core] Move renovate config to the repository root (#34180) @oliviertassinari
+- &#8203;<!-- 18 -->[core] Reinstate react/no-unused-prop-types eslint rule (#34125) @Janpot
+- &#8203;<!-- 17 -->[core] Do not append `types` field to packages without index.d.ts (#33952) @michaldudak
+- &#8203;<!-- 16 -->[core] Sanitize input in icon synonyms update script (#33989) @michaldudak
+- &#8203;<!-- 04 -->[test] Allow to pass options to `mousePress` function (#34124) @cherniavskii
+
+All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @hbjORbj, @Janpot, @michaldudak, @oliviertassinari, @paulschreiber, @ropereraLK, @samuelsycamore, @siriwatknp, @viclafouch
+
+## 5.10.3
+
+<!-- generated comparing v5.10.2..master -->
+
+_Aug 29, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚡ @mnajdova implemented an alternative to OverridableComponent to achieve better dev-time performance (#32735)
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.3`
+
+- [Autocomplete][material] Fix value overflow when `disableClearable` is used (#34053) @mnajdova
+- [Autocomplete] Update unstyled demo to not import Material UI (#34060) @oliviertassinari
+- [Slider] Remove SliderInput export from d.ts (#34055) @pieetrus
+- [TablePagination] Fix select variant not working (#33974) @ZeeshanTamboli
+
+### `@mui/system@5.10.3`
+
+- [system] Fix mode blink when open multiple sessions (#33877) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.95`
+
+- [Button][base] Prevent too many ref updates (#33882) @michaldudak
+- [Select][base] Fix typo in listbox blur event handler (#34120) @ZeeshanTamboli
+- [TrapFocus] Improve tab test and simplify demo (#34008) @EthanStandel
+
+### `@mui/joy@5.0.0-alpha.43`
+
+- [Joy] Fix `role` proptypes (#34119) @siriwatknp
+- [Joy] Refine `componentsProps` for all components (#34077) @siriwatknp
+- [Radio][joy] support `componentsProps` as a function (#34022) @siriwatknp
+- [Select][joy] Improve the a11y on the select field demo (#34073) @mnajdova
+- [Textarea][joy] Add `Textarea` component (#33975) @siriwatknp
+
+### Docs
+
+- [blog] Add Grid v2 announcement (#33926) @siriwatknp
+- [blog] Making customizable components (#33183) @alexfauquette
+- [blog] Improve SEO metadata (#33954) @oliviertassinari
+- [docs] Add introduction Base component demos & general uplift (#33896) @danilo-leal
+- [docs] Fix Gatsby sample config in CSS variables (#34024) @bicstone
+- [docs] Fix 404 link from Joy to React Router (#34115) @oliviertassinari
+- [docs] Fix typo in `Select` component (#34091) @HexM7
+- [docs] Fix 301 links to tss's docs @oliviertassinari
+- [docs] Fixing Joy UI usage snippet (#34049) @JonathanAsbury-SPS
+- [docs] Fix missing JSX closing tag in Tooltip docs (#34064) @hoangph271
+- [website] Add Toolpad to Navigation (#33937) @bharatkashyap
+- [website] Improve SEO meta description for MUI X @oliviertassinari
+- [website] Improve visual look of code demos (#34070) @oliviertassinari
+- [website] Fix `DatePicker` component demo on the home page (#34054) @NaveenPantra
+
+### Core
+
+- [core] Offer alternative to `OverridableComponent` via module augmentation for better performance (#32735) @mnajdova
+- [core] Fix prop-type warning in regression tests (#34086) @oliviertassinari
+- [core] Specify code owners (#33995) @michaldudak
+- [core] Fix scroll restoration (#34037) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @bicstone, @danilo-leal, @EthanStandel, @HexM7, @hoangph271, @JonathanAsbury-SPS, @michaldudak, @mnajdova, @NaveenPantra, @oliviertassinari, @pieetrus, @renovate[bot], @siriwatknp, @ZeeshanTamboli
+
+## 5.10.2
+
+<!-- generated comparing v5.10.1..master -->
+
+_Aug 22, 2022_
+
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).\
+  A couple of icons changed their appearance. See the difference [on this Argos build](https://app.argos-ci.com/mui/material-ui/builds/4428]).
+
+### `@mui/material@5.10.2`
+
+- &#8203;<!-- 16 -->[Autocomplete] Fix `keepMounted` Popper prop not working (#33957) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[IconButton] Fix hover effect when CSS Variables are enabled (#33971) @TheUnlocked
+- &#8203;<!-- 07 -->[LoadingButton] Add support for CSS variables (#34001) @ZeeshanTamboli
+- &#8203;<!-- 05 -->[TimelineConnector] Add support for CSS variables (#34002) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[TimelineDot] Add support for CSS variables (#34003) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[TreeItem] Add support for CSS variables (#34004) @ZeeshanTamboli
+
+### `@mui/system@5.10.2`
+
+- &#8203;<!-- 06 -->[system] catch localStorage errors (#34027) @jsakas
+
+### `@mui/joy@5.0.0-alpha.42`
+
+- &#8203;<!-- 08 -->[Joy] Add missing global exports (#33982) @tomasz-sodzawiczny
+
+### `@mui/icons-material@5.8.5`
+
+- &#8203;<!-- 09 -->[icons] Sync the Material Icons (#33988) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs] Fix typo in using-joy-ui-and-material-ui.md (#33997) @djohalo2 @danilo-leal
+- &#8203;<!-- 20 -->[docs] Fix typo in the Transition docs (#34040) @alirezahekmati
+- &#8203;<!-- 19 -->[docs] Typo fix in Joy UI Aspect Ratio doc (#33984) @AjeetSingh2016
+- &#8203;<!-- 15 -->[docs] Fix broken Joy UI codesandbox export (#34007) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Fix typos in `test` folder's README (#33976) @ropereraLK
+- &#8203;<!-- 13 -->[docs] Fix interior section links in Base docs that feature hooks (#33948) @samuelsycamore
+- &#8203;<!-- 12 -->[docs] Fix typo in Joy UI's List Component docs (#33956) @Cerebro92
+- &#8203;<!-- 11 -->[docs] Fix typo in Joy UI's docs (#33938) @AjeetSingh2016
+
+### Core
+
+- &#8203;<!-- 18 -->[website] Optimize meta description length (#34006) @oliviertassinari
+- &#8203;<!-- 17 -->Revert "[core] Replace `getInitialProps` with `getStaticProps`" (#33991) @mnajdova
+- &#8203;<!-- 02 -->[website] Move the React Engineer - X to next roles (#34030) @mnajdova
+- &#8203;<!-- 01 -->[website] Add Icons8 gold sponsor (#33978) @michaldudak
+
+All contributors of this release in alphabetical order: @AjeetSingh2016, @alirezahekmati, @Cerebro92, @danilo-leal, @djohalo2, @jsakas, @michaldudak, @mnajdova, @oliviertassinari, @ropereraLK, @samuelsycamore, @TheUnlocked, @tomasz-sodzawiczny, @ZeeshanTamboli
+
+## 5.10.1
+
+<!-- generated comparing v5.10.0..master -->
+
+_Aug 15, 2022_
+
+A big thanks to the 18 contributors who made this release possible. This release was mostly around 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.1`
+
+- &#8203;<!-- 04 -->[TableCell] Enable variant overrides via TypeScript module augmentation (#33856) @arjunvijayanathakurup
+
+### `@mui/system@5.10.1`
+
+- &#8203;<!-- 05 -->[system] Fix `ContainerProps` export (#33923) @bugzpodder
+
+### `@mui/base@5.0.0-alpha.93`
+
+- &#8203;<!-- 31 -->[TrapFocus] Removes invisible tabbable elements from (#33543) @EthanStandel
+- &#8203;<!-- 30 -->[Input][base] Pass the rows prop to the underlying textarea (#33873) @michaldudak
+- &#8203;<!-- 06 -->[SelectUnstyled] Add ability to post the select's value when submitting a form (#33697) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.41`
+
+- &#8203;<!-- 07 -->[IconButton][joy] Fix large IconButton scaling (#33885) @cherewaty
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs] Expand on a11y section for Material UI `Link` component (#32839) @TKrishnasamy
+- &#8203;<!-- 22 -->[docs] Fix typo in Joy UI's `AspectRatio` docs (#33895) @IsaacInsoll
+- &#8203;<!-- 21 -->[docs] Improve the Base Usage page (#33272) @samuelsycamore
+- &#8203;<!-- 20 -->[docs] Avoid refreshing the page when button on demo is clicked (#33852) @PunitSoniME
+- &#8203;<!-- 19 -->[docs] Improve the HorizontalNonLinearStepper demo styling (#33886) @hayawata3626
+- &#8203;<!-- 18 -->[docs] Remove dead NoSsr in the demos (#33910) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix the reopening menu problem in MenuUnstyled demo (#33890) @michaldudak
+- &#8203;<!-- 24 -->[docs] Fix a few link issues (#33909) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Explain the icons package dependencies (#33592) @michaldudak
+- &#8203;<!-- 15 -->[docs] Fix reported SEO issues (#33818) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Add permanent notifications back (#33843) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Enforce description for all pages (#33698) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Clarify difference in startup times between named and default imports (#33109) @cmdcolin
+- &#8203;<!-- 11 -->[docs] Update transform function in the sx prop sizing docs (#33850) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[docs] Adding missing accessibility labels (#33782) @PunitSoniME
+- &#8203;<!-- 09 -->[docs] Fix `/system/getting-started/advanced/` does not exist (#33867) @MonstraG
+- &#8203;<!-- 32 -->[docs] New Crowdin updates (#32213) @l10nbot
+- &#8203;<!-- 08 -->[examples] Fix broken path to favicon.ico (#33906) @mmostafavi
+- &#8203;<!-- 02 -->[website] Add new FAQ to pricing page (#33553) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Miscellaneous improvements to the marketing pages (#33897) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 29 -->[core] Add the download tracker package (#33899) @michaldudak
+- &#8203;<!-- 28 -->[core] Use proper external build id for Argos uploads (#33929) @cherniavskii
+- &#8203;<!-- 27 -->[core] Enforce 70 as the max width on the title on the docs (#33819) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Clear yarn installation warning (#33776) @michaldudak
+- &#8203;<!-- 25 -->[core] Bump yarn to 1.22.19 (#33656) @michaldudak
+- &#8203;<!-- 24 -->[core] Remove outdated Next.js options (#33845) @oliviertassinari
+- &#8203;<!-- 34 -->[core] Add the download tracker build script (#33941) @michaldudak
+- &#8203;<!-- 01 -->[website] Allow /r/store- redirection pattern @oliviertassinari
+
+All contributors of this release in alphabetical order: @arjunvijayanathakurup, @bugzpodder, @cherewaty, @cherniavskii, @cmdcolin, @danilo-leal, @EthanStandel, @hayawata3626, @IsaacInsoll, @l10nbot, @michaldudak, @mmostafavi, @MonstraG, @oliviertassinari, @PunitSoniME, @samuelsycamore, @TKrishnasamy, @ZeeshanTamboli
+
 ## 5.10.0
 
 <!-- generated comparing v5.9.3..master -->
@@ -1484,8 +2099,8 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   `unstable_ClassNameGenerator` has been moved from `utils` to `className` folder to prevent all MUI Base module imports. If you use the module, please update the import as suggested in the diff below:
 
   ```diff
-  - import { unstable_ClassNameGenerator } from '@mui/material/utils';
-  + import { unstable_ClassNameGenerator } from '@mui/material/className';
+  -import { unstable_ClassNameGenerator } from '@mui/material/utils';
+  +import { unstable_ClassNameGenerator } from '@mui/material/className';
   ```
 
 #### Changes
@@ -1827,8 +2442,8 @@ A big thanks to the 22 contributors who made this release possible. Here are som
   3. Change the import paths of unstyled components from @mui/material to @mui/base, e.g.:
 
   ```diff
-  - @import ButtonUnstyled from '@mui/material/ButtonUnstyled';
-  + @import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+  -import ButtonUnstyled from '@mui/material/ButtonUnstyled';
+  +import ButtonUnstyled from '@mui/base/ButtonUnstyled';
   ```
 
 #### Changes
@@ -3871,12 +4486,12 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiTab-root">
-  - <span class="MuiTab-wrapper">
+   <button class="MuiTab-root">
+  -  <span class="MuiTab-wrapper">
       {icon}
       {label}
-  - </span>
-  </button>
+  -  </span>
+   </button>
   ```
 
 - [BottomNavigation] Remove wrapper from BottomNavigationAction (#26923) @siriwatknp
@@ -3884,14 +4499,14 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiBottomNavigationAction-root">
-  - <span class="MuiBottomNavigationAction-wrapper">
-      {icon}
-      <span class="MuiBottomNavigationAction-label">
-        {label}
-      </span>
-  - </span>
-  </button>
+   <button class="MuiBottomNavigationAction-root">
+  -  <span class="MuiBottomNavigationAction-wrapper">
+       {icon}
+       <span class="MuiBottomNavigationAction-label">
+         {label}
+       </span>
+  -  </span>
+   </button>
   ```
 
 #### Changes

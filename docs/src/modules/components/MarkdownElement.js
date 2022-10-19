@@ -7,6 +7,11 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
+  margin: theme.spacing(0, 2),
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
   '& strong': {
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
@@ -173,7 +178,7 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
     },
     '& .optional': {
-      color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      color: theme.palette.mode === 'light' ? '#45529f' : '#a5b3ff',
     },
     '& .prop-type': {
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',

@@ -1,125 +1,125 @@
-# The `sx` prop
+# The sx prop
 
-<p class="description">A propriedade `sx` é um atalho para definir o estilo personalizado com acesso ao tema.</p>
+<p class="description">The sx prop is a shortcut for defining custom styles that has access to the theme.</p>
 
-The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. Você pode especificar qualquer CSS válido usando este propriedade.
+The `sx` prop lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`. You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
 
-## Example
+## Basic example
+
+The following demo illustrates how to work with the `sx` prop. Note that not all of the values are valid CSS properties—that's because the `sx` keys are mapped to specific properties of the theme. The rest of this document explores this concept in more detail.
 
 {{"demo": "Example.js", "bg": true, "defaultCodeOpen": true}}
 
-No exemplo acima, você pode notar que alguns dos valores não são propriedades válidas do CSS. Isso porque as teclas `sx` são mapeadas para propriedades específicas do tema. Nas seções a seguir, você aprenderá como diferentes propriedades `sx` são mapeadas para partes específicas do tema.
-
-## Theme aware properties
+## Theme-aware properties
 
 ### Borders
 
-The `border` property can receive only a number as a value. It creates a solid black border using the number as the width.
+The `border` property can only receive a number as a value. It creates a solid black border using the number to define the width in pixels:
 
 ```jsx
 <Box sx={{ border: 1 }} />
 // equivalente à border: '1px solid black'
 ```
 
-A propriedade `borderColor` pode receber uma string, que representa o caminho no `theme.palette`.
+The `borderColor` property can receive a string, which represents the path in `theme.palette`:
 
 ```jsx
 <Box sx={{ borderColor: 'primary.main' }} />
 // equivalente à borderColor: theme => theme.palette.primary.main
 ```
 
-As propriedades `borderRadius` multiplicam o valor recebido pelo valor `theme.shape.borderRadius` (o padrão para o valor é `4px`).
+The `borderRadius` property multiplies the value it receives by the `theme.shape.borderRadius` value (the default for this value is `4px`).
 
 ```jsx
 <Box sx={{ borderRadius: 2 }} />
 // equivalente à borderRadius: theme => 2 * theme.shape.borderRadius
 ```
 
-_Head to the [borders page](/system/borders/) for more details._
+Read more on the [Borders page](/system/borders/).
 
 ### Display
 
-A propriedade `displayPrint` permite que você especifique o valor de `display`, que será aplicado somente para impressão.
+The `displayPrint` property allows you to specify a CSS `display` value that will only be applied when printing:
 
 ```jsx
 <Box sx={{ displayPrint: 'none' }} /> // equivalent to '@media print': { display: 'none' }
 ```
 
-_Head to the [display page](/system/display/) for more details._
+Read more on the [Display page](/system/display/).
 
 ### Grid
 
-The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
+The CSS Grid properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
 <Box sx={{ gap: 2 }} />
 // equivalent to gap: theme => theme.spacing(2)
 ```
 
-_Head to the [grid page](/system/grid/) for more details._
+Read more on the [Grid page](/system/grid/).
 
 ### Palette
 
-As propriedades `color` e `backgroundColor` podem receber uma string, que representa o caminho no `theme.palette`.
+The `color` and `backgroundColor` properties can receive a string, which represents the path in `theme.palette`:
 
 ```jsx
 <Box sx={{ color: 'primary.main' }} />
 // equivalent to color: theme => theme.palette.primary.main
 ```
 
-The `backgroundColor` property is also available trough its alias `bgcolor`.
+The `backgroundColor` property is also available through its alias `bgcolor`:
 
 ```jsx
 <Box sx={{ bgcolor: 'primary.main' }} />
 // equivalent to backgroundColor: theme => theme.palette.primary.main
 ```
 
-_Head to the [palette page](/system/palette/) for more details._
+Read more on the [Palette page](/system/palette/).
 
 ### Positions
 
-The `zIndex` property maps its value to the `theme.zIndex` value.
+The `zIndex` property maps its value to the `theme.zIndex` value:
 
 ```jsx
 <Box sx={{ zIndex: 'tooltip' }} />
 // equivalent to zIndex: theme => theme.zIndex.tooltip
 ```
 
-_Head to the [positions page](/system/positions/) for more details._
+Read more on the [Positions page](/system/positions/).
 
 ### Shadows
 
-The `boxShadow` property maps its value to the `theme.shadows` value.
+The `boxShadow` property maps its value to the `theme.shadows` value:
 
 ```jsx
 <Box sx={{ boxShadow: 1 }} />
 // equivalent to boxShadow: theme => theme.shadows[1]
 ```
 
-_Head to the [shadows page](/system/shadows/) for more details._
+Read more on the [Shadows page](/system/shadows/).
 
 ### Sizing
 
-As propriedades de dimensionamento: `with`, `height`, `minHeight`, `maxHeight`, `minWidth` e `maxWidth` estão usando a seguinte função de transformação personalizada para o valor:
+The sizing properties `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` use the following custom transform function for the value:
 
 ```js
 function transform(value) {
-  return value <= 1 ? `${value * 100}%` : value;
+  return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 ```
 
-If the value is between [0, 1], it's converted to percent. Otherwise, it is directly set on the CSS property.
+If the value is between [0, 1], it's converted to a percentage. Otherwise, it is directly set on the CSS property:
 
 ```jsx
 <Box sx={{ width: 1/2 }} /> // equivalente a width: '50%'
 <Box sx={{ width: 20 }} /> // equivalente a width: '20px'
 ```
 
-_Head to the [sizing page](/system/sizing/) for more details._
+Read more on the [Sizing page](/system/sizing/).
 
 ### Spacing
 
-The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
+The spacing properties `margin`, `padding`, and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`):
 
 ```jsx
 <Box sx={{ margin: 2 }} />
@@ -145,46 +145,48 @@ The following aliases are available for the spacing properties:
 | `px` | `padding-left`, `padding-right` |
 | `py` | `padding-top`, `padding-bottom` |
 
-_Head to the [spacing page](/system/spacing/) for more details._
+Read more on the [Spacing page](/system/spacing/).
 
 ### Typography
 
-As propriedades `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` mapeiam seus valores para o valor de `theme.typography`.
+The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value:
 
 ```jsx
 <Box sx={{ fontWeight: 'fontWeightLight' }} />
 //equivalente à fontWeight: theme.typography.fontWeightLight
 ```
 
-The same can be achieved by omitting the CSS property prefix `fontWeight`.
+The same can be achieved by omitting the CSS property prefix `fontWeight`:
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }} />
 //equivalente à fontWeight: theme.typography.fontWeightLight
 ```
 
-There is additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
+There is an additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant:
 
 ```jsx
 <Box sx={{ typography: 'body1' }} />
 // equivalent to { ...theme.typography.body1 }
 ```
 
-_Head to the [typography page](/system/typography/) for more details._
+Read more on the [Typography page](/system/typography/).
 
 ## Responsive values
 
-All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
+All properties associated with the `sx` prop also support responsive values for specific breakpoints.
+
+Read more on the [Usage page—Responsive values](/system/getting-started/usage/#responsive-values).
 
 ## Callback values
 
-Each property in the `sx` prop can receive a function callback as a value. This is useful when you want to use the `theme` for calculating some value.
+Each property in the `sx` prop can receive a function callback as a value. This is useful when you want to use the `theme` for calculating a value:
 
 ```jsx
 <Box sx={{ height: (theme) => theme.spacing(10) }} />
 ```
 
-`sx` can also receive a callback when you need to get theme values that are object:
+The `sx` prop can also receive a callback when you need to get theme values that are objects:
 
 ```jsx
 <Box
@@ -197,7 +199,7 @@ Each property in the `sx` prop can receive a function callback as a value. This 
 
 ## Array values
 
-Array type is useful when you want to partially override some styles in the former index:
+Array types are useful when you want to partially override some styles in the former index:
 
 ```jsx
 <Box
@@ -220,11 +222,13 @@ Array type is useful when you want to partially override some styles in the form
 
 When you hover on this element, `color: red; backgroundColor: white;` is applied.
 
-If `foo: true`, the `color: red; backgroundColor: grey;` is applied when hover.
+If `foo: true`, then `color: red; backgroundColor: grey;` is applied when hovering.
 
-If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover regardless of `foo` value, because the higher index of the array has higher specificity.
+If `bar: true`, then `color: red; backgroundColor: yellow;` is applied when hovering regardless of `foo` value, because the higher index of the array has higher specificity.
 
-> **Note**: Each index can be an `object` or `callback`
+:::info
+Each index can be an object or a callback.
+:::
 
 ```jsx
 <Box
@@ -239,9 +243,9 @@ If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover
 />
 ```
 
-## Passing `sx` prop
+## Passing the sx prop
 
-If you want to receive `sx` prop from your component and pass it down to MUI's component, we recommend this approach:
+If you want to receive the `sx` prop from a custom component and pass it down to an MUI component, we recommend this approach:
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 
@@ -263,7 +267,7 @@ export default function App() {
 //        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
 ```
 
-The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can cast the object/function passed to the `sx` prop to const:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can cast the object/function passed to the `sx` prop to `const`:
 
 ```ts
 const style = {
@@ -283,22 +287,6 @@ export default function App() {
 }
 ```
 
-### `fill` callback gives theme type as `any`
-
-Since `sx` can be an array type, there is a conflict in type of `Array.fill` and CSS's `fill` property when define value as a callback. As a workaround, you can explicitly define the theme like this:
-
-```tsx
-import { Theme } from '@mui/material/styles';
-
-<Box
-  sx={{
-    fill: (theme: Theme) => theme.palette.primary.main,
-  }}
-/>;
-```
-
-> Let us know or [submit a PR](https://github.com/mui/material-ui/pulls) if you have a proper way to fix this issue. 🙏
-
 ## Performance
 
-If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).
+To learn more about the performance tradeoffs of the `sx` prop, check out [Usage–Performance tradeoffs](/system/getting-started/usage/#performance-tradeoffs).

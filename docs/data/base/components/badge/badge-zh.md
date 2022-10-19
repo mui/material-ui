@@ -1,44 +1,146 @@
 ---
 product: base
-title: 无样式的 React 徽章
+title: Unstyled React Badge component and hook
 components: BadgeUnstyled
 githubLabel: 'component: badge'
 ---
 
 # 无样式的徽章
 
-<p class="description">徽章组件会在其子项（们）的右上角生成一个小徽章。</p>
+<p class="description">The BadgeUnstyled component generates a small label that is attached to its child element.</p>
 
-```js
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
-```
+## Introduction
+
+A badge is a small descriptor for UI elements. It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
+
+The `BadgeUnstyled` component creates a badge that is applied to its child element.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 基本用法
+## Component
+
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+
+export default function MyApp() {
+  return (
+    <BadgeUnstyled>{/* the element that the badge is attached to */}</BadgeUnstyled>
+  );
+}
+```
+
+### Basics
+
+`BadgeUnstyled` wraps around the UI element that it's attached to. For instance, if the badge indicates the number of emails in an inbox, then the component will be structured like this:
+
+```jsx
+<BadgeUnstyled>
+  <MailIcon />
+</BadgeUnstyled>
+```
+
+### Anatomy
+
+The `BadgeUnstyled` component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` slot to represent the badge itself:
+
+```html
+<span class="BaseBadge-root">
+  <!-- the element the badge is attached to is nested here -->
+  <span class="BaseBadge-badge">badge content</span>
+</span>
+```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<BadgeUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<BadgeUnstyled components={{ Root: 'div', Badge: 'div' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-badge` to the badge slot:
+
+```jsx
+<BadgeUnstyled componentsProps={{ badge: { className: 'my-badge' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
+## Hook
+
+```jsx
+import { useBadge } from '@mui/base/BadgeUnstyled';
+```
+
+The `useBadge` hook lets you apply the functionality of `BadgeUnstyled` to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+:::
+
+## Customization
+
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos and code snippets primarily feature components.
+:::
+
+### Badge content
+
+The `badgeContent` prop defines the content that's displayed inside the badge. When this content is a number, there are additional props you can use for further customization—see the [Numerical badges section](#numerical-badges) below.
+
+The following demo shows how to create and style a typical numerical badge that's attached to a generic box element:
 
 {{"demo": "UnstyledBadge.js", "defaultCodeOpen": false}}
 
-## 徽章的可见性
+### Badge visibility
 
-徽章组件的隐显可以通过 `invisible` 属性来设置。 如果徽章不可见，那么它会被应用 `MuiBadge-invisible` 类。 It is up to the developer to provide styles that actually hide the badge.
+You can control the visibility of a badge by using the `invisible` prop. Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `BaseBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
 
 {{"demo": "BadgeVisibility.js"}}
 
-The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
+### Numerical badges
+
+The following props are useful when `badgeContent` is a number.
+
+#### The showZero prop
+
+By default, badges automatically hide when `badgeContent={0}`. You can override this behavior with the `showZero` prop:
 
 {{"demo": "ShowZeroBadge.js"}}
 
-## 最大值
+#### The max prop
 
-您可以使用 `max` 属性来限制徽章内容的最大值。 默认被设置为 99。
-
-请注意， `badgeContent` 应该是一个数字（或是一个可被转换为数字的值）才能工作。
+You can use the `max` prop to set a maximum value for `badgeContent`. The default is 99.
 
 {{"demo": "BadgeMax.js"}}
 
-## 无障碍设计
+## Accessibility
 
-如果徽章的内容无法被正确的读取。 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
+Screen readers may not provide users with enough information about a badge's contents. To make your badge accessible, you must provide a full description with `aria-label`, as shown in the demo below:
 
-{{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}
+{{"demo": "AccessibleBadges.js"}}

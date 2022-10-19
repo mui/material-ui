@@ -27,6 +27,22 @@ export type SliderTypeMap<
      */
     color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
     /**
+     * The components used for each slot inside the Slider.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    components?: {
+      Root?: React.ElementType;
+      Track?: React.ElementType;
+      Rail?: React.ElementType;
+      Thumb?: React.ElementType;
+      Mark?: React.ElementType;
+      MarkLabel?: React.ElementType;
+      ValueLabel?: React.ElementType;
+      Input?: React.ElementType;
+    };
+    componentsProps?: SliderUnstyledTypeMap['props']['slotProps'];
+    /**
      * Override or extend the styles applied to the component.
      */
     classes?: SliderUnstyledTypeMap['props']['classes'] & {
@@ -64,16 +80,14 @@ type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['componentsProps'
 type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['rail'];
 type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
 type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
-type SliderInputProps = NonNullable<SliderTypeMap['props']['componentsProps']>['input'];
 
-export const SliderRoot: React.FC<SliderRootProps>;
-export const SliderMark: React.FC<SliderMarkProps>;
-export const SliderMarkLabel: React.FC<SliderMarkLabelProps>;
-export const SliderRail: React.FC<SliderRailProps>;
-export const SliderTrack: React.FC<SliderTrackProps>;
-export const SliderThumb: React.FC<SliderThumbProps>;
-export const SliderValueLabel: React.FC<SliderValueLabelProps>;
-export const SliderInput: React.FC<SliderInputProps>;
+export declare const SliderRoot: React.FC<SliderRootProps>;
+export declare const SliderMark: React.FC<SliderMarkProps>;
+export declare const SliderMarkLabel: React.FC<SliderMarkLabelProps>;
+export declare const SliderRail: React.FC<SliderRailProps>;
+export declare const SliderTrack: React.FC<SliderTrackProps>;
+export declare const SliderThumb: React.FC<SliderThumbProps>;
+export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 /**
  *
@@ -97,6 +111,6 @@ export type SliderProps<
 
 export type SliderClasses = Record<SliderClassKey, string>;
 
-export const sliderClasses: SliderClasses;
+export declare const sliderClasses: SliderClasses;
 
 export default Slider;

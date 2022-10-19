@@ -4,7 +4,7 @@ title: Componente React Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
 materialDesign: https://material.io/components/tabs
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 unstyled: /base/react-tabs/
 ---
 
@@ -24,7 +24,7 @@ Um exemplo básico com painéis de guias.
 
 ## API experimental
 
-O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades para implementar abas acessíveis seguindo as [práticas de autoria da WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 {{"demo": "LabTabs.js"}}
 
@@ -92,7 +92,7 @@ Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollBu
 
 ## Abas customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTabs.js"}}
 
@@ -128,11 +128,11 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 ## Acessibilidade
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Aba` fornece o `componente` prop para lidar com este caso de uso. Aqui está um [guia mais detalhado](/material-ui/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Aba` fornece o `componente` prop para lidar com este caso de uso. Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
 
 As etapas a seguir são necessárias para fornecer a informação coerente para as tecnologias assistivas:
 
@@ -143,7 +143,7 @@ Um exemplo para a implementação atual pode ser encontrado nas demonstrações 
 
 ### Navegação por teclado
 
-Os componentes implementam a navegação do teclado usando o comportamento de "ativação manual". Se você quiser mudar para o comportamento "seleção segue automaticamente o foco" você deve definir `selectionFollowsFocus` no componente `Tabs`. As práticas de autoria da WAI-ARIA têm um guia detalhado sobre [como decidir quando fazer a seleção seguir automaticamente o foco](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+Os componentes implementam a navegação do teclado usando o comportamento de "ativação manual". Se você quiser mudar para o comportamento "seleção segue automaticamente o foco" você deve definir `selectionFollowsFocus` no componente `Tabs`. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-4-deciding-when-to-make-selection-automatically-follow-focus).
 
 #### Demonstração
 

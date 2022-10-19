@@ -4,14 +4,14 @@ title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
 materialDesign: https://material.io/components/dialogs
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 ---
 
 # Dialog 对话框
 
 <p class="description">对话框将一个任务告知给用户，它承载了一些需要用户进行确认的关键信息或者多个任务。</p>
 
-对话框是 [modal](/material-ui/react-modal/) 窗体的一种类型，它通常在应用程序内容之前呈现，来提供一些关键信息，或者要求用户做出决策。 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框会从屏幕中消失。
+A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in front of app content to provide critical information or ask for a decision. 对话框出现的时候会禁用应用程序的所有功能，只有被确认、被取消或已采取其他必要的操作时，对话框会从屏幕中消失。
 
 对话框会带有目的性地打断工作流程，所以请您谨慎使用。
 
@@ -60,7 +60,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 自定义对话框
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 该对话框加上了一个关闭按钮来辅助可用性。
 
@@ -78,7 +78,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 响应式全屏
 
-您可以使用[`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery)来实现一个全屏显示的对话框。
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/).
 
 ```jsx
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -103,7 +103,7 @@ function MyComponent() {
 
 ## 可拖动的对话框
 
-You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). 为此，您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. 这样一来，您就可以拖动整个对话框。 这样一来，您就可以拖动整个对话框。
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). 为此，您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. 这样一来，您就可以拖动整个对话框。
 
 {{"demo": "DraggableDialog.js"}}
 
@@ -120,12 +120,20 @@ You can create a draggable dialog by using [react-draggable](https://github.com/
 
 ## 性能
 
-参考[对话框性能部分](/material-ui/react-modal/#performance)。
+Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## 设计局限
 
-参考[对话框性能部分](/material-ui/react-modal/#limitations)。
+Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
-## 无障碍设计
+## Complementary projects
 
-参考[模态框无障碍设计部分](/material-ui/react-modal/#accessibility)。
+### Material UI Confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm) ![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
+
+This package provides dialogs for confirming user actions without writing boilerplate code.
+
+## Accessibility
+
+Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).

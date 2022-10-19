@@ -1,0 +1,6 @@
+<Button loading endDecorator={<SendIcon />} variant="solid">
+  Send
+</Button>
+<Button loading loadingIndicator="Loading…" variant="outlined">
+  Fetch data
+</Button>
