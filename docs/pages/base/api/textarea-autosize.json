@@ -8,7 +8,7 @@
   },
   "name": "TextareaAutosize",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
-  "spread": true,
+  "spread": false,
   "forwardsRefTo": "HTMLTextAreaElement",
   "filename": "/packages/mui-base/src/TextareaAutosize/TextareaAutosize.js",
   "inheritance": null,
