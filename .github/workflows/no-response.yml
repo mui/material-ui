@@ -12,6 +12,9 @@ on:
 jobs:
   noResponse:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - uses: lee-dohm/no-response@v0.5.0
         with:

@@ -1,4 +1,4 @@
-name: Issue Mark Duplicate
+name: Mark duplicate
 
 on:
   issue_comment:
@@ -7,6 +7,10 @@ on:
 jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - name: mark-duplicate
         uses: actions-cool/issues-helper@v3
