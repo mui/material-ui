@@ -27,6 +27,22 @@ export type SliderTypeMap<
      */
     color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
     /**
+     * The components used for each slot inside the Slider.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    components?: {
+      Root?: React.ElementType;
+      Track?: React.ElementType;
+      Rail?: React.ElementType;
+      Thumb?: React.ElementType;
+      Mark?: React.ElementType;
+      MarkLabel?: React.ElementType;
+      ValueLabel?: React.ElementType;
+      Input?: React.ElementType;
+    };
+    componentsProps?: SliderUnstyledTypeMap['props']['slotProps'];
+    /**
      * Override or extend the styles applied to the component.
      */
     classes?: SliderUnstyledTypeMap['props']['classes'] & {

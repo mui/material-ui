@@ -1,7 +1,7 @@
 import { deepmerge } from '@mui/utils';
-import { generateUtilityClass } from '@mui/base';
 import { createTheme as systemCreateTheme } from '@mui/system';
 import MuiError from '@mui/utils/macros/MuiError.macro';
+import generateUtilityClass from '../generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';

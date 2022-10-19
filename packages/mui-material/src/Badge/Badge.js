@@ -208,6 +208,8 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     invisible: invisibleProp = false,
     max,
     badgeContent: badgeContentProp,
+    slots,
+    slotProps,
     showZero = false,
     variant: variantProp = 'standard',
     ...other
@@ -246,6 +248,13 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       badgeContentProp && Number(badgeContentProp) > max ? `${max}+` : badgeContentProp;
   }
 
+  // support both `slots` and `components` for backward compatibility
+  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
+  const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
+
+  const rootSlotProps = slotProps?.root ?? componentsProps.root;
+  const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
+
   return (
     <BadgeUnstyled
       invisible={invisibleProp}
@@ -253,19 +262,18 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       showZero={showZero}
       max={max}
       {...other}
-      components={{
-        Root: BadgeRoot,
-        Badge: BadgeBadge,
-        ...components,
+      slots={{
+        root: RootSlot,
+        badge: BadgeSlot,
       }}
-      className={clsx(componentsProps.root?.className, classes.root, className)}
-      componentsProps={{
+      className={clsx(rootSlotProps?.className, classes.root, className)}
+      slotProps={{
         root: {
-          ...componentsProps.root,
-          ...(shouldSpreadAdditionalProps(components.Root) && {
+          ...rootSlotProps,
+          ...(shouldSpreadAdditionalProps(RootSlot) && {
             as: component,
             ownerState: {
-              ...componentsProps.root?.ownerState,
+              ...rootSlotProps?.ownerState,
               anchorOrigin,
               color,
               overlap,
@@ -274,11 +282,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
           }),
         },
         badge: {
-          ...componentsProps.badge,
-          className: clsx(classes.badge, componentsProps.badge?.className),
-          ...(shouldSpreadAdditionalProps(components.Badge) && {
+          ...badgeSlotProps,
+          className: clsx(classes.badge, badgeSlotProps?.className),
+          ...(shouldSpreadAdditionalProps(BadgeSlot) && {
             ownerState: {
-              ...componentsProps.badge?.ownerState,
+              ...badgeSlotProps?.ownerState,
               anchorOrigin,
               color,
               overlap,
@@ -376,6 +384,23 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showZero: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Badge.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    badge: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

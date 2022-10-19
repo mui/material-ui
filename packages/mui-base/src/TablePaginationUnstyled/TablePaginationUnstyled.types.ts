@@ -28,21 +28,21 @@ export interface TablePaginationUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Actions?: React.ElementType;
-    Select?: React.ElementType;
-    SelectLabel?: React.ElementType;
-    MenuItem?: React.ElementType;
-    DisplayedRows?: React.ElementType;
-    Toolbar?: React.ElementType;
-    Spacer?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
+    actions?: React.ElementType;
+    select?: React.ElementType;
+    selectLabel?: React.ElementType;
+    menuItem?: React.ElementType;
+    displayedRows?: React.ElementType;
+    toolbar?: React.ElementType;
+    spacer?: React.ElementType;
   };
   /**
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'div',
       TablePaginationUnstyledComponentsPropsOverrides,
