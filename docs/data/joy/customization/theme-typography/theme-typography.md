@@ -6,32 +6,28 @@ Joy UI ships a typography system to the theme to help you create consistent text
 
 ## Default system
 
-It consists of built-in levels that are common to many types of application.
+It consists of 13 built-in levels that are comprehensive for building a web application.
 
-- The `body1` level is the **baseline** typography for the application (used as a default configuration in `Typography` and `CssBaseline` components).
-- The `body2` to `body5` levels are responsible for secondary and tertiary information.
+- The `body1` level is the **baseline** typography for the application (used as a default configuration in [`Typography`](/joy-ui/react-typography/) and [`CssBaseline`](/joy-ui/react-css-baseline/) components).
+- The `body2` to `body5` levels can be used for secondary and tertiary information.
 - The `h*` levels are mostly headlines that follow semantic HTML headings.
 - The `display*` levels usually appear as taglines for marketing and landing pages.
 
 {{"demo": "DefaultTypographySystem.js"}}
 
 :::success
-**Gotcha**: The `CssBaseline` and `Typography` are the only 2 components that consume the theme typography directly.
+**Gotcha**: The `CssBaseline`, `ScopedCssBaseline` and `Typography` are the only components that consume the theme typography directly.
 
 This ensures that you can customize or even remove the default typography system without affecting other components.
 :::
 
 ### Customize the default system
 
-Provide the style to the key inside the `typography` node, it will override the default value of that system.
+Provide a key, the level value, and an object to `theme.typography` to override the default style.
 
-The example below illustrates the customization of the `display1` typography:
+The example below illustrates the customization of the `display1` level:
 
 {{"demo": "CustomTypographyLevel.js"}}
-
-:::info
-**Keep in mind**: `--joy` is the default CSS variable prefix. If you have a [custom prefix](/joy-ui/customization/using-css-variables/#custom-prefix), you have to use it instead.
-:::
 
 ### Remove the default system
 
@@ -48,10 +44,10 @@ const customTheme = extendTheme({
 });
 ```
 
-To remove them from the theme typings, use module augmentation:
+For **TypeScript**, you need to augment the theme structure to exclude the default levels:
 
 ```ts
-// You can put this to any file that is included in your tsconfig
+// You can put this to any file that's included in your tsconfig
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
     h5: false;
@@ -68,10 +64,10 @@ Provide the new level as a key to the `theme.typography` and specify the style a
 
 {{"demo": "MoreTypographyLevel.js", "bg": true}}
 
-For **TypeScript**, you have to add the new levels to the theme typings via module augmentation:
+For **TypeScript**, you need to augment the theme structure to include the new levels:
 
 ```ts
-// You can put this to any file that is included in your tsconfig
+// You can put this to any file that's included in your tsconfig
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
     kbd: true;
@@ -81,15 +77,15 @@ declare module '@mui/joy/styles' {
 
 ## Usage
 
-These are several ways that you can use the theme typography in your application:
+There are several ways that you can use the theme typography in your application:
 
-- [**Typography**](/joy-ui/react-typography/) component: you can use the `level` prop to change to other levels.
+- [Typography](/joy-ui/react-typography/) component: you can use the `level` prop to change to other levels.
 
   ```jsx
   <Typography level="body2">Secondary info</Typography> {/* has the `body2` style */}
   ```
 
-- [**CssBaseline**](/joy-ui/react-css-baseline/) component: by default, it applies the `body1` level to the global stylesheet.
+- [CssBaseline](/joy-ui/react-css-baseline/) component: by default, it applies the `body1` level to the global stylesheet.
 
   ```jsx
   <CssBaseline />
@@ -97,13 +93,13 @@ These are several ways that you can use the theme typography in your application
   <p>Hello World</p> {/* inherits the `body1` typography level */}
   ```
 
-- **sx** prop: you can use the `typography: $level` inside the `sx` prop.
+- [`sx`](/joy-ui/customization/approaches/#sx-prop) prop: you can use the `typography: $level` inside the `sx` prop to get the specific typography style.
 
   ```jsx
   <Box sx={{ typography: 'body2' }}>Small text</Box>
   ```
 
-- **styled**: you can create a custom component and use the `theme.typography` directly.
+- [`styled`](/joy-ui/customization/approaches/#reusable-component): you can create a custom component and apply the style from `theme.typography` directly.
 
   ```jsx
   const Tag = styled('span')((theme) => ({
@@ -115,9 +111,9 @@ These are several ways that you can use the theme typography in your application
   }));
   ```
 
-## Ready-to-use typography
+## Common examples
 
-Here is a collection of the well-known typography systems that you can copy and paste to Joy UI theme.
+Here is a collection of well-known typography systems that you can get-started with Joy UI.
 
 ### Fluent (Microsoft)
 
