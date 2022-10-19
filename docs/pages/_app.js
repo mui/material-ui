@@ -4,7 +4,6 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import acceptLanguage from 'accept-language';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
@@ -28,9 +27,6 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-
-// Set the locales that the documentation automatically redirects to.
-acceptLanguage.languages(LANGUAGES);
 
 let reloadInterval;
 
