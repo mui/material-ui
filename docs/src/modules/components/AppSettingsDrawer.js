@@ -17,16 +17,8 @@ import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import NoSsr from '@mui/material/NoSsr';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '20px 0 10px',
@@ -54,8 +46,6 @@ function AppSettingsDrawer(props) {
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   React.useEffect(() => {
     // syncing with homepage, can be removed once all pages are migrated to CSS variables
@@ -90,11 +80,6 @@ function AppSettingsDrawer(props) {
     }
 
     changeTheme({ direction });
-  };
-
-  const handleLanguageClick = (language) => () => {
-    document.cookie = `userLanguage=${language.code};path=/;max-age=31536000`;
-    onClose();
   };
 
   return (
