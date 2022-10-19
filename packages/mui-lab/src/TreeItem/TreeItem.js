@@ -77,11 +77,11 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   },
   [`&.${treeItemClasses.selected}`]: {
     backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+      ? `rgba(${theme.vars.palette.primary.mainChannel}, ${theme.vars.palette.action.selectedOpacity})`
       : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     '&:hover': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        ? `rgba(${theme.vars.palette.primary.mainChannel}, calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
         : alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -89,13 +89,13 @@ const StyledTreeItemContent = styled(TreeItemContent, {
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          ? `rgba(${theme.vars.palette.primary.mainChannel}, ${theme.vars.palette.action.selectedOpacity})`
           : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
     [`&.${treeItemClasses.focused}`]: {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        ? `rgba(${theme.vars.palette.primary.mainChannel}, calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
         : alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,

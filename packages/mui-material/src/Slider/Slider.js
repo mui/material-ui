@@ -270,7 +270,7 @@ const SliderThumb = styled('span', {
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
     boxShadow: `0px 0px 0px 8px ${
       theme.vars
-        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel}, 0.16)`
         : alpha(theme.palette[ownerState.color].main, 0.16)
     }`,
     '@media (hover: none)': {
@@ -280,7 +280,7 @@ const SliderThumb = styled('span', {
   [`&.${sliderClasses.active}`]: {
     boxShadow: `0px 0px 0px 14px ${
       theme.vars
-        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel}, 0.16)`
         : alpha(theme.palette[ownerState.color].main, 0.16)
     }`,
   },

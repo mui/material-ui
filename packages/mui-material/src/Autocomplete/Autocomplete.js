@@ -313,11 +313,11 @@ const AutocompleteListbox = styled('div', {
     },
     '&[aria-selected="true"]': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        ? `rgba(${theme.vars.palette.primary.mainChannel}, ${theme.vars.palette.action.selectedOpacity})`
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? `rgba(${theme.vars.palette.primary.mainChannel}, calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.primary.main,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -329,7 +329,7 @@ const AutocompleteListbox = styled('div', {
       },
       [`&.${autocompleteClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          ? `rgba(${theme.vars.palette.primary.mainChannel}, calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.primary.main,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,

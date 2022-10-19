@@ -50,7 +50,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     '@media (hover: none)': {
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: theme.vars
-          ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          ? `rgba(${theme.vars.palette.common.onBackgroundChannel}, 0.23)`
           : borderColor,
       },
     },
@@ -88,7 +88,7 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
     borderColor: theme.vars
-      ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+      ? `rgba(${theme.vars.palette.common.onBackgroundChannel}, 0.23)`
       : borderColor,
   };
 });

@@ -385,11 +385,11 @@ describe('variant utils', () => {
         },
         secondary: {
           '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-          '--variant-softBg': 'rgba(255 255 255 / 0.12)',
+          '--variant-softBg': 'rgba(255 255 255, 0.12)',
         },
         alternate: {
           '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-          '--variant-solidBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
+          '--variant-solidBg': 'var(--foo-palette-alternate-700, rgba(0 0 0, 0.16))',
         },
       });
     });
