@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { CssVarsProvider, useTheme } from '@mui/joy/styles';
+import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -27,6 +27,26 @@ describe('[Joy] CssVarsProvider', () => {
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
+  });
+
+  describe('shouldSkipGeneratingVar', () => {
+    it('skip typography', () => {
+      expect(shouldSkipGeneratingVar(['typography'])).to.equal(true);
+    });
+
+    it('skip variants', () => {
+      expect(shouldSkipGeneratingVar(['variants'])).to.equal(true);
+    });
+
+    it('skip breakpoints', () => {
+      expect(shouldSkipGeneratingVar(['breakpoints'])).to.equal(true);
+    });
+
+    it('skip focus', () => {
+      expect(shouldSkipGeneratingVar(['focus'])).to.equal(true);
+      expect(shouldSkipGeneratingVar(['focus', 'selector'])).to.equal(true);
+      expect(shouldSkipGeneratingVar(['focus', 'thickness'])).to.equal(false);
+    });
   });
 
   describe('All CSS vars', () => {
@@ -476,7 +496,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('selector,default');
+      expect(container.firstChild?.textContent).to.equal('thickness,selector,default');
     });
   });
 
@@ -606,11 +626,10 @@ describe('[Joy] CssVarsProvider', () => {
       expect(container.firstChild?.textContent).not.to.equal('typography');
     });
 
-    it('should not contain `focus` in theme.vars', () => {
+    it('should contain only `focus.thickness` in theme.vars', () => {
       const Consumer = () => {
         const theme = useTheme();
-        // @ts-expect-error
-        return <div>{theme.vars.focus ? 'focus' : ''}</div>;
+        return <div>{JSON.stringify(theme.vars.focus)}</div>;
       };
 
       const { container } = render(
@@ -619,7 +638,9 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).not.to.equal('focus');
+      expect(container.firstChild?.textContent).not.to.equal(
+        JSON.stringify({ focus: { thickness: '2px' } }),
+      );
     });
   });
 });

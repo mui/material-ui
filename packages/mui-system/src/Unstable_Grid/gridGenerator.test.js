@@ -12,6 +12,7 @@ import {
   generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
+  generateDirectionClasses,
 } from './gridGenerator';
 
 const spacing = createSpacing();
@@ -567,6 +568,21 @@ describe('grid generator', () => {
           tablet: 4,
         }),
       ).to.deep.equal(['spacing-mobile-3', 'spacing-tablet-4']);
+    });
+  });
+
+  describe('generateDirectionClasses', () => {
+    it('should generate correct direction class names', () => {
+      expect(generateDirectionClasses()).to.deep.equal([]);
+      expect(generateDirectionClasses('row')).to.deep.equal(['direction-xs-row']);
+      expect(generateDirectionClasses('column')).to.deep.equal(['direction-xs-column']);
+      expect(
+        generateDirectionClasses({
+          xs: 'row',
+          sm: 'column',
+          md: 'row',
+        }),
+      ).to.deep.equal(['direction-xs-row', 'direction-sm-column', 'direction-md-row']);
     });
   });
 });

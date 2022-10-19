@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@mui/base/AutocompleteUnstyled';
+import { spy } from 'sinon';
 
 describe('useAutocomplete', () => {
   const { render } = createRenderer();
@@ -141,6 +142,16 @@ describe('useAutocomplete', () => {
           expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal(
             options,
           );
+        });
+      });
+
+      describe('empty', () => {
+        it('does not call getOptionLabel if filter is empty', () => {
+          const getOptionLabelSpy = spy(getOptionLabel);
+          expect(
+            filterOptions(options, { inputValue: '', getOptionLabel: getOptionLabelSpy }),
+          ).to.deep.equal(options);
+          expect(getOptionLabelSpy.callCount).to.equal(0);
         });
       });
 

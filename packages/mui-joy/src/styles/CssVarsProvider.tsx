@@ -3,7 +3,9 @@ import extendTheme from './extendTheme';
 import type { DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/(typography|variants|focus|breakpoints)/);
+  !!keys[0].match(/(typography|variants|breakpoints)/) ||
+  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
+  (keys[0] === 'focus' && keys[1] !== 'thickness');
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme

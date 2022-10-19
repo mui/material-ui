@@ -45,5 +45,5 @@ export interface ChipDeleteOwnerState extends ChipDeleteProps {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

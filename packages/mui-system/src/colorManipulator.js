@@ -189,7 +189,10 @@ export function hslToRgb(color) {
 export function getLuminance(color) {
   color = decomposeColor(color);
 
-  let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
+  let rgb =
+    color.type === 'hsl' || color.type === 'hsla'
+      ? decomposeColor(hslToRgb(color)).values
+      : color.values;
   rgb = rgb.map((val) => {
     if (color.type !== 'color') {
       val /= 255; // normalized

@@ -152,14 +152,14 @@ const Pre = styled('pre')(
 );
 
 function CustomSelect(props) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 CustomSelect.propTypes = {
@@ -168,10 +168,10 @@ CustomSelect.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.func,
-    Root: PropTypes.elementType,
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
   }),
 };
 
@@ -187,14 +187,16 @@ export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState(characters[0]);
   return (
     <div>
-      <CustomSelect value={character} onChange={setCharacter}>
+      <CustomSelect
+        value={character}
+        onChange={(e, newValue) => setCharacter(newValue)}
+      >
         {characters.map((c) => (
           <StyledOption key={c.name} value={c}>
             {c.name}
           </StyledOption>
         ))}
       </CustomSelect>
-
       <Paragraph>Selected character:</Paragraph>
       <Pre>{JSON.stringify(character, null, 2)}</Pre>
     </div>

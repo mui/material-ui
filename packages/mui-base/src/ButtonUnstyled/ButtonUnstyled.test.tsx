@@ -160,7 +160,7 @@ describe('<ButtonUnstyled />', () => {
     });
 
     it('renders as the element provided in the "components.Root" prop, even with a "href" prop', () => {
-      const { getByRole } = render(<ButtonUnstyled components={{ Root: 'h1' }} href="#" />);
+      const { getByRole } = render(<ButtonUnstyled slots={{ root: 'h1' }} href="#" />);
       expect(getByRole('heading')).not.to.equal(null);
     });
   });
@@ -177,7 +177,7 @@ describe('<ButtonUnstyled />', () => {
     });
 
     it('renders as the element provided in the "components.Root" prop, even with a "to" prop', () => {
-      const { getByRole } = render(<ButtonUnstyled components={{ Root: 'h1' }} to="#" />);
+      const { getByRole } = render(<ButtonUnstyled slots={{ root: 'h1' }} to="#" />);
       expect(getByRole('heading')).not.to.equal(null);
     });
   });
