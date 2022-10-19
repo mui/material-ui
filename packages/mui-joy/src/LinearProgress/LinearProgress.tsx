@@ -131,7 +131,7 @@ const LinearProgressProgress = styled('span', {
   position: 'relative',
   right: '0%',
   display: 'block',
-  height: '100%',
+  height: `var(--LinearProgress-progress-thickness)` || '100%',
   backgroundColor: 'var(--LinearProgress-progress-color)',
   borderRadius: 'inherit',
   ...(ownerState.determinate
