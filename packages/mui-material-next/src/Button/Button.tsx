@@ -7,11 +7,11 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { MD3ColorSchemeTokens, Theme } from '../styles';
 import { useButton, UseButtonRootSlotOwnProps } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
-import styled, { rootShouldForwardProp } from '@mui/material/styles/styled';
+import { styled } from '@mui/material/styles';
+import { MD3ColorSchemeTokens, Theme } from '../styles';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
 
@@ -74,7 +74,6 @@ const commonIconStyles = ({ size }: ButtonOwnerState) => ({
 });
 
 export const ButtonRoot = styled('button', {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop as string) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -570,11 +569,11 @@ const Button = React.forwardRef(function Button<
 Button.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A ref for imperative actions.
-   * It exposes the `focusVisible()` action.
+   * It currently only supports `focusVisible()` action.
    */
   action: refType,
   /**
@@ -582,15 +581,13 @@ Button.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -616,11 +613,6 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed after the children.
    */
   endIcon: PropTypes.node,
-  /**
-   * If `true`, allows a disabled button to receive focus.
-   * @default false
-   */
-  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */
@@ -711,14 +703,6 @@ Button.propTypes /* remove-proptypes */ = {
    */
   startIcon: PropTypes.node,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  /**
    * @default 0
    */
   tabIndex: PropTypes.number,
@@ -734,6 +718,6 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['text', 'outlined', 'filled', 'filledTonal', 'elevated']),
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default Button;

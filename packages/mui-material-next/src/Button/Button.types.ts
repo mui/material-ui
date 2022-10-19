@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
+import {
+  OverridableStringUnion,
+  OverrideProps,
+  OverridableComponent,
+  OverridableTypeMap,
+} from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { OverrideProps, OverridableComponent, OverridableTypeMap } from '@mui/types';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
