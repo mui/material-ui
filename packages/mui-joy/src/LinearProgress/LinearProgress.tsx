@@ -1,6 +1,6 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
-import { css, keyframes } from '@mui/system';
+import { keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
@@ -15,37 +15,28 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 
-const progress1Keyframe = keyframes`
+const progressKeyframe = keyframes`
   0% {
-    left: -35%;
-    right: 100%;
+    left: 0%;
+    width: var(--LinearProgress-width-shrink);
   }
 
-  60% {
-    left: 100%;
-    right: -90%;
+  20% {
+    width: var(--LinearProgress-width-value);
   }
 
+  50% {
+    left: var(--LinearProgress-left-end);
+    width: var(--LinearProgress-width-shrink);
+  }
+
+  80% {
+    width: var(--LinearProgress-width-value);
+  }
+  
   100% {
-    left: 100%;
-    right: -90%;
-  }
-`;
-
-const progress2Keyframe = keyframes`
-  0% {
-    left: -200%;
-    right: 100%;
-  }
-
-  60% {
-    left: 107%;
-    right: -8%;
-  }
-
-  100% {
-    left: 107%;
-    right: -8%;
+    left: 0%;
+    width: var(--LinearProgress-width-shrink);
   }
 `;
 
@@ -55,20 +46,18 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
   const slots = {
     root: [
       'root',
-      determinate ? 'determinate' : 'indeterminate',
+      determinate && 'determinate',
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,
     ],
-    track: ['track'],
-    progress1: ['progress1'],
-    progress2: ['progress2'],
+    progress: ['progress'],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, {});
 };
 
-const LinearProgressRoot = styled('span', {
+const LinearProgressRoot = styled('div', {
   name: 'JoyLinearProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -79,47 +68,54 @@ const LinearProgressRoot = styled('span', {
     // integration with icon
     '--Icon-fontSize': 'calc(0.4 * var(--_root-height))',
     // public variables
-    '--LinearProgress-track-color': backgroundColor,
     '--LinearProgress-progress-color': color,
     '--LinearProgress-percent': ownerState.value, // 0 - 100
     '--LinearProgress-linecap': 'round',
+    '--LinearProgress-width-value': '25%',
+    '--LinearProgress-width-shrink': '10%',
+    '--LinearProgress-left-end': 'calc(100% - var(--LinearProgress-width-shrink))',
     ...(ownerState.size === 'sm' && {
-      '--LinearProgress-track-thickness': '4px',
       '--LinearProgress-progress-thickness': '4px',
       '--_root-height': 'var(--LinearProgress-height, 4px)', // use --_root-height to let other components overrides via --LinearProgress-height
+      '--LinearProgress-padding': '2px',
+      '--LinearProgress-borderRadius': '6px',
     }),
     ...(ownerState.instanceSize === 'sm' && {
       '--LinearProgress-height': '4px',
     }),
     ...(ownerState.size === 'md' && {
-      '--LinearProgress-track-thickness': '8px',
-      '--LinearProgress-progress-thickness': '8px',
-      '--_root-height': 'var(--LinearProgress-height, 8px)',
+      '--LinearProgress-progress-thickness': '6px',
+      '--_root-height': 'var(--LinearProgress-height, 6px)',
+      '--LinearProgress-padding': '4px',
+      '--LinearProgress-borderRadius': '8px',
     }),
     ...(ownerState.instanceSize === 'md' && {
-      '--LinearProgress-height': '8px',
+      '--LinearProgress-height': '6px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--LinearProgress-track-thickness': '12px',
-      '--LinearProgress-progress-thickness': '12px',
-      '--_root-height': 'var(--LinearProgress-height, 12x)',
+      '--LinearProgress-progress-thickness': '8px',
+      '--_root-height': 'var(--LinearProgress-height, 8px)',
+      '--LinearProgress-padding': '6px',
+      '--LinearProgress-borderRadius': '10px',
     }),
     ...(ownerState.instanceSize === 'lg' && {
-      '--LinearProgress-height': '12px',
+      '--LinearProgress-height': '8px',
     }),
     ...(ownerState.thickness && {
       '--LinearProgress-height': `${ownerState.thickness}px`,
-      '--LinearProgress-track-thickness': `${ownerState.thickness}px`,
       '--LinearProgress-progress-thickness': `${ownerState.thickness}px`,
+      '--LinearProgress-borderRadius': `${ownerState.thickness * 3}px`,
+    }),
+    ...(!ownerState.determinate && {
+      padding: 'var(--LinearProgress-padding)',
     }),
     width: '100%',
     height: 'var(--_root-height)',
-    margin: 'var(--LinearProgress-margin)',
-    boxSizing: 'border-box',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    borderRadius: 'var(--_root-height)',
+    backgroundColor,
+    boxSizing: 'content-box',
+    display: 'flex',
     alignItems: 'center',
+    borderRadius: 'var(--LinearProgress-borderRadius)',
     position: 'relative',
     overflow: 'hidden',
     color,
@@ -127,72 +123,28 @@ const LinearProgressRoot = styled('span', {
   };
 });
 
-const LinearProgressTrack = styled('span', {
+const LinearProgressProgress = styled('span', {
   name: 'JoyLinearProgress',
-  slot: 'track',
-  overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: LinearProgressOwnerState }>({
-  width: '100%',
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  top: 0,
-  transformOrigin: 'left',
-  backgroundColor: 'var(--LinearProgress-track-color)',
+  slot: 'progress',
+  overridesResolver: (props, styles) => styles.progress,
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
+  position: 'relative',
+  right: '0%',
+  display: 'block',
+  height: '100%',
+  backgroundColor: 'var(--LinearProgress-progress-color)',
   borderRadius: 'inherit',
-  height: 'var(--LinearProgress-track-thickness)',
-});
-
-const LinearProgressProgress1 = styled('span', {
-  name: 'JoyLinearProgress',
-  slot: 'progress1',
-  overridesResolver: (props, styles) => styles.progress1,
-})<{ ownerState: LinearProgressOwnerState }>(
-  {
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor: 'var(--LinearProgress-progress-color)',
-    borderRadius: 'inherit',
-    height: 'var(--LinearProgress-progress-thickness)',
-  },
-  ({ ownerState }) =>
-    ownerState.determinate
-      ? {
-          transition: 'transform .4s linear',
-        }
-      : css`
-          width: auto;
-          animation: ${progress1Keyframe} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-        `,
-);
-
-const LinearProgressProgress2 = styled('span', {
-  name: 'JoyLinearProgress',
-  slot: 'progress2',
-  overridesResolver: (props, styles) => styles.progress2,
-})<{ ownerState: LinearProgressOwnerState }>(
-  {
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-    backgroundColor: 'var(--LinearProgress-progress-color)',
-    borderRadius: 'inherit',
-    height: 'var(--LinearProgress-progress-thickness)',
-  },
-  css`
-    width: auto;
-    animation: ${progress2Keyframe} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
-  `,
-);
+  ...(ownerState.determinate
+    ? {
+        transition: 'transform 0.4s linear',
+        width: '100%',
+      }
+    : {
+        width: '10%',
+        transition: 'transform 0.2s linear',
+        animation: `${progressKeyframe} 2.5s ease-in-out infinite`,
+      }),
+}));
 
 /**
  * ## ARIA
@@ -252,18 +204,11 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       }),
   });
 
-  const trackProps = useSlotProps({
-    elementType: LinearProgressTrack,
-    externalSlotProps: componentsProps.track,
+  const progressProps = useSlotProps({
+    elementType: LinearProgressProgress,
+    externalSlotProps: componentsProps.progress,
     ownerState,
-    className: classes.track,
-  });
-
-  const progress1Props = useSlotProps({
-    elementType: LinearProgressProgress1,
-    externalSlotProps: componentsProps.progress1,
-    ownerState,
-    className: classes.progress1,
+    className: classes.progress,
     ...(determinate && {
       additionalProps: {
         style: {
@@ -273,18 +218,9 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     }),
   });
 
-  const progress2Props = useSlotProps({
-    elementType: LinearProgressProgress2,
-    externalSlotProps: componentsProps.progress2,
-    ownerState,
-    className: classes.progress2,
-  });
-
   return (
     <LinearProgressRoot {...rootProps}>
-      <LinearProgressTrack {...trackProps} />
-      <LinearProgressProgress1 {...progress1Props} />
-      {!determinate && <LinearProgressProgress2 {...progress2Props} />}
+      <LinearProgressProgress {...progressProps} />
     </LinearProgressRoot>
   );
 }) as OverridableComponent<LinearProgressTypeMap>;
@@ -320,10 +256,8 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    progress1: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    progress2: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The boolean to select a variant.
