@@ -1,4 +1,4 @@
-import { GlobalStateSlot } from '@mui/base';
+import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
 import {
   AspectRatioProps,
