@@ -19,10 +19,6 @@ describe('<PopperUnstyled />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: [
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      'propsSpread',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],
