@@ -84,28 +84,28 @@ const LinearProgressRoot = styled('span', {
     '--LinearProgress-percent': ownerState.value, // 0 - 100
     '--LinearProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
-      '--LinearProgress-track-thickness': '5px',
-      '--LinearProgress-progress-thickness': '5px',
-      '--_root-height': 'var(--LinearProgress-height, 5px)', // use --_root-height to let other components overrides via --LinearProgress-height
+      '--LinearProgress-track-thickness': '4px',
+      '--LinearProgress-progress-thickness': '4px',
+      '--_root-height': 'var(--LinearProgress-height, 4px)', // use --_root-height to let other components overrides via --LinearProgress-height
     }),
     ...(ownerState.instanceSize === 'sm' && {
-      '--LinearProgress-height': '5px',
+      '--LinearProgress-height': '4px',
     }),
     ...(ownerState.size === 'md' && {
-      '--LinearProgress-track-thickness': '7.5px',
-      '--LinearProgress-progress-thickness': '7.5px',
-      '--_root-height': 'var(--LinearProgress-height, 7.5px)',
+      '--LinearProgress-track-thickness': '8px',
+      '--LinearProgress-progress-thickness': '8px',
+      '--_root-height': 'var(--LinearProgress-height, 8px)',
     }),
     ...(ownerState.instanceSize === 'md' && {
-      '--LinearProgress-height': '7.5px',
+      '--LinearProgress-height': '8px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--LinearProgress-track-thickness': '10px',
-      '--LinearProgress-progress-thickness': '10px',
-      '--_root-height': 'var(--LinearProgress-height, 10px)',
+      '--LinearProgress-track-thickness': '12px',
+      '--LinearProgress-progress-thickness': '12px',
+      '--_root-height': 'var(--LinearProgress-height, 12x)',
     }),
     ...(ownerState.instanceSize === 'lg' && {
-      '--LinearProgress-height': '10px',
+      '--LinearProgress-height': '12px',
     }),
     ...(ownerState.thickness && {
       '--LinearProgress-height': `${ownerState.thickness}px`,
