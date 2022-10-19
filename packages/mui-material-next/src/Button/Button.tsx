@@ -7,13 +7,15 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import { MD3ColorSchemeTokens, Theme } from '../styles';
+import { useButton, UseButtonRootSlotOwnProps } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '@mui/material/styles/styled';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (styleProps: ButtonOwnerState) => {
   const {
     classes,
     color,
@@ -32,16 +34,15 @@ const useUtilityClasses = (styleProps) => {
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       variant,
-      `${variant}${capitalize(color)}`,
-      `size${capitalize(size)}`,
-      `${variant}Size${capitalize(size)}`,
-      color === 'inherit' && 'colorInherit',
+      `${variant}${capitalize(color ?? '')}`,
+      `size${capitalize(size ?? '')}`,
+      `${variant}Size${capitalize(size ?? '')}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
     label: ['label'],
-    startIcon: ['startIcon', `iconSize${capitalize(size)}`],
-    endIcon: ['endIcon', `iconSize${capitalize(size)}`],
+    startIcon: ['startIcon', `iconSize${capitalize(size ?? '')}`],
+    endIcon: ['endIcon', `iconSize${capitalize(size ?? '')}`],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -53,7 +54,7 @@ const useUtilityClasses = (styleProps) => {
   return composedClasses;
 };
 
-const commonIconStyles = ({ size }) => ({
+const commonIconStyles = ({ size }: ButtonOwnerState) => ({
   color: 'var(--md-comp-button-icon-color)',
   ...(size === 'small' && {
     '& > *:nth-of-type(1)': {
@@ -73,7 +74,7 @@ const commonIconStyles = ({ size }) => ({
 });
 
 export const ButtonRoot = styled('button', {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop as string) || prop === 'classes',
   name: 'MuiButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -90,7 +91,7 @@ export const ButtonRoot = styled('button', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ theme, ownerState }) => {
+})<{ ownerState: ButtonOwnerState; theme?: Theme }>(({ ownerState, theme }) => {
   const containerColor = {
     elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
       (theme.vars || theme).palette.md3.colors.surface
@@ -104,7 +105,7 @@ export const ButtonRoot = styled('button', {
   const labelTextColor = {
     elevated: (theme.vars || theme).palette.md3.colors.primary,
     filled: (theme.vars || theme).palette.md3.colors[
-      `on${capitalize(ownerState.color ?? 'primary')}`
+      `on${capitalize(ownerState.color ?? 'primary')}` as keyof MD3ColorSchemeTokens
     ],
     filledTonal: (theme.vars || theme).palette.md3.colors.onSecondaryContainer,
     outlined: (theme.vars || theme).palette.md3.colors[ownerState.color ?? 'primary'],
@@ -278,10 +279,10 @@ export const ButtonRoot = styled('button', {
     // 3. Not sure how to make the tracking work with the CSS variables as there is a calculation needed
     // '--md-comp-button-label-text-tracking': (theme.vars || theme).typescale.label.large.tracking,
     // Icon variables default values
-    '--md-comp-button-icon-color': labelTextColor[ownerState.variant],
-    '--md-comp-button-hovered-icon-color': labelTextColor[ownerState.variant], // same as default
-    '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant], // same as default
-    '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant], // same as default
+    '--md-comp-button-icon-color': labelTextColor[ownerState.variant ?? 'text'],
+    '--md-comp-button-hovered-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
+    '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
+    '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
     // Dynamic variables
     '--md-comp-button-label-text-line-height': `calc(${
@@ -305,8 +306,6 @@ export const ButtonRoot = styled('button', {
     MozAppearance: 'none', // Reset
     WebkitAppearance: 'none', // Reset
     textDecoration: 'none',
-    // So we take precedent over the style of a native <a /> element.
-    color: 'inherit',
     '&::-moz-focus-inner': {
       borderStyle: 'none', // Remove Firefox dotted outline.
     },
@@ -315,6 +314,7 @@ export const ButtonRoot = styled('button', {
     },
     padding: '10px 24px',
     minWidth: 64,
+    letterSpacing,
     // Taken from MD2, haven't really found a spec on transitions
     transition: theme.transitions.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
@@ -333,10 +333,14 @@ export const ButtonRoot = styled('button', {
     })`,
     lineHeight: 'var(--md-comp-button-label-text-line-height)',
     borderRadius: (theme.vars || theme).shape.borderRadius,
-    background: `var(--md-comp-button-container-color, ${containerColor[ownerState.variant]})`,
-    color: `var(--md-comp-button-label-text-color, ${labelTextColor[ownerState.variant]})`,
+    background: `var(--md-comp-button-container-color, ${
+      containerColor[ownerState.variant ?? 'text']
+    })`,
+    color: `var(--md-comp-button-label-text-color, ${
+      labelTextColor[ownerState.variant ?? 'text']
+    })`,
     boxShadow: `var(--md-comp-button-container-elevation, ${
-      containerElevation[ownerState.variant]
+      containerElevation[ownerState.variant ?? 'text']
     })`,
     // Outlined varaiant
     ...(ownerState.variant === 'outlined' && {
@@ -365,31 +369,31 @@ export const ButtonRoot = styled('button', {
     '&:hover': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
       color: `var(--md-comp-button-hovered-label-text-color, ${
-        labelTextColor[ownerState.variant]
+        labelTextColor[ownerState.variant ?? 'text']
       })`,
       backgroundColor: `var(--md-comp-button-hovered-container-state-layer-color, ${
-        hoveredContainerColor[ownerState.variant]
+        hoveredContainerColor[ownerState.variant ?? 'text']
       })`,
       boxShadow: `var(--md-comp-button-hovered-container-elevation, ${
-        hoveredContainerElevation[ownerState.variant]
+        hoveredContainerElevation[ownerState.variant ?? 'text']
       })`,
     },
     '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       color: `var(--md-comp-button-pressed-label-text-color, ${
-        labelTextColor[ownerState.variant]
+        labelTextColor[ownerState.variant ?? 'text']
       })`,
       backgroundColor: `var(--md-comp-button-pressed-container-state-layer-color, ${
-        pressedContainerColor[ownerState.variant]
+        pressedContainerColor[ownerState.variant ?? 'text']
       })`,
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
       color: `var(--md-comp-button-focused-label-text-color, ${
-        labelTextColor[ownerState.variant]
+        labelTextColor[ownerState.variant ?? 'text']
       })`,
       backgroundColor: `var(--md-comp-button-focused-container-state-layer-color, ${
-        focusedContainerColor[ownerState.variant]
+        focusedContainerColor[ownerState.variant ?? 'text']
       })`,
     },
     [`&.${buttonClasses.disabled}`]: {
@@ -399,7 +403,7 @@ export const ButtonRoot = styled('button', {
       cursor: 'default',
       color: `var(--md-comp-button-disabled-label-text-color, ${disabledLabelTextColor})`,
       background: `var(--md-comp-button-disabled-container-color, ${
-        disabeldContainerColor[ownerState.variant]
+        disabeldContainerColor[ownerState.variant ?? 'text']
       })`,
       boxShadow: 'var(--md-comp-button-disabled-container-elevation, none)', // Should be md.sys.elevation.level0
       ...(ownerState.variant === 'outlined' && {
@@ -421,7 +425,7 @@ const ButtonStartIcon = styled('span', {
 
     return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: ButtonOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -8,
@@ -439,7 +443,7 @@ const ButtonEndIcon = styled('span', {
 
     return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-})(({ ownerState }) => ({
+})<{ ownerState: ButtonOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   marginRight: -8,
   marginLeft: 8,
@@ -449,11 +453,12 @@ const ButtonEndIcon = styled('span', {
   ...commonIconStyles(ownerState),
 }));
 
-const Button = React.forwardRef(function Button(inProps, ref) {
+const Button = React.forwardRef(function Button<
+  BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
+>(inProps: ButtonProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
   const {
     action,
-    centerRipple = false,
     children,
     className,
     color = 'primary',
@@ -487,7 +492,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const buttonRef = React.useRef(null);
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   let ComponentProp = component;
@@ -502,9 +507,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     href: props.href,
     onFocusVisible,
     tabIndex,
+    // @ts-ignore
     to: props.to,
     type,
-    component: ComponentProp,
     ref: handleRef,
   });
 
@@ -513,7 +518,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     () => ({
       focusVisible: () => {
         setFocusVisible(true);
-        buttonRef.current.focus();
+        buttonRef.current!.focus();
       },
     }),
     [setFocusVisible],
@@ -521,7 +526,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
-    centerRipple,
     color,
     component,
     disabled,
@@ -553,7 +557,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...getRootProps(props)}
+      {...(getRootProps(props) as UseButtonRootSlotOwnProps)}
       {...other}
     >
       {startIcon}
@@ -561,7 +565,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {endIcon}
     </ButtonRoot>
   );
-});
+}) as ExtendButton<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

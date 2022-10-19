@@ -1,13 +1,8 @@
 import * as React from 'react';
-import {
-  DistributiveOmit,
-  OverridableComponent,
-  OverridableStringUnion,
-  OverridableTypeMap,
-  OverrideProps,
-} from '@mui/types';
+import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material';
+import { Theme } from '../styles';
+import { OverrideProps, OverridableComponent, OverridableTypeMap } from '@mui/types';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
@@ -20,13 +15,36 @@ export interface ButtonActions {
   focusVisible(): void;
 }
 
-export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
+export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
   props: P & {
     /**
      * A ref for imperative actions.
-     * It exposes the `focusVisible()` action.
+     * It currently only supports `focusVisible()` action.
      */
     action?: React.Ref<ButtonActions>;
+    /**
+     * This prop can help identify which element has keyboard focus.
+     * The class name will be applied when the element gains the focus through keyboard interaction.
+     * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+     * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
+     * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+     * if needed.
+     */
+    focusVisibleClassName?: string;
+    /**
+     * The component used to render a link when the `href` prop is provided.
+     * @default 'a'
+     */
+    LinkComponent?: React.ElementType;
+    /**
+     * Callback fired when the component is focused with a keyboard.
+     * We trigger a `onFocus` callback too.
+     */
+    onFocusVisible?: React.FocusEventHandler<any>;
+    /**
+     * @default 0
+     */
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The content of the component.
      */
@@ -36,13 +54,12 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     classes?: Partial<ButtonClasses>;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'primary'
      */
-    color?: OverridableStringUnion<
-      'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
-      ButtonPropsColorOverrides
-    >;
+    color?: OverridableStringUnion<'primary' | 'secondary' | 'tertiary', ButtonPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -54,23 +71,14 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disableElevation?: boolean;
     /**
+     * If `true`, the  keyboard focus ripple is disabled.
+     * @default false
+     */
+    disableFocusRipple?: boolean;
+    /**
      * Element placed after the children.
      */
     endIcon?: React.ReactNode;
-    /**
-     * If `true`, allows a disabled button to receive focus.
-     * @default false
-     */
-    focusableWhenDisabled?: boolean;
-    /**
-     * This prop can help identify which element has keyboard focus.
-     * The class name will be applied when the element gains the focus through keyboard interaction.
-     * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-     * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
-     * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
-     * if needed.
-     */
-    focusVisibleClassName?: string;
     /**
      * If `true`, the button will take up the full width of its container.
      * @default false
@@ -81,16 +89,6 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * If defined, an `a` element will be used as the root node.
      */
     href?: string;
-    /**
-     * The component used to render a link when the `href` prop is provided.
-     * @default 'a'
-     */
-    LinkComponent?: React.ElementType;
-    /**
-     * Callback fired when the component is focused with a keyboard.
-     * We trigger a `onFocus` callback too.
-     */
-    onFocusVisible?: React.FocusEventHandler<any>;
     /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
@@ -106,10 +104,6 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     sx?: SxProps<Theme>;
     /**
-     * @default 0
-     */
-    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
-    /**
      * The variant to use.
      * @default 'text'
      */
@@ -119,43 +113,31 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     >;
   };
   defaultComponent: D;
+};
+
+export interface ButtonOwnerState extends ButtonProps {
+  /**
+   * If `true`, the button's focus is visible.
+   */
+  focusVisible?: boolean;
 }
 
 /**
- * utility to create component types that inherit props from Button.
+ * utility to create component types that inherit props from ButtonBase.
  * This component has an additional overload if the `href` prop is set which
  * can make extension quite tricky
  */
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] &
-    (M['props'] extends { classes?: Record<string, string> }
-      ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
-      : ButtonTypeMap['props']);
+  props: M['props'] & ButtonTypeMap['props'];
   defaultComponent: M['defaultComponent'];
 }
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
   props: { href: string } & OverrideProps<ExtendButtonTypeMap<M>, 'a'>,
 ) => JSX.Element) &
-  OverridableComponent<ExtendButtonTypeMap<M>>;
-
-/**
- *
- * Demos:
- *
- * - [Button group](https://mui.com/material-ui/react-button-group/)
- * - [Button](https://mui.com/material-ui/react-button/)
- *
- * API:
- *
- * - [Button API](https://mui.com/api/button/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
- */
-declare const Button: ExtendButton<ButtonTypeMap>;
+  OverridableComponent<ExtendButtonTypeMap<M>> & { propTypes?: any };
 
 export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
-
-export default Button;
