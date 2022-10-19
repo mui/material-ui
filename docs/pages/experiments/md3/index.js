@@ -9,7 +9,7 @@ import {
   useColorScheme,
   Stack,
 } from '@mui/material';
-import { unstable_capitalize as capitalize } from 'packages/mui-utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material-next';
