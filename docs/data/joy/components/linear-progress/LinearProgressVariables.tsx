@@ -10,15 +10,19 @@ export default function LinearProgressVariables() {
       data={[
         {
           var: '--LinearProgress-height',
-          defaultValue: '7.5px',
+          defaultValue: '6px',
         },
         {
-          var: '--LinearProgress-track-thickness',
-          defaultValue: '7.5px',
+          var: '--LinearProgress-padding',
+          defaultValue: '4px',
+        },
+        {
+          var: '--LinearProgress-borderRadius',
+          defaultValue: '8px',
         },
         {
           var: '--LinearProgress-progress-thickness',
-          defaultValue: '7.5px',
+          defaultValue: '6px',
         },
       ]}
       renderDemo={(sx) => (
