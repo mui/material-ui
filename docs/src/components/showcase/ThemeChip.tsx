@@ -55,7 +55,7 @@ export default function ThemeChip() {
       ]}
     >
       <Chip label="React" color="primary" onDelete={() => {}} />
-      <Chip label="Javascript" onDelete={() => {}} />
+      <Chip label="JavaScript" onDelete={() => {}} />
     </Stack>
   );
 }

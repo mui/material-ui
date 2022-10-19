@@ -1,5 +1,77 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.10
+
+<!-- generated comparing v5.10.9..master -->
+
+_Oct 18, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🖌 Thanks to the efforts of @bharatkashyap and @nihgwu, we now have editable demos across our docs (#34454)!
+- 🚀 The Tooltip component has been added to Joy UI by @hbjORbj (#34509).
+- ⚙️ We started converting the remaining JS components in MUI Base to TypeScript.
+  @mbayucot finished the first PR with the conversion of the NoSsr code (#34735).
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.10`
+
+- [Popover] Fix paper position flash on open (#34546) @TheUnlocked
+- [SwipeableDrawer] Make component `defaultProps` overridable (#34643) @hbjORbj
+
+### `@mui/system@5.10.10`
+
+- [system] Support CSS `grey` color in `sx` (#34548) @TheUnlocked
+
+### `@mui/styles@5.10.10`
+
+- [styles] Use memoized context in StylesProvider (#34637) @mohd-akram
+
+### `@mui/joy@5.0.0-alpha.50`
+
+- [Select][joy] Added hidden input element (#34657) @zee-bit
+- [Slider][joy] Add global variant to slider (#34733) @siriwatknp
+- [Tooltip][joy] Add component (#34509) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.102`
+
+- [MultiSelect][base] Prevent the renderValue prop from being propagated to the DOM (#34698) @michaldudak
+- [NoSsr] Convert code to TypeScript (#34735) @mbayucot
+
+### Docs
+
+- [docs] Fix the Autocomplete Highlighting example (#34184) @hayawata3626
+- [docs] Fix typos in Base (Menu, Tabs) and Joy UI (Chip) (#34803) @rvrvrv
+- [docs] Use new editing API in homepage demos (#34220) @m4theushw
+- [docs] Live demos (#34454) @bharatkashyap
+- [docs] Fix typos in Joy UI Switch (#34728) @ndresx
+- [docs] Avoid scrollbar in the code demos (#34741) @oliviertassinari
+- [docs] Revise the Joy UI "Automatic adjustment" page (#34614) @samuelsycamore
+- [docs] Revise and rename the Joy UI "Perfect dark mode" page (#34613) @samuelsycamore
+- [docs] Revise the Joy UI "Global variants" page (#34595) @samuelsycamore
+- [docs] Basic link verification at PR level (#34588) @alexfauquette
+- [docs] Add a missing comma in the customization example (#34617) @AbayKinayat
+- [website] Clarify Pro/Premium support (#34607) @oliviertassinari
+- [website] Fix home page dark mode flicker (#33545)
+- [website] Update the state of the date pickers on the landing page (#34750) @joserodolfofreitas
+
+### Core
+
+- [core] Clean conditionals (#34772) @pedroprado010
+- [core] Temporary remove the authorization (#34796) @siriwatknp
+- [core] Avoid slower CI run statues @oliviertassinari
+- [core] Improve the playground DX (#34739) @oliviertassinari
+- [core] Link Netlify in the danger comment (#34688) @oliviertassinari
+- [core] Fix CI after out of sync merge @oliviertassinari
+- [core] Enforce straight quote (#34686) @oliviertassinari
+- [core] Add code scanning via CodeQL (#34707) @DanailH
+- [core] Fix some upcoming eslint issues (#34727) @oliviertassinari
+- [core] Auto-fix upcoming eslint issues (#34644) @Janpot
+- [core] Move SearchIcons to docs src folder (#34802)
+- [test] Enable `react/no-unstable-nested-components` (#34518) @eps1lon
+
+All contributors of this release in alphabetical order: @AbayKinayat, @alexfauquette, @bharatkashyap, @DanailH, @eps1lon, @hayawata3626, @hbjORbj, @Janpot, @joserodolfofreitas, @m4theushw, @mbayucot, @michaldudak, @mohd-akram, @ndresx, @oliviertassinari, @pedroprado010, @rvrvrv, @samuelsycamore, @siriwatknp, @TheUnlocked, @zee-bit
+
 ## 5.10.9
 
 <!-- generated comparing v5.10.8..master -->
