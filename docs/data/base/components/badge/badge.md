@@ -71,26 +71,22 @@ Use the `component` prop to override the root slot with a custom element:
 <BadgeUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<BadgeUnstyled components={{ Root: 'div', Badge: 'div' }} />
+<BadgeUnstyled slots={{ root: 'div', badge: 'div' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-badge` to the badge slot:
 
 ```jsx
-<BadgeUnstyled componentsProps={{ badge: { className: 'my-badge' } }} />
+<BadgeUnstyled slotProps={{ badge: { className: 'my-badge' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 
