@@ -233,7 +233,7 @@ export default function Playground() {
               <div>
                 <FormLabel>readOnly</FormLabel>
                 <FormHelperText>
-                  The component becomes readonly. It is also supported for multiple
+                  The component becomes read-only. It is also supported in multiple
                   tags where the tag cannot be deleted.
                 </FormHelperText>
               </div>
