@@ -3,7 +3,7 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type LinearProgressSlot = 'root' | 'track' | 'progress1' | 'progress2';
+export type LinearProgressSlot = 'root' | 'progress';
 
 export interface LinearProgressPropsColorOverrides {}
 export interface LinearProgressPropsSizeOverrides {}
@@ -11,9 +11,7 @@ export interface LinearProgressPropsVariantOverrides {}
 
 interface ComponentsProps {
   root?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
-  track?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
-  progress1?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
-  progress2?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
+  progress?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
 }
 
 export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {

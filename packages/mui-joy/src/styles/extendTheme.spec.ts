@@ -490,19 +490,7 @@ extendTheme({
           );
           return {};
         },
-        track: ({ ownerState }) => {
-          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
-            ownerState,
-          );
-          return {};
-        },
-        progress1: ({ ownerState }) => {
-          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
-            ownerState,
-          );
-          return {};
-        },
-        progress2: ({ ownerState }) => {
+        progress: ({ ownerState }) => {
           expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
