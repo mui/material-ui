@@ -25,12 +25,6 @@ describe('<LinearProgress />', () => {
 
       expect(getByRole('progressbar')).to.have.class(classes.determinate);
     });
-
-    it('should render an indeterminate circular progress', () => {
-      const { getByRole } = render(<LinearProgress determinate={false} />);
-
-      expect(getByRole('progressbar')).to.have.class(classes.indeterminate);
-    });
   });
 
   describe('prop: variant', () => {
@@ -47,6 +41,7 @@ describe('<LinearProgress />', () => {
       });
     });
   });
+
   describe('prop: color', () => {
     it('adds a primary class by default', () => {
       const { getByRole } = render(<LinearProgress />);
@@ -61,6 +56,7 @@ describe('<LinearProgress />', () => {
       });
     });
   });
+
   describe('prop: size', () => {
     it('md by default', () => {
       const { getByRole } = render(<LinearProgress />);
