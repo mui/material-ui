@@ -139,7 +139,7 @@ Here is a collection of well-known typography systems that you can get-started w
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Material Design (Google)
+### Material Design 3 (Google)
 
 - Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460)
 - Font: [Roboto](https://fonts.google.com/specimen/Roboto)
