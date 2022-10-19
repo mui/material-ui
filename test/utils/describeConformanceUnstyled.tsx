@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { MuiRenderResult, RenderOptions } from './createRenderer';
+import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
 import {
   ConformanceOptions,
   describeRef,
@@ -46,7 +46,6 @@ interface WithCustomProp {
 
 interface WithOwnerState {
   ownerState: Record<string, any>;
-  expectedOwnerState: Record<string, any>;
 }
 
 function forEachSlot(
@@ -76,7 +75,7 @@ function testPropForwarding(
     const CustomRoot = React.forwardRef(
       ({ fooBar, lang }: WithCustomProp, ref: React.ForwardedRef<any>) => {
         // @ts-ignore
-        return <Element ref={ref} data-foobar={fooBar} lang={lang} />;
+        return <Element ref={ref} data-foobar={fooBar} lang={lang} data-testid="custom-root" />;
       },
     );
 
@@ -85,26 +84,25 @@ function testPropForwarding(
       fooBar: randomStringValue(),
     };
 
-    const { container } = render(
-      React.cloneElement(element, { slots: { root: CustomRoot }, ...otherProps }),
-    );
+    render(React.cloneElement(element, { slots: { root: CustomRoot }, ...otherProps }));
 
-    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
-    expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
+    const customRoot = screen.getByTestId('custom-root');
+    expect(customRoot).to.have.attribute('lang', otherProps.lang);
+    expect(customRoot).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
   it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
       lang: 'fr',
       'data-foobar': randomStringValue(),
+      'data-testid': 'custom-root',
     };
 
-    const { container } = render(
-      React.cloneElement(element, { slots: { root: Element }, ...otherProps }),
-    );
+    render(React.cloneElement(element, { slots: { root: Element }, ...otherProps }));
 
-    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
-    expect(container.firstChild).to.have.attribute('data-foobar', otherProps['data-foobar']);
+    const customRoot = screen.getByTestId('custom-root');
+    expect(customRoot).to.have.attribute('lang', otherProps.lang);
+    expect(customRoot).to.have.attribute('data-foobar', otherProps['data-foobar']);
   });
 }
 
@@ -301,10 +299,11 @@ function testOwnerStatePropagation(
 
   forEachSlot(slots, (slotName) => {
     it(`sets the ownerState prop on the ${slotName} slot's component`, () => {
+      let componentOwnerState;
       const TestComponent = React.forwardRef(
-        ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
-          expect(ownerState).not.to.equal(undefined);
-          expect(ownerState).to.deep.include(expectedOwnerState);
+        ({ ownerState }: WithOwnerState, ref: React.Ref<any>) => {
+          componentOwnerState = ownerState;
+
           // @ts-ignore
           return <Element ref={ref} />;
         },
@@ -314,15 +313,13 @@ function testOwnerStatePropagation(
         [slotName]: TestComponent,
       };
 
-      const slotProps = {
-        [slotName]: {
-          expectedOwnerState: {
-            id: 'foo',
-          },
-        },
+      const expectedOwnerState = {
+        id: 'foo',
       };
 
-      render(React.cloneElement(element, { slots: slotOverrides, slotProps, id: 'foo' }));
+      render(React.cloneElement(element, { slots: slotOverrides, id: 'foo' }));
+      expect(componentOwnerState).not.to.equal(undefined);
+      expect(componentOwnerState).to.deep.include(expectedOwnerState);
     });
   });
 }
