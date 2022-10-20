@@ -1,7 +1,7 @@
 ---
 title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, MUI Base, MUI X, and Toolpad for your next project.
-date: 2022-10-13T00:00:00.000Z
+date: 2022-10-24T00:00:00.000Z
 authors: ['samuelsycamore']
 card: false
 tags: ['Product']
@@ -139,15 +139,15 @@ It features an intuitive UI and corresponding API to display different views of 
 
 #### Key features
 
-- **Sophisticated data analysis:**
-- **Intuitive customization:**
-- **Accessibility:**
+- **Sophisticated data analysis:** Edit, filter, sort, aggregate, and export your data with ease. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
+- **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familar with Material UI—no new concepts to master along the way.
+- **Accessibility:** It is notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
 
 #### Ideal use cases
 
-- data-rich applications
-- data analytics tools
-- admin tools
+- Applications that feature massive data sets
+- Data analytics tools
+- Apps built with MUI Core libraries that need advanced functionality
 
 ### Date and Time Pickers
 
@@ -160,7 +160,8 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 #### Ideal use cases
 
-- forms requiring date and time input from the user
+- Forms requiring date and time input from the user
+- Apps built with MUI Core libraries that need advanced functionality
 
 ## MUI Toolpad
 
@@ -176,5 +177,5 @@ Drag and drop pre-built UI components, connect your data sources, and your app i
 
 ### Ideal use cases
 
-- admin tools
-- rapid prototyping
+- Admin tools
+- Rapid prototyping
