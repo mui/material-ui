@@ -14,7 +14,7 @@ import { extendTheme } from '@mui/material-next/styles';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
 
-const ModeSwitcher = ({ setMode: setModeProp }: { setMode: (arg: string) => void }) => {
+const ModeSwitcher = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -32,10 +32,8 @@ const ModeSwitcher = ({ setMode: setModeProp }: { setMode: (arg: string) => void
         onClick={() => {
           if (mode === 'light') {
             setMode('dark');
-            setModeProp('dark');
           } else {
             setMode('light');
-            setModeProp('light');
           }
         }}
       >
@@ -140,12 +138,10 @@ const DemoComponents = () => {
 const cssVarsTheme = extendTheme();
 
 export default function App() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [mode, setMode] = React.useState('light');
   return (
     <React.Fragment>
       <CssVarsProvider theme={cssVarsTheme}>
-        <ModeSwitcher setMode={setMode} />
+        <ModeSwitcher />
         <DemoComponents />
       </CssVarsProvider>
     </React.Fragment>
