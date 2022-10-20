@@ -1,8 +1,9 @@
 import { deepmerge } from '@mui/utils';
+import { MD3PaletteWithTokens } from './Theme.types';
 import globalPalette from './palette';
 
-const createMd3Palette = (palette, mode = 'light') => {
-  const resolvedGlobalPalette = deepmerge(globalPalette, palette);
+const createMd3Palette = (palette: MD3PaletteWithTokens, mode = 'light'): MD3PaletteWithTokens => {
+  const resolvedGlobalPalette = deepmerge(globalPalette, palette) as MD3PaletteWithTokens;
 
   return {
     ...resolvedGlobalPalette,

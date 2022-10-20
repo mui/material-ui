@@ -19,7 +19,7 @@ export interface CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'color
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
 }
 
-interface MD3Tones {
+export interface MD3Tones {
   0: string;
   10: string;
   20: string;
@@ -140,14 +140,18 @@ export interface Shapes {
   borderRadius: number;
 }
 
+export interface MD3PaletteWithTokens extends MD3Palettes {
+  colors: MD3ColorSchemeTokens;
+}
+
 export interface Theme extends Omit<MD2Theme, 'vars'> {
   useMaterialYou?: boolean;
-  palette: MD2Theme['palette'] & { md3: MD3Palettes & { colors: MD3ColorSchemeTokens } };
+  palette: MD2Theme['palette'] & { md3: MD3PaletteWithTokens };
   state: MD3States;
   typescale: MD3Typescale;
   shape: Shapes;
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'] & { md3: MD3Palettes & { colors: MD3ColorSchemeTokens } };
+    palette: MD2Theme['vars']['palette'] & { md3: MD3PaletteWithTokens };
     state: MD3States;
     typescale: MD3Typescale;
     shape: Shapes;

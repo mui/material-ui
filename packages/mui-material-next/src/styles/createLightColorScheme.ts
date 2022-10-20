@@ -1,5 +1,9 @@
-// convert all these values to CSS vars
-const createLightColorScheme = (getCssVar, palette) => ({
+import { MD3Palettes } from './Theme.types';
+
+const createLightColorScheme = (
+  getCssVar: (cssVar: string, defaultVal: string) => string,
+  palette: MD3Palettes,
+) => ({
   colors: {
     surfaceTint: getCssVar('palette-md3-primary-40', palette.primary[40]),
     onErrorContainer: getCssVar('palette-md3-error-10', palette.error[10]),
