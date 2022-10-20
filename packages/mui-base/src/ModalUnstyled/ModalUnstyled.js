@@ -55,7 +55,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     children,
     classes: classesProp,
     closeAfterTransition = false,
-    component = 'div',
+    component,
     container,
     disableAutoFocus = false,
     disableEnforceFocus = false,
@@ -235,7 +235,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     childProps.onExited = createChainedFunction(handleExited, children.props.onExited);
   }
 
-  const Root = slots.root || component;
+  const Root = component ?? slots.root ?? 'div';
   const rootProps = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
