@@ -172,9 +172,9 @@ Drag and drop pre-built UI components, connect your data sources, and your app i
 
 ### Key features
 
-**Build faster than ever:** With MUI Toolpad, your development time can be measured in minutes rather than hours or days. Skip the mindless busywork of UI development and get straight to the core business logic.
-**Use the components you already know:** Toolpad comes preloaded with both MUI Core and X libraries, giving you the full power of MUI's components in a drag-and-drop interface.
-**Extensible with code:** Start with only bare-bones JavaScript to get up and running, and then jump from "low code" to "pro code" as needed to add custom features and functionality.
+- **Build faster than ever:** With MUI Toolpad, your development time can be measured in minutes rather than hours or days. Skip the mindless busywork of UI development and get straight to the core business logic.
+- **Use the components you already know:** Toolpad comes preloaded with both MUI Core and X libraries, giving you the full power of MUI's components in a drag-and-drop interface.
+- **Extensible with code:** Start with only bare-bones JavaScript to get up and running, and then jump from "low code" to "pro code" as needed to add custom features and functionality.
 
 ### Ideal use cases
 
