@@ -1,6 +1,6 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
-import { keyframes } from '@mui/system';
+import { keyframes, css } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
@@ -15,28 +15,29 @@ import {
   LinearProgressTypeMap,
 } from './LinearProgressProps';
 
+// TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 const progressKeyframe = keyframes`
   0% {
-    left: 0%;
-    width: var(--LinearProgress-width-shrink);
+    left: var(--_LinearProgress-progress-inset);
+    inline-size: var(--LinearProgress-progress-minWidth);
   }
 
-  20% {
-    width: var(--LinearProgress-width-value);
+  25% {
+    inline-size: var(--LinearProgress-progress-maxWidth);
   }
 
   50% {
-    left: var(--LinearProgress-left-end);
-    width: var(--LinearProgress-width-shrink);
+    left: var(--_LinearProgress-progress-left);
+    inline-size: var(--LinearProgress-progress-minWidth);
   }
 
-  80% {
-    width: var(--LinearProgress-width-value);
+  75% {
+    inline-size: var(--LinearProgress-progress-maxWidth);
   }
   
   100% {
-    left: 0%;
-    width: var(--LinearProgress-width-shrink);
+    left: var(--_LinearProgress-progress-inset);
+    inline-size: var(--LinearProgress-progress-minWidth);
   }
 `;
 
@@ -61,90 +62,75 @@ const LinearProgressRoot = styled('div', {
   name: 'JoyLinearProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme }) => {
-  const { color, backgroundColor, ...rest } =
-    theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
-  return {
-    // integration with icon
-    '--Icon-fontSize': 'calc(0.4 * var(--_root-height))',
-    // public variables
-    '--LinearProgress-progress-color': color,
-    '--LinearProgress-percent': ownerState.value, // 0 - 100
-    '--LinearProgress-linecap': 'round',
-    '--LinearProgress-width-value': '25%',
-    '--LinearProgress-width-shrink': '10%',
-    '--LinearProgress-left-end': 'calc(100% - var(--LinearProgress-width-shrink))',
-    ...(ownerState.size === 'sm' && {
-      '--LinearProgress-progress-thickness': '4px',
-      '--_root-height': 'var(--LinearProgress-height, 4px)', // use --_root-height to let other components overrides via --LinearProgress-height
-      '--LinearProgress-padding': '2px',
-      '--LinearProgress-borderRadius': '6px',
-    }),
-    ...(ownerState.instanceSize === 'sm' && {
-      '--LinearProgress-height': '4px',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--LinearProgress-progress-thickness': '6px',
-      '--_root-height': 'var(--LinearProgress-height, 6px)',
-      '--LinearProgress-padding': '4px',
-      '--LinearProgress-borderRadius': '8px',
-    }),
-    ...(ownerState.instanceSize === 'md' && {
-      '--LinearProgress-height': '6px',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--LinearProgress-progress-thickness': '8px',
-      '--_root-height': 'var(--LinearProgress-height, 8px)',
-      '--LinearProgress-padding': '6px',
-      '--LinearProgress-borderRadius': '10px',
-    }),
-    ...(ownerState.instanceSize === 'lg' && {
-      '--LinearProgress-height': '8px',
-    }),
-    ...(ownerState.thickness && {
-      '--LinearProgress-height': `${ownerState.thickness}px`,
-      '--LinearProgress-progress-thickness': `${ownerState.thickness}px`,
-      '--LinearProgress-borderRadius': `${ownerState.thickness * 3}px`,
-    }),
-    ...(!ownerState.determinate && {
-      padding: 'var(--LinearProgress-padding)',
-    }),
-    width: '100%',
-    height: 'var(--_root-height)',
-    backgroundColor,
-    boxSizing: 'content-box',
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: 'var(--LinearProgress-borderRadius)',
-    position: 'relative',
-    overflow: 'hidden',
-    color,
-    ...rest,
-  };
-});
+})<{ ownerState: LinearProgressOwnerState }>(({ ownerState, theme }) => ({
+  // public variables
+  '--LinearProgress-percent': ownerState.value,
+  '--LinearProgress-radius': 'var(--LinearProgress-thickness)',
+  '--LinearProgress-progress-thickness': 'var(--LinearProgress-thickness)',
+  '--LinearProgress-progress-radius':
+    'max(var(--LinearProgress-radius) - var(--_LinearProgress-padding), min(var(--_LinearProgress-padding) / 2, var(--LinearProgress-radius) / 2))',
+  ...(ownerState.size === 'sm' && {
+    '--LinearProgress-thickness': '4px',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--LinearProgress-thickness': '6px',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--LinearProgress-thickness': '8px',
+  }),
+  ...(ownerState.thickness && {
+    '--LinearProgress-thickness': `${ownerState.thickness}px`,
+  }),
+  blockSize: 'var(--LinearProgress-thickness)',
+  boxSizing: 'border-box',
+  borderRadius: 'var(--LinearProgress-radius)',
+  display: 'flex',
+  alignItems: 'center',
+  flex: 1,
+  padding: 'var(--_LinearProgress-padding)',
+  position: 'relative',
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  '--_LinearProgress-padding':
+    'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth) - var(--LinearProgress-progress-thickness)) / 2, 0px)',
+}));
 
 const LinearProgressProgress = styled('span', {
   name: 'JoyLinearProgress',
   slot: 'progress',
   overridesResolver: (props, styles) => styles.progress,
-})<{ ownerState: LinearProgressOwnerState }>(({ ownerState }) => ({
-  position: 'relative',
-  right: '0%',
-  display: 'block',
-  height: `var(--LinearProgress-progress-thickness)` || '100%',
-  backgroundColor: 'var(--LinearProgress-progress-color)',
-  borderRadius: 'inherit',
-  ...(ownerState.determinate
-    ? {
-        transition: 'transform 0.4s linear',
-        width: '100%',
-      }
-    : {
-        width: '10%',
-        transition: 'transform 0.2s linear',
-        animation: `${progressKeyframe} 2.5s ease-in-out infinite`,
-      }),
-}));
+})<{ ownerState: LinearProgressOwnerState }>(
+  {
+    display: 'block',
+    blockSize:
+      'calc(var(--LinearProgress-progress-thickness) - 2 * var(--variant-borderWidth, 0px))',
+    borderRadius: 'var(--LinearProgress-progress-radius)',
+    backgroundColor: 'currentColor',
+    color: 'inherit',
+    position: 'relative', // required to make `left` animation works.
+  },
+  ({ ownerState }) =>
+    ownerState.determinate
+      ? {
+          left: 'calc(var(--_LinearProgress-padding) / 2)',
+          transition: 'inline-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          inlineSize: 'calc(var(--LinearProgress-percent) * 1% - var(--_LinearProgress-padding))',
+        }
+      : css`
+          --LinearProgress-progress-minWidth: calc(var(--LinearProgress-percent) * 1% / 2);
+          --LinearProgress-progress-maxWidth: calc(var(--LinearProgress-percent) * 1%);
+          --_LinearProgress-progress-left: calc(
+            100% - var(--LinearProgress-progress-minWidth) - var(--_LinearProgress-progress-inset)
+          );
+          --_LinearProgress-progress-inset: calc(
+            var(--LinearProgress-thickness) / 2 - var(--LinearProgress-progress-thickness) / 2
+          );
+          animation: var(
+              --LinearProgress-circulation,
+              2.5s ease-in-out 0s infinite normal none running
+            )
+            ${progressKeyframe};
+        `,
+);
 
 /**
  * ## ARIA
@@ -161,7 +147,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   const {
     componentsProps = {},
-    component = 'span',
+    component = 'div',
     children,
     className,
     color = 'primary',
@@ -209,13 +195,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     externalSlotProps: componentsProps.progress,
     ownerState,
     className: classes.progress,
-    ...(determinate && {
-      additionalProps: {
-        style: {
-          transform: `translateX(${value - 100}%)`,
-        },
-      },
-    }),
   });
 
   return (
