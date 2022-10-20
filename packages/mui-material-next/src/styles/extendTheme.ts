@@ -72,12 +72,14 @@ export default function extendTheme(
     ...input,
     ...(useMaterialYou && {
       useMaterialYou: true,
-      typescale: md3Typescale,
-      typeface: md3Typeface,
-      state: md3State,
-      shape: {
-        borderRadius: 100,
-        ...input?.shape,
+      md3: {
+        typescale: md3Typescale,
+        typeface: md3Typeface,
+        state: md3State,
+        shape: {
+          borderRadius: 100,
+          ...input?.shape,
+        },
       },
     }),
     palette: {

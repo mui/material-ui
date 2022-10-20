@@ -6,6 +6,7 @@ import {
   useColorScheme,
   Stack,
 } from '@mui/material';
+import MD2Button, { ButtonProps as MD2ButtonProps } from '@mui/material/Button';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
@@ -52,6 +53,16 @@ const variants: ButtonProps['variant'][] = [
 ];
 const colors: ButtonProps['color'][] = ['primary', 'secondary', 'tertiary'];
 const sizes: ButtonProps['size'][] = ['small', 'medium', 'large'];
+
+const md2Variants: MD2ButtonProps['variant'][] = ['contained', 'outlined', 'text'];
+const md2Colors: MD2ButtonProps['color'][] = [
+  'primary',
+  'secondary',
+  'success',
+  'error',
+  'info',
+  'warning',
+];
 
 const DemoComponents = () => {
   return (
@@ -128,6 +139,21 @@ const DemoComponents = () => {
           <Button key={size} variant="outlined" size={size} startIcon={<DeleteIcon />}>
             {capitalize(size as string)}
           </Button>
+        ))}
+      </Stack>
+      <h4>Material Design 2 Buttons</h4>
+      <Stack direction="row" gap={1} alignItems="end">
+        {md2Variants.map((variant) => (
+          <MD2Button key={variant} variant={variant}>
+            {capitalize(variant as string)}
+          </MD2Button>
+        ))}
+      </Stack>
+      <Stack direction="row" gap={1} alignItems="end">
+        {md2Colors.map((color) => (
+          <MD2Button key={color} variant="contained" color={color}>
+            {capitalize(color as string)}
+          </MD2Button>
         ))}
       </Stack>
     </Stack>

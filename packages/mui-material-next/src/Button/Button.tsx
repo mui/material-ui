@@ -127,37 +127,40 @@ export const ButtonRoot = styled('button', {
   const hoveredContainerColor = {
     elevated: theme.vars
       ? `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
-          (theme.vars || theme).state.hover.stateLayerOpacity
+          (theme.vars || theme).md3.state.hover.stateLayerOpacity
         })`
-      : alpha(theme.palette.md3.colors.primary, theme.state.hover.stateLayerOpacity),
+      : alpha(theme.palette.md3.colors.primary, theme.md3.state.hover.stateLayerOpacity),
     filled: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / calc(1 - ${(theme.vars || theme).state.hover.stateLayerOpacity}))`
+        } / calc(1 - ${(theme.vars || theme).md3.state.hover.stateLayerOpacity}))`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          1 - theme.state.hover.stateLayerOpacity,
+          1 - theme.md3.state.hover.stateLayerOpacity,
         ),
     filledTonal: theme.vars
       ? `rgba(${(theme.vars || theme).palette.md3.colors.secondaryContainerChannel} / calc(1 - ${
-          (theme.vars || theme).state.hover.stateLayerOpacity
+          (theme.vars || theme).md3.state.hover.stateLayerOpacity
         }))`
-      : alpha(theme.palette.md3.colors.secondaryContainer, 1 - theme.state.hover.stateLayerOpacity),
+      : alpha(
+          theme.palette.md3.colors.secondaryContainer,
+          1 - theme.md3.state.hover.stateLayerOpacity,
+        ),
     outlined: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`
+        } / ${(theme.vars || theme).md3.state.hover.stateLayerOpacity})`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          theme.state.hover.stateLayerOpacity,
+          theme.md3.state.hover.stateLayerOpacity,
         ),
     text: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).state.hover.stateLayerOpacity})`
+        } / ${(theme.vars || theme).md3.state.hover.stateLayerOpacity})`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          theme.state.hover.stateLayerOpacity,
+          theme.md3.state.hover.stateLayerOpacity,
         ),
   };
 
@@ -172,77 +175,80 @@ export const ButtonRoot = styled('button', {
   const pressedContainerColor = {
     elevated: theme.vars
       ? `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
-          (theme.vars || theme).state.pressed.stateLayerOpacity
+          (theme.vars || theme).md3.state.pressed.stateLayerOpacity
         })`
-      : alpha(theme.palette.md3.colors.primary, theme.state.pressed.stateLayerOpacity),
+      : alpha(theme.palette.md3.colors.primary, theme.md3.state.pressed.stateLayerOpacity),
     filled: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / calc(1 - ${(theme.vars || theme).state.pressed.stateLayerOpacity}))`
+        } / calc(1 - ${(theme.vars || theme).md3.state.pressed.stateLayerOpacity}))`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          1 - theme.state.pressed.stateLayerOpacity,
+          1 - theme.md3.state.pressed.stateLayerOpacity,
         ),
     filledTonal: theme.vars
       ? `rgba(${(theme.vars || theme).palette.md3.colors.secondaryContainerChannel} / calc(1 - ${
-          (theme.vars || theme).state.pressed.stateLayerOpacity
+          (theme.vars || theme).md3.state.pressed.stateLayerOpacity
         }))`
       : alpha(
           theme.palette.md3.colors.secondaryContainer,
-          1 - theme.state.pressed.stateLayerOpacity,
+          1 - theme.md3.state.pressed.stateLayerOpacity,
         ),
     outlined: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`
+        } / ${(theme.vars || theme).md3.state.pressed.stateLayerOpacity})`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          theme.state.pressed.stateLayerOpacity,
+          theme.md3.state.pressed.stateLayerOpacity,
         ),
     text: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).state.pressed.stateLayerOpacity})`
+        } / ${(theme.vars || theme).md3.state.pressed.stateLayerOpacity})`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          theme.state.pressed.stateLayerOpacity,
+          theme.md3.state.pressed.stateLayerOpacity,
         ),
   };
 
   const focusedContainerColor = {
     elevated: theme.vars
       ? `rgba(${(theme.vars || theme).palette.md3.colors.primaryChannel} / ${
-          (theme.vars || theme).state.focus.stateLayerOpacity
+          (theme.vars || theme).md3.state.focus.stateLayerOpacity
         })`
-      : alpha(theme.palette.md3.colors.primary, theme.state.focus.stateLayerOpacity),
+      : alpha(theme.palette.md3.colors.primary, theme.md3.state.focus.stateLayerOpacity),
     filled: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / calc(1 - ${(theme.vars || theme).state.focus.stateLayerOpacity}))`
+        } / calc(1 - ${(theme.vars || theme).md3.state.focus.stateLayerOpacity}))`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          1 - theme.state.focus.stateLayerOpacity,
+          1 - theme.md3.state.focus.stateLayerOpacity,
         ),
     filledTonal: theme.vars
       ? `rgba(${(theme.vars || theme).palette.md3.colors.secondaryContainerChannel} / calc(1 - ${
-          (theme.vars || theme).state.focus.stateLayerOpacity
+          (theme.vars || theme).md3.state.focus.stateLayerOpacity
         }))`
-      : alpha(theme.palette.md3.colors.secondaryContainer, 1 - theme.state.focus.stateLayerOpacity),
+      : alpha(
+          theme.palette.md3.colors.secondaryContainer,
+          1 - theme.md3.state.focus.stateLayerOpacity,
+        ),
     outlined: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`
+        } / ${(theme.vars || theme).md3.state.focus.stateLayerOpacity})`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          theme.state.focus.stateLayerOpacity,
+          theme.md3.state.focus.stateLayerOpacity,
         ),
     text: theme.vars
       ? `rgba(${
           (theme.vars || theme).palette.md3.colors[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).state.focus.stateLayerOpacity})`
+        } / ${(theme.vars || theme).md3.state.focus.stateLayerOpacity})`
       : alpha(
           theme.palette.md3.colors[ownerState.color ?? 'primary'],
-          theme.state.focus.stateLayerOpacity,
+          theme.md3.state.focus.stateLayerOpacity,
         ),
   };
 
@@ -258,7 +264,7 @@ export const ButtonRoot = styled('button', {
     : alpha(theme.palette.md3.colors.onSurface, 0.38);
 
   const letterSpacing = `${
-    theme.typescale.label.large.tracking / theme.typescale.label.large.size
+    theme.md3.typescale.label.large.tracking / theme.md3.typescale.label.large.size
   }rem`;
 
   return {
@@ -284,8 +290,8 @@ export const ButtonRoot = styled('button', {
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
     // Dynamic variables
     '--md-comp-button-label-text-line-height': `calc(${
-      (theme.vars || theme).typescale.label.large.lineHeight
-    } / ${theme.typescale.label.large.size})`,
+      (theme.vars || theme).md3.typescale.label.large.lineHeight
+    } / ${theme.md3.typescale.label.large.size})`,
     // Noramlized styles for buttons
     display: 'inline-flex',
     alignItems: 'center',
@@ -321,16 +327,16 @@ export const ButtonRoot = styled('button', {
       },
     ),
     fontFamily: `var(--md-comp-button-label-text-font, ${
-      (theme.vars || theme).typescale.label.large.family
+      (theme.vars || theme).md3.typescale.label.large.family
     })`,
     fontWeight: `var(--md-comp-button-label-text-weight, ${
-      (theme.vars || theme).typescale.label.large.weight
+      (theme.vars || theme).md3.typescale.label.large.weight
     })`,
     fontSize: `var(--md-comp-button-label-text-size, ${
-      theme.typography.pxToRem(theme.typescale.label.large.size) // the pxToRem should be moved to typescale in the future
+      theme.typography.pxToRem(theme.md3.typescale.label.large.size) // the pxToRem should be moved to typescale in the future
     })`,
     lineHeight: 'var(--md-comp-button-label-text-line-height)',
-    borderRadius: (theme.vars || theme).shape.borderRadius,
+    borderRadius: (theme.vars || theme).md3.shape.borderRadius,
     background: `var(--md-comp-button-container-color, ${
       containerColor[ownerState.variant ?? 'text']
     })`,
@@ -348,7 +354,7 @@ export const ButtonRoot = styled('button', {
     // Sizes are not specified in Material You, this need to be revised
     ...(ownerState.size === 'small' && {
       fontSize: `var(--md-comp-button-label-text-size, ${
-        theme.typography.pxToRem(theme.typescale.label.large.size - 1) // the pxToRem should be moved to typescale in the future
+        theme.typography.pxToRem(theme.md3.typescale.label.large.size - 1) // the pxToRem should be moved to typescale in the future
       })`,
       padding: '8px 20px',
       ...(ownerState.variant === 'outlined' && {
@@ -357,7 +363,7 @@ export const ButtonRoot = styled('button', {
     }),
     ...(ownerState.size === 'large' && {
       fontSize: `var(--md-comp-button-label-text-size, ${
-        theme.typography.pxToRem(theme.typescale.label.large.size + 1) // the pxToRem should be moved to typescale in the future
+        theme.typography.pxToRem(theme.md3.typescale.label.large.size + 1) // the pxToRem should be moved to typescale in the future
       })`,
       padding: '12px 26px',
       ...(ownerState.variant === 'outlined' && {
