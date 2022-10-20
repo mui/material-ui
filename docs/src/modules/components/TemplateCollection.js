@@ -1,8 +1,8 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import LZString from 'lz-string';
 import startCase from 'lodash/startCase';
 import NextLink from 'next/link';
-import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
@@ -17,7 +17,11 @@ import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 
 const cache = {};
-const req = require.context('./?raw', true, /^\.\/[^/]+\/.*\.(js|tsx)$/);
+const req = require.context(
+  '../../../data/joy/getting-started/templates/?raw',
+  true,
+  /^\.\/[^/]+\/.*\.(js|tsx)$/,
+);
 req.keys().forEach((key) => {
   cache[key] = req(key);
 });
@@ -46,7 +50,6 @@ function addHiddenInput(form, name, value) {
 
 export default function TemplateCollection() {
   const templates = extractTemplates(cache);
-  const theme = useTheme();
   return (
     <List
       sx={{
@@ -85,10 +88,7 @@ export default function TemplateCollection() {
                 <Typography component="h3" fontSize="xl" fontWeight="xl">
                   {startCase(name)}
                 </Typography>
-                <NextLink
-                  href={`/joy-ui/getting-started/templates/${name}/`}
-                  passHref
-                >
+                <NextLink href={`/joy-ui/getting-started/templates/${name}/`} passHref>
                   <Button
                     component="a"
                     variant="outlined"
@@ -148,17 +148,15 @@ export default function TemplateCollection() {
               </Box>
               <AspectRatio ratio="2" variant="outlined">
                 <Box
-                  sx={{
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}${
-                      theme.palette.mode === 'dark' ? '-dark' : ''
-                    }.jpg)`,
+                  sx={(theme) => ({
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
                     transition: '0.3s',
-                  }}
+                    [theme.getColorSchemeSelector('dark')]: {
+                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+                    },
+                  })}
                 />
-                <NextLink
-                  href={`/joy-ui/getting-started/templates/${name}/`}
-                  passHref
-                >
+                <NextLink href={`/joy-ui/getting-started/templates/${name}/`} passHref>
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <Link
                     tabIndex={-1}

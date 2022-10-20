@@ -80,6 +80,9 @@ export default function MarkdownDocs(props) {
               throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
             }
 
+            if (renderedMarkdownOrDemo.skipBrandingProvider) {
+              return <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
+            }
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
                 <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
