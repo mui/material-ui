@@ -1,1 +1,1 @@
-<LinearProgress thickness={1} sx={{ '--LinearProgress-padding': '0px' }} />
+<LinearProgress thickness={1} />
