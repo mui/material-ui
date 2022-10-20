@@ -1,21 +1,13 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
+import Stack from '@mui/joy/Stack';
 import LinearProgress from '@mui/joy/LinearProgress';
 
 export default function LinearProgressColors() {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        gap: 2,
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
+    <Stack spacing={2} sx={{ flex: 1 }}>
       <LinearProgress size="sm" />
       <LinearProgress size="md" />
       <LinearProgress size="lg" />
-    </Box>
+    </Stack>
   );
 }

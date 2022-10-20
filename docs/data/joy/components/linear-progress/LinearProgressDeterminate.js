@@ -1,6 +1,6 @@
-import Box from '@mui/joy/Box';
-import LinearProgress from '@mui/joy/LinearProgress';
 import * as React from 'react';
+import Stack from '@mui/joy/Stack';
+import LinearProgress from '@mui/joy/LinearProgress';
 
 export default function LinearProgressDeterminate() {
   const [progress, setProgress] = React.useState(0);
@@ -16,19 +16,12 @@ export default function LinearProgressDeterminate() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        gap: 2,
-        flexDirection: 'column',
-      }}
-    >
+    <Stack spacing={2} sx={{ flex: 1 }}>
       <LinearProgress determinate value={25} />
       <LinearProgress determinate value={50} />
       <LinearProgress determinate value={75} />
       <LinearProgress determinate value={100} />
       <LinearProgress determinate value={progress} />
-    </Box>
+    </Stack>
   );
 }
