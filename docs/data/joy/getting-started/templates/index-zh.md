@@ -4,4 +4,4 @@
 
 If while using these examples you make changes or enhancements that could improve the developer experience, or you would like to contribute an additional example, please consider creating a [pull request on GitHub](https://github.com/mui/material-ui/pulls).
 
-{{"demo": "TemplateCollection.js", "hideToolbar": true, "bg": "inline"}}
+{{"component": "modules/components/TemplateCollection.js", "skipBrandingProvider": true}}
