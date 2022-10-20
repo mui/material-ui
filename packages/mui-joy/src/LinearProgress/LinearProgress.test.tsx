@@ -9,11 +9,11 @@ describe('<LinearProgress />', () => {
   const { render } = createRenderer();
   describeConformance(<LinearProgress />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'div',
     render,
     ThemeProvider,
     muiName: 'JoyLinearProgress',
-    refInstanceof: window.HTMLSpanElement,
+    refInstanceof: window.HTMLDivElement,
     testVariantProps: { determinate: true },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
