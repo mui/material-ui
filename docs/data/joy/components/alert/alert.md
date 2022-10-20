@@ -74,7 +74,7 @@ The Alert component supports the four [global variants](/joy-ui/main-features/gl
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
-The demo below shows how the `color` props correspond to the global variants:
+The demo below shows how the values for the `color` prop are affected by the global variants:
 
 {{"demo": "AlertColors.js"}}
 
