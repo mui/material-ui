@@ -7,7 +7,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { useButton, UseButtonRootSlotOwnProps } from '@mui/base/ButtonUnstyled';
+import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import { MD3ColorSchemeTokens, styled } from '../styles';

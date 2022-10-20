@@ -140,7 +140,8 @@ const DemoComponents = () => {
 const cssVarsTheme = extendTheme();
 
 export default function App() {
-  const [_, setMode] = React.useState('light');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [mode, setMode] = React.useState('light');
   return (
     <React.Fragment>
       <CssVarsProvider theme={cssVarsTheme}>
