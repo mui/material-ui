@@ -10,3 +10,5 @@ export type {
 
 export { default as formControlUnstyledClasses } from './formControlUnstyledClasses';
 export * from './formControlUnstyledClasses';
+
+export { default as useFormControlUnstyledContext } from './useFormControlUnstyledContext';

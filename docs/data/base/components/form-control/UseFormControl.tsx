@@ -1,6 +1,7 @@
 import * as React from 'react';
-import FormControlUnstyled from '@mui/base/FormControlUnstyled';
-import useFormControlUnstyledContext from '@mui/base/useFormControlUnstyledContext';
+import FormControlUnstyled, {
+  useFormControlUnstyledContext,
+} from '@mui/base/FormControlUnstyled';
 
 function CustomInput() {
   const formControlContext = useFormControlUnstyledContext();

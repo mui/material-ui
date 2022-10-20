@@ -1,8 +1,7 @@
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useFormControlUnstyledContext from '../useFormControlUnstyledContext';
-import { FormControlUnstyledState } from '../FormControlUnstyled';
+import { FormControlUnstyledState, useFormControlUnstyledContext } from '../FormControlUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import {
   UseInputInputSlotProps,
