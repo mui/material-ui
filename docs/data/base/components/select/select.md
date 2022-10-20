@@ -161,8 +161,10 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The following example shows a select that opens when hovered over or focused.
-It can be controlled by a mouse/touch or a keyboard.
+The following example shows a select built with a hook.
+Note how this component does not include any built-in classes.
+The resulting HTML is much smaller compared to the unstyled component version, as the class names are not applied.
+
 
 {{"demo": "UseSelect.js", "defaultCodeOpen": false}}
 
