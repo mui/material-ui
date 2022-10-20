@@ -24,7 +24,7 @@ export const getThemeWithVars = (
     opacity,
     overlays,
     shape,
-    md3: md3,
+    md3,
     ...restTheme,
     colorSchemes: {
       ...colorSchemes,
