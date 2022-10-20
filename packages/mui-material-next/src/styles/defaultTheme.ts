@@ -10,8 +10,7 @@ export const getThemeWithVars = (
     opacity,
     overlays,
     shape,
-    state,
-    typescale,
+    md3,
     palette: paletteInput,
     ...restTheme
   } = extendTheme(themeInput);
@@ -25,8 +24,7 @@ export const getThemeWithVars = (
     opacity,
     overlays,
     shape,
-    state,
-    typescale,
+    md3: md3,
     ...restTheme,
     colorSchemes: {
       ...colorSchemes,
@@ -41,8 +39,7 @@ export const getThemeWithVars = (
       opacity,
       overlays,
       shape,
-      state,
-      typescale,
+      md3,
       palette,
     },
   } as unknown as Theme;
