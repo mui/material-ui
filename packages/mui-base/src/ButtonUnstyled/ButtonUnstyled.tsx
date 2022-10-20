@@ -91,7 +91,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    externalForwardedProps: { ...other, href: other.href ?? other.to },
+    externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
       ref: forwardedRef,

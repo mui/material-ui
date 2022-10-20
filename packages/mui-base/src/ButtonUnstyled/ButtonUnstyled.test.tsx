@@ -167,8 +167,8 @@ describe('<ButtonUnstyled />', () => {
 
   describe('prop: to', () => {
     it('renders as a link when the "to" prop is provided', () => {
-      const { getByRole } = render(<ButtonUnstyled to="#" />);
-      expect(getByRole('link')).not.to.equal(null);
+      const { container } = render(<ButtonUnstyled to="#" />);
+      expect(container.querySelector('a')).not.to.equal(null);
     });
 
     it('renders as the element provided in the "component" prop, even with a "to" prop', () => {
