@@ -19,7 +19,7 @@ Though our roots are in [Material Design](https://material.io/), we're branching
 Our primary offerings fall into two product lines: Core and X.
 MUI Core contains our foundational component libraries (like Material UI), while MUI X offers components that are significantly more complex (like the Data Grid).
 
-We're also in the early stages of developing a low-code internal tool builder called [MUI Toolpad](https://mui.com/toolpad/), in which you can build with every Core and X component in a drag-and-drop interface.
+We're also in the early stages of developing a low-code internal tool builder called [MUI Toolpad](https://mui.com/toolpad/), which will enable you to build with every Core and X component in a drag-and-drop interface.
 
 Read on for more details on each of our products.
 
