@@ -54,9 +54,7 @@ The Alert component is composed of a single root `<div>` element with its `role`
 </div>
 ```
 
-## Customization
-
-### Overriding the root slot
+## Overriding the root slot
 
 Use the `component` prop to override the root slot with a custom element.
 For example, the following code snippet replaces the default `<div>` with a `<span>`:
@@ -64,6 +62,8 @@ For example, the following code snippet replaces the default `<div>` with a `<sp
 ```jsx
 <Alert component="span" />
 ```
+
+## Customization
 
 ### Variants
 
