@@ -1,22 +1,20 @@
 import * as React from 'react';
 import {
-  experimental_extendMD3Theme as extendMD3Theme,
   Experimental_CssVarsProvider as CssVarsProvider,
   Tooltip,
   IconButton,
-  experimental_createMD3Theme as createMD3Theme,
-  ThemeProvider,
   useColorScheme,
   Stack,
 } from '@mui/material';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
-import { Button } from '@mui/material-next';
+import Button, { ButtonProps } from '@mui/material-next/Button';
+import { extendTheme } from '@mui/material-next/styles';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
 
-const ModeSwitcher = ({ setMode: setModeProp }) => {
+const ModeSwitcher = ({ setMode: setModeProp }: { setMode: (arg: string) => void }) => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -47,9 +45,15 @@ const ModeSwitcher = ({ setMode: setModeProp }) => {
   );
 };
 
-const variants = ['elevated', 'filled', 'filledTonal', 'outlined', 'text'];
-const colors = ['primary', 'secondary', 'tertiary'];
-const sizes = ['small', 'medium', 'large'];
+const variants: ButtonProps['variant'][] = [
+  'elevated',
+  'filled',
+  'filledTonal',
+  'outlined',
+  'text',
+];
+const colors: ButtonProps['color'][] = ['primary', 'secondary', 'tertiary'];
+const sizes: ButtonProps['size'][] = ['small', 'medium', 'large'];
 
 const DemoComponents = () => {
   return (
@@ -58,7 +62,7 @@ const DemoComponents = () => {
       <Stack direction="row" gap={1}>
         {variants.map((variant) => (
           <Button key={`${variant}-enabled`} variant={variant}>
-            {capitalize(variant)}
+            {capitalize(variant as string)}
           </Button>
         ))}
       </Stack>
@@ -66,7 +70,7 @@ const DemoComponents = () => {
       <Stack direction="row" gap={1}>
         {variants.map((variant) => (
           <Button key={`${variant}-disabled`} variant={variant} disabled>
-            {capitalize(variant)}
+            {capitalize(variant as string)}
           </Button>
         ))}
       </Stack>
@@ -74,21 +78,21 @@ const DemoComponents = () => {
       <Stack direction="row" gap={1}>
         {colors.map((color) => (
           <Button key={color} variant="filled" color={color}>
-            {capitalize(color)}
+            {capitalize(color as string)}
           </Button>
         ))}
       </Stack>
       <Stack direction="row" gap={1}>
         {colors.map((color) => (
           <Button key={color} variant="outlined" color={color}>
-            {capitalize(color)}
+            {capitalize(color as string)}
           </Button>
         ))}
       </Stack>
       <Stack direction="row" gap={1}>
         {colors.map((color) => (
           <Button key={color} variant="text" color={color}>
-            {capitalize(color)}
+            {capitalize(color as string)}
           </Button>
         ))}
       </Stack>
@@ -117,14 +121,14 @@ const DemoComponents = () => {
       <Stack direction="row" gap={1} alignItems="end">
         {sizes.map((size) => (
           <Button key={size} variant="filled" size={size} endIcon={<SendIcon />}>
-            {capitalize(size)}
+            {capitalize(size as string)}
           </Button>
         ))}
       </Stack>
       <Stack direction="row" gap={1} alignItems="end">
         {sizes.map((size) => (
           <Button key={size} variant="outlined" size={size} startIcon={<DeleteIcon />}>
-            {capitalize(size)}
+            {capitalize(size as string)}
           </Button>
         ))}
       </Stack>
@@ -132,24 +136,17 @@ const DemoComponents = () => {
   );
 };
 
-const cssVarsTheme = extendMD3Theme();
-
-const lightTheme = createMD3Theme();
-const darkTheme = createMD3Theme({ palette: { mode: 'dark' } });
+// default MD3 theme
+const cssVarsTheme = extendTheme();
 
 export default function App() {
-  const [mode, setMode] = React.useState('light');
+  const [_, setMode] = React.useState('light');
   return (
     <React.Fragment>
       <CssVarsProvider theme={cssVarsTheme}>
         <ModeSwitcher setMode={setMode} />
-        <h1>Css variables - Material You theme</h1>
         <DemoComponents />
       </CssVarsProvider>
-      <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
-        <h1>Theme provider - Material You theme</h1>
-        <DemoComponents />
-      </ThemeProvider>
     </React.Fragment>
   );
 }

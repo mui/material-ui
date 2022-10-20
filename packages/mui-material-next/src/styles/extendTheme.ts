@@ -7,24 +7,31 @@ import {
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
-import createThemeWithoutVars from './createTheme';
-import { getOverlayAlpha } from '../Paper/Paper';
-import md3CommonPalette from './md3/palette';
-import createMd3LightColorScheme from './md3/createLightColorScheme';
-import createMd3DarkColorScheme from './md3/createDarkColorScheme';
-import md3Typescale from './md3/typescale';
-import md3Typeface from './md3/typeface';
-import md3State from './md3/states';
+import {
+  createTheme as createThemeWithoutVars,
+  getOverlayAlpha,
+  SupportedColorScheme,
+  ColorSystem as MD2ColorSystem,
+  Overlays,
+} from '@mui/material/styles';
+import { Theme, MD3Palettes, MD3ColorSchemeTokens, CssVarsThemeOptions } from './Theme.types';
+import md3CommonPalette from './palette';
+import createMd3LightColorScheme from './createLightColorScheme';
+import createMd3DarkColorScheme from './createDarkColorScheme';
+import md3Typescale from './typescale';
+import md3Typeface from './typeface';
+import md3State from './states';
 
-const defaultDarkOverlays = [...Array(25)].map((_, index) => {
+const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
+const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
     return undefined;
   }
   const overlay = getOverlayAlpha(index);
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
-});
+}) as Overlays;
 
-function assignNode(obj, keys) {
+function assignNode(obj: any, keys: string[]) {
   keys.forEach((k) => {
     if (!obj[k]) {
       obj[k] = {};
@@ -32,13 +39,16 @@ function assignNode(obj, keys) {
   });
 }
 
-function setColor(obj, key, defaultValue) {
+function setColor(obj: any, key: string, defaultValue: any) {
   obj[key] = obj[key] || defaultValue;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
-export default function extendTheme(options = {}, ...args) {
+export default function extendTheme(
+  options: CssVarsThemeOptions & { useMaterialYou?: boolean } = {},
+  ...args: any[]
+) {
   const {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
@@ -49,19 +59,19 @@ export default function extendTheme(options = {}, ...args) {
 
   const md3LightPalette = {
     ...md3CommonPalette,
-    ...createMd3LightColorScheme(getCssVar),
+    ...createMd3LightColorScheme(getCssVar, md3CommonPalette),
   };
 
   const md3DarkPalette = {
     ...md3CommonPalette,
-    ...createMd3DarkColorScheme(getCssVar),
+    ...createMd3DarkColorScheme(getCssVar, md3CommonPalette),
   };
 
+  // @ts-ignore - it's fine, everything that is not supported will be spread
   const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
     ...input,
     ...(useMaterialYou && {
       useMaterialYou: true,
-      palette: { md3: md3LightPalette },
       typescale: md3Typescale,
       typeface: md3Typeface,
       state: md3State,
@@ -70,17 +80,15 @@ export default function extendTheme(options = {}, ...args) {
         ...input?.shape,
       },
     }),
-    ...(colorSchemesInput.light && {
-      palette: {
-        ...colorSchemesInput.light?.palette,
-        ...(useMaterialYou && {
-          md3: {
-            ...md3LightPalette,
-            ...colorSchemesInput.light?.palette?.md3,
-          },
-        }),
-      },
-    }),
+    palette: {
+      ...(colorSchemesInput.light && colorSchemesInput.light?.palette),
+      ...(useMaterialYou && {
+        md3: {
+          ...md3LightPalette,
+          ...colorSchemesInput.light?.palette?.md3,
+        },
+      }),
+    },
   });
   const { palette: darkPalette } = createThemeWithoutVars({
     palette: {
@@ -95,7 +103,7 @@ export default function extendTheme(options = {}, ...args) {
     },
   });
 
-  let theme = {
+  let theme: Theme = {
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
@@ -103,6 +111,7 @@ export default function extendTheme(options = {}, ...args) {
       ...colorSchemesInput,
       light: {
         ...colorSchemesInput.light,
+        // @ts-ignore they are added below
         palette: lightPalette,
         opacity: {
           inputPlaceholder: 0.42,
@@ -111,10 +120,11 @@ export default function extendTheme(options = {}, ...args) {
           switchTrack: 0.38,
           ...colorSchemesInput.light?.opacity,
         },
-        overlays: colorSchemesInput.light?.overlays || [],
+        overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
       },
       dark: {
         ...colorSchemesInput.dark,
+        // @ts-ignore they are added below
         palette: darkPalette,
         opacity: {
           inputPlaceholder: 0.5,
@@ -129,7 +139,10 @@ export default function extendTheme(options = {}, ...args) {
   };
 
   Object.keys(theme.colorSchemes).forEach((key) => {
-    const palette = theme.colorSchemes[key].palette;
+    const palette = theme.colorSchemes[key as SupportedColorScheme]
+      .palette as MD2ColorSystem['palette'] & {
+      md3: MD3Palettes & { colors: MD3ColorSchemeTokens };
+    };
 
     // attach black & white channels to common node
     if (key === 'light') {
@@ -307,36 +320,45 @@ export default function extendTheme(options = {}, ...args) {
 
     palette.dividerChannel = colorChannel(palette.divider);
 
-    Object.keys(palette).forEach((color) => {
-      const colors = palette[color];
+    Object.keys(palette).forEach((c) => {
+      const color = c as keyof MD2ColorSystem['palette'];
+      const colors: any = palette[color];
 
       // Color palettes: primary, secondary, error, info, success, and warning
       if (colors.main) {
+        // @ts-ignore
         palette[color].mainChannel = colorChannel(colors.main);
       }
       if (colors.light) {
+        // @ts-ignore
         palette[color].lightChannel = colorChannel(colors.light);
       }
       if (colors.dark) {
+        // @ts-ignore
         palette[color].darkChannel = colorChannel(colors.dark);
       }
       if (colors.contrastText) {
+        // @ts-ignore
         palette[color].contrastTextChannel = colorChannel(colors.contrastText);
       }
 
       // Text colors: text.primary, text.secondary
       if (colors.primary && typeof colors.primary === 'string') {
+        // @ts-ignore
         palette[color].primaryChannel = colorChannel(colors.primary);
       }
       if (colors.secondary && typeof colors.primary === 'string') {
+        // @ts-ignore
         palette[color].secondaryChannel = colorChannel(colors.secondary);
       }
 
       // Action colors: action.active, action.selected
       if (colors.active) {
+        // @ts-ignore
         palette[color].activeChannel = colorChannel(colors.active);
       }
       if (colors.selected) {
+        // @ts-ignore
         palette[color].selectedChannel = colorChannel(colors.selected);
       }
     });

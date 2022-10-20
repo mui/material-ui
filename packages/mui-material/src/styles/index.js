@@ -35,7 +35,4 @@ export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
 export { default as experimental_extendTheme } from './experimental_extendTheme';
-
-// MD3
-export { default as experimental_createMD3Theme } from './experimental_createMD3Theme';
-export { default as experimental_extendMD3Theme } from './experimental_extendMD3Theme';
+export { default as getOverlayAlpha } from './getOverlayAlpha';
