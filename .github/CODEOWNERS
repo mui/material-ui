@@ -123,6 +123,7 @@
 /packages/mui-material/src/SwipeableDrawer/ @mnajdova @michaldudak
 /packages/mui-material/src/Switch/ @michaldudak @mnajdova
 /packages/mui-material/src/Tab/ @mnajdova @michaldudak
+/packages/mui-material/src/TabScrollButton/ @mnajdova @michaldudak
 /packages/mui-material/src/Table/ @siriwatknp @michaldudak
 /packages/mui-material/src/TableBody/ @siriwatknp @michaldudak
 /packages/mui-material/src/TableCell/ @siriwatknp @michaldudak
@@ -133,23 +134,21 @@
 /packages/mui-material/src/TableRow/ @siriwatknp @michaldudak
 /packages/mui-material/src/TableSortLabel/ @siriwatknp @michaldudak
 /packages/mui-material/src/Tabs/ @mnajdova @michaldudak
-/packages/mui-material/src/TabScrollButton/ @mnajdova @michaldudak
-/packages/mui-material/src/TextareaAutosize/ @mnajdova @michaldudak
 /packages/mui-material/src/TextField/ @michaldudak @mnajdova
+/packages/mui-material/src/TextareaAutosize/ @mnajdova @michaldudak
 /packages/mui-material/src/ToggleButton/ @michaldudak @mnajdova
 /packages/mui-material/src/ToggleButtonGroup/ @michaldudak @mnajdova
 /packages/mui-material/src/Toolbar/ @siriwatknp @hbjORbj
 /packages/mui-material/src/Tooltip/ @siriwatknp @michaldudak
-/packages/mui-material/src/transitions/ @mnajdova @michaldudak
 /packages/mui-material/src/Typography/ @siriwatknp @michaldudak
 /packages/mui-material/src/Unstable_Grid2/ @siriwatknp @hbjORbj
-/packages/mui-material/src/Unstable_TrapFocus/ @mnajdova @michaldudak
+/packages/mui-material/src/Zoom/ @mnajdova @michaldudak
+/packages/mui-material/src/transitions/ @mnajdova @michaldudak
 /packages/mui-material/src/useAutocomplete/ @michaldudak @mnajdova
 /packages/mui-material/src/useMediaQuery/ @mnajdova @michaldudak
 /packages/mui-material/src/usePagination/ @mnajdova @michaldudak
 /packages/mui-material/src/useScrollTrigger/ @siriwatknp @hbjORbj
 /packages/mui-material/src/useTouchRipple/ @michaldudak @mnajdova
-/packages/mui-material/src/Zoom/ @mnajdova @michaldudak
 /docs/data/material/components/accordion/ @siriwatknp @hbjORbj
 /docs/data/material/components/alert/ @siriwatknp @hbjORbj
 /docs/data/material/components/app-bar/ @siriwatknp @hbjORbj
@@ -214,13 +213,12 @@
 
 # Components - MUI Base
 
-/packages/mui-base/src/useAutocomplete/ @michaldudak @mnajdova
 /packages/mui-base/src/BadgeUnstyled/ @siriwatknp @michaldudak
 /packages/mui-base/src/ButtonUnstyled/ @michaldudak @mnajdova
 /packages/mui-base/src/ClickAwayListener/ @mnajdova @michaldudak
+/packages/mui-base/src/FocusTrap/ @mnajdova @michaldudak
 /packages/mui-base/src/FormControlUnstyled/ @michaldudak @mnajdova
 /packages/mui-base/src/InputUnstyled/ @michaldudak @mnajdova
-/packages/mui-base/src/ListboxUnstyled/ @mnajdova @michaldudak
 /packages/mui-base/src/MenuItemUnstyled/ @mnajdova @michaldudak
 /packages/mui-base/src/MenuUnstyled/ @mnajdova @michaldudak
 /packages/mui-base/src/ModalUnstyled/ @mnajdova @michaldudak
@@ -233,16 +231,30 @@
 /packages/mui-base/src/SelectUnstyled/ @michaldudak @mnajdova
 /packages/mui-base/src/SliderUnstyled/ @michaldudak @mnajdova
 /packages/mui-base/src/SwitchUnstyled/ @michaldudak @mnajdova
-/packages/mui-base/src/TablePaginationUnstyled/ @siriwatknp @michaldudak
 /packages/mui-base/src/TabPanelUnstyled/ @mnajdova @michaldudak
+/packages/mui-base/src/TabUnstyled/ @mnajdova @michaldudak
+/packages/mui-base/src/TablePaginationUnstyled/ @siriwatknp @michaldudak
 /packages/mui-base/src/TabsListUnstyled/ @mnajdova @michaldudak
 /packages/mui-base/src/TabsUnstyled/ @mnajdova @michaldudak
-/packages/mui-base/src/TabUnstyled/ @mnajdova @michaldudak
 /packages/mui-base/src/TextareaAutosize/ @mnajdova @michaldudak
-/packages/mui-base/src/TrapFocus/ @mnajdova @michaldudak
+/packages/mui-base/src/useAutocomplete/ @michaldudak @mnajdova
+/packages/mui-base/src/useBadge/ @siriwatknp @michaldudak
+/packages/mui-base/src/useButton/ @michaldudak @mnajdova
+/packages/mui-base/src/useInput/ @michaldudak @mnajdova
+/packages/mui-base/src/useListbox/ @mnajdova @michaldudak
+/packages/mui-base/src/useMenu/ @mnajdova @michaldudak
+/packages/mui-base/src/useMenuItem/ @mnajdova @michaldudak
+/packages/mui-base/src/useSelect/ @michaldudak @mnajdova
+/packages/mui-base/src/useSlider/ @michaldudak @mnajdova
+/packages/mui-base/src/useSwitch/ @michaldudak @mnajdova
+/packages/mui-base/src/useTab/ @mnajdova @michaldudak
+/packages/mui-base/src/useTabPanel/ @mnajdova @michaldudak
+/packages/mui-base/src/useTabs/ @mnajdova @michaldudak
+/packages/mui-base/src/useTabsList/ @mnajdova @michaldudak
 /docs/data/base/components/badge/ @siriwatknp @michaldudak
 /docs/data/base/components/button/ @michaldudak @mnajdova
 /docs/data/base/components/click-away-listener/ @mnajdova @michaldudak
+/docs/data/base/components/focus-trap/ @mnajdova @michaldudak
 /docs/data/base/components/form-control/ @michaldudak @mnajdova
 /docs/data/base/components/input/ @michaldudak @mnajdova
 /docs/data/base/components/menu/ @mnajdova @michaldudak
@@ -256,10 +268,10 @@
 /docs/data/base/components/table-pagination/ @siriwatknp @michaldudak
 /docs/data/base/components/tabs/ @mnajdova @michaldudak
 /docs/data/base/components/textarea-autosize/ @mnajdova @michaldudak
-/docs/data/base/components/trap-focus/ @mnajdova @michaldudak
 
 # Components - Joy UI
 
+/packages/mui-joy/src/Alert/ @siriwatknp @hbjORbj
 /packages/mui-joy/src/AspectRatio/ @siriwatknp @michaldudak
 /packages/mui-joy/src/Avatar/ @siriwatknp @michaldudak
 /packages/mui-joy/src/AvatarGroup/ @siriwatknp @michaldudak
@@ -274,7 +286,10 @@
 /packages/mui-joy/src/Checkbox/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/Chip/ @siriwatknp @michaldudak
 /packages/mui-joy/src/ChipDelete/ @siriwatknp @michaldudak
+/packages/mui-joy/src/CircularProgress/ @siriwatknp @hbjORbj
 /packages/mui-joy/src/Container/ @siriwatknp @hbjORbj
+/packages/mui-joy/src/Divider/ @siriwatknp @michaldudak
+/packages/mui-joy/src/FormControl/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/FormHelperText/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/FormLabel/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/Grid/ @siriwatknp @hbjORbj
@@ -287,9 +302,11 @@
 /packages/mui-joy/src/ListItemButton/ @siriwatknp @michaldudak
 /packages/mui-joy/src/ListItemContent/ @siriwatknp @michaldudak
 /packages/mui-joy/src/ListItemDecorator/ @siriwatknp @michaldudak
+/packages/mui-joy/src/ListSubheader/ @siriwatknp @michaldudak
 /packages/mui-joy/src/Menu/ @mnajdova @michaldudak @siriwatknp
 /packages/mui-joy/src/MenuItem/ @mnajdova @michaldudak @siriwatknp
 /packages/mui-joy/src/MenuList/ @mnajdova @michaldudak @siriwatknp
+/packages/mui-joy/src/Modal/ @mnajdova @michaldudak @siriwatknp
 /packages/mui-joy/src/Option/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/Radio/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/RadioGroup/ @michaldudak @mnajdova @siriwatknp
@@ -303,9 +320,10 @@
 /packages/mui-joy/src/TabList/ @mnajdova @michaldudak @siriwatknp
 /packages/mui-joy/src/TabPanel/ @mnajdova @michaldudak @siriwatknp
 /packages/mui-joy/src/Tabs/ @mnajdova @michaldudak @siriwatknp
-/packages/mui-joy/src/Textarea/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/TextField/ @michaldudak @mnajdova @siriwatknp
+/packages/mui-joy/src/Textarea/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/Typography/ @siriwatknp @michaldudak
+/docs/data/joy/components/alert/ @siriwatknp @hbjORbj
 /docs/data/joy/components/aspect-ratio/ @siriwatknp @michaldudak
 /docs/data/joy/components/avatar/ @siriwatknp @michaldudak
 /docs/data/joy/components/badge/ @siriwatknp @michaldudak
@@ -314,9 +332,11 @@
 /docs/data/joy/components/card/ @siriwatknp @hbjORbj
 /docs/data/joy/components/checkbox/ @michaldudak @mnajdova @siriwatknp
 /docs/data/joy/components/chip/ @siriwatknp @michaldudak
+/docs/data/joy/components/divider/ @siriwatknp @michaldudak
 /docs/data/joy/components/link/ @mnajdova @michaldudak @siriwatknp
 /docs/data/joy/components/list/ @siriwatknp @michaldudak
 /docs/data/joy/components/menu/ @mnajdova @michaldudak @siriwatknp
+/docs/data/joy/components/modal/ @mnajdova @michaldudak @siriwatknp
 /docs/data/joy/components/radio/ @michaldudak @mnajdova @siriwatknp
 /docs/data/joy/components/select/ @michaldudak @mnajdova @siriwatknp
 /docs/data/joy/components/sheet/ @siriwatknp @hbjORbj
