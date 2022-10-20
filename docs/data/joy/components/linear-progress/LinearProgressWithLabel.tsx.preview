@@ -1,8 +1,14 @@
-<Box sx={{ width: '100%', mr: 2 }}>
-  <LinearProgress determinate value={progress} />
-</Box>
-<Box sx={{ minWidth: 35 }}>
-  <Typography variant="soft" color="primary">{`${Math.round(
-    progress,
-  )}%`}</Typography>
-</Box>
+<Typography textAlign="center" level="body3" fontWeight="xl" mb={1}>
+  LOADING… {`${Math.round(progress)}%`}
+</Typography>
+<LinearProgress
+  determinate
+  variant="plain"
+  color="neutral"
+  size="sm"
+  value={progress}
+  sx={{
+    '--LinearProgress-progress-thickness': '2px',
+    bgcolor: 'background.surface',
+  }}
+/>

@@ -1,7 +1,7 @@
+import * as React from 'react';
 import Box from '@mui/joy/Box';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
-import * as React from 'react';
 
 export default function LinearProgressWithLabel() {
   const [progress, setProgress] = React.useState(0);
@@ -17,15 +17,21 @@ export default function LinearProgressWithLabel() {
   }, []);
 
   return (
-    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 2 }}>
-        <LinearProgress determinate value={progress} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="soft" color="primary">{`${Math.round(
-          progress,
-        )}%`}</Typography>
-      </Box>
+    <Box sx={{ width: '50%' }}>
+      <Typography textAlign="center" level="body3" fontWeight="xl" mb={1}>
+        LOADING… {`${Math.round(progress)}%`}
+      </Typography>
+      <LinearProgress
+        determinate
+        variant="plain"
+        color="neutral"
+        size="sm"
+        value={progress}
+        sx={{
+          '--LinearProgress-progress-thickness': '2px',
+          bgcolor: 'background.surface',
+        }}
+      />
     </Box>
   );
 }

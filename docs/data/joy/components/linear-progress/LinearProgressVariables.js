@@ -9,20 +9,20 @@ export default function LinearProgressVariables() {
       componentName="LinearProgress"
       data={[
         {
-          var: '--LinearProgress-height',
+          var: '--LinearProgress-thickness',
           defaultValue: '6px',
         },
         {
-          var: '--LinearProgress-padding',
-          defaultValue: '4px',
-        },
-        {
-          var: '--LinearProgress-borderRadius',
-          defaultValue: '8px',
+          var: '--LinearProgress-radius',
+          helperText: "Default to root's thickness",
         },
         {
           var: '--LinearProgress-progress-thickness',
-          defaultValue: '6px',
+          helperText: "Default to root's thickness",
+        },
+        {
+          var: '--LinearProgress-progress-radius',
+          helperText: "Default to root's thickness",
         },
       ]}
       renderDemo={(sx) => (

@@ -21,7 +21,6 @@ export default function LinearProgressDeterminate() {
         width: '100%',
         display: 'flex',
         gap: 2,
-        alignItems: 'center',
         flexDirection: 'column',
       }}
     >

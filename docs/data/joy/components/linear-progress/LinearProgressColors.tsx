@@ -24,7 +24,6 @@ export default function LinearProgressColors() {
           width: '100%',
           display: 'flex',
           gap: 2,
-          alignItems: 'center',
           flexDirection: 'column',
         }}
       >
