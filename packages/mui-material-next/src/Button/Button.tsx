@@ -10,8 +10,7 @@ import {
 import { useButton, UseButtonRootSlotOwnProps } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
-import { styled } from '@mui/material/styles';
-import { MD3ColorSchemeTokens, Theme } from '../styles';
+import { MD3ColorSchemeTokens, styled } from '../styles';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
 
@@ -90,7 +89,7 @@ export const ButtonRoot = styled('button', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})<{ ownerState: ButtonOwnerState; theme?: Theme }>(({ ownerState, theme }) => {
+})<{ ownerState: ButtonOwnerState }>(({ ownerState, theme }) => {
   const containerColor = {
     elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${
       (theme.vars || theme).palette.md3.colors.surface
@@ -556,7 +555,7 @@ const Button = React.forwardRef(function Button<
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...(getRootProps(props) as UseButtonRootSlotOwnProps)}
+      {...getRootProps()}
       {...other}
     >
       {startIcon}
