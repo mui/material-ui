@@ -183,15 +183,15 @@ If you wish, `babel-plugin-import` can be configured through `config-overrides.j
 Modify your `package.json` commands:
 
 ```diff
-  "scripts": {
--   "start": "react-scripts start",
-+   "start": "react-app-rewired start",
--   "build": "react-scripts build",
-+   "build": "react-app-rewired build",
--   "test": "react-scripts test",
-+   "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-}
+   "scripts": {
+-    "start": "react-scripts start",
++    "start": "react-app-rewired start",
+-    "build": "react-scripts build",
++    "build": "react-app-rewired build",
+-    "test": "react-scripts test",
++    "test": "react-app-rewired test",
+     "eject": "react-scripts eject"
+  }
 ```
 
 Enjoy significantly faster start times.
