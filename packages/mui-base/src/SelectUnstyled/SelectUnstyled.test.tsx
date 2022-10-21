@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import SelectUnstyled, { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { OptionUnstyledProps } from '@mui/base/OptionUnstyled';
+import OptionUnstyled, {
+  OptionUnstyledProps,
+  optionUnstyledClasses,
+} from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
   createMount,
@@ -50,7 +54,7 @@ describe('SelectUnstyled', () => {
     ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<SelectUnstyled components={{ Root: 'div' }} />);
+        const { getByRole } = render(<SelectUnstyled slots={{ root: 'div' }} />);
         const button = getByRole('button');
         act(() => {
           button.focus();
@@ -65,7 +69,7 @@ describe('SelectUnstyled', () => {
 
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<SelectUnstyled components={{ Root: 'div' }} />);
+      const { getByRole } = render(<SelectUnstyled slots={{ root: 'div' }} />);
       const button = getByRole('button');
       act(() => {
         button.focus();
@@ -144,11 +148,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'd' });
-        expect(getByText('Dragon Fruit')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Dragon Fruit')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'r' });
-        expect(getByText('Dragon Fruit')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Dragon Fruit')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'z' });
-        expect(getByText('Dragon Fruit')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Dragon Fruit')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate to next element with same starting character on repeated keys', () => {
@@ -171,11 +175,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Calamondin')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Calamondin')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate using the label prop', () => {
@@ -210,11 +214,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'd' });
-        expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByTestId('5')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'r' });
-        expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByTestId('5')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'z' });
-        expect(getByTestId('5')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByTestId('5')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('skips the non-stringifiable options', () => {
@@ -240,11 +244,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Calamondin')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Calamondin')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate to options with diacritic characters', () => {
@@ -266,12 +270,12 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'b' });
-        expect(getByText('Ba')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Ba')).to.have.class(optionUnstyledClasses.highlighted);
 
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'Alt' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('Bą')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('Bą')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate to next options with beginning diacritic characters', () => {
@@ -294,17 +298,17 @@ describe('SelectUnstyled', () => {
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'Alt' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('ąa')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('ąa')).to.have.class(optionUnstyledClasses.highlighted);
 
         userEvent.keyPress(listbox, { key: 'Alt' });
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('ąb')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('ąb')).to.have.class(optionUnstyledClasses.highlighted);
 
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'AltGraph' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('ąc')).to.have.class('MuiOptionUnstyled-highlighted');
+        expect(getByText('ąc')).to.have.class(optionUnstyledClasses.highlighted);
       });
     });
 
@@ -444,6 +448,61 @@ describe('SelectUnstyled', () => {
       });
 
       expect(isEventHandled).to.equal(true);
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('is called when the Select value changes', () => {
+      const handleChange = spy();
+
+      const { getByRole, getByText } = render(
+        <SelectUnstyled defaultValue={1} onChange={handleChange}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const button = getByRole('button');
+      act(() => {
+        button.click();
+      });
+
+      const optionTwo = getByText('Two');
+      act(() => {
+        optionTwo.click();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.haveOwnProperty('type', 'click');
+      expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
+      expect(handleChange.args[0][1]).to.equal(2);
+    });
+  });
+
+  describe('prop: renderValue', () => {
+    it('renders the selected values using the renderValue prop', () => {
+      const { getByRole } = render(
+        <SelectUnstyled
+          defaultValue={1}
+          renderValue={(value) => `${value?.label} (${value?.value})`}
+        >
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One (1)');
+    });
+
+    it('renders the selected values as a label if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <SelectUnstyled defaultValue={1}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One');
     });
   });
 

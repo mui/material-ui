@@ -191,11 +191,13 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-const TreeItem = (
+function TreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
-) => <StyledTreeItem ContentComponent={CustomContent} {...props} />;
+) {
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
+}
 
 export default function XDateRangeDemo() {
   return (
@@ -293,15 +295,7 @@ export default function XDateRangeDemo() {
             Subscribe to our newsletter to get first-hand info about the development and release of
             new components.
           </Typography>
-          <EmailSubscribe
-            sx={{
-              '& > div': {
-                maxWidth: 'initial',
-                border: '1px solid',
-                borderColor: 'primaryDark.600',
-              },
-            }}
-          />
+          <EmailSubscribe />
         </Frame.Info>
       </ThemeProvider>
     </Frame>

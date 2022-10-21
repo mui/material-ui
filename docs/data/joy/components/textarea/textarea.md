@@ -78,6 +78,27 @@ It's usually more common to see textarea components using decorators at the top 
 
 {{"demo": "TextareaDecorators.js"}}
 
+## Accessibility
+
+In order for the textarea to be accessible, **it should be linked to a label**.
+
+The `FormControl` automatically generates a unique id that links the textarea with the `FormLabel` component:
+
+{{"demo": "TextareaField.js"}}
+
+Alternatively, you can do it manually by targeting the textarea slot:
+
+```jsx
+<label htmlFor="unique-id">Label</label>
+<Textarea
+  componentsProps={{
+    textarea: {
+      id: 'unique-id',
+    }
+  }}
+/>
+```
+
 ## Common examples
 
 ### Comment box

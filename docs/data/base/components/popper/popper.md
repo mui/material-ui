@@ -6,7 +6,7 @@ githubLabel: 'component: Popper'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
-# Unstyled popper
+# Unstyled Popper
 
 <p class="description">The PopperUnstyled component lets you create tooltips and popovers that display information about an element on the page.</p>
 

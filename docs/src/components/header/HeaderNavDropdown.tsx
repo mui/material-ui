@@ -12,29 +12,40 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
-  ({ theme }) => ({
-    ...theme.typography.body2,
-    fontWeight: theme.typography.fontWeightBold,
-    textDecoration: 'none',
-    border: 'none',
-    width: '100%',
-    backgroundColor: 'transparent',
-    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(1),
-    borderRadius: theme.spacing(1),
-    transition: theme.transitions.create('background'),
-    '&:hover, &:focus-visible': {
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+  ({ theme }) => [
+    {
+      ...theme.typography.body2,
+      fontWeight: theme.typography.fontWeightBold,
+      textDecoration: 'none',
+      border: 'none',
+      width: '100%',
+      backgroundColor: 'transparent',
+      color: (theme.vars || theme).palette.text.secondary,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(1),
+      borderRadius: theme.spacing(1),
+      transition: theme.transitions.create('background'),
+      '&:hover, &:focus-visible': {
+        backgroundColor: (theme.vars || theme).palette.grey[100],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
     },
-  }),
+    theme.applyDarkStyles({
+      color: '#fff',
+      '&:hover, &:focus-visible': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    }),
+  ],
 );
 
 const UList = styled('ul')({
@@ -98,16 +109,12 @@ const DOCS = [
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.advancedComponents,
   },
-  // @ts-ignore
-  ...(process.env.STAGING === true
-    ? [
-        {
-          name: 'MUI Toolpad',
-          description: 'Low-code admin builder.',
-          href: ROUTES.toolpadDocs,
-        },
-      ]
-    : []),
+  {
+    name: 'MUI Toolpad',
+    description: 'Low-code admin builder.',
+    href: ROUTES.toolpadDocs,
+    chip: 'Alpha',
+  },
 ];
 
 export default function HeaderNavDropdown() {
@@ -150,17 +157,16 @@ export default function HeaderNavDropdown() {
       >
         <Collapse
           in={open}
-          sx={{
+          sx={(theme) => ({
             position: 'fixed',
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: (theme) =>
-              `0px 4px 20px ${
-                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-              }`,
-            bgcolor: 'background.paper',
-          }}
+            boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+            ...theme.applyDarkStyles({
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+            }),
+          })}
         >
           <Box
             sx={{
@@ -170,7 +176,20 @@ export default function HeaderNavDropdown() {
               overflow: 'auto',
             }}
           >
-            <UList>
+            <UList
+              sx={(theme) => ({
+                '& ul': {
+                  borderLeft: '1px solid',
+                  borderColor: 'grey.100',
+                  ...theme.applyDarkStyles({
+                    borderColor: 'primaryDark.700',
+                  }),
+                  pl: 1,
+                  pb: 1,
+                  ml: 1,
+                },
+              })}
+            >
               <li>
                 <Anchor
                   as="button"
@@ -187,16 +206,7 @@ export default function HeaderNavDropdown() {
                   />
                 </Anchor>
                 <Collapse in={productsOpen}>
-                  <UList
-                    sx={{
-                      borderLeft: '1px solid',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                      pl: 1,
-                      pb: 1,
-                      ml: 1,
-                    }}
-                  >
+                  <UList>
                     {PRODUCTS.map((item) => (
                       <li key={item.name}>
                         <Anchor
@@ -242,16 +252,7 @@ export default function HeaderNavDropdown() {
                   />
                 </Anchor>
                 <Collapse in={docsOpen}>
-                  <UList
-                    sx={{
-                      borderLeft: '1px solid',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                      pl: 1,
-                      pb: 1,
-                      ml: 1,
-                    }}
-                  >
+                  <UList>
                     {DOCS.map((item) => (
                       <li key={item.name}>
                         <Anchor
@@ -260,7 +261,18 @@ export default function HeaderNavDropdown() {
                           noLinkStyle
                           sx={{ flexDirection: 'column', alignItems: 'initial' }}
                         >
-                          {item.name}
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                            {item.name}
+                            {item.chip ? (
+                              <Chip size="small" label={item.chip} color="grey" />
+                            ) : null}
+                          </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
                           </Typography>

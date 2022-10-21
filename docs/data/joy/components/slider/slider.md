@@ -16,7 +16,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 {{"demo": "SliderUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+To learn how to add more variants or sizes to the component, check out [Themed components](/joy-ui/customization/themed-components/).
 :::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}

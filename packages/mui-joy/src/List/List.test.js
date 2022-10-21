@@ -7,6 +7,7 @@ import ListItem from '@mui/joy/ListItem';
 import MenuList from '@mui/joy/MenuList';
 import Menu from '@mui/joy/Menu';
 import Select from '@mui/joy/Select';
+import RadioGroup from '@mui/joy/RadioGroup';
 
 describe('Joy <List />', () => {
   const { render } = createRenderer();
@@ -147,6 +148,28 @@ describe('Joy <List />', () => {
         </Select>,
       );
       expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('RadioGroup - integration', () => {
+    it('should have div tag', () => {
+      render(
+        <RadioGroup>
+          <List />
+        </RadioGroup>,
+      );
+
+      expect(screen.getByRole('radiogroup').firstChild).to.have.attribute('role', 'presentation');
+    });
+
+    it('can override by prop', () => {
+      render(
+        <RadioGroup>
+          <List role="none" />
+        </RadioGroup>,
+      );
+
+      expect(screen.getByRole('radiogroup').firstChild).to.have.attribute('role', 'none');
     });
   });
 });

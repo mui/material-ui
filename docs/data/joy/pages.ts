@@ -15,7 +15,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/main-features/global-variants' },
           { pathname: '/joy-ui/main-features/automatic-adjustment' },
-          { pathname: '/joy-ui/main-features/perfect-dark-mode' },
+          { pathname: '/joy-ui/main-features/dark-mode-optimization' },
         ],
       },
     ],
@@ -47,14 +47,20 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
+          { pathname: '/joy-ui/react-tooltip' },
         ],
       },
       {
         pathname: '/joy-ui/components/feedback',
         subheader: 'feedback',
-        children: [{ pathname: '/joy-ui/react-alert' }, { pathname: '/joy-ui/react-modal' }],
+        children: [
+          { pathname: '/joy-ui/react-alert' },
+          { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-modal' },
+        ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
@@ -70,6 +76,11 @@ const pages = [
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
         ],
+      },
+      {
+        pathname: '/joy-ui/components/utils',
+        subheader: 'utils',
+        children: [{ pathname: '/joy-ui/react-css-baseline' }],
       },
     ],
   },

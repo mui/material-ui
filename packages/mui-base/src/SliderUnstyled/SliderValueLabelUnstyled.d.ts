@@ -5,14 +5,6 @@ export interface SliderValueLabelUnstyledProps {
   className?: string;
   style?: React.CSSProperties;
   /**
-   * The components used for each slot inside the ValueLabel.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
    * If `true`, the value label is visible.
    */
   open: boolean;

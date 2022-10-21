@@ -30,6 +30,7 @@ export default function ExamplePaymentChannels() {
           Pay with
         </Typography>
         <Switch
+          component="label"
           size="sm"
           endDecorator="Row view"
           checked={row}
@@ -49,6 +50,7 @@ export default function ExamplePaymentChannels() {
         defaultValue="Paypal"
       >
         <List
+          component="div"
           variant="outlined"
           row={row}
           sx={{

@@ -24,14 +24,6 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Current behavior 😯
-      description: Describe what happens instead of the expected behavior.
-  - type: textarea
-    attributes:
-      label: Expected behavior 🤔
-      description: Describe what should happen.
-  - type: textarea
-    attributes:
       label: Steps to reproduce 🕹
       description: |
         Please provide a link to a live example and an unambiguous set of steps to reproduce this bug.
@@ -47,7 +39,14 @@ body:
         1.
         2.
         3.
-        4.
+  - type: textarea
+    attributes:
+      label: Current behavior 😯
+      description: Describe what happens instead of the expected behavior.
+  - type: textarea
+    attributes:
+      label: Expected behavior 🤔
+      description: Describe what should happen.
   - type: textarea
     attributes:
       label: Context 🔦

@@ -119,4 +119,13 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.attribute('viewBox', '-4 -4 24 24');
     });
   });
+
+  it('should not override internal ownerState with the ownerState passed to the icon', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<SvgIcon ownerState={{ fontSize: 'large' }}>{path}</SvgIcon>);
+    expect(container.firstChild).toHaveComputedStyle({ fontSize: '24px' }); // fontSize: medium -> 1.5rem = 24px
+  });
 });

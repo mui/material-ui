@@ -65,7 +65,7 @@ export interface TabOwnerState extends TabProps {
   /**
    * If `true`, the tab's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the tab is disabled.
    */
