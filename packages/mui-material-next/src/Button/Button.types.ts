@@ -5,8 +5,7 @@ import {
   OverridableComponent,
   OverridableTypeMap,
 } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
@@ -106,7 +105,7 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<Theme>;
+    sx?: SxProps;
     /**
      * The variant to use.
      * @default 'text'

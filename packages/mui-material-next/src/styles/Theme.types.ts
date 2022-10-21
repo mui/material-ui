@@ -1,4 +1,4 @@
-// Needs to be keep in sync with @mui/material/MaterialYouModuleAugmentation
+import { SxProps as SystemSxProps } from '@mui/system';
 import {
   CssVarsTheme as MD2Theme,
   SupportedColorScheme,
@@ -163,3 +163,5 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     };
   };
 }
+
+export type SxProps = SystemSxProps<Theme>;
