@@ -80,4 +80,4 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ### With label
 
-{{"demo": "LinearProgressWithLabel.js", "bg": true}}
+{{"demo": "LinearProgressWithLabel.js"}}
