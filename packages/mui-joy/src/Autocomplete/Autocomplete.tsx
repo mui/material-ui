@@ -816,7 +816,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   popupIcon: PropTypes.node,
   /**
-   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * If `true`, the component becomes read-only. It is also supported in multiple tags where the tag cannot be deleted.
    * @default false
    */
   readOnly: PropTypes.bool,
