@@ -70,6 +70,7 @@ const InputRoot = styled('div', {
       '--Input-decorator-childRadius':
         'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
       '--Button-minHeight': 'var(--Input-decorator-childHeight)',
+      '--Chip-minHeight': 'var(--Input-decorator-childHeight)',
       '--IconButton-size': 'var(--Input-decorator-childHeight)',
       '--Button-radius': 'var(--Input-decorator-childRadius)',
       '--IconButton-radius': 'var(--Input-decorator-childRadius)',
