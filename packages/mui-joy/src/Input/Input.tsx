@@ -65,10 +65,10 @@ const InputRoot = styled('div', {
       // variables for controlling child components
       '--Input-decorator-childOffset':
         'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
-      '--unstable_Input-paddingBlock':
+      '--_Input-paddingBlock':
         'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
       '--Input-decorator-childRadius':
-        'max(var(--Input-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Input-radius) / 2))',
+        'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
       '--Button-minHeight': 'var(--Input-decorator-childHeight)',
       '--IconButton-size': 'var(--Input-decorator-childHeight)',
       '--Button-radius': 'var(--Input-decorator-childRadius)',
