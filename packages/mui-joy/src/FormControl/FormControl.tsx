@@ -32,6 +32,7 @@ export const FormControlRoot = styled('div', {
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin':
     ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.25rem 0',
+  '--FormLabel-alignSelf': 'flex-start',
   '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
@@ -45,7 +46,7 @@ export const FormControlRoot = styled('div', {
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
-    '--FormHelperText-fontSize': theme.vars.fontSize.md,
+    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
@@ -196,7 +197,10 @@ FormControl.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -2,30 +2,45 @@
 
 <p class="description">Install MUI System, a collection of CSS utilities for rapidly laying out custom designs.</p>
 
-<!-- #default-branch-switch -->
+## Default installation
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+Run one of the following commands to add MUI System to your project:
+
+### npm
 
 ```sh
 npm install @mui/system @emotion/react @emotion/styled
 ```
 
-Or **yarn**:
+### yarn
 
 ```sh
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
-Or if you want to use `styled-components` as a styling engine:
+## With styled-components
 
-<!-- #default-branch-switch -->
+MUI System uses [Emotion](https://emotion.sh/) as its default styling engine.
+If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
+
+### npm
 
 ```sh
 npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
+### yarn
+
 ```sh
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
-Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+:::warning
+Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
+:::
+
+## Peer dependencies
+
+<!-- #react-peer-version -->
+
+[`react`](https://www.npmjs.com/package/react) >= 17.0.0 is a peer dependency.

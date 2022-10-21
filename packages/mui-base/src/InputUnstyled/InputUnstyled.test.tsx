@@ -53,12 +53,7 @@ describe('<InputUnstyled />', () => {
       );
 
       render(
-        <InputUnstyled
-          multiline
-          minRows={5}
-          maxRows={10}
-          components={{ Textarea: CustomTextarea }}
-        />,
+        <InputUnstyled multiline minRows={5} maxRows={10} slots={{ textarea: CustomTextarea }} />,
       );
     });
   });

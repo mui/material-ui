@@ -39,9 +39,11 @@ const Track = React.forwardRef(function Track(
   return <div data-checked={ownerState.checked} {...other} ref={ref} />;
 });
 
-const styledSwitch = <SwitchUnstyled components={{ Root, Thumb, Track, Input }} />;
+const styledSwitch = (
+  <SwitchUnstyled slots={{ root: Root, thumb: Thumb, track: Track, input: Input }} />
+);
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

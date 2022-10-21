@@ -175,7 +175,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   );
 }
 
-const ColumnHead = ({
+function ColumnHead({
   label,
   metadata,
   tooltip,
@@ -187,7 +187,7 @@ const ColumnHead = ({
   tooltip?: string;
   nested?: boolean;
   href?: string;
-}) => {
+}) {
   const text = (
     <Typography
       {...(href && {
@@ -239,99 +239,103 @@ const ColumnHead = ({
       )}
     </Box>
   );
-};
+}
 
-const ColumnHeadHighlight = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      p: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-      borderRadius: '10px 10px 0 0',
-      borderWidth: '1px 1px 0 1px',
-      borderStyle: 'solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[900], 0.5)
-          : alpha(theme.palette.grey[50], 0.5),
-      ...props.sx,
-    }}
-  />
-);
-
-const Recommended = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      typography: 'caption',
-      color: 'primary.500',
-      p: '2px 8px',
-      border: '1px solid',
-      borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
-      position: 'absolute',
-      top: 0,
-      left: 20,
-      transform: 'translateY(-50%)',
-      ...props.sx,
-    }}
-  >
-    Recommended
-  </Box>
-);
-
-const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) => (
-  <Box
-    {...props}
-    sx={{
-      py: 2,
-      px: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      ...(highlighted && {
-        borderWidth: '0 1px 0 1px',
+function ColumnHeadHighlight(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        p: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        borderRadius: '10px 10px 0 0',
+        borderWidth: '1px 1px 0 1px',
         borderStyle: 'solid',
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
         bgcolor: (theme) =>
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[900], 0.5)
             : alpha(theme.palette.grey[50], 0.5),
-      }),
-      ...props.sx,
-    }}
-  />
-);
+        ...props.sx,
+      }}
+    />
+  );
+}
 
-const RowHead = ({
-  children,
-  startIcon,
-  ...props
-}: BoxProps & { startIcon?: React.ReactElement }) => (
-  <Box
-    {...props}
-    sx={{
-      justifyContent: 'flex-start',
-      borderRadius: 1,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-      p: 1,
-      transition: 'none',
-      typography: 'body2',
-      fontWeight: 700,
-      display: 'flex',
-      alignItems: 'center',
-      ...props.sx,
-    }}
-  >
-    {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
-    {children}
-  </Box>
-);
+function Recommended(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        typography: 'caption',
+        color: 'primary.500',
+        p: '2px 8px',
+        border: '1px solid',
+        borderRadius: 2,
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
+        position: 'absolute',
+        top: 0,
+        left: 20,
+        transform: 'translateY(-50%)',
+        ...props.sx,
+      }}
+    >
+      Recommended
+    </Box>
+  );
+}
+
+function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        py: 2,
+        px: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        ...(highlighted && {
+          borderWidth: '0 1px 0 1px',
+          borderStyle: 'solid',
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? alpha(theme.palette.primaryDark[900], 0.5)
+              : alpha(theme.palette.grey[50], 0.5),
+        }),
+        ...props.sx,
+      }}
+    />
+  );
+}
+
+function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: React.ReactElement }) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        justifyContent: 'flex-start',
+        borderRadius: 1,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+        p: 1,
+        transition: 'none',
+        typography: 'body2',
+        fontWeight: 700,
+        display: 'flex',
+        alignItems: 'center',
+        ...props.sx,
+      }}
+    >
+      {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
+      {children}
+    </Box>
+  );
+}
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
@@ -506,22 +510,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" nested href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date picker" />,
-  'date-picker/range': <ColumnHead label="Date range picker" />,
+  'date-picker/simple': <ColumnHead label="Date Picker" />,
+  'date-picker/range': <ColumnHead label="Date Range Picker" />,
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: (
+  'core-support': (
     <ColumnHead
       {...{
-        label: 'Community support for MUI Core',
+        label: 'Technical support for MUI Core',
         tooltip:
-          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+          'Support for MUI Core (e.g. Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
     />
   ),
-  'bugs/features': (
+  'x-support': (
     <ColumnHead
       {...{
         label: 'Technical support for MUI X',
@@ -621,8 +625,8 @@ const communityData: Record<string, React.ReactNode> = {
   'mui-x-updates': yes,
   'mui-x-development': yes,
   // Support
-  community: yes,
-  'bugs/features': yes,
+  'core-support': <Info value="Community" />,
+  'x-support': <Info value="Community" />,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
@@ -674,13 +678,13 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
-  'date-picker/range': pending,
+  'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  community: yes,
-  'bugs/features': <Info value={yes} metadata="Priority over Community" />,
+  'core-support': <Info value="Community" />,
+  'x-support': <Info value={yes} metadata="Priority over Community" />,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
@@ -732,13 +736,13 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
-  'date-picker/range': pending,
+  'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  community: yes,
-  'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
+  'core-support': <Info value={pending} metadata="priority add-on only" />,
+  'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': (
@@ -758,31 +762,33 @@ const premiumData: Record<string, React.ReactNode> = {
   'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
 };
 
-const RowCategory = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      typography: 'caption',
-      display: 'block',
-      fontWeight: 500,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-      py: 1,
-      ml: 1,
-      pl: 1.5,
-      borderBottom: '1px solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
-      ...props.sx,
-    }}
-  />
-);
+function RowCategory(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={{
+        typography: 'caption',
+        display: 'block',
+        fontWeight: 500,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+        py: 1,
+        ml: 1,
+        pl: 1.5,
+        borderBottom: '1px solid',
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
+        ...props.sx,
+      }}
+    />
+  );
+}
 
-const StickyHead = ({
+function StickyHead({
   container,
   disableCalculation = false,
 }: {
   container: React.MutableRefObject<HTMLElement | null>;
   disableCalculation?: boolean;
-}) => {
+}) {
   const [hidden, setHidden] = React.useState(true);
   React.useEffect(() => {
     function handleScroll() {
@@ -852,7 +858,7 @@ const StickyHead = ({
       </Container>
     </Box>
   );
-};
+}
 
 const divider = <Divider />;
 const nestedDivider = <Divider sx={{ ml: 1 }} />;
@@ -1034,7 +1040,7 @@ export default function PricingTable({
             },
           }}
         >
-          Data grid
+          Data Grid
         </Button>
       </Box>
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
@@ -1142,9 +1148,9 @@ export default function PricingTable({
       {divider}
       {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>
-      {renderRow('community')}
+      {renderRow('core-support')}
       {divider}
-      {renderRow('bugs/features')}
+      {renderRow('x-support')}
       {divider}
       {renderRow('support-duration')}
       {divider}

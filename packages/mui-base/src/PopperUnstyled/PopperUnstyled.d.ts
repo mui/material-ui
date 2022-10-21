@@ -38,25 +38,6 @@ export interface PopperUnstyledOwnProps {
    */
   container?: PortalProps['container'];
   /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Popper.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'div',
-      PopperUnstyledComponentsPropsOverrides,
-      PopperUnstyledOwnerState
-    >;
-  };
-  /**
    * Direction of the text.
    * @default 'ltr'
    */
@@ -102,6 +83,25 @@ export interface PopperUnstyledOwnProps {
    */
   popperRef?: React.Ref<Instance>;
   /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'div',
+      PopperUnstyledComponentsPropsOverrides,
+      PopperUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+  };
+  /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
    */
@@ -132,7 +132,7 @@ export interface PopperUnstyledRootSlotProps {
  *
  * Demos:
  *
- * - [Unstyled popper](https://mui.com/base/react-popper/)
+ * - [Unstyled Popper](https://mui.com/base/react-popper/)
  *
  * API:
  *

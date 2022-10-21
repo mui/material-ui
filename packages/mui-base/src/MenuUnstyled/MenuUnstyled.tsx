@@ -28,7 +28,7 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Unstyled menu](https://mui.com/base/react-menu/)
+ * - [Unstyled Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
@@ -42,12 +42,12 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     anchorEl,
     children,
     component,
-    components = {},
-    componentsProps = {},
     keepMounted = false,
     listboxId,
     onClose,
     open = false,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -81,11 +81,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
 
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? components.Root ?? PopperUnstyled;
+  const Root = component ?? slots.root ?? PopperUnstyled;
   const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     additionalProps: {
       anchorEl,
       open,
@@ -97,11 +97,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ownerState,
   }) as MenuUnstyledRootSlotProps;
 
-  const Listbox = components.Listbox ?? 'ul';
+  const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({
     elementType: Listbox,
     getSlotProps: getListboxProps,
-    externalSlotProps: componentsProps.listbox,
+    externalSlotProps: slotProps.listbox,
     ownerState,
     className: classes.listbox,
   });
@@ -153,23 +153,6 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Menu.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Menu.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * Always keep the menu in the DOM.
    * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
    *
@@ -189,6 +172,23 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   open: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Menu.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
 } as any;
 
 export default MenuUnstyled;

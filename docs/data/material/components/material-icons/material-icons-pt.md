@@ -21,6 +21,6 @@ See the [Installation](/material-ui/getting-started/installation/) page for addi
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
+{{"component": "modules/components/SearchIcons.js"}}
 
 ℹ️ The search supports synonyms. Try searching for "hamburger" or "logout".

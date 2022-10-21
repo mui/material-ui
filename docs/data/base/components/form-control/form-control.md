@@ -5,7 +5,7 @@ components: FormControlUnstyled
 githubLabel: 'component: FormControl'
 ---
 
-# Unstyled form control
+# Unstyled Form Control
 
 <p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
 

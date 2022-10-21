@@ -1,34 +1,36 @@
 # Global variants
 
-<p class="description">Joy UI enables consistent look and feel across all components by using global variants.</p>
+<p class="description">Joy UI provides a set of global variants to ensure consistency across your app.</p>
 
-Every Joy UI component has the same set of 4 global variants.
-All of them are pulling styles from the same place, ensuring then that each variant looks the same across both "native" and custom components.
-That way, you get a consistent look and feel throughout your design system.
+All Joy UI components accept four global variants: `solid`, `soft`, `outlined`, and `plain`. These variants are intended to cover the majority of use cases in modern web design.
 
-The different design of each variant is mostly achieve using different combination of values for the `color`, `background`, and `border` CSS properties.
-
-## Types of variants
-
-These four global variants seem to cover most of the design being used today in modern web applications.
-Their names are supposed to be straightforward, meaning you should be able to assume how they look without looking at the screen.
+The demo below shows how the variants look and feel across several Joy UI components:
 
 {{"demo": "GlobalVariantComponents.js"}}
 
+Global variants pull their styles from a single source, helping you to ensure a consistent look and feel across both pre-built Joy UI components and any custom components you build.
+
+Under the hood, the variants are primarily differentiated by the values for their `color`, `background`, and `border` CSS properties.
+
 ## Hierarchy of importance
 
-Each variant conveys a different level of importance in the UI.
-In most cases, the `solid` variant will be used for primary and generally very important actions on the page.
-Alternatively, `soft`, `outlined`, or `plain` is used for secondary and/or tertiary types of actions.
-Their usage is heavily dependent on context but it's a good rule of thumb to keep the hiearchy of importance in mind.
+Each variant conveys a different level of importance in the user interface:
 
-{{"demo": "LevelOfImportancy.js"}}
+- `solid` is best suited for primary elements and the most important actions on the page
+- `soft`, `outlined`, and `plain` are better for secondary and tertiary actions
 
-## Atomic tokens
+Which variant you should choose largely depends on the context within the design, but it's important to keep this hierarchy in mind for a balanced UI.
 
-Global variants build off of the atomic tokens from the palette within the theme.
-You can customize each CSS property as a CSS variable.
-Here are some of the theme's default `solid` variant tokens:
+The demo below illustrates a well-balanced design using multiple variants:
+
+{{"demo": "LevelOfImportance.js"}}
+
+## Customizing global variants
+
+Global variants build off of the atomic tokens from the palettes, which live within your app's themes.
+You can use standard CSS or CSS variables to customize these properties.
+
+Here's an example of some of the default `solid` variant tokens:
 
 ```js
 {

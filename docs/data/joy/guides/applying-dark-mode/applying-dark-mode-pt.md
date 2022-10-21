@@ -66,7 +66,7 @@ This is because the `mode` will only be available to the client-side (it is `und
 
 ### Avoiding screen flickering
 
-To prevent [the UI of flickering](/joy-ui/main-features/perfect-dark-mode/#current-problem-the-flickering), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
+To prevent [the UI of flickering](/joy-ui/main-features/perfect-dark-mode/#the-current-flickering-problem), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
 
 ### Next.js
 

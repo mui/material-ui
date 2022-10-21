@@ -202,7 +202,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     onChange,
     onFocus,
     onFocusVisible,
+    readOnly,
     required,
+    value,
     color: colorProp,
     variant,
     size: sizeProp = 'md',
@@ -294,7 +296,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     additionalProps: {
       id,
       name,
+      value,
+      readOnly,
+      required,
       'aria-describedby': formControl?.['aria-describedby'],
+      ...(indeterminate && {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked#values
+        'aria-checked': 'mixed' as const,
+      }),
     },
     className: classes.input,
   });
@@ -439,6 +448,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   overlay: PropTypes.bool,
   /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
+  /**
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
@@ -462,6 +475,15 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The icon when `checked` is false.
    */
   uncheckedIcon: PropTypes.node,
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'solid'
