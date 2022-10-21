@@ -181,11 +181,11 @@ This command searches the local dependencies and tries to simplify the structure
 If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
-  resolve: {
-+   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
-+   }
-  }
+ resolve: {
++  alias: {
++    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
++  },
+ },
 ```
 
 ### Usage with Lerna
