@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const path = require('path');
 const fse = require('fs-extra');
-const { createRender } = require('@mui/markdown');
+const { createRender } = require('docs/packages/markdown');
 const { marked } = require('marked');
 
 // Use renderer to extract all links into a markdown document
