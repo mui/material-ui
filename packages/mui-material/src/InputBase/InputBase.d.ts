@@ -182,6 +182,23 @@ export interface InputBaseProps
    */
   size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
   /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides;
+    input?: React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides;
+  };
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    input?: React.ElementType;
+  };
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment?: React.ReactNode;
