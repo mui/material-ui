@@ -102,6 +102,21 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
       componentsProps?: {
         root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
       };
+      /**
+       * The props used for each slot inside the Input.
+       * @default {}
+       */
+      slotProps?: {
+        root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
+      };
+      /**
+       * The components used for each slot inside the InputBase.
+       * Either a string to use a HTML element or a component.
+       * @default {}
+       */
+      slots?: {
+        root?: React.ElementType;
+      };
     };
   defaultComponent: D;
 }

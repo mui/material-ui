@@ -190,6 +190,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     focusVisibleClassName,
     secondaryAction,
     selected = false,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -237,8 +239,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const handleRef = useForkRef(listItemRef, ref);
 
-  const Root = components.Root || ListItemRoot;
-  const rootProps = componentsProps.root || {};
+  const Root = slots.root || components.Root || ListItemRoot;
+  const rootProps = slotProps.root || componentsProps.root || {};
 
   const componentProps = {
     className: clsx(classes.root, rootProps.className, className),
@@ -303,7 +305,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         {...rootProps}
         as={Component}
         ref={handleRef}
-        ownerState={ownerState}
         {...(!isHostComponent(Root) && {
           ownerState: { ...ownerState, ...rootProps.ownerState },
         })}
@@ -449,6 +450,21 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   selected: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
