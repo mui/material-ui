@@ -70,7 +70,6 @@ const InputRoot = styled('div', {
       '--Input-decorator-childRadius':
         'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
       '--Button-minHeight': 'var(--Input-decorator-childHeight)',
-      '--Chip-minHeight': 'var(--Input-decorator-childHeight)',
       '--IconButton-size': 'var(--Input-decorator-childHeight)',
       '--Button-radius': 'var(--Input-decorator-childRadius)',
       '--IconButton-radius': 'var(--Input-decorator-childRadius)',
@@ -166,6 +165,7 @@ const InputStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
+  '--Chip-minHeight': 'var(--Input-decorator-childHeight)', // For Autocomplete multiple selection because it uses Chip for showing selected items.
   display: 'inherit',
   alignItems: 'center',
   paddingBlock: 'var(--unstable_Input-paddingBlock)', // for wrapping Autocomplete's tags
