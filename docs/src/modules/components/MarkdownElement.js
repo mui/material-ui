@@ -73,6 +73,7 @@ const Root = styled('div')(({ theme }) => ({
     fontFamily: theme.typography.fontFamilySystem,
     fontSize: theme.typography.pxToRem(28),
     fontWeight: 800,
+    letterSpacing: '0px',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
     margin: '40px 0 8px',
   },
