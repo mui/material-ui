@@ -43,6 +43,9 @@ export default function ChipVariables() {
             gap: 1,
           }}
         >
+          <Chip variant="soft" color="danger" sx={sx}>
+            Some text
+          </Chip>
           <Chip
             startDecorator={<Avatar src="/static/images/avatar/1.jpg" />}
             endDecorator={<ChipDelete />}

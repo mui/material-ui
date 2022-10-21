@@ -42,9 +42,9 @@ const ChipRoot = styled('div', {
       '--Chip-radius': '1.5rem',
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
+        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--_Chip-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
         'max(var(--Chip-radius) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) / 2, var(--Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
@@ -57,28 +57,28 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.125rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 1.5rem) / 1.714)', // 0.875rem by default
-        '--Chip-minHeight': '1.5rem',
+          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
-        '--Chip-decorator-childHeight': 'min(1.375rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2rem) / 1.778)', // 1.125rem by default
-        '--Chip-minHeight': '2rem',
+        '--Chip-decorator-childHeight': 'min(1.375rem, var(--_Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
-        '--Chip-decorator-childHeight': 'min(1.75rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2.5rem) / 2)', // 1.25rem by default
-        '--Chip-minHeight': '2.5rem',
+        '--Chip-decorator-childHeight': 'min(1.75rem, var(--_Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
       }),
-      minHeight: 'var(--Chip-minHeight)',
+      minHeight: 'var(--_Chip-minHeight)',
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--Chip-radius)',
       position: 'relative',
