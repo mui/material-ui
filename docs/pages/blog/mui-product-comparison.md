@@ -3,9 +3,11 @@ title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, MUI Base, MUI X, and Toolpad for your next project.
 date: 2022-10-24T00:00:00.000Z
 authors: ['samuelsycamore']
-card: false
+card: true
 tags: ['Product']
 ---
+
+<img src="/static/blog/mui-product-comparison/ecosystem.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Logos for all the high-level MUI products." />
 
 MUI is so much more than Material UI!
 
@@ -24,6 +26,8 @@ We're also in the early stages of developing a low-code internal tool builder ca
 Read on for more details on each of our products.
 
 ## MUI Core
+
+<img src="/static/blog/mui-product-comparison/mui-core.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Diagram with all the MUI Core sub-products." />
 
 The Core is MUI's foundational product line.
 It grew out of Material UI, and that library's legacy lives on in the name of the repo on GitHub: [`mui/material-ui`](https://github.com/mui/material-ui).
@@ -124,6 +128,8 @@ Get started in the [MUI System docs](/system/getting-started/overview/).
 
 ## MUI X
 
+<img src="/static/blog/mui-product-comparison/mui-x.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Diagram with all the MUI X components." />
+
 MUI X is a collection of advanced UI components, including the Data Grid and the Date and Time Pickers.
 
 These components are significantly more complex than those found in the MUI Core libraries.
@@ -165,6 +171,8 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 - Apps built with MUI Core libraries that need advanced functionality
 
 ## MUI Toolpad
+
+<img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Small screenshot of MUI Toolpad's interface." />
 
 Toolpad is a self-hosted low-code internal tools builder designed to extend MUI's suite of React components.
 It's designed for developers of all trades who want to save time building internal applications.
