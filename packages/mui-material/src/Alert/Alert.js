@@ -161,6 +161,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     onClose,
     role = 'alert',
     severity = 'success',
+    slotProps = {},
+    slots = {},
     variant = 'standard',
     ...other
   } = props;
@@ -174,8 +176,11 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const AlertCloseButton = components.CloseButton ?? IconButton;
-  const AlertCloseIcon = components.CloseIcon ?? CloseIcon;
+  const AlertCloseButton = slots.closeButton ?? components.CloseButton ?? IconButton;
+  const AlertCloseIcon = slots.closeIcon ?? components.CloseIcon ?? CloseIcon;
+
+  const closeButtonProps = slotProps.closeButton ?? componentsProps.closeButton;
+  const closeIconProps = slotProps.closeIcon ?? componentsProps.closeIcon;
 
   return (
     <AlertRoot
@@ -207,9 +212,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
             title={closeText}
             color="inherit"
             onClick={onClose}
-            {...componentsProps.closeButton}
+            {...closeButtonProps}
           >
-            <AlertCloseIcon fontSize="small" {...componentsProps.closeIcon} />
+            <AlertCloseIcon fontSize="small" {...closeIconProps} />
           </AlertCloseButton>
         </AlertAction>
       ) : null}
@@ -305,6 +310,23 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default 'success'
    */
   severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    closeButton: PropTypes.object,
+    closeIcon: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the Alert.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    closeButton: PropTypes.elementType,
+    closeIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

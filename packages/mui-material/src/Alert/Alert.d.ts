@@ -85,6 +85,23 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    closeButton?: IconButtonProps;
+    closeIcon?: SvgIconProps;
+  };
+  /**
+   * The components used for each slot inside the Alert.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    closeButton?: React.ElementType;
+    closeIcon?: React.ElementType;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
