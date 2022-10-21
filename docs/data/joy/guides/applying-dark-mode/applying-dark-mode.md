@@ -108,7 +108,7 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ## Dark mode by default
 
-Set `defaultMode: 'dark'` to use dark color scheme for the first time users.
+To have dark mode as the default theme of your app, set `defaultMode: 'dark'`. 
 
 ```js
 <CssVarsProvider defaultMode="dark">...</CssVarsProvider>
