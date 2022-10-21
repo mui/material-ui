@@ -105,3 +105,17 @@ export function onRenderBody({ setPreBodyComponents }) {
   setPreBodyComponents([getInitColorSchemeScript()]);
 }
 ```
+
+## Dark mode by default
+
+Set `defaultMode: 'dark'` to use dark color scheme for the first time users.
+
+```js
+<CssVarsProvider defaultMode="dark">...</CssVarsProvider>
+```
+
+For server-side applications, provide the same value to `getInitColorSchemeScript`.
+
+```js
+getInitColorSchemeScript({ defaultMode: 'dark' });
+```
