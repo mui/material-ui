@@ -70,6 +70,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     component = 'div',
     componentsProps = {},
     max = 5,
+    slotProps = {},
     spacing = 'medium',
     total,
     variant = 'circular',
@@ -115,6 +116,8 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
+  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
+
   return (
     <AvatarGroupRoot
       as={component}
@@ -127,9 +130,9 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
         <AvatarGroupAvatar
           ownerState={ownerState}
           variant={variant}
-          {...componentsProps.additionalAvatar}
-          className={clsx(classes.avatar, componentsProps.additionalAvatar?.className)}
-          style={{ marginLeft, ...componentsProps.additionalAvatar?.style }}
+          {...additionalAvatarSlotProps}
+          className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
+          style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
         >
           +{extraAvatars}
         </AvatarGroupAvatar>
@@ -197,6 +200,13 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     }
 
     return null;
+  }),
+  /**
+   * The props used for each slot inside the AvatarGroup.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    additionalAvatar: PropTypes.object,
   }),
   /**
    * Spacing between avatars.

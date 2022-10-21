@@ -36,6 +36,14 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   max?: number;
   /**
+   * The props used for each slot inside the AvatarGroup.
+   * @default {}
+   */
+  slotProps?: {
+    additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
+      AvatarGroupComponentsPropsOverrides;
+  };
+  /**
    * Spacing between avatars.
    * @default 'medium'
    */
