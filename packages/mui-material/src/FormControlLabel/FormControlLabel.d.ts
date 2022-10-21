@@ -60,6 +60,18 @@ export interface FormControlLabelProps
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    /**
+     * Props applied to the Typography wrapper of the passed label.
+     * This is unused if disableTypography is true.
+     * @default {}
+     */
+    typography?: TypographyProps;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
