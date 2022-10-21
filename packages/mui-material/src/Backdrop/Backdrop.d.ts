@@ -45,6 +45,22 @@ export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       open: boolean;
       /**
+       * The props used for each slot inside the Backdrop.
+       * @default {}
+       */
+      slotProps?: {
+        root?: React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
+      };
+      /**
+       * The components used for each slot inside the Backdrop.
+       * Either a string to use a HTML element or a component.
+       * @default {}
+       */
+      slots?: {
+        root?: React.ElementType;
+      };
+
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;

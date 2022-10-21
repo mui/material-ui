@@ -51,6 +51,8 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     className,
     invisible = false,
     open,
+    slotProps = {},
+    slots = {},
     transitionDuration,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Fade,
@@ -65,13 +67,16 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootSlotProps = slotProps.root ?? componentsProps.root;
+
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
       <BackdropRoot
         aria-hidden
-        as={components.Root ?? component}
-        className={clsx(classes.root, className)}
-        ownerState={{ ...ownerState, ...componentsProps.root?.ownerState }}
+        {...rootSlotProps}
+        as={slots.root ?? components.Root ?? component}
+        className={clsx(classes.root, className, rootSlotProps?.className)}
+        ownerState={{ ...ownerState, ...rootSlotProps?.ownerState }}
         classes={classes}
         ref={ref}
       >
@@ -128,6 +133,21 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside the Backdrop.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside the Backdrop.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
