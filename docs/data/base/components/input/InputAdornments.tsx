@@ -94,13 +94,13 @@ const CustomInput = React.forwardRef(function CustomInput(
   props: InputUnstyledProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { components, ...other } = props;
+  const { slots, ...other } = props;
   return (
     <InputUnstyled
-      components={{
-        Root: StyledInputRoot,
-        Input: StyledInputElement,
-        ...components,
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInputElement,
+        ...slots,
       }}
       {...other}
       ref={ref}

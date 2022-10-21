@@ -52,68 +52,6 @@ export interface SliderUnstyledOwnProps {
    */
   classes?: Partial<SliderUnstyledClasses>;
   /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Track?: React.ElementType;
-    Rail?: React.ElementType;
-    Thumb?: React.ElementType;
-    Mark?: React.ElementType;
-    MarkLabel?: React.ElementType;
-    ValueLabel?: React.ElementType;
-    Input?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Slider.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    track?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    rail?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    thumb?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    mark?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    markLabel?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-
-    input?: SlotComponentProps<
-      'input',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-  };
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: number | number[];
@@ -197,6 +135,68 @@ export interface SliderUnstyledOwnProps {
    * @default (x) => x
    */
   scale?: (value: number) => number;
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    track?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    rail?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    thumb?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    mark?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    markLabel?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    valueLabel?: SlotComponentProps<
+      typeof SliderValueLabelUnstyled,
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+
+    input?: SlotComponentProps<
+      'input',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    track?: React.ElementType;
+    rail?: React.ElementType;
+    thumb?: React.ElementType;
+    mark?: React.ElementType;
+    markLabel?: React.ElementType;
+    valueLabel?: React.ElementType;
+    input?: React.ElementType;
+  };
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

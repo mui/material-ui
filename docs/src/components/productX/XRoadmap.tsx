@@ -127,8 +127,6 @@ export default function XRoadmap() {
                       <b>Data Grid</b>
                       <DateRangeRounded fontSize="small" />
                       <b>Date Picker</b>
-                      <AccountTreeRounded fontSize="small" />
-                      <b>Tree View</b>
                     </React.Fragment>,
                   )}
                 </Paper>
@@ -148,9 +146,7 @@ export default function XRoadmap() {
                       </Box>
                       <b>Data Grid</b>
                       {bullet}
-                      <b>Grouping</b>
-                      {bullet}
-                      <b>Aggregation</b>
+                      <b>Charts integration</b>
                       {bullet}
                       <b>Pivoting</b>
                       {bullet}
@@ -172,6 +168,8 @@ export default function XRoadmap() {
                       <b>Sparkline</b>
                       <BarChartRounded fontSize="small" />
                       <b>Charts</b>
+                      <AccountTreeRounded fontSize="small" />
+                      <b>Tree View</b>
                       <FileUploadRounded fontSize="small" />
                       <b>Upload</b>
                       <PendingActionsRounded fontSize="small" />

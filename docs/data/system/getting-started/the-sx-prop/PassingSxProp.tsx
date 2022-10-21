@@ -8,20 +8,22 @@ interface ListHeaderProps {
   sx?: SxProps<Theme>;
 }
 
-const ListHeader = ({ sx = [], children }: ListHeaderProps) => (
-  <ListItem
-    sx={[
-      {
-        width: 'auto',
-        textDecoration: 'underline',
-      },
-      // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
-  >
-    <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
-  </ListItem>
-);
+function ListHeader({ sx = [], children }: ListHeaderProps) {
+  return (
+    <ListItem
+      sx={[
+        {
+          width: 'auto',
+          textDecoration: 'underline',
+        },
+        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
+    </ListItem>
+  );
+}
 
 export default function PassingSxProp() {
   return (
