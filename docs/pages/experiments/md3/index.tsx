@@ -1,17 +1,13 @@
 import * as React from 'react';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  Tooltip,
-  IconButton,
-  useColorScheme,
-  Stack,
-} from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 import MD2Button, { ButtonProps as MD2ButtonProps } from '@mui/material/Button';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Button, { ButtonProps } from '@mui/material-next/Button';
-import { extendTheme } from '@mui/material-next/styles';
+import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/material-next/styles';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
 
