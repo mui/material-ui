@@ -71,7 +71,7 @@ const defaultFilterOptions = createFilterOptions();
 const pageSize = 5;
 
 const defaultIsActiveElementInListbox = (listboxRef) =>
-  listboxRef.current !== null && listboxRef.current.parentElement.contains(document.activeElement);
+  listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
 export default function useAutocomplete(props) {
   const {

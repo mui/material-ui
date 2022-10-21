@@ -35,7 +35,7 @@ export default function ControllableStates() {
           }}
           inputValue={inputValue}
           onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue);
+            setInputValue(newInputValue ? `Label: ${newInputValue}` : newInputValue);
           }}
           options={options}
           renderInput={(params) => <Input {...params} placeholder="Controllable" />}

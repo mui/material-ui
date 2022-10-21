@@ -26,7 +26,7 @@ The `Autocomplete` renders an input and a popup, after triggered by a pointer or
 
 ### Options structure
 
-By default, the component accepts the following options structures:
+By default, the component accepts the following structures for `options`:
 
 ```ts
 interface AutocompleteOption {
@@ -85,11 +85,11 @@ Each of the following examples demonstrates one feature of the Autocomplete comp
 
 ## Free solo
 
-Set `freeSolo` to true so the textbox can contain any arbitrary value.
+Set `freeSolo` to true so that the textbox can contain any arbitrary value.
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+This prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
 {{"demo": "FreeSolo.js"}}
 
@@ -218,7 +218,7 @@ The autocomplete component comes with three sizes out of the box: `sm`, `md` (th
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-The `size` can be controlled at the `FormControl`.
+The `size` can also be controlled at the `FormControl`.
 
 {{"demo": "SizeWithLabel.js"}}
 
@@ -232,7 +232,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ### GitHub's picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `List` component.
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the [`List`](/joy-ui/react-list/) component.
 
 {{"demo": "GitHubLabel.js"}}
 
