@@ -89,9 +89,9 @@ Material UI并没有为解决这个问题提供一个高级别的API。 我们�
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
-+import AddIcon from '@material-ui/icons/Add';
++import AddIcon from '@mui/icons-material/Add';
 
-<AddIcon />
+ <AddIcon />
 ```
 
 ### Flat Button（扁平按钮）
