@@ -65,9 +65,7 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 ### Barras de rolagem
 
-:::error
-This API is deprecated, consider using [color-scheme](#color-scheme) instead.
-:::
+:::error This API is deprecated, consider using [color-scheme](#color-scheme) instead. :::
 
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
