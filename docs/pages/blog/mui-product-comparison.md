@@ -49,7 +49,7 @@ Get started in the [Material UI docs](/material-ui/getting-started/overview/).
 
 #### Key features
 
-- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design.
+- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design. It currently implements Material Design 2.
 - **Comprehensiveness:** with over 50 foundational components and counting, you've got everything you need to ship new features fast.
 - **Maturity:** Material UI's age and maturity rival that of React itself, with its origins spanning all the way back to 2014.
 - **Community:** Over 2,500 open-source contributors have made this library what it is today.
@@ -134,6 +134,7 @@ MUI X is a collection of advanced UI components, including the Data Grid and the
 
 These components are significantly more complex than those found in the MUI Core libraries.
 They feature advanced functionality for data-rich applications and a wide range of other use cases.
+While these components provide native integration with MUI Core, they are separated so they can focus on deep integration with engineers' custom design systems.
 
 MUI X is open-core. Base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
 See [Licensing](/x/introduction/licensing/) for details.
@@ -152,7 +153,7 @@ It features an intuitive UI and corresponding API to display different views of 
 #### Ideal use cases
 
 - Applications that feature massive data sets
-- Data analytics tools
+- Data analytics tools inside your app, reducing the need to go to Excel
 - Apps built with MUI Core libraries that need advanced functionality
 
 ### Date and Time Pickers
@@ -174,7 +175,7 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 <img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75;" loading="lazy" alt="Small screenshot of MUI Toolpad's interface." />
 
-Toolpad is a self-hosted low-code internal tools builder designed to extend MUI's suite of React components.
+Toolpad is a self-hosted low-code admin builder designed to extend MUI's suite of React components.
 It's designed for developers of all trades who want to save time building internal applications.
 Drag and drop pre-built UI components, connect your data sources, and your app is ready for deployment.
 
