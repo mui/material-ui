@@ -5,13 +5,15 @@ components: InputUnstyled
 githubLabel: 'component: input'
 ---
 
-# 无样式的输入框
+# Unstyled Input
 
 <p class="description">The InputUnstyled component provides users with a field to enter and edit text.</p>
 
 ## 简介
 
 输入框是用来接受用户输入的文本的 UI 组件。 `InputUnstyled` 组件取代了原生的 HTML `<input>` 标签，可以在需要时转换成 `<textarea>` 。
+
+{{"demo": "UnstyledInputIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### 功能特色
 
@@ -55,9 +57,7 @@ The `InputUnstyled` component is composed of a root `<div>` slot that houses one
 
 ### Slot props
 
-:::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
-:::
+:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -65,25 +65,19 @@ Use the `component` prop to override the root slot with a custom element:
 <InputUnstyled component="aside" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<InputUnstyled components={{ Root: 'aside' }} />
+<InputUnstyled slots={{ root: 'aside' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
+:::warning If the root element is customized with both the `component` and `slots` props, then `component` will take precedence. :::
 
-Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-input` to the input slot:
+Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-input` to the input slot:
 
 ```jsx
-<InputUnstyled componentsProps={{ input: { className: 'my-input' } }} />
+<InputUnstyled slotProps={{ input: { className: 'my-input' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 
@@ -95,11 +89,9 @@ The `useInput` hook lets you apply the functionality of `InputUnstyled` to a ful
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info
-Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
-:::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy). :::
 
 The demo below shows how to use the `useInput` hook to create a custom input component that receives all the necessary props:
 
