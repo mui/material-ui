@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: Text field React component
+title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
-# Text field
+# Text Field
 
 <p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 
@@ -71,7 +71,7 @@ A altura do campo na variante `filled` pode ser reduzida ainda mais ao renderiza
 
 ## Margin
 
-The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+A propriedade `margin` pode ser usada para alterar o espaçamento vertical do campo de texto. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
 
 {{"demo": "LayoutTextFields.js"}}
 
@@ -259,8 +259,8 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
-- If you are composing the component:
+- Se você estiver usando o componente `TextField`, basta prover um `id` único, a menos que você esteja usando o `TextField` apenas para no lado do cliente. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- Se você está compondo o componente:
 
 ```jsx
 <div class="form-control">
@@ -272,7 +272,7 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 
 ## Projetos Complementares
 
-For more advanced use cases, you might be able to take advantage of:
+Para casos de uso mais avançado, você pode dar uma olhada
 
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
 - [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
