@@ -4,9 +4,7 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-:::info
-This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md).
-:::
+:::info This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md). :::
 
 ## Introdução
 
@@ -116,26 +114,26 @@ yarn add @material-ui/styles
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
 
-  console.log({ background });
+   console.log({ background });
   ```
 
 - Você pode remover com segurança a opção `useNextVariants` do tema:
 
   ```diff
-  typography: {
-  - useNextVariants: true,
-  },
+   typography: {
+  -  useNextVariants: true,
+   },
   ```
 
 - `theme.spacing.unit` está com o uso obsoleto, você pode usar a nova API:
 
   ```diff
-  label: {
-    [theme.breakpoints.up('sm')]: {
-  -   paddingTop: theme.spacing.unit * 12,
-  +   paddingTop: theme.spacing(12),
-    },
-  }
+   label: {
+     [theme.breakpoints.up('sm')]: {
+  -    paddingTop: theme.spacing.unit * 12,
+  +    paddingTop: theme.spacing(12),
+     },
+   }
   ```
 
   Dica: você pode fornecer mais de 1 argumento:`theme.spacing (1, 2) // = '8px 16px'` \*.
@@ -171,14 +169,14 @@ yarn add @material-ui/styles
 Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
-function MySelect({ children }) {
-- const handleChange = (event: any, value: string) => {
-+ const handleChange = (event: any, value: unknown) => {
-    // valor manipulado
-  };
+ function MySelect({ children }) {
+-  const handleChange = (event: any, value: string) => {
++  const handleChange = (event: any, value: unknown) => {
+     // handle value
+   };
 
-  return <Select onChange={handleChange}>{children}</Select>
-}
+   return <Select onChange={handleChange}>{children}</Select>
+ }
 ```
 
 This change is explained in more detail in the [TypeScript guide](/material-ui/guides/typescript/#handling-value-and-event-handlers)
@@ -363,12 +361,12 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 - [InputLabel] Você deve conseguir sobrescrever todos os estilos do componente FormLabel usando a API CSS do componente InputLabel. A propriedade `FormLabelClasses` foi removida.
 
   ```diff
-  <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' }}
-  + classes={{ asterisk: 'bar' }}
-  >
-  Foo
-  </InputLabel>
+   <InputLabel
+  -  FormLabelClasses={{ asterisk: 'bar' }}
+  +  classes={{ asterisk: 'bar' }}
+   >
+     Foo
+   </InputLabel>
   ```
 
 - [InputBase] Modificado o modelo padrão de box sizing. Ele usa o seguinte CSS agora:
@@ -419,9 +417,9 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 - This change eases the use of Material UI with a CDN:
 
   ```diff
-  const {
-    Button,
-    TextField,
+   const {
+     Button,
+     TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
