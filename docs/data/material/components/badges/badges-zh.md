@@ -64,7 +64,7 @@ The badge hides automatically when `badgeContent` is zero. 您可以使用 `show
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
 
-## Accessibility
+## 无障碍
 
 You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
 
