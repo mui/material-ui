@@ -52,4 +52,4 @@ Feel free to submit a pull request!
 ## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications that features live previewing.
-- [Material palette generator](https://material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.
+- [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.

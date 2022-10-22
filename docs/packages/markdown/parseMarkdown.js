@@ -153,7 +153,7 @@ function renderInline(markdown) {
 }
 
 const noSEOadvantage = [
-  'https://material.io/',
+  'https://m2.material.io/',
   'https://getbootstrap.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
