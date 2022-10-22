@@ -2,9 +2,9 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "O conteúdo do componente.",
-    "columns": "The number of columns.",
-    "columnSpacing": "Defines the horizontal space between the type <code>item</code> components. It overrides the value of the <code>spacing</code> prop.",
-    "container": "If <code>true</code>, the component will have the flex <em>container</em> behavior. You should be wrapping <em>items</em> with a <em>container</em>.",
+    "columns": "Número de colunas.",
+    "columnSpacing": "Define o espaço horizontal entre os componentes do tipo  <code>item</code>. O valor da propriedade <code>spacing</code> será sobrescrito.",
+    "container": "Quando <code>true</code>, o componente terá comportamento de <em>container</em> flexível. <em>items</em> deverão ser aninhados dentro de um <em>container</em>.",
     "direction": "Defines the <code>flex-direction</code> style property. It is applied for all screen sizes.",
     "disableEqualOverflow": "If <code>true</code>, the negative margin and padding are apply only to the top and left sides of the grid.",
     "lg": "Defines the number of grids the component is going to use. It&#39;s applied for the <code>lg</code> breakpoint and wider screens if not overridden.",
