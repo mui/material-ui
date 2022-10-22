@@ -137,7 +137,7 @@ MUI System relies on CSS-in-JS. It works with both Emotion and styled-components
 #### Pros
 
 - 📚 The `sx` prop uses a superset of CSS, so the syntax will be immediately familiar to you if you know CSS already. It also offers (optional) shorthand definitions that can save you time if you put in a little work to learn them upfront. These are documented in the **Style utilities** section of the primary navigation to the left.
-- 📦 The System auto-purges, so that only the CSS that's used on the page is sent to the client. The initial bundle size cost is fixed—it doesn't get any larger as you add more CSS properties. You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). The total size is ~15 kB gzipped. But if you are already using a Core component library like Material UI, then it comes with no extra overhead.
+- 📦 The System auto-purges, so that only the CSS that's used on the page is sent to the client. The initial bundle size cost is fixed—it doesn't get any larger as you add more CSS properties. You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). The total size is ~15 kB gzipped. But if you are already using an MUI Core component library like Material UI, then it comes with no extra overhead.
 
 #### Cons
 
@@ -277,11 +277,9 @@ The second option is to define your breakpoints as an array, from smallest to la
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-:::warning
-This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
+:::warning This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
 
-We recommend using the object API instead if you need to define more than a few breakpoints.
-:::
+We recommend using the object API instead if you need to define more than a few breakpoints. :::
 
 You can skip breakpoints with the `null` value:
 
