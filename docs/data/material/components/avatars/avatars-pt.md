@@ -23,7 +23,7 @@ Avatares com letras podem ser criados passando sua string como `children`.
 
 {{"demo": "LetterAvatars.js"}}
 
-You can use different background colors for the avatar. The following demo generates the color based on the name of the person.
+Você pode usar diferentes cores de fundo para o avatar. A demo a seguir gera a cor baseada no nome da pessoa.
 
 {{"demo": "BackgroundLetterAvatars.js"}}
 
@@ -57,13 +57,13 @@ Se houver um erro ao carregar a imagem do avatar, o componente escolhe uma alter
 
 ## Agrupamento
 
-`AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
+`AvatarGroup` renderiza seus componentes filhos como uma pilha. Use a propriedade `max` para limitar o número de avatares.
 
 {{"demo": "GroupAvatars.js"}}
 
-### Total avatars
+### Total de avatares
 
-If you need to control the total number of avatars not shown, you can use the `total` prop.
+Se você precisar controlar o número total de avatares não mostrados, você pode usar a propriedade `total`.
 
 {{"demo": "TotalAvatars.js"}}
 
