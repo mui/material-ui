@@ -15,9 +15,9 @@ unstyled: /base/react-popper/
 - 🕷 Popper 依赖第三方库 ([Popper.js](https://github.com/popperjs/popper-core)) 来实现完美的定位。
 - 💄 这是 react-popper 的一个替代性 API。 它是为了简单性而设计。
 - 📦 [24.9 kB gzipped](/size-snapshot/).
-- The children is [`Portal`](/material-ui/react-portal/) to the body of the document to avoid rendering problems. 您可以使用 `disablePortal` 来禁用此行为。
+- 为了避免渲染问题, 子节点会通过[`Portal`](/material-ui/react-portal/)被渲染到`document.body`中去, 您可以使用 `disablePortal` 来禁用此行为。
 - The scroll isn't blocked like with the [`Popover`](/material-ui/react-popover/) component. 弹出提示的位置会随着视口中的可用面积而更新。
-- Clicking away 不会隐藏`弹出提示`组件。 If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
+- Clicking away 不会隐藏`弹出提示`组件。 您可以通过使用[` ClickAwayListener`](/material-ui/react-click-away-listener/)来启用此功能 - 查看[菜单文档](/material-ui/react-menu/#menulist-composition)中的示例。
 - 创建一个新 `Popper.js` 实例时，`anchorEl` 作为一个参考对象在其中传递。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -38,7 +38,7 @@ unstyled: /base/react-popper/
 
 {{"demo": "TransitionsPopper.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
+或者，您也可以使用[react-spring](https://github.com/pmndrs/react-spring)。
 
 {{"demo": "SpringPopper.js"}}
 
