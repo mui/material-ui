@@ -14,7 +14,10 @@ export default function TabsPricingExample() {
       sx={{
         width: 343,
         '--Tabs-gap': '0px',
-        borderRadius: 'lg',
+        borderRadius: 'sm',
+        boxShadow: 'sm',
+        overflow: 'auto',
+        border: '1px color',
       }}
     >
       <TabList
