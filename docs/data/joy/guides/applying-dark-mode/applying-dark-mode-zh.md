@@ -26,9 +26,7 @@ function ModeToggle() {
 
 {{"demo": "ModeToggle.js"}}
 
-:::warning
-**Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error.
-:::
+:::warning **Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error. :::
 
 ## Server-side rendering
 
@@ -66,7 +64,7 @@ This is because the `mode` will only be available to the client-side (it is `und
 
 ### Avoiding screen flickering
 
-To prevent [the UI of flickering](/joy-ui/main-features/perfect-dark-mode/#the-current-flickering-problem), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
+To [prevent the UI from flickering](/joy-ui/main-features/dark-mode-optimization/#the-problem-flickering-on-first-load), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
 
 ### Next.js
 
