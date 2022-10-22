@@ -1,4 +1,4 @@
-# 默认主题
+# Default theme
 
 <p class="description">你在下面可以看到使用主题对象（theme object）的默认值的样子。</p>
 
@@ -8,15 +8,11 @@
 
 {{"demo": "DefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-:::info
-💡**Tip:**
+:::info 💡**Tip:**
 
-you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages.
-:::
+you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages. :::
 
-:::warning
-Please note that **the documentation site is using a custom theme**.
-:::
+:::warning Please note that **the documentation site is using a custom theme**. :::
 
 <!-- #default-branch-switch -->
 
