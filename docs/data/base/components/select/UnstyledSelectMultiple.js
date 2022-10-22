@@ -130,26 +130,26 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(props, ref) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <MultiSelectUnstyled {...props} ref={ref} components={components} />;
+  return <MultiSelectUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 CustomMultiSelect.propTypes = {
   /**
-   * The components used for each slot inside the Select.
+   * The components used for each slot inside the MultiSelect.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.func,
-    Root: PropTypes.elementType,
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
   }),
 };
 

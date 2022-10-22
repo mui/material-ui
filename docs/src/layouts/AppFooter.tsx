@@ -98,22 +98,22 @@ export default function AppFooter() {
             <Box sx={{ display: 'flex', alignItems: 'end' }}>
               <Link href={ROUTES.careers}>Careers </Link>
               <Box
-                sx={{
+                sx={(theme) => ({
                   px: 0.5,
                   py: '3px',
                   ml: 1,
                   mb: '1px',
                   borderRadius: 0.5,
-                  fontSize: (theme) => theme.typography.pxToRem(9),
+                  fontSize: theme.typography.pxToRem(9),
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   color: '#fff',
                   letterSpacing: '0.1rem',
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.success[900]
-                      : theme.palette.success.main,
-                }}
+                  bgcolor: 'success.main',
+                  ...theme.applyDarkStyles({
+                    bgcolor: 'success.900',
+                  }),
+                })}
               >
                 Hiring
               </Box>

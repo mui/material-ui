@@ -13,37 +13,6 @@ export interface MultiSelectUnstyledComponentsPropsOverrides {}
 
 export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Listbox?: React.ElementType;
-    Popper?: React.ComponentType<MultiSelectUnstyledPopperSlotProps<TValue>>;
-  };
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'button',
-      MultiSelectUnstyledComponentsPropsOverrides,
-      MultiSelectUnstyledOwnerState<TValue>
-    >;
-    listbox?: SlotComponentProps<
-      'button',
-      MultiSelectUnstyledComponentsPropsOverrides,
-      MultiSelectUnstyledOwnerState<TValue>
-    >;
-    popper?: SlotComponentProps<
-      typeof PopperUnstyled,
-      MultiSelectUnstyledComponentsPropsOverrides,
-      MultiSelectUnstyledOwnerState<TValue>
-    >;
-  };
-  /**
    * The default selected values. Use when the component is not controlled.
    * @default []
    */
@@ -75,6 +44,37 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
    * Function that customizes the rendering of the selected values.
    */
   renderValue?: (option: SelectOption<TValue>[]) => React.ReactNode;
+  /**
+   * The props used for each slot inside the MultiSelect.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'button',
+      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledOwnerState<TValue>
+    >;
+    listbox?: SlotComponentProps<
+      'button',
+      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledOwnerState<TValue>
+    >;
+    popper?: SlotComponentProps<
+      typeof PopperUnstyled,
+      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledOwnerState<TValue>
+    >;
+  };
+  /**
+   * The components used for each slot inside the MultiSelect.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    listbox?: React.ElementType;
+    popper?: React.ComponentType<MultiSelectUnstyledPopperSlotProps<TValue>>;
+  };
   /**
    * The selected values.
    * Set to an empty array to deselect all options.

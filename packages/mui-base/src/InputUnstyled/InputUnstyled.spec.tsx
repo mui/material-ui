@@ -21,7 +21,7 @@ const InputInput = React.forwardRef(function InputInput(
   return <input data-focused={ownerState.focused} {...other} ref={ref} />;
 });
 
-const styledInput = <InputUnstyled components={{ Root: InputRoot, Input: InputInput }} />;
+const styledInput = <InputUnstyled slots={{ root: InputRoot, input: InputInput }} />;
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;

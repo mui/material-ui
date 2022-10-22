@@ -188,7 +188,7 @@ describe('useSlotProps', () => {
       onClick: externalForwardedClickHandler,
     };
 
-    // provided by the user via componentsProps.*:
+    // provided by the user via slotProps.*:
     const componentProps = (os: typeof ownerState) => ({
       'data-fromownerstate': os.test,
       'data-test': 'externalComponentsProps',
@@ -222,7 +222,7 @@ describe('useSlotProps', () => {
     // `id` from componentProps overrides the one from getSlotProps
     expect(result).to.haveOwnProperty('id', 'external');
 
-    // `componentsProps` is called with the ownerState
+    // `slotProps` is called with the ownerState
     expect(result).to.haveOwnProperty('data-fromownerstate', true);
 
     // class names are concatenated
@@ -240,17 +240,17 @@ describe('useSlotProps', () => {
     expect(externalRef.current).to.equal('test');
     expect(additionalRef.current).to.equal('test');
 
-    // event handler provided in componentsProps is called
+    // event handler provided in slotProps is called
     result.onClick({} as React.MouseEvent);
     expect(externalClickHandler.calledOnce).to.equal(true);
 
-    // event handler provided in forwardedProps is not called (was overridden by componentsProps)
+    // event handler provided in forwardedProps is not called (was overridden by slotProps)
     expect(externalForwardedClickHandler.notCalled).to.equal(true);
 
     // internal event handler is called
     expect(internalClickHandler.calledOnce).to.equal(true);
 
-    // internal ownerState is merged with the one provided by componentsProps
+    // internal ownerState is merged with the one provided by slotProps
     expect(result.ownerState).to.deep.equal({
       test: true,
       foo: 'bar',

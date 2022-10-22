@@ -16,7 +16,7 @@ function Backdrop(props: ModalUnstyledBackdropSlotProps) {
 }
 
 const styledModal = (
-  <ModalUnstyled open components={{ Root, Backdrop }}>
+  <ModalUnstyled open slots={{ root: Root, backdrop: Backdrop }}>
     <div />
   </ModalUnstyled>
 );

@@ -11,7 +11,7 @@ const Root = React.forwardRef(function Root<TValue>(
   return <li data-selected={ownerState.selected} {...other} ref={ref} />;
 });
 
-const option = <OptionUnstyled value={null} components={{ Root }} />;
+const option = <OptionUnstyled value={null} slots={{ root: Root }} />;
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
