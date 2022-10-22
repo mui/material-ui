@@ -15,6 +15,8 @@ The badge component is most frequently used to signal status (online, offline, b
 
 {{"demo": "BadgeUsage.js", "hideToolbar": true}}
 
+:::success To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes). :::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -49,9 +51,7 @@ The badge automatically hidden if `badgeContent` is zero. You can change this by
 
 Control the badge visibility using the `invisible` prop.
 
-:::info
-**Note:** If `showZero` is true, the badge will appear even though `invisible` is true.
-:::
+:::info **Note:** If `showZero` is true, the badge will appear even though `invisible` is true. :::
 
 {{"demo": "BadgeVisibility.js"}}
 
