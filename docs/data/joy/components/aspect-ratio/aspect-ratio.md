@@ -5,11 +5,12 @@ title: React Aspect Ratio component
 
 # Aspect Ratio
 
-<p class="description">The Aspect Ratio component crops its contents to match the desired ratio.</p>
+<p class="description">The Aspect Ratio component resizes its contents to match the desired ratio.</p>
 
 ## Introduction
 
-Aspect Ratio is a wrapper component for quickly cropping content (such as images) to conform to your preferred ratio of width to height.
+Aspect Ratio is a wrapper component for quickly resizing content to conform to your preferred ratio of width to height.
+Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
 A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it until browser compatibility increases.
@@ -31,9 +32,9 @@ export default function MyApp() {
 
 ### Basics
 
-Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accommodate the content.
-The default aspect ratio is `16/9`.
-Make sure that the content you want to fit the aspect ratio is its first direct child.
+The Aspect Ratio component wraps around the content that it resizes.
+The element to be resized must be the first direct child.
+The default ratio is `16/9`.
 
 {{"demo": "BasicRatio.js"}}
 
@@ -43,13 +44,37 @@ The Aspect Ratio component is composed of a root `<div>` with a content `<div>` 
 
 ```html
 <div class="JoyAspectRatio-root">
-  <div class="JoyAspectRatio-content JoyAspectRatio-variantSoft JoyAspectRatio-colorNeutral css-1obyd74-JoyAspectRatio-content">
+  <div class="JoyAspectRatio-content">
     <some-element data-first-child>
       This is how an Aspect Ratio component renders in the DOM.
     </some-element>
   </div>
 </div>
 ```
+
+### Overriding the root slot
+
+Use the `component` prop to override the root slot with a custom element.
+For example, the following code snippet replaces the default `<div>` with an `<aside>`:
+
+```jsx
+<AspectRatio component="aside" />
+```
+
+### Overriding interior slots
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+<AspectRatio components={{ root: 'main', content: 'article' }} />
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-content` to the content slot:
+
+<AspectRatio componentsProps={{ content: { className: 'my-content' } }} />
 
 ## Customization
 
