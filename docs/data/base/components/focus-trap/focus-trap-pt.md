@@ -5,7 +5,7 @@ components: FocusTrap
 githubLabel: 'component: FocusTrap'
 ---
 
-# Focus Trap
+# Focus trap
 
 <p class="description">The FocusTrap component prevents the user's focus from escaping its children components.</p>
 
