@@ -6,13 +6,15 @@ githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
 
-# Unstyled switch
+# Unstyled Switch
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
 ## Introduction
 
 The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.
+
+{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -50,9 +52,7 @@ The `SwitchUnstyled` component is composed of a root `<span>` that houses three 
 
 ### Slot props
 
-:::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
-:::
+:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -60,25 +60,19 @@ Use the `component` prop to override the root slot with a custom element:
 <SwitchUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SwitchUnstyled components={{ Root: 'div', Track: 'div' }} />
+<SwitchUnstyled slots={{ root: 'div', track: 'div' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
+:::warning If the root element is customized with both the `component` and `slots` props, then `component` will take precedence. :::
 
-Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
+Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
 
 ```jsx
-<SwitchUnstyled componentsProps={{ thumb: { className: 'my-thumb' } }} />
+<SwitchUnstyled slotProps={{ thumb: { className: 'my-thumb' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 
@@ -90,11 +84,9 @@ The `useSwitch` hook lets you apply the functionality of `SwitchUnstyled` to a f
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info
-Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
-:::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots). :::
 
 ### Basic example
 
