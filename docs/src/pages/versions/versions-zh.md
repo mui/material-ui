@@ -18,21 +18,21 @@
 
 稳定的版本保证了可重复使用的组件和库、教程、工具和学习教程不会意外的过时。 稳定性是 MUI  生态系统蓬勃发展的关键。
 
-This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced predictably.
+本文档包含了为您提供的一些前沿的 UI 库所遵循的练习， 在保持稳定的同时确保今后的变更总是以可预测的方式引进。
 
 MUI 遵循[语义化版本 2.0.0](https://semver.org/)。 MUI 的版本号由三部分组成： `主版本号.次版本号.修订号`。 版本号的递增是根据发行的更改级别而定义的。
 
-- **Major releases** contain significant new features, some developer assistance is expected during the update. These releases include [breaking changes](#what-doesnt-count-as-a-breaking-change). When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
-- **次版本** 包含重要的新功能。 Minor releases are fully backward-compatible; no developer assistance is expected during the update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
-- **修订版本** 的更新风险低，包含了对 bug 的修复和较小的新功能。 No developer assistance is expected during the update.
+- **主版本**包含重要的新功能，更新时需要一些少量开发人员的支持。 这些版本包括 [处于中断状态的更改](#what-doesnt-count-as-a-breaking-change)。 当更新到一个新的主要的发行版本时，您可能需要运行更新脚本，重构代码，运行其他测试以及学习新的 API。
+- **次版本** 包含重要的新功能。 次要发行版本完全向后兼容；更新时不需要开发人员的支持，但您可以选择修改应用程序和库来使用新的版本中添加的新 API ，特征和功能。
+- **修订版本** 的更新风险低，包含了对 bug 的修复和较小的新功能。 更新时不需要开发人员的支持。
 
-## What doesn't count as a breaking change?
+## 什么不能算作是一个突破性的变化？
 
-We call "breaking changes" those that require updating your codebase when upgrading to a new version, with the exception of:
+我们叫做“打破更改”，那些在升级到新版本时需要更新您的代码库，但以下除外：
 
-- **APIs starting with "unstable\_"**. These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
-- **APIs documented as experimental**. Same as the above.
-- **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
+- **以 "unstable\_" 开头的 API** 开始。 这些是作为实验性功能提供的，我们尚不信任这些API。 通过 unstable_ 前缀释放这些东西，我们可以更快地迭代并更快地获得稳定的 API ， 或者简单地了解我们从一开始就不需要API/功能。
+- API被记录为实验。 |同上。
+- 无文档的 APIs 和内部数据结构。 If you access internal properties, there is no warranty. You are on your own.
 - **Development warnings**. Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
 - **Pre-releases versions**. We provide pre-release versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period. If you use these versions, note that APIs may change before the stable release.
 - **Small CSS changes**. Visual design changes that have a very low probability of negatively impacting your UI are not considered breaking.
