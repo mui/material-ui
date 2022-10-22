@@ -1,6 +1,18 @@
-# Applying dark mode
+# Dark mode
 
-<p class="description">A how-to-guide for applying dark mode to your application with Joy UI.</p>
+<p class="description">Learn about the dark mode in Joy UI</p>
+
+## Dark mode by default
+
+To have dark mode as a default for your app, set `defaultMode: 'dark'`.
+
+{{"demo": "DarkModeByDefault.js"}}
+
+For server-side applications, check out the framework setup in the [guide](#server-side-rendering) below and provide the same value to the `getInitColorSchemeScript` function.
+
+```js
+getInitColorSchemeScript({ defaultMode: 'dark' });
+```
 
 ## The mode-toggle component
 
@@ -106,16 +118,37 @@ export function onRenderBody({ setPreBodyComponents }) {
 }
 ```
 
-## Dark mode by default
+## System preference
 
-To have dark mode as the default theme of your app, set `defaultMode: 'dark'`. 
+To have the color mode based on the user's preference, set `defaultMode: 'system'`.
 
-```js
-<CssVarsProvider defaultMode="dark">...</CssVarsProvider>
+```jsx
+import { CssVarsProvider } from '@mui/joy/styles';
+
+<CssVarsProvider defaultMode="system">...</CssVarsProvider>;
 ```
 
-For server-side applications, provide the same value to `getInitColorSchemeScript`.
+For server-side applications, check out the framework setup in the [guide](#server-side-rendering) above and provide the same value to the `getInitColorSchemeScript` function.
 
 ```js
-getInitColorSchemeScript({ defaultMode: 'dark' });
+getInitColorSchemeScript({ defaultMode: 'system' });
 ```
+
+### Identify the actual mode
+
+To check if the user's preference is in `light` or `dark` mode, use the `useColorScheme` React hook:
+
+```js
+import { useColorScheme } from '@mui/joy/styles';
+
+function SomeComponent() {
+  // Calculated from the prefers-color-scheme media query (https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+  const { mode, systemMode } = useColorScheme();
+  console.log(mode); // "system"
+  console.log(systemMode); // "light" | "dark" based on the user's preference.
+}
+```
+
+:::warning
+**Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error.
+:::
