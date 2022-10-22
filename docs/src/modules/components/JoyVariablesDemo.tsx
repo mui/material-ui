@@ -131,12 +131,11 @@ export default function JoyVariablesDemo(props: {
       <Sheet
         variant="outlined"
         sx={{
-          mt: 3,
           minWidth: 0,
           flexBasis: 240,
           flexGrow: 1,
           borderRadius: 'sm',
-          boxShadow: 'md',
+          boxShadow: 'sm',
         }}
       >
         <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
