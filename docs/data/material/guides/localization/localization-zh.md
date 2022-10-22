@@ -30,9 +30,7 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
-:::warning
-⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
-:::
+:::warning ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/). :::
 
 ### 支持的地区
 
@@ -40,6 +38,7 @@ const theme = createTheme(
 |:----------------------- |:----------- |:------ |
 | Amharic                 | am-ET       | `amET` |
 | Arabic (Egypt)          | ar-EG       | `arEG` |
+| Arabic (Saudi Arabia)   | ar-SA       | `arSA` |
 | Arabic (Sudan)          | ar-SD       | `arSD` |
 | Armenian                | hy-AM       | `hyAM` |
 | Azerbaijani             | az-AZ       | `azAZ` |
