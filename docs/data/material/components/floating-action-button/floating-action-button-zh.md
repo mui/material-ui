@@ -1,12 +1,12 @@
 ---
 product: material-ui
-title: React Fab（浮动操作按钮）组件
+title: React Floating Action Button (FAB) component
 components: Fab
 githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
-# Floating action button 浮动操作按钮组件
+# Floating Action Button
 
 <p class="description">浮动操作按钮 (FAB) 通常用于在屏幕上执行一些主要的或是最为常见的操作。</p>
 
@@ -22,7 +22,7 @@ Only use a FAB if it is the most suitable way to present a screen's primary acti
 
 ## Size 大小
 
-By default, the size is `large`. By default, the size is `large`. By default, the size is `large`. Use the `size` prop for smaller floating action buttons.
+By default, the size is `large`. 使用 `大小` prop 来缩小浮动动动作按钮。
 
 {{"demo": "FloatingActionButtonSize.js"}}
 
