@@ -18,13 +18,11 @@ The following document lists all breaking changes related to components in v5 an
 
 If you haven't already, please be sure to review [Breaking changes in v5 part one: styles and themes](/material-ui/migration/v5-style-changes/) to continue the migration process.
 
-:::warning
-Breaking changes that are handled by the codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
+:::warning Breaking changes that are handled by the codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
 
 If you have already followed the instructions in the main migration guide and run the codemods, then you should not need to take any further action on these items.
 
-All other changes must be handled manually.
-:::
+All other changes must be handled manually. :::
 
 As the core components use Emotion as their style engine, the props used by Emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
@@ -318,9 +316,7 @@ The button `color` prop is now "primary" by default, and "default" has been remo
 +<Button>
 ```
 
-:::info
-If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5.
-:::
+:::info If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5. :::
 
 ### Remove span and label
 
@@ -387,9 +383,7 @@ This was an exception to Material Design, and was removed from the specification
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-:::warning
-If you had previously customized `determinate`, then your customizations are most likely no longer valid. Please remove them.
-:::
+:::warning If you had previously customized `determinate`, then your customizations are most likely no longer valid. Please remove them. :::
 
 ## Collapse
 
@@ -418,24 +412,24 @@ The component was migrated to use the `@mui/styled-engine` (`emotion` or `styled
 You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
 ```diff
-const theme = createTheme({
-  components: {
-    MuiCssBaseline: {
--     styleOverrides: {
--       '@global': {
--         html: {
--           WebkitFontSmoothing: 'auto',
--         },
--       },
--     },
-+     styleOverrides: `
-+       html {
-+         -webkit-font-smoothing: auto;
-+       }
-+     `
-    },
-  },
-});
+ const theme = createTheme({
+   components: {
+     MuiCssBaseline: {
+-      styleOverrides: {
+-        '@global': {
+-          html: {
+-            WebkitFontSmoothing: 'auto',
+-          },
+-        },
+-      },
++      styleOverrides: `
++        html {
++          -webkit-font-smoothing: auto;
++        }
++      `
+     },
+   },
+ });
 ```
 
 ### Update body font size
@@ -505,9 +499,7 @@ Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
 Remove the `withMobileDialog` higher-order component.
 
-:::warning
-This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
-:::
+:::warning This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required. :::
 
 The hook API allows a simpler and more flexible solution:
 
@@ -515,13 +507,13 @@ The hook API allows a simpler and more flexible solution:
 -import withMobileDialog from '@mui/material/withMobileDialog';
 +import { useTheme, useMediaQuery } from '@mui/material';
 
-function ResponsiveDialog(props) {
-- const { fullScreen } = props;
-+ const theme = useTheme();
-+ const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const [open, setOpen] = React.useState(false);
+ function ResponsiveDialog(props) {
+-  const { fullScreen } = props;
++  const theme = useTheme();
++  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+   const [open, setOpen] = React.useState(false);
 
-// ...
+ // ...
 
 -export default withMobileDialog()(ResponsiveDialog);
 +export default ResponsiveDialog;
@@ -549,10 +541,10 @@ Use `border-color` instead of `background-color`. This prevents inconsistent hei
 If you have customized the color of the border, you will need to update the CSS property override:
 
 ```diff
-.MuiDivider-root {
-- background-color: #f00;
-+ border-color: #f00;
-}
+ .MuiDivider-root {
+-  background-color: #f00;
++  border-color: #f00;
+ }
 ```
 
 ## ExpansionPanel
@@ -663,9 +655,7 @@ Change the default variant from `standard` to `outlined`.
 
 `standard` has been removed from the Material Design guidelines.
 
-:::warning
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
-:::
+:::warning ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod. :::
 
 ```diff
 -<FormControl value="Standard" />
@@ -707,22 +697,22 @@ These props are now considered part of the System, not the `Grid` component itse
 If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
 
 ```diff
-const theme = createTheme({
-  components: {
-    MuiGrid: {
--     styleOverrides: {
--       "align-items-xs-flex-end": {
--         marginTop: '20px',
--       },
--     },
-+     styleOverrides: ({ ownerState }) => ({
-+       ...ownerState.alignItems === 'flex-end' && {
-+         marginTop: '20px',
-+       },
-+     }),
-    },
-  },
-});
+ const theme = createTheme({
+   components: {
+     MuiGrid: {
+-      styleOverrides: {
+-        'align-items-xs-flex-end': {
+-          marginTop: 20,
+-        },
+-      },
++      styleOverrides: ({ ownerState }) => ({
++        ...ownerState.alignItems === 'flex-end' && {
++          marginTop: 20,
++        },
++      }),
+     },
+   },
+ });
 ```
 
 ### Change negative margins
@@ -787,9 +777,7 @@ Use CSS `object-fit`. For IE11 support either use a polyfill such as [this npm p
 
 This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
-:::warning
-This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
-:::
+:::warning This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required. :::
 
 Use the `sx` prop to replace `implementation="css"`:
 
@@ -863,9 +851,7 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
-:::warning
-✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
-:::
+:::warning ✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod. :::
 
 ```js
 createTheme({
@@ -904,9 +890,7 @@ The `on*` transition props were removed. Use `TransitionProps` instead.
  >
 ```
 
-:::info
-The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
-:::
+:::info The `selectedMenu` variant will no longer vertically align the selected item with the anchor. :::
 
 ### Change default anchorOrigin.vertical value
 
@@ -1028,13 +1012,13 @@ This change was made to better conform to the Material Design guidelines.
 You can revert it in the theme:
 
 ```diff
-const theme = createTheme({
-  components: {
-    MuiPaper: {
-+     styleOverrides: { root: { backgroundImage: 'unset' } },
-    },
-  },
-});
+ const theme = createTheme({
+   components: {
+     MuiPaper: {
++      styleOverrides: { root: { backgroundImage: 'unset' } },
+     },
+   },
+ });
 ```
 
 ## Pagination
@@ -1211,9 +1195,7 @@ You can get a reference to the underlying DOM node of our components via `ref` p
 
 The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
-:::warning
-This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
-:::
+:::warning This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required. :::
 
 ```diff
 -<RootRef rootRef={ref}>
@@ -1232,9 +1214,7 @@ Change the default variant from `standard` to `outlined`.
 
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
-:::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
-:::
+:::success ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod. :::
 
 ```diff
 -<Select value="Standard" />
@@ -1442,8 +1422,8 @@ In the unlikely event that you were using the value `default`, the prop can be r
 ```diff
 -<SvgIcon fontSize="default">
 +<SvgIcon>
-    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-  </SvgIcon>
+   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+ </SvgIcon>
 ```
 
 ## Switch
@@ -1455,14 +1435,14 @@ The second argument from `onChange` has been deprecated.
 You can pull out the checked state by accessing `event.target.checked`.
 
 ```diff
-function MySwitch() {
-- const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-+ const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-+   const checked = event.target.checked;
-  };
+ function MySwitch() {
+-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
++  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
++    const checked = event.target.checked;
+   };
 
-  return <Switch onChange={handleChange} />;
-}
+   return <Switch onChange={handleChange} />;
+ }
 ```
 
 ### Update default color prop
@@ -1627,9 +1607,7 @@ Change the default variant from `standard` to `outlined`.
 
 `standard` has been removed from the Material Design guidelines.
 
-:::success
-✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
-:::
+:::success ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod. :::
 
 ```diff
 -<TextField value="Standard" />
@@ -1778,7 +1756,7 @@ If you want to restore the v4 behavior, you can apply the following diff:
 -<Tooltip>
 +<Tooltip disableInteractive>
 
-# Interactive tooltips no longer need the `interactive` prop.
+ # Interactive tooltips no longer need the `interactive` prop.
 -<Tooltip interactive>
 +<Tooltip>
 ```
@@ -1811,22 +1789,22 @@ If you still wish to add overrides for them, you can use the [callback as a valu
 For example:
 
 ```diff
-const theme = createTheme({
-  components: {
-    MuiTypography: {
--     styleOverrides: {
--       colorSecondary: {
--         marginTop: '20px',
--       },
--     },
-+     styleOverrides: ({ ownerState }) => ({
-+       ...ownerState.color === 'secondary' && {
-+         marginTop: '20px',
-+       },
-+     }),
-    },
-  },
-});
+ const theme = createTheme({
+   components: {
+     MuiTypography: {
+-      styleOverrides: {
+-        colorSecondary: {
+-          marginTop: '20px',
+-        },
+-      },
++      styleOverrides: ({ ownerState }) => ({
++        ...ownerState.color === 'secondary' && {
++          marginTop: '20px',
++        },
++      }),
+     },
+   },
+ });
 ```
 
 ## Theme
@@ -1880,16 +1858,16 @@ The default breakpoints were changed to better match common use cases as well as
 You can find out more details about this change in [this GitHub issue](https://github.com/mui/material-ui/issues/21902)
 
 ```diff
-{
-  xs: 0,
-  sm: 600,
-- md: 960,
-+ md: 900,
-- lg: 1280,
-+ lg: 1200,
-- xl: 1920,
-+ xl: 1536,
-}
+ {
+   xs: 0,
+   sm: 600,
+-  md: 960,
++  md: 900,
+-  lg: 1280,
++  lg: 1200,
+-  xl: 1920,
++  xl: 1536,
+ }
 ```
 
 If you prefer the old breakpoint values, use the snippet below:
