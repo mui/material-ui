@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "autoWidth": "If <code>true</code>, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.",
+    "autoWidth": "如果<code>true</code>，弹出窗的宽度将会根据菜单内的选择项来自动设置，否则它将至少是选择组件的宽度。",
     "children": "The option elements to populate the select with. Can be some <code>MenuItem</code> when <code>native</code> is false and <code>option</code> when <code>native</code> is true.<br>⚠️The <code>MenuItem</code> elements <strong>must</strong> be direct descendants when <code>native</code> is false.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "defaultOpen": "If <code>true</code>, the component is initially open. Use when the component open state is not controlled (i.e. the <code>open</code> prop is not defined). You can only use it when the <code>native</code> prop is <code>false</code> (default).",
