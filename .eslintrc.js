@@ -231,6 +231,8 @@ module.exports = {
 
         'react/function-component-definition': 'off',
         'prefer-regex-literals': 'off',
+
+        'react/jsx-no-useless-fragment': 'off',
       },
     },
     {
