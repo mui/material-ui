@@ -2,25 +2,23 @@
 title: Overview
 - - -
 
-# MUI Base - Overview
+# MUI Base - Visão Geral
 
 <p class="description">MUI Base is a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
-## Introduction
+## Introdução
 
-MUI Base is a library of unstyled React UI components. These components were extracted from [Material UI](/material-ui/getting-started/overview/), and are now available as a standalone package. They feature the same robust engineering but without implementing Material Design.
+MUI Base é uma biblioteca de componentes UI React sem estilo algum aplicado. Esses componentes foram extraídos da [Material UI](/material-ui/getting-started/overview/) e agora se encontram disponíveis como pacotes autônomos. Eles trazem a mesma engenharia robusta, porém sem implementar o estilo da Material Design.
 
-MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+MUI Base inclui componentes previamente desenvolvidos com funcionamento apto a cenários de produção, juntamente a hooks de baixo nível para transferir tais funcionalidades a outros componentes.
 
 With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
-:::info
-**Note:** as of today, MUI Base is in alpha.
+:::info **Note:** as of today, MUI Base is in alpha.
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
-Look for the [`package: base`](https://github.com/mui/material-ui/labels/package%3A%20base) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
-:::
+Look for the [`package: base`](https://github.com/mui/material-ui/labels/package%3A%20base) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own. :::
 
 ## Advantages of MUI Base
 
