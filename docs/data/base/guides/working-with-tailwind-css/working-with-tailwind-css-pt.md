@@ -20,9 +20,7 @@ The end result of this guide is an interactive media player interface. Here's wh
 
 {{"demo": "PlayerFinal.js", "hideToolbar": true, "bg": true}}
 
-:::info
-💡 All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
-:::
+:::info 💡 All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/). :::
 
 ## Setting up the project
 
@@ -255,7 +253,7 @@ const Slider = React.forwardRef(function Slider(
   return (<SliderUnstyled
     {...props}
     ref={ref}
-    componentsProps={{
+    slotProps={{
       thumb: { className: 'ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute' }
       root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
       rail: { className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute' },
@@ -267,7 +265,7 @@ const Slider = React.forwardRef(function Slider(
 export default Slider;
 ```
 
-To assign specific Tailwind CSS utility classes for each part of the component, we're using `componentsProps`. Most of them were copied from the original markup with small adjustments now that it is interactive.
+To assign specific Tailwind CSS utility classes for each part of the component, we're using `slotProps`. Most of them were copied from the original markup with small adjustments now that it is interactive.
 
 ### Add the slider to the player
 
@@ -308,7 +306,7 @@ You should see this:
 
 Even though the slider is now interactive, it still does not look exactly like the original design. This is because we haven't defined the element that represents the dot inside the thumb.
 
-To do this, it's not enough to just use classes for the thumb—we need also to render a custom component that gets passed in the `components` prop of the `Slider`:
+To do this, it's not enough to just use classes for the thumb—we need also to render a custom component that gets passed in the `slots` prop of the `Slider`:
 
 **Slider.tsx**
 
@@ -337,10 +335,10 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
    return (<SliderUnstyled
      {...props}
      ref={ref}
-+    components={{
-+      Thumb,
++    slots={{
++      thumb,
 +    }}
-     componentsProps={{
+     slotProps={{
        root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
 -      thumb: { className: 'ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute' },
        rail: { className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute' },
@@ -387,7 +385,7 @@ const Button = React.forwardRef(function Button(
   return (
     <ButtonUnstyled
       {...props}
-      componentsProps={{
+      slotProps={{
         root: (state: ButtonUnstyledOwnerState) => ({
           className: `hover:text-cyan-500 transition-colors ${
             state.focusVisible ? 'outline-0 ring-2 ring-cyan-500' : ''
@@ -402,7 +400,7 @@ const Button = React.forwardRef(function Button(
 export default Button;
 ```
 
-Note that we're using a callback for the `root` element inside `componentsProps`. This allows us to conditionally apply utility classes if `focusVisible` is true.
+Note that we're using a callback for the `root` element inside `slotProps`. This allows us to conditionally apply utility classes if `focusVisible` is true.
 
 Now, let's replace all buttons in the initial markup with the new custom `Button` component.
 
@@ -485,8 +483,8 @@ Some classes were slightly changed on some buttons so we have a consistent focus
 
 These are the things we covered in this guide:
 
-✅ How to use Tailwind CSS utility classes to style MUI Base components, using the `componentsProps` prop for targeting specific slots within the component.\
+✅ How to use Tailwind CSS utility classes to style MUI Base components, using the `slotProps` prop for targeting specific slots within the component.\
 ✅ How to create custom components for specific slots in more complex customization scenarios. We used the `component` prop to pass them into the parent component.\
-✅ How to apply conditional styling based on the owner component's state using a callback as value for the `componentsProps` prop.
+✅ How to apply conditional styling based on the owner component's state using a callback as value for the `slotProps` prop.
 
 Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css) example project.
