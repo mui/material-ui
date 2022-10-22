@@ -49,8 +49,8 @@ Get started in the [Material UI docs](/material-ui/getting-started/overview/).
 
 #### Key features
 
-- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design. It currently implements Material Design 2.
-- **Comprehensiveness:** with over 50 foundational components and counting, you've got everything you need to ship new features fast.
+- **Material Design:** Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design (currently MD2; Material You is on the way).
+- **Comprehensiveness:** With over 50 foundational components and counting, you've got everything you need to ship new features fast.
 - **Maturity:** Material UI's age and maturity rival that of React itself, with its origins spanning all the way back to 2014.
 - **Community:** Over 2,500 open-source contributors have made this library what it is today.
 
@@ -109,7 +109,7 @@ Get started in the [MUI Base docs](/base/getting-started/overview/).
 MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and MUI Base.
 
 The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the `sx` prop.
-This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant const definitions with styled-components.
+This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant `const` definitions with styled-components.
 It also gives you direct access to your theme's custom design tokens to ensure consistency in one-off styles.
 
 Get started in the [MUI System docs](/system/getting-started/overview/).
@@ -134,7 +134,7 @@ MUI X is a collection of advanced UI components, including the Data Grid and the
 
 These components are significantly more complex than those found in the MUI Core libraries.
 They feature advanced functionality for data-rich applications and a wide range of other use cases.
-While these components provide native integration with MUI Core, they are separated so they can focus on deep integration with engineers' custom design systems.
+While X components natively integrate with MUI Core, they are kept separate so you can more easily implement custom design systems with them.
 
 MUI X is open-core. Base components are MIT-licensed, while more advanced features require a Pro or Premium commercial license.
 See [Licensing](/x/introduction/licensing/) for details.
@@ -148,12 +148,12 @@ It features an intuitive UI and corresponding API to display different views of 
 
 - **Sophisticated data analysis:** Edit, filter, sort, aggregate, and export your data with ease. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
 - **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familar with Material UI—no new concepts to master along the way.
-- **Accessibility:** It is notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
+- **Accessibility:** It's notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
 
 #### Ideal use cases
 
 - Applications that feature massive data sets
-- Data analytics tools inside your app, reducing the need to go to Excel
+- Data analytics tools inside your app, reducing the need to jump to Excel
 - Apps built with MUI Core libraries that need advanced functionality
 
 ### Date and Time Pickers
@@ -163,8 +163,8 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 #### Key features
 
-**Third-party date library support:** The Date and Time Pickers include support for many of the most popular date libraries, so you can pick whichever you prefer.
-**Localization:** The Pickers are optimized for use anywhere in the world, with support for all variations on date and time formatting.
+- **Third-party date library support:** The Date and Time Pickers include support for many of the most popular date libraries, so you can pick whichever you prefer.
+- **Localization:** The Pickers are optimized for use anywhere in the world, with support for all variations on date and time formatting.
 
 #### Ideal use cases
 
