@@ -15,7 +15,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/main-features/global-variants' },
           { pathname: '/joy-ui/main-features/automatic-adjustment' },
-          { pathname: '/joy-ui/main-features/perfect-dark-mode' },
+          { pathname: '/joy-ui/main-features/dark-mode-optimization' },
         ],
       },
     ],
@@ -50,6 +50,7 @@ const pages = [
           { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
+          { pathname: '/joy-ui/react-tooltip' },
         ],
       },
       {

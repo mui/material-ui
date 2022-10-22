@@ -83,8 +83,6 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     autoFocus,
     children,
     component,
-    components = {},
-    componentsProps = {},
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
@@ -95,11 +93,14 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     onChange,
     onListboxOpenChange,
     optionStringifier = defaultOptionStringifier,
+    renderValue: renderValueProp,
+    slotProps = {},
+    slots = {},
     value: valueProp,
     ...other
   } = props;
 
-  const renderValue = props.renderValue ?? defaultRenderMultipleValues;
+  const renderValue = renderValueProp ?? defaultRenderMultipleValues;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -118,9 +119,9 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? components.Root ?? 'button';
-  const ListboxRoot = components.Listbox ?? 'ul';
-  const Popper = components.Popper ?? PopperUnstyled;
+  const Button = component ?? slots.root ?? 'button';
+  const ListboxRoot = slots.listbox ?? 'ul';
+  const Popper = slots.popper ?? PopperUnstyled;
 
   const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
     setButtonDefined(element != null);
@@ -186,7 +187,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     useSlotProps({
       elementType: Button,
       getSlotProps: getButtonProps,
-      externalSlotProps: componentsProps.root,
+      externalSlotProps: slotProps.root,
       externalForwardedProps: other,
       ownerState,
       className: classes.root,
@@ -196,7 +197,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     useSlotProps({
       elementType: ListboxRoot,
       getSlotProps: getListboxProps,
-      externalSlotProps: componentsProps.listbox,
+      externalSlotProps: slotProps.listbox,
       additionalProps: {
         ref: listboxRef,
       },
@@ -206,7 +207,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const popperProps: MultiSelectUnstyledPopperSlotProps<TValue> = useSlotProps({
     elementType: Popper,
-    externalSlotProps: componentsProps.popper,
+    externalSlotProps: slotProps.popper,
     additionalProps: {
       anchorEl: buttonRef.current,
       disablePortal: true,
@@ -261,25 +262,6 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -337,6 +319,25 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * Function that customizes the rendering of the selected values.
    */
   renderValue: PropTypes.func,
+  /**
+   * The props used for each slot inside the MultiSelect.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the MultiSelect.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The selected values.
    * Set to an empty array to deselect all options.
