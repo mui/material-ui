@@ -18,13 +18,11 @@ The following document lists all breaking changes related to styles and themes i
 
 After you're finished here, please move on to [Breaking changes in v5 part two: components](/material-ui/migration/v5-component-changes/) to continue the migration process.
 
-:::warning
-Breaking changes that are handled by codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
+:::warning Breaking changes that are handled by codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
 
 If you have already followed the instructions in the main migration guide and run the codemods, then you should not need to take any further action on these items.
 
-All other changes must be handled manually.
-:::
+All other changes must be handled manually. :::
 
 ## Migrate theme styleOverrides to Emotion
 
@@ -54,27 +52,25 @@ The `$` syntax (local rule reference) used with JSS will not work with Emotion. 
 ### Replace nested classes selectors with global class names
 
 ```diff
-const theme = createTheme({
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
--         '& $notchedOutline': {
-+         '& .MuiOutlinedInput-notchedOutline': {
-            borderWidth: 1,
-          }
-        }
-      }
-    }
-  }
-});
+ const theme = createTheme({
+   components: {
+     MuiOutlinedInput: {
+       styleOverrides: {
+         root: {
+-          '& $notchedOutline': {
++          '& .MuiOutlinedInput-notchedOutline': {
+             borderWidth: 1,
+           }
+         }
+       }
+     }
+   }
+ });
 ```
 
-:::info
-For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
+:::info For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
 
-You can rely on this instead of hardcoding the classes.
-:::
+You can rely on this instead of hardcoding the classes. :::
 
 ```diff
 +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
@@ -202,11 +198,9 @@ To correct the injection order, add the `prepend` option to `createCache`, as sh
  }
 ```
 
-:::info
-If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
+:::info If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
 
-To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
-:::
+To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package. :::
 
 ## Theme structure
 
@@ -225,9 +219,7 @@ The structure of the theme has changed in v5. You need to update its shape. For 
 +}));
 ```
 
-:::warning
-This adapter only handles the input arguments of `createTheme`. If you modify the shape of the theme after its creation, you need to migrate the structure manually.
-:::
+:::warning This adapter only handles the input arguments of `createTheme`. If you modify the shape of the theme after its creation, you need to migrate the structure manually. :::
 
 The following changes are supported by the adapter:
 
@@ -276,7 +268,7 @@ The `theme.palette.type` key was renamed to `theme.palette.mode`, to better foll
 The default `theme.palette.info` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
- info = {
+  info = {
 -  main: cyan[500],
 +  main: lightBlue[700], // lightBlue[400] in "dark" mode
 
@@ -285,7 +277,7 @@ The default `theme.palette.info` colors were changed to pass the AA accessibilit
 
 -  dark: cyan[700],
 +  dark: lightBlue[900], // lightBlue[700] in "dark" mode
- }
+  }
 ```
 
 ### Change default theme.palette.success colors
@@ -293,7 +285,7 @@ The default `theme.palette.info` colors were changed to pass the AA accessibilit
 The default `theme.palette.success` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
- success = {
+  success = {
 -  main: green[500],
 +  main: green[800], // green[400] in "dark" mode
 
@@ -302,7 +294,7 @@ The default `theme.palette.success` colors were changed to pass the AA accessibi
 
 -  dark: green[700],
 +  dark: green[900], // green[700] in "dark" mode
- }
+  }
 ```
 
 ### Change default theme.palette.warning colors
@@ -310,7 +302,7 @@ The default `theme.palette.success` colors were changed to pass the AA accessibi
 The default `theme.palette.warning` colors were changed to pass the AA accesibility standard contrast ratio in both light and dark modes.
 
 ```diff
- warning = {
+  warning = {
 -  main: orange[500],
 +  main: '#ED6C02', // orange[400] in "dark" mode
 
@@ -319,7 +311,7 @@ The default `theme.palette.warning` colors were changed to pass the AA accesibil
 
 -  dark: orange[700],
 +  dark: orange[900], // orange[700] in "dark" mode
- }
+  }
 ```
 
 ### Restore theme.palette.text.hint key (if needed)
@@ -327,7 +319,7 @@ The default `theme.palette.warning` colors were changed to pass the AA accesibil
 The `theme.palette.text.hint` key was unused in Material UI components, and has been removed. If you depend on it, you can add it back:
 
 ```diff
- import { createTheme } from '@mui/material/styles';
+  import { createTheme } from '@mui/material/styles';
 
 -const theme = createTheme(),
 +const theme = createTheme({
