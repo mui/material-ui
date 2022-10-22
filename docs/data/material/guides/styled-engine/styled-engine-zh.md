@@ -6,20 +6,18 @@
 
 ## 如何切换到 styled-components
 
-:::error
-❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
-:::
+:::error ❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects. :::
 
-If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively. There are currently two packages available to choose from:
+如果您已经安装了[styled-components](https://github.com/styled-components/styled-components)，就有可能专门使用它。 目前有两个包可供选择：
 
 - `@mui/styled-engine` - 一个围绕 [emotion 的 `styled()`](https://emotion.sh/docs/styled) API， 包含一些所需的方法， 例如 `<GlobalStyles />` 组件， `css` 和 `keyframe` 等。 这是默认的。
 - `@mui/styled-engine-sc` - 一个类似于上者的 `styled-components` 包装库。
 
-These two packages implement the same interface, which makes it possible to replace one with the other. By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc`.
+这两个包都实现了相同的接口，使其可以相互替换。 默认情况下，`@mui/material`使用`@mui/styled-engine`作为依赖，但您可以通过配置捆绑包将依赖替换为`@mui/styled-engine-sc`
 
 ### yarn
 
-If you are using yarn, you can configure it using a package resolution:
+如果您正在使用yarn，可以使用如下的包解决方案来配置：
 
 **package.json**
 
@@ -38,9 +36,9 @@ If you are using yarn, you can configure it using a package resolution:
 
 ### npm
 
-As package resolutions are not available in npm at this moment, you need to update you bundler's config to add this alias. Here is an example of how you can do it, if you use `webpack`:
+由于目前在 npm 中无法找到软件包解决方案，您需要更新您的配置来添加此别名。 如果您使用 `webpack` ，您可以参考如下示例：
 
-**webpack.alias.js**
+**webpack.config.js**
 
 ```diff
  module.exports = {
@@ -55,7 +53,7 @@ module.exports = {
  };
 ```
 
-If you are using TypeScript, you will need to also update the TSConfig.
+如果您正在使用TypeScript，您也需要更新TSConfig。
 
 **tsconfig.json**
 
@@ -79,7 +77,7 @@ These two packages implement the same interface, which makes it makes possible t
 
 ### Ready-to-use examples
 
-If you are using create-react-app, there is a ready-to-use template in the example projects. You can use these `styled-component` examples as a reference:
+如果您正在使用 create-react-app，示例项目中有一个可使用的模板。 您可以使用这些 `styled-component` 示例作为参考：
 
 <!-- #default-branch-switch -->
 
@@ -87,8 +85,6 @@ If you are using create-react-app, there is a ready-to-use template in the examp
 - [使用 TypeScript 来 create-react-app](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 - [其他模板](https://github.com/mui/material-ui/tree/master/examples)
 
-:::warning
-**Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/material-ui/getting-started/installation/) for more info.
-:::
+:::warning **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/material-ui/getting-started/installation/) for more info. :::
 
 This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
