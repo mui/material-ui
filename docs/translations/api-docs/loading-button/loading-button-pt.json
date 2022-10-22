@@ -4,8 +4,8 @@
     "children": "O conteúdo do componente.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
-    "loading": "If <code>true</code>, the loading indicator is shown.",
-    "loadingIndicator": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself.",
+    "loading": "Se <code>true</code>, o indicador de carregamento é mostrado.",
+    "loadingIndicator": "Elemento colocado antes dos filhos, se o botão estiver no estado de carregamento. O nó deve conter um elemento com <code>role=&quot;progressbar&quot;</code> com um nome acessível. Por padrão renderizamos um <code>CircularProgress</code> que é rotulado pelo botão em si.",
     "loadingPosition": "The loading indicator can be positioned on the start, end, or the center of the button.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The variant to use."
