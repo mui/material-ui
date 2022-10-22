@@ -172,7 +172,7 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 ## MUI Toolpad
 
-<img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Small screenshot of MUI Toolpad's interface." />
+<img src="/static/blog/mui-product-comparison/mui-toolpad.png" style="width: 692px; margin-bottom: 24px; aspect-ratio: 173/75" loading="lazy" alt="Small screenshot of MUI Toolpad's interface." />
 
 Toolpad is a self-hosted low-code internal tools builder designed to extend MUI's suite of React components.
 It's designed for developers of all trades who want to save time building internal applications.
