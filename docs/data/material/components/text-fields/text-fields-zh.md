@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: Text field React component
+title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
-# Text field
+# Text Field
 
 <p class="description">用户可以在文本框内输入或编辑文字。</p>
 
