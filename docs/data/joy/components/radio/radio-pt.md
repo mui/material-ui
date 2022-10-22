@@ -1,11 +1,11 @@
 ---
 product: joy-ui
-title: React Radio button component
+title: React Radio Group component
 githubLabel: 'component: radio'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
-# Radio button
+# Radio Group
 
 <p class="description">Radio buttons allow the user to select one option from a set.</p>
 
@@ -14,6 +14,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 The `Radio` component is the one to be used when you want to allow users to select only one option at a time. To allow multiple selection, use the `Checkbox` instead. For more in-depth about when to use each, visit [the NNg's documentation](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/).
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
+
+:::success To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page. :::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -39,6 +41,16 @@ export default function MyApp() {
 The `Radio` component supports every Joy UI global variant and it comes with `outlined` set as the default one.
 
 {{"demo": "RadioButtons.js"}}
+
+### Label
+
+Use `label` prop to label the radio buttons.
+
+{{"demo": "RadioButtonLabel.js"}}
+
+For complex layout, compose a radio button with `FormControl`, `FormLabel`, and `FormHelperText` (optional).
+
+{{"demo": "RadioButtonControl.js"}}
 
 ### Position
 
@@ -72,9 +84,7 @@ You can also use it directly in the `RadioGroup` component as it will automatica
 
 {{"demo": "OverlayRadio.js"}}
 
-:::info
-💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
-:::
+:::info 💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area. :::
 
 ### Icon
 
@@ -92,7 +102,7 @@ To communicate the checked and unchecked states with different artifacts, such a
 
 Here are a few tips to make sure you have an accessible radio button component:
 
-- Every form control should have proper labels. This includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element (see Material UI's [`FormControlLabel`](/material-ui/api/form-control-label/) as reference).
+- Every form control should have proper labels. This includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `FormControl` and `FormLabel` element.
 - When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component. You can also use the `inputProps` prop to add them.
 
 ```jsx
@@ -110,9 +120,19 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 
 ## Common examples
 
+### Segmented controls
+
+{{"demo": "ExampleSegmentedControls.js"}}
+
+### Tiers
+
+A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-groups) that demonstrate the composition of the components.
+
+{{"demo": "ExampleTiers.js", "bg": true}}
+
 ### Alignment buttons
 
-Simply provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+Provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
 
