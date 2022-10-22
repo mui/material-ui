@@ -179,15 +179,15 @@ Se você desejar, `babel-plugin-import` pode ser configurado através de `config
 Modifique seu comando start no `package.json`:
 
 ```diff
-  "scripts": {
--   "start": "react-scripts start",
-+   "start": "react-app-rewired start",
--   "build": "react-scripts build",
-+   "build": "react-app-rewired build",
--   "test": "react-scripts test",
-+   "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-}
+   "scripts": {
+-    "start": "react-scripts start",
++    "start": "react-app-rewired start",
+-    "build": "react-scripts build",
++    "build": "react-app-rewired build",
+-    "test": "react-scripts test",
++    "test": "react-app-rewired test",
+     "eject": "react-scripts eject"
+  }
 ```
 
 Desfrute do tempo de inicialização significativamente mais rápido.
