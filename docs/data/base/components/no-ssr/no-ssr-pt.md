@@ -52,6 +52,4 @@ The following demo shows how to use the `defer` prop to prioritize rendering the
 
 {{"demo": "FrameDeferring.js"}}
 
-:::warning
-When using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
-:::
+:::warning When using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one. :::
