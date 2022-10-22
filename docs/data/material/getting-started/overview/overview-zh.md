@@ -1,12 +1,12 @@
 - - -
-title: Overview
+标题:概览
 - - -
 
-# Material UI - Overview
+# Material UI - 概览
 
-<p class="description">Material UI is a library of React UI components that implements Google's Material Design.</p>
+<p class="description">Material UI是一个根据 Google's Material Design风格实现的React UI组件库.</p>
 
-## Introduction
+## 简介
 
 Material UI is an open-source React component library that implements Google's [Material Design](https://material.io/).
 
@@ -14,13 +14,11 @@ It includes a comprehensive collection of prebuilt components that are ready for
 
 Material UI is beautiful by design and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
-:::info
-Material UI v5 supports Material Design v2. Adoption of v3 is tentatively planned for Material UI v6—see [the release schedule](https://mui.com/versions/#release-schedule). You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
-:::
+:::info Material UI v5 supports Material Design v2. Adoption of v3 is tentatively planned for Material UI v6—see [the release schedule](https://mui.com/versions/#release-schedule). You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates. :::
 
 ## Advantages of Material UI
 
-- **Ship faster:** thousands of open-source [contributors](https://api7.ai/contributor-graph?chart=contributorOverTime&repo=mui-org/material-ui) have poured countless hours into these components. Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
+- **Ship faster:** Over 2,500 open-source [contributors](https://github.com/mui/material-ui/graphs/contributors) have poured countless hours into these components. Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
 - **Beautiful by default:** we're meticulous about our implementation of [Material Design](https://material.io/), ensuring that every Material UI component meets the highest standards of form and function, but diverge from the official spec where necessary to provide multiple great options.
 - **Customizability:** the library includes an extensive set of intuitive customizability features. [The templates](https://mui.com/store/) in our store demonstrate how far you can go with customization.
 - **Cross-team collaboration:** Material UI's intuitive developer experience reduces the barrier to entry for back-end developers and less technical designers, empowering teams to collaborate more effectively. The [design kits](https://mui.com/design-kits/) streamline your workflow and boost consistency between designers and developers.
