@@ -179,15 +179,15 @@ module.exports = override(useBabelRc());
 修改你的 `package.json` 命令：
 
 ```diff
-  "scripts": {
--   "start": "react-scripts start",
-+   "start": "react-app-rewired start",
--   "build": "react-scripts build",
-+   "build": "react-app-rewired build",
--   "test": "react-scripts test",
-+   "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-}
+   "scripts": {
+-    "start": "react-scripts start",
++    "start": "react-app-rewired start",
+-    "build": "react-scripts build",
++    "build": "react-app-rewired build",
+-    "test": "react-scripts test",
++    "test": "react-app-rewired test",
+     "eject": "react-scripts eject"
+  }
 ```
 
 这样一来，你可以享受更快的启动时间了。
