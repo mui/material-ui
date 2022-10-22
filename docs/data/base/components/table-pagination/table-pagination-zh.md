@@ -16,7 +16,9 @@ The `TablePaginationUnstyled` component lets you add pagination controls to a ta
 - displayed page index
 - number of rows per page
 
-`TablePaginationUnstyled` renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`. You can use the `component` or `components.Root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table. See the [Slot props section](#slot-props) for details.
+`TablePaginationUnstyled` renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`. You can use the `component` or `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table. See the [Slot props section](#slot-props) for details.
+
+{{"demo": "UnstyledPaginationIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -94,9 +96,7 @@ The `TablePaginationUnstyled` component is composed of a root `<td>` that houses
 
 ### Slot props
 
-:::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
-:::
+:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -104,25 +104,19 @@ Use the `component` prop to override the root slot with a custom element:
 <TablePaginationUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<TablePaginationUnstyled components={{ Root: 'div', Toolbar: 'nav' }} />
+<TablePaginationUnstyled slots={{ root: 'div', toolbar: 'nav' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
+:::warning If the root element is customized with both the `component` and `slots` props, then `component` will take precedence. :::
 
-Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-spacer` to the spacer slot:
+Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-spacer` to the spacer slot:
 
 ```jsx
-<TablePaginationUnstyled componentsProps={{ spacer: { className: 'my-spacer' } }} />
+<TablePaginationUnstyled slotProps={{ spacer: { className: 'my-spacer' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Customization
 
