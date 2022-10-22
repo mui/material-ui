@@ -90,12 +90,16 @@ The Aspect Ratio component supports the four [global variants](/joy-ui/main-feat
 
 ### Ratio
 
-Use the `ratio` prop to change the aspect ratio.
-The value will used by the [CSS `calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) function.
+Use the `ratio` prop to change the aspect ratio, following the pattern `height/width`.
+For example, the demo below uses a ratio of `4/3`, which is a common alternative to the default `16/9`:
 
 {{"demo": "CustomRatio.js"}}
 
-### Media
+:::info
+The `ratio` prop uses the [CSS `calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) function under the hood.
+:::
+
+### Object fit
 
 When using media elements as first child of the aspect ratio component, use the `objectFit` prop to control how it should be resized.
 It comes with `object-fit: cover` set by default.
@@ -108,22 +112,22 @@ Use a `<div>` or `Box` component with an icon as fallback when there is no media
 
 {{"demo": "PlaceholderAspectRatio.js"}}
 
-### Controlling the height
+### Minimum and maximum height
 
 Use `minHeight` and `maxHeight` to set the lower and upper bound of the component's height.
 This is useful when the aspect ratio is used in a component that has dynamic width.
 
 {{"demo": "MinMaxRatio.js"}}
 
-### Inside a flex row
+### Usage inside a flex row
 
 When the aspect ratio component is placed as a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the aspect ratio.
 
 {{"demo": "FlexRowRatio.js"}}
 
-## Integration with Next.js Image component
+### Usage with Next.js Image component
 
-The `AspectRatio` component can also be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as child.
+The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
 
 ```js
 import Image from 'next/image';
@@ -141,7 +145,7 @@ function App() {
 ```
 
 :::info
-**Tip:** Always use `layout="fill"` on the `Image` component, otherwise you don't need to use aspect ratio because the height is based on the image.
+Always use `layout="fill"` on the `Image` component, otherwise you won't need to use aspect ratio because the height is based on the image.
 :::
 
 ## Common examples
