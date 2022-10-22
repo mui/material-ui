@@ -64,17 +64,18 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 ```jsx
 // O objeto `props` contém uma propriedade `style`.
 // Você precisa fornecê-lo ao elemento `div` como mostrado aqui.
-function MyComponent(props) {
+const MyComponent = React.forwardRef((props, ref) {
   return (
-    <div {...props}>
+    <div ref={ref} {...props}>
       Fade
     </div>
   );
-}
+})
 
 export default Main() {
   return (
     <Fade>
+      {/* MyComponent must be the only child */}
       <MyComponent />
     </Fade>
   );
