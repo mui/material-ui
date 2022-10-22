@@ -88,7 +88,7 @@ const theme = createTheme({
      // Then you will be able to use it like this: `<Button color="custom">`
      // (For TypeScript, you need to add module augmentation for the `custom` value)
     custom: {
-      light: '#ffa726'
+      light: '#ffa726',
       main: '#f57c00',
       dark: '#ef6c00',
       contrastText: 'rgba(0, 0, 0, 0.87)',
