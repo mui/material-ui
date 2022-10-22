@@ -2,22 +2,22 @@
 
 <p class="description">您在一个特定的问题上停滞不前吗？ 您可以先在常见 FAQ（问题解答）中检索一下常见问题。</p>
 
-If you still can't find what you're looking for, you can refer to our [support page](/material-ui/getting-started/support/).
+如果仍然找不到所需的内容，您可以参考我们的 [支持页面](/material-ui/getting-started/support/)。
 
-## MUI is awesome. 我该如何支持该项目？ How can I support the project?
+## MUI 超赞。 我该如何支持此项目？
 
 其实有很多方法可以支持 Material-UI：
 
 - **口口相传**。 Evangelize MUI by [linking to mui.com](https://mui.com/) on your website, every backlink matters. 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. 或者只是与您的朋友谈论我们。
 - **给我们反馈** 。 告诉我们一些做得好的地方或者可以改进的地方。 请给您最希望看到能够解决的问题投票（👍）。
-- **帮助新用户** 。 You can answer questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/mui).
+- **帮助新用户** 。 您可以在[Stack Overflow](https://stackoverflow.com/questions/tagged/mui)上回答一些问题。
 - **做出一些改变吧**。
   - 编辑文档。 每个页面右上角都有一个“编辑此页面”的链接。
   - 通过 [创建一个问题](https://github.com/mui/material-ui/issues/new) 来报告错误或缺少的功能 。
   - 查看和评论一些现有的 [pull requests](https://github.com/mui/material-ui/pulls) 和 [issues](https://github.com/mui/material-ui/issues)。
   - 帮助我们 [翻译](https://translate.mui.com) 文档。
-  - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. 如果您在商业项目中使用了 Material-UI，并希望通过成为我们的赞助商来支持我们的持续发展，或者在一个业余的或者爱好的项目中使用了，并想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
+  - [改进我们的文档](https://github.com/mui/material-ui/tree/HEAD/docs), 修复bug, 或通过 [提交PR](https://github.com/mui/material-ui/pulls) 添加功能。
+- **在 [OpenCollective](https://opencollective.com/mui) 上为我们提供经济支持**。 如果您在商业项目中使用了 MUI，并希望通过成为我们的赞助商来支持我们的持续发展，或是在一个业余爱好的项目中使用了，也想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
 
 ## 为什么我的组件在生产构造中没有正确地渲染？
 
@@ -91,13 +91,13 @@ const theme = createTheme({
 }
 ```
 
-## Do I have to use Emotion to style my app?
+## 我是否必须使用Emotion来设置样式？
 
-不用的，JSS 不是一个必须选择。 But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
+不，它不是一个必须选择。 But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
 
 然而，也许您正在给应用程序添加一些 Material-UI 组件，而应用程序以及使用了其他的样式解决方案，或者您已经熟悉了不同的 API，而不想学习一个新的 API？ In that case, head over to the [Style library interoperability](/material-ui/guides/interoperability/) section, where we show how simple it is to restyle MUI components with alternative style libraries.
 
-## 我是否必须使用 JSS 给我的应用程序来设置样式呢？
+## 什么时候我应该使用内联样式与 CSS ？
 
 根据经验，仅对动态样式属性使用内联样式。 CSS 的替代方案也有诸多优势，例如：
 
@@ -106,11 +106,11 @@ const theme = createTheme({
 - 您正在使用打包根据，而它拆分代码的方式导致创建了多个类名生成器的实例。
 - keyframes
 
-## 我应该何时使用内联样式与 CSS？
+## 我应该怎么使用 react-router？
 
 We detail the [integration with third-party routing libraries](/material-ui/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
-## 我应该怎么使用 react-router？
+## 我应该如何访问 DOM 元素？
 
 所有应该在 DOM 中渲染内容的 Material-UI 组件都会都将其 ref 转发给底层的 DOM 组件。 这意味着您可以通过读取附加在 Material-UI 组件上的 ref 来获取 DOM 元素。
 
@@ -131,13 +131,11 @@ The ref is forwarded to the root element.
 
 indicating that you can access the DOM element with a ref.
 
-## 我应该怎么访问 DOM 元素？
+## 我的页面上有多个样式实例。
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-:::warning
-It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
-:::
+:::warning It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason. :::
 
 ### 可能的原因
 
@@ -160,11 +158,11 @@ If you are using npm you can try running `npm dedupe`. This command searches the
 If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
-  resolve: {
-+   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
-+   }
-  }
+ resolve: {
++  alias: {
++    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
++  },
+ },
 ```
 
 ### 与 Lerna 一起使用
@@ -217,17 +215,17 @@ If you have several applications running on one page, consider using one @mui/st
   }
 ```
 
-## 我的页面上有多个样式实例。
+## 我的应用没有在服务器上正确的渲染。
 
 If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
 
 The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/material-ui/guides/server-rendering/#reference-implementations), bit by bit.
 
-## 我的应用没有在服务器上正确的渲染。
+## 为什么我看到的颜色和文档这里的颜色大相径庭？
 
 The documentation site is using a custom theme. Hence, the color palette is different from the default theme that MUI ships. Please refer to [this page](/material-ui/customization/theming/) to learn about theme customization.
 
-## 为什么我看到的颜色和文档这里的颜色大相径庭？
+## 为什么组件 X 需要属性中的 DOM 节点而不是一个 ref 对象？
 
 Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let MUI access the current value. This works in a simple scenario:
 
@@ -286,7 +284,7 @@ function App() {
 }
 ```
 
-## 为什么组件 X 需要属性中的 DOM 节点而不是一个 ref 对象？
+## clsx 依赖有什么作用？
 
 [clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
@@ -335,9 +333,7 @@ You could end up accidentally using two class name generators in a variety of sc
 - 您的项目是 monorepo 结构（例如，lerna，yarn workspaces），并且有多个包依赖着 `@mui/styles` 模块（这与前一个包或多或少相同）。
 - 您有几个使用 `@mui/styles` 的应用程序在同一页面上运行（例如，webpack 中的几个入口点被加载在同一页面上）。
 
-:::info
-💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
-:::
+:::info 💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk). :::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
@@ -353,29 +349,23 @@ Example of fix:
 
 ```diff
 -// Create a sheets instance.
--// 创建一个 sheets 实例
-
 -const sheets = new ServerStyleSheets();
 
-function handleRender(req, res) {
-+ // 创建一个 sheets 实例。
-+ const sheets = new ServerStyleSheets();
+ function handleRender(req, res) {
++  // Create a sheets instance.
++  const sheets = new ServerStyleSheets();
 
-  //…
+   //…
 
-  // 将组件渲染为字符串。
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+   // Render the component to a string.
+   const html = ReactDOMServer.renderToString(
 ```
 
 ### React 类名渲染不匹配
 
-:::warning
-**⚠️ Warning**
+:::warning **⚠️ Warning**
 
-Prop className did not match.
-:::
+Prop className did not match. :::
 
 There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
@@ -391,14 +381,14 @@ The class names value relies on the concept of [class name generator](/system/st
   -  // 创建一个新的类名生成器。
   -const generateClassName = createGenerateClassName();
 
-  function handleRender(req, res) {
-  + // 创建一个新的类名生成器。
-  + const generateClassName = createGenerateClassName();
+   function handleRender(req, res) {
+  +  // Create a new class name generator.
+  +  const generateClassName = createGenerateClassName();
 
-    //…
+     //…
 
-    // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
+     // Render the component to a string.
+     const html = ReactDOMServer.renderToString(
   ```
 
 - 你需要验证你的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @mui/core`。
