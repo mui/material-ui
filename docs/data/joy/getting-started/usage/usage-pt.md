@@ -6,12 +6,14 @@
 
 ### Set up the `CssVarsProvider` component
 
-Go to your `App.js` file and replace it with the code snippet below. You should see the text `Hello with joy` being rendered on your browser.
+Go to your `App.js` file and replace it with the code snippet below.
+
+You should see the text `Hello from Joy` being rendered on your browser.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
 
-function MyApp() {
+function App() {
   return <CssVarsProvider>Hello from Joy</CssVarsProvider>;
 }
 
@@ -23,18 +25,18 @@ export default App;
 To render any Joy UI component, make sure you place them inside the `CssVarProvider` element.
 
 ```diff
-import { CssVarsProvider } from '@mui/joy/styles';
-+ import Button from '@mui/joy/Button';
+ import { CssVarsProvider } from '@mui/joy/styles';
++import Button from '@mui/joy/Button';
 
-function MyApp() {
-  return (
-    <CssVarsProvider>
-+     <Button>Joy UI</Button>
-    </CssVarsProvider>
-  );
-}
+ function App() {
+   return (
+     <CssVarsProvider>
++      <Button>Joy UI</Button>
+     </CssVarsProvider>
+   );
+ }
 
-export default App;
+ export default App;
 ```
 
 It's that fast to have your first app with Joy UI going!
