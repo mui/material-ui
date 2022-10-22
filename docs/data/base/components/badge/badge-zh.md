@@ -9,15 +9,17 @@ githubLabel: 'component: badge'
 
 <p class="description">The BadgeUnstyled component generates a small label that is attached to its child element.</p>
 
-## Introduction
+## 简介
 
 A badge is a small descriptor for UI elements. It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
 
 The `BadgeUnstyled` component creates a badge that is applied to its child element.
 
+{{"demo": "UnstyledBadgeIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+## 组件
 
 ### Usage
 
@@ -56,9 +58,7 @@ The `BadgeUnstyled` component is composed of a root `<span>` that houses the ele
 
 ### Slot props
 
-:::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
-:::
+:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -66,25 +66,19 @@ Use the `component` prop to override the root slot with a custom element:
 <BadgeUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<BadgeUnstyled components={{ Root: 'div', Badge: 'div' }} />
+<BadgeUnstyled slots={{ root: 'div', badge: 'div' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
+:::warning If the root element is customized with both the `component` and `slots` props, then `component` will take precedence. :::
 
-Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-badge` to the badge slot:
+Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-badge` to the badge slot:
 
 ```jsx
-<BadgeUnstyled componentsProps={{ badge: { className: 'my-badge' } }} />
+<BadgeUnstyled slotProps={{ badge: { className: 'my-badge' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 
@@ -96,11 +90,9 @@ The `useBadge` hook lets you apply the functionality of `BadgeUnstyled` to a ful
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info
-Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
-:::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy). :::
 
 ## Customization
 
@@ -139,7 +131,7 @@ You can use the `max` prop to set a maximum value for `badgeContent`. The defaul
 
 {{"demo": "BadgeMax.js"}}
 
-## Accessibility
+## 无障碍
 
 Screen readers may not provide users with enough information about a badge's contents. To make your badge accessible, you must provide a full description with `aria-label`, as shown in the demo below:
 
