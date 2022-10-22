@@ -85,11 +85,9 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 {{"demo": "FreeSolo.js"}}
 
-:::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+:::warning ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
-The value created by typing into the textbox is always a string, regardless of the type of the options.
-:::
+The value created by typing into the textbox is always a string, regardless of the type of the options. :::
 
 ### Creatable
 
@@ -111,6 +109,15 @@ You could also display a dialog when the user wants to add a new value.
 You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
 
 {{"demo": "Grouped.js"}}
+
+To control how the groups are rendered, provide a custom `renderGroup` prop. This is a function that accepts an object with two fields:
+
+- `group`—a string representing a group name
+- `children`—a collection of list items that belong to the group
+
+The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+
+{{"demo": "RenderGroup.js"}}
 
 ## Opções desabilitadas
 
@@ -144,8 +151,8 @@ Head to the [customization](#customization) section for an example with the `Aut
 
 The component supports two different asynchronous use-cases:
 
-- [Carregar ao abrir](#load-on-open): espera uma interação com o componente para carregar as opções.
-- [Pesquisar enquanto digita](#search-as-you-type): um novo pedido é feito para cada tecla pressionada.
+- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
+- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
 
 ### Carregar ao abrir
 
@@ -237,12 +244,12 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 
 1. `config` (_object_ [opcional]):
 
-- `config.ignoreAccents` (_bool_ [optional]): Padrão como `verdadeiro`. Remover sinais diacríticos.
-- `config.ignoreCase` (_boolean_ [optional]): Padrão como `verdadeiro`. Minúsculas em tudo.
-- `config.limit` (_number_ [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
-- `config.matchFrom` (_'any' | 'start'_ [opcional]): Padrão `'any'`.
-- `config.stringify` (_func_ [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
-- `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
+- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces.
 
 #### Retornos
 
@@ -305,8 +312,8 @@ By default, the component disables the input **autocomplete** feature (rememberi
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
 
-- Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
-- Defina `autoComplete="new-password"` (alguns navegadores irão sugerir uma senha forte para entradas com esta configuração de atributo):
+- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   <TextField
