@@ -15,6 +15,8 @@ The `Checkbox` component is the one to be used when you want to allow users to s
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true}}
 
+:::success To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page. :::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -70,11 +72,15 @@ Technically, the checkbox component only has two states: checked or unchecked. H
 
 It's common to find it in tables where you have one checkbox that selects every table row. Use the `indeterminate` prop to circle around these states.
 
-:::warning
-**⚠️ Keep in mind:** When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
-:::
+:::warning **⚠️ Keep in mind:** When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. :::
 
 {{"demo": "IndeterminateCheckbox.js"}}
+
+### Helper text
+
+To add a description to the checkbox, use `FormControl` and `FormHelperText`. The checkbox will be linked to the helper text via `aria-describedby` attribute.
+
+{{"demo": "HelperTextCheckbox.js"}}
 
 ### Group
 
