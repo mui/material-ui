@@ -44,14 +44,18 @@ The `Tooltip` has 12 **placement** choices. 它们没有方向箭头，而是依
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   // 将属性传递给底部的 DOM 元素。
-  return <div {...props} ref={ref}>Bin</div>
+  return (
+    <div {...props} ref={ref}>
+      Bin
+    </div>
+  );
 });
 
 // ...
 
-<Tooltip title="删除">
-  <MyComponent>
-</Tooltip>
+<Tooltip title="Delete">
+  <MyComponent />
+</Tooltip>;
 ```
 
 You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
@@ -63,9 +67,13 @@ class MyComponent extends React.Component {
   render() {
     const { innerRef, ...props } = this.props;
     //  Spread the props to the underlying DOM element.
-    return <div {...props} ref={innerRef}>Bin</div>
+    return (
+      <div {...props} ref={innerRef}>
+        Bin
+      </div>
+    );
   }
-};
+}
 
 // Wrap MyComponent to forward the ref as expected by Tooltip
 const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {
@@ -75,8 +83,8 @@ const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, r
 // ...
 
 <Tooltip title="Delete">
-  <WrappedMyComponent>
-</Tooltip>
+  <WrappedMyComponent />
+</Tooltip>;
 ```
 
 ## 触发器
@@ -115,9 +123,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "DisabledTooltips.js"}}
 
-:::warning
-If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
-:::
+:::warning If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled: :::
 
 ```jsx
 <Tooltip title="You don't have permission to do this">
