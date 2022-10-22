@@ -2,6 +2,7 @@
 product: joy-ui
 title: React Select component
 githubLabel: 'component: select'
+waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 unstyled: /base/react-select/
 ---
 
@@ -14,6 +15,8 @@ unstyled: /base/react-select/
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
 {{"demo": "SelectUsage.js", "hideToolbar": true}}
+
+:::success To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page. :::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -40,12 +43,6 @@ export default function SelectBasic() {
 The `Select` component is similar to the native HTML's `<select>` and `<option>` tags.
 
 {{"demo": "SelectBasic.js"}}
-
-### Field
-
-Use the `FormLabel` component to add a label to the select component. Make sure to provide an appropriate `aria-label` and an id to the button's `aria-describedby`.
-
-{{"demo": "SelectFieldDemo.js"}}
 
 ### Decorators
 
@@ -94,18 +91,15 @@ In the demo below, we're using the `ListItemDecorator` to provide space between 
 
 {{"demo": "SelectCustomOption.js"}}
 
-:::info
-💡 **Keep in mind:** By default, the option children is used for displaying the selected value. Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
-:::
+:::info 💡 **Keep in mind:** By default, the option children is used for displaying the selected value. Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance. :::
 
-#### Group options
+### Grouped options
 
 To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}
 
-:::info
-💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
+:::info 💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
 
 ```jsx
 <Select
@@ -122,13 +116,38 @@ To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/examp
 
 :::
 
+## Accessibility
+
+In order for the select to be accessible, **it should be linked to a label**.
+
+The `FormControl` automatically generates a unique id that links the select with the `FormLabel` component:
+
+{{"demo": "SelectFieldDemo.js"}}
+
+Alternatively, you can do it manually by targeting the button slot:
+
+```jsx
+<label htmlFor="select-button" id="select-label">Label</label>
+<Select
+  componentsProps={{
+    button: {
+      id: 'select-button',
+      'aria-labelledby': 'select-label select-button',
+    }
+  }}
+>
+  <Option value="option1">Option I</Option>
+  <Option value="option2">Option II</Option>
+</Select>
+```
+
 ## Common examples
 
 ### Clear action
 
 Use the `IconButton` component as a decorator to the `Select` to add a clear action.
 
-The `Selct` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
+The `Select` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
 
 {{"demo": "SelectClearable.js"}}
 
