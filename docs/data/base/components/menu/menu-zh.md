@@ -6,7 +6,7 @@ githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Unstyled menu
+# Unstyled Menu
 
 <p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
@@ -15,6 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 The `MenuUnstyled` component gives users a list of items in a popup that they can navigate through with a mouse or keyboard. It renders an unordered list (`<ul>`) by default.
 
 Use `MenuItemUnstyled` to add items to the menu. These are rendered as `<li>` elements.
+
+{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -60,9 +62,7 @@ The `MenuUnstyled` component is composed of a root slot that renders a `PopperUn
 
 ### Slot props
 
-:::info
-The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
-:::
+:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -70,25 +70,19 @@ Use the `component` prop to override the root slot with a custom element:
 <MenuItemUnstyled component="span" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<MenuUnstyled components={{ Root: 'nav', Listbox: 'ol' }} />
+<MenuUnstyled slots={{ root: 'nav', listbox: 'ol' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
+:::warning If the root element is customized with both the `component` and `slots` props, then `component` will take precedence. :::
 
-Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
+Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
-<MenuUnstyled componentsProps={{ listbox: { className: 'my-listbox' } }} />
+<MenuUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ### CSS classes
 
@@ -112,11 +106,9 @@ The `useMenu` and `useMenuItem` hooks let you apply the functionality of the men
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info
-Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
-:::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy). :::
 
 The following demo shows how to build a menu using hooks:
 
