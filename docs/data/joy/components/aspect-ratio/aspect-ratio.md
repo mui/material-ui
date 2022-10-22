@@ -109,7 +109,7 @@ This prop gives you access to all of the values associated with the CSS `object-
 
 ### Media placeholder
 
-Use a `<div>`, or a [Box](/joy-ui/react-box/) component paired with an icon, as a fallback when there is no media content provided:
+Use a `<div>`, or a [Box](/system/react-box/) component paired with an icon, as a fallback when there is no media content provided:
 
 {{"demo": "PlaceholderAspectRatio.js"}}
 
