@@ -7,7 +7,6 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
-  margin: theme.spacing(0, 2),
   [theme.breakpoints.up('sm')]: {
     marginLeft: 0,
     marginRight: 0,
@@ -71,8 +70,8 @@ const Root = styled('div')(({ theme }) => ({
   '& h2': {
     ...theme.typography.h5,
     fontFamily: theme.typography.fontFamilySystem,
-    fontSize: theme.typography.pxToRem(28),
-    fontWeight: 800,
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 700,
     letterSpacing: '0px',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
     margin: '40px 0 8px',
@@ -80,7 +79,7 @@ const Root = styled('div')(({ theme }) => ({
   '& h3': {
     ...theme.typography.h6,
     fontFamily: theme.typography.fontFamilySystem,
-    fontSize: theme.typography.pxToRem(24),
+    fontSize: theme.typography.pxToRem(20),
     fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
     margin: '24px 0 8px',
@@ -88,7 +87,7 @@ const Root = styled('div')(({ theme }) => ({
   '& h4': {
     ...theme.typography.subtitle1,
     fontFamily: theme.typography.fontFamilySystem,
-    fontSize: theme.typography.pxToRem(20),
+    fontSize: theme.typography.pxToRem(18),
     fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '24px 0 8px',
