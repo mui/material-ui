@@ -1,12 +1,12 @@
 ---
 product: material-ui
-title: Componente React Botão de ação flutuante
+title: React Floating Action Button (FAB) component
 components: Fab
 githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
-# Botão de ação flutuante
+# Floating Action Button
 
 <p class="description">Um botão de ação flutuante (BAF) realiza a principal, ou mais comum, ação na tela.</p>
 
