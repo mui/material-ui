@@ -67,7 +67,7 @@ For example, the following code snippet replaces the default `<div>` with a `<sp
 
 ### Variants
 
-The Alert component supports the four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined` and `plain`.
+The Alert component supports the four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "AlertVariants.js"}}
 
