@@ -20,7 +20,7 @@
 
 这可能是由应用程序中仍然依赖Material UI v4的其他依赖项造成的。
 
-To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`). If your project contains such dependencies, you will see a list that looks something like this:
+To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`). 如果你的项目包含这样的依赖关系，你会看到一个列表，看起来像这样:
 
 ```sh
 $ npm ls @material-ui/core
@@ -35,7 +35,7 @@ In this specific example, you would need to bump the version of `@mui/x-data-gri
 
 ## Storybook and Emotion
 
-If your project uses Storybook v6.x, you will need to update the `.storybook/main.js` webpack config to use the most recent version of Emotion:
+如果你的项目使用Storybook v6.x，你需要更新`.storybook/main.js` webpack配置以使用最新的Emotion版本。
 
 ```js
 // .storybook/main.js
@@ -60,7 +60,7 @@ module.exports = {
 };
 ```
 
-Next, update `.storybook/preview.js` to prevent Storybook's Docs tab from displaying an empty page:
+接下来，更新`.storybook/preview.js`，防止Storybook的Docs标签显示一个空页面。
 
 ```js
 // .storybook/preview.js
@@ -87,7 +87,7 @@ export const decorators = [withThemeProvider];
 
 :::warning
 
-This solution has been tested on the following versions:
+这个解决方案已经在以下版本上进行了测试。
 
 ```json
 {
@@ -99,19 +99,18 @@ This solution has been tested on the following versions:
 }
 ```
 
-Note that this is a workaround that may not be suitable for your situation if you are using different versions.
+注意，这是一个变通办法，如果你使用不同的版本，可能不适合你的情况。
 
-For more details, checkout these GitHub issues:
+更多细节，请查看这些GitHub问题:
 
 - https://github.com/storybookjs/storybook/issues/16099
-- https://github.com/mui/material-ui/issues/24282#issuecomment-796755133
-:::
+- https://github.com/mui/material-ui/issues/24282#issuecomment-796755133 :::
 
-## Cannot read property scrollTop of null
+## 无法读取属性scrollTop为空
 
-This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to a missing DOM node.
+这个错误来自于`Fade`, `Grow`, `Slide`, `Zoom`组件，因为缺少DOM节点。
 
-Make sure that the children forward the `ref` to the DOM for custom components:
+确保`ref`将引用转发给自定义组件的DOM:
 
 ```jsx
 // Ex. 1-1 ❌ This will cause an error because the Fragment is not a DOM node:
@@ -157,19 +156,19 @@ const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
 </Fade>
 ```
 
-For more details, checkout [this issue](https://github.com/mui/material-ui/issues/27154) on GitHub.
+欲了解更多细节，请查看GitHub上的[这个问题](https://github.com/mui/material-ui/issues/27154)。
 
-## [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
+## [Types]属性 "palette"、"spacing "在类型'DefaultTheme'上不存在。
 
-This error arises because `makeStyles` is now exported from the `@mui/styles` package, which does not know about `Theme` in the core package.
+这个错误的产生是因为`makeStyles`现在是从`@mui/styles`捆绑包导出的，它不知道核心包中的`Theme`。
 
-To fix this, you need to augment the `DefaultTheme` (empty object) in `@mui/styles` with `Theme` from the core.
+要解决这个问题，你需要在`@mui/styles`中用核心的`Theme`来增强`DefaultTheme`（空对象）。
 
-Read more about module augmentation in [the official TypeScript docs](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+在[TypeScript官方文档](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)中阅读更多关于模块增强的信息。
 
 ### TypeScript
 
-Add this snippet to your theme file:
+将这个片段添加到你的主题文件中:
 
 ```ts
 // it could be your App.tsx file or theme file that is included in your tsconfig.json
@@ -183,7 +182,7 @@ declare module '@mui/styles/defaultTheme' {
 
 ### JavaScript
 
-If you are using an IDE like VSCode which is able to infer types from a `d.ts` file, create `index.d.ts` in your `src` folder and add the following lines of code:
+如果你使用的是像VSCode这样的IDE，它能够从`d.ts`文件中推断出类型，在你的`src`文件夹中创建`index.d.ts`并添加以下几行代码。
 
 ```js
 // index.d.ts
@@ -194,26 +193,26 @@ declare module '@mui/private-theming' {
 }
 ```
 
-## [Jest] SyntaxError: Unexpected token 'export'
+## [Jest]语法错误:未预期的标记'export'。
 
-`@mui/material/colors/red` is considered private since v1.0.0. To fix this error, you must replace the import. For more details, see [this GitHub issue](https://github.com/mui/material-ui/issues/27296).
+`@mui/material/colors/red`自v1.0.0起被视为私有。 要解决这个错误，你必须替换导入。 更多细节，请看[这个GitHub问题](https://github.com/mui/material-ui/issues/27296).
 
-We recommend using this codemod to fix all imports in your project:
+我们建议使用这个代码模型来修复你项目中的所有导入:
 
 ```sh
 npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 
-You can fix it manually like this:
+你可以像这样手动修复它:
 
 ```diff
 -import red from '@mui/material/colors/red';
 +import { red } from '@mui/material/colors';
 ```
 
-## makeStyles - TypeError: Cannot read property 'drawer' of undefined
+## makeStyles - TypeError:无法读取未定义的属性'drawer'。
 
-This error occurs when calling `useStyles` or `withStyles` outside of the scope of `<ThemeProvider>`, as in the following example:
+当在`<ThemeProvider>`的范围之外调用`useStyles`或`withStyles`时，会发生这个错误，如下面的例子:
 
 ```js
 import * as React from 'react';
@@ -245,7 +244,7 @@ function App() {
 export default App;
 ```
 
-You can fix this by moving `useStyles` inside another component so that it is called under `<ThemeProvider>`:
+你可以通过将`useStyles`移到另一个组件中来解决这个问题，这样它就会在`<ThemeProvider>`
 
 ```js
 // ...imports
@@ -267,22 +266,22 @@ function App(props) {
 export default App;
 ```
 
-## TypeError: Cannot read properties of undefined (reading 'pxToRem')
+## TypeError: 不能读取未定义的属性（eading 'pxToRem'）。
 
-This error results from trying to access an empty theme.
+这个错误是由于试图访问一个空的主题造成的。
 
-Make sure that you have addressed the following issues:
+请确保你已经解决了以下问题:
 
-1. `styled` should only be imported from `@mui/material/styles` (if you are not using the standalone `@mui/system`):
+1. `styled`应该只从`@mui/material/styles`导入（如果你不使用独立的`@mui/system`）。
 
 ```js
 import { styled } from '@mui/material/styles';
 ```
 
-2. `useStyles` cannot be called outside of `<ThemeProvider>`. To fix this problem, follow [the instructions in this section](#makestyles-typeerror-cannot-read-property-drawer-of-undefined).
+2. `useStyles`不能被调用到`<ThemeProvider>` 要解决这个问题，请按照[本节的说明进行操作](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
 
-For more details, see [this GitHub issue](https://github.com/mui/material-ui/issues/28496).
+更多细节，请看[这个GitHub问题](https://github.com/mui/material-ui/issues/28496)
 
-## Still having problems?
+## 仍然有问题吗？
 
-If you're encountering a problem not covered here, please [create a GitHub issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+如果你遇到了这里没有涉及的问题，请用这个标题格式[创建一个GitHub issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。 **[Migration]你的问题的摘要**
