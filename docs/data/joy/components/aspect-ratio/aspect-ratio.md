@@ -101,33 +101,35 @@ The `ratio` prop uses the [CSS `calc()`](https://developer.mozilla.org/en-US/doc
 
 ### Object fit
 
-When using media elements as first child of the aspect ratio component, use the `objectFit` prop to control how it should be resized.
-It comes with `object-fit: cover` set by default.
+When the content inside the Aspect Ratio component is an image or a video, you can use the `objectFit` prop to control how it should be resized.
+
+This prop gives you access to all of the values associated with the CSS `object-fit` property: `cover` (default), `contain`, `fill`, `scaleDown`, `initial`, `inherit`, and `none`.
 
 {{"demo": "MediaRatio.js"}}
 
 ### Media placeholder
 
-Use a `<div>` or `Box` component with an icon as fallback when there is no media content provided.
+Use a `<div>`, or a [Box](/joy-ui/react-box/) component paired with an icon, as a fallback when there is no media content provided:
 
 {{"demo": "PlaceholderAspectRatio.js"}}
 
 ### Minimum and maximum height
 
-Use `minHeight` and `maxHeight` to set the lower and upper bound of the component's height.
-This is useful when the aspect ratio is used in a component that has dynamic width.
+Use the `minHeight` and `maxHeight` props to set the lower and upper bound for the height of the content.
+This is useful when the Aspect Ratio component wraps dynamic-width content, as shown in the demo below:
 
 {{"demo": "MinMaxRatio.js"}}
 
 ### Usage inside a flex row
 
-When the aspect ratio component is placed as a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the aspect ratio.
+When the Aspect Ratio component is a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the content:
 
 {{"demo": "FlexRowRatio.js"}}
 
 ### Usage with Next.js Image component
 
 The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
+The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
 
 ```js
 import Image from 'next/image';
@@ -144,20 +146,18 @@ function App() {
 }
 ```
 
-:::info
-Always use `layout="fill"` on the `Image` component, otherwise you won't need to use aspect ratio because the height is based on the image.
-:::
-
 ## Common examples
 
 ### Mobile carousel
 
-In designs such as this one, make sure to assign a `minWidth` value to prevent the aspect ratio component from shrinking.
+:::info
+In designs like this, make sure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
+:::
 
 {{"demo": "CarouselRatio.js"}}
 
 ### List stack
 
-This is a simple illustration of composing aspect ratio with list components.
+This is a simple illustration of how to use Aspect Ratio with list components:
 
 {{"demo": "ListStackRatio.js"}}
