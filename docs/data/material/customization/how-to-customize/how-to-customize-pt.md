@@ -1,36 +1,36 @@
 ---
 product: material-ui
-components: GlobalStyles
+components: Estilos Globais
 ---
 
-# How to customize
+# Como customizar
 
-<p class="description">Learn how to customize Material UI components by taking advantage of different strategies for specific use cases.</p>
+<p class="description">Aprenta como customizar componentes Material UI aproveitando as diferentes estratégias para casos específicos de uso.</p>
 
-Material UI provides several different ways to customize a component's styles. Your specific context will determine which one is ideal. From narrowest to broadest use case, here are the options:
+Material UI fornece uma série de maneiras diferentes para customizar o estilo de componentes. O seu contexto determinará qual é o método ideal. Desde casos de uso específicos até casos mais amplos, aqui estão as opções:
 
-1. [One-off customization](#1-one-off-customization)
-1. [Reusable component](#2-reusable-component)
-1. [Global theme variation](#3-global-theme-overrides)
-1. [Global CSS override](#4-global-css-override)
+1. [Customização única](#1-one-off-customization)
+1. [Componente reutilizável](#2-reusable-component)
+1. [Variante de tema global](#3-global-theme-overrides)
+1. [Sobrescrita de CSS global](#4-global-css-override)
 
-## 1. One-off customization
+## 1. Customização única
 
-To change the styles of _one single instance_ of a component, you can use one of the following options:
+Para alterar o estilo de _ apenas uma instância _ de um componente, você pode usar alguma das seguintes opções:
 
-### The `sx` prop
+### O prop `sx`
 
-The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases. It can be used with all Material UI components.
+O [prop `sx`](/system/getting-started/the-sx-prop/) é a melhor opção para sobrescrever o estilo para uma única instância de um componente na maioria das vezes. Ele pode ser usado para todos os componentes pertencentes ao Material UI
 
 {{"demo": "SxProp.js" }}
 
-#### Overriding nested component styles
+#### Sobrescrevendo o estilo de componentes aninhadas
 
-To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
+Para customizar uma parte específica de uma componente, voce pode usar o class name provido pelo Material UI  dentro do prop `sx`. Como um exemplo, vamos dizer que você deseja alterar o thumb da componente `Slider` de um círculo para um quadrado.
 
-First, use your browser's dev tools to identify the class for the component slot you want to override.
+Primeiramente, utilize as ferramentas de desenvolvedor do seu navegador para identificar a classe do slot  de componente que deseja sobrescrever.
 
-The styles injected into the DOM by Material UI rely on class names that all [follow a standard pattern](/system/styles/advanced/#class-names): `[hash]-Mui[Component name]-[name of the slot]`.
+Os estilos inseridos no DOM pelo Material UI dependem de nomes de classe que todos [seguem um padrão padrão](/system/styles/advanced/#class-names): `[hash]-Mui[Nome do componente]-[nome do slot]`.
 
 In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you only really need to target the `.MuiSlider-thumb`, where `Slider` is the component and `thumb` is the slot. Use this class name to write a CSS selector within the `sx` prop (`& .MuiSlider-thumb`), and add your overrides.
 
@@ -184,9 +184,7 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 {{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
 
-:::info
-**Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
-:::
+:::info **Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render. :::
 
 ```diff
  import * as React from 'react';
@@ -194,7 +192,7 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 +const inputGlobalStyles = <GlobalStyles styles={...} />;
 
- const Input = (props) => {
+ function Input(props) {
    return (
      <React.Fragment>
 -      <GlobalStyles styles={...} />
