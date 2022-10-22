@@ -8,12 +8,10 @@ This solves the problem of dark-mode SSR flickering; lets you provide your users
 
 Previously, these CSS variables were only available as an experimental API in the MUI System package. Now they are ready for experimental use with Material UI components.
 
-:::info
-If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
+:::info If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
 <br/>
 <br/>
-We'd appreciate any feedback about this API, as it is still in development.
-:::
+We'd appreciate any feedback about this API, as it is still in development. :::
 
 ## Introduction
 
@@ -86,19 +84,19 @@ const theme = experimental_extendTheme({
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 
 ```diff
-- import { ThemeProvider, createTheme } from '@mui/material/styles';
-+ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+-import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 
-function App() {
-  return (
+ function App() {
+   return (
 -    <ThemeProvider theme={createTheme()}>
 -      ...
 -    </ThemeProvider>
 +    <CssVarsProvider>
 +      ...
 +    </CssVarsProvider>
-  )
-}
+   )
+ }
 ```
 
 ### Toggle between light and dark mode
@@ -187,7 +185,11 @@ import React from 'react';
 import { getInitColorSchemeScript } from '@mui/material/styles';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
+  setPreBodyComponents([
+    <React.Fragment key="mui-init-color-scheme-script">
+      {getInitColorSchemeScript()}
+    </React.Fragment>,
+  ]);
 }
 ```
 
@@ -232,6 +234,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 **options**
 
-- `enableSystem?: boolean`: - If `true` and the selected mode is not `light` or `dark`, the system mode is used
+- `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
