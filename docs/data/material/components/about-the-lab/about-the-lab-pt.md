@@ -17,7 +17,7 @@ Para que um componente esteja pronto para ir para o core, são considerados os s
 
 ## Instalação
 
-Para instalar e salvar as dependências do seu `pacote.json`, execute o seguinte comando **npm** abaixo:
+Para instalar e salvar as dependências do seu `package.json`, execute o seguinte comando **npm** abaixo:
 
 ```sh
 npm install @mui/lab @mui/material
