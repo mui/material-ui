@@ -1,8 +1,8 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "component": "用于根节点的组件。可以是一个字符串来使用 HTML 元素，也可以是一个组件。",
+    "sx": "允许定义系统覆盖以及额外的 CSS 样式的系统prop 。更多详情请查看 <a href=\"/system/getting-started/the-sx-prop/\">`sx` 页面</a>。"
   },
   "classDescriptions": {}
 }
