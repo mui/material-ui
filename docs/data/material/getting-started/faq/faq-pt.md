@@ -134,9 +134,7 @@ indicating that you can access the DOM element with a ref.
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-:::warning
-It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
-:::
+:::warning It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason. :::
 
 ### Possíveis razões
 
@@ -159,11 +157,11 @@ If you are using npm you can try running `npm dedupe`. This command searches the
 If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
-  resolve: {
-+   alias: {
-+     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
-+   }
-  }
+ resolve: {
++  alias: {
++    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
++  },
+ },
 ```
 
 ### Uso com Lerna
@@ -333,9 +331,7 @@ You could end up accidentally using two class name generators in a variety of sc
 - Você tem uma estrutura "monorepo" para seu projeto (por exemplo, lerna, yarn workspaces) e o módulo `@material-ui/styles` é uma dependência em mais de um pacote (este é mais ou menos o mesmo que o anterior).
 - Você tem várias aplicações que estão usando `@material-ui/styles` executando na mesma página (por exemplo, vários pontos de entrada no webpack são carregados na mesma página).
 
-:::info
-💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
-:::
+:::info 💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk). :::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
@@ -353,24 +349,21 @@ Example of fix:
 -// Crie uma instância de sheets.
 -const sheets = new ServerStyleSheets();
 
-function handleRender(req, res) {
+ function handleRender(req, res) {
++  // Create a sheets instance.
++  const sheets = new ServerStyleSheets();
 
-+ // Crie uma instância de sheets.
-+ const sheets = new ServerStyleSheets();
+   //…
 
-  //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+   // Render the component to a string.
+   const html = ReactDOMServer.renderToString(
 ```
 
 ### React incompatibilidade de nome de classes na hidratação (React Hydrate)
 
-:::warning
-**⚠️ Warning**
+:::warning **⚠️ Warning**
 
-Prop className did not match.
-:::
+Prop className did not match. :::
 
 There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
@@ -386,12 +379,14 @@ The class names value relies on the concept of [class name generator](/system/st
   - // Crie um novo gerador de nome de classe.
   -const generateClassName = createGenerateClassName();
 
-  function handleRender(req, res) {
-  + // Create a new class name generator.
-  -const generateClassName = createGenerateClassName();
+   function handleRender(req, res) {
+  +  // Create a new class name generator.
+  +  const generateClassName = createGenerateClassName();
 
-    // Renderize o componente para uma string.
-    const html = ReactDOMServer.renderToString(
+     //…
+
+     // Renderize o componente para uma string.
+     const html = ReactDOMServer.renderToString(
   ```
 
 - Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
