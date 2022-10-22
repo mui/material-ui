@@ -51,15 +51,13 @@ The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA
 
 {{"demo": "TabsBasic.js"}}
 
-### Variant
+### Variants
 
 Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
 
-:::info
-ℹ️ **Note:** the `TabPanel` component is the only one that doesn't support both global variant and color props.
-:::
-
 {{"demo": "TabsVariants.js"}}
+
+:::success To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants). :::
 
 ### Disabled tab
 
