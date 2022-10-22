@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-The Box component packages [all the style functions](/system/properties/) that are exposed in `@mui/system`.
+O componente Box compõe [[todas as funções de estilo](/system/basics/#all-inclusive)](/system/properties/) que são expostas no `@material-ui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -19,19 +19,19 @@ The Box component packages [all the style functions](/system/properties/) that a
 
 ## A propriedade `sx`
 
-All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/). Além disso, a propriedade `sx` permite você especificar quaisquer outras regras CSS que precisar. Aqui está um exemplo de como usá-la:
+Todas as propriedades do sistema estão disponíveis através do [prop `sx` ](/system/getting-started/the-sx-prop/). Além disso, o prop `sx` permite você especificar quaisquer outras regras CSS que precisar. Aqui está um exemplo de como usá-la:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
 ## Sobrescrevendo componentes do Material-UI
 
-O componente Box envolve seu componente. It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop. Digamos que você queira usar um `<span>`: Digamos que você queira usar um `<span>`:
+O componente Box envolve o seu componente. Ele cria um elemento DOM, uma `<div>`  que pode ser modificada através da propriedade `component`. Digamos que você queira usar um `<span>`:
 
 {{"demo": "BoxComponent.js", "defaultCodeOpen": true }}
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Como um exemplo, talvez queira mudar a borda do Botão. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Como um exemplo, talvez queira mudar a borda do Button. O componente Button define seus próprios estilos. A herança por CSS não irá ajudar nesse caso. Para contornar o problema, você pode usar o prop [`sx`](/system/getting-started/the-sx-prop/) diretamente no filho, se o mesmo for um componente MUI.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -40,7 +40,7 @@ No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Como u
 +<Button sx={{ border: '1px dashed grey' }}>Salvar</Button>
 ```
 
-For non-Material-UI components, use the `component` prop.
+Para componentes não-MUI, use a propriedade de ` component`.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -49,9 +49,9 @@ For non-Material-UI components, use the `component` prop.
 +<Box component="button" sx={{ border: '1px dashed grey' }}>Salvar</Box>
 ```
 
-## System props
+## Propriedades do sistema
 
-Como um componente util do CSS, o `Box` também suporta todas as propriedades de [`sistem`](/system/properties/). Você pode usá-los como propriedades diretamente no componente. Por exemplo, uma margem do topo:
+Como um componente util do CSS, o `Box` também suporta todas as propriedades de [`system`](/system/properties/). Você pode usá-los como propriedades diretamente no componente. Por exemplo, uma margem do topo:
 
 ```jsx
 <Box mt={2}>
