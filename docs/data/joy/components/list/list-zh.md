@@ -14,12 +14,13 @@ Joy UI provides four list-related components:
 
 - [`List`](#basic-usage): A wrapper for list items (defaulting as `ul`).
 - [`ListItem`](#basic-usage): A common list item (default as `li`).
-- [`ListItemButton`](#actionable): Ans action element to be used inside a list item.
+- [`ListItemButton`](#actionable): An action element to be used inside a list item.
 - [`ListItemDecorator`](#decorator): A decorator of a list item, usually used to display an icon.
 - [`ListItemContent`](#ellipsis-content): A container inside a list item, used to display text content.
 - [`ListDivider`](#divider): A separator between list items.
+- [`ListSubheader`](#nested-list): A label for a nested list.
 
-{{"demo": "VariantsColorsList.js", "hideToolbar": true}}
+{{"demo": "ListUsage.js", "hideToolbar": true}}
 
 ## Component
 
@@ -31,7 +32,7 @@ import ListItem from '@mui/joy/ListItem';
 
 export default function MyApp() {
   return (
-    <List aria-labelledby="basic-list-demo">
+    <List aria-label="basic-list">
       <ListItem>Hello, world!</ListItem>
       <ListItem>Bye bye, world!</ListItem>
     </List>
@@ -50,6 +51,8 @@ Use the `List` and `ListItem` components to create a basic, non-interactive, lis
 Use the `size` prop to control font-size and general list density.
 
 {{"demo": "SizesList.js"}}
+
+:::success To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes). :::
 
 ### Decorator
 
@@ -96,8 +99,7 @@ The nested list inherits the list `size` and a few other CSS variables, such as 
 
 {{"demo": "NestedList.js"}}
 
-:::info
-**Note:** By default, nested lists stick to the left of the root list. To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${value}`:
+:::info **Note:** By default, nested lists stick to the left of the root list. To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${value}`:
 
 ```js
 <List sx={{ '--List-nestedInsetStart': '1rem' }}> {/* This is the root List */}
@@ -109,9 +111,7 @@ The nested list inherits the list `size` and a few other CSS variables, such as 
 
 To show a list in a horizontal direction, use the `row` prop on the `List` component.
 
-:::warning
-**Note:** Nested lists don't work in the horizontal direction. To do that, create a custom pop-up component instead (see the [Navigation menu](#navigation-menu) example).
-:::
+:::warning **Note:** Nested lists don't work in the horizontal direction. To do that, create a custom pop-up component instead (see the [Navigation menu](#navigation-menu) example). :::
 
 {{"demo": "HorizontalList.js"}}
 
@@ -127,9 +127,7 @@ To control which HTML tag should be rendered in a given, one-off, situation, use
 
 In the example below, we're rendering a `List` as a HTML `<nav>` element.
 
-:::info
-**Tip**: The `ListItem` component is optional in this case－if used, it will change the semantic element from the default `li` to `div` automatically.
-:::
+:::info **Tip**: The `ListItem` component is optional in this case－if used, it will change the semantic element from the default `li` to `div` automatically. :::
 
 {{"demo": "NavList.js"}}
 
