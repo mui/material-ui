@@ -4,8 +4,7 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-::info 本文件是一项正在进行的工作。 你是否升级了你的网站并遇到了这里没有涉及的问题？ [在GitHub上添加你的修改](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md)
-:::
+::info 本文件是一项正在进行的工作。 你是否升级了你的网站并遇到了这里没有涉及的问题？ [在GitHub上添加你的修改](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md) :::
 
 ## 简介
 
@@ -115,26 +114,26 @@ yarn add @material-ui/styles
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
 
-  console.log({ background });
+   console.log({ background });
   ```
 
 - —您可以从主题创建中安全地移除下一个变体：
 
   ```diff
-  typography: {
-  - useNextVariants: true,
-  },
+   typography: {
+  -  useNextVariants: true,
+   },
   ```
 
 - 我们已经不再使用 `theme.spacing.unit`，您可以用新的 API 了：
 
   ```diff
-  label: {
-    [theme.breakpoints.up('sm')]: {
-  -   paddingTop: theme.spacing.unit * 12,
-  +   paddingTop: theme.spacing(12),
-    },
-  }
+   label: {
+     [theme.breakpoints.up('sm')]: {
+  -    paddingTop: theme.spacing.unit * 12,
+  +    paddingTop: theme.spacing(12),
+     },
+   }
   ```
 
   提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。 `
@@ -170,14 +169,14 @@ yarn add @material-ui/styles
 Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
-function MySelect({ children }) {
-- const handleChange = (event: any, value: string) => {
-+ const handleChange = (event: any, value: unknown) => {
-    // handle value
-  };
+ function MySelect({ children }) {
+-  const handleChange = (event: any, value: string) => {
++  const handleChange = (event: any, value: unknown) => {
+     // handle value
+   };
 
-  return <Select onChange={handleChange}>{children}</Select>
-}
+   return <Select onChange={handleChange}>{children}</Select>
+ }
 ```
 
 这一变化在[TypeScript指南](/material-ui/guides/typescript/#handling-value-and-event-handlers)中得到了更详细的解释
@@ -362,12 +361,12 @@ function MySelect({ children }) {
 - [InputLabel] 凭借 InputLabel 组件的类 API，您应该可以覆盖 FormLabel 组件所有的样式表。 我们移除了 `FormLabelClasses` 属性。
 
   ```diff
-  <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' }}
-  + classes={{ asterisk: 'bar' }}
-  >
-  Foo
-  </InputLabel>
+   <InputLabel
+  -  FormLabelClasses={{ asterisk: 'bar' }}
+  +  classes={{ asterisk: 'bar' }}
+   >
+     Foo
+   </InputLabel>
   ```
 
 - [InputBase] 改变了默认的盒子模型的大小。 现如今它则使用以下的 CSS：
@@ -418,9 +417,9 @@ function MySelect({ children }) {
 - 这一变化简化了Material UI与CDN的使用:
 
   ```diff
-  const {
-    Button,
-    TextField,
+   const {
+     Button,
+     TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
