@@ -34,6 +34,16 @@ The avatar components comes with three sizes out of the box: `sm`, `md` (the def
 
 {{"demo": "AvatarSizes.js"}}
 
+:::success To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes). :::
+
+### Variants
+
+The avatar component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
+
+{{"demo": "AvatarVariants.js"}}
+
+:::success To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants). :::
+
 ### Initials
 
 Use a string as children to display its initials on the avatar component.
@@ -98,9 +108,7 @@ By default, the first avatar in the group stays behind the second and so on. You
 
 To render the `AvatarGroup` vertically, add the CSS `writing-mode: vertical-rl` property to the it and rotate the extra element, if existent, by -90 degrees.
 
-:::info
-**Tip:** Give preference to this approach as it preserves the overlapping offset between avatars whereas `flexDirection: column` don't.
-:::
+:::info **Tip:** Give preference to this approach as it preserves the overlapping offset between avatars whereas `flexDirection: column` don't. :::
 
 {{"demo": "VerticalAvatarGroup.js"}}
 
