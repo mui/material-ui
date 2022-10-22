@@ -64,8 +64,8 @@ const theme = {
 - input: `string`: 该属性作为原始的 CSS 值传递。
 
 ```jsx
-<Box sx={{ m: "2rem" }} /> // margin: 2rem;
-<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: '2rem' }} /> // margin: 2rem;
+<Box sx={{ mx: 'auto' }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## 示例
@@ -87,7 +87,7 @@ The CSS flex and grid display properties are often used to align elements at the
 {{"demo": "HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ mx: "auto", width: 200 }}>…
+<Box sx={{ mx: 'auto', width: 200 }}>…
 ```
 
 ## API
