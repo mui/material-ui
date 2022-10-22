@@ -40,7 +40,7 @@ The default ratio is `16/9`.
 
 ### Anatomy
 
-The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component, in turn, is given a `data-first-child` attribute:
+The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute:
 
 ```html
 <div class="JoyAspectRatio-root">
@@ -55,17 +55,17 @@ The Aspect Ratio component is composed of a root `<div>` with a content `<div>` 
 ### Overriding the root slot
 
 Use the `component` prop to override the root slot with a custom element.
-For example, the following code snippet replaces the default `<div>` with an `<aside>`:
+For example, the following code snippet replaces the default `<div>` with a `<section>`:
 
 ```jsx
-<AspectRatio component="aside" />
+<AspectRatio component="section" />
 ```
 
 ### Overriding interior slots
 
 Use the `components` prop to override any interior slots in addition to the root:
 
-<AspectRatio components={{ root: 'main', content: 'article' }} />
+<AspectRatio components={{ Content: 'article' }} />
 
 :::warning
 If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
@@ -76,11 +76,15 @@ The following code snippet applies a CSS class called `my-content` to the conten
 
 <AspectRatio componentsProps={{ content: { className: 'my-content' } }} />
 
+:::warning
+Note that `componentsProps` slot names are written in lowercase (root) while `components` slot names are capitalized (Root).
+:::
+
 ## Customization
 
 ### Variants
 
-The Aspect Ratio component supports the four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
+The Aspect Ratio component supports the four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "VariantsRatio.js"}}
 
