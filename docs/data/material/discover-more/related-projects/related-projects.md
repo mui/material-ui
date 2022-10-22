@@ -40,6 +40,10 @@ Feel free to submit a pull request!
 
 - [mui-otp-input](https://viclafouch.github.io/mui-otp-input): A One-Time Password input designed for the React library MUI.
 
+### File
+
+- [mui-file-input](https://viclafouch.github.io/mui-file-input): A file input designed for the React library MUI.
+
 ### Color picker
 
 - [mui-color-input](https://viclafouch.github.io/mui-color-input): A color input designed for the React library MUI built with [TinyColor](https://tinycolor.vercel.app/).
