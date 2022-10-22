@@ -50,7 +50,7 @@ Use the `Divider` to wrap elements that will be added to it.
 
 Use the `orientation` prop to render a vertical divider.
 
-{{"demo": "VerticalDividers.js", "bg": true}}
+{{"demo": "VerticalDividers.js"}}
 
 #### Vertical with text
 

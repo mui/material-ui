@@ -657,7 +657,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         <Sheet
                           key={placement}
                           variant="soft"
-                          color="neutral"
+                          color="primary"
                           sx={{
                             position: 'relative',
                             height: '14px',

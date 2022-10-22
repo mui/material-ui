@@ -139,7 +139,7 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 
 A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-groups) that demonstrate the composition of the components.
 
-{{"demo": "ExampleTiers.js", "bg": true}}
+{{"demo": "ExampleTiers.js"}}
 
 ### Alignment buttons
 
