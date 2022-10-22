@@ -45,6 +45,15 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 - Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - Para a melhor experiência do usuário, os links devem se destacar do texto na página. For instance, you can keep the default `underline="always"` behavior.
-- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
+- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md). The demo below illustrates how to properly link with a `<button>`:
 
 {{"demo": "ButtonLink.js"}}
+
+### Keyboard accessibility
+
+- Interactive elements should receive focus in a coherent order when the user presses the <kbd class="key">Tab</kbd> key.
+- Users should be able to open a link by pressing <kbd class="key">Enter</kbd>.
+
+### Screen reader accessibility
+
+- When a link receives focus, screen readers should announce a descriptive link name. If the link opens in a new window or browser tab, add an [`aria-label`](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8) to inform screen reader users—for example, _"To learn more, visit the About page which opens in a new window."_
