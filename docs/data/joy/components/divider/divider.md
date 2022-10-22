@@ -12,7 +12,7 @@ githubLabel: 'component: divider'
 
 Dividers separate content into clear groups.
 
-{{"demo": "DividerUsage.js", "hideToolbar": "true"}}
+{{"demo": "DividerUsage.js", "hideToolbar": "true", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
