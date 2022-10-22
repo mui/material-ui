@@ -1,11 +1,11 @@
 ---
 product: material-ui
-title: React ButtonGroup（按钮组）组件
+title: React Button Group component
 components: Button, ButtonGroup
 githubLabel: '组件：按钮组'
 ---
 
-# Button groups 按钮组组件
+# Button Group
 
 <p class="description">按钮组组件可用于对相关按钮进行分组。</p>
 
