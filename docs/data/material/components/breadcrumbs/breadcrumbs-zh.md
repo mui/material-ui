@@ -24,7 +24,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
 
 ## 自定义分隔符
 
-In the following examples, we are using two string separators and an SVG icon.
+在下面的示例中, 我们使用两个字符分隔符和一个 SVG 图标.
 
 {{"demo": "CustomSeparator.js"}}
 
