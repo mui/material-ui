@@ -113,7 +113,7 @@ function App() {
 
 ### 回到顶部
 
-滚动时出现一个浮动操作按钮，以便返回页面的顶部。
+A floating action button appears on scroll to make it easy to get back to the top of the page.
 
 {{"demo": "BackToTop.js", "iframe": true}}
 
