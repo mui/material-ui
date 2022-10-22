@@ -45,13 +45,15 @@ When close to the screen's edge, the menu vertically realigns to make sure that 
 
 {{"demo": "BasicMenu.js"}}
 
-### Size
+### Sizes
 
 The menu component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 When specifying a size for the `Menu` component, menu items inside of it will inherit the value.
 
 {{"demo": "SizeMenu.js"}}
+
+:::success To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes). :::
 
 ### Selected
 
