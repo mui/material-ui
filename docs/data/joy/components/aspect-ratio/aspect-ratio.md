@@ -101,7 +101,7 @@ The `ratio` prop uses the [CSS `calc()`](https://developer.mozilla.org/en-US/doc
 
 ### Object fit
 
-When the content inside the Aspect Ratio component is an image or a video, you can use the `objectFit` prop to control how it should be resized.
+When the content inside the Aspect Ratio component is an image or a video, you can use the `objectFit` prop to control how it's resized.
 
 This prop gives you access to all of the values associated with the CSS `object-fit` property: `cover` (default), `contain`, `fill`, `scaleDown`, `initial`, `inherit`, and `none`.
 
