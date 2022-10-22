@@ -22,16 +22,16 @@ Este documento contém as práticas que são seguidas para fornecer uma bibliote
 
 Material-UI segue o [Controle de Versão Semântico 2.0.0](https://semver.org/). Os números da versão do Material-UI têm três partes: `principal.menor.patch`. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
 
-- **Major releases** contain significant new features, some developer assistance is expected during the update. Estas versões incluem [alterações que quebram](#what-doesnt-count-as-a-breaking-change). Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender sobre as novas APIs.
+- **Versões principais** contém novos recursos significativos, alterações no código pelo desenvolvedor podem ser necessárias durante a atualização. Estas versões incluem [alterações que quebram](#what-doesnt-count-as-a-breaking-change). Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender sobre as novas APIs.
 - **Versões menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e capacidades que foram adicionados na versão.
-- **Versões de patch** são de baixo risco, contêm correções de bugs e pequenos novos recursos. No developer assistance is expected during the update.
+- **Versões de patch** são de baixo risco, contêm correções de bugs e pequenos novos recursos. Alterações no código pelo desenvolvedor não são necessárias durante a atualização.
 
-## What doesn't count as a breaking change?
+## O que não conta como uma mudança significativa?
 
-We call "breaking changes" those that require updating your codebase when upgrading to a new version, with the exception of:
+Chamamos "quebra de código" aquilo que necessita de atualização do código fonte quando atualizando para uma nova versão, com exceção:
 
-- **APIs starting with "unstable\_"**. These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
-- **APIs documented as experimental**. Same as the above.
+- **APIs iniciando com "unstable\_"**. Estas são fornecidas como recursos experimentais, não consideramos estas APIs como estáveis. Liberando estas com o prefixo `unstable_`, podemos iterar alterações rapidamente e torna-las APIs estáveis mais cedo, ou simplesmente, entender que não precisamos da API/funcionalidade priorizadas.
+- **APIs documentadas como experimentais**. Same as the above.
 - **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
 - **Development warnings**. Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
 - **Pre-releases versions**. We provide pre-release versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period. If you use these versions, note that APIs may change before the stable release.
