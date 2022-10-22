@@ -184,9 +184,7 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 {{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
 
-:::info
-**Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
-:::
+:::info **Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render. :::
 
 ```diff
  import * as React from 'react';
@@ -194,7 +192,7 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 +const inputGlobalStyles = <GlobalStyles styles={...} />;
 
- const Input = (props) => {
+ function Input(props) {
    return (
      <React.Fragment>
 -      <GlobalStyles styles={...} />
