@@ -3,21 +3,21 @@ product: joy-ui
 title: React Aspect Ratio component
 ---
 
-# Aspect ratio
+# Aspect Ratio
 
-<p class="description">The aspect ratio component shapes the content with the specified ratio.</p>
+<p class="description">The Aspect Ratio component crops its contents to match the desired ratio.</p>
 
 ## Introduction
 
-`AspectRatio` is a wrapper component that allows you to rapidly control its content aspect ratio.
-Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accommodate the content.
+Aspect Ratio is a wrapper component for quickly cropping content (such as images) to conform to your preferred ratio of width to height.
 
 :::info
-**Note:** A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but MUI is not using it yet due to limited browser support.
-Once the support increases significantly, MUI will switch over to it.
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it until browser compatibility increases.
 :::
 
 ## Component
+
+### Usage
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -29,22 +29,35 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
+Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accommodate the content.
 The default aspect ratio is `16/9`.
 Make sure that the content you want to fit the aspect ratio is its first direct child.
 
 {{"demo": "BasicRatio.js"}}
 
+### Anatomy
+
+The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component, in turn, is given a `data-first-child` attribute:
+
+```html
+<div class="JoyAspectRatio-root">
+  <div class="JoyAspectRatio-content JoyAspectRatio-variantSoft JoyAspectRatio-colorNeutral css-1obyd74-JoyAspectRatio-content">
+    <some-element data-first-child>
+      This is how an Aspect Ratio component renders in the DOM.
+    </some-element>
+  </div>
+</div>
+```
+
+## Customization
+
 ### Variants
 
-The aspect ratio component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
+The Aspect Ratio component supports the four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
 
 {{"demo": "VariantsRatio.js"}}
-
-:::success
-To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
-:::
 
 ### Ratio
 
