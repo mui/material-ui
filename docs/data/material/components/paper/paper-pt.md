@@ -25,8 +25,8 @@ Se você precisar de uma superfície delineada, use a propriedade `variant`.
 
 ## Elevation
 
-The elevation can be used to establish a hierarchy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
+O prop "elevation" pode ser utilizado para estabelecer uma hierarquia entre outros componentes. Em termos práticos, o prop "elevation" controla o tamanho da sombra aplicada a superfície. No modo escuro, aumentar a "elevação" também faz a superfície ficar mais clara.
 
 {{"demo": "Elevation.js", "bg": "inline"}}
 
-The change of shade in dark mode is done by applying a semi-transparent gradient to the `background-image` property. This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading. To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`).
+A mudança do sombreamento no modo escuro é feito ao aplicar um gradiente semi-transparente à propriedade `brackground-image`. Isso pode levar a uma confusão quando estamos sobrescrevendo o estilo de `Paper`, visto que configurando apenas a propriedade`background-color` não irá afetar o sombreamento causado pelo prop "elevation" Para ignorar o sombreado e definir uma cor de fundo que não seja afetada pela elevação no modo escuro, sobrescreva a propriedade `background`(ou ambos `background-color` e `background-image`).
