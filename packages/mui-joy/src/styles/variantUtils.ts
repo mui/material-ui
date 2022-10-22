@@ -345,9 +345,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
         ...result,
         [color]: {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
-          [cssVarPrefixVar('--palette-focusVisible')]: `rgba(${getCssVar(
-            `palette-${color}-lightChannel`,
-          )} / 0.8)`,
+          [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
           [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
           [cssVarPrefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
           [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(

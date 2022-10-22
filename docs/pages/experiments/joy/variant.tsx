@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { GlobalStyles, CSSObject } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import { CssVarsProvider, ColorPaletteProp, PaletteVariant, extendTheme } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
 import Info from '@mui/icons-material/Info';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrow';
@@ -83,8 +84,8 @@ export default function JoyVariant() {
         mx: 'auto',
       }}
     >
-      <GlobalStyles styles={{ body: { margin: 0 } }} />
       <CssVarsProvider>
+        <CssBaseline />
         <Box sx={{ p: 2 }}>
           <Typography component="h1" level="h3" gutterBottom>
             Variant demonstration
