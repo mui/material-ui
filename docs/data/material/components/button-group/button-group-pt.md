@@ -1,11 +1,11 @@
 ---
 product: material-ui
-title: Componente React para Grupo de botões
+title: React Button Group component
 components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
 ---
 
-# Grupo de botões
+# Button Group
 
 <p class="description">O componente ButtonGroup pode ser usado para agrupar botões relacionados.</p>
 
