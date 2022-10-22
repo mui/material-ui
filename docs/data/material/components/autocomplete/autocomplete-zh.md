@@ -85,11 +85,9 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 {{"demo": "FreeSolo.js"}}
 
-:::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+:::warning ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
-The value created by typing into the textbox is always a string, regardless of the type of the options.
-:::
+The value created by typing into the textbox is always a string, regardless of the type of the options. :::
 
 ### 自由创造
 
@@ -111,6 +109,15 @@ You could also display a dialog when the user wants to add a new value.
 You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
 
 {{"demo": "Grouped.js"}}
+
+To control how the groups are rendered, provide a custom `renderGroup` prop. This is a function that accepts an object with two fields:
+
+- `group`—a string representing a group name
+- `children`—a collection of list items that belong to the group
+
+The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+
+{{"demo": "RenderGroup.js"}}
 
 ## 禁用选项
 
@@ -144,8 +151,8 @@ Head to the [customization](#customization) section for an example with the `Aut
 
 The component supports two different asynchronous use-cases:
 
-- [打开时加载](#load-on-open)：它将等待用户与组件进行交互以加载选项。
-- [当你键入内容时进行搜索](#search-as-you-type)：每一次键入都会提交一个新的请求。
+- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
+- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
 
 ### 打开时加载
 
@@ -241,12 +248,12 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 1. `config` (_object_ [optional]):
 
-- `config.ignoreAccents` (_bool_ [optional])：默认为 `true`。 移除字母的变音符号。
-- `config.ignoreCase` (_bool_ [optional])：默认为 `true`。 所有字母都小写。
-- `config.limit` (_number_ [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
-- `config.matchFrom` (_'any' | 'start'_ [optional]): 默认值为 `'any'`。
-- `config.stringify` (_func_ [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
-- `config.trim` (_bool_ [optional])：默认为 `false`。 删除尾随空格。
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
+- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces.
 
 #### 返回结果
 
@@ -309,8 +316,8 @@ By default, the component disables the input **autocomplete** feature (rememberi
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
 
-- 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
-- 设置 `autoComplete="new-password"`（当设置此属性时，有些浏览器会建议输入高复杂度的密码）。
+- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   <TextField
