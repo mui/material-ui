@@ -7,9 +7,9 @@ import ThemeProvider from './ThemeProvider';
 import ColorInversion, { useColorInversion } from './ColorInversion';
 import { createSolidInversion } from './variantUtils';
 
-const Parent = ({ children, enableColorInversion }) => (
+const Parent = ({ children, invertedColors }) => (
   <ColorInversion.Provider
-    value={enableColorInversion ? ['plain', 'outlined', 'soft', 'solid'] : undefined}
+    value={invertedColors ? ['plain', 'outlined', 'soft', 'solid'] : undefined}
   >
     {children}
   </ColorInversion.Provider>
@@ -61,7 +61,7 @@ describe('ColorInversion', () => {
 
   it('use the default color if not enable', () => {
     const { container } = render(
-      <Parent variant="solid" enableColorInversion={false}>
+      <Parent variant="solid" invertedColors={false}>
         <Child variant="plain" />
       </Parent>,
     );
@@ -71,7 +71,7 @@ describe('ColorInversion', () => {
   describe('variant override enabled', () => {
     it('use instance color if provided', () => {
       const { container } = render(
-        <Parent variant="solid" enableColorInversion>
+        <Parent variant="solid" invertedColors>
           <Child variant="plain" color="primary" />
         </Parent>,
       );
@@ -81,7 +81,7 @@ describe('ColorInversion', () => {
     describe('parent variant override', () => {
       it('solid', () => {
         const { container } = render(
-          <Parent variant="solid" enableColorInversion>
+          <Parent variant="solid" invertedColors>
             <Child variant="plain" />
           </Parent>,
         );
@@ -90,7 +90,7 @@ describe('ColorInversion', () => {
 
       it('soft', () => {
         const { container } = render(
-          <Parent variant="soft" enableColorInversion>
+          <Parent variant="soft" invertedColors>
             <Child variant="plain" />
           </Parent>,
         );
@@ -112,7 +112,7 @@ describe('ColorInversion', () => {
     it('use "context" color even though theme default props is configured', () => {
       const { container } = render(
         <ThemeProvider theme={{ components: { Child: { defaultProps: { color: 'primary' } } } }}>
-          <Parent variant="solid" enableColorInversion>
+          <Parent variant="solid" invertedColors>
             <Child variant="plain" />
           </Parent>
         </ThemeProvider>,

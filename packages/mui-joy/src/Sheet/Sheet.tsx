@@ -50,8 +50,7 @@ export const SheetRoot = styled('div', {
       position: 'relative',
     },
     variantStyle,
-    ownerState.enableColorInversion &&
-      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+    ownerState.invertedColors && theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -66,7 +65,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     color: colorProp = 'neutral',
     component = 'div',
     variant = 'plain',
-    enableColorInversion = false,
+    invertedColors = false,
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -76,7 +75,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     ...props,
     color,
     component,
-    enableColorInversion,
+    invertedColors,
     variant,
   };
 
@@ -92,7 +91,7 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     />
   );
 
-  if (enableColorInversion) {
+  if (invertedColors) {
     return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
   }
   return result;
@@ -128,7 +127,7 @@ Sheet.propTypes /* remove-proptypes */ = {
    * If `true`, the component create CSS variables that can override children with `context` color.
    * @default false
    */
-  enableColorInversion: PropTypes.bool,
+  invertedColors: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

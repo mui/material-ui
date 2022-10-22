@@ -120,7 +120,7 @@ export default function JoyVariant() {
           <Sheet
             variant="solid"
             color="primary"
-            enableColorInversion
+            invertedColors
             sx={[
               {
                 display: 'flex',
@@ -580,7 +580,7 @@ declare module '@mui/joy/styles' {
           <Sheet
             variant="solid"
             color="primary"
-            enableColorInversion
+            invertedColors
             sx={[
               {
                 display: 'flex',

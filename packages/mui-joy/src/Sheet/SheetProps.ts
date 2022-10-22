@@ -19,10 +19,10 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, SheetPropsColorOverrides>;
     /**
-     * If `true`, the component create CSS variables that can override children with `context` color.
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
      * @default false
      */
-    enableColorInversion?: boolean;
+    invertedColors?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
