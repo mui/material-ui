@@ -1,27 +1,27 @@
 ---
 product: base
-title: Unstyled React Form Control component and hook
+title: Componente e Hook do React Form Control não estilizado
 components: FormControlUnstyled
 githubLabel: 'component: FormControl'
 ---
 
-# Unstyled form control
+# Unstyled Form Control
 
-<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.</p>
+<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
 
-## Introduction
+## Introdução
 
-`FormControlUnstyled` is a utility that wraps an input component with other associated components in order to make the state of the input available to those components.
+`FormControlUnstyled` é um utilitário que encapsula um componente de input com outros componentes associados, a fim de tornar o state do input disponível para esses componentes.
 
-For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
+Por exemplo, você pode querer mostrar um elemento adicional pedindo ao usuário para inserir um valor se o input estiver vazio ou exibir um ícone de aviso se o valor inserido estiver incorreto.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+## Componente
 
-### Usage
+### Uso
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+Após a [installation](/base/getting-started/installation/), você pode começar a construir com este componente usando os elementos básicos a seguir:
 
 ```jsx
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
@@ -29,15 +29,15 @@ import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 export default function MyApp() {
   return (
     <FormControlUnstyled>
-      {/* <input> and/or other contents of the form */}
+      {/* <input> e/ou outros conteúdos do formulário */}
     </FormControlUnstyled>
   );
 }
 ```
 
-### Basics
+### Essencial
 
-`FormControlUnstyled` wraps around the elements of a form that need access to the state of an `<input>`. For instance, if the form's **Submit** button needs to change states after the user enters information, then the component will be structured like this:
+`FormControlUnstyled` encapsula os elementos de um formulário que precisam de acesso ao state de um `<input>`. Por exemplo, se o botão do formulário **Submit** precisa alterar states depois que o usuário inserir informação, então o componente será estruturado assim:
 
 ```jsx
 <FormControlUnstyled>
@@ -60,11 +60,9 @@ The `useFormControlUnstyledContext` hook reads the context provided by `FormCont
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info
-Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
-:::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy). :::
 
 The demo below shows how to integrate this hook with its component counterpart:
 
