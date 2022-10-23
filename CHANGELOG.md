@@ -1,5 +1,194 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.10
+
+<!-- generated comparing v5.10.9..master -->
+
+_Oct 18, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🖌 Thanks to the efforts of @bharatkashyap and @nihgwu, we now have editable demos across our docs (#34454)!
+- 🚀 The Tooltip component has been added to Joy UI by @hbjORbj (#34509).
+- ⚙️ We started converting the remaining JS components in MUI Base to TypeScript.
+  @mbayucot finished the first PR with the conversion of the NoSsr code (#34735).
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.10`
+
+- [Popover] Fix paper position flash on open (#34546) @TheUnlocked
+- [SwipeableDrawer] Make component `defaultProps` overridable (#34643) @hbjORbj
+
+### `@mui/system@5.10.10`
+
+- [system] Support CSS `grey` color in `sx` (#34548) @TheUnlocked
+
+### `@mui/styles@5.10.10`
+
+- [styles] Use memoized context in StylesProvider (#34637) @mohd-akram
+
+### `@mui/joy@5.0.0-alpha.50`
+
+- [Select][joy] Added hidden input element (#34657) @zee-bit
+- [Slider][joy] Add global variant to slider (#34733) @siriwatknp
+- [Tooltip][joy] Add component (#34509) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.102`
+
+- [MultiSelect][base] Prevent the renderValue prop from being propagated to the DOM (#34698) @michaldudak
+- [NoSsr] Convert code to TypeScript (#34735) @mbayucot
+
+### Docs
+
+- [docs] Fix the Autocomplete Highlighting example (#34184) @hayawata3626
+- [docs] Fix typos in Base (Menu, Tabs) and Joy UI (Chip) (#34803) @rvrvrv
+- [docs] Use new editing API in homepage demos (#34220) @m4theushw
+- [docs] Live demos (#34454) @bharatkashyap
+- [docs] Fix typos in Joy UI Switch (#34728) @ndresx
+- [docs] Avoid scrollbar in the code demos (#34741) @oliviertassinari
+- [docs] Revise the Joy UI "Automatic adjustment" page (#34614) @samuelsycamore
+- [docs] Revise and rename the Joy UI "Perfect dark mode" page (#34613) @samuelsycamore
+- [docs] Revise the Joy UI "Global variants" page (#34595) @samuelsycamore
+- [docs] Basic link verification at PR level (#34588) @alexfauquette
+- [docs] Add a missing comma in the customization example (#34617) @AbayKinayat
+- [website] Clarify Pro/Premium support (#34607) @oliviertassinari
+- [website] Fix home page dark mode flicker (#33545)
+- [website] Update the state of the date pickers on the landing page (#34750) @joserodolfofreitas
+
+### Core
+
+- [core] Clean conditionals (#34772) @pedroprado010
+- [core] Temporary remove the authorization (#34796) @siriwatknp
+- [core] Avoid slower CI run statues @oliviertassinari
+- [core] Improve the playground DX (#34739) @oliviertassinari
+- [core] Link Netlify in the danger comment (#34688) @oliviertassinari
+- [core] Fix CI after out of sync merge @oliviertassinari
+- [core] Enforce straight quote (#34686) @oliviertassinari
+- [core] Add code scanning via CodeQL (#34707) @DanailH
+- [core] Fix some upcoming eslint issues (#34727) @oliviertassinari
+- [core] Auto-fix upcoming eslint issues (#34644) @Janpot
+- [core] Move SearchIcons to docs src folder (#34802)
+- [test] Enable `react/no-unstable-nested-components` (#34518) @eps1lon
+
+All contributors of this release in alphabetical order: @AbayKinayat, @alexfauquette, @bharatkashyap, @DanailH, @eps1lon, @hayawata3626, @hbjORbj, @Janpot, @joserodolfofreitas, @m4theushw, @mbayucot, @michaldudak, @mohd-akram, @ndresx, @oliviertassinari, @pedroprado010, @rvrvrv, @samuelsycamore, @siriwatknp, @TheUnlocked, @zee-bit
+
+## 5.10.9
+
+<!-- generated comparing v5.10.8..master -->
+
+_Oct 10, 2022_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Joy] Button loading functionality has been added by @kushagra010 (#34658)
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.9`
+
+- &#8203;<!-- 16 -->[Grid v2][system] Handle direction object prop for responsive design (#34574) @vanyaxk
+- &#8203;<!-- 03 -->[Slider] Fix unnecessary accessibility attribute in root element (#34610) @vanyaxk
+
+### `@mui/system@5.10.9`
+
+#### BREAKING CHANGE
+
+- &#8203;<!-- 17 -->[system] Fix color-scheme implementation (#34639) @siriwatknp
+
+  The `enableColorScheme` prop has been removed from `CssVarsProvider` and `getInitColorScheme` (both Material UI and Joy UI).
+
+  Migration:
+
+  - **Material UI**: you can enable the CSS color scheme via `<CssBaseline enableColorScheme />`.
+  - **Joy UI**: it is enabled automatically if you use `<CssBaseline />`, [see the docs](https://mui.com/joy-ui/react-css-baseline/).
+
+#### Changes
+
+- &#8203;<!-- 02 -->[system] Fix typo in createCssVarsProvider (#34661) @HexM7
+
+### `@mui/base@5.0.0-alpha.101`
+
+- &#8203;<!-- 01 -->[TrapFocus] Restore the previously exported type from @mui/material (#34601) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.49`
+
+- &#8203;<!-- 04 -->[Joy] Add button loading functionality (#34658) @kushagra010
+
+### Docs
+
+- &#8203;<!-- 18 -->[docs] Revert #34541 (#34700) @michaldudak
+- &#8203;<!-- 15 -->[blog] Blog post for MUI X v6 alpha zero (#34424) @joserodolfofreitas
+- &#8203;<!-- 09 -->[docs] Improve Joy UI tutorial demo (#34653) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Explain how SelectUnstyled renders a hidden input (#34638) @michaldudak
+- &#8203;<!-- 07 -->[docs] Fix Taiwan description (#34611) @oliviertassinari
+- &#8203;<!-- 06 -->[docs] Fix codesandbox export with dayjs (#34619) @oliviertassinari
+- &#8203;<!-- 05 -->[docs] Explain the purpose of renderGroup prop (#34066) @michaldudak
+
+### Core
+
+- &#8203;<!-- 14 -->[core] Make useForkRef variadic (#27939) @michaldudak
+- &#8203;<!-- 13 -->[core] Speedup of yarn install in the CI (#34632) @oliviertassinari
+- &#8203;<!-- 12 -->[core] Fix markdown loader on Windows (#34623) @michaldudak
+- &#8203;<!-- 11 -->[core] Update changelog for version v5.10.8 (#34593) @mnajdova
+- &#8203;<!-- 10 -->[core] Update root package.json version (#34592) @mnajdova
+
+All contributors of this release in alphabetical order: @HexM7, @joserodolfofreitas, @kushagra010, @michaldudak, @mnajdova, @oliviertassinari, @vanyaxk
+
+## 5.10.8
+
+<!-- generated comparing v5.10.7..master -->
+
+_Oct 3, 2022_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [SnackbarUnstyled](https://mui.com/base/react-snackbar/) component & headless hook are added to MUI Base (#33227) @ZeeshanTamboli
+- 📚 [CSS variables documentation](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) for Material UI has been added by @siriwatknp (#33958)
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.8`
+
+- &#8203;<!-- 28 -->[Autocomplete] Skip filtering when list of options is loading (#33278) @ndebeiss
+- &#8203;<!-- 13 -->[Fab] Add `disabled` class to FAB button (#34245) @meenarama
+- &#8203;<!-- 09 -->[l10n] Add Arabic Saudi Arabia (ar-SA) locale (#33340) @rolule
+- &#8203;<!-- 08 -->[l10n] zhTW refinement (#33391) @Aporim2051
+- &#8203;<!-- 07 -->[Popover] Add `ownerState` on the paper slot (#34445) @kabernardes
+- &#8203;<!-- 05 -->[Slider] Fixed incorrect marks displayed due to duplicate keys in range (#33526) @kskd1804
+- &#8203;<!-- 03 -->[TextField] Fix typo in FormControlLabel declaration file (#34535) @hghmn
+
+### `@mui/base@5.0.0-alpha.100`
+
+- &#8203;<!-- 04 -->[SnackbarUnstyled] Create component and `useSnackbar` hook (#33227) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.48`
+
+- &#8203;<!-- 12 -->[Joy] Fix `variantPlain` classname missing in few components (#34534) @hbjORbj
+- &#8203;<!-- 11 -->[Joy] Fix input decorator color and list padding (#34586) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Miscellaneous fixes (#34492) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 27 -->[blog] Fix 404 link in base introduction @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix CI build (#34589) @mnajdova
+- &#8203;<!-- 20 -->[docs] Temporary remove date picker from home page (#34541) @siriwatknp
+- &#8203;<!-- 19 -->[docs] Revise and expand Joy UI "Tutorial" doc (#34569) @samuelsycamore
+- &#8203;<!-- 18 -->[docs] Fix SEO issues (#34537) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Add CSS variables documentation for Material UI (#33958) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Capitalize Material Design on the Breakpoints page (#34481) @Dustin-Digitar
+- &#8203;<!-- 15 -->[docs] Able to load doc components inside markdown files (#34243) @flaviendelangle
+- &#8203;<!-- 14 -->[docs] Use mouse pointer on esc button in the search modal (#34485) @minkyngkm
+- &#8203;<!-- 02 -->[website] Fix typo in pricing FAQ @oliviertassinari
+- &#8203;<!-- 01 -->[website] Move the React Engineer role from open to next (#34494) @mnajdova
+
+### Core
+
+- &#8203;<!-- 26 -->[core] Update root package.json version (#34592) @mnajdova
+- &#8203;<!-- 25 -->[core] Remove useless comment in fixtures (#34581) @Garz4
+- &#8203;<!-- 24 -->[core] Fix link to CODE_OF_CONDUCT.md (#34543) @peippo
+- &#8203;<!-- 23 -->[core] Remove outdated docsearch.js dependency (#34421) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Add `newFeature` to the typing of MuiPage (#34511) @flaviendelangle
+
+All contributors of this release in alphabetical order: @Aporim2051, @Dustin-Digitar, @flaviendelangle, @Garz4, @hbjORbj, @hghmn, @kabernardes, @kskd1804, @meenarama, @minkyngkm, @mnajdova, @ndebeiss, @oliviertassinari, @peippo, @rolule, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.10.7
 
 <!-- generated comparing v5.10.6..master -->
@@ -37,8 +226,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
 
   ```diff
-  - import TrapFocus from ‘@mui/base/TrapFocus’;
-  + import FocusTrap from ‘@mui/base/FocusTrap’;
+  -import TrapFocus from '@mui/base/TrapFocus';
+  +import FocusTrap from '@mui/base/FocusTrap';
   ```
 
 #### Changes
@@ -320,7 +509,7 @@ _Aug 22, 2022_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).  
+- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).\
   A couple of icons changed their appearance. See the difference [on this Argos build](https://app.argos-ci.com/mui/material-ui/builds/4428]).
 
 ### `@mui/material@5.10.2`
@@ -1512,7 +1701,8 @@ All contributors of this release in alphabetical order: @abhinav-22-tech, @ainat
 
 _Apr 18, 2022_
 
-A big thanks to the 11 contributors who made this release possible. This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 11 contributors who made this release possible.
+This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.6.2`
 
@@ -1571,7 +1761,7 @@ All contributors of this release in alphabetical order: @abaker93, @cherniavskii
 
 _Apr 11, 2022_
 
-A big thanks to the 8 contributors who made this release possible.  
+A big thanks to the 8 contributors who made this release possible.
 This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.6.1`
@@ -1734,7 +1924,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   -import { Unstyled_TrapFocus } from '@mui/base';
   +import { TrapFocus } from '@mui/base';
 
-  // or
+   // or
 
   -import TrapFocus from '@mui/base/Unstyled_TrapFocus';
   +import TrapFocus from '@mui/base/TrapFocus';
@@ -1910,8 +2100,8 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   `unstable_ClassNameGenerator` has been moved from `utils` to `className` folder to prevent all MUI Base module imports. If you use the module, please update the import as suggested in the diff below:
 
   ```diff
-  - import { unstable_ClassNameGenerator } from '@mui/material/utils';
-  + import { unstable_ClassNameGenerator } from '@mui/material/className';
+  -import { unstable_ClassNameGenerator } from '@mui/material/utils';
+  +import { unstable_ClassNameGenerator } from '@mui/material/className';
   ```
 
 #### Changes
@@ -2253,8 +2443,8 @@ A big thanks to the 22 contributors who made this release possible. Here are som
   3. Change the import paths of unstyled components from @mui/material to @mui/base, e.g.:
 
   ```diff
-  - @import ButtonUnstyled from '@mui/material/ButtonUnstyled';
-  + @import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+  -import ButtonUnstyled from '@mui/material/ButtonUnstyled';
+  +import ButtonUnstyled from '@mui/base/ButtonUnstyled';
   ```
 
 #### Changes
@@ -4297,12 +4487,12 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiTab-root">
-  - <span class="MuiTab-wrapper">
+   <button class="MuiTab-root">
+  -  <span class="MuiTab-wrapper">
       {icon}
       {label}
-  - </span>
-  </button>
+  -  </span>
+   </button>
   ```
 
 - [BottomNavigation] Remove wrapper from BottomNavigationAction (#26923) @siriwatknp
@@ -4310,14 +4500,14 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiBottomNavigationAction-root">
-  - <span class="MuiBottomNavigationAction-wrapper">
-      {icon}
-      <span class="MuiBottomNavigationAction-label">
-        {label}
-      </span>
-  - </span>
-  </button>
+   <button class="MuiBottomNavigationAction-root">
+  -  <span class="MuiBottomNavigationAction-wrapper">
+       {icon}
+       <span class="MuiBottomNavigationAction-label">
+         {label}
+       </span>
+  -  </span>
+   </button>
   ```
 
 #### Changes
@@ -4350,15 +4540,15 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   Make the default rendered text field closer to the most common use cases (denser).
 
   ```diff
-  <DatePicker
-    label="Helper text example"
-    value={value}
-    onChange={onChange}
-    renderInput={(params) => (
+   <DatePicker
+     label="Helper text example"
+     value={value}
+     onChange={onChange}
+     renderInput={(params) => (
   -    <TextField {...params} />
   +    <TextField {...params} helperText={params?.inputProps?.placeholder} />
-    )}
-  >
+     )}
+   >
   ```
 
 #### Changes
@@ -4464,16 +4654,16 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui/material-ui/issues/21902).
 
   ```diff
-  {
-    xs: 0,
-    sm: 600,
-  - md: 960,
-  + md: 900,
-  - lg: 1280,
-  + lg: 1200,
-  - xl: 1920,
-  + xl: 1536,
-  }
+   {
+     xs: 0,
+     sm: 600,
+  -  md: 960,
+  +  md: 900,
+  -  lg: 1280,
+  +  lg: 1200,
+  -  xl: 1920,
+  +  xl: 1536,
+   }
   ```
 
   If you prefer the old breakpoint values, use the snippet below.
@@ -4518,11 +4708,11 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiIconButton-root">
-  - <span class="MuiIconButton-label">
-      <svg />
-  - </span>
-  </button>
+   <button class="MuiIconButton-root">
+  -  <span class="MuiIconButton-label">
+       <svg />
+  -  </span>
+   </button>
   ```
 
 - &#8203;<!-- 19 -->[core] Remove `unstable_` prefix on the `useThemeProps` hook (#26777) @mnajdova
@@ -4648,11 +4838,11 @@ A big thanks to the 11 contributors who made this release possible. Here are som
   The `span` element that wraps children has been removed. `label` classKey is also removed. The nested span was required for fixing a flexbox issue with iOS < 11.0.
 
   ```diff
-  <button class="MuiButton-root">
-  - <span class="MuiButton-label">
-      children
-  - </span>
-  </button>
+   <button class="MuiButton-root">
+  -  <span class="MuiButton-label">
+       children
+  -  </span>
+   </button>
   ```
 
 #### Changes
@@ -4681,7 +4871,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
   +  const theme = useTheme();
   +  const isRtl = theme.direction === 'rtl';
      //.. rest of the code
-  }
+   }
   ```
 
 #### Changes
@@ -4804,13 +4994,14 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 29 -->[pickers] Remove `openPickerIcon` prop in favor of `components.OpenPickerIcon` (#26223) @vedadeepta
 
   ```diff
-  <DateTimePicker
-    components={{
-      LeftArrowIcon: AlarmIcon,
-      RightArrowIcon: SnoozeIcon,
-  +   OpenPickerIcon: ClockIcon,
-    }}
-  - openPickerIcon={<ClockIcon />}
+   <DateTimePicker
+     components={{
+       LeftArrowIcon: AlarmIcon,
+       RightArrowIcon: SnoozeIcon,
+  +    OpenPickerIcon: ClockIcon,
+     }}
+  -  openPickerIcon={<ClockIcon />}
+   >
   ```
 
 ### `@material-ui/system@5.0.0-alpha.36`
@@ -5033,10 +5224,10 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   Move the custom class on `input` to `select`. The `input` key is being applied on another element.
 
   ```diff
-  <TablePagination
-  - classes={{ input: 'foo' }}
-  + classes={{ select: 'foo' }}
-  />
+   <TablePagination
+  -  classes={{ input: 'foo' }}
+  +  classes={{ select: 'foo' }}
+   />
   ```
 
 - &#8203;<!-- 45 -->[core] Move `StyledEngineProvider` to `@material-ui/core/styles` (#26265) @mnajdova
@@ -5081,10 +5272,10 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 63 -->[Autocomplete] Rename getOptionSelected to isOptionEqualToValue (#26173) @m4theushw
 
   ```diff
-  <Autocomplete
+   <Autocomplete
   -  getOptionSelected={(option, value) => option.title === value.title}
   +  isOptionEqualToValue={(option, value) => option.title === value.title}
-  />
+   />
   ```
 
 > Follow [this link](https://mui.com/material-ui/migration/migration-v4/) for full migration from v4 => v5
@@ -5187,18 +5378,20 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
   ```diff
-  import * as React from 'react';
-  import { withStyles } from '@material-ui/core/styles';
-  const MyComponent = withStyles({
-    root: {
-      backgroundColor: 'red',
-    },
-  })(({ classes }) => <div className={classes.root} />);
-  function MyOtherComponent(props) {
-    const ref = React.useRef();
-  - return <MyComponent innerRef={ref} />;
-  + return <MyComponent ref={ref} />;
-  }
+   import * as React from 'react';
+   import { withStyles } from '@material-ui/core/styles';
+
+   const MyComponent = withStyles({
+     root: {
+       backgroundColor: 'red',
+     },
+   })(({ classes }) => <div className={classes.root} />);
+
+   function MyOtherComponent(props) {
+     const ref = React.useRef();
+  -  return <MyComponent innerRef={ref} />;
+  +  return <MyComponent ref={ref} />;
+   }
   ```
 
   **withTheme**
@@ -5206,14 +5399,16 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
   ```diff
-  import * as React from 'react';
-  import { withTheme  } from '@material-ui/core/styles';
-  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
-  function MyOtherComponent(props) {
-    const ref = React.useRef();
-  - return <MyComponent innerRef={ref} />;
-  + return <MyComponent ref={ref} />;
-  }
+   import * as React from 'react';
+   import { withTheme } from '@material-ui/core/styles';
+
+   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+   function MyOtherComponent(props) {
+     const ref = React.useRef();
+  -  return <MyComponent innerRef={ref} />;
+  +  return <MyComponent ref={ref} />;
+   }
   ```
 
 - &#8203;<!-- 10 -->[theme] Rename `createMuiTheme` to `createTheme` (#25992) @m4theushw
@@ -5555,23 +5750,23 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 41 -->[Checkbox][switch] Remove checked argument from onChange (#25871) @m4theushw
 
   ```diff
-  function MyCheckbox() {
-  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  +   const checked = event.target.checked;
-    };
-    return <Checkbox onChange={handleChange} />;
-  }
+   function MyCheckbox() {
+  -  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  +  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +    const checked = event.target.checked;
+     };
+     return <Checkbox onChange={handleChange} />;
+   }
   ```
 
   ```diff
-  function MySwitch() {
-  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  +   const checked = event.target.checked;
-    };
-    return <Switch onChange={handleChange} />;
-  }
+   function MySwitch() {
+  -  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  +  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  +    const checked = event.target.checked;
+     };
+     return <Switch onChange={handleChange} />;
+   }
   ```
 
 - &#8203;<!-- 42 -->[theme] Remove theme.breakpoints.width helper (#25918) @m4theushw
@@ -5726,12 +5921,12 @@ A big thanks to the 19 contributors who made this release possible. Here are som
   -import DayPicker from '@material-ui/lab/DayPicker';
   +import CalendarPicker from '@material-ui/lab/CalendarPicker';
 
-  createMuiTheme({
-    components: {
-  -   MuiDayPicker: {},
-  +   MuiCalendarPicker: {},
-    }
-  })
+   createMuiTheme({
+     components: {
+  -    MuiDayPicker: {},
+  +    MuiCalendarPicker: {},
+     }
+   })
   ```
 
 - &#8203;<!-- 04 -->[Pickers] Rename PickersCalendarSkeleton to CalendarPickerSkeleton (#25679) @eps1lon
@@ -6258,7 +6453,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
   The icons were synchronized with https://material.io/resources/icons/. This change increases the number of supported icons from 1,349 to 1,781 per theme (we support 5 themes). The breaking changes:
 
   ```diff
-  // AmpStories -> Download
+   // AmpStories -> Download
   -AmpStories
   +Download
   -AmpStoriesOutlined
@@ -6269,7 +6464,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
   +DownloadSharp
   -AmpStoriesTwoTone
   +DownloadTwoTone
-  // Outbond -> Outbound
+   // Outbond -> Outbound
   -Outbond
   +Outbound
   -OutbondOutlined
@@ -6446,10 +6641,10 @@ A big thanks to the 30 contributors who made this release possible. Here are som
   If you were using a number previously, you need to provide the value in `px` to bypass the new transformation with `theme.spacing`. The change was done for consistency with the Grid spacing prop and the other system spacing properties, e.g. `<Box padding={2}>`.
 
   ```diff
-  <Box
-  - gap={2}
-  + gap="2px"
-  >
+   <Box
+  -  gap={2}
+  +  gap="2px"
+   >
   ```
 
 ### `@material-ui/styled-engine@5.0.0-alpha.25`
@@ -6690,14 +6885,14 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   --- a/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
   +++ b/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
   @@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
-  import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
-  import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-  import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+   import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+   import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+   import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
   -import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
   +import Box from '@material-ui/core/Box';
 
-  export default function BasicDateRangePicker() {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+   export default function BasicDateRangePicker() {
+     const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   @@ -20,7 +20,7 @@ export default function BasicDateRangePicker() {
           renderInput={(startProps, endProps) => (
             <React.Fragment>
@@ -7239,42 +7434,42 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [Dialog] Remove the `disableBackdropClick` prop. It's redundant with the `reason` argument (#23607) @eps1lon.
 
   ```diff
-  <Dialog
-  - disableBackdropClick
-  - onClose={handleClose}
-  + onClose={(event, reason) => {
-  +   if (reason !== 'backdropClick') {
-  +     onClose(event, reason);
-  +   }
-  + }}
-  />
+   <Dialog
+  -  disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== 'backdropClick') {
+  +      onClose(event, reason);
+  +    }
+  +  }}
+   />
   ```
 
 - [Modal] Remove the `disableBackdropClick` prop. It's redundant with the `reason` argument (#23607) @eps1lon.
 
   ```diff
-  <Modal
-  - disableBackdropClick
-  - onClose={handleClose}
-  + onClose={(event, reason) => {
-  +   if (reason !== 'backdropClick') {
-  +     onClose(event, reason);
-  +   }
-  + }}
-  />
+   <Modal
+  -  disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== 'backdropClick') {
+  +      onClose(event, reason);
+  +    }
+  +  }}
+   />
   ```
 
 - [Modal] Remove the `onEscapeKeyDown` prop. It's redundant with the `reason` argument. (#23571) @eps1lon
 
   ```diff
-  <Modal
+   <Modal
   -  onEscapeKeyDown={handleEscapeKeyDown}
   +  onClose={(event, reason) => {
   +    if (reason === "escapeKeyDown") {
   +      handleEscapeKeyDown(event);
   +    }
   +  }}
-  />;
+   />;
   ```
 
 #### Changes
@@ -7627,10 +7822,10 @@ Here are some highlights ✨:
   - The CSS prefixes have changed:
 
     ```diff
-    popper: {
-      zIndex: 1,
-    - '&[x-placement*="bottom"] $arrow': {
-    + '&[data-popper-placement*="bottom"] $arrow': {
+     popper: {
+       zIndex: 1,
+    -  '&[x-placement*="bottom"] $arrow': {
+    +  '&[data-popper-placement*="bottom"] $arrow': {
     ```
 
   - Method names have changed.
@@ -7654,13 +7849,13 @@ Here are some highlights ✨:
   -import withMobileDialog from '@material-ui/core/withMobileDialog';
   +import { useTheme, useMediaQuery } from '@material-ui/core';
 
-  function ResponsiveDialog(props) {
-  - const { fullScreen } = props;
-  + const theme = useTheme();
-  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const [open, setOpen] = React.useState(false);
+   function ResponsiveDialog(props) {
+  -  const { fullScreen } = props;
+  +  const theme = useTheme();
+  +  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+     const [open, setOpen] = React.useState(false);
 
-  // ...
+   // ...
 
   -export default withMobileDialog()(ResponsiveDialog);
   +export default ResponsiveDialog;
@@ -7906,24 +8101,24 @@ Here are some highlights ✨:
   The change was done to match the API convention.
 
   ```diff
-  <TablePagination
-  - onChangeRowsPerPage={()=>{}}
-  - onChangePage={()=>{}}
-  + onRowsPerPageChange={()=>{}}
-  + onPageChange={()=>{}}
+   <TablePagination
+  -  onChangeRowsPerPage={()=>{}}
+  -  onChangePage={()=>{}}
+  +  onRowsPerPageChange={()=>{}}
+  +  onPageChange={()=>{}}
   ```
 
 - [theme] Rename fade to alpha (#22834) @mnajdova
   Better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
   ```diff
-  - import { fade } from '@material-ui/core/styles';
-  + import { alpha } from '@material-ui/core/styles';
+  -import { fade } from '@material-ui/core/styles';
+  +import { alpha } from '@material-ui/core/styles';
 
-  const classes = makeStyles(theme => ({
+   const classes = makeStyles(theme => ({
   -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-  }));
+   }));
   ```
 
 - [Tooltip] Make `interactive` default (#22382) @eps1lon
@@ -7934,7 +8129,7 @@ Here are some highlights ✨:
   ```diff
   -<Tooltip>
   +<Tooltip disableInteractive>
-  # Interactive tooltips no longer need the `interactive` prop.
+   # Interactive tooltips no longer need the `interactive` prop.
   -<Tooltip interactive>
   +<Tooltip>
   ```
@@ -8182,7 +8377,7 @@ Here are some highlights ✨:
   Renames `theme.palette.type` to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
+   import { createMuiTheme } from '@material-ui/core/styles';
 
   -const theme = createMuiTheme({palette: { type: 'dark' }}),
   +const theme = createMuiTheme({palette: { mode: 'dark' }}),
@@ -8247,22 +8442,22 @@ Here are some highlights ✨:
   You can recover from the change with:
 
   ```diff
-  <Autocomplete
-  - renderOption={(option, { selected }) => (
-  -   <React.Fragment>
-  + renderOption={(props, option, { selected }) => (
-  +   <li {...props}>
-        <Checkbox
-          icon={icon}
-          checkedIcon={checkedIcon}
-          style={{ marginRight: 8 }}
-          checked={selected}
-        />
-        {option.title}
-  -   </React.Fragment>
-  +   </li>
-    )}
-  />
+   <Autocomplete
+  -  renderOption={(option, { selected }) => (
+  -    <React.Fragment>
+  +  renderOption={(props, option, { selected }) => (
+  +    <li {...props}>
+         <Checkbox
+           icon={icon}
+           checkedIcon={checkedIcon}
+           style={{ marginRight: 8 }}
+           checked={selected}
+         />
+         {option.title}
+  -    </React.Fragment>
+  +    </li>
+     )}
+   />
   ```
 
 #### Changes
@@ -8348,12 +8543,12 @@ Here are some highlights ✨:
   Rename `focused` to `focusVisible` for consistency with the other components:
 
   ```diff
-  <Accordion
-    classes={{
-  -   focused: 'custom-focus-visible-classname',
-  +   focusVisible: 'custom-focus-visible-classname',
-    }}
-  />
+   <Accordion
+     classes={{
+  -    focused: 'custom-focus-visible-classname',
+  +    focusVisible: 'custom-focus-visible-classname',
+     }}
+   />
   ```
 
 - [Stepper] Remove Paper and built-in padding (#22564) @mbrookes
@@ -8433,10 +8628,10 @@ Here are some highlights ✨:
   If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
   ```diff
-  <Rating
-    icon={customIcon}
-  + emptyIcon={null}
-  />
+   <Rating
+     icon={customIcon}
+  +  emptyIcon={null}
+   />
   ```
 
 #### Changes
@@ -8562,9 +8757,9 @@ const theme = createMuiTheme({
   1. `props`
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
+   import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuiTheme({
+   const theme = createMuiTheme({
   -  props: {
   -    MuiButton: {
   -      disableRipple: true,
@@ -8577,15 +8772,15 @@ const theme = createMuiTheme({
   +      },
   +    },
   +  },
-  });
+   });
   ```
 
   2. `overrides`
 
   ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
+   import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuiTheme({
+   const theme = createMuiTheme({
   -  overrides: {
   -    MuiButton: {
   -      root: { padding: 0 },
@@ -8598,7 +8793,7 @@ const theme = createMuiTheme({
   +      },
   +    },
   +  },
-  });
+   });
   ```
 
   Note that if you don't have the time to upgrade the structure of the theme, you
@@ -8709,7 +8904,7 @@ Here are some highlights ✨:
   The onE\* transition props were removed. Use TransitionProps instead.
 
   ```diff
-  <Menu
+   <Menu
   -  onEnter={onEnter}
   -  onEntered={onEntered},
   -  onEntering={onEntered},
@@ -8724,14 +8919,14 @@ Here are some highlights ✨:
   +    onExited,
   +    onExiting,
   +  }}
-  >
+   >
   ```
 
 - [Popover] Remove transition onX props (#22184) @mbrookes
   The onE\* transition props were removed. Use TransitionProps instead.
 
   ```diff
-  <Popover
+   <Popover
   -  onEnter={onEnter}
   -  onEntered={onEntered},
   -  onEntering={onEntered},
@@ -8746,7 +8941,7 @@ Here are some highlights ✨:
   +    onExited,
   +    onExiting,
   +  }}
-  />
+   />
   ```
 
 - [TextField] Improve line-height reset (#22149) @imnasnainaec
@@ -8900,7 +9095,7 @@ Here are some highlights ✨:
   The onE\* transition props were removed. Use TransitionProps instead.
 
   ```diff
-  <Dialog
+   <Dialog
   -  onEnter={onEnter}
   -  onEntered={onEntered},
   -  onEntering={onEntered},
@@ -8915,7 +9110,7 @@ Here are some highlights ✨:
   +    onExited,
   +    onExiting,
   +  }}
-  />
+   />
   ```
 
 - [Fab] Rename round -> circular for consistency (#21903) @kodai3
@@ -8962,7 +9157,7 @@ Here are some highlights ✨:
   The onE\* transition props were removed. Use TransitionProps instead.
 
   ```diff
-  <Snackbar
+   <Snackbar
   -  onEnter={onEnter}
   -  onEntered={onEntered},
   -  onEntering={onEntered},
@@ -8977,7 +9172,7 @@ Here are some highlights ✨:
   +    onExited,
   +    onExiting,
   +  }}
-  />
+   />
   ```
 
 - [TextareaAutosize] Rename rowsMax->maxRows & rowsMin->minRows (#21873) @mhayk
@@ -9346,21 +9541,21 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
 
   ```diff
-  .MuiDivider-root {
-  - background-color: #f00;
-  + border-color: #f00;
-  }
+   .MuiDivider-root {
+  -  background-color: #f00;
+  +  border-color: #f00;
+   }
   ```
 
 - [Rating] Rename `visuallyhidden` to `visuallyHidden` for consistency (#21413) @mnajdova.
 
   ```diff
-  <Rating
-    classes={{
+   <Rating
+     classes={{
   -    visuallyhidden: 'custom-visually-hidden-classname',
   +    visuallyHidden: 'custom-visually-hidden-classname',
-    }}
-  />
+     }}
+   />
   ```
 
 - [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/getting-started/overview/) (#21413) @mnajdova.
@@ -9380,10 +9575,10 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
   ```diff
-  <TablePagination
-  - backIconButtonText="Avant"
-  - nextIconButtonText="Après
-  + getItemAriaLabel={…}
+   <TablePagination
+  -  backIconButtonText="Avant"
+  -  nextIconButtonText="Après
+  +  getItemAriaLabel={…}
   ```
 
 - [ExpansionPanel] Rename to Accordion (#21494) @mnajdova.

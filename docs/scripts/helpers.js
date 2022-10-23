@@ -8,7 +8,7 @@ function getLineFeed(source) {
   return match === null ? os.EOL : match[0];
 }
 
-const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
+const fixBabelIssuesRegExp = /(?<=(\/>)|,)(\r?\n){2}/g;
 /**
  * @param {string} source
  */

@@ -20,25 +20,25 @@ export type DefaultVariantKey =
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface VariantPlain extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantPlainHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantPlainActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantPlainDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantPlain extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantPlainHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantPlainActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantPlainDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
-export interface VariantOutlined extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOutlinedHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOutlinedActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantOutlinedDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOutlined extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantOutlinedHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantOutlinedActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantOutlinedDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
-export interface VariantSoft extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantSoftHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantSoftActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantSoftDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantSoft extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantSoftHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantSoftActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantSoftDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
-export interface VariantSolid extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantSolidHover extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantSolidActive extends Record<ColorPaletteProp, CSSObject> {}
-export interface VariantSolidDisabled extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantSolid extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantSolidHover extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantSolidActive extends Record<ColorPaletteProp | 'context', CSSObject> {}
+export interface VariantSolidDisabled extends Record<ColorPaletteProp | 'context', CSSObject> {}
 
 export interface Variants {
   plain: VariantPlain;
@@ -74,5 +74,5 @@ export interface VariantOverrides {
   solid: VariantSolidInversion;
 }
 
-export interface VariantInversionConfig
+export interface ColorInversionConfig
   extends Partial<Record<VariantProp, Array<VariantProp> | undefined>> {}

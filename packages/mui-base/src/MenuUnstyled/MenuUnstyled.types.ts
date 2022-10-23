@@ -26,31 +26,6 @@ export interface MenuUnstyledOwnProps {
   children?: React.ReactNode;
   className?: string;
   /**
-   * The components used for each slot inside the Menu.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Listbox?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Menu.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      typeof PopperUnstyled,
-      MenuUnstyledComponentsPropsOverrides,
-      MenuUnstyledOwnerState
-    >;
-    listbox?: SlotComponentProps<
-      'ul',
-      MenuUnstyledComponentsPropsOverrides,
-      MenuUnstyledOwnerState
-    >;
-  };
-  /**
    * Always keep the menu in the DOM.
    * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
    *
@@ -67,6 +42,31 @@ export interface MenuUnstyledOwnProps {
    * @default false
    */
   open?: boolean;
+  /**
+   * The props used for each slot inside the Menu.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      typeof PopperUnstyled,
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+    listbox?: SlotComponentProps<
+      'ul',
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    listbox?: React.ElementType;
+  };
 }
 
 export interface MenuUnstyledTypeMap<P = {}, D extends React.ElementType = 'ul'> {

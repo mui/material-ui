@@ -12,7 +12,7 @@ import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
-import { Variants, VariantOverrides, VariantInversionConfig } from './types/variants';
+import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScales } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
@@ -54,8 +54,8 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
-  variantInversion?: Partial2Level<VariantOverrides>;
-  variantInversionConfig?: VariantInversionConfig;
+  colorInversion?: Partial2Level<VariantOverrides>;
+  colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
@@ -144,6 +144,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const lightColorSystem = {
     palette: {
+      mode: 'light',
       primary: {
         ...colors.blue,
         ...createLightModeVariantVariables('primary'),
@@ -245,6 +246,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
   const darkColorSystem = {
     palette: {
+      mode: 'dark',
       primary: {
         ...colors.blue,
         ...createDarkModeVariantVariables('primary'),
@@ -595,7 +597,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
-    variantInversionConfig: {
+    colorInversionConfig: {
       soft: ['plain', 'outlined', 'soft', 'solid'],
       solid: ['plain', 'outlined', 'soft', 'solid'],
     },

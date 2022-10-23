@@ -128,14 +128,14 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 export default function UnstyledSelectSimple() {

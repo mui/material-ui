@@ -87,12 +87,12 @@ defaultTheme.variants = deepmerge(
   },
   defaultTheme.variants,
 );
-defaultTheme.variantInversion = deepmerge(
+defaultTheme.colorInversion = deepmerge(
   {
     soft: createSoftInversion(defaultTheme),
     solid: createSolidInversion(defaultTheme),
   },
-  defaultTheme.variantInversion,
+  defaultTheme.colorInversion,
 );
 
 export default defaultTheme;

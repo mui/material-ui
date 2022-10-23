@@ -102,7 +102,7 @@ commands:
                   - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
       - run:
           name: Install js dependencies
-          command: yarn install --verbose
+          command: yarn install
           environment:
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
       - save_cache:
@@ -239,6 +239,11 @@ jobs:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
             yarn extract-error-codes
+            git diff --exit-code
+      - run:
+          name: '`yarn docs:link-check` changes committed?'
+          command: |
+            yarn docs:link-check
             git diff --exit-code
   test_types:
     <<: *defaults

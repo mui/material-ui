@@ -24,10 +24,11 @@ describe('defaultTheme', () => {
         'shadow',
         'typography',
         'variants',
-        'variantInversion',
-        'variantInversionConfig',
+        'colorInversion',
+        'colorInversionConfig',
         'vars',
         'cssVarPrefix',
+        'getColorSchemeSelector',
       ]).to.includes(field);
     });
   });

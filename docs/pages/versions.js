@@ -21,15 +21,16 @@ function formatVersion(version) {
     .join('.');
 }
 
-// async function getBranches() {
-//   const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
+async function getBranches() {
+  // TODO: find an appropriate way to prevent "API rate limit exceeded"
+  // const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
 
-//   const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
-//     headers: {
-//       Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
-//     },
-//   });
-//   const text = await result.text();
+  const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
+    // headers: {
+    //   Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
+    // },
+  });
+  const text = await result.text();
 
 //   if (result.status !== 200) {
 //     throw new Error(text);

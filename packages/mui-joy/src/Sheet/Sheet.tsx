@@ -9,7 +9,7 @@ import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
-import { VariantInversionProvider, useVariantInversion } from '../styles/VariantInversion';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { variant, color } = ownerState;
@@ -50,8 +50,7 @@ export const SheetRoot = styled('div', {
       position: 'relative',
     },
     variantStyle,
-    ownerState.enableVariantInversion &&
-      theme.variantInversion[ownerState.variant!]?.[ownerState.color!],
+    ownerState.invertedColors && theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -66,17 +65,17 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     color: colorProp = 'neutral',
     component = 'div',
     variant = 'plain',
-    enableVariantInversion = false,
+    invertedColors = false,
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
-    enableVariantInversion,
+    invertedColors,
     variant,
   };
 
@@ -92,8 +91,8 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     />
   );
 
-  if (enableVariantInversion) {
-    return <VariantInversionProvider variant={variant}>{result}</VariantInversionProvider>;
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
   }
   return result;
 }) as OverridableComponent<SheetTypeMap>;
@@ -125,10 +124,10 @@ Sheet.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the component create CSS variables that can override children with `context` color.
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
    * @default false
    */
-  enableVariantInversion: PropTypes.bool,
+  invertedColors: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

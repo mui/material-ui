@@ -550,18 +550,14 @@ describe('[Joy] CssVarsProvider', () => {
           'solidHover',
           'solidActive',
           'solidDisabled',
-          'plainOverrides',
-          'outlinedOverrides',
-          'softOverrides',
-          'solidOverrides',
         ].join(','),
       );
     });
 
-    it('contain expected variantInversion', function test() {
+    it('contain expected colorInversion', function test() {
       const Text = () => {
         const theme = useTheme();
-        return <div>{Object.keys(theme.variantInversion).join(',')}</div>;
+        return <div>{Object.keys(theme.colorInversion).join(',')}</div>;
       };
 
       const { container } = render(
@@ -570,9 +566,7 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal(
-        ['plain', 'outlined', 'soft', 'solid'].join(','),
-      );
+      expect(container.firstChild?.textContent).to.equal(['soft', 'solid'].join(','));
     });
   });
 
