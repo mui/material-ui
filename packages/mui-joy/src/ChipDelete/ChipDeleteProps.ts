@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ChipDeleteSlot = 'root';
 
@@ -41,7 +41,7 @@ export type ChipDeleteProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ChipDeleteTypeMap<P, D>, D>;
 
-export interface ChipDeleteOwnerState extends ChipDeleteProps {
+export interface ChipDeleteOwnerState extends ApplyColorInversion<ChipDeleteProps> {
   /**
    * If `true`, the element's focus is visible.
    */
