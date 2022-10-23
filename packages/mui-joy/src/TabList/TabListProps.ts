@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type TabListSlot = 'root';
 
@@ -44,7 +44,7 @@ export type TabListProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabListTypeMap<P, D>, D>;
 
-export type TabListOwnerState = TabListProps & {
+export interface TabListOwnerState extends ApplyColorInversion<TabListProps> {
   /**
    * If `true`, the Tabs' direction is "rtl".
    */
@@ -53,4 +53,4 @@ export type TabListOwnerState = TabListProps & {
    * The orientation of the Tabs.
    */
   orientation: 'horizontal' | 'vertical';
-};
+}
