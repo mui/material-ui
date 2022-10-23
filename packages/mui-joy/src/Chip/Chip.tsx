@@ -95,7 +95,7 @@ const ChipRoot = styled('div', {
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       [`&.${chipClasses.disabled}`]: {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+        color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
     },
     ...(!ownerState.clickable
@@ -109,7 +109,7 @@ const ChipRoot = styled('div', {
       : [
           {
             '--variant-borderWidth': '0px',
-            color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+            color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
           },
         ]),
   ];
@@ -279,7 +279,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   });
 
   return (
-    <ChipContext.Provider value={{ disabled, variant, color }}>
+    <ChipContext.Provider
+      value={{ disabled, variant, color: color === 'context' ? undefined : color }}
+    >
       <ChipRoot
         as={component}
         className={clsx(classes.root, className)}

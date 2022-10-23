@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
 
@@ -78,7 +78,7 @@ export type ChipProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ChipTypeMap<P, D>, D>;
 
-export interface ChipOwnerState extends ChipProps {
+export interface ChipOwnerState extends ApplyColorInversion<ChipProps> {
   /**
    * If `true`, the chip is clickable.
    */
