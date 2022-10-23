@@ -10,7 +10,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
-import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
+import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
@@ -112,7 +112,7 @@ const ListItemStartAction = styled('div', {
   name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
-})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
+})<{ ownerState: ListItemOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
   top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
@@ -125,7 +125,7 @@ const ListItemEndAction = styled('div', {
   name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
-})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
+})<{ ownerState: ListItemOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
   top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
@@ -57,7 +57,7 @@ export type ListItemProps<
   },
 > = OverrideProps<ListItemTypeMap<P, D>, D>;
 
-export interface ListItemOwnerState extends ListItemProps {
+export interface ListItemOwnerState extends ApplyColorInversion<ListItemProps> {
   /**
    * If `true`, the element is rendered in a horizontal list.
    * @internal
