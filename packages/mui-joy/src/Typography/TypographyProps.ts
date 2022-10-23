@@ -7,6 +7,7 @@ import {
   SxProps,
   SystemProps,
   VariantProp,
+  ApplyColorInversion,
 } from '../styles/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
@@ -105,7 +106,7 @@ export type TypographyProps<
   },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
-export interface TypographyOwnerState extends TypographyProps {
+export interface TypographyOwnerState extends ApplyColorInversion<TypographyProps> {
   /**
    * If `true`, the element is rendered in a Typography.
    */
