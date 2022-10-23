@@ -9,10 +9,10 @@ import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
+import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
-const useUtilityClasses = (ownerState: MenuListProps) => {
+const useUtilityClasses = (ownerState: MenuListOwnerState) => {
   const { variant, color, size } = ownerState;
   const slots = {
     root: [
