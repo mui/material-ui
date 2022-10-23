@@ -9,13 +9,13 @@ import { useThemeProps, styled } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { IconButtonRoot } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
-import { ModalCloseProps, ModalCloseTypeMap } from './ModalCloseProps';
+import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
 import CloseModalContext from '../Modal/CloseModalContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolean }) => {
+const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
   const { variant, color, disabled, focusVisible, size } = ownerState;
 
   const slots = {
@@ -36,7 +36,7 @@ export const ModalCloseRoot = styled(IconButtonRoot, {
   name: 'JoyModalClose',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalCloseProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--IconButton-size': '28px',
   }),
