@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
 
@@ -66,7 +66,7 @@ export type SwitchProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SwitchTypeMap<P, D>, D>;
 
-export interface SwitchOwnerState extends SwitchProps {
+export interface SwitchOwnerState extends ApplyColorInversion<SwitchProps> {
   /**
    * If `true`, the switch's focus is visible.
    */

@@ -38,18 +38,15 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
 const switchColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SwitchOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const variant = ownerState.variant;
-    const color = ownerState.color;
+    const styles =
+      theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Switch-track-color': theme.vars.palette[color!]?.[`${variant!}Color`],
+      '--Switch-track-background': styles.backgroundColor,
+      '--Switch-track-color': styles.color,
       '--Switch-track-borderColor':
-        variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
-          : 'currentColor',
-      '--Switch-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}Bg`],
+        ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
+      '--Switch-thumb-background': styles.color,
+      '--Switch-thumb-color': styles.backgroundColor,
     };
   };
 
