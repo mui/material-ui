@@ -3,7 +3,7 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type { SelectOption } from '@mui/base/SelectUnstyled';
 
@@ -129,12 +129,12 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue extends {}> extends Omit<SelectOwnProps<TValue>, 'color'> {
+export interface SelectOwnerState<TValue extends {}>
+  extends ApplyColorInversion<SelectOwnProps<TValue>> {
   /**
    * If `true`, the select button is active.
    */
   active: boolean;
-  color: SelectOwnProps<TValue>['color'] | 'context';
   /**
    * If `true`, the select button is disabled.
    */
