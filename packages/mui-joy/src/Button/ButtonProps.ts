@@ -6,7 +6,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator';
 
@@ -117,8 +117,7 @@ export type ButtonProps<
   },
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 
-export interface ButtonOwnerState extends Omit<ButtonProps, 'color'> {
-  color: ButtonProps['color'] | 'context';
+export interface ButtonOwnerState extends ApplyColorInversion<ButtonProps> {
   /**
    * If `true`, the button's focus is visible.
    */
