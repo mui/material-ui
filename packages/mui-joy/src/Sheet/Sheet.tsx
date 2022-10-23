@@ -124,7 +124,7 @@ Sheet.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the component create CSS variables that can override children with `context` color.
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
    * @default false
    */
   invertedColors: PropTypes.bool,
