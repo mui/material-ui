@@ -65,15 +65,15 @@ const CheckboxRoot = styled('span', {
   position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
   fontFamily: theme.vars.fontFamily.body,
-  lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
+  lineHeight: 'var(--Checkbox-size)',
   color: theme.vars.palette.text.primary,
   [`&.${checkboxClasses.disabled}`]: {
-    color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+    color: theme.variants.plainDisabled?.[ownerState.color!]?.color,
   },
   ...(ownerState.disableIcon && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
     [`&.${checkboxClasses.disabled}`]: {
-      color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+      color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
     },
   }),
 }));
