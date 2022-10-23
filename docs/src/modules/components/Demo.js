@@ -1,20 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
 import { unstable_useId as useId } from '@mui/utils';
+import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
+import CodeEditor from 'docs/src/modules/components/CodeEditor';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
+const DeferredDemo = React.lazy(() => import('./DeferredDemo'));
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
 // Importing the styles results in no bundle size reduction
@@ -62,8 +65,8 @@ function useDemoData(codeVariant, demo, githubLocation) {
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       language: userLanguage,
       raw: demo.rawTS,
-      Component: demo.tsx,
       sourceLanguage: 'tsx',
+      Component: demo.tsx,
       title,
       product,
     };
@@ -74,8 +77,8 @@ function useDemoData(codeVariant, demo, githubLocation) {
     githubLocation,
     language: userLanguage,
     raw: demo.raw,
-    Component: demo.js,
     sourceLanguage: 'jsx',
+    Component: demo.js,
     title,
     product,
   };
@@ -211,19 +214,6 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
-const Code = styled(HighlightedCode)(({ theme }) => ({
-  padding: 0,
-  marginBottom: theme.spacing(1),
-  marginTop: theme.spacing(2),
-  [theme.breakpoints.up('sm')]: {
-    marginTop: theme.spacing(0),
-  },
-  '& pre': {
-    margin: '0 auto',
-    maxHeight: 'min(68vh, 1000px)',
-  },
-}));
-
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
@@ -263,7 +253,6 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -297,7 +286,7 @@ export default function Demo(props) {
   const showPreview =
     !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
-  const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
+  const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0);
 
   const demoId = `demo-${useId()}`;
   const demoSourceId = `demoSource-${useId()}`;
@@ -307,6 +296,20 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
+
+  const usePreview = showPreview && !codeOpen;
+  const initialCode = usePreview ? demo.jsxPreview : demoData.raw;
+  const [code, setCode] = React.useState(initialCode);
+  const resetDemo = React.useCallback(() => {
+    setCode(initialCode);
+    setDemoKey();
+  }, [initialCode]);
+  React.useEffect(() => {
+    resetDemo();
+  }, [resetDemo]);
+
+  const [debouncedError, setError] = React.useState(null);
+  const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
@@ -332,11 +335,23 @@ export default function Demo(props) {
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
-          component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
-        />
+        >
+          <NoSsr fallback={<demoData.Component />}>
+            <React.Suspense fallback={<demoData.Component />}>
+              <DeferredDemo
+                code={code}
+                jsxPreview={demo.jsxPreview}
+                raw={demoData.raw}
+                usePreview={usePreview}
+                scope={demo.scope}
+                onError={debouncedSetError}
+              />
+            </React.Suspense>
+          </NoSsr>
+        </DemoSandboxed>
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
@@ -367,16 +382,46 @@ export default function Demo(props) {
           </NoSsr>
         )}
         <Collapse in={openDemoSource} unmountOnExit>
-          <Code
+          <CodeEditor
+            key={demoKey}
             id={demoSourceId}
-            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
+            value={code}
+            onChange={setCode}
             language={demoData.sourceLanguage}
             copyButtonProps={{
               'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
               'data-ga-event-label': demoOptions.demo,
               'data-ga-event-action': 'copy-click',
             }}
-          />
+          >
+            {debouncedError && (
+              <Alert
+                aria-live="polite"
+                variant="filled"
+                severity="error"
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%) translateY(-50%)',
+                  py: '2px',
+                  px: '6px',
+                  '& .MuiAlert-icon': {
+                    fontSize: 14,
+                    mr: 0.5,
+                    mt: 0.25,
+                    py: 0,
+                  },
+                  '& .MuiAlert-message': {
+                    fontSize: 12,
+                    py: 0,
+                  },
+                }}
+              >
+                {debouncedError}
+              </Alert>
+            )}
+          </CodeEditor>
         </Collapse>
         {adVisibility ? <AdCarbonInline /> : null}
       </Wrapper>
