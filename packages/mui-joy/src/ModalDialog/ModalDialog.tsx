@@ -11,11 +11,11 @@ import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
-import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
+import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalDialogProps) => {
+const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
 
   const slots = {
@@ -35,7 +35,7 @@ const ModalDialogRoot = styled(SheetRoot, {
   name: 'JoyModalDialog',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalDialogProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
   // Divider integration
   '--Divider-inset': 'calc(-1 * var(--ModalDialog-padding))',
   '--ModalClose-radius':
@@ -114,7 +114,9 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   return (
     <ModalDialogSizeContext.Provider value={size}>
-      <ModalDialogVariantColorContext.Provider value={{ variant, color }}>
+      <ModalDialogVariantColorContext.Provider
+        value={{ variant, color: color === 'context' ? undefined : color }}
+      >
         <ModalDialogRoot
           as={component}
           ownerState={ownerState}
