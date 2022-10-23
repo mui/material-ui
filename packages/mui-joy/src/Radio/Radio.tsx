@@ -81,12 +81,12 @@ const RadioRoot = styled('span', {
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       color: theme.vars.palette.text.primary,
       [`&.${radioClasses.disabled}`]: {
-        color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+        color: theme.variants.plainDisabled?.[ownerState.color!]?.color,
       },
       ...(ownerState.disableIcon && {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+        color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
         [`&.${radioClasses.disabled}`]: {
-          color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+          color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
         },
       }),
       ...(ownerState['data-parent'] === 'RadioGroup' &&

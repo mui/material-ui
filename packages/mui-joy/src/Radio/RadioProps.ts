@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label';
 
@@ -99,7 +99,7 @@ export type RadioProps<
   },
 > = OverrideProps<RadioTypeMap<P, D>, D>;
 
-export interface RadioOwnerState extends RadioProps {
+export interface RadioOwnerState extends ApplyColorInversion<RadioProps> {
   /**
    * If `true`, the element's focus is visible.
    */
