@@ -348,6 +348,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
           [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
           [cssVarPrefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
+          [cssVarPrefixVar('--palette-background-popup')]: getCssVar(`palette-${color}-700`),
           [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.2)`,
