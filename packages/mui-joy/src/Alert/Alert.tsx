@@ -8,9 +8,9 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { useColorInversion } from '../styles/ColorInversion';
 import { getAlertUtilityClass } from './alertClasses';
-import { AlertProps, AlertTypeMap } from './AlertProps';
+import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
 
-const useUtilityClasses = (ownerState: AlertProps) => {
+const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
 
   const slots = {
@@ -31,7 +31,7 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   '--Alert-radius': theme.vars.radius.sm,
   '--Alert-decorator-childRadius':
     'max((var(--Alert-radius) - var(--variant-borderWidth)) - var(--Alert-padding), min(var(--Alert-padding) / 2, (var(--Alert-radius) - var(--variant-borderWidth)) / 2))',
@@ -76,23 +76,27 @@ const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   flex: 'none',
   marginInlineEnd: 'var(--Alert-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  ...(ownerState.color !== 'context' && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
 
 const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   flex: 'none',
   marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  ...(ownerState.color !== 'context' && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
