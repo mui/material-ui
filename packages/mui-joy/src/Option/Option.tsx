@@ -25,11 +25,14 @@ const OptionRoot = styled(ListItemButtonRoot as unknown as 'button', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => ({
-  [`&.${optionClasses.highlighted}`]: {
-    backgroundColor: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
-  },
-}));
+})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+  return {
+    [`&.${optionClasses.highlighted}`]: {
+      backgroundColor: variantStyle?.backgroundColor,
+    },
+  };
+});
 
 const Option = React.forwardRef(function Option(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

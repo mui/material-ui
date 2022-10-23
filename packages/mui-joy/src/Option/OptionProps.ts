@@ -64,7 +64,9 @@ export type OptionProps<
   },
 > = OverrideProps<OptionTypeMap<P, D>, D>;
 
-export interface OptionOwnerState extends Omit<OptionProps, 'disabled'>, OptionState {}
+export interface OptionOwnerState extends Omit<OptionProps, 'disabled' | 'color'>, OptionState {
+  color: OptionProps['color'] | 'context';
+}
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,

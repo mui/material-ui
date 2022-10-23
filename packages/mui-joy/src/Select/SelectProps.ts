@@ -129,11 +129,12 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}> extends Omit<SelectOwnProps<TValue>, 'color'> {
   /**
    * If `true`, the select button is active.
    */
   active: boolean;
+  color: SelectOwnProps<TValue>['color'] | 'context';
   /**
    * If `true`, the select button is disabled.
    */

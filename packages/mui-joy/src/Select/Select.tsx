@@ -76,103 +76,109 @@ const SelectRoot = styled('div', {
   name: 'JoySelect',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
-  return [
-    {
-      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-      '--Select-radius': theme.vars.radius.sm,
-      '--Select-gap': '0.5rem',
-      '--Select-placeholderOpacity': 0.5,
-      '--Select-focusedThickness': theme.vars.focus.thickness,
-      '--Select-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '--Select-indicator-color': theme.vars.palette.text.tertiary,
-      ...(ownerState.size === 'sm' && {
-        '--Select-minHeight': '2rem',
-        '--Select-paddingInline': '0.5rem',
-        '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
-        '--Icon-fontSize': '1.25rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Select-minHeight': '2.5rem',
-        '--Select-paddingInline': '0.75rem',
-        '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
-        '--Icon-fontSize': '1.5rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Select-minHeight': '3rem',
-        '--Select-paddingInline': '1rem',
-        '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
-        '--Icon-fontSize': '1.75rem',
-      }),
-      // variables for controlling child components
-      '--Select-decorator-childOffset':
-        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
-      '--internal-paddingBlock':
-        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
-      '--Select-decorator-childRadius':
-        'max(var(--Select-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Select-radius) / 2))',
-      '--Button-minHeight': 'var(--Select-decorator-childHeight)',
-      '--IconButton-size': 'var(--Select-decorator-childHeight)',
-      '--Button-radius': 'var(--Select-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Select-decorator-childRadius)',
-      boxSizing: 'border-box',
-      minWidth: 0,
-      minHeight: 'var(--Select-minHeight)',
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      borderRadius: 'var(--Select-radius)',
-      ...(!variantStyle.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
-      paddingInline: `var(--Select-paddingInline)`,
-      fontFamily: theme.vars.fontFamily.body,
-      fontSize: theme.vars.fontSize.md,
-      ...(ownerState.size === 'sm' && {
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      // TODO: discuss the transition approach in a separate PR.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      '&:before': {
+})<{ ownerState: Omit<SelectStaticProps, 'color'> & Pick<SelectOwnerState<any>, 'color'> }>(
+  ({ theme, ownerState }) => {
+    const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+    return [
+      {
+        '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
+        '--Select-radius': theme.vars.radius.sm,
+        '--Select-gap': '0.5rem',
+        '--Select-placeholderOpacity': 0.5,
+        '--Select-focusedThickness': theme.vars.focus.thickness,
+        ...(ownerState.color === 'context'
+          ? {
+              '--Select-focusedHighlight': theme.vars.palette.focusVisible,
+            }
+          : {
+              '--Select-focusedHighlight':
+                theme.vars.palette[
+                  ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+                ]?.[500],
+            }),
+        '--Select-indicator-color': theme.vars.palette.text.tertiary,
+        ...(ownerState.size === 'sm' && {
+          '--Select-minHeight': '2rem',
+          '--Select-paddingInline': '0.5rem',
+          '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
+          '--Icon-fontSize': '1.25rem',
+        }),
+        ...(ownerState.size === 'md' && {
+          '--Select-minHeight': '2.5rem',
+          '--Select-paddingInline': '0.75rem',
+          '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
+          '--Icon-fontSize': '1.5rem',
+        }),
+        ...(ownerState.size === 'lg' && {
+          '--Select-minHeight': '3rem',
+          '--Select-paddingInline': '1rem',
+          '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
+          '--Icon-fontSize': '1.75rem',
+        }),
+        // variables for controlling child components
+        '--Select-decorator-childOffset':
+          'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
+        '--internal-paddingBlock':
+          'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
+        '--Select-decorator-childRadius':
+          'max(var(--Select-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Select-radius) / 2))',
+        '--Button-minHeight': 'var(--Select-decorator-childHeight)',
+        '--IconButton-size': 'var(--Select-decorator-childHeight)',
+        '--Button-radius': 'var(--Select-decorator-childRadius)',
+        '--IconButton-radius': 'var(--Select-decorator-childRadius)',
         boxSizing: 'border-box',
-        content: '""',
-        display: 'block',
-        position: 'absolute',
-        pointerEvents: 'none',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 1,
-        borderRadius: 'inherit',
-        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
-      },
-      [`&.${selectClasses.focusVisible}`]: {
-        '--Select-indicator-color': 'var(--Select-focusedHighlight)',
-      },
-      [`&.${selectClasses.disabled}`]: {
-        '--Select-indicator-color': 'inherit',
-      },
-      ...(ownerState.variant !== 'solid' && {
+        minWidth: 0,
+        minHeight: 'var(--Select-minHeight)',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 'var(--Select-radius)',
+        ...(!variantStyle.backgroundColor && {
+          backgroundColor: theme.vars.palette.background.surface,
+        }),
+        paddingInline: `var(--Select-paddingInline)`,
+        fontFamily: theme.vars.fontFamily.body,
+        fontSize: theme.vars.fontSize.md,
+        ...(ownerState.size === 'sm' && {
+          fontSize: theme.vars.fontSize.sm,
+        }),
+        // TODO: discuss the transition approach in a separate PR.
+        transition:
+          'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        '&:before': {
+          boxSizing: 'border-box',
+          content: '""',
+          display: 'block',
+          position: 'absolute',
+          pointerEvents: 'none',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1,
+          borderRadius: 'inherit',
+          margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+        },
         [`&.${selectClasses.focusVisible}`]: {
+          '--Select-indicator-color': variantStyle?.color,
           '&:before': {
             boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
           },
         },
-      }),
-    },
-    {
-      // apply global variant styles
-      ...variantStyle,
-      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-      [`&.${selectClasses.disabled}`]:
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-  ];
-});
+        [`&.${selectClasses.disabled}`]: {
+          '--Select-indicator-color': 'inherit',
+        },
+      },
+      {
+        // apply global variant styles
+        ...variantStyle,
+        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        [`&.${selectClasses.disabled}`]:
+          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      },
+    ];
+  },
+);
 
 const SelectButton = styled('button', {
   name: 'JoySelect',
@@ -202,20 +208,23 @@ const SelectListbox = styled(ListRoot, {
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const variantStyle =
+    ownerState.color === 'context'
+      ? undefined
+      : theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface, // for sticky List
+      theme.vars.palette.background.popup, // for sticky List
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     outline: 'none',
     boxShadow: theme.vars.shadow.md,
     zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+    ...(!variantStyle?.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.popup,
     }),
   };
 });
@@ -242,15 +251,18 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
-  display: 'inherit',
-  alignItems: 'center',
-  marginInlineStart: 'var(--Select-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-}));
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
+    display: 'inherit',
+    alignItems: 'center',
+    marginInlineStart: 'var(--Select-gap)',
+    color: variantStyle?.color,
+  };
+});
 
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
