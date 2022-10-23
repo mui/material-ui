@@ -8,10 +8,14 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
-import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
+import {
+  CardOverflowProps,
+  CardOverflowOwnerState,
+  CardOverflowTypeMap,
+} from './CardOverflowProps';
 import { CardRowContext } from '../Card/CardContext';
 
-const useUtilityClasses = (ownerState: CardOverflowProps) => {
+const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
   const slots = {
     root: [
@@ -29,7 +33,7 @@ const CardOverflowRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: CardOverflowProps & {
+  ownerState: CardOverflowOwnerState & {
     row: boolean;
     'data-first-child'?: string;
     'data-last-child'?: string;
