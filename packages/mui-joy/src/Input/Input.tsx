@@ -6,11 +6,11 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
-import { InputTypeMap, InputProps } from './InputProps';
+import { InputTypeMap, InputOwnerState, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
 
-const useUtilityClasses = (ownerState: InputProps) => {
+const useUtilityClasses = (ownerState: InputOwnerState) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
 
   const slots = {
@@ -34,7 +34,7 @@ const InputRoot = styled('div', {
   name: 'JoyInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps }>(({ theme, ownerState }) => {
+})<{ ownerState: InputOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
@@ -42,8 +42,16 @@ const InputRoot = styled('div', {
       '--Input-gap': '0.5rem',
       '--Input-placeholderOpacity': 0.5,
       '--Input-focusedThickness': theme.vars.focus.thickness,
-      '--Input-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      ...(ownerState.color === 'context'
+        ? {
+            '--Input-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Input-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
       ...(ownerState.size === 'sm' && {
         '--Input-minHeight': '2rem',
         '--Input-paddingInline': '0.5rem',
@@ -133,7 +141,7 @@ const InputInput = styled('input', {
   name: 'JoyInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputOwnerState }>({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -150,19 +158,19 @@ const InputInput = styled('input', {
   textOverflow: 'ellipsis',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor: 'currentColor',
   },
   '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
   '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
   '&:-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // IE11
   '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
-}));
+});
 
 const InputStartDecorator = styled('span', {
   name: 'JoyInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: InputProps & { focused: boolean } }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputOwnerState }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
@@ -172,10 +180,10 @@ const InputStartDecorator = styled('span', {
   color: theme.vars.palette.text.tertiary,
   cursor: 'initial',
   ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
   }),
   ...(ownerState.disabled && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
   }),
 }));
 
@@ -183,17 +191,17 @@ const InputEndDecorator = styled('span', {
   name: 'JoyInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputOwnerState }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
   cursor: 'initial',
   ...(ownerState.disabled && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
   }),
 }));
 
