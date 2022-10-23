@@ -83,8 +83,7 @@ const CardRoot = styled('div', {
     flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ownerState.enableVariantInversion &&
-    theme.variantInversion[ownerState.variant!]?.[ownerState.color!],
+  ownerState.invertedColors && theme.variantInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
 const Card = React.forwardRef(function Card(inProps, ref) {
@@ -97,7 +96,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     className,
     color: colorProp = 'neutral',
     component = 'div',
-    enableVariantInversion = false,
+    invertedColors = false,
     size = 'md',
     variant = 'plain',
     children,
@@ -151,7 +150,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     </CardRowContext.Provider>
   );
 
-  if (enableVariantInversion) {
+  if (invertedColors) {
     return <VariantInversionProvider variant={variant}>{result}</VariantInversionProvider>;
   }
   return result;
@@ -184,6 +183,11 @@ Card.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * If `true`, flex direction is set to 'row'.
    * @default false

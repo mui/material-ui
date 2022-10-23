@@ -295,7 +295,7 @@ export default function VariantInversion() {
               Joy UI provides an elegant way to make the components adaptable to its parent. All you
               need to do is setting{' '}
               <Typography variant="solid" color="primary">
-                enableVariantInversion
+                invertedColors
               </Typography>{' '}
               flag on the surface components.
             </Typography>
@@ -315,10 +315,10 @@ export default function VariantInversion() {
             {/* <Sheet>
               <HeaderContent />
             </Sheet> */}
-            <Sheet enableVariantInversion={enabled} variant="solid" color="primary">
+            <Sheet invertedColors={enabled} variant="solid" color="primary">
               <HeaderContent />
             </Sheet>
-            {/* <Sheet enableVariantInversion={enabled} variant="soft" color="primary">
+            {/* <Sheet invertedColors={enabled} variant="soft" color="primary">
               <HeaderContent />
             </Sheet> */}
           </Box>
@@ -330,7 +330,7 @@ export default function VariantInversion() {
               <FooterContent />
             </Sheet> */}
             {/* <Sheet
-              enableVariantInversion={enabled}
+              invertedColors={enabled}
               variant="solid"
               color="primary"
               sx={{ p: 2, borderRadius: 'sm' }}
@@ -338,7 +338,7 @@ export default function VariantInversion() {
               <FooterContent />
             </Sheet> */}
             <Sheet
-              enableVariantInversion={enabled}
+              invertedColors={enabled}
               variant="solid"
               color="neutral"
               sx={{ p: 2, borderRadius: 'sm', bgcolor: 'neutral.800' }}
@@ -360,10 +360,10 @@ export default function VariantInversion() {
             {/* <Sheet>
               <NavigationContent />
             </Sheet> */}
-            <Sheet enableVariantInversion={enabled} variant="solid" color="primary">
+            <Sheet invertedColors={enabled} variant="solid" color="primary">
               <NavigationContent />
             </Sheet>
-            <Sheet enableVariantInversion={enabled} variant="solid" color="neutral">
+            <Sheet invertedColors={enabled} variant="solid" color="neutral">
               <NavigationContent />
             </Sheet>
           </Box>
@@ -383,25 +383,25 @@ export default function VariantInversion() {
             {/* <Card>
               <WidgetContent />
             </Card> */}
-            <Card enableVariantInversion={enabled} variant="solid" color="primary">
+            <Card invertedColors={enabled} variant="solid" color="primary">
               <WidgetContent />
             </Card>
-            <Card enableVariantInversion={enabled} variant="solid" color="info">
+            <Card invertedColors={enabled} variant="solid" color="info">
               <WidgetContent />
             </Card>
-            <Card enableVariantInversion={enabled} variant="solid" color="neutral">
+            <Card invertedColors={enabled} variant="solid" color="neutral">
               <WidgetContent />
             </Card>
-            <Card enableVariantInversion={enabled} variant="soft" color="neutral">
+            <Card invertedColors={enabled} variant="soft" color="neutral">
               <WidgetContent />
             </Card>
-            <Card enableVariantInversion={enabled} variant="soft" color="success">
+            <Card invertedColors={enabled} variant="soft" color="success">
               <WidgetContent />
             </Card>
-            <Card enableVariantInversion={enabled} variant="soft" color="danger">
+            <Card invertedColors={enabled} variant="soft" color="danger">
               <WidgetContent />
             </Card>
-            <Card enableVariantInversion={enabled} variant="soft" color="primary">
+            <Card invertedColors={enabled} variant="soft" color="primary">
               <WidgetContent />
             </Card>
           </Box>
