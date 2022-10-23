@@ -11,11 +11,11 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
-import { CardProps, CardTypeMap } from './CardProps';
+import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import { CardRowContext } from './CardContext';
 
-const useUtilityClasses = (ownerState: CardProps) => {
+const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, row } = ownerState;
 
   const slots = {
@@ -35,7 +35,7 @@ const CardRoot = styled('div', {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
   {
     // a context variable for any child component
     '--Card-childRadius':
@@ -83,7 +83,9 @@ const CardRoot = styled('div', {
     flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ownerState.invertedColors && theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+  ownerState.color !== 'context' &&
+    ownerState.invertedColors &&
+    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
 const Card = React.forwardRef(function Card(inProps, ref) {
