@@ -11,7 +11,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-import { SliderProps, SliderTypeMap, SliderOwnerState } from './SliderProps';
+import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
 const valueToPercent = (value: number, min: number, max: number) =>
   ((value - min) * 100) / (max - min);
@@ -50,7 +50,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 };
 
 const sliderColorVariables =
-  ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SliderOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' | 'Active' } = {}) => {
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
