@@ -5,19 +5,35 @@ import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
 import { unstable_useId as useId } from '@mui/utils';
-import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
-import CodeEditor from 'docs/src/modules/components/CodeEditor';
+import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
+import ReactRunner from 'docs/src/modules/components/ReactRunner';
+import DemoEditor from 'docs/src/modules/components/DemoEditor';
+import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
-const DeferredDemo = React.lazy(() => import('./DeferredDemo'));
+/**
+ * Removes leading spaces (indentation) present in the `.tsx` previews
+ * to be able to replace the existing code with the incoming dynamic code
+ * @param {string} input
+ */
+function trimLeadingSpaces(input = '') {
+  return input.replace(/^\s+/gm, '');
+}
+
+// Used to forward props injected with cloneElement
+function ForwardProps(props) {
+  const { children, ...forwardProps } = props;
+  return children(forwardProps);
+}
+
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
 // Importing the styles results in no bundle size reduction
@@ -43,45 +59,93 @@ function getDemoName(location) {
 function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  let product;
-  let name = 'Material UI';
-  if (asPathWithoutLang.startsWith('/joy-ui/')) {
-    product = 'joy-ui';
-    name = 'Joy UI';
-  }
-  if (asPathWithoutLang.startsWith('/base/')) {
-    product = 'base';
-    name = 'MUI Base';
-  }
-  if (asPathWithoutLang.startsWith('/x/')) {
-    name = 'MUI X';
-  }
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
-  const title = `${getDemoName(githubLocation)} demo — ${name}`;
-  if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+  return React.useMemo(() => {
+    let product;
+    let name = 'Material UI';
+    if (canonicalAs.startsWith('/joy-ui/')) {
+      product = 'joy-ui';
+      name = 'Joy UI';
+    } else if (canonicalAs.startsWith('/base/')) {
+      product = 'base';
+      name = 'MUI Base';
+    } else if (canonicalAs.startsWith('/x/')) {
+      name = 'MUI X';
+    }
+
     return {
-      codeVariant: CODE_VARIANTS.TS,
-      githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-      language: userLanguage,
-      raw: demo.rawTS,
-      sourceLanguage: 'tsx',
-      Component: demo.tsx,
-      title,
+      scope: demo.scope,
+      jsxPreview: demo.jsxPreview,
+      ...(codeVariant === CODE_VARIANTS.TS && demo.rawTS
+        ? {
+            codeVariant: CODE_VARIANTS.TS,
+            githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+            raw: demo.rawTS,
+            Component: demo.tsx,
+            sourceLanguage: 'tsx',
+          }
+        : {
+            codeVariant: CODE_VARIANTS.JS,
+            githubLocation,
+            raw: demo.raw,
+            Component: demo.js,
+            sourceLanguage: 'jsx',
+          }),
+      title: `${getDemoName(githubLocation)} demo — ${name}`,
       product,
+      language: userLanguage,
     };
-  }
+  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
+}
 
-  return {
-    codeVariant: CODE_VARIANTS.JS,
-    githubLocation,
-    language: userLanguage,
-    raw: demo.raw,
-    sourceLanguage: 'jsx',
-    Component: demo.js,
-    title,
-    product,
-  };
+function useDemoElement({ demoOptions, demoData, usePreview, code, debouncedSetError }) {
+  // Memoize to avoid rendering the demo more than it needs to be.
+  // For example, avoid a render when the demo is hovered.
+  return React.useMemo(() => {
+    // No need for a live environment if the toolbar is hidden.
+    if (demoOptions.hideToolbar) {
+      return <demoData.Component />;
+    }
+
+    const codeToRun = usePreview
+      ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demoData.jsxPreview), code)
+      : code;
+
+    // In production mode, it's better to hydrate the demo as soon as possible (`fallback`).
+    // Later on, we can accept live edits.
+    if (process.env.NODE_ENV === 'production') {
+      return (
+        <ForwardProps>
+          {(forwardProps) => (
+            <NoSsr fallback={<demoData.Component />}>
+              <ReactRunner
+                code={codeToRun}
+                scope={demoData.scope}
+                onError={debouncedSetError}
+                forwardProps={forwardProps}
+              />
+            </NoSsr>
+          )}
+        </ForwardProps>
+      );
+    }
+
+    // In development mode, it's better to have a single render of the demos.
+    // It's hard to follow the console.log otherwise.
+    return (
+      <ForwardProps>
+        {(forwardProps) => (
+          <ReactRunner
+            code={codeToRun}
+            scope={demoData.scope}
+            onError={debouncedSetError}
+            forwardProps={forwardProps}
+          />
+        )}
+      </ForwardProps>
+    );
+  }, [demoOptions.hideToolbar, demoData, usePreview, code, debouncedSetError]);
 }
 
 const Root = styled('div')(({ theme }) => ({
@@ -164,7 +228,7 @@ const DemoRootMaterial = styled('div', {
           )} 0px, transparent 50%),
         radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
         radial-gradient(at 0% 95%, ${alpha(theme.palette.primary[100], 0.3)}, transparent 40%),
-        radial-gradient(at 0% 20%, ${theme.palette.primary[50]} 0px, transparent 50%), 
+        radial-gradient(at 0% 20%, ${theme.palette.primary[50]} 0px, transparent 50%),
         radial-gradient(at 93% 85%, ${alpha(theme.palette.primary[100], 0.2)} 0px, transparent 50%),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
   }),
@@ -229,8 +293,6 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 }));
 
 export default function Demo(props) {
-  const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const { demo, demoOptions, disableAd, githubLocation, mode } = props;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -284,7 +346,9 @@ export default function Demo(props) {
   }, [demoName]);
 
   const showPreview =
-    !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
+    !demoOptions.hideToolbar &&
+    demoOptions.defaultCodeOpen !== false &&
+    Boolean(demoData.jsxPreview);
 
   const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0);
 
@@ -298,22 +362,35 @@ export default function Demo(props) {
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
 
   const usePreview = showPreview && !codeOpen;
-  const initialCode = usePreview ? demo.jsxPreview : demoData.raw;
+  const initialCode = usePreview ? demoData.jsxPreview : demoData.raw;
   const [code, setCode] = React.useState(initialCode);
-  const resetDemo = React.useCallback(() => {
+  const resetDemo = () => {
     setCode(initialCode);
     setDemoKey();
-  }, [initialCode]);
+  };
+
   React.useEffect(() => {
-    resetDemo();
-  }, [resetDemo]);
+    setCode(initialCode);
+  }, [initialCode]);
 
   const [debouncedError, setError] = React.useState(null);
   const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
+  React.useEffect(() => {
+    return () => {
+      debouncedSetError.clear();
+    };
+  }, [debouncedSetError]);
 
-  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
-  const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
+  const DemoRoot = demoData.product === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
+  const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
+
+  const demoElement = useDemoElement({
+    demoOptions,
+    demoData,
+    usePreview,
+    code,
+    debouncedSetError,
+  });
 
   return (
     <Root>
@@ -325,37 +402,26 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <Wrapper {...(isJoy && { mode })}>
+        <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
           <InitialFocus
             aria-label={t('initialFocusLabel')}
             action={initialFocusRef}
             tabIndex={-1}
           />
         </Wrapper>
-        <DemoSandboxed
+        <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
-          <NoSsr fallback={<demoData.Component />}>
-            <React.Suspense fallback={<demoData.Component />}>
-              <DeferredDemo
-                code={code}
-                jsxPreview={demo.jsxPreview}
-                raw={demoData.raw}
-                usePreview={usePreview}
-                scope={demo.scope}
-                onError={debouncedSetError}
-              />
-            </React.Suspense>
-          </NoSsr>
-        </DemoSandboxed>
+          {demoElement}
+        </DemoSandbox>
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(isJoy ? { mode } : {})}>
+      <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>
@@ -382,7 +448,7 @@ export default function Demo(props) {
           </NoSsr>
         )}
         <Collapse in={openDemoSource} unmountOnExit>
-          <CodeEditor
+          <DemoEditor
             key={demoKey}
             id={demoSourceId}
             value={code}
@@ -394,34 +460,8 @@ export default function Demo(props) {
               'data-ga-event-action': 'copy-click',
             }}
           >
-            {debouncedError && (
-              <Alert
-                aria-live="polite"
-                variant="filled"
-                severity="error"
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  left: '50%',
-                  transform: 'translateX(-50%) translateY(-50%)',
-                  py: '2px',
-                  px: '6px',
-                  '& .MuiAlert-icon': {
-                    fontSize: 14,
-                    mr: 0.5,
-                    mt: 0.25,
-                    py: 0,
-                  },
-                  '& .MuiAlert-message': {
-                    fontSize: 12,
-                    py: 0,
-                  },
-                }}
-              >
-                {debouncedError}
-              </Alert>
-            )}
-          </CodeEditor>
+            {debouncedError ? <DemoEditorError>{debouncedError}</DemoEditorError> : null}
+          </DemoEditor>
         </Collapse>
         {adVisibility ? <AdCarbonInline /> : null}
       </Wrapper>

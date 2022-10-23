@@ -1,20 +1,17 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 
-const CodeCopyButton = React.forwardRef(function CodeCopyButton(props, ref) {
+interface CodeCopyButtonProps {
+  code: string;
+}
+
+export default function CodeCopyButton(props: CodeCopyButtonProps) {
   const { code, ...other } = props;
   const [copied, setCopied] = React.useState(false);
-  const [key, setKey] = React.useState('Ctrl + ');
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-      if (macOS) {
-        setKey('⌘');
-      }
-    }
-  }, []);
+  // This component is designed to be wrapped in NoSsr
+  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const key = macOS ? '⌘' : 'Ctrl + ';
+
   React.useEffect(() => {
     if (copied) {
       const timeout = setTimeout(() => {
@@ -29,7 +26,6 @@ const CodeCopyButton = React.forwardRef(function CodeCopyButton(props, ref) {
 
   return (
     <button
-      ref={ref}
       {...other}
       aria-label="Copy the code"
       type="button"
@@ -40,16 +36,11 @@ const CodeCopyButton = React.forwardRef(function CodeCopyButton(props, ref) {
         await copy(code);
       }}
     >
+      {/* material-ui/no-hardcoded-labels */}
       {copied ? 'Copied' : 'Copy'}&nbsp;
       <span className="MuiCode-copyKeypress">
-        <span>(Or</span> {key}C<span>)</span>
+        <span>(or</span> {key}C<span>)</span>
       </span>
     </button>
   );
-});
-
-CodeCopyButton.propTypes = {
-  code: PropTypes.string.isRequired,
-};
-
-export default CodeCopyButton;
+}

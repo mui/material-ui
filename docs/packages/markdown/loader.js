@@ -1,7 +1,7 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
-const { extractImports } = require('./extractImports');
+const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 // TODO: pass as argument
@@ -155,10 +155,14 @@ module.exports = async function demoLoader() {
         moduleID.replace(/\//g, path.sep),
       );
       this.addDependency(moduleFilepath);
-      const raw = await fs.readFile(moduleFilepath, { encoding: 'utf8' });
-      demos[demoName] = { module: moduleID, raw };
+      demos[demoName] = {
+        module: moduleID,
+        raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
+      };
       demoModuleIDs.add(moduleID);
-      extractImports(raw).forEach((importModuleID) => importedModuleIDs.add(importModuleID));
+      extractImports(demos[demoName].raw).forEach((importModuleID) =>
+        importedModuleIDs.add(importModuleID),
+      );
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
@@ -178,7 +182,8 @@ module.exports = async function demoLoader() {
           moduleTS.replace(/\//g, path.sep),
         );
         this.addDependency(moduleTSFilepath);
-        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf-8' });
+        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf8' });
+
         // In development devs can choose whether they want to work on the TS or JS version.
         // But this leads to building both demo version i.e. more build time.
         demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
@@ -232,6 +237,16 @@ module.exports = async function demoLoader() {
       .join('\n')}
 export const docs = ${JSON.stringify(docs, null, 2)};
 export const demos = ${JSON.stringify(demos, null, 2)};
+
+demos.scope = {
+  process: {},
+  import: {
+${Array.from(importedModuleIDs)
+  .map((moduleID) => `    "${moduleID}": ${moduleIDToJSIdentifier(moduleID.replace('@', '$'))},`)
+  .join('\n')}
+  },
+};
+
 export const demoComponents = {
 ${Array.from(demoModuleIDs)
   .map((moduleID) => {
@@ -246,17 +261,6 @@ ${Array.from(componentModuleIDs)
   })
   .join('\n')}
 };
-
-demos.scope = {
-  process,
-};
-demos.scope.import = {${Array.from(importedModuleIDs)
-  .map((moduleID) => {
-    return `${JSON.stringify(moduleID)}: ${moduleIDToJSIdentifier(
-      moduleID.replace('@', '$'),
-    )},`;
-  })
-  .join('\n')}};
 `;
 
   return transformed;
