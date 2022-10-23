@@ -8,15 +8,10 @@ import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import {
-  MenuItemProps,
-  MenuItemOwnerState,
-  ExtendMenuItem,
-  MenuItemTypeMap,
-} from './MenuItemProps';
+import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible?: boolean }) => {
+const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
   const { focusVisible, disabled, selected, color, variant } = ownerState;
   const slots = {
     root: [
