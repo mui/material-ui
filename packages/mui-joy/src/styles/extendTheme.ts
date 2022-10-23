@@ -232,6 +232,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-common-white'),
         surface: getCssVar('palette-common-white'),
+        popup: getCssVar('palette-common-white'),
         level1: getCssVar('palette-neutral-50'),
         level2: getCssVar('palette-neutral-100'),
         level3: getCssVar('palette-neutral-200'),
@@ -323,6 +324,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-neutral-900'),
         surface: getCssVar('palette-common-black'),
+        popup: getCssVar('palette-neutral-800'),
         level1: getCssVar('palette-neutral-800'),
         level2: getCssVar('palette-neutral-700'),
         level3: getCssVar('palette-neutral-600'),
