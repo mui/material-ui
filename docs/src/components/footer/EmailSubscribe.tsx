@@ -121,17 +121,19 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               bgcolor: '#fff',
               boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
               borderColor: 'grey.300',
-              px: 1,
-              py: 0.5,
               typography: 'body2',
               '&:hover': {
                 borderColor: 'grey.400',
                 boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
               },
               [`&.${inputBaseClasses.focused}`]: {
-                outline: '3px solid',
+                boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primary[200]}`,
                 borderColor: 'primary.500',
-                outlineColor: (theme.vars || theme).palette.primary[200],
+              },
+              [`& .${inputBaseClasses.input}`]: {
+                borderRadius: `calc(${theme.spacing(1)} - 1px)`,
+                py: '11px',
+                px: 1,
               },
             }),
             (theme) =>
@@ -144,8 +146,8 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                   boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
                 },
                 [`&.${inputBaseClasses.focused}`]: {
+                  boxShadow: `0 0 0 3px ${(theme.vars || theme).palette.primaryDark[500]}`,
                   borderColor: 'primaryDark.300',
-                  outlineColor: (theme.vars || theme).palette.primaryDark[500],
                 },
               }),
           ]}
