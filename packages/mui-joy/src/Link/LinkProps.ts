@@ -7,6 +7,7 @@ import {
   VariantProp,
   SxProps,
   SystemProps,
+  ApplyColorInversion,
 } from '../styles/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
@@ -92,7 +93,7 @@ export type LinkProps<
   },
 > = OverrideProps<LinkTypeMap<P, D>, D>;
 
-export interface LinkOwnerState extends LinkProps {
+export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
   /**
    * If `true`, the element's focus is visible.
    */

@@ -94,9 +94,11 @@ const LinkRoot = styled('a', {
       margin: 0, // Remove the margin in Safari
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
-      textDecorationColor: `rgba(${
-        theme.vars.palette[ownerState.color!]?.mainChannel
-      } / var(--Link-underlineOpacity, 0.72))`,
+      ...(ownerState.color !== 'context' && {
+        textDecorationColor: `rgba(${
+          theme.vars.palette[ownerState.color!]?.mainChannel
+        } / var(--Link-underlineOpacity, 0.72))`,
+      }),
       ...(ownerState.variant
         ? {
             paddingInline: '0.25em', // better than left, right because it also works with writing mode.
@@ -105,11 +107,15 @@ const LinkRoot = styled('a', {
             }),
           }
         : {
-            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            ...(ownerState.color !== 'context' && {
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            }),
             cursor: 'pointer',
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              ...(ownerState.color !== 'context' && {
+                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              }),
             },
           }),
       userSelect: 'none',
