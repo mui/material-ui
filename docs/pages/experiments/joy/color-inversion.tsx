@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
 import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
@@ -18,6 +19,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 import CircularProgress from '@mui/joy/CircularProgress';
 import Select from '@mui/joy/Select';
+import Slider from '@mui/joy/Slider';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
@@ -96,7 +98,7 @@ const FooterContent = () => (
         <Button variant="plain">Mockups</Button>
       </Box>
       <Box sx={{ ml: 'auto', display: 'flex', gap: 1 }}>
-        <Input variant="soft" placeholder="Your Email" />
+        <Input variant="soft" placeholder="Your Email" type="email" name="email" />
         <Button variant="outlined">Subscribe</Button>
       </Box>
     </Box>
@@ -140,7 +142,7 @@ const NavigationContent = () => (
     </Box>
     <Divider sx={{ my: 2.5 }} />
     <Select
-      variant="soft"
+      variant="outlined"
       placeholder={
         <Box>
           <Typography level="inherit">Saleshouse</Typography>
@@ -199,7 +201,7 @@ const NavigationContent = () => (
       <Typography sx={{ mb: 0.5 }}>Used space</Typography>
       <Typography level="body2">Admin updated 09:12 am</Typography>
       <Typography level="body2">November 08, 2020</Typography>
-      <Box sx={{ display: 'flex', gap: 2, mt: 2, alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', gap: 2, my: 2, alignItems: 'center' }}>
         <CircularProgress determinate value={71} size="lg" thickness={4}>
           71%
         </CircularProgress>
@@ -214,6 +216,8 @@ const NavigationContent = () => (
         </Box>
       </Box>
     </Sheet>
+    <Divider sx={{ my: 2 }} />
+    <Slider value={30} valueLabelDisplay="on" />
     <Divider sx={{ my: 2 }} />
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
       <Avatar src="/static/images/avatar/2.jpg" size="lg" />
@@ -260,6 +264,7 @@ export default function ColorInversion() {
   const [enabled, setEnabled] = React.useState(true);
   return (
     <CssVarsProvider theme={customTheme}>
+      <CssBaseline />
       <Box
         sx={{ my: '10vh', display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}
       >
