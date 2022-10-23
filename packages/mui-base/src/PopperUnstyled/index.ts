@@ -9,4 +9,11 @@ export type {
   PopperUnstyledProps,
   PopperUnstyledRootSlotProps,
 } from './PopperUnstyled.types';
-
+export {
+  default as popperUnstyledClasses,
+  getPopperUnstyledUtilityClass,
+} from './popperUnstyledClasses';
+export type {
+  PopperUnstyledClassKey,
+  PopperUnstyledClasses,
+} from './popperUnstyledClasses';
