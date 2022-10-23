@@ -16,7 +16,7 @@ export const useColorInversion = (childVariant: VariantProp | undefined) => {
     getColor: (
       instanceColorProp: ColorPaletteProp | 'inherit' | undefined,
       defaultColorProp: ColorPaletteProp | 'inherit' | undefined,
-    ): ColorPaletteProp | undefined => {
+    ): ColorPaletteProp | 'context' | undefined => {
       if (overriableVariants && childVariant) {
         if (overriableVariants.includes(childVariant)) {
           // @ts-ignore internal logic

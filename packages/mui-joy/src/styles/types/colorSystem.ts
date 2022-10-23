@@ -151,7 +151,7 @@ export interface ColorSystem {
   shadowChannel: string;
 }
 
-export type ApplyColorInversion<T extends { color?: ColorPaletteProp }> = Simplify<
+export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<
   Omit<T, 'color'> & {
     color: T['color'] | 'context';
   }
