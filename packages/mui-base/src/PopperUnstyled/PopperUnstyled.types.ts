@@ -26,7 +26,7 @@ export interface PopperUnstyledOwnProps {
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl?: null | VirtualElement | (() => VirtualElement);
+  anchorEl?: null | VirtualElement | HTMLElement | (() => HTMLElement | VirtualElement);
   /**
    * Popper render function or node.
    */

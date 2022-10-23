@@ -38,10 +38,18 @@ function flipPlacement(
   }
 }
 
-function resolveAnchorEl(
-  anchorEl: VirtualElement | (() => VirtualElement)
-): any {
+function resolveAnchorEl(anchorEl: VirtualElement | (() => VirtualElement)): VirtualElement;
+function resolveAnchorEl(anchorEl: HTMLElement | (() => HTMLElement)): HTMLElement;
+function resolveAnchorEl(anchorEl: VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement)): HTMLElement | VirtualElement {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+}
+
+function isHTMLElement(element: HTMLElement | VirtualElement): element is HTMLElement {
+  return (element as HTMLElement).nodeType !== undefined;
+}
+
+function isVirtualElement(element: HTMLElement | VirtualElement): element is VirtualElement {
+  return !isHTMLElement(element)
 }
 
 const useUtilityClasses = () => {
@@ -112,7 +120,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     const resolvedAnchorEl = resolveAnchorEl(anchorEl);
 
     if (process.env.NODE_ENV !== 'production') {
-      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+      if (resolvedAnchorEl && isHTMLElement(resolvedAnchorEl) && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -255,8 +263,16 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   // If the container prop is provided, use that
   // If the anchorEl prop is provided, use its parent body element as the container
   // If neither are provided let the Modal take care of choosing the container
-  const container =
-    containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
+  let container;
+  if (containerProp) {
+    container = containerProp
+  }
+  if (anchorEl) {
+    const resolvedAnchorEl = resolveAnchorEl(anchorEl)
+    container = isHTMLElement(resolvedAnchorEl)
+      ? ownerDocument(resolvedAnchorEl).body
+      : ownerDocument(null).body
+  }
   const display = !open && keepMounted && (!transition || exited) ? 'none' : undefined
   const transitionProps: PopperUnstyledTransitionProps | undefined = transition
     ? {
@@ -314,7 +330,11 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
       if (props.open) {
         const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
 
-        if (resolvedAnchorEl  && resolvedAnchorEl.nodeType === 1) {
+        if (
+          resolvedAnchorEl
+          && isHTMLElement(resolvedAnchorEl)
+          && resolvedAnchorEl.nodeType === 1
+        ) {
           const box = resolvedAnchorEl.getBoundingClientRect();
 
           if (
@@ -335,8 +355,10 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
         } else if (
           !resolvedAnchorEl ||
           typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||
-          (resolvedAnchorEl.contextElement != null &&
-            resolvedAnchorEl.contextElement.nodeType !== 1)
+
+          (isVirtualElement(resolvedAnchorEl) &&
+           resolvedAnchorEl.contextElement != null &&
+           resolvedAnchorEl.contextElement.nodeType !== 1)
         ) {
           return new Error(
             [
