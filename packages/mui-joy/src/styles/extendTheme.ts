@@ -545,9 +545,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                     fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
                   }),
                 ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: themeProp.vars.palette[ownerState.color]?.plainColor,
+                  ownerState.color !== 'inherit' &&
+                  ownerState.color !== 'context' &&
+                  themeProp.vars.palette[ownerState.color!] && {
+                    color: themeProp.vars.palette[ownerState.color].plainColor,
                   }),
+                ...(ownerState.color === 'context' && {
+                  color: theme.variants.plain?.[ownerState.color!]?.color,
+                }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
                     '--Icon-fontSize': themeProp.vars.fontSize[instanceFontSize],
