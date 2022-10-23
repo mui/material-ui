@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
@@ -246,7 +246,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     value,
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
 
   const formControl = React.useContext(FormControlContext);
 

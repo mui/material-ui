@@ -7,7 +7,7 @@ import { useTabsList } from '@mui/base/TabsListUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
@@ -59,7 +59,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     size: sizeProp,
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });

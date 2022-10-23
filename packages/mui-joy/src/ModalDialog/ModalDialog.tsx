@@ -8,7 +8,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
@@ -98,7 +98,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     layout = 'center',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const ownerState = {

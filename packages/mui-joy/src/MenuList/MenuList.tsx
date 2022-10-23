@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
@@ -64,7 +64,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     color: colorProp = 'neutral',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const {

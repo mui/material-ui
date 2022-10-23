@@ -9,7 +9,7 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
@@ -74,7 +74,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     size = 'md',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   // cache the modifiers to prevent Popper from being recreated when React rerenders menu.

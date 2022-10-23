@@ -6,7 +6,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -65,7 +65,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const optionProps = selectContext.getOptionProps(selectOption);
   const listboxRef = selectContext.listboxRef;
 
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, optionState.selected ? 'primary' : colorProp);
 
   const ownerState = {

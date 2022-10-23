@@ -8,7 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
@@ -76,7 +76,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     color: colorProp = 'neutral',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();

@@ -5,7 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
@@ -68,7 +68,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     color: colorProp = 'neutral',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const id = useId(idOverride);
   const setSubheaderId = React.useContext(ListSubheaderDispatch);

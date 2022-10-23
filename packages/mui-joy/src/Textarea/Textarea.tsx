@@ -6,7 +6,7 @@ import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
@@ -232,7 +232,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {

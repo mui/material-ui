@@ -229,7 +229,11 @@ const WidgetContent = () => (
   <React.Fragment>
     <Typography
       startDecorator={
-        <Sheet variant="soft" sx={{ borderRadius: 'sm', lineHeight: 0, px: 1, py: 0.5 }}>
+        <Sheet
+          component="span"
+          variant="soft"
+          sx={{ borderRadius: 'sm', lineHeight: 0, px: 1, py: 0.5 }}
+        >
           <FilterDrama />
         </Sheet>
       }
@@ -252,7 +256,7 @@ const WidgetContent = () => (
   </React.Fragment>
 );
 
-export default function VariantInversion() {
+export default function ColorInversion() {
   const [enabled, setEnabled] = React.useState(true);
   return (
     <CssVarsProvider theme={customTheme}>

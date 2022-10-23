@@ -11,7 +11,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
@@ -162,7 +162,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     name: 'JoyLink',
   });
 
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const nested = React.useContext(TypographyContext);
 

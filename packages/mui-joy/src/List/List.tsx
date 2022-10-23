@@ -7,7 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -163,7 +163,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     role: roleProp,
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   let role;

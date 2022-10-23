@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertTypeMap } from './AlertProps';
 
@@ -113,7 +113,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     endDecorator,
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const ownerState = {

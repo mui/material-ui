@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses, useButton } from '@mui/base'
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import Cancel from '../internal/svg-icons/Cancel';
 import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
@@ -80,7 +80,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   } = props;
   const chipContext = React.useContext(ChipContext);
   const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'solid';
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp || chipContext.color || 'primary');
   const disabled = disabledProp ?? chipContext.disabled;
 

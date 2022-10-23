@@ -7,7 +7,7 @@ import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -69,7 +69,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     size = 'md',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const { tabsContextValue } = useTabs({ ...props, orientation });

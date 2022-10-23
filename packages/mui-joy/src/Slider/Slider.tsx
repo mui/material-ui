@@ -9,7 +9,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlider } from '@mui/base/SliderUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderProps, SliderTypeMap, SliderOwnerState } from './SliderProps';
 
@@ -429,7 +429,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     variant = 'solid',
     ...other
   } = props;
-  const { getColor } = useVariantInversion('solid');
+  const { getColor } = useColorInversion('solid');
   const color = getColor(inProps.color, colorProp);
 
   const ownerState = {

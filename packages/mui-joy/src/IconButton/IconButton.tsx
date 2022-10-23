@@ -5,7 +5,7 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { useVariantInversion } from '../styles/VariantInversion';
+import { useColorInversion } from '../styles/ColorInversion';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
@@ -103,7 +103,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     size = 'md',
     ...other
   } = props;
-  const { getColor } = useVariantInversion(variant);
+  const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
