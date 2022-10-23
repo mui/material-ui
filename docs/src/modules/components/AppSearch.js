@@ -26,6 +26,7 @@ const SearchButton = styled('button')(({ theme }) => {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
+    margin: 0, // Reset for Safari
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
