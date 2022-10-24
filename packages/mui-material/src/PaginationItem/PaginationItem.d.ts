@@ -30,12 +30,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     >;
     /**
      * The components used for first, last, next & previous item type
-     * @default {
-     *   first: FirstPageIcon,
-     *   last: LastPageIcon,
-     *   next: NavigateNextIcon,
-     *   previous: NavigateBeforeIcon,
-     * }
+     * @default {}
      */
     components?: {
       first?: React.ElementType;
@@ -67,6 +62,18 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 'medium'
      */
     size?: OverridableStringUnion<'small' | 'medium' | 'large', PaginationItemPropsSizeOverrides>;
+    /**
+     * The components used for each slot inside the PaginationItem.
+     * Either a string to use a HTML element or a component.
+     *
+     * @default {}
+     */
+    slots?: {
+      first?: React.ElementType;
+      last?: React.ElementType;
+      next?: React.ElementType;
+      previous?: React.ElementType;
+    };
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

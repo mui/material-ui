@@ -263,17 +263,13 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
-    components = {
-      first: FirstPageIcon,
-      last: LastPageIcon,
-      next: NavigateNextIcon,
-      previous: NavigateBeforeIcon,
-    },
+    components = {},
     disabled = false,
     page,
     selected = false,
     shape = 'circular',
     size = 'medium',
+    slots = {},
     type = 'page',
     variant = 'text',
     ...other
@@ -296,16 +292,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: components.next || NavigateNextIcon,
-          next: components.previous || NavigateBeforeIcon,
-          last: components.first || FirstPageIcon,
-          first: components.last || LastPageIcon,
+          previous: slots.next || components.next || NavigateNextIcon,
+          next: slots.previous || components.previous || NavigateBeforeIcon,
+          last: slots.first || components.first || FirstPageIcon,
+          first: slots.last || components.last || LastPageIcon,
         }
       : {
-          previous: components.previous || NavigateBeforeIcon,
-          next: components.next || NavigateNextIcon,
-          first: components.first || FirstPageIcon,
-          last: components.last || LastPageIcon,
+          previous: slots.previous || components.previous || NavigateBeforeIcon,
+          next: slots.next || components.next || NavigateNextIcon,
+          first: slots.first || components.first || FirstPageIcon,
+          last: slots.last || components.last || LastPageIcon,
         };
 
   const Icon = normalizedIcons[type];
@@ -369,12 +365,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The components used for first, last, next & previous item type
-   * @default {
-   *   first: FirstPageIcon,
-   *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
-   * }
+   * @default {}
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,
@@ -409,6 +400,18 @@ PaginationItem.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the PaginationItem.
+   * Either a string to use a HTML element or a component.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
