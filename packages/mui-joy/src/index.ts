@@ -162,5 +162,8 @@ export * from './TextField';
 export { default as Textarea } from './Textarea';
 export * from './Textarea';
 
+export { default as Tooltip } from './Tooltip';
+export * from './Tooltip';
+
 export { default as Typography } from './Typography';
 export * from './Typography';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
 import { ExtendSliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SliderSlot =
   | 'root'
@@ -13,6 +13,8 @@ export type SliderSlot =
   | 'thumb'
   | 'valueLabel'
   | 'input';
+
+export interface SliderPropsVariantOverrides {}
 
 export interface SliderPropsColorOverrides {}
 
@@ -48,6 +50,11 @@ export interface SliderOwnProps {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps;
+  /**
+   * The variant to use.
+   * @default 'solid'
+   */
+  variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
 }
 
 export type SliderTypeMap<

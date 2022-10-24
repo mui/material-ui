@@ -126,26 +126,22 @@ Use the `component` prop to override the root slot with a custom element:
 <SelectUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SelectUnstyled components={{ Root: 'div', Listbox: 'ol' }} />
+<SelectUnstyled slots={{ root: 'div', listbox: 'ol' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
-<SelectUnstyled componentsProps={{ listbox: { className: 'my-listbox' } }} />
+<SelectUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 

@@ -56,20 +56,20 @@ You need to replace those selectors with a valid class selector.
 ### Replace nested classes selectors with global class names
 
 ```diff
-const theme = createTheme({
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
--         '& $notchedOutline': {
-+         '& .MuiOutlinedInput-notchedOutline': {
-            borderWidth: 1,
-          }
-        }
-      }
-    }
-  }
-});
+ const theme = createTheme({
+   components: {
+     MuiOutlinedInput: {
+       styleOverrides: {
+         root: {
+-          '& $notchedOutline': {
++          '& .MuiOutlinedInput-notchedOutline': {
+             borderWidth: 1,
+           }
+         }
+       }
+     }
+   }
+ });
 ```
 
 :::info

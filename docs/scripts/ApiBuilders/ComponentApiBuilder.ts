@@ -10,6 +10,7 @@ import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
+import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import { LANGUAGES } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
@@ -22,7 +23,6 @@ import createDescribeableProp, {
 } from 'docs/src/modules/utils/createDescribeableProp';
 import generatePropDescription from 'docs/src/modules/utils/generatePropDescription';
 import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
-import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
 import { getUnstyledFilename } from '../helpers';
 import { ComponentInfo } from '../buildApiUtils';
