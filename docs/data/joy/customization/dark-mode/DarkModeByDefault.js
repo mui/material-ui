@@ -25,6 +25,7 @@ export default function ButtonThemes() {
     >
       <Sheet id="dark-mode-by-default" sx={{ px: 3, py: 1.5, borderRadius: 'sm' }}>
         <Typography
+          component="div"
           endDecorator={
             <Chip variant="outlined" color="primary" size="sm">
               Default
