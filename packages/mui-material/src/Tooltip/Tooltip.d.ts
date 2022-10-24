@@ -27,7 +27,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default {}
    */
   components?: {
-    Popper?: React.ElementType;
+    Popper?: React.ElementType<PopperProps>;
     Transition?: React.ElementType;
     Tooltip?: React.ElementType;
     Arrow?: React.ElementType;
@@ -155,6 +155,33 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default {}
    */
   PopperProps?: Partial<PopperProps>;
+  /**
+   * The props used for each slot inside the Tooltip.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * @default {}
+   */
+  slotProps?: {
+    popper?: Partial<PopperProps> & TooltipComponentsPropsOverrides;
+    transition?: TransitionProps & TooltipComponentsPropsOverrides;
+    tooltip?: React.HTMLProps<HTMLDivElement> &
+      MUIStyledCommonProps &
+      TooltipComponentsPropsOverrides;
+    arrow?: React.HTMLProps<HTMLSpanElement> &
+      MUIStyledCommonProps &
+      TooltipComponentsPropsOverrides;
+  };
+  /**
+   * The components used for each slot inside the Tooltip.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    popper?: React.ElementType<PopperProps>;
+    transition?: React.ElementType;
+    tooltip?: React.ElementType;
+    arrow?: React.ElementType;
+  };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
