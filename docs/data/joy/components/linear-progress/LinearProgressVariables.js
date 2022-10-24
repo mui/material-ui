@@ -17,11 +17,11 @@ export default function LinearProgressVariables() {
           helperText: "Default to root's thickness",
         },
         {
-          var: '--LinearProgress-progress-thickness',
+          var: '--LinearProgress-progressThickness',
           helperText: "Default to root's thickness",
         },
         {
-          var: '--LinearProgress-progress-radius',
+          var: '--LinearProgress-progressRadius',
           helperText: "Default to root's thickness",
         },
       ]}
