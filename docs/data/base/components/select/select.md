@@ -165,7 +165,6 @@ The following example shows a select built with a hook.
 Note how this component does not include any built-in classes.
 The resulting HTML is much smaller compared to the unstyled component version, as the class names are not applied.
 
-
 {{"demo": "UseSelect.js", "defaultCodeOpen": false}}
 
 ## Customization
