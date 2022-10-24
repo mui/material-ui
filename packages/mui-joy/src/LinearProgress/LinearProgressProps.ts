@@ -1,18 +1,12 @@
-import { SlotComponentProps } from '@mui/base/utils';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type LinearProgressSlot = 'root' | 'progress';
+export type LinearProgressSlot = 'root';
 
 export interface LinearProgressPropsColorOverrides {}
 export interface LinearProgressPropsSizeOverrides {}
 export interface LinearProgressPropsVariantOverrides {}
-
-interface ComponentsProps {
-  root?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
-  progress?: SlotComponentProps<'span', { sx?: SxProps }, LinearProgressOwnerState>;
-}
 
 export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -21,11 +15,6 @@ export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default 'primary'
      */
     color?: OverridableStringUnion<ColorPaletteProp, LinearProgressPropsColorOverrides>;
-    /**
-     * The props used for each slot inside the CircularProgress.
-     * @default {}
-     */
-    componentsProps?: ComponentsProps;
     /**
      * The boolean to select a variant.
      * Use indeterminate when there is no progress value.

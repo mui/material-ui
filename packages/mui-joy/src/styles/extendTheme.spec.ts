@@ -490,12 +490,6 @@ extendTheme({
           );
           return {};
         },
-        progress: ({ ownerState }) => {
-          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
-            ownerState,
-          );
-          return {};
-        },
       },
     },
     JoyList: {
