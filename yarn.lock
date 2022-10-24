@@ -2414,10 +2414,10 @@
   dependencies:
     "@types/react" "*"
 
-"@mdx-js/react@^2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-2.1.4.tgz#9ea62ff768a22e923fa59df7065d7e9a13f58756"
-  integrity sha512-PRwLjoAxhSA6xTB2+FA5CPGUCOsIK3bJD0RYsoju+nUIyOpIZUSw6SJChfILByLizzxqslE0R+l8IjARo0N+hA==
+"@mdx-js/react@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-2.1.5.tgz#8225a867dae6f845ae5b0ec15bb454c23be3f576"
+  integrity sha512-3Az1I6SAWA9R38rYjz5rXBrGKeZhq96CSSyQtqY+maPj8stBsoUH5pNcmIixuGkufYsh8F5+ka2CVPo2fycWZw==
   dependencies:
     "@types/mdx" "^2.0.0"
     "@types/react" ">=16"
