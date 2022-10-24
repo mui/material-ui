@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
 
@@ -17,21 +16,28 @@ export default function LinearProgressWithLabel() {
   }, []);
 
   return (
-    <Box sx={{ width: '50%' }}>
-      <Typography textAlign="center" level="body3" fontWeight="xl" mb={1}>
+    <LinearProgress
+      determinate
+      variant="outlined"
+      color="neutral"
+      size="sm"
+      thickness={32}
+      value={progress}
+      sx={{
+        '--LinearProgress-radius': '0px',
+        '--LinearProgress-progressThickness': '24px',
+        boxShadow: 'sm',
+        borderColor: 'neutral.500',
+      }}
+    >
+      <Typography
+        level="body3"
+        fontWeight="xl"
+        textColor="common.white"
+        sx={{ mixBlendMode: 'difference' }}
+      >
         LOADING… {`${Math.round(progress)}%`}
       </Typography>
-      <LinearProgress
-        determinate
-        variant="plain"
-        color="neutral"
-        size="sm"
-        value={progress}
-        sx={{
-          '--LinearProgress-progress-thickness': '2px',
-          bgcolor: 'background.surface',
-        }}
-      />
-    </Box>
+    </LinearProgress>
   );
 }
