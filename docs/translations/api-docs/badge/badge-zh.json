@@ -1,142 +1,142 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "anchorOrigin": "The anchor of the badge.",
-    "badgeContent": "The content rendered within the badge.",
-    "children": "The badge will be added relative to this node.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "components": "The components used for each slot inside the Badge. Either a string to use a HTML element or a component.",
-    "componentsProps": "The props used for each slot inside the Badge.",
-    "invisible": "If <code>true</code>, the badge is invisible.",
-    "max": "Max count to show.",
-    "overlap": "Wrapped shape the badge should overlap.",
-    "showZero": "Controls whether the badge is hidden when <code>badgeContent</code> is zero.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "anchorOrigin": "徽章的锚.",
+    "badgeContent": "徽章内呈现的内容.",
+    "children": "徽章将相对于该节点添加.",
+    "classes": "覆盖或扩展应用于组件的样式. 有关详细信息，请参阅下面的 <a href=\"#css\">CSS API</a>.",
+    "color": "组件的颜色. 它支持默认和自定义主题颜色，可以添加如 <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">调色板定制指南</a>.",
+    "component": "用于根节点的组件. 使用 HTML 元素或组件的字符串.",
+    "components": "Badge 内部每个插槽使用的组件. 使用 HTML 元素或组件的字符串.",
+    "componentsProps": "这 props 用于 Badge 内的每个插槽.",
+    "invisible": "如果是 <code>true</code>，徽章是不可见的.",
+    "max": "显示的最大数量.",
+    "overlap": "徽章应重叠的包裹形状.",
+    "showZero": "控制当 <code>badgeContent</code> 为零时是否隐藏徽章。.",
+    "sx": "允许定义系统覆盖以及附加 CSS styles 的系统 prop. 有关详细信息，请参阅 <a href=\"/system/getting-started/the-sx-prop/\">`sx` 页</a>.",
+    "variant": "要使用的变体."
   },
   "classDescriptions": {
     "root": {
-      "description": "Styles applied to the root element."
+      "description": "应用于根元素的样式."
     },
     "badge": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the badge `span` element"
+      "description": "则应用于 {{nodeName}}.",
+      "nodeName": "徽章 `span` 元素"
     },
     "dot": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "则应用于 {{nodeName}} 的类名 if {{conditions}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>variant=\"dot\"</code>"
     },
     "standard": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "则应用于 {{nodeName}} 的类名 if {{conditions}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "anchorOriginTopRight": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "则应用于 {{nodeName}} 的类名 if {{conditions}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
     },
     "anchorOriginBottomRight": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "则应用于 {{nodeName}} 的类名 if {{conditions}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
     },
     "anchorOriginTopLeft": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "则应用于 {{nodeName}} 的类名 if {{conditions}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
     },
     "anchorOriginBottomLeft": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "则应用于 {{nodeName}} 的类名 if {{conditions}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     },
     "invisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则伪类应用于 {{nodeName}}.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>invisible={true}</code>"
     },
     "colorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的样式.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的样式.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "colorError": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的样式.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>color=\"error\"</code>"
     },
     "colorInfo": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的样式.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的样式.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>color=\"success\"</code>"
     },
     "colorWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的样式.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>color=\"warning\"</code>"
     },
     "anchorOriginTopRightRectangular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomRightRectangular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopLeftRectangular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomLeftRectangular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopRightCircular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomRightCircular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginTopLeftCircular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomLeftCircular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
     },
     "overlapRectangular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>overlap=\"rectangular\"</code>"
     },
     "overlapCircular": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "description": "如果 {{conditions}}, 则应用于 {{nodeName}} 的类名.",
+      "nodeName": "徽章 `span` 元素",
       "conditions": "<code>overlap=\"circular\"</code>"
     }
   }
