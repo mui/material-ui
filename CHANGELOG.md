@@ -1,5 +1,85 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.10.11
+
+<!-- generated comparing v5.10.10..master -->
+
+_Oct 25, 2022_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Moved `components` to `slots` prop starting at MUI Base to create consistency across products
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.11`
+
+- [InputBase] Fix `onInvalid` to use HTMLInputElement | HTMLTextAreaElement Element type (#33162) @KuSh
+- [Alert] Add `components` and `componentsProps` props to allow close action overrides (#33582) @jake-collibra
+
+### `@mui/base@5.0.0-alpha.103`
+
+#### BREAKING CHANGE
+
+- [base] `components` -> `slots` API rename (#34693) @michaldudak
+
+  - Change all occurrences of components and componentsProps props in Base components to slots and slotProps, respectively.
+  - Change casing of slots' fields to camelCase
+
+  ```diff
+  -<SwitchUnstyled components={{Root: CustomRoot}} componentsProps={{rail: { className: 'custom-rail' }}} />
+  +<SwitchUnstyled slots={{root: CustomRoot}} slotProps={{rail: { className: 'custom-rail' }}} />
+  ```
+
+- [base] Make CSS class prefixes consistent (#33411) @michaldudak
+
+  **This is a breaking change for anyone who depends on the class names applied to Base components.**
+  If you use the `<component>UnstyledClasses` objects, you won't notice a difference. Only if you depend on the resulting class names (e.g. in CSS stylesheets), you'll have to adjust your code.
+
+  ```diff
+  -.ButtonUnstyled-root { ... };
+  +.MuiButton-root { ... };
+  ```
+
+#### Changes
+
+- [test] Test all Base components with describeConformanceUnstyled (#34825) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.51`
+
+- [CircularProgress][joy] Fix classnames and add test (#34806) @hbjORbj
+- [Joy] Allow string type for `size` prop in components (#34805) @hbjORbj
+
+### Docs
+
+- Revert "[docs] Fix search icons in other languages (#34823)" @oliviertassinari
+- Revert "[core] Move SearchIcons to docs src folder (#34802)" @oliviertassinari
+- Revert "[docs] Live demos (#34454)" @oliviertassinari
+- Update the order of operations for pagination example so that slicing takes place after sorting. (#34189) @marceliwac
+- [docs] Gatsby Description in Joy dark-mode (#34702) @pixelass
+- [docs] Add notification for blogpost MUI X v6 alpha (#34809) @joserodolfofreitas
+- [docs] Polish Crowdin config (#34852) @oliviertassinari
+- [docs] Fix a few style standard deviations @oliviertassinari
+- [docs] Enforce no trailing spaces (#34762) @oliviertassinari
+- [docs] Enforce correct git diff format (#34765) @oliviertassinari
+- [docs] Fix Toolpad docs 301 route (#34843) @bharatkashyap
+- [docs] Replace initial value with theme white (#34822) @siriwatknp
+- [docs] Remove localization redirects (#34844) @mnajdova
+- [docs] Fix search icons in other languages (#34823) @siriwatknp
+- [docs] Fix JavaScript capitalization @oliviertassinari
+- [docs] Update new links to MD2 (#34848) @oliviertassinari
+- [website] Update future work items on X landing page (#34810) @joserodolfofreitas
+- [website] Add Toolpad docs to navigation (#34749) @bharatkashyap
+
+### Core
+
+- [core] Remove dead files (#34850) @oliviertassinari
+- [core] Fix revert conflict @oliviertassinari
+- [core] Fix a few CodeQL errors (#34766) @oliviertassinari
+- [core] Harden GitHub Actions permissions (#34769) @oliviertassinari
+- [core] Remove the codeowners file (#34876) @michaldudak
+
+All contributors of this release in alphabetical order: @bharatkashyap, @hbjORbj, @jake-collibra, @joserodolfofreitas, @KuSh, @marceliwac, @michaldudak, @oliviertassinari, @pixelass, @siriwatknp
+
 ## 5.10.10
 
 <!-- generated comparing v5.10.9..master -->
@@ -4610,7 +4690,7 @@ _Jun 23, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 We have only 2 left in the [breaking changes](https://github.com/mui/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
-- 🎨 We have updated `Slider` to match current [Material Design guidelines](https://material.io/components/sliders).
+- 🎨 We have updated `Slider` to match current [Material Design guidelines](https://m2.material.io/components/sliders).
 
   <a href="https://mui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
@@ -4695,7 +4775,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 08 -->[Slider] Adjust css to match the specification (#26632) @siriwatknp
 
-  Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](https://mui.com/components/slider/).
+  Rework the CSS to match the latest [Material Design guidelines](https://m2.material.io/components/sliders) and make custom styles more intuitive. [See documentation](https://mui.com/components/slider/).
 
   <a href="https://mui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
@@ -4943,7 +5023,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 10 -->[AppBar] Fix background color on dark mode (#26545) @siriwatknp
 
-  The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+  The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
 
   ```jsx
   <AppBar enableColorOnDark />
@@ -5105,8 +5185,8 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
   Update the implementation to better match Material Design:
 
-  - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
-  - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+  - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://m2.material.io/components/tabs#specs)
+  - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://m2.material.io/components/tabs#specs)
 
 #### Changes
 
@@ -6450,7 +6530,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 087 -->[icons] Synchronize icons (#25055) @eps1lon
 
-  The icons were synchronized with https://material.io/resources/icons/. This change increases the number of supported icons from 1,349 to 1,781 per theme (we support 5 themes). The breaking changes:
+  The icons were synchronized with https://m2.material.io/resources/icons/. This change increases the number of supported icons from 1,349 to 1,781 per theme (we support 5 themes). The breaking changes:
 
   ```diff
    // AmpStories -> Download

@@ -46,7 +46,7 @@ export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *

@@ -9,7 +9,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
-Material-UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://material.io/design/motion/) básicos para os componentes de sua aplicação.
+Material-UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://m2.material.io/design/motion/) básicos para os componentes de sua aplicação.
 
 [A paleta](/system/palette/) com funções de estilo.
 
