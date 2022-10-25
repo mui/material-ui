@@ -38,11 +38,9 @@ export default function MyApp() {
 
 ### Basics
 
-The Alert component wraps around its content:
+The Alert component wraps around its content, and stretches to fill its enclosing container, as shown below:
 
-```jsx
-<Alert>This is a time-sensitive message.</Alert>
-```
+{{"demo": "AlertBasic.js"}}
 
 ### Anatomy
 
@@ -61,6 +59,11 @@ For example, the following code snippet replaces the default `<div>` with a `<sp
 
 ```jsx
 <Alert component="span" />
+
+// renders as:
+<span role="alert" class="JoyAlert-root">
+  This Alert's root div was replaced with a span.
+</span>
 ```
 
 ## Customization
