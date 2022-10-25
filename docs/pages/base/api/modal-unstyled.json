@@ -38,7 +38,7 @@
     "globalClasses": { "root": "MuiModal-root", "hidden": "MuiModal-hidden" },
     "name": null
   },
-  "spread": false,
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,

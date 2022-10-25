@@ -122,7 +122,7 @@ test.describe('Material docs', () => {
 
       const anchor = page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
-      await expect(anchor).toHaveAttribute('app-drawer-active', '');
+      await expect(anchor).toHaveClass(/app-drawer-active/);
       await expect(anchor).toHaveAttribute('href', '/material-ui/api/card/');
     });
 
