@@ -50,6 +50,12 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 <meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
+### CssBaseline
+
+Joy UI provides an optional [CssBaseline](/joy-ui/react-css-baseline/) component.
+It fixes some inconsistencies across browsers and devices while providing resets that are better tailored to fit Joy UI than alternative global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
+
 ### Default font
 
 Joy UI uses the Public Sans font by default.
+See [Installation—Public Sans font](/joy-ui/getting-started/installation/#public-sans-font) for complete details.
