@@ -44,15 +44,10 @@ For a better user experience and developer experience, we recommend adding the f
 
 Joy UI is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
 
-function App() {
-  return (
-    <CssVarsProvider>
-+     <Button>Joy UI</Button>
-    </CssVarsProvider>
-  );
-}
+To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element:
 
-export default App;
+```html
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
 ### Default font
