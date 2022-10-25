@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
-materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+materialDesign: 'https://m2.material.io/components/selection-controls#radio-buttons'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 <p class="description">Botões de opção permitem o usuário selecionar uma das opções de um conjunto.</p>
 
-Use [botões de opção](https://material.io/design/components/selection-controls.html#radio-buttons) quando um usuário precisar ver todas as opções disponíveis. If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
+Use [botões de opção](https://m2.material.io/components/radio-buttons) quando um usuário precisar ver todas as opções disponíveis. If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
 
 Os botões de opção devem ter a opção comum e mais usada selecionada por padrão.
 
