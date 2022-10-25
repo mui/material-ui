@@ -137,12 +137,9 @@ const ChipRoot = styled('div', {
           marginLeft: 4,
           marginRight: -4,
         }),
-        ...(ownerState.color !== 'default' && {
-          color: 'inherit',
-        }),
-        ...(ownerState.iconColor &&
+        ...(ownerState.color !== 'default' &&
           ownerState.iconColor !== ownerState.color && {
-            color: undefined,
+            color: 'inherit',
           }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
@@ -400,7 +397,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
-    iconColor: iconProp?.props?.color || color,
+    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
     onDelete: !!onDelete,
     clickable,
     variant,
