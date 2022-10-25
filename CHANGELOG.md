@@ -30,9 +30,18 @@ A big thanks to the 10 contributors who made this release possible. Here are som
   +<SwitchUnstyled slots={{root: CustomRoot}} slotProps={{rail: { className: 'custom-rail' }}} />
   ```
 
+- [base] Make CSS class prefixes consistent (#33411) @michaldudak
+
+  **This is a breaking change for anyone who depends on the class names applied to Base components.**
+  If you use the `<component>UnstyledClasses` objects, you won't notice a difference. Only if you depend on the resulting class names (e.g. in CSS stylesheets), you'll have to adjust your code.
+
+  ```diff
+  -.ButtonUnstyled-root { ... };
+  +.MuiButton-root { ... };
+  ```
+
 #### Changes
 
-- [base] Make CSS class prefixes consistent (#33411) @michaldudak
 - [test] Test all Base components with describeConformanceUnstyled (#34825) @michaldudak
 
 ### `@mui/joy@5.0.0-alpha.51`
@@ -54,8 +63,10 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [docs] Enforce correct git diff format (#34765) @oliviertassinari
 - [docs] Fix Toolpad docs 301 route (#34843) @bharatkashyap
 - [docs] Replace initial value with theme white (#34822) @siriwatknp
+- [docs] Remove localization redirects (#34844) @mnajdova
 - [docs] Fix search icons in other languages (#34823) @siriwatknp
 - [docs] Fix JavaScript capitalization @oliviertassinari
+- [docs] Update new links to MD2 (#34848) @oliviertassinari
 - [website] Update future work items on X landing page (#34810) @joserodolfofreitas
 - [website] Add Toolpad docs to navigation (#34749) @bharatkashyap
 
@@ -65,6 +76,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [core] Fix revert conflict @oliviertassinari
 - [core] Fix a few CodeQL errors (#34766) @oliviertassinari
 - [core] Harden GitHub Actions permissions (#34769) @oliviertassinari
+- [core] Remove the codeowners file (#34876) @michaldudak
 
 All contributors of this release in alphabetical order: @bharatkashyap, @hbjORbj, @jake-collibra, @joserodolfofreitas, @KuSh, @marceliwac, @michaldudak, @oliviertassinari, @pixelass, @siriwatknp
 
