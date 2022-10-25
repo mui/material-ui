@@ -23,9 +23,22 @@ import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
+import FormControlContext from '../FormControl/FormControlContext';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
+}
+
+function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
 }
 
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
@@ -66,10 +79,11 @@ const SelectRoot = styled('div', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
+      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
-      '--Select-focusedThickness': '2px',
+      '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       '--Select-indicator-color': theme.vars.palette.text.tertiary,
@@ -97,7 +111,7 @@ const SelectRoot = styled('div', {
       '--internal-paddingBlock':
         'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
       '--Select-decorator-childRadius':
-        'max((var(--Select-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Select-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Select-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decorator-childHeight)',
       '--IconButton-size': 'var(--Select-decorator-childHeight)',
       '--Button-radius': 'var(--Select-decorator-childRadius)',
@@ -177,7 +191,7 @@ const SelectButton = styled('button', {
   alignItems: 'center',
   flex: 1,
   cursor: 'pointer',
-  ...(!ownerState.value && {
+  ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
 }));
@@ -240,13 +254,25 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Icon-fontSize': '1.125rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Icon-fontSize': '1.25rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Icon-fontSize': '1.5rem',
+  }),
   color: 'var(--Select-indicator-color)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-});
+  [`.${selectClasses.endDecorator} + &`]: {
+    marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+}));
 
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
@@ -264,7 +290,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
+    getSerializedValue = defaultFormValueProvider,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -273,9 +300,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onClose,
     renderValue: renderValueProp,
     value: valueProp,
-    size = 'md',
+    size: sizeProp = 'md',
     variant = 'outlined',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
@@ -294,6 +321,24 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     id?: string;
     name?: string;
   };
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -383,8 +428,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
-    return options.find((o) => value === o.value);
+  const selectedOption = React.useMemo(() => {
+    return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
   const rootProps = useSlotProps({
@@ -413,10 +458,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     getSlotProps: getButtonProps,
     externalSlotProps: componentsProps.button,
     additionalProps: {
-      'aria-describedby': ariaDescribedby,
+      'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledby,
-      id,
+      'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      id: id ?? formControl?.htmlFor,
       name,
     },
     ownerState,
@@ -508,7 +553,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         )}
 
         <SelectButton {...buttonProps}>
-          {selectedOptions ? renderValue(selectedOptions) : placeholder}
+          {selectedOption ? renderValue(selectedOption) : placeholder}
         </SelectButton>
         {endDecorator && (
           <SelectEndDecorator {...endDecoratorProps}>{endDecorator}</SelectEndDecorator>
@@ -525,6 +570,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
@@ -591,7 +638,7 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -601,6 +648,12 @@ Select.propTypes /* remove-proptypes */ = {
    * Trailing adornment for the select.
    */
   endDecorator: PropTypes.node,
+  /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
   /**
    * The indicator(*) for the select.
    *    ________________
@@ -647,7 +700,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  value: PropTypes.any,
   /**
    * The variant to use.
    * @default 'solid'

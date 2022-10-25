@@ -300,9 +300,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       }
     }
   }, []);
-  const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
-  const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);
-  const handleInputRef = useForkRef(inputRef, handleInputRefProp);
+
+  const handleInputRef = useForkRef(
+    inputRef,
+    inputRefProp,
+    inputPropsProp.ref,
+    handleInputRefWarning,
+  );
 
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();
@@ -707,6 +711,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * Callback fired when the `input` doesn't satisfy its constraints.
+   */
+  onInvalid: PropTypes.func,
   /**
    * @ignore
    */

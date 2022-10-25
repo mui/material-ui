@@ -32,11 +32,11 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const {
     children,
     component,
-    components = {},
-    componentsProps = {},
     disabled,
-    value,
     label,
+    slotProps = {},
+    slots = {},
+    value,
     ...other
   } = props;
 
@@ -45,7 +45,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
-  const Root = component || components.Root || 'li';
+  const Root = component || slots.root || 'li';
 
   const selectOption = {
     value,
@@ -86,7 +86,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const rootProps = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ...optionProps,
@@ -114,21 +114,6 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the OptionUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the OptionUnstyled.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the option will be disabled.
    * @default false
    */
@@ -138,6 +123,21 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
+  /**
+   * The props used for each slot inside the OptionUnstyled.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the OptionUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The value of the option.
    */
@@ -149,7 +149,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Unstyled select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *

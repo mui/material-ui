@@ -97,7 +97,7 @@ This will apply a change such as the following:
 -import AddIcon from 'material-ui/svg-icons/Add';
 +import AddIcon from '@mui/icons-material/Add';
 
-<AddIcon />
+ <AddIcon />
 ```
 
 ### Flat Button

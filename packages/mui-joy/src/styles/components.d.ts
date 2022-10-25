@@ -1,4 +1,4 @@
-import { GlobalStateSlot } from '@mui/base';
+import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
 import {
   AspectRatioProps,
@@ -39,7 +39,23 @@ import {
   ChipDeleteOwnerState,
   ChipDeleteSlot,
 } from '../ChipDelete/ChipDeleteProps';
+import {
+  CircularProgressProps,
+  CircularProgressOwnerState,
+  CircularProgressSlot,
+} from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
+import {
+  ScopedCssBaselineProps,
+  ScopedCssBaselineOwnerState,
+  ScopedCssBaselineSlot,
+} from '../ScopedCssBaseline/ScopedCssBaselineProps';
+import { DividerProps, DividerOwnerState, DividerSlot } from '../Divider/DividerProps';
+import {
+  FormControlProps,
+  FormControlOwnerState,
+  FormControlSlot,
+} from '../FormControl/FormControlProps';
 import {
   FormHelperTextProps,
   FormHelperTextOwnerState,
@@ -113,6 +129,7 @@ import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabList
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
 import { TextFieldProps, TextFieldOwnerState, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
 import {
   TypographyProps,
   TypographyOwnerState,
@@ -172,6 +189,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
   };
+  JoyCircularProgress?: {
+    defaultProps?: Partial<CircularProgressProps>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressOwnerState, Theme>;
+  };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
@@ -203,6 +224,18 @@ export interface Components<Theme = unknown> {
   JoyContainer?: {
     defaultProps?: Partial<ContainerProps>;
     styleOverrides?: OverridesStyleRules<ContainerSlot, ContainerProps, Theme>;
+  };
+  JoyScopedCssBaseline?: {
+    defaultProps?: Partial<ScopedCssBaselineProps>;
+    styleOverrides?: OverridesStyleRules<ScopedCssBaselineSlot, ScopedCssBaselineOwnerState, Theme>;
+  };
+  JoyDivider?: {
+    defaultProps?: Partial<DividerProps>;
+    styleOverrides?: OverridesStyleRules<DividerSlot, DividerOwnerState, Theme>;
+  };
+  JoyFormControl?: {
+    defaultProps?: Partial<FormControlProps>;
+    styleOverrides?: OverridesStyleRules<FormControlSlot, FormControlOwnerState, Theme>;
   };
   JoyFormHelperText?: {
     defaultProps?: Partial<FormHelperTextProps>;
@@ -320,6 +353,10 @@ export interface Components<Theme = unknown> {
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldOwnerState, Theme>;
+  };
+  JoyTooltip?: {
+    defaultProps?: Partial<TooltipProps>;
+    styleOverrides?: OverridesStyleRules<TooltipSlot, TooltipOwnerState, Theme>;
   };
   JoyTypography?: {
     defaultProps?: Partial<TypographyProps>;

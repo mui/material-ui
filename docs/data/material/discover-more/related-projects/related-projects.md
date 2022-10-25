@@ -30,15 +30,15 @@ Feel free to submit a pull request!
 
 ### Chips
 
-- [mui-chips-input](https://viclafouch.github.io/mui-chips-input): A chips input designed for the React library MUI.
+- [mui-chips-input](https://viclafouch.github.io/mui-chips-input/): A chips input designed for the React library MUI.
 
 ### Phone Number
 
-- [mui-tel-input](https://viclafouch.github.io/mui-tel-input): A phone number input designed for the React library MUI built with [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js).
+- [mui-tel-input](https://viclafouch.github.io/mui-tel-input/): A phone number input designed for the React library MUI built with [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js).
 
 ### Color picker
 
-- [mui-color-input](https://viclafouch.github.io/mui-color-input): A color input designed for the React library MUI built with [TinyColor](https://tinycolor.vercel.app/).
+- [mui-color-input](https://viclafouch.github.io/mui-color-input/): A color input designed for the React library MUI built with [TinyColor](https://tinycolor.vercel.app/).
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for Material UI. No dependencies, small, highly customizable, and supports theming.
 
 ### Sparkline
@@ -52,4 +52,4 @@ Feel free to submit a pull request!
 ## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications that features live previewing.
-- [Material palette generator](https://material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.
+- [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.

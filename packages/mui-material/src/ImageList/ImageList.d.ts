@@ -51,7 +51,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  * Demos:
  *
- * - [Image list](https://mui.com/material-ui/react-image-list/)
+ * - [Image List](https://mui.com/material-ui/react-image-list/)
  *
  * API:
  *

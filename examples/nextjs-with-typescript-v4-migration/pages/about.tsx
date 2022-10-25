@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const About: NextPage = () => {
+export default function About() {
   const classes = useStyles();
   return (
     <Container maxWidth="lg">
@@ -38,6 +37,4 @@ const About: NextPage = () => {
       </div>
     </Container>
   );
-};
-
-export default About;
+}

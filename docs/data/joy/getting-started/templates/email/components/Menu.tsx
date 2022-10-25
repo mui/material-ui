@@ -48,7 +48,7 @@ const MenuItem = styled(MenuItemUnstyled, {
   [theme.focus.selector]: theme.focus.default,
 }));
 
-const Menu = ({
+function Menu({
   control,
   menus,
   id,
@@ -56,7 +56,7 @@ const Menu = ({
   control: React.ReactElement;
   id: string;
   menus: Array<{ label: string } & { [k: string]: any }>;
-}) => {
+}) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -101,8 +101,8 @@ const Menu = ({
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Root: Popper, Listbox }}
-        componentsProps={{ root: { placement: 'bottom-end' }, listbox: { id } }}
+        slots={{ root: Popper, listbox: Listbox }}
+        slotProps={{ root: { placement: 'bottom-end' }, listbox: { id } }}
       >
         {menus.map(({ label, active, ...item }) => {
           const menuItem = (
@@ -122,6 +122,6 @@ const Menu = ({
       </MenuUnstyled>
     </React.Fragment>
   );
-};
+}
 
 export default Menu;

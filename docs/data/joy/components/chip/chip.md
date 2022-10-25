@@ -68,7 +68,7 @@ Doing so will automatically change the rendered HTML tag from `<div>` to `<a>`.
 
 ### Clickable
 
-To make chips clikcable, pass a function to the `onClick` prop.
+To make chips clickable, pass a function to the `onClick` prop.
 
 {{"demo": "ClickableChip.js"}}
 

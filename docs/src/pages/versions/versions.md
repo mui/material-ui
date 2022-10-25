@@ -90,7 +90,7 @@ The current status of each MUI version is as follows:
 - [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
 - [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
 
-For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#professional-support-premium).
+For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#paid-support).
 
 ### Long-term support (LTS)
 

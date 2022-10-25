@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React Slider
 components: Slider
 githubLabel: 'component: slider'
-materialDesign: https://material.io/components/sliders
+materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 unstyled: /base/react-slider/
 ---
@@ -12,7 +12,7 @@ unstyled: /base/react-slider/
 
 <p class="description">Sliders permitem que os usuários façam seleções a partir de um intervalo de valores.</p>
 
-[Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
+[Sliders](https://m2.material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

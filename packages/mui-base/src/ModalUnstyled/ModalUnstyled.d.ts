@@ -16,7 +16,7 @@ import { ModalUnstyledTypeMap } from './ModalUnstyled.types';
  *
  * Demos:
  *
- * - [Unstyled modal](https://mui.com/base/react-modal/)
+ * - [Unstyled Modal](https://mui.com/base/react-modal/)
  *
  * API:
  *

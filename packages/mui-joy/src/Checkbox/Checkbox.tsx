@@ -11,6 +11,7 @@ import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
 import { TypographyContext } from '../Typography/Typography';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
@@ -190,7 +191,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     component,
     componentsProps = {},
     defaultChecked,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
     disableIcon = false,
     overlay,
     id: idOverride,
@@ -201,13 +202,33 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     onChange,
     onFocus,
     onFocusVisible,
+    readOnly,
     required,
-    color,
+    value,
+    color: colorProp,
     variant,
-    size = 'md',
+    size: sizeProp = 'md',
     ...other
   } = props;
-  const id = useId(idOverride);
+
+  const formControl = React.useContext(FormControlContext);
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const id = useId(idOverride ?? formControl?.htmlFor);
 
   const useCheckboxProps = {
     checked: checkedProp,
@@ -275,6 +296,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     additionalProps: {
       id,
       name,
+      value,
+      readOnly,
+      required,
+      'aria-describedby': formControl?.['aria-describedby'],
+      ...(indeterminate && {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked#values
+        'aria-checked': 'mixed' as const,
+      }),
     },
     className: classes.input,
   });
@@ -419,6 +448,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   overlay: PropTypes.bool,
   /**
+   * If `true`, the component is read only.
+   */
+  readOnly: PropTypes.bool,
+  /**
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
@@ -442,6 +475,15 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The icon when `checked` is false.
    */
   uncheckedIcon: PropTypes.node,
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'solid'

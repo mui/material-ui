@@ -50,6 +50,11 @@
       "nodeName": "the root element",
       "conditions": "<code>fontSize=\"small\"</code>"
     },
+    "fontSizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fontSize=\"medium\"</code>"
+    },
     "fontSizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
