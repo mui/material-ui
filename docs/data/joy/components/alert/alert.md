@@ -58,11 +58,11 @@ Use the `component` prop to override the root slot with a custom element.
 For example, the following code snippet replaces the default `<div>` with a `<span>`:
 
 ```jsx
-<Alert component="span" />
+<Alert component="span">Alert content</Alert>
 
 // renders as:
 <span role="alert" class="JoyAlert-root">
-  This Alert's root div was replaced with a span.
+  Alert content
 </span>
 ```
 
