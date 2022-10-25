@@ -1,5 +1,73 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.10.11
+
+<!-- generated comparing v5.10.10..master -->
+
+_Oct 25, 2022_
+
+A big thanks to the 10 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Moved `components` to `slots` prop starting at MUI Base to create consistency across products
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.11`
+
+- [InputBase] Fix `onInvalid` to use HTMLInputElement | HTMLTextAreaElement Element type (#33162) @KuSh
+- [Alert] Add `components` and `componentsProps` props to allow close action overrides (#33582) @jake-collibra
+
+### `@mui/base@5.0.0-alpha.103`
+
+#### BREAKING CHANGE
+
+- [base] `components` -> `slots` API rename (#34693) @michaldudak
+
+  - Change all occurrences of components and componentsProps props in Base components to slots and slotProps, respectively.
+  - Change casing of slots' fields to camelCase
+
+  ```diff
+  -<SwitchUnstyled components={{Root: CustomRoot}} componentsProps={{rail: { className: 'custom-rail' }}} />
+  +<SwitchUnstyled slots={{root: CustomRoot}} slotProps={{rail: { className: 'custom-rail' }}} />
+  ```
+
+#### Changes
+
+- [base] Make CSS class prefixes consistent (#33411) @michaldudak
+- [test] Test all Base components with describeConformanceUnstyled (#34825) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.51`
+
+- [CircularProgress][joy] Fix classnames and add test (#34806) @hbjORbj
+- [Joy] Allow string type for `size` prop in components (#34805) @hbjORbj
+
+### Docs
+
+- Revert "[docs] Fix search icons in other languages (#34823)" @oliviertassinari
+- Revert "[core] Move SearchIcons to docs src folder (#34802)" @oliviertassinari
+- Revert "[docs] Live demos (#34454)" @oliviertassinari
+- Update the order of operations for pagination example so that slicing takes place after sorting. (#34189) @marceliwac
+- [docs] Gatsby Description in Joy dark-mode (#34702) @pixelass
+- [docs] Add notification for blogpost MUI X v6 alpha (#34809) @joserodolfofreitas
+- [docs] Polish Crowdin config (#34852) @oliviertassinari
+- [docs] Fix a few style standard deviations @oliviertassinari
+- [docs] Enforce no trailing spaces (#34762) @oliviertassinari
+- [docs] Enforce correct git diff format (#34765) @oliviertassinari
+- [docs] Fix Toolpad docs 301 route (#34843) @bharatkashyap
+- [docs] Replace initial value with theme white (#34822) @siriwatknp
+- [docs] Fix search icons in other languages (#34823) @siriwatknp
+- [docs] Fix JavaScript capitalization @oliviertassinari
+- [website] Update future work items on X landing page (#34810) @joserodolfofreitas
+- [website] Add Toolpad docs to navigation (#34749) @bharatkashyap
+
+### Core
+
+- [core] Remove dead files (#34850) @oliviertassinari
+- [core] Fix revert conflict @oliviertassinari
+- [core] Fix a few CodeQL errors (#34766) @oliviertassinari
+- [core] Harden GitHub Actions permissions (#34769) @oliviertassinari
+
+All contributors of this release in alphabetical order: @bharatkashyap, @hbjORbj, @jake-collibra, @joserodolfofreitas, @KuSh, @marceliwac, @michaldudak, @oliviertassinari, @pixelass, @siriwatknp
+
 ## 5.10.10
 
 <!-- generated comparing v5.10.9..master -->
