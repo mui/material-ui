@@ -1,14 +1,14 @@
 ---
 product: material-ui
-title: App bar React component
+title: App Bar React component
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
-materialDesign: https://material.io/components/app-bars-top
+materialDesign: https://m2.material.io/components/app-bars-top
 ---
 
-# App bar
+# App Bar
 
-<p class="description">The App bar displays information and actions relating to the current screen.</p>
+<p class="description">The App Bar displays information and actions relating to the current screen.</p>
 
 The top App bar provides content and actions related to the current screen. It's used for branding, screen titles, navigation, and actions.
 
@@ -148,7 +148,7 @@ function HideOnScroll(props) {
 
 ## Enable color on dark
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode.
+Following the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode.
 You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}

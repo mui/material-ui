@@ -48,7 +48,7 @@
   },
   "name": "PopperUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
-  "spread": false,
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
   "inheritance": null,

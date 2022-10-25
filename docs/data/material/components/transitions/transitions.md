@@ -9,7 +9,7 @@ githubLabel: 'component: transitions'
 
 <p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
-MUI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
+MUI provides transitions that can be used to introduce some basic [motion](https://m2.material.io/design/motion/) to your applications.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

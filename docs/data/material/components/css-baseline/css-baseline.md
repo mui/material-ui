@@ -6,7 +6,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">The CssBaseline component helps to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

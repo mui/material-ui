@@ -2,16 +2,16 @@
 
 <p class="description">Convey meaning through color. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
-The Material Design [color system](https://material.io/design/color/) can be used to create a color theme that reflects your brand or style.
+The Material Design [color system](https://m2.material.io/design/color/) can be used to create a color theme that reflects your brand or style.
 
 ## Picking colors
 
 ### Official color tool
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://material.io/resources/color/).
+The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/resources/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
 </a>
 <br />
@@ -42,7 +42,7 @@ const theme = createTheme({
 
 ### Playground
 
-To test a [material.io/design/color](https://material.io/design/color/) color scheme with the MUI documentation, simply select colors using the palette and sliders below.
+To test a [material.io/design/color](https://m2.material.io/design/color/) color scheme with the MUI documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
@@ -72,7 +72,7 @@ If you are using the default primary and / or secondary shades then by providing
 ### Tools by the community
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
-- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 2014 Material Design color palettes
 

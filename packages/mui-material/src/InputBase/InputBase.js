@@ -712,6 +712,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
+   * Callback fired when the `input` doesn't satisfy its constraints.
+   */
+  onInvalid: PropTypes.func,
+  /**
    * @ignore
    */
   onKeyDown: PropTypes.func,
