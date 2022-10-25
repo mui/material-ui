@@ -60,7 +60,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  * Demos:
  *
  * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Radio button](https://mui.com/material-ui/react-radio-button/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
  * - [Switch](https://mui.com/material-ui/react-switch/)
  *
  * API:

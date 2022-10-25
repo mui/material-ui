@@ -7,10 +7,13 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
+<<<<<<< HEAD
   [theme.breakpoints.up('sm')]: {
     marginLeft: 0,
     marginRight: 0,
   },
+=======
+>>>>>>> master
   '& strong': {
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
@@ -219,12 +222,12 @@ const Root = styled('div')(({ theme }) => ({
     borderColor:
       theme.palette.mode === 'dark'
         ? // Support Material Design theme
-          theme.palette.warning[500] ?? theme.palette.warning.dark
+        theme.palette.warning[500] ?? theme.palette.warning.dark
         : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
         ? // Support Material Design theme
-          alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
+        alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',
@@ -255,7 +258,7 @@ const Root = styled('div')(({ theme }) => ({
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35)
+          alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35)
           : theme.palette.error[50] ?? theme.palette.error.light,
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
@@ -286,7 +289,7 @@ const Root = styled('div')(({ theme }) => ({
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
+          alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
           : alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
@@ -307,7 +310,7 @@ const Root = styled('div')(({ theme }) => ({
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
+          alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
           : theme.palette.success[50] ?? theme.palette.success.light,
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
@@ -338,7 +341,7 @@ const Root = styled('div')(({ theme }) => ({
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
+          alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
           : alpha(theme.palette.warning[50] ?? theme.palette.warning.light, 0.6),
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
@@ -403,9 +406,8 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? blueDark[900] : theme.palette.grey[50],
     border: `1px solid ${theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[300]}`,
     borderRadius: 5,
-    boxShadow: `inset 0 -1px 0 ${
-      theme.palette.mode === 'dark' ? blueDark[700] : theme.palette.grey[300]
-    }`,
+    boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? blueDark[700] : theme.palette.grey[300]
+      }`,
   },
   '& details': {
     marginBottom: theme.spacing(1.5),
