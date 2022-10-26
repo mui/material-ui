@@ -38,7 +38,7 @@ The default ratio is `16/9`.
 
 ## Anatomy
 
-The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute:
+The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
 
 ```html
 <div class="JoyAspectRatio-root">
