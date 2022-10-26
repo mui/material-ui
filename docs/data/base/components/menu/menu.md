@@ -78,26 +78,22 @@ Use the `component` prop to override the root slot with a custom element:
 <MenuItemUnstyled component="span" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<MenuUnstyled components={{ Root: 'nav', Listbox: 'ol' }} />
+<MenuUnstyled slots={{ root: 'nav', listbox: 'ol' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
-<MenuUnstyled componentsProps={{ listbox: { className: 'my-listbox' } }} />
+<MenuUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ### CSS classes
 
@@ -108,7 +104,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 `MenuItemUnstyled` can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
-- `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation.
+- `Mui-focusVisible` - set when the MenuItem is highlighted via keyboard navigation.
   This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
 
 ## Hooks

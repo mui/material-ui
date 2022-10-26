@@ -75,6 +75,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    slotProps,
+    slots,
     // eslint-disable-next-line react/prop-types
     theme,
     ...other
@@ -102,23 +104,26 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const classes = extendUtilityClasses(ownerState);
 
-  const Root = components.Root ?? component ?? ModalRoot;
+  const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
+  const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
+
+  const rootSlotProps = slotProps?.root ?? componentsProps.root;
+  const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
 
   return (
     <ModalUnstyled
-      components={{
-        Root,
-        Backdrop: BackdropComponent,
-        ...components,
+      slots={{
+        root: RootSlot,
+        backdrop: BackdropSlot,
       }}
-      componentsProps={{
+      slotProps={{
         root: () => ({
-          ...resolveComponentProps(componentsProps.root, ownerState),
-          ...(!isHostComponent(Root) && { as: component, theme }),
+          ...resolveComponentProps(rootSlotProps, ownerState),
+          ...(!isHostComponent(RootSlot) && { as: component, theme }),
         }),
         backdrop: () => ({
           ...BackdropProps,
-          ...resolveComponentProps(componentsProps.backdrop, ownerState),
+          ...resolveComponentProps(backdropSlotProps, ownerState),
         }),
       }}
       onTransitionEnter={() => setExited(false)}
@@ -140,8 +145,8 @@ Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
-   * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
+   * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -155,7 +160,7 @@ Modal.propTypes /* remove-proptypes */ = {
   BackdropComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `componentsProps.backdrop` instead.
+   * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps: PropTypes.object,
   /**
@@ -272,6 +277,23 @@ Modal.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside the Modal.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Modal.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

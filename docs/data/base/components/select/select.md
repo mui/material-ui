@@ -23,7 +23,7 @@ It also includes `OptionUnstyled` for creating the options on the list, and `Opt
 
 - 🦍 Can be used as a controlled or uncontrolled component
 - 🧬 Accepts custom elements and non-string values for options
-- 🪆 Options can be grouped and nested
+- 🗃️ Options can be grouped and nested
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -53,6 +53,20 @@ The following demo shows how to create and style a select component.
 Note that it also uses [`PopperUnstyled`](/base/react-popper/) to render a popup for the list of options:
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
+
+#### Form submission
+
+The value(s) chosen in the Select can be posted to a server using a standard HTML form.
+When the `name` prop is set, the Unstyled Select will render a hidden input with the selected value.
+
+{{"demo": "UnstyledSelectForm.js" }}
+
+Note how the second Select in the demo above renders a hidden input with the name provided as a prop.
+
+You can customize the value of this hidden input.
+See the [Object values](#object-values) section to learn how to do it.
+
+#### TypeScript caveat
 
 `SelectUnstyled` accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
@@ -112,26 +126,22 @@ Use the `component` prop to override the root slot with a custom element:
 <SelectUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SelectUnstyled components={{ Root: 'div', Listbox: 'ol' }} />
+<SelectUnstyled slots={{ root: 'div', listbox: 'ol' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
-<SelectUnstyled componentsProps={{ listbox: { className: 'my-listbox' } }} />
+<SelectUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 

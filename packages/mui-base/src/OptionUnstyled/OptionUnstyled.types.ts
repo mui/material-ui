@@ -19,23 +19,23 @@ export interface OptionUnstyledOwnProps<TValue> {
   disabled?: boolean;
   className?: string;
   /**
-   * The components used for each slot inside the OptionUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
    * The props used for each slot inside the OptionUnstyled.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'li',
       OptionUnstyledComponentsPropsOverrides,
       OptionUnstyledOwnerState<TValue>
     >;
+  };
+  /**
+   * The components used for each slot inside the OptionUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
   };
   /**
    * A text representation of the option's content.

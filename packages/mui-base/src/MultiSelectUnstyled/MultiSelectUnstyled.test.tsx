@@ -53,7 +53,7 @@ describe('MultiSelectUnstyled', () => {
     ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<MultiSelectUnstyled components={{ Root: 'div' }} />);
+        const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
         const button = getByRole('button');
         act(() => {
           button.focus();
@@ -68,7 +68,7 @@ describe('MultiSelectUnstyled', () => {
 
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<MultiSelectUnstyled components={{ Root: 'div' }} />);
+      const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
       const button = getByRole('button');
       act(() => {
         button.focus();
@@ -259,33 +259,60 @@ describe('MultiSelectUnstyled', () => {
       expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
       expect(handleChange.args[0][1]).to.deep.equal([1, 2]);
     });
+
+    it('does not call onChange if `value` is modified externally', () => {
+      function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
+        const [value, setValue] = React.useState([1]);
+        const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
+          setValue(newValue);
+          onChange(newValue);
+        };
+
+        return (
+          <div>
+            <button onClick={() => setValue([1, 2])}>Update value</button>
+            <MultiSelectUnstyled value={value} onChange={handleChange}>
+              <OptionUnstyled value={1}>1</OptionUnstyled>
+              <OptionUnstyled value={2}>2</OptionUnstyled>
+            </MultiSelectUnstyled>
+          </div>
+        );
+      }
+
+      const onChange = spy();
+      const { getByText } = render(<TestComponent onChange={onChange} />);
+
+      const button = getByText('Update value');
+      act(() => button.click());
+      expect(onChange.notCalled).to.equal(true);
+    });
   });
 
-  it('does not call onChange if `value` is modified externally', () => {
-    function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
-      const [value, setValue] = React.useState([1]);
-      const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
-        setValue(newValue);
-        onChange(newValue);
-      };
-
-      return (
-        <div>
-          <button onClick={() => setValue([1, 2])}>Update value</button>
-          <MultiSelectUnstyled value={value} onChange={handleChange}>
-            <OptionUnstyled value={1}>1</OptionUnstyled>
-            <OptionUnstyled value={2}>2</OptionUnstyled>
-          </MultiSelectUnstyled>
-        </div>
+  describe('prop: renderValue', () => {
+    it('renders the selected values using the renderValue prop', () => {
+      const { getByRole } = render(
+        <MultiSelectUnstyled
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
       );
-    }
 
-    const onChange = spy();
-    const { getByText } = render(<TestComponent onChange={onChange} />);
+      expect(getByRole('button')).to.have.text('One (1), Two (2)');
+    });
 
-    const button = getByText('Update value');
-    act(() => button.click());
-    expect(onChange.notCalled).to.equal(true);
+    it('renders the selected values as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <MultiSelectUnstyled defaultValue={[1, 2]}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(getByRole('button')).to.have.text('One, Two');
+    });
   });
 
   it('sets a value correctly when interacted by a user and external code', () => {
@@ -300,7 +327,7 @@ describe('MultiSelectUnstyled', () => {
           <MultiSelectUnstyled
             value={value}
             onChange={(_, v) => setValue(v)}
-            componentsProps={{
+            slotProps={{
               root: {
                 'data-testid': 'select',
               } as any,

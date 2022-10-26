@@ -72,12 +72,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     }
   }, [listboxFocusRequested]);
 
-  const updateListboxRef = (listboxElement: HTMLUListElement | null) => {
-    listboxRef.current = listboxElement;
-    focusListboxIfRequested();
-  };
-
-  const handleListboxRef = useForkRef(useForkRef(listboxRefProp, listboxRef), updateListboxRef);
+  const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
   React.useEffect(() => {
     focusListboxIfRequested();

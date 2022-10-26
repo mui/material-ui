@@ -1,0 +1,22 @@
+name: Mark duplicate
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  mark-duplicate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+      - name: mark-duplicate
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'mark-duplicate'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          duplicate-labels: 'duplicate'
+          remove-labels: 'status: incomplete,status: needs triage'
+          close-issue: true

@@ -84,3 +84,16 @@ function Icon() {
 <Button variant="outlined" endDecorator={<Icon />} color="success">
   Checkout
 </Button>;
+
+<Button loading variant="outlined" disabled>
+  disabled
+</Button>;
+<Button loading loadingIndicator="Loading…" variant="outlined">
+  Fetch data
+</Button>;
+<Button endDecorator={<Icon />} loading loadingPosition="end">
+  Send
+</Button>;
+<Button loading loadingPosition="start" startDecorator={<Icon />}>
+  Save
+</Button>;

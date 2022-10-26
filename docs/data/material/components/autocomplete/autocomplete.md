@@ -114,6 +114,16 @@ otherwise, you will notice duplicate headers.
 
 {{"demo": "Grouped.js"}}
 
+To control how the groups are rendered, provide a custom `renderGroup` prop.
+This is a function that accepts an object with two fields:
+
+- `group`—a string representing a group name
+- `children`—a collection of list items that belong to the group
+
+The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+
+{{"demo": "RenderGroup.js"}}
+
 ## Disabled options
 
 {{"demo": "DisabledOptions.js"}}

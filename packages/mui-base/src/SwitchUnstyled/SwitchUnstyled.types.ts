@@ -14,18 +14,18 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Thumb?: React.ElementType;
-    Input?: React.ElementType;
-    Track?: React.ElementType | null;
+  slots?: {
+    root?: React.ElementType;
+    thumb?: React.ElementType;
+    input?: React.ElementType;
+    track?: React.ElementType | null;
   };
 
   /**
    * The props used for each slot inside the Switch.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'span',
       SwitchUnstyledComponentsPropsOverrides,
