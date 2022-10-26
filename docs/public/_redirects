@@ -389,8 +389,14 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base/api/trap-focus/ /base/api/focus-trap/ 301
 /material-ui/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
 /joy-ui/main-features/perfect-dark-mode/ /joy-ui/main-features/dark-mode-optimization/ 301
-/pt/* /:splat 301
-/zh/* /:splat 301
+/pt/material-ui/* /material-ui/:splat 301
+/zh/material-ui/* /material-ui/:splat 301
+/pt/joy-ui/* /joy-ui/:splat 301
+/zh/joy-ui/* /joy-ui/:splat 301
+/pt/base/* /base/:splat 301
+/zh/base/* /base/:splat 301
+/pt/system/* /system/:splat 301
+/zh/system/* /system/:splat 301
 
 # 2023
 
