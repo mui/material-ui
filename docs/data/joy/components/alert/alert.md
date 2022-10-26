@@ -22,9 +22,7 @@ Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the beha
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-### Usage
+## Usage
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -36,13 +34,13 @@ export default function MyApp() {
 }
 ```
 
-### Basics
+## Basics
 
 The Alert component wraps around its content, and stretches to fill its enclosing container, as shown below:
 
 {{"demo": "AlertBasic.js"}}
 
-### Anatomy
+## Anatomy
 
 The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
 
