@@ -25,7 +25,7 @@ Use the Material UI [Dialog](https://mui.com/material-ui/react-dialog/) if you n
 
 ## Usage
 
-After [installation](/material/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/material-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Alert from '@mui/material/Alert';
@@ -144,7 +144,7 @@ Use the `color` prop to override the default color for the specified [`severity`
 
 {{"demo": "ColorAlerts.js"}}
 
-### Transitions
+## Transitions
 
 You can use [Transition components](/material-ui/transitions/) like [Collapse](/material-ui/transitions/#collapse) to add motion to an Alert's entrance and exit.
 
@@ -156,7 +156,7 @@ Here are some factors to consider to ensure that your Alert is accessible:
 
 - Because alerts are not intended to interfere with the use of the app, your Alert component should _never_ affect the keyboard focus.
 - If an alert contains an action, that action must have a `tabindex` of `0` so it can be reached by keyboard-only users.
-- Alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.
+- Essential Alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.
 - Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
 - Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
 - Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.
