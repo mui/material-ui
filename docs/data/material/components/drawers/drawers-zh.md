@@ -3,7 +3,7 @@ product: material-ui
 title: React Drawer（抽屉）组件
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
-materialDesign: https://material.io/components/navigation-drawer
+materialDesign: https://m2.material.io/components/navigation-drawer
 ---
 
 # Drawer（抽屉）
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 用户能够通过 Navigation drawers（或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
-[Side sheets](https://material.io/components/sheets-side) 主要在平板和桌面上作为辅助侧边栏使用。
+[Side sheets](https://m2.material.io/components/sheets-side) 主要在平板和桌面上作为辅助侧边栏使用。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
