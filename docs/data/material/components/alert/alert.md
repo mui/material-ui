@@ -8,17 +8,78 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 # Alert
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://m2.material.io/), but MUI supports it.
+## Introduction
+
+The Alert component can be used to provide important and potentially time-sensitive information in a way that does not interfere with the user's tasks. (Source: [ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).)
+
+This component is not documented in the [Material Design guidelines](https://material.io/).
+
+:::warning
+Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
+Use the Material UI [Dialog](https://mui.com/material-ui/react-dialog/) if you need this behavior.
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic alerts
+## Component
 
-The alert offers four severity levels that set a distinctive icon and color.
+### Usage
+
+After [installation](/material/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Alert from '@mui/material/Alert';
+
+export default function MyApp() {
+  return <Alert />;
+}
+```
+
+### Basics
+
+The Alert component wraps around its content, and stretches to fill its enclosing container.
+The `severity` prop accepts four values representing different states—`success` (the default), `info`, `warning`, and `error`–with corresponding icon and color combinations for each:
 
 {{"demo": "BasicAlerts.js"}}
+
+### Anatomy
+
+The Alert component is composed of a root [Paper](/material-ui/react-paper/) component (which renders as a `<div>`) that houses an icon, a message, and an optional action:
+
+```html
+<div
+  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardSuccess MuiAlert-standard"
+  role="alert"
+>
+  <div class="MuiAlert-icon">
+    <!-- svg icon here -->
+  </div>
+  <div class="MuiAlert-message">
+    This is how an Alert renders in the DOM.
+  </div>
+  <div class="MuiAlert-action">
+    <!-- optional action element here -->
+  </div>
+</div>
+```
+
+### Overriding the root slot
+
+Use the `component` prop to override the root slot with a custom element.
+For example, the following code snippet replaces the default `<div>` with a `<span>`:
+
+```jsx
+<Alert component="span">Alert content</Alert>
+
+// renders as:
+<span role="alert" class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardSuccess MuiAlert-standard">
+  Alert content
+</span>
+```
+
+## Customization
 
 ## Description
 
