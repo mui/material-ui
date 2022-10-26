@@ -33,7 +33,7 @@ This release is influenced by two major factors. First, following the Developer 
 
 ### Customization
 
-The Material Design team at Google has made the customization of their design system framework a core feature: [Material Theming](https://material.io/design/material-theming/overview.html). It's an important dimension of the library for us. Since the release of v1, we have been improving the component customization demos, release after release. We demonstrate a wide range of different designs:
+The Material Design team at Google has made the customization of their design system framework a core feature: [Material Theming](https://m2.material.io/design/material-theming/overview.html). It's an important dimension of the library for us. Since the release of v1, we have been improving the component customization demos, release after release. We demonstrate a wide range of different designs:
 
 ![Demo1](/static/blog/material-ui-v4-is-out/demo1.png)
 

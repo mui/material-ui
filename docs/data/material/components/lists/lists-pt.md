@@ -3,14 +3,14 @@ product: material-ui
 title: Componente React Lista
 components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: list'
-materialDesign: https://material.io/components/lists
+materialDesign: https://m2.material.io/components/lists
 ---
 
 # Listas
 
 <p class="description">Listas são continuas, apresentam verticalmente texto ou imagens.</p>
 
-[Listas](https://material.io/design/components/lists.html) são um grupo contínuo de texto ou imagens. Elas são compostas por itens contendo ações primárias e complementares, que são representados por ícones e texto.
+[Listas](https://m2.material.io/components/lists) são um grupo contínuo de texto ou imagens. Elas são compostas por itens contendo ações primárias e complementares, que são representados por ícones e texto.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

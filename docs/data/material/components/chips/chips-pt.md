@@ -3,14 +3,14 @@ product: material-ui
 title: Componente React Chip
 components: Chip
 githubLabel: 'component: chip'
-materialDesign: https://material.io/components/chips
+materialDesign: https://m2.material.io/components/chips
 ---
 
 # Chip
 
 <p class="description">Chips são elementos compactos que representam uma entrada, atributo ou ação.</p>
 
-[Chips](https://material.io/design/components/chips.html) permitirão que usuários insiram informações, façam seleções, filtrem conteúdo ou acionem gatilhos.
+[Chips](https://m2.material.io/components/chips) permitirão que usuários insiram informações, façam seleções, filtrem conteúdo ou acionem gatilhos.
 
 Embora incluído aqui como um componente independente, o uso mais comum será em alguma forma de entrada, portanto, alguns dos comportamentos demonstrados aqui não são mostrados considerando um contexto.
 

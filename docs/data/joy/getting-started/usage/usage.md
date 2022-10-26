@@ -25,18 +25,18 @@ export default App;
 To render any Joy UI component, make sure you place them inside the `CssVarProvider` element.
 
 ```diff
-import { CssVarsProvider } from '@mui/joy/styles';
-+ import Button from '@mui/joy/Button';
+ import { CssVarsProvider } from '@mui/joy/styles';
++import Button from '@mui/joy/Button';
 
-function App() {
-  return (
-    <CssVarsProvider>
-+     <Button>Joy UI</Button>
-    </CssVarsProvider>
-  );
-}
+ function App() {
+   return (
+     <CssVarsProvider>
++      <Button>Joy UI</Button>
+     </CssVarsProvider>
+   );
+ }
 
-export default App;
+ export default App;
 ```
 
 It's that fast to have your first app with Joy UI going!

@@ -181,11 +181,11 @@ This command searches the local dependencies and tries to simplify the structure
 If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
-  resolve: {
-+   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
-+   }
-  }
+ resolve: {
++  alias: {
++    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
++  },
+ },
 ```
 
 ### Usage with Lerna
@@ -392,14 +392,14 @@ Example of fix:
 -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
-function handleRender(req, res) {
-+ // Create a sheets instance.
-+ const sheets = new ServerStyleSheets();
+ function handleRender(req, res) {
++  // Create a sheets instance.
++  const sheets = new ServerStyleSheets();
 
-  //…
+   //…
 
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+   // Render the component to a string.
+   const html = ReactDOMServer.renderToString(
 ```
 
 ### [v4] React class name hydration mismatch
@@ -428,14 +428,14 @@ This generator needs to behave identically on the server and on the client. For 
   -// Create a new class name generator.
   -const generateClassName = createGenerateClassName();
 
-  function handleRender(req, res) {
-  + // Create a new class name generator.
-  + const generateClassName = createGenerateClassName();
+   function handleRender(req, res) {
+  +  // Create a new class name generator.
+  +  const generateClassName = createGenerateClassName();
 
-    //…
+     //…
 
-    // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
+     // Render the component to a string.
+     const html = ReactDOMServer.renderToString(
   ```
 
 - You need to verify that your client and server are running the **exactly the same version** of MUI.
