@@ -4,18 +4,19 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 export default function BasicMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const anchorEl = React.useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = React.useState(false);
+  const handleClick = React.useCallback(() => {
+    setOpen(true);
+  }, []);
+  const handleClose = React.useCallback(() => {
+    setOpen(false);
+  }, []);
 
   return (
     <div>
       <Button
+        ref={anchorEl}
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -26,7 +27,7 @@ export default function BasicMenu() {
       </Button>
       <Menu
         id="basic-menu"
-        anchorEl={anchorEl}
+        anchorEl={anchorEl.current}
         open={open}
         onClose={handleClose}
         MenuListProps={{
