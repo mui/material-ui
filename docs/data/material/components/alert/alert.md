@@ -85,26 +85,26 @@ For example, the following code snippet replaces the default `<div>` with an `<a
 
 ### Variants
 
-The Alert component comes with two alternative style options—`outlined` and `filled`—which you can set using the `variant` prop.
+The Alert component comes with two alternative style options—`filled` and `outlined`—which you can set using the `variant` prop.
+
+#### Filled
+
+{{"demo": "FilledAlerts.js"}}
 
 #### Outlined
 
 {{"demo": "OutlinedAlerts.js"}}
 
 :::warning
-When using an outlined Alert with the [Snackbar](/material-ui/react-snackbar/#customization) component, background content will be visible and bleed through the Alert by default.
+When using an outlined Alert with the [Snackbar](/material-ui/react-snackbar/) component, background content will be visible and bleed through the Alert by default.
 You can prevent this by adding `bgcolor: 'background.paper'` to [the `sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the Alert component:
 
 ```jsx
 <Alert sx={{ bgcolor: 'background.paper' }} />
 ```
+
+Check out the [Snackbar—customization](/material-ui/react-snackbar/#customization) doc for an example of how to use these two components together.
 :::
-
-
-#### Filled
-
-{{"demo": "FilledAlerts.js"}}
-
 
 ### Actions
 
@@ -140,19 +140,15 @@ You can nest this component above the message in your Alert for a neatly styled 
 
 ### Color
 
-Use the `color` prop to override the default color for the specified severity—for instance, the following example shows `warning` colors applied to a `success` Alert:
+Use the `color` prop to override the default color for the specified [`severity`](#basics)—for instance, to apply `warning` colors to a `success` Alert:
 
 {{"demo": "ColorAlerts.js"}}
 
 ### Transitions
 
-You can use a [transition component](/material-ui/transitions/) such as `Collapse` to transition the appearance of the alert.
+You can use [Transition components](/material-ui/transitions/) like [Collapse](/material-ui/transitions/#collapse) to add motion to an Alert's entrance and exit.
 
 {{"demo": "TransitionAlerts.js"}}
-
-## Toast
-
-You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Accessibility
 
