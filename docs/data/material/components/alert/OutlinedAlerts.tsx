@@ -17,9 +17,6 @@ export default function BasicAlerts() {
       <Alert variant="outlined" severity="error">
         This is an outlined error Alert.
       </Alert>
-
-
-
     </Stack>
   );
 }

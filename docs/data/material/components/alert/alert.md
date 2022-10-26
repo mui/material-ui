@@ -91,8 +91,15 @@ The Alert component comes with two alternative style options—`outlined` and `f
 
 {{"demo": "OutlinedAlerts.js"}}
 
-When using an outlined alert with the [`Snackbar` component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the alert by default.
-You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the `Alert` component.
+:::warning
+When using an outlined Alert with the [Snackbar](/material-ui/react-snackbar/#customization) component, background content will be visible and bleed through the Alert by default.
+You can prevent this by adding `bgcolor: 'background.paper'` to [the `sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the Alert component:
+
+```jsx
+<Alert sx={{ bgcolor: 'background.paper' }} />
+```
+:::
+
 
 #### Filled
 
