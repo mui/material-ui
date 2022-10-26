@@ -1,5 +1,7 @@
 export { default } from './ModalUnstyled';
 
+export * from './ModalUnstyled.types';
+
 export { default as ModalManager } from './ModalManager';
 export * from './ModalManager';
 

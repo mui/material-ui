@@ -13,7 +13,7 @@ import {
   ModalUnstyledOwnProps,
   ModalUnstyledProps,
   ModalUnstyledTypeMap,
-} from '@mui/base/ModalUnstyled/ModalUnstyled.types';
+} from '@mui/base/ModalUnstyled';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
