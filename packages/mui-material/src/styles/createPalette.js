@@ -182,7 +182,7 @@ function getDefaultWarning(mode = 'light') {
 }
 
 export default function createPalette(palette) {
-  const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
+  const { mode = 'light', contrastThreshold = 4.5, tonalOffset = 0.2, ...other } = palette;
 
   const primary = palette.primary || getDefaultPrimary(mode);
   const secondary = palette.secondary || getDefaultSecondary(mode);

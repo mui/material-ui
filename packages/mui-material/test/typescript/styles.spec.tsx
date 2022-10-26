@@ -9,7 +9,7 @@ import { blue } from '@mui/material/colors';
     palette: {
       mode: 'dark',
       primary: blue,
-      contrastThreshold: 3,
+      contrastThreshold: 4.5,
       tonalOffset: 0.2,
       common: {
         white: '#ffffff',
