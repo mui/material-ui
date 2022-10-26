@@ -129,7 +129,6 @@ const ChipRoot = styled('div', {
         fontSize: theme.typography.pxToRem(10),
       },
       [`& .${chipClasses.icon}`]: {
-        color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
         marginLeft: 5,
         marginRight: -6,
         ...(ownerState.size === 'small' && {
@@ -137,10 +136,12 @@ const ChipRoot = styled('div', {
           marginLeft: 4,
           marginRight: -4,
         }),
-        ...(ownerState.color !== 'default' &&
-          ownerState.iconColor === ownerState.color && {
+        ...(ownerState.iconColor === ownerState.color && {
+          color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
+          ...(ownerState.color !== 'default' && {
             color: 'inherit',
           }),
+        }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
