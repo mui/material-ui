@@ -44,4 +44,4 @@ function Root(props: FormControlUnstyledRootSlotProps) {
   );
 }
 
-const StyledFormControl = <FormControlUnstyled components={{ Root }} />;
+const StyledFormControl = <FormControlUnstyled slots={{ root: Root }} />;

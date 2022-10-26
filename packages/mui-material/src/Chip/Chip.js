@@ -13,7 +13,7 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(color)}`],
+    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor)}`],
     deleteIcon: [
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
@@ -47,7 +47,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, clickable, onDelete, size, variant } = ownerState;
+    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -55,7 +55,7 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
       { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
@@ -129,7 +129,6 @@ const ChipRoot = styled('div', {
         fontSize: theme.typography.pxToRem(10),
       },
       [`& .${chipClasses.icon}`]: {
-        color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
         marginLeft: 5,
         marginRight: -6,
         ...(ownerState.size === 'small' && {
@@ -137,8 +136,11 @@ const ChipRoot = styled('div', {
           marginLeft: 4,
           marginRight: -4,
         }),
-        ...(ownerState.color !== 'default' && {
-          color: 'inherit',
+        ...(ownerState.iconColor === ownerState.color && {
+          color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
+          ...(ownerState.color !== 'default' && {
+            color: 'inherit',
+          }),
         }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
@@ -396,6 +398,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
+    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
     onDelete: !!onDelete,
     clickable,
     variant,

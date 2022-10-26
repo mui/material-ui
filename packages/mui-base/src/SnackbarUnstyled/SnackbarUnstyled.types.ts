@@ -13,14 +13,14 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Snackbar.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     clickAwayListener?: SlotComponentProps<
       typeof ClickAwayListener,
       SnackbarUnstyledComponentsPropsOverrides,

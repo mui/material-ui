@@ -5,7 +5,7 @@ components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
 ---
 
-# Textarea autosize
+# Textarea Autosize
 
 <p class="description">The TextareaAutosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 

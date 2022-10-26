@@ -3,14 +3,14 @@ product: material-ui
 title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: card'
-materialDesign: https://material.io/components/cards
+materialDesign: https://m2.material.io/components/cards
 ---
 
 # Cartão
 
 <p class="description">Cartões contêm conteúdo e ações sobre um único assunto.</p>
 
-[Cartões](https://material.io/design/components/cards.html) são componentes que exibem conteúdo e ações em um único tópico.
+[Cartões](https://m2.material.io/components/cards) são componentes que exibem conteúdo e ações em um único tópico.
 
 Eles devem ser relevantes, de fácil verificação e apresentar informações úteis. Elementos, como texto e imagens, deve ser colocado sobre eles de uma forma que indica claramente a hierarquia.
 

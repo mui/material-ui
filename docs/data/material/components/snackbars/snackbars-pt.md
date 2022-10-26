@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React Snackbar
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
-materialDesign: https://material.io/components/snackbars
+materialDesign: https://m2.material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 <p class="description">Snackbars fornecem mensagens breves sobre os processos de aplicativos. O componente também é conhecido como toast(torrada).</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. They shouldn't interrupt the user experience, and they don't require user input to disappear.
+[Snackbars](https://m2.material.io/components/snackbars) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 Snackbars contêm uma única linha de texto diretamente relacionada à operação realizada. Eles podem conter uma ação de texto, mas não ícones. Você pode usá-los para exibir notificações.
 

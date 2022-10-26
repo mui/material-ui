@@ -195,8 +195,8 @@ export default function CustomizedSlider() {
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         valueLabelDisplay="auto"
-        components={{
-          ValueLabel: ValueLabelComponent,
+        slots={{
+          valueLabel: ValueLabelComponent,
         }}
         aria-label="custom thumb label"
         defaultValue={20}
@@ -204,7 +204,7 @@ export default function CustomizedSlider() {
       <Box sx={{ m: 3 }} />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
-        components={{ Thumb: AirbnbThumbComponent }}
+        slots={{ thumb: AirbnbThumbComponent }}
         getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />

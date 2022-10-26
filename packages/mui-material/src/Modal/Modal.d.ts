@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
-import { ExtendModalUnstyledTypeMap, ExtendModalUnstyled } from '@mui/base/ModalUnstyled';
+import {
+  ExtendModalUnstyledTypeMap,
+  ExtendModalUnstyled,
+  ModalUnstyledTypeMap,
+} from '@mui/base/ModalUnstyled';
 import { Theme } from '../styles';
 import { BackdropProps } from '../Backdrop';
 
@@ -9,8 +13,8 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
   props: P & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
-     * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
-     * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
+     * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+     * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
      * @default styled(Backdrop, {
      *   name: 'MuiModal',
      *   slot: 'Backdrop',
@@ -24,9 +28,23 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
     BackdropComponent?: React.ElementType<BackdropProps>;
     /**
      * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-     * @deprecated Use `componentsProps.backdrop` instead.
+     * @deprecated Use `slotProps.backdrop` instead.
      */
     BackdropProps?: Partial<BackdropProps>;
+    /**
+     * The components used for each slot inside the Modal.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    components?: {
+      Root?: React.ElementType;
+      Backdrop?: React.ElementType;
+    };
+    /**
+     * The props used for each slot inside the Modal.
+     * @default {}
+     */
+    componentsProps?: ModalUnstyledTypeMap['props']['slotProps'];
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -35,7 +53,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
   defaultComponent: D;
 }>;
 
-type ModalRootProps = NonNullable<ModalTypeMap['props']['componentsProps']>['root'];
+type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
 
 export declare const ModalRoot: React.FC<ModalRootProps>;
 

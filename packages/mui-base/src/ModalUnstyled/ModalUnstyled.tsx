@@ -71,9 +71,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     children,
     classes: classesProp,
     closeAfterTransition = false,
-    component = 'div',
-    components = {},
-    componentsProps = {},
+    component,
     container,
     disableAutoFocus = false,
     disableEnforceFocus = false,
@@ -93,6 +91,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     /* eslint-disable react/prop-types */
     onTransitionEnter,
     onTransitionExited,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -260,10 +260,10 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     childProps.onExited = createChainedFunction(handleExited, children.props.onExited);
   }
 
-  const Root = components.Root || component;
+  const Root = component ?? slots.root ?? 'div';
   const rootProps = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref: handleRef,
@@ -274,15 +274,16 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     ownerState,
   });
 
-  const BackdropComponent = components?.Backdrop || 'div';
+  const BackdropComponent = slots.backdrop;
   const backdropProps = useSlotProps({
     elementType: BackdropComponent,
-    externalSlotProps: componentsProps.backdrop,
+    externalSlotProps: slotProps.backdrop,
     additionalProps: {
       'aria-hidden': true,
       onClick: handleBackdropClick,
       open,
     },
+    className: classes.backdrop,
     ownerState,
   });
 
@@ -336,23 +337,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Modal.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Backdrop: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Modal.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -431,7 +415,24 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool,
-} as any;
+  open: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside the Modal.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Modal.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+};
 
 export default ModalUnstyled;
