@@ -3,7 +3,7 @@ product: material-ui
 title: 应用栏（App bar）React组件
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
-materialDesign: https://material.io/components/app-bars-top
+materialDesign: https://m2.material.io/components/app-bars-top
 ---
 
 # 应用栏（App bar）
@@ -148,6 +148,6 @@ function HideOnScroll(props) {
 
 ## 启用深色模式颜色
 
-按照[Material Design设计准则](https://material.io/design/color/dark-theme.html)，`color`属性对深色模式下的应用栏外观没有影响。 你可以通过将`enableColorOnDark`属性设置为`true`覆盖这一行为。
+按照[Material Design设计准则](https://m2.material.io/design/color/dark-theme.html)，`color`属性对深色模式下的应用栏外观没有影响。 你可以通过将`enableColorOnDark`属性设置为`true`覆盖这一行为。
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}

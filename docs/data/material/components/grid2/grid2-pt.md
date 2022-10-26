@@ -2,7 +2,7 @@
 product: material-ui
 title: React Grid component
 githubLabel: 'component: Grid'
-materialDesign: https://material.io/design/layout/understanding-layout.html
+materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
 
 # Grid version 2
@@ -91,7 +91,7 @@ The `rowSpacing` and `columnSpacing` props let you specify row and column gaps i
 
 ## Responsive values
 
-You can set prop values to change when a given breakpoint is active. For instance, we can implement Material Design's [recommended](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:
+You can set prop values to change when a given breakpoint is active. For instance, we can implement Material Design's [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 

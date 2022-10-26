@@ -1,7 +1,7 @@
 ---
 product: material-ui
 components: Icon, SvgIcon
-materialDesign: https://material.io/design/iconography/system-icons.html
+materialDesign: https://m2.material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
@@ -24,6 +24,6 @@ See the [Installation](/material-ui/getting-started/installation/) page for addi
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"component": "modules/components/SearchIcons.js"}}
+{{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
 
 ℹ️ The search supports synonyms. Try searching for "hamburger" or "logout".

@@ -41,7 +41,7 @@ Remove z-index when position static and relative. This avoids the creation of a 
 
 ### Replace color prop for dark mode
 
-The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
 
 ```jsx
 <AppBar enableColorOnDark />
@@ -1355,7 +1355,7 @@ The `ValueLabelComponent` and `ThumbComponent` props are now part of the `compon
 
 ### Refactor CSS
 
-Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive.
+Rework the CSS to match the latest [Material Design guidelines](https://m2.material.io/components/sliders) and make custom styles more intuitive.
 [See documentation](/material-ui/react-slider/).
 
 <a href="/material-ui/react-slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
@@ -1622,7 +1622,7 @@ The API that controls the scroll buttons has been split into two props.
 
 ### Update default minWidth and maxWidth
 
-Default minimum and maximum widths have been changed to match the [Material Design specifications](https://material.io/components/tabs#specs):
+Default minimum and maximum widths have been changed to match the [Material Design specifications](https://m2.material.io/components/tabs#specs):
 
 - `minWidth` was changed from 72px to 90px.
 - `maxWidth` was changed from 264px to 360px.
