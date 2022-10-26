@@ -123,10 +123,6 @@ export interface ModalUnstyledOwnProps {
    * If `true`, the component is shown.
    */
   open: boolean;
-  /**
-   * If `true`, the exit transition is completed
-   */
-  exited: boolean;
 }
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
