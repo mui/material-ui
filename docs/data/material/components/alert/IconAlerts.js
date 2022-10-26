@@ -8,17 +8,24 @@ export default function IconAlerts() {
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-        This is a success alert — check it out!
+        This success Alert has a one-off custom icon.
+      </Alert>
+      <Alert icon={false} severity="success">
+        This success Alert has no icon.
       </Alert>
       <Alert
         iconMapping={{
           success: <CheckCircleOutlineIcon fontSize="inherit" />,
         }}
       >
-        This is a success alert — check it out!
+        This success Alert uses `iconMapping` to override the default icon...
       </Alert>
-      <Alert icon={false} severity="success">
-        This is a success alert — check it out!
+      <Alert severity="success">
+        ...which means that all other success Alerts after it will use the same
+        icon...
+      </Alert>
+      <Alert severity="success">
+        ...so the `iconMapping` prop is better suited for global theming.
       </Alert>
     </Stack>
   );
