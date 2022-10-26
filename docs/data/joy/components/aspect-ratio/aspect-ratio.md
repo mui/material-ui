@@ -16,9 +16,7 @@ Media content like images can be stretched, resized, and cropped based on the CS
 A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it until browser compatibility increases.
 :::
 
-## Component
-
-### Usage
+## Usage
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -30,7 +28,7 @@ export default function MyApp() {
 }
 ```
 
-### Basics
+## Basics
 
 The Aspect Ratio component wraps around the content that it resizes.
 The element to be resized must be the first direct child.
@@ -38,7 +36,7 @@ The default ratio is `16/9`.
 
 {{"demo": "BasicRatio.js"}}
 
-### Anatomy
+## Anatomy
 
 The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute:
 
