@@ -32,18 +32,17 @@ async function getBranches() {
   });
   const text = await result.text();
 
-//   if (result.status !== 200) {
-//     throw new Error(text);
-//   }
+  if (result.status !== 200) {
+    throw new Error(text);
+  }
 
-//   return JSON.parse(text);
-// }
+  return JSON.parse(text);
+}
 
 Page.getInitialProps = async () => {
   const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
-  // const branches = await getBranches();
-  const branches = [];
+  const branches = await getBranches();
   /**
    * @type {import('docs/src/pages/versions/VersionsContext').VersionsContextValue}
    */
