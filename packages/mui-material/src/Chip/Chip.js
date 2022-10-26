@@ -138,7 +138,7 @@ const ChipRoot = styled('div', {
           marginRight: -4,
         }),
         ...(ownerState.color !== 'default' &&
-          ownerState.iconColor !== ownerState.color && {
+          ownerState.iconColor === ownerState.color && {
             color: 'inherit',
           }),
       },
