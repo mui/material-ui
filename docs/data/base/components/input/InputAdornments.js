@@ -89,13 +89,13 @@ const InputAdornment = styled('div')`
 `;
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { components, ...other } = props;
+  const { slots, ...other } = props;
   return (
     <InputUnstyled
-      components={{
-        Root: StyledInputRoot,
-        Input: StyledInputElement,
-        ...components,
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInputElement,
+        ...slots,
       }}
       {...other}
       ref={ref}
@@ -109,10 +109,10 @@ CustomInput.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Textarea: PropTypes.elementType,
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
   }),
 };
 

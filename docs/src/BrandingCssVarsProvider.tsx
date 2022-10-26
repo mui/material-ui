@@ -32,7 +32,7 @@ const theme = extendTheme({
   typography: deepmerge(typography, {
     h1: {
       ':where([data-mui-color-scheme="dark"]) &': {
-        color: 'initial',
+        color: 'var(--muidocs-palette-common-white)',
       },
     },
     h2: {

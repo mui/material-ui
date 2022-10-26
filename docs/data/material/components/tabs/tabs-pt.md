@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
-materialDesign: https://material.io/components/tabs
+materialDesign: https://m2.material.io/components/tabs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 unstyled: /base/react-tabs/
 ---
@@ -12,7 +12,7 @@ unstyled: /base/react-tabs/
 
 <p class="description">As abas facilitam a exploração e alternam entre diferentes visualizações.</p>
 
-As [abas](https://material.io/design/components/tabs.html) organizam e permitem a navegação entre grupos de conteúdo relacionados e no mesmo nível hierárquico.
+As [abas](https://m2.material.io/design/components/tabs.html) organizam e permitem a navegação entre grupos de conteúdo relacionados e no mesmo nível hierárquico.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

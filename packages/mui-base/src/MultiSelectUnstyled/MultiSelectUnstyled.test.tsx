@@ -52,7 +52,7 @@ describe('MultiSelectUnstyled', () => {
     ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<MultiSelectUnstyled components={{ Root: 'div' }} />);
+        const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
         const button = getByRole('button');
         act(() => {
           button.focus();
@@ -67,7 +67,7 @@ describe('MultiSelectUnstyled', () => {
 
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<MultiSelectUnstyled components={{ Root: 'div' }} />);
+      const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
       const button = getByRole('button');
       act(() => {
         button.focus();
@@ -326,7 +326,7 @@ describe('MultiSelectUnstyled', () => {
           <MultiSelectUnstyled
             value={value}
             onChange={(_, v) => setValue(v)}
-            componentsProps={{
+            slotProps={{
               root: {
                 'data-testid': 'select',
               } as any,

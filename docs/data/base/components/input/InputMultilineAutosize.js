@@ -77,7 +77,7 @@ const StyledTextareaElement = styled(TextareaAutosize)(
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   return (
     <InputUnstyled
-      components={{ Input: StyledInputElement, Textarea: StyledTextareaElement }}
+      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
       {...props}
       ref={ref}
     />
