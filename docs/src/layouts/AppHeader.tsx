@@ -17,6 +17,8 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useRouter } from 'next/router';
+import { pathnameToLanguage } from '../modules/utils/helpers';
 
 const Header = styled('header')(({ theme }) => [
   {
@@ -40,8 +42,11 @@ export default function AppHeader() {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
   const t = useTranslate();
+  // convert current path to corresponding repository path
+  const repoPath = pathnameToLanguage(useRouter().pathname).canonicalPathname;
+  // url is two elements: github.com/mui(organisation) + path of repository
+  const repoUrl = 'https://github.com/mui' + repoPath;
 
   React.useEffect(() => {
     let initialMode = 'system';
@@ -89,7 +94,7 @@ export default function AppHeader() {
             <IconButton
               component="a"
               color="primary"
-              href="https://github.com/mui"
+              href={repoUrl}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >

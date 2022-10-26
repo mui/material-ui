@@ -95,6 +95,11 @@ export function pathnameToLanguage(pathname: string): {
   const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3);
   const canonicalPathname = canonicalAs
     .replace(/^\/api/, '/api-docs')
+    .replace(/^\/core/, '/material-ui')
+    .replace(/^\/x/, '/mui-x')
+    .replace(/^\/design-kits/, '/mui-design-kits')
+    .replace(/^\/toolpad/, 'mui-toolpad')
+    .replace(/^\/templates/, '')
     .replace(/#(.*)$/, '')
     .replace(/\/$/, '');
 
