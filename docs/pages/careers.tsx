@@ -18,12 +18,12 @@ import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import IconImage from 'docs/src/components/icon/IconImage';
-import BrandingProvider from 'docs/src/BrandingProvider';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import ROUTES from 'docs/src/route';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import BrandingCssVarsProvider from "../src/BrandingCssVarsProvider";
 
 interface RoleProps {
   description: string;
@@ -293,7 +293,12 @@ function CareersContent() {
       </Container>
       {/* Our ultimate goal */}
       <Box
-        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+        sx={theme => ({
+          bgcolor: 'grey.50',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900'
+          })
+        })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={4}>
@@ -377,9 +382,12 @@ function CareersContent() {
                     See how we run the company and the way we work.
                   </Typography>
                   <Typography
-                    color={(theme) =>
-                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
-                    }
+                    sx={theme => ({
+                      color: 'primary.600',
+                        ...theme.applyDarkStyles({
+                        color: 'primary.400'
+                      })
+                    })}
                     variant="body2"
                     fontWeight="bold"
                   >
@@ -403,9 +411,12 @@ function CareersContent() {
                     Check behind the scenes and news from the company.
                   </Typography>
                   <Typography
-                    color={(theme) =>
-                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
-                    }
+                    sx={theme => ({
+                      color: 'primary.600',
+                      ...theme.applyDarkStyles({
+                        color: 'primary.400'
+                      })
+                    })}
                     variant="body2"
                     fontWeight="bold"
                   >
@@ -432,21 +443,25 @@ function CareersContent() {
           </Typography>
         </div>
         <Divider
-          sx={{
+          sx={theme => ({
             my: { xs: 2, sm: 4 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
+            borderColor: 'grey.100',
+            ...theme.applyDarkStyles({
+              borderColor: 'primaryDark.600'
+            })
+          })}
         />
         <Stack
           spacing={2}
           divider={
             <Divider
-              sx={{
+              sx={theme => ({
                 my: { xs: 1, sm: 2 },
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-              }}
+                borderColor: 'grey.100',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600'
+                })
+              })}
             />
           }
         >
@@ -547,13 +562,16 @@ function CareersContent() {
             {renderFAQItem(2)}
             <Paper
               variant="outlined"
-              sx={{
+              sx={theme => ({
                 p: 2,
                 borderStyle: 'dashed',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
-              }}
+                borderColor: 'grey.300',
+                bgcolor: 'white',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.400',
+                  bgcolor: 'primaryDark.800'
+                })
+              })}
             >
               <Box sx={{ textAlign: 'left' }}>
                 <Typography variant="body2" color="text.primary" fontWeight="bold">
@@ -576,7 +594,7 @@ function CareersContent() {
 
 export default function Careers() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="Careers - MUI"
         description="Interested in joining MUI? Learn about the roles we're hiring for."
@@ -588,6 +606,6 @@ export default function Careers() {
       </main>
       <Divider />
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }
