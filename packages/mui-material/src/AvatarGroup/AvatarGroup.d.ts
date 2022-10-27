@@ -23,7 +23,12 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   component?: React.ElementType;
   /**
-   * The props used for each slot inside the AvatarGroup.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -36,7 +41,11 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   max?: number;
   /**
-   * The props used for each slot inside the AvatarGroup.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
   slotProps?: {

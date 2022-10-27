@@ -34,8 +34,11 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**
-   * The components used for each slot inside the Alert.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components?: {
@@ -43,7 +46,12 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
     CloseIcon?: React.ElementType;
   };
   /**
-   * The props used for each slot inside.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -85,7 +93,11 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    */
   variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
   /**
-   * The props used for each slot inside.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
   slotProps?: {
@@ -93,8 +105,10 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
     closeIcon?: SvgIconProps;
   };
   /**
-   * The components used for each slot inside the Alert.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
   slots?: {

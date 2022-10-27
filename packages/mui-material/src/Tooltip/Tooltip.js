@@ -739,8 +739,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The components used for each slot inside the Tooltip.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -750,9 +753,12 @@ Tooltip.propTypes /* remove-proptypes */ = {
     Transition: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.popper` prop values win over `PopperProps`
-   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -870,9 +876,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   PopperProps: PropTypes.object,
   /**
-   * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.popper` prop values win over `PopperProps`
-   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -882,8 +890,10 @@ Tooltip.propTypes /* remove-proptypes */ = {
     transition: PropTypes.object,
   }),
   /**
-   * The components used for each slot inside the Tooltip.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
   slots: PropTypes.shape({
