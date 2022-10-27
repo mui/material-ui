@@ -46,62 +46,67 @@ function setColor(obj: any, key: string, defaultValue: any) {
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(
-  options: CssVarsThemeOptions & { useMaterialYou?: boolean } = {},
+  options: CssVarsThemeOptions = {},
   ...args: any[]
 ) {
   const {
     colorSchemes: colorSchemesInput = {},
     cssVarPrefix = 'mui',
-    useMaterialYou = true,
     ...input
   } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
-  const md3LightPalette = {
-    ...md3CommonPalette,
-    ...createMd3LightColorScheme(getCssVar, md3CommonPalette),
-  };
-
-  const md3DarkPalette = {
-    ...md3CommonPalette,
-    ...createMd3DarkColorScheme(getCssVar, md3CommonPalette),
-  };
+  const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
+  const md3DarkColors = createMd3DarkColorScheme(getCssVar, md3CommonPalette);
 
   // @ts-ignore - it's fine, everything that is not supported will be spread
-  const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
+  const { palette: lightPalette, sys: lightSys, ref: lightRef, ...muiTheme } = createThemeWithoutVars({
     ...input,
-    ...(useMaterialYou && {
-      useMaterialYou: true,
-      md3: {
-        typescale: md3Typescale,
-        typeface: md3Typeface,
-        state: md3State,
-        shape: {
-          borderRadius: 100,
-          ...input?.shape,
-        },
+    // Material You specific tokens
+    useMaterialYou: true,
+    ref: {
+      ...input.ref,
+      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      palette: {
+        ...md3CommonPalette,
+        ...colorSchemesInput.light?.ref?.palette,
+      }
+    },
+    sys: {
+      ...input.sys,
+      typescale: { ...md3Typescale, ...input.sys?.typescale },
+      state: { ...md3State, ...input.sys?.state },
+      color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color }
+    },
+    md3: {
+      shape: {
+        borderRadius: 100,
+        ...input?.shape,
       },
-    }),
+    },
     palette: {
       ...(colorSchemesInput.light && colorSchemesInput.light?.palette),
-      ...(useMaterialYou && {
-        md3: {
-          ...md3LightPalette,
-          ...colorSchemesInput.light?.palette?.md3,
-        },
-      }),
     },
   });
-  const { palette: darkPalette } = createThemeWithoutVars({
+  const { palette: darkPalette, sys: darkSys, ref: darkRef } = createThemeWithoutVars({
     palette: {
       mode: 'dark',
       ...colorSchemesInput.dark?.palette,
-      ...(useMaterialYou && {
-        md3: {
-          ...md3DarkPalette,
-          ...colorSchemesInput.dark?.palette?.md3,
-        },
-      }),
+    },
+    ref: {
+      ...input.ref,
+      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      palette: {
+        ...md3CommonPalette,
+        ...colorSchemesInput.dark?.ref?.palette,
+      }
+    },
+
+    sys: {
+      ...input.sys,
+      typescale: { ...md3Typescale, ...input.sys?.typescale },
+      state: { ...md3State, ...input.sys?.state },
+      color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color }
     },
   });
 
@@ -123,6 +128,8 @@ export default function extendTheme(
           ...colorSchemesInput.light?.opacity,
         },
         overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
+        sys: lightSys,
+        ref: lightRef
       },
       dark: {
         ...colorSchemesInput.dark,
@@ -136,6 +143,8 @@ export default function extendTheme(
           ...colorSchemesInput.dark?.opacity,
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
+        sys: darkSys,
+        ref: darkRef
       },
     },
   };
@@ -145,6 +154,9 @@ export default function extendTheme(
       .palette as MD2ColorSystem['palette'] & {
       md3: MD3Palettes & { colors: MD3ColorSchemeTokens };
     };
+
+    const colorSchemeSys = theme.colorSchemes[key as SupportedColorScheme].sys;
+    const colorSchemeRef = theme.colorSchemes[key as SupportedColorScheme].ref;
 
     // attach black & white channels to common node
     if (key === 'light') {
@@ -365,21 +377,19 @@ export default function extendTheme(
       }
     });
 
-    // Needs to be handled better, the values are now hardcoded to the default values for these tokens
-    if (useMaterialYou) {
-      if (key === 'light') {
-        palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['40']);
-        palette.md3.colors.secondaryChannel = colorChannel(palette.md3.secondary['40']);
-        palette.md3.colors.tertiaryChannel = colorChannel(palette.md3.tertiary['40']);
-        palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['90']);
-        palette.md3.colors.onSurfaceChannel = colorChannel(palette.md3.neutral['10']);
-      } else {
-        palette.md3.colors.primaryChannel = colorChannel(palette.md3.primary['80']);
-        palette.md3.colors.secondaryChannel = colorChannel(palette.md3.secondary['80']);
-        palette.md3.colors.tertiaryChannel = colorChannel(palette.md3.tertiary['80']);
-        palette.md3.colors.secondaryContainerChannel = colorChannel(palette.md3.secondary['30']);
-        palette.md3.colors.onSurfaceChannel = colorChannel(palette.md3.neutral['90']);
-      }
+    // Material You specific channels
+    if (key === 'light') {
+      colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['40']);
+      colorSchemeSys.color.secondaryChannel = colorChannel(colorSchemeRef.palette.secondary['40']);
+      colorSchemeSys.color.tertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['40']);
+      colorSchemeSys.color.secondaryContainerChannel = colorChannel(colorSchemeRef.palette.secondary['90']);
+      colorSchemeSys.color.onSurfaceChannel = colorChannel(colorSchemeRef.palette.neutral['10']);
+    } else {
+      colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['80']);
+      colorSchemeSys.color.secondaryChannel = colorChannel(colorSchemeRef.palette.secondary['80']);
+      colorSchemeSys.color.tertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['80']);
+      colorSchemeSys.color.secondaryContainerChannel = colorChannel(colorSchemeRef.palette.secondary['30']);
+      colorSchemeSys.color.onSurfaceChannel = colorChannel(colorSchemeRef.palette.neutral['90']);
     }
   });
 

@@ -146,19 +146,31 @@ export interface MD3PaletteWithTokens extends MD3Palettes {
 
 export interface Theme extends Omit<MD2Theme, 'vars'> {
   useMaterialYou?: boolean;
-  md3: {
-    // Others should be added
+  ref: {
+    palette: MD3Palettes;
+    typeface: any;
+  };
+  sys: {
+    color: MD3ColorSchemeTokens
+    typescale: MD3Typescale
     state: MD3States;
-    typescale: MD3Typescale;
+  };
+  md3: {
     shape: Shapes;
   };
-  palette: MD2Theme['palette'] & { md3: MD3PaletteWithTokens };
+  palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'] & { md3: MD3PaletteWithTokens };
-    md3: {
-      // Others should be added
+    palette: MD2Theme['vars']['palette'];
+    ref: {
+      palette: MD3Palettes;
+      typeface: any;
+    };
+    sys: {
+      color: MD3ColorSchemeTokens
+      typescale: MD3Typescale
       state: MD3States;
-      typescale: MD3Typescale;
+    };
+    md3: {
       shape: Shapes;
     };
   };
