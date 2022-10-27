@@ -147,4 +147,38 @@ describe('<ButtonUnstyled />', () => {
       });
     });
   });
+
+  describe('prop: href', () => {
+    it('renders as a link when the "href" prop is provided', () => {
+      const { getByRole } = render(<ButtonUnstyled href="#" />);
+      expect(getByRole('link')).not.to.equal(null);
+    });
+
+    it('renders as the element provided in the "component" prop, even with a "href" prop', () => {
+      const { getByRole } = render(<ButtonUnstyled component="h1" href="#" />);
+      expect(getByRole('heading')).not.to.equal(null);
+    });
+
+    it('renders as the element provided in the "components.Root" prop, even with a "href" prop', () => {
+      const { getByRole } = render(<ButtonUnstyled slots={{ root: 'h1' }} href="#" />);
+      expect(getByRole('heading')).not.to.equal(null);
+    });
+  });
+
+  describe('prop: to', () => {
+    it('renders as a link when the "to" prop is provided', () => {
+      const { container } = render(<ButtonUnstyled to="#" />);
+      expect(container.querySelector('a')).not.to.equal(null);
+    });
+
+    it('renders as the element provided in the "component" prop, even with a "to" prop', () => {
+      const { getByRole } = render(<ButtonUnstyled component="h1" to="#" />);
+      expect(getByRole('heading')).not.to.equal(null);
+    });
+
+    it('renders as the element provided in the "components.Root" prop, even with a "to" prop', () => {
+      const { getByRole } = render(<ButtonUnstyled slots={{ root: 'h1' }} to="#" />);
+      expect(getByRole('heading')).not.to.equal(null);
+    });
+  });
 });
