@@ -12,7 +12,7 @@ tags: ['Product']
 MUI is so much more than Material UI!
 
 You'll be forgiven if you thought MUI was merely shorthand for our most popular product.
-What began as an open-source React UI library has evolved over time into a full-fledged startup with a whole suite of related products.
+In fact, MUI as an organization was founded to meet the growing needs of the Material UI community, and is now responsible for a whole suite of related products.
 
 Material UI is the flagship; but it's also the gateway to MUI's ever-expanding ecosystem of UI tools.
 
@@ -146,7 +146,8 @@ It features an intuitive UI and corresponding API to display different views of 
 
 #### Key features
 
-- **Sophisticated data analysis:** Edit, filter, sort, aggregate, and export your data with ease. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
+- **Data management:** Create, retrieve, update and delete your data with ease. 
+- **Sophisticated data analysis:** Pin rows and columns, group and aggregate values, export your view of the data to other formats. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
 - **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familar with Material UI—no new concepts to master along the way.
 - **Accessibility:** It's notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
 
@@ -163,13 +164,15 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 #### Key features
 
-- **Third-party date library support:** The Date and Time Pickers include support for many of the most popular date libraries, so you can pick whichever you prefer.
+- **Third-party date library support:** All components include support for many of the most popular date libraries, so you can pick whichever you prefer.
 - **Localization:** The Pickers are optimized for use anywhere in the world, with support for all variations on date and time formatting.
 
 #### Ideal use cases
 
 - Forms requiring date and time input from the user
-- Apps built with MUI Core libraries that need advanced functionality
+- Booking apps using date and time ranges.
+- Enterprise apps using advanced date and time validation and constraints.
+- Apps built with MUI Core libraries using date and time functionality.
 
 ## MUI Toolpad
 
