@@ -268,30 +268,12 @@ export const ButtonRoot = styled('button', {
   }rem`;
 
   return {
-    // What's missing:
-    // 1. The container state opacities are calculated in the background color for now
-    // '--md-comp-button-disabled-container-opacity': '',
-    // '--md-comp-button-disabled-label-text-opacity': '',
-    // '--md-comp-button-disabled-icon-opacity': '',
-    // '--md-comp-button-hovered-container-state-layer-opacity': '',
-    // '--md-comp-button-focused-container-state-layer-opacity': '',
-    // '--md-comp-button-pressed-container-state-layer-opacity': '',
-    // 2. The elevations are not correctly implemented, as I still couldn't find an actual specification around their values
-    // '--md-comp-button-container-shadow-color': '',
-    // '--md-comp-button-focused-container-elevation': '',
-    // '--md-comp-button-pressed-container-elevation': '',
-    // 3. Not sure how to make the tracking work with the CSS variables as there is a calculation needed
-    // '--md-comp-button-label-text-tracking': (theme.vars || theme).typescale.label.large.tracking,
     // Icon variables default values
     '--md-comp-button-icon-color': labelTextColor[ownerState.variant ?? 'text'],
     '--md-comp-button-hovered-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
-    // Dynamic variables
-    '--md-comp-button-label-text-line-height': `calc(${
-      (theme.vars || theme).md3.typescale.label.large.lineHeight
-    } / ${theme.md3.typescale.label.large.size})`,
     // Noramlized styles for buttons
     display: 'inline-flex',
     alignItems: 'center',
@@ -326,26 +308,16 @@ export const ButtonRoot = styled('button', {
         duration: theme.transitions.duration.short,
       },
     ),
-    fontFamily: `var(--md-comp-button-label-text-font, ${
-      (theme.vars || theme).md3.typescale.label.large.family
+    fontFamily: (theme.vars || theme).md3.typescale.label.large.family,
+    fontWeight: (theme.vars || theme).md3.typescale.label.large.weight,
+    fontSize: theme.typography.pxToRem(theme.md3.typescale.label.large.size), // the pxToRem should be moved to typescale in the future
+    lineHeight: `calc(${(theme.vars || theme).md3.typescale.label.large.lineHeight} / ${
+      theme.md3.typescale.label.large.size
     })`,
-    fontWeight: `var(--md-comp-button-label-text-weight, ${
-      (theme.vars || theme).md3.typescale.label.large.weight
-    })`,
-    fontSize: `var(--md-comp-button-label-text-size, ${
-      theme.typography.pxToRem(theme.md3.typescale.label.large.size) // the pxToRem should be moved to typescale in the future
-    })`,
-    lineHeight: 'var(--md-comp-button-label-text-line-height)',
     borderRadius: (theme.vars || theme).md3.shape.borderRadius,
-    background: `var(--md-comp-button-container-color, ${
-      containerColor[ownerState.variant ?? 'text']
-    })`,
-    color: `var(--md-comp-button-label-text-color, ${
-      labelTextColor[ownerState.variant ?? 'text']
-    })`,
-    boxShadow: `var(--md-comp-button-container-elevation, ${
-      containerElevation[ownerState.variant ?? 'text']
-    })`,
+    background: containerColor[ownerState.variant ?? 'text'],
+    color: labelTextColor[ownerState.variant ?? 'text'],
+    boxShadow: containerElevation[ownerState.variant ?? 'text'],
     // Outlined varaiant
     ...(ownerState.variant === 'outlined' && {
       border: `1px solid ${(theme.vars || theme).palette.md3.colors.outline}`,
@@ -353,18 +325,14 @@ export const ButtonRoot = styled('button', {
     }),
     // Sizes are not specified in Material You, this need to be revised
     ...(ownerState.size === 'small' && {
-      fontSize: `var(--md-comp-button-label-text-size, ${
-        theme.typography.pxToRem(theme.md3.typescale.label.large.size - 1) // the pxToRem should be moved to typescale in the future
-      })`,
+      fontSize: theme.typography.pxToRem(theme.md3.typescale.label.large.size - 1), // the pxToRem should be moved to typescale in the future
       padding: '8px 20px',
       ...(ownerState.variant === 'outlined' && {
         padding: '7px 19px',
       }),
     }),
     ...(ownerState.size === 'large' && {
-      fontSize: `var(--md-comp-button-label-text-size, ${
-        theme.typography.pxToRem(theme.md3.typescale.label.large.size + 1) // the pxToRem should be moved to typescale in the future
-      })`,
+      fontSize: theme.typography.pxToRem(theme.md3.typescale.label.large.size + 1), // the pxToRem should be moved to typescale in the future
       padding: '12px 26px',
       ...(ownerState.variant === 'outlined' && {
         padding: '11px 25px',
@@ -372,43 +340,27 @@ export const ButtonRoot = styled('button', {
     }),
     '&:hover': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
-      color: `var(--md-comp-button-hovered-label-text-color, ${
-        labelTextColor[ownerState.variant ?? 'text']
-      })`,
-      backgroundColor: `var(--md-comp-button-hovered-container-state-layer-color, ${
-        hoveredContainerColor[ownerState.variant ?? 'text']
-      })`,
-      boxShadow: `var(--md-comp-button-hovered-container-elevation, ${
-        hoveredContainerElevation[ownerState.variant ?? 'text']
-      })`,
+      color: labelTextColor[ownerState.variant ?? 'text'],
+      backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
+      boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
     '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
-      color: `var(--md-comp-button-pressed-label-text-color, ${
-        labelTextColor[ownerState.variant ?? 'text']
-      })`,
-      backgroundColor: `var(--md-comp-button-pressed-container-state-layer-color, ${
-        pressedContainerColor[ownerState.variant ?? 'text']
-      })`,
+      color: labelTextColor[ownerState.variant ?? 'text'],
+      backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
-      color: `var(--md-comp-button-focused-label-text-color, ${
-        labelTextColor[ownerState.variant ?? 'text']
-      })`,
-      backgroundColor: `var(--md-comp-button-focused-container-state-layer-color, ${
-        focusedContainerColor[ownerState.variant ?? 'text']
-      })`,
+      color: labelTextColor[ownerState.variant ?? 'text'],
+      backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.disabled}`]: {
       // Allows deverloper to specify the disabled icon color var
       '--md-comp-button-icon-color': 'var(--md-comp-button-disabled-icon-color)',
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
-      color: `var(--md-comp-button-disabled-label-text-color, ${disabledLabelTextColor})`,
-      background: `var(--md-comp-button-disabled-container-color, ${
-        disabeldContainerColor[ownerState.variant ?? 'text']
-      })`,
+      color: disabledLabelTextColor,
+      background: disabeldContainerColor[ownerState.variant ?? 'text'],
       boxShadow: 'var(--md-comp-button-disabled-container-elevation, none)', // Should be md.sys.elevation.level0
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${
