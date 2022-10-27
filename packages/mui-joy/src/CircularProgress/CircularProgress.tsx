@@ -226,7 +226,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       role: 'progressbar',
       style: {
         '--CircularProgress-percent': value,
-      }
+      },
     },
     className: clsx(classes.root, className),
     ...(value &&
