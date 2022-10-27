@@ -13,7 +13,7 @@ describe('createPalette()', () => {
       light: deepOrange[300],
       main: deepOrange[500],
       dark: deepOrange[700],
-      contrastText: dark.text.primary,
+      contrastText: light.text.primary,
     });
   });
 
