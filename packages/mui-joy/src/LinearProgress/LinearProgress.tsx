@@ -2,7 +2,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
 import { css, keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -170,18 +170,18 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootRef = React.useRef<HTMLSpanElement | null>(null);
-  const handleRef = useForkRef(rootRef, ref);
-
   const rootProps = useSlotProps({
     elementType: LinearProgressRoot,
     externalSlotProps: {},
     externalForwardedProps: other,
     ownerState,
     additionalProps: {
-      ref: handleRef,
+      ref,
       as: component,
       role: 'progressbar',
+      style: {
+        '--LinearProgress-percent': value,
+      },
     },
     className: clsx(classes.root, className),
     ...(typeof value === 'number' &&
@@ -189,13 +189,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
         'aria-valuenow': Math.round(value),
       }),
   });
-
-  React.useLayoutEffect(() => {
-    const rootComponent = rootRef.current;
-    if (rootComponent) {
-      rootComponent.style.setProperty('--LinearProgress-percent', value.toString());
-    }
-  }, [ref, value, determinate]);
 
   return <LinearProgressRoot {...rootProps}>{children}</LinearProgressRoot>;
 }) as OverridableComponent<LinearProgressTypeMap>;
