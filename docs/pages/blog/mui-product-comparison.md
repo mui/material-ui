@@ -1,7 +1,7 @@
 ---
 title: An introduction to the MUI ecosystem
 description: MUI is more than just Material UI. Consider Joy UI, MUI Base, MUI X, and Toolpad for your next project.
-date: 2022-10-24T00:00:00.000Z
+date: 2022-11-01T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
 tags: ['Product']
@@ -21,7 +21,7 @@ Though our roots are in [Material Design](https://material.io/), we're branching
 Our primary offerings fall into two product lines: Core and X.
 MUI Core contains our foundational component libraries (like Material UI), while MUI X offers components that are significantly more complex (like the Data Grid).
 
-We're also in the early stages of developing a low-code internal tool builder called [MUI Toolpad](https://mui.com/toolpad/), which will enable you to build with every Core and X component in a drag-and-drop interface.
+We're also in the early stages of developing a low-code internal tool builder called [MUI Toolpad](https://mui.com/toolpad/), which enables you to build with every Core and X component in a drag-and-drop interface.
 
 Read on for more details on each of our products.
 
@@ -56,9 +56,9 @@ Get started in the [Material UI docs](/material-ui/getting-started/overview/).
 
 #### Ideal use cases
 
-- User interfaces that adhere closely to Material Design
-- Internal/admin tools
-- Dev teams that need to ship features in hours rather than weeks
+- User interfaces that adhere closely to Material Design.
+- Internal admin tools.
+- Dev teams that need to ship features in hours rather than weeks.
 
 ### Joy UI
 
@@ -76,9 +76,9 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 
 #### Ideal use cases
 
-- Projects that don't involve Material Design
-- Design systems that would benefit from less opinionated defaults when customizing
-- Client-facing apps that need to look and feel distinctly like _your_ brand
+- Projects that don't involve Material Design.
+- Design systems that would benefit from less opinionated defaults when customizing.
+- Client-facing apps that need to look and feel distinctly like _your_ brand.
 
 ### MUI Base
 
@@ -100,9 +100,9 @@ Get started in the [MUI Base docs](/base/getting-started/overview/).
 
 #### Ideal use cases
 
-- Implementing fully custom designs
-- Creating custom components within a Material UI or Joy UI app
-- Adding functionality to fully custom components
+- Implementing fully custom designs.
+- Creating custom components within a Material UI or Joy UI app.
+- Adding functionality to fully custom components.
 
 ### MUI System
 
@@ -123,8 +123,8 @@ Get started in the [MUI System docs](/system/getting-started/overview/).
 
 #### Ideal use cases
 
-- Quickly prototyping custom styles in Material UI, Joy UI, or MUI Base
-- Creating one-off custom components
+- Quickly prototyping custom styles in Material UI, Joy UI, or MUI Base.
+- Creating one-off custom components.
 
 ## MUI X
 
@@ -146,16 +146,16 @@ It features an intuitive UI and corresponding API to display different views of 
 
 #### Key features
 
-- **Data management:** Create, retrieve, update and delete your data with ease. 
+- **Data management:** Create, retrieve, update and delete your data with ease.
 - **Sophisticated data analysis:** Pin rows and columns, group and aggregate values, export your view of the data to other formats. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
 - **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familar with Material UI—no new concepts to master along the way.
 - **Accessibility:** It's notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
 
 #### Ideal use cases
 
-- Applications that feature massive data sets
-- Data analytics tools inside your app, reducing the need to jump to Excel
-- Apps built with MUI Core libraries that need advanced functionality
+- Applications that feature massive data sets.
+- Data analytics tools inside your app, reducing the need to jump to Excel.
+- Apps built with MUI Core libraries that need advanced functionality.
 
 ### Date and Time Pickers
 
@@ -169,10 +169,10 @@ Components include the Date Picker, Time Picker, Date Range Picker, and Date Tim
 
 #### Ideal use cases
 
-- Forms requiring date and time input from the user
+- Forms requiring date and time input from the user.
 - Booking apps using date and time ranges.
-- Enterprise apps using advanced date and time validation and constraints.
-- Apps built with MUI Core libraries using date and time functionality.
+- Enterprise apps using advanced date and time validation with constraints.
+- Apps built with MUI Core libraries that need date and time functionality.
 
 ## MUI Toolpad
 
@@ -190,5 +190,15 @@ Drag and drop pre-built UI components, connect your data sources, and your app i
 
 ### Ideal use cases
 
-- Admin tools with a tight deadline
-- Rapid in-browser prototyping for front-end and full-stack development
+- Admin tools with a tight deadline.
+- Rapid in-browser prototyping for front-end and full-stack development.
+
+## What comes next
+
+MUI is firmly committed to the React ecosystem for the long term—our [company mission](https://mui-org.notion.site/Direction-d8b8c142a6a44e3aa963f26edf4e03db) is measured in decades, because we believe in the staying power of this open-source community.
+
+We envision a world in which MUI's component libraries are the industry standard for React developers worldwide, and we've defined some ambitious goals for growth to make this a reality in the years to come.
+
+To keep up with all of our new products and features, you can sign up for our mailing list at the bottom of this page to receive monthly updates.
+
+We can't wait to see what you create!
