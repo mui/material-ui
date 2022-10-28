@@ -29,11 +29,11 @@ const Image = styled('img')(({ theme }) => ({
   ...theme.applyDarkStyles({
     borderColor: (theme.vars || theme).palette.grey[800],
     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
-  })
+  }),
 }));
 
-const Anchor = styled('a')(
-  ({ theme }) => ([{
+const Anchor = styled('a')(({ theme }) => [
+  {
     display: 'inline-block',
     position: 'relative',
     transitionProperty: 'all',
@@ -46,9 +46,9 @@ const Anchor = styled('a')(
   theme.applyDarkStyles({
     '&:hover, &:focus': {
       boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
-    }
-  })])
-);
+    },
+  }),
+]);
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
@@ -87,10 +87,10 @@ const DesignToolLogo = React.forwardRef<
       {...props}
       sx={[
         (theme) => ({
-        boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
-        ...theme.applyDarkStyles({
-          boxShadow: `0px 3.57436px 44.6795px ${(theme.vars || theme).palette.primaryDark[900]}`
-        })
+          boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
+          ...theme.applyDarkStyles({
+            boxShadow: `0px 3.57436px 44.6795px ${(theme.vars || theme).palette.primaryDark[900]}`,
+          }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
@@ -239,7 +239,7 @@ export default function DesignKits() {
           zIndex: 1,
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
-          })
+          }),
         })}
       />
       <Box
@@ -250,27 +250,20 @@ export default function DesignKits() {
           left: 0,
           width: '100%',
           height: '100%',
-          background: `linear-gradient(to bottom, ${
-            (theme.vars || theme).palette.grey[50]
-            } 0%, ${
-              'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            } 30%, ${
-              'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            } 70%, ${
-              (theme.vars || theme).palette.grey[50]
-            } 100%)`,
+          background: `linear-gradient(to bottom, ${(theme.vars || theme).palette.grey[50]} 0%, ${
+            'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+          } 30%, ${
+            'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+          } 70%, ${(theme.vars || theme).palette.grey[50]} 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to bottom, ${
               (theme.vars || theme).palette.primaryDark[900]
-            } 0%, ${
-              alpha((theme.vars || theme).palette.primaryDark[900], 0)
-            } 30%, ${
-              alpha((theme.vars || theme).palette.primaryDark[900], 0)
-            } 70%, ${
-              (theme.vars || theme).palette.primaryDark[900]
-            } 100%)`,
-          })
+            } 0%, ${alpha((theme.vars || theme).palette.primaryDark[900], 0)} 30%, ${alpha(
+              (theme.vars || theme).palette.primaryDark[900],
+              0,
+            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+          }),
         })}
       />
       <Box
@@ -281,19 +274,15 @@ export default function DesignKits() {
           left: 0,
           width: 400,
           height: '100%',
-          background: `linear-gradient(to right, ${
-            (theme.vars || theme).palette.grey[50]
-          }, ${
+          background: `linear-gradient(to right, ${(theme.vars || theme).palette.grey[50]}, ${
             'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
           })`,
           zIndex: 2,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]
-            }, ${
-              alpha((theme.vars || theme).palette.primaryDark[900], 0)
-            })`,
-          })
+            }, ${alpha((theme.vars || theme).palette.primaryDark[900], 0)})`,
+          }),
         })}
       />
       <DesignKitTools

@@ -162,7 +162,7 @@ export default function DesignKitFAQ() {
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.400',
                 bgcolor: 'primaryDark.800',
-              })
+              }),
             })}
           >
             <Box sx={{ textAlign: 'left' }}>

@@ -15,11 +15,15 @@ export default function AppHeaderBanner() {
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { xs: 'start', sm: 'center' },
         justifyContent: 'center',
-        background: `linear-gradient(-90deg, ${(theme.vars || theme).palette.primary[700]}, ${(theme.vars || theme).palette.primary[500]} 120%)`,
+        background: `linear-gradient(-90deg, ${(theme.vars || theme).palette.primary[700]}, ${
+          (theme.vars || theme).palette.primary[500]
+        } 120%)`,
         fontSize: theme.typography.pxToRem(13),
         ...theme.applyDarkStyles({
-          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[900]}, ${(theme.vars || theme).palette.primary[600]} 120%)`,
-        })
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[900]}, ${
+            (theme.vars || theme).palette.primary[600]
+          } 120%)`,
+        }),
       })}
     >
       🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and

@@ -28,7 +28,7 @@ const Image = styled('img')(({ theme }) => ({
   borderRadius: '10px',
   ...theme.applyDarkStyles({
     filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
-  })
+  }),
 }));
 
 export default function TemplateDemo() {
@@ -80,51 +80,54 @@ export default function TemplateDemo() {
             >
               <Fade in={demo === 'Components'} timeout={500}>
                 <Box
-                  sx={[(theme) => ({
-                    width: '100%',
-                    height: '100%',
-                    '& img': {
-                      position: 'absolute',
-                      left: '50%',
-                      width: { xs: 240, sm: 300 },
-                      '&:nth-of-type(1)': {
-                        top: 120,
-                        transform: 'translate(-70%)',
-                      },
-                      '&:nth-of-type(2)': {
-                        top: 80,
-                        transform: 'translate(-50%)',
-                      },
-                      '&:nth-of-type(3)': {
-                        top: 40,
-                        transform: 'translate(-30%)',
-                      },
-                    },
-                    '&:hover': {
+                  sx={[
+                    (theme) => ({
+                      width: '100%',
+                      height: '100%',
                       '& img': {
-                        filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
+                        position: 'absolute',
+                        left: '50%',
+                        width: { xs: 240, sm: 300 },
                         '&:nth-of-type(1)': {
-                          top: 0,
-                          transform: 'scale(0.8) translate(-108%) rotateY(30deg)',
+                          top: 120,
+                          transform: 'translate(-70%)',
                         },
                         '&:nth-of-type(2)': {
-                          top: 40,
-                          transform: 'scale(0.8) translate(-54%) rotateY(30deg)',
+                          top: 80,
+                          transform: 'translate(-50%)',
                         },
                         '&:nth-of-type(3)': {
                           top: 40,
-                          transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
+                          transform: 'translate(-30%)',
                         },
                       },
-                    },
-                  }),
-                  (theme) => theme.applyDarkStyles({
-                    '&:hover': {
-                      '& img': {
-                        filter: 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))',
-                      }
-                    }}
-                  )]}
+                      '&:hover': {
+                        '& img': {
+                          filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
+                          '&:nth-of-type(1)': {
+                            top: 0,
+                            transform: 'scale(0.8) translate(-108%) rotateY(30deg)',
+                          },
+                          '&:nth-of-type(2)': {
+                            top: 40,
+                            transform: 'scale(0.8) translate(-54%) rotateY(30deg)',
+                          },
+                          '&:nth-of-type(3)': {
+                            top: 40,
+                            transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
+                          },
+                        },
+                      },
+                    }),
+                    (theme) =>
+                      theme.applyDarkStyles({
+                        '&:hover': {
+                          '& img': {
+                            filter: 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))',
+                          },
+                        },
+                      }),
+                  ]}
                 >
                   <Image
                     src={`/static/branding/design-kits/Button-light.jpeg`}
@@ -132,7 +135,7 @@ export default function TemplateDemo() {
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Button-dark.jpeg)`
+                        content: `url(/static/branding/design-kits/Button-dark.jpeg)`,
                       })
                     }
                   />
@@ -142,7 +145,7 @@ export default function TemplateDemo() {
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Alert-dark.jpeg)`
+                        content: `url(/static/branding/design-kits/Alert-dark.jpeg)`,
                       })
                     }
                   />
@@ -152,7 +155,7 @@ export default function TemplateDemo() {
                     loading="lazy"
                     sx={(theme) =>
                       theme.applyDarkStyles({
-                        content: `url(/static/branding/design-kits/Slider-dark.jpeg)`
+                        content: `url(/static/branding/design-kits/Slider-dark.jpeg)`,
                       })
                     }
                   />
@@ -171,8 +174,8 @@ export default function TemplateDemo() {
                     top: '50%',
                     transform: 'translate(-50%, -50%)',
                     ...theme.applyDarkStyles({
-                      content: `url(/static/branding/design-kits/Colors-dark.jpeg)`
-                    })
+                      content: `url(/static/branding/design-kits/Colors-dark.jpeg)`,
+                    }),
                   })}
                 />
               </Fade>
@@ -189,8 +192,8 @@ export default function TemplateDemo() {
                     top: 60,
                     transform: 'translate(-40%)',
                     ...theme.applyDarkStyles({
-                      content: `url(/static/branding/design-kits/Icons-dark.jpeg)`
-                    })
+                      content: `url(/static/branding/design-kits/Icons-dark.jpeg)`,
+                    }),
                   })}
                 />
               </Fade>
