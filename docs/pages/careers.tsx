@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -16,7 +16,6 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import IconImage from 'docs/src/components/icon/IconImage';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
@@ -491,62 +490,60 @@ function CareersContent() {
       </Container>
       {/* Next roles */}
       {nextRolesData.length > 0 ? (
-        <ThemeProvider theme={brandingDarkTheme}>
-          <Box sx={{ bgcolor: 'primaryDark.700' }}>
-            <Container sx={{ py: { xs: 4, md: 8 } }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <div>
-                  <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
-                    Next roles
-                  </Typography>
-                  <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                    We hire in batches, we collect applications a few months before we actively aim
-                    to fill the roles. If none of these roles fit with what you are looking for, you
-                    can apply to the{' '}
-                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                      Dream job
-                    </Link>{' '}
-                    role.
-                  </Typography>
-                </div>
-              </Box>
-              <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
-              <Stack
-                spacing={2}
-                divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
-              >
-                {nextRolesData.map((category) => {
-                  const roles = category.roles;
-                  return (
-                    <React.Fragment key={category.title}>
-                      <Typography component="h3" variant="h5" fontWeight="extraBold">
-                        {category.title}
-                      </Typography>
-                      {roles.length > 0 ? (
-                        roles.map((role) => (
-                          <Role
-                            key={role.title}
-                            title={role.title}
-                            description={role.description}
-                            url={role.url}
-                          />
-                        ))
-                      ) : (
-                        <Typography color="text.secondary">No plans yet.</Typography>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </Stack>
-            </Container>
-          </Box>
-        </ThemeProvider>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+          <Container sx={{ py: { xs: 4, md: 8 } }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
+                  Next roles
+                </Typography>
+                <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+                  We hire in batches, we collect applications a few months before we actively aim
+                  to fill the roles. If none of these roles fit with what you are looking for, you
+                  can apply to the{' '}
+                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                    Dream job
+                  </Link>{' '}
+                  role.
+                </Typography>
+              </div>
+            </Box>
+            <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
+            <Stack
+              spacing={2}
+              divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
+            >
+              {nextRolesData.map((category) => {
+                const roles = category.roles;
+                return (
+                  <React.Fragment key={category.title}>
+                    <Typography component="h3" variant="h5" fontWeight="extraBold">
+                      {category.title}
+                    </Typography>
+                    {roles.length > 0 ? (
+                      roles.map((role) => (
+                        <Role
+                          key={role.title}
+                          title={role.title}
+                          description={role.description}
+                          url={role.url}
+                        />
+                      ))
+                    ) : (
+                      <Typography color="text.secondary">No plans yet.</Typography>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </Stack>
+          </Container>
+        </Box>
       ) : null}
       {/* Frequently asked questions */}
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
