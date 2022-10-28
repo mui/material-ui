@@ -180,6 +180,9 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       as: component,
       role: 'progressbar',
       style: {
+        // Setting this CSS varaible via inline-style
+        // prevents the generation of new CSS every time
+        // `value` prop updates
         '--LinearProgress-percent': value,
       },
     },
