@@ -1,4 +1,6 @@
 commit_message: '[skip ci]'
+pull_request_title: '[docs] Sync translations with Crowdin'
+pull_request_labels: [l10n]
 files:
   - source: /docs/src/**/*.md
     ignore:
