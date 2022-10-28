@@ -80,7 +80,8 @@ export default function TemplateDemo() {
             >
               <Fade in={demo === 'Components'} timeout={500}>
                 <Box
-                  sx={[({
+                  sx={[
+                    {
                       width: '100%',
                       height: '100%',
                       '& img': {
@@ -117,7 +118,7 @@ export default function TemplateDemo() {
                           },
                         },
                       },
-                    }),
+                    },
                     (theme) =>
                       theme.applyDarkStyles({
                         '&:hover': {
