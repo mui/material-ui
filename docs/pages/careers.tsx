@@ -149,7 +149,8 @@ const openRolesData = [
       {
         title: 'React Support Engineer - X',
         description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and " +
+          "success.",
         url: '/careers/react-support-engineer/',
       },
       {
