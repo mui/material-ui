@@ -10,6 +10,7 @@ import Button, { ButtonProps } from '@mui/material-next/Button';
 import { CssVarsProvider, useColorScheme, extendTheme } from '@mui/material-next/styles';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const ModeSwitcher = () => {
   const { mode, setMode } = useColorScheme();
@@ -269,8 +270,11 @@ export default function App() {
   return (
     <React.Fragment>
       <CssVarsProvider theme={cssVarsTheme}>
-        <ModeSwitcher />
-        <DemoComponents />
+        <CssBaseline />
+        <Stack sx={{ p: 1 }} alignItems="flex-start">
+          <ModeSwitcher />
+          <DemoComponents />
+        </Stack>
       </CssVarsProvider>
     </React.Fragment>
   );

@@ -22,9 +22,9 @@ import {
   getValue,
   createUnaryUnit,
   handleBreakpoints,
+  responsivePropType,
   typography,
 } from '@mui/system';
-import responsivePropType from '@mui/system/responsivePropType';
 import { SxProps, Theme } from './Theme.types';
 
 // Palette values should reference the color tokens
