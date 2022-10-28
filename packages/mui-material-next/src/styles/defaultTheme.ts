@@ -11,6 +11,8 @@ export const getThemeWithVars = (
     overlays,
     shape,
     md3,
+    ref,
+    sys,
     palette: paletteInput,
     ...restTheme
   } = extendTheme(themeInput);
@@ -18,17 +20,38 @@ export const getThemeWithVars = (
     colorSchemes[paletteInput?.colorScheme || 'light'].palette,
     paletteInput,
   );
-  const { mode = 'light', colorScheme = 'light', ...palette } = colorSchemePalette;
+
+  const {
+    mode = 'light',
+    colorScheme = 'light',
+    // @ts-ignore md3 specific token
+    ref: colorSchemeRef,
+    // @ts-ignore md3 specific token
+    sys: colorSchemeSys,
+    ...palette
+  } = colorSchemePalette;
 
   return {
     opacity,
     overlays,
     shape,
     md3,
+    ref: {
+      ...ref,
+      ...colorSchemeRef,
+    },
+    sys: {
+      ...sys,
+      ...colorSchemeSys,
+    },
     ...restTheme,
     colorSchemes: {
       ...colorSchemes,
-      [colorScheme]: palette,
+      [colorScheme]: {
+        palette,
+        ref: colorSchemeRef,
+        sys: colorSchemeSys,
+      },
     },
     palette: {
       ...palette,
@@ -39,6 +62,14 @@ export const getThemeWithVars = (
       opacity,
       overlays,
       shape,
+      ref: {
+        ...ref,
+        ...colorSchemeRef,
+      },
+      sys: {
+        ...sys,
+        ...colorSchemeSys,
+      },
       md3,
       palette,
     },

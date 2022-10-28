@@ -137,14 +137,27 @@ export default function createCssVarsProvider(options) {
       });
       theme.vars = deepmerge(theme.vars, vars);
       if (key === resolvedColorScheme) {
+        const { ref, sys, ...restParsedScheme } = parsedScheme;
         theme = {
           ...theme,
-          ...parsedScheme,
+          ...restParsedScheme,
         };
         if (theme.palette) {
           // assign runtime mode & colorScheme
           theme.palette.mode = mode;
           theme.palette.colorScheme = resolvedColorScheme;
+        }
+        if (theme.sys) {
+          theme.sys = {
+            ...theme.sys,
+            color: sys.color,
+          };
+        }
+        if (theme.ref) {
+          theme.ref = {
+            ...theme.ref,
+            palette: ref.palette,
+          };
         }
       }
       const resolvedDefaultColorScheme = (() => {

@@ -111,10 +111,18 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     },
   });
 
+  const { color: lightSysColor } = lightSys;
+  const { palette: lightRefPalette } = lightRef;
+
+  const { color: darkSysColor } = darkSys;
+  const { palette: darkRefPalette } = darkRef;
+
   let theme: Theme = {
     ...muiTheme,
     cssVarPrefix,
     getCssVar,
+    sys: lightSys,
+    ref: lightRef,
     colorSchemes: {
       ...colorSchemesInput,
       light: {
@@ -129,8 +137,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.light?.opacity,
         },
         overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
-        sys: lightSys,
-        ref: lightRef,
+        sys: { color: lightSysColor },
+        ref: { palette: lightRefPalette },
       },
       dark: {
         ...colorSchemesInput.dark,
@@ -144,8 +152,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.dark?.opacity,
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
-        sys: darkSys,
-        ref: darkRef,
+        sys: { color: darkSysColor },
+        ref: { palette: darkRefPalette },
       },
     },
   };
