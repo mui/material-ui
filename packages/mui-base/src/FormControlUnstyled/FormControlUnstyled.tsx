@@ -96,7 +96,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const [focused, setFocused] = React.useState(false);
   if (disabled && focused) {
-    // NOTE: Setting state during render?
     setFocused(false);
   }
 
