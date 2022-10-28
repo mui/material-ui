@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -21,19 +21,17 @@ import Link from 'docs/src/modules/components/Link';
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
 const Image = styled('img')(({ theme }) => ({
-  filter:
-    theme.palette.mode === 'dark'
-      ? 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))'
-      : 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.2))',
+  filter: 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.2))',
   transition: '0.4s',
   display: 'block',
   height: 'auto',
   borderRadius: '10px',
+  ...theme.applyDarkStyles({
+    filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
+  })
 }));
 
 export default function TemplateDemo() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
@@ -82,7 +80,7 @@ export default function TemplateDemo() {
             >
               <Fade in={demo === 'Components'} timeout={500}>
                 <Box
-                  sx={{
+                  sx={[(theme) => ({
                     width: '100%',
                     height: '100%',
                     '& img': {
@@ -104,10 +102,7 @@ export default function TemplateDemo() {
                     },
                     '&:hover': {
                       '& img': {
-                        filter:
-                          mode === 'dark'
-                            ? 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))'
-                            : 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
+                        filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
                         '&:nth-of-type(1)': {
                           top: 0,
                           transform: 'scale(0.8) translate(-108%) rotateY(30deg)',
@@ -122,53 +117,81 @@ export default function TemplateDemo() {
                         },
                       },
                     },
-                  }}
+                  }),
+                  (theme) => theme.applyDarkStyles({
+                    '&:hover': {
+                      '& img': {
+                        filter: 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))',
+                      }
+                    }}
+                  )]}
                 >
                   <Image
-                    src={`/static/branding/design-kits/Button-${mode}.jpeg`}
+                    src={`/static/branding/design-kits/Button-light.jpeg`}
                     alt=""
                     loading="lazy"
+                    sx={(theme) =>
+                      theme.applyDarkStyles({
+                        content: `url(/static/branding/design-kits/Button-dark.jpeg)`
+                      })
+                    }
                   />
                   <Image
-                    src={`/static/branding/design-kits/Alert-${mode}.jpeg`}
+                    src={`/static/branding/design-kits/Alert-light.jpeg`}
                     alt=""
                     loading="lazy"
+                    sx={(theme) =>
+                      theme.applyDarkStyles({
+                        content: `url(/static/branding/design-kits/Alert-dark.jpeg)`
+                      })
+                    }
                   />
                   <Image
-                    src={`/static/branding/design-kits/Slider-${mode}.jpeg`}
+                    src={`/static/branding/design-kits/Slider-light.jpeg`}
                     alt=""
                     loading="lazy"
+                    sx={(theme) =>
+                      theme.applyDarkStyles({
+                        content: `url(/static/branding/design-kits/Slider-dark.jpeg)`
+                      })
+                    }
                   />
                 </Box>
               </Fade>
               <Fade in={demo === 'Branding'} timeout={500}>
                 <Image
-                  src={`/static/branding/design-kits/Colors-${mode}.jpeg`}
+                  src={`/static/branding/design-kits/Colors-light.jpeg`}
                   alt=""
                   loading="lazy"
                   width="300"
-                  sx={{
+                  sx={(theme) => ({
                     width: { sm: 400 },
                     position: 'absolute',
                     left: '50%',
                     top: '50%',
                     transform: 'translate(-50%, -50%)',
-                  }}
+                    ...theme.applyDarkStyles({
+                      content: `url(/static/branding/design-kits/Colors-dark.jpeg)`
+                    })
+                  })}
                 />
               </Fade>
               <Fade in={demo === 'Iconography'} timeout={500}>
                 <Image
-                  src={`/static/branding/design-kits/Icons-${mode}.jpeg`}
+                  src={`/static/branding/design-kits/Icons-light.jpeg`}
                   alt=""
                   loading="lazy"
                   width="300"
-                  sx={{
+                  sx={(theme) => ({
                     width: { sm: 500 },
                     position: 'absolute',
                     left: '50%',
                     top: 60,
                     transform: 'translate(-40%)',
-                  }}
+                    ...theme.applyDarkStyles({
+                      content: `url(/static/branding/design-kits/Icons-dark.jpeg)`
+                    })
+                  })}
                 />
               </Fade>
             </Frame.Demo>
