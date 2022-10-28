@@ -72,6 +72,7 @@ const HeaderContent = () => {
           Main
         </Chip>
         <Menu
+          variant="outlined"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={() => setAnchorEl(null)}
@@ -135,7 +136,7 @@ const HeaderContent = () => {
             }
             sx={{ '--Input-radius': '40px', '--Input-paddingInline': '12px', width: 160 }}
           />
-          <Badge badgeContent={2} color="danger">
+          <Badge badgeContent={2} variant="solid">
             <IconButton variant="soft" sx={{ borderRadius: 'xl' }}>
               <Notifications />
             </IconButton>
@@ -242,7 +243,7 @@ const NavigationContent = () => (
           <Sms />
         </ListItemDecorator>
         Chat
-        <Chip size="sm" variant="solid" color="danger" sx={{ ml: 'auto' }}>
+        <Chip size="sm" variant="soft" sx={{ ml: 'auto', bgcolor: 'background.surface' }}>
           5
         </Chip>
       </ListItemButton>
@@ -348,12 +349,7 @@ const NavigationContent2 = () => (
               </Typography>
               <Typography level="body2">California, USA</Typography>
             </div>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="neutral"
-              sx={{ ml: 'auto', alignSelf: 'flex-start' }}
-            >
+            <IconButton size="sm" variant="plain" sx={{ ml: 'auto', alignSelf: 'flex-start' }}>
               <FavoriteBorderRoundedIcon />
             </IconButton>
           </Box>
@@ -370,9 +366,7 @@ const NavigationContent2 = () => (
             />
           </AspectRatio>
           <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
-            <Avatar variant="soft" color="neutral">
-              Y
-            </Avatar>
+            <Avatar variant="soft">Y</Avatar>
             <div>
               <Typography level="body2">Designed by</Typography>
               <Typography fontWeight="lg" level="body2">
@@ -436,34 +430,14 @@ export default function ColorInversion() {
     <CssVarsProvider theme={customTheme}>
       <CssBaseline />
       <Box
+        // data-joy-color-scheme="dark"
         sx={{
           height: '100vh',
           overflowY: 'scroll',
           scrollSnapType: 'y mandatory',
-          '& > div:nth-child(2n)': { bgcolor: 'background.level1' },
         }}
       >
-        <Slide
-          sx={{
-            alignItems: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            p: 3,
-          }}
-        >
-          <Chip size="sm" variant="soft" color="success">
-            Introducing
-          </Chip>
-          <Typography level="h2" my={1}>
-            Color Inversion
-          </Typography>
-          <Typography textAlign="center" textColor="text.secondary" sx={{ px: 2 }}>
-            An opt-in feature that inverts the colors of the children to match the parent&apos;s
-            variant.
-          </Typography>
-        </Slide>
-        <Slide sx={{ '--Header-height': '64px' }}>
+        <Slide sx={{ '--Header-height': '64px', bgcolor: 'background.level1' }}>
           <Sheet
             variant="plain" // 1. change to "solid" or "soft".
             color="neutral" // 2. try other colors.
@@ -472,7 +446,7 @@ export default function ColorInversion() {
               display: 'flex',
               alignItems: 'center',
               minHeight: 'var(--Header-height)',
-              boxShadow: 'md',
+              boxShadow: 'inset 0 -1px 0 0px rgba(0 0 0 / 0.16)',
               position: 'relative',
               zIndex: 1,
               px: 1.5,
