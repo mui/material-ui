@@ -229,7 +229,6 @@ module.exports = {
         'react/prop-types': 'off',
         'react/no-unused-prop-types': 'off',
 
-        'react/function-component-definition': 'off',
         'prefer-regex-literals': 'off',
 
         'react/jsx-no-useless-fragment': 'off',
