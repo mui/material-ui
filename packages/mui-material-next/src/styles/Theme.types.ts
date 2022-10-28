@@ -6,19 +6,6 @@ import {
   CssVarsThemeOptions as MD2CssVarsThemeOptions,
 } from '@mui/material/styles';
 
-export interface ColorSystemOptions extends Omit<MD2ColorSystemOptions, 'palette'> {
-  palette?: MD2ColorSystemOptions['palette'] & {
-    md3?: MD3Palettes & { colors: MD3ColorSchemeTokens };
-  };
-}
-
-export interface CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
-  /**
-   * Color schemes configuration
-   */
-  colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
-}
-
 export interface MD3Tones {
   0: string;
   10: string;
@@ -46,8 +33,6 @@ export interface MD3Palettes {
     white: string;
   };
 }
-
-export interface MD3PalettesOptions extends Partial<MD3Palettes> {}
 
 export interface MD3ColorSchemeTokens {
   primary: string;
@@ -94,7 +79,15 @@ export interface MD3ColorSchemeTokens {
   secondaryContainerChannel: string;
 }
 
-export interface MD3ColorSchemeTokensOptions extends Partial<MD3ColorSchemeTokens> {}
+export interface MD3Typeface {
+  plain: string;
+  brand: string;
+  weight: {
+    bold: string;
+    medium: string;
+    regular: string;
+  };
+}
 
 export interface MD3States {
   hover: {
@@ -140,19 +133,44 @@ export interface Shapes {
   borderRadius: number;
 }
 
-export interface MD3PaletteWithTokens extends MD3Palettes {
-  colors: MD3ColorSchemeTokens;
+export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
+  md3?: {
+    shape?: Partial<Shapes>;
+  };
+  ref?: {
+    typeface?: Partial<MD3Typeface>;
+  };
+  sys?: {
+    typescale?: Partial<MD3Typescale>;
+    state?: Partial<MD3States>;
+  };
+}
+
+export interface ColorSystemOptions extends MD2ColorSystemOptions {
+  ref?: {
+    palette?: Partial<MD3Palettes>;
+  };
+  sys?: {
+    color?: Partial<MD3ColorSchemeTokens>;
+  };
+}
+
+export interface CssVarsThemeOptions extends Omit<MD3CssVarsThemeOptions, 'colorSchemes'> {
+  /**
+   * Color schemes configuration
+   */
+  colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
 }
 
 export interface Theme extends Omit<MD2Theme, 'vars'> {
   useMaterialYou?: boolean;
   ref: {
     palette: MD3Palettes;
-    typeface: any;
+    typeface: MD3Typeface;
   };
   sys: {
-    color: MD3ColorSchemeTokens
-    typescale: MD3Typescale
+    color: MD3ColorSchemeTokens;
+    typescale: MD3Typescale;
     state: MD3States;
   };
   md3: {
@@ -166,8 +184,8 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       typeface: any;
     };
     sys: {
-      color: MD3ColorSchemeTokens
-      typescale: MD3Typescale
+      color: MD3ColorSchemeTokens;
+      typescale: MD3Typescale;
       state: MD3States;
     };
     md3: {

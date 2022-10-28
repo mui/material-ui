@@ -142,22 +142,19 @@ export const ButtonRoot = styled('button', {
       ? `rgba(${(theme.vars || theme).sys.color.secondaryContainerChannel} / calc(1 - ${
           (theme.vars || theme).sys.state.hover.stateLayerOpacity
         }))`
-      : alpha(
-          theme.sys.color.secondaryContainer,
-          1 - theme.sys.state.hover.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.hover.stateLayerOpacity),
     outlined: theme.vars
-      ? `rgba(${
-          (theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).sys.state.hover.stateLayerOpacity})`
+      ? `rgba(${(theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+          (theme.vars || theme).sys.state.hover.stateLayerOpacity
+        })`
       : alpha(
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.hover.stateLayerOpacity,
         ),
     text: theme.vars
-      ? `rgba(${
-          (theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).sys.state.hover.stateLayerOpacity})`
+      ? `rgba(${(theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+          (theme.vars || theme).sys.state.hover.stateLayerOpacity
+        })`
       : alpha(
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.hover.stateLayerOpacity,
@@ -190,22 +187,19 @@ export const ButtonRoot = styled('button', {
       ? `rgba(${(theme.vars || theme).sys.color.secondaryContainerChannel} / calc(1 - ${
           (theme.vars || theme).sys.state.pressed.stateLayerOpacity
         }))`
-      : alpha(
-          theme.sys.color.secondaryContainer,
-          1 - theme.sys.state.pressed.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.pressed.stateLayerOpacity),
     outlined: theme.vars
-      ? `rgba(${
-          (theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).sys.state.pressed.stateLayerOpacity})`
+      ? `rgba(${(theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+          (theme.vars || theme).sys.state.pressed.stateLayerOpacity
+        })`
       : alpha(
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.pressed.stateLayerOpacity,
         ),
     text: theme.vars
-      ? `rgba(${
-          (theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).sys.state.pressed.stateLayerOpacity})`
+      ? `rgba(${(theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+          (theme.vars || theme).sys.state.pressed.stateLayerOpacity
+        })`
       : alpha(
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.pressed.stateLayerOpacity,
@@ -230,22 +224,19 @@ export const ButtonRoot = styled('button', {
       ? `rgba(${(theme.vars || theme).sys.color.secondaryContainerChannel} / calc(1 - ${
           (theme.vars || theme).sys.state.focus.stateLayerOpacity
         }))`
-      : alpha(
-          theme.sys.color.secondaryContainer,
-          1 - theme.sys.state.focus.stateLayerOpacity,
-        ),
+      : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.focus.stateLayerOpacity),
     outlined: theme.vars
-      ? `rgba(${
-          (theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).sys.state.focus.stateLayerOpacity})`
+      ? `rgba(${(theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+          (theme.vars || theme).sys.state.focus.stateLayerOpacity
+        })`
       : alpha(
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.focus.stateLayerOpacity,
         ),
     text: theme.vars
-      ? `rgba(${
-          (theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]
-        } / ${(theme.vars || theme).sys.state.focus.stateLayerOpacity})`
+      ? `rgba(${(theme.vars || theme).sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
+          (theme.vars || theme).sys.state.focus.stateLayerOpacity
+        })`
       : alpha(
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.focus.stateLayerOpacity,

@@ -45,38 +45,34 @@ function setColor(obj: any, key: string, defaultValue: any) {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
-export default function extendTheme(
-  options: CssVarsThemeOptions = {},
-  ...args: any[]
-) {
-  const {
-    colorSchemes: colorSchemesInput = {},
-    cssVarPrefix = 'mui',
-    ...input
-  } = options;
+export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
+  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
   const md3DarkColors = createMd3DarkColorScheme(getCssVar, md3CommonPalette);
 
   // @ts-ignore - it's fine, everything that is not supported will be spread
-  const { palette: lightPalette, sys: lightSys, ref: lightRef, ...muiTheme } = createThemeWithoutVars({
+  const {
+    palette: lightPalette,
+    sys: lightSys,
+    ref: lightRef,
+    ...muiTheme
+  } = createThemeWithoutVars({
     ...input,
     // Material You specific tokens
+    // @ts-ignore - it's fine, everything that is not supported will be spread
     useMaterialYou: true,
     ref: {
       ...input.ref,
       typeface: { ...md3Typeface, ...input.ref?.typeface },
-      palette: {
-        ...md3CommonPalette,
-        ...colorSchemesInput.light?.ref?.palette,
-      }
+      palette: deepmerge(md3CommonPalette, colorSchemesInput.light?.ref?.palette),
     },
     sys: {
       ...input.sys,
       typescale: { ...md3Typescale, ...input.sys?.typescale },
       state: { ...md3State, ...input.sys?.state },
-      color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color }
+      color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color },
     },
     md3: {
       shape: {
@@ -88,25 +84,27 @@ export default function extendTheme(
       ...(colorSchemesInput.light && colorSchemesInput.light?.palette),
     },
   });
-  const { palette: darkPalette, sys: darkSys, ref: darkRef } = createThemeWithoutVars({
+  // @ts-ignore sys & ref are md3 specific tokens
+  const {
+    palette: darkPalette,
+    sys: darkSys,
+    ref: darkRef,
+  } = createThemeWithoutVars({
     palette: {
       mode: 'dark',
       ...colorSchemesInput.dark?.palette,
     },
+    // @ts-ignore - it's fine, everything that is not supported will be spread
     ref: {
       ...input.ref,
       typeface: { ...md3Typeface, ...input.ref?.typeface },
-      palette: {
-        ...md3CommonPalette,
-        ...colorSchemesInput.dark?.ref?.palette,
-      }
+      palette: deepmerge(md3CommonPalette, colorSchemesInput.dark?.ref?.palette),
     },
-
     sys: {
       ...input.sys,
       typescale: { ...md3Typescale, ...input.sys?.typescale },
       state: { ...md3State, ...input.sys?.state },
-      color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color }
+      color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color },
     },
   });
 
@@ -129,7 +127,7 @@ export default function extendTheme(
         },
         overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
         sys: lightSys,
-        ref: lightRef
+        ref: lightRef,
       },
       dark: {
         ...colorSchemesInput.dark,
@@ -144,7 +142,7 @@ export default function extendTheme(
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
         sys: darkSys,
-        ref: darkRef
+        ref: darkRef,
       },
     },
   };
@@ -155,7 +153,9 @@ export default function extendTheme(
       md3: MD3Palettes & { colors: MD3ColorSchemeTokens };
     };
 
+    // @ts-ignore sys is md3 specific token
     const colorSchemeSys = theme.colorSchemes[key as SupportedColorScheme].sys;
+    // @ts-ignore ref is md3 specific token
     const colorSchemeRef = theme.colorSchemes[key as SupportedColorScheme].ref;
 
     // attach black & white channels to common node
@@ -382,13 +382,17 @@ export default function extendTheme(
       colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['40']);
       colorSchemeSys.color.secondaryChannel = colorChannel(colorSchemeRef.palette.secondary['40']);
       colorSchemeSys.color.tertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['40']);
-      colorSchemeSys.color.secondaryContainerChannel = colorChannel(colorSchemeRef.palette.secondary['90']);
+      colorSchemeSys.color.secondaryContainerChannel = colorChannel(
+        colorSchemeRef.palette.secondary['90'],
+      );
       colorSchemeSys.color.onSurfaceChannel = colorChannel(colorSchemeRef.palette.neutral['10']);
     } else {
       colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['80']);
       colorSchemeSys.color.secondaryChannel = colorChannel(colorSchemeRef.palette.secondary['80']);
       colorSchemeSys.color.tertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['80']);
-      colorSchemeSys.color.secondaryContainerChannel = colorChannel(colorSchemeRef.palette.secondary['30']);
+      colorSchemeSys.color.secondaryContainerChannel = colorChannel(
+        colorSchemeRef.palette.secondary['30'],
+      );
       colorSchemeSys.color.onSurfaceChannel = colorChannel(colorSchemeRef.palette.neutral['90']);
     }
   });
