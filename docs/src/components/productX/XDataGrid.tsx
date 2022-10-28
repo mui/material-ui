@@ -152,7 +152,7 @@ export default function XDataGrid() {
             id="data-grid-demo"
             variant="outlined"
             sx={[
-              (theme) => ({
+              {
                 position: 'relative',
                 zIndex: 1,
                 height: 240,
@@ -175,7 +175,7 @@ export default function XDataGrid() {
                     },
                   },
                 },
-              }),
+              },
               (theme) =>
                 theme.applyDarkStyles({
                   borderColor: 'primaryDark.600',

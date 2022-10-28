@@ -15,9 +15,10 @@ export default function AppHeaderBanner() {
         flexDirection: { xs: 'column', md: 'row' },
         alignItems: { xs: 'start', sm: 'center' },
         justifyContent: 'center',
-        background: `linear-gradient(-90deg, ${(theme.vars || theme).palette.primary[700]}, ${
-          (theme.vars || theme).palette.primary[500]
-        } 120%)`,
+        background: (theme) =>
+          `linear-gradient(-90deg, ${(theme.vars || theme).palette.primary[700]}, ${
+            (theme.vars || theme).palette.primary[500]
+          } 120%)`,
         fontSize: (theme) => theme.typography.pxToRem(13),
         ...theme.applyDarkStyles({
           background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[900]}, ${
