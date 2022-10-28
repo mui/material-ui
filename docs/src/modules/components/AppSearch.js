@@ -256,7 +256,7 @@ export default function AppSearch() {
         const div = document.createElement('div');
         div.setAttribute('class', 'DocSearch-NewStartScreen');
         createRoot(div).render(<NewStartScreen />);
-        dropDown.insertBefore(div, dropDown.firstChild);
+        dropDown.appendChild(div);
       }
     };
     // add transition to Modal
