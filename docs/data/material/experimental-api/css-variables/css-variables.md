@@ -91,19 +91,19 @@ const theme = experimental_extendTheme({
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 
 ```diff
-- import { ThemeProvider, createTheme } from '@mui/material/styles';
-+ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+-import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 
-function App() {
-  return (
+ function App() {
+   return (
 -    <ThemeProvider theme={createTheme()}>
 -      ...
 -    </ThemeProvider>
 +    <CssVarsProvider>
 +      ...
 +    </CssVarsProvider>
-  )
-}
+   )
+ }
 ```
 
 ### Toggle between light and dark mode

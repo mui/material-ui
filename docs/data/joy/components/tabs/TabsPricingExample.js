@@ -16,6 +16,7 @@ export default function TabsPricingExample() {
       <TabList
         variant="outlined"
         sx={(theme) => ({
+          '--List-item-radius': '0px',
           borderRadius: 0,
           [`& .${tabClasses.root}`]: {
             fontWeight: 'lg',

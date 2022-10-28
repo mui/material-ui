@@ -25,7 +25,7 @@ import Navigation from './components/Navigation';
 import Mails from './components/Mails';
 import EmailContent from './components/EmailContent';
 
-const ColorSchemeToggle = () => {
+function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -51,7 +51,7 @@ const ColorSchemeToggle = () => {
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
-};
+}
 
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);

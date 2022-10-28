@@ -377,7 +377,7 @@ const appList = [
     title: 'HiFiveWork',
     description: 'HiFiveWork, the cool tool for leave management',
     image: 'hifivework.png',
-    link: 'https://www.hifivework.com/#/',
+    link: 'https://hifivework.com/',
     dateAdded: '2020-01-08',
   },
   {

@@ -29,64 +29,64 @@ This moves palette customization to within the `colorSchemes` node.
 Other properties can be copied and pasted.
 
 ```diff
-- import { createTheme } from '@mui/material/styles';
-+ import { experimental_extendTheme as extendTheme} from '@mui/material/styles';
+-import { createTheme } from '@mui/material/styles';
++import { experimental_extendTheme as extendTheme} from '@mui/material/styles';
 
-- const lightTheme = createTheme({
--   palette: {
--    primary: {
--      main: '#ff5252',
--    },
--    ...
--  },
--  // ...other properties, e.g. breakpoints, spacing, shape, typography, components
-- });
+-const lightTheme = createTheme({
+-  palette: {
+-   primary: {
+-     main: '#ff5252',
+-   },
+-   ...
+- },
+- // ...other properties, e.g. breakpoints, spacing, shape, typography, components
+-});
 
-- const darkTheme = createTheme({
--   palette: {
--    mode: 'dark',
--    primary: {
--      main: '#000',
--    },
--    ...
--  },
-- });
+-const darkTheme = createTheme({
+-  palette: {
+-   mode: 'dark',
+-   primary: {
+-     main: '#000',
+-   },
+-   ...
+- },
+-});
 
-+ const theme = extendTheme({
-+   colorSchemes: {
-+     light: {
-+       palette: {
-+         primary: {
-+           main: '#ff5252',
-+         },
-+         ...
-+       },
-+     },
-+     dark: {
-+       palette: {
-+         primary: {
-+           main: '#000',
-+         },
-+         ...
-+       },
-+     },
-+   },
-+   // ...other properties
-+ });
++const theme = extendTheme({
++  colorSchemes: {
++    light: {
++      palette: {
++        primary: {
++          main: '#ff5252',
++        },
++        ...
++      },
++    },
++    dark: {
++      palette: {
++        primary: {
++          main: '#000',
++        },
++        ...
++      },
++    },
++  },
++  // ...other properties
++});
 ```
 
 Then, replace the `ThemeProvider` with the `CssVarsProvider`:
 
 ```diff
-- import { ThemeProvider } from '@mui/material/styles';
-+ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+-import { ThemeProvider } from '@mui/material/styles';
++import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 
-const theme = extendTheme(...)
+ const theme = extendTheme(...);
 
-function App() {
-- return <ThemeProvider theme={theme}>...</ThemeProvider>
-+ return <CssVarsProvider theme={theme}>...</CssVarsProvider>
-}
+ function App() {
+-  return <ThemeProvider theme={theme}>...</ThemeProvider>
++  return <CssVarsProvider theme={theme}>...</CssVarsProvider>
+ }
 ```
 
 Save the file and start the development server.
@@ -104,8 +104,8 @@ You can remove your existing logic that handles the user-selected mode and repla
 
 **Before**:
 
-```js
-// This is just a minimal example to demonstrate the migration.
+```jsx
+// This is only a minimal example to demonstrate the migration.
 function App() {
   const [mode, setMode] = React.useState(() => {
     if (typeof window !== 'undefined') {
@@ -125,13 +125,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <Button
         onClick={() => {
-          if (mode === 'light') {
-            setMode('dark');
-            localStorage.setItem('dark');
-          } else {
-            setMode('light');
-            localStorage.setItem('light');
-          }
+          const newMode = mode === 'light' ? 'dark' : 'light';
+          setMode(newMode);
+          localStorage.setItem('mode', newMode);
         }}
       >
         {mode === 'light' ? 'Turn dark' : 'Turn light'}
@@ -151,22 +147,18 @@ import {
   useColorScheme,
 } from '@mui/material/styles';
 
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   return (
     <Button
       onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
+        setMode(mode === 'light' ? 'dark' : 'light');
       }}
     >
       {mode === 'light' ? 'Turn dark' : 'Turn light'}
     </Button>
   );
-};
+}
 
 const theme = extendTheme({
   // ...your custom theme
