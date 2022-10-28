@@ -276,6 +276,7 @@ export interface MuiRenderResult extends RenderResult<typeof queries & typeof cu
 }
 
 export interface MuiRenderToStringResult {
+  container: HTMLElement;
   hydrate(): MuiRenderResult;
 }
 

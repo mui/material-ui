@@ -11,7 +11,7 @@ const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, re
 
 const FakeIcon = <div>Icon</div>;
 
-const ButtonTest = () => (
+const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
     <Button color="secondary">Secondary</Button>

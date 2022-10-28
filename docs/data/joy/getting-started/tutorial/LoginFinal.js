@@ -6,7 +6,7 @@ import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -23,17 +23,13 @@ const ModeToggle = () => {
     <Button
       variant="outlined"
       onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
+        setMode(mode === 'light' ? 'dark' : 'light');
       }}
     >
       {mode === 'light' ? 'Turn dark' : 'Turn light'}
     </Button>
   );
-};
+}
 
 export default function App() {
   return (
@@ -42,7 +38,7 @@ export default function App() {
         <ModeToggle />
         <Sheet
           sx={{
-            maxWidth: 400,
+            width: 300,
             mx: 'auto', // margin left & right
             my: 4, // margin top & botom
             py: 3, // padding top & bottom
@@ -75,13 +71,7 @@ export default function App() {
             placeholder="password"
             label="Password"
           />
-          <Button
-            sx={{
-              mt: 1, // margin top
-            }}
-          >
-            Log in
-          </Button>
+          <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
           <Typography
             endDecorator={<Link href="/sign-up">Sign up</Link>}
             fontSize="sm"

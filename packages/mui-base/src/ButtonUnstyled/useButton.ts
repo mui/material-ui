@@ -159,10 +159,7 @@ export default function useButton(parameters: UseButtonParameters) {
     setHostElementName(instance?.tagName ?? '');
   }, []);
 
-  const handleRef = useForkRef(
-    updateHostElementName,
-    useForkRef(externalRef, useForkRef(focusVisibleRef, buttonRef)),
-  );
+  const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
 
   interface AdditionalButtonProps {
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];

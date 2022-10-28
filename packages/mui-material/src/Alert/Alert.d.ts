@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 
@@ -33,6 +33,23 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    */
   color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
+  /**
+   * The components used for each slot inside the Alert.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    CloseButton?: React.ElementType;
+    CloseIcon?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    closeButton?: IconButtonProps;
+    closeIcon?: SvgIconProps;
+  };
   /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'

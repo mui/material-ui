@@ -158,28 +158,28 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 function CustomSelect(props: SelectUnstyledProps<string>) {
-  const components: SelectUnstyledProps<string>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<string>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
   props: OptionGroupUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
-  const components: OptionGroupUnstyledProps['components'] = {
-    Root: StyledGroupRoot,
-    Label: StyledGroupHeader,
-    List: StyledGroupOptions,
-    ...props.components,
+  const slots: OptionGroupUnstyledProps['slots'] = {
+    root: StyledGroupRoot,
+    label: StyledGroupHeader,
+    list: StyledGroupOptions,
+    ...props.slots,
   };
 
-  return <OptionGroupUnstyled {...props} ref={ref} components={components} />;
+  return <OptionGroupUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 export default function UnstyledSelectGrouping() {

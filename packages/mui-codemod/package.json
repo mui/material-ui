@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "5.10.8",
+  "version": "5.10.11",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -35,7 +35,7 @@
     "@babel/traverse": "^7.19.3",
     "jscodeshift": "^0.13.1",
     "jscodeshift-add-imports": "^1.0.10",
-    "yargs": "^17.5.1"
+    "yargs": "^17.6.0"
   },
   "devDependencies": {
     "@types/jscodeshift": "0.11.5"

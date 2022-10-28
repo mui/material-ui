@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Select, { selectClasses as classes } from '@mui/joy/Select';
+import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -480,5 +480,117 @@ describe('Joy <Select />', () => {
     fireEvent.click(getByTestId('test-element'));
 
     expect(getByRole('button')).not.toHaveFocus();
+  });
+
+  describe('form submission', () => {
+    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      let isEventHandled = false;
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2');
+        isEventHandled = true;
+      };
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <Select defaultValue={2} name="test-select">
+            <Option value={1}>1</Option>
+            <Option value={2}>2</Option>
+          </Select>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+
+      expect(isEventHandled).to.equal(true);
+    });
+
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      let isEventHandled = false;
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('option 2');
+        isEventHandled = true;
+      };
+
+      const customFormValueProvider = (option: SelectOption<number> | null) =>
+        option != null ? `option ${option.value}` : '';
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <Select defaultValue={2} name="test-select" getSerializedValue={customFormValueProvider}>
+            <Option value={1}>1</Option>
+            <Option value={2}>2</Option>
+          </Select>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+
+      expect(isEventHandled).to.equal(true);
+    });
+
+    it('formats the object values as JSON before posting', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      let isEventHandled = false;
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('{"firstName":"Olivia"}');
+        isEventHandled = true;
+      };
+
+      const options = [
+        { value: { firstName: 'Alice' }, label: 'Alice' },
+        { value: { firstName: 'Olivia' }, label: 'Olivia' },
+      ];
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <Select defaultValue={options[1].value} name="test-select">
+            {options.map((o) => (
+              <Option key={o.value.firstName} value={o.value}>
+                {o.label}
+              </Option>
+            ))}
+          </Select>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+
+      expect(isEventHandled).to.equal(true);
+    });
   });
 });
