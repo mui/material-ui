@@ -217,17 +217,15 @@ export default function MaterialUIComponents() {
               </TableCell>
               <TableCell>
                 {component.materialDesign ? (
-                  <React.Fragment>
-                    <Link
-                      variant="body2"
-                      data-no-markdown-link="true"
-                      href={component.materialDesign}
-                    >
-                      {component.materialDesign.substring(8, 10) === 'm1'
-                        ? 'MD 1 (legacy)'
-                        : 'MD 2'}
-                    </Link>
-                  </React.Fragment>
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.materialDesign}
+                  >
+                    {component.materialDesign.substring(8, 10) === 'm1'
+                      ? 'MD 1 (legacy)'
+                      : 'MD 2'}
+                  </Link>
                 ) : (
                   'No guidelines'
                 )}
@@ -247,19 +245,15 @@ export default function MaterialUIComponents() {
                   </React.Fragment>
                 ) : null}
                 {component.materialUI && component.materialUI.indexOf('/x') === 0 ? (
-                  <React.Fragment>
-                    <Link
-                      variant="body2"
-                      data-no-markdown-link="true"
-                      href={component.materialUI}
-                    >
-                      Support in MUI X
-                    </Link>
-                  </React.Fragment>
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.materialUI}
+                  >
+                    Support in MUI X
+                  </Link>
                 ) : null}
-                {component.materialUI === 'Composable' ? (
-                  <React.Fragment>{'Composable'}</React.Fragment>
-                ) : null}
+                {component.materialUI === 'Composable' ? 'Composable' : null}
                 {component.materialUI == null ? 'No support' : null}
               </TableCell>
             </TableRow>
