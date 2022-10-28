@@ -3,7 +3,7 @@ on:
   # Only the default branch is supported.
   branch_protection_rule:
   schedule:
-    - cron: '41 15 * * *'
+    - cron: '0 2 * * *'
 
 jobs:
   analysis:
