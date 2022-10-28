@@ -1,18 +1,18 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
-import { keyframes, css } from '@mui/system';
+import { css, keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import {
+  CircularProgressOwnerState,
   CircularProgressProps,
   CircularProgressTypeMap,
-  CircularProgressOwnerState,
 } from './CircularProgressProps';
 
 const circulate = keyframes({
@@ -225,6 +225,9 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       as: component,
       role: 'progressbar',
       style: {
+        // Setting this CSS varaible via inline-style
+        // prevents the generation of new CSS every time
+        // `value` prop updates
         '--CircularProgress-percent': value,
       },
     },
