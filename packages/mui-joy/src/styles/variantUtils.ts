@@ -334,16 +334,77 @@ export const createSoftInversion = (
 export const createSolidInversion = (theme: ThemeFragment) => {
   const getCssVar = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  const result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
       DefaultColorPalette,
       string | number | Record<string, any>,
     ];
     if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
+      if (color === 'warning') {
+        result.warning = {
+          '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
+          [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-700`),
+          [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.16)`,
+          [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.1)`,
+          [cssVarPrefixVar('--palette-background-popup')]: getCssVar(`palette-${color}-100`),
+          [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.2)`,
+          [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.36)`,
+          [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.6)`,
+          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-900`),
+          [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-700`),
+          [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-500`),
+          [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.2)`,
+
+          '--variant-plainColor': getCssVar(`palette-${color}-700`),
+          '--variant-plainHoverColor': getCssVar(`palette-${color}-800`),
+          '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+          '--variant-plainDisabledColor': getCssVar(`palette-${color}-500`),
+
+          '--variant-outlinedColor': getCssVar(`palette-${color}-700`),
+          '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.5)`,
+          '--variant-outlinedHoverColor': getCssVar(`palette-${color}-800`),
+          '--variant-outlinedHoverBorder': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.8)`,
+          '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+          '--variant-outlinedDisabledBorder': `rgba(0 0 0 / 0.2)`,
+
+          '--variant-softColor': getCssVar(`palette-${color}-800`),
+          '--variant-softHoverColor': getCssVar(`palette-${color}-900`),
+          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
+          '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.28)`,
+          '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-softDisabledColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.6)`,
+          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
+
+          '--variant-solidColor': '#fff',
+          '--variant-solidBg': getCssVar(`palette-${color}-700`),
+          '--variant-solidHoverColor': '#fff',
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-800`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidDisabledColor': getCssVar(`palette-${color}-50`),
+          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.72)`,
+        };
+      } else {
+        result[color] = {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
           [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
@@ -358,7 +419,6 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
           )} / 0.6)`,
-          [cssVarPrefixVar('--palette-background-tooltip')]: getCssVar(`palette-${color}-900`),
           [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-common-white`),
           [cssVarPrefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
           [cssVarPrefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
@@ -404,8 +464,8 @@ export const createSolidInversion = (theme: ThemeFragment) => {
             `palette-${color}-lightChannel`,
           )} / 0.6)`,
           '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.08)`,
-        },
-      };
+        };
+      }
     }
   });
   return result;
