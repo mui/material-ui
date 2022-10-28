@@ -95,9 +95,12 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   const filled = hasValue(value);
 
   const [focused, setFocused] = React.useState(false);
-  if (disabled && focused) {
-    setFocused(false);
-  }
+
+  React.useEffect(() => {
+    if (disabled && focused) {
+      setFocused(false);
+    }
+  }, [disabled, focused]);
 
   const ownerState: FormControlUnstyledOwnerState = {
     ...props,
