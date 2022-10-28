@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,13 +20,12 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 interface Profile {
@@ -97,13 +95,15 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
-              sx={{
+              sx={(theme) => ({
                 width: 70,
                 height: 70,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primary.700' : 'primary.100',
                 borderRadius: 1,
-              }}
+                backgroundColor: 'primary.100',
+                ...theme.applyDarkStyles({
+                  backgroundColor: 'primary.700',
+                }),
+              })}
             />
             <Box
               sx={{
@@ -165,11 +165,13 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
       </Typography>
       {props.about && (
         <Divider
-          sx={{
+          sx={(theme) => ({
             my: 1,
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
-          }}
+            borderColor: 'grey.100',
+            ...theme.applyDarkStyles({
+              borderColor: 'primaryDark.400',
+            }),
+          })}
         />
       )}
       {props.about && (
@@ -592,7 +594,12 @@ function AboutContent() {
         <References companies={CORE_CUSTOMERS} />
       </Container>
       <Box
-        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+        sx={(theme) => ({
+          bgcolor: 'grey.50',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+          }),
+        })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={4}>
@@ -674,55 +681,53 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <MuiThemeProvider theme={brandingDarkTheme}>
-        <Box sx={{ bgcolor: 'primaryDark.700' }}>
-          <Container sx={{ py: { xs: 4, sm: 8 } }}>
-            <Typography
-              component="h3"
-              variant="h5"
-              color="primary.400"
-              fontWeight="extraBold"
-              sx={{ mb: 1 }}
-            >
-              Community contributors
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-              Some members of the community have so enriched it, that they deserve special mention.
-            </Typography>
-            <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
-              <Grid container spacing={2}>
-                {contributors.map((profile) => (
-                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-            <Typography
-              component="h3"
-              variant="h5"
-              color="warning.500"
-              fontWeight="extraBold"
-              sx={{ mb: 1 }}
-            >
-              Community emeriti
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-              We honor some no-longer-active core team members who have made valuable contributions
-              in the past. They advise us from time to time.
-            </Typography>
-            <Box sx={{ pt: 2 }}>
-              <Grid container spacing={2}>
-                {emeriti.map((profile) => (
-                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          </Container>
-        </Box>
-      </MuiThemeProvider>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+        <Container sx={{ py: { xs: 4, sm: 8 } }}>
+          <Typography
+            component="h3"
+            variant="h5"
+            color="primary.400"
+            fontWeight="extraBold"
+            sx={{ mb: 1 }}
+          >
+            Community contributors
+          </Typography>
+          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+            Some members of the community have so enriched it, that they deserve special mention.
+          </Typography>
+          <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
+            <Grid container spacing={2}>
+              {contributors.map((profile) => (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+          <Typography
+            component="h3"
+            variant="h5"
+            color="warning.500"
+            fontWeight="extraBold"
+            sx={{ mb: 1 }}
+          >
+            Community emeriti
+          </Typography>
+          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+            We honor some no-longer-active core team members who have made valuable contributions in
+            the past. They advise us from time to time.
+          </Typography>
+          <Box sx={{ pt: 2 }}>
+            <Grid container spacing={2}>
+              {emeriti.map((profile) => (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
           How can you support us?
@@ -843,7 +848,7 @@ function AboutContent() {
 
 export default function About() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="About us - MUI"
         description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
@@ -854,6 +859,6 @@ export default function About() {
         <AboutContent />
       </main>
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }
