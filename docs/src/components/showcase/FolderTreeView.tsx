@@ -99,7 +99,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   );
 });
 
-const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
+const StyledTreeItem = styled(TreeItem)(({ theme }) => ([{
   '& .MuiTreeItem-content': {
     border: 'none',
     backgroundColor: 'transparent',
@@ -126,8 +126,7 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
       left: -18,
       height: '100%',
       width: 2,
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200],
+      backgroundColor: (theme.vars || theme).palette.grey[200],
     },
   },
   '& .MuiTreeItem-group': {
@@ -140,15 +139,28 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
         display: 'block',
         width: 24,
         height: 2,
-        backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200],
+        backgroundColor: (theme.vars || theme).palette.grey[200],
         top: '50%',
         left: 6,
         transform: 'translate(-100%, -50%)',
       },
     },
-  },
-}));
+  }},
+  theme.applyDarkStyles({
+    '& .MuiTreeItem-root': {
+      '&:before': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+      },
+    },
+    '& .MuiTreeItem-group': {
+      '& .MuiTreeItem-content': {
+        '&:before': {
+          backgroundColor:(theme.vars || theme).palette.primaryDark[600],
+        },
+      },
+    },
+  })
+]));
 
 function CustomTreeItem(
   props: TreeItemProps & {
