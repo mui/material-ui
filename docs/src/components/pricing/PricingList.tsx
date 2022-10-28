@@ -73,7 +73,7 @@ const Plan = React.forwardRef<
             >
               {text}
             </Typography>
-          </Box>  
+          </Box>
         ))}
     </Paper>
   );
@@ -103,15 +103,16 @@ export default function PricingList() {
               '&.Mui-selected': {
                 bgcolor: 'grey.50',
               },
-            }
+            },
           },
-          theme => theme.applyDarkStyles({
-            '& .MuiTab-root': {
-              '&.Mui-selected': {
-                bgcolor: 'primaryDark.700',
+          (theme) =>
+            theme.applyDarkStyles({
+              '& .MuiTab-root': {
+                '&.Mui-selected': {
+                  bgcolor: 'primaryDark.700',
+                },
               },
-            }
-          })
+            }),
         ]}
       >
         <Tab label="Community" />

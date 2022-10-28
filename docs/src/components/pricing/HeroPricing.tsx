@@ -20,11 +20,11 @@ export default function HeroPricing() {
         <Typography
           component="h1"
           variant="body2"
-          sx={theme => ({
+          sx={(theme) => ({
             color: 'primary.600',
             ...theme.applyDarkStyles({
-              color: 'primary.400'
-            })
+              color: 'primary.400',
+            }),
           })}
           fontWeight="bold"
         >

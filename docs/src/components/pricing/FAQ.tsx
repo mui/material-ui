@@ -277,7 +277,7 @@ export default function FAQ() {
           {renderItem(7)}
           <Paper
             variant="outlined"
-            sx={theme => ({
+            sx={(theme) => ({
               p: 2,
               textAlign: 'center',
               borderStyle: 'dashed',
@@ -285,8 +285,8 @@ export default function FAQ() {
               bgcolor: 'white',
               ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.400',
-                bgcolor: 'primaryDark.800'
-              })
+                bgcolor: 'primaryDark.800',
+              }),
             })}
           >
             <Box sx={{ textAlign: 'left' }}>

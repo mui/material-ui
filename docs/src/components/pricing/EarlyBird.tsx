@@ -18,7 +18,7 @@ export default function EarlyBird() {
       id="early-bird"
     >
       <Stack
-        sx={theme => ({
+        sx={(theme) => ({
           borderRadius: 1,
           p: 2,
           bgcolor: 'primary.50',
@@ -36,8 +36,8 @@ export default function EarlyBird() {
           },
           ...theme.applyDarkStyles({
             bgcolor: 'primaryDark.900',
-            borderColor: 'primaryDark.500'
-          })
+            borderColor: 'primaryDark.500',
+          }),
         })}
       >
         <Box>
