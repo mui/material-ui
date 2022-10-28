@@ -22,7 +22,7 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import ROUTES from 'docs/src/route';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import BrandingCssVarsProvider from "../src/BrandingCssVarsProvider";
+import BrandingCssVarsProvider from '../src/BrandingCssVarsProvider';
 
 interface RoleProps {
   description: string;
@@ -150,7 +150,7 @@ const openRolesData = [
         title: 'React Support Engineer - X',
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and " +
-          "success.",
+          'success.',
         url: '/careers/react-support-engineer/',
       },
       {
@@ -293,11 +293,11 @@ function CareersContent() {
       </Container>
       {/* Our ultimate goal */}
       <Box
-        sx={theme => ({
+        sx={(theme) => ({
           bgcolor: 'grey.50',
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900'
-          })
+            bgcolor: 'primaryDark.900',
+          }),
         })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
@@ -382,11 +382,11 @@ function CareersContent() {
                     See how we run the company and the way we work.
                   </Typography>
                   <Typography
-                    sx={theme => ({
+                    sx={(theme) => ({
                       color: 'primary.600',
-                        ...theme.applyDarkStyles({
-                        color: 'primary.400'
-                      })
+                      ...theme.applyDarkStyles({
+                        color: 'primary.400',
+                      }),
                     })}
                     variant="body2"
                     fontWeight="bold"
@@ -411,11 +411,11 @@ function CareersContent() {
                     Check behind the scenes and news from the company.
                   </Typography>
                   <Typography
-                    sx={theme => ({
+                    sx={(theme) => ({
                       color: 'primary.600',
                       ...theme.applyDarkStyles({
-                        color: 'primary.400'
-                      })
+                        color: 'primary.400',
+                      }),
                     })}
                     variant="body2"
                     fontWeight="bold"
@@ -443,24 +443,24 @@ function CareersContent() {
           </Typography>
         </div>
         <Divider
-          sx={theme => ({
+          sx={(theme) => ({
             my: { xs: 2, sm: 4 },
             borderColor: 'grey.100',
             ...theme.applyDarkStyles({
-              borderColor: 'primaryDark.600'
-            })
+              borderColor: 'primaryDark.600',
+            }),
           })}
         />
         <Stack
           spacing={2}
           divider={
             <Divider
-              sx={theme => ({
+              sx={(theme) => ({
                 my: { xs: 1, sm: 2 },
                 borderColor: 'grey.100',
                 ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.600'
-                })
+                  borderColor: 'primaryDark.600',
+                }),
               })}
             />
           }
@@ -505,9 +505,9 @@ function CareersContent() {
                   Next roles
                 </Typography>
                 <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                  We hire in batches, we collect applications a few months before we actively aim
-                  to fill the roles. If none of these roles fit with what you are looking for, you
-                  can apply to the{' '}
+                  We hire in batches, we collect applications a few months before we actively aim to
+                  fill the roles. If none of these roles fit with what you are looking for, you can
+                  apply to the{' '}
                   <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                     Dream job
                   </Link>{' '}
@@ -560,15 +560,15 @@ function CareersContent() {
             {renderFAQItem(2)}
             <Paper
               variant="outlined"
-              sx={theme => ({
+              sx={(theme) => ({
                 p: 2,
                 borderStyle: 'dashed',
                 borderColor: 'grey.300',
                 bgcolor: 'white',
                 ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.400',
-                  bgcolor: 'primaryDark.800'
-                })
+                  bgcolor: 'primaryDark.800',
+                }),
               })}
             >
               <Box sx={{ textAlign: 'left' }}>
