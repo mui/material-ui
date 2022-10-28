@@ -52,10 +52,11 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
   const md3DarkColors = createMd3DarkColorScheme(getCssVar, md3CommonPalette);
 
-  // @ts-ignore - it's fine, everything that is not supported will be spread
   const {
     palette: lightPalette,
+    // @ts-ignore - sys is md3 specific token
     sys: lightSys,
+    // @ts-ignore - ref is md3 specific token
     ref: lightRef,
     ...muiTheme
   } = createThemeWithoutVars({
@@ -84,10 +85,12 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       ...(colorSchemesInput.light && colorSchemesInput.light?.palette),
     },
   });
-  // @ts-ignore sys & ref are md3 specific tokens
+
   const {
     palette: darkPalette,
+    // @ts-ignore sys is md3 specific tokens
     sys: darkSys,
+    // @ts-ignore ref is md3 specific tokens
     ref: darkRef,
   } = createThemeWithoutVars({
     palette: {
