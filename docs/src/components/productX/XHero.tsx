@@ -47,7 +47,7 @@ export default function XHero() {
               '& > *': { mr: 1, width: 28, height: 28 },
               ...theme.applyDarkStyles({
                 color: 'primary.400',
-              })
+              }),
             })}
           >
             <IconImage name="product-advanced" /> MUI X
@@ -85,7 +85,7 @@ export default function XHero() {
                 backgroundColor: 'primaryDark.800',
                 border: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
                 boxShadow: `0px 4px 20px ${'rgba(0, 0, 0, 0.3)'}`,
-              })
+              }),
             })}
           >
             <Box
@@ -97,7 +97,7 @@ export default function XHero() {
                 borderBottom: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
                 ...theme.applyDarkStyles({
                   borderBottom: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
-                })
+                }),
               })}
             >
               <Typography fontWeight={500}>Trades, October 2020</Typography>
@@ -167,7 +167,7 @@ export default function XHero() {
                         },
                       },
                     },
-                  })
+                  }),
               ]}
             >
               <DataGridPro
@@ -201,7 +201,7 @@ export default function XHero() {
                   backgroundColor: 'primaryDark.800',
                   border: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
                   boxShadow: `0px 4px 20px ${'rgba(0, 0, 0, 0.3)'}`,
-                })
+                }),
               })}
             >
               <Box sx={{ p: 2 }}>
@@ -251,7 +251,7 @@ export default function XHero() {
                     '& > div': {
                       backgroundColor: 'primaryDark.800',
                     },
-                  })
+                  }),
               ]}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>

@@ -138,7 +138,7 @@ export default function XTheming() {
                 borderColor: 'grey.200',
                 ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.600',
-                })
+                }),
               })}
             >
               {dataGridStyleOverrides}
@@ -165,14 +165,14 @@ export default function XTheming() {
               <Paper
                 elevation={0}
                 sx={[
-                  ({
+                  {
                     height: 418,
                     '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
                       '& .MuiChip-root': {
                         color: red[500],
                       },
                     },
-                  }),
+                  },
                   (theme) =>
                     theme.applyDarkStyles({
                       '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
@@ -180,7 +180,7 @@ export default function XTheming() {
                           color: red[300],
                         },
                       },
-                    })
+                    }),
                 ]}
               >
                 <DataGridPro

@@ -184,7 +184,7 @@ export default function XDataGrid() {
                       borderColor: 'primaryDark.600',
                     },
                   },
-                })
+                }),
             ]}
           >
             {dataGridStyleOverrides}

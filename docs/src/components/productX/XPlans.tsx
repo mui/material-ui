@@ -20,7 +20,7 @@ const Image = styled('img')(({ theme }) => ({
   borderRadius: '8px',
   ...theme.applyDarkStyles({
     filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
-  })
+  }),
 }));
 
 export default function XPlans() {
@@ -72,8 +72,8 @@ export default function XPlans() {
                   top: '50%',
                   transform: 'translate(-50%, -50%)',
                   ...theme.applyDarkStyles({
-                    content: `url(/static/branding/mui-x/Mocktable-dark.png)`
-                  })
+                    content: `url(/static/branding/mui-x/Mocktable-dark.png)`,
+                  }),
                 })}
               />
             </Frame.Demo>
