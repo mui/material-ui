@@ -71,9 +71,9 @@ interface Tag {
   label: string;
 }
 type TagComponentProps = Tag & React.HTMLAttributes<HTMLDivElement>;
-const TagComponent = ({ color, label, ...other }: TagComponentProps) => (
-  <div {...other}>{label}</div>
-);
+function TagComponent({ color, label, ...other }: TagComponentProps) {
+  return <div {...other}>{label}</div>
+}
 
 function renderTags(value: Tag[], getTagProps: AutocompleteRenderGetTagProps) {
   return value.map((tag: Tag, index) => {

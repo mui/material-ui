@@ -36,7 +36,9 @@ const StyledExampleOne = withStyles(simpleStyles)(({ classes, text }: SimpleComp
 // Example 2
 const SimpleComponent: React.FunctionComponent<
   SimpleComponentProps & WithStyles<typeof simpleStyles>
-> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
+> = function SimpleComponent({ classes, text }) {
+  return <div className={classes.root}>{text}</div>;
+};
 
 const StyledExampleTwo = withStyles(simpleStyles)(SimpleComponent);
 <StyledExampleTwo text="I am styled!" />;
@@ -53,7 +55,9 @@ const styleRule = createStyles({
 
 const ComponentWithChildren: React.FunctionComponent<
   WithStyles<typeof simpleStyles> & { children?: React.ReactNode }
-> = ({ classes, children }) => <div className={classes.root}>{children}</div>;
+> = function ComponentWithChildren({ classes, children }) {
+  return <div className={classes.root}>{children}</div>;
+};
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -251,9 +255,9 @@ withStyles((theme) =>
       },
     });
 
-  const Component = (props: ComponentProps) => {
+  function Component(props: ComponentProps) {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
-  };
+  }
 
   const StyledComponent = withStyles(styles)(Component);
 
@@ -320,10 +324,14 @@ withStyles((theme) =>
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
+  const StatelessComponent: React.FunctionComponent<Props> = function StatelessComponent(props) {
+    return null;
+  };
   const StatelessComponentWithStyles: React.FunctionComponent<
     Props & WithStyles<typeof simpleStyles>
-  > = (props) => null;
+  > = function StatelessComponentWithStyles(props) {
+    return null;
+  };
   // @ts-expect-error
   withStyles(simpleStyles)(StatelessComponent);
   // @ts-expect-error
@@ -361,9 +369,13 @@ withStyles((theme) =>
 
   const StyledMyButton = withStyles(styles)(MyButton);
 
-  const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
+  function CorrectUsage() {
+    return <StyledMyButton nonDefaulted="2" />;
+  }
   // @ts-expect-error Property 'nonDefaulted' is missing in type '{}'
-  const MissingPropUsage = () => <StyledMyButton />;
+  function MissingPropUsage() {
+    return <StyledMyButton />;
+  }
 }
 
 {
