@@ -228,11 +228,6 @@ module.exports = {
         // that they don't need type-checking
         'react/prop-types': 'off',
         'react/no-unused-prop-types': 'off',
-
-        'prefer-regex-literals': 'off',
-
-        'react/jsx-no-useless-fragment': 'off',
-        'react/jsx-no-constructed-context-values': 'off',
       },
     },
     {
