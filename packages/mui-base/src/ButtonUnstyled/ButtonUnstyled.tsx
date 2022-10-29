@@ -86,7 +86,8 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? slots.root ?? 'button';
+  const defaultElement = other.href || other.to ? 'a' : 'button';
+  const Root: React.ElementType = component ?? slots.root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -140,6 +141,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  href: PropTypes.string,
+  /**
+   * @ignore
+   */
   onBlur: PropTypes.func,
   /**
    * @ignore
@@ -180,6 +185,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * @ignore
+   */
+  to: PropTypes.string,
 } as any;
 
 export default ButtonUnstyled;
