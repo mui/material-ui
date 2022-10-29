@@ -4,8 +4,6 @@ import { ColorPaletteProp } from './colorSystem';
 
 export interface VariantPropOverrides {}
 
-export interface ContextualOverrides {}
-
 export type DefaultVariantProp = 'plain' | 'outlined' | 'soft' | 'solid';
 
 export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantPropOverrides>;

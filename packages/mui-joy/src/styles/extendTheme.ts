@@ -103,10 +103,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVar(`palette-${color}-700`),
     solidDisabledColor: `#fff`,
     solidDisabledBg: getCssVar(`palette-${color}-200`),
-
-    overrideTextPrimary: getCssVar(`palette-${color}-700`),
-    overrideTextSecondary: getCssVar(`palette-${color}-500`),
-    overrideTextTertiary: getCssVar(`palette-${color}-400`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -136,10 +132,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVar(`palette-${color}-800`),
     solidDisabledColor: getCssVar(`palette-${color}-700`),
     solidDisabledBg: getCssVar(`palette-${color}-900`),
-
-    overrideTextPrimary: getCssVar(`palette-${color}-200`),
-    overrideTextSecondary: getCssVar(`palette-${color}-400`),
-    overrideTextTertiary: getCssVar(`palette-${color}-500`),
   });
 
   const lightColorSystem = {
@@ -180,10 +172,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidActiveBg: getCssVar(`palette-neutral-800`),
         solidDisabledColor: getCssVar(`palette-neutral-300`),
         solidDisabledBg: getCssVar(`palette-neutral-50`),
-
-        overrideTextPrimary: getCssVar(`palette-neutral-700`),
-        overrideTextSecondary: getCssVar(`palette-neutral-500`),
-        overrideTextTertiary: getCssVar(`palette-neutral-400`),
       },
       danger: {
         ...colors.red,
@@ -282,10 +270,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidActiveBg: getCssVar(`palette-neutral-800`),
         solidDisabledColor: getCssVar(`palette-neutral-700`),
         solidDisabledBg: getCssVar(`palette-neutral-900`),
-
-        overrideTextPrimary: getCssVar(`palette-neutral-200`),
-        overrideTextSecondary: getCssVar(`palette-neutral-400`),
-        overrideTextTertiary: getCssVar(`palette-neutral-500`),
       },
       danger: {
         ...colors.red,
@@ -559,9 +543,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                     fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
                   }),
                 ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: themeProp.vars.palette[ownerState.color]?.plainColor,
+                  ownerState.color !== 'inherit' &&
+                  ownerState.color !== 'context' &&
+                  themeProp.vars.palette[ownerState.color!] && {
+                    color: themeProp.vars.palette[ownerState.color].plainColor,
                   }),
+                ...(ownerState.color === 'context' && {
+                  color: theme.variants.plain?.context?.color,
+                }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
                     '--Icon-fontSize': themeProp.vars.fontSize[instanceFontSize],
