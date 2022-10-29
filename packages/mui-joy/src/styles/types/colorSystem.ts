@@ -109,7 +109,6 @@ export interface PaletteBackground {
   level3: string;
   tooltip: string;
   backdrop: string;
-  popup: string;
 }
 
 export interface ColorPalettePropOverrides {}
