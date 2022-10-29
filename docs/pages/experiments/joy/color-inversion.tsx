@@ -279,7 +279,7 @@ const NavigationContent2 = () => (
         Used space
       </Typography>
       <Typography level="body2">Admin updated 09:12 am</Typography>
-      <Typography level="body2">November 08, 2020</Typography>
+      <Typography level="body3">November 08, 2020</Typography>
       <Box sx={{ display: 'flex', gap: 2, my: 2, alignItems: 'center' }}>
         <CircularProgress determinate value={71} size="lg" thickness={4}>
           71%
@@ -292,9 +292,12 @@ const NavigationContent2 = () => (
         </CircularProgress>
         <Divider orientation="vertical" />
         <Box>
-          <Chip variant="outlined" size="sm" sx={{ mb: 1 }}>
+          <Button variant="plain" size="sm" sx={{ mb: 1 }}>
             Scheduled
-          </Chip>
+          </Button>
+          <Button variant="outlined" size="sm" sx={{ mb: 1 }}>
+            Scheduled
+          </Button>
           <Typography level="body2" textAlign="right">
             Next clean up: <b>Monday</b>
           </Typography>
@@ -430,7 +433,7 @@ export default function ColorInversion() {
     <CssVarsProvider theme={customTheme}>
       <CssBaseline />
       <Box
-        // data-joy-color-scheme="dark"
+        data-joy-color-scheme="dark"
         sx={{
           height: '100vh',
           overflowY: 'scroll',
@@ -439,9 +442,9 @@ export default function ColorInversion() {
       >
         <Slide sx={{ '--Header-height': '64px', bgcolor: 'background.level1' }}>
           <Sheet
-            variant="plain" // 1. change to "solid" or "soft".
+            variant="solid" // 1. change to "solid" or "soft".
             color="neutral" // 2. try other colors.
-            invertedColors={false} // 3. set `invertedColors` to true.
+            invertedColors // 3. set `invertedColors` to true.
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -450,8 +453,8 @@ export default function ColorInversion() {
               position: 'relative',
               zIndex: 1,
               px: 1.5,
-              // background: (theme) =>
-              //   `linear-gradient(60deg, ${theme.vars.palette.neutral[900]}, ${theme.vars.palette.neutral[600]})`,
+              background: (theme) =>
+                `linear-gradient(60deg, ${theme.vars.palette.neutral[900]}, ${theme.vars.palette.neutral[600]})`,
             }}
           >
             <HeaderContent />
@@ -460,9 +463,9 @@ export default function ColorInversion() {
             sx={{ display: 'flex', height: 'calc(100% - var(--Header-height) + 1px)', mt: '-1px' }}
           >
             <Sheet
-              variant="plain" // 1. change to "solid" or "soft".
+              variant="solid" // 1. change to "solid" or "soft".
               color="neutral" // 2. try other colors.
-              invertedColors={false} // 3. set `invertedColors` to true.
+              invertedColors // 3. set `invertedColors` to true.
               sx={{
                 p: 2,
                 display: 'flex',
@@ -472,6 +475,7 @@ export default function ColorInversion() {
               <NavigationContent />
             </Sheet>
             <Box
+              // data-joy-color-scheme="dark"
               sx={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr 1fr 1fr',
@@ -482,14 +486,10 @@ export default function ColorInversion() {
                 overflow: 'auto',
               }}
             >
-              <Card
-              // variant="solid" color="success" invertedColors
-              >
+              <Card variant="soft" color="success" invertedColors>
                 <WidgetContent />
               </Card>
-              <Card
-              // variant="solid" color="primary" invertedColors
-              >
+              <Card variant="soft" color="warning" invertedColors>
                 <WidgetContent />
               </Card>
               <Card
@@ -502,8 +502,11 @@ export default function ColorInversion() {
               >
                 <WidgetContent />
               </Card>
+
               <Sheet
-                variant="plain"
+                variant="soft"
+                color="danger"
+                invertedColors
                 sx={{
                   gridColumn: '1 / -1',
                   display: 'flex',

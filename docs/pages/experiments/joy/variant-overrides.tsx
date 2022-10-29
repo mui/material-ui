@@ -2,6 +2,7 @@ import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import CircularProgress from '@mui/joy/CircularProgress';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
@@ -41,6 +42,7 @@ export default function JoyVariant() {
     <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
       <Box
+        data-joy-color-scheme="dark"
         sx={{
           maxWidth: { md: 1152, xl: 1536 },
           py: 3,
@@ -65,7 +67,7 @@ export default function JoyVariant() {
             },
           }}
         >
-          <Sheet variant="solid" color="primary" invertedColors>
+          <Sheet variant="solid" color="neutral" invertedColors>
             <Sheet
               sx={{
                 bgcolor: 'background.body',
@@ -77,6 +79,9 @@ export default function JoyVariant() {
                 right: '1rem',
               }}
             />
+            <CircularProgress variant="solid" determinate size="sm" value={50} />
+            <CircularProgress variant="soft" determinate size="sm" value={50} />
+            <CircularProgress variant="outlined" determinate size="sm" value={50} />
             <Typography>text.primary</Typography>
             <Typography level="body2">text.secondary</Typography>
             <Typography level="body3" mb={1}>
@@ -93,7 +98,7 @@ export default function JoyVariant() {
             <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
             <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
           </Sheet>
-          <Sheet variant="soft" color="primary" invertedColors>
+          <Sheet variant="soft" color="neutral" invertedColors>
             <Sheet
               variant="soft"
               sx={{
