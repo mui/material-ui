@@ -249,7 +249,6 @@ describe('<Menu />', () => {
       expect(() => {
         render(
           <Menu anchorEl={document.createElement('div')} open={false}>
-            {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
             <React.Fragment />
           </Menu>,
         );
