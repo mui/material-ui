@@ -567,16 +567,18 @@ describe('<Modal />', () => {
     clock.withFakeTimers();
 
     it('should open and close', () => {
-      const TestCase = (props) => (
-        <React.Fragment>
-          <Modal open={props.open}>
-            <div>Hello</div>
-          </Modal>
-          <Modal open={props.open}>
-            <div>World</div>
-          </Modal>
-        </React.Fragment>
-      );
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.open}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open={props.open}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
       TestCase.propTypes = {
         open: PropTypes.bool,
       };
@@ -595,18 +597,20 @@ describe('<Modal />', () => {
     });
 
     it('should open and close with Transitions', () => {
-      const TestCase = (props) => (
-        <React.Fragment>
-          <Modal open={props.open}>
-            <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
-              <div>Hello</div>
-            </Fade>
-          </Modal>
-          <Modal open={props.open}>
-            <div>World</div>
-          </Modal>
-        </React.Fragment>
-      );
+      function TestCase(props) {
+        return (
+          <React.Fragment>
+            <Modal open={props.open}>
+              <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
+                <div>Hello</div>
+              </Fade>
+            </Modal>
+            <Modal open={props.open}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
 
       const handleEntered = spy();
       const handleExited = spy();
@@ -659,18 +663,20 @@ describe('<Modal />', () => {
     clock.withFakeTimers();
 
     it('when true it should close after Transition has finished', () => {
-      const TestCase = (props) => (
-        <Modal open={props.open} closeAfterTransition>
-          <Fade
-            onEntered={props.onEntered}
-            onExiting={props.onExiting}
-            onExited={props.onExited}
-            in={props.open}
-          >
-            <div>Hello</div>
-          </Fade>
-        </Modal>
-      );
+      function TestCase(props) {
+        return (
+          <Modal open={props.open} closeAfterTransition>
+            <Fade
+              onEntered={props.onEntered}
+              onExiting={props.onExiting}
+              onExited={props.onExited}
+              in={props.open}
+            >
+              <div>Hello</div>
+            </Fade>
+          </Modal>
+        );
+      }
       const handleEntered = spy();
       const handleExiting = spy();
       const handleExited = spy();
@@ -715,18 +721,20 @@ describe('<Modal />', () => {
     });
 
     it('when false it should close before Transition has finished', () => {
-      const TestCase = (props) => (
-        <Modal open={props.open} closeAfterTransition={false}>
-          <Fade
-            onEntered={props.onEntered}
-            onExiting={props.onExiting}
-            onExited={props.onExited}
-            in={props.open}
-          >
-            <div>Hello</div>
-          </Fade>
-        </Modal>
-      );
+      function TestCase(props) {
+        return (
+          <Modal open={props.open} closeAfterTransition={false}>
+            <Fade
+              onEntered={props.onEntered}
+              onExiting={props.onExiting}
+              onExited={props.onExited}
+              in={props.open}
+            >
+              <div>Hello</div>
+            </Fade>
+          </Modal>
+        );
+      }
       const handleEntered = spy();
       const handleExiting = spy();
       const handleExited = spy();

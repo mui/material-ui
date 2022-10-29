@@ -107,7 +107,9 @@ describe('useSlotProps', () => {
       id: 'test',
     });
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -207,7 +209,9 @@ describe('useSlotProps', () => {
       ref: additionalRef,
     };
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,

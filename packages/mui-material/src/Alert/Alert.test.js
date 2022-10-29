@@ -69,7 +69,9 @@ describe('<Alert />', () => {
 
   describe('prop: components', () => {
     it('should override the default icon used in the close action', () => {
-      const MyCloseIcon = () => <div data-testid="closeIcon">X</div>;
+      function MyCloseIcon() {
+        return <div data-testid="closeIcon">X</div>;
+      }
 
       render(
         <Alert onClose={() => {}} components={{ CloseIcon: MyCloseIcon }}>
@@ -81,7 +83,9 @@ describe('<Alert />', () => {
     });
 
     it('should override the default button used in the close action', () => {
-      const MyCloseButton = () => <button data-testid="closeButton">X</button>;
+      function MyCloseButton() {
+        return <button data-testid="closeButton">X</button>;
+      }
 
       render(
         <Alert onClose={() => {}} components={{ CloseButton: MyCloseButton }}>
