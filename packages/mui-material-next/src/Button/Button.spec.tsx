@@ -87,8 +87,8 @@ const buttonTest = () => (
 
 const ReactRouterLinkTest = () => {
   function ButtonLink(props: ButtonProps<typeof ReactRouterLink>) {
-  return <Button {...props} component={ReactRouterLink} />
-}
+    return <Button {...props} component={ReactRouterLink} />;
+  }
 
   const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 

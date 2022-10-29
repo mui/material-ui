@@ -13,9 +13,9 @@ function testOnChange() {
 }
 
 function TabTest() {
-  return <Tabs TabIndicatorProps={{ style: { backgroundColor: 'green' } }} />
+  return <Tabs TabIndicatorProps={{ style: { backgroundColor: 'green' } }} />;
 }
 
 function TabIndicatorSxTest() {
-  return <Tabs TabIndicatorProps={{ sx: {} }} />
+  return <Tabs TabIndicatorProps={{ sx: {} }} />;
 }

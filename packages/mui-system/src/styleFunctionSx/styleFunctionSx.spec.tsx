@@ -6,7 +6,7 @@ interface Theme {
 }
 
 function Text(props: { sx?: SxProps<Theme> }) {
-  return null
+  return null;
 }
 
 // object

@@ -72,7 +72,7 @@ interface Tag {
 }
 type TagComponentProps = Tag & React.HTMLAttributes<HTMLDivElement>;
 function TagComponent({ color, label, ...other }: TagComponentProps) {
-  return <div {...other}>{label}</div>
+  return <div {...other}>{label}</div>;
 }
 
 function renderTags(value: Tag[], getTagProps: AutocompleteRenderGetTagProps) {

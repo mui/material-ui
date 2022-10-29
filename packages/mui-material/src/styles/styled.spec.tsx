@@ -52,7 +52,7 @@ interface PropsBarVariant {
   variant: 'bar';
 }
 function Component(props: PropsFooVariant | PropsBarVariant) {
-  return <div />
+  return <div />;
 }
 const StyledComponent = styled(Component)(({ theme }) => ({}));
 const rendered = (
