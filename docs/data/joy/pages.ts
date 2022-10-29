@@ -50,6 +50,7 @@ const pages = [
           { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
+          { pathname: '/joy-ui/react-tooltip' },
         ],
       },
       {

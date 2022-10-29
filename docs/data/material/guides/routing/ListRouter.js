@@ -36,20 +36,16 @@ Router.propTypes = {
   children: PropTypes.node,
 };
 
+const Link = React.forwardRef(function Link(itemProps, ref) {
+  return <RouterLink ref={ref} {...itemProps} role={undefined} />;
+});
+
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const renderLink = React.useMemo(
-    () =>
-      React.forwardRef(function Link(itemProps, ref) {
-        return <RouterLink to={to} ref={ref} {...itemProps} role={undefined} />;
-      }),
-    [to],
-  );
-
   return (
     <li>
-      <ListItem button component={renderLink}>
+      <ListItem button component={Link} to={to}>
         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />
       </ListItem>

@@ -13,7 +13,7 @@ const Root = React.forwardRef(function Root<TValue>(
 
 const option = <OptionUnstyled value={null} components={{ Root }} />;
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (
