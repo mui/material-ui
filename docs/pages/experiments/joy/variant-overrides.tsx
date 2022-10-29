@@ -65,7 +65,7 @@ export default function JoyVariant() {
             },
           }}
         >
-          <Sheet variant="solid" color="primary" invertedColors>
+          <Sheet variant="solid" color="warning" invertedColors>
             <Sheet
               sx={{
                 bgcolor: 'background.body',
@@ -83,17 +83,37 @@ export default function JoyVariant() {
               text.tertiary
             </Typography>
             <Divider />
-            <Button variant="solid">solid</Button>
-            <Button variant="soft">soft</Button>
-            <Button variant="outlined">outlined</Button>
-            <Button variant="plain">plain</Button>
+            <Box display="flex" gap={1}>
+              <Button variant="solid">solid</Button>
+              <Button disabled variant="solid">
+                solid
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="soft">soft</Button>
+              <Button disabled variant="soft">
+                soft
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="outlined">outlined</Button>
+              <Button disabled variant="outlined">
+                outlined
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="plain">plain</Button>
+              <Button disabled variant="plain">
+                plain
+              </Button>
+            </Box>
             <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
             <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
           </Sheet>
-          <Sheet variant="soft" color="primary" invertedColors>
+          <Sheet variant="soft" color="warning" invertedColors>
             <Sheet
               variant="soft"
               sx={{
@@ -112,10 +132,30 @@ export default function JoyVariant() {
               text.tertiary
             </Typography>
             <Divider />
-            <Button variant="solid">solid</Button>
-            <Button variant="soft">soft</Button>
-            <Button variant="outlined">outlined</Button>
-            <Button variant="plain">plain</Button>
+            <Box display="flex" gap={1}>
+              <Button variant="solid">solid</Button>
+              <Button disabled variant="solid">
+                solid
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="soft">soft</Button>
+              <Button disabled variant="soft">
+                soft
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="outlined">outlined</Button>
+              <Button disabled variant="outlined">
+                outlined
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="plain">plain</Button>
+              <Button disabled variant="plain">
+                plain
+              </Button>
+            </Box>
             <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
