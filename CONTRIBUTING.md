@@ -114,7 +114,7 @@ The new playground will be accessible under: `http://localhost:3000/playground/<
 
 ### How to increase the chance of being accepted?
 
-Continuous Integration (CI) runs a series of checks automatically when a Pull Request is opened. If you're 
+Continuous Integration (CI) runs a series of checks automatically when a Pull Request is opened. If you're
 unsure if your changes will pass, you can always open a Pull Request, and the GitHub UI will display a summary
 of the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
 
