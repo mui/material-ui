@@ -150,13 +150,16 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ownerState,
   });
 
-  const contextValue: MenuUnstyledContextType = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    open,
-  };
+  const contextValue: MenuUnstyledContextType = React.useMemo(
+    () => ({
+      registerItem,
+      unregisterItem,
+      getItemState,
+      getItemProps,
+      open,
+    }),
+    [getItemProps, getItemState, open, registerItem, unregisterItem],
+  );
 
   return (
     <PopperUnstyled {...rootProps}>

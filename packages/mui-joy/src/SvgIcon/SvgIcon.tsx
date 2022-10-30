@@ -7,7 +7,7 @@ import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSvgIconUtilityClass } from './svgIconClasses';
-import { SvgIconProps, SvgIconOwnerState, SvgIconTypeMap } from './SvgIconProps';
+import { SvgIconProps, SvgIconTypeMap, SvgIconOwnerState } from './SvgIconProps';
 
 const useUtilityClasses = (ownerState: SvgIconOwnerState) => {
   const { color, fontSize, classes } = ownerState;
@@ -27,35 +27,33 @@ const SvgIconRoot = styled('svg', {
   name: 'JoySvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SvgIconOwnerState }>(({ theme, ownerState }) => {
-  return {
-    ...(ownerState.instanceFontSize &&
-      ownerState.instanceFontSize !== 'inherit' && {
-        '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
-      }),
-    userSelect: 'none',
-    margin: 'var(--Icon-margin)',
-    width: '1em',
-    height: '1em',
-    display: 'inline-block',
-    fill: 'currentColor',
-    flexShrink: 0,
-    transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    ...(ownerState.fontSize &&
-      ownerState.fontSize !== 'inherit' && {
-        fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
-      }),
-    color: 'var(--Icon-color)',
-    ...(ownerState.color !== 'inherit' &&
-      ownerState.color !== 'context' &&
-      theme.vars.palette[ownerState.color!] && {
-        color: theme.vars.palette[ownerState.color!].plainColor,
-      }),
-    ...(ownerState.color === 'context' && {
-      color: theme.variants.plain?.[ownerState.color!]?.color,
+})<{ ownerState: SvgIconOwnerState }>(({ theme, ownerState }) => ({
+  ...(ownerState.instanceFontSize &&
+    ownerState.instanceFontSize !== 'inherit' && {
+      '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
     }),
-  };
-});
+  userSelect: 'none',
+  margin: 'var(--Icon-margin)',
+  width: '1em',
+  height: '1em',
+  display: 'inline-block',
+  fill: 'currentColor',
+  flexShrink: 0,
+  transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  ...(ownerState.fontSize &&
+    ownerState.fontSize !== 'inherit' && {
+      fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
+    }),
+  color: 'var(--Icon-color)',
+  ...(ownerState.color !== 'inherit' &&
+    ownerState.color !== 'context' &&
+    theme.vars.palette[ownerState.color!] && {
+      color: theme.vars.palette[ownerState.color!].plainColor,
+    }),
+  ...(ownerState.color === 'context' && {
+    color: theme.variants.plain?.[ownerState.color!]?.color,
+  }),
+}));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & SvgIconProps>({

@@ -278,10 +278,13 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     className: classes.endDecorator,
   });
 
+  const chipContextValue = React.useMemo(
+    () => ({ disabled, variant, color: color === 'context' ? undefined : color }),
+    [color, disabled, variant],
+  );
+
   return (
-    <ChipContext.Provider
-      value={{ disabled, variant, color: color === 'context' ? undefined : color }}
-    >
+    <ChipContext.Provider value={chipContextValue}>
       <ChipRoot
         as={component}
         className={clsx(classes.root, className)}

@@ -164,166 +164,149 @@ export const createSoftInversion = (
 ) => {
   const getCssVar = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
-  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  const result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
       DefaultColorPalette,
       string | number | Record<string, any>,
     ];
     if (isVariantPalette(colorPalette)) {
-      result = {
-        ...result,
-        [color]: {
-          '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
-          [theme.getColorSchemeSelector('light')]: {
-            [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
-            [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.1)`,
-            [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.08)`,
-            [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.2)`,
-            [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.32)`,
-            [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.48)`,
-            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
-            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
-              `palette-${color}-darkChannel`,
-            )} / 0.8)`,
-            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
-              `palette-${color}-darkChannel`,
-            )} / 0.68)`,
-            [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.32)`,
-            '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
-            '--variant-plainHoverColor': getCssVar(`palette-${color}-600`),
-            '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
-            '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
-            '--variant-plainDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
+      result[color] = {
+        '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
+        [theme.getColorSchemeSelector('light')]: {
+          [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
+          [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.1)`,
+          [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.08)`,
+          [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.2)`,
+          [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.32)`,
+          [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.48)`,
+          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
+          [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.8)`,
+          [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.68)`,
+          [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.32)`,
+          '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
+          '--variant-plainHoverColor': getCssVar(`palette-${color}-600`),
+          '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
+          '--variant-plainDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
 
-            '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
-            '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
-            '--variant-outlinedHoverColor': getCssVar(`palette-${color}-600`),
-            '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
-            '--variant-outlinedHoverBg': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.12)`,
-            '--variant-outlinedActiveBg': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.24)`,
-            '--variant-outlinedDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
-            '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.2)`,
+          '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
+          '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
+          '--variant-outlinedHoverColor': getCssVar(`palette-${color}-600`),
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
+          '--variant-outlinedDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+          '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.12)`,
 
-            '--variant-softColor': getCssVar(`palette-${color}-600`),
-            '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
-            '--variant-softHoverColor': getCssVar(`palette-${color}-700`),
-            '--variant-softHoverBg': getCssVar(`palette-${color}-200`),
-            '--variant-softActiveBg': getCssVar(`palette-${color}-300`),
-            '--variant-softDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
-            '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-softColor': getCssVar(`palette-${color}-600`),
+          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
+          '--variant-softHoverColor': getCssVar(`palette-${color}-700`),
+          '--variant-softHoverBg': getCssVar(`palette-${color}-200`),
+          '--variant-softActiveBg': getCssVar(`palette-${color}-300`),
+          '--variant-softDisabledColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.6)`,
+          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
 
-            '--variant-solidColor': getCssVar('palette-common-white'),
-            '--variant-solidBg': getCssVar(`palette-${color}-600`),
-            '--variant-solidHoverColor': getCssVar('palette-common-white'),
-            '--variant-solidHoverBg': getCssVar(`palette-${color}-700`),
-            '--variant-solidActiveBg': getCssVar(`palette-${color}-800`),
-            '--variant-solidDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-darkChannel`,
-            )} / 0.6)`,
-            '--variant-solidDisabledBg': `rgba(${getCssVar(
-              `palette-${color}-darkChannel`,
-            )} / 0.12)`,
-          },
-          [theme.getColorSchemeSelector('dark')]: {
-            [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
-            [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.1)`,
-            [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.08)`,
-            [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.2)`,
-            [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.4)`,
-            [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
-            [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
-            [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
-              `palette-${color}-lightChannel`,
-            )} / 0.72)`,
-            [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
-              `palette-${color}-lightChannel`,
-            )} / 0.6)`,
-            [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
-              `palette-${color}-lightChannel`,
-            )} / 0.2)`,
-            '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 1)`,
-            '--variant-plainHoverColor': getCssVar(`palette-${color}-50`),
-            '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.16)`,
-            '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
-            '--variant-plainDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
+          '--variant-solidColor': getCssVar('palette-common-white'),
+          '--variant-solidBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidHoverColor': getCssVar('palette-common-white'),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-700`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-800`),
+          '--variant-solidDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
+        },
+        [theme.getColorSchemeSelector('dark')]: {
+          [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
+          [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.1)`,
+          [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.08)`,
+          [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.2)`,
+          [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.4)`,
+          [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-100`),
+          [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
+            `palette-${color}-lightChannel`,
+          )} / 0.72)`,
+          [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            `palette-${color}-lightChannel`,
+          )} / 0.6)`,
+          [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+            `palette-${color}-lightChannel`,
+          )} / 0.2)`,
+          '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 1)`,
+          '--variant-plainHoverColor': getCssVar(`palette-${color}-50`),
+          '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.16)`,
+          '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
 
-            '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 1)`,
-            '--variant-outlinedHoverColor': getCssVar(`palette-${color}-50`),
-            '--variant-outlinedBg': 'initial',
-            '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
-            '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-600`),
-            '--variant-outlinedHoverBg': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.16)`,
-            '--variant-outlinedActiveBg': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.32)`,
-            '--variant-outlinedDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
-            '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.2)`,
+          '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 1)`,
+          '--variant-outlinedHoverColor': getCssVar(`palette-${color}-50`),
+          '--variant-outlinedBg': 'initial',
+          '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-600`),
+          '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.16)`,
+          '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
+          '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.2)`,
 
-            '--variant-softColor': getCssVar(`palette-${color}-100`),
-            '--variant-softBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
-            '--variant-softHoverColor': '#fff',
-            '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
-            '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.48)`,
-            '--variant-softDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
-            '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-softColor': getCssVar(`palette-${color}-100`),
+          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
+          '--variant-softHoverColor': '#fff',
+          '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
+          '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.48)`,
+          '--variant-softDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
+          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
 
-            '--variant-solidColor': '#fff',
-            '--variant-solidBg': getCssVar(`palette-${color}-500`),
-            '--variant-solidHoverColor': '#fff',
-            '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
-            '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
-            '--variant-solidDisabledColor': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.6)`,
-            '--variant-solidDisabledBg': `rgba(${getCssVar(
-              `palette-${color}-mainChannel`,
-            )} / 0.12)`,
-          },
+          '--variant-solidColor': '#fff',
+          '--variant-solidBg': getCssVar(`palette-${color}-500`),
+          '--variant-solidHoverColor': '#fff',
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
         },
       };
     }
@@ -372,27 +355,33 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           '--variant-plainHoverColor': getCssVar(`palette-${color}-800`),
           '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
           '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
-          '--variant-plainDisabledColor': getCssVar(`palette-${color}-500`),
+          '--variant-plainDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
 
           '--variant-outlinedColor': getCssVar(`palette-${color}-700`),
           '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.5)`,
           '--variant-outlinedHoverColor': getCssVar(`palette-${color}-800`),
           '--variant-outlinedHoverBorder': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.8)`,
+          )} / 0.6)`,
           '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
           '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.32)`,
           '--variant-outlinedDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
-          )} / 0.6)`,
-          '--variant-outlinedDisabledBorder': `rgba(0 0 0 / 0.2)`,
+          )} / 0.72)`,
+          '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.2)`,
 
           '--variant-softColor': getCssVar(`palette-${color}-800`),
           '--variant-softHoverColor': getCssVar(`palette-${color}-900`),
           '--variant-softBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.2)`,
           '--variant-softHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.28)`,
           '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
-          '--variant-softDisabledColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.6)`,
+          '--variant-softDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
           '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
 
           '--variant-solidColor': '#fff',
@@ -400,8 +389,10 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           '--variant-solidHoverColor': '#fff',
           '--variant-solidHoverBg': getCssVar(`palette-${color}-800`),
           '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
-          '--variant-solidDisabledColor': getCssVar(`palette-${color}-50`),
-          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.72)`,
+          '--variant-solidDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
         };
       } else {
         result[color] = {
@@ -430,7 +421,9 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           '--variant-plainHoverColor': `#fff`,
           '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.12)`,
           '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.32)`,
-          '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-plainDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-lightChannel`,
+          )} / 0.72)`,
 
           '--variant-outlinedColor': getCssVar(`palette-${color}-50`),
           '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.5)`,
@@ -442,7 +435,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           )} / 0.32)`,
           '--variant-outlinedDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
-          )} / 0.6)`,
+          )} / 0.72)`,
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
           '--variant-softColor': getCssVar(`palette-common-white`),
@@ -452,8 +445,8 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           '--variant-softActiveBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.16)`,
           '--variant-softDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
-          )} / 0.6)`,
-          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.08)`,
+          )} / 0.72)`,
+          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.1)`,
 
           '--variant-solidColor': getCssVar(`palette-${color}-700`),
           '--variant-solidBg': getCssVar(`palette-common-white`),
@@ -462,8 +455,8 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           '--variant-solidActiveBg': getCssVar(`palette-${color}-200`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
-          )} / 0.6)`,
-          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.08)`,
+          )} / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.1)`,
         };
       }
     }

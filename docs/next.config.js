@@ -150,7 +150,9 @@ module.exports = withDocsInfra({
     };
   },
   env: {
-    GITHUB_AUTH: process.env.GITHUB_AUTH,
+    GITHUB_AUTH: process.env.GITHUB_AUTH
+      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
+      : null,
     LIB_VERSION: pkg.version,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     SLACK_FEEDBACKS_TOKEN: process.env.SLACK_FEEDBACKS_TOKEN,

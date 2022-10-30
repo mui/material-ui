@@ -112,11 +112,14 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const contextValue = React.useMemo(
+    () => ({ variant, color: color === 'context' ? undefined : color }),
+    [color, variant],
+  );
+
   return (
     <ModalDialogSizeContext.Provider value={size}>
-      <ModalDialogVariantColorContext.Provider
-        value={{ variant, color: color === 'context' ? undefined : color }}
-      >
+      <ModalDialogVariantColorContext.Provider value={contextValue}>
         <ModalDialogRoot
           as={component}
           ownerState={ownerState}

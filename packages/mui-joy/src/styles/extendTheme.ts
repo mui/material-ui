@@ -551,7 +551,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                     color: themeProp.vars.palette[ownerState.color].plainColor,
                   }),
                 ...(ownerState.color === 'context' && {
-                  color: theme.variants.plain?.[ownerState.color!]?.color,
+                  color: theme.variants.plain?.context?.color,
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {

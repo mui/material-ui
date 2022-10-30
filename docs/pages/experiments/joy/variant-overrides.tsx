@@ -2,7 +2,6 @@ import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import CircularProgress from '@mui/joy/CircularProgress';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
@@ -67,7 +66,7 @@ export default function JoyVariant() {
             },
           }}
         >
-          <Sheet variant="solid" color="neutral" invertedColors>
+          <Sheet variant="solid" color="warning" invertedColors>
             <Sheet
               sx={{
                 bgcolor: 'background.body',
@@ -79,26 +78,43 @@ export default function JoyVariant() {
                 right: '1rem',
               }}
             />
-            <CircularProgress variant="solid" determinate size="sm" value={50} />
-            <CircularProgress variant="soft" determinate size="sm" value={50} />
-            <CircularProgress variant="outlined" determinate size="sm" value={50} />
             <Typography>text.primary</Typography>
             <Typography level="body2">text.secondary</Typography>
             <Typography level="body3" mb={1}>
               text.tertiary
             </Typography>
             <Divider />
-            <Button variant="solid">solid</Button>
-            <Button variant="soft">soft</Button>
-            <Button variant="outlined">outlined</Button>
-            <Button variant="plain">plain</Button>
+            <Box display="flex" gap={1}>
+              <Button variant="solid">solid</Button>
+              <Button disabled variant="solid">
+                solid
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="soft">soft</Button>
+              <Button disabled variant="soft">
+                soft
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="outlined">outlined</Button>
+              <Button disabled variant="outlined">
+                outlined
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="plain">plain</Button>
+              <Button disabled variant="plain">
+                plain
+              </Button>
+            </Box>
             <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
             <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
           </Sheet>
-          <Sheet variant="soft" color="neutral" invertedColors>
+          <Sheet variant="soft" color="warning" invertedColors>
             <Sheet
               variant="soft"
               sx={{
@@ -117,10 +133,30 @@ export default function JoyVariant() {
               text.tertiary
             </Typography>
             <Divider />
-            <Button variant="solid">solid</Button>
-            <Button variant="soft">soft</Button>
-            <Button variant="outlined">outlined</Button>
-            <Button variant="plain">plain</Button>
+            <Box display="flex" gap={1}>
+              <Button variant="solid">solid</Button>
+              <Button disabled variant="solid">
+                solid
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="soft">soft</Button>
+              <Button disabled variant="soft">
+                soft
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="outlined">outlined</Button>
+              <Button disabled variant="outlined">
+                outlined
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="plain">plain</Button>
+              <Button disabled variant="plain">
+                plain
+              </Button>
+            </Box>
             <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
             <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
