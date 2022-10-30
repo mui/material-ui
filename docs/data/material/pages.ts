@@ -94,7 +94,7 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/navigation',
         subheader: 'navigation',
         children: [
-          { pathname: '/material-ui/react-bottom-navigation', title: 'Button Navigation' },
+          { pathname: '/material-ui/react-bottom-navigation', title: 'Bottom Navigation' },
           { pathname: '/material-ui/react-breadcrumbs' },
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
