@@ -49,7 +49,6 @@ const Portal = React.forwardRef(function Portal(props, ref) {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <React.Fragment>
       {mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode}
     </React.Fragment>

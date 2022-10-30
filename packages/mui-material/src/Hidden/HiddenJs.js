@@ -49,7 +49,6 @@ function HiddenJs(props) {
     return null;
   }
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <React.Fragment>{children}</React.Fragment>;
 }
 
