@@ -402,12 +402,12 @@ const Root = styled('div')(({ theme }) => ({
   '& details': {
     marginBottom: theme.spacing(1.5),
     padding: theme.spacing(0.5, 0, 0.5, 1),
-    '& summary': {
-      cursor: 'pointer',
-    },
     '& pre': {
       marginTop: theme.spacing(1),
     },
+  },
+  '& summary': {
+    cursor: 'pointer',
   },
   '& .MuiCode-root': {
     position: 'relative',
