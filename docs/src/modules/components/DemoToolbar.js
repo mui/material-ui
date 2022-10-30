@@ -356,9 +356,9 @@ export default function DemoToolbar(props) {
     setSourceHintSeen(true);
   };
 
-  function handleResetFocusClick() {
+  const handleResetFocusClick = () => {
     initialFocusRef.current.focusVisible();
-  }
+  };
 
   const showSourceHint = demoHovered && !sourceHintSeen;
 

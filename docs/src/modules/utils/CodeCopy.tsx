@@ -15,7 +15,7 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
  *  <button className="MuiCode-copy">...</button>
  * </div>
  */
-export function useCodeCopy() {
+export function useCodeCopy(): any {
   const rootNode = React.useContext(CodeBlockContext);
   return {
     onMouseEnter: (event: React.MouseEvent) => {
