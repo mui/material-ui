@@ -9,12 +9,8 @@ on:
     # Schedule for five minutes after the hour, every hour
     - cron: '5 * * * *'
 
-permissions: {}
 jobs:
   noResponse:
-    permissions:
-      issues: write # to update issues
-
     runs-on: ubuntu-latest
     permissions:
       contents: read

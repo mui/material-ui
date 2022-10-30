@@ -15,14 +15,10 @@ on:
       - next
     types: [synchronize]
 
-permissions: {}
 jobs:
   main:
     # l10nbot creates a lot of commits at once which starves CI.
     # We rely on other pushes to mark these branches as outdated.
-    permissions:
-      pull-requests: write # to label PRs (eps1lon/actions-label-merge-conflict)
-
     if: ${{ github.actor != 'l10nbot' }}
     runs-on: ubuntu-latest
     permissions:

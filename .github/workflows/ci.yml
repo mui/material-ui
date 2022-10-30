@@ -8,9 +8,6 @@ on:
       - 'renovate/**'
   pull_request:
 
-permissions:
-  contents: read # to fetch code (actions/checkout)
-
 jobs:
   # Tests dev-only scripts across all supported dev environments
   test-dev:
