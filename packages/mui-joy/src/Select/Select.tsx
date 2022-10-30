@@ -538,12 +538,15 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     className: classes.indicator,
   });
 
-  const context = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-    color,
-  };
+  const context = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+      color,
+    }),
+    [color, getOptionProps, getOptionState],
+  );
 
   return (
     <React.Fragment>

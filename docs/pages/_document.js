@@ -36,7 +36,7 @@ const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
 
 export default class MyDocument extends Document {
   render() {
-    const { canonicalAs, userLanguage } = this.props;
+    const { canonicalAsServer, userLanguage } = this.props;
 
     return (
       <Html lang={userLanguage}>
@@ -63,9 +63,11 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
+            href={`https://mui.com${
+              userLanguage === 'en' ? '' : `/${userLanguage}`
+            }${canonicalAsServer}`}
           />
-          <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
+          <link rel="alternate" href={`https://mui.com${canonicalAsServer}`} hrefLang="x-default" />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -233,7 +235,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
     return {
       ...initialProps,
-      canonicalAs: pathnameToLanguage(url).canonicalAs,
+      canonicalAsServer: pathnameToLanguage(url).canonicalAsServer,
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [

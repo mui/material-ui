@@ -155,8 +155,8 @@ function ColorTool() {
 
   const handleChangeDocsColors = () => {
     const paletteColors = {
-      primary: { main: state.primary },
-      secondary: { main: state.secondary },
+      primary: { ...colors[state.primaryHue], main: state.primary },
+      secondary: { ...colors[state.secondaryHue], main: state.secondary },
     };
 
     dispatch({

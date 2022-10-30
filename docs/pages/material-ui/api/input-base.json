@@ -37,6 +37,7 @@
     "name": { "type": { "name": "string" } },
     "onBlur": { "type": { "name": "func" } },
     "onChange": { "type": { "name": "func" } },
+    "onInvalid": { "type": { "name": "func" } },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },

@@ -3,9 +3,9 @@ product: joy-ui
 title: React Aspect Ratio component
 ---
 
-# Aspect ratio
+# Aspect Ratio
 
-<p class="description">The aspect ratio component shapes the content with the specified ratio.</p>
+<p class="description">The Aspect Ratio component shapes the content with the specified ratio.</p>
 
 ## Introduction
 

@@ -96,7 +96,7 @@ export default function IconImage(props: IconImageProps) {
   }
   if (!mounted && !!theme.vars) {
     // Prevent hydration mismatch between the light and dark mode image source.
-    return <Box sx={{ width, height, display: 'inline-block' }} />;
+    return <Box component="span" sx={{ width, height, display: 'inline-block' }} />;
   }
   const element = (
     <Img
