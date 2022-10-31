@@ -1,11 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
-import {
-  isVariantPalette,
-  createVariantStyle,
-  createVariant,
-  createContainedOverrides,
-} from './variantUtils';
+import { isVariantPalette, createVariantStyle, createVariant } from './variantUtils';
 import { createGetCssVar } from './extendTheme';
 
 describe('variant utils', () => {
@@ -356,41 +350,6 @@ describe('variant utils', () => {
       });
       expect(createVariant('solid').context).to.deep.include({
         backgroundColor: 'var(--variant-solidBg)',
-      });
-    });
-  });
-
-  describe('createContainedOverrides', () => {
-    it('automatically create solid overrides if the variable is in the correct format', () => {
-      const result = createContainedOverrides({
-        prefix: 'foo',
-        getCssVar: createGetCssVar('foo'),
-        palette: {
-          primary: {
-            plainColor: '',
-          },
-          secondary: {
-            softBg: '',
-          },
-          alternate: {
-            solidBg: '',
-          },
-        },
-      });
-      // partially check the result
-      sinon.assert.match(result, {
-        primary: {
-          '--foo-palette-text-primary': '#fff',
-          '--variant-plainColor': 'var(--foo-palette-primary-100)',
-        },
-        secondary: {
-          '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-          '--variant-softBg': 'rgba(255 255 255 / 0.12)',
-        },
-        alternate: {
-          '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-          '--variant-solidBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
-        },
       });
     });
   });
