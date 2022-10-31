@@ -39,7 +39,7 @@ export default function appendOwnerState<
   OwnerState,
 >(
   elementType: ElementType,
-  otherProps: OtherProps = {} as OtherProps,
+  otherProps: OtherProps,
   ownerState: OwnerState,
 ): AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState> {
   if (isHostComponent(elementType)) {

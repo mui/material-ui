@@ -208,11 +208,14 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     className: classes.popper,
   });
 
-  const context: SelectUnstyledContextType = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-  };
+  const context: SelectUnstyledContextType = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+    }),
+    [getOptionProps, getOptionState],
+  );
 
   return (
     <React.Fragment>
