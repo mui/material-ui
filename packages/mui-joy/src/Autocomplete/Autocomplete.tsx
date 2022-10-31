@@ -157,6 +157,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton, {
     transform: 'rotate(180deg)',
   }),
 }));
+
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
