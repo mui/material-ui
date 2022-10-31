@@ -333,8 +333,8 @@ export default function useAutocomplete<
   getInputProps: () => React.InputHTMLAttributes<HTMLInputElement>;
   // We pass `getInputLabelProps()` to `@mui/material/InputLabel` which does not implement HTMLLabelElement#color.
   getInputLabelProps: () => Omit<React.HTMLAttributes<HTMLLabelElement>, 'color'>;
-  getClearProps: () => React.HTMLAttributes<HTMLDivElement>;
-  getPopupIndicatorProps: () => React.HTMLAttributes<HTMLDivElement>;
+  getClearProps: () => React.HTMLAttributes<HTMLButtonElement>;
+  getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   getTagProps: AutocompleteGetTagProps;
   getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
   getOptionProps: ({
