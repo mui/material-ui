@@ -583,7 +583,7 @@ const communityData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  'data-grid/column-groups': pending,
+  'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
@@ -641,7 +641,7 @@ const proData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  'data-grid/column-groups': pending,
+  'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
@@ -699,7 +699,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  'data-grid/column-groups': pending,
+  'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
