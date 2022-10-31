@@ -148,10 +148,10 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Support Engineer - X',
+        title: 'React Engineer - X',
         description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-support-engineer/',
+          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+        url: '/careers/react-engineer-x/',
       },
       {
         title: 'Product Engineer - Store',
@@ -184,16 +184,16 @@ const nextRolesData = [
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'React Engineer - Core',
         description:
           'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
         url: '/careers/react-engineer-core/',
+      },
+      {
+        title: 'React Support Engineer - X',
+        description:
+          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/careers/react-support-engineer/',
       },
     ],
   },
