@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import Box, { BoxProps } from '@mui/joy/Box';
+import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import IconButton from '@mui/joy/IconButton';
+import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
-import { CssVarsProvider, ColorPaletteProp, VariantProp, useColorScheme } from '@mui/joy/styles';
-import CodeRounded from '@mui/icons-material/CodeRounded';
-import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
-import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
+import Sheet from '@mui/joy/Sheet';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 
@@ -38,162 +36,132 @@ function ColorSchemePicker() {
   );
 }
 
-// how to add more color and use with variants
-function Tile({
-  children,
-  variant = 'soft',
-  color = 'primary',
-  sx = [],
-  ...props
-}: {
-  variant?: 'soft' | 'solid';
-  color?: ColorPaletteProp | 'secondary' | 'alternate';
-} & Omit<BoxProps, 'color'>) {
-  return (
-    <Box
-      sx={[
-        { display: 'inline-flex', p: 0.75, borderRadius: '4px' },
-        // @ts-ignore
-        (theme) => theme.variants[variant][color],
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
-}
-
 export default function JoyVariant() {
-  const renderContent = (variant: VariantProp, color: ColorPaletteProp) => (
-    <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <ScheduleRounded fontSize="md" />
-        <Typography level="body3" sx={{ ml: 0.5, mt: '1px', fontWeight: 500 }}>
-          March 25th
-        </Typography>
-      </Box>
-      <Box sx={{ my: 'auto' }}>
-        <Tile
-          variant={variant.match(/(solid)/) ? 'soft' : 'solid'}
-          color={color}
-          sx={{
-            ...(variant.match(/(solid)/) && {
-              bgcolor: 'background.body',
-            }),
-            boxShadow: 'md',
-          }}
-        >
-          <CodeRounded />
-        </Tile>
-        <Typography level="h6" component="div" sx={{ mt: 1.5, fontWeight: 500 }}>
-          Check the docs for getting every component API
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', gap: 1 }}>
-        <Box
-          component="img"
-          aria-labelledby="demo-task-card-assigne-name"
-          src="/static/images/avatar/1-sm.jpeg"
-          sx={{ borderRadius: 'sm', width: 40, height: 40 }}
-        />
-        <Box>
-          <Typography level="body2" sx={{ fontWeight: 500 }}>
-            Assigned to
-          </Typography>
-          <Typography id="demo-task-card-assigne-name" sx={{ fontWeight: 500 }}>
-            Michael Scott
-          </Typography>
-        </Box>
-        <Button color={variant === 'solid' ? undefined : color} sx={{ ml: 'auto' }}>
-          Check
-        </Button>
-        <IconButton color={variant.match(/(solid)/) ? undefined : color}>
-          <DeleteForeverRounded />
-        </IconButton>
-      </Box>
-    </React.Fragment>
-  );
   return (
     <CssVarsProvider>
       <GlobalStyles styles={{ body: { margin: 0 } }} />
-      <Box sx={{ px: 3, pb: 4 }}>
-        <ColorSchemePicker />
-      </Box>
       <Box
         sx={{
           maxWidth: { md: 1152, xl: 1536 },
           py: 3,
           mx: 'auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 2,
         }}
       >
-        <Box
-          sx={(theme) => ({
-            '--shadow-channel': '0 0 0',
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.solid.primary,
-            ...theme.variants.solidOverrides.primary,
-          })}
-        >
-          {renderContent('solid', 'primary')}
+        <Box sx={{ px: 3, pb: 4 }}>
+          <ColorSchemePicker />
         </Box>
         <Box
-          sx={(theme) => ({
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.plain.info,
-            ...theme.variants.plainOverrides.info,
-          })}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 2,
+            '& > div': {
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+              p: 2.5,
+              boxShadow: 'md',
+              borderRadius: 'sm',
+            },
+          }}
         >
-          {renderContent('plain', 'info')}
-        </Box>
-        <Box
-          sx={(theme) => ({
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.outlined.neutral,
-            ...theme.variants.outlinedOverrides.neutral,
-          })}
-        >
-          {renderContent('outlined', 'neutral')}
-        </Box>
-        <Box
-          sx={(theme) => ({
-            minWidth: 280,
-            maxWidth: 360,
-            minHeight: 280,
-            display: 'flex',
-            flexDirection: 'column',
-            p: 2.5,
-            boxShadow: 'md',
-            borderRadius: 'sm',
-            ...theme.variants.soft.success,
-            ...theme.variants.softOverrides.success,
-          })}
-        >
-          {renderContent('soft', 'success')}
+          <Sheet variant="solid" color="warning" invertedColors>
+            <Sheet
+              sx={{
+                bgcolor: 'background.body',
+                width: 64,
+                height: 64,
+                borderRadius: '50%',
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+              }}
+            />
+            <Typography>text.primary</Typography>
+            <Typography level="body2">text.secondary</Typography>
+            <Typography level="body3" mb={1}>
+              text.tertiary
+            </Typography>
+            <Divider />
+            <Box display="flex" gap={1}>
+              <Button variant="solid">solid</Button>
+              <Button disabled variant="solid">
+                solid
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="soft">soft</Button>
+              <Button disabled variant="soft">
+                soft
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="outlined">outlined</Button>
+              <Button disabled variant="outlined">
+                outlined
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="plain">plain</Button>
+              <Button disabled variant="plain">
+                plain
+              </Button>
+            </Box>
+            <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
+          </Sheet>
+          <Sheet variant="soft" color="warning" invertedColors>
+            <Sheet
+              variant="soft"
+              sx={{
+                bgcolor: 'background.body',
+                width: 64,
+                height: 64,
+                borderRadius: '50%',
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+              }}
+            />
+            <Typography>text.primary</Typography>
+            <Typography level="body2">text.secondary</Typography>
+            <Typography level="body3" mb={1}>
+              text.tertiary
+            </Typography>
+            <Divider />
+            <Box display="flex" gap={1}>
+              <Button variant="solid">solid</Button>
+              <Button disabled variant="solid">
+                solid
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="soft">soft</Button>
+              <Button disabled variant="soft">
+                soft
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="outlined">outlined</Button>
+              <Button disabled variant="outlined">
+                outlined
+              </Button>
+            </Box>
+            <Box display="flex" gap={1}>
+              <Button variant="plain">plain</Button>
+              <Button disabled variant="plain">
+                plain
+              </Button>
+            </Box>
+            <Box sx={{ height: 40, bgcolor: 'background.surface' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level1' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level2' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.level3' }} />
+            <Box sx={{ height: 40, bgcolor: 'background.tooltip' }} />
+          </Sheet>
         </Box>
       </Box>
     </CssVarsProvider>

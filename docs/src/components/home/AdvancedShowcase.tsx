@@ -1733,9 +1733,6 @@ export default function DataTable() {
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
-              '& code[class*="language-"]': {
-                fontSize: 'inherit',
-              },
             },
           }}
         >
