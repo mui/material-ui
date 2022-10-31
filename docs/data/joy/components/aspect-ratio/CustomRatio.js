@@ -11,7 +11,7 @@ export default function CustomRatio() {
     >
       <AspectRatio ratio="4/3">
         <Typography level="h2" component="div">
-          4 : 3
+          4/3
         </Typography>
       </AspectRatio>
     </Sheet>
