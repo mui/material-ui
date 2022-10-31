@@ -113,9 +113,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-primary-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-primary-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-primary-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-primary-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-primary-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-primary-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-primary-mainChannel)',
           lightChannel: 'var(--joy-palette-primary-lightChannel)',
           darkChannel: 'var(--joy-palette-primary-darkChannel)',
@@ -159,9 +156,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-neutral-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-neutral-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-neutral-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-neutral-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-neutral-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-neutral-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-neutral-mainChannel)',
           lightChannel: 'var(--joy-palette-neutral-lightChannel)',
           darkChannel: 'var(--joy-palette-neutral-darkChannel)',
@@ -202,9 +196,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-danger-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-danger-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-danger-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-danger-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-danger-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-danger-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-danger-mainChannel)',
           lightChannel: 'var(--joy-palette-danger-lightChannel)',
           darkChannel: 'var(--joy-palette-danger-darkChannel)',
@@ -245,9 +236,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-info-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-info-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-info-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-info-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-info-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-info-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-info-mainChannel)',
           lightChannel: 'var(--joy-palette-info-lightChannel)',
           darkChannel: 'var(--joy-palette-info-darkChannel)',
@@ -288,9 +276,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-success-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-success-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-success-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-success-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-success-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-success-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-success-mainChannel)',
           lightChannel: 'var(--joy-palette-success-lightChannel)',
           darkChannel: 'var(--joy-palette-success-darkChannel)',
@@ -331,9 +316,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-warning-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-warning-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-warning-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-warning-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-warning-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-warning-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-warning-mainChannel)',
           lightChannel: 'var(--joy-palette-warning-lightChannel)',
           darkChannel: 'var(--joy-palette-warning-darkChannel)',
@@ -550,12 +532,23 @@ describe('[Joy] CssVarsProvider', () => {
           'solidHover',
           'solidActive',
           'solidDisabled',
-          'plainOverrides',
-          'outlinedOverrides',
-          'softOverrides',
-          'solidOverrides',
         ].join(','),
       );
+    });
+
+    it('contain expected colorInversion', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.colorInversion).join(',')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal(['soft', 'solid'].join(','));
     });
   });
 
