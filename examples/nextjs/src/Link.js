@@ -10,7 +10,17 @@ import { styled } from '@mui/material/styles';
 const Anchor = styled('a')({});
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-  const { to, linkAs, replace, scroll, shallow, prefetch, legacyBehavior = true, locale, ...other } = props;
+  const {
+    to,
+    linkAs,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    legacyBehavior = true,
+    locale,
+    ...other
+  } = props;
 
   return (
     <NextLink
@@ -80,7 +90,16 @@ const Link = React.forwardRef(function Link(props, ref) {
   }
 
   const linkAs = linkAsProp || as;
-  const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch, legacyBehavior, locale };
+  const nextjsProps = {
+    to: href,
+    linkAs,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    legacyBehavior,
+    locale,
+  };
 
   if (noLinkStyle) {
     return <NextLinkComposed className={className} ref={ref} {...nextjsProps} {...other} />;

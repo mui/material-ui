@@ -17,7 +17,17 @@ interface NextLinkComposedProps
 
 export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
-    const { to, linkAs, replace, scroll, shallow, prefetch, legacyBehavior = true, locale, ...other } = props;
+    const {
+      to,
+      linkAs,
+      replace,
+      scroll,
+      shallow,
+      prefetch,
+      legacyBehavior = true,
+      locale,
+      ...other
+    } = props;
 
     return (
       <NextLink
@@ -84,7 +94,16 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
   }
 
   const linkAs = linkAsProp || as;
-  const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch,legacyBehavior, locale };
+  const nextjsProps = {
+    to: href,
+    linkAs,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    legacyBehavior,
+    locale,
+  };
 
   if (noLinkStyle) {
     return <NextLinkComposed className={className} ref={ref} {...nextjsProps} {...other} />;
