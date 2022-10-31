@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface AutocompleteOptionClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** State class applied to the root element if focused. */
+  focused: string;
   /** State class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
   /** Styles applied to the root element if `color="primary"`. */
@@ -37,6 +39,7 @@ const autocompleteOptionClasses: AutocompleteOptionClasses = generateUtilityClas
   'JoyAutocompleteOption',
   [
     'root',
+    'focused',
     'focusVisible',
     'colorPrimary',
     'colorNeutral',

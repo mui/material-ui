@@ -6,7 +6,9 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
+import autocompleteOptionClasses, {
+  getAutocompleteOptionUtilityClass,
+} from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
@@ -28,11 +30,19 @@ export const AutocompleteOptionRoot = styled(ListItemButtonRoot as unknown as 'l
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AutocompleteOptionOwnerState }>(({ theme, ownerState }) => ({
+  '&:not(:hover)': {
+    transition: 'none', // prevent flicker when using keyboard arrows to move between options
+  },
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
     color: theme.vars.palette.primary.softColor,
     backgroundColor: theme.vars.palette.primary.softBg,
     fontWeight: theme.vars.fontWeight.md,
+  },
+  [`&.${autocompleteOptionClasses.focused}:not([aria-selected="true"]):not(:hover)`]: {
+    // create the focused style similar to the hover state
+    backgroundColor:
+      theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!]?.backgroundColor,
   },
 }));
 
