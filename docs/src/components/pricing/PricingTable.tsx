@@ -260,12 +260,12 @@ function ColumnHeadHighlight(props: BoxProps) {
           borderColor: 'grey.100',
           bgcolor: alpha(theme.palette.grey[50], 0.5),
         }),
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
         (theme) =>
           theme.applyDarkStyles({
             borderColor: 'primaryDark.700',
             bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
           }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     />
   );
@@ -289,12 +289,12 @@ function Recommended(props: BoxProps) {
           borderColor: 'primary.100',
           bgcolor: 'primary.50',
         },
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
         (theme) =>
           theme.applyDarkStyles({
             borderColor: 'primaryDark.500',
             bgcolor: 'primaryDark.800',
           }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
       Recommended
@@ -927,11 +927,12 @@ export default function PricingTable({
               },
             },
           }),
-          (theme) => ({
-            '&:hover': {
-              bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
-            },
-          }),
+          (theme) =>
+            theme.applyDarkStyles({
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+              },
+            }),
         ]}
       >
         {rowHeaders[key]}
