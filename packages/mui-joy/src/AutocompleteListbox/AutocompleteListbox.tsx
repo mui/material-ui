@@ -4,7 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
 import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
 import {
@@ -29,11 +29,9 @@ const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   return composeClasses(slots, getAutocompleteListboxUtilityClass, {});
 };
 
-export const AutocompleteListboxRoot = styled(ListRoot, {
-  name: 'JoyAutocompleteListbox',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AutocompleteListboxOwnerState }>(({ theme, ownerState }) => {
+export const StyledAutocompleteListbox = styled(StyledList)<{
+  ownerState: AutocompleteListboxOwnerState;
+}>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
@@ -65,6 +63,12 @@ export const AutocompleteListboxRoot = styled(ListRoot, {
     },
   };
 });
+
+const AutocompleteListboxRoot = styled(StyledAutocompleteListbox, {
+  name: 'JoyAutocompleteListbox',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

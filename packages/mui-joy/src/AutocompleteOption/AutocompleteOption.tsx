@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import autocompleteOptionClasses, {
   getAutocompleteOptionUtilityClass,
@@ -25,11 +25,9 @@ const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
   return composeClasses(slots, getAutocompleteOptionUtilityClass, {});
 };
 
-export const AutocompleteOptionRoot = styled(ListItemButtonRoot as unknown as 'li', {
-  name: 'JoyAutocompleteOption',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AutocompleteOptionOwnerState }>(({ theme, ownerState }) => ({
+export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li')<{
+  ownerState: AutocompleteOptionOwnerState;
+}>(({ theme, ownerState }) => ({
   '&:not(:hover)': {
     transition: 'none', // prevent flicker when using keyboard arrows to move between options
   },
@@ -45,6 +43,12 @@ export const AutocompleteOptionRoot = styled(ListItemButtonRoot as unknown as 'l
       theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!]?.backgroundColor,
   },
 }));
+
+const AutocompleteOptionRoot = styled(StyledAutocompleteOption, {
+  name: 'JoyAutocompleteOption',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

@@ -13,7 +13,7 @@ import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
 // slot components
-import { IconButtonRoot } from '../IconButton/IconButton';
+import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
 import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
@@ -31,8 +31,8 @@ import {
   AutocompleteOwnerState,
 } from './AutocompleteProps';
 import FormControlContext from '../FormControl/FormControlContext';
-import { AutocompleteOptionRoot } from '../AutocompleteOption/AutocompleteOption';
-import { AutocompleteListboxRoot } from '../AutocompleteListbox/AutocompleteListbox';
+import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
+import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
@@ -133,18 +133,18 @@ const AutocompleteRoot = styled('div', {
   ];
 });
 
-const AutocompleteClearIndicator = styled(IconButtonRoot, {
+const AutocompleteClearIndicator = styled(StyledIconButton, {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
   ...(!ownerState.freeSolo && {
-    marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButtonRoot
+    marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButton
   }),
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
 
-const AutocompletePopupIndicator = styled(IconButtonRoot, {
+const AutocompletePopupIndicator = styled(StyledIconButton, {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
@@ -153,14 +153,13 @@ const AutocompletePopupIndicator = styled(IconButtonRoot, {
     transform: 'rotate(180deg)',
   }),
 }));
-
-const AutocompleteListbox = styled(AutocompleteListboxRoot, {
+const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteOption = styled(AutocompleteOptionRoot, {
+const AutocompleteOption = styled(StyledAutocompleteOption, {
   name: 'JoyAutocomplete',
   slot: 'Option',
   overridesResolver: (props, styles) => styles.option,
@@ -343,7 +342,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotClearIndicator, clearIndicatorProps] = useSlot('clearIndicator', {
     className: classes.clearIndicator,
     elementType: AutocompleteClearIndicator,
-    getSlotProps: getClearProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
+    getSlotProps: getClearProps,
     externalForwardedProps: other,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
@@ -360,8 +359,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const [SlotPopupIndicator, popupIndicatorProps] = useSlot('popupIndicator', {
     className: classes.popupIndicator,
     elementType: AutocompletePopupIndicator,
-    getSlotProps:
-      getPopupIndicatorProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
+    getSlotProps: getPopupIndicatorProps,
     externalForwardedProps: other,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
