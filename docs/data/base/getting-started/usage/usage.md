@@ -2,9 +2,9 @@
 
 <p class="description">Learn the basics of working with MUI Base components.</p>
 
-## Getting started
+## Quickstart
 
-The following code snippet demonstrates a simple app that uses the MUI Base [`ButtonUnstyled`](/base/react-button/) component:
+The following code snippet demonstrates a simple app that uses the MUI Base [Unstyled Button](/base/react-button/) component:
 
 ```jsx
 import * as React from 'react';
@@ -20,9 +20,19 @@ export default function MyApp() {
 ```
 
 You can play around with this code in the interactive Code Sandbox demo below.
-Try importing an [`InputUnstyled`](/base/react-input/) component and adding it to the `<div>`:
+Try importing an [Unstyled Input](/base/react-input/) component and adding it to the `<div>`:
 
 {{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
+
+## Responsive meta tag
+
+MUI Base is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
+
+To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element:
+
+```html
+<meta name="viewport" content="initial-scale=1, width=device-width" />
+```
 
 ## Shared props
 
@@ -36,7 +46,7 @@ The `slots` prop is an object that lets you override any interior subcomponents�
 
 :::info
 Each component contains a root slot, and other appropriate slots based on the nature of the component.
-For example, the `BadgeUnstyled` contains two slots:
+For example, the Unstyled Badge contains two slots:
 
 - `root`: the container element that wraps the children.
 - `badge`: the badge element itself.
@@ -44,7 +54,7 @@ For example, the `BadgeUnstyled` contains two slots:
 
 You can use the `slots` prop to override default slots with either custom components or HTML elements.
 
-For example, the [`BadgeUnstyled`](/base/react-badge/) component renders a `<span>` by default.
+For example, the Unstyled Badge component renders a `<span>` by default.
 The code snippet below shows how to override this by assigning a `<div>` to the root slot:
 
 ```jsx
@@ -56,7 +66,7 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 The `component` prop provides a shortcut to `slots.root`.
 This is useful if you are only overriding the root element of the component.
 
-The code snippet below shows how to override the root element of the [`BadgeUnstyled`](/base/react-badge/) component using the `component` prop:
+The code snippet below shows how to override the root element of the Unstyled Badge component using the `component` prop:
 
 ```jsx
 <BadgeUnstyled component="div" />
@@ -71,7 +81,7 @@ If the root slot is customized with both the `component` and `slots` props, then
 The `slotProps` prop is an object that contains the props for all slots within a component.
 You can use it to define additional custom props for a component's interior elements.
 
-For example, the code snippet below shows how to add a custom CSS class to the badge slot of the `BadgeUnstyled` component:
+For example, the code snippet below shows how to add a custom CSS class to the badge slot of the Unstyled Badge component:
 
 ```jsx
 <BadgeUnstyled slotProps={{ badge: { className: 'my-badge' } }} />
@@ -96,10 +106,10 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ### Best practices
 
-If you are customizing a component like [`ButtonUnstyled`](/base/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
+If you are customizing a component like the [Unstyled Button](/base/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
-For instance, if you replace the `ButtonUnstyled` root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
+For instance, if you replace the Unstyled Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
 If you did the same with `slots.root`, you would need to place this attribute on the `slotProps.root` object in order to avoid a TypeScript error.
 
 ## Components vs. hooks

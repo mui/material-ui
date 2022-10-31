@@ -33,7 +33,7 @@ const pages = [
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-checkbox' },
-          { pathname: '/joy-ui/react-radio-button' },
+          { pathname: '/joy-ui/react-radio-button', title: 'Radio Group' },
           { pathname: '/joy-ui/react-select' },
           { pathname: '/joy-ui/react-slider' },
           { pathname: '/joy-ui/react-switch' },
@@ -43,7 +43,7 @@ const pages = [
         pathname: '/joy-ui/components/data-display',
         subheader: 'data-display',
         children: [
-          { pathname: '/joy-ui/react-aspect-ratio' },
+          { pathname: '/joy-ui/react-aspect-ratio', title: 'Aspect Ratio' },
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
@@ -59,6 +59,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/react-alert' },
           { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-linear-progress' },
           { pathname: '/joy-ui/react-modal' },
         ],
       },

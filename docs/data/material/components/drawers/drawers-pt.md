@@ -3,7 +3,7 @@ product: material-ui
 title: Componente Drawer para React
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
-materialDesign: https://material.io/components/navigation-drawer
+materialDesign: https://m2.material.io/components/navigation-drawer
 ---
 
 # Drawer
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 A navegação por drawers (ou "barras laterais") fornecem acesso a partes e funcionalidades do aplicativo, como trocar de conta. Eles podem estar permanentemente na tela ou controlados por um ícone de menu de navegação.
 
-[Seções laterais](https://material.io/design/components/sheets-side.html) são áreas complementares usadas principalmente em tablets e computadores.
+[Seções laterais](https://m2.material.io/design/components/sheets-side.html) são áreas complementares usadas principalmente em tablets e computadores.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

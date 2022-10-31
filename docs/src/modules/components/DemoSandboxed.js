@@ -78,7 +78,6 @@ const Frame = styled('iframe')(({ theme }) => ({
 
 function DemoFrame(props) {
   const { children, name, ...other } = props;
-  const title = `${name} demo`;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -105,7 +104,7 @@ function DemoFrame(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <Frame onLoad={onLoad} ref={frameRef} title={title} {...other} />
+      <Frame onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document}>{children}</FramedDemo>,
@@ -122,7 +121,7 @@ DemoFrame.propTypes = {
 };
 
 // Use the default MUI theme for the demos
-const getTheme = (outerTheme) => {
+function getTheme(outerTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =
     outerTheme.palette.primary?.main &&
@@ -149,7 +148,7 @@ const getTheme = (outerTheme) => {
     resultTheme.spacing = outerTheme.spacing;
   }
   return resultTheme;
-};
+}
 
 // TODO: Let demos decide whether they need JSS
 const jss = create({
@@ -165,7 +164,7 @@ const jss = create({
 function DemoSandboxed(props) {
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { children, iframe, name, onResetDemoClick, ...other } = props;
+  const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
@@ -175,15 +174,15 @@ function DemoSandboxed(props) {
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {asPathWithoutLang.startsWith('/joy-ui') ? (
         <Sandbox {...sandboxProps}>
-          {/* WARNING: `children` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-          {children}
+          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+          <Component />
         </Sandbox>
       ) : (
         <StylesProvider jss={jss}>
           <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
             <Sandbox {...sandboxProps}>
-              {/* WARNING: `children` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-              {children}
+              {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+              <Component />
             </Sandbox>
           </ThemeProvider>
         </StylesProvider>
@@ -193,7 +192,7 @@ function DemoSandboxed(props) {
 }
 
 DemoSandboxed.propTypes = {
-  children: PropTypes.node,
+  component: PropTypes.elementType.isRequired,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,

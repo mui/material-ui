@@ -17,7 +17,7 @@ Here are the top priorities:
   - Identify frequently needed components. There are many resources we leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
   - Encourage the usage of third-party components if they already exist and are well maintained.
-- **Design.** 🎀 We are relatively up-to-date, but the Material Design guidelines [are evolving](https://material.io/whats-new/). So should we. We also plan to implement [a second design](https://github.com/mui/material-ui/issues/22485).
+- **Design.** 🎀 We are relatively up-to-date, but the Material Design guidelines [are evolving](https://material.io/blog/). So should we. We also plan to implement [a second design](https://github.com/mui/material-ui/issues/22485).
 - **Better customization.** 💅 We want to make component customization intuitive, no matter if you are using global CSS or styled-components:
 - **Better documentation.** 📚 No solution is complete without great documentation.
 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.

@@ -51,7 +51,7 @@ function sizeSnapshot(options) {
       // eslint-disable-next-line no-console -- purpose of this plugin
       console.info(infoString);
       // TODO: Should lock `snapshotPath` since something else might write to `snapshotPath` between read and write
-      const snapshotContent = await fs.readFile(snapshotPath, { encoding: 'utf-8' }).then(
+      const snapshotContent = await fs.readFile(snapshotPath, { encoding: 'utf8' }).then(
         (json) => {
           return JSON.parse(json);
         },

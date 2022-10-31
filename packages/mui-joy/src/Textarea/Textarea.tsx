@@ -41,8 +41,16 @@ const TextareaRoot = styled('div', {
       '--Textarea-gap': '0.5rem',
       '--Textarea-placeholderOpacity': 0.5,
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
-      '--Textarea-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      ...(ownerState.color === 'context'
+        ? {
+            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Textarea-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
@@ -133,7 +141,7 @@ const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
   overridesResolver: (props, styles) => styles.textarea,
-})<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   resize: 'none',
   border: 'none', // remove the native textarea width
   minWidth: 0, // remove the native textarea width
@@ -151,7 +159,7 @@ const TextareaInput = styled(TextareaAutosize, {
   lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor: 'currentColor',
   },
   '&::-webkit-input-placeholder': {
     opacity: 'var(--Textarea-placeholderOpacity)',
@@ -160,7 +168,7 @@ const TextareaInput = styled(TextareaAutosize, {
   '&::-moz-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
   '&:-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // IE11
   '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
-}));
+});
 
 const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',

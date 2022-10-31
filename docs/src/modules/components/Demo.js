@@ -1,22 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
-import Alert from '@mui/material/Alert';
+import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
-import CodeEditor from 'docs/src/modules/components/CodeEditor';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
-const DeferredDemo = React.lazy(() => import('./DeferredDemo'));
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
 // Importing the styles results in no bundle size reduction
@@ -64,8 +62,8 @@ function useDemoData(codeVariant, demo, githubLocation) {
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       language: userLanguage,
       raw: demo.rawTS,
-      sourceLanguage: 'tsx',
       Component: demo.tsx,
+      sourceLanguage: 'tsx',
       title,
       product,
     };
@@ -76,22 +74,11 @@ function useDemoData(codeVariant, demo, githubLocation) {
     githubLocation,
     language: userLanguage,
     raw: demo.raw,
-    sourceLanguage: 'jsx',
     Component: demo.js,
+    sourceLanguage: 'jsx',
     title,
     product,
   };
-}
-
-// TODO: replace with React.useOpaqueReference if it is released
-function useUniqueId(prefix) {
-  // useOpaqueReference
-  const [id, setId] = React.useState();
-  React.useEffect(() => {
-    setId(Math.random().toString(36).slice(2));
-  }, []);
-
-  return id ? `${prefix}${id}` : id;
 }
 
 const Root = styled('div')(({ theme }) => ({
@@ -166,7 +153,7 @@ const DemoRootMaterial = styled('div', {
         radial-gradient(at 93% 85%, ${alpha(
           theme.palette.primaryDark[500],
           0.8,
-        )} 0px, transparent 50%), 
+        )} 0px, transparent 50%),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`
         : `radial-gradient(at 51% 52%, ${alpha(
             theme.palette.primary[50],
@@ -175,10 +162,7 @@ const DemoRootMaterial = styled('div', {
         radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
         radial-gradient(at 0% 95%, ${alpha(theme.palette.primary[100], 0.3)}, transparent 40%),
         radial-gradient(at 0% 20%, ${theme.palette.primary[50]} 0px, transparent 50%), 
-        radial-gradient(at 93% 85%, ${alpha(
-          theme.palette.primary[100],
-          0.2,
-        )} 0px, transparent 50%), 
+        radial-gradient(at 93% 85%, ${alpha(theme.palette.primary[100], 0.2)} 0px, transparent 50%),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
   }),
   ...(hiddenToolbar && {
@@ -227,6 +211,19 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
+const Code = styled(HighlightedCode)(({ theme }) => ({
+  padding: 0,
+  marginBottom: theme.spacing(1),
+  marginTop: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    marginTop: theme.spacing(0),
+  },
+  '& pre': {
+    margin: '0 auto',
+    maxHeight: 'min(68vh, 1000px)',
+  },
+}));
+
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
@@ -266,6 +263,7 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
+  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -299,35 +297,20 @@ export default function Demo(props) {
   const showPreview =
     !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
-  const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0);
+  const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
-  const demoId = useUniqueId('demo-');
-  const demoSourceId = useUniqueId(`demoSource-`);
+  const demoId = `demo-${useId()}`;
+  const demoSourceId = `demoSource-${useId()}`;
   const openDemoSource = codeOpen || showPreview;
 
   const initialFocusRef = React.useRef(null);
 
   const [showAd, setShowAd] = React.useState(false);
-
-  const usePreview = showPreview && !codeOpen;
-  const initialCode = usePreview ? demo.jsxPreview : demoData.raw;
-  const [code, setCode] = React.useState(initialCode);
-  const resetDemo = React.useCallback(() => {
-    setCode(initialCode);
-    setDemoKey();
-  }, [initialCode]);
-  React.useEffect(() => {
-    resetDemo();
-  }, [resetDemo]);
-
-  const [debouncedError, setError] = React.useState(null);
-  const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
+  const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
   const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
-
-  const isAdVisible = showAd && !disableAd && !demoOptions.disableAd;
 
   return (
     <Root>
@@ -349,23 +332,11 @@ export default function Demo(props) {
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
+          component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
-        >
-          <NoSsr fallback={<demoData.Component />}>
-            <React.Suspense fallback={<demoData.Component />}>
-              <DeferredDemo
-                code={code}
-                jsxPreview={demo.jsxPreview}
-                raw={demoData.raw}
-                usePreview={usePreview}
-                scope={demo.scope}
-                onError={debouncedSetError}
-              />
-            </React.Suspense>
-          </NoSsr>
-        </DemoSandboxed>
+        />
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
@@ -396,48 +367,18 @@ export default function Demo(props) {
           </NoSsr>
         )}
         <Collapse in={openDemoSource} unmountOnExit>
-          <CodeEditor
-            key={demoKey}
+          <Code
             id={demoSourceId}
-            value={code}
-            onChange={setCode}
+            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
             language={demoData.sourceLanguage}
             copyButtonProps={{
               'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
               'data-ga-event-label': demoOptions.demo,
               'data-ga-event-action': 'copy-click',
             }}
-          >
-            {debouncedError && (
-              <Alert
-                aria-live="polite"
-                variant="filled"
-                severity="error"
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  left: '50%',
-                  transform: 'translateX(-50%) translateY(-50%)',
-                  py: '2px',
-                  px: '6px',
-                  '& .MuiAlert-icon': {
-                    fontSize: 14,
-                    mr: 0.5,
-                    mt: 0.25,
-                    py: 0,
-                  },
-                  '& .MuiAlert-message': {
-                    fontSize: 12,
-                    py: 0,
-                  },
-                }}
-              >
-                {debouncedError}
-              </Alert>
-            )}
-          </CodeEditor>
+          />
         </Collapse>
-        {isAdVisible ? <AdCarbonInline /> : null}
+        {adVisibility ? <AdCarbonInline /> : null}
       </Wrapper>
     </Root>
   );

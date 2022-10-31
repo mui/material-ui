@@ -107,7 +107,7 @@ export default class MyDocument extends Document {
 
 ### Gatsby
 
-To use the Joy UI API with a Next.js project, add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
+To use the Joy UI API with a Gatsby project, add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
 
 ```jsx
 import React from 'react';

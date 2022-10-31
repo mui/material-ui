@@ -84,7 +84,6 @@ export default function DiamondSponsors() {
           target="_blank"
         >
           <img
-            width="137"
             height="30"
             src={`/static/sponsors/octopus-${theme.palette.mode}.svg`}
             alt="octopus"
@@ -101,7 +100,6 @@ export default function DiamondSponsors() {
           target="_blank"
         >
           <img
-            width="62.4"
             height="26"
             src="/static/sponsors/doit.svg"
             alt="doit-intl"
@@ -118,7 +116,6 @@ export default function DiamondSponsors() {
           target="_blank"
         >
           <img
-            width="93"
             height="26"
             src={
               theme.palette.mode === 'light'

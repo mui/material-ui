@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -674,7 +674,7 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <MuiThemeProvider theme={brandingDarkTheme}>
+      <ThemeProvider theme={brandingDarkTheme}>
         <Box sx={{ bgcolor: 'primaryDark.700' }}>
           <Container sx={{ py: { xs: 4, sm: 8 } }}>
             <Typography
@@ -722,7 +722,7 @@ function AboutContent() {
             </Box>
           </Container>
         </Box>
-      </MuiThemeProvider>
+      </ThemeProvider>
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
           How can you support us?
