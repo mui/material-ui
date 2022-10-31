@@ -7,36 +7,122 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 # Autocomplete
 
-<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+<p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
-The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
+## Introduction
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+`Autocomplete` is an enhanced version of text input that shows suggested options as the users type and also let them select an option from the list.
 
-It's meant to be an improved version of the "react-select" and "downshift" packages.
+{{"demo": "Playground.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Combo box
+## Usage
 
-The `Autocomplete` renders an input and a popup, after triggered by a pointer or keyboard, that displays a list of items from the `options` prop. The value must be chosen from a predefined set of allowed values.
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-{{"demo": "ComboBox.js"}}
+```jsx
+import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
+
+export default function App() {
+  return <Autocomplete renderInput={(params) => <Input {...params} />} />;
+}
+```
+
+## Basics
+
+The Autocomplete component requires a list of `options` and a `renderInput` function. After triggered by a pointer or keyboard, it displays the provided options. The value must be chosen from a predefined set of allowed values.
+
+{{"demo": "BasicAutocomplete.js"}}
+
+## Anatomy
+
+The Autocomplete component is composed of 8 slots:
+
+- `root`: a wrapper of the text input.
+  - The **start decorator** passed to the `renderInput` function.
+    - `limitTag`: for multiple selection, a number of the hidden tags to show based on the `limitTags` property when the autocomplete is not focused.
+  - The **end decorator** passed to the `renderInput` function.
+    - `popupIndicator`: a button to trigger the popup.
+    - `clearIndicator`: a button to clear the value (mounted when there is a selected value).
+- `listbox`: a default [popup](/base/react-popper/) with its `role` set to `listbox`.
+  - `option`: an option with its `role` set to `option`.
+  - `loading`: an indicator that appears when `loading` is set to `true`.
+  - `noOptions`: a section that appears when there is no options to show.
+
+```html
+<div class="JoyAutocomplete-root">
+  <!-- The div below comes from the `renderInput` function -->
+  <div>
+    <!-- The span is the text input's start decorator -->
+    <span>
+      <span class="JoyAutocomplete-limitTag">…</span>
+    </span>
+    <input role="combobox" aria-autocomplete="list" />
+    <!-- The span is the text input's end decorator -->
+    <span>
+      <button tabindex="-1" class="JoyAutocomplete-clearIndicator">
+        <svg data-testid="CloseIcon">…</svg>
+      </button>
+      <button tabindex="-1" class="JoyAutocomplete-popupIndicator">
+        <svg data-testid="ArrowDropdownIcon">…</svg>
+      </button>
+    </span>
+  </div>
+</div>
+<!-- By default, the popup displays with portal -->
+<ul role="listbox" class="Autocomplete-listbox">
+  <li class="Autocomplete-loading">…</li>
+  <li class="Autocomplete-noOptions">…</li>
+  <li
+    role="option"
+    class="Autocomplete-option"
+    aria-selected="true"
+    aria-disabled="false"
+  >
+    …
+  </li>
+  …
+</ul>
+```
+
+### Overriding the root slot
+
+Use the `component` prop to override the `root` slot with a custom element. For example, the following code snippet replaces the default `<div>` with a `<fieldset>`:
+
+```js
+<Autocomplete component="fieldset" />;
+
+// renders as:
+<fieldset class="JoyAutocomplete-root">…</fieldset>;
+```
+
+### Overriding other slots
+
+Use the `components` with keys (the target slots) and values (the custom elements). For example, the following code snippet replaces the default `<ul>` and `<li>` with `div`:
+
+```js
+<Autocomplete
+  components={{
+    listbox: 'div',
+    option: 'div',
+  }}
+>
+
+// renders as:
+<div class="JoyAutocomplete-root">…</div>
+<div class="JoyAutocomplete-listbox">
+  <div class="JoyAutocomplete-option">…</div>
+  …
+</div>
+```
+
+## Customization
 
 ### Options structure
 
-By default, the component accepts the following structures for `options`:
-
-```ts
-interface AutocompleteOption {
-  label: string;
-}
-// or
-type AutocompleteOption = string;
-```
-
-for instance:
+By default, the `options` accepts an array of `string` or `{ label: string }`:
 
 ```js
 const options = [
@@ -58,6 +144,24 @@ const options = [
 <Autocomplete getOptionLabel={option => option.title}>
 ```
 
+### Option appearance
+
+To customize the appearance of the options, use `renderOption` prop in combination with the `AutocompleteOption` component as an option container.
+
+{{"demo": "CountrySelect.js"}}
+
+### Input appearance
+
+To customize the appearance of the input, use `renderInput` prop that returns an `Input` component.
+
+{{"demo": "InputAppearance.js"}}
+
+### Label
+
+Put an `Autocomplete`, a `FormLabel` and a `FormHelperText` (optional) under a `FormControl` component to create an accessible autocomplete.
+
+{{"demo": "LabelAndHelperText.js"}}
+
 ### Controlled states
 
 The component has two states that can be controlled:
@@ -71,25 +175,29 @@ The component has two states that can be controlled:
 
 {{"demo": "ControllableStates.js"}}
 
-## Label
+### Disabled options
 
-Put an `Autocomplete`, a `FormLabel` and a `FormHelperText` (optional) under a `FormControl` component.
+Use `getOptionDisabled` prop to read the options and returns `true` to disable them.
 
-{{"demo": "LabelAndHelperText.js"}}
+{{"demo": "DisabledOptions.js"}}
 
-## Features
+### Grouped options
 
-Each of the following examples demonstrates one feature of the Autocomplete component.
+You can group the options with the `groupBy` prop.
+If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
+otherwise, you will notice duplicate headers.
 
-{{"demo": "Playground.js"}}
+{{"demo": "Grouped.js"}}
 
-## Free solo
+### Loading
 
-Set `freeSolo` to true so that the textbox can contain any arbitrary value.
+It displays a progress state as long as the network request is pending.
+
+{{"demo": "Asynchronous.js"}}
 
 ### Search input
 
-This prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+Use `freeSolo` to create a **search input** with suggestions experience, e.g. Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
 
 {{"demo": "FreeSolo.js"}}
 
@@ -99,9 +207,9 @@ This prop is designed to cover the primary use case of a **search input** with s
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
 
-### Creatable
+### User's created option
 
-If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+If you intend to use `freeSolo` mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
 
 - `selectOnFocus` to help the user clear the selected value.
 - `clearOnBlur` to help the user enter a new value.
@@ -114,101 +222,37 @@ You could also display a dialog when the user wants to add a new value.
 
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
-## Option appearance
-
-To customize the appearance of the options, use `renderOption` prop in combination with the `AutocompleteOption` component as an option container.
-
-{{"demo": "CountrySelect.js"}}
-
 :::info
 The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
 :::
 
-## Input appearance
-
-To customize the appearance of the input, use `renderInput` prop that returns an `Input` component.
-
-{{"demo": "InputAppearance.js"}}
-
-## Validation
+### Validation
 
 To display invalid state, set the `error` prop on the `FormControl`.
 
 {{"demo": "AutocompleteError.js"}}
 
-## Grouped
+### Multiple selection
 
-You can group the options with the `groupBy` prop.
-If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
-otherwise, you will notice duplicate headers.
+By default, the autocomplete uses [`Chip`](/joy-ui/react-chip/) component to render the user's selected options.
 
-{{"demo": "Grouped.js"}}
-
-## Disabled options
-
-{{"demo": "DisabledOptions.js"}}
-
-## Asynchronous requests
-
-The component supports two different asynchronous use-cases:
-
-- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
-- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
-
-### Load on open
-
-It displays a progress state as long as the network request is pending.
-
-{{"demo": "Asynchronous.js"}}
-
-### Search as you type
-
-If your logic is fetching new options on each keystroke and using the current value of the textbox
-to filter on the server, you may want to consider throttling requests.
-
-Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by
-overriding the `filterOptions` prop:
-
-```jsx
-<Autocomplete filterOptions={(x) => x} />
-```
-
-<!-- ### Google Maps place
-
-A customized UI for Google Maps Places Autocomplete.
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API. -->
-
-<!-- {{"demo": "GoogleMaps.js"}} -->
-
-<!-- :::warning
-⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
-::: -->
-
-## Multiple values
-
-Also known as tags, the user is allowed to enter more than one value. By default, the autocomplete uses [`Chip`](/joy-ui/react-chip/) component to render tags.
+When the autocomplete is focused, the user can press the backspace to remove the latest selected option from the list.
 
 {{"demo": "Tags.js"}}
 
-### Tag appearance
+### Selected options appearance
 
-Use the `renderTag` prop to customize the tag appearance.
+Use the `renderTag` prop to customize the appearance.
 
 {{"demo": "CustomTags.js"}}
 
-### Fixed options
-
-In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
-
-{{"demo": "FixedTags.js"}}
-
-### Limit tags
+### Limit the selected options to be displayed
 
 You can use the `limitTags` prop to limit the number of displayed options when not focused.
 
 {{"demo": "LimitTags.js"}}
 
-## Sizes
+### Sizes
 
 The autocomplete component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`. The size is propagated to internal components, including `Input`, `Chip`, and `List`.
 
@@ -222,27 +266,7 @@ The `size` can also be controlled at the `FormControl`.
 
 {{"demo": "SizeWithLabel.js"}}
 
-## Common examples
-
-### Highlights
-
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
-
-{{"demo": "Highlights.js"}}
-
-### GitHub's picker
-
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the [`List`](/joy-ui/react-list/) component.
-
-{{"demo": "GitHubLabel.js"}}
-
-### Virtualization
-
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
-
-{{"demo": "Virtualize.js"}}
-
-## Custom filter
+### Custom filter
 
 The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.
 You can use it to change the default option filter behavior.
@@ -250,8 +274,6 @@ You can use it to change the default option filter behavior.
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
-
-### `createFilterOptions(config) => filterOptions`
 
 #### Arguments
 
@@ -281,7 +303,7 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "Filter.js", "defaultCodeOpen": false}}
 
-### Advanced
+### Advanced filter
 
 For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 
@@ -292,6 +314,26 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
+
+## Common examples
+
+### Highlighting options
+
+The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+
+{{"demo": "Highlights.js"}}
+
+### GitHub's picker
+
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the [`List`](/joy-ui/react-list/) component.
+
+{{"demo": "GitHubLabel.js"}}
+
+### Virtualization
+
+Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+
+{{"demo": "Virtualize.js"}}
 
 ## Events
 

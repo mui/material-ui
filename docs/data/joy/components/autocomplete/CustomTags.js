@@ -2,6 +2,7 @@ import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Input from '@mui/joy/Input';
 import Chip from '@mui/joy/Chip';
+import Close from '@mui/icons-material/Close';
 
 export default function CustomTags() {
   return (
@@ -16,7 +17,12 @@ export default function CustomTags() {
       )}
       renderTags={(tags, getTagProps) =>
         tags.map((item, index) => (
-          <Chip variant="solid" color="primary" {...getTagProps({ index })}>
+          <Chip
+            variant="solid"
+            color="primary"
+            endDecorator={<Close fontSize="sm" />}
+            {...getTagProps({ index })}
+          >
             {item.title}
           </Chip>
         ))

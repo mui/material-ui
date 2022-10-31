@@ -2,6 +2,7 @@ import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Box from '@mui/joy/Box';
 import Checkbox from '@mui/joy/Checkbox';
+import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import FormControl, { formControlClasses } from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -27,20 +28,26 @@ export default function Playground() {
     <Box>
       <Box
         sx={{
-          p: 2,
-          borderRadius: 'xs',
-          bgcolor: 'background.level1',
+          pt: 2,
+          pb: 1,
+          bgcolor: 'background.surface',
+          position: 'sticky',
+          top: 'var(--MuiDocs-header-height)',
+          zIndex: 2,
         }}
       >
-        <Autocomplete
-          options={top100Films}
-          renderInput={(params) => <Input {...params} placeholder="Playground" />}
-          {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
-          sx={{ width: 300, mx: 'auto' }}
-        />
-      </Box>
-      <Box sx={{ minWidth: 0, flexBasis: 300, flexGrow: 1, mt: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'baseline', pb: 1 }}>
+        <FormControl sx={{ width: 300, mx: 'auto' }}>
+          <FormLabel>Playground</FormLabel>
+          <Autocomplete
+            options={top100Films}
+            renderInput={(params) => (
+              <Input {...params} placeholder="Type to search" />
+            )}
+            {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
+          />
+        </FormControl>
+        <Divider sx={{ mt: 3, mb: 2 }} />
+        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
           <Typography
             id="flags-playground"
             level="body3"
@@ -52,22 +59,25 @@ export default function Playground() {
           >
             Flags {flags.length ? `(${flags.length})` : ''}
           </Typography>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link
-            component="button"
-            level="body2"
-            onClick={() => setFlags([])}
-            sx={{ ml: 'auto' }}
-          >
-            Clear all
-          </Link>
+          {flags.length > 0 && (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            <Link
+              component="button"
+              level="body2"
+              onClick={() => setFlags([])}
+              sx={{ ml: 'auto' }}
+            >
+              Clear all
+            </Link>
+          )}
         </Box>
+      </Box>
+      <Box sx={{ minWidth: 0, flexBasis: 300, flexGrow: 1 }}>
         <List
           aria-labelledby="flags-playground"
           sx={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            maxHeight: 360,
             overflow: 'auto',
             px: 0.5,
             '--List-gap': '8px',
