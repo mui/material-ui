@@ -13,16 +13,20 @@ export default function ControllableStates() {
 
   return (
     <div>
-      <Typography>
-        value:{' '}
-        <Typography fontWeight="md" variant="soft">
-          {`${value !== null ? `'${value}'` : 'null'}`}
+      <Typography level="body2" sx={{ mb: 1 }}>
+        <code>value: </code>
+        <Typography variant="soft" sx={{ py: 0.4 }}>
+          <code>
+            <strong>{`${value !== null ? `'${value}'` : 'null'}`}</strong>
+          </code>
         </Typography>
       </Typography>
-      <Typography>
-        inputValue:{' '}
-        <Typography fontWeight="md" variant="soft">
-          {`'${inputValue}'`}
+      <Typography level="body2">
+        <code>inputValue: </code>
+        <Typography variant="soft" sx={{ py: 0.4 }}>
+          <code>
+            <strong>{`'${inputValue}'`}</strong>
+          </code>
         </Typography>
       </Typography>
       <br />
