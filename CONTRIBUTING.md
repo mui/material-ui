@@ -122,7 +122,7 @@ Make sure the following is true:
 
 <!-- #default-branch-switch -->
 
-- The branch is targeted at `master` for ongoing development. With all tests passing, we do our best to keep `master` in good shape. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
@@ -144,7 +144,7 @@ If you have missed a step, don't worry, the Continuous Integration will run a th
 
 If your pull request addresses an open issue, make sure to link the PR to that issue.
 Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
-It makes it easier to understand where the PR is coming from and speeds things up as the issue gets closed when the PR is merged.
+This makes it easier to understand where the PR is coming from, and also speeds things up as the issue gets closed when the PR is merged.
 
 #### Checks and how to fix them
 
