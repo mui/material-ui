@@ -17,12 +17,12 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import IconImage from 'docs/src/components/icon/IconImage';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import ROUTES from 'docs/src/route';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import BrandingCssVarsProvider from '../src/BrandingCssVarsProvider';
 
 interface RoleProps {
   description: string;
