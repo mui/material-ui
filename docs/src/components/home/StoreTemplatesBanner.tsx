@@ -22,7 +22,7 @@ const Image = styled('img')(({ theme }) => ({
   },
   border: '6px solid',
   borderColor: (theme.vars || theme).palette.grey[400],
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
   boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
   ...theme.applyDarkStyles({
@@ -233,19 +233,19 @@ export default function StoreTemplatesBanner() {
           width: '100%',
           height: '100%',
           pointerEvents: 'none',
-          background: `linear-gradient(to bottom, ${theme.palette.grey[50]} 0%, ${
+          background: `linear-gradient(to bottom, ${(theme.vars || theme).palette.grey[50]} 0%, ${
             'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
           } 30%, ${
             'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-          } 70%, ${theme.palette.grey[50]} 100%)`,
+          } 70%, ${(theme.vars || theme).palette.grey[50]} 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
-            background: `linear-gradient(to bottom, ${theme.palette.primaryDark[900]} 0%, ${alpha(
+            background: `linear-gradient(to bottom, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            } 0%, ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
               theme.palette.primaryDark[900],
               0,
-            )} 30%, ${alpha(theme.palette.primaryDark[900], 0)} 70%, ${
-              theme.palette.primaryDark[900]
-            } 100%)`,
+            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
           }),
         })}
       />
@@ -282,13 +282,12 @@ export default function StoreTemplatesBanner() {
           pointerEvents: 'none',
           zIndex: 10,
           background: `linear-gradient(to right, ${
-            theme.palette.grey[50]
+            (theme.vars || theme).palette.grey[50]
           }, ${'rgba(255,255,255,0)'})`,
           ...theme.applyDarkStyles({
-            background: `linear-gradient(to right, ${theme.palette.primaryDark[900]}, ${alpha(
-              theme.palette.primaryDark[900],
-              0,
-            )})`,
+            background: `linear-gradient(to right, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
           }),
         })}
       />
