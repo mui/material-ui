@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 const Anchor = styled('a')({});
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-  const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
+  const { to, linkAs, replace, scroll, shallow, prefetch, legacyBehavior = true, locale, ...other } = props;
 
   return (
     <NextLink
@@ -21,6 +21,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
       scroll={scroll}
       shallow={shallow}
       passHref
+      legacyBehavior={legacyBehavior}
       locale={locale}
     >
       <Anchor ref={ref} {...other} />
@@ -31,6 +32,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
 NextLinkComposed.propTypes = {
   href: PropTypes.any,
   linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  legacyBehavior: PropTypes.bool,
   locale: PropTypes.string,
   passHref: PropTypes.bool,
   prefetch: PropTypes.bool,
@@ -49,6 +51,7 @@ const Link = React.forwardRef(function Link(props, ref) {
     className: classNameProps,
     href,
     linkAs: linkAsProp,
+    legacyBehavior,
     locale,
     noLinkStyle,
     prefetch,
@@ -77,7 +80,7 @@ const Link = React.forwardRef(function Link(props, ref) {
   }
 
   const linkAs = linkAsProp || as;
-  const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch, locale };
+  const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch, legacyBehavior, locale };
 
   if (noLinkStyle) {
     return <NextLinkComposed className={className} ref={ref} {...nextjsProps} {...other} />;
@@ -100,6 +103,7 @@ Link.propTypes = {
   className: PropTypes.string,
   href: PropTypes.any,
   linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  legacyBehavior: PropTypes.bool,
   locale: PropTypes.string,
   noLinkStyle: PropTypes.bool,
   prefetch: PropTypes.bool,
