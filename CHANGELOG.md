@@ -8,8 +8,6 @@ _Oct 31, 2022_
 
 A big thanks to the 16 contributors who made this release possible. This release is mostly about 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
-TODO INSERT HIGHLIGHTS
-
 ### `@mui/material@5.10.12`
 
 - &#8203;<!-- 37 -->[Chip] Don't override icon color (#34247) @emlai
