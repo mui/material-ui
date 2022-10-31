@@ -10,10 +10,26 @@ export interface CircularProgressPropsSizeOverrides {}
 export interface CircularProgressPropsVariantOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'span', { sx?: SxProps }, CircularProgressOwnerState>;
-  svg?: SlotComponentProps<'svg', { sx?: SxProps }, CircularProgressOwnerState>;
-  track?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
-  progress?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
+  root?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    CircularProgressOwnerState
+  >;
+  svg?: SlotComponentProps<
+    'svg',
+    { component?: React.ElementType; sx?: SxProps },
+    CircularProgressOwnerState
+  >;
+  track?: SlotComponentProps<
+    'circle',
+    { component?: React.ElementType; sx?: SxProps },
+    CircularProgressOwnerState
+  >;
+  progress?: SlotComponentProps<
+    'circle',
+    { component?: React.ElementType; sx?: SxProps },
+    CircularProgressOwnerState
+  >;
 }
 
 export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
