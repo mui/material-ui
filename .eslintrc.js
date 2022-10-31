@@ -1,4 +1,5 @@
 const path = require('path');
+const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
 const forbidTopLevelMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode',
@@ -19,11 +20,11 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'airbnb',
-    'airbnb-typescript',
-    'prettier',
+    'plugin:eslint-plugin-import/recommended',
+    'plugin:eslint-plugin-import/typescript',
+    'eslint-config-airbnb',
+    'eslint-config-airbnb-typescript',
+    'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -160,6 +161,16 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
+
+    'no-restricted-syntax': [
+      // See https://github.com/eslint/eslint/issues/9192 for why it's needed
+      ...baseStyleRules['no-restricted-syntax'],
+      {
+        message:
+          "Do not import default from React. Use a namespace import (import * as React from 'react';) instead.",
+        selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+      },
+    ],
 
     // We re-export default in many places
     'no-restricted-exports': 'off',

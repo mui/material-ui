@@ -1,5 +1,81 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.10.12
+
+<!-- generated comparing v5.10.11..master -->
+
+_Oct 31, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 The LinearProgress component has been added to Joy UI by @hbjORbj (#34514).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.12`
+
+- &#8203;<!-- 37 -->[Chip] Don't override icon color (#34247) @emlai
+- &#8203;<!-- 09 -->[Radio] Skip default hover style when disableRipple is set (#34902) @VinceCYLiao
+- &#8203;<!-- 08 -->[SwipeableDrawer] Fix React 18 issues (#34505) @mnajdova
+- &#8203;<!-- 05 -->[Tooltip] Save a few bytes (#34853) @oliviertassinari
+
+### `@mui/base@5.0.0-alpha.104`
+
+- &#8203;<!-- 38 -->[ButtonUnstyled] Update to render as link when href or to is provided (#34337) @EduardoSCosta
+
+### `@mui/joy@5.0.0-alpha.52`
+
+- &#8203;<!-- 36 -->[Joy][circularprogress] Prevent new styles from being generated when `value` changes (#34897) @hbjORbj
+- &#8203;<!-- 11 -->[Joy] Add color inversion feature (#32511) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Add `LinearProgress` component (#34514) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 40 -->[blog] Add blog post for high-level overview of all MUI products (#34325) @samuelsycamore
+- &#8203;<!-- 39 -->[blog] Fix hydration mistmatch (#34857) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Revise the Joy UI "Aspect Ratio" page (#34858) @samuelsycamore
+- &#8203;<!-- 20 -->[docs] Fix Safari code font size (#34859) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix spelling mistake (#34955) @punithnayak
+- &#8203;<!-- 18 -->[docs] Fix 404 link of supported Material UI components @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix Safari button misalignment (#34861) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix typo in docs title (#34926) @PunitSoniME
+- &#8203;<!-- 25 -->[docs] Fix missing emotion prefixes (#34958) @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Improve UI display for copy code (#34950) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Standardize all MUI Core "Usage" pages (#34183) @samuelsycamore
+- &#8203;<!-- 14 -->[docs] Update templates' readme files to include required dependencies (#34757) @michaldudak
+- &#8203;<!-- 13 -->[docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
+- &#8203;<!-- 12 -->[docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
+- &#8203;<!-- 07 -->[website] Migrate about-us page to use CSS theme variables (#34919) @brianlu2610
+- &#8203;<!-- 06 -->[website] Migrate Product-Templates page to use CSS theme variables (#34913) @EduardoSCosta
+- &#8203;<!-- 05 -->[website] Migrate career page to use CSS theme variables (#34908) @the-mgi
+- &#8203;<!-- 04 -->[website] Update MUI X open and future roles + about page (#34894) @DanailH
+- &#8203;<!-- 03 -->[website] Remove one DOM node (#34960) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Use `span` for icon image (#34914) @siriwatknp
+- &#8203;<!-- 01 -->[website] Fix subscribe input with Safari (#34869) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 35 -->[core] Ignore compiled icons in CodeQL @oliviertassinari
+- &#8203;<!-- 34 -->[core] Add OSSF Scorecard action (#34854) @oliviertassinari
+- &#8203;<!-- 40 -->[core] Fix extra GitHub Action permission (#34496) @sashashura
+- &#8203;<!-- 33 -->[core] Fix duplicate id @oliviertassinari
+- &#8203;<!-- 41 -->[core] Enforce import \* as React (#34878) @da0x
+- &#8203;<!-- 32 -->[core] A couple of simply fixes from #34870 (#34953) @oliviertassinari
+- &#8203;<!-- 31 -->[core] Migrate outdated pattern to convention @oliviertassinari
+- &#8203;<!-- 30 -->[core] Pin GitHub Actions dependencies (#34929) @renovate[bot]
+- &#8203;<!-- 29 -->[core] Make the reproduction more important in the bug template (#34875) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Fix docs GitHub API rate limit (#34856) @oliviertassinari
+- &#8203;<!-- 42 -->[core] Fix eslint issues (#34964) @mnajdova
+- &#8203;<!-- 27 -->[core] Pin GitHub Action to digests (#34855) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Fix permissions in workflow @oliviertassinari
+- &#8203;<!-- 25 -->[core] memoize context values for react/jsx-no-constructed-context-values (#34849) @Janpot
+- &#8203;<!-- 24 -->[core] Fix @typescript-eslint/default-param-last issues (#34846) @Janpot
+- &#8203;<!-- 23 -->[core] Fix HTML validation error (#34860) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Fix duplicate CodeQL build @oliviertassinari
+- &#8203;<!-- 07 -->[test] Move Firefox tests to CircleCI (#34764) @oliviertassinari
+- &#8203;<!-- 06 -->[test] Use screen when possible for simplicity (#34890) @oliviertassinari
+
+All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @EduardoSCosta, @emlai, @hbjORbj, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @punithnayak, @PunitSoniME, @renovate[bot], @RoodyCode, @samuelsycamore, @siriwatknp, @VinceCYLiao
+
 ## v5.10.11
 
 <!-- generated comparing v5.10.10..master -->
