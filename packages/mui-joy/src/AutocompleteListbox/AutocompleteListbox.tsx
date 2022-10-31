@@ -29,6 +29,19 @@ const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   return composeClasses(slots, getAutocompleteListboxUtilityClass, {});
 };
 
+const excludePopperProps = <T extends Record<string, any>>({
+  anchorEl,
+  direction,
+  disablePortal,
+  modifiers,
+  open,
+  placement,
+  popperOptions,
+  popperRef,
+  TransitionProps,
+  ...other
+}: T) => other;
+
 export const StyledAutocompleteListbox = styled(StyledList)<{
   ownerState: AutocompleteListboxOwnerState;
 }>(({ theme, ownerState }) => {
@@ -82,7 +95,7 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     color = 'neutral',
     variant = 'outlined',
     size = 'md',
-    ...other
+    ...otherProps
   } = props;
 
   const ownerState = {
@@ -96,24 +109,14 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     wrap: false,
   };
 
-  const filteredOther: typeof other = {};
-  // ignore props that might be injected by PopperUnstyled
-  (Object.keys(other) as Array<keyof typeof other>).forEach((k) => {
-    if (
-      !k.match(
-        /^(anchorEl|direction|disablePortal|modifiers|open|placement|popperOptions|popperRef|TransitionProps)$/,
-      )
-    ) {
-      filteredOther[k] = other[k];
-    }
-  });
+  const other = excludePopperProps(otherProps);
 
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
     elementType: AutocompleteListbox,
     externalSlotProps: {},
-    externalForwardedProps: filteredOther,
+    externalForwardedProps: other,
     ownerState,
     additionalProps: {
       ref,

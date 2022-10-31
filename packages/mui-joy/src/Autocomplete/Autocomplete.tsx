@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { chainPropTypes, integerPropType } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
+import {
+  useAutocomplete,
+  AutocompleteGroupedOption,
+  UseAutocompleteProps,
+} from '@mui/base/AutocompleteUnstyled';
 import PopperUnstyled, {
   PopperUnstyledProps,
   PopperUnstyledTypeMap,
@@ -190,6 +194,27 @@ const AutocompleteLimitTag = styled('span', {
   marginBlockStart: 'var(--_Input-paddingBlock)',
 });
 
+const excludeUseAutocompleteParams = <
+  T extends Partial<UseAutocompleteProps<any, undefined, undefined, undefined>>,
+>({
+  autoComplete,
+  autoHighlight,
+  autoSelect,
+  blurOnSelect,
+  clearOnBlur,
+  clearOnEscape,
+  defaultValue,
+  disableCloseOnSelect,
+  disabledItemsFocusable,
+  disableListWrap,
+  filterSelectedOptions,
+  handleHomeEndKeys,
+  includeInputInList,
+  openOnFocus,
+  selectOnFocus,
+  ...other
+}: T) => other as T;
+
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -239,17 +264,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     value: valueProp,
     ...otherProps
   } = props;
-  const other = {} as typeof otherProps;
-  (Object.keys(otherProps) as Array<keyof typeof otherProps>).forEach((k) => {
-    if (
-      !k.match(
-        // Do not spread these props to the root DOM
-        /^(autoComplete|autoHighlight|autoSelect|blurOnSelect|clearOnBlur|clearOnEscape|defaultValue|disableCloseOnSelect|disabledItemsFocusable|disableListWrap|filterSelectedOptions|handleHomeEndKeys|includeInputInList|openOnFocus|selectOnFocus)$/,
-      )
-    ) {
-      other[k] = otherProps[k];
-    }
-  });
+  const other = excludeUseAutocompleteParams(otherProps);
 
   const formControl = React.useContext(FormControlContext);
   const size = inProps.size ?? formControl?.size ?? sizeProp;
