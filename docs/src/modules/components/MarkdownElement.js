@@ -47,6 +47,7 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.primary.light, 0.15),
     borderRadius: 5,
     fontSize: theme.typography.pxToRem(13),
+    direction: 'ltr /*! @noflip */',
   },
   '& h1': {
     ...theme.typography.h3,
