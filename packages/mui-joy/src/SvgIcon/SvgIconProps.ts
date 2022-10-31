@@ -1,6 +1,6 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, FontSize, SxProps } from '../styles/types';
+import { ColorPaletteProp, FontSize, SxProps, ApplyColorInversion } from '../styles/types';
 import { SvgIconClasses } from './svgIconClasses';
 
 export type SvgIconSlot = 'root';
@@ -77,7 +77,7 @@ export type SvgIconProps<
   },
 > = OverrideProps<SvgIconTypeMap<P, D>, D>;
 
-export interface SvgIconOwnerState extends SvgIconProps {
+export interface SvgIconOwnerState extends ApplyColorInversion<SvgIconProps> {
   /**
    * The `size` specified explicitly on the instance.
    */

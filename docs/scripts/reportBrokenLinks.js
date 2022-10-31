@@ -68,7 +68,7 @@ function getLinksAndAnchors(fileName) {
   const userLanguage = 'en';
   const render = createRender({ headingHashes, toc, userLanguage });
 
-  const data = fse.readFileSync(fileName, { encoding: 'utf-8' });
+  const data = fse.readFileSync(fileName, { encoding: 'utf8' });
   render(data);
 
   const links = getPageLinks(data).map(cleanLink);

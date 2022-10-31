@@ -134,7 +134,7 @@ function flattenTsAsExpression(node: object | null | undefined) {
 
 function plugin(
   propTypes: t.Program,
-  options: InjectOptions = {},
+  options: InjectOptions,
   mapOfPropTypes: Map<string, string>,
 ): babel.PluginObj {
   const {

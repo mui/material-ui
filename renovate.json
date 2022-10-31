@@ -103,6 +103,10 @@
     {
       "groupName": "Playwright",
       "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
+    },
+    {
+      "matchDepTypes": ["action"],
+      "pinDigests": true
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
