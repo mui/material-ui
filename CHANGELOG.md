@@ -6,7 +6,10 @@
 
 _Oct 31, 2022_
 
-A big thanks to the 16 contributors who made this release possible. This release is mostly about 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 The LinearProgress component has been added to Joy UI by @hbjORbj (#34514).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.10.12`
 
@@ -61,6 +64,7 @@ A big thanks to the 16 contributors who made this release possible. This release
 - &#8203;<!-- 30 -->[core] Pin GitHub Actions dependencies (#34929) @renovate[bot]
 - &#8203;<!-- 29 -->[core] Make the reproduction more important in the bug template (#34875) @oliviertassinari
 - &#8203;<!-- 28 -->[core] Fix docs GitHub API rate limit (#34856) @oliviertassinari
+- &#8203;<!-- 42 -->[core] Fix eslint issues (#34964) @mnajdova
 - &#8203;<!-- 27 -->[core] Pin GitHub Action to digests (#34855) @oliviertassinari
 - &#8203;<!-- 26 -->[core] Fix permissions in workflow @oliviertassinari
 - &#8203;<!-- 25 -->[core] memoize context values for react/jsx-no-constructed-context-values (#34849) @Janpot
