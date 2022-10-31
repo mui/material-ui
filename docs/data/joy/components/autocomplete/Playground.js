@@ -85,49 +85,11 @@ export default function Playground() {
               mt: 'var(--List-gap)',
             },
             [`& .${formControlClasses.root}`]: { position: 'initial', gap: 1.5 },
+            '& > li': {
+              alignItems: 'flex-start',
+            },
           }}
         >
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('disableCloseOnSelect')} />
-              <div>
-                <FormLabel>disableCloseOnSelect</FormLabel>
-                <FormHelperText>
-                  The popup won&apos;t close when a value is selected.
-                </FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('clearOnEscape')} />
-              <div>
-                <FormLabel>clearOnEscape</FormLabel>
-                <FormHelperText>
-                  Clear all values when the user presses escape and the popup is
-                  closed.
-                </FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('disableClearable')} />
-              <div>
-                <FormLabel>disableClearable</FormLabel>
-                <FormHelperText>The input can&apos;t be cleared</FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('includeInputInList')} />
-              <div>
-                <FormLabel>includeInputInList</FormLabel>
-                <FormHelperText>The highlight can move to the input.</FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
           <ListItem>
             <FormControl orientation="horizontal">
               <Checkbox overlay {...getCheckboxProps('autoComplete')} />
@@ -138,26 +100,6 @@ export default function Playground() {
                   textbox. The inline completion string is visually highlighted and
                   has a selected state.
                 </FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('disableListWrap')} />
-              <div>
-                <FormLabel>disableListWrap</FormLabel>
-                <FormHelperText>
-                  The list box in the popup will not wrap focus.
-                </FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('openOnFocus')} />
-              <div>
-                <FormLabel>openOnFocus</FormLabel>
-                <FormHelperText>The popup will open on input focus.</FormHelperText>
               </div>
             </FormControl>
           </ListItem>
@@ -187,26 +129,6 @@ export default function Playground() {
           </ListItem>
           <ListItem>
             <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('disabled')} />
-              <div>
-                <FormLabel>disabled</FormLabel>
-                <FormHelperText>The component is disabled.</FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('disablePortal')} />
-              <div>
-                <FormLabel>disablePortal</FormLabel>
-                <FormHelperText>
-                  The popup will be under the DOM hierarchy of the parent component.
-                </FormHelperText>
-              </div>
-            </FormControl>
-          </ListItem>
-          <ListItem>
-            <FormControl orientation="horizontal">
               <Checkbox overlay {...getCheckboxProps('blurOnSelect')} />
               <div>
                 <FormLabel>blurOnSelect</FormLabel>
@@ -227,12 +149,103 @@ export default function Playground() {
           </ListItem>
           <ListItem>
             <FormControl orientation="horizontal">
-              <Checkbox overlay {...getCheckboxProps('selectOnFocus')} />
+              <Checkbox overlay {...getCheckboxProps('clearOnEscape')} />
               <div>
-                <FormLabel>selectOnFocus</FormLabel>
+                <FormLabel>clearOnEscape</FormLabel>
                 <FormHelperText>
-                  The input&apos;s text is selected on focus. It helps the user clear
-                  the selected value.
+                  Clear all values when the user presses escape and the popup is
+                  closed.
+                </FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('disabled')} />
+              <div>
+                <FormLabel>disabled</FormLabel>
+                <FormHelperText>The component is disabled.</FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('disableClearable')} />
+              <div>
+                <FormLabel>disableClearable</FormLabel>
+                <FormHelperText>The input can&apos;t be cleared</FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('disableCloseOnSelect')} />
+              <div>
+                <FormLabel>disableCloseOnSelect</FormLabel>
+                <FormHelperText>
+                  The popup won&apos;t close when a value is selected.
+                </FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('disableListWrap')} />
+              <div>
+                <FormLabel>disableListWrap</FormLabel>
+                <FormHelperText>
+                  The list box in the popup will not wrap focus.
+                </FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('filterSelectedOptions')} />
+              <div>
+                <FormLabel>filterSelectedOptions</FormLabel>
+                <FormHelperText>
+                  Hide the selected option from the list box.
+                </FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('freeSolo')} />
+              <div>
+                <FormLabel>freeSolo</FormLabel>
+                <FormHelperText>
+                  The user input is not bound to the provided options.
+                </FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('includeInputInList')} />
+              <div>
+                <FormLabel>includeInputInList</FormLabel>
+                <FormHelperText>The highlight can move to the input.</FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('openOnFocus')} />
+              <div>
+                <FormLabel>openOnFocus</FormLabel>
+                <FormHelperText>The popup will open on input focus.</FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('disablePortal')} />
+              <div>
+                <FormLabel>disablePortal</FormLabel>
+                <FormHelperText>
+                  The popup will be under the DOM hierarchy of the parent component.
                 </FormHelperText>
               </div>
             </FormControl>
@@ -245,6 +258,18 @@ export default function Playground() {
                 <FormHelperText>
                   The component becomes read-only. It is also supported in multiple
                   tags where the tag cannot be deleted.
+                </FormHelperText>
+              </div>
+            </FormControl>
+          </ListItem>
+          <ListItem>
+            <FormControl orientation="horizontal">
+              <Checkbox overlay {...getCheckboxProps('selectOnFocus')} />
+              <div>
+                <FormLabel>selectOnFocus</FormLabel>
+                <FormHelperText>
+                  The input&apos;s text is selected on focus. It helps the user clear
+                  the selected value.
                 </FormHelperText>
               </div>
             </FormControl>
