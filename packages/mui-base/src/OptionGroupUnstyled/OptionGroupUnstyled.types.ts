@@ -1,5 +1,5 @@
 import { OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
 export interface OptionGroupUnstyledComponentsPropsOverrides {}

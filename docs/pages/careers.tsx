@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -16,9 +16,8 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import IconImage from 'docs/src/components/icon/IconImage';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
@@ -293,7 +292,12 @@ function CareersContent() {
       </Container>
       {/* Our ultimate goal */}
       <Box
-        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+        sx={(theme) => ({
+          bgcolor: 'grey.50',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+          }),
+        })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={4}>
@@ -377,9 +381,12 @@ function CareersContent() {
                     See how we run the company and the way we work.
                   </Typography>
                   <Typography
-                    color={(theme) =>
-                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
-                    }
+                    sx={(theme) => ({
+                      color: 'primary.600',
+                      ...theme.applyDarkStyles({
+                        color: 'primary.400',
+                      }),
+                    })}
                     variant="body2"
                     fontWeight="bold"
                   >
@@ -403,9 +410,12 @@ function CareersContent() {
                     Check behind the scenes and news from the company.
                   </Typography>
                   <Typography
-                    color={(theme) =>
-                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
-                    }
+                    sx={(theme) => ({
+                      color: 'primary.600',
+                      ...theme.applyDarkStyles({
+                        color: 'primary.400',
+                      }),
+                    })}
                     variant="body2"
                     fontWeight="bold"
                   >
@@ -432,21 +442,25 @@ function CareersContent() {
           </Typography>
         </div>
         <Divider
-          sx={{
+          sx={(theme) => ({
             my: { xs: 2, sm: 4 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
+            borderColor: 'grey.100',
+            ...theme.applyDarkStyles({
+              borderColor: 'primaryDark.600',
+            }),
+          })}
         />
         <Stack
           spacing={2}
           divider={
             <Divider
-              sx={{
+              sx={(theme) => ({
                 my: { xs: 1, sm: 2 },
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-              }}
+                borderColor: 'grey.100',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                }),
+              })}
             />
           }
         >
@@ -476,62 +490,60 @@ function CareersContent() {
       </Container>
       {/* Next roles */}
       {nextRolesData.length > 0 ? (
-        <ThemeProvider theme={brandingDarkTheme}>
-          <Box sx={{ bgcolor: 'primaryDark.700' }}>
-            <Container sx={{ py: { xs: 4, md: 8 } }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <div>
-                  <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
-                    Next roles
-                  </Typography>
-                  <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                    We hire in batches, we collect applications a few months before we actively aim
-                    to fill the roles. If none of these roles fit with what you are looking for, you
-                    can apply to the{' '}
-                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                      Dream job
-                    </Link>{' '}
-                    role.
-                  </Typography>
-                </div>
-              </Box>
-              <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
-              <Stack
-                spacing={2}
-                divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
-              >
-                {nextRolesData.map((category) => {
-                  const roles = category.roles;
-                  return (
-                    <React.Fragment key={category.title}>
-                      <Typography component="h3" variant="h5" fontWeight="extraBold">
-                        {category.title}
-                      </Typography>
-                      {roles.length > 0 ? (
-                        roles.map((role) => (
-                          <Role
-                            key={role.title}
-                            title={role.title}
-                            description={role.description}
-                            url={role.url}
-                          />
-                        ))
-                      ) : (
-                        <Typography color="text.secondary">No plans yet.</Typography>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </Stack>
-            </Container>
-          </Box>
-        </ThemeProvider>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+          <Container sx={{ py: { xs: 4, md: 8 } }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
+                  Next roles
+                </Typography>
+                <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+                  We hire in batches, we collect applications a few months before we actively aim to
+                  fill the roles. If none of these roles fit with what you are looking for, you can
+                  apply to the{' '}
+                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                    Dream job
+                  </Link>{' '}
+                  role.
+                </Typography>
+              </div>
+            </Box>
+            <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
+            <Stack
+              spacing={2}
+              divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
+            >
+              {nextRolesData.map((category) => {
+                const roles = category.roles;
+                return (
+                  <React.Fragment key={category.title}>
+                    <Typography component="h3" variant="h5" fontWeight="extraBold">
+                      {category.title}
+                    </Typography>
+                    {roles.length > 0 ? (
+                      roles.map((role) => (
+                        <Role
+                          key={role.title}
+                          title={role.title}
+                          description={role.description}
+                          url={role.url}
+                        />
+                      ))
+                    ) : (
+                      <Typography color="text.secondary">No plans yet.</Typography>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </Stack>
+          </Container>
+        </Box>
       ) : null}
       {/* Frequently asked questions */}
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
@@ -547,13 +559,16 @@ function CareersContent() {
             {renderFAQItem(2)}
             <Paper
               variant="outlined"
-              sx={{
+              sx={(theme) => ({
                 p: 2,
                 borderStyle: 'dashed',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
-              }}
+                borderColor: 'grey.300',
+                bgcolor: 'white',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.400',
+                  bgcolor: 'primaryDark.800',
+                }),
+              })}
             >
               <Box sx={{ textAlign: 'left' }}>
                 <Typography variant="body2" color="text.primary" fontWeight="bold">
@@ -576,7 +591,7 @@ function CareersContent() {
 
 export default function Careers() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="Careers - MUI"
         description="Interested in joining MUI? Learn about the roles we're hiring for."
@@ -588,6 +603,6 @@ export default function Careers() {
       </main>
       <Divider />
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }
