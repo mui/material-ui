@@ -35,10 +35,15 @@ A big thanks to the 16 contributors who made this release possible. This release
 - &#8203;<!-- 18 -->[docs] Fix 404 link of supported Material UI components @oliviertassinari
 - &#8203;<!-- 17 -->[docs] Fix Safari button misalignment (#34861) @oliviertassinari
 - &#8203;<!-- 16 -->[docs] Fix typo in docs title (#34926) @PunitSoniME
+- &#8203;<!-- 25 -->[docs] Fix missing emotion prefixes (#34958) @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Improve UI display for copy code (#34950) @oliviertassinari
 - &#8203;<!-- 15 -->[docs] Standardize all MUI Core "Usage" pages (#34183) @samuelsycamore
 - &#8203;<!-- 14 -->[docs] Update templates' readme files to include required dependencies (#34757) @michaldudak
 - &#8203;<!-- 13 -->[docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
 - &#8203;<!-- 12 -->[docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
+- &#8203;<!-- 07 -->[website] Migrate about-us page to use CSS theme variables (#34919) @brianlu2610
+- &#8203;<!-- 06 -->[website] Migrate Product-Templates page to use CSS theme variables (#34913) @EduardoSCosta
+- &#8203;<!-- 05 -->[website] Migrate career page to use CSS theme variables (#34908) @the-mgi
 - &#8203;<!-- 04 -->[website] Update MUI X open and future roles + about page (#34894) @DanailH
 - &#8203;<!-- 03 -->[website] Remove one DOM node (#34960) @oliviertassinari
 - &#8203;<!-- 02 -->[website] Use `span` for icon image (#34914) @siriwatknp
@@ -48,7 +53,9 @@ A big thanks to the 16 contributors who made this release possible. This release
 
 - &#8203;<!-- 35 -->[core] Ignore compiled icons in CodeQL @oliviertassinari
 - &#8203;<!-- 34 -->[core] Add OSSF Scorecard action (#34854) @oliviertassinari
+- &#8203;<!-- 40 -->[core] Fix extra GitHub Action permission (#34496) @sashashura
 - &#8203;<!-- 33 -->[core] Fix duplicate id @oliviertassinari
+- &#8203;<!-- 41 -->[core] Enforce import \* as React (#34878) @da0x
 - &#8203;<!-- 32 -->[core] A couple of simply fixes from #34870 (#34953) @oliviertassinari
 - &#8203;<!-- 31 -->[core] Migrate outdated pattern to convention @oliviertassinari
 - &#8203;<!-- 30 -->[core] Pin GitHub Actions dependencies (#34929) @renovate[bot]
