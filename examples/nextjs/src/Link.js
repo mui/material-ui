@@ -31,8 +31,8 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
 
 NextLinkComposed.propTypes = {
   href: PropTypes.any,
-  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   legacyBehavior: PropTypes.bool,
+  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   locale: PropTypes.string,
   passHref: PropTypes.bool,
   prefetch: PropTypes.bool,
@@ -102,8 +102,8 @@ Link.propTypes = {
   as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string,
   href: PropTypes.any,
-  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   legacyBehavior: PropTypes.bool,
+  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   locale: PropTypes.string,
   noLinkStyle: PropTypes.bool,
   prefetch: PropTypes.bool,
