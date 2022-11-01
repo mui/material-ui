@@ -134,7 +134,7 @@ For server-side applications, check out the framework setup in the [guide](#serv
 getInitColorSchemeScript({ defaultMode: 'system' });
 ```
 
-### Identify the actual mode
+### Identify the system mode
 
 To check if the user's preference is in `light` or `dark` mode, use the `useColorScheme` React hook:
 
@@ -142,7 +142,6 @@ To check if the user's preference is in `light` or `dark` mode, use the `useColo
 import { useColorScheme } from '@mui/joy/styles';
 
 function SomeComponent() {
-  // Calculated from the prefers-color-scheme media query (https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
   const { mode, systemMode } = useColorScheme();
   console.log(mode); // "system"
   console.log(systemMode); // "light" | "dark" based on the user's preference.
