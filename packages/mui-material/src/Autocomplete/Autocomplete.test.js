@@ -490,10 +490,6 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
-      // test to make sure the delete does not delete when at the end of value.length
-      fireEvent.keyDown(textbox, { key: 'Delete' });
-      expect(handleChange.callCount).to.equal(0);
-
       // expect on focused tag to delete when pressing delete key
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
       expect(secondSelectedValue).toHaveFocus();
@@ -503,7 +499,6 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal(options[2]);
       expect(textbox).toHaveFocus();
     });
 
