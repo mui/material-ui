@@ -67,10 +67,9 @@ export default function TemplateHero() {
               width: '100%',
               height: '100%',
               zIndex: 1,
-              background: `linear-gradient(90deg, ${theme.palette.primaryDark[900]} 1%, ${alpha(
-                theme.palette.primaryDark[900],
-                0.5,
-              )})`,
+              background: `linear-gradient(90deg, ${
+                (theme.vars || theme).palette.primaryDark[900]
+              } 1%, ${alpha(theme.palette.primaryDark[900], 0.5)})`,
               opacity: 0,
               ...theme.applyDarkStyles({
                 opacity: 1,
