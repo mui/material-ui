@@ -1,0 +1,7 @@
+<CssVarsProvider
+  defaultMode="system"
+  // these props are specific to this demo, you might not need them in your app.
+  modeStorageKey="demo_identify-system-mode"
+>
+  <Identifier />
+</CssVarsProvider>
