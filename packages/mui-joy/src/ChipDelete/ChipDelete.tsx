@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import Cancel from '../internal/svg-icons/Cancel';
 import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   const { focusVisible, variant, color, disabled } = ownerState;
@@ -70,7 +70,6 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const {
-    component,
     children,
     variant: variantProp,
     color: colorProp,
@@ -101,19 +100,16 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
     elementType: ChipDeleteRoot,
-    getSlotProps: getRootProps,
-    externalSlotProps: {},
     externalForwardedProps: other,
     ownerState,
-    additionalProps: {
-      as: component,
-    },
-    className: classes.root,
+    getSlotProps: getRootProps,
   });
 
-  return <ChipDeleteRoot {...rootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
+  return <SlotRoot {...rootProps}>{children ?? <Cancel />}</SlotRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
