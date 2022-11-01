@@ -2,7 +2,6 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
@@ -10,6 +9,7 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -203,7 +203,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     className,
     componentsProps = {},
     color = 'primary',
-    component,
     onClick,
     disabled = false,
     size = 'md',
@@ -216,7 +215,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const clickable = !!onClick || !!componentsProps.action;
   const ownerState: ChipOwnerState = {
     ...props,
-    component,
     disabled,
     size,
     color,
@@ -240,41 +238,49 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const labelProps = useSlotProps({
-    elementType: ChipLabel,
-    externalSlotProps: componentsProps.label,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ChipRoot,
+    externalForwardedProps: { ...other, componentsProps },
     ownerState,
+  });
+
+  const [SlotLabel, labelProps] = useSlot('label', {
     className: classes.label,
+    elementType: ChipLabel,
+    externalForwardedProps: { ...other, componentsProps },
+    ownerState,
   });
 
   // @ts-ignore internal logic.
   const id = useId(labelProps.id);
 
-  const actionProps = useSlotProps({
+  const [SlotAction, actionProps] = useSlot('action', {
+    className: classes.action,
     elementType: ChipAction,
+    externalForwardedProps: { ...other, componentsProps },
+    ownerState,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.action,
     additionalProps: {
       'aria-labelledby': id,
       as: resolvedActionProps?.component,
       onClick,
     },
-    ownerState,
-    className: classes.action,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: ChipStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: ChipStartDecorator,
+    externalForwardedProps: { ...other, componentsProps },
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
     elementType: ChipEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
+    externalForwardedProps: { ...other, componentsProps },
     ownerState,
-    className: classes.endDecorator,
   });
 
   const chipContextValue = React.useMemo(
@@ -284,25 +290,19 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <ChipRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        ownerState={ownerState}
-        {...other}
-      >
-        {clickable && <ChipAction {...actionProps} />}
+      <SlotRoot {...rootProps}>
+        {clickable && <SlotAction {...actionProps} />}
 
         {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
-        <ChipLabel {...labelProps} id={id}>
+        <SlotLabel {...labelProps} id={id}>
           {children}
-        </ChipLabel>
+        </SlotLabel>
         {startDecorator && (
-          <ChipStartDecorator {...startDecoratorProps}>{startDecorator}</ChipStartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {endDecorator && <ChipEndDecorator {...endDecoratorProps}>{endDecorator}</ChipEndDecorator>}
-      </ChipRoot>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
     </ChipContext.Provider>
   );
 }) as OverridableComponent<ChipTypeMap>;
