@@ -70,6 +70,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const {
+    component,
     children,
     variant: variantProp,
     color: colorProp,
@@ -104,7 +105,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ref,
     className: classes.root,
     elementType: ChipDeleteRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
     getSlotProps: getRootProps,
   });

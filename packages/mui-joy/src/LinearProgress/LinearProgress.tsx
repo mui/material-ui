@@ -145,6 +145,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   });
 
   const {
+    component,
     children,
     className,
     color = 'primary',
@@ -173,7 +174,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: LinearProgressRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
     additionalProps: {
       role: 'progressbar',
