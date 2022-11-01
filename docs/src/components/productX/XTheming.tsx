@@ -28,8 +28,6 @@ import EditStatus from 'docs/src/components/x-grid/EditStatus';
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
-
 export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
   const { loading, data } = useDemoData({
@@ -141,7 +139,7 @@ export default function XTheming() {
                 }),
               })}
             >
-              {dataGridStyleOverrides}
+              <XGridGlobalStyles selector="#data-grid-theming" pro />
               <DataGridPro
                 {...data}
                 columns={getColumns()}
@@ -164,24 +162,16 @@ export default function XTheming() {
             >
               <Paper
                 elevation={0}
-                sx={[
-                  {
-                    height: 418,
-                    '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                      '& .MuiChip-root': {
-                        color: red[500],
-                      },
+                sx={{
+                  height: 418,
+                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                    '& .MuiChip-root': {
+                      // don't need to use `theme.applyDarkStyles` because this section is client rendered
+                      // and it is wrapped with the ThemeProvider to provide the default styles.
+                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
                     },
                   },
-                  (theme) =>
-                    theme.applyDarkStyles({
-                      '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                        '& .MuiChip-root': {
-                          color: red[300],
-                        },
-                      },
-                    }),
-                ]}
+                }}
               >
                 <DataGridPro
                   {...data}
