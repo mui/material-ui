@@ -201,8 +201,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    componentsProps = {},
     color = 'primary',
+    component = 'div',
+    componentsProps = {},
     onClick,
     disabled = false,
     size = 'md',
@@ -218,6 +219,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
+    component,
     variant,
     clickable,
     focusVisible: false,
@@ -237,19 +239,20 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   ownerState.focusVisible = focusVisible;
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, componentsProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: ChipRoot,
-    externalForwardedProps: { ...other, componentsProps },
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotLabel, labelProps] = useSlot('label', {
     className: classes.label,
     elementType: ChipLabel,
-    externalForwardedProps: { ...other, componentsProps },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -259,7 +262,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: ChipAction,
-    externalForwardedProps: { ...other, componentsProps },
+    externalForwardedProps,
     ownerState,
     getSlotProps: getRootProps,
     additionalProps: {
@@ -272,7 +275,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: ChipStartDecorator,
-    externalForwardedProps: { ...other, componentsProps },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -328,6 +331,11 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Replace the default slots.
    */

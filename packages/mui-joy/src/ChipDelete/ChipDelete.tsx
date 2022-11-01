@@ -70,8 +70,8 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const {
-    component,
     children,
+    component = 'button',
     variant: variantProp,
     color: colorProp,
     disabled: disabledProp,
@@ -93,6 +93,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const ownerState = {
     ...props,
+    component,
     disabled,
     variant,
     color,

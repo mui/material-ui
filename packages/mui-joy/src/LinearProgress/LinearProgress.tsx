@@ -145,10 +145,10 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   });
 
   const {
-    component,
     children,
     className,
     color = 'primary',
+    component = 'span',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -160,6 +160,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const ownerState = {
     ...props,
     color,
+    component,
     size,
     variant,
     thickness,
