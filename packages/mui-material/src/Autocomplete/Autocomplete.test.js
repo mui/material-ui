@@ -503,7 +503,7 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal(options[1]);
+      expect(handleChange.args[0][1]).to.deep.equal(options[2]);
       expect(textbox).toHaveFocus();
     });
 
