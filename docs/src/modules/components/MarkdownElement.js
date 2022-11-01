@@ -2,7 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
-import { blue, blueDark, brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import {
+  blue,
+  blueDark,
+  brandingDarkTheme as darkTheme,
+  brandingLightTheme as lightTheme,
+} from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(
   ({ theme }) => ({
@@ -33,7 +38,7 @@ const Root = styled('div')(
     },
     '& code': {
       ...theme.typography.body2,
-      fontFamily: brandingDarkTheme.typography.fontFamilyCode,
+      fontFamily: theme.typography.fontFamilyCode ?? lightTheme.typography.fontFamilyCode,
       fontWeight: 400,
       WebkitFontSmoothing: 'subpixel-antialiased',
       // Reset for Safari
@@ -45,7 +50,7 @@ const Root = styled('div')(
       display: 'inline-block',
       padding: '0 5px',
       color: (theme.vars || theme).palette.text.primary,
-      backgroundColor: alpha(theme.palette.primary.light, 0.15),
+      backgroundColor: alpha(lightTheme.palette.primary.light, 0.15),
       borderRadius: 5,
       fontSize: theme.typography.pxToRem(13),
     },
@@ -246,7 +251,7 @@ const Root = styled('div')(
         '& a': {
           color:
             (theme.vars || theme).palette.error[800] ?? (theme.vars || theme).palette.text.primary,
-          textDecorationColor: alpha(theme.palette.error.main, 0.4),
+          textDecorationColor: alpha(lightTheme.palette.error.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
           },
@@ -255,7 +260,10 @@ const Root = styled('div')(
       '&.MuiCallout-info': {
         color:
           (theme.vars || theme).palette.primary[900] ?? (theme.vars || theme).palette.text.primary,
-        backgroundColor: alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
+        backgroundColor: alpha(
+          lightTheme.palette.primary[50] ?? lightTheme.palette.primary.dark,
+          0.8,
+        ),
         borderColor:
           (theme.vars || theme).palette.primary[100] ?? (theme.vars || theme).palette.primary.light,
         '& strong': {
@@ -280,7 +288,7 @@ const Root = styled('div')(
           color:
             (theme.vars || theme).palette.success[900] ??
             (theme.vars || theme).palette.text.primary,
-          textDecorationColor: alpha(theme.palette.success.main, 0.4),
+          textDecorationColor: alpha(lightTheme.palette.success.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
           },
@@ -289,7 +297,10 @@ const Root = styled('div')(
       '&.MuiCallout-warning': {
         color:
           (theme.vars || theme).palette.grey[900] ?? (theme.vars || theme).palette.text.primary,
-        backgroundColor: alpha(theme.palette.warning[50] ?? theme.palette.warning.light, 0.6),
+        backgroundColor: alpha(
+          lightTheme.palette.warning[50] ?? lightTheme.palette.warning.light,
+          0.6,
+        ),
         borderColor:
           (theme.vars || theme).palette.warning[300] ?? (theme.vars || theme).palette.warning.light,
         '& strong': {
@@ -301,7 +312,7 @@ const Root = styled('div')(
           color:
             (theme.vars || theme).palette.warning[800] ??
             (theme.vars || theme).palette.text.primary,
-          textDecorationColor: alpha(theme.palette.warning.main, 0.4),
+          textDecorationColor: alpha(lightTheme.palette.warning.main, 0.4),
           '&:hover': {
             textDecorationColor: 'inherit',
           },
@@ -312,13 +323,13 @@ const Root = styled('div')(
       // Style taken from the Link component
       color: (theme.vars || theme).palette.primary[600],
       textDecoration: 'underline',
-      textDecorationColor: alpha(theme.palette.primary.main, 0.4),
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
       '&:hover': {
         textDecorationColor: 'inherit',
       },
     },
     '& a code': {
-      color: darken(theme.palette.primary.main, 0.04),
+      color: darken(lightTheme.palette.primary.main, 0.04),
     },
     '& img, video': {
       maxWidth: '100%',
@@ -470,7 +481,10 @@ const Root = styled('div')(
       '& blockquote': {
         borderColor:
           (theme.vars || theme).palette.warning[500] ?? (theme.vars || theme).palette.warning.dark,
-        backgroundColor: alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2),
+        backgroundColor: alpha(
+          darkTheme.palette.warning[900] ?? darkTheme.palette.warning.dark,
+          0.2,
+        ),
         '& p': {
           color: (theme.vars || theme).palette.grey[50],
         },
@@ -478,7 +492,10 @@ const Root = styled('div')(
       '& .MuiCallout-root': {
         '&.MuiCallout-error': {
           color: (theme.vars || theme).palette.error[50] ?? '#fff',
-          backgroundColor: alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35),
+          backgroundColor: alpha(
+            darkTheme.palette.error[900] ?? darkTheme.palette.error.dark,
+            0.35,
+          ),
           borderColor:
             (theme.vars || theme).palette.error[800] ?? (theme.vars || theme).palette.error.dark,
           '& strong': {
@@ -490,7 +507,10 @@ const Root = styled('div')(
         },
         '&.MuiCallout-info': {
           color: (theme.vars || theme).palette.primary[50] ?? '#fff',
-          backgroundColor: alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2),
+          backgroundColor: alpha(
+            darkTheme.palette.primary[900] ?? darkTheme.palette.primary.dark,
+            0.2,
+          ),
           borderColor:
             (theme.vars || theme).palette.primary[800] ??
             (theme.vars || theme).palette.primary.dark,
@@ -500,7 +520,10 @@ const Root = styled('div')(
         },
         '&.MuiCallout-success': {
           color: (theme.vars || theme).palette.success[50] ?? '#fff',
-          backgroundColor: alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35),
+          backgroundColor: alpha(
+            darkTheme.palette.success[900] ?? darkTheme.palette.success.dark,
+            0.35,
+          ),
           borderColor:
             (theme.vars || theme).palette.success[800] ??
             (theme.vars || theme).palette.success.dark,
@@ -513,7 +536,10 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: (theme.vars || theme).palette.warning[50] ?? '#fff',
-          backgroundColor: alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35),
+          backgroundColor: alpha(
+            darkTheme.palette.warning[900] ?? darkTheme.palette.warning.dark,
+            0.35,
+          ),
           '& strong': {
             color:
               (theme.vars || theme).palette.warning[800] ??
