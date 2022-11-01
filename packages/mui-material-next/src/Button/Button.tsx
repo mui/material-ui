@@ -33,9 +33,8 @@ const useUtilityClasses = (styleProps: ButtonOwnerState) => {
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       variant,
-      `${variant}${capitalize(color ?? '')}`,
+      `color${capitalize(color ?? '')}`,
       `size${capitalize(size ?? '')}`,
-      `${variant}Size${capitalize(size ?? '')}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
     ],
@@ -539,7 +538,7 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']),
+    PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
     PropTypes.string,
   ]),
   /**
