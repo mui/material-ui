@@ -15,26 +15,71 @@ export type SliderSlot =
   | 'input';
 
 export interface SliderPropsVariantOverrides {}
-
 export interface SliderPropsColorOverrides {}
-
 export interface SliderPropsSizeOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  track?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  rail?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  thumb?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  mark?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  markLabel?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  valueLabel?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+  input?: SlotComponentProps<
+    'input',
+    { component?: React.ElementType; sx?: SxProps },
+    SliderOwnerState
+  >;
+}
 
 export interface SliderOwnProps {
   /**
-   * The props used for each slot inside the Slider.
+   * Replace the default slots.
+   */
+  components?: {
+    root?: React.ElementType;
+    track?: React.ElementType;
+    rail?: React.ElementType;
+    thumb?: React.ElementType;
+    mark?: React.ElementType;
+    markLabel?: React.ElementType;
+    valueLabel?: React.ElementType;
+    input?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside the component.
    * @default {}
    */
-  componentsProps?: {
-    root?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    track?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    rail?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    mark?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    markLabel?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
-    input?: SlotComponentProps<'input', { sx?: SxProps }, SliderOwnerState>;
-  };
+  componentsProps?: ComponentsProps;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
