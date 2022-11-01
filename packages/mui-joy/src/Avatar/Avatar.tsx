@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
@@ -149,6 +150,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color: colorProp = 'neutral',
     component = 'div',
     componentsProps = {},
+    className,
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
     imgProps,
@@ -186,11 +188,17 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, componentsProps };
 
-  const imageProps = useSlotProps({
-    elementType: AvatarImg,
-    externalSlotProps: componentsProps.img,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarRoot,
+    externalForwardedProps,
     ownerState,
+  });
+
+  const [SlotImg, imageProps] = useSlot('img', {
     additionalProps: {
       alt,
       src,
@@ -198,38 +206,29 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       ...imgProps,
     },
     className: classes.img,
+    elementType: AvatarImg,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const fallbackProps = useSlotProps({
-    elementType: AvatarFallback,
-    externalSlotProps: componentsProps.fallback,
-    ownerState,
+  const [SlotFallback, fallbackProps] = useSlot('fallback', {
     className: classes.fallback,
+    elementType: AvatarFallback,
+    externalForwardedProps,
+    ownerState,
   });
 
   if (hasImgNotFailing) {
-    children = <AvatarImg {...imageProps} />;
+    children = <SlotImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback {...fallbackProps} />;
+    children = <SlotFallback {...fallbackProps} />;
   }
 
-  const rootProps = useSlotProps({
-    elementType: AvatarRoot,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    className: classes.root,
-  });
-
-  return <AvatarRoot {...rootProps}>{children}</AvatarRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AvatarTypeMap>;
 
 Avatar.propTypes /* remove-proptypes */ = {
@@ -248,6 +247,10 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
@@ -260,6 +263,14 @@ Avatar.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Replace the default slots.
+   */
+  components: PropTypes.shape({
+    fallback: PropTypes.elementType,
+    img: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The props used for each slot inside the component.
    * @default {}
