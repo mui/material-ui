@@ -37,24 +37,26 @@ const RadioRoot = styled(SwitchBase, {
   },
 })(({ theme, ownerState }) => ({
   color: (theme.vars || theme).palette.text.secondary,
-  '&:hover': {
-    backgroundColor: theme.vars
-      ? `rgba(${
-          ownerState.color === 'default'
-            ? theme.vars.palette.action.activeChannel
-            : theme.vars.palette[ownerState.color].mainChannel
-        } / ${theme.vars.palette.action.hoverOpacity})`
-      : alpha(
-          ownerState.color === 'default'
-            ? theme.palette.action.active
-            : theme.palette[ownerState.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+  ...(!ownerState.disableRipple && {
+    '&:hover': {
+      backgroundColor: theme.vars
+        ? `rgba(${
+            ownerState.color === 'default'
+              ? theme.vars.palette.action.activeChannel
+              : theme.vars.palette[ownerState.color].mainChannel
+          } / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(
+            ownerState.color === 'default'
+              ? theme.palette.action.active
+              : theme.palette[ownerState.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
+  }),
   ...(ownerState.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
       color: (theme.vars || theme).palette[ownerState.color].main,
