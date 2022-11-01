@@ -1,22 +1,27 @@
 import * as React from 'react';
 import { PopperUnstyledProps } from '@mui/base';
-import { MUIStyledCommonProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base/utils';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-
-export type RootProps = Omit<PopperUnstyledProps, 'direction'> & {
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps;
-};
 
 export type TooltipSlot = 'root' | 'arrow';
 
 export interface TooltipPropsVariantOverrides {}
 export interface TooltipPropsColorOverrides {}
 export interface TooltipPropsSizeOverrides {}
-export interface TooltipComponentsPropsOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps } & Omit<PopperUnstyledProps, 'direction'>,
+    TooltipOwnerState
+  >;
+  arrow?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    TooltipOwnerState
+  >;
+}
 
 export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -35,25 +40,17 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, TooltipPropsColorOverrides>;
     /**
-     * The components used for each slot inside the Tooltip.
-     * Either a string to use a HTML element or a component.
-     * @default {}
+     * Replace the default slots.
      */
     components?: {
-      Root?: React.ElementType;
-      Arrow?: React.ElementType;
+      root?: React.ElementType;
+      arrow?: React.ElementType;
     };
     /**
-     * The props used for each slot inside the Tooltip.
-     * Note that `componentsProps.root` prop values win over `RootProps` if both are applied.
+     * The props used for each slot inside.
      * @default {}
      */
-    componentsProps?: {
-      root?: Partial<RootProps> & TooltipComponentsPropsOverrides;
-      arrow?: React.HTMLProps<HTMLSpanElement> &
-        MUIStyledCommonProps &
-        TooltipComponentsPropsOverrides;
-    };
+    componentsProps?: ComponentsProps;
     /**
      * Set to `true` if the `title` acts as an accessible description.
      * By default the `title` acts as an accessible label for the child.
