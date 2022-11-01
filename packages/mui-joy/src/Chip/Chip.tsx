@@ -329,12 +329,17 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * Replace the default slots.
    */
-  component: PropTypes.elementType,
+  components: PropTypes.shape({
+    action: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
-   * The props used for each slot inside the component.
+   * The props used for each slot inside.
    * @default {}
    */
   componentsProps: PropTypes.shape({

@@ -45,7 +45,17 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
-     * The props used for each slot inside the component.
+     * Replace the default slots.
+     */
+    components?: {
+      root?: React.ElementType;
+      label?: React.ElementType;
+      action?: React.ElementType;
+      startDecorator?: React.ElementType;
+      endDecorator?: React.ElementType;
+    };
+    /**
+     * The props used for each slot inside.
      * @default {}
      */
     componentsProps?: ComponentsProps;
