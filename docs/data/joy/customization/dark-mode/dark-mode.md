@@ -4,7 +4,7 @@
 
 ## Dark mode by default
 
-To have dark mode as a default for your app, set `defaultMode: 'dark'`.
+To set dark mode as default for your app, use `defaultMode: 'dark'`.
 
 {{"demo": "DarkModeByDefault.js"}}
 
