@@ -492,7 +492,7 @@ describe('<Autocomplete />', () => {
 
       // test to make sure the delete does not delete when at the end of value.length
       fireEvent.keyDown(textbox, { key: 'Delete' });
-      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.callCount).to.equal(0);
 
       // expect on focused tag to delete when pressing delete key
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
