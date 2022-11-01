@@ -120,7 +120,7 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ## System preference
 
-To have the color mode based on the user's preference, set `defaultMode: 'system'`.
+To set the mode based on the user's preference, use `defaultMode: 'system'`.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
