@@ -10,19 +10,12 @@ import {
   unstable_useId as useId,
 } from '@mui/utils';
 import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
-import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
-import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import { getTooltipUtilityClass } from './tooltipClasses';
-import {
-  TooltipComponentsPropsOverrides,
-  TooltipProps,
-  TooltipOwnerState,
-  TooltipTypeMap,
-} from './TooltipProps';
+import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipOwnerState) => {
   const { arrow, variant, color, size, placement, touch } = ownerState;
@@ -214,8 +207,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     children,
     className,
     arrow = false,
-    components = {},
-    componentsProps = {},
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
@@ -577,30 +568,26 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const RootComponent = components.Root ?? TooltipRoot;
-  const ArrowComponent = components.Arrow ?? TooltipArrow;
-
-  const rootProps = useSlotProps({
-    elementType: RootComponent,
-    externalSlotProps: componentsProps.root,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: TooltipRoot,
+    externalForwardedProps: other,
     ownerState,
-    className: clsx(classes.root, componentsProps.root?.className),
   });
 
-  const tooltipArrowProps = useSlotProps({
-    elementType: ArrowComponent,
-    externalSlotProps: componentsProps.arrow as WithCommonProps<
-      React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps & TooltipComponentsPropsOverrides
-    >,
+  const [SlotArrow, arrowProps] = useSlot('arrow', {
+    className: classes.arrow,
+    elementType: TooltipArrow,
+    externalForwardedProps: other,
     ownerState,
-    className: clsx(classes.arrow, componentsProps.arrow?.className),
   });
 
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
       <PopperUnstyled
-        component={RootComponent}
+        component={SlotRoot}
         placement={placement}
         anchorEl={
           followCursor
@@ -623,17 +610,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         {...interactiveWrapperListeners}
         {...rootProps}
         popperOptions={popperOptions}
-        ownerState={ownerState}
       >
         {title}
-        {arrow ? (
-          <TooltipArrow
-            {...tooltipArrowProps}
-            className={clsx(classes.arrow, componentsProps.arrow?.className)}
-            ref={setArrowRef}
-            ownerState={ownerState}
-          />
-        ) : null}
+        {arrow ? <SlotArrow ref={setArrowRef} {...arrowProps} /> : null}
       </PopperUnstyled>
     </React.Fragment>
   );
@@ -666,22 +645,19 @@ Tooltip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the Tooltip.
-   * Either a string to use a HTML element or a component.
-   * @default {}
+   * Replace the default slots.
    */
   components: PropTypes.shape({
-    Arrow: PropTypes.elementType,
-    Root: PropTypes.elementType,
+    arrow: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.root` prop values win over `RootProps` if both are applied.
+   * The props used for each slot inside.
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    arrow: PropTypes.object,
-    root: PropTypes.object,
+    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * Set to `true` if the `title` acts as an accessible description.
