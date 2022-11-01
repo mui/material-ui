@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shouldForwardProp } from '@mui/system';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
@@ -24,7 +24,6 @@ import ROUTES from 'docs/src/route';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
 const WIP = DEMOS.slice(2);
@@ -33,22 +32,17 @@ const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
 })<{ ratio: number; src: string }>(({ src, ratio, theme }) => ({
   height: 0,
-  backgroundImage: `url(${src.replace('$mode', theme.palette.mode)})`,
+  backgroundImage: `url(${src.replace('$mode', 'light')})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   paddingBottom: `${(1 / ratio) * 100}%`,
   margin: 'auto',
+  ...theme.applyDarkStyles({
+    backgroundImage: `url(${src.replace('$mode', 'dark')})`,
+  }),
 }));
 
 function PrefetchImages() {
-  function makeImg(component: 'sparkline' | 'chart', mode: string, num: number) {
-    return {
-      loading: 'lazy' as const,
-      width: 100,
-      height: 100,
-      src: `/static/branding/mui-x/${component}-${mode}${num}.png`,
-    };
-  }
   return (
     <Box
       sx={{
@@ -64,14 +58,36 @@ function PrefetchImages() {
     >
       {[...Array(2)].map((_, index) => (
         <React.Fragment key={index}>
-          <img alt="" {...makeImg('sparkline', 'light', index + 1)} />
-          <img alt="" {...makeImg('sparkline', 'dark', index + 1)} />
+          <Box
+            component="img"
+            alt=""
+            loading="lazy"
+            width={100}
+            height={100}
+            src={`/static/branding/mui-x/sparkline-light${index + 1}.png`}
+            sx={(theme) =>
+              theme.applyDarkStyles({
+                content: `url("/static/branding/mui-x/sparkline-dark${index + 1}.png")`,
+              })
+            }
+          />
         </React.Fragment>
       ))}
       {[...Array(4)].map((_, index) => (
         <React.Fragment key={index}>
-          <img alt="" {...makeImg('chart', 'light', index + 1)} />
-          <img alt="" {...makeImg('chart', 'dark', index + 1)} />
+          <Box
+            component="img"
+            alt=""
+            loading="lazy"
+            width={100}
+            height={100}
+            src={`/static/branding/mui-x/chart-light${index + 1}.png`}
+            sx={(theme) =>
+              theme.applyDarkStyles({
+                content: `url("/static/branding/mui-x/chart-dark${index + 1}.png")`,
+              })
+            }
+          />
         </React.Fragment>
       ))}
     </Box>
@@ -199,33 +215,31 @@ export default function XComponents() {
                       </Grid>
                     )}
                   </Frame.Demo>
-                  <ThemeProvider theme={brandingDarkTheme}>
-                    <Frame.Info>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          lineHeight: 1,
-                          mb: 0.5,
-                        }}
-                      >
-                        <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-                          Coming soon!
-                        </Typography>
-                        <Chip
-                          variant="outlined"
-                          label="PNG Preview"
-                          size="small"
-                          sx={{ fontWeight: 500 }}
-                        />
-                      </Box>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        Subscribe to our newsletter to get first-hand info about the development and
-                        release of new components.
+                  <Frame.Info data-mui-color-scheme="dark">
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        lineHeight: 1,
+                        mb: 0.5,
+                      }}
+                    >
+                      <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+                        Coming soon!
                       </Typography>
-                      <EmailSubscribe />
-                    </Frame.Info>
-                  </ThemeProvider>
+                      <Chip
+                        variant="outlined"
+                        label="PNG Preview"
+                        size="small"
+                        sx={{ fontWeight: 500 }}
+                      />
+                    </Box>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                      Subscribe to our newsletter to get first-hand info about the development and
+                      release of new components.
+                    </Typography>
+                    <EmailSubscribe />
+                  </Frame.Info>
                 </Frame>
               </Box>
             </Fade>
