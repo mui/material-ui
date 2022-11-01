@@ -298,8 +298,7 @@ function TopLayoutBlog(props) {
           </Link>
           {headers.title ? (
             <React.Fragment>
-              {/* eslint-disable-next-line react/no-unknown-property */}
-              <time datetime={headers.date} className={classes.time}>
+              <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
                   weekday: 'long',
                   year: 'numeric',
