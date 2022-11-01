@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from './useSnackbar.types';
