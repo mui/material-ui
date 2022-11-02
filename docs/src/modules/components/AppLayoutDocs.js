@@ -30,12 +30,8 @@ const Main = styled('main', {
   [theme.breakpoints.up('lg')]: {
     width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
-  '& .markdown-body': {
-    '& h1, & h2, & h3, & h4': {
-      '& .comment-link-style': {
-        display: 'inline-block',
-      },
-    },
+  '& .markdown-body .comment-link-style': {
+    display: 'inline-block',
   },
 }));
 
