@@ -10,28 +10,28 @@ It consists of 13 built-in levels that are comprehensive for building a web appl
 
 - The `body1` level is the **baseline** typography for the application (used as a default configuration in [`Typography`](/joy-ui/react-typography/) and [`CssBaseline`](/joy-ui/react-css-baseline/) components).
 - The `body2` to `body5` levels can be used for secondary and tertiary information.
-- The `h*` levels are mostly headlines that follow semantic HTML headings.
-- The `display*` levels usually appear as taglines for marketing and landing pages.
+- The `h1` to `h6` levels follow the semantic HTML headings.
+- The `display1` and `display2` usually appear as taglines for marketing and landing pages.
 
 {{"demo": "DefaultTypographySystem.js"}}
 
 :::success
-**Gotcha**: The `CssBaseline`, `ScopedCssBaseline` and `Typography` are the only components that consume the theme typography directly.
+**Gotcha**: The [`CssBaseline`](/joy-ui/react-css-baseline/), [`ScopedCssBaseline`](/joy-ui/react-css-baseline/#scoping-on-children) and [`Typography`](/joy-ui/react-typography/) are the only components that consume the theme typography directly.
 
 This ensures that you can customize or even remove the default typography system without affecting other components.
 :::
 
-### Customize the default system
+### Customizing the default system
 
-Provide a key, the level value, and an object to `theme.typography` to override the default style.
+Provide the key and a CSS object to `theme.typography` to override the default style.
 
 The example below illustrates the customization of the `display1` level:
 
 {{"demo": "CustomTypographyLevel.js"}}
 
-### Remove the default system
+### Removing the default system
 
-Provide `undefined` as a value to the levels that you want to remove:
+Use `undefined` as a value to the levels that you want to remove:
 
 ```js
 const customTheme = extendTheme({
@@ -58,13 +58,13 @@ declare module '@mui/joy/styles' {
 }
 ```
 
-## Add more levels
+## Adding more levels
 
-Provide the new level as a key to the `theme.typography` and specify the style as a value.
+Provide the new level as the key and a CSS object value to the `theme.typography`.
 
 {{"demo": "MoreTypographyLevel.js", "bg": true}}
 
-For **TypeScript**, you need to augment the theme structure to include the new levels:
+For **TypeScript**, you need to augment the theme structure to include the new level:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -79,10 +79,11 @@ declare module '@mui/joy/styles' {
 
 There are several ways that you can use the theme typography in your application:
 
-- [Typography](/joy-ui/react-typography/) component: you can use the `level` prop to change to other levels.
+- [Typography](/joy-ui/react-typography/) component: use the `level` prop to change to between theme typography levels.
 
   ```jsx
-  <Typography level="body2">Secondary info</Typography> {/* has the `body2` style */}
+  // use the `theme.typography.body2` styles
+  <Typography level="body2">Secondary info</Typography>
   ```
 
 - [CssBaseline](/joy-ui/react-css-baseline/) component: by default, it applies the `body1` level to the global stylesheet.
@@ -90,18 +91,22 @@ There are several ways that you can use the theme typography in your application
   ```jsx
   <CssBaseline />
 
-  <p>Hello World</p> {/* inherits the `body1` typography level */}
+  // inherits the `theme.typography.body1` styles
+  <p>Hello World</p>
   ```
 
-- [`sx`](/joy-ui/customization/approaches/#sx-prop) prop: you can use the `typography: $level` inside the `sx` prop to get the specific typography style.
+- [`sx`](/joy-ui/customization/approaches/#sx-prop) prop: use `typography: $level` to get the specific theme typography level.
 
   ```jsx
+  // use the `theme.typography.body2` styles
   <Box sx={{ typography: 'body2' }}>Small text</Box>
   ```
 
-- [`styled`](/joy-ui/customization/approaches/#reusable-component): you can create a custom component and apply the style from `theme.typography` directly.
+- [`styled`](/joy-ui/customization/approaches/#reusable-component): create a custom component and apply the style from `theme.typography.*` directly.
 
   ```jsx
+  import { styled } from '@mui/joy/styles';
+
   const Tag = styled('span')((theme) => ({
     ...theme.typography.body2,
     color: 'inherit',
@@ -152,5 +157,5 @@ Here is a collection of well-known typography systems that you can get-started w
    ></iframe>
 
 :::success
-Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add more examples to the list! We can't wait to see what's your favorite one ❤️.
+Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system ❤️.
 :::
