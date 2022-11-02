@@ -42,7 +42,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Replace the default slots.
      */
-    components?: {
+    slots?: {
       root?: React.ElementType;
       arrow?: React.ElementType;
     };
@@ -50,7 +50,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The props used for each slot inside.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * Set to `true` if the `title` acts as an accessible description.
      * By default the `title` acts as an accessible label for the child.

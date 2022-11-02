@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useThemeProps } from '../styles';
+import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { getCardCoverUtilityClass } from './cardCoverClasses';
 import { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
@@ -65,20 +66,22 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardCoverRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
-    <CardCoverRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
           ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
-    </CardCoverRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<CardCoverTypeMap>;
 

@@ -8,10 +8,26 @@ export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 export interface BreadcrumbsPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'nav', { sx?: SxProps }, BreadcrumbsOwnerState>;
-  ol?: SlotComponentProps<'ol', { sx?: SxProps }, BreadcrumbsOwnerState>;
-  li?: SlotComponentProps<'li', { sx?: SxProps }, BreadcrumbsOwnerState>;
-  separator?: SlotComponentProps<'li', { sx?: SxProps }, BreadcrumbsOwnerState>;
+  root?: SlotComponentProps<
+    'nav',
+    { component?: React.ElementType; sx?: SxProps },
+    BreadcrumbsOwnerState
+  >;
+  ol?: SlotComponentProps<
+    'ol',
+    { component?: React.ElementType; sx?: SxProps },
+    BreadcrumbsOwnerState
+  >;
+  li?: SlotComponentProps<
+    'li',
+    { component?: React.ElementType; sx?: SxProps },
+    BreadcrumbsOwnerState
+  >;
+  separator?: SlotComponentProps<
+    'li',
+    { component?: React.ElementType; sx?: SxProps },
+    BreadcrumbsOwnerState
+  >;
 }
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
@@ -21,10 +37,19 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     children?: React.ReactNode;
     /**
+     * Replace the default slots.
+     */
+    slots?: {
+      root?: React.ElementType;
+      ol?: React.ElementType;
+      li?: React.ElementType;
+      separator?: React.ElementType;
+    };
+    /**
      * The props used for each slot inside the component.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * Custom separator node.
      * @default '/'

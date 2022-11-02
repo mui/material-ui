@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
 
@@ -147,7 +147,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeInset: badgeInsetProp = 0,
     children,
     component = 'span',
-    componentsProps = {},
     size: sizeProp = 'md',
     color: colorProp = 'primary',
     invisible: invisibleProp = false,
@@ -191,31 +190,28 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   if (invisible && badgeContentProp === 0) {
     displayValue = '';
   }
+  const externalForwardedProps = { ...other, component };
 
-  const rootProps = useSlotProps({
-    elementType: BadgeRoot,
-    ownerState,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: BadgeRoot,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeBadge,
-    ownerState,
-    externalSlotProps: componentsProps.badge,
+  const [SlotBadge, badgeProps] = useSlot('badge', {
     className: classes.badge,
+    elementType: BadgeBadge,
+    externalForwardedProps,
+    ownerState,
   });
 
   return (
-    <BadgeRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {children}
-      <BadgeBadge {...badgeProps}>{displayValue}</BadgeBadge>
-    </BadgeRoot>
+      <SlotBadge {...badgeProps}>{displayValue}</SlotBadge>
+    </SlotRoot>
   );
 }) as OverridableComponent<BadgeTypeMap>;
 
@@ -262,14 +258,6 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the badge is invisible.
    * @default false
    */
@@ -292,6 +280,21 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside the component.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * Replace the default slots.
+   */
+  slots: PropTypes.shape({
+    badge: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

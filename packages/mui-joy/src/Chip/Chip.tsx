@@ -203,7 +203,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     className,
     color = 'primary',
     component = 'div',
-    componentsProps = {},
+    slotProps = {},
     onClick,
     disabled = false,
     size = 'md',
@@ -213,7 +213,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     ...other
   } = props;
 
-  const clickable = !!onClick || !!componentsProps.action;
+  const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
     ...props,
     disabled,
@@ -226,9 +226,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   };
 
   const resolvedActionProps =
-    typeof componentsProps.action === 'function'
-      ? componentsProps.action(ownerState)
-      : componentsProps.action;
+    typeof slotProps.action === 'function'
+      ? slotProps.action(ownerState)
+      : slotProps.action;
   const actionRef = React.useRef<HTMLElement | null>(null);
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
@@ -239,7 +239,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   ownerState.focusVisible = focusVisible;
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, componentsProps };
+  const externalForwardedProps = { ...other, component, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -282,7 +282,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const [SlotEndDecorator, endDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: ChipEndDecorator,
-    externalForwardedProps: { ...other, componentsProps },
+    externalForwardedProps: { ...other, slotProps },
     ownerState,
   });
 
@@ -337,27 +337,6 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * Replace the default slots.
-   */
-  components: PropTypes.shape({
-    action: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    label: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -379,6 +358,27 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * Replace the default slots.
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */

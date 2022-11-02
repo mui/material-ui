@@ -42,7 +42,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Replace the default slots.
      */
-    components?: {
+    slots?: {
       root?: React.ElementType;
       img?: React.ElementType;
       fallback?: React.ElementType;
@@ -51,7 +51,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The props used for each slot inside the component.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'

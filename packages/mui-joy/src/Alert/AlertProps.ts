@@ -1,5 +1,6 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
@@ -8,6 +9,24 @@ export interface AlertPropsVariantOverrides {}
 export interface AlertPropsColorOverrides {}
 export interface AlertPropsSizeOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    AlertOwnerState
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    AlertOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    AlertOwnerState
+  >;
+}
+
 export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -15,6 +34,19 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'primary'
      */
     color?: OverridableStringUnion<ColorPaletteProp, AlertPropsColorOverrides>;
+    /**
+     * Replace the default slots.
+     */
+    slots?: {
+      root?: React.ElementType;
+      startDecorator?: React.ElementType;
+      endDecorator?: React.ElementType;
+    };
+    /**
+     * The props used for each slot inside.
+     * @default {}
+     */
+    slotProps?: ComponentsProps;
     /**
      * Element placed after the children.
      */

@@ -65,7 +65,7 @@ export interface SliderOwnProps {
   /**
    * Replace the default slots.
    */
-  components?: {
+  slots?: {
     root?: React.ElementType;
     track?: React.ElementType;
     rail?: React.ElementType;
@@ -79,7 +79,7 @@ export interface SliderOwnProps {
    * The props used for each slot inside the component.
    * @default {}
    */
-  componentsProps?: ComponentsProps;
+  slotProps?: ComponentsProps;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'

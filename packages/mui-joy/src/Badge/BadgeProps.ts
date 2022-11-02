@@ -17,8 +17,16 @@ export interface BadgeOrigin {
 }
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, BadgeOwnerState>;
-  badge?: SlotComponentProps<'div', { sx?: SxProps }, BadgeOwnerState>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    BadgeOwnerState
+  >;
+  badge?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    BadgeOwnerState
+  >;
 }
 
 export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
@@ -45,10 +53,17 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     children?: React.ReactNode;
     /**
+     * Replace the default slots.
+     */
+    slots?: {
+      root?: React.ElementType;
+      badge?: React.ElementType;
+    };
+    /**
      * The props used for each slot inside the component.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'

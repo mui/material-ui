@@ -42,7 +42,7 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
     /**
      * Replace the default slots.
      */
-    components?: {
+    slots?: {
       root?: React.ElementType;
       svg?: React.ElementType;
       track?: React.ElementType;
@@ -52,7 +52,7 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      * The props used for each slot inside.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * The boolean to select a variant.
      * Use indeterminate when there is no progress value.

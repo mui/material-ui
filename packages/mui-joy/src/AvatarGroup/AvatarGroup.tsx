@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useThemeProps } from '../styles';
+import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './AvatarGroupProps';
@@ -18,7 +19,7 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getAvatarGroupUtilityClass, {});
 };
 
-const AvatarGroupGroupRoot = styled('div', {
+const AvatarGroupRoot = styled('div', {
   name: 'JoyAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -62,17 +63,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarGroupRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
     <AvatarGroupContext.Provider value={ownerState}>
-      <AvatarGroupGroupRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </AvatarGroupGroupRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </AvatarGroupContext.Provider>
   );
 }) as OverridableComponent<AvatarGroupTypeMap>;

@@ -8,19 +8,33 @@ import {
 import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator';
+export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIndicatorCenter';
 
 export interface ButtonPropsVariantOverrides {}
-
 export interface ButtonPropsColorOverrides {}
-
 export interface ButtonPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'button', { sx?: SxProps }, ButtonOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
-  loadingIndicatorCenter?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
+  root?: SlotComponentProps<
+    'button',
+    { component?: React.ElementType; sx?: SxProps },
+    ButtonOwnerState
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    ButtonOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    ButtonOwnerState
+  >;
+  loadingIndicatorCenter?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    ButtonOwnerState
+  >;
 }
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -37,10 +51,19 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
+     * Replace the default slots.
+     */
+    slots?: {
+      root?: React.ElementType;
+      startDecorator?: React.ElementType;
+      endDecorator?: React.ElementType;
+      loadingIndicatorCenter?: React.ElementType;
+    };
+    /**
      * The props used for each slot inside the component.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * If `true`, the component is disabled.
      * @default false
