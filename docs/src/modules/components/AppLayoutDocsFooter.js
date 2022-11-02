@@ -445,7 +445,6 @@ export default function AppLayoutDocsFooter(props) {
                 value={comment}
                 onChange={handleChangeTextfield}
                 inputProps={{
-                  'aria-label': t('feedbackCommentLabel'),
                   'aria-describedby': 'feedback-description',
                   ref: inputRef,
                 }}

@@ -249,7 +249,7 @@ function createRender(context) {
         `<a aria-labelledby="${hash}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
-        `<button class="comment-link-style" data-feedback-hash="${hash}">`,
+        `<button aria-label="left a comment" class="comment-link-style" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
         `</h${level}>`,
