@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
 import { SlotComponentProps } from '../utils';

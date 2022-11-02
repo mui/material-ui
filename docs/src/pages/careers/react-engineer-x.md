@@ -1,4 +1,4 @@
-# React Engineer - X (future role)
+# React Engineer - X
 
 <p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
 

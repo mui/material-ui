@@ -138,9 +138,6 @@ const styles = ({ theme }) => ({
     '& strong': {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
     },
-    '& pre': {
-      fontSize: theme.typography.pxToRem(16),
-    },
     '& summary': {
       padding: 8,
       fontSize: theme.typography.pxToRem(14),
