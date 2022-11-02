@@ -73,7 +73,7 @@ export default function useSlot<
      * The `other` props from the consumer. It has to contain `component`, `components`, and `componentsProps`.
      * The function will use those props to calculate the final leaf component and the returned props.
      *
-     * If the slot is not `root`, the rest of the `externalForwardedProps` are neglect.
+     * If the slot is not `root`, the rest of the `externalForwardedProps` are neglected.
      */
     externalForwardedProps: ExternalForwardedProps;
     getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
@@ -116,7 +116,7 @@ export default function useSlot<
     ...other
   } = externalForwardedProps;
 
-  // `componentsProps[name]` can be a callback that receives the component's ownerState.
+  // `componentsProps[name]` can be a callback that receives the component's `ownerState`.
   // `resolvedComponentsProps` is always a plain object.
   const resolvedComponentsProps = resolveComponentProps(componentsProps[name], ownerState);
 

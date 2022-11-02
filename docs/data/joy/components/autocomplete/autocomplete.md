@@ -152,7 +152,7 @@ To customize the appearance of the options, use `renderOption` prop in combinati
 
 ### Input appearance
 
-To customize the appearance of the input, use `renderInput` prop that returns an `Input` component.
+To customize the appearance of the input, use `renderInput` prop that returns an `Input` component⎯that way, you'll be able to use any [global variant](/joy-ui/main-features/global-variants/) or the [`sx` prop](/joy-ui/customization/approaches/#sx-prop) to further customize it.
 
 {{"demo": "InputAppearance.js"}}
 
