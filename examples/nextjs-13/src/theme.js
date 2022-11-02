@@ -22,6 +22,9 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  typography: {
+    fontFamily: roboto.style.fontFamily,
+  },
 });
 
 export default theme;

@@ -8,11 +8,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={roboto.className}>
       <head>
         <meta name="emotion-insertion-point" content="" />
       </head>
-      <body className={roboto.className}>
+      <body>
         <RootStyleRegistry>
           <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -23,3 +23,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node,
+};
