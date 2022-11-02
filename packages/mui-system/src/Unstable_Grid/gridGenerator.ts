@@ -34,10 +34,20 @@ export const traverseBreakpoints = <T = unknown>(
   } else if (responsize && typeof responsize === 'object') {
     // prevent null
     // responsize could be a very big object, pick the smallest responsive values
-    const keys =
+    const keys = (
       Object.keys(responsize).length > breakpoints.keys.length
         ? breakpoints.keys
-        : Object.keys(responsize);
+        : Object.keys(responsize)
+    ).sort((key1, key2) => {
+      // @ts-ignore already checked that responsize is an object
+      const breakpointValue1: T = breakpoints.values[key1];
+      // @ts-ignore already checked that responsize is an object
+      const breakpointValue2: T = breakpoints.values[key2];
+      if (typeof breakpointValue1 === 'number' && typeof breakpointValue2 === 'number') {
+        return breakpointValue1 - breakpointValue2;
+      }
+      return 0;
+    });
 
     keys.forEach((key) => {
       if (breakpoints.keys.indexOf(key as Breakpoint) !== -1) {
