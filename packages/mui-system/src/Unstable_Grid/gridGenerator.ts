@@ -37,7 +37,7 @@ export const traverseBreakpoints = <T = unknown>(
     const keys =
       Object.keys(responsize).length > breakpoints.keys.length
         ? breakpoints.keys
-        : breakpoints.keys.filter(key => !!responsize[key]);
+        : breakpoints.keys.filter((key: string) => Object.keys(responsize).includes(key))
     
     keys.forEach((key) => {
       if (breakpoints.keys.indexOf(key as Breakpoint) !== -1) {
