@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import RootStyleRegistry from './emotion';
 import theme, { roboto } from '../src/theme';
 import { ThemeProvider } from '@mui/material/styles';
