@@ -439,9 +439,6 @@ export default function AppLayoutDocsFooter(props) {
             onReset={handleCancelComment}
             onSubmit={handleSubmitComment}
           >
-            <Typography component="div" variant="h6" gutterBottom>
-              {t('feedbackTitle')}
-            </Typography>
             <div>
               <Typography id="feedback-description" color="text.secondary" gutterBottom>
                 {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
