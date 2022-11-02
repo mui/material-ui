@@ -78,7 +78,6 @@ const Frame = styled('iframe')(({ theme }) => ({
 
 function DemoFrame(props) {
   const { children, name, ...other } = props;
-  const title = `${name} demo`;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -105,7 +104,7 @@ function DemoFrame(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <Frame onLoad={onLoad} ref={frameRef} title={title} {...other} />
+      <Frame onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document}>{children}</FramedDemo>,
@@ -122,7 +121,7 @@ DemoFrame.propTypes = {
 };
 
 // Use the default MUI theme for the demos
-const getTheme = (outerTheme) => {
+function getTheme(outerTheme) {
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   const isCustomized =
     outerTheme.palette.primary?.main &&
@@ -149,7 +148,7 @@ const getTheme = (outerTheme) => {
     resultTheme.spacing = outerTheme.spacing;
   }
   return resultTheme;
-};
+}
 
 // TODO: Let demos decide whether they need JSS
 const jss = create({
