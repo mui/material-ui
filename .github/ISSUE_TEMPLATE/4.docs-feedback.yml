@@ -21,7 +21,7 @@ body:
     id: page-url
     attributes:
       label: Related page
-      description: Which page of the documentation is concerned?
+      description: Which page of the documentation is this about?
       placeholder: https://mui.com/material-ui/react-badge/
     validations:
       required: true
@@ -29,7 +29,7 @@ body:
   - type: dropdown
     attributes:
       label: Kind of issue
-      description: What version of our software are you running?
+      description: What kind of problem are you facing?
       options:
         - Unclear explanations
         - Missing information
@@ -49,4 +49,4 @@ body:
   - type: textarea
     attributes:
       label: Context 🔦
-      description: What are you trying to accomplish? Why were you browsing this documentation page? Providing context helps us come up with a solution that is more useful in the real world.
+      description: What are you trying to accomplish? What brought you to this page? Your context can help us to come up with solutions that benefit the community as a whole.
