@@ -38,7 +38,7 @@ The example below shows how to replace the Button's `<button>` tag with a `<div>
 ```
 
 :::info
-If you provide a non-interactive element such as a `<span>`, the Button will automatically add the necessary accessibility attributes.
+If you provide a non-interactive element like a `<div>` or a `<span>`, the Button will automatically add the necessary accessibility attributes.
 :::
 
 ## Interior slots
