@@ -1,8 +1,8 @@
-"use client"
-import RootStyleRegistry from "./emotion";
+'use client';
+import RootStyleRegistry from './emotion';
 import theme, { roboto } from '../src/theme';
 import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from "@mui/material/CssBaseline";
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function RootLayout({ children }) {
   return (
