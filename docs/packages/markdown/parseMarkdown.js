@@ -153,7 +153,7 @@ function renderInline(markdown) {
 }
 
 const noSEOadvantage = [
-  'https://material.io/',
+  'https://m2.material.io/',
   'https://getbootstrap.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
@@ -289,7 +289,7 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(Or</span> $keyC<span>)</span></span></button></div>\n`;
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
     };
 
     const markedOptions = {

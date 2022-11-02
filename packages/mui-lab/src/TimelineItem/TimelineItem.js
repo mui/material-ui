@@ -80,8 +80,13 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const contextValue = React.useMemo(
+    () => ({ position: ownerState.position }),
+    [ownerState.position],
+  );
+
   return (
-    <TimelineContext.Provider value={{ position: ownerState.position }}>
+    <TimelineContext.Provider value={contextValue}>
       <TimelineItemRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}

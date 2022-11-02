@@ -23,6 +23,7 @@ import { GridProps } from '@mui/joy/Grid';
 import { IconButtonOwnerState } from '@mui/joy/IconButton';
 import { InputOwnerState } from '@mui/joy/Input';
 import { LinkOwnerState } from '@mui/joy/Link';
+import { LinearProgressOwnerState } from '@mui/joy/LinearProgress';
 import { ListOwnerState } from '@mui/joy/List';
 import { ListDividerOwnerState } from '@mui/joy/ListDivider';
 import { ListSubheaderOwnerState } from '@mui/joy/ListSubheader';
@@ -51,6 +52,7 @@ import { TabListOwnerState } from '@mui/joy/TabList';
 import { TabPanelOwnerState } from '@mui/joy/TabPanel';
 import { TabsOwnerState } from '@mui/joy/Tabs';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
+import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
 import { expectType } from '@mui/types';
 
@@ -313,8 +315,9 @@ extendTheme({
     },
     JoyCircularProgress: {
       defaultProps: {
-        variant: 'solid',
+        variant: 'soft',
         color: 'primary',
+        size: 'md',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -470,6 +473,21 @@ extendTheme({
         },
         endDecorator: ({ ownerState }) => {
           expectType<LinkOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyLinearProgress: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+        size: 'md',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },
@@ -911,6 +929,23 @@ extendTheme({
         },
         endDecorator: ({ ownerState }) => {
           expectType<TextareaOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyTooltip: {
+      defaultProps: {
+        size: 'md',
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<TooltipOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        arrow: ({ ownerState }) => {
+          expectType<TooltipOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

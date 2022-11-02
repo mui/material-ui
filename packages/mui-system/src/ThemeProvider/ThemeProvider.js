@@ -5,10 +5,12 @@ import { exactProp } from '@mui/utils';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useTheme from '../useTheme';
 
+const EMPTY_THEME = {};
+
 function InnerThemeProvider(props) {
   const theme = useTheme();
   return (
-    <StyledEngineThemeContext.Provider value={typeof theme === 'object' ? theme : {}}>
+    <StyledEngineThemeContext.Provider value={typeof theme === 'object' ? theme : EMPTY_THEME}>
       {props.children}
     </StyledEngineThemeContext.Provider>
   );

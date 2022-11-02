@@ -15,11 +15,18 @@ export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
     /*
-     * `onChange`, `onKeyUp`, `onKeyDown`, `onBlur`, `onFocus` are applied to the inner `InputComponent`,
+     * `onBlur`, `onChange`, `onFocus`, `onInvalid`, `onKeyDown`, `onKeyUp` are applied to the inner `InputComponent`,
      * which by default is an input or textarea. Since these handlers differ from the
      * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
      */
-    'children' | 'onChange' | 'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus' | 'defaultValue'
+    | 'children'
+    | 'defaultValue'
+    | 'onBlur'
+    | 'onChange'
+    | 'onFocus'
+    | 'onInvalid'
+    | 'onKeyDown'
+    | 'onKeyUp'
   > {
   'aria-describedby'?: string;
   /**
@@ -142,6 +149,10 @@ export interface InputBaseProps
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  /**
+   * Callback fired when the `input` doesn't satisfy its constraints.
+   */
+  onInvalid?: React.FormEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   /**
    * The short hint displayed in the `input` before the user enters a value.
    */

@@ -15,7 +15,7 @@ export default function Highlights() {
         <TextField {...params} label="Highlights" margin="normal" />
       )}
       renderOption={(props, option, { inputValue }) => {
-        const matches = match(option.title, inputValue);
+        const matches = match(option.title, inputValue, { insideWords: true });
         const parts = parse(option.title, matches);
 
         return (

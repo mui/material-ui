@@ -58,12 +58,6 @@ const FeedbackGrid = styled(Grid)(({ theme }) => {
   };
 });
 
-const FeedbackMessage = styled(Typography)(({ theme }) => {
-  return {
-    margin: theme.spacing(0, 2),
-  };
-});
-
 /**
  * @typedef {import('docs/src/pages').MuiPage} MuiPage
  * @typedef {import('docs/src/pages').OrderedMuiPage} OrderedMuiPage
@@ -390,14 +384,15 @@ export default function AppLayoutDocsFooter(props) {
                 alignItems="center"
                 aria-labelledby="feedback-message"
               >
-                <FeedbackMessage
+                <Typography
                   align="center"
                   component="div"
                   id="feedback-message"
                   variant="body2"
+                  sx={{ mx: 2 }}
                 >
                   {t('feedbackMessage')}
-                </FeedbackMessage>
+                </Typography>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
                     <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>

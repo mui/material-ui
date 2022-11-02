@@ -1,5 +1,5 @@
 import { OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
 export interface OptionGroupUnstyledComponentsPropsOverrides {}
@@ -21,16 +21,16 @@ export interface OptionGroupUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Label?: React.ElementType;
-    List?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
+    label?: React.ElementType;
+    list?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'li',
       OptionGroupUnstyledComponentsPropsOverrides,

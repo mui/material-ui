@@ -63,10 +63,6 @@ function Iframe(props) {
         setIframeHeight(scrollHeight);
       }
 
-      if (event.data.redirect) {
-        window.location = event.data.redirect;
-      }
-
       if (event.data.pathname) {
         onPathnameChange({
           pathname: event.data.pathname,
