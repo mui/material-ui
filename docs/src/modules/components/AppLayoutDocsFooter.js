@@ -436,7 +436,7 @@ export default function AppLayoutDocsFooter(props) {
                 margin="dense"
                 name="comment"
                 fullWidth
-                rows={6}
+                rows={4}
                 value={comment}
                 onChange={handleChangeTextfield}
                 inputProps={{
@@ -444,6 +444,17 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
+              {rating !== 1 && (
+                <Typography id="feedback-description" color="text.secondary">
+                  {t('feedbackMessageToGithub.main')}{' '}
+                  <Link
+                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=4.docs-feedback.yml&page-url=${window.location.href}`}
+                    target="_blank"
+                  >
+                    {t('feedbackMessageToGithub.link')}
+                  </Link>
+                </Typography>
+              )}
             </div>
             <DialogActions>
               <Button type="reset">{t('cancel')}</Button>
