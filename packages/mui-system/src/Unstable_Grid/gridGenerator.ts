@@ -37,8 +37,8 @@ export const traverseBreakpoints = <T = unknown>(
     const keys =
       Object.keys(responsize).length > breakpoints.keys.length
         ? breakpoints.keys
-        : Object.keys(responsize);
-
+        : breakpoints.keys.filter(key => !!responsize[key]);
+    
     keys.forEach((key) => {
       if (breakpoints.keys.indexOf(key as Breakpoint) !== -1) {
         // @ts-ignore already checked that responsize is an object
