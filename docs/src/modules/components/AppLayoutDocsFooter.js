@@ -453,7 +453,9 @@ export default function AppLayoutDocsFooter(props) {
             </div>
             <DialogActions>
               <Button type="reset">{t('cancel')}</Button>
-              <Button type="submit">{t('submit')}</Button>
+              <Button type="submit" variant="contained">
+                {t('submit')}
+              </Button>
             </DialogActions>
           </form>
         </Collapse>
