@@ -64,7 +64,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
           >
             {copied ? 'Copied' : 'Copy'}&nbsp;
             <span className="MuiCode-copyKeypress">
-              <span>(Or</span> {key}C<span>)</span>
+              <span>(or</span> {key}C<span>)</span>
             </span>
           </button>
         )}

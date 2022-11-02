@@ -22,10 +22,6 @@
       "matchPackagePatterns": "@babel/*"
     },
     {
-      "groupName": "date-io",
-      "matchPackagePatterns": "@date-io/*"
-    },
-    {
       "groupName": "Emotion",
       "matchPackagePatterns": "@emotion/*"
     },
@@ -107,6 +103,10 @@
     {
       "groupName": "Playwright",
       "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
+    },
+    {
+      "matchDepTypes": ["action"],
+      "pinDigests": true
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
