@@ -71,7 +71,7 @@ const GOLDs = [
     src: 'https://images.opencollective.com/ipinfoai/04f41d5/logo/40.png',
     srcSet: 'https://images.opencollective.com/ipinfoai/04f41d5/logo/80.png 2x',
     name: 'Ipinfo.ai',
-    description: 'Various IP data API services, including IP Geolocation Data, ASN Data, etc.',
+    description: 'IP data API services, including IP geolocation.',
     href: 'https://ipinfo.ai?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
