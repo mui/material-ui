@@ -399,16 +399,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           offset: [0, 4],
         },
       },
-      {
-        // popper will have the same width as root element when open
-        name: 'equalWidth',
-        enabled: true,
-        phase: 'beforeWrite',
-        requires: ['computeStyles'],
-        fn: ({ state }) => {
-          state.styles.popper.width = `${state.rects.reference.width}px`;
-        },
-      },
     ],
     [],
   );
@@ -429,6 +419,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disablePortal,
       open: popupOpen,
       modifiers: cachedModifiers,
+      style: anchorEl
+        ? {
+            width: anchorEl.clientWidth,
+          }
+        : {},
     },
     internalForwardedProps: {
       component: AutocompleteListbox,
