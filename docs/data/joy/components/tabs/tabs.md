@@ -120,7 +120,7 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 {{"demo": "TabsPricingExample.js"}}
 
-### Page tabs
+### Page tabs with chips
 
 {{"demo": "TabsPageExample.js"}}
 

@@ -37,7 +37,7 @@ export default function TabsBottomNavExample() {
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           [`& .${tabClasses.root}`]: {
             boxShadow: 'none',
-            borderRadius: 'md',
+            borderRadius: 'lg',
             whiteSpace: 'nowrap',
             transition: '0.3s',
             fontWeight: 'lg',
