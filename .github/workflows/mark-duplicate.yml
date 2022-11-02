@@ -10,7 +10,6 @@ jobs:
     permissions:
       contents: read
       issues: write
-      pull-requests: write
     steps:
       - name: mark-duplicate
         uses: actions-cool/issues-helper@02811b26b65e9c0da5f1d8a0095b53478d6591a2 # tag=v3
