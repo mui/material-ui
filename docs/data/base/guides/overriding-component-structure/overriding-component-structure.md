@@ -2,12 +2,21 @@
 
 <p class="description">Learn how to override the default DOM structure of MUI Base components.</p>
 
+MUI Base components are designed to suit the widest possible range of use cases, but you many occasionally need to change how a component's structure is rendered in the DOM.
 
+To understand how to do this, it helps to have an accurate mental model of MUI Base components.
+
+## The mental model
+
+A component's structure is determined by the elements that fill that component's **slots**.
+Slots are most commonly filled by HTML tags, but may also be filled by React components.
+
+All components contain a root slot that defines their primary node in the DOM tree; more complex components also contain additional interior slots named after the elements they represent.
 
 All _non-utility_ MUI Base components accept two props for overriding their rendered HTML structure:
 
 - `component`—to override the root slot
-- `slots`—to override any interior slots (when present)
+- `slots`—to override any interior slots (when present) as well as the root
 
 Additionally, you can pass custom props to interior slots using `slotProps`.
 
@@ -17,7 +26,7 @@ The root slot represents the component's "primary" element.
 For simpler components, the root slot is often filled by the native HTML element that the component is intended to replace.
 
 For example, the [Unstyled Button's](/base/react-button/) root slot is a `<button>` element.
-Such components may only have a root; more complex components may have additional [interior slots](#interior-slots).
+This component _only_ has a root slot; more complex components may have additional [interior slots](#interior-slots).
 
 ### The component prop
 
@@ -29,7 +38,7 @@ The example below shows how to replace the Unstyled Button's `<button>` tag with
 ```
 
 :::info
-If you provide a non-interactive element such as a `<span>`, the Unstyled Button component will automatically add the necessary accessibility attributes.
+If you provide a non-interactive element such as a `<span>`, the Unstyled Button will automatically add the necessary accessibility attributes.
 :::
 
 ## Interior slots
@@ -95,7 +104,7 @@ If both `slotProps.root` and additional props have the same keys but different v
 This does not apply to classes or the `style` prop—they will be merged instead.
 :::
 
-### Best practices
+## Best practices
 
 If you are customizing a simpler component like the Unstyled Button that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
 
