@@ -1,6 +1,6 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import React from 'react';
-import { PortalProps } from '../Portal/Portal.types';
+import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 

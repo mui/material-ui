@@ -40,7 +40,7 @@ const Portal = React.forwardRef(function Portal(props: PortalProps, ref:React.Fo
 
   useEnhancedEffect(() => {
     if (mountNode && !disablePortal) {
-      setRef(ref, mountNode as HTMLElement);
+      setRef(ref, mountNode);
       return () => {
         setRef(ref, null);
       };
