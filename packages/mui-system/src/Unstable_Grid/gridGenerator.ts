@@ -34,6 +34,7 @@ export const traverseBreakpoints = <T = unknown>(
   } else if (responsize && typeof responsize === 'object') {
     // prevent null
     // responsize could be a very big object, pick the smallest responsive values
+
     const keys =
       Object.keys(responsize).length > breakpoints.keys.length
         ? breakpoints.keys
