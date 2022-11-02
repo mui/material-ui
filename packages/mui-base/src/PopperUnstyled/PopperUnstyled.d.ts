@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import { Instance, VirtualElement, Options, OptionsGeneric } from '@popperjs/core';
-import { PortalProps } from '../Portal';
+import { PortalProps } from '../Portal/Portal.types';
 import { SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];

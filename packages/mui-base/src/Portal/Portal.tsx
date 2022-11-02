@@ -10,7 +10,7 @@ import {
 } from '@mui/utils';
 import { PortalProps } from './Portal.types';
 
-function getContainer(container: Element | (() => Element | null) | null) {
+function getContainer(container: HTMLElement | (() => HTMLElement | null) | null) {
   return typeof container === 'function' ? container() : container;
 }
 
@@ -29,7 +29,7 @@ function getContainer(container: Element | (() => Element | null) | null) {
 
 const Portal = React.forwardRef(function Portal(props: PortalProps, ref:React.ForwardedRef<Element>) {
   const { children, container = null, disablePortal = false } = props;
-  const [mountNode, setMountNode] = React.useState<Element | (() => Element | null) | null>(null);
+  const [mountNode, setMountNode] = React.useState<HTMLElement | null>(null);
   const handleRef = useForkRef(React.isValidElement(children) ? (children as any).ref : null, ref);
 
   useEnhancedEffect(() => {
