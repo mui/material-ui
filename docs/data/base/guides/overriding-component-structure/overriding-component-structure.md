@@ -2,7 +2,7 @@
 
 <p class="description">Learn how to override the default DOM structure of MUI Base components.</p>
 
-MUI Base components are designed to suit the widest possible range of use cases, but you many occasionally need to change how a component's structure is rendered in the DOM.
+MUI Base components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
 
 To understand how to do this, it helps to have an accurate mental model of MUI Base components.
 
