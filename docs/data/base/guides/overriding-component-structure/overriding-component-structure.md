@@ -1,6 +1,8 @@
 # Overriding component structure
 
-<p class="description">Overriding component structure.</p>
+<p class="description">Learn how to override the default DOM structure of MUI Base components.</p>
+
+
 
 All _non-utility_ MUI Base components accept two props for overriding their rendered HTML structure:
 
@@ -12,7 +14,7 @@ Additionally, you can pass custom props to interior slots using `slotProps`.
 ## The root slot
 
 The root slot represents the component's "primary" element.
-For simpler components, the root slot is often filled by the native HTML element the component is intended to replace.
+For simpler components, the root slot is often filled by the native HTML element that the component is intended to replace.
 
 For example, the [Unstyled Button's](/base/react-button/) root slot is a `<button>` element.
 Such components may only have a root; more complex components may have additional [interior slots](#interior-slots).
