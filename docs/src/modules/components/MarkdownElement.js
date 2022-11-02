@@ -16,13 +16,15 @@ const Root = styled('div')(
     },
     wordBreak: 'break-word',
     '& pre': {
-      margin: lightTheme.spacing(2, 'auto'),
-      padding: lightTheme.spacing(2),
+      margin: theme.spacing(2, 'auto'),
+      padding: theme.spacing(2),
       backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       color: '#f8f8f2',
       colorScheme: 'dark',
       direction: 'ltr',
-      borderRadius: `var(--muidocs-shape-borderRadius, ${lightTheme.shape.borderRadius}px)`,
+      borderRadius: `var(--muidocs-shape-borderRadius, ${
+        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
+      }px)`,
       border: '1px solid',
       borderColor: `var(--muidocs-palette-primaryDark-700, ${lightTheme.palette.primaryDark[700]})`,
       overflow: 'auto',
@@ -207,7 +209,9 @@ const Root = styled('div')(
       paddingBottom: 12,
     },
     '& blockquote': {
-      borderRadius: `var(--muidocs-shape-borderRadius, ${lightTheme.shape.borderRadius}px)`,
+      borderRadius: `var(--muidocs-shape-borderRadius, ${
+        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
+      }px)`,
       border: '1px solid',
       borderLeft: '8px solid',
       borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
@@ -223,7 +227,9 @@ const Root = styled('div')(
       padding: '16px',
       margin: '16px 0',
       border: '1px solid',
-      borderRadius: `var(--muidocs-shape-borderRadius, ${lightTheme.shape.borderRadius}px)`,
+      borderRadius: `var(--muidocs-shape-borderRadius, ${
+        theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
+      }px)`,
       '& > p': {
         color: 'inherit',
         '&:last-child': {
@@ -328,10 +334,10 @@ const Root = styled('div')(
       boxShadow: `inset 0 -1px 0 var(--muidocs-palette-grey-300, ${lightTheme.palette.grey[300]})`,
     },
     '& details': {
-      marginBottom: lightTheme.spacing(1.5),
-      padding: lightTheme.spacing(0.5, 0, 0.5, 1),
+      marginBottom: theme.spacing(1.5),
+      padding: theme.spacing(0.5, 0, 0.5, 1),
       '& pre': {
-        marginTop: lightTheme.spacing(1),
+        marginTop: theme.spacing(1),
       },
     },
     '& summary': {
@@ -351,12 +357,12 @@ const Root = styled('div')(
       backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.5),
       cursor: 'pointer',
       position: 'absolute',
-      top: lightTheme.spacing(1),
-      right: lightTheme.spacing(1),
+      top: theme.spacing(1),
+      right: theme.spacing(1),
       fontFamily: 'inherit',
       fontSize: lightTheme.typography.pxToRem(13),
       fontWeight: 500,
-      padding: lightTheme.spacing(0.5, 1),
+      padding: theme.spacing(0.5, 1),
       borderRadius: 4,
       border: `1px solid`,
       borderColor: lightTheme.palette.primaryDark[500],
@@ -390,7 +396,7 @@ const Root = styled('div')(
       left: '50%',
       top: '100%',
       minWidth: '100%',
-      marginTop: lightTheme.spacing(0.5),
+      marginTop: theme.spacing(0.5),
       whiteSpace: 'nowrap',
       transform: 'translateX(-50%)',
       '& > span': {
@@ -399,7 +405,7 @@ const Root = styled('div')(
     },
     '& li': {
       '& pre': {
-        marginTop: lightTheme.spacing(1),
+        marginTop: theme.spacing(1),
       },
     },
   }),
