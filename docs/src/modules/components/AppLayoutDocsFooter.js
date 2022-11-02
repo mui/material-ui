@@ -11,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
 import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -162,8 +161,8 @@ async function postFeedbackOnSlack(data) {
   const simpleSlackMessage = [
     `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
     `>${comment.split('\n').join('\n>')}`,
-    `sent from ${window.location.href}${commentedSection.hash ? `#${commentedSection.hash}` : ''}${
-      commentedSection.text ? ` (section ${commentedSection.text})` : ''
+    `sent from ${window.location.href}${
+      commentedSection.text ? ` (from section ${commentedSection.text})` : ''
     }`,
   ].join('\n\n');
 
@@ -324,12 +323,6 @@ export default function AppLayoutDocsFooter(props) {
     setComment(event.target.value);
   };
 
-  const handleChangeSection = (event) => {
-    const section =
-      sectionOptions.find((item) => item.hash === event.target.value) || EMPTY_SECTION;
-    setCommentedSection(section);
-  };
-
   const handleSubmitComment = (event) => {
     event.preventDefault();
     setCommentOpen(false);
@@ -443,24 +436,6 @@ export default function AppLayoutDocsFooter(props) {
               <Typography id="feedback-description" color="text.secondary" gutterBottom>
                 {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
               </Typography>
-              <TextField
-                select
-                size="small"
-                margin="dense"
-                name="commentedSection"
-                fullWidth
-                value={commentedSection?.hash || ''}
-                onChange={handleChangeSection}
-                inputProps={{
-                  'aria-label': t('feedbackSectionLabel'),
-                }}
-                placeholder={t('feedbackSectionPlaceholder')}
-              >
-                <MenuItem value="">{t('feedbackNoSectionSelected')}</MenuItem>
-                {sectionOptions.map((section) => (
-                  <MenuItem value={section.hash}>{section.text}</MenuItem>
-                ))}
-              </TextField>
               <TextField
                 multiline
                 margin="dense"
