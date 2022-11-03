@@ -95,26 +95,22 @@ Use the `component` prop to override the root slot with a custom element:
 
 If you provide a non-interactive element such as a `<span>`, the `TabUnstyled` component will automatically add the necessary accessibility attributes.
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<TabUnstyled components={{ Root: 'span' }} />
+<TabUnstyled slots={{ root: 'span' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-tab-list` to the root slot:
 
 ```jsx
-<TabListUnstyled componentsProps={{ root: { className: 'my-tab-list' } }} />
+<TabListUnstyled slotProps={{ root: { className: 'my-tab-list' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Customization
 
@@ -139,7 +135,7 @@ The demos below illustrate the proper use of ARIA labels.
 
 By default, when using keyboard navigation, the tab components open via **manual activation**—that is, the next panel is displayed only after the user activates the tab with either <kbd class="key">Space</kbd>, <kbd class="key">Enter</kbd>, or a mouse click.
 
-This is the preferable behavior for tabs in most cases, acccording to [the WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+This is the preferable behavior for tabs in most cases, according to [the WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 Alternatively, you can set the panels to be displayed automatically when their corresponding tabs are in focus—this behavior of the selection following the focus is known as **automatic activation**.
 

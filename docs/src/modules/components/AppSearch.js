@@ -26,6 +26,7 @@ const SearchButton = styled('button')(({ theme }) => {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
+    margin: 0, // Reset for Safari
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
@@ -85,7 +86,7 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
-const NewStartScreen = () => {
+function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
@@ -152,7 +153,7 @@ const NewStartScreen = () => {
       ))}
     </div>
   );
-};
+}
 
 function DocSearcHit(props) {
   const { children, hit } = props;

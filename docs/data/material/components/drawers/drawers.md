@@ -3,7 +3,7 @@ product: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
-materialDesign: https://material.io/components/navigation-drawer
+materialDesign: https://m2.material.io/components/navigation-drawer
 ---
 
 # Drawer
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 Navigation drawers (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
 
-[Side sheets](https://material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
+[Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

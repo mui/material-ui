@@ -100,9 +100,9 @@ CustomContent.propTypes = {
   nodeId: PropTypes.string.isRequired,
 };
 
-const CustomTreeItem = (props) => (
-  <TreeItem ContentComponent={CustomContent} {...props} />
-);
+function CustomTreeItem(props) {
+  return <TreeItem ContentComponent={CustomContent} {...props} />;
+}
 
 export default function IconExpansionTreeView() {
   return (

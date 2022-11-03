@@ -15,9 +15,9 @@ By the end, you should understand how to:
 
 ## Interactive demo
 
-Here's what the final product looks like—click on the **< >** icon underneath the demo to see the full source code:
+Here's what the final product looks like—click on the **<>** icon underneath the demo to see the full source code:
 
-{{"demo": "LoginFinal.js", "hideToolbar": false, "bg": true}}
+{{"demo": "LoginFinal.js"}}
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ Replace your basic Sheet from the previous step with the following `sx`-styled S
 ```jsx
 <Sheet
   sx={{
-    maxWidth: 400,
+    width: 300,
     mx: 'auto', // margin left & right
     my: 4, // margin top & botom
     py: 3, // padding top & bottom
@@ -162,11 +162,7 @@ Add the following Button, Typography, and Link components after the Text Fields 
 Notice that the Link is appended to the Typography inside of [the `endDecorator` prop](/joy-ui/react-typography/#decorators):
 
 ```jsx
-<Button
-  sx={{
-    mt: 1, // margin top
-  }}
->
+<Button sx={{ mt: 1 /* margin top */ }}>
   Log in
 </Button>
 <Typography
@@ -192,7 +188,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 Next, create a light/dark mode toggle button by adding the following code snippet in between your imports and your `App()`:
 
 ```jsx
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -209,30 +205,26 @@ const ModeToggle = () => {
     <Button
       variant="outlined"
       onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
+        setMode(mode === 'light' ? 'dark' : 'light');
       }}
     >
       {mode === 'light' ? 'Turn dark' : 'Turn light'}
     </Button>
   );
-};
+}
 ```
 
 Finally, add your newly built `<ModeToggle />` button above `<Sheet />`:
 
 ```diff
  export default function App() {
-  return (
-    <CssVarsProvider>
+   return (
+     <CssVarsProvider>
 +      <ModeToggle />
-      <Sheet>...</Sheet>
-    </CssVarsProvider>
-  );
-}
+       <Sheet>...</Sheet>
+     </CssVarsProvider>
+   );
+ }
 ```
 
 Your app should now look like the [interactive demo](#interactive-demo) at the top of the page.

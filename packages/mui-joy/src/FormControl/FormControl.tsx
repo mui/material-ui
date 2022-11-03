@@ -79,8 +79,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   } = props;
 
   const id = useId(idOverride);
-  const labelId = `${id}-label`;
-  const helperTextId = `${id}-helper-text`;
   const [helperText, setHelperText] = React.useState<HTMLElement | null>(null);
 
   const ownerState = {
@@ -117,21 +115,24 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const formControlContextValue = React.useMemo(
+    () => ({
+      disabled,
+      required,
+      error,
+      color,
+      size,
+      htmlFor: id,
+      labelId: `${id}-label`,
+      'aria-describedby': helperText ? `${id}-helper-text` : undefined,
+      setHelperText,
+      registerEffect: registerEffect!,
+    }),
+    [color, disabled, error, helperText, id, registerEffect, required, size],
+  );
+
   return (
-    <FormControlContext.Provider
-      value={{
-        disabled,
-        required,
-        error,
-        color,
-        size,
-        htmlFor: id,
-        labelId,
-        'aria-describedby': helperText ? helperTextId : undefined,
-        setHelperText,
-        registerEffect: registerEffect!,
-      }}
-    >
+    <FormControlContext.Provider value={formControlContextValue}>
       <FormControlRoot
         as={component}
         ownerState={ownerState}
@@ -197,7 +198,10 @@ FormControl.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

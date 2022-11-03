@@ -75,12 +75,12 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     defaultValue,
     children,
     component,
-    components = {},
-    componentsProps = {},
     disabled = false,
     error = false,
     onChange,
     required = false,
+    slotProps = {},
+    slots = {},
     value: incomingValue,
     ...other
   } = props;
@@ -94,10 +94,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const filled = hasValue(value);
 
-  const [focused, setFocused] = React.useState(false);
-  if (disabled && focused) {
-    setFocused(false);
-  }
+  const [focusedState, setFocused] = React.useState(false);
+  const focused = focusedState && !disabled;
+
+  React.useEffect(() => setFocused((isFocused) => (disabled ? false : isFocused)), [disabled]);
 
   const ownerState: FormControlUnstyledOwnerState = {
     ...props,
@@ -108,26 +108,26 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     required,
   };
 
-  const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
-    setValue(event.target.value);
-    onChange?.(event);
-  };
-
-  const childContext: FormControlUnstyledState = {
-    disabled,
-    error,
-    filled,
-    focused,
-    onBlur: () => {
-      setFocused(false);
-    },
-    onChange: handleChange,
-    onFocus: () => {
-      setFocused(true);
-    },
-    required,
-    value: value ?? '',
-  };
+  const childContext: FormControlUnstyledState = React.useMemo(() => {
+    return {
+      disabled,
+      error,
+      filled,
+      focused,
+      onBlur: () => {
+        setFocused(false);
+      },
+      onChange: (event: React.ChangeEvent<NativeFormControlElement>) => {
+        setValue(event.target.value);
+        onChange?.(event);
+      },
+      onFocus: () => {
+        setFocused(true);
+      },
+      required,
+      value: value ?? '',
+    };
+  }, [disabled, error, filled, focused, onChange, required, setValue, value]);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -139,10 +139,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     return children;
   };
 
-  const Root = component ?? components.Root ?? 'div';
+  const Root = component ?? slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -177,20 +177,6 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the FormControl.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * @ignore
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * @ignore
    */
   defaultValue: PropTypes.any,
@@ -213,6 +199,21 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside the FormControl.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */

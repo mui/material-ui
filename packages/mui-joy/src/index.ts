@@ -1,6 +1,8 @@
 export { default as colors } from './colors';
 export * from './styles';
 
+export { default as GlobalStyles } from './GlobalStyles';
+
 export { default as AspectRatio } from './AspectRatio';
 export * from './AspectRatio';
 
@@ -51,6 +53,12 @@ export * from './ChipDelete';
 
 export { default as Container } from './Container';
 export * from './Container';
+
+export { default as CssBaseline } from './CssBaseline';
+export * from './CssBaseline';
+
+export { default as ScopedCssBaseline } from './ScopedCssBaseline';
+export * from './ScopedCssBaseline';
 
 export { default as Divider } from './Divider';
 export * from './Divider';
@@ -153,6 +161,9 @@ export * from './TextField';
 
 export { default as Textarea } from './Textarea';
 export * from './Textarea';
+
+export { default as Tooltip } from './Tooltip';
+export * from './Tooltip';
 
 export { default as Typography } from './Typography';
 export * from './Typography';

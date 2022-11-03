@@ -40,11 +40,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   disableTransitionOnChange?: boolean;
   /**
-   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-   * @default true
-   */
-  enableColorScheme?: boolean;
-  /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
    *  Ex, if the theme is { foo: { bar: 'var(--test)' } }

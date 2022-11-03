@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { Simplify } from '@mui/types';
-import React from 'react';
 import isHostComponent from './isHostComponent';
 
 /**
@@ -39,7 +39,7 @@ export default function appendOwnerState<
   OwnerState,
 >(
   elementType: ElementType,
-  otherProps: OtherProps = {} as OtherProps,
+  otherProps: OtherProps,
   ownerState: OwnerState,
 ): AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState> {
   if (isHostComponent(elementType)) {

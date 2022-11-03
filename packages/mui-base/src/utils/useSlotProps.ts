@@ -24,7 +24,7 @@ export type UseSlotPropsParameters<
    */
   elementType: ElementType;
   /**
-   * The `componentsProps.*` of the unstyled component.
+   * The `slotProps.*` of the unstyled component.
    */
   externalSlotProps:
     | ExternalSlotProps
@@ -80,7 +80,8 @@ export default function useSlotProps<
 
   const ref = useForkRef(
     internalRef,
-    useForkRef(resolvedComponentsProps?.ref, parameters.additionalProps?.ref),
+    resolvedComponentsProps?.ref,
+    parameters.additionalProps?.ref,
   ) as ((instance: any | null) => void) | null;
 
   const props: UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState> =

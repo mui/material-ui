@@ -148,6 +148,7 @@ export default function XTheming() {
                 loading={loading}
                 pagination
                 density="compact"
+                experimentalFeatures={{ newEditingApi: true }}
               />
             </Paper>
           ) : (
@@ -178,6 +179,7 @@ export default function XTheming() {
                   loading={loading}
                   pagination
                   density="compact"
+                  experimentalFeatures={{ newEditingApi: true }}
                 />
               </Paper>
             </ThemeProvider>
