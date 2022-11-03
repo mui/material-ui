@@ -11,17 +11,16 @@ export default function TabsPricingExample() {
       size="sm"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={{
+      sx={(theme) => ({
         width: 343,
         '--Tabs-gap': '0px',
-        borderRadius: 'sm',
+        borderRadius: 'lg',
         boxShadow: 'sm',
         overflow: 'auto',
-        border: '1px color',
-      }}
+        border: `1px solid ${theme.vars.palette.divider}`,
+      })}
     >
       <TabList
-        variant="outlined"
         sx={(theme) => ({
           '--List-item-radius': '0px',
           borderRadius: 0,
@@ -41,9 +40,6 @@ export default function TabsPricingExample() {
               width: '100%',
               height: 2,
               bgcolor: 'primary.400',
-            },
-            '&:not(:first-of-type)': {
-              borderLeft: `1px solid ${theme.vars.palette.divider}`,
             },
             [`&.${tabClasses.focusVisible}`]: {
               outlineOffset: '-3px',
