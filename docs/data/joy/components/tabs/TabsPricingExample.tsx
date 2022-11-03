@@ -21,7 +21,7 @@ export default function TabsPricingExample() {
       })}
     >
       <TabList
-        sx={(theme) => ({
+        sx={{
           '--List-item-radius': '0px',
           borderRadius: 0,
           [`& .${tabClasses.root}`]: {
@@ -45,7 +45,7 @@ export default function TabsPricingExample() {
               outlineOffset: '-3px',
             },
           },
-        })}
+        }}
       >
         <Tab sx={{ py: 1.5 }}>Community</Tab>
         <Tab>Pro</Tab>
