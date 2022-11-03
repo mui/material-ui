@@ -80,8 +80,8 @@ describe('<Portal />', () => {
       </div>,
     );
     const rootElement = document.querySelector<HTMLDivElement>('#test1');
-    expect((rootElement as any).contains(document.querySelector('.woofPortal1'))).to.equal(true);
-    expect((rootElement as any).contains(document.querySelector('.woofPortal2'))).to.equal(false);
+    expect((rootElement as HTMLDivElement).contains(document.querySelector('.woofPortal1'))).to.equal(true);
+    expect((rootElement as HTMLDivElement).contains(document.querySelector('.woofPortal2'))).to.equal(false);
   });
 
   it('should unmount when parent unmounts', () => {
@@ -89,7 +89,7 @@ describe('<Portal />', () => {
       const containerRef = React.useRef<HTMLDivElement>();
       return (
         <div>
-          <div ref={containerRef as any} />
+          <div ref={containerRef as React.RefObject<HTMLDivElement>} />
           <Portal container={containerRef.current}>
             <div id="test1" />
           </Portal>
