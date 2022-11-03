@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -41,7 +41,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     name: 'JoyFormHelperText',
   });
 
-  const { children, component, ...other } = props;
+  const { children, component = 'p', ...other } = props;
   const rootRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(rootRef, ref);
   const formControl = React.useContext(FormControlContext);
@@ -60,20 +60,18 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
 
   const classes = useUtilityClasses();
 
-  const rootProps = useSlotProps({
-    elementType: FormHelperTextRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    ownerState,
+  const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      ref: handleRef,
-      as: component,
       id: formControl?.['aria-describedby'],
     },
+    ref: handleRef,
     className: classes.root,
+    elementType: FormHelperTextRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
   });
 
-  return <FormHelperTextRoot {...rootProps}>{children}</FormHelperTextRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {

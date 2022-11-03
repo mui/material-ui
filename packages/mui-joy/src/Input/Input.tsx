@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps, EventHandlers } from '@mui/base/utils';
+import { EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
@@ -248,8 +249,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component,
-    componentsProps = {},
+    component = 'div',
     formControl,
     focused,
     error: errorProp = false,
@@ -291,58 +291,55 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: [classes.root, rootStateClasses],
     elementType: InputRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+    externalForwardedProps,
     ownerState,
-    className: [classes.root, rootStateClasses],
   });
 
-  const inputProps = useSlotProps({
+  const [SlotInput, inputProps] = useSlot('input', {
+    ...(formControl && {
+      additionalProps: {
+        id: formControl.htmlFor,
+        'aria-describedby': formControl['aria-describedby'],
+      },
+    }),
+    className: [classes.input, inputStateClasses],
     elementType: InputInput,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: componentsProps.input,
+    externalForwardedProps,
     ownerState,
-    additionalProps: formControl
-      ? {
-          id: formControl.htmlFor,
-          'aria-describedby': formControl['aria-describedby'],
-        }
-      : {},
-    className: [classes.input, inputStateClasses],
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: InputStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: InputStartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.startDecorator,
     elementType: InputEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
+    externalForwardedProps,
     ownerState,
-    className: classes.endDecorator,
   });
 
   return (
-    <InputRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {startDecorator && (
-        <InputStartDecorator {...startDecoratorProps}>{startDecorator}</InputStartDecorator>
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
-      <InputInput {...inputProps} />
-      {endDecorator && <InputEndDecorator {...endDecoratorProps}>{endDecorator}</InputEndDecorator>}
-    </InputRoot>
+      <SlotInput {...inputProps} />
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </SlotRoot>
   );
 }) as OverridableComponent<InputTypeMap>;
 
@@ -379,7 +376,7 @@ Input.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the component.
    * @default {}
    */
-  componentsProps: PropTypes.shape({
+  slotProps: PropTypes.shape({
     endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

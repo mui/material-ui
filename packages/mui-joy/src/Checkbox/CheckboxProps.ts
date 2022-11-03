@@ -7,17 +7,35 @@ import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
 export interface CheckboxPropsVariantOverrides {}
-
 export interface CheckboxPropsColorOverrides {}
-
 export interface CheckboxPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'span', { sx?: SxProps }, CheckboxOwnerState>;
-  checkbox?: SlotComponentProps<'span', { sx?: SxProps }, CheckboxOwnerState>;
-  action?: SlotComponentProps<'span', { sx?: SxProps }, CheckboxOwnerState>;
-  input?: SlotComponentProps<'input', { sx?: SxProps }, CheckboxOwnerState>;
-  label?: SlotComponentProps<'label', { sx?: SxProps }, CheckboxOwnerState>;
+  root?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    CheckboxOwnerState
+  >;
+  checkbox?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    CheckboxOwnerState
+  >;
+  action?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    CheckboxOwnerState
+  >;
+  input?: SlotComponentProps<
+    'input',
+    { component?: React.ElementType; sx?: SxProps },
+    CheckboxOwnerState
+  >;
+  label?: SlotComponentProps<
+    'label',
+    { component?: React.ElementType; sx?: SxProps },
+    CheckboxOwnerState
+  >;
 }
 
 export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
@@ -33,10 +51,20 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       className?: string;
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        checkbox?: React.ElementType;
+        action?: React.ElementType;
+        input?: React.ElementType;
+        label?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

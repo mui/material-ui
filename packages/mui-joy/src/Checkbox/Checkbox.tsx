@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
@@ -188,8 +188,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     uncheckedIcon,
     checkedIcon = defaultCheckedIcon,
     label,
-    component,
-    componentsProps = {},
+    component = 'span',
     defaultChecked,
     disabled: disabledExternalProp,
     disableIcon = false,
@@ -261,38 +260,31 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
 
-  const rootProps = useSlotProps({
-    elementType: CheckboxRoot,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: CheckboxRoot,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const checkboxProps = useSlotProps({
-    elementType: CheckboxCheckbox,
-    externalSlotProps: componentsProps.checkbox,
-    ownerState,
+  const [SlotCheckbox, checkboxProps] = useSlot('checkbox', {
     className: classes.checkbox,
+    elementType: CheckboxCheckbox,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const actionProps = useSlotProps({
-    elementType: CheckboxAction,
-    externalSlotProps: componentsProps.action,
-    ownerState,
+  const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
+    elementType: CheckboxAction,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const inputProps = useSlotProps({
-    elementType: CheckboxInput,
-    getSlotProps: getInputProps,
-    externalSlotProps: componentsProps.input,
-    ownerState,
+  const [SlotInput, inputProps] = useSlot('input', {
     additionalProps: {
       id,
       name,
@@ -306,34 +298,38 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       }),
     },
     className: classes.input,
+    elementType: CheckboxInput,
+    externalForwardedProps,
+    getSlotProps: getInputProps,
+    ownerState,
   });
 
-  const labelProps = useSlotProps({
-    elementType: CheckboxLabel,
-    externalSlotProps: componentsProps.label,
-    ownerState,
+  const [SlotLabel, labelProps] = useSlot('label', {
     additionalProps: {
       htmlFor: id,
     },
     className: classes.label,
+    elementType: CheckboxLabel,
+    externalForwardedProps,
+    ownerState,
   });
 
   return (
-    <CheckboxRoot {...rootProps}>
-      <CheckboxCheckbox {...checkboxProps}>
-        <CheckboxAction {...actionProps}>
-          <CheckboxInput {...inputProps} />
-        </CheckboxAction>
+    <SlotRoot {...rootProps}>
+      <SlotCheckbox {...checkboxProps}>
+        <SlotAction {...actionProps}>
+          <SlotInput {...inputProps} />
+        </SlotAction>
         {indeterminate && !checked && !disableIcon && indeterminateIcon}
         {checked && !disableIcon && checkedIcon}
         {!checked && !disableIcon && !indeterminate && uncheckedIcon}
-      </CheckboxCheckbox>
+      </SlotCheckbox>
       {label && (
         <TypographyContext.Provider value>
-          <CheckboxLabel {...labelProps}>{label}</CheckboxLabel>
+          <SlotLabel {...labelProps}>{label}</SlotLabel>
         </TypographyContext.Provider>
       )}
-    </CheckboxRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<CheckboxTypeMap>;
 
@@ -376,7 +372,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the component.
    * @default {}
    */
-  componentsProps: PropTypes.shape({
+  slotProps: PropTypes.shape({
     action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     checkbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

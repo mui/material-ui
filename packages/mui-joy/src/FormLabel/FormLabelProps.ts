@@ -6,8 +6,16 @@ import { SxProps } from '../styles/types';
 export type FormLabelSlot = 'root' | 'asterisk';
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'label', { sx?: SxProps }, FormLabelOwnerState>;
-  asterisk?: SlotComponentProps<'span', { sx?: SxProps }, FormLabelOwnerState>;
+  root?: SlotComponentProps<
+    'label',
+    { component?: React.ElementType; sx?: SxProps },
+    FormLabelOwnerState
+  >;
+  asterisk?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    FormLabelOwnerState
+  >;
 }
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
@@ -17,10 +25,17 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
      */
     children?: React.ReactNode;
     /**
+     * Replace the default slots.
+     */
+    slots?: {
+      root?: React.ElementType;
+      asterisk?: React.ElementType;
+    };
+    /**
      * The props used for each slot inside the component.
      * @default {}
      */
-    componentsProps?: ComponentsProps;
+    slotProps?: ComponentsProps;
     /**
      * The asterisk is added if required=`true`
      */

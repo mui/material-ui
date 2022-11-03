@@ -6,16 +6,30 @@ import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
 export interface InputPropsVariantOverrides {}
-
 export interface InputPropsColorOverrides {}
-
 export interface InputPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, InputOwnerState>;
-  input?: SlotComponentProps<'input', { sx?: SxProps }, InputOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    InputOwnerState
+  >;
+  input?: SlotComponentProps<
+    'input',
+    { component?: React.ElementType; sx?: SxProps },
+    InputOwnerState
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    InputOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    InputOwnerState
+  >;
 }
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -50,10 +64,19 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        input?: React.ElementType;
+        startDecorator?: React.ElementType;
+        endDecorator?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */
