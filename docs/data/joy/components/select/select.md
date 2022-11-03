@@ -54,17 +54,18 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 
 If you have interactive elements as the select's decorators, call `stopPropagation()` from the mouse down event to prevent the popup from being opened.
 
-  ```jsx
-  <IconButton
-    onMouseDown={(event) => {
-      // don't open the popup when clicking on this button
-      event.stopPropagation();
-    }}
-    onClick={() => {
-      // click handler goes here
-    }
-  >...</IconButton>
-  ```
+```jsx
+<IconButton
+  onMouseDown={(event) => {
+    // don't open the popup when clicking on this button
+    event.stopPropagation();
+  }}
+  onClick={() => {
+    // click handler goes here
+  }
+>...</IconButton>
+```
+
 ### Indicator
 
 To change the default indicator, use the `indicator` prop with either any React element (including string) or `null` as value (to remove the indicator completely).
