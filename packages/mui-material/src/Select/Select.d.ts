@@ -73,11 +73,6 @@ interface CommonProps<T>
    */
   MenuProps?: Partial<MenuProps>;
   /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   * @default false
-   */
-  multiple?: boolean;
-  /**
    * If `true`, the component uses a native `select` element.
    * @default false
    */
@@ -147,6 +142,11 @@ type ConditionalRenderValueType<T> =
        */
       displayEmpty?: false;
       /**
+       * If `true`, `value` must be an array and the menu will support multiple selections.
+       * @default false
+       */
+      multiple?: boolean;
+      /**
        * Render the selected value.
        * You can only use it when the `native` prop is `false` (default).
        *
@@ -155,7 +155,8 @@ type ConditionalRenderValueType<T> =
        */
       renderValue?: (value: T) => React.ReactNode;
     }
-  | { displayEmpty: true; renderValue?: (value: T | '') => React.ReactNode };
+  | { displayEmpty: true; multiple?: false; renderValue?: (value: T | '') => React.ReactNode }
+  | { displayEmpty: true; multiple: true; renderValue?: (value: T) => React.ReactNode };
 
 export type SelectProps<T = unknown> = CommonProps<T> & ConditionalRenderValueType<T>;
 
