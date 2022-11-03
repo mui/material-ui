@@ -131,7 +131,7 @@ describe('<Portal />', () => {
   it('should change container on prop change', () => {
     function ContainerTest(props: { containerElement?: false | undefined; disablePortal?: true | undefined; }) {
       const { containerElement = false, disablePortal = true } = props;
-      const containerRef = React.useRef();
+      const containerRef = React.useRef<HTMLDivElement>(null);
       const container = React.useCallback(
         () => (containerElement ? containerRef.current : null),
         [containerElement],
@@ -139,8 +139,8 @@ describe('<Portal />', () => {
 
       return (
         <span>
-          <strong ref={containerRef as any} />
-          <Portal disablePortal={disablePortal} container={container as any}>
+          <strong ref={containerRef} />
+          <Portal disablePortal={disablePortal} container={container}>
             <div id="test3" />
           </Portal>
         </span>
@@ -177,9 +177,9 @@ describe('<Portal />', () => {
       callOrder.push('effect');
     };
 
-    function Test(props: { container: any; }) {
+    function Test(props: { container: HTMLDivElement; }) {
       const { container } = props;
-      const containerRef = React.useRef();
+      const containerRef = React.useRef<HTMLDivElement>();
 
       React.useEffect(() => {
         if (containerRef.current !== container) {
