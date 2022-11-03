@@ -227,7 +227,6 @@ const SelectStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   alignItems: 'center',
   marginInlineEnd: 'var(--Select-gap)',
@@ -445,7 +444,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           // the close action is already handled by blur event.
           handleOpenChange(true);
         }
-        handlers.onClick?.(event);
+        handlers.onMouseDown?.(event);
       },
     }),
     externalSlotProps: componentsProps.root,
