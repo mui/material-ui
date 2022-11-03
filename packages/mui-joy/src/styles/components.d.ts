@@ -1,4 +1,4 @@
-import { GlobalStateSlot } from '@mui/base';
+import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
 import {
   AspectRatioProps,
@@ -39,7 +39,23 @@ import {
   ChipDeleteOwnerState,
   ChipDeleteSlot,
 } from '../ChipDelete/ChipDeleteProps';
+import {
+  CircularProgressProps,
+  CircularProgressOwnerState,
+  CircularProgressSlot,
+} from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
+import {
+  ScopedCssBaselineProps,
+  ScopedCssBaselineOwnerState,
+  ScopedCssBaselineSlot,
+} from '../ScopedCssBaseline/ScopedCssBaselineProps';
+import { DividerProps, DividerOwnerState, DividerSlot } from '../Divider/DividerProps';
+import {
+  FormControlProps,
+  FormControlOwnerState,
+  FormControlSlot,
+} from '../FormControl/FormControlProps';
 import {
   FormHelperTextProps,
   FormHelperTextOwnerState,
@@ -53,6 +69,11 @@ import {
   IconButtonSlot,
 } from '../IconButton/IconButtonProps';
 import { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
+import {
+  LinearProgressProps,
+  LinearProgressOwnerState,
+  LinearProgressSlot,
+} from '../LinearProgress/LinearProgressProps';
 import { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
 import {
@@ -60,6 +81,11 @@ import {
   ListDividerOwnerState,
   ListDividerSlot,
 } from '../ListDivider/ListDividerProps';
+import {
+  ListSubheaderProps,
+  ListSubheaderOwnerState,
+  ListSubheaderSlot,
+} from '../ListSubheader/ListSubheaderProps';
 import { ListItemProps, ListItemOwnerState, ListItemSlot } from '../ListItem/ListItemProps';
 import {
   ListItemButtonProps,
@@ -79,6 +105,17 @@ import {
 import { MenuProps, MenuOwnerState, MenuSlot } from '../Menu/MenuProps';
 import { MenuItemProps, MenuItemOwnerState, MenuItemSlot } from '../MenuItem/MenuItemProps';
 import { MenuListProps, MenuListOwnerState, MenuListSlot } from '../MenuList/MenuListProps';
+import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
+import {
+  ModalCloseProps,
+  ModalCloseOwnerState,
+  ModalCloseSlot,
+} from '../ModalClose/ModalCloseProps';
+import {
+  ModalDialogProps,
+  ModalDialogOwnerState,
+  ModalDialogSlot,
+} from '../ModalDialog/ModalDialogProps';
 import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
 import {
   RadioGroupProps,
@@ -97,6 +134,7 @@ import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabList
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
 import { TextFieldProps, TextFieldOwnerState, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
 import {
   TypographyProps,
   TypographyOwnerState,
@@ -156,6 +194,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
   };
+  JoyCircularProgress?: {
+    defaultProps?: Partial<CircularProgressProps>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressOwnerState, Theme>;
+  };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
@@ -188,6 +230,18 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<ContainerProps>;
     styleOverrides?: OverridesStyleRules<ContainerSlot, ContainerProps, Theme>;
   };
+  JoyScopedCssBaseline?: {
+    defaultProps?: Partial<ScopedCssBaselineProps>;
+    styleOverrides?: OverridesStyleRules<ScopedCssBaselineSlot, ScopedCssBaselineOwnerState, Theme>;
+  };
+  JoyDivider?: {
+    defaultProps?: Partial<DividerProps>;
+    styleOverrides?: OverridesStyleRules<DividerSlot, DividerOwnerState, Theme>;
+  };
+  JoyFormControl?: {
+    defaultProps?: Partial<FormControlProps>;
+    styleOverrides?: OverridesStyleRules<FormControlSlot, FormControlOwnerState, Theme>;
+  };
   JoyFormHelperText?: {
     defaultProps?: Partial<FormHelperTextProps>;
     styleOverrides?: OverridesStyleRules<FormHelperTextSlot, FormHelperTextOwnerState, Theme>;
@@ -208,6 +262,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<InputProps>;
     styleOverrides?: OverridesStyleRules<InputSlot, InputOwnerState, Theme>;
   };
+  JoyLinearProgress?: {
+    defaultProps?: Partial<LinearProgressProps>;
+    styleOverrides?: OverridesStyleRules<LinearProgressSlot, LinearProgressOwnerState, Theme>;
+  };
   JoyLink?: {
     defaultProps?: Partial<LinkProps>;
     styleOverrides?: OverridesStyleRules<LinkSlot, LinkOwnerState, Theme>;
@@ -219,6 +277,10 @@ export interface Components<Theme = unknown> {
   JoyListDivider?: {
     defaultProps?: Partial<ListDividerProps>;
     styleOverrides?: OverridesStyleRules<ListDividerSlot, ListDividerOwnerState, Theme>;
+  };
+  JoyListSubheader?: {
+    defaultProps?: Partial<ListSubheaderProps>;
+    styleOverrides?: OverridesStyleRules<ListSubheaderSlot, ListSubheaderOwnerState, Theme>;
   };
   JoyListItem?: {
     defaultProps?: Partial<ListItemProps>;
@@ -293,9 +355,17 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<TabPanelProps>;
     styleOverrides?: OverridesStyleRules<TabPanelSlot, TabPanelOwnerState, Theme>;
   };
+  JoyTextarea?: {
+    defaultProps?: Partial<TextareaProps>;
+    styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaOwnerState, Theme>;
+  };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldOwnerState, Theme>;
+  };
+  JoyTooltip?: {
+    defaultProps?: Partial<TooltipProps>;
+    styleOverrides?: OverridesStyleRules<TooltipSlot, TooltipOwnerState, Theme>;
   };
   JoyTypography?: {
     defaultProps?: Partial<TypographyProps>;
@@ -313,8 +383,16 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<MenuItemProps>;
     styleOverrides?: OverridesStyleRules<MenuItemSlot, MenuItemOwnerState, Theme>;
   };
-  JoyTextarea?: {
-    defaultProps?: Partial<TextareaProps>;
-    styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaOwnerState, Theme>;
+  JoyModal?: {
+    defaultProps?: Partial<ModalProps>;
+    styleOverrides?: OverridesStyleRules<ModalSlot, ModalOwnerState, Theme>;
+  };
+  JoyModalClose?: {
+    defaultProps?: Partial<ModalCloseProps>;
+    styleOverrides?: OverridesStyleRules<ModalCloseSlot, ModalCloseOwnerState, Theme>;
+  };
+  JoyModalDialog?: {
+    defaultProps?: Partial<ModalDialogProps>;
+    styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
   };
 }

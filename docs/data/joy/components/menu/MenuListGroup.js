@@ -8,6 +8,7 @@ import Typography from '@mui/joy/Typography';
 export default function MenuListGroup() {
   return (
     <MenuList
+      component="div"
       variant="outlined"
       size="sm"
       sx={{
@@ -19,7 +20,7 @@ export default function MenuListGroup() {
       }}
     >
       {[...Array(5)].map((_, categoryIndex) => (
-        <List role="group" key={categoryIndex}>
+        <List key={categoryIndex}>
           <ListItem sticky>
             <Typography
               id={`sticky-list-demo-${categoryIndex}`}

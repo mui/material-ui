@@ -52,20 +52,41 @@ export interface SelectUnstyledCommonProps {
 
 export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
+   * The default selected value. Use when the component is not controlled.
    */
-  components?: {
-    Root?: React.ElementType;
-    Listbox?: React.ElementType;
-    Popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
-  };
+  defaultValue?: TValue | null;
+  /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectOption<TValue> | null,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
+   * Callback fired when an option is selected.
+   */
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier?: (option: SelectOption<TValue>) => string;
+  /**
+   * Function that customizes the rendering of the selected value.
+   */
+  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
   /**
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'button',
       SelectUnstyledComponentsPropsOverrides,
@@ -83,33 +104,15 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
     >;
   };
   /**
-   * The default selected value. Use when the component is not controlled.
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  defaultValue?: TValue | null;
-  /**
-   * A function to convert the currently selected value to a string.
-   * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
-   */
-  getSerializedValue?: (
-    option: SelectOption<TValue> | null,
-  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
-  /**
-   * Callback fired when an option is selected.
-   */
-  onChange?: (value: TValue | null) => void;
-  /**
-   * A function used to convert the option label to a string.
-   * It's useful when labels are elements and need to be converted to plain text
-   * to enable navigation using character keys on a keyboard.
-   *
-   * @default defaultOptionStringifier
-   */
-  optionStringifier?: (option: SelectOption<TValue>) => string;
-  /**
-   * Function that customizes the rendering of the selected value.
-   */
-  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+  slots?: {
+    root?: React.ElementType;
+    listbox?: React.ElementType;
+    popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
+  };
   /**
    * The selected value.
    * Set to `null` to deselect all options.

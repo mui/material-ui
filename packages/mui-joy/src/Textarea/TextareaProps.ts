@@ -1,8 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
@@ -97,13 +96,9 @@ export type TextareaProps<
   },
 > = OverrideProps<TextareaTypeMap<P, D>, D>;
 
-export interface TextareaOwnerState extends TextareaProps {
+export interface TextareaOwnerState extends ApplyColorInversion<TextareaProps> {
   /**
    * If `true`, the input is focused.
    */
   focused: boolean;
-  /**
-   * The data from the parent form control.
-   */
-  formControlContext: FormControlUnstyledState | undefined;
 }

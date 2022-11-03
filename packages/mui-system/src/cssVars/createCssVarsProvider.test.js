@@ -15,7 +15,6 @@ describe('createCssVarsProvider', () => {
     addListener: () => {},
     removeListener: () => {},
   });
-  let shouldSupportColorScheme;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
@@ -34,11 +33,6 @@ describe('createCssVarsProvider', () => {
     // clear the localstorage
     storage = {};
     window.matchMedia = createMatchMedia(false);
-
-    // Currently supported Firefox does not support `color-scheme`.
-    // Instead of skipping relevant tests entirely we assert that they work differently in Firefox.
-    // This ensures that we're automatically notified once we remove older Firefox versions from the support matrix.
-    shouldSupportColorScheme = !/Firefox/.test(navigator.userAgent);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -247,109 +241,6 @@ describe('createCssVarsProvider', () => {
       );
       expect(screen.getByText('var(--palette-primary)')).not.to.equal(null);
       expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
-    });
-
-    describe('[option]: `enableColorScheme`', () => {
-      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
-        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: true,
-        });
-        const Consumer = () => {
-          const { setMode } = useColorScheme();
-          return <button onClick={() => setMode('dark')}>change to dark</button>;
-        };
-        render(
-          <CssVarsProvider>
-            <Consumer />
-          </CssVarsProvider>,
-        );
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'light' : '',
-        });
-
-        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
-
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'dark' : '',
-        });
-      });
-
-      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
-        window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
-
-        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: true,
-        });
-        const Consumer = () => {
-          const { setMode } = useColorScheme();
-          return <button onClick={() => setMode('system')}>change to system</button>;
-        };
-        render(
-          <CssVarsProvider>
-            <Consumer />
-          </CssVarsProvider>,
-        );
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'light' : '',
-        });
-
-        fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
-
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'dark' : '',
-        });
-      });
-
-      it('does not set `color-scheme` property on <html> with correct mode, given`enableColorScheme` is false', () => {
-        const currentColorScheme = window
-          .getComputedStyle(document.documentElement)
-          .getPropertyValue('color-scheme');
-        const { CssVarsProvider } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: false,
-        });
-        const Consumer = () => <div />;
-
-        render(
-          <CssVarsProvider>
-            <Consumer />
-          </CssVarsProvider>,
-        );
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? currentColorScheme : '',
-        });
-      });
-
-      it('cleans up `color-scheme` property on <html>, given`enableColorScheme` is true', () => {
-        const previousColorScheme = window
-          .getComputedStyle(document.documentElement)
-          .getPropertyValue('color-scheme');
-        const { CssVarsProvider } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: true,
-        });
-        const { unmount } = render(<CssVarsProvider />);
-
-        unmount();
-
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: previousColorScheme,
-        });
-      });
     });
 
     describe('[option]: `disableTransitionOnChange`', () => {

@@ -116,8 +116,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   } = props;
 
   const childrenRef = React.useRef(null);
-  const handleRefIntermediary = useForkRef(children.ref, childrenRef);
-  const handleRef = useForkRef(handleRefIntermediary, ref);
+  const handleRef = useForkRef(children.ref, childrenRef, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {
     if (callback) {

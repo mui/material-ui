@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OptionUnstyledProps } from '../OptionUnstyled';
 import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
 import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelect.types';

@@ -7,6 +7,7 @@ import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Popover, { popoverClasses as classes } from '@mui/material/Popover';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 
@@ -876,5 +877,29 @@ describe('<Popover />', () => {
       );
       expect(screen.getByTestId('transition')).not.to.have.attribute('data-timeout');
     });
+  });
+
+  it("should not throw if ownerState is used in slot's styleOverrides", () => {
+    expect(() =>
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            components: {
+              MuiPopover: {
+                styleOverrides: {
+                  paper: ({ ownerState }) => ({
+                    marginTop: ownerState.transformOrigin?.vertical === 'top' ? '4px' : 0,
+                  }),
+                },
+              },
+            },
+          })}
+        >
+          <Popover anchorEl={document.createElement('div')} open>
+            <div />
+          </Popover>
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });

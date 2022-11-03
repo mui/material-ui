@@ -307,7 +307,7 @@ describe('<TablePaginationUnstyled />', () => {
                   onPageChange={(_, newPage) => {
                     setPage(newPage);
                   }}
-                  componentsProps={{
+                  slotProps={{
                     displayedRows: {
                       'data-testid': 'displayedRows',
                     } as any,
@@ -339,7 +339,7 @@ describe('<TablePaginationUnstyled />', () => {
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
-                componentsProps={{
+                slotProps={{
                   actions: {
                     showFirstButton: true,
                   } as any,
@@ -367,7 +367,7 @@ describe('<TablePaginationUnstyled />', () => {
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
-                componentsProps={{
+                slotProps={{
                   actions: {
                     showLastButton: true,
                   } as any,
@@ -470,7 +470,7 @@ describe('<TablePaginationUnstyled />', () => {
                 rowsPerPage={10}
                 page={0}
                 onPageChange={noop}
-                componentsProps={{
+                slotProps={{
                   select: { 'aria-label': 'rows per page' },
                 }}
               />

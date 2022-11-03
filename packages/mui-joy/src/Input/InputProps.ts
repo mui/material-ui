@@ -1,8 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
@@ -100,13 +99,9 @@ export type InputProps<
 
 export default InputProps;
 
-export interface InputOwnerState extends InputProps {
+export interface InputOwnerState extends ApplyColorInversion<InputProps> {
   /**
    * If `true`, the input is focused.
    */
   focused: boolean;
-  /**
-   * The data from the parent form control.
-   */
-  formControlContext: FormControlUnstyledState | undefined;
 }

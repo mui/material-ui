@@ -54,9 +54,9 @@ Use the `disabled` prop to disable interaction and focus.
 
 {{"demo": "ButtonDisabled.js"}}
 
-### With icons
+### With decorators
 
-Use the `startIcon` and/or `endIcon` props to add supporting icons to the button.
+Use the `startDecorator` and/or `endDecorator` props to add supporting decorators to the button.
 
 {{"demo": "ButtonIcons.js"}}
 

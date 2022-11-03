@@ -12,8 +12,9 @@ import {
 } from 'test/utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
+import defaultTheme from '../styles/defaultTheme';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();
@@ -58,18 +59,14 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.deletableColorSecondary);
     });
 
-    it('should render with the root and the primary class', () => {
-      const { container } = render(<Chip color="primary" />);
+    it('should render with the color class name based on the color prop', () => {
+      const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorPrimary);
-    });
-
-    it('should render with the root and the secondary class', () => {
-      const { container } = render(<Chip color="secondary" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorSecondary);
+      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].forEach((color) => {
+        const { container } = render(<Chip color={color} />);
+        const chip = container.querySelector(`.${classes.root}`);
+        expect(chip).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 
@@ -597,6 +594,24 @@ describe('<Chip />', () => {
       const { getByTestId } = render(<Chip icon={<span data-testid="test-icon" />} />);
 
       expect(getByTestId('test-icon')).to.have.class(classes.icon);
+    });
+
+    it("should not override the icon's custom color", () => {
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Chip icon={<CheckBox data-testid="test-icon" color="success" />} />,
+          <Chip icon={<CheckBox data-testid="test-icon2" color="success" />} color="error" />,
+        </React.Fragment>,
+      );
+
+      expect(getByTestId('test-icon')).to.have.class('MuiChip-iconColorSuccess');
+      expect(getByTestId('test-icon2')).to.have.class('MuiChip-iconColorSuccess');
+      expect(getByTestId('test-icon')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.success.main),
+      });
+      expect(getByTestId('test-icon2')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.success.main),
+      });
     });
   });
 

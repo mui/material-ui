@@ -4,6 +4,7 @@
     "alternativeLabel": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
     "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
     "nonLinear": { "type": { "name": "bool" } },
     "orientation": {

@@ -4,7 +4,7 @@ import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
 
-export default function RadioButtonsGroup() {
+export default function ExampleSegmentedControls() {
   const [justify, setJustify] = React.useState('flex-start');
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -28,6 +28,7 @@ export default function RadioButtonsGroup() {
       >
         {['flex-start', 'center', 'flex-end'].map((item) => (
           <Radio
+            key={item}
             color="neutral"
             value={item}
             disableIcon

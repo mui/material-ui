@@ -138,9 +138,6 @@ const styles = ({ theme }) => ({
     '& strong': {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
     },
-    '& pre': {
-      fontSize: theme.typography.pxToRem(16),
-    },
     '& summary': {
       padding: 8,
       fontSize: theme.typography.pxToRem(14),
@@ -214,10 +211,11 @@ function TopLayoutBlog(props) {
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const slug = router.pathname.replace(/\/blog\//, '');
+  const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.card === 'true'
-      ? `https://mui.com/static${router.pathname}/card.png`
+      ? `https://mui.com/static/blog/${slug}/card.png`
       : 'https://mui.com/static/logo.png';
 
   return (
@@ -230,7 +228,56 @@ function TopLayoutBlog(props) {
         disableAlternateLocale
         card={card}
         type="article"
-      />
+      >
+        <meta name="author" content={headers.authors.map((key) => authors[key].name).join(', ')} />
+        <meta property="article:published_time" content={headers.date} />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              publisher: {
+                '@type': 'Organization',
+                name: 'MUI blog',
+                url: 'https://mui.com/blog/',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://mui.com/static/icons/512x512.png',
+                },
+              },
+              author: {
+                '@type': 'Person',
+                name: authors[headers.authors[0]].name,
+                image: {
+                  '@type': 'ImageObject',
+                  url: `${authors[headers.authors[0]].avatar}?s=${250}`,
+                  width: 250,
+                  height: 250,
+                },
+                sameAs: [`https://github.com/${authors[headers.authors[0]].github}`],
+              },
+              headline: finalTitle,
+              url: `https://mui.com${canonicalAsServer}`,
+              datePublished: headers.date,
+              dateModified: headers.date,
+              image: {
+                '@type': 'ImageObject',
+                url: card,
+                width: 1280,
+                height: 640,
+              },
+              keywords: headers.tags.join(', '),
+              description,
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': 'https://mui.com/blog/',
+              },
+            }),
+          }}
+        />
+      </Head>
       <Root className={className}>
         <AppContainer component="main" className={classes.container}>
           <Link
@@ -296,56 +343,6 @@ function TopLayoutBlog(props) {
         <Divider />
         <AppFooter />
       </Root>
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: `
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "publisher": {
-    "@type": "Organization",
-    "name": "MUI blog",
-    "url": "https://mui.com/blog/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://mui.com/static/icons/512x512.png"
-    }
-  },
-  "author": {
-    "@type": "Person",
-    "name": "${authors[headers.authors[0]].name}",
-    "image": {
-      "@type": "ImageObject",
-      "url": "${authors[headers.authors[0]].avatar}?s=${250}",
-      "width": 250,
-      "height": 250
-    },
-    "sameAs": [
-      "https://github.com/${authors[headers.authors[0]].github}"
-    ]
-  },
-  "headline": "${finalTitle}",
-  "url": "https://mui.com${canonicalAs}",
-  "datePublished": "${headers.date}",
-  "dateModified": "${headers.date}",
-  "image": {
-    "@type": "ImageObject",
-    "url": "${card}",
-    "width": 1280,
-    "height": 640
-  },
-  "keywords": "${headers.tags.join(', ')}",
-  "description": "${description}",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://mui.com/blog/"
-  }
-}
-            `,
-        }}
-      />
     </BrandingProvider>
   );
 }

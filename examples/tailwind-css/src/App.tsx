@@ -30,7 +30,7 @@ export default function App() {
           className="my-4"
           defaultValue={30}
           classes={{ active: 'shadow-none' }}
-          componentsProps={{ thumb: { className: 'hover:shadow-none' } }}
+          slotProps={{ thumb: { className: 'hover:shadow-none' } }}
         />
         <PopoverMenu />
         <ProTip />
