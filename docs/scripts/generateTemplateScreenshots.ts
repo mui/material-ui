@@ -7,6 +7,7 @@ const urls = [
   '/joy-ui/getting-started/templates/email/',
   '/joy-ui/getting-started/templates/files/',
   '/joy-ui/getting-started/templates/team/',
+  '/joy-ui/getting-started/templates/ios/',
 ];
 
 (async () => {
