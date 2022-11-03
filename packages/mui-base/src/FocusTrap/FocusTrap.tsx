@@ -7,6 +7,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
 } from '@mui/utils';
+import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [
@@ -21,7 +22,7 @@ const candidatesSelector = [
   '[contenteditable]:not([contenteditable="false"])',
 ].join(',');
 
-function getTabIndex(node) {
+function getTabIndex(node: HTMLElement): number {
   const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
 
   if (!Number.isNaN(tabindexAttr)) {
@@ -47,7 +48,7 @@ function getTabIndex(node) {
   return node.tabIndex;
 }
 
-function isNonTabbableRadio(node) {
+function isNonTabbableRadio(node: HTMLElement): boolean {
   if (node.tagName !== 'INPUT' || node.type !== 'radio') {
     return false;
   }
@@ -67,7 +68,7 @@ function isNonTabbableRadio(node) {
   return roving !== node;
 }
 
-function isNodeMatchingSelectorFocusable(node) {
+function isNodeMatchingSelectorFocusable(node: HTMLElement): boolean {
   if (
     node.disabled ||
     (node.tagName === 'INPUT' && node.type === 'hidden') ||
@@ -78,7 +79,7 @@ function isNodeMatchingSelectorFocusable(node) {
   return true;
 }
 
-function defaultGetTabbable(root) {
+function defaultGetTabbable(root: HTMLElement): Array<HTMLElement> {
   const regularTabNodes = [];
   const orderedTabNodes = [];
 
@@ -108,14 +109,14 @@ function defaultGetTabbable(root) {
     .concat(regularTabNodes);
 }
 
-function defaultIsEnabled() {
+function defaultIsEnabled(): boolean {
   return true;
 }
 
 /**
  * Utility component that locks focus inside the component.
  */
-function FocusTrap(props) {
+function FocusTrap(props: FocusTrapProps) {
   const {
     children,
     disableAutoFocus = false,
@@ -302,7 +303,7 @@ function FocusTrap(props) {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
-  const onFocus = (event) => {
+  const onFocus = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }
@@ -315,7 +316,7 @@ function FocusTrap(props) {
     }
   };
 
-  const handleFocusSentinel = (event) => {
+  const handleFocusSentinel = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }
