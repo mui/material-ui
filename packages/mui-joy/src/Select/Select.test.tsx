@@ -8,6 +8,8 @@ import Option from '@mui/joy/Option';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
+import ListItemDecorator from '../ListItemDecorator';
+import Avatar from '../Avatar';
 
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -592,5 +594,27 @@ describe('Joy <Select />', () => {
 
       expect(isEventHandled).to.equal(true);
     });
+  });
+
+  it('should show dropdown if avatar is clicked"', () => {
+    const { getByTestId, getAllByTestId } = render(
+       <Select
+      defaultValue="1"
+    >
+      <Option value="1">
+        <ListItemDecorator>
+          <Avatar data-testid="test-avatar" size="sm" src="/static/images/avatar/1.jpg" />
+        </ListItemDecorator>
+        Eric
+      </Option>
+      <ListDivider role="none" inset="startContent" />
+    </Select>
+    );
+    // Fire Click of the avatar 
+    act(() => {
+      getByTestId('test-avatar').click();
+    });
+    // On click, the menu will open and there will be 2 avatars one from the default value and one from the option.
+    expect(getAllByTestId('test-avatar').length).to.equal(2);
   });
 });
