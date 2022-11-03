@@ -148,22 +148,22 @@ describe('<Portal />', () => {
     }
 
     const { setProps } = render(<ContainerTest />);
-    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('SPAN');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
       disablePortal: true,
     });
-    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('SPAN');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
       disablePortal: false,
     });
-    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('STRONG');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('STRONG');
     setProps({
       containerElement: false,
       disablePortal: false,
     });
-    expect((document.querySelector('#test3') as any).parentElement.nodeName).to.equal('BODY');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('BODY');
   });
 
   it('should call ref after child effect', () => {
