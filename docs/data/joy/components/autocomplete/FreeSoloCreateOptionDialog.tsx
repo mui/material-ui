@@ -1,48 +1,172 @@
 import * as React from 'react';
-import Chip from '@mui/joy/Chip';
+import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
+import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import Autocomplete from '@mui/joy/Autocomplete';
+import Modal from '@mui/joy/Modal';
+import ModalDialog from '@mui/joy/ModalDialog';
+import Button from '@mui/joy/Button';
+import TextField from '@mui/joy/TextField';
+import Typography from '@mui/joy/Typography';
+import Stack from '@mui/joy/Stack';
 
-export default function FixedTags() {
-  const fixedOptions = [top100Films[6]];
-  const [value, setValue] = React.useState([...fixedOptions, top100Films[13]]);
+const filter = createFilterOptions<FilmOptionType>();
+
+export default function FreeSoloCreateOptionDialog() {
+  const [value, setValue] = React.useState<FilmOptionType | null>(null);
+  const [open, toggleOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setDialogValue({
+      title: '',
+      year: '',
+    });
+
+    toggleOpen(false);
+  };
+
+  const [dialogValue, setDialogValue] = React.useState({
+    title: '',
+    year: '',
+  });
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setValue({
+      title: dialogValue.title,
+      year: parseInt(dialogValue.year, 10),
+    });
+
+    handleClose();
+  };
 
   return (
-    <FormControl id="fixed-tags-demo">
-      <FormLabel>Fixed tags</FormLabel>
-      <Autocomplete
-        multiple
-        placeholder="Favorites"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue([
-            ...fixedOptions,
-            ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
-          ]);
-        }}
-        options={top100Films}
-        getOptionLabel={(option) => option.title}
-        renderTags={(tagValue, getTagProps) =>
-          tagValue.map((option, index) => (
-            <Chip
-              variant="soft"
-              color="neutral"
-              {...getTagProps({ index })}
-              disabled={fixedOptions.indexOf(option) !== -1}
+    <React.Fragment>
+      <FormControl id="free-solo-dialog-demo">
+        <FormLabel>Free solo dialog</FormLabel>
+        <Autocomplete
+          value={value}
+          onChange={(event, newValue) => {
+            if (typeof newValue === 'string') {
+              // timeout to avoid instant validation of the dialog's form.
+              setTimeout(() => {
+                toggleOpen(true);
+                setDialogValue({
+                  title: newValue,
+                  year: '',
+                });
+              });
+            } else if (newValue && newValue.inputValue) {
+              toggleOpen(true);
+              setDialogValue({
+                title: newValue.inputValue,
+                year: '',
+              });
+            } else {
+              setValue(newValue);
+            }
+          }}
+          filterOptions={(options, params) => {
+            const filtered = filter(options, params);
+
+            if (params.inputValue !== '') {
+              filtered.push({
+                inputValue: params.inputValue,
+                title: `Add "${params.inputValue}"`,
+              });
+            }
+
+            return filtered;
+          }}
+          options={top100Films}
+          getOptionLabel={(option) => {
+            // e.g value selected with enter, right from the input
+            if (typeof option === 'string') {
+              return option;
+            }
+            if (option.inputValue) {
+              return option.inputValue;
+            }
+            return option.title;
+          }}
+          freeSolo
+          selectOnFocus
+          clearOnBlur
+          handleHomeEndKeys
+          renderOption={(props, option) => (
+            <AutocompleteOption {...props}>{option.title}</AutocompleteOption>
+          )}
+          sx={{ width: 300 }}
+        />
+      </FormControl>
+      <Modal open={open} onClose={handleClose}>
+        <ModalDialog>
+          <form onSubmit={handleSubmit}>
+            <Typography
+              id="basic-modal-dialog-title"
+              component="h2"
+              level="inherit"
+              fontSize="1.25em"
+              mb="0.25em"
             >
-              {option.title}
-            </Chip>
-          ))
-        }
-        sx={{ width: '500px' }}
-      />
-    </FormControl>
+              Add a new film
+            </Typography>
+            <Typography
+              id="basic-modal-dialog-description"
+              mt={0.5}
+              mb={2}
+              textColor="text.tertiary"
+            >
+              Did you miss any film in our list? Please, add it!
+            </Typography>
+            <Stack spacing={2}>
+              <TextField
+                autoFocus
+                id="name"
+                value={dialogValue.title}
+                onChange={(event) =>
+                  setDialogValue({
+                    ...dialogValue,
+                    title: event.target.value,
+                  })
+                }
+                label="Title"
+                type="text"
+              />
+              <TextField
+                id="year"
+                value={dialogValue.year}
+                onChange={(event) =>
+                  setDialogValue({
+                    ...dialogValue,
+                    year: event.target.value,
+                  })
+                }
+                label="year"
+                type="number"
+              />
+              <Stack direction="row" justifyContent="flex-end" spacing={2}>
+                <Button variant="plain" color="neutral" onClick={handleClose}>
+                  Cancel
+                </Button>
+                <Button type="submit">Add</Button>
+              </Stack>
+            </Stack>
+          </form>
+        </ModalDialog>
+      </Modal>
+    </React.Fragment>
   );
 }
 
+interface FilmOptionType {
+  inputValue?: string;
+  title: string;
+  year?: number;
+}
+
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films: readonly FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },

@@ -3,7 +3,6 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
-import Input from '@mui/joy/Input';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Add from '@mui/icons-material/Add';
 
@@ -63,7 +62,6 @@ export default function FreeSoloCreateOption() {
           // Regular option
           return option.title;
         }}
-        renderInput={(params) => <Input {...params} />}
         renderOption={(props, option) => (
           <AutocompleteOption {...props}>
             {option.title?.startsWith('Add "') && (

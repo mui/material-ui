@@ -14,7 +14,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
 
-const Listbox = React.forwardRef((props, ref) => (
+const Listbox = React.forwardRef<HTMLUListElement, any>((props, ref) => (
   <AutocompleteListbox
     ref={ref}
     {...props}
@@ -30,11 +30,11 @@ const Listbox = React.forwardRef((props, ref) => (
 ));
 
 export default function GitHubLabel() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [value, setValue] = React.useState([labels[1], labels[11]]);
-  const [pendingValue, setPendingValue] = React.useState([]);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [value, setValue] = React.useState<LabelType[]>([labels[1], labels[11]]);
+  const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);
     setAnchorEl(event.currentTarget);
   };
@@ -143,7 +143,7 @@ export default function GitHubLabel() {
               onChange={(event, newValue, reason) => {
                 if (
                   event.type === 'keydown' &&
-                  event.key === 'Backspace' &&
+                  (event as React.KeyboardEvent).key === 'Backspace' &&
                   reason === 'removeOption'
                 ) {
                   return;
@@ -213,6 +213,12 @@ export default function GitHubLabel() {
       </PopperUnstyled>
     </React.Fragment>
   );
+}
+
+interface LabelType {
+  name: string;
+  color: string;
+  description?: string;
 }
 
 // From https://github.com/abdonrd/github-labels

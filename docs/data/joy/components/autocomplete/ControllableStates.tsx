@@ -7,7 +7,7 @@ import Typography from '@mui/joy/Typography';
 const options = ['Option 1', 'Option 2'];
 
 export default function ControllableStates() {
-  const [value, setValue] = React.useState(options[0]);
+  const [value, setValue] = React.useState<string | null>(options[0]);
   const [inputValue, setInputValue] = React.useState('');
 
   return (

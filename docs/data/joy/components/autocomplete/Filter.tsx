@@ -1,41 +1,23 @@
 import * as React from 'react';
-import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import Autocomplete from '@mui/joy/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
 
-export default function FixedTags() {
-  const fixedOptions = [top100Films[6]];
-  const [value, setValue] = React.useState([...fixedOptions, top100Films[13]]);
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: (option: { title: string }) => option.title,
+});
 
+export default function Filter() {
   return (
-    <FormControl id="fixed-tags-demo">
-      <FormLabel>Fixed tags</FormLabel>
+    <FormControl id="filter-demo">
+      <FormLabel>Custom filter</FormLabel>
       <Autocomplete
-        multiple
-        placeholder="Favorites"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue([
-            ...fixedOptions,
-            ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
-          ]);
-        }}
+        placeholder="Type something"
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        renderTags={(tagValue, getTagProps) =>
-          tagValue.map((option, index) => (
-            <Chip
-              variant="soft"
-              color="neutral"
-              {...getTagProps({ index })}
-              disabled={fixedOptions.indexOf(option) !== -1}
-            >
-              {option.title}
-            </Chip>
-          ))
-        }
-        sx={{ width: '500px' }}
+        filterOptions={filterOptions}
+        sx={{ width: 300 }}
       />
     </FormControl>
   );

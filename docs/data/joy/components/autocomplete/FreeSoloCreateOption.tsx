@@ -1,48 +1,91 @@
 import * as React from 'react';
-import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import Autocomplete from '@mui/joy/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
+import AutocompleteOption from '@mui/joy/AutocompleteOption';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import Add from '@mui/icons-material/Add';
 
-export default function FixedTags() {
-  const fixedOptions = [top100Films[6]];
-  const [value, setValue] = React.useState([...fixedOptions, top100Films[13]]);
+const filter = createFilterOptions<FilmOptionType>();
+
+export default function FreeSoloCreateOption() {
+  const [value, setValue] = React.useState<FilmOptionType | null>(null);
 
   return (
-    <FormControl id="fixed-tags-demo">
-      <FormLabel>Fixed tags</FormLabel>
+    <FormControl id="free-solo-with-text-demo">
+      <FormLabel>Free solo with text demo</FormLabel>
       <Autocomplete
-        multiple
-        placeholder="Favorites"
         value={value}
         onChange={(event, newValue) => {
-          setValue([
-            ...fixedOptions,
-            ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
-          ]);
+          if (typeof newValue === 'string') {
+            setValue({
+              title: newValue,
+            });
+          } else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setValue({
+              title: newValue.inputValue,
+            });
+          } else {
+            setValue(newValue);
+          }
         }}
+        filterOptions={(options, params) => {
+          const filtered = filter(options, params);
+
+          const { inputValue } = params;
+          // Suggest the creation of a new value
+          const isExisting = options.some((option) => inputValue === option.title);
+          if (inputValue !== '' && !isExisting) {
+            filtered.push({
+              inputValue,
+              title: `Add "${inputValue}"`,
+            });
+          }
+
+          return filtered;
+        }}
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
         options={top100Films}
-        getOptionLabel={(option) => option.title}
-        renderTags={(tagValue, getTagProps) =>
-          tagValue.map((option, index) => (
-            <Chip
-              variant="soft"
-              color="neutral"
-              {...getTagProps({ index })}
-              disabled={fixedOptions.indexOf(option) !== -1}
-            >
-              {option.title}
-            </Chip>
-          ))
-        }
-        sx={{ width: '500px' }}
+        getOptionLabel={(option) => {
+          // Value selected with enter, right from the input
+          if (typeof option === 'string') {
+            return option;
+          }
+          // Add "xxx" option created dynamically
+          if (option.inputValue) {
+            return option.inputValue;
+          }
+          // Regular option
+          return option.title;
+        }}
+        renderOption={(props, option) => (
+          <AutocompleteOption {...props}>
+            {option.title?.startsWith('Add "') && (
+              <ListItemDecorator>
+                <Add />
+              </ListItemDecorator>
+            )}
+            {option.title}
+          </AutocompleteOption>
+        )}
+        sx={{ width: 300 }}
       />
     </FormControl>
   );
 }
 
+interface FilmOptionType {
+  inputValue?: string;
+  title: string;
+  year?: number;
+}
+
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films: readonly FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },

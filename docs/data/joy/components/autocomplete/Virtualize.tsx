@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { FixedSizeList } from 'react-window';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import PopperUnstyled, { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -11,12 +11,12 @@ import ListSubheader from '@mui/joy/ListSubheader';
 
 const LISTBOX_PADDING = 6; // px
 
-function renderRow(props) {
+function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
   const dataSet = data[index];
   const inlineStyle = {
     ...style,
-    top: style.top + LISTBOX_PADDING,
+    top: (style.top as number) + LISTBOX_PADDING,
   };
 
   if (dataSet.hasOwnProperty('group')) {
@@ -36,7 +36,7 @@ function renderRow(props) {
 
 const OuterElementContext = React.createContext({});
 
-const OuterElementType = React.forwardRef((props, ref) => {
+const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
   const outerProps = React.useContext(OuterElementContext);
   return (
     <AutocompleteListbox
@@ -56,10 +56,15 @@ const OuterElementType = React.forwardRef((props, ref) => {
 });
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
+const ListboxComponent = React.forwardRef<
+  HTMLDivElement,
+  PopperUnstyledOwnProps & React.HTMLAttributes<HTMLElement>
+>(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
-  const itemData = [];
-  children[0].forEach((item) => {
+  const itemData: Array<any> = [];
+  (
+    children as [Array<{ children: Array<React.ReactElement> | undefined }>]
+  )[0].forEach((item) => {
     if (item) {
       itemData.push(item);
       itemData.push(...(item.children || []));
@@ -93,7 +98,7 @@ ListboxComponent.propTypes = {
   children: PropTypes.node,
 };
 
-function random(length) {
+function random(length: number) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -122,9 +127,9 @@ export default function Virtualize() {
         }}
         options={OPTIONS}
         groupBy={(option) => option[0].toUpperCase()}
-        renderOption={(props, option) => [props, option]}
+        renderOption={(props, option) => [props, option] as React.ReactNode}
         // TODO: Post React 18 update - validate this conversion, look like a hidden bug
-        renderGroup={(params) => params}
+        renderGroup={(params) => params as unknown as React.ReactNode}
       />
     </FormControl>
   );

@@ -12,7 +12,7 @@ function sleep(delay = 0) {
 
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState([]);
+  const [options, setOptions] = React.useState<typeof topFilms>([]);
   const loading = open && options.length === 0;
 
   React.useEffect(() => {
