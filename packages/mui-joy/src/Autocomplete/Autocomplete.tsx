@@ -257,6 +257,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   });
 
   const {
+    'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
     autoFocus,
     clearIcon = <ClearIcon fontSize="md" />,
     clearText = 'Clear',
@@ -439,6 +442,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disabled,
       required,
       'aria-invalid': error || undefined,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
+      'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
     },
   });
 
