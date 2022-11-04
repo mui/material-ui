@@ -1,5 +1,5 @@
 {
-  "name": "@mui/monorepo",
+  "name": "@mui/monorepo-test",
   "version": "5.10.12",
   "private": true,
   "scripts": {
