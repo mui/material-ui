@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import {
-  appendOwnerState,
-  resolveComponentProps,
-  unstable_mergeSlotProps as mergeSlotProps,
-} from '@mui/base/utils';
+import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
 
 export type WithCommonProps<T> = T & {
   className?: string;
