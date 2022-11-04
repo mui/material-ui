@@ -210,6 +210,10 @@ interface AutocompleteOwnProps<
    */
   error?: boolean;
   /**
+   * Trailing adornment for this input.
+   */
+  endDecorator?: React.ReactNode;
+  /**
    * Force the visibility display of the popup icon.
    * @default 'auto'
    */
@@ -316,6 +320,10 @@ interface AutocompleteOwnProps<
    * @default 'md'
    */
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
+  /**
+   * Leading adornment for this input.
+   */
+  startDecorator?: React.ReactNode;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

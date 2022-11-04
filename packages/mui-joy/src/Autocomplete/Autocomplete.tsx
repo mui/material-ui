@@ -267,6 +267,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     disableClearable = false,
     disabled: disabledProp,
     disablePortal = false,
+    endDecorator,
     error: errorProp = false,
     filterOptions,
     forcePopupIcon = 'auto',
@@ -299,6 +300,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     renderOption: renderOptionProp,
     renderTags,
     required,
+    startDecorator: startDecoratorProp,
     size: sizeProp = 'md',
     color: colorProp = 'neutral',
     variant = 'outlined',
@@ -358,7 +360,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const classes = useUtilityClasses(ownerState);
 
-  let startDecorator;
+  let startDecorator = startDecoratorProp as any;
 
   if (multiple && (value as Array<unknown>).length > 0) {
     const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => {
@@ -604,8 +606,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         )}
 
         <SlotInput {...inputProps} />
-        {(hasClearIcon || hasPopupIcon) && (
+        {(hasClearIcon || hasPopupIcon || endDecorator) && (
           <SlotEndDecorator {...endDecoratorProps}>
+            {endDecorator}
             {hasClearIcon ? (
               <SlotClearIndicator {...clearIndicatorProps}>{clearIcon}</SlotClearIndicator>
             ) : null}
