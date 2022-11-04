@@ -63,6 +63,9 @@ export * from './ScopedCssBaseline';
 export { default as Divider } from './Divider';
 export * from './Divider';
 
+export { default as FormControl } from './FormControl';
+export * from './FormControl';
+
 export { default as FormHelperText } from './FormHelperText';
 export * from './FormHelperText';
 
