@@ -23,7 +23,8 @@ const candidatesSelector = [
 ].join(',');
 
 function getTabIndex(node: HTMLElement): number {
-  const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
+
+  const tabindexAttr = parseInt(node.getAttribute('tabindex') || '', 10);
 
   if (!Number.isNaN(tabindexAttr)) {
     return tabindexAttr;
@@ -48,7 +49,7 @@ function getTabIndex(node: HTMLElement): number {
   return node.tabIndex;
 }
 
-function isNonTabbableRadio(node: HTMLElement): boolean {
+function isNonTabbableRadio(node: HTMLInputElement): boolean {
   if (node.tagName !== 'INPUT' || node.type !== 'radio') {
     return false;
   }
@@ -57,7 +58,7 @@ function isNonTabbableRadio(node: HTMLElement): boolean {
     return false;
   }
 
-  const getRadio = (selector) => node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
+  const getRadio = (selector: string) => node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
 
   let roving = getRadio(`[name="${node.name}"]:checked`);
 
@@ -68,7 +69,7 @@ function isNonTabbableRadio(node: HTMLElement): boolean {
   return roving !== node;
 }
 
-function isNodeMatchingSelectorFocusable(node: HTMLElement): boolean {
+function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
   if (
     node.disabled ||
     (node.tagName === 'INPUT' && node.type === 'hidden') ||
@@ -79,24 +80,30 @@ function isNodeMatchingSelectorFocusable(node: HTMLElement): boolean {
   return true;
 }
 
-function defaultGetTabbable(root: HTMLElement): Array<HTMLElement> {
-  const regularTabNodes = [];
-  const orderedTabNodes = [];
+function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
+  interface OrderedTabNode {
+    documentOrder: number
+    tabIndex: number,
+    node: HTMLElement
+  }
+
+  const regularTabNodes: Array<HTMLElement> = [];
+  const orderedTabNodes: Array<OrderedTabNode> = [];
 
   Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
-    const nodeTabIndex = getTabIndex(node);
+    const nodeTabIndex = getTabIndex(node as HTMLElement);
 
-    if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node)) {
+    if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node as HTMLInputElement)) {
       return;
     }
 
     if (nodeTabIndex === 0) {
-      regularTabNodes.push(node);
+      regularTabNodes.push(node as HTMLElement);
     } else {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,
-        node,
+        node: node as HTMLElement
       });
     }
   });
@@ -126,18 +133,19 @@ function FocusTrap(props: FocusTrapProps) {
     isEnabled = defaultIsEnabled,
     open,
   } = props;
-  const ignoreNextEnforceFocus = React.useRef();
-  const sentinelStart = React.useRef(null);
-  const sentinelEnd = React.useRef(null);
-  const nodeToRestore = React.useRef(null);
-  const reactFocusEventTarget = React.useRef(null);
+  const ignoreNextEnforceFocus = React.useRef(false);
+  const sentinelStart = React.useRef<HTMLDivElement>(null);
+  const sentinelEnd = React.useRef<HTMLDivElement>(null);
+  const nodeToRestore = React.useRef<EventTarget | null>(null);
+  const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
 
-  const rootRef = React.useRef(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  // @ts-expect-error TODO upstream fix
   const handleRef = useForkRef(children.ref, rootRef);
-  const lastKeydown = React.useRef(null);
+  const lastKeydown = React.useRef<KeyboardEvent | null>(null);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -167,7 +175,7 @@ function FocusTrap(props: FocusTrapProps) {
             ].join('\n'),
           );
         }
-        rootRef.current.setAttribute('tabIndex', -1);
+        rootRef.current.setAttribute('tabIndex', '-1');
       }
 
       if (activated.current) {
@@ -182,9 +190,9 @@ function FocusTrap(props: FocusTrapProps) {
         // in nodeToRestore.current being null.
         // Not all elements in IE11 have a focus method.
         // Once IE11 support is dropped the focus() call can be unconditional.
-        if (nodeToRestore.current && nodeToRestore.current.focus) {
+        if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
           ignoreNextEnforceFocus.current = true;
-          nodeToRestore.current.focus();
+          (nodeToRestore.current as HTMLElement).focus();
         }
 
         nodeToRestore.current = null;
@@ -203,8 +211,9 @@ function FocusTrap(props: FocusTrapProps) {
 
     const doc = ownerDocument(rootRef.current);
 
-    const contain = (nativeEvent) => {
+    const contain = (nativeEvent: FocusEvent | null) => {
       const { current: rootElement } = rootRef;
+      
       // Cleanup functions are executed lazily in React 17.
       // Contain can be called between the component being unmounted and its cleanup function being run.
       if (rootElement === null) {
@@ -236,26 +245,28 @@ function FocusTrap(props: FocusTrapProps) {
           return;
         }
 
-        let tabbable = [];
+        let tabbable: string[] | HTMLElement[] = []; 
         if (
           doc.activeElement === sentinelStart.current ||
           doc.activeElement === sentinelEnd.current
         ) {
-          tabbable = getTabbable(rootRef.current);
+          tabbable = getTabbable(rootRef.current as HTMLElement);
         }
 
-        if (tabbable.length > 0) {
+        if (tabbable.length) {
           const isShiftTab = Boolean(
             lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
           );
 
           const focusNext = tabbable[0];
           const focusPrevious = tabbable[tabbable.length - 1];
-
-          if (isShiftTab) {
-            focusPrevious.focus();
-          } else {
-            focusNext.focus();
+          
+          if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
+            if (isShiftTab) {
+              focusPrevious.focus();
+            } else {
+              focusNext.focus();
+            }
           }
         } else {
           rootElement.focus();
@@ -263,7 +274,7 @@ function FocusTrap(props: FocusTrapProps) {
       }
     };
 
-    const loopFocus = (nativeEvent) => {
+    const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
 
       if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
@@ -276,7 +287,9 @@ function FocusTrap(props: FocusTrapProps) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
-        sentinelEnd.current.focus();
+        if(sentinelEnd.current) {
+          sentinelEnd.current.focus();
+        }
       }
     };
 
@@ -290,8 +303,8 @@ function FocusTrap(props: FocusTrapProps) {
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      if (doc.activeElement.tagName === 'BODY') {
-        contain();
+      if (doc.activeElement && doc.activeElement.tagName === 'BODY') {
+        contain(null);
       }
     }, 50);
 
@@ -316,7 +329,7 @@ function FocusTrap(props: FocusTrapProps) {
     }
   };
 
-  const handleFocusSentinel = (event: FocusEvent) => {
+  const handleFocusSentinel = (event: React.FocusEvent<HTMLDivElement>) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }
@@ -399,7 +412,7 @@ FocusTrap.propTypes /* remove-proptypes */ = {
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  FocusTrap['propTypes' + ''] = exactProp(FocusTrap.propTypes);
+  (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
 export default FocusTrap;
