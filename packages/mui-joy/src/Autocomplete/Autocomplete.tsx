@@ -265,7 +265,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     clearText = 'Clear',
     closeText = 'Close',
     disableClearable = false,
-    disabled = false,
+    disabled: disabledProp,
     disablePortal = false,
     error: errorProp = false,
     filterOptions,
@@ -311,6 +311,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
   const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
     getRootProps,
