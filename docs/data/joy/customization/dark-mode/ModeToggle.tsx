@@ -37,9 +37,10 @@ export default function ModeToggle() {
 
   return (
     <CssVarsProvider
-      colorSchemeNode={node || null}
-      colorSchemeSelector="#mode-toggle"
-      modeStorageKey="mode-toggle-demo"
+      // the props below are specific to this demo, you might not need them in your app.
+      colorSchemeNode={node || null} // the element to apply [data-joy-color-scheme] attribute.
+      colorSchemeSelector="#mode-toggle" // the selector to apply the CSS theme variables stylesheet.
+      modeStorageKey="mode-toggle-demo" // the local storage key to use.
     >
       <Box
         id="mode-toggle"

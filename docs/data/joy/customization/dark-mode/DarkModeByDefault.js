@@ -8,9 +8,9 @@ export default function DarkModeByDefault() {
   return (
     <CssVarsProvider
       defaultMode="dark"
-      // these props are specific to this demo, you might not need them in your app.
-      colorSchemeSelector="#demo_dark-mode-by-default"
-      modeStorageKey="demo_dark-mode-by-default"
+      // the props below are specific to this demo, you might not need them in your app.
+      colorSchemeSelector="#demo_dark-mode-by-default" // the selector to apply CSS theme variables stylesheet.
+      modeStorageKey="demo_dark-mode-by-default" // the local storage key to use
     >
       <Sheet
         id="demo_dark-mode-by-default"
