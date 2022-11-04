@@ -490,14 +490,23 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
+      // check that no tags get deleted when the tag is not a focused tag
+      fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(textbox).toHaveFocus();
+
       // expect on focused tag to delete when pressing delete key
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
       expect(secondSelectedValue).toHaveFocus();
 
       fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+
       expect(firstSelectedValue).toHaveFocus();
 
       fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
+
       expect(handleChange.callCount).to.equal(1);
       expect(textbox).toHaveFocus();
     });
