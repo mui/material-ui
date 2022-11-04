@@ -253,7 +253,7 @@ function FocusTrap(props: FocusTrapProps) {
           tabbable = getTabbable(rootRef.current as HTMLElement);
         }
 
-        if (tabbable.length) {
+        if (tabbable.length > 0) {
           const isShiftTab = Boolean(
             lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
           );
