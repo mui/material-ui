@@ -1,0 +1,13 @@
+<Autocomplete
+  variant="plain"
+  placeholder="Plain input"
+  options={top100Films}
+  sx={{ width: 300 }}
+/>
+<Autocomplete
+  variant="soft"
+  color="info"
+  placeholder="Soft input"
+  options={top100Films}
+  sx={{ width: 300 }}
+/>

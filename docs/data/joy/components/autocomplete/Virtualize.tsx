@@ -1,7 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import PopperUnstyled, { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
@@ -58,7 +57,11 @@ const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
 // Adapter for react-window
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
-  PopperUnstyledOwnProps & React.HTMLAttributes<HTMLElement>
+  {
+    anchorEl: any;
+    open: boolean;
+    modifiers: any[];
+  } & React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData: Array<any> = [];
@@ -93,10 +96,6 @@ const ListboxComponent = React.forwardRef<
     </PopperUnstyled>
   );
 });
-
-ListboxComponent.propTypes = {
-  children: PropTypes.node,
-};
 
 function random(length: number) {
   const characters =

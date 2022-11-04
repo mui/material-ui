@@ -59,6 +59,7 @@ const OuterElementType = React.forwardRef((props, ref) => {
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, anchorEl, open, modifiers, ...other } = props;
   const itemData = [];
+
   children[0].forEach((item) => {
     if (item) {
       itemData.push(item);
@@ -90,7 +91,10 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 });
 
 ListboxComponent.propTypes = {
+  anchorEl: PropTypes.any.isRequired,
   children: PropTypes.node,
+  modifiers: PropTypes.array.isRequired,
+  open: PropTypes.bool.isRequired,
 };
 
 function random(length) {
