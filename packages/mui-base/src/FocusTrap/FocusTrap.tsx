@@ -23,7 +23,6 @@ const candidatesSelector = [
 ].join(',');
 
 function getTabIndex(node: HTMLElement): number {
-
   const tabindexAttr = parseInt(node.getAttribute('tabindex') || '', 10);
 
   if (!Number.isNaN(tabindexAttr)) {
@@ -58,7 +57,8 @@ function isNonTabbableRadio(node: HTMLInputElement): boolean {
     return false;
   }
 
-  const getRadio = (selector: string) => node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
+  const getRadio = (selector: string) =>
+    node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
 
   let roving = getRadio(`[name="${node.name}"]:checked`);
 
@@ -82,9 +82,9 @@ function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
 
 function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
   interface OrderedTabNode {
-    documentOrder: number
-    tabIndex: number,
-    node: HTMLElement
+    documentOrder: number;
+    tabIndex: number;
+    node: HTMLElement;
   }
 
   const regularTabNodes: Array<HTMLElement> = [];
@@ -103,7 +103,7 @@ function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,
-        node: node as HTMLElement
+        node: node as HTMLElement,
       });
     }
   });
@@ -213,7 +213,7 @@ function FocusTrap(props: FocusTrapProps) {
 
     const contain = (nativeEvent: FocusEvent | null) => {
       const { current: rootElement } = rootRef;
-      
+
       // Cleanup functions are executed lazily in React 17.
       // Contain can be called between the component being unmounted and its cleanup function being run.
       if (rootElement === null) {
@@ -245,7 +245,7 @@ function FocusTrap(props: FocusTrapProps) {
           return;
         }
 
-        let tabbable: string[] | HTMLElement[] = []; 
+        let tabbable: string[] | HTMLElement[] = [];
         if (
           doc.activeElement === sentinelStart.current ||
           doc.activeElement === sentinelEnd.current
@@ -260,7 +260,7 @@ function FocusTrap(props: FocusTrapProps) {
 
           const focusNext = tabbable[0];
           const focusPrevious = tabbable[tabbable.length - 1];
-          
+
           if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
             if (isShiftTab) {
               focusPrevious.focus();
@@ -287,7 +287,7 @@ function FocusTrap(props: FocusTrapProps) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
-        if(sentinelEnd.current) {
+        if (sentinelEnd.current) {
           sentinelEnd.current.focus();
         }
       }
