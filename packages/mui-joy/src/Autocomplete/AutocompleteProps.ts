@@ -11,12 +11,18 @@ import {
   UseAutocompleteProps,
 } from '@mui/base/AutocompleteUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 import { IconButtonOwnerState } from '../IconButton/IconButtonProps';
 import { AutocompleteListboxProps } from '../AutocompleteListbox/AutocompleteListboxProps';
 import { AutocompleteOptionProps } from '../AutocompleteOption/AutocompleteOptionProps';
 
 export type AutocompleteSlot = keyof ComponentsProps;
+
+export interface AutocompletePropsVariantOverrides {}
+
+export interface AutocompletePropsColorOverrides {}
+
+export interface AutocompletePropsSizeOverrides {}
 
 export type {
   AutocompleteChangeDetails,
@@ -48,7 +54,6 @@ export interface AutocompleteRenderGroupParams {
 export interface AutocompleteRenderInputParams {
   placeholder?: string;
   disabled: boolean;
-  fullWidth: boolean;
   size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
   ref: React.Ref<any>;
   startDecorator: React.ReactNode;
@@ -58,11 +63,24 @@ export interface AutocompleteRenderInputParams {
   };
 }
 
-export interface AutocompletePropsSizeOverrides {}
-
 interface ComponentsProps {
   root?: SlotComponentProps<
     'div',
+    { component?: React.ElementType; sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
+  input?: SlotComponentProps<
+    'input',
+    { component?: React.ElementType; sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
     { component?: React.ElementType; sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
   >;
@@ -123,6 +141,10 @@ interface AutocompleteOwnProps<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
   /**
+   * If `true`, the `input` element is focused during the first mount.
+   */
+  autoFocus?: boolean;
+  /**
    * The icon to display in place of the default clear icon.
    * @default <ClearIcon fontSize="small" />
    */
@@ -142,10 +164,18 @@ interface AutocompleteOwnProps<
    */
   closeText?: string;
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
+  /**
    * Replace the default slots.
    */
   components?: {
     root?: React.ElementType;
+    input?: React.ElementType;
+    startDecorator?: React.ElementType;
+    endDecorator?: React.ElementType;
     clearIndicator?: React.ElementType;
     popupIndicator?: React.ElementType;
     listbox?: React.ElementType;
@@ -175,15 +205,15 @@ interface AutocompleteOwnProps<
    */
   disablePortal?: boolean;
   /**
+   * If `true`, the `input` will indicate an error.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  error?: boolean;
+  /**
    * Force the visibility display of the popup icon.
    * @default 'auto'
    */
   forcePopupIcon?: true | false | 'auto';
-  /**
-   * If `true`, the input will take up the full width of its container.
-   * @default false
-   */
-  fullWidth?: boolean;
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *
@@ -211,6 +241,10 @@ interface AutocompleteOwnProps<
    * @default -1
    */
   limitTags?: number;
+  /**
+   * Name attribute of the `input` element.
+   */
+  name?: string;
   /**
    * Text to display when there are no options.
    *
@@ -247,13 +281,6 @@ interface AutocompleteOwnProps<
    */
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;
   /**
-   * Render the input.
-   *
-   * @param {object} params
-   * @returns {ReactNode}
-   */
-  renderInput: (params: AutocompleteRenderInputParams) => React.ReactNode;
-  /**
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {object} props The props to apply on the li element.
@@ -280,6 +307,11 @@ interface AutocompleteOwnProps<
     ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo>,
   ) => React.ReactNode;
   /**
+   * If `true`, the `input` element is required.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  required?: boolean;
+  /**
    * The size of the component.
    * @default 'md'
    */
@@ -288,6 +320,11 @@ interface AutocompleteOwnProps<
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps;
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
 }
 
 export interface AutocompleteProps<
@@ -296,7 +333,7 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
 > extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children' | 'color'> {
   onKeyDown?: (
     event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
   ) => void;
@@ -310,7 +347,6 @@ export interface AutocompleteOwnerState<
 > extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo> {
   disablePortal: boolean;
   focused: boolean;
-  fullWidth: boolean;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
   hasOptions: boolean;

@@ -3,10 +3,20 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface AutocompleteClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: string;
-  /** State class applied to the root element if focused. */
+  /** Styles applied to the input element. */
+  input: string;
+  /** Styles applied to the startDecorator element. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element. */
+  endDecorator: string;
+  /** Styles applied to the root element if the component is a descendant of `FormControl`. */
+  formControl: string;
+  /** Styles applied to the root element if the component is focused. */
   focused: string;
+  /** Styles applied to the root element if `disabled={true}`. */
+  disabled: string;
+  /** State class applied to the root element if `error={true}`. */
+  error: string;
   /** Styles applied to the limitTag element. */
   limitTag: string;
   /** Styles applied when the popup icon is rendered. */
@@ -37,8 +47,13 @@ export function getAutocompleteUtilityClass(slot: string): string {
 
 const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAutocomplete', [
   'root',
-  'fullWidth',
+  'input',
+  'startDecorator',
+  'endDecorator',
+  'formControl',
   'focused',
+  'disabled',
+  'error',
   'limitTag',
   'hasPopupIcon',
   'hasClearIcon',
