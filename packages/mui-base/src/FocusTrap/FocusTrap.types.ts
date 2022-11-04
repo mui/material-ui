@@ -50,16 +50,3 @@ export interface FocusTrapProps {
    */
   disableRestoreFocus?: boolean;
 }
-
-/**
- * Utility component that locks focus inside the component.
- *
- * Demos:
- *
- * - [Focus Trap](https://mui.com/base/react-focus-trap/)
- *
- * API:
- *
- * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
- */
-export default function FocusTrap(props: FocusTrapProps): JSX.Element;

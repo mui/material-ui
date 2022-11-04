@@ -22,6 +22,12 @@ const candidatesSelector = [
   '[contenteditable]:not([contenteditable="false"])',
 ].join(',');
 
+interface OrderedTabNode {
+  documentOrder: number;
+  tabIndex: number;
+  node: HTMLElement;
+}
+
 function getTabIndex(node: HTMLElement): number {
   const tabindexAttr = parseInt(node.getAttribute('tabindex') || '', 10);
 
@@ -81,14 +87,8 @@ function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
 }
 
 function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
-  interface OrderedTabNode {
-    documentOrder: number;
-    tabIndex: number;
-    node: HTMLElement;
-  }
-
-  const regularTabNodes: Array<HTMLElement> = [];
-  const orderedTabNodes: Array<OrderedTabNode> = [];
+  const regularTabNodes: HTMLElement[] = [];
+  const orderedTabNodes: OrderedTabNode[] = [];
 
   Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
     const nodeTabIndex = getTabIndex(node as HTMLElement);
