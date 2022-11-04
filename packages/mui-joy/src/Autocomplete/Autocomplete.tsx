@@ -8,10 +8,7 @@ import {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/AutocompleteUnstyled';
-import PopperUnstyled, {
-  PopperUnstyledProps,
-  PopperUnstyledTypeMap,
-} from '@mui/base/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -52,6 +49,14 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
     <List>{params.children}</List>
   </ListItem>
 );
+const defaultModifiers = [
+  {
+    name: 'offset',
+    options: {
+      offset: [0, 4],
+    },
+  },
+];
 
 const useUtilityClasses = (ownerState: OwnerState) => {
   const { focused, fullWidth, hasClearIcon, hasPopupIcon, popupOpen } = ownerState;
@@ -390,19 +395,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-    ],
-    [],
-  );
-
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
     elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
@@ -418,7 +410,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       anchorEl,
       disablePortal,
       open: popupOpen,
-      modifiers: cachedModifiers,
+      modifiers: defaultModifiers,
       style: anchorEl
         ? {
             width: anchorEl.clientWidth,
