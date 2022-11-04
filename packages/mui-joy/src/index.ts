@@ -3,11 +3,11 @@ export * from './styles';
 
 export { default as GlobalStyles } from './GlobalStyles';
 
-export { default as AspectRatio } from './AspectRatio';
-export * from './AspectRatio';
-
 export { default as Alert } from './Alert';
 export * from './Alert';
+
+export { default as AspectRatio } from './AspectRatio';
+export * from './AspectRatio';
 
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
@@ -26,9 +26,6 @@ export * from './Breadcrumbs';
 
 export { default as Button } from './Button';
 export * from './Button';
-
-export { default as CircularProgress } from './CircularProgress';
-export * from './CircularProgress';
 
 export { default as Card } from './Card';
 export * from './Card';
@@ -50,6 +47,9 @@ export * from './Chip';
 
 export { default as ChipDelete } from './ChipDelete';
 export * from './ChipDelete';
+
+export { default as CircularProgress } from './CircularProgress';
+export * from './CircularProgress';
 
 export { default as Container } from './Container';
 export * from './Container';
@@ -81,6 +81,9 @@ export * from './IconButton';
 export { default as Input } from './Input';
 export * from './Input';
 
+export { default as LinearProgress } from './LinearProgress';
+export * from './LinearProgress';
+
 export { default as Link } from './Link';
 export * from './Link';
 
@@ -101,6 +104,9 @@ export * from './ListItemContent';
 
 export { default as ListItemDecorator } from './ListItemDecorator';
 export * from './ListItemDecorator';
+
+export { default as ListSubheader } from './ListSubheader';
+export * from './ListSubheader';
 
 export { default as Menu } from './Menu';
 export * from './Menu';
@@ -159,11 +165,11 @@ export * from './TabPanel';
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
 
-export { default as TextField } from './TextField';
-export * from './TextField';
-
 export { default as Textarea } from './Textarea';
 export * from './Textarea';
+
+export { default as TextField } from './TextField';
+export * from './TextField';
 
 export { default as Tooltip } from './Tooltip';
 export * from './Tooltip';
