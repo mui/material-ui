@@ -486,7 +486,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('deletes a focused tag when pressing delete key', () => {
+    it('deletes a focused tag when pressing the delete key', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       render(
