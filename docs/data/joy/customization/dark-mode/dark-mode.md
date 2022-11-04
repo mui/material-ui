@@ -1,20 +1,58 @@
 # Dark mode
 
-<p class="description">Learn about the dark mode in Joy UI</p>
+<p class="description">Learn about the different methods for applying dark mode to a Joy UI app.</p>
 
-## Dark mode by default
+## Set as default
 
-To set dark mode as default for your app, use `defaultMode: 'dark'`.
+To set dark mode as the default for your app, add `defaultMode: 'dark'` to your `<CssVarsProvider>` wrapper component:
 
 {{"demo": "DarkModeByDefault.js"}}
 
-For server-side applications, check out the framework setup in the [guide](#server-side-rendering) below and provide the same value to the `getInitColorSchemeScript` function.
+For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `getInitColorSchemeScript` function:
 
 ```js
 getInitColorSchemeScript({ defaultMode: 'dark' });
 ```
 
-## The mode-toggle component
+## Matching device's preference
+
+Use `defaultMode: 'system'` to set your app's default mode to match the user's chosen preference on their device.
+
+```jsx
+import { CssVarsProvider } from '@mui/joy/styles';
+
+<CssVarsProvider defaultMode="system">...</CssVarsProvider>;
+```
+
+For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `getInitColorSchemeScript` function:
+
+```js
+getInitColorSchemeScript({ defaultMode: 'system' });
+```
+
+### Identify the system mode
+
+Use the `useColorScheme` React hook to check if the user's preference is in light or dark mode:
+
+```js
+import { useColorScheme } from '@mui/joy/styles';
+
+function SomeComponent() {
+  const { mode, systemMode } = useColorScheme();
+  console.log(mode); // "system"
+  console.log(systemMode); // "light" | "dark" based on the user's preference.
+}
+```
+
+{{"demo": "IdentifySystemMode.js"}}
+
+:::warning
+The `useColorScheme()` hook only works with components nested inside of `<CssVarsProvider>`—otherwise it will throw an error.
+:::
+
+## Creating a mode-toggle component
+
+You can create a toggle component to give users the option to select between modes.
 
 In the example below, we're using a `Button` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode toggling.
 
@@ -39,10 +77,10 @@ function ModeToggle() {
 {{"demo": "ModeToggle.js"}}
 
 :::warning
-**Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error.
+The `useColorScheme()` hook only works with components nested inside of `<CssVarsProvider>`—otherwise it will throw an error.
 :::
 
-## Server-side rendering
+## Server-side rendering notes
 
 ### Avoid hydration mismatch
 
@@ -117,39 +155,3 @@ export function onRenderBody({ setPreBodyComponents }) {
   setPreBodyComponents([getInitColorSchemeScript()]);
 }
 ```
-
-## System preference
-
-To set the mode based on the user's preference, use `defaultMode: 'system'`.
-
-```jsx
-import { CssVarsProvider } from '@mui/joy/styles';
-
-<CssVarsProvider defaultMode="system">...</CssVarsProvider>;
-```
-
-For server-side applications, check out the framework setup in the [guide](#server-side-rendering) above and provide the same value to the `getInitColorSchemeScript` function.
-
-```js
-getInitColorSchemeScript({ defaultMode: 'system' });
-```
-
-### Identify the system mode
-
-To check if the user's preference is in `light` or `dark` mode, use the `useColorScheme` React hook:
-
-```js
-import { useColorScheme } from '@mui/joy/styles';
-
-function SomeComponent() {
-  const { mode, systemMode } = useColorScheme();
-  console.log(mode); // "system"
-  console.log(systemMode); // "light" | "dark" based on the user's preference.
-}
-```
-
-{{"demo": "IdentifySystemMode.js"}}
-
-:::warning
-**Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error.
-:::
