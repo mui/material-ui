@@ -162,6 +162,12 @@ Put an `Autocomplete`, a `FormLabel` and a `FormHelperText` (optional) under a `
 
 {{"demo": "LabelAndHelperText.js"}}
 
+### Decorators
+
+Use `startDecorator` or `endDecorator` to insert any element to the autocomplete.
+
+{{"demo": "AutocompleteDecorators.js"}}
+
 ### Controlled states
 
 The component has two states that can be controlled:
