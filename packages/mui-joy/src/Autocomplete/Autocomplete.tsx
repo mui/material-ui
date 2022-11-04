@@ -82,6 +82,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
+    inputWrapper: ['inputWrapper'],
     input: ['input'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
@@ -101,35 +102,50 @@ const AutocompleteRoot = styled(StyledInputRoot, {
   name: 'JoyAutocomplete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: OwnerState }>(({ ownerState }) => {
-  let endDecoratorCount = 0;
-  if (ownerState.hasClearIcon) {
-    endDecoratorCount += 1;
-  }
-  if (ownerState.hasPopupIcon) {
-    endDecoratorCount += 1;
-  }
-  return {
-    /* Avoid double tap issue on iOS */
-    '@media (pointer: fine)': {
-      [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-        visibility: 'visible',
-      },
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  /* Avoid double tap issue on iOS */
+  '@media (pointer: fine)': {
+    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+      visibility: 'visible',
     },
-    ...(ownerState.multiple && {
-      '--Autocomplete-endDecorator-count': endDecoratorCount,
-      paddingInlineEnd: `calc(var(--Autocomplete-endDecorator-count, 0) * var(--Input-decorator-childHeight) + 2 * var(--_Input-paddingBlock))`,
-      flexWrap: 'wrap',
+  },
+  ...(ownerState.multiple &&
+    !ownerState.startDecorator && {
       paddingInlineStart: 0,
-      paddingBlockEnd: 'var(--_Input-paddingBlock)',
-      [`& .${chipClasses.root}`]: {
-        // TODO: use flexbox `gap` on the root slot later.
-        marginInlineStart: 'var(--_Input-paddingBlock)',
-        marginBlockStart: 'var(--_Input-paddingBlock)',
+    }),
+}));
+
+/**
+ * InputWrapper groups the chips (multi selection) and the input
+ * so that start/end decorators can stay in the normal flow.
+ */
+const AutocompleteInputWrapper = styled('div', {
+  name: 'JoyAutocomplete',
+  slot: 'InputWrapper',
+  overridesResolver: (props, styles) => styles.inputWrapper,
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  flex: 1, // stretch to fill the root slot
+  minWidth: 0, // won't push end decorator out of the autocomplete
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  ...(ownerState.multiple && {
+    paddingInlineStart: 0,
+    paddingBlockEnd: 'var(--_Input-paddingBlock)',
+    [`& .${chipClasses.root}`]: {
+      // TODO: use flexbox `gap` on the root slot later.
+      marginInlineStart: 'var(--_Input-paddingBlock)',
+      marginBlockStart: 'var(--_Input-paddingBlock)',
+    },
+    // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
+    ...((ownerState.value as Array<unknown>).length > 0 && {
+      marginInlineStart: 'calc(-1 * var(--_Input-paddingBlock))',
+      [`& .${autocompleteClasses.input}`]: {
+        marginInlineStart: 'var(--Input-paddingInline)',
       },
     }),
-  };
-});
+  }),
+}));
 
 const AutocompleteInput = styled(StyledInputHtml, {
   name: 'JoyAutocomplete',
@@ -139,8 +155,10 @@ const AutocompleteInput = styled(StyledInputHtml, {
   minWidth: 30,
   minHeight: 'calc(var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px))',
   ...(ownerState.multiple && {
-    marginInlineStart: 'var(--Input-paddingInline)',
     marginBlockEnd: 'calc(-1 * var(--_Input-paddingBlock))',
+    ...(!ownerState.startDecorator && {
+      marginInlineStart: 'var(--Input-paddingInline)',
+    }),
   }),
 }));
 
@@ -148,25 +166,13 @@ const AutocompleteStartDecorator = styled(StyledInputStartDecorator, {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  ...(ownerState.multiple && {
-    display: 'contents',
-    color: 'inherit',
-  }),
-}));
+})<{ ownerState: OwnerState }>({});
 
 const AutocompleteEndDecorator = styled(StyledInputEndDecorator, {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  ...(ownerState.multiple && {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    right: 'var(--Input-paddingInline)',
-  }),
-}));
+})<{ ownerState: OwnerState }>({});
 
 const AutocompleteClearIndicator = styled(StyledIconButton, {
   name: 'JoyAutocomplete',
@@ -176,6 +182,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton, {
   ...(!ownerState.freeSolo && {
     marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButton
   }),
+  marginInlineStart: 'var(--_Input-paddingBlock)',
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
 
@@ -184,6 +191,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton, {
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
+  marginInlineStart: 'var(--_Input-paddingBlock)',
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
@@ -301,7 +309,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     renderTags,
     required,
     type,
-    startDecorator: startDecoratorProp,
+    startDecorator,
     size: sizeProp = 'md',
     color: colorProp = 'neutral',
     variant = 'outlined',
@@ -347,6 +355,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
+    value,
     disablePortal,
     focused,
     hasOptions: !!groupedOptions.length,
@@ -361,7 +370,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const classes = useUtilityClasses(ownerState);
 
-  let startDecorator = startDecoratorProp as any;
+  let selectedOptions;
 
   if (multiple && (value as Array<unknown>).length > 0) {
     const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => {
@@ -375,9 +384,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     };
 
     if (renderTags) {
-      startDecorator = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
+      selectedOptions = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
-      startDecorator = (value as Array<unknown>).map((option, index) => {
+      selectedOptions = (value as Array<unknown>).map((option, index) => {
         return (
           <Chip
             key={index}
@@ -409,6 +418,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps: other,
     ownerState,
     getSlotProps: getRootProps,
+  });
+
+  const [SlotInputWrapper, inputWrapperProps] = useSlot('inputWrapper', {
+    className: classes.inputWrapper,
+    elementType: AutocompleteInputWrapper,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   const inputStateClasses = {
@@ -557,12 +573,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
   });
 
-  if (limitTags > -1 && Array.isArray(startDecorator)) {
-    const more = startDecorator.length - limitTags;
+  if (limitTags > -1 && Array.isArray(selectedOptions)) {
+    const more = selectedOptions.length - limitTags;
     if (!focused && more > 0) {
-      startDecorator = startDecorator.splice(0, limitTags);
-      startDecorator.push(
-        <SlotLimitTag key={startDecorator.length} {...limitTagProps}>
+      selectedOptions = selectedOptions.splice(0, limitTags);
+      selectedOptions.push(
+        <SlotLimitTag key={selectedOptions.length} {...limitTagProps}>
           {getLimitTagsText(more)}
         </SlotLimitTag>,
       );
@@ -606,8 +622,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
-
-        <SlotInput {...inputProps} />
+        <SlotInputWrapper {...inputWrapperProps}>
+          {selectedOptions}
+          <SlotInput {...inputProps} />
+        </SlotInputWrapper>
         {(hasClearIcon || hasPopupIcon || endDecorator) && (
           <SlotEndDecorator {...endDecoratorProps}>
             {endDecorator}

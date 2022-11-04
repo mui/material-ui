@@ -69,6 +69,11 @@ interface ComponentsProps {
     { component?: React.ElementType; sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
   >;
+  inputWrapper?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
   input?: SlotComponentProps<
     'input',
     { component?: React.ElementType; sx?: SxProps },
@@ -173,6 +178,7 @@ interface AutocompleteOwnProps<
    */
   components?: {
     root?: React.ElementType;
+    inputWrapper?: React.ElementType;
     input?: React.ElementType;
     startDecorator?: React.ElementType;
     endDecorator?: React.ElementType;
@@ -329,10 +335,6 @@ interface AutocompleteOwnProps<
    */
   sx?: SxProps;
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   */
-  type?: string;
-  /**
    * The variant to use.
    * @default 'outlined'
    */
@@ -346,6 +348,10 @@ export interface AutocompleteProps<
   FreeSolo extends boolean | undefined,
 > extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children' | 'color'> {
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   */
+  type?: string;
   onKeyDown?: (
     event: React.KeyboardEvent<HTMLDivElement> & { defaultMuiPrevented?: boolean },
   ) => void;

@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface AutocompleteClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the inputWrapper element. */
+  inputWrapper: string;
   /** Styles applied to the input element. */
   input: string;
   /** Styles applied to the startDecorator element. */
@@ -73,6 +75,7 @@ export function getAutocompleteUtilityClass(slot: string): string {
 
 const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAutocomplete', [
   'root',
+  'inputWrapper',
   'input',
   'startDecorator',
   'endDecorator',
