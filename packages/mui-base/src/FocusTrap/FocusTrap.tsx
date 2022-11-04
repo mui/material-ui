@@ -358,7 +358,7 @@ function FocusTrap(props: FocusTrapProps) {
 FocusTrap.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A single child content element.
@@ -408,7 +408,7 @@ FocusTrap.propTypes /* remove-proptypes */ = {
    * If `true`, focus is locked.
    */
   open: PropTypes.bool.isRequired,
-};
+} as any;
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
