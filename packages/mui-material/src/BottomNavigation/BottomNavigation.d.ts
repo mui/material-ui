@@ -42,7 +42,7 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
  *
  * Demos:
  *
- * - [Bottom navigation](https://mui.com/material-ui/react-bottom-navigation/)
+ * - [Bottom Navigation](https://mui.com/material-ui/react-bottom-navigation/)
  *
  * API:
  *

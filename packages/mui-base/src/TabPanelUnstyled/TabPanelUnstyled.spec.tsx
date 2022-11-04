@@ -7,7 +7,7 @@ function Root(props: TabPanelUnstyledRootSlotProps) {
   return <div data-hidden={ownerState.hidden} {...other} />;
 }
 
-const styledTabPanel = <TabPanelUnstyled components={{ Root }} value={0} />;
+const styledTabPanel = <TabPanelUnstyled slots={{ root: Root }} value={0} />;
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;

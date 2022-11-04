@@ -3,7 +3,7 @@ product: material-ui
 title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
-materialDesign: https://material.io/components/dialogs
+materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 ---
 

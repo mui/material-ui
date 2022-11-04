@@ -1,15 +1,15 @@
 ---
 product: material-ui
-title: React Radio button component
+title: React Radio Group component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
-materialDesign: https://material.io/components/selection-controls#radio-buttons
+materialDesign: https://m2.material.io/components/selection-controls#radio-buttons
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
-# Radio button
+# Radio Group
 
-<p class="description">Radio buttons allow the user to select one option from a set.</p>
+<p class="description">The Radio Group allows the user to select one option from a set.</p>
 
 Use radio buttons when the user needs to see all available options.
 If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.

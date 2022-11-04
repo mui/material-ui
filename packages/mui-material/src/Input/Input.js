@@ -121,6 +121,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
+    slotProps,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -130,14 +132,18 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = { disableUnderline };
   const inputComponentsProps = { root: { ownerState } };
 
-  const componentsProps = componentsPropsProp
-    ? deepmerge(componentsPropsProp, inputComponentsProps)
-    : inputComponentsProps;
+  const componentsProps =
+    slotProps ?? componentsPropsProp
+      ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
+      : inputComponentsProps;
+
+  const RootSlot = slots.root ?? components.Root ?? InputRoot;
+  const InputSlot = slots.input ?? components.Input ?? InputInput;
 
   return (
     <InputBase
-      components={{ Root: InputRoot, Input: InputInput, ...components }}
-      componentsProps={componentsProps}
+      slots={{ root: RootSlot, input: InputSlot }}
+      slotProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -179,8 +185,11 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -188,7 +197,12 @@ Input.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -289,6 +303,29 @@ Input.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

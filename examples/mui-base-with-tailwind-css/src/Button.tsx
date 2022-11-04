@@ -11,7 +11,7 @@ const Button = React.forwardRef(function Button(
   return (
     <ButtonUnstyled
       {...props}
-      componentsProps={{
+      slotProps={{
         root: (state: ButtonUnstyledOwnerState) => ({
           className: `hover:text-cyan-500 transition-colors ${
             state.focusVisible ? 'outline-0 ring-2 ring-cyan-500' : ''

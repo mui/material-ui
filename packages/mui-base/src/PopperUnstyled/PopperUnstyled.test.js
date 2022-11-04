@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { createRenderer, createMount, describeConformanceUnstyled, screen } from 'test/utils';
+import PopperUnstyled, { popperUnstyledClasses } from '@mui/base/PopperUnstyled';
 
 describe('<PopperUnstyled />', () => {
   const { render } = createRenderer();
+  const mount = createMount();
 
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
@@ -12,17 +13,20 @@ describe('<PopperUnstyled />', () => {
     open: true,
   };
 
-  describeConformance(<PopperUnstyled {...defaultProps} />, () => ({
-    classes: {},
+  describeConformanceUnstyled(<PopperUnstyled {...defaultProps} />, () => ({
     inheritComponent: 'div',
+    render,
+    mount,
     refInstanceof: window.HTMLDivElement,
     skip: [
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],
+    slots: {
+      root: {
+        expectedClassName: popperUnstyledClasses.root,
+      },
+    },
   }));
 
   it('should pass ownerState to overridable component', () => {

@@ -15,11 +15,16 @@ function createLoading(sx: BoxProps['sx']) {
   return function Loading() {
     return (
       <Box
-        sx={{
-          borderRadius: 1,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-          ...sx,
-        }}
+        sx={[
+          (theme) => ({
+            borderRadius: 1,
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+            }),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       />
     );
   };
@@ -44,11 +49,14 @@ function ProductSuite() {
   return (
     <Box
       ref={ref}
-      sx={{
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+      sx={(theme) => ({
+        bgcolor: 'grey.50',
         py: { xs: 4, sm: 6, md: 8 },
         overflow: 'hidden',
-      }}
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+        }),
+      })}
     >
       <Container>
         <Grid container spacing={2}>

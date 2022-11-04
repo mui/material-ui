@@ -1,4 +1,4 @@
-import { GlobalStateSlot } from '@mui/base';
+import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
 import {
   AspectRatioProps,
@@ -69,6 +69,11 @@ import {
   IconButtonSlot,
 } from '../IconButton/IconButtonProps';
 import { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
+import {
+  LinearProgressProps,
+  LinearProgressOwnerState,
+  LinearProgressSlot,
+} from '../LinearProgress/LinearProgressProps';
 import { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
 import {
@@ -256,6 +261,10 @@ export interface Components<Theme = unknown> {
   JoyInput?: {
     defaultProps?: Partial<InputProps>;
     styleOverrides?: OverridesStyleRules<InputSlot, InputOwnerState, Theme>;
+  };
+  JoyLinearProgress?: {
+    defaultProps?: Partial<LinearProgressProps>;
+    styleOverrides?: OverridesStyleRules<LinearProgressSlot, LinearProgressOwnerState, Theme>;
   };
   JoyLink?: {
     defaultProps?: Partial<LinkProps>;

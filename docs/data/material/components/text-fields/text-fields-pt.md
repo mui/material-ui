@@ -3,7 +3,7 @@ product: material-ui
 title: Text field React component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
-materialDesign: https://material.io/components/text-fields
+materialDesign: https://m2.material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
@@ -11,7 +11,7 @@ unstyled: /base/react-input/
 
 <p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 
-[Campos de texto](https://material.io/design/components/text-fields.html) permitem que os usuários insiram texto em uma interface de usuário. Eles geralmente aparecem em formulários e diálogos.
+[Campos de texto](https://m2.material.io/components/text-fields) permitem que os usuários insiram texto em uma interface de usuário. Eles geralmente aparecem em formulários e diálogos.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -162,38 +162,35 @@ export default function MuiProductSelector() {
           />
         </Link>
       </li>
-      {/* @ts-ignore */}
-      {process.env.DEPLOY_ENV === 'production' ? null : (
-        <li role="none">
-          <Link
-            href={ROUTES.toolpadDocs}
-            sx={{
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: (theme) =>
+      <li role="none">
+        <Link
+          href={ROUTES.toolpadDocs}
+          sx={{
+            p: 2,
+            pr: 3,
+            borderBottom: '1px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primary[100], 0.08)
+                : theme.palette.grey[100],
+            width: '100%',
+            '&:hover': {
+              backgroundColor: (theme) =>
                 theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primary[100], 0.08)
-                  : theme.palette.grey[100],
-              width: '100%',
-              '&:hover': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-            }}
-          >
-            <ProductSubMenu
-              role="menuitem"
-              icon={<IconImage name="product-toolpad" />}
-              name="MUI Toolpad"
-              description="Low-code admin builder."
-              chip={<Chip size="small" label="Alpha" color="grey" />}
-            />
-          </Link>
-        </li>
-      )}
+                  ? alpha(theme.palette.primaryDark[700], 0.4)
+                  : theme.palette.grey[50],
+            },
+          }}
+        >
+          <ProductSubMenu
+            role="menuitem"
+            icon={<IconImage name="product-toolpad" />}
+            name="MUI Toolpad"
+            description="Low-code admin builder."
+            chip={<Chip size="small" label="Alpha" color="grey" />}
+          />
+        </Link>
+      </li>
     </React.Fragment>
   );
 }
