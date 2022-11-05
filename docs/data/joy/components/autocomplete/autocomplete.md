@@ -338,7 +338,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 ### GitHub's picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the [`List`](/joy-ui/react-list/) component.
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
 
 {{"demo": "GitHubLabel.js"}}
 
@@ -366,7 +366,7 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ## CSS Variables
 
-The Autocomplete component reuses CSS variables from the Input component:
+The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
 
 {{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
 
@@ -385,11 +385,11 @@ In the event you want the avoid autofill, you can try the following:
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
-  <TextField
-    {...params}
-    inputProps={{
-      ...params.inputProps,
-      autoComplete: 'new-password',
+  <Autocomplete
+    componentsProps={{
+      input: {
+        autoComplete: 'new-password',
+      },
     }}
   />
   ```
@@ -401,7 +401,7 @@ Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Se
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
 You can work around the issue with the `disablePortal` prop.
 
-```js
+```jsx
 <Autocomplete
   componentsProps={{
     listbox: {
