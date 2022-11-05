@@ -283,7 +283,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     closeText = 'Close',
     disableClearable = false,
     disabled: disabledProp,
-    disablePortal = false,
     endDecorator,
     error: errorProp = false,
     filterOptions,
@@ -365,7 +364,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const ownerState = {
     ...props,
     value,
-    disablePortal,
     focused,
     hasOptions: !!groupedOptions.length,
     hasClearIcon,
@@ -540,7 +538,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     }),
     additionalProps: {
       anchorEl,
-      disablePortal,
       open: popupOpen,
       modifiers: defaultModifiers,
       style: anchorEl

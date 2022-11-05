@@ -391,9 +391,15 @@ Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Se
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
 You can work around the issue with the `disablePortal` prop.
 
-### ListboxComponent
-
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+```js
+<Autocomplete
+  componentsProps={{
+    listbox: {
+      disablePortal: true,
+    },
+  }}
+/>
+```
 
 ## Accessibility
 

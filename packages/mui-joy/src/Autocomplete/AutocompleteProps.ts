@@ -206,11 +206,6 @@ interface AutocompleteOwnProps<
    */
   disabled?: boolean;
   /**
-   * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
-   * @default false
-   */
-  disablePortal?: boolean;
-  /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
@@ -363,7 +358,6 @@ export interface AutocompleteOwnerState<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
 > extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo> {
-  disablePortal: boolean;
   focused: boolean;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
