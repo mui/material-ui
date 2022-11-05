@@ -70,7 +70,8 @@ const defaultModifiers = [
 ];
 
 const useUtilityClasses = (ownerState: OwnerState) => {
-  const { focused, hasClearIcon, hasPopupIcon, popupOpen, variant, color, size } = ownerState;
+  const { focused, hasClearIcon, hasPopupIcon, popupOpen, variant, color, size, multiple } =
+    ownerState;
 
   const slots = {
     root: [
@@ -82,7 +83,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    wrapper: ['wrapper'],
+    wrapper: ['wrapper', multiple && 'multiple'],
     input: ['input'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
@@ -124,28 +125,30 @@ const AutocompleteWrapper = styled('div', {
   slot: 'Wrapper',
   overridesResolver: (props, styles) => styles.wrapper,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  '--Chip-minHeight': 'var(--Input-decorator-childHeight)', // For Autocomplete multiple selection because it uses Chip for showing selected items.
   flex: 1, // stretch to fill the root slot
   minWidth: 0, // won't push end decorator out of the autocomplete
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
-  ...(ownerState.multiple && {
+  [`&.${autocompleteClasses.multiple}`]: {
     paddingInlineStart: 0,
     paddingBlockEnd: 'var(--_Input-paddingBlock)',
-    [`& .${chipClasses.root}`]: {
-      // TODO: use flexbox `gap` on the root slot later.
-      marginInlineStart: 'var(--_Input-paddingBlock)',
-      marginBlockStart: 'var(--_Input-paddingBlock)',
-    },
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
+      Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
         marginInlineStart: 'calc(-1 * var(--_Input-paddingBlock))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'var(--Input-paddingInline)',
+          marginInlineStart: 'var(--Input-gap)',
         },
       }),
-  }),
+  },
+  [`& .${chipClasses.root}`]: {
+    // TODO: use flexbox `gap` later.
+    marginInlineStart: 'var(--_Input-paddingBlock)',
+    marginBlockStart: 'var(--_Input-paddingBlock)',
+  },
 }));
 
 const AutocompleteInput = styled(StyledInputHtml, {

@@ -360,6 +360,12 @@ If you would like to prevent the default key handler behavior, you can set the e
 />
 ```
 
+## CSS Variables
+
+The Autocomplete component reuses CSS variables from the Input component:
+
+{{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
+
 ## Limitations
 
 ### autocomplete/autofill

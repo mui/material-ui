@@ -19,6 +19,8 @@ export interface AutocompleteClasses {
   disabled: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
+  /** Styles applied to the wrapper element if `multiple={true}`. */
+  multiple: string;
   /** Styles applied to the limitTag element. */
   limitTag: string;
   /** Styles applied when the popup icon is rendered. */
@@ -83,6 +85,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAuto
   'focused',
   'disabled',
   'error',
+  'multiple',
   'limitTag',
   'hasPopupIcon',
   'hasClearIcon',

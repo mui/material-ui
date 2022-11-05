@@ -164,7 +164,6 @@ export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwner
     '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
     '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
     '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-    '--Chip-minHeight': 'var(--Input-decorator-childHeight)', // For Autocomplete multiple selection because it uses Chip for showing selected items.
     display: 'inherit',
     alignItems: 'center',
     paddingBlock: 'var(--unstable_Input-paddingBlock)', // for wrapping Autocomplete's tags
