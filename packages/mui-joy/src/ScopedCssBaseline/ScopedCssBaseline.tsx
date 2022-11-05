@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { DefaultColorScheme, ColorSystem } from '../styles/types';
 import {
@@ -77,15 +78,15 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
 
   const classes = useUtilityClasses();
 
-  return (
-    <ScopedCssBaselineRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    />
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ScopedCssBaselineRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps} />;
 }) as OverridableComponent<ScopedCssBaselineTypeMap>;
 
 ScopedCssBaseline.propTypes /* remove-proptypes */ = {

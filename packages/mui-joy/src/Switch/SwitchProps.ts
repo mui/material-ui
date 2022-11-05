@@ -4,22 +4,55 @@ import { SlotComponentProps } from '@mui/base/utils';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
+export type SwitchSlot =
+  | 'root'
+  | 'action'
+  | 'input'
+  | 'track'
+  | 'thumb'
+  | 'startDecorator'
+  | 'endDecorator';
 
 export interface SwitchPropsVariantOverrides {}
-
 export interface SwitchPropsColorOverrides {}
-
 export interface SwitchPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, SwitchOwnerState>;
-  thumb?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-  action?: SlotComponentProps<'div', { sx?: SxProps }, SwitchOwnerState>;
-  input?: SlotComponentProps<'button', { sx?: SxProps }, SwitchOwnerState>;
-  track?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
+  thumb?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
+  action?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
+  input?: SlotComponentProps<
+    'button',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
+  track?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SwitchOwnerState
+  >;
 }
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -31,10 +64,22 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        action?: React.ElementType;
+        thumb?: React.ElementType;
+        track?: React.ElementType;
+        input?: React.ElementType;
+        startDecorator?: React.ElementType;
+        endDecorator?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * The element that appears at the end of the switch.
        */

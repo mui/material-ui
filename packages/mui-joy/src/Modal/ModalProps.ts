@@ -7,8 +7,16 @@ import { SxProps } from '../styles/types';
 export type ModalSlot = 'root' | 'backdrop';
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, ModalOwnerState>;
-  backdrop?: SlotComponentProps<'div', { sx?: SxProps }, ModalOwnerState>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    ModalOwnerState
+  >;
+  backdrop?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    ModalOwnerState
+  >;
 }
 
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -28,10 +36,17 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'open'
     > & {
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        backdrop?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the Modal.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * Callback fired when the component requests to be closed.
        * The `reason` parameter can optionally be used to control the response to `onClose`.

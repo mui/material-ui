@@ -6,16 +6,30 @@ import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
 export interface TextareaPropsVariantOverrides {}
-
 export interface TextareaPropsColorOverrides {}
-
 export interface TextareaPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, TextareaOwnerState>;
-  textarea?: SlotComponentProps<'textarea', { sx?: SxProps }, TextareaOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TextareaOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TextareaOwnerState>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    TextareaOwnerState
+  >;
+  textarea?: SlotComponentProps<
+    'textarea',
+    { component?: React.ElementType; sx?: SxProps },
+    TextareaOwnerState
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    TextareaOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    TextareaOwnerState
+  >;
 }
 
 export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -45,10 +59,19 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides>;
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        textarea?: React.ElementType;
+        startDecorator?: React.ElementType;
+        endDecorator?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */

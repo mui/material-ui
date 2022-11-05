@@ -7,10 +7,10 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
@@ -167,7 +167,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const {
     component = 'a',
-    componentsProps = {},
     children,
     disabled = false,
     onBlur,
@@ -224,42 +223,43 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
 
-  const rootProps = useSlotProps({
-    elementType: LinkRoot,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
+  const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      ref: handleRef,
-      as: component,
       onBlur: handleBlur,
       onFocus: handleFocus,
     },
-    ownerState,
+    ref: handleRef,
     className: classes.root,
+    elementType: LinkRoot,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: StartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.startDecorator,
     elementType: EndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
+    externalForwardedProps,
     ownerState,
-    className: classes.endDecorator,
   });
 
   return (
-    <LinkRoot {...rootProps}>
-      {startDecorator && <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>}
+    <SlotRoot {...rootProps}>
+      {startDecorator && (
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+      )}
 
       {children}
-      {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
-    </LinkRoot>
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </SlotRoot>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
@@ -285,15 +285,6 @@ Link.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -325,6 +316,23 @@ Link.propTypes /* remove-proptypes */ = {
    * @default false
    */
   overlay: PropTypes.bool,
+  /**
+   * The props used for each slot inside the component.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * Replace the default slots.
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */

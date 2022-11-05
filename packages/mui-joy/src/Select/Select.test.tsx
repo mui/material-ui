@@ -62,7 +62,7 @@ describe('Joy <Select />', () => {
     const { getByRole } = render(
       <Select
         name="blur-testing"
-        componentsProps={{
+        slotProps={{
           button: {
             onBlur: handleBlur,
           },
@@ -340,7 +340,7 @@ describe('Joy <Select />', () => {
           <Select
             defaultValue=""
             defaultListboxOpen
-            componentsProps={{ listbox: { component: 'div' } }}
+            slotProps={{ listbox: { component: 'div' } }}
           >
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>

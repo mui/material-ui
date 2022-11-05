@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlotProps, EventHandlers } from '@mui/base/utils';
+import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
@@ -222,7 +223,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     getRootProps,
     getInputProps,
     component,
-    componentsProps = {},
     formControl,
     focused,
     error: errorProp = false,
@@ -265,53 +265,58 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
 
-  const rootProps = useSlotProps({
-    elementType: TextareaRoot,
-    getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    ownerState,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: [classes.root, rootStateClasses],
+    elementType: TextareaRoot,
+    externalForwardedProps,
+    getSlotProps: getRootProps,
+    ownerState,
   });
 
-  const textareaProps = useSlotProps({
-    elementType: TextareaInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: {
-      minRows,
-      maxRows,
-      ...componentsProps.textarea,
-    },
+  const [SlotTextarea, textareaProps] = useSlot('textarea', {
     additionalProps: {
       id: formControl?.htmlFor,
       'aria-describedby': formControl?.['aria-describedby'],
     },
-    ownerState,
     className: [classes.textarea, inputStateClasses],
+    elementType: TextareaInput,
+    internalForwardedProps: {
+      minRows,
+      maxRows,
+    },
+    externalForwardedProps,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getInputProps({ ...otherHandlers, ...propsToForward }),
+    ownerState,
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: TextareaStartDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.startDecorator,
+    elementType: TextareaEndDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
   return (
-    <TextareaRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {startDecorator && (
-        <TextareaStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </TextareaStartDecorator>
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {/* @ts-ignore onChange conflicts with html input */}
-      <TextareaInput {...textareaProps} />
-      {endDecorator && (
-        <TextareaEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </TextareaEndDecorator>
-      )}
-    </TextareaRoot>
+      <SlotTextarea {...textareaProps} />
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </SlotRoot>
   );
 }) as OverridableComponent<TextareaTypeMap>;
 
@@ -332,16 +337,6 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * @ignore
    */
@@ -372,6 +367,25 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside the component.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * Replace the default slots.
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+    textarea: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for this input.
    */

@@ -8,6 +8,7 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
@@ -111,18 +112,22 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   const contextValue = React.useMemo(() => ({ variant, color }), [color, variant]);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      role: 'dialog',
+      'aria-modal': 'true',
+    },
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ModalDialogRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
-        <ModalDialogRoot
-          as={component}
-          ownerState={ownerState}
-          className={clsx(classes.root, className)}
-          ref={ref}
-          role="dialog"
-          aria-modal="true"
-          {...other}
-        >
+        <SlotRoot {...rootProps}>
           {React.Children.map(children, (child) => {
             if (!React.isValidElement(child)) {
               return child;
@@ -134,7 +139,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
             }
             return child;
           })}
-        </ModalDialogRoot>
+        </SlotRoot>
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );

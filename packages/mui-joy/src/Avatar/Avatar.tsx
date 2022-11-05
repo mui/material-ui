@@ -177,9 +177,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
     ...imgProps,
-    ...(typeof slotProps.img === 'function'
-      ? slotProps.img(ownerState)
-      : slotProps.img),
+    ...(typeof slotProps.img === 'function' ? slotProps.img(ownerState) : slotProps.img),
     src,
     srcSet,
   });

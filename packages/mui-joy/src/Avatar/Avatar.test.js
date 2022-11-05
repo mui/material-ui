@@ -97,7 +97,7 @@ describe('<Avatar />', () => {
     it('should be able to add more props to the image', () => {
       const onError = spy();
       const { container } = render(
-        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
+        <Avatar src="/fake.png" slotProps={{ img: { onError } }} />,
       );
       const img = container.querySelector('img');
       fireEvent.error(img);
@@ -117,7 +117,7 @@ describe('<Avatar />', () => {
     it('should be able to add more props to the image', () => {
       const onError = spy();
       const { container } = render(
-        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
+        <Avatar src="/fake.png" slotProps={{ img: { onError } }} />,
       );
       const img = container.querySelector('img');
       fireEvent.error(img);

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { StyledList } from '../List/List';
+import useSlot from '../utils/useSlot';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
@@ -97,16 +97,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const listboxProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
-    className: classes.root,
   });
 
   const contextValue = React.useMemo(
@@ -123,11 +120,11 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   );
 
   return (
-    <MenuListRoot {...listboxProps}>
+    <SlotRoot {...rootProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
-    </MenuListRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;
 

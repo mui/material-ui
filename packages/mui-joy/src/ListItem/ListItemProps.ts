@@ -1,12 +1,30 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
 export interface ListItemPropsVariantOverrides {}
-
 export interface ListItemPropsColorOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    ListItemOwnerState
+  >;
+  startAction?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    ListItemOwnerState
+  >;
+  endAction?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    ListItemOwnerState
+  >;
+}
 
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
@@ -19,6 +37,19 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      * The content of the component.
      */
     children?: React.ReactNode;
+    /**
+     * Replace the default slots.
+     */
+    slots?: {
+      root?: React.ElementType;
+      startAction?: React.ElementType;
+      endAction?: React.ElementType;
+    };
+    /**
+     * The props used for each slot inside the component.
+     * @default {}
+     */
+    slotProps?: ComponentsProps;
     /**
      * The element to display at the start of ListItem.
      */

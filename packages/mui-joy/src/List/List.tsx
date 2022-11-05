@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -190,16 +191,20 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      'aria-labelledby': typeof nesting === 'string' ? nesting : undefined,
+      role,
+    },
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
-    <ListRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
@@ -207,7 +212,7 @@ const List = React.forwardRef(function List(inProps, ref) {
           {children}
         </ListProvider>
       </ComponentListContext.Provider>
-    </ListRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ListTypeMap>;
 

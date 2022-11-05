@@ -8,6 +8,7 @@ import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
 import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { TextFieldOwnerState, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
@@ -66,7 +67,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     className,
     component,
     components = {},
-    componentsProps = {},
+    slotProps = {},
     label,
     helperText,
     id: idOverride,
@@ -113,22 +114,24 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: TextFieldRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   const Input = components.Input || JoyInput;
 
   return (
-    <TextFieldRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {label && (
         <FormLabel
           htmlFor={id}
           id={formLabelId}
           required={required}
-          {...componentsProps.label}
+          {...slotProps.label}
           {...(components.Label && {
             component: components.Label,
           })}
@@ -138,7 +141,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       )}
 
       <Input
-        {...componentsProps.input}
+        {...slotProps.input}
         id={id}
         name={name}
         type={type}
@@ -164,7 +167,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {helperText && (
         <FormHelperText
           id={helperTextId}
-          {...componentsProps.helperText}
+          {...slotProps.helperText}
           {...(components.HelperText && {
             component: components.HelperText,
           })}
@@ -172,7 +175,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
           {helperText}
         </FormHelperText>
       )}
-    </TextFieldRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<TextFieldTypeMap>;
 
@@ -218,15 +221,6 @@ TextField.propTypes /* remove-proptypes */ = {
     Input: PropTypes.elementType,
     Label: PropTypes.elementType,
     Root: PropTypes.elementType,
-  }),
-  /**
-   * @ignore
-   */
-  componentsProps: PropTypes.shape({
-    helperText: PropTypes.object,
-    input: PropTypes.object,
-    label: PropTypes.object,
-    root: PropTypes.object,
   }),
   /**
    * @ignore
@@ -299,6 +293,15 @@ TextField.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  slotProps: PropTypes.shape({
+    helperText: PropTypes.object,
+    input: PropTypes.object,
+    label: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * Leading adornment for this input.
    */

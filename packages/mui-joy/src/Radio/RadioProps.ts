@@ -13,12 +13,36 @@ export interface RadioPropsColorOverrides {}
 export interface RadioPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
-  radio?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
-  icon?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
-  action?: SlotComponentProps<'span', { sx?: SxProps }, RadioOwnerState>;
-  input?: SlotComponentProps<'input', { sx?: SxProps }, RadioOwnerState>;
-  label?: SlotComponentProps<'label', { sx?: SxProps }, RadioOwnerState>;
+  root?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    RadioOwnerState
+  >;
+  radio?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    RadioOwnerState
+  >;
+  icon?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    RadioOwnerState
+  >;
+  action?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    RadioOwnerState
+  >;
+  input?: SlotComponentProps<
+    'input',
+    { component?: React.ElementType; sx?: SxProps },
+    RadioOwnerState
+  >;
+  label?: SlotComponentProps<
+    'label',
+    { component?: React.ElementType; sx?: SxProps },
+    RadioOwnerState
+  >;
 }
 
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
@@ -37,11 +61,19 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * Either a string to use a HTML element or a component.
        */
       component?: React.ElementType;
+      slots?: {
+        root?: React.ElementType;
+        radio?: React.ElementType;
+        icon?: React.ElementType;
+        action?: React.ElementType;
+        input?: React.ElementType;
+        label?: React.ElementType;
+      };
       /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

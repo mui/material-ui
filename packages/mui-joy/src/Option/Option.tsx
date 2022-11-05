@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -100,20 +100,16 @@ const Option = React.forwardRef(function Option(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: OptionRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      ...optionProps,
-      ref: handleRef,
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: optionProps,
+    ref: handleRef,
     className: classes.root,
+    elementType: OptionRoot,
+    externalForwardedProps: { ...other, component },
     ownerState,
   });
 
-  return <OptionRoot {...rootProps}>{children}</OptionRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as ExtendOption<OptionTypeMap>;
 
 Option.propTypes /* remove-proptypes */ = {

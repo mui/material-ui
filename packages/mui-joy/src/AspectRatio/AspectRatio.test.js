@@ -76,7 +76,7 @@ describe('<AspectRatio />', () => {
 
   it('able to pass the props to content slot', () => {
     const { getByTestId } = render(
-      <AspectRatio componentsProps={{ content: { 'data-testid': 'content' } }} />,
+      <AspectRatio slotProps={{ content: { 'data-testid': 'content' } }} />,
     );
     expect(getByTestId('content')).toBeVisible();
   });

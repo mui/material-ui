@@ -16,17 +16,35 @@ export type SelectSlot =
   | 'listbox';
 
 export interface SelectPropsVariantOverrides {}
-
 export interface SelectPropsColorOverrides {}
-
 export interface SelectPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, SelectOwnerState<any>>;
-  button?: SlotComponentProps<'button', { sx?: SxProps }, SelectOwnerState<any>>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
-  indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    SelectOwnerState<any>
+  >;
+  button?: SlotComponentProps<
+    'button',
+    { component?: React.ElementType; sx?: SxProps },
+    SelectOwnerState<any>
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SelectOwnerState<any>
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SelectOwnerState<any>
+  >;
+  indicator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    SelectOwnerState<any>
+  >;
   listbox?: SlotComponentProps<
     'ul',
     Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
@@ -50,10 +68,21 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
+   * Replace the default slots.
+   */
+  slots?: {
+    root?: React.ElementType;
+    button?: React.ElementType;
+    startDecorator?: React.ElementType;
+    endDecorator?: React.ElementType;
+    indicator?: React.ElementType;
+    listbox?: React.ElementType;
+  };
+  /**
    * The props used for each slot inside the component.
    * @default {}
    */
-  componentsProps?: ComponentsProps;
+  slotProps?: ComponentsProps;
   /**
    * If `true`, the component is disabled.
    * @default false

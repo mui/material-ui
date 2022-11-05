@@ -170,7 +170,7 @@ interface AutocompleteOwnProps<
   /**
    * Replace the default slots.
    */
-  components?: {
+  slots?: {
     root?: React.ElementType;
     wrapper?: React.ElementType;
     input?: React.ElementType;
@@ -188,7 +188,7 @@ interface AutocompleteOwnProps<
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps?: ComponentsProps;
+  slotProps?: ComponentsProps;
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null

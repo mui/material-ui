@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
@@ -88,18 +89,18 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <ListSubheaderRoot
-      ref={ref}
-      id={id}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListSubheaderRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      id,
+    },
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListSubheaderRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListSubheaderTypeMap>;
 
 ListSubheader.propTypes /* remove-proptypes */ = {

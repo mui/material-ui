@@ -12,13 +12,24 @@ import {
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface TypographyPropsColorOverrides {}
-
 export interface TypographyPropsVariantOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'a', { sx?: SxProps }, TypographyOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TypographyOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TypographyOwnerState>;
+  root?: SlotComponentProps<
+    'a',
+    { component?: React.ElementType; sx?: SxProps },
+    TypographyOwnerState
+  >;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    TypographyOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    TypographyOwnerState
+  >;
 }
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
@@ -33,10 +44,18 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        startDecorator?: React.ElementType;
+        endDecorator?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * Element placed after the children.
        */

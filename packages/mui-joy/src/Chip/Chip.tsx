@@ -226,9 +226,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   };
 
   const resolvedActionProps =
-    typeof slotProps.action === 'function'
-      ? slotProps.action(ownerState)
-      : slotProps.action;
+    typeof slotProps.action === 'function' ? slotProps.action(ownerState) : slotProps.action;
   const actionRef = React.useRef<HTMLElement | null>(null);
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
@@ -279,7 +277,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     ownerState,
   });
 
-  const [SlotEndDecorator, endDecoratorProps] = useSlot('startDecorator', {
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.startDecorator,
     elementType: ChipEndDecorator,
     externalForwardedProps: { ...other, slotProps },

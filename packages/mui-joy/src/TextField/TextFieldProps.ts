@@ -36,7 +36,7 @@ export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
         Input?: React.ElementType;
         HelperText?: React.ElementType;
       };
-      componentsProps?: {
+      slotProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
         label?: FormLabelProps;
         input?: Omit<InputProps, InputRootKeys>;

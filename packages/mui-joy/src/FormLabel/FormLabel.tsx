@@ -105,6 +105,10 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The asterisk is added if required=`true`
+   */
+  required: PropTypes.bool,
+  /**
    * The props used for each slot inside the component.
    * @default {}
    */
@@ -113,9 +117,12 @@ FormLabel.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The asterisk is added if required=`true`
+   * Replace the default slots.
    */
-  required: PropTypes.bool,
+  slots: PropTypes.shape({
+    asterisk: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

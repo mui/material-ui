@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
@@ -125,22 +125,20 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: MenuRoot,
-    externalForwardedProps: other,
-    getSlotProps: getListboxProps,
-    externalSlotProps: {},
+  const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
       anchorEl,
-      open,
+      component: MenuRoot,
       disablePortal,
       keepMounted,
-      ref,
-      component: MenuRoot,
-      as: component, // use `as` to insert the component inside of the MenuRoot
       modifiers: cachedModifiers,
+      open,
     },
+    ref,
     className: classes.root,
+    elementType: PopperUnstyled,
+    getSlotProps: getListboxProps,
+    externalForwardedProps: { ...other, component },
     ownerState,
   });
 
@@ -156,11 +154,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   );
 
   return (
-    <PopperUnstyled {...rootProps}>
+    <SlotRoot {...rootProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
-    </PopperUnstyled>
+    </SlotRoot>
   );
 }) as OverridableComponent<MenuTypeMap>;
 

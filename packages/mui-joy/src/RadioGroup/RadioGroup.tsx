@@ -9,6 +9,7 @@ import {
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
 import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
@@ -125,22 +126,26 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     [disableIcon, name, onChange, overlay, row, setValueState, size, value],
   );
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      role,
+      // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labellable element
+      // MDN: "If it is not a labelable element, then the for attribute has no effect"
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
+      id: formControl?.htmlFor,
+      'aria-labelledby': formControl?.labelId,
+      'aria-describedby': formControl?.['aria-describedby'],
+    },
+    ref,
+    className: clsx(classes.root, className),
+    elementType: RadioGroupRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
     <RadioGroupContext.Provider value={contextValue}>
-      <RadioGroupRoot
-        ref={ref}
-        role={role}
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labellable element
-        // MDN: "If it is not a labelable element, then the for attribute has no effect"
-        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
-        id={formControl?.htmlFor}
-        aria-labelledby={formControl?.labelId}
-        aria-describedby={formControl?.['aria-describedby']}
-        {...other}
-      >
+      <SlotRoot {...rootProps}>
         <FormControlContext.Provider value={undefined}>
           {React.Children.map(children, (child, index) =>
             React.isValidElement(child)
@@ -153,7 +158,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
               : child,
           )}
         </FormControlContext.Provider>
-      </RadioGroupRoot>
+      </SlotRoot>
     </RadioGroupContext.Provider>
   );
 }) as OverridableComponent<RadioGroupTypeMap>;

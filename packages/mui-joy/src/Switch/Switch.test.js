@@ -24,11 +24,11 @@ describe('<Switch />', () => {
     skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
 
-  it('should pass `componentsProps` down to slots', () => {
+  it('should pass `slotProps` down to slots', () => {
     const { container } = render(
       <Switch
         data-testid="root-switch"
-        componentsProps={{
+        slotProps={{
           thumb: { className: 'custom-thumb' },
           track: { className: 'custom-track' },
           action: { className: 'custom-action' },

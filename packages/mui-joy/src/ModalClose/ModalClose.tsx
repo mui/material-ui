@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { useThemeProps, styled } from '../styles';
 import { StyledIconButton } from '../IconButton/IconButton';
+import useSlot from '../utils/useSlot';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
 import { ModalCloseProps, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
@@ -102,27 +102,28 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: ModalCloseRoot,
-    getSlotProps: getRootProps,
-    externalSlotProps: {
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
       onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
         closeModalContext?.(event, 'closeClick');
         onClick?.(event);
       },
-      ...other,
     },
-    additionalProps: {
-      as: component,
-    },
+    ref,
     className: classes.root,
+    elementType: ModalCloseRoot,
+    externalForwardedProps: {
+      ...other,
+      component,
+    },
+    getSlotProps: getRootProps,
     ownerState,
   });
 
   return (
-    <ModalCloseRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       <CloseIcon />
-    </ModalCloseRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ModalCloseTypeMap>;
 

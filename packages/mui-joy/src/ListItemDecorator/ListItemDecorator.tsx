@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
@@ -50,17 +51,15 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
 
   const classes = useUtilityClasses();
 
-  return (
-    <ListItemDecoratorRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListItemDecoratorRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemDecoratorRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListItemDecoratorTypeMap>;
 
 ListItemDecorator.propTypes /* remove-proptypes */ = {

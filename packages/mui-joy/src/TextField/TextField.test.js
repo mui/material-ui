@@ -126,7 +126,7 @@ describe('Joy <TextField />', () => {
     const handleKeyDown = spy();
     const { getByRole } = render(
       <TextField
-        componentsProps={{
+        slotProps={{
           input: {
             onKeyUp: handleKeyUp,
             onKeyDown: handleKeyDown,

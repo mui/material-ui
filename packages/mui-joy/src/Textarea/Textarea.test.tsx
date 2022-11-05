@@ -38,7 +38,7 @@ describe('Joy <Textarea />', () => {
   it('should pass props to Textarea', () => {
     const { container } = render(
       <Textarea
-        componentsProps={{
+        slotProps={{
           textarea: {
             maxLength: 5,
           },

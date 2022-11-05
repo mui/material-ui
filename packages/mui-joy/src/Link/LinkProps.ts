@@ -16,9 +16,17 @@ export interface LinkPropsVariantOverrides {}
 export interface LinkPropsColorOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'a', { sx?: SxProps }, LinkOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
+  root?: SlotComponentProps<'a', { component?: React.ElementType; sx?: SxProps }, LinkOwnerState>;
+  startDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    LinkOwnerState
+  >;
+  endDecorator?: SlotComponentProps<
+    'span',
+    { component?: React.ElementType; sx?: SxProps },
+    LinkOwnerState
+  >;
 }
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
@@ -34,10 +42,18 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
       /**
+       * Replace the default slots.
+       */
+      slots?: {
+        root?: React.ElementType;
+        startDecorator?: React.ElementType;
+        endDecorator?: React.ElementType;
+      };
+      /**
        * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: ComponentsProps;
+      slotProps?: ComponentsProps;
       /**
        * If `true`, the component is disabled.
        * @default false

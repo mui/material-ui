@@ -39,7 +39,7 @@ interface Value {
 />;
 <Select sx={{ bgcolor: (theme) => theme.vars.palette.background.body }} />;
 <Select
-  componentsProps={{
+  slotProps={{
     button: {
       'aria-labelledby': 'some-id',
       'aria-describedby': 'some-id',

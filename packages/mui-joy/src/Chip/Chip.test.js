@@ -110,15 +110,15 @@ describe('<Chip />', () => {
       expect(handleClick.callCount).to.equal(1);
     });
 
-    it('renders action element when `componentsProps.action` is provided', () => {
-      const { getByRole } = render(<Chip componentsProps={{ action: {} }} />);
+    it('renders action element when `slotProps.action` is provided', () => {
+      const { getByRole } = render(<Chip slotProps={{ action: {} }} />);
 
       expect(getByRole('button')).toBeVisible();
     });
 
     it('renders custom action element', () => {
       const { getByRole } = render(
-        <Chip componentsProps={{ action: { component: 'a', href: '#' } }} />,
+        <Chip slotProps={{ action: { component: 'a', href: '#' } }} />,
       );
 
       expect(getByRole('link')).to.have.attr('href', '#');

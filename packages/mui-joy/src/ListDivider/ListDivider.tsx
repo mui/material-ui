@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import Divider from '../Divider/Divider';
 import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
@@ -87,20 +88,19 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <ListDividerRoot
-      // @ts-ignore
-      ref={ref}
-      {...(inset === 'context' && { inset })}
-      component={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      orientation={orientation}
-      {...other}
-    >
-      {children}
-    </ListDividerRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      orientation,
+      ...(inset === 'context' && { inset }),
+    },
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListDividerRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListDividerTypeMap>;
 
 ListDivider.propTypes /* remove-proptypes */ = {
