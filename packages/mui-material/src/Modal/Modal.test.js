@@ -32,6 +32,10 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
+      slots: {
+        root: { expectedClassName: classes.root },
+        backdrop: {},
+      },
       skip: [
         'rootClass', // portal, can't determine the root
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
