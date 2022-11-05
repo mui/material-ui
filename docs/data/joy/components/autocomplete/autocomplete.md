@@ -153,11 +153,15 @@ To customize the appearance of the options, use `renderOption` prop in combinati
 
 {{"demo": "CountrySelect.js"}}
 
-### Input appearance
+### Variants
 
-To customize the appearance of the input, use `renderInput` prop that returns an `Input` component⎯that way, you'll be able to use any [global variant](/joy-ui/main-features/global-variants/) or the [`sx` prop](/joy-ui/customization/approaches/#sx-prop) to further customize it.
+The autocomplete component supports the four global variants: `outlined` (default), `soft`, `solid`, and `plain`.
 
 {{"demo": "InputAppearance.js"}}
+
+:::success
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
 
 ### Label
 

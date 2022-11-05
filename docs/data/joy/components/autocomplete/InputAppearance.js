@@ -4,17 +4,27 @@ import Stack from '@mui/joy/Stack';
 
 export default function InputAppearance() {
   return (
-    <Stack spacing={2}>
+    <Stack spacing={1}>
       <Autocomplete
-        variant="plain"
-        placeholder="Plain input"
+        placeholder="Outlined variant (default)"
         options={top100Films}
         sx={{ width: 300 }}
       />
       <Autocomplete
         variant="soft"
-        color="info"
-        placeholder="Soft input"
+        placeholder="Soft variant"
+        options={top100Films}
+        sx={{ width: 300 }}
+      />
+      <Autocomplete
+        variant="solid"
+        placeholder="Solid variant"
+        options={top100Films}
+        sx={{ width: 300 }}
+      />
+      <Autocomplete
+        variant="plain"
+        placeholder="Plain variant"
         options={top100Films}
         sx={{ width: 300 }}
       />

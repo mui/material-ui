@@ -69,6 +69,13 @@ const defaultModifiers = [
   },
 ];
 
+const defaultVariantMapping = {
+  plain: 'plain',
+  outlined: 'plain',
+  soft: 'soft',
+  solid: 'solid',
+};
+
 const useUtilityClasses = (ownerState: OwnerState) => {
   const { focused, hasClearIcon, hasPopupIcon, popupOpen, variant, color, size, multiple } =
     ownerState;
@@ -501,7 +508,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'plain',
+      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
       color: mergedProps.color || 'neutral',
     }),
     additionalProps: {
@@ -518,7 +525,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
-      variant: mergedProps.variant || 'plain',
+      variant: mergedProps.variant || defaultVariantMapping[variant] || 'plain',
       color: mergedProps.color || 'neutral',
     }),
     additionalProps: {
