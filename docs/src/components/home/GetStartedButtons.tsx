@@ -26,6 +26,7 @@ export default function GetStartedButtons({
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
+        gap: '20px',
         '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
         ...props.sx,
       }}
@@ -37,10 +38,6 @@ export default function GetStartedButtons({
         size="large"
         variant="contained"
         endIcon={<KeyboardArrowRightRounded />}
-        sx={{
-          mr: { xs: 0, sm: 2 },
-          mb: { xs: 2, sm: 0 },
-        }}
       >
         Get started
       </Button>
