@@ -631,6 +631,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
+
         <SlotWrapper {...wrapperProps}>
           {selectedOptions}
           <SlotInput {...inputProps} />
@@ -691,6 +692,21 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * Identifies the element (or elements) that describes the object.
+   * @see aria-labelledby
+   */
+  'aria-describedby': PropTypes.string,
+  /**
+   * Defines a string value that labels the current element.
+   * @see aria-labelledby.
+   */
+  'aria-label': PropTypes.string,
+  /**
+   * Identifies the element (or elements) that labels the current element.
+   * @see aria-describedby.
+   */
+  'aria-labelledby': PropTypes.string,
+  /**
    * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
@@ -733,6 +749,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     popupIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
     startDecorator: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside.
@@ -750,6 +767,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -777,10 +795,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
-   * @default false
+   * Trailing adornment for this input.
    */
-  disablePortal: PropTypes.bool,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -1004,6 +1021,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * Leading adornment for this input.
+   */
+  startDecorator: PropTypes.node,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -1011,6 +1032,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   */
+  type: PropTypes.string,
   /**
    * The value of the autocomplete.
    *
