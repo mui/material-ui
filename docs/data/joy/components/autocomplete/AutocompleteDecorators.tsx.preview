@@ -1,12 +1,12 @@
 <Autocomplete
-  startDecorator={<TravelExplore />}
+  startDecorator={<LiveTv />}
   placeholder="Decorators"
   options={top100Films}
 />
-<Autocomplete<{ label: string; year: number }, true>
+<Autocomplete
   multiple
-  startDecorator={<TravelExplore />}
+  startDecorator={<LiveTv />}
   placeholder="Decorators"
   options={top100Films}
-  defaultValue={top100Films.slice(0, 1)}
+  defaultValue={[top100Films[0]]}
 />
