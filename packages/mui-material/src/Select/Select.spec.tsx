@@ -53,6 +53,7 @@ function App() {
   }
 
   const [selectedValue, setSelectedValue] = React.useState<MyEnum | ''>('');
+  const [personName, setPersonName] = React.useState<string[]>([]);
 
   return (
     <React.Fragment>
@@ -92,6 +93,32 @@ function App() {
         </MenuItem>
         <MenuItem value="first">first</MenuItem>
         <MenuItem value="second">second</MenuItem>
+      </Select>
+
+      {/* displayEmpty is true, multiple is true */}
+      <Select
+        displayEmpty
+        multiple
+        renderValue={(value) => {
+          // @ts-expect-error value cannot be empty string
+          if (value === '') {
+            return 'None selected';
+          }
+
+          if (value.length === 0) {
+            return <em>Placeholder</em>;
+          }
+
+          return value.join(', ');
+        }}
+        value={personName}
+        onChange={(e) => setPersonName(e.target.value as string[])}
+      >
+        <MenuItem value="">
+          <em>Blank</em>
+        </MenuItem>
+        <MenuItem value="Oliver Hansen">Oliver Hansen</MenuItem>
+        <MenuItem value="Van Henry">Van Henry</MenuItem>
       </Select>
     </React.Fragment>
   );
