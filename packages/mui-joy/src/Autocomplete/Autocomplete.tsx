@@ -132,7 +132,6 @@ const AutocompleteWrapper = styled('div', {
   slot: 'Wrapper',
   overridesResolver: (props, styles) => styles.wrapper,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Chip-minHeight': 'var(--Input-decorator-childHeight)', // For Autocomplete multiple selection because it uses Chip for showing selected items.
   flex: 1, // stretch to fill the root slot
   minWidth: 0, // won't push end decorator out of the autocomplete
   display: 'flex',
@@ -200,7 +199,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton, {
   ...(!ownerState.hasPopupIcon && {
     marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   }),
-  marginInlineStart: 'var(--_Input-paddingBlock)',
+  marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
 
@@ -209,7 +208,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton, {
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
-  marginInlineStart: 'var(--_Input-paddingBlock)',
+  marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',

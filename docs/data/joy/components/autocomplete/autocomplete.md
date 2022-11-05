@@ -171,7 +171,7 @@ Put an `Autocomplete`, a `FormLabel` and a `FormHelperText` (optional) under a `
 
 ### Decorators
 
-Use `startDecorator` or `endDecorator` to insert any element to the autocomplete.
+Use `startDecorator` or `endDecorator` to insert decorators to the autocomplete.
 
 {{"demo": "AutocompleteDecorators.js"}}
 

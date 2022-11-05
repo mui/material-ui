@@ -30,6 +30,10 @@ export default function ButtonVariables() {
           defaultValue: '32px',
         },
         {
+          var: '--Chip-minHeight',
+          defaultValue: '32px',
+        },
+        {
           var: '--Icon-fontSize',
           defaultValue: '24px',
         },

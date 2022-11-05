@@ -25,6 +25,7 @@ const Listbox = React.forwardRef((props, ref) => (
       '--List-radius': '0px',
       '--List-item-paddingX': '8px',
       '--List-item-paddingY': '8px',
+      minWidth: '100%',
     }}
   />
 ));
