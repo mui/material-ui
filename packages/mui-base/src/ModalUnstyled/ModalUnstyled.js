@@ -80,7 +80,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     ...other
   } = props;
 
-  const [exited, setExited] = React.useState(true);
+  const [exited, setExited] = React.useState(!open);
   const modal = React.useRef({});
   const mountNodeRef = React.useRef(null);
   const modalRef = React.useRef(null);
