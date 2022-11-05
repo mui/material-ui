@@ -38,38 +38,41 @@ The Autocomplete component requires a list of `options` and a `renderInput` func
 
 ## Anatomy
 
-The Autocomplete component is composed of 8 slots:
+The Autocomplete component is composed of 12 slots:
 
-- `root`: a wrapper of the text input.
-  - The **start decorator** passed to the `renderInput` function.
-    - `limitTag`: for multiple selection, a number of the hidden tags to show based on the `limitTags` property when the autocomplete is not focused.
-  - The **end decorator** passed to the `renderInput` function.
-    - `popupIndicator`: a button to trigger the popup.
-    - `clearIndicator`: a button to clear the value (mounted when there is a selected value).
-- `listbox`: a default [popup](/base/react-popper/) with its `role` set to `listbox`.
-  - `option`: an option with its `role` set to `option`.
-  - `loading`: an indicator that appears when `loading` is set to `true`.
-  - `noOptions`: a section that appears when there is no options to show.
+- `root`:
+  - `startDecorator`: the decorator at the beginning of the autocomplete.
+  - `wrapper`:
+    - `limitTag` (multiple selection): the number of the hidden tags to show based on the `limitTags` property when the autocomplete is not focused.
+    - `input`: the HTML input.
+  - `endDecorator`:
+    - `popupIndicator`: the button to trigger the popup.
+    - `clearIndicator`: the button to clear the value (mounted when there is a selected value).
+- `listbox`: the default [popup](/base/react-popper/) with its `role` set to `listbox`.
+  - `option`: the option with its `role` set to `option`.
+  - `loading`: the indicator that appears when `loading` is set to `true`.
+  - `noOptions`: the section that appears when there is no options to show.
 
 ```html
 <div class="JoyAutocomplete-root">
-  <!-- The div below comes from the `renderInput` function -->
-  <div>
-    <!-- The span is the text input's start decorator -->
-    <span>
-      <span class="JoyAutocomplete-limitTag">…</span>
-    </span>
-    <input role="combobox" aria-autocomplete="list" />
+  <!-- If `startDecorator` is provided. -->
+  <span class="JoyAutocomplete-startDecorator">…</span>
+  <div class="JoyAutocomplete-wrapper">
+    <!-- If `multiple` -->
+    …
+    <span class="JoyAutocomplete-limitTag">…</span>
+    <input class="JoyAutocomplete-input" role="combobox" />
     <!-- The span is the text input's end decorator -->
-    <span>
-      <button tabindex="-1" class="JoyAutocomplete-clearIndicator">
-        <svg data-testid="CloseIcon">…</svg>
-      </button>
-      <button tabindex="-1" class="JoyAutocomplete-popupIndicator">
-        <svg data-testid="ArrowDropdownIcon">…</svg>
-      </button>
-    </span>
   </div>
+  <span class="JoyAutocomplete-endDecorator">
+    …
+    <button tabindex="-1" class="JoyAutocomplete-clearIndicator">
+      <svg data-testid="CloseIcon">…</svg>
+    </button>
+    <button tabindex="-1" class="JoyAutocomplete-popupIndicator">
+      <svg data-testid="ArrowDropdownIcon">…</svg>
+    </button>
+  </span>
 </div>
 <!-- By default, the popup displays with portal -->
 <ul role="listbox" class="Autocomplete-listbox">

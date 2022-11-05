@@ -113,6 +113,34 @@ extendTheme({
           >(ownerState);
           return {};
         },
+        wrapper: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        input: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        startDecorator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
         clearIndicator: ({ ownerState }) => {
           expectType<
             AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,

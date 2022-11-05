@@ -82,7 +82,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    inputWrapper: ['inputWrapper'],
+    wrapper: ['wrapper'],
     input: ['input'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
@@ -116,13 +116,13 @@ const AutocompleteRoot = styled(StyledInputRoot, {
 }));
 
 /**
- * InputWrapper groups the chips (multi selection) and the input
+ * Wrapper groups the chips (multi selection) and the input
  * so that start/end decorators can stay in the normal flow.
  */
-const AutocompleteInputWrapper = styled('div', {
+const AutocompleteWrapper = styled('div', {
   name: 'JoyAutocomplete',
-  slot: 'InputWrapper',
-  overridesResolver: (props, styles) => styles.inputWrapper,
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => styles.wrapper,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   flex: 1, // stretch to fill the root slot
   minWidth: 0, // won't push end decorator out of the autocomplete
@@ -138,12 +138,13 @@ const AutocompleteInputWrapper = styled('div', {
       marginBlockStart: 'var(--_Input-paddingBlock)',
     },
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
-    ...((ownerState.value as Array<unknown>).length > 0 && {
-      marginInlineStart: 'calc(-1 * var(--_Input-paddingBlock))',
-      [`& .${autocompleteClasses.input}`]: {
-        marginInlineStart: 'var(--Input-paddingInline)',
-      },
-    }),
+    ...(ownerState.startDecorator &&
+      (ownerState.value as Array<unknown>).length > 0 && {
+        marginInlineStart: 'calc(-1 * var(--_Input-paddingBlock))',
+        [`& .${autocompleteClasses.input}`]: {
+          marginInlineStart: 'var(--Input-paddingInline)',
+        },
+      }),
   }),
 }));
 
@@ -172,15 +173,22 @@ const AutocompleteEndDecorator = styled(StyledInputEndDecorator, {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: OwnerState }>({});
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  // don't adjust if end decorator is not the last of the autocomplete
+  ...((ownerState.hasClearIcon || ownerState.hasPopupIcon) && {
+    '--Button-margin': '0px',
+    '--IconButton-margin': '0px',
+    '--Icon-margin': '0px',
+  }),
+}));
 
 const AutocompleteClearIndicator = styled(StyledIconButton, {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
-  ...(!ownerState.freeSolo && {
-    marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButton
+  ...(!ownerState.hasPopupIcon && {
+    marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   }),
   marginInlineStart: 'var(--_Input-paddingBlock)',
   visibility: ownerState.focused ? 'visible' : 'hidden',
@@ -192,6 +200,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton, {
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
   marginInlineStart: 'var(--_Input-paddingBlock)',
+  marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
@@ -420,9 +429,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotProps: getRootProps,
   });
 
-  const [SlotInputWrapper, inputWrapperProps] = useSlot('inputWrapper', {
-    className: classes.inputWrapper,
-    elementType: AutocompleteInputWrapper,
+  const [SlotWrapper, wrapperProps] = useSlot('wrapper', {
+    className: classes.wrapper,
+    elementType: AutocompleteWrapper,
     externalForwardedProps: other,
     ownerState,
   });
@@ -622,21 +631,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
-        <SlotInputWrapper {...inputWrapperProps}>
+        <SlotWrapper {...wrapperProps}>
           {selectedOptions}
           <SlotInput {...inputProps} />
-        </SlotInputWrapper>
-        {(hasClearIcon || hasPopupIcon || endDecorator) && (
-          <SlotEndDecorator {...endDecoratorProps}>
-            {endDecorator}
-            {hasClearIcon ? (
-              <SlotClearIndicator {...clearIndicatorProps}>{clearIcon}</SlotClearIndicator>
-            ) : null}
-            {hasPopupIcon ? (
-              <SlotPopupIndicator {...popupIndicatorProps}>{popupIcon}</SlotPopupIndicator>
-            ) : null}
-          </SlotEndDecorator>
-        )}
+        </SlotWrapper>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+        {hasClearIcon ? (
+          <SlotClearIndicator {...clearIndicatorProps}>{clearIcon}</SlotClearIndicator>
+        ) : null}
+        {hasPopupIcon ? (
+          <SlotPopupIndicator {...popupIndicatorProps}>{popupIcon}</SlotPopupIndicator>
+        ) : null}
       </SlotRoot>
       {anchorEl ? (
         // `nested` is for grouped options use case.

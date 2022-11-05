@@ -69,7 +69,7 @@ interface ComponentsProps {
     { component?: React.ElementType; sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
   >;
-  inputWrapper?: SlotComponentProps<
+  wrapper?: SlotComponentProps<
     'div',
     { component?: React.ElementType; sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
@@ -178,7 +178,7 @@ interface AutocompleteOwnProps<
    */
   components?: {
     root?: React.ElementType;
-    inputWrapper?: React.ElementType;
+    wrapper?: React.ElementType;
     input?: React.ElementType;
     startDecorator?: React.ElementType;
     endDecorator?: React.ElementType;

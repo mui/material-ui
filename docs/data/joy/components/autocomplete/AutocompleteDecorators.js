@@ -1,22 +1,22 @@
 import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Stack from '@mui/joy/Stack';
-import TravelExplore from '@mui/icons-material/TravelExplore';
+import LiveTv from '@mui/icons-material/LiveTv';
 
 export default function ComboBox() {
   return (
     <Stack spacing={2}>
       <Autocomplete
-        startDecorator={<TravelExplore />}
+        startDecorator={<LiveTv />}
         placeholder="Decorators"
         options={top100Films}
       />
       <Autocomplete
         multiple
-        startDecorator={<TravelExplore />}
+        startDecorator={<LiveTv />}
         placeholder="Decorators"
         options={top100Films}
-        defaultValue={top100Films.slice(0, 1)}
+        defaultValue={[top100Films[0]]}
       />
     </Stack>
   );
