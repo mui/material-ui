@@ -95,7 +95,7 @@ export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultSty
   return styleFunctionSx;
 }
 
-const styleFunctionSx = unstable_createStyleFunctionSx();
+const styleFunctionSx = unstable_createStyleFunctionSx(defaultStyleFunctionMapping);
 
 styleFunctionSx.filterProps = ['sx'];
 
