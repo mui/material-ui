@@ -1,3 +1,4 @@
+import { CSSObject } from '@mui/system';
 import { extendTheme } from '@mui/joy/styles';
 import type {} from '@mui/joy/IconButton';
 import type {} from '@mui/joy/Input';
@@ -6,6 +7,16 @@ import type {} from '@mui/joy/Tab';
 import type {} from '@mui/joy/Switch';
 import type {} from '@mui/joy/Slider';
 import type {} from '@mui/joy/LinearProgress';
+
+interface IosMaterial {
+  materials: {
+    thick: CSSObject;
+    regular: CSSObject;
+    thin: CSSObject;
+    ultrathin: CSSObject;
+    navbar: CSSObject;
+  };
+}
 
 declare module '@mui/joy/TabList' {
   interface TabListVariantOverrides {
@@ -131,6 +142,10 @@ declare module '@mui/joy/styles' {
     secondary: string;
     tertiary: string;
   }
+
+  interface Theme extends IosMaterial {}
+
+  interface CssVarsThemeOptions extends IosMaterial {}
 }
 
 export default extendTheme({
@@ -176,7 +191,7 @@ export default extendTheme({
         },
         background: {
           // Joy specific
-          body: 'var(--ios-palette-system-grey3)',
+          body: 'var(--ios-palette-system-grey4)',
           // ios specific
           primary: '#FFFFFF',
           secondary: '#F2F2F7',
@@ -286,6 +301,53 @@ export default extendTheme({
     xs: '15px',
     xs2: '14px',
     xs3: '12px',
+  },
+  materials: {
+    thick: {
+      background: `linear-gradient(rgba(255 255 255 / 0.78), rgba(255 255 255 / 0.78))
+        ,linear-gradient(rgba(255 255 255 / 0.34), rgba(255 255 255 / 0.34))`,
+      backdropFilter: 'blur(50px)',
+      [`[data-joy-color-scheme="dark"] &`]: {
+        background: 'rgba(0 0 0 / 0.6)',
+      },
+    },
+    regular: {
+      background: `linear-gradient(rgba(255 255 255 / 0.39), rgba(255 255 255 / 0.39))
+      ,linear-gradient(rgba(255 255 255 / 0.27), rgba(255 255 255 / 0.27))`,
+      backdropFilter: 'blur(50px) saturate(121%)',
+      [`[data-joy-color-scheme="dark"] &`]: {
+        background: 'rgba(0 0 0 / 0.41)',
+        backdropFilter: 'blur(50px)',
+      },
+    },
+    thin: {
+      background: `linear-gradient(rgba(255 255 255 / 0.51), rgba(255 255 255 / 0.51))
+      ,linear-gradient(rgba(255 255 255 / 0.05), rgba(255 255 255 / 0.05))`,
+      backdropFilter: 'blur(50px) saturate(145%)',
+      [`[data-joy-color-scheme="dark"] &`]: {
+        background: 'rgba(0 0 0 / 0.26)',
+        backdropFilter: 'blur(50px)',
+      },
+    },
+    ultrathin: {
+      background: `linear-gradient(rgba(255 255 255 / 0.12), rgba(255 255 255 / 0.12))
+      ,linear-gradient(rgba(255 255 255 / 0.11), rgba(255 255 255 / 0.11))`,
+      backdropFilter: 'blur(30px)',
+      [`[data-joy-color-scheme="dark"] &`]: {
+        background: 'rgba(0 0 0 / 0.1)',
+        backdropFilter: 'blur(50px)',
+      },
+    },
+    navbar: {
+      backgroundColor: 'rgba(249 249 249 / 0.94)',
+      boxShadow: '0 0.33px 0 0 rgba(0 0 0 / 0.3)',
+      backdropFilter: 'blur(20px)',
+      [`[data-joy-color-scheme="dark"] &`]: {
+        backgroundColor: 'rgba(29 29 29 / 0.94)',
+        boxShadow: '0 0.33px 0 0 rgba(255 255 255 / 0.15)',
+        backdropFilter: 'blur(20px) saturate(130%)',
+      },
+    },
   },
   typography: {
     // @ts-ignore
