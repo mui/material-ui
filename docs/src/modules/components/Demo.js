@@ -8,6 +8,7 @@ import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
@@ -26,12 +27,6 @@ import BrandingProvider from 'docs/src/BrandingProvider';
  */
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '');
-}
-
-// Used to forward props injected with cloneElement
-function ForwardProps(props) {
-  const { children, ...forwardProps } = props;
-  return children(forwardProps);
 }
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
@@ -99,53 +94,51 @@ function useDemoData(codeVariant, demo, githubLocation) {
   }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
 }
 
-function useDemoElement({ demoOptions, demoData, usePreview, code, debouncedSetError }) {
+function useDemoElement({
+  demoOptions,
+  demoData,
+  editorCode,
+  initialEditorCode,
+  setDebouncedError,
+}) {
+  const debouncedSetError = React.useMemo(
+    () => debounce(setDebouncedError, 300),
+    [setDebouncedError],
+  );
+
+  React.useEffect(() => {
+    return () => {
+      debouncedSetError.clear();
+    };
+  }, [debouncedSetError]);
+
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
   return React.useMemo(() => {
-    // No need for a live environment if the toolbar is hidden.
-    if (demoOptions.hideToolbar) {
+    if (
+      // No need for a live environment if the code matches with the component rendered server-side.
+      editorCode.value === initialEditorCode ||
+      // A limitation from https://github.com/nihgwu/react-runner, we can inject the `window` of the iframe
+      demoOptions.disableLiveEdit
+    ) {
       return <demoData.Component />;
     }
 
-    const codeToRun = usePreview
-      ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demoData.jsxPreview), code)
-      : code;
-
-    // In production mode, it's better to hydrate the demo as soon as possible (`fallback`).
-    // Later on, we can accept live edits.
-    if (process.env.NODE_ENV === 'production') {
-      return (
-        <ForwardProps>
-          {(forwardProps) => (
-            <NoSsr fallback={<demoData.Component />}>
-              <ReactRunner
-                code={codeToRun}
-                scope={demoData.scope}
-                onError={debouncedSetError}
-                forwardProps={forwardProps}
-              />
-            </NoSsr>
-          )}
-        </ForwardProps>
-      );
-    }
-
-    // In development mode, it's better to have a single render of the demos.
-    // It's hard to follow the console.log otherwise.
     return (
-      <ForwardProps>
-        {(forwardProps) => (
-          <ReactRunner
-            code={codeToRun}
-            scope={demoData.scope}
-            onError={debouncedSetError}
-            forwardProps={forwardProps}
-          />
-        )}
-      </ForwardProps>
+      <ReactRunner
+        scope={demoData.scope}
+        onError={debouncedSetError}
+        code={
+          editorCode.isPreview
+            ? trimLeadingSpaces(demoData.raw).replace(
+                trimLeadingSpaces(demoData.jsxPreview),
+                editorCode.value,
+              )
+            : editorCode.value
+        }
+      />
     );
-  }, [demoOptions.hideToolbar, demoData, usePreview, code, debouncedSetError]);
+  }, [demoData, demoOptions.disableLiveEdit, editorCode, initialEditorCode, debouncedSetError]);
 }
 
 const Root = styled('div')(({ theme }) => ({
@@ -278,6 +271,13 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
+const DemoCodeViewer = styled(HighlightedCode)({
+  '& pre': {
+    margin: '0 auto',
+    maxHeight: 'min(68vh, 1000px)',
+  },
+});
+
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
@@ -361,35 +361,44 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
 
-  const usePreview = showPreview && !codeOpen;
-  const initialCode = usePreview ? demoData.jsxPreview : demoData.raw;
-  const [code, setCode] = React.useState(initialCode);
+  const DemoRoot = demoData.product === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
+  const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
+
+  const isPreview = !codeOpen && showPreview;
+  const initialEditorCode = isPreview
+    ? demoData.jsxPreview
+    : // Prettier remove all the leading lines except for the last one, remove it as we don't
+      // need it in the live edit view.
+      demoData.raw.replace(/\n$/, '');
+
+  const [editorCode, setEditorCode] = React.useState({
+    value: initialEditorCode,
+    isPreview,
+  });
+
   const resetDemo = () => {
-    setCode(initialCode);
+    setEditorCode({
+      value: initialEditorCode,
+      isPreview,
+    });
     setDemoKey();
   };
 
   React.useEffect(() => {
-    setCode(initialCode);
-  }, [initialCode]);
+    setEditorCode({
+      value: initialEditorCode,
+      isPreview,
+    });
+  }, [initialEditorCode, isPreview]);
 
-  const [debouncedError, setError] = React.useState(null);
-  const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
-  React.useEffect(() => {
-    return () => {
-      debouncedSetError.clear();
-    };
-  }, [debouncedSetError]);
-
-  const DemoRoot = demoData.product === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
+  const [debouncedError, setDebouncedError] = React.useState(null);
 
   const demoElement = useDemoElement({
     demoOptions,
     demoData,
-    usePreview,
-    code,
-    debouncedSetError,
+    editorCode,
+    initialEditorCode,
+    setDebouncedError,
   });
 
   return (
@@ -448,20 +457,37 @@ export default function Demo(props) {
           </NoSsr>
         )}
         <Collapse in={openDemoSource} unmountOnExit>
-          <DemoEditor
-            key={demoKey}
-            id={demoSourceId}
-            value={code}
-            onChange={setCode}
-            language={demoData.sourceLanguage}
-            copyButtonProps={{
-              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-              'data-ga-event-label': demoOptions.demo,
-              'data-ga-event-action': 'copy-click',
-            }}
-          >
-            {debouncedError ? <DemoEditorError>{debouncedError}</DemoEditorError> : null}
-          </DemoEditor>
+          {demoOptions.disableLiveEdit ? (
+            <DemoCodeViewer
+              code={editorCode.value}
+              id={demoSourceId}
+              language={demoData.sourceLanguage}
+              copyButtonProps={{
+                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                'data-ga-event-label': demoOptions.demo,
+                'data-ga-event-action': 'copy-click',
+              }}
+            />
+          ) : (
+            <DemoEditor
+              value={editorCode.value}
+              onChange={(value) => {
+                setEditorCode({
+                  ...editorCode,
+                  value,
+                });
+              }}
+              id={demoSourceId}
+              language={demoData.sourceLanguage}
+              copyButtonProps={{
+                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                'data-ga-event-label': demoOptions.demo,
+                'data-ga-event-action': 'copy-click',
+              }}
+            >
+              <DemoEditorError>{debouncedError}</DemoEditorError>
+            </DemoEditor>
+          )}
         </Collapse>
         {adVisibility ? <AdCarbonInline /> : null}
       </Wrapper>

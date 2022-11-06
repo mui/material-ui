@@ -8,7 +8,6 @@ interface ReactRunnerProps {
     import: {};
   };
   onError: (error: string | null) => {};
-  forwardProps?: {};
 }
 
 // The docs https://github.com/nihgwu/react-runner
@@ -31,11 +30,9 @@ export default function ReactRunner(props: ReactRunnerProps) {
         },
       };
 
-      const proxyProcess = new Proxy(scopeProp.process, handler);
-
       return {
         ...scopeProp,
-        process: proxyProcess,
+        process: new Proxy(scopeProp.process, handler),
       };
     }, [scopeProp]);
   }
@@ -48,12 +45,6 @@ export default function ReactRunner(props: ReactRunnerProps) {
   React.useEffect(() => {
     onError(error);
   }, [error, onError]);
-
-  // TODO:
-  // if (Object.keys(forwardProps).length > 0) {
-  //   console.log('forwardProps', element);
-  //   return React.cloneElement(element, forwardProps);
-  // }
 
   return element;
 }

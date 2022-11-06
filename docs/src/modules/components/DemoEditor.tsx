@@ -63,7 +63,7 @@ interface DemoEditorProps {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language = 'jsx', value, onChange, copyButtonProps, children, id } = props;
+  const { language, value, onChange, copyButtonProps, children, id } = props;
   const t = useTranslate();
   const wrapperRef = React.useRef<HTMLElement | null>(null);
   const enterRef = React.useRef<HTMLElement | null>(null);
@@ -100,7 +100,9 @@ export default function DemoEditor(props: DemoEditorProps) {
         <div className="scrollContainer">
           <StyledSimpleCodeEditor
             padding={20}
-            highlight={(code) => prism(code, language)}
+            highlight={(code: any) =>
+              `<code class="language-${language}">${prism(code, language)}</code>`
+            }
             id={id}
             value={value}
             onValueChange={onChange}

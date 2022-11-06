@@ -2,6 +2,10 @@ import * as React from 'react';
 import Alert, { AlertProps } from '@mui/material/Alert';
 
 export default function DemoEditorError(props: AlertProps) {
+  if (!props.children) {
+    return null;
+  }
+
   return (
     <Alert
       aria-live="polite"
