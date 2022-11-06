@@ -117,4 +117,4 @@ To enable it, you can set `enableColorScheme=true` as follows:
 
 ## Customization
 
-Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-override) section of the documentation to change the output of these components.
+Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-overrides) section of the documentation to change the output of these components.
