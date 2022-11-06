@@ -170,7 +170,7 @@ const StyledSlider = styled(Slider, {
 
 Material UI provides theme tools for managing style consistency between all components across your user interface. Visit the [Component theming customization](/material-ui/customization/theme-components/) page for more details.
 
-## 4. Global CSS override
+## 4. Global CSS overrides
 
 To add global baseline styles for some of the HTML elements, use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements:
 
