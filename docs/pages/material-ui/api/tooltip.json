@@ -41,6 +41,20 @@
     },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "PopperProps": { "type": { "name": "object" }, "default": "{}" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ arrow?: object, popper?: object, tooltip?: object, transition?: object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ arrow?: elementType, popper?: elementType, tooltip?: elementType, transition?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

@@ -219,11 +219,14 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     className: classes.popper,
   });
 
-  const context: SelectUnstyledContextType = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-  };
+  const context: SelectUnstyledContextType = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+    }),
+    [getOptionProps, getOptionState],
+  );
 
   return (
     <React.Fragment>

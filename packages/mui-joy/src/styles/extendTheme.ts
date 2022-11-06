@@ -12,11 +12,11 @@ import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
-import { Variants } from './types/variants';
+import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScales } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import { createVariant } from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -54,6 +54,8 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
+  colorInversion?: Partial2Level<VariantOverrides>;
+  colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
@@ -101,10 +103,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVar(`palette-${color}-700`),
     solidDisabledColor: `#fff`,
     solidDisabledBg: getCssVar(`palette-${color}-200`),
-
-    overrideTextPrimary: getCssVar(`palette-${color}-700`),
-    overrideTextSecondary: getCssVar(`palette-${color}-500`),
-    overrideTextTertiary: getCssVar(`palette-${color}-400`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -134,10 +132,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVar(`palette-${color}-800`),
     solidDisabledColor: getCssVar(`palette-${color}-700`),
     solidDisabledBg: getCssVar(`palette-${color}-900`),
-
-    overrideTextPrimary: getCssVar(`palette-${color}-200`),
-    overrideTextSecondary: getCssVar(`palette-${color}-400`),
-    overrideTextTertiary: getCssVar(`palette-${color}-500`),
   });
 
   const lightColorSystem = {
@@ -178,10 +172,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidActiveBg: getCssVar(`palette-neutral-800`),
         solidDisabledColor: getCssVar(`palette-neutral-300`),
         solidDisabledBg: getCssVar(`palette-neutral-50`),
-
-        overrideTextPrimary: getCssVar(`palette-neutral-700`),
-        overrideTextSecondary: getCssVar(`palette-neutral-500`),
-        overrideTextTertiary: getCssVar(`palette-neutral-400`),
       },
       danger: {
         ...colors.red,
@@ -280,10 +270,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidActiveBg: getCssVar(`palette-neutral-800`),
         solidDisabledColor: getCssVar(`palette-neutral-700`),
         solidDisabledBg: getCssVar(`palette-neutral-900`),
-
-        overrideTextPrimary: getCssVar(`palette-neutral-200`),
-        overrideTextSecondary: getCssVar(`palette-neutral-400`),
-        overrideTextTertiary: getCssVar(`palette-neutral-500`),
       },
       danger: {
         ...colors.red,
@@ -533,7 +519,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   const { palette: firstColorSchemePalette } = Object.entries(colorSchemes)[0][1];
-  const variantInput = { palette: firstColorSchemePalette, prefix: cssVarPrefix, getCssVar };
+  const variantInput = { palette: firstColorSchemePalette, cssVarPrefix, getCssVar };
 
   const theme = {
     colorSchemes,
@@ -557,9 +543,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                     fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
                   }),
                 ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: themeProp.vars.palette[ownerState.color]?.plainColor,
+                  ownerState.color !== 'inherit' &&
+                  ownerState.color !== 'context' &&
+                  themeProp.vars.palette[ownerState.color!] && {
+                    color: themeProp.vars.palette[ownerState.color].plainColor,
                   }),
+                ...(ownerState.color === 'context' && {
+                  color: theme.variants.plain?.context?.color,
+                }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
                     '--Icon-fontSize': themeProp.vars.fontSize[instanceFontSize],
@@ -589,17 +580,16 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidHover: createVariant('solidHover', variantInput),
         solidActive: createVariant('solidActive', variantInput),
         solidDisabled: createVariant('solidDisabled', variantInput),
-        // variant overrides
-        plainOverrides: createTextOverrides(variantInput),
-        outlinedOverrides: createTextOverrides(variantInput),
-        softOverrides: createTextOverrides(variantInput),
-        solidOverrides: createContainedOverrides(variantInput),
       },
       variantsInput,
     ),
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
+    colorInversionConfig: {
+      soft: ['plain', 'outlined', 'soft', 'solid'],
+      solid: ['plain', 'outlined', 'soft', 'solid'],
+    },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
   /**
@@ -611,7 +601,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         // Need type casting due to module augmentation inside the repo
         main: '500' as keyof PaletteRange,
         light: '200' as keyof PaletteRange,
-        dark: '900' as keyof PaletteRange,
+        dark: '800' as keyof PaletteRange,
       };
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);
