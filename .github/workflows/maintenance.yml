@@ -1,5 +1,7 @@
 name: Maintenance
 
+permissions: {}
+
 on:
   # So that PRs touching the same files as the push are updated
   push:
