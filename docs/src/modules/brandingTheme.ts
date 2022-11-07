@@ -224,7 +224,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     spacing: 10,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
-      fontFamilyCode: ['Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', 'monospace'].join(','),
+      fontFamilyCode: ['Menlo', 'Monaco', 'Consolas', 'monospace'].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightSemiBold: 600,
