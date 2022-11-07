@@ -5,6 +5,8 @@ on:
   issues:
     types: [labeled, unlabeled, reopened]
 
+permissions: {}
+
 jobs:
   mark-support:
     runs-on: ubuntu-latest
