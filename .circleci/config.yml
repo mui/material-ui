@@ -72,7 +72,7 @@ commands:
       - run:
           name: Resolve react version
           command: |
-            node scripts/use-react-version
+            node scripts/useReactVersion
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
