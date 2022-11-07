@@ -141,6 +141,7 @@ const blacklist = [
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
   'docs-getting-started-templates', // No public components
   'docs-getting-started-usage/Usage.png', // No public components
+  'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
   'docs-styles-advanced', // Redudant

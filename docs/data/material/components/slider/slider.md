@@ -3,7 +3,7 @@ product: material-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
-materialDesign: https://material.io/components/sliders
+materialDesign: https://m2.material.io/components/sliders
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 unstyled: /base/react-slider/
 ---

@@ -170,7 +170,7 @@ export default function UnstyledPaginationIntroduction() {
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              componentsProps={{
+              slotProps={{
                 select: {
                   'aria-label': 'rows per page',
                 },

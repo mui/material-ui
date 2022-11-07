@@ -193,7 +193,7 @@ export interface PaletteTooltip {
 
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
-  palette?: Omit<PaletteOptions, 'mode'> & {
+  palette?: PaletteOptions & {
     common?: Partial<PaletteCommonChannel>;
     primary?: Partial<PaletteColorChannel>;
     secondary?: Partial<PaletteColorChannel>;

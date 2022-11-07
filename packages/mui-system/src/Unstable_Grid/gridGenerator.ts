@@ -1,6 +1,7 @@
 import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
-import { GridOwnerState } from './GridProps';
+import { ResponsiveStyleValue } from '../styleFunctionSx';
+import { GridDirection, GridOwnerState } from './GridProps';
 
 interface Props {
   theme: { breakpoints: Breakpoints; spacing?: Spacing };
@@ -254,4 +255,17 @@ export const generateSpacingClassNames = (
     return classNames;
   }
   return [];
+};
+
+export const generateDirectionClasses = (
+  direction: ResponsiveStyleValue<GridDirection> | undefined,
+): string[] => {
+  if (direction === undefined) {
+    return [];
+  }
+  if (typeof direction === 'object') {
+    return Object.entries(direction).map(([key, value]) => `direction-${key}-${value}`);
+  }
+
+  return [`direction-xs-${String(direction)}`];
 };

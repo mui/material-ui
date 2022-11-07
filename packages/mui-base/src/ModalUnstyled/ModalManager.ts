@@ -60,7 +60,7 @@ function ariaHiddenSiblings(
   container: Element,
   mountElement: Element,
   currentElement: Element,
-  elementsToExclude: readonly Element[] = [],
+  elementsToExclude: readonly Element[],
   show: boolean,
 ): void {
   const blacklist = [mountElement, currentElement, ...elementsToExclude];

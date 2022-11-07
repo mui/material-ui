@@ -29,16 +29,42 @@ describe('<Slider />', () => {
 
   const { render } = createRenderer();
 
-  describeConformance(<Slider value={0} />, () => ({
-    classes,
-    inheritComponent: SliderUnstyled,
-    render,
-    refInstanceof: window.HTMLSpanElement,
-    muiName: 'MuiSlider',
-    testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
-    testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
-    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
-  }));
+  describeConformance(
+    <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
+    () => ({
+      classes,
+      inheritComponent: SliderUnstyled,
+      render,
+      refInstanceof: window.HTMLSpanElement,
+      muiName: 'MuiSlider',
+      testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
+      testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
+      testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        thumb: {
+          expectedClassName: classes.thumb,
+        },
+        track: {
+          expectedClassName: classes.track,
+        },
+        rail: {
+          expectedClassName: classes.rail,
+        },
+        input: {
+          expectedClassName: classes.input,
+        },
+        mark: {
+          expectedClassName: classes.mark,
+        },
+        markLabel: {
+          expectedClassName: classes.markLabel,
+        },
+      },
+    }),
+  );
 
   it('should call handlers', () => {
     const handleChange = spy();
@@ -985,6 +1011,18 @@ describe('<Slider />', () => {
     expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(3);
     expect(container.querySelectorAll(`.${classes.markLabel}[data-index="2"]`).length).to.equal(1);
     expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
+  });
+
+  it('should correctly display mark labels when ranges slider have the same start and end', () => {
+    const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
+
+    const { container, setProps } = render(
+      <Slider value={[100, 100]} marks={getMarks([100, 100])} />,
+    );
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
+
+    setProps({ value: [40, 60], marks: getMarks([40, 60]) });
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
   });
 
   it('should pass "name" and "value" as part of the event.target for onChange', () => {

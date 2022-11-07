@@ -33,13 +33,14 @@ const TabListRoot = styled(ListRoot, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListOwnerState }>({
+})<{ ownerState: TabListOwnerState }>(({ theme }) => ({
   flexGrow: 'initial',
+  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
   ...scopedVariables,
-});
+}));
 
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({

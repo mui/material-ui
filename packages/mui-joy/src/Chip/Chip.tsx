@@ -46,7 +46,7 @@ const ChipRoot = styled('div', {
       '--internal-paddingBlock':
         'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
-        'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Chip-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
@@ -275,8 +275,13 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     className: classes.endDecorator,
   });
 
+  const chipContextValue = React.useMemo(
+    () => ({ disabled, variant, color }),
+    [color, disabled, variant],
+  );
+
   return (
-    <ChipContext.Provider value={{ disabled, variant, color }}>
+    <ChipContext.Provider value={chipContextValue}>
       <ChipRoot
         as={component}
         className={clsx(classes.root, className)}
