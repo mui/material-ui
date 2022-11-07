@@ -8,14 +8,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-
 
 # Unstyled Select
 
-<p class="description">The select components let you create lists of options for users to choose from.</p>
+<p class="description">The Select components let you create lists of options for users to choose from.</p>
 
 ## Introduction
 
 A select is a UI element that gives users a list of options to choose from.
 
-MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`.
-It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
+MUI Base offers two components to replace the native HTML `<select>` tag: Unstyled Select and Unstyled Multi-select.
+It also includes Unstyled Option for creating the options on the list, and Unstyled Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -50,7 +50,7 @@ export default function MyApp() {
 ### Basics
 
 The following demo shows how to create and style a select component.
-Note that it also uses [`PopperUnstyled`](/base/react-popper/) to render a popup for the list of options:
+Note that it also uses [Unstyled Popper](/base/react-popper/) to render a popup for the list of options:
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
@@ -68,7 +68,7 @@ See the [Object values](#object-values) section to learn how to do it.
 
 #### TypeScript caveat
 
-`SelectUnstyled` accepts generic props.
+Unstyled Select accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
@@ -90,7 +90,7 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 
 ### Multi-select
 
-The `MultiSelectUnstyled` component lets your users select multiple options from the list.
+The Unstyled Multi-select component lets your users select multiple options from the list.
 
 ```js
 import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
@@ -100,8 +100,8 @@ import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 
 ### Anatomy
 
-The `SelectUnstyled` and `MultiSelectUnstyled` components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within `PopperUnstyled`.
-`OptionUnstyled` renders as an `<li>`:
+The Select and Multi-select components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within an Unstyled Popper.
+Unstyled Option renders as an `<li>`:
 
 ```html
 <button class="MuiSelectUnstyled-root" type="button">Open</button>
@@ -149,7 +149,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 import { useSelect } from '@mui/base/SelectUnstyled';
 ```
 
-The `useSelect` hook lets you apply the functionality of `SelectUnstyled` to a fully custom component.
+The `useSelect` hook lets you apply the functionality of Unstyled Select to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -170,17 +170,17 @@ It can be controlled by a mouse/touch or a keyboard.
 
 ### Controlled select
 
-`SelectUnstyled` can be used as an uncontrolled or controlled component:
+Unstyled Select can be used as an uncontrolled or controlled component:
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 ### Object values
 
-The `SelectUnstyled` component can be used with non-string values:
+The Unstyled Select component can be used with non-string values:
 
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
-If you use a SelectUnstyled with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
+If you use a Select with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
 You can change this behavior with the help of the `getSerializedValue` prop.
 
 {{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
@@ -204,6 +204,6 @@ You can include custom elements to be rendered inside the listbox.
 Options can be grouped, similarly to how the native `<select>` element works.
 Unlike the native `<select>`, groups can be nested.
 
-The following demo shows how to group options with the `OptionGroupUnstyled` component:
+The following demo shows how to group options with the Unstyled Option Group component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
