@@ -1,13 +1,9 @@
 import * as React from 'react';
-import Sheet, { SheetProps } from '@mui/joy/Sheet';
+import Box, { BoxProps } from '@mui/joy/Box';
 
-export default function Frame({
-  name,
-  sx,
-  ...props
-}: SheetProps & { name: string }) {
+export default function Frame({ name, sx, ...props }: BoxProps & { name: string }) {
   return (
-    <Sheet
+    <Box
       {...props}
       sx={[
         (theme) => ({
@@ -15,6 +11,7 @@ export default function Frame({
           '&:before': {
             content: `'${name}'`,
             color: theme.vars.palette.info.plainColor,
+            fontFamily: theme.vars.fontFamily.body,
             display: 'block',
             position: 'absolute',
             top: 0,

@@ -12,6 +12,8 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
     <React.Fragment>
       <GlobalStyles
         styles={(theme: Theme) => {
+          const defaultTypographyLevel =
+            (theme as any).components?.JoyTypography?.defaultProps?.level || 'body1';
           const colorSchemeStyles: Record<string, any> = {};
           if (!disableColorScheme) {
             // The CssBaseline is wrapped inside a CssVarsProvider
@@ -42,7 +44,7 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
             body: {
               margin: 0, // Remove the margin in all browsers.
               color: theme.vars.palette.text.primary,
-              ...(theme.typography.body1 as any),
+              ...(theme.typography as any)[defaultTypographyLevel],
               backgroundColor: theme.vars.palette.background.body,
               '@media print': {
                 // Save printer ink.

@@ -15,7 +15,7 @@ import Typography from '@mui/joy/Typography';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
-import Sheet from '@mui/joy/Sheet';
+import Sheet, { SheetProps } from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
 import Slider from '@mui/joy/Slider';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
@@ -24,6 +24,13 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import Frame from './Frame';
+
+const Navbar = ({ sx, ...props }: SheetProps) => (
+  <Sheet
+    {...props}
+    sx={[(theme) => theme.materials.navbar, ...(Array.isArray(sx) ? sx : [sx])]}
+  />
+);
 
 export default function IPhone() {
   return (
@@ -35,13 +42,15 @@ export default function IPhone() {
         alignItems: 'flex-start',
       }}
     >
-      <Frame name="title/test">
-        <Sheet sx={{ display: 'flex', alignItems: 'center', pt: '54px' }}>
+      <Frame name="Bars / Navigation Bars - Default">
+        <Navbar sx={{ display: 'flex', alignItems: 'center', pt: '54px', px: 2 }}>
           <Box sx={{ width: 0, whiteSpace: 'nowrap' }}>
             <Link
               component="button"
               color="primary"
-              startDecorator={<KeyboardArrowLeftRounded fontSize="xl3" />}
+              startDecorator={
+                <KeyboardArrowLeftRounded fontSize="xl3" sx={{ ml: -2, mr: -1 }} />
+              }
               underline="none"
             >
               Parent Title
@@ -55,120 +64,138 @@ export default function IPhone() {
               <AddRoundedIcon fontSize="xl2" />
             </IconButton>
           </Box>
-        </Sheet>
+        </Navbar>
       </Frame>
 
-      <Sheet sx={{ display: 'flex', alignItems: 'center', pt: '54px' }}>
-        <Box sx={{ width: 0, whiteSpace: 'nowrap' }}>
-          <Button variant="plain" color="primary" sx={{ typography: 'body' }}>
-            Cancel
-          </Button>
-        </Box>
-        <Typography level="headline" sx={{ mx: 'auto' }}>
-          Title
-        </Typography>
-        <Box sx={{ width: 0, writingMode: 'tb-rl' }}>
-          <Button variant="plain" color="primary" sx={{ typography: 'body' }}>
-            Done
-          </Button>
-        </Box>
-      </Sheet>
-
-      <Sheet sx={{ pt: '54px' }}>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Link
-            component="button"
-            startDecorator={<KeyboardArrowLeftRounded fontSize="xl3" />}
-            underline="none"
+      <Frame name="Bars / Navigation Bars - Large Title">
+        <Navbar sx={{ pt: '54px', px: 2 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
           >
-            Parent Title
-          </Link>
-          <IconButton>
-            <CropFreeIcon fontSize="xl2" />
-          </IconButton>
-        </Box>
-        <Typography level="largeTitle" fontWeight="xl" sx={{ mx: 2, my: 0.5 }}>
-          Large Title
-        </Typography>
-      </Sheet>
+            <Link
+              component="button"
+              startDecorator={
+                <KeyboardArrowLeftRounded fontSize="xl3" sx={{ ml: -2, mr: -1 }} />
+              }
+              underline="none"
+            >
+              Parent Title
+            </Link>
+            <IconButton>
+              <CropFreeIcon fontSize="xl2" />
+            </IconButton>
+          </Box>
+          <Typography level="largeTitle" fontWeight="xl" sx={{ my: 0.5 }}>
+            Large Title
+          </Typography>
+        </Navbar>
+      </Frame>
 
-      <Sheet sx={{ px: 2, py: 0.75 }}>
-        <FormControl orientation="horizontal">
-          <FormLabel sx={{ flexGrow: 1 }}>Title</FormLabel>
-          <Switch />
-        </FormControl>
-      </Sheet>
+      <Frame name="Bars / Navigation Bars - Prompt">
+        <Navbar sx={{ display: 'flex', alignItems: 'center', pt: '54px' }}>
+          <Box sx={{ width: 0, whiteSpace: 'nowrap' }}>
+            <Button variant="plain" color="primary" sx={{ typography: 'body' }}>
+              Cancel
+            </Button>
+          </Box>
+          <Typography level="headline" sx={{ mx: 'auto' }}>
+            Title
+          </Typography>
+          <Box sx={{ width: 0, writingMode: 'tb-rl' }}>
+            <Button variant="plain" color="primary" sx={{ typography: 'body' }}>
+              Done
+            </Button>
+          </Box>
+        </Navbar>
+      </Frame>
 
-      <Sheet sx={{ px: 2, py: 0.75 }}>
-        <Slider defaultValue={30} />
-      </Sheet>
+      <Frame name="Switch">
+        <Navbar sx={{ px: 2, py: 0.75 }}>
+          <FormControl orientation="horizontal">
+            <FormLabel sx={{ flexGrow: 1 }}>Title</FormLabel>
+            <Switch />
+          </FormControl>
+        </Navbar>
+      </Frame>
 
-      <Sheet sx={{ px: 2, py: 0.75 }}>
-        <LinearProgress sx={{ mb: 1 }} />
-        <LinearProgress determinate value={50} />
-      </Sheet>
+      <Frame name="Slider">
+        <Navbar sx={{ px: 2, py: 0.75 }}>
+          <Slider defaultValue={30} />
+        </Navbar>
+      </Frame>
 
-      <Sheet sx={{ px: 2, py: 0.75 }}>
-        <FormControl orientation="horizontal">
-          <FormLabel>Name</FormLabel>
-          <Input
-            placeholder="Placeholder Value"
-            endDecorator={
-              <IconButton color="neutral">
-                <CancelRoundedIcon />
-              </IconButton>
-            }
-            sx={{ flex: 1, ml: '52px' }}
-          />
-        </FormControl>
-      </Sheet>
+      <Frame name="Progress indicators">
+        <Navbar sx={{ px: 2, py: 0.75 }}>
+          <LinearProgress sx={{ mb: 1 }} />
+          <LinearProgress determinate value={50} />
+        </Navbar>
+      </Frame>
 
-      <Sheet sx={{ px: 2, py: 1.5 }}>
-        <Tabs defaultValue={0}>
-          <TabList>
-            <Tab>Label</Tab>
-            <Tab>Label</Tab>
-            <Tab>Label</Tab>
-          </TabList>
-        </Tabs>
-      </Sheet>
+      <Frame name="Text Field">
+        <Navbar sx={{ px: 2, py: 0.75 }}>
+          <FormControl orientation="horizontal">
+            <FormLabel>Name</FormLabel>
+            <Input
+              placeholder="Placeholder Value"
+              endDecorator={
+                <IconButton color="neutral">
+                  <CancelRoundedIcon />
+                </IconButton>
+              }
+              sx={{ flex: 1, ml: '52px' }}
+            />
+          </FormControl>
+        </Navbar>
+      </Frame>
 
-      <Sheet
-        sx={{
-          px: 2,
-          py: 1.25,
-          display: 'flex',
-          justifyContent: 'space-betwen',
-          alignItems: 'center',
-        }}
-      >
-        <Typography>Title</Typography>
-        <List
-          row
+      <Frame name="Segmented Control">
+        <Navbar sx={{ px: 2, py: 1.5 }}>
+          <Tabs defaultValue={0}>
+            <TabList>
+              <Tab>Label</Tab>
+              <Tab>Label</Tab>
+              <Tab>Label</Tab>
+            </TabList>
+          </Tabs>
+        </Navbar>
+      </Frame>
+
+      <Frame name="Stepper">
+        <Navbar
           sx={{
-            flex: 0,
-            ml: 'auto',
-            bgcolor: 'fill.tertiary',
-            '--List-item-minHeight': '29px',
-            '--List-radius': '7.92px',
-            '--List-padding': '0px',
+            px: 2,
+            py: 1.25,
+            display: 'flex',
+            justifyContent: 'space-betwen',
+            alignItems: 'center',
           }}
         >
-          <ListItemButton>
-            <RemoveRoundedIcon />
-          </ListItemButton>
-          <ListDivider sx={{ borderRadius: '1px', my: 1 }} />
-          <ListItemButton>
-            <AddRoundedIcon />
-          </ListItemButton>
-        </List>
-      </Sheet>
+          <Typography>Title</Typography>
+          <List
+            row
+            sx={{
+              flex: 0,
+              ml: 'auto',
+              bgcolor: 'fill.tertiary',
+              '--List-item-minHeight': '29px',
+              '--List-radius': '7.92px',
+              '--List-padding': '0px',
+            }}
+          >
+            <ListItemButton>
+              <RemoveRoundedIcon />
+            </ListItemButton>
+            <ListDivider sx={{ borderRadius: '1px', my: 1 }} />
+            <ListItemButton>
+              <AddRoundedIcon />
+            </ListItemButton>
+          </List>
+        </Navbar>
+      </Frame>
     </Box>
   );
 }

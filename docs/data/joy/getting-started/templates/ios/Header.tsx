@@ -59,11 +59,11 @@ export default function Navigation() {
         <GlobalStyles
           styles={(theme) => ({
             body: {
-              backgroundImage: `url(https://4kwallpapers.com/images/wallpapers/macos-13-macos-ventura-macos-2022-stock-light-5k-retina-2048x1536-8135.jpg)`,
+              backgroundImage: `url(/static/images/templates/ios-wallpaper-light.png)`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               [theme.getColorSchemeSelector('dark')]: {
-                backgroundImage: `url(https://4kwallpapers.com/images/wallpapers/macos-ventura-macos-13-macos-2022-stock-dark-mode-5k-retina-2048x1536-8133.jpg)`,
+                backgroundImage: `url(/static/images/templates/ios-wallpaper-dark.png)`,
               },
             },
           })}

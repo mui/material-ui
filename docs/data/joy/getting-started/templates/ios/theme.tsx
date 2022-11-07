@@ -5,7 +5,7 @@ import type {} from '@mui/joy/Input';
 import type {} from '@mui/joy/TabList';
 import type {} from '@mui/joy/Tab';
 import type {} from '@mui/joy/Switch';
-import type {} from '@mui/joy/Slider';
+import { sliderClasses } from '@mui/joy/Slider';
 import type {} from '@mui/joy/LinearProgress';
 
 interface IosMaterial {
@@ -487,6 +487,11 @@ export default extendTheme({
             '--Slider-thumb-size': '28px',
           }),
         }),
+        rail: ({ ownerState, theme }) => ({
+          ...(ownerState.variant === 'ios' && {
+            backgroundColor: theme.vars.palette.fill.primary,
+          }),
+        }),
         track: ({ ownerState, theme }) => ({
           ...(ownerState.variant === 'ios' && {
             backgroundColor: theme.vars.palette.system.blue,
@@ -497,6 +502,9 @@ export default extendTheme({
             backgroundColor: '#fff',
             boxShadow:
               '0 0.5px 4px 0 rgba(0 0 0 / .12), 0 6px 13px 0 rgba(0 0 0 / .12)',
+            [`&.${sliderClasses.focusVisible}`]: {
+              outline: 'none',
+            },
           }),
         }),
       },
