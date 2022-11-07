@@ -23,9 +23,13 @@ export default function Navigation({
   return (
     <Sheet
       sx={(theme) => ({
+        position: 'sticky',
+        top: 'calc(var(--header-height) + 0.5rem)',
         gridArea: 'nav',
         m: '0.5rem',
         ml: 'calc(0.5rem + env(safe-area-inset-left))',
+        maxHeight:
+          'calc(100vh - var(--header-height) - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
         borderRadius: '10px',
         ...theme.materials.ultrathin,
       })}

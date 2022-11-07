@@ -84,11 +84,12 @@ export default function IosExample() {
       <CssBaseline />
       <Box
         sx={{
+          '--header-height': '44px',
           minHeight:
             'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
           display: 'grid',
           gridTemplateColumns: 'auto 1fr',
-          gridTemplateRows: '44px 1fr',
+          gridTemplateRows: 'var(--header-height) 1fr',
           gridTemplateAreas: '"header header" "nav main"',
         }}
       >

@@ -44,6 +44,8 @@ export default function Navigation() {
     <Sheet
       component="header"
       sx={(theme) => ({
+        position: 'sticky',
+        top: 0,
         px: 2,
         gridArea: 'header',
         display: 'flex',
@@ -62,6 +64,7 @@ export default function Navigation() {
               backgroundImage: `url(/static/images/templates/ios-wallpaper-light.png)`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
+              backgroundAttachment: 'fixed',
               [theme.getColorSchemeSelector('dark')]: {
                 backgroundImage: `url(/static/images/templates/ios-wallpaper-dark.png)`,
               },
