@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 
 ## Introduction
 
-The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
+The Unstyled Slider component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
@@ -44,7 +44,7 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 ### Anatomy
 
-The `SliderUnstyled` component is composed of a root `<span>` that houses several interior `<span>` elements:
+The Unstyled Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
 
 - rail: the full length of the slider
 - track: the section of the slider that's active
@@ -131,7 +131,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 import { useSlider } from '@mui/base/SliderUnstyled';
 ```
 
-The `useSlider` hook lets you apply the functionality of `SliderUnstyled` to a fully custom component.
+The `useSlider` hook lets you apply the functionality of Unstyled Slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
