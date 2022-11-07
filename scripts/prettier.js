@@ -11,7 +11,7 @@ import path from 'path';
 import yargs from 'yargs';
 import { LANGUAGES } from 'docs/src/modules/constants.js';
 import listChangedFiles from './listChangedFiles.js';
-import { getWorkspaceRoot } from './utils.mjs';
+import { getWorkspaceRoot } from './utils.js';
 
 const workspaceRoot = getWorkspaceRoot();
 

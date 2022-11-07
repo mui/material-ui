@@ -3,7 +3,7 @@ import fse from 'fs-extra';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
-import { getWorkspaceRoot } from './utils.mjs';
+import { getWorkspaceRoot } from './utils.js';
 
 /**
  * Only directly call it with side-effect free commands.

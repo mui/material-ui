@@ -14,7 +14,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { promisify } from 'util';
-import { getWorkspaceRoot } from './utils.mjs';
+import { getWorkspaceRoot } from './utils.js';
 
 const exec = promisify(childProcess.exec);
 
