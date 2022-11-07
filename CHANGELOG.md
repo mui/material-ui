@@ -9,13 +9,13 @@ _Nov 7, 2022_
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 The slots API has been introduced to the Material UI package by @michaldudak (#34873).
+- 🔥 Live editting of demos is stabilized by @oliviertassinari (#34870).
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.10.13`
 
 - &#8203;<!-- 08 -->[material-ui] Introduce the slots API (#34873) @michaldudak
 - &#8203;<!-- 07 -->[NativeSelectInput] Support CSS theme variables (#34975) @siriwatknp
-- &#8203;<!-- 06 -->[Select] Fix custom options menu not opening on Avatar click (#34648) @shivam1646
 
 ### `@mui/system@5.10.13`
 
@@ -23,7 +23,11 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-alpha.105`
 
-- &#8203;<!-- 26 -->[base] Avoid calling setstate during renders (#34916) @Janpot
+- &#8203;<!-- 26 -->[base] Avoid calling setState during renders (#34916) @Janpot
+
+### `@mui/joy@5.0.0-alpha.53`
+
+- &#8203;<!-- 06 -->[Select] Fix custom options menu not opening on Avatar click (#34648) @shivam1646
 
 ### Docs
 
