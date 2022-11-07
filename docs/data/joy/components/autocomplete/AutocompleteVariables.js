@@ -30,6 +30,10 @@ export default function ButtonVariables() {
           defaultValue: '32px',
         },
         {
+          var: '--Autocomplete-wrapper-gap',
+          defaultValue: '3px',
+        },
+        {
           var: '--Chip-minHeight',
           defaultValue: '32px',
         },

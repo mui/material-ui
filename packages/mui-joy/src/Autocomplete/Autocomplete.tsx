@@ -111,6 +111,10 @@ const AutocompleteRoot = styled(StyledInputRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
+  '--Autocomplete-wrapper-gap': '3px',
+  ...(ownerState.size === 'lg' && {
+    '--Autocomplete-wrapper-gap': '4px',
+  }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
     [`&:hover .${autocompleteClasses.clearIndicator}`]: {
@@ -139,12 +143,15 @@ const AutocompleteWrapper = styled('div', {
   flexWrap: 'wrap',
   [`&.${autocompleteClasses.multiple}`]: {
     paddingInlineStart: 0,
+    paddingBlockStart:
+      'calc(var(--_Input-paddingBlock) - max(var(--Autocomplete-wrapper-gap), 0px))',
     paddingBlockEnd: 'var(--_Input-paddingBlock)',
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
-        marginInlineStart: 'calc(-1 * var(--_Input-paddingBlock))',
+        marginInlineStart:
+          'calc(-1 * min(var(--Autocomplete-wrapper-gap), var(--_Input-paddingBlock)))',
         [`& .${autocompleteClasses.input}`]: {
           marginInlineStart: 'var(--Input-gap)',
         },
@@ -152,8 +159,9 @@ const AutocompleteWrapper = styled('div', {
   },
   [`& .${chipClasses.root}`]: {
     // TODO: use flexbox `gap` later.
-    marginInlineStart: 'var(--_Input-paddingBlock)',
-    marginBlockStart: 'var(--_Input-paddingBlock)',
+    minWidth: 0,
+    marginInlineStart: 'var(--Autocomplete-wrapper-gap)',
+    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
   },
 }));
 
@@ -163,9 +171,9 @@ const AutocompleteInput = styled(StyledInputHtml, {
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   minWidth: 30,
-  minHeight: 'calc(var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px))',
+  minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockEnd: 'calc(-1 * var(--_Input-paddingBlock))',
+    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
     ...(!ownerState.startDecorator && {
       marginInlineStart: 'var(--Input-paddingInline)',
     }),
