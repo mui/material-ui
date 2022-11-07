@@ -8,11 +8,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 
 # Unstyled Modal
 
-<p class="description">The ModalUnstyled component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
+<p class="description">The Unstyled Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 
 ## Introduction
 
-`ModalUnstyled` is a utility component that renders its children in front of a backdrop.
+Unstyled Modal is a utility component that renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
 ### Features
@@ -36,7 +36,7 @@ As such, it should be used sparingly—only when the app _requires_ user input b
 <!-- Uncomment the next line, once an unstyled dialog component is added in @mui/base -->
 <!-- If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case. -->
 
-`ModalUnstyled` is a lower-level construct that is used in the following Material UI components:
+Unstyled Modal is a lower-level construct that is used in the following Material UI components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
@@ -90,11 +90,11 @@ You can animate the open and close states of a modal using a transition componen
   The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
   :::
 
-`ModalUnstyled` has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
+Unstyled Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
 
 {{"demo": "TransitionsModal.js", "defaultCodeOpen": false}}
 
-You can also use [react-spring](https://github.com/pmndrs/react-spring) with `ModalUnstyled`, but it will require additional custom configuration:
+You can also use [react-spring](https://github.com/pmndrs/react-spring) with Unstyled Modal, but it will require additional custom configuration:
 
 {{"demo": "SpringModal.js", "defaultCodeOpen": false}}
 
@@ -130,7 +130,7 @@ In order to display a modal rendered on the server, you need to disable the port
 
 ### Focus trap
 
-`ModalUnstyled` moves the focus back to the body of the component if the focus tries to escape it.
+Unstyled Modal moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
@@ -140,7 +140,7 @@ If the user needs to interact with another part of the page—for example, to in
 
 See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices.
 
-- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
+- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your Modal component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
 
   ```jsx
