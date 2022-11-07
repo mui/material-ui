@@ -8,7 +8,7 @@ import AspectRatio, { aspectRatioClasses as classes } from '@mui/joy/AspectRatio
 describe('<AspectRatio />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<AspectRatio />, () => ({
+  describeConformance(<AspectRatio>16/9</AspectRatio>, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -18,6 +18,10 @@ describe('<AspectRatio />', () => {
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      content: { expectedClassName: classes.content },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
