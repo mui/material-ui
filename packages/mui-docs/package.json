@@ -28,7 +28,7 @@
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build node",
     "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:copy-files": "node ../../scripts/copyFiles",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "exit 0"

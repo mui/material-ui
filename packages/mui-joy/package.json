@@ -29,7 +29,7 @@
     "build:modern": "node ../../scripts/build modern",
     "build:node": "node ../../scripts/build node",
     "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:copy-files": "node ../../scripts/copyFiles",
     "build:types": "node ../../scripts/buildTypes",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",

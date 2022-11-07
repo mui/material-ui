@@ -35,7 +35,7 @@
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build node --largeFiles --outDir lib",
     "build:stable": "node ../../scripts/build stable --largeFiles --outDir lib",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:copy-files": "node ../../scripts/copyFiles",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
