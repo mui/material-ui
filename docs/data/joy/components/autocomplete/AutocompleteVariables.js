@@ -23,7 +23,7 @@ export default function ButtonVariables() {
         },
         {
           var: '--Input-paddingInline',
-          defaultValue: '8px',
+          defaultValue: '12px',
         },
         {
           var: '--Input-decorator-childHeight',
