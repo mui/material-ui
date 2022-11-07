@@ -407,5 +407,11 @@ module.exports = {
         'import/extensions': ['error', 'ignorePackages'],
       },
     },
+    {
+      files: ['scripts/**/*.js'],
+      rules: {
+        'import/extensions': ['error', 'ignorePackages'],
+      },
+    },
   ],
 };

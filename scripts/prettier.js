@@ -4,16 +4,16 @@
 
 // supported modes = check, check-changed, write, write-changed
 
-const glob = require('globby');
-const prettier = require('prettier');
-const fs = require('fs');
-const path = require('path');
-const yargs = require('yargs');
-const { LANGUAGES } = require('docs/src/modules/constants');
-const listChangedFiles = require('./listChangedFiles');
+import glob from 'globby';
+import prettier from 'prettier';
+import fs from 'fs';
+import path from 'path';
+import yargs from 'yargs';
+import { LANGUAGES } from 'docs/src/modules/constants.js';
+import listChangedFiles from './listChangedFiles.js';
+import { getWorkspaceRoot } from './utils.mjs';
 
-// FIXME: Incorrect assumption
-const workspaceRoot = process.cwd();
+const workspaceRoot = getWorkspaceRoot();
 
 function isTranslatedDocument(filename) {
   // markdown files from crowdin end with a 2 letter locale
@@ -127,7 +127,7 @@ async function run(argv) {
   runPrettier({ changedFiles, shouldWrite, branch });
 }
 
-yargs
+yargs(process.argv.slice(2))
   .command({
     command: '$0 [mode]',
     description: 'formats codebase',
