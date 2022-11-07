@@ -2,6 +2,7 @@ import { CSSObject } from '@mui/system';
 import { extendTheme } from '@mui/joy/styles';
 import type {} from '@mui/joy/IconButton';
 import type {} from '@mui/joy/Input';
+import type {} from '@mui/joy/Tabs';
 import type {} from '@mui/joy/TabList';
 import type {} from '@mui/joy/Tab';
 import type {} from '@mui/joy/Switch';
@@ -16,6 +17,12 @@ interface IosMaterial {
     ultrathin: CSSObject;
     navbar: CSSObject;
   };
+}
+
+declare module '@mui/joy/Tabs' {
+  interface TabsPropsVariantOverrides {
+    ios: true;
+  }
 }
 
 declare module '@mui/joy/TabList' {
@@ -554,6 +561,18 @@ export default extendTheme({
             '&::-ms-input-placeholder': {
               color: theme.vars.palette.label.tertiary,
             }, // Edge
+          }),
+        }),
+      },
+    },
+    JoyTabs: {
+      defaultProps: {
+        variant: 'ios',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'ios' && {
+            background: 'none',
           }),
         }),
       },
