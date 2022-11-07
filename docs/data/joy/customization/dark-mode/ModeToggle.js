@@ -50,7 +50,7 @@ export default function ModeToggle() {
           flexGrow: 1,
           p: 2,
           m: -3,
-          borderRadius: 'sm',
+          borderRadius: [0, 'sm'],
           bgcolor: 'background.body',
         }}
       >
