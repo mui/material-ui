@@ -4,22 +4,31 @@ import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Alert, { alertClasses as classes } from '@mui/joy/Alert';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import WarningIcon from '@mui/icons-material/Warning';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Alert />, () => ({
-    classes,
-    inheritComponent: 'div',
-    render,
-    ThemeProvider,
-    muiName: 'JoyAlert',
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
-    testVariantProps: { variant: 'solid' },
-    testCustomVariant: true,
-    skip: ['classesRoot', 'componentsProp'],
-  }));
+  describeConformance(
+    <Alert startDecorator={<WarningIcon />} endDecorator={<WarningIcon />} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      ThemeProvider,
+      muiName: 'JoyAlert',
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: 'span',
+      testVariantProps: { variant: 'solid' },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        startDecorator: { expectedClassName: classes.startDecorator },
+        endDecorator: { expectedClassName: classes.endDecorator },
+      },
+      skip: ['classesRoot', 'componentsProp'],
+    }),
+  );
 
   describe('prop: variant', () => {
     it('soft by default', () => {
