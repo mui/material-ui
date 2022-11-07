@@ -29,7 +29,8 @@ function ModeSwitcher() {
 }
 
 export default function ModeToggle() {
-  // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
+  // the `node` is used for attaching CSS variables to this demo,
+  // you might not need it in your application.
   const [node, setNode] = React.useState(null);
   useEnhancedEffect(() => {
     setNode(document.getElementById('mode-toggle'));
