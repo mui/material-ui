@@ -26,13 +26,13 @@ import Autocomplete from '@mui/joy/Autocomplete';
 import Input from '@mui/joy/Input';
 
 export default function App() {
-  return <Autocomplete renderInput={(params) => <Input {...params} />} />;
+  return <Autocomplete options={['Option 1', 'Option 2']} />;
 }
 ```
 
 ## Basics
 
-The Autocomplete component requires a list of `options` and a `renderInput` function. After triggered by a pointer or keyboard, it displays the provided options. The value must be chosen from a predefined set of allowed values.
+The Autocomplete component requires a list of `options` to be displayed after the textbox is focused. The value must be chosen from a predefined set of allowed values.
 
 {{"demo": "BasicAutocomplete.js"}}
 
