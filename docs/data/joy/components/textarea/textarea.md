@@ -91,7 +91,7 @@ Alternatively, you can do it manually by targeting the textarea slot:
 ```jsx
 <label htmlFor="unique-id">Label</label>
 <Textarea
-  componentsProps={{
+  slotProps={{
     textarea: {
       id: 'unique-id',
     }
