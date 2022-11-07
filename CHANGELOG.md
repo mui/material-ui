@@ -9,7 +9,7 @@ _Nov 7, 2022_
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 The slots API has been introduced to the Material UI package by @michaldudak (#34873).
-- 🔥 Live editting of demos is stabilized by @oliviertassinari (#34870).
+- 🔥 Live editing of demos is stabilized by @oliviertassinari (#34870).
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.10.13`
