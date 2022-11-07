@@ -39,20 +39,17 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   return [
     {
-      '--Chip-radius': '1.5rem',
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
         'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
-      '--_Chip-paddingBlock':
-        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
-        'max(var(--Chip-radius) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) / 2, var(--Chip-radius) / 2))',
+        'max(var(--_Chip-radius) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) / 2, var(--_Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
       '--Avatar-size': 'var(--Chip-decorator-childHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--internal-action-radius': 'var(--Chip-radius)', // to be used with Radio or Checkbox
+      '--internal-action-radius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
@@ -78,9 +75,12 @@ const ChipRoot = styled('div', {
         '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
       }),
+      '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
+      '--_Chip-paddingBlock':
+        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
       paddingInline: 'var(--Chip-paddingInline)',
-      borderRadius: 'var(--Chip-radius)',
+      borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
       fontWeight: theme.vars.fontWeight.md,
       fontFamily: theme.vars.fontFamily.body,

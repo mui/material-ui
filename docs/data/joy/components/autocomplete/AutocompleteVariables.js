@@ -7,43 +7,69 @@ import LiveTv from '@mui/icons-material/LiveTv';
 export default function ButtonVariables() {
   return (
     <JoyVariablesDemo
-      componentName="Button"
+      componentName="Autocomplete"
       data={[
-        {
-          var: '--Input-minHeight',
-          defaultValue: '40px',
-        },
-        {
-          var: '--Input-radius',
-          defaultValue: '8px',
-        },
-        {
-          var: '--Input-gap',
-          defaultValue: '8px',
-        },
-        {
-          var: '--Input-paddingInline',
-          defaultValue: '12px',
-        },
-        {
-          var: '--Input-decorator-childHeight',
-          defaultValue: '32px',
-        },
-        {
-          var: '--Autocomplete-wrapper-gap',
-          defaultValue: '3px',
-        },
-        {
-          var: '--Chip-minHeight',
-          defaultValue: '32px',
-        },
-        {
-          var: '--Icon-fontSize',
-          defaultValue: '24px',
-        },
+        [
+          'Input',
+          [
+            {
+              var: '--Input-minHeight',
+              defaultValue: '40px',
+            },
+            {
+              var: '--Input-radius',
+              defaultValue: '8px',
+            },
+            {
+              var: '--Input-gap',
+              defaultValue: '8px',
+            },
+            {
+              var: '--Input-paddingInline',
+              defaultValue: '12px',
+            },
+            {
+              var: '--Input-decorator-childHeight',
+              defaultValue: '32px',
+            },
+          ],
+        ],
+        [
+          'Autocomplete',
+          [
+            {
+              var: '--Autocomplete-wrapper-gap',
+              defaultValue: '3px',
+            },
+          ],
+          { defaultOpen: true },
+        ],
+        [
+          'Chip',
+          [
+            {
+              var: '--Chip-minHeight',
+              defaultValue: '32px',
+            },
+            {
+              var: '--Chip-radius',
+            },
+          ],
+          { defaultOpen: true },
+        ],
+        [
+          'Icon',
+          [
+            {
+              var: '--Icon-fontSize',
+              defaultValue: '24px',
+            },
+          ],
+          { defaultOpen: true },
+        ],
       ]}
       renderDemo={(sx) => (
-        <Stack spacing={2} sx={{ width: 343 }}>
+        <Stack spacing={2} sx={{ width: 400, maxWidth: '100%' }}>
           <Autocomplete
             startDecorator={<LiveTv />}
             placeholder="Decorators"
@@ -55,7 +81,7 @@ export default function ButtonVariables() {
             startDecorator={<LiveTv />}
             placeholder="Decorators"
             options={top100Films}
-            defaultValue={[top100Films[1]]}
+            defaultValue={[top100Films[1], top100Films[6]]}
             sx={sx}
           />
         </Stack>

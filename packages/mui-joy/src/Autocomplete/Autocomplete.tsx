@@ -150,6 +150,7 @@ const AutocompleteWrapper = styled('div', {
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
+        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
         marginInlineStart:
           'calc(-1 * min(var(--Autocomplete-wrapper-gap), var(--_Input-paddingBlock)))',
         [`& .${autocompleteClasses.input}`]: {
