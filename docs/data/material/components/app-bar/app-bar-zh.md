@@ -36,7 +36,7 @@ materialDesign: https://m2.material.io/components/app-bars-top
 
 ## 带有抽屉的响应式应用栏
 
-{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+{{"demo": "DrawerAppBar.js", "bg": true, "iframe": true, "disableLiveEdit": true}}
 
 ## 带有主搜索输入框的应用栏
 
@@ -103,19 +103,19 @@ function App() {
 
 向下滚动隐藏应用栏，从而为阅读提供更多空间。
 
-{{"demo": "HideAppBar.js", "iframe": true}}
+{{"demo": "HideAppBar.js", "iframe": true, "disableLiveEdit": true}}
 
 ### 提升应用栏
 
 应用栏会在滚动时提升，以表明用户还未到页面的顶部。
 
-{{"demo": "ElevateAppBar.js", "iframe": true}}
+{{"demo": "ElevateAppBar.js", "iframe": true, "disableLiveEdit": true}}
 
 ### 回到顶部
 
 滚动时出现一个浮动操作按钮，以便返回页面的顶部。
 
-{{"demo": "BackToTop.js", "iframe": true}}
+{{"demo": "BackToTop.js", "iframe": true, "disableLiveEdit": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 
