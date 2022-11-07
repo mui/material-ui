@@ -1,9 +1,10 @@
-const glob = require('fast-glob');
-const fse = require('fs-extra');
-const path = require('path');
+import glob from 'fast-glob';
+import fse from 'fs-extra';
+import path from 'path';
+import { getWorkspaceRoot } from './utils.js';
 
 async function main() {
-  const workspaceRoot = path.resolve(__dirname, '..');
+  const workspaceRoot = getWorkspaceRoot();
 
   const declarationFiles = await glob('**/build/**/*.d.ts', {
     absolute: true,
