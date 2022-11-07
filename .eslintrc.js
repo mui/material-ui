@@ -411,6 +411,7 @@ module.exports = {
       files: ['scripts/**/*.js'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
+        'import/no-commonjs': 'error',
       },
     },
   ],
