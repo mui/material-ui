@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [opened, reopened, labeled, unlabeled]
 
+permissions: {}
+
 jobs:
   test-label-applied:
     # Tests that label is added on the PR

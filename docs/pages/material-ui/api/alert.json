@@ -37,6 +37,17 @@
       },
       "default": "'success'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ closeButton?: elementType, closeIcon?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
