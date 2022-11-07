@@ -16,7 +16,7 @@ Click-Away Listener is a utility component that listens for click events outside
 
 This is useful for components like the [Popper](/base/react-popper/) which should close when the user clicks anywhere else in the document.
 
-Click-Away Listener also supports the [Portal component](/base/react-portal/).
+Click-Away Listener also supports the [Portal](/base/react-portal/) component.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -46,7 +46,7 @@ The following demo shows how to hide a menu dropdown when users click anywhere e
 
 ### Usage with Portal
 
-The following demo uses the [Portal component](/base/react-portal/) to render the dropdown into a new subtree outside of the current DOM hierarchy:
+The following demo uses the [Portal](/base/react-portal/) component to render the dropdown into a new subtree outside of the current DOM hierarchy:
 
 {{"demo": "PortalClickAway.js"}}
 

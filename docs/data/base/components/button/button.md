@@ -95,7 +95,7 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 The `useButton` hook requires the `ref` of the element it's used on.
 
-The following demo shows how to build the same buttons as those found in the [Basic usage section](#basic-usage), but with the `useButton` hook:
+The following demo shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
 
