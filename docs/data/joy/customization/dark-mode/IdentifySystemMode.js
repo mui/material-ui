@@ -39,8 +39,11 @@ export default function IdentifySystemMode() {
   return (
     <CssVarsProvider
       defaultMode="system"
-      // The props below are specific to this demo, you might not need them in your app.
-      modeStorageKey="demo_identify-system-mode" // the local storage key to use.
+      // The props below are specific to this demo,
+      // you might not need them in your app.
+      //
+      // the local storage key to use.
+      modeStorageKey="demo_identify-system-mode"
     >
       <Identifier />
     </CssVarsProvider>
