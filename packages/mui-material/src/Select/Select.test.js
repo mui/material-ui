@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -379,6 +379,21 @@ describe('<Select />', () => {
           'MUI: You have provided an out-of-range value `20` for the select component.',
         ]);
       });
+    });
+
+    it('should not have the option selected when value provided is empty string with ListSubHeader', () => {
+      render(
+        <Select open value="">
+          <ListSubheader>Category 1</ListSubheader>
+          <MenuItem value={10}>Ten</MenuItem>
+          <ListSubheader>Category 2</ListSubheader>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const options = screen.getAllByRole('option');
+      expect(options[1]).not.to.have.class(menuItemClasses.selected);
     });
   });
 
