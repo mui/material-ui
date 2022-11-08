@@ -91,9 +91,10 @@ const TypographyRoot = styled('span', {
   }),
   ...(ownerState.variant && {
     borderRadius: theme.vars.radius.xs,
-    paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+    paddingBlock: 'min(0.075em, 2px) min(0.15em, 4px)',
+    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
     ...(!ownerState.nesting && {
-      marginInline: '-0.25em',
+      marginInline: '-0.375em',
     }),
     ...theme.variants[ownerState.variant]?.[ownerState.color!],
   }),

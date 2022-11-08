@@ -98,9 +98,10 @@ const LinkRoot = styled('a', {
       } / var(--Link-underlineOpacity, 0.72))`,
       ...(ownerState.variant
         ? {
-            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+            paddingBlock: 'min(0.075em, 2px) min(0.15em, 4px)',
+            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
             ...(!ownerState.nested && {
-              marginInline: '-0.25em',
+              marginInline: '-0.375em',
             }),
           }
         : {
