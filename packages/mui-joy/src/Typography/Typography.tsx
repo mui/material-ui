@@ -92,7 +92,7 @@ const TypographyRoot = styled('span', {
   ...(ownerState.variant
     ? {
         borderRadius: theme.vars.radius.xs,
-        paddingBlock: 'min(0.075em, 2px) min(0.15em, 4px)',
+        paddingBlock: 'min(0.15em, 4px)',
         paddingInline: '0.375em', // better than left, right because it also works with writing mode.
         ...(!ownerState.nesting && {
           marginInline: '-0.375em',
