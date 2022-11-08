@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
 
 export default function BasicTextFields() {
 
@@ -20,33 +19,27 @@ export default function BasicTextFields() {
       noValidate
       autoComplete="off"
     >
-      
-      <FormControl variant="standard">
+
         <TextField
          id="outlined-basic"
          label="Outlined"
          variant="outlined"
          value={value}
          onChange={handleChange} />
-      </FormControl>
 
-      <FormControl variant="standard">
         <TextField
          id="filled-basic"
          label="Filled"
          variant="filled"
          value={value}
          onChange={handleChange} />
-      </FormControl>
 
-      <FormControl variant="standard">
         <TextField
          id="standard-basic"
          label="Standard"
          variant="standard"
          value={value}
          onChange={handleChange} />
-      </FormControl>
 
     </Box>
   );
