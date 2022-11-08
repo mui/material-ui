@@ -125,6 +125,7 @@ const SelectRoot = styled('div', {
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
+      paddingBlock: ownerState.size === 'sm' ? '2px' : '3px', // the padding-block act as a minimum spacing between content and root element
       paddingInline: `var(--Select-paddingInline)`,
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
@@ -176,7 +177,7 @@ const SelectButton = styled('button', {
   name: 'JoySelect',
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState, theme }) => ({
   // reset user-agent button style
   border: 0,
   outline: 'none',
@@ -189,6 +190,7 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
+  fontFamily: theme.vars.fontFamily.body,
   cursor: 'pointer',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
