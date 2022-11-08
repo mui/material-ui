@@ -4,13 +4,13 @@ import TextField from '@mui/material/TextField';
 
 export default function TextFieldSizes() {
 
-  const [values, setState] = React.useState({
+  const [values, setValue] = React.useState({
     small: 'Small',
     normal: 'Normal'
   })
 
   const handleChange = (prop) => (event) => {
-    setState({ ...values, [prop]: event.target.value });
+    setValue({ ...values, [prop]: event.target.value });
   };
   
   return (
