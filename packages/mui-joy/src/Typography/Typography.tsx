@@ -89,15 +89,21 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
-  ...(ownerState.variant && {
-    borderRadius: theme.vars.radius.xs,
-    paddingBlock: 'min(0.075em, 2px) min(0.15em, 4px)',
-    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
-    ...(!ownerState.nesting && {
-      marginInline: '-0.375em',
-    }),
-    ...theme.variants[ownerState.variant]?.[ownerState.color!],
-  }),
+  ...(ownerState.variant
+    ? {
+        borderRadius: theme.vars.radius.xs,
+        paddingBlock: 'min(0.075em, 2px) min(0.15em, 4px)',
+        paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+        ...(!ownerState.nesting && {
+          marginInline: '-0.375em',
+        }),
+        ...theme.variants[ownerState.variant]?.[ownerState.color!],
+      }
+    : {
+        color: ownerState.color
+          ? `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`
+          : undefined,
+      }),
 }));
 
 const defaultVariantMapping: Record<string, string> = {
@@ -118,11 +124,9 @@ const defaultVariantMapping: Record<string, string> = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const {
-    color: colorThemeProp,
-    textColor,
-    ...themeProps
-  } = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const { color, textColor, ...themeProps } = useThemeProps<
+    typeof inProps & { component?: React.ElementType }
+  >({
     props: inProps,
     name: 'JoyTypography',
   });
@@ -141,12 +145,9 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     children,
     endDecorator,
     startDecorator,
-    variant = colorThemeProp ? 'plain' : undefined,
+    variant,
     ...other
   } = props;
-
-  const color = colorThemeProp || (variant ? 'neutral' : undefined);
-
   const level = nesting ? inProps.level || 'inherit' : levelProp;
 
   const component =
@@ -159,7 +160,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...props,
     level,
     component,
-    color,
+    color: variant ? color ?? 'neutral' : color,
     gutterBottom,
     noWrap,
     nesting,
