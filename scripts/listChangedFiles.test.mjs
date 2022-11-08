@@ -2,7 +2,7 @@ import fs from 'fs';
 import rimraf from 'rimraf';
 import { promisify } from 'util';
 import { expect } from 'chai';
-import listChangedFiles from './listChangedFiles.js';
+import listChangedFiles from './listChangedFiles.mjs';
 
 const writeFileAsync = promisify(fs.writeFile);
 const rimrafAsync = promisify(rimraf);

@@ -1,7 +1,7 @@
 import glob from 'fast-glob';
 import fse from 'fs-extra';
 import path from 'path';
-import { getWorkspaceRoot } from './utils.js';
+import { getWorkspaceRoot } from './utils.mjs';
 
 async function main() {
   const workspaceRoot = getWorkspaceRoot();

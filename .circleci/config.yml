@@ -72,7 +72,7 @@ commands:
       - run:
           name: Resolve react version
           command: |
-            node scripts/useReactVersion
+            node scripts/useReactVersion.mjs
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
@@ -286,7 +286,7 @@ jobs:
 
       - run:
           name: Any defect declaration files?
-          command: node scripts/testBuiltTypes.js
+          command: node scripts/testBuiltTypes.mjs
       - save_cache:
           name: Save generated declaration files
           key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
@@ -305,7 +305,7 @@ jobs:
           environment:
             TYPESCRIPT_DIST_TAG: next
           command: |
-            node scripts/useTypescriptDistTag
+            node scripts/useTypescriptDistTag.mjs
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - install_js
@@ -342,7 +342,7 @@ jobs:
             # Fixing these takes some effort that isn't viable to merge in a single PR.
             # We'll simply monitor them for now.
             set +e
-            node scripts/testBuiltTypes.js
+            node scripts/testBuiltTypes.mjs
             exit 0
   test_browser:
     <<: *defaults

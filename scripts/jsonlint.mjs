@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import fse from 'fs-extra';
 import glob from 'globby';
 import path from 'path';
-import { getWorkspaceRoot } from './utils.js';
+import { getWorkspaceRoot } from './utils.mjs';
 
 const passMessage = (message) => `✓ ${chalk.gray(message)}`;
 const failMessage = (message) => `✗ ${chalk.whiteBright(message)}`;

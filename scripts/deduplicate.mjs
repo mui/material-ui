@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import deduplicate from 'yarn-deduplicate';
-import { getWorkspaceRoot } from './utils.js';
+import { getWorkspaceRoot } from './utils.mjs';
 
 const lockFile = path.resolve(getWorkspaceRoot(), 'yarn.lock');
 const yarnlock = fs.readFileSync(lockFile, 'utf8');

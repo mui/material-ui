@@ -10,8 +10,8 @@ import fs from 'fs';
 import path from 'path';
 import yargs from 'yargs';
 import { LANGUAGES } from 'docs/src/modules/constants.js';
-import listChangedFiles from './listChangedFiles.js';
-import { getWorkspaceRoot } from './utils.js';
+import listChangedFiles from './listChangedFiles.mjs';
+import { getWorkspaceRoot } from './utils.mjs';
 
 const workspaceRoot = getWorkspaceRoot();
 

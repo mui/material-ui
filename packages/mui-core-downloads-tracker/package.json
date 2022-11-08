@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "mkdir build && yarn build:copy-files",
-    "build:copy-files": "node ../../scripts/copyFiles",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build"
   },

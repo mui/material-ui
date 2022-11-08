@@ -177,6 +177,7 @@ module.exports = {
       files: [
         // matching the pattern of the test runner
         '*.test.js',
+        '*.test.mjs',
         '*.test.ts',
         '*.test.tsx',
       ],
@@ -408,10 +409,9 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.js'],
+      files: ['scripts/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
-        'import/no-commonjs': 'error',
       },
     },
   ],
