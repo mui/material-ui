@@ -22,12 +22,19 @@ const currencies = [
   },
 ];
 
-export default function SelectTextFields() {
-  const [currency, setCurrency] = React.useState('EUR');
+// function to manage input field state
+const useInputState = () => {
+  const [value, setValue] = React.useState('EUR');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrency(event.target.value);
+  return {
+    value,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(event.target.value);
+    },
   };
+};
+
+export default function SelectTextFields() {
 
   return (
     <Box
@@ -43,9 +50,8 @@ export default function SelectTextFields() {
           id="outlined-select-currency"
           select
           label="Select"
-          value={currency}
-          onChange={handleChange}
           helperText="Please select your currency"
+          {...useInputState()}
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -57,12 +63,11 @@ export default function SelectTextFields() {
           id="outlined-select-currency-native"
           select
           label="Native select"
-          value={currency}
-          onChange={handleChange}
+          helperText="Please select your currency"
           SelectProps={{
             native: true,
           }}
-          helperText="Please select your currency"
+          {...useInputState()}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -76,10 +81,9 @@ export default function SelectTextFields() {
           id="filled-select-currency"
           select
           label="Select"
-          value={currency}
-          onChange={handleChange}
           helperText="Please select your currency"
           variant="filled"
+          {...useInputState()}
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -91,13 +95,12 @@ export default function SelectTextFields() {
           id="filled-select-currency-native"
           select
           label="Native select"
-          value={currency}
-          onChange={handleChange}
           SelectProps={{
             native: true,
           }}
           helperText="Please select your currency"
           variant="filled"
+          {...useInputState()}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -111,10 +114,9 @@ export default function SelectTextFields() {
           id="standard-select-currency"
           select
           label="Select"
-          value={currency}
-          onChange={handleChange}
           helperText="Please select your currency"
           variant="standard"
+          {...useInputState()}
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -126,13 +128,12 @@ export default function SelectTextFields() {
           id="standard-select-currency-native"
           select
           label="Native select"
-          value={currency}
-          onChange={handleChange}
           SelectProps={{
             native: true,
           }}
           helperText="Please select your currency"
           variant="standard"
+          {...useInputState()}
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
