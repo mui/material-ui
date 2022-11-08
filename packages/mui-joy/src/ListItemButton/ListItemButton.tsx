@@ -97,8 +97,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
   ],
 );
 
-// MenuItem uses ListItemButtonRoot (not the whole ListItemButton) to leverage only styles and CSS variables.
-export const ListItemButtonRoot = styled(StyledListItemButton, {
+const ListItemButtonRoot = styled(StyledListItemButton, {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
