@@ -127,7 +127,9 @@ const SelectRoot = styled('div', {
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
-      paddingBlock: ownerState.size === 'sm' ? '2px' : '3px', // the padding-block act as a minimum spacing between content and root element
+      ...(ownerState.size && {
+        paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element
+      }),
       paddingInline: `var(--Select-paddingInline)`,
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
