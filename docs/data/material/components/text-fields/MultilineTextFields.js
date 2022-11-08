@@ -3,14 +3,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function MultilineTextFields() {
-  const [values, setState] = React.useState({
+  const [values, setValue] = React.useState({
     max: 'Controlled',
     auto: '',
     row: '',
   })
 
   const handleChange = (prop) => (event) => {
-    setState({ ...values, [prop]: event.target.value });
+    setValue({ ...values, [prop]: event.target.value });
   };
 
   return (
