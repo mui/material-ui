@@ -31,11 +31,7 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
   return composeClasses(slots, getListUtilityClass, {});
 };
 
-export const ListRoot = styled('ul', {
-  name: 'JoyList',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
@@ -139,6 +135,12 @@ export const ListRoot = styled('ul', {
     },
   ];
 });
+
+export const ListRoot = styled(StyledList, {
+  name: 'JoyList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);

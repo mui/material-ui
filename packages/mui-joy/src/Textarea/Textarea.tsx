@@ -74,10 +74,10 @@ const TextareaRoot = styled('div', {
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--internal-paddingBlock':
+      '--_Textarea-paddingBlock':
         'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
       '--Textarea-decorator-childRadius':
-        'max(var(--Textarea-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Textarea-radius) / 2))',
+        'max(var(--Textarea-radius) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) / 2, var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
       '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
       '--Button-radius': 'var(--Textarea-decorator-childRadius)',
