@@ -21,7 +21,6 @@ const Root = styled('div')(
       backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
       color: '#f8f8f2',
       colorScheme: 'dark',
-      direction: 'ltr',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
@@ -53,6 +52,7 @@ const Root = styled('div')(
       backgroundColor: alpha(lightTheme.palette.primary.light, 0.15),
       borderRadius: 5,
       fontSize: lightTheme.typography.pxToRem(13),
+      direction: 'ltr /*! @noflip */',
     },
     '& h1': {
       ...lightTheme.typography.h3,
@@ -100,12 +100,7 @@ const Root = styled('div')(
       color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     },
     '& ul': {
-      ...(theme.direction === 'rtl' && {
-        paddingRight: 30,
-      }),
-      ...(theme.direction !== 'rtl' && {
-        paddingLeft: 30,
-      }),
+      paddingLeft: 30,
     },
     '& h1, & h2, & h3, & h4': {
       '& code': {
@@ -174,13 +169,13 @@ const Root = styled('div')(
         fontSize: lightTheme.typography.pxToRem(13),
       },
       '& .required': {
-        color: '#a5ffa5',
+        color: '#006500',
       },
       '& .optional': {
-        color: '#a5b3ff',
+        color: '#45529f',
       },
       '& .prop-type': {
-        color: '#ffb6ec',
+        color: '#932981',
       },
       '& .prop-default': {
         borderBottom: `1px dotted var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -344,6 +339,7 @@ const Root = styled('div')(
       cursor: 'pointer',
     },
     '& .MuiCode-root': {
+      direction: 'ltr /*! @noflip */',
       position: 'relative',
       '&:hover': {
         '& .MuiCode-copy': {
@@ -443,13 +439,13 @@ const Root = styled('div')(
       },
       '& table': {
         '& .required': {
-          color: '#006500',
+          color: '#a5ffa5',
         },
         '& .optional': {
-          color: '#45529f',
+          color: '#a5b3ff',
         },
         '& .prop-type': {
-          color: '#932981',
+          color: '#ffb6ec',
         },
       },
       '& blockquote': {
