@@ -85,7 +85,9 @@ const SelectRoot = styled('div', {
       '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '--Select-indicator-color': theme.vars.palette.text.tertiary,
+      '--Select-indicator-color': variantStyle?.backgroundColor
+        ? variantStyle?.color
+        : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
