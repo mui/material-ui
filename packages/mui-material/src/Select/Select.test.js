@@ -381,7 +381,7 @@ describe('<Select />', () => {
       });
     });
 
-    it('should not have the option selected when value provided is empty string with ListSubHeader', () => {
+    it('should not have the selectable option selected when inital value provided is empty string on Select with ListSubHeader item', () => {
       render(
         <Select open value="">
           <ListSubheader>Category 1</ListSubheader>
