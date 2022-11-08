@@ -47,13 +47,10 @@ const ListSubheaderRoot = styled('div', {
     zIndex: 1,
     background: 'var(--List-item-stickyBackground)',
   }),
+  color: ownerState.color
+    ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+    : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ...(!ownerState.variant && {
-    color:
-      ownerState.color !== 'neutral'
-        ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
-        : theme.vars.palette.text.tertiary,
-  }),
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
@@ -69,7 +66,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id: idOverride,
     sticky = false,
     variant,
-    color = 'neutral',
+    color,
     ...other
   } = props;
   const id = useId(idOverride);
@@ -86,7 +83,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id,
     sticky,
     variant,
-    color,
+    color: variant ? color ?? 'neutral' : color,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -120,7 +117,6 @@ ListSubheader.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
