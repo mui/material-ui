@@ -9,10 +9,10 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export default function InputWithIcon() {
 
-  const [value, setState] = React.useState('')
+  const [value, setValue] = React.useState('')
 
   const handleChange = (event) => {
-    setState(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
