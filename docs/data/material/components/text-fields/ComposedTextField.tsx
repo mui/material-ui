@@ -38,7 +38,8 @@ export default function ComposedTextField() {
         <InputLabel htmlFor="component-helper">Name</InputLabel>
         <Input
           id="component-helper"
-          aria-describedby="component-helper-text" {...useInputState()} />
+          aria-describedby="component-helper-text" 
+          {...useInputState()} />
         <FormHelperText id="component-helper-text">
           Some important helper text
         </FormHelperText>
@@ -52,7 +53,8 @@ export default function ComposedTextField() {
         <InputLabel htmlFor="component-error">Name</InputLabel>
         <Input
           id="component-error"
-          aria-describedby="component-error-text" {...useInputState()} />
+          aria-describedby="component-error-text" 
+          {...useInputState()} />
         <FormHelperText id="component-error-text">Error</FormHelperText>
       </FormControl>
       <FormControl>
