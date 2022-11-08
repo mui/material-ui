@@ -43,6 +43,8 @@ export default function InputAdornments() {
           label="With normal TextField"
           id="outlined-start-adornment"
           sx={{ m: 1, width: '25ch' }}
+          value={values.weightRange}
+          onChange={handleChange('weightRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
@@ -98,6 +100,8 @@ export default function InputAdornments() {
           label="With normal TextField"
           id="filled-start-adornment"
           sx={{ m: 1, width: '25ch' }}
+          value={values.weightRange}
+          onChange={handleChange('weightRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
@@ -152,6 +156,8 @@ export default function InputAdornments() {
           label="With normal TextField"
           id="standard-start-adornment"
           sx={{ m: 1, width: '25ch' }}
+          value={values.weightRange}
+          onChange={handleChange('weightRange')}
           InputProps={{
             startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
