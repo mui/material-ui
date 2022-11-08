@@ -7,19 +7,12 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-// function to manage input field state
-const useInputState = () => {
-  const [value, setValue] = React.useState('Composed TextField');
-
-  return {
-    value,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
-    },
-  };
-};
-
 export default function ComposedTextField() {
+  const [name, setName] = React.useState('Composed TextField');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
 
   return (
     <Box
@@ -32,41 +25,47 @@ export default function ComposedTextField() {
     >
       <FormControl variant="standard">
         <InputLabel htmlFor="component-simple">Name</InputLabel>
-        <Input id="component-simple" {...useInputState()} />
+        <Input id="component-simple" value={name} onChange={handleChange} />
       </FormControl>
       <FormControl variant="standard">
         <InputLabel htmlFor="component-helper">Name</InputLabel>
         <Input
           id="component-helper"
-          aria-describedby="component-helper-text" 
-          {...useInputState()} />
+          value={name}
+          onChange={handleChange}
+          aria-describedby="component-helper-text"
+        />
         <FormHelperText id="component-helper-text">
           Some important helper text
         </FormHelperText>
       </FormControl>
       <FormControl disabled variant="standard">
         <InputLabel htmlFor="component-disabled">Name</InputLabel>
-        <Input id="component-disabled" {...useInputState()} />
+        <Input id="component-disabled" value={name} onChange={handleChange} />
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl error variant="standard">
         <InputLabel htmlFor="component-error">Name</InputLabel>
         <Input
           id="component-error"
-          aria-describedby="component-error-text" 
-          {...useInputState()} />
+          value={name}
+          onChange={handleChange}
+          aria-describedby="component-error-text"
+        />
         <FormHelperText id="component-error-text">Error</FormHelperText>
       </FormControl>
       <FormControl>
         <InputLabel htmlFor="component-outlined">Name</InputLabel>
         <OutlinedInput
           id="component-outlined"
+          value={name}
+          onChange={handleChange}
           label="Name"
-          {...useInputState()} />
+        />
       </FormControl>
       <FormControl variant="filled">
         <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput id="component-filled" {...useInputState()} />
+        <FilledInput id="component-filled" value={name} onChange={handleChange} />
       </FormControl>
     </Box>
   );
