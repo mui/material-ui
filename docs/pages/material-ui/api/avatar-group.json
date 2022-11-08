@@ -8,6 +8,10 @@
       "default": "{}"
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "default": "{}"
+    },
     "spacing": {
       "type": {
         "name": "union",

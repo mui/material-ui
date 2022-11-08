@@ -10,14 +10,17 @@ import StepLabel, { stepLabelClasses as classes } from '@mui/material/StepLabel'
 describe('<StepLabel />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<StepLabel />, () => ({
+  describeConformance(<StepLabel>Step One</StepLabel>, () => ({
     classes,
     inheritComponent: 'span',
     muiName: 'MuiStepLabel',
     render,
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { error: true },
-    skip: ['componentProp', 'componentsProp'],
+    slots: {
+      label: { expectedClassName: classes.label },
+    },
+    skip: ['componentProp', 'componentsProp', 'slotsProp'],
   }));
 
   describe('label content', () => {
