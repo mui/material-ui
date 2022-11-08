@@ -61,11 +61,7 @@ export default function DecoratorExamples() {
         variant="soft"
         color="success"
         endDecorator={
-          <Chip
-            color="success"
-            size="sm"
-            sx={{ borderRadius: '3px', mt: '1.2px', mr: '2px' }}
-          >
+          <Chip color="success" size="sm" sx={{ borderRadius: '3px', mr: '2px' }}>
             HIRING!
           </Chip>
         }
