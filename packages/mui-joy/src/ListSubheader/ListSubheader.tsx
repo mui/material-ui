@@ -48,7 +48,12 @@ const ListSubheaderRoot = styled('div', {
     background: 'var(--List-item-stickyBackground)',
   }),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  color: theme.vars.palette[ownerState.color!]?.[500], // make the subheader less contrast
+  ...(!ownerState.variant && {
+    color:
+      ownerState.color !== 'neutral'
+        ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+        : theme.vars.palette.text.tertiary,
+  }),
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
@@ -63,7 +68,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     children,
     id: idOverride,
     sticky = false,
-    variant = 'plain',
+    variant,
     color = 'neutral',
     ...other
   } = props;
@@ -145,7 +150,6 @@ ListSubheader.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

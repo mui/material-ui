@@ -30,7 +30,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div
     sticky?: boolean;
     /**
      * The variant to use.
-     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListSubheaderVariantOverrides>;
   };
