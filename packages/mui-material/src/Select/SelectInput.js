@@ -400,6 +400,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (value) {
         return selected;
       }
+      if (valueProp === '') {
+        return false;
+      }
       const firstSelectableElement = arr.find(
         (item) => item.props.value !== undefined && item.props.disabled !== true,
       );
