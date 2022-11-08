@@ -3,6 +3,16 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function TextFieldSizes() {
+
+  const [values, setState] = React.useState({
+    small: 'Small',
+    normal: 'Normal'
+  })
+
+  const handleChange = (prop) => (event) => {
+    setState({ ...values, [prop]: event.target.value });
+  };
+  
   return (
     <Box
       component="form"
@@ -16,23 +26,31 @@ export default function TextFieldSizes() {
         <TextField
           label="Size"
           id="outlined-size-small"
-          defaultValue="Small"
+          value={values.small}
+          onChange={handleChange('small')}
           size="small"
         />
-        <TextField label="Size" id="outlined-size-normal" defaultValue="Normal" />
+        <TextField 
+          label="Size" 
+          id="outlined-size-normal" 
+          value={values.normal}
+          onChange={handleChange('normal')} 
+        />
       </div>
       <div>
         <TextField
           label="Size"
           id="filled-size-small"
-          defaultValue="Small"
+          value={values.small}
+          onChange={handleChange('small')}
           variant="filled"
           size="small"
         />
         <TextField
           label="Size"
           id="filled-size-normal"
-          defaultValue="Normal"
+          value={values.normal}
+          onChange={handleChange('normal')} 
           variant="filled"
         />
       </div>
@@ -40,14 +58,16 @@ export default function TextFieldSizes() {
         <TextField
           label="Size"
           id="standard-size-small"
-          defaultValue="Small"
+          value={values.small}
+          onChange={handleChange('small')}
           size="small"
           variant="standard"
         />
         <TextField
           label="Size"
           id="standard-size-normal"
-          defaultValue="Normal"
+          value={values.normal}
+          onChange={handleChange('normal')} 
           variant="standard"
         />
       </div>
