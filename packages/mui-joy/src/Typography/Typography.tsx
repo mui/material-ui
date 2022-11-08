@@ -89,21 +89,18 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
-  ...(ownerState.variant
-    ? {
-        borderRadius: theme.vars.radius.xs,
-        paddingBlock: 'min(0.15em, 4px)',
-        paddingInline: '0.375em', // better than left, right because it also works with writing mode.
-        ...(!ownerState.nesting && {
-          marginInline: '-0.375em',
-        }),
-        ...theme.variants[ownerState.variant]?.[ownerState.color!],
-      }
-    : {
-        color: ownerState.color
-          ? `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`
-          : undefined,
-      }),
+  ...(ownerState.color && {
+    color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+  }),
+  ...(ownerState.variant && {
+    borderRadius: theme.vars.radius.xs,
+    paddingBlock: 'min(0.15em, 4px)',
+    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+    ...(!ownerState.nesting && {
+      marginInline: '-0.375em',
+    }),
+    ...theme.variants[ownerState.variant]?.[ownerState.color!],
+  }),
 }));
 
 const defaultVariantMapping: Record<string, string> = {
