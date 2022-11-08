@@ -159,17 +159,20 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
     opacity: 'var(--Input-placeholderOpacity)',
   },
   '&::-moz-placeholder': {
+    // Firefox 19+
     color: 'var(--Input-placeholderColor)',
     opacity: 'var(--Input-placeholderOpacity)',
-  }, // Firefox 19+
+  },
   '&:-ms-input-placeholder': {
+    // IE11
     color: 'var(--Input-placeholderColor)',
     opacity: 'var(--Input-placeholderOpacity)',
-  }, // IE11
+  },
   '&::-ms-input-placeholder': {
+    // Edge
     color: 'var(--Input-placeholderColor)',
     opacity: 'var(--Input-placeholderOpacity)',
-  }, // Edge
+  },
 });
 
 export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(

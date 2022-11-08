@@ -167,17 +167,20 @@ const TextareaInput = styled(TextareaAutosize, {
     opacity: 'var(--Textarea-placeholderOpacity)',
   },
   '&::-moz-placeholder': {
+    // Firefox 19+
     color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-  }, // Firefox 19+
+  },
   '&:-ms-input-placeholder': {
+    // IE11
     color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-  }, // IE11
+  },
   '&::-ms-input-placeholder': {
+    // Edge
     color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-  }, // Edge
+  },
 });
 
 const TextareaStartDecorator = styled('div', {
