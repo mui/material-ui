@@ -181,7 +181,7 @@ const SelectButton = styled('button', {
   name: 'JoySelect',
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
-})<{ ownerState: SelectOwnerState<any> }>(({ ownerState, theme }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
   outline: 'none',
@@ -194,7 +194,7 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
-  fontFamily: theme.vars.fontFamily.body,
+  fontFamily: 'inherit',
   cursor: 'pointer',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
