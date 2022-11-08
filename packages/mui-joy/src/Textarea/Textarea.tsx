@@ -39,6 +39,7 @@ const TextareaRoot = styled('div', {
     {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
+      '--Textarea-placeholderColor': 'inherit',
       '--Textarea-placeholderOpacity': 0.5,
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
@@ -162,12 +163,21 @@ const TextareaInput = styled(TextareaAutosize, {
     WebkitTextFillColor: 'currentColor',
   },
   '&::-webkit-input-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-    color: 'inherit',
   },
-  '&::-moz-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
+  '&::-moz-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  }, // Firefox 19+
+  '&:-ms-input-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  }, // IE11
+  '&::-ms-input-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  }, // Edge
 });
 
 const TextareaStartDecorator = styled('div', {
