@@ -17,6 +17,13 @@ function RedBar() {
 }
 
 export default function LayoutTextFields() {
+
+const [value, setValue] = React.useState('')
+
+const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
     <Box
       sx={{
@@ -26,11 +33,28 @@ export default function LayoutTextFields() {
       }}
     >
       <RedBar />
-      <TextField label={'margin="none"'} id="margin-none" />
+      <TextField 
+        label={'margin="none"'} 
+        id="margin-none" 
+        value={value}
+        onChange={handleChange} 
+      />
       <RedBar />
-      <TextField label={'margin="dense"'} id="margin-dense" margin="dense" />
+      <TextField 
+        label={'margin="dense"'} 
+        id="margin-dense" 
+        margin="dense" 
+        value={value}
+        onChange={handleChange} 
+      />
       <RedBar />
-      <TextField label={'margin="normal"'} id="margin-normal" margin="normal" />
+      <TextField 
+        label={'margin="normal"'} 
+        id="margin-normal" 
+        margin="normal" 
+        value={value}
+        onChange={handleChange} 
+      />
       <RedBar />
     </Box>
   );
