@@ -16,7 +16,7 @@ import {
 import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
@@ -85,7 +85,9 @@ const SelectRoot = styled('div', {
       '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '--Select-indicator-color': theme.vars.palette.text.tertiary,
+      '--Select-indicator-color': variantStyle?.backgroundColor
+        ? variantStyle?.color
+        : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
@@ -124,6 +126,9 @@ const SelectRoot = styled('div', {
       borderRadius: 'var(--Select-radius)',
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
+      }),
+      ...(ownerState.size && {
+        paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element
       }),
       paddingInline: `var(--Select-paddingInline)`,
       fontFamily: theme.vars.fontFamily.body,
@@ -189,13 +194,14 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
+  fontFamily: 'inherit',
   cursor: 'pointer',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
 }));
 
-const SelectListbox = styled(ListRoot, {
+const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
