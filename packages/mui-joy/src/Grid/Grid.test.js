@@ -18,6 +18,11 @@ describe('Joy UI <Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'JoyGrid',
     testVariantProps: { container: true, spacing: 5 },
+    slots: {
+      root: { expectedClassName: classes.root },
+      container: { expectedClassName: classes.container },
+      item: { expectedClassName: classes.item },
+    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 });

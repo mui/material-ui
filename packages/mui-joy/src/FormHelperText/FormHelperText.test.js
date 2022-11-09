@@ -14,6 +14,9 @@ describe('Joy <FormHelperText />', () => {
     ThemeProvider,
     muiName: 'JoyFormHelperText',
     refInstanceof: window.HTMLParagraphElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

@@ -27,6 +27,9 @@ describe('<FormControl />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'fieldset',
     testVariantProps: { color: 'success' },
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
