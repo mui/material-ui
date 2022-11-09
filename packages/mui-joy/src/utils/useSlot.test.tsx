@@ -206,8 +206,8 @@ describe('useSlot', () => {
 
     it('the listbox slot should be replaceable', () => {
       function Listbox({ component }: { component?: React.ElementType }) {
-  return <ul data-component={component} />
-}
+        return <ul data-component={component} />;
+      }
       const { getByRole } = render(<Item components={{ listbox: Listbox }} />);
       expect(getByRole('list')).toBeVisible();
       expect(getByRole('list')).not.to.have.attribute('class');
