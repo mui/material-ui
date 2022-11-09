@@ -233,19 +233,31 @@ export default function createCssVarsProvider(options) {
       };
     }, []);
 
+    const contextValue = React.useMemo(
+      () => ({
+        mode,
+        systemMode,
+        setMode,
+        lightColorScheme,
+        darkColorScheme,
+        colorScheme,
+        setColorScheme,
+        allColorSchemes,
+      }),
+      [
+        allColorSchemes,
+        colorScheme,
+        darkColorScheme,
+        lightColorScheme,
+        mode,
+        setColorScheme,
+        setMode,
+        systemMode,
+      ],
+    );
+
     return (
-      <ColorSchemeContext.Provider
-        value={{
-          mode,
-          systemMode,
-          setMode,
-          lightColorScheme,
-          darkColorScheme,
-          colorScheme,
-          setColorScheme,
-          allColorSchemes,
-        }}
-      >
+      <ColorSchemeContext.Provider value={contextValue}>
         <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
         <GlobalStyles styles={defaultColorSchemeStyleSheet} />
         <GlobalStyles styles={otherColorSchemesStyleSheet} />

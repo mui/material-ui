@@ -7,7 +7,7 @@ import NestedListContext from './NestedListContext';
  * This variables should be used in a List to create a scope
  * that will not inherit variables from the upper scope.
  *
- * Used in `Menu`, `MenuList`, `TabList`, `Select` to communicate with nested List.
+ * Used in `Menu`, `MenuList`, `TabList`, `Select`, and `Autocomplete` to communicate with nested List.
  *
  * e.g. menu group:
  * <Menu>
