@@ -22,6 +22,10 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'header',
       testVariantProps: { hideBackdrop: true },
+      slots: {
+        root: { expectedClassName: classes.root },
+        backdrop: { expectedClassName: classes.backdrop },
+      },
       skip: [
         'classesRoot',
         'rootClass', // portal, can't determine the root

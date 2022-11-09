@@ -20,6 +20,9 @@ describe('Joy <Menu />', () => {
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: [
       'rootClass', // portal, can't determin the root
       'classesRoot',
