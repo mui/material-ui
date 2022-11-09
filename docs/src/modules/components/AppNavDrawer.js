@@ -445,24 +445,7 @@ export default function AppNavDrawer(props) {
             />
           )}
           {canonicalAs.startsWith('/x/introduction/') && (
-            <ProductIdentifier
-              name="Advanced components"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                {
-                  text: `v5`,
-                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
-                    ? { current: true }
-                    : { href: `https://mui.com/x/introduction/` }),
-                },
-                {
-                  text: `v6-alpha`,
-                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
-                    ? { current: true }
-                    : { href: `https://next.mui.com/x/introduction/` }),
-                },
-              ])}
-            />
+            <ProductIdentifier name="Advanced components" metadata="MUI X" />
           )}
           {(canonicalAs.startsWith('/x/react-data-grid/') ||
             canonicalAs.startsWith('/x/api/data-grid/')) && (
@@ -474,14 +457,24 @@ export default function AppNavDrawer(props) {
                 {
                   text: 'v6-alpha',
                   ...(process.env.DATA_GRID_VERSION.startsWith('6')
-                    ? { current: true }
-                    : { href: `https://next.mui.com${languagePrefix}/components/data-grid/` }),
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
                 },
                 {
                   text: 'v5',
                   ...(process.env.DATA_GRID_VERSION.startsWith('5')
-                    ? { current: true }
-                    : { href: `https://mui.com${languagePrefix}/components/data-grid/` }),
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
                 },
                 { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
               ])}
@@ -495,16 +488,26 @@ export default function AppNavDrawer(props) {
               versionSelector={renderVersionSelector([
                 // DATE_PICKERS_VERSION is set from the X repo
                 {
-                  text: 'v6-alpha',
                   ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
-                    ? { current: true }
-                    : { href: `https://next.mui.com${languagePrefix}/components/data-grid/` }),
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v6-alpha`,
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
                 },
                 {
-                  text: 'v5',
                   ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
-                    ? { current: true }
-                    : { href: `https://mui.com${languagePrefix}/components/data-grid/` }),
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v5`,
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
                 },
               ])}
             />
