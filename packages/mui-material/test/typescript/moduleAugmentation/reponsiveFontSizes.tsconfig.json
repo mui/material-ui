@@ -1,5 +1,4 @@
 {
-    "extends": "../../../../../tsconfig",
-    "files": ["responsiveFontSizes.spec.ts"]
-  }
-  
+  "extends": "../../../../../tsconfig",
+  "files": ["responsiveFontSizes.spec.ts"]
+}
