@@ -1,20 +1,19 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 export default function ValidationTextFields() {
+  const [value, setValue] = React.useState("Hello World");
 
-const [value, setValue] = React.useState('Hello World');
-
-const handleChange = (event) => {
-  setValue(event.target.value)
-}
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
       autoComplete="off"
