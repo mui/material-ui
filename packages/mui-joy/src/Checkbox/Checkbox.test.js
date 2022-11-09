@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Checkbox />, () => ({
+  describeConformance(<Checkbox label="demo" />, () => ({
     classes,
     render,
     ThemeProvider,
@@ -15,6 +15,13 @@ describe('<Checkbox />', () => {
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     refInstanceof: window.HTMLSpanElement,
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      checkbox: { expectedClassName: classes.checkbox },
+      input: { expectedClassName: classes.input },
+      action: { expectedClassName: classes.action },
+      label: { expectedClassName: classes.label },
+    },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],
   }));
 
