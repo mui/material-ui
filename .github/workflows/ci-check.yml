@@ -1,5 +1,5 @@
 # This workflow is a workaround to make the github check "Successful"
-# for the ci.yml, otherwise the changes in `docs/**` or `examples/**` won't be considered completed for github checks. 
+# for the ci.yml, otherwise the changes in `docs/**` or `examples/**` won't be considered completed for github checks.
 #
 # Ref: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/troubleshooting-required-status-checks#handling-skipped-but-required-checks
 name: CI
