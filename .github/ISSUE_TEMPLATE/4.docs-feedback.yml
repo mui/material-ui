@@ -42,7 +42,7 @@ body:
     attributes:
       label: Issue description
       description: |
-        Describe as precisely, what went wrong during your experience with this documentation page and what could we do to improve it.
+        Let us know what went wrong when you were using this documentation and what we could do to improve it.
       value: |
         I was looking for ... and it appears that ...
 

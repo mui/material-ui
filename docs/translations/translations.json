@@ -69,7 +69,7 @@
   "feedbackFailed": "Couldn't submit feedback. Please try again later.",
   "feedbackMessage": "Was this page helpful?",
   "feedbackMessageDown": "How can we improve this page? (optional)",
-  "feedbackMessageUp": "Please let us know what we should keep doing more of (optional)",
+  "feedbackMessageUp": "What did you like about this page? (optional)",
   "feedbackMessageToGithub": {
     "main": "Is something broken? Do you need a reply to a problem you've encountered? Please",
     "link": "open an issue."
