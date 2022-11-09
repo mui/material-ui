@@ -300,6 +300,8 @@ export default function AppNavDrawer(props) {
       if (!versions?.length) {
         return null;
       }
+
+      const currentVersion = versions.find((version) => version.current) || versions[0];
       return (
         <React.Fragment>
           <Button
@@ -331,7 +333,7 @@ export default function AppNavDrawer(props) {
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >
-            {versions[0].text}
+            {currentVersion.text}
           </Button>
           <Menu
             id="mui-version-menu"
