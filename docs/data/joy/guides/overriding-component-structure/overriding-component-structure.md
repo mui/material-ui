@@ -16,9 +16,9 @@ All components contain a root slot that defines their primary node in the DOM tr
 All _non-utility_ Joy UI components accept two props for overriding their rendered HTML structure:
 
 - `component`—to override the root slot
-- `components`—to override any interior slots (when present) as well as the root
+- `slots`—to override any interior slots (when present) as well as the root
 
-Additionally, you can pass custom props to interior slots using `componentsProps`.
+Additionally, you can pass custom props to interior slots using `slotProps`.
 
 ## The root slot
 
@@ -48,51 +48,47 @@ These slots are often (but not necessarily) nested within the root.
 
 For example, the [Slider](/joy-ui/react-slider/) is composed of a root `<span>` that houses several interior slots named for the elements they represent: track, thumb, rail, and so on.
 
-### The components prop
+### The slots prop
 
-Use the (plural) `components` prop to override a component's interior slots.
+Use the `slots` prop to override a component's interior slots.
 The example below shows how to override the listbox slot in the [Select](/joy-ui/react-select/) component—a `<ul>` by default—with an `<ol>`:
 
 ```jsx
-<Select components={{ Listbox: 'ol' }} />
+<Select slots={{ listbox: 'ol' }} />
 ```
 
-Note that you can also use the `components` prop to override the root slot:
+Note that you can also use the `slots` prop to override the root slot:
 
 ```jsx
 // This:
-<Select components={{ Root: 'span' }} />
+<Select slots={{ Root: 'span' }} />
 
 // ...is the same as this:
-<Select component="span">
+<Select slots="span">
 ```
 
-But if you try to override the root slot with both `component` and `components`, then `component` will take precedence:
+But if you try to override the root slot with both `component` and `slots`, then `component` will take precedence:
 
 ```jsx
 // This:
-<Select component="div" components={{ root: 'span' }} />
+<Select component="div" slots={{ root: 'span' }} />
 
 // ...renders as this:
 <div class="MuiSelectUnstyled-root" />
 ```
 
-### The componentsProps prop
+### The slotProps prop
 
-The `componentsProps` prop is an object that contains the props for all slots within a component.
+The `slotProps` prop is an object that contains the props for all slots within a component.
 You can use it to define additional custom props to pass to a component's interior slots.
 
 For example, the code snippet below shows how to add a custom CSS class to the badge slot of the [Badge](/joy-ui/react-badge/) component:
 
 ```jsx
-<Badge componentsProps={{ badge: { className: 'my-badge' } }} />
+<Badge slotProps={{ badge: { className: 'my-badge' } }} />
 ```
 
-:::warning
-Slot names must be capitalized for the `components` prop, but lowercase for `componentsProps`.
-:::
-
-All additional props placed on the primary component are also propagated into the root slot (just as if they were placed in `componentsProps.root`).
+All additional props placed on the primary component are also propagated into the root slot (just as if they were placed in `slotProps.root`).
 These two examples are equivalent:
 
 ```jsx
@@ -100,21 +96,22 @@ These two examples are equivalent:
 ```
 
 ```jsx
-<Badge componentsProps={{ root: { id: 'badge1' } }}>
+<Badge slotProps={{ root: { id: 'badge1' } }}>
 ```
 
 :::warning
-If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence.
+If both `slotProps.root` and additional props have the same keys but different values, the `slotProps.root` props will take precedence.
 This does not apply to classes or the `style` prop—they will be merged instead.
 :::
 
 ## Best practices
 
-If you are customizing a simpler component like the Unstyled Button that only has a root slot, you may prefer to use the more succinct `component` prop instead of `components`.
+If you are customizing a simpler component like the Unstyled Button that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you replace the Unstyled Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
-If you did the same with `components.root`, you would need to place this attribute on the `componentsProps.root` object in order to avoid a TypeScript error.
+If you did the same with `slots.root`, you would need to place this attribute on the `slotProps.root` object in order to avoid a TypeScript error.
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
 You can easily break the rules of semantic and accessible HTML if you deviate too far from the default structure—for instance, by unintentionally nesting block-level elements inside of inline elements.
+Joy UI components automatically correct semantically incorrect HTML—see [Automatic adjustment](/joy-ui/main-features/automatic-adjustment/) for details.
