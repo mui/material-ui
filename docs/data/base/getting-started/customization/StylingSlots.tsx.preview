@@ -1,1 +1,1 @@
-<SwitchUnstyled components={{ Root, Thumb, Input }} />
+<SwitchUnstyled slots={{ root: Root, thumb: Thumb, input: Input }} />

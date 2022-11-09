@@ -593,4 +593,46 @@ describe('Joy <Select />', () => {
       expect(isEventHandled).to.equal(true);
     });
   });
+
+  it('should show dropdown if the children of the select button is clicked', () => {
+    const { getByTestId, getByRole } = render(
+      <Select defaultValue="1">
+        <Option value="1">
+          <span data-testid="test-element" />
+          Eric
+        </Option>
+      </Select>,
+    );
+    // Fire Click of the avatar
+    act(() => {
+      getByTestId('test-element').click();
+    });
+
+    expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+  });
+
+  it('should not show dropdown if stop propagation is handled', () => {
+    const handleClick = spy();
+    const { getByTestId, getByRole } = render(
+      <Select
+        defaultValue="1"
+        startDecorator={
+          <div
+            data-testid="test-element"
+            onMouseDown={(event) => event.stopPropagation()}
+            onClick={handleClick}
+          />
+        }
+      >
+        <Option value="1">Eric</Option>
+      </Select>,
+    );
+    // Fire Click of the avatar
+    act(() => {
+      getByTestId('test-element').click();
+    });
+
+    expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'false');
+    expect(handleClick.callCount).to.equal(1);
+  });
 });

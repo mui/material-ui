@@ -29,10 +29,10 @@ const Slider = React.forwardRef(function Slider(
     <SliderUnstyled
       {...props}
       ref={ref}
-      components={{
+      slots={{
         Thumb,
       }}
-      componentsProps={{
+      slotProps={{
         root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
         rail: {
           className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute',

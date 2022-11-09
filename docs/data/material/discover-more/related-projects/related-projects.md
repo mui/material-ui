@@ -26,7 +26,7 @@ Feel free to submit a pull request!
 ### Image
 
 - [mui-image](https://mui-image.surge.sh): The only Material UI image component to satisfy the Material Design guidelines for loading images.
-- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Adds a "materializing" effect to images so they fade in like [Material's image loading pattern](https://material.io/archive/guidelines/patterns/loading-images.html#loading-images-usage) suggests.
+- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Adds a "materializing" effect to images so they fade in like [Material's image loading pattern](https://m1.material.io/patterns/loading-images.html) suggests.
 
 ### Chips
 
@@ -52,4 +52,4 @@ Feel free to submit a pull request!
 ## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material UI applications that features live previewing.
-- [Material palette generator](https://material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.
+- [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design palette generator can be used to generate a palette for any color you choose.

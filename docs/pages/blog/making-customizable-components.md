@@ -263,8 +263,8 @@ const CustomFilterPanel = (props) => (
 ```
 
 But this strategy of adding props to customize components is a bit verbose.
-So we added a way to pass props to an existing component using `componentsProps`.
-You can pass props to every slot on `components` using `componentsProps`.
+So we added a way to pass props to an existing component using `slotProps`.
+You can pass props to every slot on `slots` using `slotProps`.
 
 Here's how to pass `columnsSort='asc'` to the filter panel slot:
 

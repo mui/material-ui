@@ -2,7 +2,7 @@
 
 <p class="description">能够在各种情况下使用断点的 API。</p>
 
-为了获得最佳的用户体验，在不同的断点下，Material Design 的接口需要适应它们的布局。 MUI 使用原始[规范](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)的**简化**实现。
+为了获得最佳的用户体验，在不同的断点下，Material Design 的接口需要适应它们的布局。 MUI 使用原始[规范](https://m2.material.io/design/layout/responsive-layout-grid.html#breakpoints)的**简化**实现。
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 

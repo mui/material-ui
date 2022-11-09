@@ -178,7 +178,7 @@ async function generateProptypes(
       if (
         name.toLowerCase().endsWith('classes') ||
         name === 'theme' ||
-        (name.endsWith('Props') && name !== 'componentsProps')
+        (name.endsWith('Props') && name !== 'componentsProps' && name !== 'slotProps')
       ) {
         return false;
       }

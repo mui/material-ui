@@ -27,6 +27,34 @@ export type SliderTypeMap<
      */
     color?: OverridableStringUnion<'primary' | 'secondary', SliderPropsColorOverrides>;
     /**
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `slots` prop.
+     * It's recommended to use the `slots` prop instead.
+     *
+     * @default {}
+     */
+    components?: {
+      Root?: React.ElementType;
+      Track?: React.ElementType;
+      Rail?: React.ElementType;
+      Thumb?: React.ElementType;
+      Mark?: React.ElementType;
+      MarkLabel?: React.ElementType;
+      ValueLabel?: React.ElementType;
+      Input?: React.ElementType;
+    };
+    /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     *
+     * This prop is an alias for the `slotProps` prop.
+     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+     *
+     * @default {}
+     */
+    componentsProps?: SliderUnstyledTypeMap['props']['slotProps'];
+    /**
      * Override or extend the styles applied to the component.
      */
     classes?: SliderUnstyledTypeMap['props']['classes'] & {

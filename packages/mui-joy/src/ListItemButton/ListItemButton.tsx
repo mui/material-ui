@@ -37,68 +37,71 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   return composedClasses;
 };
 
-// MenuItem uses ListItemButtonRoot (not the whole ListItemButton) to leverage only styles and CSS variables.
-export const ListItemButtonRoot = styled('div', {
+export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
+  ({ theme, ownerState }) => [
+    {
+      ...(ownerState.selected && {
+        '--List-decorator-color': 'initial',
+      }),
+      ...(ownerState.disabled && {
+        '--List-decorator-color':
+          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+      }),
+      WebkitTapHighlightColor: 'transparent',
+      boxSizing: 'border-box',
+      position: 'relative',
+      display: 'flex',
+      flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+      alignItems: 'center',
+      textAlign: 'initial',
+      textDecoration: 'initial', // reset native anchor tag
+      backgroundColor: 'initial', // reset button background
+      // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
+      marginInline: 'var(--List-itemButton-marginInline)',
+      marginBlock: 'var(--List-itemButton-marginBlock)',
+      ...(ownerState['data-first-child'] === undefined && {
+        marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+        marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+      }),
+      // account for the border width, so that all of the ListItemButtons content aligned horizontally
+      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+      // account for the border width, so that all of the ListItemButtons content aligned vertically
+      paddingInlineStart:
+        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      paddingInlineEnd:
+        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      minBlockSize: 'var(--List-item-minHeight)',
+      border: 'none',
+      borderRadius: 'var(--List-item-radius)',
+      flexGrow: ownerState.row ? 0 : 1,
+      flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
+      flexShrink: 0,
+      minInlineSize: 0,
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      fontSize: 'var(--List-item-fontSize)',
+      fontFamily: theme.vars.fontFamily.body,
+      ...(ownerState.selected && {
+        fontWeight: theme.vars.fontWeight.md,
+      }),
+      [theme.focus.selector]: theme.focus.default,
+    },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      [`&.${listItemButtonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+  ],
+);
+
+const ListItemButtonRoot = styled(StyledListItemButton, {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => [
-  {
-    ...(ownerState.selected && {
-      '--List-decorator-color': 'initial',
-    }),
-    ...(ownerState.disabled && {
-      '--List-decorator-color':
-        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
-    }),
-    WebkitTapHighlightColor: 'transparent',
-    boxSizing: 'border-box',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-    alignItems: 'center',
-    textAlign: 'initial',
-    textDecoration: 'initial', // reset native anchor tag
-    backgroundColor: 'initial', // reset button background
-    // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-    marginInline: 'var(--List-itemButton-marginInline)',
-    marginBlock: 'var(--List-itemButton-marginBlock)',
-    ...(ownerState['data-first-child'] === undefined && {
-      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
-    }),
-    // account for the border width, so that all of the ListItemButtons content aligned horizontally
-    paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
-    // account for the border width, so that all of the ListItemButtons content aligned vertically
-    paddingInlineStart:
-      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-    paddingInlineEnd:
-      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-    minBlockSize: 'var(--List-item-minHeight)',
-    border: 'none',
-    borderRadius: 'var(--List-item-radius)',
-    flexGrow: ownerState.row ? 0 : 1,
-    flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
-    flexShrink: 0,
-    minInlineSize: 0,
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    fontSize: 'var(--List-item-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
-    ...(ownerState.selected && {
-      fontWeight: theme.vars.fontWeight.md,
-    }),
-    [theme.focus.selector]: theme.focus.default,
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-  {
-    [`&.${listItemButtonClasses.disabled}`]:
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  },
-]);
+})({});
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

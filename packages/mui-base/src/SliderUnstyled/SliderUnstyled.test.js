@@ -68,7 +68,7 @@ describe('<SliderUnstyled />', () => {
       },
     );
 
-    render(<SliderUnstyled components={{ Root }} />);
+    render(<SliderUnstyled slots={{ root: Root }} />);
 
     expect(ownerState).not.to.equal(null);
     expect(theme).not.to.equal(null);
@@ -78,8 +78,8 @@ describe('<SliderUnstyled />', () => {
     const elementRef = React.createRef();
     render(
       <SliderUnstyled
-        components={{
-          Root: 'span',
+        slots={{
+          root: 'span',
         }}
         ref={elementRef}
       />,
