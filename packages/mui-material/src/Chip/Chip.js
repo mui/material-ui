@@ -572,7 +572,7 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * tab order of an element
+   * @ignore
    */
   tabIndex: PropTypes.number,
   /**

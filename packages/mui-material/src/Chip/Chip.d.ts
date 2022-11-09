@@ -77,7 +77,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps<Theme>;
     /**
-     *  tab order of an element
+     *  @ignore
      */
     tabIndex?: number;
     /**
