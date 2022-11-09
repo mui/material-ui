@@ -4,7 +4,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
   return composedClasses;
 };
 
-const MenuItemRoot = styled(ListItemButtonRoot, {
+const MenuItemRoot = styled(StyledListItemButton, {
   name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

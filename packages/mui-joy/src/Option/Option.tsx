@@ -4,7 +4,7 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: OptionOwnerState) => {
   return composeClasses(slots, getOptionUtilityClass, {});
 };
 
-const OptionRoot = styled(ListItemButtonRoot as unknown as 'button', {
+const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

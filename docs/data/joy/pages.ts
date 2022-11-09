@@ -30,6 +30,7 @@ const pages = [
         pathname: '/joy-ui/components/inputs',
         subheader: 'inputs',
         children: [
+          { pathname: '/joy-ui/react-autocomplete' },
           { pathname: '/joy-ui/react-button' },
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
           { pathname: '/joy-ui/react-textarea' },
@@ -91,6 +92,7 @@ const pages = [
     icon: 'CreateIcon',
     children: [
       { pathname: '/joy-ui/customization/approaches' },
+      { pathname: '/joy-ui/customization/dark-mode' },
       { pathname: '/joy-ui/customization/default-theme' },
       { pathname: '/joy-ui/customization/theme-tokens' },
       { pathname: '/joy-ui/customization/themed-components' },
@@ -102,7 +104,6 @@ const pages = [
     title: 'How To Guides',
     icon: 'VisibilityIcon',
     children: [
-      { pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' },
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',

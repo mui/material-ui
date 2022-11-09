@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/TabUnstyled';
 import { useSlotProps } from '@mui/base/utils';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
   return composeClasses(slots, getTabUtilityClass, {});
 };
 
-const TabRoot = styled(ListItemButtonRoot, {
+const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

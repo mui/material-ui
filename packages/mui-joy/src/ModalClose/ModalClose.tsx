@@ -7,7 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { useThemeProps, styled } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
-import { IconButtonRoot } from '../IconButton/IconButton';
+import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
 import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
   return composeClasses(slots, getModalCloseUtilityClass, {});
 };
 
-export const ModalCloseRoot = styled(IconButtonRoot, {
+export const ModalCloseRoot = styled(StyledIconButton, {
   name: 'JoyModalClose',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

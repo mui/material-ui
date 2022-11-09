@@ -10,7 +10,7 @@ import { svgIconClasses } from '@mui/material/SvgIcon';
 describe('<Alert />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Alert />, () => ({
+  describeConformance(<Alert onClose={() => {}} />, () => ({
     classes,
     inheritComponent: Paper,
     render,
@@ -18,6 +18,10 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
+    slots: {
+      closeButton: {},
+      closeIcon: {},
+    },
     skip: ['componentsProp'],
   }));
 

@@ -8,7 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState: TabListOwnerState) => {
   return composeClasses(slots, getTabListUtilityClass, {});
 };
 
-const TabListRoot = styled(ListRoot, {
+const TabListRoot = styled(StyledList, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

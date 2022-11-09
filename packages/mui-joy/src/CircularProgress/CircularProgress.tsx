@@ -92,6 +92,8 @@ const CircularProgressRoot = styled('span', {
     '--_thickness-diff':
       'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
     '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth))',
+    '--_outlined-inset':
+      'max(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
     width: 'var(--_root-size)',
     height: 'var(--_root-size)',
     borderRadius: 'var(--_root-size)',
@@ -110,6 +112,19 @@ const CircularProgressRoot = styled('span', {
       fontSize: 'calc(0.2 * var(--_root-size))',
     }),
     ...rest,
+    ...(ownerState.variant === 'outlined' && {
+      '&:before': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        borderRadius: 'inherit',
+        top: 'var(--_outlined-inset)',
+        left: 'var(--_outlined-inset)',
+        right: 'var(--_outlined-inset)',
+        bottom: 'var(--_outlined-inset)',
+        ...rest,
+      },
+    }),
   };
 });
 
@@ -170,7 +185,7 @@ const CircularProgressProgress = styled('circle', {
       : css`
           animation: var(
               --CircularProgress-circulation,
-              0.5s linear 0s infinite normal none running
+              0.8s linear 0s infinite normal none running
             )
             ${circulate};
         `,
