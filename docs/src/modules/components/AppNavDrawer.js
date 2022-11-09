@@ -447,10 +447,17 @@ export default function AppNavDrawer(props) {
               name="Advanced components"
               metadata="MUI X"
               versionSelector={renderVersionSelector([
-                { text: `v5`, current: true },
+                {
+                  text: `v5`,
+                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
+                    ? { current: true }
+                    : { href: `https://next.mui.com/x/introduction/` }),
+                },
                 {
                   text: `v6-alpha`,
-                  href: `https://next.mui.com/x/introduction/`,
+                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
+                    ? { current: true }
+                    : { href: `https://next.mui.com/x/introduction/` }),
                 },
               ])}
             />
@@ -462,7 +469,18 @@ export default function AppNavDrawer(props) {
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
-                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                {
+                  text: 'v6-alpha',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
+                    ? { current: true }
+                    : { href: `https://next.mui.com${languagePrefix}/components/data-grid/` }),
+                },
+                {
+                  text: 'v5',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
+                    ? { current: true }
+                    : { href: `https://mui.com${languagePrefix}/components/data-grid/` }),
+                },
                 { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
               ])}
             />
@@ -474,7 +492,18 @@ export default function AppNavDrawer(props) {
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATE_PICKERS_VERSION is set from the X repo
-                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+                {
+                  text: 'v6-alpha',
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
+                    ? { current: true }
+                    : { href: `https://next.mui.com${languagePrefix}/components/data-grid/` }),
+                },
+                {
+                  text: 'v5',
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
+                    ? { current: true }
+                    : { href: `https://mui.com${languagePrefix}/components/data-grid/` }),
+                },
               ])}
             />
           )}
