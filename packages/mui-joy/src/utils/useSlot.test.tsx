@@ -142,7 +142,7 @@ describe('useSlot', () => {
     });
     const ItemOption = styled('div')({});
 
-    const Item = (props: {
+    function Item(props: {
       component?: React.ElementType;
       components?: {
         root?: React.ElementType;
@@ -154,7 +154,7 @@ describe('useSlot', () => {
         listbox?: SlotComponentProps<'span', Record<string, any>, {}>;
         option?: SlotComponentProps<'div', Record<string, any>, {}>;
       };
-    }) => {
+    }) {
       const ref = React.useRef(null);
       const [SlotRoot, rootProps] = useSlot('root', {
         ref,
@@ -194,7 +194,7 @@ describe('useSlot', () => {
           </SlotListbox>
         </React.Fragment>
       );
-    };
+    }
 
     it('should render popper with styled-component', () => {
       const { getByRole } = render(<Item />);
@@ -205,9 +205,9 @@ describe('useSlot', () => {
     });
 
     it('the listbox slot should be replaceable', () => {
-      const Listbox = ({ component }: { component?: React.ElementType }) => (
-        <ul data-component={component} />
-      );
+      function Listbox({ component }: { component?: React.ElementType }) {
+  return <ul data-component={component} />
+}
       const { getByRole } = render(<Item components={{ listbox: Listbox }} />);
       expect(getByRole('list')).toBeVisible();
       expect(getByRole('list')).not.to.have.attribute('class');

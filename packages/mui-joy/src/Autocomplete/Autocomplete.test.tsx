@@ -547,8 +547,8 @@ describe('Joy <Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const Test = (props: any) => (
-      <div
+    function Test(props: any) {
+  return <div
         onKeyDown={(event) => {
           if (!event.defaultPrevented && event.key === 'Enter') {
             handleSubmit();
@@ -557,7 +557,7 @@ describe('Joy <Autocomplete />', () => {
       >
         <Autocomplete autoFocus options={['one', 'two']} {...props} />
       </div>
-    );
+}
     const { setProps } = render(<Test />);
     let textbox = screen.getByRole('combobox');
 
@@ -2031,8 +2031,8 @@ describe('Joy <Autocomplete />', () => {
   it('should prevent the default event handlers', () => {
     const handleChange = spy();
     const handleSubmit = spy();
-    const Test = () => (
-      <div
+    function Test() {
+  return <div
         onKeyDown={(event) => {
           if (!event.defaultPrevented && event.key === 'Enter') {
             handleSubmit();
@@ -2050,7 +2050,7 @@ describe('Joy <Autocomplete />', () => {
           }}
         />
       </div>
-    );
+}
     render(<Test />);
     const textbox = screen.getByRole('combobox');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
