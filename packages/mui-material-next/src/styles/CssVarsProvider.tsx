@@ -1,16 +1,14 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import {
-  experimental_extendTheme,
   SupportedColorScheme,
   private_createTypography as createTypography,
   private_excludeVariablesFromRoot as excludeVariablesFromRoot,
 } from '@mui/material/styles';
+import defaultTheme from './defaultTheme';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
-
-const defaultTheme = experimental_extendTheme();
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
   createCssVarsProvider<SupportedColorScheme>({

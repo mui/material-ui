@@ -391,16 +391,26 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     // Material You specific channels
     if (key === 'light') {
       colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['40']);
+      colorSchemeSys.color.onPrimaryChannel = colorChannel(colorSchemeRef.palette.primary['100']);
       colorSchemeSys.color.secondaryChannel = colorChannel(colorSchemeRef.palette.secondary['40']);
+      colorSchemeSys.color.onSecondaryChannel = colorChannel(
+        colorSchemeRef.palette.secondary['100'],
+      );
       colorSchemeSys.color.tertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['40']);
+      colorSchemeSys.color.onTertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['100']);
       colorSchemeSys.color.secondaryContainerChannel = colorChannel(
         colorSchemeRef.palette.secondary['90'],
       );
       colorSchemeSys.color.onSurfaceChannel = colorChannel(colorSchemeRef.palette.neutral['10']);
     } else {
       colorSchemeSys.color.primaryChannel = colorChannel(colorSchemeRef.palette.primary['80']);
+      colorSchemeSys.color.onPrimaryChannel = colorChannel(colorSchemeRef.palette.primary['20']);
       colorSchemeSys.color.secondaryChannel = colorChannel(colorSchemeRef.palette.secondary['80']);
+      colorSchemeSys.color.onSecondaryChannel = colorChannel(
+        colorSchemeRef.palette.secondary['20'],
+      );
       colorSchemeSys.color.tertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['80']);
+      colorSchemeSys.color.onTertiaryChannel = colorChannel(colorSchemeRef.palette.tertiary['20']);
       colorSchemeSys.color.secondaryContainerChannel = colorChannel(
         colorSchemeRef.palette.secondary['30'],
       );
