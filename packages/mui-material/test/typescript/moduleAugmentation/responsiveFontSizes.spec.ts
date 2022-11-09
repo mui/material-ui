@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
