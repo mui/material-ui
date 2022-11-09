@@ -337,11 +337,7 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select
-            defaultValue=""
-            defaultListboxOpen
-            slotProps={{ listbox: { component: 'div' } }}
-          >
+          <Select defaultValue="" defaultListboxOpen slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>
