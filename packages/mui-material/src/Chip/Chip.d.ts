@@ -77,6 +77,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps<Theme>;
     /**
+     *  tab order of an element
+     */
+    tabIndex?: number;
+    /**
      * The variant to use.
      * @default 'filled'
      */

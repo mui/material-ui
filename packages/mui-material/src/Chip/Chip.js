@@ -346,6 +346,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onKeyUp,
     size = 'medium',
     variant = 'filled',
+    tabIndex,
     ...other
   } = props;
 
@@ -460,7 +461,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
-      tabIndex={disabled ? ownerState.tabIndex || -1 : ownerState.tabIndex}
+      tabIndex={disabled ? tabIndex ?? -1 : tabIndex}
       ownerState={ownerState}
       {...moreProps}
       {...other}
@@ -570,6 +571,10 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * tab order of an element
+   */
+  tabIndex: PropTypes.number,
   /**
    * The variant to use.
    * @default 'filled'

@@ -183,7 +183,7 @@ describe('<Chip />', () => {
 
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.property('tabIndex', -1);
-      expect(chip).to.not.have.class(classes.focusVisible);
+      expect(chip).not.to.have.class(classes.focusVisible);
     });
 
     it('should render with the root and filled clickable secondary class', () => {
