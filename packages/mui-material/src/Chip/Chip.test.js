@@ -174,6 +174,18 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.filledPrimary);
     });
 
+    it('should not be focused when chip is disabled', () => {
+      const { getByRole } = render(<Chip label="My Chip" disabled />);
+
+      const chip = getByRole('button');
+
+      fireEvent.keyDown(chip, { key: 'Tab' });
+
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.property('tabIndex', -1);
+      expect(chip).to.not.have.class(classes.focusVisible);
+    });
+
     it('should render with the root and filled clickable secondary class', () => {
       const { getByRole } = render(
         <Chip color="secondary" label="My Chip" onClick={() => {}} variant="filled" />,
