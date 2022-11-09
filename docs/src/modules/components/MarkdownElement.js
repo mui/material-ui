@@ -17,7 +17,6 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: blueDark[800],
     color: '#f8f8f2', // fallback color until Prism's theme is loaded
     colorScheme: 'dark',
-    direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
     borderColor: blueDark[700],
@@ -30,6 +29,7 @@ const Root = styled('div')(({ theme }) => ({
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
+  // Set the font for "inline" and "block" code elements
   '& code': {
     ...theme.typography.body2,
     fontFamily: brandingDarkTheme.typography.fontFamilyCode,
@@ -47,6 +47,7 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.primary.light, 0.15),
     borderRadius: 5,
     fontSize: theme.typography.pxToRem(13),
+    direction: 'ltr /*! @noflip */',
   },
   '& h1': {
     ...theme.typography.h3,
@@ -94,12 +95,7 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[900],
   },
   '& ul': {
-    ...(theme.direction === 'rtl' && {
-      paddingRight: 30,
-    }),
-    ...(theme.direction !== 'rtl' && {
-      paddingLeft: 30,
-    }),
+    paddingLeft: 30,
   },
   '& h1, & h2, & h3, & h4': {
     '& code': {
@@ -408,6 +404,7 @@ const Root = styled('div')(({ theme }) => ({
     cursor: 'pointer',
   },
   '& .MuiCode-root': {
+    direction: 'ltr /*! @noflip */',
     position: 'relative',
     '&:hover': {
       '& .MuiCode-copy': {
@@ -422,7 +419,7 @@ const Root = styled('div')(({ theme }) => ({
     cursor: 'pointer',
     position: 'absolute',
     top: theme.spacing(1),
-    right: theme.spacing(1),
+    right: `${theme.spacing(1)} /*! @noflip */`,
     fontFamily: 'inherit',
     fontSize: theme.typography.pxToRem(13),
     fontWeight: 500,
