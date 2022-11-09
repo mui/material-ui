@@ -21,8 +21,17 @@ describe('<Tooltip />', () => {
     testReset();
   });
 
+  function TestPopper(props) {
+    const { children, className, 'data-testid': testId } = props;
+    return (
+      <div className={className} data-testid={testId ?? 'custom'}>
+        {typeof children === 'function' ? children({}) : children}
+      </div>
+    );
+  }
+
   describeConformance(
-    <Tooltip title="Hello World" open>
+    <Tooltip title="Hello World" arrow open>
       <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
@@ -33,6 +42,16 @@ describe('<Tooltip />', () => {
       refInstanceof: window.HTMLButtonElement,
       testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
+      slots: {
+        popper: {
+          expectedClassName: classes.popper,
+          testWithComponent: TestPopper,
+          testWithElement: null,
+        },
+        transition: { testWithElement: null },
+        tooltip: { expectedClassName: classes.tooltip, testWithElement: null },
+        arrow: { expectedClassName: classes.arrow },
+      },
       skip: [
         'componentProp',
         'componentsProp',

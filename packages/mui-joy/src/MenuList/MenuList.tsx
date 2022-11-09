@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: MenuListProps) => {
   return composeClasses(slots, getMenuListUtilityClass, {});
 };
 
-const MenuListRoot = styled(ListRoot, {
+const MenuListRoot = styled(StyledList, {
   name: 'MuiMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

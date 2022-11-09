@@ -6,7 +6,7 @@ import Button from '@mui/joy/Button';
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-function ModeToggle() {
+function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -28,19 +28,27 @@ function ModeToggle() {
   );
 }
 
-export default function BootstrapVariantTokens() {
-  // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
-  const [node, setNode] = React.useState(null);
+export default function ModeToggle() {
+  // the `node` is used for attaching CSS variables to this demo,
+  // you might not need it in your application.
+  const [node, setNode] = React.useState<HTMLElement | null>(null);
   useEnhancedEffect(() => {
     setNode(document.getElementById('mode-toggle'));
   }, []);
 
   return (
     <CssVarsProvider
+      // the props below are specific to this demo,
+      // you might not need them in your app.
+      //
+      // the element to apply [data-joy-color-scheme] attribute.
       colorSchemeNode={node || null}
-      modeStorageKey="mode-toggle-demo"
-      colorSchemeStorageKey="mode-toggle-demo"
+      //
+      // the selector to apply the CSS theme variables stylesheet.
       colorSchemeSelector="#mode-toggle"
+      //
+      // the local storage key to use.
+      modeStorageKey="mode-toggle-demo"
     >
       <Box
         id="mode-toggle"
@@ -49,11 +57,11 @@ export default function BootstrapVariantTokens() {
           flexGrow: 1,
           p: 2,
           m: -3,
-          borderRadius: 'sm',
+          borderRadius: [0, 'sm'],
           bgcolor: 'background.body',
         }}
       >
-        <ModeToggle />
+        <ModeSwitcher />
       </Box>
     </CssVarsProvider>
   );

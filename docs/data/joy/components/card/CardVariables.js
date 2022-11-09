@@ -10,7 +10,7 @@ import Link from '@mui/joy/Link';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 function formatSx(sx) {
   const lines = Object.keys(sx);
@@ -177,7 +177,7 @@ export default function CardVariables() {
         </Box>
       </Sheet>
       <BrandingProvider mode="dark">
-        <HighlighedCode
+        <HighlightedCode
           code={`<Card${formatSx(sx)}>`}
           language="jsx"
           sx={{ display: { xs: 'none', md: 'initial' } }}

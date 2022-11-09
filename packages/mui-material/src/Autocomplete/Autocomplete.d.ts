@@ -259,6 +259,16 @@ export interface AutocompleteProps<
    */
   size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    clearIndicator?: Partial<IconButtonProps>;
+    paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;

@@ -50,7 +50,7 @@ const iOS =
 
 如果你使用的是桌面设备，那么可以点击 "OPEN" 按钮来切换抽屉的显示。 如果你使用的设备是手机，那么可以在 CodeSandbox（“编辑”图标）中打开该演示，并尝试滑动抽屉。
 
-{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "disableLiveEdit": true, "height": 400, "maxWidth": 300}}
 
 ### 全高导航栏
 
@@ -71,7 +71,7 @@ More details in the [Modal performance section](/material-ui/react-modal/#perfor
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
-{{"demo": "ResponsiveDrawer.js", "iframe": true}}
+{{"demo": "ResponsiveDrawer.js", "iframe": true, "disableLiveEdit": true}}
 
 ## 持久的抽屉
 
