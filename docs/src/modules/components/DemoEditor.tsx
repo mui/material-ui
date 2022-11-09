@@ -42,8 +42,10 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   minWidth: '100%',
   '& pre': {
     // The scroll container needs to be the parent of the editor
-    maxHeight: 'initial',
     maxWidth: 'initial',
+    // Avoid this https://github.com/mui/material-ui/blob/master/docs/src/modules/components/MarkdownElement.js#L27
+    // from taking precedence for the max-height
+    maxHeight: 'initial!important',
   },
   '& textarea': {
     outline: 'none',
