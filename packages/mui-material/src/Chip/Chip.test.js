@@ -175,11 +175,11 @@ describe('<Chip />', () => {
     });
 
     it('should not be focused when chip is disabled', () => {
-      const { getByRole } = render(<Chip label="My Chip" disabled />);
+      const { getByTestId } = render(<Chip label="My Chip" disabled data-testid="chip" />);
 
-      const chip = getByRole('button');
+      const chip = getByTestId('chip');
 
-      fireEvent.keyDown(chip, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
 
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.property('tabIndex', -1);
