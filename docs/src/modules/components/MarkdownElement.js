@@ -152,7 +152,6 @@ const Root = styled('div')(({ theme }) => ({
       borderRadius: 8,
       color: theme.palette.text.secondary,
       float: 'right',
-      marginRight: '16px',
       cursor: 'pointer',
       '&:hover': {
         color: theme.palette.text.primary,
