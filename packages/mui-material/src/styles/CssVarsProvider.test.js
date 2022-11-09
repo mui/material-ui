@@ -150,6 +150,7 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           paper: 'var(--mui-palette-background-paper)',
           default: 'var(--mui-palette-background-default)',
+          defaultChannel: 'var(--mui-palette-background-defaultChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(
