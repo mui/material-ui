@@ -1,10 +1,7 @@
-'use client';
-
 import * as React from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
-import { usePathname } from 'next/navigation';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import { usePathname } from 'next/navigation';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -89,12 +86,12 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     ...other
   } = props;
 
-  const router = useRouter();
-  // Next.js 13 pathname
-  const next13Pathname = usePathname();
+  const nextPathname = usePathname();
 
   const pathname = typeof href === 'string' ? href : href.pathname;
-  const className = clsx(classNameProps);
+  const className = clsx(classNameProps, {
+    [activeClassName]: nextPathname && nextPathname === pathname && activeClassName,
+  });
 
   const isExternal =
     typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);

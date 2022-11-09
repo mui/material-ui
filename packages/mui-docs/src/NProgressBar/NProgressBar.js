@@ -17,12 +17,12 @@ NProgress.configure({
 });
 
 const styles = (theme) => {
-  if (!theme.nprogress.color) {
-    throw new Error(
-      'MUI: You need to provide a `theme.nprogress.color` property' +
-        ' for using the `NProgressBar` component.',
-    );
-  }
+  // if (!theme.nprogress?.color) {
+  //   throw new Error(
+  //     'MUI: You need to provide a `theme.nprogress.color` property' +
+  //       ' for using the `NProgressBar` component.',
+  //   );
+  // }
 
   return {
     '@global': {
@@ -39,7 +39,7 @@ const styles = (theme) => {
           theme.palette.mode === 'dark' ? theme.palette.primary[700] : theme.palette.primary[200],
         '& .nprogress-bar': {
           position: 'fixed',
-          backgroundColor: theme.nprogress.color,
+          backgroundColor: theme.nprogress?.color,
           top: 0,
           left: 0,
           right: 0,
@@ -49,7 +49,7 @@ const styles = (theme) => {
           position: 'absolute',
           top: 0,
           height: 2,
-          boxShadow: `${theme.nprogress.color} 1px 0 6px 1px`,
+          boxShadow: `${theme.nprogress?.color} 1px 0 6px 1px`,
           borderRadius: '100%',
           animation: 'mui-nprogress-pulse 2s ease-out 0s infinite',
         },

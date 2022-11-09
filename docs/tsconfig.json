@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["next-env.d.ts", "types", "src", "pages", "data"],
+  "include": ["next-env.d.ts", "types", "src", "pages", "data", ".next/types/**/*.ts"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,
@@ -11,7 +11,12 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "types": ["react"],
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": ["node_modules"]
 }

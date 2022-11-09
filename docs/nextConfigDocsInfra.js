@@ -45,6 +45,7 @@ function withDocsInfra(nextConfig) {
     },
     experimental: {
       scrollRestoration: true,
+      appDir: true,
       ...nextConfig.experimental,
     },
     eslint: {

@@ -1,9 +1,8 @@
+'use client';
+
 import * as React from 'react';
 import NextHead from 'next/head';
-// import { useRouter } from 'next/router';
-// import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-// import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // #major-version-switch
 const HOST = 'https://mui.com';
@@ -12,6 +11,7 @@ interface HeadProps {
   card?: string;
   children?: React.ReactNode;
   description: string;
+  disableAlternateLocale?: boolean;
   largeCard?: boolean;
   title: string;
   type?: string;
@@ -23,6 +23,7 @@ export default function Head(props: HeadProps) {
     card = '/static/social-previews/default-preview.jpg',
     children,
     description = t('strapline'),
+    disableAlternateLocale = false,
     largeCard = true,
     title = t('headTitle'),
     type = 'website',

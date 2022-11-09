@@ -51,13 +51,13 @@ export function NextNProgressBar() {
       }
     };
 
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeDone);
-    router.events.on('routeChangeError', handleRouteChangeDone);
+    router?.events.on('routeChangeStart', handleRouteChangeStart);
+    router?.events.on('routeChangeComplete', handleRouteChangeDone);
+    router?.events.on('routeChangeError', handleRouteChangeDone);
     return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeDone);
-      router.events.off('routeChangeError', handleRouteChangeDone);
+      router?.events.off('routeChangeStart', handleRouteChangeStart);
+      router?.events.off('routeChangeComplete', handleRouteChangeDone);
+      router?.events.off('routeChangeError', handleRouteChangeDone);
     };
   }, [router]);
 
