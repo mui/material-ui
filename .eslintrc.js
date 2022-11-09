@@ -172,9 +172,9 @@ module.exports = {
       },
     ],
 
-    // We re-export default in many places
+    // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
     'no-restricted-exports': 'off',
-    // some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
+    // Some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
     'import/no-relative-packages': 'off',
     // Avoid accidental auto-"fixes" https://github.com/jsx-eslint/eslint-plugin-react/issues/3458
     'react/no-invalid-html-attribute': 'off',
