@@ -1,21 +1,20 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 export default function HelperTextAligned() {
+  const [value, setValue] = React.useState("");
 
-const [value, setValue] = React.useState('');
-
-const handleChange= (event) => {
-  setValue(event.target.value);
-}
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        '& > :not(style)': { m: 1 },
+        display: "flex",
+        alignItems: "center",
+        "& > :not(style)": { m: 1 },
       }}
     >
       <TextField
