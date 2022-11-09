@@ -3,14 +3,14 @@ product: material-ui
 title: Componente React Divisor
 components: Divider
 githubLabel: 'component: divider'
-materialDesign: https://material.io/components/dividers
+materialDesign: https://m2.material.io/components/dividers
 ---
 
 # Divider
 
 <p class="description">Um divisor é uma linha fina que agrupa conteúdo em listas e leiautes.</p>
 
-[Divisores](https://material.io/design/components/dividers.html) separam conteúdos em grupos correspondentes.
+[Divisores](https://m2.material.io/components/dividers) separam conteúdos em grupos correspondentes.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

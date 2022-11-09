@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';

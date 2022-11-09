@@ -8,7 +8,7 @@ import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
@@ -117,7 +117,7 @@ export default function JoyVariablesDemo(props: {
           {props.renderDemo(sx)}
         </Box>
         <BrandingProvider mode="dark">
-          <HighlighedCode
+          <HighlightedCode
             code={
               renderCode
                 ? renderCode(formatSx(sx))

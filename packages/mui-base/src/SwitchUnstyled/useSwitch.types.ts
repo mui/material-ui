@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute } from 'react';
+import * as React from 'react';
 
 export interface UseSwitchParameters {
   /**
@@ -44,7 +44,7 @@ interface UseSwitchInputSlotOwnProps {
   readOnly?: boolean;
   ref: React.Ref<any>;
   required?: boolean;
-  type: HTMLInputTypeAttribute;
+  type: React.HTMLInputTypeAttribute;
 }
 
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &

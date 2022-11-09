@@ -365,11 +365,11 @@ The following is a comprehensive example using the `$` syntax, `useStyles()` par
          The Background take the primary theme color when the mouse hovers the parent.
          I am smaller than the other child.
        </div>
-    </div>
-  );
-}
+     </div>
+   );
+ }
 
-export default App;
+ export default App;
 ```
 
 After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that the codemod could not handle reliably.

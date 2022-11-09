@@ -62,7 +62,7 @@ All other date and time picker components are available in `mui/x-date-pickers` 
 
 ## How do I purchase a commercial license?
 
-Visit [the MUI Store](https://mui.com/store/items/material-ui-pro/) to purchase a commercial license.
+Visit [the MUI Store](https://mui.com/store/items/mui-x-pro/) to purchase a commercial license.
 
 ## How do I migrate?
 

@@ -142,6 +142,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     label,
     multiline = false,
     notched,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -169,9 +170,12 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     type,
   };
 
+  const RootSlot = slots.root ?? components.Root ?? OutlinedInputRoot;
+  const InputSlot = slots.input ?? components.Input ?? OutlinedInputInput;
+
   return (
     <InputBase
-      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
+      slots={{ root: RootSlot, input: InputSlot }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           ownerState={ownerState}
@@ -237,8 +241,11 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -344,6 +351,17 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

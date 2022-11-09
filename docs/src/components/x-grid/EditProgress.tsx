@@ -85,8 +85,8 @@ export default function EditProgress(props: GridRenderEditCellParams) {
       max={1}
       step={0.00001}
       onChange={handleChange}
-      components={{
-        ValueLabel: ValueLabelComponent,
+      slots={{
+        valueLabel: ValueLabelComponent,
       }}
       valueLabelDisplay="auto"
       valueLabelFormat={(newValue) => `${(newValue * 100).toLocaleString()} %`}

@@ -23,7 +23,11 @@ describe('<Popper />', () => {
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
+    render,
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: {},
+    },
     skip: [
       'componentProp',
       'componentsProp',

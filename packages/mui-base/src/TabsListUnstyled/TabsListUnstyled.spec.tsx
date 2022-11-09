@@ -7,7 +7,7 @@ function Root(props: TabsListUnstyledRootSlotProps) {
   return <div data-orientation={ownerState.orientation} {...other} />;
 }
 
-const styledTabsList = <TabsListUnstyled components={{ Root }} />;
+const styledTabsList = <TabsListUnstyled slots={{ root: Root }} />;
 
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;

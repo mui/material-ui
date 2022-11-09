@@ -86,6 +86,13 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

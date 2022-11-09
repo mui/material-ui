@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { useThemeProps, styled } from '../styles';
-import { IconButtonRoot } from '../IconButton/IconButton';
+import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
 import { ModalCloseProps, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolea
   return composeClasses(slots, getModalCloseUtilityClass, {});
 };
 
-export const ModalCloseRoot = styled(IconButtonRoot, {
+export const ModalCloseRoot = styled(StyledIconButton, {
   name: 'JoyModalClose',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -156,7 +156,10 @@ ModalClose.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

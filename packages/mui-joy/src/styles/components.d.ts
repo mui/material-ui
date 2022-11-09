@@ -1,10 +1,25 @@
-import { GlobalStateSlot } from '@mui/base';
+import { GlobalStateSlot } from '@mui/utils';
 import { CSSInterpolation } from '@mui/system';
 import {
   AspectRatioProps,
   AspectRatioOwnerState,
   AspectRatioSlot,
 } from '../AspectRatio/AspectRatioProps';
+import {
+  AutocompleteProps,
+  AutocompleteOwnerState,
+  AutocompleteSlot,
+} from '../Autocomplete/AutocompleteProps';
+import {
+  AutocompleteListboxProps,
+  AutocompleteListboxOwnerState,
+  AutocompleteListboxSlot,
+} from '../AutocompleteListbox/AutocompleteListboxProps';
+import {
+  AutocompleteOptionProps,
+  AutocompleteOptionOwnerState,
+  AutocompleteOptionSlot,
+} from '../AutocompleteOption/AutocompleteOptionProps';
 import { AvatarProps, AvatarOwnerState, AvatarSlot } from '../Avatar/AvatarProps';
 import {
   AvatarGroupProps,
@@ -69,6 +84,11 @@ import {
   IconButtonSlot,
 } from '../IconButton/IconButtonProps';
 import { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
+import {
+  LinearProgressProps,
+  LinearProgressOwnerState,
+  LinearProgressSlot,
+} from '../LinearProgress/LinearProgressProps';
 import { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
 import { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
 import {
@@ -165,6 +185,30 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<AspectRatioProps>;
     styleOverrides?: OverridesStyleRules<AspectRatioSlot, AspectRatioOwnerState, Theme>;
   };
+  JoyAutocomplete?: {
+    defaultProps?: Partial<AutocompleteProps<any, any, any, any>>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteSlot,
+      AutocompleteOwnerState<any, any, any, any>,
+      Theme
+    >;
+  };
+  JoyAutocompleteListbox?: {
+    defaultProps?: Partial<AutocompleteListboxProps>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteListboxSlot,
+      AutocompleteListboxOwnerState,
+      Theme
+    >;
+  };
+  JoyAutocompleteOption?: {
+    defaultProps?: Partial<AutocompleteOptionProps>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteOptionSlot,
+      AutocompleteOptionOwnerState,
+      Theme
+    >;
+  };
   JoyAvatar?: {
     defaultProps?: Partial<AvatarProps>;
     styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarOwnerState, Theme>;
@@ -256,6 +300,10 @@ export interface Components<Theme = unknown> {
   JoyInput?: {
     defaultProps?: Partial<InputProps>;
     styleOverrides?: OverridesStyleRules<InputSlot, InputOwnerState, Theme>;
+  };
+  JoyLinearProgress?: {
+    defaultProps?: Partial<LinearProgressProps>;
+    styleOverrides?: OverridesStyleRules<LinearProgressSlot, LinearProgressOwnerState, Theme>;
   };
   JoyLink?: {
     defaultProps?: Partial<LinkProps>;
