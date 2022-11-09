@@ -36,6 +36,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
       {
         '--Input-radius': theme.vars.radius.sm,
         '--Input-gap': '0.5rem',
+        '--Input-placeholderColor': 'inherit',
         '--Input-placeholderOpacity': 0.5,
         '--Input-focusedThickness': theme.vars.focus.thickness,
         ...(ownerState.color === 'context'
@@ -153,10 +154,25 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
     WebkitBackgroundClip: 'text', // remove autofill background
     WebkitTextFillColor: 'currentColor',
   },
-  '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
-  '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
+  '&::-webkit-input-placeholder': {
+    color: 'var(--Input-placeholderColor)',
+    opacity: 'var(--Input-placeholderOpacity)',
+  },
+  '&::-moz-placeholder': {
+    // Firefox 19+
+    color: 'var(--Input-placeholderColor)',
+    opacity: 'var(--Input-placeholderOpacity)',
+  },
+  '&:-ms-input-placeholder': {
+    // IE11
+    color: 'var(--Input-placeholderColor)',
+    opacity: 'var(--Input-placeholderOpacity)',
+  },
+  '&::-ms-input-placeholder': {
+    // Edge
+    color: 'var(--Input-placeholderColor)',
+    opacity: 'var(--Input-placeholderOpacity)',
+  },
 });
 
 export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(
