@@ -16,6 +16,9 @@ describe('Joy <ListDivider />', () => {
     muiName: 'JoyListDivider',
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { inset: 'gutter' },
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

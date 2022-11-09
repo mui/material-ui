@@ -18,6 +18,9 @@ describe('Joy <ListSubheader />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

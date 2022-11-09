@@ -14,6 +14,9 @@ describe('Joy <ListItemContent />', () => {
     ThemeProvider,
     muiName: 'JoyListItemContent',
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

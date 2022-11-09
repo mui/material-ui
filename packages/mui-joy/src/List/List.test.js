@@ -21,6 +21,9 @@ describe('Joy <List />', () => {
     refInstanceof: window.HTMLUListElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

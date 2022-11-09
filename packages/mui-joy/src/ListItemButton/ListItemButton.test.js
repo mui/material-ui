@@ -16,6 +16,9 @@ describe('Joy <ListItemButton />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { color: 'primary' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

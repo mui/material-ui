@@ -17,24 +17,34 @@ function focusVisible(element) {
 describe('<Link />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Link href="/">Home</Link>, () => ({
-    classes,
-    inheritComponent: 'a',
-    render,
-    ThemeProvider,
-    muiName: 'JoyLink',
-    refInstanceof: window.HTMLAnchorElement,
-    testVariantProps: { color: 'primary', variant: 'plain' },
-    testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
-    testCustomVariant: true,
-    skip: [
-      'classesRoot',
-      'componentsProp',
-      'themeDefaultProps',
-      'propsSpread',
-      'themeStyleOverrides',
-    ],
-  }));
+  describeConformance(
+    <Link href="/" startDecorator="1" endDecorator="1">
+      Home
+    </Link>,
+    () => ({
+      classes,
+      inheritComponent: 'a',
+      render,
+      ThemeProvider,
+      muiName: 'JoyLink',
+      refInstanceof: window.HTMLAnchorElement,
+      testVariantProps: { color: 'primary', variant: 'plain' },
+      testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        startDecorator: { expectedClassName: classes.startDecorator },
+        endDecorator: { expectedClassName: classes.endDecorator },
+      },
+      skip: [
+        'classesRoot',
+        'componentsProp',
+        'themeDefaultProps',
+        'propsSpread',
+        'themeStyleOverrides',
+      ],
+    }),
+  );
 
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
