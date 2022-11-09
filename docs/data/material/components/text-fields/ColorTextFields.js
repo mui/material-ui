@@ -1,36 +1,35 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 export default function ColorTextFields() {
+  const [value, setValue] = React.useState("");
 
-const [value, setValue] = React.useState('');
-
-const handleChange = (event) => {
-  setValue(event.target.value)
-}
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        "& > :not(style)": { m: 1, width: "25ch" },
       }}
       noValidate
       autoComplete="off"
     >
-      <TextField 
-        label="Outlined secondary" 
-        color="secondary" 
-        focused 
+      <TextField
+        label="Outlined secondary"
+        color="secondary"
+        focused
         value={value}
         onChange={handleChange}
       />
-      <TextField 
-        label="Filled success" 
-        variant="filled" 
-        color="success" 
-        focused 
+      <TextField
+        label="Filled success"
+        variant="filled"
+        color="success"
+        focused
         value={value}
         onChange={handleChange}
       />
