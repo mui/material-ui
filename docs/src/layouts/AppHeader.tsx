@@ -17,7 +17,6 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { useRouter } from 'next/router';
 
 const Header = styled('header')(({ theme }) => [
   {
@@ -37,29 +36,17 @@ const Header = styled('header')(({ theme }) => [
 
 const HEIGHT = 56;
 
-export default function AppHeader() {
+interface AppHeaderProps {
+  gitHubRepository?: string;
+}
+
+export default function AppHeader(props: AppHeaderProps) {
+  const { gitHubRepository = 'https://github.com/mui' } = props;
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const t = useTranslate();
-  // Map to store all repository urls of various products
-  const githubRepositoryUrls = new Map();
-  githubRepositoryUrls.set('core', 'https://github.com/mui/material-ui');
-  githubRepositoryUrls.set('x', 'https://github.com/mui/mui-x');
-  githubRepositoryUrls.set('toolpad', 'https://github.com/mui/mui-toolpad');
-  githubRepositoryUrls.set('design-kits', 'https://github.com/mui/mui-design-kits');
-
-  // get pathname, with the leading '/' removed
-  const pathName = useRouter().asPath.substring(1);
-
-  // get product name, using indexOf makes it futureproof
-  const productName = pathName.substring(0, pathName.indexOf('/'));
-
-  let repoUrl;
-  if (githubRepositoryUrls.has(productName)) repoUrl = githubRepositoryUrls.get(productName);
-  else repoUrl = 'https://github.com/mui';
-  // fallback
 
   React.useEffect(() => {
     let initialMode = 'system';
@@ -107,7 +94,7 @@ export default function AppHeader() {
             <IconButton
               component="a"
               color="primary"
-              href={repoUrl}
+              href={gitHubRepository}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >
