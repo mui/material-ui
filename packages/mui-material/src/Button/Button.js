@@ -41,7 +41,7 @@ const useUtilityClasses = (ownerState) => {
 const commonIconStyles = (ownerState) => ({
   ...(ownerState.size === 'small' && {
     '& > *:nth-of-type(1)': {
-      fontSize: 18,
+      fontSize: 16,
     },
   }),
   ...(ownerState.size === 'medium' && {
