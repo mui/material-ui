@@ -8,7 +8,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 describe('<Breadcrumbs />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Breadcrumbs />, () => ({
+  describeConformance(<Breadcrumbs>{[1, 2]}</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
     render,
@@ -17,6 +17,12 @@ describe('<Breadcrumbs />', () => {
     refInstanceof: window.HTMLElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      ol: { expectedClassName: classes.ol },
+      li: { expectedClassName: classes.li },
+      separator: { expectedClassName: classes.separator },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
