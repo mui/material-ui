@@ -451,7 +451,7 @@ export default function AppNavDrawer(props) {
                   text: `v5`,
                   ...(process.env.DATA_GRID_VERSION.startsWith('5')
                     ? { current: true }
-                    : { href: `https://next.mui.com/x/introduction/` }),
+                    : { href: `https://mui.com/x/introduction/` }),
                 },
                 {
                   text: `v6-alpha`,
