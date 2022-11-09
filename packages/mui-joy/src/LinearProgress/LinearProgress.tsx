@@ -53,7 +53,6 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,
     ],
-    progress: ['progress'],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, {});
