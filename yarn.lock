@@ -1263,15 +1263,15 @@
     csstype "^3.0.11"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/system@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.0.tgz#b7ba122872d4d48806fbf994f1187680ae2296a6"
-  integrity sha512-BxikahglBI0uU8FE3anEorDTU5oKTUuBIEKVcQrEVnrbNuRJEy1OVYyCNXfqW3MpruRO9ypYV2bWt02AZZWEaQ==
+"@chakra-ui/system@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.1.tgz#1fbf18e1f19f1f3d489ce1b864be1b2eb444072d"
+  integrity sha512-pR8KYmqN6rQ+aZ8cT5IYfF7rVXEuh6ZWZgWIdgmt5NMseQ2DR9JlK0SRoHNFW1TnFD4Odq2T7Xh46MHiQZCm1g==
   dependencies:
     "@chakra-ui/color-mode" "2.1.9"
     "@chakra-ui/react-utils" "2.0.8"
     "@chakra-ui/styled-system" "2.3.4"
-    "@chakra-ui/theme-utils" "2.0.1"
+    "@chakra-ui/theme-utils" "2.0.2"
     "@chakra-ui/utils" "2.0.11"
     react-fast-compare "3.2.0"
 
@@ -1283,19 +1283,19 @@
     "@chakra-ui/anatomy" "2.0.7"
     "@ctrl/tinycolor" "^3.4.0"
 
-"@chakra-ui/theme-utils@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.1.tgz#a3dc99331ba943e155dd683fe25ce302e3084db0"
-  integrity sha512-NDwzgTPxm+v3PAJlSSU1MORHLMqO9vsRJ+ObELD5wpvE9aEyRziN/AZSoK2oLwCQMPEiU7R99K5ij1E6ptMt7w==
+"@chakra-ui/theme-utils@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.2.tgz#fae1c307fe82a4b7c824f73ef34f77fc515d970b"
+  integrity sha512-juGdDxTJx7deu2xgdNudRWi+qTbViPQKK0niLSOaXsZIfobVDgBn2iIgwLqFcIR0M1yPk64ERtEuvgGa2yI9iw==
   dependencies:
     "@chakra-ui/styled-system" "2.3.4"
-    "@chakra-ui/theme" "2.1.14"
+    "@chakra-ui/theme" "2.1.15"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/theme@2.1.14":
-  version "2.1.14"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-2.1.14.tgz#4726d65a65515f8ee96b5f2a725d0d17804ddfc9"
-  integrity sha512-6EYJCQlrjSjNAJvZmw1un50F8+sQDFsdwu/7UzWe+TeANpKlz4ZcHbh0gkl3PD62lGis+ehITUwqRm8htvDOjw==
+"@chakra-ui/theme@2.1.15":
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-2.1.15.tgz#caf7902435b6e09f957d376cd2dcb509e062a0fb"
+  integrity sha512-e+oZ0e7kXjtjWO0phUzlz9weWv0w4lv4Us/Lf8DXbstrPujgyxNYOF0LHTDRxzUNa5bYUsP9g5W+FW4e9E2UsQ==
   dependencies:
     "@chakra-ui/anatomy" "2.0.7"
     "@chakra-ui/theme-tools" "2.0.12"
