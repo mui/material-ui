@@ -65,7 +65,7 @@ const md2Colors: MD2ButtonProps['color'][] = [
 const DemoComponents = () => {
   const [radius, setRadius] = React.useState<string>('10');
   const [gap, setGap] = React.useState<string>('0.5');
-  
+
   return (
     <Stack direction="column" gap={1}>
       <h4>Enabled</h4>
