@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.10.12",
+  "version": "5.10.13",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -97,7 +97,7 @@
     "@types/enzyme": "^3.10.12",
     "@types/format-util": "^1.0.2",
     "@types/fs-extra": "^9.0.13",
-    "@types/jsdom": "^20.0.0",
+    "@types/jsdom": "^20.0.1",
     "@types/lodash": "^4.14.188",
     "@types/mocha": "^10.0.0",
     "@types/prettier": "^2.7.1",
@@ -145,7 +145,7 @@
     "fs-extra": "^10.1.0",
     "globby": "^11.1.0",
     "html-webpack-plugin": "^5.5.0",
-    "jsdom": "^20.0.1",
+    "jsdom": "^20.0.2",
     "karma": "^6.4.1",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.1.1",
@@ -196,7 +196,7 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^4.10.0",
-    "yargs": "^17.6.0",
+    "yargs": "^17.6.2",
     "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {

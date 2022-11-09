@@ -88,6 +88,7 @@ export default function TemplateCollection() {
                 <NextLink
                   href={`/joy-ui/getting-started/templates/${name}/`}
                   passHref
+                  legacyBehavior
                 >
                   <Button
                     component="a"

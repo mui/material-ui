@@ -1,5 +1,63 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.10.13
+
+<!-- generated comparing v5.10.12..master -->
+
+_Nov 7, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 The slots API has been introduced to the Material UI package by @michaldudak (#34873).
+- 🔥 Live editing of demos is stabilized by @oliviertassinari (#34870).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.13`
+
+- &#8203;<!-- 08 -->[material-ui] Introduce the slots API (#34873) @michaldudak
+- &#8203;<!-- 07 -->[NativeSelectInput] Support CSS theme variables (#34975) @siriwatknp
+
+### `@mui/system@5.10.13`
+
+- &#8203;<!-- 05 -->[system] Add a missing key attribute in getInitColorScheme to fix key issue (#34992) @akshaya-venkatesh8
+
+### `@mui/base@5.0.0-alpha.105`
+
+- &#8203;<!-- 26 -->[base] Avoid calling setState during renders (#34916) @Janpot
+
+### `@mui/joy@5.0.0-alpha.53`
+
+- &#8203;<!-- 06 -->[Select] Fix custom options menu not opening on Avatar click (#34648) @shivam1646
+
+### Docs
+
+- &#8203;<!-- 20 -->[docs] Add a guide for setting dark mode by default (#34839) @siriwatknp
+- &#8203;<!-- 19 -->[docs] Improve code font family (#35027) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Revise and expand Joy UI "Alert" page (#34838) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Live demos v2 (#34870) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix 301 links in the docs @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Fix code display in RTL (#34951) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] New API design rule disabled > disable (#34972) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Explain the usage of Select's onOpen/onClose in the uncontrolled mode (#34755) @michaldudak
+- &#8203;<!-- 12 -->[docs] Add a new gold sponsor (#34984) @hbjORbj
+- &#8203;<!-- 11 -->[docs] Add author and published_time meta tags (#34382) @alexfauquette
+- &#8203;<!-- 10 -->[examples] Next.js examples v13 - fonts (#34971) @PetroSilenius
+- &#8203;<!-- 09 -->[examples] Next.js examples v13 - links (#34970) @PetroSilenius
+- &#8203;<!-- 04 -->[website] Update IPinfo.AI name @oliviertassinari
+- &#8203;<!-- 03 -->[website] Remove date-io from the docs dependencies (#34748) @michaldudak
+- &#8203;<!-- 02 -->[website] Migrate Design-kits page to use CSS theme variables (#34920) @jesrodri
+- &#8203;<!-- 01 -->[website] Migrate Pricing page to use CSS theme variables (#34917) @trizotti
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Remove default access to GitHub action scopes @oliviertassinari
+- &#8203;<!-- 24 -->[core] Fix Pinned-Dependencies @oliviertassinari
+- &#8203;<!-- 23 -->[core] Fix typos in the component name @oliviertassinari
+- &#8203;<!-- 22 -->[core] Fix scorecard regression @oliviertassinari
+- &#8203;<!-- 21 -->[core] Create the docs theme once (#34954) @oliviertassinari
+
+All contributors of this release in alphabetical order: @akshaya-venkatesh8, @alexfauquette, @hbjORbj, @Janpot, @jesrodri, @michaldudak, @oliviertassinari, @PetroSilenius, @samuelsycamore, @shivam1646, @siriwatknp, @trizotti
+
 ## v5.10.12
 
 <!-- generated comparing v5.10.11..master -->
@@ -8817,7 +8875,7 @@ _Sep 6, 2020_
 A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 
-- 💎 A new diamond sponsor: [DoiT](https://www.doit-intl.com/), thank you!
+- 💎 A new diamond sponsor: [DoiT](https://www.doit.com/), thank you!
 - 📚 Include the default value of the props in IntelliSense (#22447) @eps1lon
 - ⚛️ More source migrated to TypeScript and testing-library (#22441) @baterson
 - And many more 🐛 bug fixes and 📚 improvements.

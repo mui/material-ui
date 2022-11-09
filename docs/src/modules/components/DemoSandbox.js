@@ -14,6 +14,7 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
@@ -68,7 +69,7 @@ FramedDemo.propTypes = {
   document: PropTypes.object.isRequired,
 };
 
-const Frame = styled('iframe')(({ theme }) => ({
+const Iframe = styled('iframe')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   flexGrow: 1,
   height: 400,
@@ -76,7 +77,7 @@ const Frame = styled('iframe')(({ theme }) => ({
   boxShadow: theme.shadows[1],
 }));
 
-function DemoFrame(props) {
+function DemoIframe(props) {
   const { children, name, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
@@ -104,7 +105,7 @@ function DemoFrame(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <Frame onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
+      <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document}>{children}</FramedDemo>,
@@ -115,7 +116,7 @@ function DemoFrame(props) {
   );
 }
 
-DemoFrame.propTypes = {
+DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
 };
@@ -161,41 +162,36 @@ const jss = create({
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
-function DemoSandboxed(props) {
+function DemoSandbox(props) {
   const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
-  const Sandbox = iframe ? DemoFrame : React.Fragment;
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const { children: childrenProp, iframe = false, name, onResetDemoClick, ...other } = props;
+  const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
   const t = useTranslate();
 
+  // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
+  const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
+
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {asPathWithoutLang.startsWith('/joy-ui') ? (
-        <Sandbox {...sandboxProps}>
-          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-          <Component />
-        </Sandbox>
+      {canonicalAs.startsWith('/joy-ui') ? (
+        children
       ) : (
         <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
-            <Sandbox {...sandboxProps}>
-              {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-              <Component />
-            </Sandbox>
-          </ThemeProvider>
+          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>
   );
 }
 
-DemoSandboxed.propTypes = {
-  component: PropTypes.elementType.isRequired,
+DemoSandbox.propTypes = {
+  children: PropTypes.node.isRequired,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
 };
 
-export default React.memo(DemoSandboxed);
+export default React.memo(DemoSandbox);
