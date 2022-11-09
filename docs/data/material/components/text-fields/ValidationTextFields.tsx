@@ -3,13 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function ValidationTextFields() {
-
-  const [value, setValue] = React.useState('Hello World');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
   return (
     <Box
       component="form"
@@ -24,15 +17,13 @@ export default function ValidationTextFields() {
           error
           id="outlined-error"
           label="Error"
-          value={value}
-         onChange={handleChange}
+          defaultValue="Hello World"
         />
         <TextField
           error
           id="outlined-error-helper-text"
           label="Error"
-          value={value}
-         onChange={handleChange}
+          defaultValue="Hello World"
           helperText="Incorrect entry."
         />
       </div>
@@ -41,16 +32,14 @@ export default function ValidationTextFields() {
           error
           id="filled-error"
           label="Error"
-          value={value}
-         onChange={handleChange}
+          defaultValue="Hello World"
           variant="filled"
         />
         <TextField
           error
           id="filled-error-helper-text"
           label="Error"
-          value={value}
-         onChange={handleChange}
+          defaultValue="Hello World"
           helperText="Incorrect entry."
           variant="filled"
         />
@@ -60,16 +49,14 @@ export default function ValidationTextFields() {
           error
           id="standard-error"
           label="Error"
-          value={value}
-         onChange={handleChange}
+          defaultValue="Hello World"
           variant="standard"
         />
         <TextField
           error
           id="standard-error-helper-text"
           label="Error"
-          value={value}
-         onChange={handleChange}
+          defaultValue="Hello World"
           helperText="Incorrect entry."
           variant="standard"
         />
