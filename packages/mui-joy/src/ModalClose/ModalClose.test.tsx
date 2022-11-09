@@ -19,6 +19,9 @@ describe('<ModalClose />', () => {
     muiName: 'JoyModalClose',
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'solid' },
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

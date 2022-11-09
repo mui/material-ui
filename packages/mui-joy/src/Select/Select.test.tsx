@@ -12,7 +12,7 @@ import ListDivider from '@mui/joy/ListDivider';
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Select value="" />, () => ({
+  describeConformance(<Select value="" startDecorator="1" endDecorator="1" />, () => ({
     render,
     classes,
     ThemeProvider,
@@ -20,6 +20,12 @@ describe('Joy <Select />', () => {
     muiName: 'JoySelect',
     testDeepOverrides: { slotName: 'button', slotClassName: classes.button },
     testVariantProps: { variant: 'soft' },
+    slots: {
+      root: { expectedClassName: classes.root },
+      button: { expectedClassName: classes.button },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
 
