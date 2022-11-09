@@ -9,19 +9,31 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 describe('<Chip />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Chip />, () => ({
-    classes,
-    inheritComponent: 'div',
-    render,
-    ThemeProvider,
-    muiName: 'JoyChip',
-    refInstanceof: window.HTMLDivElement,
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
-    testComponentPropWith: 'span',
-    testVariantProps: { variant: 'soft' },
-    testCustomVariant: true,
-    skip: ['classesRoot', 'componentsProp'],
-  }));
+  describeConformance(
+    <Chip clickable startDecorator="1" endDecorator="2">
+      Chip
+    </Chip>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      ThemeProvider,
+      muiName: 'JoyChip',
+      refInstanceof: window.HTMLDivElement,
+      testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+      testComponentPropWith: 'span',
+      testVariantProps: { variant: 'soft' },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        action: { expectedClassName: classes.action },
+        label: { expectedClassName: classes.label },
+        startDecorator: { expectedClassName: classes.startDecorator },
+        endDecorator: { expectedClassName: classes.endDecorator },
+      },
+      skip: ['classesRoot', 'componentsProp'],
+    }),
+  );
 
   it('renders children', () => {
     const { getByText } = render(
@@ -117,9 +129,7 @@ describe('<Chip />', () => {
     });
 
     it('renders custom action element', () => {
-      const { getByRole } = render(
-        <Chip slotProps={{ action: { component: 'a', href: '#' } }} />,
-      );
+      const { getByRole } = render(<Chip slotProps={{ action: { component: 'a', href: '#' } }} />);
 
       expect(getByRole('link')).to.have.attr('href', '#');
     });
