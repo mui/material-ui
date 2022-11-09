@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import MD2Button, { ButtonProps as MD2ButtonProps } from '@mui/material/Button';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -62,6 +63,9 @@ const md2Colors: MD2ButtonProps['color'][] = [
 ];
 
 const DemoComponents = () => {
+  const [radius, setRadius] = React.useState<string>('10');
+  const [gap, setGap] = React.useState<string>('0.5');
+  
   return (
     <Stack direction="column" gap={1}>
       <h4>Enabled</h4>
@@ -137,6 +141,40 @@ const DemoComponents = () => {
             {capitalize(size as string)}
           </Button>
         ))}
+      </Stack>
+      <h4>CSS vars playground</h4>
+      <Stack>
+        <Stack direction="row" gap={1} sx={{ py: 1 }}>
+          <TextField
+            label="--Button-radius"
+            value={radius}
+            type="number"
+            onChange={(e) => {
+              setRadius(e.target.value);
+            }}
+          />
+          <TextField
+            label="--Button-gap"
+            value={gap}
+            type="number"
+            onChange={(e) => {
+              setGap(e.target.value);
+            }}
+          />
+        </Stack>
+        <Stack direction="row" gap={1} alignItems="end">
+          {sizes.map((size) => (
+            <Button
+              sx={{ '--Button-radius': `${radius}px`, '--Button-gap': `${gap}rem` }}
+              key={size}
+              variant="outlined"
+              size={size}
+              startIcon={<DeleteIcon />}
+            >
+              {capitalize(size as string)}
+            </Button>
+          ))}
+        </Stack>
       </Stack>
       <h4>Material Design 2 Buttons</h4>
       <Stack direction="row" gap={1} alignItems="end">

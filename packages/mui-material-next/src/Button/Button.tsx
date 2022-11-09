@@ -275,7 +275,7 @@ export const ButtonRoot = styled('button', {
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
     border: 0,
-    margin: 0, // Remove the margin in Safari
+    margin: `var(--Button-margin, 0)`, // Remove the margin in Safari by default
     cursor: 'pointer',
     userSelect: 'none',
     verticalAlign: 'middle',
@@ -304,7 +304,7 @@ export const ButtonRoot = styled('button', {
     lineHeight: `calc(${(theme.vars || theme).sys.typescale.label.large.lineHeight} / ${
       theme.sys.typescale.label.large.size
     })`,
-    borderRadius: (theme.vars || theme).md3.shape.borderRadius,
+    borderRadius: `var(--Button-radius, ${(theme.vars || theme).md3.shape.borderRadius})`,
     background: containerColor[ownerState.variant ?? 'text'],
     color: labelTextColor[ownerState.variant ?? 'text'],
     boxShadow: containerElevation[ownerState.variant ?? 'text'],
@@ -313,8 +313,10 @@ export const ButtonRoot = styled('button', {
       border: `1px solid ${(theme.vars || theme).sys.color.outline}`,
       padding: '9px 23px',
     }),
+    '--Button-gap': '0.5rem',
     // Sizes are not specified in Material You, this need to be revised
     ...(ownerState.size === 'small' && {
+      '--Button-gap': '0.45rem',
       fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size - 1), // the pxToRem should be moved to typescale in the future
       padding: '8px 20px',
       ...(ownerState.variant === 'outlined' && {
@@ -322,6 +324,7 @@ export const ButtonRoot = styled('button', {
       }),
     }),
     ...(ownerState.size === 'large' && {
+      '--Button-gap': '0.55rem',
       fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size + 1), // the pxToRem should be moved to typescale in the future
       padding: '12px 26px',
       ...(ownerState.variant === 'outlined' && {
@@ -373,11 +376,7 @@ const ButtonStartIcon = styled('span', {
   },
 })<{ ownerState: ButtonOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
-  marginRight: 8,
-  marginLeft: -8,
-  ...(ownerState.size === 'small' && {
-    marginLeft: -2,
-  }),
+  marginRight: 'var(--Button-gap)',
   ...commonIconStyles(ownerState),
 }));
 
@@ -391,11 +390,7 @@ const ButtonEndIcon = styled('span', {
   },
 })<{ ownerState: ButtonOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
-  marginRight: -8,
-  marginLeft: 8,
-  ...(ownerState.size === 'small' && {
-    marginRight: -2,
-  }),
+  marginLeft: 'var(--Button-gap)',
   ...commonIconStyles(ownerState),
 }));
 
