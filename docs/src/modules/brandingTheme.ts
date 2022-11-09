@@ -1,4 +1,3 @@
-import { deepmerge } from '@mui/utils';
 import { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
@@ -226,12 +225,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: [
-        'Consolas',
-        'Menlo',
-        'Monaco',
-        'Andale Mono',
-        'Ubuntu Mono',
-        'monospace',
+        'Menlo', // macOS
+        'Lucida Console', // Windows
+        'monospace', // fallback
       ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
@@ -904,5 +900,12 @@ export function getThemedComponents(): ThemeOptions {
   };
 }
 
-const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents());
+export const brandingDarkTheme = createTheme({
+  ...getDesignTokens('dark'),
+  ...getThemedComponents(),
+});
+
+export const brandingLightTheme = createTheme({
+  ...getDesignTokens('light'),
+  ...getThemedComponents(),
+});

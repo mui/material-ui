@@ -1,6 +1,7 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
+const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 // TODO: pass as argument
@@ -123,6 +124,7 @@ module.exports = async function demoLoader() {
   const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
 
   const demos = {};
+  const importedModuleIDs = new Set();
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
@@ -158,6 +160,9 @@ module.exports = async function demoLoader() {
         raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
+      extractImports(demos[demoName].raw).forEach((importModuleID) =>
+        importedModuleIDs.add(importModuleID),
+      );
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
@@ -212,6 +217,14 @@ module.exports = async function demoLoader() {
   });
 
   const transformed = `
+  ${Array.from(importedModuleIDs)
+    .map((moduleID) => {
+      return `import * as ${moduleIDToJSIdentifier(
+        moduleID.replace('@', '$'),
+      )} from '${moduleID}';`;
+    })
+    .join('\n')}
+
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
         return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
@@ -224,6 +237,16 @@ module.exports = async function demoLoader() {
       .join('\n')}
 export const docs = ${JSON.stringify(docs, null, 2)};
 export const demos = ${JSON.stringify(demos, null, 2)};
+
+demos.scope = {
+  process: {},
+  import: {
+${Array.from(importedModuleIDs)
+  .map((moduleID) => `    "${moduleID}": ${moduleIDToJSIdentifier(moduleID.replace('@', '$'))},`)
+  .join('\n')}
+  },
+};
+
 export const demoComponents = {
 ${Array.from(demoModuleIDs)
   .map((moduleID) => {
@@ -238,7 +261,7 @@ ${Array.from(componentModuleIDs)
   })
   .join('\n')}
 };
-      `;
+`;
 
   return transformed;
 };
