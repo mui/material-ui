@@ -47,6 +47,11 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * Additional color tokens outside of the palette
+   * @default []
+   */
+  additionalColorTokensPaths?: string[];
 }
 
 export interface CreateCssVarsProviderResult<ColorScheme extends string> {

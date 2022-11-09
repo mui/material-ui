@@ -15,6 +15,35 @@ import useCurrentColorScheme from './useCurrentColorScheme';
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
 
+const createObject = (path, value) => {
+  const result = {};
+  const keys = path.split('.');
+  let i = 0;
+  keys.reduce((acc, item) => {
+    acc[item] = {};
+    i += 1;
+    if (i === keys.length) {
+      // last key, we need to set the value
+      acc[item] = value;
+    }
+    return acc[item];
+  }, result);
+  return result;
+};
+
+export function getPath(obj, path) {
+  if (!path || typeof path !== 'string') {
+    return null;
+  }
+
+  return path.split('.').reduce((acc, item) => {
+    if (acc && acc[item] != null) {
+      return acc[item];
+    }
+    return null;
+  }, obj);
+}
+
 export default function createCssVarsProvider(options) {
   const {
     theme: defaultTheme = {},
@@ -27,6 +56,7 @@ export default function createCssVarsProvider(options) {
     shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
     resolveTheme,
     excludeVariablesFromRoot,
+    additionalColorTokensPaths = [],
   } = options;
 
   if (
@@ -149,7 +179,14 @@ export default function createCssVarsProvider(options) {
       theme.vars = deepmerge(theme.vars, vars);
 
       if (key === calculatedColorScheme) {
-        const { ref, sys, ...restParsedScheme } = parsedScheme;
+        const restParsedScheme = { ...parsedScheme };
+
+        if (additionalColorTokensPaths.length > 0) {
+          additionalColorTokensPaths.forEach((path) => {
+            const firstKey = path.split('.')[0];
+            delete restParsedScheme[firstKey];
+          });
+        }
         // 4.1 Merge the selected color scheme to the theme
         theme = {
           ...theme,
@@ -158,17 +195,15 @@ export default function createCssVarsProvider(options) {
         if (theme.palette) {
           theme.palette.colorScheme = key;
         }
-        if (theme.sys) {
-          theme.sys = {
-            ...theme.sys,
-            color: sys.color,
-          };
-        }
-        if (theme.ref) {
-          theme.ref = {
-            ...theme.ref,
-            palette: ref.palette,
-          };
+
+        if (additionalColorTokensPaths.length > 0) {
+          additionalColorTokensPaths.forEach((path) => {
+            const objToMerge = createObject(path, getPath(parsedScheme, path));
+            const firstKey = path.split('.')[0];
+            if (theme[firstKey]) {
+              theme[firstKey] = deepmerge(theme[firstKey], objToMerge[firstKey]);
+            }
+          });
         }
       }
       const resolvedDefaultColorScheme = (() => {
