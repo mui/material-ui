@@ -482,7 +482,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
   const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
 
   const {
     // eslint-disable-next-line react/prop-types
@@ -490,6 +489,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     components = {},
     componentsProps = {},
     color = 'primary',
+    isRtl = theme.direction === 'rtl',
     size = 'medium',
     slotProps,
     slots,
