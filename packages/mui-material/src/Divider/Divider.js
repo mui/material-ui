@@ -107,7 +107,7 @@ const DividerRoot = styled('div', {
         borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
         top: '50%',
         content: '""',
-        transform: 'translateY(50%)',
+        alignSelf: 'center',
       },
     }),
   }),
