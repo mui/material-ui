@@ -792,8 +792,6 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
 
   return (
     <TreeViewContext.Provider
-      // TODO: fix lint error:
-       
       value={{
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,
