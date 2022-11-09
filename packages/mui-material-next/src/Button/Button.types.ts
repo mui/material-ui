@@ -126,7 +126,7 @@ export interface ButtonOwnerState extends ButtonProps {
 }
 
 /**
- * utility to create component types that inherit props from ButtonBase.
+ * A utility to create component types that inherit props from the Button.
  * This component has an additional overload if the `href` prop is set which
  * can make extension quite tricky
  */
