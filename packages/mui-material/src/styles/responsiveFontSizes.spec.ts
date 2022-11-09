@@ -12,7 +12,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Update the Typography's variant prop options
+// Update the Typography's variant prop options. Also needed for custom variants options in reponsiveFontSizes.
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
@@ -31,5 +31,6 @@ let theme = createTheme({
   },
 });
 theme = responsiveFontSizes(theme, {
+  // custom variants
   variants: ['poster'],
 });
