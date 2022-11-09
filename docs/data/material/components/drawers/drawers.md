@@ -61,18 +61,19 @@ If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swi
 
 ### Keep mounted
 
-To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+The Modal used internally by the Swipable Drawer has the `keepMounted` prop set by default.
+This means that the contents of the drawer are always present in the DOM.
+
+This can be configured using the `ModalProps` prop, however we've seen issues when running under React 18 with `keepMounted: false`.
 
 ```jsx
 <Drawer
   variant="temporary"
   ModalProps={{
-    keepMounted: true,
+    keepMounted: false,
   }}
 />
 ```
-
-More details in the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Responsive drawer
 
