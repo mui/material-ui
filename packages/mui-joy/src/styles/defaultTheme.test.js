@@ -29,6 +29,7 @@ describe('defaultTheme', () => {
         'vars',
         'cssVarPrefix',
         'getColorSchemeSelector',
+        'sx',
       ]).to.includes(field);
     });
   });
