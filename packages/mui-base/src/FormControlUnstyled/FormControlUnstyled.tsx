@@ -94,10 +94,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const filled = hasValue(value);
 
-  const [focused, setFocused] = React.useState(false);
-  if (disabled && focused) {
-    setFocused(false);
-  }
+  const [focusedState, setFocused] = React.useState(false);
+  const focused = focusedState && !disabled;
+
+  React.useEffect(() => setFocused((isFocused) => (disabled ? false : isFocused)), [disabled]);
 
   const ownerState: FormControlUnstyledOwnerState = {
     ...props,
@@ -108,26 +108,26 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     required,
   };
 
-  const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
-    setValue(event.target.value);
-    onChange?.(event);
-  };
-
-  const childContext: FormControlUnstyledState = {
-    disabled,
-    error,
-    filled,
-    focused,
-    onBlur: () => {
-      setFocused(false);
-    },
-    onChange: handleChange,
-    onFocus: () => {
-      setFocused(true);
-    },
-    required,
-    value: value ?? '',
-  };
+  const childContext: FormControlUnstyledState = React.useMemo(() => {
+    return {
+      disabled,
+      error,
+      filled,
+      focused,
+      onBlur: () => {
+        setFocused(false);
+      },
+      onChange: (event: React.ChangeEvent<NativeFormControlElement>) => {
+        setValue(event.target.value);
+        onChange?.(event);
+      },
+      onFocus: () => {
+        setFocused(true);
+      },
+      required,
+      value: value ?? '',
+    };
+  }, [disabled, error, filled, focused, onChange, required, setValue, value]);
 
   const classes = useUtilityClasses(ownerState);
 

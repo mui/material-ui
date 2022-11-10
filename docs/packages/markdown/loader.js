@@ -1,6 +1,7 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
+const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 // TODO: pass as argument
@@ -123,6 +124,7 @@ module.exports = async function demoLoader() {
   const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
 
   const demos = {};
+  const importedModuleIDs = new Set();
   const components = {};
   const demoModuleIDs = new Set();
   const componentModuleIDs = new Set();
@@ -155,14 +157,17 @@ module.exports = async function demoLoader() {
       this.addDependency(moduleFilepath);
       demos[demoName] = {
         module: moduleID,
-        raw: await fs.readFile(moduleFilepath, { encoding: 'utf-8' }),
+        raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
+      extractImports(demos[demoName].raw).forEach((importModuleID) =>
+        importedModuleIDs.add(importModuleID),
+      );
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
 
-        const jsxPreview = await fs.readFile(previewFilepath, { encoding: 'utf-8' });
+        const jsxPreview = await fs.readFile(previewFilepath, { encoding: 'utf8' });
         this.addDependency(previewFilepath);
 
         demos[demoName].jsxPreview = jsxPreview;
@@ -177,7 +182,7 @@ module.exports = async function demoLoader() {
           moduleTS.replace(/\//g, path.sep),
         );
         this.addDependency(moduleTSFilepath);
-        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf-8' });
+        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf8' });
 
         // In development devs can choose whether they want to work on the TS or JS version.
         // But this leads to building both demo version i.e. more build time.
@@ -212,6 +217,14 @@ module.exports = async function demoLoader() {
   });
 
   const transformed = `
+  ${Array.from(importedModuleIDs)
+    .map((moduleID) => {
+      return `import * as ${moduleIDToJSIdentifier(
+        moduleID.replace('@', '$'),
+      )} from '${moduleID}';`;
+    })
+    .join('\n')}
+
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
         return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
@@ -222,20 +235,33 @@ module.exports = async function demoLoader() {
         return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
+export const docs = ${JSON.stringify(docs, null, 2)};
+export const demos = ${JSON.stringify(demos, null, 2)};
 
-    export const docs = ${JSON.stringify(docs, null, 2)};
-    export const demos = ${JSON.stringify(demos, null, 2)};
-    export const demoComponents = {${Array.from(demoModuleIDs)
-      .map((moduleID) => {
-        return `${JSON.stringify(moduleID)}: ${moduleIDToJSIdentifier(moduleID)},`;
-      })
-      .join('\n')}};
-        export const srcComponents = {${Array.from(componentModuleIDs)
-          .map((moduleID) => {
-            return `${JSON.stringify(components[moduleID])}: ${moduleIDToJSIdentifier(moduleID)},`;
-          })
-          .join('\n')}};
-  `;
+demos.scope = {
+  process: {},
+  import: {
+${Array.from(importedModuleIDs)
+  .map((moduleID) => `    "${moduleID}": ${moduleIDToJSIdentifier(moduleID.replace('@', '$'))},`)
+  .join('\n')}
+  },
+};
+
+export const demoComponents = {
+${Array.from(demoModuleIDs)
+  .map((moduleID) => {
+    return `  "${moduleID}": ${moduleIDToJSIdentifier(moduleID)},`;
+  })
+  .join('\n')}
+};
+export const srcComponents = {
+${Array.from(componentModuleIDs)
+  .map((moduleID) => {
+    return `  "${components[moduleID]}": ${moduleIDToJSIdentifier(moduleID)},`;
+  })
+  .join('\n')}
+};
+`;
 
   return transformed;
 };

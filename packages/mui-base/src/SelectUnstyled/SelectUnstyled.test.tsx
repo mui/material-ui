@@ -183,17 +183,19 @@ describe('SelectUnstyled', () => {
       });
 
       it('navigate using the label prop', () => {
-        const RichOption = (props: OptionUnstyledProps<number>) => (
-          <OptionUnstyled {...props}>
-            <div>
-              Option Title
+        function RichOption(props: OptionUnstyledProps<number>) {
+          return (
+            <OptionUnstyled {...props}>
               <div>
-                Nested information
-                <p>{props.label || props.value}</p>
+                Option Title
+                <div>
+                  Nested information
+                  <p>{props.label || props.value}</p>
+                </div>
               </div>
-            </div>
-          </OptionUnstyled>
-        );
+            </OptionUnstyled>
+          );
+        }
 
         const { getByRole, getByTestId } = render(
           <SelectUnstyled>
