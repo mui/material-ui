@@ -78,8 +78,7 @@ const GOLDs = [
     src: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/40.png',
     srcSet: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/80.png 2x',
     name: 'RIDI',
-    description:
-      'Digital content platform that offers webcomics, webnovels, animations, eBooks, and more.',
+    description: 'Digital content platform for webcomics and more.',
     href: 'https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
