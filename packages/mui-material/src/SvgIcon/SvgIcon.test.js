@@ -55,6 +55,59 @@ describe('<SvgIcon />', () => {
       expect(queryByText('Network')).not.to.equal(null);
       expect(container.firstChild).not.to.have.attribute('aria-hidden');
     });
+
+    it('should also be able to make an icon accessible with component prop', () => {
+      const component = (componentProps) => <svg {...componentProps}>{path}</svg>;
+
+      const { container, queryByText } = render(
+        <SvgIcon
+          title="Go to link"
+          titleAccess="Network"
+          component={(componentProps) => component(componentProps)}
+        />,
+      );
+
+      expect(queryByText('Network')).not.to.equal(null);
+      expect(container.firstChild).not.to.have.attribute('aria-hidden');
+    });
+
+    it('should inherit a title from component prop', () => {
+      const component = (componentProps) => (
+        <SvgIcon {...componentProps} titleAccess="Componet prop title">
+          {path}
+        </SvgIcon>
+      );
+
+      const { container, queryByText } = render(
+        <SvgIcon
+          title="Inherit a title"
+          component={(componentProps) => component(componentProps)}
+        />,
+      );
+
+      expect(queryByText('Componet prop title')).not.to.equal(null);
+      expect(container.firstChild).not.to.have.attribute('aria-hidden');
+    });
+
+    it('should override the title from component prop', () => {
+      const component = (componentProps) => (
+        <SvgIcon {...componentProps} titleAccess="Componet prop title">
+          {path}
+        </SvgIcon>
+      );
+
+      const { container, queryByText } = render(
+        <SvgIcon
+          title="Override component prop title"
+          titleAccess="Root title"
+          component={(componentProps) => component(componentProps)}
+        />,
+      );
+
+      expect(queryByText('Root title')).not.to.equal(null);
+      expect(queryByText('Componet prop title')).to.equal(null);
+      expect(container.firstChild).not.to.have.attribute('aria-hidden');
+    });
   });
 
   describe('prop: color', () => {

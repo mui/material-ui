@@ -85,6 +85,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   };
 
   const more = {};
+  let newComponent;
+  let hasTitleAccess = titleAccess !== undefined;
 
   if (!inheritViewBox) {
     more.viewBox = viewBox;
@@ -92,21 +94,62 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  if (typeof component === 'function') {
+    const element = component({});
+
+    let mergedChildren = [].concat(element.props.children).concat(children);
+    if (titleAccess) {
+      mergedChildren.push(<title>{titleAccess}</title>);
+      hasTitleAccess = true;
+    }
+    if (element.props.titleAccess && !titleAccess) {
+      mergedChildren.push(<title>{element.props.titleAccess}</title>);
+      hasTitleAccess = true;
+    }
+
+    // Component can have no children.
+    // Remove undefined and null items and give each object child a key.
+    mergedChildren = mergedChildren
+      .filter((child) => child)
+      .map((child, index) => {
+        if (typeof child === 'object') {
+          return {
+            ...child,
+            key: index,
+          };
+        }
+        return child;
+      });
+
+    // We have placed title, children and component children into mergedChildren array.
+    // If element has titleAccess prop, omit it to avoid creating duplicated title element.
+    newComponent = (componentProps) =>
+      element.props.titleAccess ? (
+        <element.type {...componentProps} {...element.props} {...more} titleAccess={undefined}>
+          {mergedChildren}
+        </element.type>
+      ) : (
+        <element.type {...componentProps} {...element.props} {...more}>
+          {mergedChildren}
+        </element.type>
+      );
+  }
+
   return (
     <SvgIconRoot
-      as={component}
+      as={newComponent || component}
       className={clsx(classes.root, className)}
       focusable="false"
       color={htmlColor}
-      aria-hidden={titleAccess ? undefined : true}
-      role={titleAccess ? 'img' : undefined}
+      aria-hidden={hasTitleAccess ? undefined : true}
+      role={hasTitleAccess ? 'img' : undefined}
       ref={ref}
       {...more}
       {...other}
       ownerState={ownerState}
     >
       {children}
-      {titleAccess ? <title>{titleAccess}</title> : null}
+      {hasTitleAccess ? <title>{titleAccess}</title> : null}
     </SvgIconRoot>
   );
 });
