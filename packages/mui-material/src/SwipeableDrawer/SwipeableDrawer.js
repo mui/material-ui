@@ -166,7 +166,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
-  const paperRef = React.useRef();
+  const localPaperRef = React.useRef();
+
+  const paperRef = PaperProps.ref || localPaperRef;
 
   const touchDetected = React.useRef(false);
 
@@ -226,7 +228,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         }
       }
     },
-    [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
+    [anchor, paperRef, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
   );
 
   const handleBodyTouchEnd = useEventCallback((nativeEvent) => {
@@ -532,7 +534,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
 
     return undefined;
-  }, [variant, open, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
+  }, [variant, paperRef, open, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
 
   React.useEffect(
     () => () => {
