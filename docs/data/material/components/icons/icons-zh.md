@@ -3,7 +3,7 @@ product: material-ui
 title: React Icon（图标）组件
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
-materialDesign: https://material.io/design/iconography/system-icons.html
+materialDesign: https://m2.material.io/design/iconography/system-icons.html
 ---
 
 # Icons 图标
@@ -55,7 +55,7 @@ Import icons using one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-The safest for bundle size is Option 1, but some developers prefer Option 2. Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
+The safest for bundle size is Option 1, but some developers prefer Option 2. Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 

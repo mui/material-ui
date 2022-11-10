@@ -38,6 +38,16 @@ const pages = [
         ],
       },
       {
+        pathname: '/base/components/feedback',
+        subheader: 'feedback',
+        children: [
+          {
+            pathname: '/base/react-snackbar',
+            title: 'Snackbar',
+          },
+        ],
+      },
+      {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
         children: [
@@ -50,14 +60,14 @@ const pages = [
         pathname: '/base/components/utils',
         subheader: 'utils',
         children: [
-          { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/base/react-click-away-listener', title: 'Click-Away Listener' },
+          { pathname: '/base/react-focus-trap', title: 'Focus Trap' },
           { pathname: '/base/react-form-control', title: 'Form control' },
           { pathname: '/base/react-modal', title: 'Modal' },
           { pathname: '/base/react-no-ssr', title: 'No SSR' },
           { pathname: '/base/react-popper', title: 'Popper' },
           { pathname: '/base/react-portal', title: 'Portal' },
-          { pathname: '/base/react-textarea-autosize', title: 'Textarea autosize' },
-          { pathname: '/base/react-trap-focus', title: 'Trap focus' },
+          { pathname: '/base/react-textarea-autosize', title: 'Textarea Autosize' },
         ],
       },
     ],

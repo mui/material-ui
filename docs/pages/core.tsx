@@ -11,12 +11,12 @@ import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References'
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-export default function Home() {
+export default function Core() {
   return (
     <BrandingProvider>
       <Head
         title="MUI Core: Ready to use components, free forever"
-        description="Get a growing list of components, ready-to-use, free forever and with accessibility always in mind."
+        description="Get a growing list of React components, ready-to-use, free forever and with accessibility always in mind."
         card="/static/social-previews/core-preview.jpg"
       />
       <AppHeaderBanner />

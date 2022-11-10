@@ -154,6 +154,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     className,
     closeText = 'Close',
     color,
+    components = {},
+    componentsProps = {},
     icon,
     iconMapping = defaultIconMapping,
     onClose,
@@ -171,6 +173,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const AlertCloseButton = components.CloseButton ?? IconButton;
+  const AlertCloseIcon = components.CloseIcon ?? CloseIcon;
 
   return (
     <AlertRoot
@@ -196,15 +201,16 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
-          <IconButton
+          <AlertCloseButton
             size="small"
             aria-label={closeText}
             title={closeText}
             color="inherit"
             onClick={onClose}
+            {...componentsProps.closeButton}
           >
-            <CloseIcon fontSize="small" />
-          </IconButton>
+            <AlertCloseIcon fontSize="small" {...componentsProps.closeIcon} />
+          </AlertCloseButton>
         </AlertAction>
       ) : null}
     </AlertRoot>
@@ -248,6 +254,23 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the Alert.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    CloseButton: PropTypes.elementType,
+    CloseIcon: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    closeButton: PropTypes.object,
+    closeIcon: PropTypes.object,
+  }),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.

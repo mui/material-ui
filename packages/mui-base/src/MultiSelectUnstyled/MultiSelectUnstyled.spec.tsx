@@ -9,7 +9,7 @@ import {
 
 const MultiSelectUnstyledComponentsPropsOverridesTest = (
   <MultiSelectUnstyled
-    componentsProps={{
+    slotProps={{
       root: {
         // @ts-expect-error - requires module augmentation
         size: 'red',
@@ -27,30 +27,30 @@ const MultiSelectUnstyledComponentsPropsOverridesTest = (
   />
 );
 
-function CustomRoot<TValue>(props: MultiSelectUnstyledRootSlotProps<TValue>) {
+function CustomRoot<TValue extends {}>(props: MultiSelectUnstyledRootSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
 }
 
-function CustomPopper<TValue>(props: MultiSelectUnstyledPopperSlotProps<TValue>) {
+function CustomPopper<TValue extends {}>(props: MultiSelectUnstyledPopperSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <PopperUnstyled {...other} />;
 }
 
 const MultiSelectUnstyledRootComponentOverridesTest = (
   <MultiSelectUnstyled
-    components={{
-      Root: CustomRoot,
-      Listbox: 'ul',
-      Popper: PopperUnstyled,
+    slots={{
+      root: CustomRoot,
+      listbox: 'ul',
+      popper: PopperUnstyled,
     }}
   />
 );
 
 const MultiSelectUnstyledPopperComponentOverridesTest = (
   <MultiSelectUnstyled
-    components={{
-      Popper: CustomPopper,
+    slots={{
+      popper: CustomPopper,
     }}
   />
 );
@@ -61,23 +61,23 @@ function InvalidPopper({ requiredProp }: { requiredProp: string }) {
 
 const MultiSelectUnstyledComponentsOverridesUsingInvalidComponentTest = (
   <MultiSelectUnstyled
-    components={{
+    slots={{
       // @ts-expect-error - provided a component that requires a prop MultiSelectUnstyled does not provide
-      Popper: InvalidPopper,
+      popper: InvalidPopper,
     }}
   />
 );
 
 const MultiSelectUnstyledComponentsOverridesUsingHostComponentTest = (
   <MultiSelectUnstyled
-    components={{
+    slots={{
       // @ts-expect-error - provided a host element instead of a component
-      Popper: 'div',
+      popper: 'div',
     }}
   />
 );
 
-const PolymorphicComponentTest = () => {
+const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (

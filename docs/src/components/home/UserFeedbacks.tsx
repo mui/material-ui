@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ArrowButton from 'docs/src/components/action/ArrowButton';
 
-const Feedback = ({
+function Feedback({
   quote,
   profile,
 }: {
@@ -18,7 +18,7 @@ const Feedback = ({
     role: string;
     company?: React.ReactElement;
   };
-}) => {
+}) {
   return (
     <Box sx={{ color: '#fff' }}>
       <Typography variant="body1" fontWeight="500" component="div" sx={{ mb: 2.5 }}>
@@ -50,7 +50,7 @@ const Feedback = ({
       </Box>
     </Box>
   );
-};
+}
 
 const TESTIMONIALS = [
   {

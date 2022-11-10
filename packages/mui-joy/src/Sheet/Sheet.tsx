@@ -8,7 +8,8 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
-import { SheetProps, SheetTypeMap } from './SheetProps';
+import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { variant, color } = ownerState;
@@ -28,7 +29,7 @@ export const SheetRoot = styled('div', {
   name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
   return [
@@ -49,6 +50,7 @@ export const SheetRoot = styled('div', {
       position: 'relative',
     },
     variantStyle,
+    ownerState.invertedColors && theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -58,18 +60,28 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     name: 'JoySheet',
   });
 
-  const { className, color = 'neutral', component = 'div', variant = 'plain', ...other } = props;
+  const {
+    className,
+    color: colorProp = 'neutral',
+    component = 'div',
+    variant = 'plain',
+    invertedColors = false,
+    ...other
+  } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
+    invertedColors,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
+  const result = (
     <SheetRoot
       as={component}
       ownerState={ownerState}
@@ -78,6 +90,11 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
       {...other}
     />
   );
+
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<SheetTypeMap>;
 
 Sheet.propTypes /* remove-proptypes */ = {
@@ -106,6 +123,11 @@ Sheet.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

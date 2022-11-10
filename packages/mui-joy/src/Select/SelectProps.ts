@@ -1,9 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
-import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import { ListProps } from '../List/ListProps';
+import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+
+export type { SelectOption } from '@mui/base/SelectUnstyled';
 
 export type SelectSlot =
   | 'root'
@@ -19,6 +21,22 @@ export interface SelectPropsColorOverrides {}
 
 export interface SelectPropsSizeOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, SelectOwnerState<any>>;
+  button?: SlotComponentProps<'button', { sx?: SxProps }, SelectOwnerState<any>>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  listbox?: SlotComponentProps<
+    'ul',
+    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+      component?: React.ElementType;
+      sx?: SxProps;
+    },
+    SelectOwnerState<any>
+  >;
+}
+
 export interface SelectStaticProps extends SelectUnstyledCommonProps {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -32,15 +50,10 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
-  componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'>;
-    button?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
-    listbox?: Omit<PopperUnstyledProps, 'open'> &
-      Pick<ListProps, 'variant' | 'color'> & { sx?: SxProps };
-  };
+  componentsProps?: ComponentsProps;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -91,9 +104,20 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   defaultValue?: TValue | null;
 
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectOption<TValue> | null,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * Callback fired when an option is selected.
    */
-  onChange?: (value: TValue | null) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
   /**
    * Function that customizes the rendering of the selected value.
    */
@@ -105,10 +129,22 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
+  /**
+   * If `true`, the select button is active.
+   */
   active: boolean;
+  /**
+   * If `true`, the select button is disabled.
+   */
   disabled: boolean;
-  focusVisible: boolean;
+  /**
+   * If `true`, the select button's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the select dropdown is open.
+   */
   open: boolean;
 }
 

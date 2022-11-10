@@ -16,6 +16,7 @@ describe('Joy <Input />', () => {
     muiName: 'JoyInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'solid', fullWidth: true },
+    testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
@@ -39,14 +40,10 @@ describe('Joy <Input />', () => {
     expect(screen.getByTestId('end')).toBeVisible();
   });
 
-  it('should change to textarea', () => {
-    const { container } = render(<Input componentsProps={{ input: { component: 'textarea' } }} />);
-    expect(container.firstChild.firstChild).to.have.tagName('textarea');
-  });
-
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
-      const { container } = render(<Input disabled />);
+      const { container, getByRole } = render(<Input disabled />);
+      expect(getByRole('textbox')).to.have.attribute('disabled');
       expect(container.firstChild).to.have.class(classes.disabled);
     });
 

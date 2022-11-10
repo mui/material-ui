@@ -23,3 +23,5 @@ export type CardCoverProps<
   D extends React.ElementType = CardCoverTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<CardCoverTypeMap<P, D>, D>;
+
+export interface CardCoverOwnerState extends CardCoverProps {}

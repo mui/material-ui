@@ -6,7 +6,7 @@ githubLabel: 'component: slider'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 ---
 
-# Unstyled slider
+# Unstyled Slider
 
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>
@@ -16,6 +16,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
+
+{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -36,7 +38,7 @@ export default function MyApp() {
 ### Basics
 
 The following demo shows how to create and style two basic sliders.
-Notice that both are set to a default value of 10 with the `defaultValue` prop, and the the second slider cannot be adjusted due to the `disabled` prop:
+Notice that both are set to a default value of 10 with the `defaultValue` prop, and the second slider cannot be adjusted due to the `disabled` prop:
 
 {{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
 
@@ -106,26 +108,22 @@ Use the `component` prop to override the root slot with a custom element:
 <SliderUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SliderUnstyled components={{ Root: 'div', Thumb: 'div' }} />
+<SliderUnstyled slots={{ root: 'div', thumb: 'div' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-rail` to the rail slot:
 
 ```jsx
-<SliderUnstyled componentsProps={{ rail: { className: 'my-rail' } }} />
+<SliderUnstyled slotProps={{ rail: { className: 'my-rail' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 

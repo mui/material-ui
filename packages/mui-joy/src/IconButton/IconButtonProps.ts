@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   OverridableComponent,
   OverridableStringUnion,
@@ -74,6 +74,13 @@ export type IconButtonProps<
     component?: React.ElementType;
   },
 > = OverrideProps<IconButtonTypeMap<P, D>, D>;
+
+export interface IconButtonOwnerState extends IconButtonProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+}
 
 export type ExtendIconButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendIconButtonTypeMap<M>, 'a'>,

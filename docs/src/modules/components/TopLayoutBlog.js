@@ -138,9 +138,6 @@ const styles = ({ theme }) => ({
     '& strong': {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
     },
-    '& pre': {
-      fontSize: theme.typography.pxToRem(16),
-    },
     '& summary': {
       padding: 8,
       fontSize: theme.typography.pxToRem(14),
@@ -214,10 +211,11 @@ function TopLayoutBlog(props) {
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const slug = router.pathname.replace(/\/blog\//, '');
+  const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card =
     headers.card === 'true'
-      ? `https://mui.com/static${router.pathname}/card.png`
+      ? `https://mui.com/static/blog/${slug}/card.png`
       : 'https://mui.com/static/logo.png';
 
   return (
@@ -327,7 +325,7 @@ function TopLayoutBlog(props) {
     ]
   },
   "headline": "${finalTitle}",
-  "url": "https://mui.com${canonicalAs}",
+  "url": "https://mui.com${canonicalAsServer}",
   "datePublished": "${headers.date}",
   "dateModified": "${headers.date}",
   "image": {

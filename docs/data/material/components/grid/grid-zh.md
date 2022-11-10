@@ -3,14 +3,14 @@ product: material-ui
 title: React Grid（栅格）组件
 components: Grid
 githubLabel: 'component: Grid'
-materialDesign: https://material.io/design/layout/understanding-layout.html
+materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
 
 # Grid 栅格
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局在不同尺寸之间的一致性。</p>
 
-[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 基于 12 列的网格布局来做到 UI 的响应式。
+[Grid 栅格组件](https://m2.material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 基于 12 列的网格布局来做到 UI 的响应式。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -64,7 +64,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## 响应式的值
 
-You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 

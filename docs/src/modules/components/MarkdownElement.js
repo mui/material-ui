@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
-import { blue, blueDark } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark, brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
@@ -15,6 +15,7 @@ const Root = styled('div')(({ theme }) => ({
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
     backgroundColor: blueDark[800],
+    color: '#f8f8f2', // fallback color until Prism's theme is loaded
     colorScheme: 'dark',
     direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
@@ -22,33 +23,30 @@ const Root = styled('div')(({ theme }) => ({
     borderColor: blueDark[700],
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
+    fontSize: theme.typography.pxToRem(13),
     maxWidth: 'calc(100vw - 32px)',
     maxHeight: '400px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
-  '& code, & code[class*="language-"]': {
-    direction: 'ltr',
-    display: 'inline-block',
+  '& code': {
     ...theme.typography.body2,
-    fontSize: theme.typography.pxToRem(13),
-    fontFamily: theme.typography.fontFamilyCode,
+    fontFamily: brandingDarkTheme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
-    padding: '0 5px',
-    borderRadius: 5,
+    // Reset for Safari
+    // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
+    fontSize: '1em',
   },
-  // inline code
-  '& code': {
+  // inline code block
+  '& :not(pre) > code': {
+    display: 'inline-block',
+    padding: '0 5px',
     color: theme.palette.text.primary,
     backgroundColor: alpha(theme.palette.primary.light, 0.15),
-  },
-  // block code
-  '& code[class*="language-"]': {
-    color: '#fff',
-    padding: 0,
-    backgroundColor: blueDark[800],
+    borderRadius: 5,
+    fontSize: theme.typography.pxToRem(13),
   },
   '& h1': {
     ...theme.typography.h3,
@@ -173,7 +171,7 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
     },
     '& .optional': {
-      color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      color: theme.palette.mode === 'light' ? '#45529f' : '#a5b3ff',
     },
     '& .prop-type': {
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
@@ -402,12 +400,12 @@ const Root = styled('div')(({ theme }) => ({
   '& details': {
     marginBottom: theme.spacing(1.5),
     padding: theme.spacing(0.5, 0, 0.5, 1),
-    '& summary': {
-      cursor: 'pointer',
-    },
     '& pre': {
       marginTop: theme.spacing(1),
     },
+  },
+  '& summary': {
+    cursor: 'pointer',
   },
   '& .MuiCode-root': {
     position: 'relative',
@@ -426,7 +424,7 @@ const Root = styled('div')(({ theme }) => ({
     top: theme.spacing(1),
     right: theme.spacing(1),
     fontFamily: 'inherit',
-    fontSize: '0.813rem',
+    fontSize: theme.typography.pxToRem(13),
     fontWeight: 500,
     padding: theme.spacing(0.5, 1),
     borderRadius: 4,

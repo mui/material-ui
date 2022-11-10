@@ -415,46 +415,6 @@ describe('makeStyles', () => {
     });
   });
 
-  describe('react-hot-loader', () => {
-    it('should take the new stylesCreator into account', () => {
-      const useStyles1 = makeStyles({ root: { padding: 8 } });
-      const useStyles2 = makeStyles({ root: { padding: 4 } });
-
-      let hmr = false;
-
-      const StyledComponent = () => {
-        // Simulate react-hot-loader behavior
-        /* eslint-disable react-hooks/rules-of-hooks */
-        if (hmr) {
-          useStyles2();
-        } else {
-          useStyles1();
-        }
-        /* eslint-enable react-hooks/rules-of-hooks */
-
-        return <div />;
-      };
-
-      const sheetsRegistry = new SheetsRegistry();
-      const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
-          <StyledComponent />
-        </StylesProvider>,
-      );
-      expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
-        root: { padding: 8 },
-      });
-
-      hmr = true;
-      wrapper.setProps({});
-      expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
-        root: { padding: 4 },
-      });
-    });
-  });
-
   describe('classname quality', () => {
     let sheetsRegistry;
 

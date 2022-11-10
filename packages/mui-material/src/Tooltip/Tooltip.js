@@ -493,12 +493,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
-  const handleRef = useForkRef(children.ref, handleFocusRef);
+  const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
-  if (title === '') {
+  if (!title && title !== 0) {
     open = false;
   }
 
@@ -872,9 +870,9 @@ Tooltip.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Tooltip title. Zero-length titles string are never displayed.
+   * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
-  title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
+  title: PropTypes.node,
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
