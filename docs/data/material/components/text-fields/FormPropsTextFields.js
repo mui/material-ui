@@ -3,18 +3,18 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function FormPropsTextFields() {
-  const [values, setValue] = React.useState({
+  const [values, setValues] = React.useState({
     required: 'Hello world',
     disabled: 'Hello World',
     password: '',
     read_only: 'Hello World',
-    number: '',
+    number: NaN,
     search: '',
     helper_text: 'Default Value',
   });
 
   const handleChange = (prop) => (event) => {
-    setValue({ ...values, [prop]: event.target.value });
+    setValues({ ...values, [prop]: event.target.value });
   };
 
   return (

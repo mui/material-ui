@@ -25,7 +25,6 @@ export default function BasicTextFields() {
         value={value}
         onChange={handleChange}
       />
-
       <TextField
         id="filled-basic"
         label="Filled"
@@ -33,7 +32,6 @@ export default function BasicTextFields() {
         value={value}
         onChange={handleChange}
       />
-
       <TextField
         id="standard-basic"
         label="Standard"

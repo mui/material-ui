@@ -2,5 +2,12 @@
   helperText="Please enter your name"
   id="demo-helper-text-misaligned"
   label="Name"
+  value={value}
+  onChange={handleChange}
 />
-<TextField id="demo-helper-text-misaligned-no-helper" label="Name" />
+<TextField
+  id="demo-helper-text-misaligned-no-helper"
+  label="Name"
+  value={value}
+  onChange={handleChange}
+/>

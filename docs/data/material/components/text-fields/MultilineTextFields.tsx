@@ -2,12 +2,23 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function MultilineTextFields() {
-  const [value, setValue] = React.useState('Controlled');
+interface State {
+  max: string;
+  auto: string;
+  row: string;
+}
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
+export default function MultilineTextFields() {
+  const [values, setValues] = React.useState<State>({
+    max: 'Controlled',
+    auto: '',
+    row: '',
+  });
+
+  const handleChange =
+    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
 
   return (
     <Box
@@ -24,21 +35,24 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          value={value}
-          onChange={handleChange}
+          value={values.max}
+          onChange={handleChange('max')}
         />
         <TextField
           id="outlined-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
+          value={values.auto}
+          onChange={handleChange('auto')}
         />
         <TextField
           id="outlined-multiline-static"
           label="Multiline"
           multiline
           rows={4}
-          defaultValue="Default Value"
+          value={values.row}
+          onChange={handleChange('row')}
         />
       </div>
       <div>
@@ -47,8 +61,8 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          value={value}
-          onChange={handleChange}
+          value={values.max}
+          onChange={handleChange('max')}
           variant="filled"
         />
         <TextField
@@ -57,13 +71,16 @@ export default function MultilineTextFields() {
           placeholder="Placeholder"
           multiline
           variant="filled"
+          value={values.auto}
+          onChange={handleChange('auto')}
         />
         <TextField
           id="filled-multiline-static"
           label="Multiline"
           multiline
           rows={4}
-          defaultValue="Default Value"
+          value={values.row}
+          onChange={handleChange('row')}
           variant="filled"
         />
       </div>
@@ -73,8 +90,8 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          value={value}
-          onChange={handleChange}
+          value={values.max}
+          onChange={handleChange('max')}
           variant="standard"
         />
         <TextField
@@ -83,13 +100,16 @@ export default function MultilineTextFields() {
           placeholder="Placeholder"
           multiline
           variant="standard"
+          value={values.auto}
+          onChange={handleChange('auto')}
         />
         <TextField
           id="standard-multiline-static"
           label="Multiline"
           multiline
           rows={4}
-          defaultValue="Default Value"
+          value={values.row}
+          onChange={handleChange('row')}
           variant="standard"
         />
       </div>

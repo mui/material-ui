@@ -8,6 +8,12 @@ import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export default function InputWithIcon() {
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
@@ -16,6 +22,8 @@ export default function InputWithIcon() {
         </InputLabel>
         <Input
           id="input-with-icon-adornment"
+          value={value}
+          onChange={handleChange}
           startAdornment={
             <InputAdornment position="start">
               <AccountCircle />
@@ -26,6 +34,8 @@ export default function InputWithIcon() {
       <TextField
         id="input-with-icon-textfield"
         label="TextField"
+        value={value}
+        onChange={handleChange}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -37,7 +47,13 @@ export default function InputWithIcon() {
       />
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
         <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-        <TextField id="input-with-sx" label="With sx" variant="standard" />
+        <TextField
+          id="input-with-sx"
+          label="With sx"
+          variant="standard"
+          value={value}
+          onChange={handleChange}
+        />
       </Box>
     </Box>
   );
