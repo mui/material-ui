@@ -259,10 +259,11 @@ export default function DesignKits() {
           ...theme.applyDarkStyles({
             background: `linear-gradient(to bottom, ${
               (theme.vars || theme).palette.primaryDark[900]
-            } 0%, ${alpha((theme.vars || theme).palette.primaryDark[900], 0)} 30%, ${alpha(
-              (theme.vars || theme).palette.primaryDark[900],
-              0,
-            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+            } 0%, ${
+              'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 30%, ${
+              'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
           }),
         })}
       />
@@ -281,7 +282,7 @@ export default function DesignKits() {
           ...theme.applyDarkStyles({
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]
-            }, ${alpha((theme.vars || theme).palette.primaryDark[900], 0)})`,
+            }, rgba(255,255,255,0))`, // transparent does not work in Safari & Mobile device
           }),
         })}
       />
