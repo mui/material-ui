@@ -255,9 +255,9 @@ withStyles((theme) =>
       },
     });
 
-  const Component = (props: ComponentProps) => {
+  function Component(props: ComponentProps) {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
-  };
+  }
 
   const StyledComponent = withStyles(styles)(Component);
 
@@ -369,9 +369,13 @@ withStyles((theme) =>
 
   const StyledMyButton = withStyles(styles)(MyButton);
 
-  const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
+  function CorrectUsage() {
+    return <StyledMyButton nonDefaulted="2" />;
+  }
   // @ts-expect-error Property 'nonDefaulted' is missing in type '{}'
-  const MissingPropUsage = () => <StyledMyButton />;
+  function MissingPropUsage() {
+    return <StyledMyButton />;
+  }
 }
 
 {

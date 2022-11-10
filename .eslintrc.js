@@ -363,7 +363,7 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
-        'react/function-component-definition': 'off',
+        'no-inner-declarations': 'off',
       },
     },
     {
