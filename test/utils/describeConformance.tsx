@@ -255,7 +255,7 @@ function forEachSlot(
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   const { render, slots, muiName } = getOptions();
-  const isJoyComponent = muiName.startsWith('Joy');
+  const isJoyComponent = muiName?.startsWith('Joy');
 
   const CustomComponent = React.forwardRef<HTMLElement, { className?: string }>(
     ({ className }, ref) => <i className={className} ref={ref} data-testid="custom" />,
@@ -422,7 +422,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
 
 function testSlotPropsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   const { render, slots, muiName } = getOptions();
-  const isJoyComponent = muiName.startsWith('Joy');
+  const isJoyComponent = muiName?.startsWith('Joy');
 
   if (!render) {
     throwMissingPropError('render');
