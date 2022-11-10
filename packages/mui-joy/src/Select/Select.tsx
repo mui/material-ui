@@ -21,7 +21,7 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
-import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -76,7 +76,7 @@ const SelectRoot = styled('div', {
   name: 'JoySelect',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
@@ -85,15 +85,15 @@ const SelectRoot = styled('div', {
       '--Select-placeholderOpacity': 0.5,
       '--Select-focusedThickness': theme.vars.focus.thickness,
       ...(ownerState.color === 'context'
-          ? {
-              '--Select-focusedHighlight': theme.vars.palette.focusVisible,
-            }
-          : {
-              '--Select-focusedHighlight':
-                theme.vars.palette[
-                  ownerState.color === 'neutral' ? 'primary' : ownerState.color!
-                ]?.[500],
-            }),
+        ? {
+            '--Select-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Select-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
       '--Select-indicator-color': variantStyle?.backgroundColor
         ? variantStyle?.color
         : theme.vars.palette.text.tertiary,
@@ -148,60 +148,39 @@ const SelectRoot = styled('div', {
       // TODO: discuss the transition approach in a separate PR.
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      '&:before': {
+      '&::before': {
         boxSizing: 'border-box',
-        minWidth: 0,
-        minHeight: 'var(--Select-minHeight)',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: 'var(--Select-radius)',
-        ...(!variantStyle.backgroundColor && {
-          backgroundColor: theme.vars.palette.background.surface,
-        }),
-        paddingInline: `var(--Select-paddingInline)`,
-        fontFamily: theme.vars.fontFamily.body,
-        fontSize: theme.vars.fontSize.md,
-        ...(ownerState.size === 'sm' && {
-          fontSize: theme.vars.fontSize.sm,
-        }),
-        // TODO: discuss the transition approach in a separate PR.
-        transition:
-          'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-        '&:before': {
-          boxSizing: 'border-box',
-          content: '""',
-          display: 'block',
-          position: 'absolute',
-          pointerEvents: 'none',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 1,
-          borderRadius: 'inherit',
-          margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
-        },
-        [`&.${selectClasses.focusVisible}`]: {
-          '--Select-indicator-color': variantStyle?.color,
-          '&:before': {
-            boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
-          },
-        },
-        [`&.${selectClasses.disabled}`]: {
-          '--Select-indicator-color': 'inherit',
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        pointerEvents: 'none',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        borderRadius: 'inherit',
+        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+      },
+      [`&.${selectClasses.focusVisible}`]: {
+        '--Select-indicator-color': variantStyle?.color,
+        '&::before': {
+          boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
         },
       },
-      {
-        // apply global variant styles
-        ...variantStyle,
-        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        [`&.${selectClasses.disabled}`]:
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+      [`&.${selectClasses.disabled}`]: {
+        '--Select-indicator-color': 'inherit',
       },
-    ];
-  },
-);
+    },
+    {
+      // apply global variant styles
+      ...variantStyle,
+      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      [`&.${selectClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+  ];
+});
 
 const SelectButton = styled('button', {
   name: 'JoySelect',

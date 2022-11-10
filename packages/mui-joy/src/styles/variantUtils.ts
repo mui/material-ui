@@ -232,8 +232,8 @@ export const createSoftInversion = (
           '--variant-solidColor': getCssVar('palette-common-white'),
           '--variant-solidBg': getCssVar(`palette-${color}-600`),
           '--variant-solidHoverColor': getCssVar('palette-common-white'),
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-700`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-800`),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-500`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.6)`,
@@ -301,8 +301,8 @@ export const createSoftInversion = (
           '--variant-solidColor': '#fff',
           '--variant-solidBg': getCssVar(`palette-${color}-500`),
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-400`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-400`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.72)`,

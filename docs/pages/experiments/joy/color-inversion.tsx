@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, useColorScheme } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Avatar from '@mui/joy/Avatar';
 import AspectRatio from '@mui/joy/AspectRatio';
@@ -37,6 +37,8 @@ import Notifications from '@mui/icons-material/Notifications';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import MoreVert from '@mui/icons-material/MoreVert';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 
 const customTheme = extendTheme({
   components: {
@@ -53,6 +55,33 @@ const customTheme = extendTheme({
     },
   },
 });
+
+function ColorSchemeToggle() {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return <IconButton variant="soft" sx={{ borderRadius: 'xl' }} />;
+  }
+  return (
+    <IconButton
+      id="toggle-mode"
+      variant="soft"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+      sx={{ borderRadius: 'xl' }}
+    >
+      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+    </IconButton>
+  );
+}
 
 const HeaderContent = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -141,6 +170,7 @@ const HeaderContent = () => {
               <Notifications />
             </IconButton>
           </Badge>
+          <ColorSchemeToggle />
           <IconButton sx={{ borderRadius: 'xl' }}>
             <Avatar src="/static/images/avatar/1.jpg" size="sm" />
             <KeyboardArrowDown />
@@ -402,8 +432,8 @@ const WidgetContent = () => (
     <Typography
       level="h3"
       endDecorator={
-        <Chip variant="outlined" size="sm">
-          High 311 <KeyboardArrowDown />
+        <Chip variant="outlined" size="sm" endDecorator={<KeyboardArrowDown />}>
+          High 311
         </Chip>
       }
       sx={{ my: 0.5 }}
@@ -430,10 +460,9 @@ const Slide = ({ children, sx }: React.PropsWithChildren<BoxProps>) => (
 
 export default function ColorInversion() {
   return (
-    <CssVarsProvider theme={customTheme}>
+    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
       <CssBaseline />
       <Box
-        data-joy-color-scheme="dark"
         sx={{
           height: '100vh',
           overflowY: 'scroll',
