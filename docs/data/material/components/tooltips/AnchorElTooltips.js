@@ -7,6 +7,7 @@ export default function AnchorElTooltips() {
     x: 0,
     y: 0,
   });
+
   const popperRef = React.useRef(null);
   const areaRef = React.useRef(null);
 

@@ -19,6 +19,7 @@ export default function FreeSoloCreateOptionDialog() {
       title: '',
       year: '',
     });
+
     toggleOpen(false);
   };
 
@@ -33,6 +34,7 @@ export default function FreeSoloCreateOptionDialog() {
       title: dialogValue.title,
       year: parseInt(dialogValue.year, 10),
     });
+
     handleClose();
   };
 
