@@ -46,6 +46,7 @@ interface PaletteColor {
   main: string;
   dark?: string;
   contrastText?: string;
+  contrastThreshold?: number;
 }
 ```
 
@@ -130,9 +131,27 @@ type PaletteTonalOffset =
 
 A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
 A higher value for "contrastThreshold" increases the point at which a background color is considered
-light, and given a dark "contrastText".
+light, and given a dark "contrastText". Note that "contrastThreshold" follows a non-linear curve, and
+starts with a value of 3 (requiring a minimum contrast ratio off 3:1).
 
-Note that "contrastThreshold" follows a non-linear curve.
+### Accessibility
+
+[WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
+that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
+If you would like to meet WCAG 2.1 AA compliance, you will want to provide a "contrastThreshold" value of
+4.5.
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: 4.5,
+  },
+});
+```
 
 ### Example
 
