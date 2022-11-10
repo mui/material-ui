@@ -39,48 +39,48 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   return [
     {
-      '--Chip-radius': '1.5rem',
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
-      '--internal-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--Chip-decorator-childRadius':
-        'max(var(--Chip-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Chip-radius) / 2))',
+        'max(var(--_Chip-radius) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) / 2, var(--_Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
       '--Avatar-size': 'var(--Chip-decorator-childHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--internal-action-radius': 'var(--Chip-radius)', // to be used with Radio or Checkbox
+      '--internal-action-radius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.125rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 1.5rem) / 1.714)', // 0.875rem by default
-        '--Chip-minHeight': '1.5rem',
+          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
-        '--Chip-decorator-childHeight': 'min(1.375rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2rem) / 1.778)', // 1.125rem by default
-        '--Chip-minHeight': '2rem',
+        '--Chip-decorator-childHeight': 'min(1.375rem, var(--_Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
-        '--Chip-decorator-childHeight': 'min(1.75rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2.5rem) / 2)', // 1.25rem by default
-        '--Chip-minHeight': '2.5rem',
+        '--Chip-decorator-childHeight': 'min(1.75rem, var(--_Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
       }),
-      minHeight: 'var(--Chip-minHeight)',
+      '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
+      '--_Chip-paddingBlock':
+        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+      minHeight: 'var(--_Chip-minHeight)',
       paddingInline: 'var(--Chip-paddingInline)',
-      borderRadius: 'var(--Chip-radius)',
+      borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
       fontWeight: theme.vars.fontWeight.md,
       fontFamily: theme.vars.fontFamily.body,
@@ -119,9 +119,11 @@ const ChipLabel = styled('span', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: ChipOwnerState }>(({ ownerState }) => ({
-  display: 'inherit',
-  alignItems: 'center',
+  display: 'inline-block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   order: 1,
+  minInlineSize: 0,
   flexGrow: 1,
   ...(ownerState.clickable && {
     zIndex: 1,
