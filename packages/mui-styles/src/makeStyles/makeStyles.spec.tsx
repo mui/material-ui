@@ -21,7 +21,6 @@ import { createStyles, makeStyles } from '@mui/styles';
     message: string;
   }
 
-  // eslint-disable-next-line react/function-component-definition
   const MyComponent = (props: MyComponentProps) => {
     const { color, message } = props;
     // @ts-expect-error Expected 1 argument, but got 0

@@ -255,7 +255,6 @@ withStyles((theme) =>
       },
     });
 
-  // eslint-disable-next-line react/function-component-definition
   const Component = (props: ComponentProps) => {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
   };
@@ -370,10 +369,8 @@ withStyles((theme) =>
 
   const StyledMyButton = withStyles(styles)(MyButton);
 
-  // eslint-disable-next-line react/function-component-definition
   const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
   // @ts-expect-error Property 'nonDefaulted' is missing in type '{}'
-  // eslint-disable-next-line react/function-component-definition
   const MissingPropUsage = () => <StyledMyButton />;
 }
 
