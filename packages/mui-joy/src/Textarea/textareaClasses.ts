@@ -37,6 +37,10 @@ export interface TextareaClasses {
   variantOutlined: string;
   /** Styles applied to the root element if `variant="soft"`. */
   variantSoft: string;
+  /** Styles applied to the startDecorator element. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element. */
+  endDecorator: string;
 }
 
 export type TextareaClassKey = keyof TextareaClasses;
@@ -64,6 +68,8 @@ const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
   'variantPlain',
   'variantOutlined',
   'variantSoft',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default textareaClasses;

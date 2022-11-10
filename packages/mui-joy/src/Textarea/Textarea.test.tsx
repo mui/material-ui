@@ -8,7 +8,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('Joy <Textarea />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Textarea />, () => ({
+  describeConformance(<Textarea startDecorator="1" endDecorator="2" />, () => ({
     render,
     classes,
     ThemeProvider,
@@ -17,6 +17,12 @@ describe('Joy <Textarea />', () => {
     testDeepOverrides: { slotName: 'textarea', slotClassName: classes.textarea },
     testCustomVariant: true,
     testVariantProps: { variant: 'solid' },
+    slots: {
+      root: { expectedClassName: classes.root },
+      textarea: { expectedClassName: classes.textarea },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

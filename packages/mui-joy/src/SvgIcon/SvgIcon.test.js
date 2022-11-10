@@ -36,6 +36,9 @@ describe('<SvgIcon />', () => {
           {props.children}
         </svg>
       ),
+      slots: {
+        root: { expectedClassName: classes.root },
+      },
       skip: ['themeVariants', 'classesRoot', 'componentsProp'],
     }),
   );

@@ -24,6 +24,9 @@ describe('Joy <TabList />', () => {
     muiName: 'JoyTabList',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

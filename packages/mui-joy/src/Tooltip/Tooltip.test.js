@@ -10,7 +10,7 @@ describe('<Tooltip />', () => {
   const { render } = createRenderer();
 
   describeConformance(
-    <Tooltip title="Hello World" open>
+    <Tooltip title="Hello World" open arrow>
       <Button>button</Button>
     </Tooltip>,
     () => ({
@@ -24,6 +24,10 @@ describe('<Tooltip />', () => {
       testComponentPropWith: 'span',
       testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        arrow: { expectedClassName: classes.arrow },
+      },
       skip: [
         'rootClass',
         'componentProp',
