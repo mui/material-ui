@@ -1,4 +1,5 @@
 import {
+  Interpolation,
   unstable_createStyleFunctionSx,
   compose,
   style,
@@ -21,6 +22,7 @@ import {
   palette,
   typographyVariant,
 } from '@mui/system';
+import { Theme, SxProps } from './types';
 
 // The default system themeKey is shape
 const borderRadius = style({
@@ -102,5 +104,10 @@ const styleFunctionMapping = {
 const styleFunctionSx = unstable_createStyleFunctionSx(styleFunctionMapping);
 
 styleFunctionSx.filterProps = ['sx'];
+
+export const sx = (styles: SxProps) => {
+  return ({ theme }: { theme: Theme }) =>
+    styleFunctionSx({ sx: styles, theme }) as Interpolation<{ theme: Theme }>;
+};
 
 export default styleFunctionSx;
