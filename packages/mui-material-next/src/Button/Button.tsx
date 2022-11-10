@@ -304,7 +304,9 @@ export const ButtonRoot = styled('button', {
     lineHeight: `calc(${(theme.vars || theme).sys.typescale.label.large.lineHeight} / ${
       theme.sys.typescale.label.large.size
     })`,
-    borderRadius: `var(--Button-radius, ${(theme.vars || theme).md3.shape.borderRadius}px)`,
+    borderRadius: `var(--Button-radius, ${
+      theme.vars.md3.shape.borderRadius ?? `${theme.md3.shape.borderRadius}px`
+    })`,
     background: containerColor[ownerState.variant ?? 'text'],
     color: labelTextColor[ownerState.variant ?? 'text'],
     boxShadow: containerElevation[ownerState.variant ?? 'text'],
