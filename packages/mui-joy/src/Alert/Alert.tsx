@@ -143,7 +143,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: AlertEndDecorator,
     externalForwardedProps,
     ownerState,
