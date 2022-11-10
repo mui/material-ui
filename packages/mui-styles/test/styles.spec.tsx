@@ -255,9 +255,10 @@ withStyles((theme) =>
       },
     });
 
-  function Component(props: ComponentProps) {
+  // eslint-disable-next-line react/function-component-definition
+  const Component = (props: ComponentProps) => {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
-  }
+  };
 
   const StyledComponent = withStyles(styles)(Component);
 
@@ -369,13 +370,11 @@ withStyles((theme) =>
 
   const StyledMyButton = withStyles(styles)(MyButton);
 
-  function CorrectUsage() {
-    return <StyledMyButton nonDefaulted="2" />;
-  }
+  // eslint-disable-next-line react/function-component-definition
+  const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
   // @ts-expect-error Property 'nonDefaulted' is missing in type '{}'
-  function MissingPropUsage() {
-    return <StyledMyButton />;
-  }
+  // eslint-disable-next-line react/function-component-definition
+  const MissingPropUsage = () => <StyledMyButton />;
 }
 
 {
