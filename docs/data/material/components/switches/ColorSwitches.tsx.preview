@@ -3,4 +3,3 @@
 <Switch {...label} defaultChecked color="warning" />
 <Switch {...label} defaultChecked color="default" />
 <PinkSwitch {...label} defaultChecked />
-
