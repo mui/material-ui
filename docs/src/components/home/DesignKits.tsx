@@ -263,7 +263,7 @@ export default function DesignKits() {
           ...theme.applyDarkStyles({
             background: `linear-gradient(to bottom, ${
               (theme.vars || theme).palette.primaryDark[900]
-            } 0%,  ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
+            } 0%, ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
               theme.palette.primaryDark[900],
               0,
             )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
