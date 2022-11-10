@@ -257,6 +257,9 @@ export const ButtonRoot = styled('button', {
     theme.sys.typescale.label.large.tracking / theme.sys.typescale.label.large.size
   }rem`;
 
+  const borderRadiusValue: string | number = (theme.vars || theme).md3.shape.borderRadius;
+  const borderRadius = isNaN(borderRadiusValue) ? borderRadiusValue : `${borderRadiusValue}px`;
+
   return {
     // Icon variables default values
     '--md-comp-button-icon-color': labelTextColor[ownerState.variant ?? 'text'],
@@ -304,9 +307,7 @@ export const ButtonRoot = styled('button', {
     lineHeight: `calc(${(theme.vars || theme).sys.typescale.label.large.lineHeight} / ${
       theme.sys.typescale.label.large.size
     })`,
-    borderRadius: `var(--Button-radius, ${
-      theme.vars.md3.shape.borderRadius ?? `${theme.md3.shape.borderRadius}px`
-    })`,
+    borderRadius: `var(--Button-radius, ${borderRadius})`,
     background: containerColor[ownerState.variant ?? 'text'],
     color: labelTextColor[ownerState.variant ?? 'text'],
     boxShadow: containerElevation[ownerState.variant ?? 'text'],
