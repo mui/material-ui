@@ -254,33 +254,37 @@ function forEachSlot(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
-  const { render, slots } = getOptions();
+  const { render, slots, muiName } = getOptions();
+  const isJoyComponent = muiName.startsWith('Joy');
 
   const CustomComponent = React.forwardRef<HTMLElement, { className?: string }>(
     ({ className }, ref) => <i className={className} ref={ref} data-testid="custom" />,
   );
 
   forEachSlot(slots, (slotName, slotOptions) => {
-    it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
-      slotName,
-    )} prop`, () => {
-      if (!render) {
-        throwMissingPropError('render');
-      }
+    // Joy components do not support `components` prop
+    if (!isJoyComponent) {
+      it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
+        slotName,
+      )} prop`, () => {
+        if (!render) {
+          throwMissingPropError('render');
+        }
 
-      const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
+        const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
 
-      const components = {
-        [capitalize(slotName)]: slotComponent,
-      };
+        const components = {
+          [capitalize(slotName)]: slotComponent,
+        };
 
-      const { queryByTestId } = render(React.cloneElement(element, { components }));
-      const renderedElement = queryByTestId('custom');
-      expect(renderedElement).not.to.equal(null);
-      if (slotOptions.expectedClassName) {
-        expect(renderedElement).to.have.class(slotOptions.expectedClassName);
-      }
-    });
+        const { queryByTestId } = render(React.cloneElement(element, { components }));
+        const renderedElement = queryByTestId('custom');
+        expect(renderedElement).not.to.equal(null);
+        if (slotOptions.expectedClassName) {
+          expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+        }
+      });
+    }
 
     it(`allows overriding the ${slotName} slot with a component using the slots.${capitalize(
       slotName,
@@ -349,7 +353,8 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
       expect(queryByTestId('from-components')).to.equal(null);
     });
 
-    if (slotOptions.testWithElement !== null) {
+    // Joy components do not support `components` prop
+    if (slotOptions.testWithElement !== null && !isJoyComponent) {
       it(`allows overriding the ${slotName} slot with an element using the components.${capitalize(
         slotName,
       )} prop`, () => {
@@ -416,28 +421,32 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
 }
 
 function testSlotPropsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
-  const { render, slots } = getOptions();
+  const { render, slots, muiName } = getOptions();
+  const isJoyComponent = muiName.startsWith('Joy');
 
   if (!render) {
     throwMissingPropError('render');
   }
 
   forEachSlot(slots, (slotName, slotOptions) => {
-    it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, () => {
-      const componentsProps = {
-        [slotName]: {
-          'data-testid': 'custom',
-        },
-      };
+    // Joy components do not support `componentsProps` prop
+    if (!isJoyComponent) {
+      it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, () => {
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+          },
+        };
 
-      const { queryByTestId } = render(React.cloneElement(element, { componentsProps }));
-      const slotComponent = queryByTestId('custom');
-      expect(slotComponent).not.to.equal(null);
+        const { queryByTestId } = render(React.cloneElement(element, { componentsProps }));
+        const slotComponent = queryByTestId('custom');
+        expect(slotComponent).not.to.equal(null);
 
-      if (slotOptions.expectedClassName) {
-        expect(slotComponent).to.have.class(slotOptions.expectedClassName);
-      }
-    });
+        if (slotOptions.expectedClassName) {
+          expect(slotComponent).to.have.class(slotOptions.expectedClassName);
+        }
+      });
+    }
 
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} prop`, () => {
       const slotProps = {
