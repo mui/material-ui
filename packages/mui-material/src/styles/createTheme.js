@@ -1,5 +1,5 @@
 import { deepmerge } from '@mui/utils';
-import { createTheme as systemCreateTheme, unstable_createStyleFunctionSx } from '@mui/system';
+import { createTheme as systemCreateTheme } from '@mui/system';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import generateUtilityClass from '../generateUtilityClass';
 import createMixins from './createMixins';
@@ -8,8 +8,6 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
-
-const styleFunctionSx = unstable_createStyleFunctionSx();
 
 function createTheme(options = {}, ...args) {
   const {
@@ -105,10 +103,6 @@ function createTheme(options = {}, ...args) {
       }
     });
   }
-
-  muiTheme.sx = function sx(styles) {
-    return styleFunctionSx({ sx: styles, theme: this });
-  };
 
   return muiTheme;
 }

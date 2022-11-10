@@ -83,10 +83,10 @@ export default function createStyled(input = {}) {
   } = input;
 
   const systemSx = ({ theme, sx }) => {
-    if (!theme.sx) {
-      return undefined;
+    if (isEmpty(theme)) {
+      return defaultTheme.sx?.(sx);
     }
-    return theme.sx(sx);
+    return theme.sx?.(sx);
   };
   systemSx.__mui_systemSx = true;
 
