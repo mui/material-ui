@@ -48,7 +48,9 @@ function testRef(element, mount, onRef = assertDOMNode) {
 export function findRootComponent(wrapper, { component }) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
-  component = typeof component === 'function' ? component({}).type : component;
+  if (component.type === 'functionComponent') {
+    component = component({}).type;
+  }
 
   return wrapper.find(component).filterWhere((componentWrapper) => {
     return componentWrapper.contains(outermostHostElement);
