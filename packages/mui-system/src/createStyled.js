@@ -3,7 +3,6 @@ import styledEngineStyled, { internal_processStyles as processStyles } from '@mu
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';
-import defaultStyleFunctionSx from './styleFunctionSx';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -81,12 +80,13 @@ export default function createStyled(input = {}) {
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
-    styleFunctionSx = defaultStyleFunctionSx,
   } = input;
 
-  const systemSx = (props) => {
-    const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-    return styleFunctionSx({ ...props, theme });
+  const systemSx = ({ theme, sx }) => {
+    if (!theme.sx) {
+      return undefined;
+    }
+    return theme.sx(sx);
   };
   systemSx.__mui_systemSx = true;
 

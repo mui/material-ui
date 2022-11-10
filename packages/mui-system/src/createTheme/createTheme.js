@@ -2,6 +2,7 @@ import { deepmerge } from '@mui/utils';
 import createBreakpoints from './createBreakpoints';
 import shape from './shape';
 import createSpacing from './createSpacing';
+import styleFunctionSx from '../styleFunctionSx';
 
 function createTheme(options = {}, ...args) {
   const {
@@ -23,6 +24,9 @@ function createTheme(options = {}, ...args) {
       palette: { mode: 'light', ...paletteInput },
       spacing,
       shape: { ...shape, ...shapeInput },
+      sx(styles) {
+        return styleFunctionSx({ sx: styles, theme: this });
+      },
     },
     other,
   );

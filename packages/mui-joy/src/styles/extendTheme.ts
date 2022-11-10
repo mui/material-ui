@@ -13,10 +13,11 @@ import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales } from './types';
+import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createVariant } from './variantUtils';
+import styleFunctionSx from './styleFunctionSx';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -589,6 +590,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     colorInversionConfig: {
       soft: ['plain', 'outlined', 'soft', 'solid'],
       solid: ['plain', 'outlined', 'soft', 'solid'],
+    },
+    sx(styles: SxProps) {
+      return styleFunctionSx({ sx: styles, theme: this });
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
