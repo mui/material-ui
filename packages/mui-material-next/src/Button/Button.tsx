@@ -258,7 +258,9 @@ export const ButtonRoot = styled('button', {
   }rem`;
 
   const borderRadiusValue: string | number = (theme.vars || theme).md3.shape.borderRadius;
-  const borderRadius = Number.isNaN(borderRadiusValue) ? borderRadiusValue : `${borderRadiusValue}px`;
+  const borderRadius = Number.isNaN(borderRadiusValue)
+    ? borderRadiusValue
+    : `${borderRadiusValue}px`;
 
   return {
     // Icon variables default values
