@@ -3,7 +3,10 @@ import { expectType } from '@mui/types';
 import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 
 const polymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

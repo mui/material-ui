@@ -9,7 +9,7 @@ _Nov 7, 2022_
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 The slots API has been introduced to the Material UI package by @michaldudak (#34873).
-- 🔥 Live editting of demos is stabilized by @oliviertassinari (#34870).
+- 🔥 Live editing of demos is stabilized by @oliviertassinari (#34870).
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.10.13`
@@ -8875,7 +8875,7 @@ _Sep 6, 2020_
 A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 
-- 💎 A new diamond sponsor: [DoiT](https://www.doit-intl.com/), thank you!
+- 💎 A new diamond sponsor: [DoiT](https://www.doit.com/), thank you!
 - 📚 Include the default value of the props in IntelliSense (#22447) @eps1lon
 - ⚛️ More source migrated to TypeScript and testing-library (#22441) @baterson
 - And many more 🐛 bug fixes and 📚 improvements.

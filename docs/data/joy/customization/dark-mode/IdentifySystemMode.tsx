@@ -23,7 +23,6 @@ const Identifier = () => {
         fontSize="md"
         sx={{
           boxShadow: 'sm',
-          py: 0.25,
           fontFamily: 'code',
           bgcolor: 'background.level1',
         }}

@@ -64,6 +64,10 @@ export type Overlays = [
   string | undefined,
 ];
 
+export interface PaletteBackgroundChannel {
+  defaultChannel: string;
+}
+
 export interface PaletteCommonChannel {
   background: string;
   backgroundChannel: string;
@@ -194,6 +198,7 @@ export interface PaletteTooltip {
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
   palette?: PaletteOptions & {
+    background?: Partial<PaletteBackgroundChannel>;
     common?: Partial<PaletteCommonChannel>;
     primary?: Partial<PaletteColorChannel>;
     secondary?: Partial<PaletteColorChannel>;
