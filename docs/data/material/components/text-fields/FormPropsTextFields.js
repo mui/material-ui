@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 
 export default function FormPropsTextFields() {
   const [values, setValues] = React.useState({
-    required: 'Hello world',
+    required: 'Hello World',
     disabled: 'Hello World',
     password: '',
     read_only: 'Hello World',

@@ -12,7 +12,7 @@ export default function MultilineTextFields() {
   const [values, setValues] = React.useState<State>({
     max: 'Controlled',
     auto: '',
-    row: '',
+    row: 'Default Value',
   });
 
   const handleChange =
