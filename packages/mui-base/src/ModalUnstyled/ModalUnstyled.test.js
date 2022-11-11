@@ -58,6 +58,26 @@ describe('<ModalUnstyled />', () => {
     expect(theme).not.to.equal(null);
   });
 
+  it('default exited state is opposite of open prop', () => {
+    let exited = null;
+
+    const Root = React.forwardRef(
+      ({ ownerState: ownerStateProp, theme: themeProp, ...other }, ref) => {
+        exited = ownerStateProp.exited;
+
+        return <span ref={ref} {...other} />;
+      },
+    );
+
+    render(
+      <ModalUnstyled open slots={{ root: Root }}>
+        <div />
+      </ModalUnstyled>,
+    );
+
+    expect(exited).to.equal(false);
+  });
+
   it('does not forward style props as DOM attributes if component slot is primitive', () => {
     const elementRef = React.createRef();
     render(
