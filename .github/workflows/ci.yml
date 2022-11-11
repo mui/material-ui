@@ -7,9 +7,6 @@ on:
       # We don't need to run CI twice (push+pull_request)
       - 'renovate/**'
   pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - 'examples/**'
 
 permissions: {}
 
