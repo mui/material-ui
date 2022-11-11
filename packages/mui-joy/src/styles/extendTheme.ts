@@ -61,7 +61,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   spacing?: SpacingOptions;
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
-  sx?: (styles: SxProps) => any;
+  unstable_sx?: (styles: SxProps) => any;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -74,7 +74,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     spacing,
     components: componentsInput,
     variants: variantsInput,
-    sx: sxInput,
+    unstable_sx: sxInput,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -593,13 +593,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       soft: ['plain', 'outlined', 'soft', 'solid'],
       solid: ['plain', 'outlined', 'soft', 'solid'],
     },
-    sx(styles: SxProps) {
+    unstable_sx(styles: SxProps) {
       return styleFunctionSx({ sx: styles, theme: this });
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
   if (sxInput) {
-    theme.sx = sxInput;
+    theme.unstable_sx = sxInput;
   }
 
   /**

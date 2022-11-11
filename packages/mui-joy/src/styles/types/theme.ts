@@ -80,7 +80,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  sx: (styles: SystemSxProps<Omit<Theme, 'sx'>>) => any;
+  unstable_sx: (styles: SystemSxProps<Omit<Theme, 'unstable_sx'>>) => any;
 }
 
 export type SxProps = SystemSxProps<Theme>;

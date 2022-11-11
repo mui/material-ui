@@ -24,7 +24,7 @@ function createTheme(options = {}, ...args) {
       palette: { mode: 'light', ...paletteInput },
       spacing,
       shape: { ...shape, ...shapeInput },
-      sx(styles) {
+      unstable_sx(styles) {
         return styleFunctionSx({ sx: styles, theme: this });
       },
     },

@@ -16,7 +16,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
-  sx?: (styles: any) => any;
+  unstable_sx?: (styles: any) => any;
 }
 
 interface BaseTheme extends SystemTheme {
@@ -37,7 +37,7 @@ export {};
  */
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
-  sx: (styles: SxProps<BaseTheme>) => any;
+  unstable_sx: (styles: SxProps<BaseTheme>) => any;
 }
 
 /**
