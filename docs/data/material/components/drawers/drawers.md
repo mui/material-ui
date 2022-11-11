@@ -61,10 +61,10 @@ If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swi
 
 ### Keep mounted
 
-The Modal used internally by the Swipable Drawer has the `keepMounted` prop set by default.
+The Modal used internally by the Swipeable Drawer has the `keepMounted` prop set by default.
 This means that the contents of the drawer are always present in the DOM.
 
-This can be configured using the `ModalProps` prop, however we've seen issues when running under React 18 with `keepMounted: false`.
+You can change this default behavior with the `ModalProps` prop, but you may encounter issues with `keepMounted: false` in React 18.
 
 ```jsx
 <Drawer
