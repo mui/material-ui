@@ -20,9 +20,9 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.19.3",
+    "@babel/core": "^7.20.2",
     "@babel/plugin-transform-object-assign": "^7.18.6",
-    "@babel/runtime-corejs2": "^7.19.2",
+    "@babel/runtime-corejs2": "^7.20.1",
     "@docsearch/react": "^3.3.0",
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
@@ -105,7 +105,7 @@
     "react-intersection-observer": "^9.4.0",
     "react-is": "^18.2.0",
     "react-number-format": "^4.9.4",
-    "react-router-dom": "^6.4.2",
+    "react-router-dom": "^6.4.3",
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
     "react-spring": "^8.0.27",
@@ -124,7 +124,7 @@
     "webpack-bundle-analyzer": "^4.7.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.18.12",
+    "@babel/plugin-transform-react-constant-elements": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
     "@types/marked": "^4.0.7",
     "@types/recharts": "^2.0.0",

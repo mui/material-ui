@@ -130,7 +130,9 @@ describe('elementAcceptingRef', () => {
     });
 
     it('rejects function components', () => {
-      const Component = () => null;
+      function Component() {
+        return null;
+      }
 
       assertFail(
         <Component />,
