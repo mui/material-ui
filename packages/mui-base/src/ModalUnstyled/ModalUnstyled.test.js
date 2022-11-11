@@ -61,13 +61,11 @@ describe('<ModalUnstyled />', () => {
   it('default exited state is opposite of open prop', () => {
     let exited = null;
 
-    const Root = React.forwardRef(
-      ({ ownerState: ownerStateProp, theme: themeProp, ...other }, ref) => {
-        exited = ownerStateProp.exited;
+    const Root = React.forwardRef(({ ownerState: ownerStateProp, ...other }, ref) => {
+      exited = ownerStateProp.exited;
 
-        return <span ref={ref} {...other} />;
-      },
-    );
+      return <span ref={ref} {...other} />;
+    });
 
     render(
       <ModalUnstyled open slots={{ root: Root }}>
