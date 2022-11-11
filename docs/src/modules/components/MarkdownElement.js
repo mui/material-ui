@@ -39,6 +39,7 @@ const Root = styled('div')(
       ...lightTheme.typography.body2,
       fontFamily: lightTheme.typography.fontFamilyCode,
       fontWeight: 400,
+      letterSpacing: '0.01071em',
       WebkitFontSmoothing: 'subpixel-antialiased',
       // Reset for Safari
       // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
