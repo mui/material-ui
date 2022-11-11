@@ -32,6 +32,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   ...theme.typography.body2,
+  letterSpacing: '0.01071em', // must sync with MarkdownElement.js#L42, otherwise the text will overlap when highlight the code.
   fontSize: theme.typography.pxToRem(13),
   fontFamily: theme.typography.fontFamilyCode,
   fontWeight: 400,
@@ -42,8 +43,8 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   minWidth: '100%',
   '& pre': {
     // The scroll container needs to be the parent of the editor
-    maxHeight: 'initial',
-    maxWidth: 'initial',
+    maxHeight: 'initial !important',
+    maxWidth: 'initial !important',
   },
   '& textarea': {
     outline: 'none',
