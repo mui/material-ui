@@ -123,6 +123,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 
     // We have placed title, children and component children into mergedChildren array.
     // If element has titleAccess prop, omit it to avoid creating duplicated title element.
+    // element.type can be a object or string tag.
     newComponent = (componentProps) =>
       element.props.titleAccess ? (
         <element.type {...componentProps} {...element.props} {...more} titleAccess={undefined}>
