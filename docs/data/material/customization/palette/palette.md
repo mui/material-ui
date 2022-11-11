@@ -132,7 +132,7 @@ type PaletteTonalOffset =
 A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
 A higher value for "contrastThreshold" increases the point at which a background color is considered
 light, and given a dark "contrastText". Note that "contrastThreshold" follows a non-linear curve, and
-starts with a value of 3 (requiring a minimum contrast ratio off 3:1).
+starts with a value of 3 (requiring a minimum contrast ratio of 3:1).
 
 ### Accessibility
 
