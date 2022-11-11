@@ -383,13 +383,15 @@ export default function AppNavDrawer(props) {
               <SvgMuiLogo width={30} />
             </Box>
           </NextLink>
-          <ProductIdentifier
-            name={productIdentifier.name}
-            metadata={productIdentifier.metadata}
-            versionSelector={
-              productIdentifier.versions ? renderVersionSelector(productIdentifier.versions) : []
-            }
-          />
+          {productIdentifier && (
+            <ProductIdentifier
+              name={productIdentifier.name}
+              metadata={productIdentifier.metadata}
+              versionSelector={
+                productIdentifier.versions ? renderVersionSelector(productIdentifier.versions) : []
+              }
+            />
+          )}
         </ToolbarDiv>
         <Divider
           sx={{
@@ -403,16 +405,7 @@ export default function AppNavDrawer(props) {
         {navItems}
       </React.Fragment>
     );
-  }, [
-    onClose,
-    pages,
-    activePage,
-    t,
-    productIdentifier.name,
-    productIdentifier.metadata,
-    productIdentifier.versions,
-    anchorEl,
-  ]);
+  }, [onClose, pages, activePage, t, productIdentifier, anchorEl]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
