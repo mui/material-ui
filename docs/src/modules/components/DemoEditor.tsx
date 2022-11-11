@@ -43,8 +43,8 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   minWidth: '100%',
   '& pre': {
     // The scroll container needs to be the parent of the editor
-    maxHeight: 'initial !important',
-    maxWidth: 'initial !important',
+    maxHeight: 'initial',
+    maxWidth: 'initial',
   },
   '& textarea': {
     outline: 'none',
