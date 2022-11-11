@@ -107,12 +107,12 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       hasTitleAccess = true;
     }
 
-    // Component can have no children.
-    // Remove undefined and null items and give each object child a key.
+    // Component can have no children, so remove undefined items.
+    // Give each object child a key.
     mergedChildren = mergedChildren
-      .filter((child) => child)
+      .filter((child) => child !== undefined)
       .map((child, index) => {
-        if (typeof child === 'object') {
+        if (child instanceof Object) {
           return {
             ...child,
             key: index,
