@@ -22,7 +22,7 @@ export default function DesignKits() {
         card="/static/social-previews/designkits-preview.jpg"
       />
       <AppHeaderBanner />
-      <AppHeader />
+      <AppHeader gitHubRepository="https://github.com/mui/mui-design-kits" />
       <main id="main-content">
         <DesignKitHero />
         <References companies={DESIGNKITS_CUSTOMERS} />
