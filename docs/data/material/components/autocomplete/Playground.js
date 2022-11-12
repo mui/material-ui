@@ -8,11 +8,9 @@ export default function Playground() {
     options: top100Films,
     getOptionLabel: (option) => option.title,
   };
-
   const flatProps = {
     options: top100Films.map((option) => option.title),
   };
-
   const [value, setValue] = React.useState(null);
 
   return (
