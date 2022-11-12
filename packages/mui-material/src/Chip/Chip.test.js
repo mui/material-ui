@@ -174,12 +174,17 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.filledPrimary);
     });
 
-    it('should not be focused when chip is disabled', () => {
-      const { getByTestId } = render(<Chip label="My Chip" disabled data-testid="chip" />);
+    it('should not be focused when a deletable chip is disabled', () => {
+      const { getByTestId } = render(
+        <Chip label="My Chip" disabled data-testid="chip" onDelete={() => {}} />,
+      );
 
       const chip = getByTestId('chip');
 
-      fireEvent.keyDown(document.body, { key: 'Tab' });
+      simulatePointerDevice();
+      act(() => {
+        fireEvent.keyDown(document.body, { key: 'Tab' });
+      });
 
       expect(chip).to.have.class(classes.root);
       expect(chip).to.have.property('tabIndex', -1);
