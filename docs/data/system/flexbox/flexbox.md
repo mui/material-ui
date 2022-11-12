@@ -94,6 +94,50 @@ on MDN.
 <Box sx={{ alignContent: 'stretch' }}>…
 ```
 
+### gap
+
+The `gap: size` property specifies the gap between the different items inside the flexbox. For more information please see
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap" target="_blank" rel="noopener noreferrer">gap</a>
+on MDN.
+
+{{"demo": "Gap.js", "defaultCodeOpen": false, "bg": true}}
+
+```jsx
+<Box
+  sx={{
+    display: 'flex',
+    gap: 2,
+  }}
+>
+  <Item>Item 1</Item>
+  <Item>Item 2</Item>
+  <Item>Item 3</Item>
+</Box>
+```
+
+### row-gap & column-gap
+
+The `row-gap` and `column-gap` CSS properties allow for specifying the row and column gaps independently.
+
+{{"demo": "RowAndColumnGap.js", "bg": true}}
+
+```jsx
+<Box
+  sx={{
+    display: 'flex',
+    columnGap: 3,
+    rowGap: 5,
+    flexWrap: 'wrap',
+    maxWidth: 180,
+  }}
+>
+  <Item>Item 1</Item>
+  <Item>Item 2</Item>
+  <Item>Item 3</Item>
+  <Item>Item 4</Item>
+</Box>
+```
+
 ## Properties for the Children
 
 ### order
@@ -170,3 +214,4 @@ import { flexbox } from '@mui/system';
 | `flexGrow`       | `flexGrow`       | `flex-grow`       | none      |
 | `flexShrink`     | `flexShrink`     | `flex-shrink`     | none      |
 | `alignSelf`      | `alignSelf`      | `align-self`      | none      |
+| `gap`            | `gap`            | `gap`             | none      |
