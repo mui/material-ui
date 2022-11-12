@@ -139,10 +139,7 @@ export default function createStyled(input = {}) {
     const muiStyledResolver = (styleArg, ...expressions) => {
       const expressionsWithDefaultTheme = expressions
         ? expressions.map((stylesArg) => {
-            // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-            // component stays as a function. This condition makes sure that we do not interpolate functions
-            // which are basically components used as a selectors.
-            return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
+            return typeof stylesArg === 'function'
               ? ({ theme: themeInput, ...other }) => {
                   return stylesArg({
                     theme: isEmpty(themeInput) ? defaultTheme : themeInput,
@@ -196,13 +193,7 @@ export default function createStyled(input = {}) {
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-      } else if (
-        typeof styleArg === 'function' &&
-        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-        // component stays as a function. This condition makes sure that we do not interpolate functions
-        // which are basically components used as a selectors.
-        styleArg.__emotion_real !== styleArg
-      ) {
+      } else if (typeof styleArg === 'function') {
         // If the type is function, we need to define the default theme.
         transformedStyleArg = ({ theme: themeInput, ...other }) =>
           styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
