@@ -117,7 +117,10 @@ on MDN.
 
 ### row-gap & column-gap
 
-The `row-gap` and `column-gap` CSS properties allow for specifying the row and column gaps independently.
+The `row-gap` and `column-gap` CSS properties allow for specifying the row and column gaps independently. For more information please see
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap" target="_blank" rel="noopener noreferrer">row-gap</a> and
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap" target="_blank" rel="noopener noreferrer">column-gap</a>
+on MDN.
 
 {{"demo": "RowAndColumnGap.js", "bg": true}}
 
