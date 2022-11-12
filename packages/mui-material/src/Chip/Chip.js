@@ -461,7 +461,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
-      tabIndex={disabled ? tabIndex ?? -1 : tabIndex}
+      tabIndex={disabled ? -1 : tabIndex}
       ownerState={ownerState}
       {...moreProps}
       {...other}
