@@ -284,7 +284,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     value: valueProp,
     ...other
   } = props;
-
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
@@ -525,6 +524,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         {startAdornment}
         <FormControlContext.Provider value={null}>
           <Input
+            aria-required={fcs.required}
             ownerState={ownerState}
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}

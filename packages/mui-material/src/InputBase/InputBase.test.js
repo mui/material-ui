@@ -391,6 +391,13 @@ describe('<InputBase />', () => {
         const input = container.querySelector('input');
         expect(input).to.have.property('required', true);
       });
+
+      it('should have the aria-required prop with value true when required is true', () => {
+        const { container } = render(<InputBase required />);
+        const input = container.querySelector('input');
+        expect(input).to.have.property('required', true);
+        expect(input).to.have.attribute('aria-required', 'true');
+      });
     });
 
     describe('focused', () => {
