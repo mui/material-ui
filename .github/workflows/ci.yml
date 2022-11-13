@@ -21,12 +21,12 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
+      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
       - name: Use Node.js 14.x
-        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # tag=v3
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3
         with:
           node-version: 14
           cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
