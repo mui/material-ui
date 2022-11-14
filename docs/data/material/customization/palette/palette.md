@@ -46,7 +46,6 @@ interface PaletteColor {
   main: string;
   dark?: string;
   contrastText?: string;
-  contrastThreshold?: number;
 }
 ```
 
@@ -136,10 +135,7 @@ starts with a value of 3 (requiring a minimum contrast ratio of 3:1).
 
 ### Accessibility
 
-[WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
-that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
-If you would like to meet WCAG 2.1 AA compliance, you will want to provide a "contrastThreshold" value of
-4.5.
+To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), create a custom theme with `contrastThreshold: 4.5`.
 
 ```js
 import { createTheme } from '@mui/material/styles';
