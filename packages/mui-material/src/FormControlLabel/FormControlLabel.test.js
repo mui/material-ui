@@ -18,7 +18,10 @@ describe('<FormControlLabel />', () => {
     muiName: 'MuiFormControlLabel',
     testVariantProps: { disabled: true },
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp', 'componentsProp'],
+    slots: {
+      typography: { expectedClassName: classes.label },
+    },
+    skip: ['componentProp', 'componentsProp', 'slotsProp'],
   }));
 
   describe('prop: label', () => {
@@ -257,7 +260,9 @@ describe('<FormControlLabel />', () => {
   });
 
   it('should not inject extra props', () => {
-    const Control = (props) => <div data-testid="control" name="Dave" {...props} />;
+    function Control(props) {
+      return <div data-testid="control" name="Dave" {...props} />;
+    }
     const { getByTestId } = render(<FormControlLabel label="Pizza" control={<Control />} />);
 
     expect(getByTestId('control')).to.have.attribute('name', 'Dave');
