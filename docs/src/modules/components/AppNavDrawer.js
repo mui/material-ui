@@ -469,7 +469,7 @@ export default function AppNavDrawer(props) {
                   text: 'v5',
                   ...(process.env.DATA_GRID_VERSION.startsWith('5')
                     ? {
-                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        text: `v${process.env.DATA_GRID_VERSION}`,
                         current: true,
                       }
                     : {
