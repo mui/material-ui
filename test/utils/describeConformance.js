@@ -210,7 +210,7 @@ export function testRootClass(element, getOptions) {
     const outermostElement = findOutermostIntrinsic(wrapper).getElement();
     const classArray = outermostElement.props.className.split(' ');
     const classSet = new Set(classArray);
-  
+
     // classes test only for @mui/material
     if (!skip || !skip.includes('classesRoot')) {
       // Test that root class aren't duplicated
