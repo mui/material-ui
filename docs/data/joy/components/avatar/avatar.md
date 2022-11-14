@@ -136,7 +136,7 @@ You can reverse the overlapping order by reversing the order of the Avatars and 
 To render the Avatar Group vertically, add the CSS `writing-mode: vertical-rl` property and rotate the interior element (if one is present) by -90 degrees.
 
 :::info
-This approach is preferable as it preserves the overlapping offset between Avatars; the alternative—`flexDirection: column`—does not.
+This approach is preferable because it preserves the overlapping offset between Avatars; the alternative—`flexDirection: column`—does not.
 :::
 
 {{"demo": "VerticalAvatarGroup.js"}}
