@@ -39,7 +39,6 @@ const Root = styled('div')(
       ...lightTheme.typography.body2,
       fontFamily: lightTheme.typography.fontFamilyCode,
       fontWeight: 400,
-      letterSpacing: '0.01071em',
       WebkitFontSmoothing: 'subpixel-antialiased',
     },
     '& pre > code': {
