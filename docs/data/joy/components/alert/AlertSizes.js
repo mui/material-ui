@@ -5,9 +5,9 @@ import Alert from '@mui/joy/Alert';
 export default function AlertSizes() {
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
-      <Alert size="sm">This is an alert in the small size.</Alert>
-      <Alert size="md">This is an alert in the medium size.</Alert>
-      <Alert size="lg">This is an alert in the large size.</Alert>
+      <Alert size="sm">This is a small Alert.</Alert>
+      <Alert size="md">This is a medium Alert.</Alert>
+      <Alert size="lg">This is a large Alert.</Alert>
     </Box>
   );
 }

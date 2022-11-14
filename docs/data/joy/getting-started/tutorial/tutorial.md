@@ -244,7 +244,7 @@ Here are some of the major features introduced:
 
 - [global variants](/joy-ui/main-features/global-variants/)
 - [the `sx` prop](/system/getting-started/the-sx-prop/)
-- [dark mode](/joy-ui/guides/applying-dark-mode/)
+- [dark mode](/joy-ui/customization/dark-mode/)
 
 ## Next steps
 
