@@ -335,12 +335,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisible,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
 
   return (
     <ButtonBaseRoot
       as={ComponentProp}
-      className={clsx(classes.root, className)}
+      className={clsx(rootClass, className)}
       ownerState={ownerState}
       onBlur={handleBlur}
       onClick={onClick}
@@ -360,6 +360,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       type={type}
       {...buttonProps}
       {...other}
+      classes={otherClasses}
     >
       {children}
       {enableTouchRipple ? (
