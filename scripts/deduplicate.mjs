@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
-const { spawn } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const deduplicate = require('yarn-deduplicate');
+import { spawn } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import deduplicate from 'yarn-deduplicate';
+import { getWorkspaceRoot } from './utils.mjs';
 
-const lockFile = path.resolve(__dirname, '../yarn.lock');
+const lockFile = path.resolve(getWorkspaceRoot(), 'yarn.lock');
 const yarnlock = fs.readFileSync(lockFile, 'utf8');
 
 const duplicates = deduplicate.listDuplicates(yarnlock);
@@ -33,7 +34,7 @@ fs.writeFileSync(lockFile, deduplicate.fixDuplicates(yarnlock));
 const yarn = spawn('yarn', {
   shell: true,
   stdio: 'inherit',
-  cwd: path.resolve(__dirname, '..'),
+  cwd: getWorkspaceRoot(),
 });
 
 yarn.on('close', (code) => {

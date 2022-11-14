@@ -20,7 +20,7 @@ export default function Core() {
         card="/static/social-previews/core-preview.jpg"
       />
       <AppHeaderBanner />
-      <AppHeader />
+      <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
         <CoreHero />
         <References companies={CORE_CUSTOMERS} />

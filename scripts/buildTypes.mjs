@@ -1,10 +1,10 @@
-const chalk = require('chalk');
-const childProcess = require('child_process');
-const glob = require('fast-glob');
-const fse = require('fs-extra');
-const path = require('path');
-const { promisify } = require('util');
-const yargs = require('yargs');
+import chalk from 'chalk';
+import childProcess from 'child_process';
+import glob from 'fast-glob';
+import fse from 'fs-extra';
+import path from 'path';
+import { promisify } from 'util';
+import yargs from 'yargs';
 
 const exec = promisify(childProcess.exec);
 
@@ -129,7 +129,7 @@ async function main() {
   console.log(`Fixed: ${rewrittenTally}\nFailed: ${errorTally}\nTotal: ${declarationFiles.length}`);
 }
 
-yargs
+yargs(process.argv.slice(2))
   .command({
     command: '$0',
     description:

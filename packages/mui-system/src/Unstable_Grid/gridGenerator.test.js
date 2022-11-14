@@ -13,6 +13,7 @@ import {
   generateSizeClassNames,
   generateSpacingClassNames,
   generateDirectionClasses,
+  filterBreakpointKeys,
 } from './gridGenerator';
 
 const spacing = createSpacing();
@@ -99,6 +100,12 @@ describe('grid generator', () => {
           margin: 3,
         },
       });
+    });
+
+    it('filters out breakpoints keys based on responsize keys', () => {
+      const styles = { sm: 6, md: 3, xl: 2, xs: 1 };
+      const filteredKeys = filterBreakpointKeys(breakpoints.keys, Object.keys(styles));
+      expect(filteredKeys).to.deep.equal(['xs', 'sm', 'md', 'xl']);
     });
 
     describe('custom breakpoints', () => {
