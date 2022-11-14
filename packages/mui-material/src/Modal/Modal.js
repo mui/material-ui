@@ -203,7 +203,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    backdrop: PropTypes.object,
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**

@@ -23,7 +23,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
