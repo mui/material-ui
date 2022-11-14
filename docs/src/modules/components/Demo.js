@@ -266,12 +266,17 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
-const DemoCodeViewer = styled(HighlightedCode)({
+const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
   '& pre': {
-    margin: '0 auto',
+    margin: 0,
     maxHeight: 'min(68vh, 1000px)',
+    maxWidth: 'initial',
+    borderRadius: 0,
+    [theme.breakpoints.up('sm')]: {
+      borderRadius: theme.shape.borderRadius,
+    },
   },
-});
+}));
 
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
