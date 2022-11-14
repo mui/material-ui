@@ -2,7 +2,7 @@ import style from './style';
 import compose from './compose';
 import { handleBreakpoints, values as breakpointsValues } from './breakpoints';
 
-function transform(value) {
+export function transform(value) {
   return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 

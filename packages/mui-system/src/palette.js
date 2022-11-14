@@ -1,7 +1,7 @@
 import style from './style';
 import compose from './compose';
 
-function transform(value, userValue) {
+export function transform(value, userValue) {
   if (userValue === 'grey') {
     return userValue;
   }

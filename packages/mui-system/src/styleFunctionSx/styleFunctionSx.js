@@ -1,10 +1,12 @@
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import merge from '../merge';
-import { styleFunctionMapping as defaultStyleFunctionMapping } from '../getThemeValue';
+import { getPath, getValue } from '../style';
 import {
   handleBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
 } from '../breakpoints';
+import defaultSxConfig from './defaultSxConfig';
 
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
@@ -17,23 +19,54 @@ function callIfFn(maybeFn, arg) {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultStyleFunctionMapping) {
-  const propToStyleFunction = Object.keys(styleFunctionMapping).reduce((acc, styleFnName) => {
-    styleFunctionMapping[styleFnName].filterProps.forEach((propName) => {
-      acc[propName] = styleFunctionMapping[styleFnName];
-    });
-
-    return acc;
-  }, {});
-
+export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
   function getThemeValue(prop, value, theme) {
-    const inputProps = {
+    const props = {
       [prop]: value,
       theme,
     };
 
-    const styleFunction = propToStyleFunction[prop];
-    return styleFunction ? styleFunction(inputProps) : { [prop]: value };
+    const options = config[prop];
+
+    if (!options) {
+      return { [prop]: value };
+    }
+
+    const { cssProperty = prop, themeKey, transform, style } = options;
+
+    if (value == null) {
+      return null;
+    }
+
+    const themeMapping = getPath(theme, themeKey) || {};
+
+    if (style) {
+      return style(props);
+    }
+
+    const styleFromPropValue = (propValueFinal) => {
+      let value = getValue(themeMapping, transform, propValueFinal);
+
+      if (propValueFinal === value && typeof propValueFinal === 'string') {
+        // Haven't found value
+        value = getValue(
+          themeMapping,
+          transform,
+          `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
+          propValueFinal,
+        );
+      }
+
+      if (cssProperty === false) {
+        return value;
+      }
+
+      return {
+        [cssProperty]: value,
+      };
+    };
+
+    return handleBreakpoints(props, value, styleFromPropValue);
   }
 
   function styleFunctionSx(props) {
@@ -67,7 +100,7 @@ export function unstable_createStyleFunctionSx(styleFunctionMapping = defaultSty
         const value = callIfFn(sxObject[styleKey], theme);
         if (value !== null && value !== undefined) {
           if (typeof value === 'object') {
-            if (propToStyleFunction[styleKey]) {
+            if (config[styleKey]) {
               css = merge(css, getThemeValue(styleKey, value, theme));
             } else {
               const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({

@@ -24,7 +24,7 @@ export function getPath(obj, path, checkVars = true) {
   }, obj);
 }
 
-function getValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
+export function getValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
   let value;
 
   if (typeof themeMapping === 'function') {
@@ -36,7 +36,7 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
   }
 
   if (transform) {
-    value = transform(value, userValue);
+    value = transform(value, userValue, themeMapping);
   }
 
   return value;
