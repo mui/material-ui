@@ -150,14 +150,14 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     required: fcs.required,
   };
 
-  const { root: rootClasses, ...otherClasses } = useUtilityClasses(ownerState);
+  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
 
   return (
     <InputLabelRoot
       data-shrink={shrink}
       ownerState={ownerState}
       ref={ref}
-      className={clsx(rootClasses, className)}
+      className={clsx(rootClass, className)}
       {...other}
       classes={otherClasses}
     />
