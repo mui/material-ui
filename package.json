@@ -68,7 +68,7 @@
     "test:argos": "node ./scripts/pushArgos.mjs",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 7 --no-bail --no-sort typescript",
-    "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts",
+    "validate-declarations": "ts-node --esm scripts/validateTypescriptDeclarations.mts",
     "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
   "devDependencies": {
@@ -190,6 +190,7 @@
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "terser-webpack-plugin": "^5.3.6",
     "thenify": "3.3.1",
+    "ts-node": "^10.9.1",
     "tslint": "5.14.0",
     "typescript": "^4.8.4",
     "unist-util-visit": "^2.0.3",
