@@ -2,6 +2,10 @@ import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/
 import generateUtilityClass from '../generateUtilityClass';
 
 export interface BadgeClasses {
+  /** Class name applied to the root element. */
+  root: string;
+  /** Class name applied to the badge `span` element. */
+  badge: string;
   /** Class name applied to the badge `span` element if `variant="dot"`. */
   dot: string;
   /** Class name applied to the badge `span` element if `variant="standard"`. */
@@ -14,6 +18,8 @@ export interface BadgeClasses {
   anchorOriginTopLeft: string;
   /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
   anchorOriginBottomLeft: string;
+  /** State class applied to the badge `span` element if `invisible={true}`. */
+  invisible: string;
   /** Styles applied to the badge `span` element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the badge `span` element if `color="secondary"`. */
@@ -55,12 +61,15 @@ export function getBadgeUtilityClass(slot: string): string {
 }
 
 const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
+  'root',
+  'badge',
   'dot',
   'standard',
   'anchorOriginTopRight',
   'anchorOriginBottomRight',
   'anchorOriginTopLeft',
   'anchorOriginBottomLeft',
+  'invisible',
   'colorError',
   'colorInfo',
   'colorPrimary',

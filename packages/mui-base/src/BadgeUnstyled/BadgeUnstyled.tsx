@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
     badge: ['badge', invisible && 'invisible'],
   };
 
-  return composeClasses(slots, getBadgeUnstyledUtilityClass);
+  return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
 };
 /**
  *
