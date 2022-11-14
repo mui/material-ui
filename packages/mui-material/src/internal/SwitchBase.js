@@ -11,14 +11,14 @@ import ButtonBase from '../ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, checked, disabled, edge } = ownerState;
+  const { checked, disabled, edge } = ownerState;
 
   const slots = {
     root: ['root', checked && 'checked', disabled && 'disabled', edge && `edge${capitalize(edge)}`],
     input: ['input'],
   };
 
-  return composeClasses(slots, getSwitchBaseUtilityClass, classes);
+  return composeClasses(slots, getSwitchBaseUtilityClass);
 };
 
 const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({

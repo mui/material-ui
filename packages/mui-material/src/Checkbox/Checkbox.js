@@ -14,18 +14,13 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, indeterminate, color } = ownerState;
+  const { indeterminate, color } = ownerState;
 
   const slots = {
     root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
   };
 
-  const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
-
-  return {
-    ...classes, // forward the disabled and checked classes to the SwitchBase
-    ...composedClasses,
-  };
+  return composeClasses(slots, getCheckboxUtilityClass);
 };
 
 const CheckboxRoot = styled(SwitchBase, {
@@ -120,7 +115,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}
-      classes={classes}
     />
   );
 });
