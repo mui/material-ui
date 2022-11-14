@@ -1,6 +1,7 @@
 export default function composeClasses<ClassKey extends string>(
   slots: Record<ClassKey, ReadonlyArray<string | false | undefined | null>>,
   getUtilityClass: (slot: string) => string,
+  classes: Record<string, string> | undefined,
 ): Record<ClassKey, string> {
   const output: Record<ClassKey, string> = {} as any;
 
@@ -12,6 +13,9 @@ export default function composeClasses<ClassKey extends string>(
         .reduce((acc, key) => {
           if (key) {
             acc.push(getUtilityClass(key));
+            if (classes && classes[key]) {
+              acc.push(classes[key]);
+            }
           }
           return acc;
         }, [] as string[])
