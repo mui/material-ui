@@ -152,6 +152,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       ownerState={ownerState}
       ref={ref}
       {...other}
+      classes={otherClasses}
     >
       <SwitchBaseInput
         autoFocus={autoFocus}
