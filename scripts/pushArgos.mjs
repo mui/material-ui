@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-const glob = require('fast-glob');
-const fse = require('fs-extra');
-const lodashChunk = require('lodash/chunk');
-const argos = require('@argos-ci/core');
+import glob from 'fast-glob';
+import fse from 'fs-extra';
+import lodashChunk from 'lodash/chunk.js';
+import { upload } from '@argos-ci/core';
 
 const screenshotsBase = 'test/regressions/screenshots/chrome';
 const screenshotsTmp = 'test/regressions/screenshots/argos';
@@ -27,7 +27,7 @@ async function run() {
 
   for (let i = 0; i < chunks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
-    const result = await argos.upload({
+    const result = await upload({
       root: `${screenshotsTmp}/${i}`,
       commit: process.env.CIRCLE_SHA1,
       branch: process.env.CIRCLE_BRANCH,

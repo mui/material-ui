@@ -1,8 +1,8 @@
 // Based on similar script in React
 // https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/scripts/shared/listChangedFiles.js
 
-const util = require('util');
-const childProcess = require('child_process');
+import util from 'util';
+import childProcess from 'child_process';
 
 const execFile = util.promisify(childProcess.execFile);
 
@@ -26,4 +26,4 @@ async function listChangedFiles({ branch }) {
   return new Set([...gitDiff, ...gitLs]);
 }
 
-module.exports = listChangedFiles;
+export default listChangedFiles;
