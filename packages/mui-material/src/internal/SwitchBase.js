@@ -11,14 +11,14 @@ import ButtonBase from '../ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { checked, disabled, edge } = ownerState;
+  const { classes, checked, disabled, edge } = ownerState;
 
   const slots = {
     root: ['root', checked && 'checked', disabled && 'disabled', edge && `edge${capitalize(edge)}`],
     input: ['input'],
   };
 
-  return composeClasses(slots, getSwitchBaseUtilityClass);
+  return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
 const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
@@ -136,12 +136,12 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     edge,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
 
   return (
     <SwitchBaseRoot
       component="span"
-      className={clsx(classes.root, className)}
+      className={clsx(rootClass, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
       disabled={disabled}
@@ -157,7 +157,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         autoFocus={autoFocus}
         checked={checkedProp}
         defaultChecked={defaultChecked}
-        className={classes.input}
+        className={otherClasses.input}
         disabled={disabled}
         id={hasLabelFor && id}
         name={name}
