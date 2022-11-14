@@ -14,14 +14,12 @@ const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
 const useUtilityClasses = (ownerState) => {
-  const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
+  const { color, anchorOrigin, overlap, variant } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: [],
     badge: [
-      'badge',
       variant,
-      invisible && 'invisible',
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
         anchorOrigin.horizontal,
@@ -31,7 +29,7 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  return composeClasses(slots, getBadgeUtilityClass, classes);
+  return composeClasses(slots, getBadgeUtilityClass);
 };
 
 const BadgeRoot = styled('span', {
