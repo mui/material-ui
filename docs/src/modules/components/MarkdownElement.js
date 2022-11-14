@@ -413,6 +413,7 @@ const Root = styled('div')(
   {
     ':where(.mode-dark) &': {
       '& :not(pre) > code': {
+        // inline code block
         color: '#fff',
       },
       '& strong': {
