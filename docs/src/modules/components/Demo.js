@@ -94,13 +94,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
   }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
 }
 
-function useDemoElement({
-  demoOptions,
-  demoData,
-  editorCode,
-  initialEditorCode,
-  setDebouncedError,
-}) {
+function useDemoElement({ demoOptions, demoData, editorCode, setDebouncedError }) {
   const debouncedSetError = React.useMemo(
     () => debounce(setDebouncedError, 300),
     [setDebouncedError],
@@ -114,17 +108,9 @@ function useDemoElement({
 
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
-  return React.useMemo(() => {
-    if (
-      // No need for a live environment if the code matches with the component rendered server-side.
-      editorCode.value === initialEditorCode ||
-      // A limitation from https://github.com/nihgwu/react-runner, we can inject the `window` of the iframe
-      demoOptions.disableLiveEdit
-    ) {
-      return <demoData.Component />;
-    }
-
-    return (
+  const BundledComponent = React.useMemo(() => <demoData.Component />, [demoData]);
+  const LiveComponent = React.useMemo(
+    () => (
       <ReactRunner
         scope={demoData.scope}
         onError={debouncedSetError}
@@ -137,8 +123,17 @@ function useDemoElement({
             : editorCode.value
         }
       />
-    );
-  }, [demoData, demoOptions.disableLiveEdit, editorCode, initialEditorCode, debouncedSetError]);
+    ),
+    [demoData, debouncedSetError, editorCode.isPreview, editorCode.value],
+  );
+
+  const renderBundledComponent =
+    // No need for a live environment if the code matches with the component rendered server-side.
+    editorCode.value === editorCode.initialEditorCode ||
+    // A limitation from https://github.com/nihgwu/react-runner, we can inject the `window` of the iframe
+    demoOptions.disableLiveEdit;
+
+  return renderBundledComponent ? BundledComponent : LiveComponent;
 }
 
 const Root = styled('div')(({ theme }) => ({
@@ -271,12 +266,17 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
-const DemoCodeViewer = styled(HighlightedCode)({
+const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
   '& pre': {
-    margin: '0 auto',
+    margin: 0,
     maxHeight: 'min(68vh, 1000px)',
+    maxWidth: 'initial',
+    borderRadius: 0,
+    [theme.breakpoints.up('sm')]: {
+      borderRadius: theme.shape.borderRadius,
+    },
   },
-});
+}));
 
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
@@ -374,12 +374,14 @@ export default function Demo(props) {
   const [editorCode, setEditorCode] = React.useState({
     value: initialEditorCode,
     isPreview,
+    initialEditorCode,
   });
 
   const resetDemo = () => {
     setEditorCode({
       value: initialEditorCode,
       isPreview,
+      initialEditorCode,
     });
     setDemoKey();
   };
@@ -388,6 +390,7 @@ export default function Demo(props) {
     setEditorCode({
       value: initialEditorCode,
       isPreview,
+      initialEditorCode,
     });
   }, [initialEditorCode, isPreview]);
 
@@ -397,7 +400,6 @@ export default function Demo(props) {
     demoOptions,
     demoData,
     editorCode,
-    initialEditorCode,
     setDebouncedError,
   });
 

@@ -189,7 +189,7 @@ export default function AppFrame(props) {
           >
             <SvgHamburgerMenu />
           </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */>
+          <NextLink href="/" passHref /* onClick={onClose} */ legacyBehavior>
             <Box
               component="a"
               aria-label={t('goToHome')}

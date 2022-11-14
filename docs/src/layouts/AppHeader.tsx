@@ -36,7 +36,12 @@ const Header = styled('header')(({ theme }) => [
 
 const HEIGHT = 56;
 
-export default function AppHeader() {
+interface AppHeaderProps {
+  gitHubRepository?: string;
+}
+
+export default function AppHeader(props: AppHeaderProps) {
+  const { gitHubRepository = 'https://github.com/mui' } = props;
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -89,7 +94,7 @@ export default function AppHeader() {
             <IconButton
               component="a"
               color="primary"
-              href="https://github.com/mui"
+              href={gitHubRepository}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >
