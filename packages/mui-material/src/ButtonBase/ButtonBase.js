@@ -12,13 +12,13 @@ import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;
+  const { disabled, focusVisible, focusVisibleClassName } = ownerState;
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
   };
 
-  const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getButtonBaseUtilityClass);
 
   if (focusVisible && focusVisibleClassName) {
     composedClasses.root += ` ${focusVisibleClassName}`;

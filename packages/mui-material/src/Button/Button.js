@@ -12,7 +12,7 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState) => {
-  const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
+  const { color, disableElevation, fullWidth, size, variant } = ownerState;
 
   const slots = {
     root: [
@@ -30,12 +30,7 @@ const useUtilityClasses = (ownerState) => {
     endIcon: ['endIcon', `iconSize${capitalize(size)}`],
   };
 
-  const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
-
-  return {
-    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
-    ...composedClasses,
-  };
+  return composeClasses(slots, getButtonUtilityClass);
 };
 
 const commonIconStyles = (ownerState) => ({
@@ -347,7 +342,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       ref={ref}
       type={type}
       {...other}
-      classes={classes}
     >
       {startIcon}
       {children}
