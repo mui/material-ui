@@ -8621,7 +8621,7 @@ globals@^13.15.0:
   dependencies:
     type-fest "^0.20.2"
 
-globby@13.1.2, globby@^13.1.1:
+globby@13.1.2, globby@^13.1.1, globby@^13.1.2:
   version "13.1.2"
   resolved "https://registry.yarnpkg.com/globby/-/globby-13.1.2.tgz#29047105582427ab6eca4f905200667b056da515"
   integrity sha512-LKSDZXToac40u8Q1PQtZihbNdTYSNMuWe+K5l+oa6KgDzSvVrHXlJy40hUP522RjAIoNLJYBJi7ow+rbFpIhHQ==
