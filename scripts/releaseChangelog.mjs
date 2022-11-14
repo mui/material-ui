@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
-const { Octokit } = require('@octokit/rest');
-const childProcess = require('child_process');
-const { promisify } = require('util');
-const yargs = require('yargs');
+import { Octokit } from '@octokit/rest';
+import childProcess from 'child_process';
+import { promisify } from 'util';
+import yargs from 'yargs';
 
 const exec = promisify(childProcess.exec);
 
@@ -156,7 +156,7 @@ All contributors of this release in alphabetical order: ${contributorHandles}
   console.log(changelog);
 }
 
-yargs
+yargs(process.argv.slice(2))
   .command({
     command: '$0',
     description: 'Creates a changelog',
