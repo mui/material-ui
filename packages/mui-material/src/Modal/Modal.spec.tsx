@@ -8,3 +8,11 @@ const backdropProps: ModalProps['BackdropProps'] = {
 <Modal open BackdropProps={{ onEntered: () => console.log('entered') }}>
   <div />
 </Modal>;
+
+<Modal
+  open
+  slotProps={{ backdrop: { invisible: true } }}
+  componentsProps={{ backdrop: { transitionDuration: 300 } }}
+>
+  <div />
+</Modal>;
