@@ -38,7 +38,6 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   ...theme.typography.body2,
-  letterSpacing: '0.01071em', // must sync with MarkdownElement.js#L42, otherwise the text will overlap when highlight the code.
   fontSize: theme.typography.pxToRem(13),
   fontFamily: theme.typography.fontFamilyCode,
   fontWeight: 400,
