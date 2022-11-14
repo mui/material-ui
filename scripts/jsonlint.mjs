@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
-const chalk = require('chalk');
-const fse = require('fs-extra');
-const glob = require('globby');
-const path = require('path');
+import chalk from 'chalk';
+import fse from 'fs-extra';
+import glob from 'globby';
+import path from 'path';
+import { getWorkspaceRoot } from './utils.mjs';
 
 const passMessage = (message) => `✓ ${chalk.gray(message)}`;
 const failMessage = (message) => `✗ ${chalk.whiteBright(message)}`;
 
 async function run() {
-  const workspaceRoot = path.resolve(__dirname, '..');
+  const workspaceRoot = getWorkspaceRoot();
 
   const eslintignoreContent = await fse.readFile(path.join(workspaceRoot, '.eslintignore'), {
     encoding: 'utf8',

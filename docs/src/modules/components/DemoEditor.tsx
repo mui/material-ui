@@ -2,7 +2,7 @@ import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/base/NoSsr';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
@@ -14,8 +14,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
   '& .scrollContainer': {
     maxHeight: 'min(68vh, 1000px)',
     overflow: 'auto',
-    backgroundColor: `${blueDark[800]} !important`,
-    borderRadius: theme.shape.borderRadius,
+    backgroundColor: blueDark[800],
     colorScheme: 'dark',
     '&:hover': {
       boxShadow: `0 0 0 3px ${
@@ -26,6 +25,9 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
       boxShadow: `0 0 0 2px ${
         theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main
       }`,
+    },
+    [theme.breakpoints.up('sm')]: {
+      borderRadius: theme.shape.borderRadius,
     },
   },
   '& pre': {
@@ -50,6 +52,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
     outline: 'none',
   },
   '& > textarea, & > pre': {
+    // Override inline-style
     whiteSpace: 'pre !important',
   },
 }));
@@ -66,6 +69,7 @@ interface DemoEditorProps {
 export default function DemoEditor(props: DemoEditorProps) {
   const { language, value, onChange, copyButtonProps, children, id } = props;
   const t = useTranslate();
+  const contextTheme = useTheme();
   const wrapperRef = React.useRef<HTMLElement | null>(null);
   const enterRef = React.useRef<HTMLElement | null>(null);
   const handlers = useCodeCopy();
@@ -100,7 +104,7 @@ export default function DemoEditor(props: DemoEditorProps) {
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
           <StyledSimpleCodeEditor
-            padding={20}
+            padding={contextTheme.spacing(2)}
             highlight={(code: any) =>
               `<code class="language-${language}">${prism(code, language)}</code>`
             }
