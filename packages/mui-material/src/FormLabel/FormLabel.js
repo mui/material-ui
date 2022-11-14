@@ -10,7 +10,7 @@ import styled from '../styles/styled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color, focused, disabled, error, filled, required } = ownerState;
+  const { color, focused, disabled, error, filled, required } = ownerState;
   const slots = {
     root: [
       'root',
@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState) => {
     asterisk: ['asterisk', error && 'error'],
   };
 
-  return composeClasses(slots, getFormLabelUtilityClasses, classes);
+  return composeClasses(slots, getFormLabelUtilityClasses);
 };
 
 export const FormLabelRoot = styled('label', {

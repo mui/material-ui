@@ -10,7 +10,7 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
+  const { formControl, size, shrink, disableAnimation, variant, required } = ownerState;
   const slots = {
     root: [
       'root',
@@ -23,12 +23,7 @@ const useUtilityClasses = (ownerState) => {
     asterisk: [required && 'asterisk'],
   };
 
-  const composedClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
-
-  return {
-    ...classes, // forward the focused, disabled, etc. classes to the FormLabel
-    ...composedClasses,
-  };
+  return composeClasses(slots, getInputLabelUtilityClasses);
 };
 
 const InputLabelRoot = styled(FormLabel, {
@@ -159,7 +154,6 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}
-      classes={classes}
     />
   );
 });
