@@ -13,6 +13,9 @@ export default function composeClasses<ClassKey extends string>(
         .reduce((acc, key) => {
           if (key) {
             acc.push(getUtilityClass(key));
+            if (classes && classes[key]) {
+              acc.push(classes[key]);
+            }
           }
           return acc;
         }, [] as string[])
