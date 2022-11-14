@@ -4,60 +4,72 @@ import { OverrideProps } from '@mui/types';
 import {
   ExtendModalUnstyledTypeMap,
   ExtendModalUnstyled,
-  ModalUnstyledTypeMap,
+  ModalUnstyledOwnProps,
 } from '@mui/base/ModalUnstyled';
 import { Theme } from '../styles';
 import { BackdropProps } from '../Backdrop';
 
 export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendModalUnstyledTypeMap<{
-  props: P & {
-    /**
-     * A backdrop component. This prop enables custom backdrop rendering.
-     * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
-     * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
-     * @default styled(Backdrop, {
-     *   name: 'MuiModal',
-     *   slot: 'Backdrop',
-     *   overridesResolver: (props, styles) => {
-     *     return styles.backdrop;
-     *   },
-     * })({
-     *   zIndex: -1,
-     * })
-     */
-    BackdropComponent?: React.ElementType<BackdropProps>;
-    /**
-     * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-     * @deprecated Use `slotProps.backdrop` instead.
-     */
-    BackdropProps?: Partial<BackdropProps>;
-    /**
-     * The components used for each slot inside.
-     *
-     * This prop is an alias for the `slots` prop.
-     * It's recommended to use the `slots` prop instead.
-     *
-     * @default {}
-     */
-    components?: {
-      Root?: React.ElementType;
-      Backdrop?: React.ElementType;
+  props: P &
+    Omit<ModalUnstyledOwnProps, 'slotProps'> & {
+      /**
+       * A backdrop component. This prop enables custom backdrop rendering.
+       * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
+       * Use the `slots.backdrop` prop to make your application ready for the next version of Material UI.
+       * @default styled(Backdrop, {
+       *   name: 'MuiModal',
+       *   slot: 'Backdrop',
+       *   overridesResolver: (props, styles) => {
+       *     return styles.backdrop;
+       *   },
+       * })({
+       *   zIndex: -1,
+       * })
+       */
+      BackdropComponent?: React.ElementType<BackdropProps>;
+      /**
+       * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+       * @deprecated Use `slotProps.backdrop` instead.
+       */
+      BackdropProps?: Partial<BackdropProps>;
+      /**
+       * The components used for each slot inside.
+       *
+       * This prop is an alias for the `slots` prop.
+       * It's recommended to use the `slots` prop instead.
+       *
+       * @default {}
+       */
+      components?: {
+        Root?: React.ElementType;
+        Backdrop?: React.ElementType;
+      };
+      /**
+       * The extra props for the slot components.
+       * You can override the existing props or add new ones.
+       *
+       * This prop is an alias for the `slotProps` prop.
+       * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+       *
+       * @default {}
+       */
+      componentsProps?: {
+        root?: NonNullable<ModalUnstyledOwnProps['slotProps']>['root'];
+        backdrop?: Partial<BackdropProps>;
+      };
+      /**
+       * The props used for each slot inside the Modal.
+       * @default {}
+       */
+      slotProps?: {
+        root?: NonNullable<ModalUnstyledOwnProps['slotProps']>['root'];
+        backdrop?: Partial<BackdropProps>;
+      };
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
-    /**
-     * The extra props for the slot components.
-     * You can override the existing props or add new ones.
-     *
-     * This prop is an alias for the `slotProps` prop.
-     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-     *
-     * @default {}
-     */
-    componentsProps?: ModalUnstyledTypeMap['props']['slotProps'];
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
   defaultComponent: D;
 }>;
 
