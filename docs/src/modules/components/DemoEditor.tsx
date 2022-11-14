@@ -28,6 +28,12 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => ({
       }`,
     },
   },
+  '& pre': {
+    // The scroll container needs to be the parent of the editor, overriding:
+    // https://github.com/mui/material-ui/blob/269c1d0c7572fcb6ae3b270a2622d16c7e40c848/docs/src/modules/components/MarkdownElement.js#L27-L26
+    maxWidth: 'initial',
+    maxHeight: 'initial',
+  },
 })) as any;
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
@@ -41,11 +47,6 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   direction: 'ltr /*! @noflip */' as any,
   float: 'left',
   minWidth: '100%',
-  '& pre': {
-    // The scroll container needs to be the parent of the editor
-    maxHeight: 'initial',
-    maxWidth: 'initial',
-  },
   '& textarea': {
     outline: 'none',
   },
