@@ -14,16 +14,13 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, color } = ownerState;
+  const { color } = ownerState;
 
   const slots = {
     root: ['root', `color${capitalize(color)}`],
   };
 
-  return {
-    ...classes,
-    ...composeClasses(slots, getRadioUtilityClass, classes),
-  };
+  return composeClasses(slots, getRadioUtilityClass);
 };
 
 const RadioRoot = styled(SwitchBase, {
@@ -122,7 +119,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
         fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
       ownerState={ownerState}
-      classes={classes}
       name={name}
       checked={checked}
       onChange={onChange}
