@@ -1,8 +1,8 @@
-const fs = require('fs');
-const rimraf = require('rimraf');
-const { promisify } = require('util');
-const { expect } = require('chai');
-const listChangedFiles = require('./listChangedFiles');
+import fs from 'fs';
+import rimraf from 'rimraf';
+import { promisify } from 'util';
+import { expect } from 'chai';
+import listChangedFiles from './listChangedFiles.mjs';
 
 const writeFileAsync = promisify(fs.writeFile);
 const rimrafAsync = promisify(rimraf);
