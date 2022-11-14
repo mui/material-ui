@@ -14,12 +14,14 @@ const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
 const useUtilityClasses = (ownerState) => {
-  const { color, anchorOrigin, overlap, variant } = ownerState;
+  const { color, anchorOrigin, invisible, overlap, variant, classes } = ownerState;
 
   const slots = {
-    root: [],
+    root: ['root'],
     badge: [
+      'badge',
       variant,
+      invisible && 'invisible',
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
         anchorOrigin.horizontal,
@@ -29,7 +31,7 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  return composeClasses(slots, getBadgeUtilityClass);
+  return composeClasses(slots, getBadgeUtilityClass, classes);
 };
 
 const BadgeRoot = styled('span', {
@@ -237,7 +239,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   } = invisible ? prevProps : props;
 
   const ownerState = { ...props, anchorOrigin, invisible, color, overlap, variant };
-  const classes = useUtilityClasses(ownerState);
+  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
 
   let displayValue;
 
@@ -264,7 +266,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         root: RootSlot,
         badge: BadgeSlot,
       }}
-      className={clsx(rootSlotProps?.className, classes.root, className)}
+      className={clsx(rootSlotProps?.className, rootClass, className)}
       slotProps={{
         root: {
           ...rootSlotProps,
@@ -281,7 +283,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         },
         badge: {
           ...badgeSlotProps,
-          className: clsx(classes.badge, badgeSlotProps?.className),
+          className: clsx(otherClasses.badge, badgeSlotProps?.className),
           ...(shouldSpreadAdditionalProps(BadgeSlot) && {
             ownerState: {
               ...badgeSlotProps?.ownerState,
