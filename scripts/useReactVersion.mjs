@@ -7,11 +7,12 @@
  * WARNING: This script can only use built-in modules since it has to run before
  * `yarn install`
  */
-const childProcess = require('child_process');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const { promisify } = require('util');
+import childProcess from 'child_process';
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+import { promisify } from 'util';
+import { getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
 
@@ -37,7 +38,7 @@ async function main(version) {
     return;
   }
 
-  const packageJsonPath = path.resolve(__dirname, '../package.json');
+  const packageJsonPath = path.resolve(getWorkspaceRoot(), 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
   // the version is something in format: "17.0.0"
