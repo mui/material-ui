@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState) => {
     asterisk: ['asterisk', error && 'error'],
   };
 
-  return composeClasses(slots, getFormLabelUtilityClasses);
+  return composeClasses(slots, getFormLabelUtilityClasses, undefined);
 };
 
 export const FormLabelRoot = styled('label', {

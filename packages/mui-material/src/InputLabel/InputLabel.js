@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState) => {
     asterisk: [required && 'asterisk'],
   };
 
-  return composeClasses(slots, getInputLabelUtilityClasses);
+  return composeClasses(slots, getInputLabelUtilityClasses, undefined);
 };
 
 const InputLabelRoot = styled(FormLabel, {
