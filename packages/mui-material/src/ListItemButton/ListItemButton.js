@@ -172,7 +172,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     selected,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
 
   const handleRef = useForkRef(listItemRef, ref);
 
@@ -182,11 +182,11 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         ref={handleRef}
         href={other.href || other.to}
         component={(other.href || other.to) && component === 'div' ? 'a' : component}
-        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        focusVisibleClassName={clsx(otherClasses.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
-        className={clsx(classes.root, className)}
+        className={clsx(rootClass, className)}
         {...other}
-        classes={classes}
+        classes={otherClasses}
       >
         {children}
       </ListItemButtonRoot>

@@ -12,7 +12,7 @@ import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState) => {
-  const { color, disableElevation, fullWidth, size, variant } = ownerState;
+  const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
 
   const slots = {
     root: [
@@ -30,7 +30,12 @@ const useUtilityClasses = (ownerState) => {
     endIcon: ['endIcon', `iconSize${capitalize(size)}`],
   };
 
-  return composeClasses(slots, getButtonUtilityClass);
+  const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
 const commonIconStyles = (ownerState) => ({
@@ -317,16 +322,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
+    <ButtonStartIcon className={otherClasses.startIcon} ownerState={ownerState}>
       {startIconProp}
     </ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
+    <ButtonEndIcon className={otherClasses.endIcon} ownerState={ownerState}>
       {endIconProp}
     </ButtonEndIcon>
   );
@@ -334,14 +339,15 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(contextProps.className, classes.root, className)}
+      className={clsx(contextProps.className, rootClass, className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(otherClasses.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
       {...other}
+      classes={otherClasses}
     >
       {startIcon}
       {children}
