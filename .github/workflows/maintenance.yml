@@ -1,7 +1,5 @@
 name: Maintenance
 
-permissions: {}
-
 on:
   # So that PRs touching the same files as the push are updated
   push:
@@ -17,6 +15,8 @@ on:
       - next
     types: [synchronize]
 
+permissions: {}
+
 jobs:
   main:
     # l10nbot creates a lot of commits at once which starves CI.
@@ -29,7 +29,7 @@ jobs:
     steps:
       - run: echo "${{ github.actor }}"
       - name: check if prs are dirty
-        uses: eps1lon/actions-label-merge-conflict@fd1f295ee7443d13745804bc49fe158e240f6c6e # tag=v2.1.0
+        uses: eps1lon/actions-label-merge-conflict@fd1f295ee7443d13745804bc49fe158e240f6c6e # v2.1.0
         with:
           dirtyLabel: 'PR: out-of-date'
           removeOnDirtyLabel: 'PR: ready to ship'
