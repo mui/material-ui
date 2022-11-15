@@ -1,10 +1,11 @@
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getValue } from '../style';
 import { handleBreakpoints } from '../breakpoints';
 import { paddingKeys, padding, marginKeys, margin } from '../spacing';
-import { borderRadius, transform as borderTransform } from '../borders';
+import { borderRadius, borderTransform } from '../borders';
 import { gap, rowGap, columnGap } from '../cssGrid';
-import { transform as paletteTransform } from '../palette';
-import { maxWidth, transform as sizingTransform } from '../sizing';
+import { paletteTransform } from '../palette';
+import { maxWidth, sizingTransform } from '../sizing';
 
 const defaultSxConfig = {
   // borders
@@ -191,7 +192,7 @@ const defaultSxConfig = {
           value = getValue(
             themeMapping,
             sizingTransform,
-            `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
+            `size${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
             propValueFinal,
           );
         }

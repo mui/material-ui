@@ -45,11 +45,11 @@ export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
     }
 
     const styleFromPropValue = (propValueFinal) => {
-      let value = getValue(themeMapping, transform, propValueFinal);
+      let val = getValue(themeMapping, transform, propValueFinal);
 
       if (propValueFinal === value && typeof propValueFinal === 'string') {
         // Haven't found value
-        value = getValue(
+        val = getValue(
           themeMapping,
           transform,
           `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
@@ -58,11 +58,11 @@ export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
       }
 
       if (cssProperty === false) {
-        return value;
+        return val;
       }
 
       return {
-        [cssProperty]: value,
+        [cssProperty]: val,
       };
     };
 
