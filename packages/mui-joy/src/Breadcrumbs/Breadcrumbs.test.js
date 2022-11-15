@@ -4,27 +4,39 @@ import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/joy/Breadcrumbs';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import Typography from '../Typography';
+import Link from '../Link';
 
 describe('<Breadcrumbs />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Breadcrumbs>{[1, 2]}</Breadcrumbs>, () => ({
-    classes,
-    inheritComponent: 'nav',
-    render,
-    ThemeProvider,
-    muiName: 'JoyBreadcrumbs',
-    refInstanceof: window.HTMLElement,
-    testVariantProps: { variant: 'solid' },
-    testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-      ol: { expectedClassName: classes.ol },
-      li: { expectedClassName: classes.li },
-      separator: { expectedClassName: classes.separator },
-    },
-    skip: ['classesRoot', 'componentsProp'],
-  }));
+  describeConformance(
+    <Breadcrumbs>
+      {[
+        <Link key="1" href="/">
+          1
+        </Link>,
+        <Typography key="2">2</Typography>,
+      ]}
+    </Breadcrumbs>,
+    () => ({
+      classes,
+      inheritComponent: 'nav',
+      render,
+      ThemeProvider,
+      muiName: 'JoyBreadcrumbs',
+      refInstanceof: window.HTMLElement,
+      testVariantProps: { variant: 'solid' },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        ol: { expectedClassName: classes.ol },
+        li: { expectedClassName: classes.li },
+        separator: { expectedClassName: classes.separator },
+      },
+      skip: ['classesRoot', 'componentsProp'],
+    }),
+  );
 
   describe('prop: size', () => {
     it('md by default', () => {
