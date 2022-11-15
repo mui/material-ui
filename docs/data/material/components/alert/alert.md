@@ -43,44 +43,6 @@ The `severity` prop accepts four values representing different states—`success
 
 {{"demo": "BasicAlerts.js"}}
 
-## Anatomy
-
-The Alert component is composed of a root [Paper](/material-ui/react-paper/) component (which renders as a `<div>`) that houses an icon, a message, and an optional [action](#actions):
-
-```html
-<div
-  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardSuccess MuiAlert-standard"
-  role="alert"
->
-  <div class="MuiAlert-icon">
-    <!-- svg icon here -->
-  </div>
-  <div class="MuiAlert-message">This is how an Alert renders in the DOM.</div>
-  <div class="MuiAlert-action">
-    <!-- optional action element here -->
-  </div>
-</div>
-```
-
-### Overriding the root slot
-
-Use the `component` prop to override the root slot with a custom element.
-For example, the following code snippet replaces the default `<div>` with an `<aside>`:
-
-```jsx
-<Alert component="aside">Alert content</Alert>
-
-// renders as:
-<aside role="alert">
-  <div class="MuiAlert-icon">
-    // icon
-  </div>
-  <div class="MuiAlert-message">
-    Alert content
-  </div>
-</aside>
-```
-
 ## Customization
 
 ### Variants
@@ -160,3 +122,22 @@ Here are some factors to consider to ensure that your Alert is accessible:
 - Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
 - Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
 - Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.
+
+## Anatomy
+
+The Alert component is composed of a root [Paper](/material-ui/react-paper/) component (which renders as a `<div>`) that houses an icon, a message, and an optional [action](#actions):
+
+```html
+<div
+  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardSuccess MuiAlert-standard"
+  role="alert"
+>
+  <div class="MuiAlert-icon">
+    <!-- svg icon here -->
+  </div>
+  <div class="MuiAlert-message">This is how an Alert renders in the DOM.</div>
+  <div class="MuiAlert-action">
+    <!-- optional action element here -->
+  </div>
+</div>
+```
