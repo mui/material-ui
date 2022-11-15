@@ -19,6 +19,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import { Box } from '@mui/system';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -202,25 +203,41 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-
       checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ value: 'two' });
       checkHighlightIs(getByRole('listbox'), 'two');
     });
 
-    it('AutocompleteListbox should have position relative', () => {
+    it('should have focused on first element after navigating all elements once by keyboard', () => {
       const { getByRole } = render(
         <Autocomplete
-          value="one"
           open
-          options={['one', 'two', 'three']}
+          options={['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']}
           renderInput={(params) => <TextField {...params} />}
+          PopperComponent={(props) => {
+            const { disablePortal, anchorEl, open, ...other } = props;
+            return <Box {...other} />;
+          }}
         />,
       );
-
-      expect(
-        window.getComputedStyle(getByRole('listbox')).getPropertyValue('position'),
-      ).to.have.equal('relative');
+      const textbox = getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      expect(getByRole('listbox')).to.have.property('scrollTop', 0);
     });
 
     it('should keep the current highlight if possible', () => {
