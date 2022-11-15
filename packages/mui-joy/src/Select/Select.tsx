@@ -437,11 +437,13 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
+  const externalForwardedProps = { ...other, slotProps };
+
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (
@@ -469,7 +471,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.button,
     elementType: SelectButton,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getButtonProps,
     ownerState,
   });
@@ -512,7 +514,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.listbox,
     elementType: SelectListbox,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,
@@ -525,21 +527,21 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 

@@ -12,8 +12,9 @@ import ListDivider from '@mui/joy/ListDivider';
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Select value="" startDecorator="1" endDecorator="1" />, () => ({
+  describeConformance(<Select startDecorator="1" endDecorator="1" />, () => ({
     render,
+    inheritComponent: 'div',
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
