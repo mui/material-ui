@@ -182,7 +182,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: EndDecorator,
     externalForwardedProps,
     ownerState,
