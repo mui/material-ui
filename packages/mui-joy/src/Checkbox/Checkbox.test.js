@@ -9,6 +9,7 @@ describe('<Checkbox />', () => {
 
   describeConformance(<Checkbox label="demo" />, () => ({
     classes,
+    inheritComponent: 'span',
     render,
     ThemeProvider,
     muiName: 'JoyCheckbox',
