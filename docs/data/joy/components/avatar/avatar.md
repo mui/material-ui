@@ -16,7 +16,7 @@ The Avatar component can be used to display graphical information about a user i
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+## Usage
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
