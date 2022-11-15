@@ -87,7 +87,7 @@ The following code snippet applies a CSS class called `my-input` to the input sl
 import { useInput } from '@mui/base/InputUnstyled';
 ```
 
-The `useInput` hook lets you apply the functionality of the Unstyled Input to a fully custom component.
+The `useInput` hook lets you apply the functionality of the an input to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -128,6 +128,6 @@ If you want the `<textarea>` to grow with the content, you can use the [Textarea
 When using Textarea Autosize, the height of the `<textarea>` element dynamically matches its content unless you set the `rows` prop.
 To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 
-The following demo shows how to insert a Textarea Autosize component into an Unstyled Input so that its height will grow with the length of the content:
+The following demo shows how to insert a Textarea Autosize component into an Unstyled Input so that its height grows with the length of the content:
 
 {{"demo": "InputMultilineAutosize.js"}}

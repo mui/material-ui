@@ -81,7 +81,7 @@ Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its p
 import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
-The `useButton` hook lets you apply the functionality of the Unstyled Button to a fully custom component.
+The `useButton` hook lets you apply the functionality of a button to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).

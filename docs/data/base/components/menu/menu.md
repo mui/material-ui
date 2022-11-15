@@ -46,14 +46,14 @@ export default function MyApp() {
 
 The Unstyled Menu serves as a replacement for the native HTML `<ul>`, and the Unstyled Menu Item corresponds to the `<li>` tag.
 
-The following demo shows how to create and style a menu component.
-Click **Dashboard** to view the menu—notice that it uses the built-in [Popper](/base/react-popper/) component to visually break out of its parent container:
+The following demo shows how to create and style a Menu component.
+Click **Dashboard** to view the menu—notice that it uses the built-in [Unstyled Popper](/base/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 
 ### Anatomy
 
-The Unstyled Menu component is composed of a root slot that renders a Popper `<div>` by default.
+The Unstyled Menu component is composed of a root slot that renders an Unstyled Popper `<div>` by default.
 It contains one interior listbox `<ul>` slot.
 The Unstyled Menu Item has a single root `<li>` slot.
 

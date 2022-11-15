@@ -86,7 +86,7 @@ The following code snippet applies a CSS class called `my-thumb` to the thumb sl
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
 
-The `useSwitch` hook lets you apply the functionality of Unstyled Switch to a fully custom component.
+The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).

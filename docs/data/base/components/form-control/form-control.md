@@ -59,7 +59,7 @@ import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
 ```
 
 The `useFormControlUnstyledContext` hook reads the context provided by Unstyled Form Control.
-This hook lets you work with custom input components inside of the form control.
+This hook lets you work with custom input components inside of the Form Control.
 You can also use it to read the form control's state and react to its changes in a custom component.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -73,12 +73,12 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 The demo below shows how to integrate this hook with its component counterpart:
 
-- `CustomInput` is a wrapper around a native HTML `<input>` that adds Unstyled Form Control integration.
+- `CustomInput` is a wrapper around a native HTML `<input>` that adds Form Control integration.
 - `ControlStateDisplay` reads the state of the form control and displays it as text.
 
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
-Note that even though Unstyled Form Control supports both controlled and uncontrolled-style APIs
+Note that even though Form Control supports both controlled and uncontrolled-style APIs
 (i.e. it accepts `value` and `defaultValue` props), `useFormControlUnstyledContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input—Unstyled Form Control does this for you.
 
@@ -110,9 +110,9 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 ### Accessing the form control state
 
-You can access the state of the form control by providing a function as a child of the Unstyled Form Control.
+You can access the state of the form control by providing a function as a child of the Form Control.
 The state will be provided as a parameter to this function.
 
-The following demo shows how to access the state of the form control in an Unstyled Input component nested inside of the Unstyled Form Control:
+The following demo shows how to access the state of the form control in an Unstyled Input component nested inside of the Form Control:
 
 {{"demo": "FormControlFunctionChild.js"}}

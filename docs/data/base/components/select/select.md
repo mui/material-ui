@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-
 
 A select is a UI element that gives users a list of options to choose from.
 
-MUI Base offers two components to replace the native HTML `<select>` tag: Unstyled Select and Unstyled Multi-select.
+MUI Base offers two components to replace the native HTML `<select>` tag: Unstyled Select and Unstyled Multi-Select.
 It also includes Unstyled Option for creating the options on the list, and Unstyled Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -49,15 +49,14 @@ export default function MyApp() {
 
 ### Basics
 
-The following demo shows how to create and style a select component.
-Note that it also uses [Unstyled Popper](/base/react-popper/) to render a popup for the list of options:
+The following demo shows how to create and style a Select component.
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
 #### Form submission
 
-The value(s) chosen in the Select can be posted to a server using a standard HTML form.
-When the `name` prop is set, the Unstyled Select will render a hidden input with the selected value.
+The value(s) chosen in the Unstyled Select can be posted to a server using a standard HTML form.
+When the `name` prop is set, the Select will render a hidden input with the selected value.
 
 {{"demo": "UnstyledSelectForm.js" }}
 
@@ -90,7 +89,7 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 
 ### Multi-select
 
-The Unstyled Multi-select component lets your users select multiple options from the list.
+The Unstyled Multi-Select component lets your users select multiple options from the list.
 
 ```js
 import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
@@ -100,7 +99,7 @@ import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 
 ### Anatomy
 
-The Select and Multi-select components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within an Unstyled Popper.
+The Select and Multi-Select components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within an Unstyled Popper.
 Unstyled Option renders as an `<li>`:
 
 ```html
@@ -149,7 +148,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 import { useSelect } from '@mui/base/SelectUnstyled';
 ```
 
-The `useSelect` hook lets you apply the functionality of Unstyled Select to a fully custom component.
+The `useSelect` hook lets you apply the functionality of a select to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).

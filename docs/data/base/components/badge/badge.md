@@ -94,7 +94,7 @@ The following code snippet applies a CSS class called `my-badge` to the badge sl
 import { useBadge } from '@mui/base/BadgeUnstyled';
 ```
 
-The `useBadge` hook lets you apply the functionality of the Unstyled Badge to a fully custom component.
+The `useBadge` hook lets you apply the functionality of a badge to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).

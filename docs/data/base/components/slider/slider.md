@@ -131,7 +131,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 import { useSlider } from '@mui/base/SliderUnstyled';
 ```
 
-The `useSlider` hook lets you apply the functionality of Unstyled Slider to a fully custom component.
+The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).

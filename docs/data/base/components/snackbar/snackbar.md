@@ -5,7 +5,7 @@ components: SnackbarUnstyled
 githubLabel: 'component: snackbar'
 ---
 
-# Unstyled snackbar
+# Unstyled Snackbar
 
 <p class="description">The Unstyled Snackbar component informs users that an action has been or will be performed by the app.</p>
 
@@ -74,7 +74,7 @@ Use the `component` prop to override the root slot with a custom element:
 import { useSnackbar } from '@mui/base/SnackbarUnstyled';
 ```
 
-The `useSnackbar` hook lets you apply the functionality of Unstyled Snackbar to a fully custom component.
+The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.
 
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
