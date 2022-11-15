@@ -569,6 +569,28 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      component: PopperUnstyled,
+      id,
+      popperRef,
+      placement,
+      popperOptions,
+      anchorEl: followCursor
+        ? {
+            getBoundingClientRect: () =>
+              ({
+                top: positionRef.current.y,
+                left: positionRef.current.x,
+                right: positionRef.current.x,
+                bottom: positionRef.current.y,
+                width: 0,
+                height: 0,
+              } as DOMRect),
+          }
+        : childNode,
+      open: childNode ? open : false,
+      ...interactiveWrapperListeners,
+    },
     ref,
     className: classes.root,
     elementType: TooltipRoot,
@@ -577,6 +599,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {
+    additionalProps: {
+      ref: setArrowRef,
+    },
     className: classes.arrow,
     elementType: TooltipArrow,
     externalForwardedProps: other,
@@ -586,34 +611,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <PopperUnstyled
-        component={SlotRoot}
-        placement={placement}
-        anchorEl={
-          followCursor
-            ? {
-                getBoundingClientRect: () =>
-                  ({
-                    top: positionRef.current.y,
-                    left: positionRef.current.x,
-                    right: positionRef.current.x,
-                    bottom: positionRef.current.y,
-                    width: 0,
-                    height: 0,
-                  } as DOMRect),
-              }
-            : childNode
-        }
-        popperRef={popperRef}
-        open={childNode ? open : false}
-        id={id}
-        {...interactiveWrapperListeners}
-        {...rootProps}
-        popperOptions={popperOptions}
-      >
+      <SlotRoot {...rootProps}>
         {title}
-        {arrow ? <SlotArrow ref={setArrowRef} {...arrowProps} /> : null}
-      </PopperUnstyled>
+        {arrow ? <SlotArrow {...arrowProps} /> : null}
+      </SlotRoot>
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
