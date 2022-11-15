@@ -10,7 +10,7 @@ describe('<Chip />', () => {
   const { render } = createRenderer();
 
   describeConformance(
-    <Chip clickable startDecorator="1" endDecorator="2">
+    <Chip clickable={false} startDecorator="1" endDecorator="2">
       Chip
     </Chip>,
     () => ({
@@ -26,7 +26,6 @@ describe('<Chip />', () => {
       testCustomVariant: true,
       slots: {
         root: { expectedClassName: classes.root },
-        action: { expectedClassName: classes.action },
         label: { expectedClassName: classes.label },
         startDecorator: { expectedClassName: classes.startDecorator },
         endDecorator: { expectedClassName: classes.endDecorator },

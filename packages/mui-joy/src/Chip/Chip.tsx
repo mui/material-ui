@@ -278,7 +278,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: ChipEndDecorator,
     externalForwardedProps: { ...other, slotProps },
     ownerState,
