@@ -53,11 +53,11 @@ const TestStyled = styled('div')(({ theme }) => ({
   },
 }));
 
-const TestUseTheme = () => {
+function TestUseTheme() {
   const theme = useTheme();
   // test that `theme` from useTheme has access to CSS vars
   return <div style={{ background: theme.vars.palette.common.background }}>test</div>;
-};
+}
 
 <CssVarsProvider theme={customTheme}>
   <TestStyled

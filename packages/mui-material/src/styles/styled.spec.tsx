@@ -51,7 +51,9 @@ interface PropsFooVariant {
 interface PropsBarVariant {
   variant: 'bar';
 }
-const Component = (props: PropsFooVariant | PropsBarVariant) => <div />;
+function Component(props: PropsFooVariant | PropsBarVariant) {
+  return <div />;
+}
 const StyledComponent = styled(Component)(({ theme }) => ({}));
 const rendered = (
   <React.Fragment>
@@ -85,14 +87,14 @@ const ButtonIcon = styled('span', {
   overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: ButtonProps }>({});
 
-const Button = ({
+function Button({
   children,
   startIcon,
   endIcon,
   color = 'primary',
   variant = 'contained',
   ...props
-}: React.PropsWithChildren<ButtonProps>) => {
+}: React.PropsWithChildren<ButtonProps>) {
   const ownerState = { startIcon, endIcon, color, variant, ...props };
   return (
     <ButtonRoot ownerState={ownerState}>
@@ -101,7 +103,7 @@ const Button = ({
       {endIcon && <ButtonIcon ownerState={ownerState}>{endIcon}</ButtonIcon>}
     </ButtonRoot>
   );
-};
+}
 
 <ThemeProvider
   theme={createTheme({

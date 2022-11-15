@@ -134,7 +134,7 @@ export default function PlainCssSliderDeep1() {
 }
 ```
 
-The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
+The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
 **PlainCssSliderDeep2.css**
 
@@ -166,7 +166,7 @@ export default function PlainCssSliderDeep2() {
       <Slider
         defaultValue={30}
         className="slider"
-        componentsProps={{ thumb: { className: 'thumb' } }}
+        slotProps={{ thumb: { className: 'thumb' } }}
       />
     </div>
   );
@@ -334,7 +334,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 {{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
-The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
+The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
 ```jsx
 import * as React from 'react';
@@ -342,7 +342,7 @@ import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
 const CustomizedSlider = styled((props) => (
-  <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
+  <Slider slotProps={{ thumb: { className: 'thumb' } }} {...props} />
 ))`
   color: #20b2aa;
 
@@ -546,7 +546,7 @@ export default function CssModulesSliderDeep1() {
 }
 ```
 
-The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
+The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
 **CssModulesSliderDeep2.module.css**
 
@@ -579,7 +579,7 @@ export default function CssModulesSliderDeep2() {
       <Slider
         defaultValue={30}
         className={styles.slider}
-        componentsProps={{ thumb: { className: styles.thumb } }}
+        slotProps={{ thumb: { className: styles.thumb } }}
       />
     </div>
   );
@@ -764,7 +764,7 @@ export default function SliderThumbOverrides() {
       <Slider
         defaultValue={30}
         className="text-teal-600"
-        componentsProps={{ thumb: { className: 'rounded-sm' } }}
+        slotProps={{ thumb: { className: 'rounded-sm' } }}
       />
     </div>
   );
