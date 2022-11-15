@@ -116,10 +116,10 @@ const StyledAppBar = styled(AppBar, {
         : theme.palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    background:
+    backgroundColor:
       theme.palette.mode === 'dark'
         ? alpha(theme.palette.primaryDark[900], 0.7)
-        : 'rgba(255,255,255,0.7)',
+        : 'rgba(255,255,255,0.8)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
   };
 });
