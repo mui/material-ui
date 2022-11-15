@@ -30,11 +30,11 @@ type InputRootKeys =
 export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Pick<InputProps, InputRootKeys> & {
-      components?: {
-        Root?: React.ElementType;
-        Label?: React.ElementType;
-        Input?: React.ElementType;
-        HelperText?: React.ElementType;
+      slots?: {
+        root?: React.ElementType;
+        label?: React.ElementType;
+        input?: React.ElementType;
+        helperText?: React.ElementType;
       };
       slotProps?: {
         root?: React.ComponentPropsWithRef<'div'>;

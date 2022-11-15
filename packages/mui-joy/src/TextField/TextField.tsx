@@ -66,7 +66,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     children,
     className,
     component,
-    components = {},
+    slots = {},
     slotProps = {},
     label,
     helperText,
@@ -118,11 +118,11 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: TextFieldRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps: { ...other, component, slots, slotProps },
     ownerState,
   });
 
-  const Input = components.Input || JoyInput;
+  const Input = slots.input || JoyInput;
 
   return (
     <SlotRoot {...rootProps}>
@@ -132,8 +132,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
           id={formLabelId}
           required={required}
           {...slotProps.label}
-          {...(components.Label && {
-            component: components.Label,
+          {...(slots.label && {
+            component: slots.label,
           })}
         >
           {label}
@@ -168,8 +168,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         <FormHelperText
           id={helperTextId}
           {...slotProps.helperText}
-          {...(components.HelperText && {
-            component: components.HelperText,
+          {...(slots.helperText && {
+            component: slots.helperText,
           })}
         >
           {helperText}
@@ -213,15 +213,6 @@ TextField.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * @ignore
-   */
-  components: PropTypes.shape({
-    HelperText: PropTypes.elementType,
-    Input: PropTypes.elementType,
-    Label: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
   /**
    * @ignore
    */
@@ -301,6 +292,15 @@ TextField.propTypes /* remove-proptypes */ = {
     input: PropTypes.object,
     label: PropTypes.object,
     root: PropTypes.object,
+  }),
+  /**
+   * @ignore
+   */
+  slots: PropTypes.shape({
+    helperText: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * Leading adornment for this input.
