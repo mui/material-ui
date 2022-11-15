@@ -214,6 +214,7 @@ describe('<Autocomplete />', () => {
           open
           options={['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']}
           renderInput={(params) => <TextField {...params} />}
+          ListboxProps={{ style: { padding: 0 } }}
           PopperComponent={(props) => {
             const { disablePortal, anchorEl, open, ...other } = props;
             return <Box {...other} />;
