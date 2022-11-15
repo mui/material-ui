@@ -12,14 +12,14 @@ describe('Joy <MenuList />', () => {
     inheritComponent: 'ul',
     render,
     ThemeProvider,
-    muiName: 'MuiMenuList',
+    muiName: 'JoyMenuList',
     refInstanceof: window.HTMLUListElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     slots: {
       root: { expectedClassName: classes.root },
     },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['componentsProp', 'classesRoot', 'themeDefaultProps'],
   }));
 
   it('should have root className', () => {
