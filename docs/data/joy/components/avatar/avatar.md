@@ -33,16 +33,6 @@ export default function MyApp() {
 By default, the Avatar component displays a generic Person Icon.
 Wrap it around a string to display plain text, or use the `src` prop to display an image.
 
-## Anatomy
-
-The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
-
-```html
-<div class="JoyAvatar-root">
-  <!-- Avatar contents -->
-</div>
-```
-
 ## Customization
 
 ### Text Avatar
@@ -71,7 +61,7 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 
 ### Variants
 
-The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
+The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AvatarVariants.js"}}
 
@@ -81,7 +71,7 @@ To learn how to add more variants to the component, check out [Themed components
 
 ### Sizes
 
-The Avatar component comes in three sizes: `sm`, `md` (the default), and `lg`:
+The Avatar component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AvatarSizes.js"}}
 
@@ -147,3 +137,13 @@ Play around with the CSS variables available to the Avatar component to see how 
 You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
+
+## Anatomy
+
+The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
+
+```html
+<div class="JoyAvatar-root">
+  <!-- Avatar contents -->
+</div>
+```

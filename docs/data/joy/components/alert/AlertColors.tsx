@@ -20,7 +20,7 @@ export default function AlertColors() {
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 400px))',
           gap: 1,
         }}
       >

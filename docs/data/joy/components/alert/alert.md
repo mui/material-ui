@@ -40,37 +40,17 @@ The Alert component wraps around its content, and stretches to fill its enclosin
 
 {{"demo": "AlertBasic.js"}}
 
-## Anatomy
-
-The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
-
-```html
-<div role="alert" class="JoyAlert-root">
-  This is how an Alert renders in the DOM.
-</div>
-```
-
-### Overriding the root slot
-
-Use the `component` prop to override the root slot with a custom element.
-For example, the following code snippet replaces the default `<div>` with a `<span>`:
-
-```jsx
-<Alert component="span">Alert content</Alert>
-
-// renders as:
-<span role="alert" class="JoyAlert-root">
-  Alert content
-</span>
-```
-
 ## Customization
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
+The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AlertVariants.js"}}
+
+:::success
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
 
 ### Colors
 
@@ -81,7 +61,7 @@ The demo below shows how the values for the `color` prop are affected by the glo
 
 ### Sizes
 
-The Alert component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`:
+The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AlertSizes.js"}}
 
@@ -111,3 +91,13 @@ Here are some factors to consider to ensure that your Alert is accessible:
 - Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
 - Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
 - Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.
+
+## Anatomy
+
+The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
+
+```html
+<div role="alert" class="JoyAlert-root">
+  <!-- Alert contents -->
+</div>
+```

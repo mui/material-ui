@@ -7,11 +7,12 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 # Autocomplete
 
-<p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
+<p class="description">The Autocomplete component is a text input enhanced by a panel of suggested options when users start typing.</p>
 
 ## Introduction
 
-`Autocomplete` is an enhanced version of text input that shows suggested options as the users type and also let them select an option from the list.
+The Autocomplete component is an enhanced version of a text input that shows suggested options as a user types, and lets them select options from the list.
+It includes many sophisticated customization options to suit a wide range of design and user experience needs.
 
 {{"demo": "Playground.js", "hideToolbar": true}}
 
@@ -32,26 +33,30 @@ export default function App() {
 
 ## Basics
 
-The Autocomplete component requires a list of `options` to be displayed after the textbox is focused. The value must be chosen from a predefined set of allowed values.
+The Autocomplete component requires a list of options, which is displayed when the input receives focus.
+The user must choose from this predefined set of values passed to the `options` prop.
+This prop accepts either an array of strings, or an array of objects with the desired values assigned to the `label` key, as shown below:
+
+```js
+// options can be an array of strings...
+const options = ['The Godfather', 'Pulp Fiction'];
+
+// ...or an array of objects (using the label key)
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+
+```
 
 {{"demo": "BasicAutocomplete.js"}}
 
 ## Customization
 
-### Options structure
+### Custom option labels
 
-By default, the `options` accepts an array of `string` or `{ label: string }`:
-
-```js
-const options = [
-  { label: 'The Godfather', id: 1 },
-  { label: 'Pulp Fiction', id: 2 },
-];
-// or
-const options = ['The Godfather', 'Pulp Fiction'];
-```
-
-However, you can use different structures by providing a `getOptionLabel` prop:
+Use the `getOptionLabel` prop to populate the Autocomplete component with values assigned to a different key than `label`.
+For example, the code snippet below populates the Autocomplete with values from the `title` key instead:
 
 ```js
 const options = [
@@ -64,13 +69,13 @@ const options = [
 
 ### Option appearance
 
-To customize the appearance of the options, use `renderOption` prop in combination with the `AutocompleteOption` component as an option container.
+To customize the appearance of the options, use the `renderOption` prop along with the Autocomplete Option component as an option container.
 
 {{"demo": "CountrySelect.js"}}
 
 ### Variants
 
-The autocomplete component supports the four global variants: `outlined` (default), `soft`, `solid`, and `plain`.
+The Autocomplete component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined` (default), and `plain`.
 
 {{"demo": "InputAppearance.js"}}
 
@@ -80,7 +85,7 @@ To learn how to add more variants to the component, check out [Themed components
 
 ### Label
 
-Put an `Autocomplete`, a `FormLabel` and a `FormHelperText` (optional) under a `FormControl` component to create an accessible autocomplete.
+Put an Autocomplete, a Form Label, and a Form Helper Text (optional) under a Form Control component to create an accessible Autocomplete:
 
 {{"demo": "LabelAndHelperText.js"}}
 
@@ -98,7 +103,7 @@ The component has two states that can be controlled:
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
 :::warning
-⚠️ These two states are isolated, they should be controlled independently.
+⚠️ These two states are isolated, and should be controlled independently.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -125,7 +130,7 @@ It displays a progress state as long as the network request is pending.
 
 ### Search input
 
-Use `freeSolo` to create a **search input** with suggestions experience, e.g. Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
+Use `freeSolo` to create a search input with suggestions, similar to Google search or [react-autowhatever](https://github.com/moroshko/react-autowhatever).
 
 {{"demo": "FreeSolo.js"}}
 
@@ -135,9 +140,9 @@ Use `freeSolo` to create a **search input** with suggestions experience, e.g. Go
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
 
-### User's created option
+### User-created option
 
-If you intend to use `freeSolo` mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+If you intend to use `freeSolo` mode for a [combo box](#combo-box)-like experience (an enhanced version of a select element), try using:
 
 - `selectOnFocus` to help the user clear the selected value.
 - `clearOnBlur` to help the user enter a new value.
@@ -146,25 +151,25 @@ If you intend to use `freeSolo` mode for a [combo box](#combo-box) like experien
 
 {{"demo": "FreeSoloCreateOption.js"}}
 
-You could also display a dialog when the user wants to add a new value.
+You could also display a dialog when the user wants to add a new value:
 
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 :::info
-The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
+The Autocomplete Option component uses the same styles and variables as [List Item Button](/joy-ui/react-list/#actionable), so that you get the same customization experience.
 :::
 
 ### Validation
 
-To display invalid state, set the `error` prop on the `FormControl`.
+To display an invalid state, set the `error` prop on the Form Control.
 
 {{"demo": "AutocompleteError.js"}}
 
 ### Multiple selection
 
-By default, the autocomplete uses [`Chip`](/joy-ui/react-chip/) component to render the user's selected options.
+By default, Autocomplete uses the [Chip](/joy-ui/react-chip/) component to render the user's selected options.
 
-When the autocomplete is focused, the user can press the backspace to remove the latest selected option from the list.
+When the Autocomplete is focused, the user can press the backspace to remove the latest selected option from the list.
 
 {{"demo": "Tags.js"}}
 
@@ -182,7 +187,7 @@ You can use the `limitTags` prop to limit the number of displayed options when n
 
 ### Sizes
 
-The autocomplete component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`. The size is propagated to internal components, including `Input`, `Chip`, and `List`.
+The Autocomplete component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`. The size is propagated to internal components, including `Input`, `Chip`, and `List`.
 
 {{"demo": "Sizes.js"}}
 
@@ -190,7 +195,7 @@ The autocomplete component comes with three sizes out of the box: `sm`, `md` (th
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-The `size` can also be controlled at the `FormControl`.
+The `size` can also be controlled at the Form Control.
 
 {{"demo": "SizeWithLabel.js"}}
 
@@ -233,7 +238,7 @@ const filterOptions = createFilterOptions({
 
 ### Advanced filter
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+For richer filtering mechanisms, like fuzzy matching, try using [match-sorter](https://github.com/kentcdodds/match-sorter) as a reference point. For instance:
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -251,21 +256,23 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 {{"demo": "Highlights.js"}}
 
-### GitHub's picker
+### GitHub label picker
 
-To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `AutocompleteListbox` component.
+To reproduce GitHub's label picker, the Autocomplete is rendered inside an [Unstyled Popper](/base/react-popper/).
+To remove the popup behavior from the autocomplete, replace the listbox slot with the Autocomplete Listbox component.
 
 {{"demo": "GitHubLabel.js"}}
 
 ### Virtualization
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+Search within 10,000 randomly-generated options.
+The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "Virtualize.js"}}
 
 ## Events
 
-If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+To prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
 
 ```jsx
 <Autocomplete
@@ -281,20 +288,20 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ## CSS Variables
 
-The Autocomplete component reuses CSS variables from the Input component to give you the consistent customization experience.
+The Autocomplete component reuses CSS variables from the Input component to give you a consistent customization experience.
 
 {{"demo": "AutocompleteVariables.js", "hideToolbar": true}}
 
 ## Limitations
 
-### autocomplete/autofill
+### Autocomplete and autofill
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+By default, the component disables the input _autocomplete_ feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
-In the event you want the avoid autofill, you can try the following:
+In addition to remembering previously entered values, the browser might also propose _autofill_ suggestions (saved login, address, or payment details).
+To avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
@@ -330,5 +337,45 @@ You can work around the issue with the `disablePortal` prop.
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
-We encourage the usage of a label for the textbox.
 The component implements the WAI-ARIA authoring practices.
+Be sure to add a label for the textbox.
+
+## Anatomy
+
+The Autocomplete component is composed of an `<input>` and a `<button>` housed in a wrapper `<div>`, which in turn is nested within the root `<div>`:
+
+```html
+<div class="JoyAutocomplete-root" aria-owns=":r39:-listbox">
+  <div class="JoyAutocomplete-wrapper">
+    <input
+      id=":r39:"
+      aria-autocomplete="list"
+      aria-expanded="true"
+      autocomplete="off"
+      autocapitalize="none"
+      spellcheck="false"
+      role="combobox"
+      placeholder="Combo box"
+      class="JoyAutocomplete-input"
+      value=""
+      aria-controls=":r39:-listbox"
+    />
+  </div>
+  <button
+    tabindex="-1"
+    aria-label="Close"
+    title="Close"
+    class="JoyAutocomplete-popupIndicator JoyAutocomplete-popupIndicatorOpen"
+  >
+    <svg
+      class="JoySvgIcon-root"
+      focusable="false"
+      aria-hidden="true"
+      data-testid="ArrowDropDownIcon"
+      viewBox="0 0 24 24"
+    >
+      <path d="M7 10l5 5 5-5z"></path>
+    </svg>
+  </button>
+</div>
+```
