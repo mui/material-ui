@@ -2,7 +2,6 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
 import {
-  useAutocomplete,
   AutocompleteValue,
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -51,18 +50,6 @@ export interface AutocompleteRenderGroupParams {
   children?: React.ReactNode;
 }
 
-export interface AutocompleteRenderInputParams {
-  placeholder?: string;
-  disabled: boolean;
-  size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-  ref: React.Ref<any>;
-  startDecorator: React.ReactNode;
-  endDecorator?: React.ReactNode;
-  componentsProps: {
-    input: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
-  };
-}
-
 interface ComponentsProps {
   root?: SlotComponentProps<
     'div',
@@ -95,7 +82,8 @@ interface ComponentsProps {
       IconButtonOwnerState,
       'color' | 'variant' | 'size'
     >,
-    AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
+    Omit<AutocompleteOwnerState<any, any, any, any>, 'color' | 'variant' | 'size'> &
+      Pick<IconButtonOwnerState, 'color' | 'variant' | 'size'>
   >;
   popupIndicator?: SlotComponentProps<
     'button',
@@ -103,7 +91,8 @@ interface ComponentsProps {
       IconButtonOwnerState,
       'color' | 'variant' | 'size'
     >,
-    AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
+    Omit<AutocompleteOwnerState<any, any, any, any>, 'color' | 'variant' | 'size'> &
+      Pick<IconButtonOwnerState, 'color' | 'variant' | 'size'>
   >;
   listbox?: SlotComponentProps<
     'ul',
