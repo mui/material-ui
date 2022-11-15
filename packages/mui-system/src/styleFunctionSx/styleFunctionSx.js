@@ -20,21 +20,21 @@ function callIfFn(maybeFn, arg) {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_createStyleFunctionSx() {
-  function getThemeValue(prop, value, theme, config) {
+  function getThemeValue(prop, val, theme, config) {
     const props = {
-      [prop]: value,
+      [prop]: val,
       theme,
     };
 
     const options = config[prop];
 
     if (!options) {
-      return { [prop]: value };
+      return { [prop]: val };
     }
 
     const { cssProperty = prop, themeKey, transform, style } = options;
 
-    if (value == null) {
+    if (val == null) {
       return null;
     }
 
@@ -45,11 +45,11 @@ export function unstable_createStyleFunctionSx() {
     }
 
     const styleFromPropValue = (propValueFinal) => {
-      let val = getValue(themeMapping, transform, propValueFinal);
+      let value = getValue(themeMapping, transform, propValueFinal);
 
       if (propValueFinal === value && typeof propValueFinal === 'string') {
         // Haven't found value
-        val = getValue(
+        value = getValue(
           themeMapping,
           transform,
           `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
@@ -58,15 +58,15 @@ export function unstable_createStyleFunctionSx() {
       }
 
       if (cssProperty === false) {
-        return val;
+        return value;
       }
 
       return {
-        [cssProperty]: val,
+        [cssProperty]: value,
       };
     };
 
-    return handleBreakpoints(props, value, styleFromPropValue);
+    return handleBreakpoints(props, val, styleFromPropValue);
   }
 
   function styleFunctionSx(props) {
