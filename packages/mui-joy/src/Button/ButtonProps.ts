@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   OverridableComponent,
   OverridableStringUnion,
@@ -117,7 +117,8 @@ export type ButtonProps<
   },
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 
-export interface ButtonOwnerState extends ButtonProps {
+export interface ButtonOwnerState extends Omit<ButtonProps, 'color'> {
+  color: ButtonProps['color'] | 'context';
   /**
    * If `true`, the button's focus is visible.
    */

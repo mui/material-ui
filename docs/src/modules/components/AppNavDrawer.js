@@ -375,7 +375,7 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref>
+          <NextLink href="/" passHref legacyBehavior>
             <Box
               component="a"
               onClick={onClose}

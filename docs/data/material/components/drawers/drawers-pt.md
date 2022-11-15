@@ -50,7 +50,7 @@ Você pode configurar a propriedade `SwipeableDrawer` para visualizar uma borda 
 
 Se você estiver em uma área de trabalho, poderá alternar o drawer com o botão "OPEN". Se estiver pelo celular, abra a demonstração no CodeSandbox (ícone "editar") e deslizar.
 
-{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "disableLiveEdit": true, "height": 400, "maxWidth": 300}}
 
 ### Navegação em altura total
 
@@ -71,7 +71,7 @@ More details in the [Modal performance section](/material-ui/react-modal/#perfor
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
-{{"demo": "ResponsiveDrawer.js", "iframe": true}}
+{{"demo": "ResponsiveDrawer.js", "iframe": true, "disableLiveEdit": true}}
 
 ## Drawer persistente
 

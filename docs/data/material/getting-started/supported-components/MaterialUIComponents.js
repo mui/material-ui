@@ -11,18 +11,18 @@ import Link from 'docs/src/modules/components/Link';
 const components = [
   {
     name: 'Accordion',
-    materialUI: '/material-ui/react-accordion',
+    materialUI: '/material-ui/react-accordion/',
     materialDesign: 'https://m1.material.io/components/expansion-panels.html',
   },
   { name: 'Alert', materialUI: '/material-ui/react-alert' },
   {
     name: 'App Bar: top',
-    materialUI: '/material-ui/react-app-bar',
+    materialUI: '/material-ui/react-app-bar/',
     materialDesign: 'https://m2.material.io/components/app-bars-top',
   },
   {
     name: 'App Bar: bottom',
-    materialUI: '/material-ui/react-app-bar#bottom-app-bar',
+    materialUI: '/material-ui/react-app-bar#bottom-app-bar/',
     materialDesign: 'https://m2.material.io/components/app-bars-bottom',
   },
   { name: 'Autocomplete', materialUI: '/material-ui/react-autocomplete' },
@@ -35,13 +35,13 @@ const components = [
   { name: 'Badge', materialUI: '/material-ui/react-badge' },
   {
     name: 'Bottom Navigation',
-    materialUI: '/material-ui/react-bottom-navigation',
+    materialUI: '/material-ui/react-bottom-navigation/',
     materialDesign: 'https://m2.material.io/components/bottom-navigation',
   },
   { name: 'Breadcrumbs', materialUI: '/material-ui/react-breadcrumbs' },
   {
     name: 'Button',
-    materialUI: '/material-ui/react-button',
+    materialUI: '/material-ui/react-button/',
     materialDesign: 'https://m2.material.io/components/buttons',
   },
   {
@@ -53,147 +53,151 @@ const components = [
   { name: 'Button Group', materialUI: '/material-ui/react-button-group' },
   {
     name: 'Card',
-    materialUI: '/material-ui/react-card',
+    materialUI: '/material-ui/react-card/',
     materialDesign: 'https://m2.material.io/components/cards',
   },
   {
     name: 'Checkbox',
-    materialUI: '/material-ui/react-checkbox',
+    materialUI: '/material-ui/react-checkbox/',
     materialDesign: 'https://m2.material.io/components/checkboxes',
   },
   {
     name: 'Chip',
-    materialUI: '/material-ui/react-chip',
+    materialUI: '/material-ui/react-chip/',
     materialDesign: 'https://m2.material.io/components/chips',
   },
-  { name: 'Data Grid', materialUI: '/x/react-data-grid' },
+  {
+    name: 'Data Grid',
+    materialUI: '/x/react-data-grid/',
+    materialDesign: 'https://m2.material.io/components/data-tables',
+  },
   {
     name: 'Date Pickers',
-    materialUI: '/x/react-date-pickers',
+    materialUI: '/x/react-date-pickers/getting-started/',
     materialDesign: 'https://m2.material.io/components/date-pickers',
   },
   {
     name: 'Dialog',
-    materialUI: '/material-ui/react-dialog',
+    materialUI: '/material-ui/react-dialog/',
     materialDesign: 'https://m2.material.io/components/dialogs',
   },
   {
     name: 'Divider',
-    materialUI: '/material-ui/react-divider',
+    materialUI: '/material-ui/react-divider/',
     materialDesign: 'https://m2.material.io/components/dividers',
   },
   {
     name: 'Drawer',
-    materialUI: '/material-ui/react-drawer',
+    materialUI: '/material-ui/react-drawer/',
     materialDesign: 'https://m2.material.io/components/navigation-drawer',
   },
   {
     name: 'Icons',
-    materialUI: '/material-ui/icons',
+    materialUI: '/material-ui/icons/',
     materialDesign: 'https://m2.material.io/design/iconography/system-icons.html',
   },
   {
     name: 'Image List',
-    materialUI: '/material-ui/react-image-list',
+    materialUI: '/material-ui/react-image-list/',
     materialDesign: 'https://m2.material.io/components/image-lists',
   },
-  { name: 'Link', materialUI: '/material-ui/react-link' },
+  { name: 'Link', materialUI: '/material-ui/react-link/' },
   {
     name: 'List',
-    materialUI: '/material-ui/react-list',
+    materialUI: '/material-ui/react-list/',
     materialDesign: 'https://m2.material.io/components/lists',
   },
-  { name: 'Masonry', materialUI: '/material-ui/react-masonry' },
+  { name: 'Masonry', materialUI: '/material-ui/react-masonry/' },
   {
     name: 'Material Icons',
-    materialUI: '/material-ui/material-icons',
+    materialUI: '/material-ui/material-icons/',
     materialDesign: 'https://fonts.google.com/icons',
   },
   {
     name: 'Menu',
-    materialUI: '/material-ui/react-menu',
+    materialUI: '/material-ui/react-menu/',
     materialDesign: 'https://m2.material.io/components/menus',
   },
   {
     name: 'Modal',
-    materialUI: '/material-ui/react-modal',
+    materialUI: '/material-ui/react-modal/',
     materialDesign: 'https://m2.material.io/components/dialogs',
   },
   {
     name: 'Navigation Rail',
     materialDesign: 'https://m2.material.io/components/navigation-rail',
   },
-  { name: 'Pagination', materialUI: '/material-ui/react-pagination' },
+  { name: 'Pagination', materialUI: '/material-ui/react-pagination/' },
   {
     name: 'Paper',
-    materialUI: '/material-ui/react-paper',
+    materialUI: '/material-ui/react-paper/',
     materialDesign: 'https://m2.material.io/design/environment/elevation.html',
   },
   {
     name: 'Progress',
-    materialUI: '/material-ui/react-progress',
+    materialUI: '/material-ui/react-progress/',
     materialDesign: 'https://m2.material.io/components/progress-indicators',
   },
   {
     name: 'Radio Group',
-    materialUI: '/material-ui/react-radio-button',
+    materialUI: '/material-ui/react-radio-button/',
     materialDesign: 'https://m2.material.io/components/radio-buttons',
   },
-  { name: 'Rating', materialUI: '/material-ui/react-rating' },
+  { name: 'Rating', materialUI: '/material-ui/react-rating/' },
   {
     name: 'Select',
-    materialUI: '/material-ui/react-select',
+    materialUI: '/material-ui/react-select/',
     materialDesign: 'https://m2.material.io/components/menus#exposed-dropdown-menu',
   },
-  { name: 'Skeleton', materialUI: '/material-ui/react-skeleton' },
+  { name: 'Skeleton', materialUI: '/material-ui/react-skeleton/' },
   {
     name: 'Slider',
-    materialUI: '/material-ui/react-slider',
+    materialUI: '/material-ui/react-slider/',
     materialDesign: 'https://m2.material.io/components/sliders',
   },
   {
     name: 'Snackbar',
-    materialUI: '/material-ui/react-snackbar',
+    materialUI: '/material-ui/react-snackbar/',
     materialDesign: 'https://m2.material.io/components/snackbars',
   },
   { name: 'Speed Dial', materialUI: '/material-ui/react-speed-dial' },
   {
     name: 'Stepper',
-    materialUI: '/material-ui/react-stepper',
+    materialUI: '/material-ui/react-stepper/',
     materialDesign: 'https://m1.material.io/components/steppers.html',
   },
   {
     name: 'Switch',
-    materialUI: '/material-ui/react-switch',
+    materialUI: '/material-ui/react-switch/',
     materialDesign: 'https://m2.material.io/components/switches',
   },
   {
     name: 'Table',
-    materialUI: '/material-ui/react-table',
+    materialUI: '/material-ui/react-table/',
     materialDesign: 'https://m2.material.io/components/data-tables',
   },
   {
     name: 'Tabs',
-    materialUI: '/material-ui/react-tabs',
+    materialUI: '/material-ui/react-tabs/',
     materialDesign: 'https://m2.material.io/components/tabs',
   },
   {
     name: 'Text Field',
-    materialUI: '/material-ui/react-text-field',
+    materialUI: '/material-ui/react-text-field/',
     materialDesign: 'https://m2.material.io/components/text-fields',
   },
-  { name: 'Timeline', materialUI: '/material-ui/react-timeline' },
-  { name: 'Toggle Button', materialUI: '/material-ui/react-toggle-button' },
+  { name: 'Timeline', materialUI: '/material-ui/react-timeline/' },
+  { name: 'Toggle Button', materialUI: '/material-ui/react-toggle-button/' },
   {
     name: 'Tooltip',
-    materialUI: '/material-ui/react-tooltip',
+    materialUI: '/material-ui/react-tooltip/',
     materialDesign: 'https://m2.material.io/components/tooltips',
   },
-  { name: 'Transfer List', materialUI: '/material-ui/react-transfer-list' },
-  { name: 'Tree View', materialUI: '/material-ui/react-tree-view' },
+  { name: 'Transfer List', materialUI: '/material-ui/react-transfer-list/' },
+  { name: 'Tree View', materialUI: '/material-ui/react-tree-view/' },
   {
     name: 'Typography',
-    materialUI: '/material-ui/react-typography',
+    materialUI: '/material-ui/react-typography/',
     materialDesign: 'https://m2.material.io/design/typography/the-type-system.html',
   },
 ];
@@ -217,17 +221,15 @@ export default function MaterialUIComponents() {
               </TableCell>
               <TableCell>
                 {component.materialDesign ? (
-                  <React.Fragment>
-                    <Link
-                      variant="body2"
-                      data-no-markdown-link="true"
-                      href={component.materialDesign}
-                    >
-                      {component.materialDesign.substring(8, 10) === 'm1'
-                        ? 'MD 1 (legacy)'
-                        : 'MD 2'}
-                    </Link>
-                  </React.Fragment>
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.materialDesign}
+                  >
+                    {component.materialDesign.substring(8, 10) === 'm1'
+                      ? 'MD 1 (legacy)'
+                      : 'MD 2'}
+                  </Link>
                 ) : (
                   'No guidelines'
                 )}
@@ -235,32 +237,25 @@ export default function MaterialUIComponents() {
               <TableCell>
                 {component.materialUI &&
                 component.materialUI.indexOf('/material-ui') === 0 ? (
-                  <React.Fragment>
-                    {'✅ '}
-                    <Link
-                      variant="body2"
-                      data-no-markdown-link="true"
-                      href={component.materialUI}
-                    >
-                      Native support
-                    </Link>
-                  </React.Fragment>
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.materialUI}
+                  >
+                    Native support
+                  </Link>
                 ) : null}
                 {component.materialUI && component.materialUI.indexOf('/x') === 0 ? (
-                  <React.Fragment>
-                    <Link
-                      variant="body2"
-                      data-no-markdown-link="true"
-                      href={component.materialUI}
-                    >
-                      Support in MUI X
-                    </Link>
-                  </React.Fragment>
+                  <Link
+                    variant="body2"
+                    data-no-markdown-link="true"
+                    href={component.materialUI}
+                  >
+                    Support in MUI X
+                  </Link>
                 ) : null}
-                {component.materialUI === 'Composable' ? (
-                  <React.Fragment>{'Composable'}</React.Fragment>
-                ) : null}
-                {component.materialUI == null ? 'No support' : null}
+                {component.materialUI === 'Composable' ? 'Composable' : null}
+                {component.materialUI == null ? '❌ No support' : null}
               </TableCell>
             </TableRow>
           ))}
