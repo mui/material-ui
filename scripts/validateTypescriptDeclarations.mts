@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import globby from 'globby';
+import { globbySync } from 'globby';
 import fs from 'fs';
 
 /**
@@ -7,7 +7,7 @@ import fs from 'fs';
  * result in an import from a local file.
  */
 function validateFiles() {
-  const declarationFiles = globby.sync(['packages/*/build/**/*.d.ts']);
+  const declarationFiles = globbySync(['packages/*/build/**/*.d.ts']);
   const invalidFiles = declarationFiles.filter((file) => {
     const content = fs.readFileSync(file, 'utf8');
     const regex = /import\(["']packages\//gm;
