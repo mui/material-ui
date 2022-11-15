@@ -85,6 +85,7 @@ const theme = createTheme(
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
+| Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
 <!-- #default-branch-switch -->
