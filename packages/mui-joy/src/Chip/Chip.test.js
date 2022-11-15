@@ -10,7 +10,7 @@ describe('<Chip />', () => {
   const { render } = createRenderer();
 
   describeConformance(
-    <Chip clickable={false} startDecorator="1" endDecorator="2">
+    <Chip startDecorator="1" endDecorator="2">
       Chip
     </Chip>,
     () => ({
