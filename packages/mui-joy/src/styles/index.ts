@@ -1,5 +1,6 @@
 // reexports from system for module augmentation
 export type { BreakpointOverrides } from '@mui/system';
+export { experimental_sx } from '@mui/system';
 
 // Joy typings
 export type { ColorSchemeOverrides, SupportedColorScheme } from './types/colorScheme';
@@ -71,7 +72,6 @@ export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 export { default as useThemeProps } from './useThemeProps';
-export { sx as experimental_sx } from './sxConfig';
 export { ColorInversionProvider, useColorInversion } from './ColorInversion';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
 export type { CssVarsThemeOptions } from './extendTheme';
