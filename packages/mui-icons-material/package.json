@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.10.9",
+  "version": "5.10.14",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -36,7 +36,7 @@
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
     "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
+    "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
