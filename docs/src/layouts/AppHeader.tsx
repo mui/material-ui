@@ -24,7 +24,7 @@ const Header = styled('header')(({ theme }) => [
     top: 0,
     transition: theme.transitions.create('top'),
     zIndex: theme.zIndex.appBar,
-    backdropFilter: 'blur(20px)',
+    backdropFilter: 'blur(8px)',
     boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
     backgroundColor: 'rgba(255,255,255,0.8)',
   },
