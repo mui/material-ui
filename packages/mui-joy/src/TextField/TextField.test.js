@@ -10,7 +10,7 @@ import { formHelperTextClasses } from '@mui/joy/FormHelperText';
 describe('Joy <TextField />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<TextField />, () => ({
+  describeConformance(<TextField helperText="1" label="1" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -19,6 +19,9 @@ describe('Joy <TextField />', () => {
     refInstanceof: window.HTMLDivElement,
     slots: {
       root: { expectedClassName: classes.root },
+      label: { expectedClassName: classes.label },
+      input: { expectedClassName: classes.input },
+      helperText: { expectedClassName: classes.helperText },
     },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
