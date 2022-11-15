@@ -59,18 +59,18 @@ The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AlertSizes.js"}}
 
-### Decorators
-
-Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Alert:
-
-{{"demo": "AlertWithDecorators.js"}}
-
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
 The demo below shows how the values for the `color` prop are affected by the global variants:
 
 {{"demo": "AlertColors.js"}}
+
+### Decorators
+
+Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Alert:
+
+{{"demo": "AlertWithDecorators.js"}}
 
 ## Common examples
 
