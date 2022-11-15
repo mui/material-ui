@@ -6,4 +6,6 @@ export * from './OverwriteCSSProperties';
 export * from './StandardCssProperties';
 
 export { default as extendSxProp } from './extendSxProp';
+
+export const unstable_defaultSxConfig: object;
 export * from './extendSxProp';

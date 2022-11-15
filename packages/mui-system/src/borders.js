@@ -33,7 +33,7 @@ export const borderRight = style({
 export const borderBottom = style({
   prop: 'borderBottom',
   themeKey: 'borders',
-  transform,
+  transform: borderTransform,
 });
 
 export const borderLeft = style({

@@ -119,6 +119,7 @@ export {
   default as unstable_styleFunctionSx,
   unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
+  unstable_defaultSxConfig,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
 

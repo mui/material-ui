@@ -19,8 +19,8 @@ function callIfFn(maybeFn, arg) {
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
-  function getThemeValue(prop, value, theme) {
+export function unstable_createStyleFunctionSx() {
+  function getThemeValue(prop, value, theme, config) {
     const props = {
       [prop]: value,
       theme,
@@ -71,6 +71,7 @@ export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
 
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
+    const { sxConfig: config = defaultSxConfig } = theme;
     if (!sx) {
       return null; // Emotion & styled-components will neglect null
     }
@@ -101,7 +102,7 @@ export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
         if (value !== null && value !== undefined) {
           if (typeof value === 'object') {
             if (config[styleKey]) {
-              css = merge(css, getThemeValue(styleKey, value, theme));
+              css = merge(css, getThemeValue(styleKey, value, theme, config));
             } else {
               const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
                 [styleKey]: x,
@@ -114,7 +115,7 @@ export function unstable_createStyleFunctionSx(config = defaultSxConfig) {
               }
             }
           } else {
-            css = merge(css, getThemeValue(styleKey, value, theme));
+            css = merge(css, getThemeValue(styleKey, value, theme, config));
           }
         }
       });
