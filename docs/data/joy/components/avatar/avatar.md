@@ -33,8 +33,6 @@ export default function MyApp() {
 By default, the Avatar component displays a generic Person Icon.
 Wrap it around a string to display plain text, or use the `src` prop to display an image.
 
-## Customization
-
 ### Text Avatar
 
 Wrap the Avatar component around a string to display text.
@@ -49,7 +47,7 @@ Make sure to to write a meaningful description for the `alt` prop.
 
 {{"demo": "ImageAvatars.js"}}
 
-### Image fallbacks
+#### Image fallbacks
 
 If an error occurs while loading the Avatar's image, it will fall back to the following alternatives (in this order):
 
@@ -58,6 +56,8 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 3. The default generic icon
 
 {{"demo": "FallbackAvatars.js"}}
+
+## Customization
 
 ### Variants
 
@@ -80,13 +80,7 @@ The Avatar component comes in three sizes: `sm`, `md` (default), and `lg`:
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-## Usage with the Badge
-
-Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually communicate more complex information about a user's status:
-
-{{"demo": "BadgeAvatars.js"}}
-
-## Usage with the Avatar Group
+## Usage with Avatar Group
 
 Use the Avatar Group component to group multiple Avatars together.
 
@@ -131,6 +125,12 @@ This approach is preferable because it preserves the overlapping offset between 
 :::
 
 {{"demo": "VerticalAvatarGroup.js"}}
+
+## Usage with Badge
+
+Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually communicate more complex information about a user's status:
+
+{{"demo": "BadgeAvatars.js"}}
 
 ## CSS variable playground
 
