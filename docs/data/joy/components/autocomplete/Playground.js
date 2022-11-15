@@ -27,9 +27,7 @@ export default function Playground() {
     <Box>
       <Box
         sx={{
-          pt: 2,
-          pb: 1,
-          bgcolor: 'background.surface',
+          pt: 4,
           position: 'sticky',
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
@@ -43,7 +41,7 @@ export default function Playground() {
             {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
           />
         </FormControl>
-        <Divider sx={{ mt: 3, mb: 2 }} />
+        <Divider sx={{ mt: 4, mb: 2 }} />
         <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
           <Typography
             id="flags-playground"
@@ -68,6 +66,7 @@ export default function Playground() {
             </Link>
           )}
         </Box>
+        <Divider sx={{ my: 2 }} />
       </Box>
       <Box sx={{ minWidth: 0, flexBasis: 300, flexGrow: 1 }}>
         <List
