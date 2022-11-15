@@ -105,6 +105,7 @@ const Root = styled('div')(
       paddingLeft: 30,
     },
     '& h1, & h2, & h3, & h4': {
+      position: 'relative',
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -149,6 +150,9 @@ const Root = styled('div')(
         marginLeft: 10,
         height: '26px',
         width: '26px',
+        position: 'absolute',
+        top: `calc(50% - ${26/2}px)`,
+        right: 0,
         background: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
