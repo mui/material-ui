@@ -33,7 +33,7 @@ export default function App() {
 
 ## Basics
 
-The Autocomplete component requires a list of options, which is displayed when the input receives focus.
+The Autocomplete component requires a list of options, which is displayed when the input receives focus or the button is clicked.
 The user must choose from this predefined set of values passed to the `options` prop.
 This prop accepts either an array of strings, or an array of objects with the desired values assigned to the `label` key, as shown below:
 
@@ -80,7 +80,8 @@ The Autocomplete component supports Joy UI's four [global variants](/joy-ui/main
 {{"demo": "InputAppearance.js"}}
 
 :::success
-To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
 :::
 
 ### Label

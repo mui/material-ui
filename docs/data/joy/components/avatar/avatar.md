@@ -66,7 +66,8 @@ The Avatar component supports Joy UI's four [global variants](/joy-ui/main-featu
 {{"demo": "AvatarVariants.js"}}
 
 :::success
-To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
 :::
 
 ### Sizes
