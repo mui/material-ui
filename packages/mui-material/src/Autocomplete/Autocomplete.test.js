@@ -208,6 +208,21 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'two');
     });
 
+    it('AutocompleteListbox should have position relative', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          value="one"
+          open
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      expect(
+        window.getComputedStyle(getByRole('listbox')).getPropertyValue('position'),
+      ).to.have.equal('relative');
+    });
+
     it('should keep the current highlight if possible', () => {
       const { getByRole } = render(
         <Autocomplete
