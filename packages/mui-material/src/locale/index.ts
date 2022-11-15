@@ -3258,8 +3258,7 @@ export const urPK: Localization = {
         },
         labelRowsPerPage: 'ایک صفحے پر قطاریں:',
         labelDisplayedRows: ({ from, to, count }) =>
-          // `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
-          `${count !== -1 ? count : `${to} سے ذیادہ میں سے`} ${from} سے ${to} قطاریں`,
+          `${count !== -1 ? `${count} میں سے` : `${to} سے ذیادہ میں سے`} ${from} سے ${to} قطاریں`,
       },
     },
     MuiRating: {
