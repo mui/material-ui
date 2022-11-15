@@ -95,6 +95,4 @@ defaultTheme.colorInversion = deepmerge(
   },
   defaultTheme.colorInversion,
 );
-defaultTheme.sxConfig = sxConfig;
-
 export default defaultTheme;

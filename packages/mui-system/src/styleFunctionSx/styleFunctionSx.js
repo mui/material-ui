@@ -71,7 +71,11 @@ export function unstable_createStyleFunctionSx() {
 
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
-    const { sxConfig: config = defaultSxConfig } = theme;
+    let config = defaultSxConfig;
+
+    if (theme.sxConfig) {
+      config = theme.sxConfig;
+    }
     if (!sx) {
       return null; // Emotion & styled-components will neglect null
     }

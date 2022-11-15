@@ -7,6 +7,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   colorChannel,
 } from '@mui/system';
+import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
@@ -60,6 +61,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   spacing?: SpacingOptions;
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
+  sxConfig?: object;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -622,6 +624,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);
   });
+
+  theme.sxConfig = {
+    ...defaultSxConfig,
+    ...themeOptions?.sxConfig,
+  }
 
   return theme;
 }
