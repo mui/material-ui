@@ -428,9 +428,22 @@ export default function AppLayoutDocsFooter(props) {
             onSubmit={handleSubmitComment}
           >
             <div>
-              <Typography id="feedback-description" color="text.secondary" gutterBottom>
-                {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
-              </Typography>
+              {commentedSection.text ? (
+                <Typography
+                  id="feedback-description"
+                  color="text.secondary"
+                  dangerouslySetInnerHTML={{
+                    __html: t('feedbackSectionSpecific').replace(
+                      '{{sectionName}}',
+                      `"${commentedSection.text}"`,
+                    ),
+                  }}
+                />
+              ) : (
+                <Typography id="feedback-description" color="text.secondary">
+                  {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
+                </Typography>
+              )}
               <TextField
                 multiline
                 margin="dense"
@@ -440,23 +453,26 @@ export default function AppLayoutDocsFooter(props) {
                 value={comment}
                 onChange={handleChangeTextfield}
                 inputProps={{
+                  'aria-label': t('feedbackCommentLabel'),
                   'aria-describedby': 'feedback-description',
                   ref: inputRef,
                 }}
               />
               {rating !== 1 && (
-                <Typography id="feedback-description" color="text.secondary">
-                  {t('feedbackMessageToGithub.main')}{' '}
+                <Typography id="feedback-description" color="text.secondary" sx={{ mt: 1 }}>
+                  {t('feedbackMessageToGithub.usecases')}
+                  <br />
+                  {t('feedbackMessageToGithub.callToAction.text')}
                   <Link
                     href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=4.docs-feedback.yml&page-url=${window.location.href}`}
                     target="_blank"
                   >
-                    {t('feedbackMessageToGithub.link')}
+                    {t('feedbackMessageToGithub.callToAction.link')}
                   </Link>
                 </Typography>
               )}
             </div>
-            <DialogActions>
+            <DialogActions sx={{ mb: 3 }}>
               <Button type="reset">{t('cancel')}</Button>
               <Button type="submit" variant="contained">
                 {t('submit')}
