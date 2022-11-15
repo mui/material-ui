@@ -502,15 +502,16 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
+      ref: listboxRef,
       anchorEl,
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
       modifiers: cachedModifiers,
-      component: SelectListbox,
+      component: PopperUnstyled,
     },
     className: classes.listbox,
-    elementType: PopperUnstyled,
+    elementType: SelectListbox,
     externalForwardedProps: other,
     getSlotProps: getListboxProps,
     ownerState: {
@@ -529,7 +530,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: SelectEndDecorator,
     externalForwardedProps: other,
     ownerState,
