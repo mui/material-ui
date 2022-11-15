@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -427,7 +428,7 @@ export default function AppLayoutDocsFooter(props) {
             onReset={handleCancelComment}
             onSubmit={handleSubmitComment}
           >
-            <div>
+            <Box sx={{ mb: 3 }}>
               {commentedSection.text ? (
                 <Typography
                   id="feedback-description"
@@ -458,8 +459,14 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
+              <DialogActions sx={{ py: 0 }}>
+                <Button type="reset">{t('cancel')}</Button>
+                <Button type="submit" variant="contained">
+                  {t('submit')}
+                </Button>
+              </DialogActions>
               {rating !== 1 && (
-                <Typography id="feedback-description" color="text.secondary" sx={{ mt: 1 }}>
+                <Typography id="feedback-description" color="text.secondary">
                   {t('feedbackMessageToGithub.usecases')}
                   <br />
                   {t('feedbackMessageToGithub.callToAction.text')}
@@ -471,13 +478,7 @@ export default function AppLayoutDocsFooter(props) {
                   </Link>
                 </Typography>
               )}
-            </div>
-            <DialogActions sx={{ mb: 3 }}>
-              <Button type="reset">{t('cancel')}</Button>
-              <Button type="submit" variant="contained">
-                {t('submit')}
-              </Button>
-            </DialogActions>
+            </Box>
           </form>
         </Collapse>
       </Footer>
