@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import chalk from 'chalk';
 import fse from 'fs-extra';
-import glob from 'globby';
+import { globby } from 'globby';
 import path from 'path';
 import { getWorkspaceRoot } from './utils.mjs';
 
@@ -14,9 +14,9 @@ async function run() {
   const eslintignoreContent = await fse.readFile(path.join(workspaceRoot, '.eslintignore'), {
     encoding: 'utf8',
   });
-  const eslintignore = eslintignoreContent.split(/\r?\n/).slice(0, -1);
+  const eslintignore = eslintignoreContent.split(/\r?\n/).filter(Boolean);
 
-  const filenames = await glob('**/*.json', {
+  const filenames = await globby('**/*.json', {
     cwd: workspaceRoot,
     gitignore: true,
     ignore: [...eslintignore, '**/tsconfig*.json', '**/tslint.json'],
