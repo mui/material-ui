@@ -28,6 +28,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [Joy] Miscellaneous fixes (#35044) @siriwatknp
 - [Joy] Add `Autocomplete` component (#34315) @siriwatknp
 - [Joy] Saturate a bit the gray palette (#35148) @danilo-leal
+- [Autocomplete][joy] Fix types (#35153) @siriwatknp
 
 ### Docs
 
