@@ -56,7 +56,7 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
       theme.vars.palette.background.surface,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
     ...scopedVariables,
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),

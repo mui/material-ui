@@ -225,7 +225,7 @@ const SelectListbox = styled(StyledList, {
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     outline: 'none',
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     zIndex: 1000,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,

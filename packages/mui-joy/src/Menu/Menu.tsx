@@ -46,7 +46,7 @@ const MenuRoot = styled(StyledList, {
       theme.vars.palette.background.popup, // for sticky List
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     overflow: 'auto',
     zIndex: 1300, // the same value as Material UI Menu. TODO: revisit the appropriate value later.
     ...(!variantStyle?.backgroundColor && {

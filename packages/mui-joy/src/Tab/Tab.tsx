@@ -42,7 +42,7 @@ const TabRoot = styled(StyledListItemButton, {
     justifyContent: 'center',
     flexGrow: 1,
     ...(ownerState.selected && {
-      boxShadow: theme.vars.shadow.sm,
+      boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,

@@ -333,7 +333,7 @@ const SliderValueLabel = styled('span', {
     'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(0)',
   position: 'absolute',
   backgroundColor: theme.vars.palette.background.tooltip,
-  boxShadow: theme.vars.shadow.sm,
+  boxShadow: theme.shadow.sm,
   borderRadius: theme.vars.radius.xs,
   color: '#fff',
   '&::before': {

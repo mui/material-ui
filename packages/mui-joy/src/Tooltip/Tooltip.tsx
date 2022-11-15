@@ -71,7 +71,7 @@ const TooltipRoot = styled('div', {
     zIndex: 1500,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.shadow.sm,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
     lineHeight: theme.vars.lineHeight.sm,
