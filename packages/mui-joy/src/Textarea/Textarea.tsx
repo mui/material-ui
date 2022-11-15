@@ -301,7 +301,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: TextareaEndDecorator,
     externalForwardedProps,
     ownerState,

@@ -325,7 +325,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: InputEndDecorator,
     externalForwardedProps,
     ownerState,

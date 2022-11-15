@@ -309,7 +309,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     additionalProps: {
       'aria-hidden': true, // hide the decorator from assistive technology
     },
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: SwitchEndDecorator,
     externalForwardedProps,
     ownerState,
