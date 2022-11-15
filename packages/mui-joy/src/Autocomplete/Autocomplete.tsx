@@ -45,6 +45,7 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
+import { useColorInversion } from '../styles/ColorInversion';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
@@ -344,10 +345,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
 
+  const { getColor } = useColorInversion(variant);
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -416,7 +418,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             key={index}
             size={size}
             variant="soft"
-            color="neutral"
+            color={color === 'context' ? undefined : 'neutral'}
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
           >
             {getOptionLabel(option)}

@@ -10,7 +10,7 @@ import {
   UseAutocompleteProps,
 } from '@mui/base/AutocompleteUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type AutocompleteSlot = keyof ComponentsProps;
 
@@ -351,7 +351,7 @@ export interface AutocompleteOwnerState<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo> {
+> extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused: boolean;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;

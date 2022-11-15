@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
+import { useColorInversion } from '../styles/ColorInversion';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -135,6 +136,11 @@ export default function useSlot<
   const finalOwnerState = getSlotOwnerState
     ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
     : ownerState;
+
+  // @ts-ignore internal logic
+  const { getColor } = useColorInversion(finalOwnerState.variant);
+  // @ts-ignore internal logic
+  finalOwnerState.color = getColor(mergedProps.color, finalOwnerState.color);
 
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
