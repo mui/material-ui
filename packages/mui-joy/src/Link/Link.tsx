@@ -245,7 +245,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.startDecorator,
+    className: classes.endDecorator,
     elementType: EndDecorator,
     externalForwardedProps,
     ownerState,

@@ -36,13 +36,7 @@ describe('<Link />', () => {
         startDecorator: { expectedClassName: classes.startDecorator },
         endDecorator: { expectedClassName: classes.endDecorator },
       },
-      skip: [
-        'classesRoot',
-        'componentsProp',
-        'themeDefaultProps',
-        'propsSpread',
-        'themeStyleOverrides',
-      ],
+      skip: ['classesRoot', 'componentsProp'],
     }),
   );
 
