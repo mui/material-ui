@@ -46,6 +46,7 @@ const adBodyInlineStyles = (theme) => {
     ...baseline,
     root: {
       display: 'block',
+      paddingTop: 8,
     },
     imgWrapper: {
       display: 'none',

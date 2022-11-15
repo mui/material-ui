@@ -6,7 +6,9 @@ const ownerState = {
   checked: true,
 };
 
-const CustomComponent = () => null;
+function CustomComponent() {
+  return null;
+}
 
 describe('appendOwnerState', () => {
   describe('when a DOM element is provided as elementType', () => {
