@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/joy/className';
 import Box from '@mui/joy/Box';
 
@@ -65,4 +65,224 @@ describe('Joy <Box />', () => {
       expect(container.firstChild).to.have.class('CompanyBox-root');
     });
   });
+
+  describe('styleFunctionSx', () => {
+    const theme = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            primary: {
+              500: 'rgb(0, 0, 255)',
+            },
+          },
+        },
+      },
+      radius: {
+        md: '77px',
+      },
+      shadow: {
+        md: "rgb(0, 0, 0) 0px 0px 10px 0px",
+      }
+    });
+
+    it('color', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{color: 'primary.500'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+      });
+    });
+
+    it('bgcolor', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{bgcolor: 'primary.500'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+    });
+
+    it('backgroundColor', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{backgroundColor: 'primary.500'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
+    });
+  
+    it('borderRadius', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{borderRadius: 'md'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        borderTopLeftRadius: '77px',
+        borderTopRightRadius: '77px',
+        borderBottomLeftRadius: '77px',
+        borderBottomRightRadius: '77px',
+      });
+    });
+  
+    it('boxShadow', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{boxShadow: 'md'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        boxShadow: "rgb(0, 0, 0) 0px 0px 10px 0px",
+      });
+    });
+
+    it('fontSize', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{fontSize: 'md'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        fontSize: '16px',
+      });
+    });
+  
+    it('fontWeight', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{fontWeight: 'md'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        fontWeight: "500",
+      });
+    });
+
+    it('letterSpacing', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{letterSpacing: 'md'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        letterSpacing: "1.328px",
+      });
+    });
+
+    it('lineHeight', () => {
+      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+      if (isJSDOM) {
+        this.skip();
+      }
+  
+      const { container } = render(
+        <CssVarsProvider
+          theme={theme}
+        >
+          <Box sx={{lineHeight: 'md'}} />
+        </CssVarsProvider>,
+      );
+  
+      expect(container.firstChild).toHaveComputedStyle({
+        lineHeight: "24px",
+      });
+    });
+  
+    // it('should handle reponsive styles', () => {
+    //   expect(
+    //     styleFunctionSx({ theme, sx: { fontSize: { xs: 'sm', md: 'md', xl: 'xl' } } }),
+    //   ).to.deep.equal({
+    //     '@media (min-width:0px)': {
+    //       fontSize: 'var(--fontSize-sm)',
+    //     },
+    //     '@media (min-width:900px)': {
+    //       fontSize: 'var(--fontSize-md)',
+    //     },
+    //     '@media (min-width:1536px)': {
+    //       fontSize: 'var(--fontSize-xl)',
+    //     },
+    //   });
+    // });
+  });
+  
 });

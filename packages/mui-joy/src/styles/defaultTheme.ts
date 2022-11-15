@@ -3,7 +3,6 @@ import extendTheme from './extendTheme';
 import type { CssVarsThemeOptions, ColorSystemOptions } from './extendTheme';
 import type { Theme, RuntimeColorSystem } from './types';
 import { createVariant, createSoftInversion, createSolidInversion } from './variantUtils';
-import sxConfig from './sxConfig';
 
 export const getThemeWithVars = (
   themeInput?: Omit<CssVarsThemeOptions, 'colorSchemes'> & ColorSystemOptions,

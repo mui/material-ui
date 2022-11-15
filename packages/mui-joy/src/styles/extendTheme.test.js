@@ -23,6 +23,7 @@ describe('extendTheme', () => {
         'colorInversionConfig',
         'variants',
         'cssVarPrefix',
+        'sxConfig',
       ]).to.includes(field);
     });
   });
