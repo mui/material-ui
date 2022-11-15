@@ -628,7 +628,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   theme.sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.sxConfig,
-  }
+  };
 
   return theme;
 }
