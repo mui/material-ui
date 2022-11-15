@@ -76,6 +76,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     children,
     inset = 'context',
     orientation = row ? 'vertical' : 'horizontal',
+    role = 'separator',
     ...other
   } = props;
 
@@ -92,6 +93,8 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     additionalProps: {
       orientation,
       ...(inset === 'context' && { inset }),
+      role,
+      ...(row && role === 'separator' && { 'aria-orientation': orientation }),
     },
     ref,
     className: clsx(classes.root, className),
