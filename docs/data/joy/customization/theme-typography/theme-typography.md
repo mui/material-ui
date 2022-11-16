@@ -2,28 +2,28 @@
 
 <p class="description">Learn about the typography system and how to customize it.</p>
 
-Joy UI ships a typography system to the theme to help you create consistent texts across your application. You are able to customize the default system or start from scratch depending on your need.
+Joy UI includes a typography system within the theme to help you create consistent text across your application. You can customize the default system or start from scratch depending on your needs.
 
 ## Default system
 
-It consists of 13 built-in levels that are comprehensive for building a web application.
+The default system consists of 13 built-in levels:
 
-- The `body1` level is the **baseline** typography for the application (used as a default configuration in [`Typography`](/joy-ui/react-typography/) and [`CssBaseline`](/joy-ui/react-css-baseline/) components).
-- The `body2` to `body5` levels can be used for secondary and tertiary information.
+- `body1` - the baseline typography for the application, used as the default configuration in the [Typography](/joy-ui/react-typography/) and [CssBaseline](/joy-ui/react-css-baseline/) components.
+- `body2` through `body5` - can be used for secondary and tertiary information.
 - The `h1` to `h6` levels follow the semantic HTML headings.
 - The `display1` and `display2` usually appear as taglines for marketing and landing pages.
 
 {{"demo": "DefaultTypographySystem.js"}}
 
 :::success
-**Gotcha**: The [`CssBaseline`](/joy-ui/react-css-baseline/), [`ScopedCssBaseline`](/joy-ui/react-css-baseline/#scoping-on-children) and [`Typography`](/joy-ui/react-typography/) are the only components that consume the theme typography directly.
+[CSS Baseline](/joy-ui/react-css-baseline/), [Scoped CSS Baseline](/joy-ui/react-css-baseline/#scoping-on-children), and [Typography](/joy-ui/react-typography/) are the only components that consume the theme typography directly.
 
 This ensures that you can customize or even remove the default typography system without affecting other components.
 :::
 
 ### Customizing the default system
 
-Provide the key and a CSS object to `theme.typography` to override the default style.
+To customize a default level, provide its name as a key and an object containing CSS rules as a value to `theme.typography`.
 
 The example below illustrates the customization of the `display1` level:
 
@@ -31,7 +31,7 @@ The example below illustrates the customization of the `display1` level:
 
 ### Removing the default system
 
-Use `undefined` as a value to the levels that you want to remove:
+Use `undefined` as a value to remove any unneeded levels:
 
 ```js
 const customTheme = extendTheme({
@@ -44,7 +44,7 @@ const customTheme = extendTheme({
 });
 ```
 
-For **TypeScript**, you need to augment the theme structure to exclude the default levels:
+For TypeScript, you must augment the theme structure to exclude the default levels:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -60,11 +60,12 @@ declare module '@mui/joy/styles' {
 
 ## Adding more levels
 
-Provide the new level as the key and a CSS object value to the `theme.typography`.
+You can define a new level as a key-value pair in `theme.typography`, where the key is the name of the level and the value is an object containing CSS rules.
+The demo below shows how to add a new level called `kbd`:
 
 {{"demo": "MoreTypographyLevel.js", "bg": true}}
 
-For **TypeScript**, you need to augment the theme structure to include the new level:
+For TypeScript, you must augment the theme structure to include the new level:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -79,14 +80,14 @@ declare module '@mui/joy/styles' {
 
 There are several ways that you can use the theme typography in your application:
 
-- [Typography](/joy-ui/react-typography/) component: use the `level` prop to change to between theme typography levels.
+- [Typography](/joy-ui/react-typography/) component: use the `level` prop to change between theme typography levels:
 
   ```jsx
   // use the `theme.typography.body2` styles
   <Typography level="body2">Secondary info</Typography>
   ```
 
-- [CssBaseline](/joy-ui/react-css-baseline/) component: by default, it applies the `body1` level to the global stylesheet.
+- [CSS Baseline](/joy-ui/react-css-baseline/) component: by default, it applies the `body1` level to the global stylesheet:
 
   ```jsx
   <CssBaseline />
@@ -95,14 +96,14 @@ There are several ways that you can use the theme typography in your application
   <p>Hello World</p>
   ```
 
-- [`sx`](/joy-ui/customization/approaches/#sx-prop) prop: use `typography: $level` to get the specific theme typography level.
+- [`sx`](/joy-ui/customization/approaches/#sx-prop) prop: use `typography: $level` to get the specific theme typography level:
 
   ```jsx
-  // use the `theme.typography.body2` styles
+  // to apply the `theme.typography.body2` styles:
   <Box sx={{ typography: 'body2' }}>Small text</Box>
   ```
 
-- [`styled`](/joy-ui/customization/approaches/#reusable-component): create a custom component and apply the style from `theme.typography.*` directly.
+- [`styled`](/joy-ui/customization/approaches/#reusable-component): create a custom component and apply the style from `theme.typography.*` directly:
 
   ```jsx
   import { styled } from '@mui/joy/styles';
@@ -118,7 +119,7 @@ There are several ways that you can use the theme typography in your application
 
 ## Common examples
 
-Here is a collection of well-known typography systems that you can get-started with Joy UI.
+Here is a collection of well-known typography systems that you can use with Joy UI.
 
 ### Fluent (Microsoft)
 
@@ -132,7 +133,7 @@ Here is a collection of well-known typography systems that you can get-started w
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Human interface guidelines (Apple)
+### Human Interface Guidelines (Apple)
 
 - Design resource: [Sketch library](https://developer.apple.com/design/resources/)
 - Font: [San Francisco (SF)](https://developer.apple.com/fonts/)
