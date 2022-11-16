@@ -77,7 +77,9 @@ describe('<StepContent />', () => {
     });
 
     it('should use custom TransitionComponent', () => {
-      const TransitionComponent = () => <div data-testid="custom-transition" />;
+      function TransitionComponent() {
+        return <div data-testid="custom-transition" />;
+      }
 
       const { container, getByTestId } = render(
         <Stepper orientation="vertical">

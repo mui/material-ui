@@ -32,7 +32,8 @@ import {
 import { extendTheme as extendJoyTheme } from '@mui/joy/styles';
 
 const joyTheme = extendJoyTheme({
-  // This is required to point to `var(--mui-*)` because we are using `CssVarsProvider` from Material UI.
+  // This is required to point to `var(--mui-*)` because we are using
+  // `CssVarsProvider` from Material UI.
   cssVarPrefix: 'mui',
   colorSchemes: {
     light: {
@@ -79,8 +80,9 @@ const joyTheme = extendJoyTheme({
   },
 });
 
-// Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)` because
-//       some of the values in the Joy UI theme refers to CSS variables abd not raw colors.
+// Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)`
+// because some of the values in the Joy UI theme refers to CSS variables and
+// not raw colors.
 const muiTheme = extendMuiTheme();
 
 // You can use your own `deepmerge` function.
@@ -100,7 +102,7 @@ export default function App() {
 
 Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-eph5gi?fontsize=12&module=%2Fdemo.tsx&moduleview=1&theme=dark)
+[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-vvvv59?file=/demo.tsx)
 
 ## Case B: Material UI in a Joy UI project
 
@@ -117,7 +119,8 @@ import {
 } from '@mui/joy/styles';
 
 const muiTheme = extendMuiTheme({
-  // This is required to point to `var(--joy-*)` because we are using `CssVarsProvider` from Joy UI.
+  // This is required to point to `var(--joy-*)` because we are using
+  // `CssVarsProvider` from Joy UI.
   cssVarPrefix: 'joy',
   colorSchemes: {
     light: {
@@ -200,7 +203,7 @@ export default function App() {
 
 Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-cy4nj7?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark)
+[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-k86j2j?file=/demo.tsx)
 
 ## TypeScript setup
 
