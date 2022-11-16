@@ -87,6 +87,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const more = {};
   let newComponent;
   let hasTitleAccess = titleAccess !== undefined;
+  let mergedChildren;
 
   if (!inheritViewBox) {
     more.viewBox = viewBox;
@@ -97,12 +98,15 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   if (typeof component === 'function') {
     const element = component({});
 
-    let mergedChildren = [].concat(element.props.children).concat(children);
+    if (inheritViewBox && element.props.viewBox) {
+      more.viewBox = element.props.viewBox;
+    }
+
+    mergedChildren = [].concat(element.props.children).concat(children);
     if (titleAccess) {
       mergedChildren.push(<title>{titleAccess}</title>);
       hasTitleAccess = true;
-    }
-    if (element.props.titleAccess && !titleAccess) {
+    } else if (element.props.titleAccess) {
       mergedChildren.push(<title>{element.props.titleAccess}</title>);
       hasTitleAccess = true;
     }
@@ -121,19 +125,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
         return child;
       });
 
-    // We have placed title, children and component children into mergedChildren array.
-    // If element has titleAccess prop, omit it to avoid creating duplicated title element.
     // element.type can be a object or string tag.
-    newComponent = (componentProps) =>
-      element.props.titleAccess ? (
-        <element.type {...componentProps} {...element.props} {...more} titleAccess={undefined}>
-          {mergedChildren}
-        </element.type>
-      ) : (
-        <element.type {...componentProps} {...element.props} {...more}>
-          {mergedChildren}
-        </element.type>
-      );
+    newComponent = element.type;
   }
 
   return (
@@ -149,8 +142,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       {...other}
       ownerState={ownerState}
     >
-      {children}
-      {hasTitleAccess ? <title>{titleAccess}</title> : null}
+      {mergedChildren || children}
+      {hasTitleAccess && !mergedChildren ? <title>{titleAccess}</title> : null}
     </SvgIconRoot>
   );
 });
