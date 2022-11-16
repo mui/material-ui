@@ -37,12 +37,10 @@ export default function GroupedAvatars() {
     ],
     total: 24,
   };
-
   const { avatars, surplus } = clampAvatars(dataFromTheServer.people, {
     max: 5,
     total: dataFromTheServer.total,
   });
-
   return (
     <AvatarGroup>
       {avatars.map((avatar) => (

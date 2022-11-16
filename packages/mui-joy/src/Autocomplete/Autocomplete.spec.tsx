@@ -16,3 +16,28 @@ const top100Films = [{ title: 'The Shawshank Redemption', year: 1994 }];
   multiple
   sx={{ width: '500px' }}
 />;
+
+<Autocomplete
+  options={top100Films}
+  componentsProps={{
+    clearIndicator: {
+      color: 'danger',
+      variant: 'outlined',
+      size: 'sm',
+    },
+    popupIndicator: (ownerState) => ({
+      color: ownerState.inputFocused ? 'danger' : 'neutral',
+      variant: 'outlined',
+      size: 'sm',
+    }),
+    listbox: {
+      color: 'danger',
+      variant: 'outlined',
+      size: 'sm',
+    },
+    option: {
+      color: 'danger',
+      variant: 'outlined',
+    },
+  }}
+/>;

@@ -32,7 +32,9 @@ describe('withTheme', () => {
   });
 
   it('hoist statics', () => {
-    const Test = () => null;
+    function Test() {
+      return null;
+    }
     Test.someStatic = 'will not get hoisted';
     const TestWithTheme = withTheme(Test);
     expect(TestWithTheme.someStatic).to.equal(Test.someStatic);

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
 import {
-  useAutocomplete,
   AutocompleteValue,
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -12,9 +11,6 @@ import {
 } from '@mui/base/AutocompleteUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
-import { IconButtonOwnerState } from '../IconButton/IconButtonProps';
-import { AutocompleteListboxProps } from '../AutocompleteListbox/AutocompleteListboxProps';
-import { AutocompleteOptionProps } from '../AutocompleteOption/AutocompleteOptionProps';
 
 export type AutocompleteSlot = keyof ComponentsProps;
 
@@ -51,18 +47,6 @@ export interface AutocompleteRenderGroupParams {
   children?: React.ReactNode;
 }
 
-export interface AutocompleteRenderInputParams {
-  placeholder?: string;
-  disabled: boolean;
-  size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-  ref: React.Ref<any>;
-  startDecorator: React.ReactNode;
-  endDecorator?: React.ReactNode;
-  componentsProps: {
-    input: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
-  };
-}
-
 interface ComponentsProps {
   root?: SlotComponentProps<
     'div',
@@ -91,27 +75,35 @@ interface ComponentsProps {
   >;
   clearIndicator?: SlotComponentProps<
     'button',
-    { component?: React.ElementType; sx?: SxProps } & Pick<
-      IconButtonOwnerState,
-      'color' | 'variant' | 'size'
-    >,
-    AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
+    {
+      component?: React.ElementType;
+      sx?: SxProps;
+      color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
+      variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
+    },
+    AutocompleteOwnerState<any, any, any, any>
   >;
   popupIndicator?: SlotComponentProps<
     'button',
-    { component?: React.ElementType; sx?: SxProps } & Pick<
-      IconButtonOwnerState,
-      'color' | 'variant' | 'size'
-    >,
-    AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
+    {
+      component?: React.ElementType;
+      sx?: SxProps;
+      color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
+      variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
+    },
+    AutocompleteOwnerState<any, any, any, any>
   >;
   listbox?: SlotComponentProps<
     'ul',
     {
       component?: React.ElementType;
       sx?: SxProps;
-    } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> &
-      Pick<AutocompleteListboxProps, 'color' | 'variant' | 'size'>,
+      color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
+      variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
+    } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'>,
     AutocompleteOwnerState<any, any, any, any>
   >;
   option?: SlotComponentProps<
@@ -119,7 +111,9 @@ interface ComponentsProps {
     {
       component?: React.ElementType;
       sx?: SxProps;
-    } & Pick<AutocompleteOptionProps, 'color' | 'variant'>,
+      color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
+      variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
+    },
     AutocompleteOwnerState<any, any, any, any>
   >;
   loading?: SlotComponentProps<

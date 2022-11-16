@@ -535,7 +535,7 @@ describe('<InputBase />', () => {
 
       it('should not warn when toggling between inputs', () => {
         // this will ensure that unregistering was called during unmount
-        const ToggleFormInputs = () => {
+        function ToggleFormInputs() {
           const [flag, setFlag] = React.useState(true);
 
           return (
@@ -552,7 +552,7 @@ describe('<InputBase />', () => {
               </button>
             </FormControl>
           );
-        };
+        }
 
         const { getByText } = render(<ToggleFormInputs />);
         expect(() => {

@@ -123,7 +123,7 @@ export function AdCarbonInline(props) {
       />
     </React.Fragment>
   ) : (
-    <div {...props} style={{ minHeight: 45 }} />
+    <div {...props} style={{ minHeight: 52 }} />
   );
 }
 
