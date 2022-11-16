@@ -3,12 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function ColorTextFields() {
-  const [value, setValue] = React.useState('');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
   return (
     <Box
       component="form"
@@ -18,28 +12,13 @@ export default function ColorTextFields() {
       noValidate
       autoComplete="off"
     >
-      <TextField
-        label="Outlined secondary"
-        color="secondary"
-        focused
-        value={value}
-        onChange={handleChange}
-      />
-      <TextField
-        label="Filled success"
-        variant="filled"
-        color="success"
-        focused
-        value={value}
-        onChange={handleChange}
-      />
+      <TextField label="Outlined secondary" color="secondary" focused />
+      <TextField label="Filled success" variant="filled" color="success" focused />
       <TextField
         label="Standard warning"
         variant="standard"
         color="warning"
         focused
-        value={value}
-        onChange={handleChange}
       />
     </Box>
   );

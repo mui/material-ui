@@ -2,22 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-interface State {
-  small: string;
-  normal: string;
-}
-
 export default function TextFieldSizes() {
-  const [values, setValue] = React.useState<State>({
-    small: 'Small',
-    normal: 'Normal',
-  });
-
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue({ ...values, [prop]: event.target.value });
-    };
-
   return (
     <Box
       component="form"
@@ -31,31 +16,23 @@ export default function TextFieldSizes() {
         <TextField
           label="Size"
           id="outlined-size-small"
-          value={values.small}
-          onChange={handleChange('small')}
+          defaultValue="Small"
           size="small"
         />
-        <TextField
-          label="Size"
-          id="outlined-size-normal"
-          value={values.normal}
-          onChange={handleChange('normal')}
-        />
+        <TextField label="Size" id="outlined-size-normal" defaultValue="Normal" />
       </div>
       <div>
         <TextField
           label="Size"
           id="filled-size-small"
-          value={values.small}
-          onChange={handleChange('small')}
+          defaultValue="Small"
           variant="filled"
           size="small"
         />
         <TextField
           label="Size"
           id="filled-size-normal"
-          value={values.normal}
-          onChange={handleChange('normal')}
+          defaultValue="Normal"
           variant="filled"
         />
       </div>
@@ -63,16 +40,14 @@ export default function TextFieldSizes() {
         <TextField
           label="Size"
           id="standard-size-small"
-          value={values.small}
-          onChange={handleChange('small')}
+          defaultValue="Small"
           size="small"
           variant="standard"
         />
         <TextField
           label="Size"
           id="standard-size-normal"
-          value={values.normal}
-          onChange={handleChange('normal')}
+          defaultValue="Normal"
           variant="standard"
         />
       </div>
