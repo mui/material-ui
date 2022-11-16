@@ -66,7 +66,7 @@ describe('Joy <Box />', () => {
     });
   });
 
-  describe('styleFunctionSx', () => {
+  describe('sx', () => {
     const theme = extendTheme({
       colorSchemes: {
         light: {
