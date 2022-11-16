@@ -26,6 +26,8 @@ You will find
 
 ### Side navigation
 
+{{"demo": "ColorInversionNavigation.js"}}
+
 ### Marketing section
 
 ## How it works
