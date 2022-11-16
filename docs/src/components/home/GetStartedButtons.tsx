@@ -8,12 +8,18 @@ import CheckRounded from '@mui/icons-material/CheckRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 
-export default function GetStartedButtons({
-  installation = 'npm install @mui/material @emotion/react @emotion/styled',
-  to = ROUTES.documentation,
-  ...props
-}: { installation?: string; to?: string } & BoxProps) {
+interface GetStartedButtonsProps extends BoxProps {
+  installation?: string;
+  to?: string;
+}
+
+export default function GetStartedButtons(props: GetStartedButtonsProps) {
   const [copied, setCopied] = React.useState(false);
+  const {
+    installation = 'npm install @mui/material @emotion/react @emotion/styled',
+    to = ROUTES.documentation,
+    ...other
+  } = props;
   const handleCopy = () => {
     setCopied(true);
     copy(installation).then(() => {
@@ -22,12 +28,14 @@ export default function GetStartedButtons({
   };
   return (
     <Box
-      {...props}
+      {...other}
       sx={{
         display: 'flex',
-        flexWrap: 'wrap',
-        '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
-        ...props.sx,
+        flexWrap: { xs: 'wrap', md: 'nowrap' },
+        '&& > *': {
+          minWidth: { xs: '100%', md: '0%' },
+        },
+        ...other.sx,
       }}
     >
       <Button
@@ -38,8 +46,9 @@ export default function GetStartedButtons({
         variant="contained"
         endIcon={<KeyboardArrowRightRounded />}
         sx={{
-          mr: { xs: 0, sm: 2 },
-          mb: { xs: 2, sm: 0 },
+          flexShrink: 0,
+          mr: { xs: 0, md: 2 },
+          mb: { xs: 2, md: 0 },
         }}
       >
         Get started

@@ -446,16 +446,18 @@ describe('<Modal />', () => {
     clock.withFakeTimers();
 
     it('should open and close', () => {
-      const TestCase = (props: { open: boolean }) => (
-        <React.Fragment>
-          <Modal open={props.open}>
-            <div>Hello</div>
-          </Modal>
-          <Modal open={props.open}>
-            <div>World</div>
-          </Modal>
-        </React.Fragment>
-      );
+      function TestCase(props: { open: boolean }) {
+        return (
+          <React.Fragment>
+            <Modal open={props.open}>
+              <div>Hello</div>
+            </Modal>
+            <Modal open={props.open}>
+              <div>World</div>
+            </Modal>
+          </React.Fragment>
+        );
+      }
 
       const { setProps } = render(<TestCase open={false} />);
 

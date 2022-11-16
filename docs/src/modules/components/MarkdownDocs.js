@@ -127,6 +127,7 @@ export default function MarkdownDocs(props) {
               demo={{
                 raw: demo.raw,
                 js: demoComponents[demo.module] ?? noComponent(demo.module),
+                scope: demos.scope,
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
                 tsx: demoComponents[demo.moduleTS] ?? null,

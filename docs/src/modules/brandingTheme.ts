@@ -224,7 +224,15 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     spacing: 10,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
-      fontFamilyCode: ['Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', 'monospace'].join(','),
+      // Match VS Code
+      // https://github.com/microsoft/vscode/blob/b38691f611d1ce3ef437c67a1b047c757b7b4e53/src/vs/editor/common/config/editorOptions.ts#L4578-L4580
+      // https://github.com/microsoft/vscode/blob/d950552131d7350a45dac8b59bf179469c36c2ac/src/vs/editor/standalone/browser/standalone-tokens.css#L10
+      fontFamilyCode: [
+        'Menlo', // macOS
+        'Consolas', // Windows
+        '"Droid Sans Mono"', // Linux
+        'monospace', // fallback
+      ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightSemiBold: 600,

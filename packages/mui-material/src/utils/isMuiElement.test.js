@@ -7,7 +7,9 @@ import { Input, ListItemSecondaryAction, SvgIcon } from '..';
 describe('utils/index.js', () => {
   describe('isMuiElement', () => {
     it('should match static muiName property', () => {
-      const Component = () => null;
+      function Component() {
+        return null;
+      }
       Component.muiName = 'Component';
 
       expect(isMuiElement(<Component />, ['Component'])).to.equal(true);

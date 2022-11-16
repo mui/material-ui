@@ -31,10 +31,10 @@ describe('Joy <Tabs />', () => {
   });
 
   it('prop: size, send the value through context', () => {
-    const Child = () => {
+    function Child() {
       const size = React.useContext(SizeTabsContext);
       return <div>{size}</div>;
-    };
+    }
     render(
       <Tabs size="sm">
         <Child />
