@@ -23,7 +23,9 @@ import Avatar from '@mui/joy/Avatar';
 ```
 
 By default, the Avatar component displays a generic Person Icon.
-Wrap it around a string to display plain text, or use the `src` prop to display an image.
+You can replace this icon with a text string or an image.
+
+{{"demo": "BasicAvatars.js"}}
 
 ### Text Avatar
 
