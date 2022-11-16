@@ -142,6 +142,31 @@ const DemoComponents = () => {
           </Button>
         ))}
       </Stack>
+      <h4>sx prop showcase</h4>
+      <Stack>
+        <Stack direction="row" gap={1} sx={{ py: 1 }}>
+          <Button
+            sx={{
+              color: 'onError',
+              bgcolor: 'error',
+              border: 1,
+              borderColor: 'tertiary',
+            }}
+          >
+            Button
+          </Button>
+          <Button
+            sx={{
+              color: 'error.100',
+              bgcolor: 'error.40',
+              border: 1,
+              borderColor: 'tertiary.40',
+            }}
+          >
+            Button
+          </Button>
+        </Stack>
+      </Stack>
       <h4>CSS vars playground</h4>
       <Stack>
         <Stack direction="row" gap={1} sx={{ py: 1 }}>

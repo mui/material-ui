@@ -1,8 +1,10 @@
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import {
   Interpolation,
   unstable_createStyleFunctionSx,
   compose,
-  style,
+  getPath,
+  getStyleValue as getValue,
   display,
   flexbox,
   grid,
@@ -14,12 +16,10 @@ import {
   borderRight,
   borderBottom,
   borderLeft,
-  borderColor,
   borderTopColor,
   borderRightColor,
   borderBottomColor,
   borderLeftColor,
-  getValue,
   createUnaryUnit,
   handleBreakpoints,
   responsivePropType,
@@ -27,21 +27,69 @@ import {
 } from '@mui/system';
 import { SxProps, Theme } from './Theme.types';
 
+interface PaletteStyleOptions {
+  prop: string;
+  cssProperty?: string | boolean;
+}
+
+function paletteStyle(options: PaletteStyleOptions = { prop: 'color' }) {
+  const { prop, cssProperty = options.prop } = options;
+
+  const fn = (props: Record<string, any>) => {
+    if (props[prop] == null) {
+      return null;
+    }
+
+    const propValue: any = props[prop];
+    const theme = props.theme;
+    const colorThemeMapping = getPath(theme, 'sys.color') || {};
+    const paletteThemeMapping = getPath(theme, 'ref.palette') || {};
+
+    const styleFromPropValue = (propValueFinal: any) => {
+      // check the value in the color mapping first
+      let value = getValue(colorThemeMapping, undefined, propValueFinal);
+
+      if (propValueFinal === value) {
+        // haven't found value in colors mapping, so we are checking in the palette mapping
+        value = getValue(paletteThemeMapping, undefined, propValueFinal);
+      }
+
+      if (cssProperty === false) {
+        return value;
+      }
+
+      return {
+        [cssProperty as string]: value,
+      };
+    };
+
+    return handleBreakpoints(props, propValue, styleFromPropValue);
+  };
+
+  fn.propTypes =
+    process.env.NODE_ENV !== 'production'
+      ? {
+          [prop]: responsivePropType,
+        }
+      : {};
+
+  fn.filterProps = [prop];
+
+  return fn;
+}
+
 // Palette values should reference the color tokens
-export const color = style({
+export const color = paletteStyle({
   prop: 'color',
-  themeKey: 'sys.color',
 });
 
-export const bgcolor = style({
+export const bgcolor = paletteStyle({
   prop: 'bgcolor',
   cssProperty: 'backgroundColor',
-  themeKey: 'sys.color',
 });
 
-export const backgroundColor = style({
+export const backgroundColor = paletteStyle({
   prop: 'backgroundColor',
-  themeKey: 'sys.color',
 });
 
 const palette = compose(color, bgcolor, backgroundColor);
@@ -62,6 +110,10 @@ export const borderRadius = (props: any) => {
 
 borderRadius.propTypes =
   process.env.NODE_ENV !== 'production' ? { borderRadius: responsivePropType } : {};
+
+const borderColor = paletteStyle({
+  prop: 'borderColor',
+});
 
 borderRadius.filterProps = ['borderRadius'];
 const borders = compose(
