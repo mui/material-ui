@@ -30,7 +30,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
     },
     shouldSkipGeneratingVar,
     excludeVariablesFromRoot,
-    additionalColorTokensPaths: ['sys.color', 'ref.palette'],
   });
 
 export { useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar, CssVarsProvider };
