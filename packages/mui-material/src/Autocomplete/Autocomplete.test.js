@@ -209,7 +209,7 @@ describe('<Autocomplete />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/34998
-    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', () => {
+    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
