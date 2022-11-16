@@ -230,7 +230,6 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
