@@ -16,19 +16,11 @@ The Avatar component can be used to display graphical information about a user i
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Usage
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Avatar from '@mui/joy/Avatar';
-
-export default function MyApp() {
-  return <Avatar />;
-}
 ```
-
-## Basics
 
 By default, the Avatar component displays a generic Person Icon.
 Wrap it around a string to display plain text, or use the `src` prop to display an image.

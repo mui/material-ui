@@ -22,19 +22,11 @@ Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the beha
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Usage
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Alert from '@mui/joy/Alert';
-
-export default function MyApp() {
-  return <Alert />;
-}
 ```
-
-## Basics
 
 The Alert component wraps around its content, and stretches to fill its enclosing container, as shown below:
 

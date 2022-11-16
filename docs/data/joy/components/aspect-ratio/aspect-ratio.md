@@ -18,19 +18,11 @@ As of Q4 2022, compatibility is at 90%.
 Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
 :::
 
-## Usage
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import AspectRatio from '@mui/joy/AspectRatio';
-
-export default function MyApp() {
-  return <AspectRatio />;
-}
 ```
-
-## Basics
 
 The Aspect Ratio component wraps around the content that it resizes.
 The element to be resized must be the first direct child.
