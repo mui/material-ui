@@ -53,12 +53,12 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface,
+      theme.vars.palette.background.popup, // for sticky List
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
     ...scopedVariables,
     boxShadow: theme.shadow.md,
     ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.popup,
     }),
     zIndex: 1200,
     overflow: 'auto',

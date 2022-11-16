@@ -173,6 +173,7 @@ export const createSoftInversion = (
     if (isVariantPalette(colorPalette)) {
       result[color] = {
         '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
+        [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
         [theme.getColorSchemeSelector('light')]: {
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
           [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
@@ -327,6 +328,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
       if (color === 'warning') {
         result.warning = {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
+          [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-700`),
           [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
@@ -397,6 +399,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
       } else {
         result[color] = {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
+          [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
           [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
           [cssVarPrefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
