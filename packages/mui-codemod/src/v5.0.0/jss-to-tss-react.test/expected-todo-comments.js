@@ -49,7 +49,7 @@ const useStyles3 = makeStyles()({
 });
 
 // TODO jss-to-tss-react codemod: '@global' is not supported by tss-react.
-// See https://mui.com/material-ui/customization/how-to-customize/#4-global-css-overrides for alternatives.
+// See https://mui.com/material-ui/customization/how-to-customize/#4-global-css-override for alternatives.
 const useGlobalStyles = makeStyles()(() => ({
   '@global': {
     '.sample': {

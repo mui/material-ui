@@ -75,7 +75,7 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
         );
         comments.push(
           j.commentLine(
-            ` See https://mui.com/material-ui/customization/how-to-customize/#4-global-css-overrides for alternatives.`,
+            ` See https://mui.com/material-ui/customization/how-to-customize/#4-global-css-override for alternatives.`,
             true,
           ),
         );

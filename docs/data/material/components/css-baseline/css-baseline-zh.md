@@ -110,4 +110,4 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 
 ## Customization 个性化
 
-Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-overrides) section of the documentation to change the output of these components.
+Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-override) section of the documentation to change the output of these components.

@@ -12,7 +12,7 @@ Material UI provides several different ways to customize a component's styles. Y
 1. [One-off customization](#1-one-off-customization)
 1. [Reusable component](#2-reusable-component)
 1. [Global theme overrides](#3-global-theme-overrides)
-1. [Global CSS overrides](#4-global-css-overrides)
+1. [Global CSS override](#4-global-css-override)
 
 ## 1. One-off customization
 
@@ -179,7 +179,7 @@ const StyledSlider = styled(Slider, {
 Material UI provides theme tools for managing style consistency between all components across your user interface.
 Visit the [Component theming customization](/material-ui/customization/theme-components/) page for more details.
 
-## 4. Global CSS overrides
+## 4. Global CSS override
 
 To add global baseline styles for some of the HTML elements, use the `GlobalStyles` component.
 Here is an example of how you can override styles for the `h1` elements:
