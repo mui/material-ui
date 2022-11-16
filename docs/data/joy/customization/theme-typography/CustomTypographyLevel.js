@@ -7,7 +7,7 @@ const customTheme = extendTheme({
     display1: {
       // `--joy` is the default CSS variable prefix.
       // If you have a custom prefix, you have to use it instead.
-      // For more details about the custom prefix, goto https://mui.com/joy-ui/customization/using-css-variables/#custom-prefix
+      // For more details about the custom prefix, go to https://mui.com/joy-ui/customization/using-css-variables/#custom-prefix
       background:
         'linear-gradient(-30deg, var(--joy-palette-primary-700), var(--joy-palette-primary-400))',
       // `Webkit*` properties must come later.
