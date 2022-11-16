@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { startTransition, StrictMode } from "react";
+import { startTransition } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { RemixBrowser } from 'remix';
 import { CacheProvider } from '@emotion/react';
