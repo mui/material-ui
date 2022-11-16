@@ -18,7 +18,11 @@ You will find
 
 ### Header
 
+{{"demo": "ColorInversionHeader.js"}}
+
 ### Footer
+
+{{"demo": "ColorInversionFooter.js"}}
 
 ### Side navigation
 
