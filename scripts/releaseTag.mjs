@@ -1,8 +1,9 @@
-const childProcess = require('child_process');
-const fse = require('fs-extra');
-const path = require('path');
-const { promisify } = require('util');
-const yargs = require('yargs');
+import childProcess from 'child_process';
+import fse from 'fs-extra';
+import path from 'path';
+import { promisify } from 'util';
+import yargs from 'yargs';
+import { getWorkspaceRoot } from './utils.mjs';
 
 /**
  * Only directly call it with side-effect free commands.
@@ -48,7 +49,7 @@ async function main(argv) {
 
   const exec = dryRun ? execDry : execActual;
 
-  const rootWorkspace = path.resolve(__dirname, '..');
+  const rootWorkspace = getWorkspaceRoot();
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));
 
   const tag = `v${rootWorkspaceManifest.version}`;
@@ -75,7 +76,7 @@ async function main(argv) {
   );
 }
 
-yargs
+yargs(process.argv.slice(2))
   .command({
     command: '$0',
     description: 'Tags the current release and pushes these changes to mui/material-ui.',

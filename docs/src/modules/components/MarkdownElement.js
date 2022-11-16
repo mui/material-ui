@@ -39,11 +39,12 @@ const Root = styled('div')(
       ...lightTheme.typography.body2,
       fontFamily: lightTheme.typography.fontFamilyCode,
       fontWeight: 400,
-      letterSpacing: '0.01071em',
       WebkitFontSmoothing: 'subpixel-antialiased',
+    },
+    '& pre > code': {
       // Reset for Safari
       // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
-      fontSize: '1em',
+      fontSize: 'inherit',
     },
     // inline code block
     '& :not(pre) > code': {
@@ -342,6 +343,8 @@ const Root = styled('div')(
     '& .MuiCode-root': {
       direction: 'ltr /*! @noflip */',
       position: 'relative',
+      // Font size reset to fix a bug with Safari 16.0 when letterSpacing is set
+      fontSize: 10,
       '&:hover': {
         '& .MuiCode-copy': {
           display: 'block',
@@ -408,6 +411,10 @@ const Root = styled('div')(
   }),
   {
     ':where(.mode-dark) &': {
+      '& :not(pre) > code': {
+        // inline code block
+        color: '#fff',
+      },
       '& strong': {
         color: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
       },
@@ -505,6 +512,7 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-primary-light, ${darkTheme.palette.primary.light})`,
       },
       '& kbd.key': {
+        color: '#fff',
         backgroundColor: `var(--muidocs-palette-primaryDark-900, ${darkTheme.palette.primaryDark[900]})`,
         border: `1px solid var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
         boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
