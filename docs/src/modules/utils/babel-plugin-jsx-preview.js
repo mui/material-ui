@@ -6,7 +6,7 @@ const pluginName = 'babel-plugin-jsx-preview';
  * @returns {import('@babel/core').PluginObj}
  */
 export default function babelPluginJsxPreview() {
-  const wrapperTypes = ['div', 'Box', 'Stack'];
+  const wrapperTypes = ['div', 'Box', 'Stack', 'LocalizationProvider'];
 
   /**
    * @type {import('@babel/core').types.JSXElement | import('@babel/core').types.JSXElement['children']}
