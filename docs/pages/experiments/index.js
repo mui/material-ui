@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Head from 'docs/src/modules/components/Head';
 import { capitalize } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -32,6 +33,9 @@ export default function Experiments({ experiments }) {
 
   return (
     <React.Fragment>
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       <CssBaseline />
       <Container>
         <Box
