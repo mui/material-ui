@@ -76,11 +76,11 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 ## Usage with Avatar Group
 
-Use the Avatar Group component to group multiple Avatars together.
-
 ```jsx
 import AvatarGroup from '@mui/joy/AvatarGroup';
 ```
+
+Use the Avatar Group component to group multiple Avatars together.
 
 {{"demo": "GroupedAvatars.js"}}
 
@@ -121,6 +121,10 @@ This approach is preferable because it preserves the overlapping offset between 
 {{"demo": "VerticalAvatarGroup.js"}}
 
 ## Usage with Badge
+
+```jsx
+import Badge from '@mui/joy/Badge';
+```
 
 Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually communicate more complex information about a user's status:
 
