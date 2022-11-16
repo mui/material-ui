@@ -94,4 +94,5 @@ defaultTheme.colorInversion = deepmerge(
   },
   defaultTheme.colorInversion,
 );
+
 export default defaultTheme;
