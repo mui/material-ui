@@ -1,4 +1,4 @@
-const importModuleRegexp = /^import [^'"]* from ['"]([^'"\n ][^'"\n ]*)['"]/gm;
+const importModuleRegexp = /^import [^'"]*(?: from )?['"]([^'"\n ][^'"\n ]*)['"]/gm;
 
 function extractImports(code) {
   return (code.match(importModuleRegexp) || []).map((x) => x.replace(importModuleRegexp, '$1'));
