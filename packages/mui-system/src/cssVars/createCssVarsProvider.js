@@ -123,7 +123,7 @@ export default function createCssVarsProvider(options) {
     } = cssVarsParser(restThemeProp, { prefix: cssVarPrefix, shouldSkipGeneratingVar });
 
     // 3. Start composing the theme object
-    let theme = {
+    const theme = {
       ...parsedTheme,
       components,
       colorSchemes,
