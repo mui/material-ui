@@ -30,4 +30,6 @@ You will find
 
 ### Marketing section
 
+{{"demo": "ColorInversionMarketing.js"}}
+
 ## How it works
