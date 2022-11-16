@@ -1,4 +1,3 @@
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import {
   Interpolation,
   unstable_createStyleFunctionSx,
