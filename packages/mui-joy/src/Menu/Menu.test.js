@@ -21,7 +21,7 @@ describe('Joy <Menu />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     slots: {
-      root: { expectedClassName: classes.root },
+      root: { expectedClassName: classes.root, testWithComponent: 'ul' },
     },
     skip: [
       'rootClass', // portal, can't determin the root

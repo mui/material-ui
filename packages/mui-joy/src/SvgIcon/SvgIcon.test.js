@@ -37,7 +37,7 @@ describe('<SvgIcon />', () => {
         </svg>
       ),
       slots: {
-        root: { expectedClassName: classes.root },
+        root: { expectedClassName: classes.root, testWithComponent: 'svg' },
       },
       skip: ['themeVariants', 'classesRoot', 'componentsProp'],
     }),

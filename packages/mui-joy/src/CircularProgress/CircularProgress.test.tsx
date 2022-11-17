@@ -19,8 +19,10 @@ describe('<CircularProgress />', () => {
     testCustomVariant: true,
     slots: {
       root: { expectedClassName: classes.root },
-      svg: { expectedClassName: classes.svg },
-      track: { expectedClassName: classes.track },
+      svg: { expectedClassName: classes.svg, testWithElement: 'svg' },
+      track: {
+        expectedClassName: classes.track,
+      },
       progress: { expectedClassName: classes.progress },
     },
     skip: ['classesRoot', 'componentsProp'],
