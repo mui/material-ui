@@ -456,7 +456,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           ),
           '--variant-solidBg': getCssVar(`palette-common-white`),
           '--variant-solidHoverColor': getCssVar(`palette-${color}-700`),
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-100`),
+          '--variant-solidHoverBg': getCssVar(`palette-common-white`),
           '--variant-solidActiveBg': getCssVar(`palette-${color}-200`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,
