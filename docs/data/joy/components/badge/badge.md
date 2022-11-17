@@ -21,21 +21,14 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+### Basics
 
 ```jsx
 import Badge from '@mui/joy/Badge';
-
-export default function MyApp() {
-  return <Badge />;
-}
 ```
 
-### Basic usage
-
-The default appearance of the `Badge` is a dot with a `primary` color.
+The default appearance of the Badge is a dot with a `primary` color.
 
 {{"demo": "SimpleBadge.js"}}
 
