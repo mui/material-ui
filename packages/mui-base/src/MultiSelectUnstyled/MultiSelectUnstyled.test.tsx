@@ -12,6 +12,7 @@ import {
   userEvent,
   act,
   fireEvent,
+  screen,
 } from 'test/utils';
 
 describe('MultiSelectUnstyled', () => {
@@ -311,6 +312,93 @@ describe('MultiSelectUnstyled', () => {
       );
 
       expect(getByRole('combobox')).to.have.text('One, Two');
+    });
+  });
+
+  // according to WAI-ARIA 1.2 (https://www.w3.org/TR/wai-aria-1.2/#combobox)
+  describe('a11y attributes', () => {
+    it('should have the `combobox` role', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(screen.queryByRole('combobox')).not.to.equal(null);
+    });
+
+    it('should have the aria-haspopup listbox', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
+    });
+
+    it('should have the aria-expanded attribute', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
+    });
+
+    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      expect(select).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should have the aria-controls attribute', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+
+      act(() => {
+        select.click();
+      });
+
+      const listbox = screen.getByRole('listbox');
+      const listboxId = listbox.getAttribute('id');
+      expect(listboxId).not.to.equal(null);
+
+      expect(select).to.have.attribute('aria-controls', listboxId!);
+    });
+
+    it('should have the aria-activedescendant attribute', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      const listbox = screen.getByRole('listbox');
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+      const options = screen.getAllByRole('option');
+      expect(listbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
     });
   });
 
