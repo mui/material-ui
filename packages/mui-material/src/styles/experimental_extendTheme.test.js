@@ -409,4 +409,20 @@ describe('experimental_extendTheme', () => {
       expect(theme.cssVarPrefix).to.equal('foo');
     });
   });
+
+  it('should not break if the value cannot be parsed by color manipulators', () => {
+    expect(() =>
+      extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              custom: {
+                main: 'green',
+              },
+            },
+          },
+        },
+      }),
+    ).not.to.throw();
+  });
 });

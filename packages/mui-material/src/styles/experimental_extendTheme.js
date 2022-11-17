@@ -27,7 +27,16 @@ function assignNode(obj, keys) {
 }
 
 function setColor(obj, key, defaultValue) {
-  obj[key] = obj[key] || defaultValue;
+  if (typeof defaultValue === 'function') {
+    try {
+      const token = defaultValue();
+      obj[key] = obj[key] || token;
+    } catch (error) {
+      // ignore error: this could happen if the color manipulators cannot parse the value.
+    }
+  } else {
+    obj[key] = obj[key] || defaultValue;
+  }
 }
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
@@ -108,30 +117,30 @@ export default function extendTheme(options = {}, ...args) {
       'Tooltip',
     ]);
     if (key === 'light') {
-      setColor(palette.Alert, 'errorColor', darken(palette.error.light, 0.6));
-      setColor(palette.Alert, 'infoColor', darken(palette.info.light, 0.6));
-      setColor(palette.Alert, 'successColor', darken(palette.success.light, 0.6));
-      setColor(palette.Alert, 'warningColor', darken(palette.warning.light, 0.6));
+      setColor(palette.Alert, 'errorColor', () => darken(palette.error.light, 0.6));
+      setColor(palette.Alert, 'infoColor', () => darken(palette.info.light, 0.6));
+      setColor(palette.Alert, 'successColor', () => darken(palette.success.light, 0.6));
+      setColor(palette.Alert, 'warningColor', () => darken(palette.warning.light, 0.6));
       setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-main'));
       setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-main'));
       setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-main'));
       setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-main'));
-      setColor(palette.Alert, 'errorFilledColor', lightPalette.getContrastText(palette.error.main));
-      setColor(palette.Alert, 'infoFilledColor', lightPalette.getContrastText(palette.info.main));
-      setColor(
-        palette.Alert,
-        'successFilledColor',
+      setColor(palette.Alert, 'errorFilledColor', () =>
+        lightPalette.getContrastText(palette.error.main),
+      );
+      setColor(palette.Alert, 'infoFilledColor', () =>
+        lightPalette.getContrastText(palette.info.main),
+      );
+      setColor(palette.Alert, 'successFilledColor', () =>
         lightPalette.getContrastText(palette.success.main),
       );
-      setColor(
-        palette.Alert,
-        'warningFilledColor',
+      setColor(palette.Alert, 'warningFilledColor', () =>
         lightPalette.getContrastText(palette.warning.main),
       );
-      setColor(palette.Alert, 'errorStandardBg', lighten(palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', lighten(palette.info.light, 0.9));
-      setColor(palette.Alert, 'successStandardBg', lighten(palette.success.light, 0.9));
-      setColor(palette.Alert, 'warningStandardBg', lighten(palette.warning.light, 0.9));
+      setColor(palette.Alert, 'errorStandardBg', () => lighten(palette.error.light, 0.9));
+      setColor(palette.Alert, 'infoStandardBg', () => lighten(palette.info.light, 0.9));
+      setColor(palette.Alert, 'successStandardBg', () => lighten(palette.success.light, 0.9));
+      setColor(palette.Alert, 'warningStandardBg', () => lighten(palette.warning.light, 0.9));
       setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-light'));
       setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-light'));
       setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-light'));
@@ -144,64 +153,71 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
-      setColor(palette.LinearProgress, 'primaryBg', lighten(palette.primary.main, 0.62));
-      setColor(palette.LinearProgress, 'secondaryBg', lighten(palette.secondary.main, 0.62));
-      setColor(palette.LinearProgress, 'errorBg', lighten(palette.error.main, 0.62));
-      setColor(palette.LinearProgress, 'infoBg', lighten(palette.info.main, 0.62));
-      setColor(palette.LinearProgress, 'successBg', lighten(palette.success.main, 0.62));
-      setColor(palette.LinearProgress, 'warningBg', lighten(palette.warning.main, 0.62));
+      setColor(palette.LinearProgress, 'primaryBg', () => lighten(palette.primary.main, 0.62));
+      setColor(palette.LinearProgress, 'secondaryBg', () => lighten(palette.secondary.main, 0.62));
+      setColor(palette.LinearProgress, 'errorBg', () => lighten(palette.error.main, 0.62));
+      setColor(palette.LinearProgress, 'infoBg', () => lighten(palette.info.main, 0.62));
+      setColor(palette.LinearProgress, 'successBg', () => lighten(palette.success.main, 0.62));
+      setColor(palette.LinearProgress, 'warningBg', () => lighten(palette.warning.main, 0.62));
       setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.11)`);
-      setColor(palette.Slider, 'primaryTrack', lighten(palette.primary.main, 0.62));
-      setColor(palette.Slider, 'secondaryTrack', lighten(palette.secondary.main, 0.62));
-      setColor(palette.Slider, 'errorTrack', lighten(palette.error.main, 0.62));
-      setColor(palette.Slider, 'infoTrack', lighten(palette.info.main, 0.62));
-      setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
-      setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
-      const snackbarContentBackground = emphasize(palette.background.default, 0.8);
+      setColor(palette.Slider, 'primaryTrack', () => lighten(palette.primary.main, 0.62));
+      setColor(palette.Slider, 'secondaryTrack', () => lighten(palette.secondary.main, 0.62));
+      setColor(palette.Slider, 'errorTrack', () => lighten(palette.error.main, 0.62));
+      setColor(palette.Slider, 'infoTrack', () => lighten(palette.info.main, 0.62));
+      setColor(palette.Slider, 'successTrack', () => lighten(palette.success.main, 0.62));
+      setColor(palette.Slider, 'warningTrack', () => lighten(palette.warning.main, 0.62));
+      let snackbarContentBackground;
+      try {
+        snackbarContentBackground = emphasize(palette.background.default, 0.8);
+      } catch (error) {
+        // ignore error
+      }
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
-      setColor(
-        palette.SnackbarContent,
-        'color',
+      setColor(palette.SnackbarContent, 'color', () =>
         lightPalette.getContrastText(snackbarContentBackground),
       );
-      setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
+      setColor(palette.SpeedDialAction, 'fabHoverBg', () =>
+        emphasize(palette.background.paper, 0.15),
+      );
       setColor(palette.StepConnector, 'border', getCssVar('palette-grey-400'));
       setColor(palette.StepContent, 'border', getCssVar('palette-grey-400'));
       setColor(palette.Switch, 'defaultColor', getCssVar('palette-common-white'));
       setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-100'));
-      setColor(palette.Switch, 'primaryDisabledColor', lighten(palette.primary.main, 0.62));
-      setColor(palette.Switch, 'secondaryDisabledColor', lighten(palette.secondary.main, 0.62));
-      setColor(palette.Switch, 'errorDisabledColor', lighten(palette.error.main, 0.62));
-      setColor(palette.Switch, 'infoDisabledColor', lighten(palette.info.main, 0.62));
-      setColor(palette.Switch, 'successDisabledColor', lighten(palette.success.main, 0.62));
-      setColor(palette.Switch, 'warningDisabledColor', lighten(palette.warning.main, 0.62));
-      setColor(palette.TableCell, 'border', lighten(alpha(palette.divider, 1), 0.88));
-      setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
+      setColor(palette.Switch, 'primaryDisabledColor', () => lighten(palette.primary.main, 0.62));
+      setColor(palette.Switch, 'secondaryDisabledColor', () =>
+        lighten(palette.secondary.main, 0.62),
+      );
+      setColor(palette.Switch, 'errorDisabledColor', () => lighten(palette.error.main, 0.62));
+      setColor(palette.Switch, 'infoDisabledColor', () => lighten(palette.info.main, 0.62));
+      setColor(palette.Switch, 'successDisabledColor', () => lighten(palette.success.main, 0.62));
+      setColor(palette.Switch, 'warningDisabledColor', () => lighten(palette.warning.main, 0.62));
+      setColor(palette.TableCell, 'border', () => lighten(alpha(palette.divider, 1), 0.88));
+      setColor(palette.Tooltip, 'bg', () => alpha(palette.grey[700], 0.92));
     } else {
-      setColor(palette.Alert, 'errorColor', lighten(palette.error.light, 0.6));
-      setColor(palette.Alert, 'infoColor', lighten(palette.info.light, 0.6));
-      setColor(palette.Alert, 'successColor', lighten(palette.success.light, 0.6));
-      setColor(palette.Alert, 'warningColor', lighten(palette.warning.light, 0.6));
+      setColor(palette.Alert, 'errorColor', () => lighten(palette.error.light, 0.6));
+      setColor(palette.Alert, 'infoColor', () => lighten(palette.info.light, 0.6));
+      setColor(palette.Alert, 'successColor', () => lighten(palette.success.light, 0.6));
+      setColor(palette.Alert, 'warningColor', () => lighten(palette.warning.light, 0.6));
       setColor(palette.Alert, 'errorFilledBg', getCssVar('palette-error-dark'));
       setColor(palette.Alert, 'infoFilledBg', getCssVar('palette-info-dark'));
       setColor(palette.Alert, 'successFilledBg', getCssVar('palette-success-dark'));
       setColor(palette.Alert, 'warningFilledBg', getCssVar('palette-warning-dark'));
-      setColor(palette.Alert, 'errorFilledColor', darkPalette.getContrastText(palette.error.dark));
-      setColor(palette.Alert, 'infoFilledColor', darkPalette.getContrastText(palette.info.dark));
-      setColor(
-        palette.Alert,
-        'successFilledColor',
+      setColor(palette.Alert, 'errorFilledColor', () =>
+        darkPalette.getContrastText(palette.error.dark),
+      );
+      setColor(palette.Alert, 'infoFilledColor', () =>
+        darkPalette.getContrastText(palette.info.dark),
+      );
+      setColor(palette.Alert, 'successFilledColor', () =>
         darkPalette.getContrastText(palette.success.dark),
       );
-      setColor(
-        palette.Alert,
-        'warningFilledColor',
+      setColor(palette.Alert, 'warningFilledColor', () =>
         darkPalette.getContrastText(palette.warning.dark),
       );
-      setColor(palette.Alert, 'errorStandardBg', darken(palette.error.light, 0.9));
-      setColor(palette.Alert, 'infoStandardBg', darken(palette.info.light, 0.9));
-      setColor(palette.Alert, 'successStandardBg', darken(palette.success.light, 0.9));
-      setColor(palette.Alert, 'warningStandardBg', darken(palette.warning.light, 0.9));
+      setColor(palette.Alert, 'errorStandardBg', () => darken(palette.error.light, 0.9));
+      setColor(palette.Alert, 'infoStandardBg', () => darken(palette.info.light, 0.9));
+      setColor(palette.Alert, 'successStandardBg', () => darken(palette.success.light, 0.9));
+      setColor(palette.Alert, 'warningStandardBg', () => darken(palette.warning.light, 0.9));
       setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
       setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
       setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
@@ -216,79 +232,88 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
-      setColor(palette.LinearProgress, 'primaryBg', darken(palette.primary.main, 0.5));
-      setColor(palette.LinearProgress, 'secondaryBg', darken(palette.secondary.main, 0.5));
-      setColor(palette.LinearProgress, 'errorBg', darken(palette.error.main, 0.5));
-      setColor(palette.LinearProgress, 'infoBg', darken(palette.info.main, 0.5));
-      setColor(palette.LinearProgress, 'successBg', darken(palette.success.main, 0.5));
-      setColor(palette.LinearProgress, 'warningBg', darken(palette.warning.main, 0.5));
+      setColor(palette.LinearProgress, 'primaryBg', () => darken(palette.primary.main, 0.5));
+      setColor(palette.LinearProgress, 'secondaryBg', () => darken(palette.secondary.main, 0.5));
+      setColor(palette.LinearProgress, 'errorBg', () => darken(palette.error.main, 0.5));
+      setColor(palette.LinearProgress, 'infoBg', () => darken(palette.info.main, 0.5));
+      setColor(palette.LinearProgress, 'successBg', () => darken(palette.success.main, 0.5));
+      setColor(palette.LinearProgress, 'warningBg', () => darken(palette.warning.main, 0.5));
       setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.13)`);
-      setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
-      setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
-      setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
-      setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
-      setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
-      setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
-      const snackbarContentBackground = emphasize(palette.background.default, 0.98);
+      setColor(palette.Slider, 'primaryTrack', () => darken(palette.primary.main, 0.5));
+      setColor(palette.Slider, 'secondaryTrack', () => darken(palette.secondary.main, 0.5));
+      setColor(palette.Slider, 'errorTrack', () => darken(palette.error.main, 0.5));
+      setColor(palette.Slider, 'infoTrack', () => darken(palette.info.main, 0.5));
+      setColor(palette.Slider, 'successTrack', () => darken(palette.success.main, 0.5));
+      setColor(palette.Slider, 'warningTrack', () => darken(palette.warning.main, 0.5));
+      let snackbarContentBackground;
+      try {
+        snackbarContentBackground = emphasize(palette.background.default, 0.98);
+      } catch (error) {
+        // ignore error
+      }
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
-      setColor(
-        palette.SnackbarContent,
-        'color',
+      setColor(palette.SnackbarContent, 'color', () =>
         darkPalette.getContrastText(snackbarContentBackground),
       );
-      setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
+      setColor(palette.SpeedDialAction, 'fabHoverBg', () =>
+        emphasize(palette.background.paper, 0.15),
+      );
       setColor(palette.StepConnector, 'border', getCssVar('palette-grey-600'));
       setColor(palette.StepContent, 'border', getCssVar('palette-grey-600'));
       setColor(palette.Switch, 'defaultColor', getCssVar('palette-grey-300'));
       setColor(palette.Switch, 'defaultDisabledColor', getCssVar('palette-grey-600'));
-      setColor(palette.Switch, 'primaryDisabledColor', darken(palette.primary.main, 0.55));
-      setColor(palette.Switch, 'secondaryDisabledColor', darken(palette.secondary.main, 0.55));
-      setColor(palette.Switch, 'errorDisabledColor', darken(palette.error.main, 0.55));
-      setColor(palette.Switch, 'infoDisabledColor', darken(palette.info.main, 0.55));
-      setColor(palette.Switch, 'successDisabledColor', darken(palette.success.main, 0.55));
-      setColor(palette.Switch, 'warningDisabledColor', darken(palette.warning.main, 0.55));
-      setColor(palette.TableCell, 'border', darken(alpha(palette.divider, 1), 0.68));
-      setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
+      setColor(palette.Switch, 'primaryDisabledColor', () => darken(palette.primary.main, 0.55));
+      setColor(palette.Switch, 'secondaryDisabledColor', () =>
+        darken(palette.secondary.main, 0.55),
+      );
+      setColor(palette.Switch, 'errorDisabledColor', () => darken(palette.error.main, 0.55));
+      setColor(palette.Switch, 'infoDisabledColor', () => darken(palette.info.main, 0.55));
+      setColor(palette.Switch, 'successDisabledColor', () => darken(palette.success.main, 0.55));
+      setColor(palette.Switch, 'warningDisabledColor', () => darken(palette.warning.main, 0.55));
+      setColor(palette.TableCell, 'border', () => darken(alpha(palette.divider, 1), 0.68));
+      setColor(palette.Tooltip, 'bg', () => alpha(palette.grey[700], 0.92));
     }
 
-    palette.background.defaultChannel = colorChannel(palette.background.default); // MUI X - DataGrid needs this token.
+    setColor(palette.background, 'defaultChannel', () => colorChannel(palette.background.default)); // MUI X - DataGrid needs this token.
 
-    palette.common.backgroundChannel = colorChannel(palette.common.background);
-    palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
+    setColor(palette.common, 'backgroundChannel', () => colorChannel(palette.common.background));
+    setColor(palette.common, 'onBackgroundChannel', () =>
+      colorChannel(palette.common.onBackground),
+    );
 
-    palette.dividerChannel = colorChannel(palette.divider);
+    setColor(palette, 'dividerChannel', () => colorChannel(palette.divider));
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
 
       // Color palettes: primary, secondary, error, info, success, and warning
       if (colors.main) {
-        palette[color].mainChannel = colorChannel(colors.main);
+        setColor(palette[color], 'mainChannel', () => colorChannel(colors.main));
       }
       if (colors.light) {
-        palette[color].lightChannel = colorChannel(colors.light);
+        setColor(palette[color], 'lightChannel', () => colorChannel(colors.light));
       }
       if (colors.dark) {
-        palette[color].darkChannel = colorChannel(colors.dark);
+        setColor(palette[color], 'darkChannel', () => colorChannel(colors.dark));
       }
       if (colors.contrastText) {
-        palette[color].contrastTextChannel = colorChannel(colors.contrastText);
+        setColor(palette[color], 'contrastTextChannel', () => colorChannel(colors.contrastText));
       }
 
       // Text colors: text.primary, text.secondary
       if (colors.primary) {
-        palette[color].primaryChannel = colorChannel(colors.primary);
+        setColor(palette[color], 'primaryChannel', () => colorChannel(colors.primary));
       }
       if (colors.secondary) {
-        palette[color].secondaryChannel = colorChannel(colors.secondary);
+        setColor(palette[color], 'secondaryChannel', () => colorChannel(colors.secondary));
       }
 
       // Action colors: action.active, action.selected
       if (colors.active) {
-        palette[color].activeChannel = colorChannel(colors.active);
+        setColor(palette[color], 'activeChannel', () => colorChannel(colors.active));
       }
       if (colors.selected) {
-        palette[color].selectedChannel = colorChannel(colors.selected);
+        setColor(palette[color], 'selectedChannel', () => colorChannel(colors.selected));
       }
     });
   });
