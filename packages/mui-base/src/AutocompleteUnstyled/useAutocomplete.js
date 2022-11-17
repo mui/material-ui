@@ -859,6 +859,16 @@ export default function useAutocomplete(props) {
             });
           }
           break;
+        case 'Delete':
+          if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
+            const index = focusedTag;
+            const newValue = value.slice();
+            newValue.splice(index, 1);
+            handleValue(event, newValue, 'removeOption', {
+              option: value[index],
+            });
+          }
+          break;
         default:
       }
     }

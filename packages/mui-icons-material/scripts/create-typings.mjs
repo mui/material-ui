@@ -3,9 +3,10 @@ import path from 'path';
 import chalk from 'chalk';
 import fse from 'fs-extra';
 import glob from 'fast-glob';
-import { fileURLToPath } from 'url';
+import url from 'url';
 
-const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+
 const SRC_DIR = path.resolve(currentDirectory, '../lib/esm');
 const TARGET_DIR = path.resolve(currentDirectory, '../build');
 

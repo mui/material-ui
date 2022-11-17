@@ -7,13 +7,15 @@ import ThemeProvider from './ThemeProvider';
 import ColorInversion, { useColorInversion } from './ColorInversion';
 import { createSolidInversion } from './variantUtils';
 
-const Parent = ({ children, invertedColors }) => (
-  <ColorInversion.Provider
-    value={invertedColors ? ['plain', 'outlined', 'soft', 'solid'] : undefined}
-  >
-    {children}
-  </ColorInversion.Provider>
-);
+const OVERRIDABLE_VARIANT = ['plain', 'outlined', 'soft', 'solid'];
+
+function Parent({ children, invertedColors }) {
+  return (
+    <ColorInversion.Provider value={invertedColors ? OVERRIDABLE_VARIANT : undefined}>
+      {children}
+    </ColorInversion.Provider>
+  );
+}
 
 const Child = (inProps) => {
   const props = useThemeProps({ name: 'Child', props: inProps });
