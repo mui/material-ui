@@ -5,6 +5,8 @@ import { useTheme, styled, alpha } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 // import Link from 'docs/src/modules/components/Link';
+import doitLight from '../../../public/static/sponsors/doit-light.svg';
+import doitDark from '../../../public/static/sponsors/doit-dark.svg';
 
 const Root = styled('div')(({ theme }) => ({
   margin: theme.spacing(1, 2),
@@ -101,7 +103,7 @@ export default function DiamondSponsors() {
         >
           <img
             height="26"
-            src={`/static/sponsors/doit-${theme.palette.mode}.svg`}
+            src={theme.palette.mode === 'dark' ? doitDark.src : doitLight.src}
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
             loading="lazy"
