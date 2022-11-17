@@ -108,7 +108,7 @@ const StyledAppBar = styled(AppBar, {
       },
     }),
     boxShadow: 'none',
-    backdropFilter: 'blur(20px)',
+    backdropFilter: 'blur(8px)',
     borderStyle: 'solid',
     borderColor:
       theme.palette.mode === 'dark'
