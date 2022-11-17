@@ -15,7 +15,7 @@ The default system consists of 13 built-in levels:
 
 {{"demo": "DefaultTypographySystem.js"}}
 
-:::success
+:::info
 [CSS Baseline](/joy-ui/react-css-baseline/), [Scoped CSS Baseline](/joy-ui/react-css-baseline/#scoping-on-children), and [Typography](/joy-ui/react-typography/) are the only components that consume the theme typography directly.
 
 This ensures that you can customize or even remove the default typography system without affecting other components.
