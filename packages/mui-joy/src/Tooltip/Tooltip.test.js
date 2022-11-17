@@ -11,7 +11,7 @@ describe('<Tooltip />', () => {
 
   describeConformance(
     <Tooltip title="Hello World" open arrow>
-      <Button>button</Button>
+      <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
       classes,
@@ -20,8 +20,8 @@ describe('<Tooltip />', () => {
       ThemeProvider,
       muiName: 'JoyTooltip',
       refInstanceof: window.HTMLButtonElement,
-      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
       testComponentPropWith: 'span',
+      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
       testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
       slots: {
