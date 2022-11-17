@@ -44,7 +44,8 @@ module.exports = {
         type: 'asset/source',
       },
       {
-        test: /\.(jpg|gif|png)$/,
+        test: /\.(jpg|gif|png|svg)$/,
+        // NOTE: This doesn't correspond to the Next.js image loader used by the docs:
         type: 'asset/inline',
       },
     ],
