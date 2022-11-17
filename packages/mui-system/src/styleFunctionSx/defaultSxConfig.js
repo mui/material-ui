@@ -1,7 +1,7 @@
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getValue } from '../style';
 import { handleBreakpoints } from '../breakpoints';
-import { paddingKeys, padding, marginKeys, margin } from '../spacing';
+import { padding, margin } from '../spacing';
 import { borderRadius, borderTransform } from '../borders';
 import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
@@ -75,23 +75,127 @@ const defaultSxConfig = {
   },
 
   // spacing
-  ...paddingKeys.reduce((styleDefinitions, paddingKey) => {
-    return {
-      ...styleDefinitions,
-      [paddingKey]: {
-        style: padding,
-      },
-    };
-  }, {}),
+  p: {
+    style: padding,
+  },
+  pt: {
+    style: padding,
+  },
+  pr: {
+    style: padding,
+  },
+  pb: {
+    style: padding,
+  },
+  pl: {
+    style: padding,
+  },
+  px: {
+    style: padding,
+  },
+  py: {
+    style: padding,
+  },
+  padding: {
+    style: padding,
+  },
+  paddingTop: {
+    style: padding,
+  },
+  paddingRight: {
+    style: padding,
+  },
+  paddingBottom: {
+    style: padding,
+  },
+  paddingLeft: {
+    style: padding,
+  },
+  paddingX: {
+    style: padding,
+  },
+  paddingY: {
+    style: padding,
+  },
+  paddingInline: {
+    style: padding,
+  },
+  paddingInlineStart: {
+    style: padding,
+  },
+  paddingInlineEnd: {
+    style: padding,
+  },
+  paddingBlock: {
+    style: padding,
+  },
+  paddingBlockStart: {
+    style: padding,
+  },
+  paddingBlockEnd: {
+    style: padding,
+  },
 
-  ...marginKeys.reduce((styleDefinitions, marginKey) => {
-    return {
-      ...styleDefinitions,
-      [marginKey]: {
-        style: margin,
-      },
-    };
-  }, {}),
+  m: {
+    style: margin,
+  },
+  mt: {
+    style: margin,
+  },
+  mr: {
+    style: margin,
+  },
+  mb: {
+    style: margin,
+  },
+  ml: {
+    style: margin,
+  },
+  mx: {
+    style: margin,
+  },
+  my: {
+    style: margin,
+  },
+  margin: {
+    style: margin,
+  },
+  marginTop: {
+    style: margin,
+  },
+  marginRight: {
+    style: margin,
+  },
+  marginBottom: {
+    style: margin,
+  },
+  marginLeft: {
+    style: margin,
+  },
+  marginX: {
+    style: margin,
+  },
+  marginY: {
+    style: margin,
+  },
+  marginInline: {
+    style: margin,
+  },
+  marginInlineStart: {
+    style: margin,
+  },
+  marginInlineEnd: {
+    style: margin,
+  },
+  marginBlock: {
+    style: margin,
+  },
+  marginBlockStart: {
+    style: margin,
+  },
+  marginBlockEnd: {
+    style: margin,
+  },
 
   // display
   displayPrint: {

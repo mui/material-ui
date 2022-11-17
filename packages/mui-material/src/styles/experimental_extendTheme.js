@@ -6,6 +6,8 @@ import {
   lighten,
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
+  unstable_defaultSxConfig as defaultSxConfig,
+  unstable_styleFunctionSx as styleFunctionSx,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import { getOverlayAlpha } from '../Paper/Paper';
@@ -294,6 +296,12 @@ export default function extendTheme(options = {}, ...args) {
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  theme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...input?.unstable_sxConfig,
+  };
+  theme.unstable_sx = (props) => styleFunctionSx({ sx: props, theme });
 
   return theme;
 }

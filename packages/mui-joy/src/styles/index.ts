@@ -1,6 +1,5 @@
 // reexports from system for module augmentation
 export type { BreakpointOverrides } from '@mui/system';
-export { experimental_sx } from '@mui/system';
 
 // Joy typings
 export type { ColorSchemeOverrides, SupportedColorScheme } from './types/colorScheme';

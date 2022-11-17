@@ -23,7 +23,8 @@ describe('extendTheme', () => {
         'colorInversionConfig',
         'variants',
         'cssVarPrefix',
-        'sxConfig',
+        'unstable_sxConfig',
+        'unstable_sx',
       ]).to.includes(field);
     });
   });
@@ -44,5 +45,10 @@ describe('extendTheme', () => {
     const theme = extendTheme({ cssVarPrefix: '' });
     expect(theme.cssVarPrefix).to.equal('');
     expect(theme.typography.body1.fontSize).to.equal('var(--fontSize-md)');
+  });
+
+  it('should support the unstable_sx helper', () => {
+    const theme = extendTheme();
+    expect(theme.unstable_sx({ color: 'primary.100' })).to.deep.equal({ color: '#DDF1FF' });
   });
 });

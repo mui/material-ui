@@ -6,6 +6,7 @@ import {
   createSpacing,
   unstable_createGetCssVar as systemCreateGetCssVar,
   colorChannel,
+  unstable_styleFunctionSx as styleFunctionSx,
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
@@ -14,7 +15,7 @@ import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales } from './types';
+import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createVariant } from './variantUtils';
@@ -61,7 +62,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   spacing?: SpacingOptions;
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
-  sxConfig?: object;
+  unstable_sxConfig?: object;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -625,10 +626,19 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     attachColorChannels(colorSystem.palette);
   });
 
-  theme.sxConfig = {
+  theme.unstable_sxConfig = {
     ...defaultSxConfig,
-    ...themeOptions?.sxConfig,
+    ...themeOptions?.unstable_sxConfig,
   };
+  theme.unstable_sx = (props: SxProps) =>
+    styleFunctionSx({
+      sx: props,
+      theme: {
+        ...theme,
+        // by default use light theme
+        ...theme.colorSchemes.light,
+      },
+    });
 
   return theme;
 }

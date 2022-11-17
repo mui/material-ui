@@ -1,4 +1,9 @@
-import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@mui/system';
+import {
+  ThemeOptions as SystemThemeOptions,
+  Theme as SystemTheme,
+  SxProps,
+  CSSObject,
+} from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
@@ -36,6 +41,7 @@ export {};
  */
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
+  unstable_sx: (props: SxProps<Theme>) => CSSObject;
 }
 
 /**

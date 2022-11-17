@@ -29,7 +29,8 @@ describe('defaultTheme', () => {
         'vars',
         'cssVarPrefix',
         'getColorSchemeSelector',
-        'sxConfig',
+        'unstable_sxConfig',
+        'unstable_sx',
       ]).to.includes(field);
     });
   });

@@ -7,7 +7,7 @@ const splitProps = (props) => {
     otherProps: {},
   };
 
-  const config = props?.theme?.sxConfig ?? defaultSxConfig;
+  const config = props?.theme?.unstable_sxConfig ?? defaultSxConfig;
 
   Object.keys(props).forEach((prop) => {
     if (config[prop]) {
