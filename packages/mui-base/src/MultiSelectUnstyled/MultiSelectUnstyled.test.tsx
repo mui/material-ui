@@ -53,13 +53,13 @@ describe('MultiSelectUnstyled', () => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
         const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.focus();
+          select.focus();
         });
-        fireEvent.keyDown(button, { key });
+        fireEvent.keyDown(select, { key });
 
-        expect(button).to.have.attribute('aria-expanded', 'true');
+        expect(select).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
         expect(document.activeElement).to.equal(getByRole('listbox'));
       });
@@ -68,13 +68,13 @@ describe('MultiSelectUnstyled', () => {
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
       const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
-      const button = getByRole('button');
+      const select = getByRole('combobox');
       act(() => {
-        button.focus();
+        select.focus();
       });
-      fireEvent.keyUp(button, { key: ' ' });
+      fireEvent.keyUp(select, { key: ' ' });
 
-      expect(button).to.have.attribute('aria-expanded', 'true');
+      expect(select).to.have.attribute('aria-expanded', 'true');
       expect(getByRole('listbox')).not.to.equal(null);
       expect(document.activeElement).to.equal(getByRole('listbox'));
     });
@@ -89,9 +89,9 @@ describe('MultiSelectUnstyled', () => {
             </MultiSelectUnstyled>,
           );
 
-          const button = getByRole('button');
+          const select = getByRole('combobox');
           act(() => {
-            button.click();
+            select.click();
           });
 
           const listbox = getByRole('listbox');
@@ -100,7 +100,7 @@ describe('MultiSelectUnstyled', () => {
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
           userEvent.keyPress(listbox, { key });
 
-          expect(button).to.have.text('2');
+          expect(select).to.have.text('2');
         }),
       );
     });
@@ -113,18 +113,18 @@ describe('MultiSelectUnstyled', () => {
         </MultiSelectUnstyled>,
       );
 
-      const button = getByRole('button');
+      const select = getByRole('combobox');
 
       act(() => {
-        button.click();
+        select.click();
       });
 
       const listbox = getByRole('listbox');
       userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
       userEvent.keyPress(listbox, { key: 'Escape' });
 
-      expect(button).to.have.attribute('aria-expanded', 'false');
-      expect(button).to.have.text('1');
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('1');
       expect(queryByRole('listbox')).to.equal(null);
     });
   });
@@ -243,9 +243,9 @@ describe('MultiSelectUnstyled', () => {
         </MultiSelectUnstyled>,
       );
 
-      const button = getByRole('button');
+      const select = getByRole('combobox');
       act(() => {
-        button.click();
+        select.click();
       });
 
       const optionTwo = getByText('Two');
@@ -299,7 +299,7 @@ describe('MultiSelectUnstyled', () => {
         </MultiSelectUnstyled>,
       );
 
-      expect(getByRole('button')).to.have.text('One (1), Two (2)');
+      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
     });
 
     it('renders the selected values as comma-separated list of labels if renderValue is not provided', () => {
@@ -310,7 +310,7 @@ describe('MultiSelectUnstyled', () => {
         </MultiSelectUnstyled>,
       );
 
-      expect(getByRole('button')).to.have.text('One, Two');
+      expect(getByRole('combobox')).to.have.text('One, Two');
     });
   });
 
@@ -365,10 +365,10 @@ describe('MultiSelectUnstyled', () => {
       </div>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
 
     act(() => {
-      button.click();
+      select.click();
     });
 
     const listbox = getByRole('listbox');
@@ -379,8 +379,8 @@ describe('MultiSelectUnstyled', () => {
       focusTarget.focus();
     });
 
-    expect(button).to.have.attribute('aria-expanded', 'false');
-    expect(button).to.have.text('1');
+    expect(select).to.have.attribute('aria-expanded', 'false');
+    expect(select).to.have.text('1');
   });
 
   it('focuses the listbox after it is opened', () => {
@@ -390,9 +390,9 @@ describe('MultiSelectUnstyled', () => {
       </MultiSelectUnstyled>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
     act(() => {
-      button.click();
+      select.click();
     });
 
     expect(document.activeElement).to.equal(getByRole('listbox'));
