@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Head from 'docs/src/modules/components/Head';
 import { capitalize } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -33,9 +32,6 @@ export default function Experiments({ experiments }) {
 
   return (
     <React.Fragment>
-      <Head>
-        <meta name="robots" content="noindex,nofollow" />
-      </Head>
       <CssBaseline />
       <Container>
         <Box
@@ -66,7 +62,7 @@ export default function Experiments({ experiments }) {
                 URLs start with <code>/experiments/*</code> are deployed only on the pull request.
               </Typography>
               <Typography component="li">
-                <code>/experiments/*</code> are not included in the index of Algolia nor Google.
+                <code>/experiments/*</code> are not included in docsearch indexing.
               </Typography>
             </ul>
           </Box>

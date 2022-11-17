@@ -7,9 +7,6 @@
 /favicon.ico
   Content-Type: image/x-icon
 
-/experiments/*
-  X-Robots-Tag: noindex
-
 /performance/*
   X-Robots-Tag: noindex
 
