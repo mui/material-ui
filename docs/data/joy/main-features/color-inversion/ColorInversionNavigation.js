@@ -1,8 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import Badge from '@mui/joy/Badge';
+import Badge, { badgeClasses } from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
+import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import CircularProgress from '@mui/joy/CircularProgress';
+import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -14,7 +18,6 @@ import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
-import Chip from '@mui/joy/Chip';
 import PieChart from '@mui/icons-material/PieChart';
 import Sms from '@mui/icons-material/Sms';
 import Person from '@mui/icons-material/Person';
@@ -105,6 +108,21 @@ export default function ColorInversionFooter() {
             </List>
           </ListItem>
         </List>
+        <Card variant="soft" row sx={{ mt: 1, mb: 2 }}>
+          <CircularProgress value={35} determinate thickness={2} size="lg">
+            35%
+          </CircularProgress>
+          <CardContent sx={{ ml: 2 }}>
+            <Typography fontSize="sm">Last update: 22/12/22</Typography>
+            <Chip
+              size="sm"
+              variant="outlined"
+              sx={{ alignSelf: 'flex-start', mt: 1 }}
+            >
+              Active
+            </Chip>
+          </CardContent>
+        </Card>
         <Divider sx={{ mt: 'auto', mb: 2, mx: -2 }} />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Avatar src="/static/images/avatar/2.jpg" size="lg" />
@@ -140,24 +158,24 @@ export default function ColorInversionFooter() {
           </IconButton>
         </Badge>
         <Badge
-          color="success"
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',
           }}
           badgeInset="14%"
+          sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
         >
           <IconButton>
             <Avatar src="/static/images/avatar/4.jpg" />
           </IconButton>
         </Badge>
         <Badge
-          color="success"
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',
           }}
           badgeInset="14%"
+          sx={{ [`& .${badgeClasses.badge}`]: { bgcolor: 'success.300' } }}
         >
           <IconButton>
             <Avatar src="/static/images/avatar/5.jpg" />
