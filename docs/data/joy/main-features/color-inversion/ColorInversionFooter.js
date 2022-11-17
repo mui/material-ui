@@ -21,13 +21,16 @@ import GitHub from '@mui/icons-material/GitHub';
 import Send from '@mui/icons-material/Send';
 
 export default function ColorInversionFooter() {
+  const [color, setColor] = React.useState('neutral');
   return (
     <Sheet
       variant="solid"
-      color="neutral"
+      color={color}
       invertedColors
       sx={{
-        bgcolor: 'neutral.800',
+        ...(color !== 'warning' && {
+          bgcolor: `${color}.800`,
+        }),
         flexGrow: 1,
         p: 2,
         mx: -3,
@@ -36,14 +39,25 @@ export default function ColorInversionFooter() {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <AspectRatio
-          ratio="1"
+        <IconButton
           variant="soft"
-          objectFit="none"
-          sx={{ minWidth: 32, '--AspectRatio-radius': '50%' }}
+          size="sm"
+          onClick={() => {
+            const colors = [
+              'primary',
+              'neutral',
+              'danger',
+              'info',
+              'success',
+              'warning',
+            ];
+            const nextColor = colors.indexOf(color);
+            setColor(colors[nextColor + 1] ?? colors[0]);
+          }}
+          sx={{ borderRadius: '50%' }}
         >
           <img alt="" src="/static/branding/pricing/block-green.svg" />
-        </AspectRatio>
+        </IconButton>
         <Divider orientation="vertical" />
         <IconButton variant="plain">
           <FacebookRoundedIcon />
