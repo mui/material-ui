@@ -40,6 +40,7 @@ describe('<SvgIcon />', () => {
         root: {
           expectedClassName: classes.root,
           testWithComponent: ({ className }) => <svg className={className} data-testid="custom" />,
+          testWithElement: null,
         },
       },
       skip: ['themeVariants', 'classesRoot', 'componentsProp'],

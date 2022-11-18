@@ -26,6 +26,7 @@ describe('Joy <Menu />', () => {
         testWithComponent: React.forwardRef(({ className }, ref) => (
           <ul ref={ref} className={className} data-testid="custom" />
         )),
+        testWithElement: null,
       },
     },
     skip: [
