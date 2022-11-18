@@ -494,7 +494,7 @@ function testSlotPropsProp(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testComponentsProp(element, getOptions) {
+function testMaterialUIComponentsProp(element, getOptions) {
   describe('prop components:', () => {
     const { components, slots, render } = getOptions();
 
@@ -642,7 +642,7 @@ function testComponentsProp(element, getOptions) {
   });
 }
 
-function testComponentsPropsProp(element, getOptions) {
+function testMaterialUIComponentsPropsProp(element, getOptions) {
   const { render, components } = getOptions();
 
   if (!render) {
@@ -1071,8 +1071,8 @@ function testThemeVariants(element, getOptions) {
 
 const fullSuite = {
   componentProp: testComponentProp,
-  componentsProp: testComponentsProp,
-  componentsPropsProp: testComponentsPropsProp,
+  componentsProp: testMaterialUIComponentsProp,
+  componentsPropsProp: testMaterialUIComponentsPropsProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
