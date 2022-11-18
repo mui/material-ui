@@ -481,9 +481,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     nameOrDescProps['aria-labelledby'] = open && !titleIsString ? id : null;
   }
 
+  // @ts-ignore internal logic.
+  const { slots: ignoreSlots, slotProps: ignoreSlotProps, ...otherWithoutSlots } = other;
   const childrenProps = {
     ...nameOrDescProps,
-    ...other,
+    ...otherWithoutSlots,
     ...children.props,
     className: clsx(className, children.props.className),
     onTouchStart: detectTouchStart,
@@ -570,7 +572,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      component: PopperUnstyled,
       id,
       popperRef,
       placement,
@@ -591,11 +592,14 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       open: childNode ? open : false,
       ...interactiveWrapperListeners,
     },
-    ref,
+    ref: null,
     className: classes.root,
-    elementType: TooltipRoot,
+    elementType: PopperUnstyled,
     externalForwardedProps: other,
     ownerState,
+    internalForwardedProps: {
+      component: TooltipRoot,
+    },
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {
