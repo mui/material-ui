@@ -51,6 +51,10 @@ The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AlertSizes.js"}}
 
+:::success
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.

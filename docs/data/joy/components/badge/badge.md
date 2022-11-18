@@ -22,7 +22,6 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-
 ## Basics
 
 ```jsx
@@ -32,8 +31,6 @@ import Badge from '@mui/joy/Badge';
 The default appearance of the Badge is a dot in the app's `primary` color that sits on the top-right corner of the element that it's attached to.
 
 {{"demo": "SimpleBadge.js"}}
-
-## Customization
 
 ### Content
 
@@ -58,9 +55,38 @@ Use the `max` prop to cap the content to a maximum numerical value.
 
 {{"demo": "BadgeMax.js"}}
 
+## Customization
+
+### Variants
+
+The Badge component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
+
+{{"demo": "BadgeVariants.js"}}
+
+:::success
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Sizes
+
+The Badge component comes in three sizes: `sm`, `md` (default), and `lg`:
+
+{{"demo": "BadgeSizes.js"}}
+
+:::success
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
+### Colors
+
+Every palette included in the theme is available via the `color` prop.
+
+{{"demo": "BadgeColors.js"}}
+
 ### Visibility
 
-Control the badge visibility using the `invisible` prop.
+Use the `invisible` prop to control the Badge's visibility.
 
 :::warning
 If [`showZero`](#showzero) and `invisible` are both applied at the same time, then the Badge will still be visible when `badgeContent={0}`.
@@ -79,13 +105,14 @@ Try clicking the arrows in the demo below to change the position of the Badge:
 ### Inset
 
 Use the `badgeInset` prop to fine-tune the position of the Badge relative to the element that it's attached to.
-This prop accepts a string composed of either one or two numbers expressed in units of `px`, `%`, `em`, or `rem`.
+This prop accepts a string composed of numbers expressed in units of `px`, `%`, `em`, or `rem`. (This syntax corresponds to the [inset CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/inset).)
 
-This unit-number defines the diagonal inset relative to the Badge's [`anchorOrigin`](#position)—for instance, the demo below pushes the Badge 14% closer to the center of its child element along both the horizontal and vertical axes:
+This string defines the inset relative to the Badge's [`anchorOrigin`](#position)—for instance, the demo below pushes the Badge 14% closer to the center of its child element (relative to the top-right corner) along both the horizontal and vertical axes:
 
 {{"demo": "BadgeInset.js"}}
 
-If you pass two unit-numbers to the `badgeInset` prop—for example`"50px 10px"`—the first number would apply to the vertical axis, and the second would apply horizontally.
+If you pass two unit-numbers to the `badgeInset` prop—for example`"50px 10px"`—the first number applies to the vertical axis, and the second applies horizontally.
+If you pass four unit-numbers to the prop—such as `"0 -10px 0 5px"`, they are applied clockwise starting from the top.
 
 ## Accessibility
 
