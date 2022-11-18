@@ -284,9 +284,8 @@ function createRender(context) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
-        escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
+      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${escaped ? code : escape(code, true)
+        }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
     };
 
     const markedOptions = {
@@ -414,7 +413,9 @@ function prepareMarkdown(config) {
         contents.push(`
 ## Unstyled
 
-The component also comes with an [unstyled version](${headers.unstyled}). It's ideal for doing heavy customizations and minimizing bundle size.
+:::success
+[MUI Base](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+:::
         `);
       }
 
@@ -422,17 +423,19 @@ The component also comes with an [unstyled version](${headers.unstyled}). It's i
         contents.push(`
 ## API
 
+See the document(s) below for a reference to all of the props and classes available to the components mentioned here.
+
 ${headers.components
-  .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
-    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-    return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
-      componentPkg,
-      component,
-    )})`;
-  })
-  .join('\n')}
+            .map((component) => {
+              const componentPkgMap = componentPackageMapping[headers.product];
+              const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
+              return `- [\`<${component} />\`](${resolveComponentApiUrl(
+                headers.product,
+                componentPkg,
+                component,
+              )})`;
+            })
+            .join('\n')}
   `);
       }
 
