@@ -16,10 +16,6 @@ It typically sits on or near an element and indicates the status of that element
 
 {{"demo": "BadgeUsage.js", "hideToolbar": true}}
 
-:::success
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
-:::
-
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
@@ -28,7 +24,8 @@ To learn how to add more sizes to the component, check out [Themed components—
 import Badge from '@mui/joy/Badge';
 ```
 
-The default appearance of the Badge is a dot in the app's `primary` color that sits on the top-right corner of the element that it's attached to.
+The Badge component wraps around the UI element that it's attached to.
+Its default appearance is a dot in the app's `primary` color that sits on the top-right corner of the element that it's attached to.
 
 {{"demo": "SimpleBadge.js"}}
 
@@ -117,6 +114,6 @@ If you pass four unit-numbers to the prop—such as `"0 -10px 0 5px"`, they are 
 ## Accessibility
 
 Screen readers may not provide users with enough information about a badge's contents.
-To make your badge accessible, you must provide a full description with `aria-label`, as shown in the demo below:
+To make your Badge accessible, you must provide a full description with `aria-label`, as shown in the demo below:
 
 {{"demo": "AccessibleBadges.js"}}
