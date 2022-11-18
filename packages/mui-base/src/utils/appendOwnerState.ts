@@ -38,11 +38,11 @@ export default function appendOwnerState<
   OtherProps extends Record<string, any>,
   OwnerState,
 >(
-  elementType: ElementType,
+  elementType: ElementType | undefined,
   otherProps: OtherProps,
   ownerState: OwnerState,
 ): AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState> {
-  if (isHostComponent(elementType)) {
+  if (elementType && isHostComponent(elementType)) {
     return otherProps as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
   }
 
