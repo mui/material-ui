@@ -104,7 +104,7 @@ Try clicking the arrows in the demo below to change the position of the Badge:
 Use the `badgeInset` prop to fine-tune the position of the Badge relative to the element that it's attached to.
 This prop accepts a string composed of numbers expressed in units of `px`, `%`, `em`, or `rem`. (This syntax corresponds to the [inset CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/inset).)
 
-This string defines the inset relative to the Badge's [`anchorOrigin`](#position)—for instance, the demo below pushes the Badge 14% closer to the center of its child element (relative to the top-right corner) along both the horizontal and vertical axes:
+This string defines the inset from the Badge's [`anchorOrigin`](#position)—for instance, the demo below pushes the Badge 14% closer to the center of its child element (relative to the top-right corner) along both the horizontal and vertical axes:
 
 {{"demo": "BadgeInset.js"}}
 
