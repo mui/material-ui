@@ -33,7 +33,11 @@ describe('<Tooltip />', () => {
       testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
       slots: {
-        root: { expectedClassName: classes.root, testWithComponent: TestPopper },
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: TestPopper,
+          testWithElement: null,
+        },
         arrow: { expectedClassName: classes.arrow },
       },
       skip: [
