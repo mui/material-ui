@@ -130,7 +130,7 @@ The following demo shows how to build a menu using hooks:
 
 {{"demo": "UseMenu.js"}}
 
-Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create a Unstyled Menu component that contains menu items built with the `useMenuItem` hook.
+Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create an Unstyled Menu component that contains menu items built with the `useMenuItem` hook.
 
 ## Customization
 
