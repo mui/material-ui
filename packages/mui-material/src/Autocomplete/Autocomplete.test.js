@@ -2378,14 +2378,10 @@ describe('<Autocomplete />', () => {
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseMove(firstOption);
 
-      // eslint-disable-next-line
-      console.log(React.version, handleHighlightChange.callCount); // will be removed after testing
-      // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      if (React.version.startsWith('18')) {
-        expect(handleHighlightChange.callCount).to.greaterThanOrEqual(4);
-      } else {
-        expect(handleHighlightChange.callCount).to.greaterThanOrEqual(3);
-      }
+      expect(handleHighlightChange.callCount).to.equal(
+        // FIXME: highlighted index implementation should be implemented using React not the DOM.
+        React.version.startsWith('18') ? 4 : 3,
+      );
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
