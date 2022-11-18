@@ -4,7 +4,7 @@ const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
-const muiAliases = require('../scripts/muiAliases');
+const getMuiAliases = require('../scripts/muiAliases');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -112,7 +112,7 @@ module.exports = withDocsInfra({
                   [
                     'babel-plugin-module-resolver',
                     {
-                      alias: muiAliases,
+                      alias: getMuiAliases('src'),
                     },
                   ],
                 ],
