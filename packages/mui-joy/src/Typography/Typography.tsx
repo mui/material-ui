@@ -37,7 +37,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),
@@ -49,7 +49,7 @@ const EndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),
@@ -89,11 +89,15 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
+  ...(ownerState.color && {
+    color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+  }),
   ...(ownerState.variant && {
     borderRadius: theme.vars.radius.xs,
-    paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+    paddingBlock: 'min(0.15em, 4px)',
+    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
     ...(!ownerState.nesting && {
-      marginInline: '-0.25em',
+      marginInline: '-0.375em',
     }),
     ...theme.variants[ownerState.variant]?.[ownerState.color!],
   }),
@@ -117,11 +121,9 @@ const defaultVariantMapping: Record<string, string> = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const {
-    color: colorThemeProp,
-    textColor,
-    ...themeProps
-  } = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const { color, textColor, ...themeProps } = useThemeProps<
+    typeof inProps & { component?: React.ElementType }
+  >({
     props: inProps,
     name: 'JoyTypography',
   });
@@ -140,12 +142,9 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     children,
     endDecorator,
     startDecorator,
-    variant = colorThemeProp ? 'plain' : undefined,
+    variant,
     ...other
   } = props;
-
-  const color = colorThemeProp || (variant ? 'neutral' : undefined);
-
   const level = nesting ? inProps.level || 'inherit' : levelProp;
 
   const component =
@@ -158,7 +157,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...props,
     level,
     component,
-    color,
+    color: variant ? color ?? 'neutral' : color,
     gutterBottom,
     noWrap,
     nesting,

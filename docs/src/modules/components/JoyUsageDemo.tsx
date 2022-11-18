@@ -13,7 +13,6 @@ import Radio, { radioClasses } from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Select from '@mui/joy/Select';
 import Sheet from '@mui/joy/Sheet';
-import { ColorPaletteProp } from '@mui/joy/styles';
 import Switch from '@mui/joy/Switch';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
@@ -436,63 +435,67 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     }
                     sx={{ flexWrap: 'wrap', gap: 1.5 }}
                   >
-                    {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((value) => {
-                      const checked = resolvedValue === value;
-                      return (
-                        <Sheet
-                          key={value}
-                          sx={{
-                            width: 28,
-                            height: 28,
-                            bgcolor: 'unset',
-                            textTransform: 'capitalize',
-                          }}
-                        >
-                          <Radio
+                    {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
+                      (value) => {
+                        const checked = resolvedValue === value;
+                        return (
+                          <Sheet
+                            key={value}
                             variant="solid"
-                            color={value as ColorPaletteProp}
-                            label={value}
-                            value={value}
-                            disableIcon
-                            overlay
+                            color={value}
                             sx={{
-                              [`& .${radioClasses.action}`]: { bgcolor: `${value}.500` },
-                              [`& .${radioClasses.label}`]: {
-                                fontSize: '10px',
-                                color: 'text.secondary',
-                                position: 'absolute',
-                                bottom: '-1rem',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                opacity: '0.01', // prevent double for touch device.
-                                transition: '0.2s',
-                              },
-                              [`&:hover, &.${radioClasses.focusVisible}, &.${radioClasses.checked}`]:
-                                {
-                                  [`& .${radioClasses.label}`]: {
-                                    opacity: 1,
-                                    bottom: '-1.25rem',
-                                  },
-                                },
+                              width: 28,
+                              height: 28,
+                              borderRadius: 'sm',
+                              textTransform: 'capitalize',
                             }}
-                          />
-                          {checked && (
-                            <Check
-                              fontSize="md"
+                          >
+                            <Radio
+                              variant="solid"
+                              color={value}
+                              label={value}
+                              value={value}
+                              disableIcon
+                              overlay
                               sx={{
-                                color: '#fff',
-                                zIndex: 1,
-                                position: 'absolute',
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                pointerEvents: 'none',
+                                // [`& .${radioClasses.action}`]: { bgcolor: `${value}.500` },
+                                [`& .${radioClasses.label}`]: {
+                                  fontSize: '10px',
+                                  color: 'text.secondary',
+                                  position: 'absolute',
+                                  bottom: '-1rem',
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  opacity: '0.01', // prevent double for touch device.
+                                  transition: '0.2s',
+                                },
+                                [`&:hover, &.${radioClasses.focusVisible}, &.${radioClasses.checked}`]:
+                                  {
+                                    [`& .${radioClasses.label}`]: {
+                                      opacity: 1,
+                                      bottom: '-1.25rem',
+                                    },
+                                  },
                               }}
                             />
-                          )}
-                        </Sheet>
-                      );
-                    })}
+                            {checked && (
+                              <Check
+                                fontSize="md"
+                                color="inherit"
+                                sx={{
+                                  zIndex: 1,
+                                  position: 'absolute',
+                                  top: '50%',
+                                  left: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  pointerEvents: 'none',
+                                }}
+                              />
+                            )}
+                          </Sheet>
+                        );
+                      },
+                    )}
                   </RadioGroup>
                 </FormControl>
               );
