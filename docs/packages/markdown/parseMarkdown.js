@@ -424,7 +424,7 @@ function prepareMarkdown(config) {
         contents.push(`
 ## API
 
-See the documentation below for a reference to all of the props and classes available to the components mentioned here.
+See the documentation below for a complete reference to all of the props and classes available to the components mentioned here.
 
 ${headers.components
   .map((component) => {
