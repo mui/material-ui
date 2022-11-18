@@ -216,7 +216,7 @@ jobs:
       - install_js
       - run:
           name: '`yarn prettier` changes committed?'
-          command: yarn prettier check-changed
+          command: yarn prettier --check
       - run:
           name: Generate PropTypes
           command: yarn proptypes
