@@ -117,3 +117,16 @@ Screen readers may not provide users with enough information about a badge's con
 To make your Badge accessible, you must provide a full description with `aria-label`, as shown in the demo below:
 
 {{"demo": "AccessibleBadges.js"}}
+
+## Anatomy
+
+The Badge component is composed of a root `<span>` that houses the element that the Badge is attached to, followed by a `<span>` to represent the Badge itself:
+
+```html
+<span class="JoyBadge-root">
+  <!-- the element the Badge is attached to -->
+  <span class="JoyBadge-badge">
+    <!-- Badge content -->
+  </span>
+</span>
+```
