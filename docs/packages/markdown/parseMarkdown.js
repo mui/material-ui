@@ -284,8 +284,9 @@ function createRender(context) {
         return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
-      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${escaped ? code : escape(code, true)
-        }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
+      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+        escaped ? code : escape(code, true)
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
     };
 
     const markedOptions = {
@@ -423,19 +424,19 @@ function prepareMarkdown(config) {
         contents.push(`
 ## API
 
-See the document(s) below for a reference to all of the props and classes available to the components mentioned here.
+See the documentation below for a reference to all of the props and classes available to the components mentioned here.
 
 ${headers.components
-            .map((component) => {
-              const componentPkgMap = componentPackageMapping[headers.product];
-              const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-              return `- [\`<${component} />\`](${resolveComponentApiUrl(
-                headers.product,
-                componentPkg,
-                component,
-              )})`;
-            })
-            .join('\n')}
+  .map((component) => {
+    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
+    return `- [\`<${component} />\`](${resolveComponentApiUrl(
+      headers.product,
+      componentPkg,
+      component,
+    )})`;
+  })
+  .join('\n')}
   `);
       }
 
