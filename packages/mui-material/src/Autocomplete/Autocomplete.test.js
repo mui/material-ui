@@ -2407,7 +2407,9 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       const textbox = getByRole('combobox');
-
+      act(() => {
+        textbox.focus();
+      });
       fireEvent.mouseMove(firstOption);
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
