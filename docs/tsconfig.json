@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "types": ["react"],
-    "incremental": true
+    "incremental": true,
   },
   "exclude": ["node_modules"]
 }

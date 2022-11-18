@@ -13,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
-    "composite": true,
     "paths": {
       "@mui/base": ["./packages/mui-base/src"],
       "@mui/base/*": ["./packages/mui-base/src/*"],
@@ -56,13 +55,4 @@
     "types": ["node", "react", "react-is/next"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"],
-  "references": [
-    { "path": "../mui-base/tsconfig.build.json" },
-    { "path": "../mui-joy/tsconfig.build.json" },
-    { "path": "../mui-lab/tsconfig.build.json" },
-    { "path": "../mui-material/tsconfig.build.json" },
-    { "path": "../mui-material-next/tsconfig.build.json" },
-    { "path": "../mui-system/tsconfig.build.json" },
-    { "path": "../mui-utils/tsconfig.build.json" },
-  ]
 }
