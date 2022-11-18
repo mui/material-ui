@@ -20,9 +20,14 @@ if (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-depl
   DEPLOY_ENV = 'production';
 }
 
+if (process.env.CONTEXT === 'production' && process.env.HEAD === 'master') {
+  // For the Core team site, visit https://app.netlify.com/sites/material-ui/settings/deploys#branches for the config details.
+  DEPLOY_ENV = 'staging';
+}
+
 if (
-  process.env.HEAD === 'master' ||
-  (process.env.CONTEXT === 'branch-deploy' && process.env.HEAD === 'next')
+  process.env.CONTEXT === 'branch-deploy' &&
+  (process.env.HEAD === 'master' || process.env.HEAD === 'next')
 ) {
   DEPLOY_ENV = 'staging';
 }
