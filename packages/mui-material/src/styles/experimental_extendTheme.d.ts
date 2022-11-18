@@ -240,6 +240,7 @@ export interface CssVarsPalette {
   success: PaletteColorChannel;
   warning: PaletteColorChannel;
   text: PaletteTextChannel;
+  background: PaletteBackgroundChannel;
   dividerChannel: string;
   action: PaletteActionChannel;
   Alert: PaletteAlert;

@@ -472,6 +472,8 @@ export default function Demo(props) {
             />
           ) : (
             <DemoEditor
+              // Mount a new text editor when the preview mode change to reset the undo/redo history.
+              key={editorCode.isPreview}
               value={editorCode.value}
               onChange={(value) => {
                 setEditorCode({
