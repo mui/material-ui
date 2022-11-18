@@ -227,7 +227,7 @@ function forEachSlot(slots, callback) {
   }
 }
 
-function testSlots(element, getOptions) {
+function testSlotsProp(element, getOptions) {
   const { render, slots } = getOptions();
 
   // eslint-disable-next-line react/prop-types
@@ -249,9 +249,9 @@ function testSlots(element, getOptions) {
         [capitalize(slotName)]: slotComponent,
       };
 
-      const { getByTestId } = render(React.cloneElement(element, { components }));
-      const renderedElement = getByTestId('custom');
-      expect(renderedElement).toBeVisible();
+      const { queryByTestId } = render(React.cloneElement(element, { components }));
+      const renderedElement = queryByTestId('custom');
+      expect(renderedElement).not.to.equal(null);
       if (slotOptions.expectedClassName) {
         expect(renderedElement).to.have.class(slotOptions.expectedClassName);
       }
@@ -270,9 +270,9 @@ function testSlots(element, getOptions) {
         [slotName]: slotComponent,
       };
 
-      const { getByTestId } = render(React.cloneElement(element, { slots: components }));
-      const renderedElement = getByTestId('custom');
-      expect(renderedElement).toBeVisible();
+      const { queryByTestId } = render(React.cloneElement(element, { slots: components }));
+      const renderedElement = queryByTestId('custom');
+      expect(renderedElement).not.to.equal(null);
       if (slotOptions.expectedClassName) {
         expect(renderedElement).to.have.class(slotOptions.expectedClassName);
       }
@@ -313,11 +313,11 @@ function testSlots(element, getOptions) {
         [slotName]: ComponentForSlotsProp,
       };
 
-      const { getByTestId, queryByTestId } = render(
+      const { queryByTestId } = render(
         React.cloneElement(element, { components, slots: slotOverrides }),
       );
 
-      expect(getByTestId('from-slots')).toBeVisible();
+      expect(queryByTestId('from-slots')).not.to.equal(null);
       expect(queryByTestId('from-components')).to.equal(null);
     });
 
@@ -341,12 +341,12 @@ function testSlots(element, getOptions) {
           },
         };
 
-        const { getByTestId } = render(
+        const { queryByTestId } = render(
           React.cloneElement(element, { components, componentsProps }),
         );
 
-        const renderedElement = getByTestId('customized');
-        expect(renderedElement).toBeVisible();
+        const renderedElement = queryByTestId('customized');
+        expect(renderedElement).not.to.equal(null);
 
         expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
         if (slotOptions.expectedClassName) {
@@ -371,12 +371,12 @@ function testSlots(element, getOptions) {
           },
         };
 
-        const { getByTestId } = render(
+        const { queryByTestId } = render(
           React.cloneElement(element, { slots: components, slotProps }),
         );
 
-        const renderedElement = getByTestId('customized');
-        expect(renderedElement).toBeVisible();
+        const renderedElement = queryByTestId('customized');
+        expect(renderedElement).not.to.equal(null);
 
         expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
         if (slotOptions.expectedClassName) {
@@ -387,7 +387,7 @@ function testSlots(element, getOptions) {
   });
 }
 
-function testSlotProps(element, getOptions) {
+function testSlotPropsProp(element, getOptions) {
   const { render, slots } = getOptions();
 
   if (!render) {
@@ -402,9 +402,9 @@ function testSlotProps(element, getOptions) {
         },
       };
 
-      const { getByTestId } = render(React.cloneElement(element, { componentsProps }));
-      const slotComponent = getByTestId('custom');
-      expect(slotComponent).toBeVisible();
+      const { queryByTestId } = render(React.cloneElement(element, { componentsProps }));
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
 
       if (slotOptions.expectedClassName) {
         expect(slotComponent).to.have.class(slotOptions.expectedClassName);
@@ -418,9 +418,9 @@ function testSlotProps(element, getOptions) {
         },
       };
 
-      const { getByTestId } = render(React.cloneElement(element, { slotProps }));
-      const slotComponent = getByTestId('custom');
-      expect(slotComponent).toBeVisible();
+      const { queryByTestId } = render(React.cloneElement(element, { slotProps }));
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
 
       if (slotOptions.expectedClassName) {
         expect(slotComponent).to.have.class(slotOptions.expectedClassName);
@@ -442,8 +442,8 @@ function testSlotProps(element, getOptions) {
         },
       };
 
-      const { getByTestId } = render(React.cloneElement(element, { componentsProps, slotProps }));
-      const slotComponent = getByTestId('custom');
+      const { queryByTestId } = render(React.cloneElement(element, { componentsProps, slotProps }));
+      const slotComponent = queryByTestId('custom');
       expect(slotComponent).to.have.attribute('data-from-slot-props', 'true');
       expect(slotComponent).not.to.have.attribute('data-from-components-props');
     });
@@ -1076,8 +1076,8 @@ const fullSuite = {
   refForwarding: describeRef,
   rootClass: testRootClass,
   reactTestRenderer: testReactTestRenderer,
-  slotPropsProp: testSlotProps,
-  slotsProp: testSlots,
+  slotPropsProp: testSlotPropsProp,
+  slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
   themeVariants: testThemeVariants,
