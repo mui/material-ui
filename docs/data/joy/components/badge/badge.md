@@ -86,7 +86,7 @@ Every palette included in the theme is available via the `color` prop.
 Use the `invisible` prop to control the Badge's visibility.
 
 :::warning
-If [`showZero`](#showzero) and `invisible` are both applied at the same time, then the Badge will still be visible when `badgeContent={0}`.
+If [`showZero`](#numbers) and `invisible` are both applied at the same time, then the Badge will still be visible when `badgeContent={0}`.
 :::
 
 {{"demo": "BadgeVisibility.js"}}
