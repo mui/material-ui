@@ -5,16 +5,30 @@ if (process.env.CONTEXT === 'deploy-preview') {
   DEPLOY_ENV = 'pull-request';
 }
 
+/**
+ * ===================================================================================
+ * Fun facts about the `process.env.CONTEXT`:
+ *
+ * - It is defined by Netlify environment variables (https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)
+ * - `process.env.CONTEXT === 'production'` does not mean mui.com build, it is the site configuration.
+ *   For example, the `master` branch of the Core team is considered a `production` build on Netlify based on https://app.netlify.com/sites/material-ui/settings/deploys#branches.
+ *
+ * - Each team has different site https://app.netlify.com/teams/mui/sites. Make sure to checkout the right site before making any changes.
+ *
+ */
 if (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-deploy') {
   DEPLOY_ENV = 'production';
 }
 
 if (
-  process.env.CONTEXT === 'branch-deploy' &&
-  (process.env.HEAD === 'master' || process.env.HEAD === 'next')
+  process.env.HEAD === 'master' ||
+  (process.env.CONTEXT === 'branch-deploy' && process.env.HEAD === 'next')
 ) {
   DEPLOY_ENV = 'staging';
 }
+/**
+ * ====================================================================================
+ */
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
