@@ -23,8 +23,8 @@ describe('Joy <Menu />', () => {
     slots: {
       root: {
         expectedClassName: classes.root,
-        testWithComponent: React.forwardRef((props, ref) => (
-          <ul ref={ref} {...props} data-testid="custom" />
+        testWithComponent: React.forwardRef(({ className }, ref) => (
+          <ul ref={ref} className={className} data-testid="custom" />
         )),
       },
     },

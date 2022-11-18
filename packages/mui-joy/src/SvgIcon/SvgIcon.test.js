@@ -39,7 +39,7 @@ describe('<SvgIcon />', () => {
       slots: {
         root: {
           expectedClassName: classes.root,
-          testWithComponent: (props) => <svg {...props} data-testid="custom" />,
+          testWithComponent: ({ className }) => <svg className={className} data-testid="custom" />,
         },
       },
       skip: ['themeVariants', 'classesRoot', 'componentsProp'],
