@@ -23,9 +23,6 @@ describe('<AvatarGroup />', () => {
       components: {
         additionalAvatar: { expectedClassName: classes.avatar },
       },
-      slots: {
-        additionalAvatar: { expectedClassName: classes.avatar },
-      },
       skip: ['componentsProp', 'slotsProp'],
     }),
   );

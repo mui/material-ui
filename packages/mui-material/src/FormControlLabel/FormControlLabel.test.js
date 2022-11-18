@@ -18,7 +18,7 @@ describe('<FormControlLabel />', () => {
     muiName: 'MuiFormControlLabel',
     testVariantProps: { disabled: true },
     refInstanceof: window.HTMLLabelElement,
-    slots: {
+    components: {
       typography: { expectedClassName: classes.label },
     },
     skip: ['componentProp', 'componentsProp', 'slotsProp'],

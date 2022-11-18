@@ -22,7 +22,7 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
-    slots: {
+    components: {
       root: {},
     },
     skip: ['componentsProp'],
