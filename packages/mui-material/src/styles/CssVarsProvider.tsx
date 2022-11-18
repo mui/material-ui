@@ -32,8 +32,12 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
         typography: createTypography(theme.palette, theme.typography),
       };
 
-      newTheme.unstable_sx = (props: SxProps<CssVarsTheme>) =>
-        styleFunctionSx({ sx: props, theme: newTheme });
+      newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
+        return styleFunctionSx({
+          sx: props,
+          theme: this,
+        });
+      };
 
       return newTheme;
     },

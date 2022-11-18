@@ -630,15 +630,12 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,
   };
-  theme.unstable_sx = (props: SxProps) =>
-    styleFunctionSx({
+  theme.unstable_sx = function sx(props: SxProps) {
+    return styleFunctionSx({
       sx: props,
-      theme: {
-        ...theme,
-        // by default use light theme
-        ...theme.colorSchemes.light,
-      },
+      theme: this,
     });
+  };
 
   return theme;
 }

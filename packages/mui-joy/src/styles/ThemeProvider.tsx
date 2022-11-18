@@ -14,7 +14,9 @@ export const useTheme = () => {
 
 const getTheme = (themeInput: CssVarsThemeOptions) => {
   const theme = getThemeWithVars(themeInput);
-  theme.unstable_sx = (props: SxProps) => styleFunctionSx({ sx: props, theme: defaultTheme });
+  theme.unstable_sx = function sx(props: SxProps) {
+    return styleFunctionSx({ sx: props, theme: this });
+  };
 
   return theme;
 };

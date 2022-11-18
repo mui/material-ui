@@ -112,7 +112,12 @@ function createTheme(options = {}, ...args) {
     ...defaultSxConfig,
     ...other?.unstable_sxConfig,
   };
-  muiTheme.unstable_sx = (props) => styleFunctionSx({ sx: props, theme: muiTheme });
+  muiTheme.unstable_sx = function sx(props) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return muiTheme;
 }

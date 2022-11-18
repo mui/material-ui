@@ -98,6 +98,8 @@ defaultTheme.colorInversion = deepmerge(
 );
 
 defaultTheme.unstable_sxConfig = defaultSxConfig;
-defaultTheme.unstable_sx = (props: SxProps) => styleFunctionSx({ sx: props, theme: defaultTheme });
+defaultTheme.unstable_sx = function sx(props: SxProps) {
+  return styleFunctionSx({ sx: props, theme: this });
+};
 
 export default defaultTheme;

@@ -52,7 +52,7 @@ describe('[Joy] styled', () => {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
-    const theme = extendTheme({
+    const customTheme = extendTheme({
       colorSchemes: {
         light: {
           palette: {
@@ -66,7 +66,7 @@ describe('[Joy] styled', () => {
     const Text = styled('div')(({ theme }) => theme.unstable_sx({ color: 'primary.plainColor' }));
 
     const { container } = render(
-      <CssVarsProvider theme={theme}>
+      <CssVarsProvider theme={customTheme}>
         <Text>Text</Text>
       </CssVarsProvider>,
     );

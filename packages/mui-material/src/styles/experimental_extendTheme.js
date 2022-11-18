@@ -301,7 +301,12 @@ export default function extendTheme(options = {}, ...args) {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,
   };
-  theme.unstable_sx = (props) => styleFunctionSx({ sx: props, theme });
+  theme.unstable_sx = function sx(props) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return theme;
 }
