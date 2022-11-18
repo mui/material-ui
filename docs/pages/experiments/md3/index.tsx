@@ -13,7 +13,7 @@ import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
 import CssBaseline from '@mui/material/CssBaseline';
 
-const ModeSwitcher = () => {
+function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -40,7 +40,7 @@ const ModeSwitcher = () => {
       </IconButton>
     </Tooltip>
   );
-};
+}
 
 const variants: ButtonProps['variant'][] = [
   'elevated',
@@ -62,7 +62,7 @@ const md2Colors: MD2ButtonProps['color'][] = [
   'warning',
 ];
 
-const DemoComponents = () => {
+function DemoComponents() {
   const [radius, setRadius] = React.useState<string>('10');
   const [gap, setGap] = React.useState<string>('0.5');
 
@@ -218,7 +218,7 @@ const DemoComponents = () => {
       </Stack>
     </Stack>
   );
-};
+}
 
 const customPalette = {
   primary: {
@@ -331,14 +331,12 @@ const cssVarsTheme = extendTheme({
 
 export default function App() {
   return (
-    <React.Fragment>
-      <CssVarsProvider theme={cssVarsTheme}>
-        <CssBaseline />
-        <Stack sx={{ p: 1 }} alignItems="flex-start">
-          <ModeSwitcher />
-          <DemoComponents />
-        </Stack>
-      </CssVarsProvider>
-    </React.Fragment>
+    <CssVarsProvider theme={cssVarsTheme}>
+      <CssBaseline />
+      <Stack sx={{ p: 1 }} alignItems="flex-start">
+        <ModeSwitcher />
+        <DemoComponents />
+      </Stack>
+    </CssVarsProvider>
   );
 }
