@@ -547,17 +547,19 @@ describe('Joy <Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const Test = (props: any) => (
-      <div
-        onKeyDown={(event) => {
-          if (!event.defaultPrevented && event.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      >
-        <Autocomplete autoFocus options={['one', 'two']} {...props} />
-      </div>
-    );
+    function Test(props: any) {
+      return (
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete autoFocus options={['one', 'two']} {...props} />
+        </div>
+      );
+    }
     const { setProps } = render(<Test />);
     let textbox = screen.getByRole('combobox');
 
@@ -2031,26 +2033,28 @@ describe('Joy <Autocomplete />', () => {
   it('should prevent the default event handlers', () => {
     const handleChange = spy();
     const handleSubmit = spy();
-    const Test = () => (
-      <div
-        onKeyDown={(event) => {
-          if (!event.defaultPrevented && event.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      >
-        <Autocomplete
-          autoFocus
-          options={['one', 'two']}
-          onChange={handleChange}
+    function Test() {
+      return (
+        <div
           onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.defaultMuiPrevented = true;
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
             }
           }}
-        />
-      </div>
-    );
+        >
+          <Autocomplete
+            autoFocus
+            options={['one', 'two']}
+            onChange={handleChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.defaultMuiPrevented = true;
+              }
+            }}
+          />
+        </div>
+      );
+    }
     render(<Test />);
     const textbox = screen.getByRole('combobox');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
