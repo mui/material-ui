@@ -21,7 +21,12 @@ describe('Joy <Menu />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     slots: {
-      root: { expectedClassName: classes.root, testWithComponent: 'ul' },
+      root: {
+        expectedClassName: classes.root,
+        testWithComponent: React.forwardRef((props, ref) => (
+          <ul ref={ref} {...props} data-testid="custom" />
+        )),
+      },
     },
     skip: [
       'rootClass', // portal, can't determin the root
