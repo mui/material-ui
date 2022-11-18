@@ -522,11 +522,11 @@ function testComponentsProp(element, getOptions) {
 
           const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
 
-          const { getByTestId } = render(
+          const { queryByTestId } = render(
             React.cloneElement(element, { components: { [capitalize(slotName)]: slotComponent } }),
           );
-          const renderedElement = getByTestId('custom');
-          expect(renderedElement).toBeVisible();
+          const renderedElement = queryByTestId('custom');
+          expect(renderedElement).not.to.equal(null);
           if (slotOptions.expectedClassName) {
             expect(renderedElement).to.have.class(slotOptions.expectedClassName);
           }
@@ -561,7 +561,7 @@ function testComponentsProp(element, getOptions) {
             );
           });
 
-          const { getByTestId, queryByTestId } = render(
+          const { queryByTestId } = render(
             React.cloneElement(element, {
               components: {
                 [capitalize(slotName)]: ComponentForComponentsProp,
@@ -572,7 +572,7 @@ function testComponentsProp(element, getOptions) {
             }),
           );
 
-          expect(getByTestId('from-slots')).toBeVisible();
+          expect(queryByTestId('from-slots')).not.to.equal(null);
           expect(queryByTestId('from-components')).to.equal(null);
         });
 
@@ -586,7 +586,7 @@ function testComponentsProp(element, getOptions) {
 
             const slotElement = slotOptions.testWithElement ?? 'i';
 
-            const { getByTestId } = render(
+            const { queryByTestId } = render(
               React.cloneElement(element, {
                 components: {
                   [capitalize(slotName)]: slotElement,
@@ -599,8 +599,8 @@ function testComponentsProp(element, getOptions) {
               }),
             );
 
-            const renderedElement = getByTestId('customized');
-            expect(renderedElement).toBeVisible();
+            const renderedElement = queryByTestId('customized');
+            expect(renderedElement).not.to.equal(null);
 
             expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
             if (slotOptions.expectedClassName) {
@@ -615,7 +615,7 @@ function testComponentsProp(element, getOptions) {
 
             const slotElement = slotOptions.testWithElement ?? 'i';
 
-            const { getByTestId } = render(
+            const { queryByTestId } = render(
               React.cloneElement(element, {
                 slots: {
                   [slotName]: slotElement,
@@ -628,8 +628,8 @@ function testComponentsProp(element, getOptions) {
               }),
             );
 
-            const renderedElement = getByTestId('customized');
-            expect(renderedElement).toBeVisible();
+            const renderedElement = queryByTestId('customized');
+            expect(renderedElement).not.to.equal(null);
 
             expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
             if (slotOptions.expectedClassName) {
@@ -658,9 +658,9 @@ function testComponentsPropsProp(element, getOptions) {
           },
         };
 
-        const { getByTestId } = render(React.cloneElement(element, { componentsProps }));
-        const slotComponent = getByTestId('custom');
-        expect(slotComponent).toBeVisible();
+        const { queryByTestId } = render(React.cloneElement(element, { componentsProps }));
+        const slotComponent = queryByTestId('custom');
+        expect(slotComponent).not.to.equal(null);
 
         if (slotOptions.expectedClassName) {
           expect(slotComponent).to.have.class(slotOptions.expectedClassName);
@@ -674,9 +674,9 @@ function testComponentsPropsProp(element, getOptions) {
           },
         };
 
-        const { getByTestId } = render(React.cloneElement(element, { slotProps }));
-        const slotComponent = getByTestId('custom');
-        expect(slotComponent).toBeVisible();
+        const { queryByTestId } = render(React.cloneElement(element, { slotProps }));
+        const slotComponent = queryByTestId('custom');
+        expect(slotComponent).not.to.equal(null);
 
         if (slotOptions.expectedClassName) {
           expect(slotComponent).to.have.class(slotOptions.expectedClassName);
@@ -698,8 +698,10 @@ function testComponentsPropsProp(element, getOptions) {
           },
         };
 
-        const { getByTestId } = render(React.cloneElement(element, { componentsProps, slotProps }));
-        const slotComponent = getByTestId('custom');
+        const { queryByTestId } = render(
+          React.cloneElement(element, { componentsProps, slotProps }),
+        );
+        const slotComponent = queryByTestId('custom');
         expect(slotComponent).to.have.attribute('data-from-slot-props', 'true');
         expect(slotComponent).not.to.have.attribute('data-from-components-props');
       });
