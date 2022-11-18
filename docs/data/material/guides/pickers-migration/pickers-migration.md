@@ -5,7 +5,7 @@
 :::info
 **Stable package available**: The pickers are not available in `@mui/lab`after `v5.0.0-alpha.89`.
 They have been moved from `@mui/lab` to the MUI X packages `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
-To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
+To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/react-date-pickers/migration-lab/).
 :::
 
 :::warning
