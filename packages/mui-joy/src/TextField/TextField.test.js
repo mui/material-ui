@@ -17,12 +17,6 @@ describe('Joy <TextField />', () => {
     ThemeProvider,
     muiName: 'JoyTextField',
     refInstanceof: window.HTMLDivElement,
-    slots: {
-      root: { expectedClassName: classes.root },
-      label: { expectedClassName: classes.label },
-      input: { expectedClassName: classes.input },
-      helperText: { expectedClassName: classes.helperText },
-    },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
