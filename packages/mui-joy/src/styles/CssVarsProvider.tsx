@@ -36,7 +36,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
 
     mergedTheme.unstable_sx = function sx(props: SxProps) {
       return styleFunctionSx({ sx: props, theme: this });
-    }
+    };
     return mergedTheme;
   },
   shouldSkipGeneratingVar,
