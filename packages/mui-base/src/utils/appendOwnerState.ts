@@ -29,7 +29,7 @@ export type AppendOwnerStateReturnType<
 /**
  * Appends the ownerState object to the props, merging with the existing one if necessary.
  *
- * @param elementType Type of the element that owns the `existingProps`. If the element is a DOM node, `ownerState` is not applied.
+ * @param elementType Type of the element that owns the `existingProps`. If the element is undefined or a DOM node, `ownerState` is not applied.
  * @param otherProps Props of the element.
  * @param ownerState
  */
@@ -42,7 +42,7 @@ export default function appendOwnerState<
   otherProps: OtherProps,
   ownerState: OwnerState,
 ): AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState> {
-  if (elementType && isHostComponent(elementType)) {
+  if (elementType === undefined || isHostComponent(elementType)) {
     return otherProps as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
   }
 
