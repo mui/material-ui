@@ -112,7 +112,7 @@ export default function ColorInversionFooter() {
             </Typography>
           </CardContent>
         </Card>
-        <List size="sm" row wrap sx={{ flexGrow: 0 }}>
+        <List size="sm" row wrap sx={{ flexGrow: 0, '--List-item-radius': '8px' }}>
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader>Sitemap</ListSubheader>
             <List>
