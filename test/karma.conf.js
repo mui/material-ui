@@ -133,10 +133,6 @@ module.exports = function setKarmaConfig(config) {
               envName: 'stable',
             },
           },
-
-
-
-
           {
             test: /\.(js|mjs|ts|tsx)$/,
             use: {

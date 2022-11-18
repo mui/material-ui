@@ -4,7 +4,7 @@ const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
-const transpileDependenciesWithMUIUsage = require('../scripts/transpileDependenciesWithMUIUsage')
+const muiAliases = require('../scripts/muiAliases');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -96,7 +96,29 @@ module.exports = withDocsInfra({
               },
             ],
           },
-          transpileDependenciesWithMUIUsage,
+          // Transpile dependencies outside this repository with dependencies in this repository
+          {
+            test: /\.(js|mjs|jsx)$/,
+            resourceQuery: { not: [/raw/] },
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                // on the server we use the transpiled commonJS build, on client ES6 modules
+                // babel needs to figure out in what context to parse the file
+                sourceType: 'unambiguous',
+                plugins: [
+                  [
+                    'babel-plugin-module-resolver',
+                    {
+                      alias: muiAliases,
+                    },
+                  ],
+                ],
+              },
+            },
+          },
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,

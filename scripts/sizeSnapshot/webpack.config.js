@@ -3,6 +3,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const glob = require('fast-glob');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const getMuiAliases = require('../muiAliases');
 
 const workspaceRoot = path.join(__dirname, '..', '..');
 
@@ -208,19 +209,7 @@ function createWebpackConfig(entry, environment) {
       }),
     ],
     resolve: {
-      alias: {
-        '@mui/material': path.join(workspaceRoot, 'packages/mui-material/build'),
-        '@mui/lab': path.join(workspaceRoot, 'packages/mui-lab/build'),
-        '@mui/styled-engine': path.join(workspaceRoot, 'packages/mui-styled-engine/build'),
-        '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/mui-styles-sc/build'),
-        '@mui/styles': path.join(workspaceRoot, 'packages/mui-styles/build'),
-        '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
-        '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
-        '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
-        '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
-        '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
-        '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
-      },
+      alias: getMuiAliases('build'),
     },
     entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
     // TODO: 'browserslist:modern'

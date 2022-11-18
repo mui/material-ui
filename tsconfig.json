@@ -54,5 +54,5 @@
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react", "react-is/next"]
   },
-  "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"],
+  "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }
