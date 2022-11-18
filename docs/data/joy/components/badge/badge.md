@@ -7,11 +7,12 @@ unstyled: /base/react-badge/
 
 # Badge
 
-<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
+<p class="description">The Badge component generates a small label that is attached to its child element.</p>
 
 ## Introduction
 
-The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
+A badge is a small descriptor for UI elements.
+It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
 
 {{"demo": "BadgeUsage.js", "hideToolbar": true}}
 
