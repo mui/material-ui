@@ -2376,7 +2376,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const firstOption = getAllByRole('option')[0];
-      fireEvent.mouseOver(firstOption);
+      fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
         React.version.startsWith('18') ? 4 : 3,
@@ -2389,6 +2389,31 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
+    });
+
+    // https://github.com/mui/material-ui/issues/35141
+    it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          ListboxProps={{ style: { maxHeight: '100px' } }}
+        />,
+      );
+      const firstOption = getAllByRole('option')[0];
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseMove(firstOption);
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      checkHighlightIs(getByRole('listbox'), 'four');
     });
 
     it('should pass to onHighlightChange the correct value after filtering', () => {

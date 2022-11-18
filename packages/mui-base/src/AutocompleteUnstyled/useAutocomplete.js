@@ -925,7 +925,7 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleOptionMouseOver = (event) => {
+  const handleOptionMouseMove = (event) => {
     setHighlightedIndex({
       event,
       index: Number(event.currentTarget.getAttribute('data-option-index')),
@@ -1098,7 +1098,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
-        onMouseOver: handleOptionMouseOver,
+        onMouseMove: handleOptionMouseMove,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
         'data-option-index': index,
