@@ -2377,7 +2377,6 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseMove(firstOption);
-      
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
         React.version.startsWith('18') ? 4 : 3,
