@@ -642,6 +642,87 @@ function testComponentsProp(element, getOptions) {
   });
 }
 
+function testComponentsPropsProp(element, getOptions) {
+  const { render, components } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  describe('prop componentsProps:', () => {
+    forEachSlot(components, (slotName, slotOptions) => {
+      it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, () => {
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+          },
+        };
+
+        const { getByTestId } = render(React.cloneElement(element, { componentsProps }));
+        const slotComponent = getByTestId('custom');
+        expect(slotComponent).toBeVisible();
+
+        if (slotOptions.expectedClassName) {
+          expect(slotComponent).to.have.class(slotOptions.expectedClassName);
+        }
+      });
+
+      it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} prop`, () => {
+        const slotProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+          },
+        };
+
+        const { getByTestId } = render(React.cloneElement(element, { slotProps }));
+        const slotComponent = getByTestId('custom');
+        expect(slotComponent).toBeVisible();
+
+        if (slotOptions.expectedClassName) {
+          expect(slotComponent).to.have.class(slotOptions.expectedClassName);
+        }
+      });
+
+      it(`prioritizes the 'slotProps.${slotName}' over componentsProps.${slotName} if both are defined`, () => {
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+            'data-from-components-props': 'true',
+          },
+        };
+
+        const slotProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+            'data-from-slot-props': 'true',
+          },
+        };
+
+        const { getByTestId } = render(React.cloneElement(element, { componentsProps, slotProps }));
+        const slotComponent = getByTestId('custom');
+        expect(slotComponent).to.have.attribute('data-from-slot-props', 'true');
+        expect(slotComponent).not.to.have.attribute('data-from-components-props');
+      });
+
+      if (slotOptions.expectedClassName) {
+        it(`merges the class names provided in slotsProps.${slotName} with the built-in ones`, () => {
+          const slotProps = {
+            [slotName]: {
+              'data-testid': 'custom',
+              className: randomStringValue(),
+            },
+          };
+
+          const { getByTestId } = render(React.cloneElement(element, { slotProps }));
+
+          expect(getByTestId('custom')).to.have.class(slotOptions.expectedClassName);
+          expect(getByTestId('custom')).to.have.class(slotProps[slotName].className);
+        });
+      }
+    });
+  });
+}
+
 /**
  * MUI theme has a components section that allows specifying default props.
  * Components from @inheritComponent
@@ -989,6 +1070,7 @@ function testThemeVariants(element, getOptions) {
 const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
+  componentsPropsProp: testComponentsPropsProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
@@ -1013,6 +1095,7 @@ export default function describeConformance(minimalElement, getOptions) {
       after: runAfterHook = () => {},
       only = Object.keys(fullSuite),
       slots,
+      components,
       skip = [],
       wrapMount,
     } = getOptions();
@@ -1021,11 +1104,16 @@ export default function describeConformance(minimalElement, getOptions) {
       (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
     );
 
-    const slotBasedTests = ['slotsProp', 'slotPropsProp'];
-
     if (!slots) {
       // if `slots` are not defined, do not run tests that depend on them
-      filteredTests = filteredTests.filter((testKey) => !slotBasedTests.includes(testKey));
+      filteredTests = filteredTests.filter(
+        (testKey) => !['slotsProp', 'slotPropsProp'].includes(testKey),
+      );
+    }
+
+    if (!components) {
+      // if `components` are not defined, do not run tests that depend on them
+      filteredTests = filteredTests.filter((testKey) => !['componentsPropsProp'].includes(testKey));
     }
 
     const baseMount = createMount();
