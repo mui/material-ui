@@ -7,6 +7,7 @@ import {
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { useSlider } from '@mui/base/SliderUnstyled';
+import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
@@ -517,6 +518,9 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     elementType: SliderMarkLabel,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      'aria-hidden': true,
+    }
   });
 
   const [SlotThumb, thumbProps] = useSlot('thumb', {
@@ -572,18 +576,18 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
               <SlotMark
                 data-index={index}
                 {...markProps}
+                {...(!isHostComponent(SlotMark) && {
+                  ownerState: { ...markProps.ownerState, percent },
+                })}
                 style={{ ...style, ...markProps.style }}
-                ownerState={{ ...ownerState, percent }}
                 className={clsx(markProps.className, {
                   [classes.markActive]: markActive,
                 })}
               />
               {mark.label != null ? (
                 <SlotMarkLabel
-                  aria-hidden
                   data-index={index}
                   {...markLabelProps}
-                  ownerState={ownerState}
                   style={{ ...style, ...markLabelProps.style }}
                   className={clsx(classes.markLabel, markLabelProps.className, {
                     [classes.markLabelActive]: markActive,
