@@ -98,7 +98,7 @@ export default function useSlot<
 ) {
   const {
     className,
-    elementType,
+    elementType: initialElementType,
     ownerState,
     externalForwardedProps,
     getSlotOwnerState,
@@ -111,6 +111,8 @@ export default function useSlot<
     slotProps = { [name]: undefined },
     ...other
   } = externalForwardedProps;
+
+  const elementType = slots[name] || initialElementType;
 
   // `slotProps[name]` can be a callback that receives the component's ownerState.
   // `resolvedComponentsProps` is always a plain object.
@@ -157,5 +159,5 @@ export default function useSlot<
     finalOwnerState as OwnerState & SlotOwnerState,
   );
 
-  return [slots[name] || elementType, props] as [ElementType, typeof props];
+  return [elementType, props] as [ElementType, typeof props];
 }
