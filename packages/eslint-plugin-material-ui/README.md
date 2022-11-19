@@ -32,7 +32,7 @@ as their resolved default values.
 
 ### ~~restricted-path-imports~~
 
-Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) using the following configuration:
+Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/latest/rules/no-restricted-imports) using the following configuration:
 
 ```json
 {

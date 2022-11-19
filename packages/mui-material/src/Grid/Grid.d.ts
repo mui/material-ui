@@ -19,7 +19,7 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 'auto' | number;
 
-interface RegularBreakpoints {
+export interface RegularBreakpoints {
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).

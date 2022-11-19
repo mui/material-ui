@@ -48,15 +48,19 @@ export default function ExampleProductAttributes() {
                 color={color}
                 checkedIcon={<Done fontSize="xl2" />}
                 value={color}
-                componentsProps={{ input: { 'aria-label': color } }}
+                componentsProps={{
+                  input: { 'aria-label': color },
+                  radio: {
+                    sx: {
+                      display: 'contents',
+                      '--variant-borderWidth': '2px',
+                    },
+                  },
+                }}
                 sx={{
                   '--joy-focus-outlineOffset': '4px',
                   '--joy-palette-focusVisible': (theme) =>
                     theme.vars.palette[color][500],
-                  [`& .${radioClasses.radio}`]: {
-                    display: 'contents',
-                    '--variant-borderWidth': '2px',
-                  },
                   [`& .${radioClasses.action}.${radioClasses.focusVisible}`]: {
                     outlineWidth: '2px',
                   },

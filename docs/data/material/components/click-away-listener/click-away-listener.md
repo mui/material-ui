@@ -5,9 +5,9 @@ components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Click-away listener
+# Click-Away Listener
 
-<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
+<p class="description">The ClickAwayListener component detects when a click event happens outside of its child element.</p>
 
 - 📦 [992 B gzipped](/size-snapshot/).
 - ⚛️ Supports portals
@@ -53,7 +53,7 @@ In order to prevent screen readers from marking non-interactive children as "cli
   <div role="presentation">
     <h1>non-interactive heading</h1>
   </div>
-</ClickAwayListern>
+</ClickAwayListener>
 ```
 
 This is also required to fix a quirk in NVDA when using Firefox that prevents announcement of alert messages (see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).

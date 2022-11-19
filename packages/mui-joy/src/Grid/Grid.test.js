@@ -16,7 +16,7 @@ describe('Joy UI <Grid />', () => {
     render,
     ThemeProvider,
     refInstanceof: window.HTMLElement,
-    muiName: 'MuiGrid',
+    muiName: 'JoyGrid',
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot'],
   }));

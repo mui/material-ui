@@ -14,12 +14,13 @@ Joy UI provides four list-related components:
 
 - [`List`](#basic-usage): A wrapper for list items (defaulting as `ul`).
 - [`ListItem`](#basic-usage): A common list item (default as `li`).
-- [`ListItemButton`](#actionable): Ans action element to be used inside a list item.
+- [`ListItemButton`](#actionable): An action element to be used inside a list item.
 - [`ListItemDecorator`](#decorator): A decorator of a list item, usually used to display an icon.
 - [`ListItemContent`](#ellipsis-content): A container inside a list item, used to display text content.
 - [`ListDivider`](#divider): A separator between list items.
+- [`ListSubheader`](#nested-list): A label for a nested list.
 
-{{"demo": "VariantsColorsList.js", "hideToolbar": true}}
+{{"demo": "ListUsage.js", "hideToolbar": true}}
 
 ## Component
 
@@ -31,7 +32,7 @@ import ListItem from '@mui/joy/ListItem';
 
 export default function MyApp() {
   return (
-    <List aria-labelledby="basic-list-demo">
+    <List aria-label="basic-list">
       <ListItem>Hello, world!</ListItem>
       <ListItem>Bye bye, world!</ListItem>
     </List>
@@ -52,11 +53,15 @@ Use the `size` prop to control font-size and general list density.
 
 {{"demo": "SizesList.js"}}
 
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
 ### Decorator
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
 
-It comes with a minimum set width that you can adjust via the `--List-decorator-width` CSS variable within the `List` component.
+It comes with a minimum set width that you can adjust via the `--List-decorator-size` CSS variable within the `List` component.
 
 {{"demo": "DecoratedList.js"}}
 
@@ -76,6 +81,10 @@ The `ListDivider` component comes with four `inset` patterns:
 - `inset="startContent"`: from the start of the content to the end of the list.
 
 {{"demo": "DividedList.js"}}
+
+For horizontal list, only `inset="gutter"` works on list divider.
+
+{{"demo": "HorizontalDividedList.js"}}
 
 ### Sticky item
 

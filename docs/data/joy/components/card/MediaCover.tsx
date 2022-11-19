@@ -16,10 +16,11 @@ export default function BasicCard() {
           <img
             src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
             srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800&dpr=2 2x"
+            loading="lazy"
             alt=""
           />
         </CardCover>
-        <CardContent sx={{ justifyContent: 'center', gap: 1 }}>
+        <CardContent>
           <Typography
             level="h6"
             fontWeight="lg"
@@ -44,7 +45,7 @@ export default function BasicCard() {
             />
           </video>
         </CardCover>
-        <CardContent sx={{ justifyContent: 'center', gap: 1 }}>
+        <CardContent>
           <Typography
             level="h6"
             fontWeight="lg"

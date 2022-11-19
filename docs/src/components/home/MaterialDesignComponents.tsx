@@ -40,7 +40,9 @@ import Link from 'docs/src/modules/components/Link';
 const Grid = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor:
-    theme.palette.mode === 'dark' ? theme.palette.background.paper : theme.palette.grey[50],
+    theme.palette.mode === 'dark'
+      ? theme.palette.background.paper
+      : alpha(theme.palette.grey[50], 0.4),
   display: 'grid',
   gridTemplateColumns: '1fr',
   gridAutoRows: 240,
@@ -57,10 +59,10 @@ const Grid = styled('div')(({ theme }) => ({
     padding: theme.spacing(2),
     alignSelf: 'stretch',
     border: '1px solid',
-    borderColor: theme.palette.divider,
-    '&:last-of-type': {
-      backgroundColor: theme.palette.background.default,
-    },
+    borderColor:
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primaryDark[600], 0.3)
+        : theme.palette.grey[200],
     [theme.breakpoints.only('xs')]: {
       '&:first-of-type': {
         borderTopLeftRadius: theme.shape.borderRadius,
@@ -69,7 +71,6 @@ const Grid = styled('div')(({ theme }) => ({
       '&:last-of-type': {
         borderBottomLeftRadius: theme.shape.borderRadius,
         borderBottomRightRadius: theme.shape.borderRadius,
-        borderStyle: 'dashed',
       },
       '&:not(:first-of-type)': {
         marginTop: -1,
@@ -175,7 +176,7 @@ function Demo({
           })}
         </ThemeProvider>
       </Box>
-      <Typography fontWeight="bold" variant="body2">
+      <Typography fontWeight="semiBold" variant="body2">
         {name}
       </Typography>
     </Box>
@@ -203,6 +204,8 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 
 export function buildTheme(theme: Theme): ThemeOptions {
   return {
+    // @ts-ignore force `vars` to be null, so that the demo components does not use the upper theme.
+    vars: null,
     palette: {
       ...theme.palette,
       primary: {
@@ -243,6 +246,15 @@ export function buildTheme(theme: Theme): ThemeOptions {
           disableElevation: true,
         },
         styleOverrides: {
+          text:
+            theme.palette.mode === 'dark'
+              ? {
+                  color: 'rgba(255 255 255 / 0.72)',
+                  '&:hover': {
+                    color: '#fff',
+                  },
+                }
+              : {},
           root: {
             borderRadius: '99px',
             fontWeight: 500,
@@ -265,22 +277,6 @@ export function buildTheme(theme: Theme): ThemeOptions {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[400]
                 : theme.palette.primaryDark[600],
-          },
-          text: {
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[50]
-                : theme.palette.primaryDark[700],
-          },
-          outlined: {
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[300]
-                : theme.palette.primaryDark[600],
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[50]
-                : theme.palette.primaryDark[700],
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
@@ -334,8 +330,8 @@ export function buildTheme(theme: Theme): ThemeOptions {
                 : alpha(theme.palette.primaryDark[50], 0.5),
             borderColor:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[200]
-                : theme.palette.primaryDark[600],
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primaryDark[300],
             '& .MuiAlert-icon': {
               color:
                 theme.palette.mode === 'dark'
@@ -356,6 +352,11 @@ export function buildTheme(theme: Theme): ThemeOptions {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[50]
                 : theme.palette.primaryDark[700],
+            border: '1px solid',
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[500], 0.5)
+                : theme.palette.primaryDark[100],
             '& .MuiAlert-icon': {
               color:
                 theme.palette.mode === 'dark'
@@ -481,9 +482,15 @@ export default function MaterialDesignComponents() {
   const [customized, setCustomized] = React.useState(false);
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
-  const [theme, setTheme] = React.useState(createTheme({ palette: { mode } }));
+  const [theme, setTheme] = React.useState(
+    createTheme({ palette: { mode }, vars: null } as ThemeOptions),
+  );
   React.useEffect(() => {
-    setTheme(createTheme(customized ? buildTheme(globalTheme) : { palette: { mode } }));
+    setTheme(
+      createTheme(
+        customized ? buildTheme(globalTheme) : ({ palette: { mode }, vars: null } as ThemeOptions),
+      ),
+    );
   }, [mode, customized, globalTheme]);
   return (
     <div>
@@ -551,7 +558,7 @@ export default function MaterialDesignComponents() {
                 open={Boolean(anchor)}
                 anchorEl={anchor}
                 onClose={() => setAnchor(null)}
-                PaperProps={{ variant: 'outlined' }}
+                PaperProps={{ variant: 'outlined', elevation: 0 }}
               >
                 <MenuItem>
                   <ListItemIcon>

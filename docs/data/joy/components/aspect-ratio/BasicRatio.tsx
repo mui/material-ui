@@ -11,7 +11,7 @@ export default function BasicRatio() {
     >
       <AspectRatio>
         <Typography level="h2" component="div">
-          16 : 9
+          16/9
         </Typography>
       </AspectRatio>
     </Sheet>

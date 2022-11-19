@@ -10,15 +10,22 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 
 function createLoading(sx: BoxProps['sx']) {
-  return () => (
-    <Box
-      sx={{
-        borderRadius: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-        ...sx,
-      }}
-    />
-  );
+  return function Loading() {
+    return (
+      <Box
+        sx={[
+          (theme) => ({
+            borderRadius: 1,
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+            }),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
+    );
+  };
 }
 
 const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
@@ -49,7 +56,6 @@ const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
   ssr: false,
   loading: createLoading({ width: 360, height: 212 }),
 });
-
 const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
   ssr: false,
   loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
@@ -117,7 +123,7 @@ export default function Hero() {
             with Material UI, our fully-loaded component library, or bring your own design system to
             our production-ready components.
           </Typography>
-          <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
+          <GetStartedButtons />
         </Box>
       }
       rightSx={{

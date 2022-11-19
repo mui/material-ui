@@ -364,11 +364,9 @@ export default function useSlider(parameters: UseSliderParameters) {
   const getFingerNewValue = ({
     finger,
     move = false,
-    values: values2,
   }: {
     finger: { x: number; y: number };
     move?: boolean;
-    values: number[];
   }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider!.getBoundingClientRect();
@@ -398,7 +396,7 @@ export default function useSlider(parameters: UseSliderParameters) {
 
     if (range) {
       if (!move) {
-        activeIndex = findClosest(values2, newValue)!;
+        activeIndex = findClosest(values, newValue)!;
       } else {
         activeIndex = previousIndex.current!;
       }
@@ -407,14 +405,14 @@ export default function useSlider(parameters: UseSliderParameters) {
       if (disableSwap) {
         newValue = clamp(
           newValue,
-          values2[activeIndex - 1] || -Infinity,
-          values2[activeIndex + 1] || Infinity,
+          values[activeIndex - 1] || -Infinity,
+          values[activeIndex + 1] || Infinity,
         );
       }
 
       const previousValue = newValue;
       newValue = setValueIndex({
-        values: values2,
+        values,
         newValue,
         index: activeIndex,
       });
@@ -449,7 +447,6 @@ export default function useSlider(parameters: UseSliderParameters) {
     const { newValue, activeIndex } = getFingerNewValue({
       finger,
       move: true,
-      values,
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
@@ -459,7 +456,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       setDragging(true);
     }
 
-    if (handleChange) {
+    if (handleChange && newValue !== valueDerived) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -472,7 +469,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, move: true, values });
+    const { newValue } = getFingerNewValue({ finger, move: true });
 
     setActive(-1);
     if (nativeEvent.type === 'touchend') {
@@ -505,7 +502,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     }
     const finger = trackFinger(nativeEvent, touchId);
     if (finger !== false) {
-      const { newValue, activeIndex } = getFingerNewValue({ finger, values });
+      const { newValue, activeIndex } = getFingerNewValue({ finger });
       focusThumb({ sliderRef, activeIndex, setActive });
 
       setValueState(newValue);
@@ -572,7 +569,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       event.preventDefault();
       const finger = trackFinger(event, touchId);
       if (finger !== false) {
-        const { newValue, activeIndex } = getFingerNewValue({ finger, values });
+        const { newValue, activeIndex } = getFingerNewValue({ finger });
         focusThumb({ sliderRef, activeIndex, setActive });
 
         setValueState(newValue);

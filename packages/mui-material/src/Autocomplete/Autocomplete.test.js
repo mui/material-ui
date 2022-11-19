@@ -39,7 +39,12 @@ describe('<Autocomplete />', () => {
   const { render } = createRenderer();
 
   describeConformance(
-    <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
+    <Autocomplete
+      options={['one', 'two']}
+      defaultValue="one"
+      open
+      renderInput={(params) => <TextField {...params} />}
+    />,
     () => ({
       classes,
       inheritComponent: 'div',
@@ -50,7 +55,13 @@ describe('<Autocomplete />', () => {
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
-      skip: ['componentProp', 'componentsProp'],
+      slots: {
+        clearIndicator: { expectedClassName: classes.clearIndicator },
+        paper: { expectedClassName: classes.paper },
+        popper: { expectedClassName: classes.popper },
+        popupIndicator: { expectedClassName: classes.popupIndicator },
+      },
+      skip: ['componentProp', 'componentsProp', 'slotsProp', 'reactTestRenderer'],
     }),
   );
 
@@ -475,6 +486,42 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    it('deletes a focused tag when pressing the delete key', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
+
+      // check that no tags get deleted when the tag is not a focused tag
+      fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(textbox).toHaveFocus();
+
+      // expect on focused tag to delete when pressing delete key
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(secondSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+
+      expect(firstSelectedValue).toHaveFocus();
+
+      fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(textbox).toHaveFocus();
+    });
+
     it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
       const handleClose = spy();
       const options = ['one', 'two', 'three'];
@@ -637,21 +684,23 @@ describe('<Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const Test = (props) => (
-      <div
-        onKeyDown={(event) => {
-          if (!event.defaultPrevented && event.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      >
-        <Autocomplete
-          options={['one', 'two']}
-          renderInput={(props2) => <TextField {...props2} autoFocus />}
-          {...props}
-        />
-      </div>
-    );
+    function Test(props) {
+      return (
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            options={['one', 'two']}
+            renderInput={(props2) => <TextField {...props2} autoFocus />}
+            {...props}
+          />
+        </div>
+      );
+    }
     const { setProps } = render(<Test />);
     let textbox = screen.getByRole('combobox');
 
@@ -1317,6 +1366,24 @@ describe('<Autocomplete />', () => {
       expect(screen.queryByRole('listbox')).not.to.equal(null);
       setProps({ disabled: true });
       expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
+    it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', () => {
+      const { setProps } = render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          value="one"
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      setProps({ disabled: true });
+      expect(textbox).toBeVisible();
     });
   });
 
@@ -2401,26 +2468,28 @@ describe('<Autocomplete />', () => {
   it('should prevent the default event handlers', () => {
     const handleChange = spy();
     const handleSubmit = spy();
-    const Test = () => (
-      <div
-        onKeyDown={(event) => {
-          if (!event.defaultPrevented && event.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      >
-        <Autocomplete
-          options={['one', 'two']}
-          onChange={handleChange}
+    function Test() {
+      return (
+        <div
           onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.defaultMuiPrevented = true;
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
             }
           }}
-          renderInput={(params) => <TextField autoFocus {...params} />}
-        />
-      </div>
-    );
+        >
+          <Autocomplete
+            options={['one', 'two']}
+            onChange={handleChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.defaultMuiPrevented = true;
+              }
+            }}
+            renderInput={(params) => <TextField autoFocus {...params} />}
+          />
+        </div>
+      );
+    }
     render(<Test />);
     const textbox = screen.getByRole('combobox');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -2506,6 +2575,22 @@ describe('<Autocomplete />', () => {
       const popupIndicator = screen.getByTestId('popupIndicator');
       expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
       expect(popupIndicator).to.have.class('my-class');
+    });
+
+    it('should keep AutocompletePopper mounted if keepMounted is true in popper props', () => {
+      // Autocomplete is not opened
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popper: { 'data-testid': 'popperRoot', keepMounted: true },
+          }}
+        />,
+      );
+
+      const popperRoot = screen.getByTestId('popperRoot');
+      expect(popperRoot.style.display).to.equal('none');
     });
   });
 

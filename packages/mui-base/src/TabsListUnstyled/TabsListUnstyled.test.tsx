@@ -34,7 +34,6 @@ describe('<TabsListUnstyled />', () => {
         expectedClassName: tabsListUnstyledClasses.root,
       },
     },
-
     skip: [
       'reactTestRenderer', // Need to be wrapped with TabsContext
     ],

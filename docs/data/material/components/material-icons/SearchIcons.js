@@ -488,7 +488,7 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.searchAsync(value).then((results) => {
+          searchIndex.searchAsync(value, { limit: 3000 }).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.

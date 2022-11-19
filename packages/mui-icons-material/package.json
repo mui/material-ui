@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.8.4",
+  "version": "5.10.14",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -33,10 +33,10 @@
     "build:lib:clean": "rimraf lib/ && yarn build:lib",
     "build:legacy": "echo 'Skip legacy build'",
     "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build node --largeFiles --outDir lib",
-    "build:stable": "node ../../scripts/build stable --largeFiles --outDir lib",
-    "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
+    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
+    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
@@ -56,14 +56,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2"
+    "@babel/runtime": "^7.20.1"
   },
   "devDependencies": {
     "fs-extra": "^10.1.0",
     "mustache": "^4.2.0",
     "shx": "^0.3.4",
     "svgo": "^2.8.0",
-    "yargs": "^17.5.1"
+    "yargs": "^17.6.2"
   },
   "sideEffects": false,
   "publishConfig": {

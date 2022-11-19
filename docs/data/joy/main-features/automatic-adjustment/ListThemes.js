@@ -1,32 +1,23 @@
 import * as React from 'react';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-
-const Select = styled('select')(({ theme }) => ({
-  padding: '0.35rem',
-  fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.sm,
-  borderRadius: theme.vars.radius.sm,
-  border: '1px solid',
-  borderColor: theme.vars.palette.neutral[300],
-  ...theme.variants.soft.neutral,
-}));
 
 export default function ButtonThemes() {
   const [preset, setPreset] = React.useState('');
   const rootPresets = {
     dense: {
       '--List-item-minHeight': '27px',
-      '--List-decorator-width': '28px',
+      '--List-decorator-size': '28px',
       '--List-item-radius': '5px',
       '--List-gap': '5px',
       '--List-padding': '10px',
@@ -42,7 +33,7 @@ export default function ButtonThemes() {
       '--List-item-minHeight': '48px',
       '--List-padding': '8px',
       '--List-gap': '8px',
-      '--List-nestedInsetStart': 'var(--List-decorator-width)',
+      '--List-nestedInsetStart': 'var(--List-decorator-size)',
     },
   };
   const nestedPresets = {
@@ -115,20 +106,21 @@ export default function ButtonThemes() {
             justifyContent: 'center',
           }}
         >
-          <FormLabel htmlFor="button-theme">Change the preset:</FormLabel>
+          <FormLabel htmlFor="list-theme">Change the preset:</FormLabel>
           <Select
-            id="button-theme"
-            value={preset}
-            onChange={(event) => setPreset(event.target.value)}
-            sx={{
-              minWidth: 160,
-              border: '1px solid',
-              borderColor: (theme) => theme.variants.outlinedHover.neutral,
+            size="sm"
+            componentsProps={{
+              button: {
+                id: 'list-theme',
+              },
             }}
+            value={preset}
+            onChange={(event, newValue) => setPreset(newValue)}
+            sx={{ minWidth: 160 }}
           >
-            <option value="">Default</option>
-            <option value="dense">Dense</option>
-            <option value="cozy">Cozy</option>
+            <Option value="">Default</Option>
+            <Option value="dense">Dense</Option>
+            <Option value="cozy">Cozy</Option>
           </Select>
         </Box>
       </Box>

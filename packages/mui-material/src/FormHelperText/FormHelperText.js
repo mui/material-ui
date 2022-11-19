@@ -179,7 +179,10 @@ FormHelperText.propTypes /* remove-proptypes */ = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['filled', 'outlined', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default FormHelperText;

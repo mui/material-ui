@@ -14,7 +14,9 @@ describe('<Typography />', () => {
     render,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'JoyTypography',
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { level: 'body3' },
+    testCustomVariant: true,
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should render the text', () => {

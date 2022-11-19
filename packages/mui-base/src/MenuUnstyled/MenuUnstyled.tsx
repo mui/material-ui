@@ -1,11 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
   MenuUnstyledRootSlotProps,
+  MenuUnstyledTypeMap,
 } from './MenuUnstyled.types';
 import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
 import useMenu from './useMenu';
@@ -26,27 +28,26 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/)
+ * - [Unstyled Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
  * - [MenuUnstyled API](https://mui.com/base/api/menu-unstyled/)
  */
-const MenuUnstyled = React.forwardRef(function MenuUnstyled(
-  props: MenuUnstyledProps & React.HTMLAttributes<HTMLElement>,
-  forwardedRef: React.Ref<any>,
-) {
+const MenuUnstyled = React.forwardRef(function MenuUnstyled<
+  BaseComponentType extends React.ElementType = MenuUnstyledTypeMap['defaultComponent'],
+>(props: MenuUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
   const {
     actions,
     anchorEl,
     children,
     component,
-    components = {},
-    componentsProps = {},
     keepMounted = false,
     listboxId,
     onClose,
     open = false,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -80,11 +81,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
 
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? components.Root ?? PopperUnstyled;
+  const Root = component ?? slots.root ?? PopperUnstyled;
   const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     additionalProps: {
       anchorEl,
       open,
@@ -96,22 +97,25 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     ownerState,
   }) as MenuUnstyledRootSlotProps;
 
-  const Listbox = components.Listbox ?? 'ul';
+  const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({
     elementType: Listbox,
     getSlotProps: getListboxProps,
-    externalSlotProps: componentsProps.listbox,
+    externalSlotProps: slotProps.listbox,
     ownerState,
     className: classes.listbox,
   });
 
-  const contextValue: MenuUnstyledContextType = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    open,
-  };
+  const contextValue: MenuUnstyledContextType = React.useMemo(
+    () => ({
+      registerItem,
+      unregisterItem,
+      getItemState,
+      getItemProps,
+      open,
+    }),
+    [getItemProps, getItemState, open, registerItem, unregisterItem],
+  );
 
   return (
     <Root {...rootProps}>
@@ -120,7 +124,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       </Listbox>
     </Root>
   );
-});
+}) as OverridableComponent<MenuUnstyledTypeMap>;
 
 MenuUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -147,23 +151,10 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * @ignore
-   */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * @ignore
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * Always keep the menu in the DOM.
    * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
@@ -184,6 +175,23 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   open: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Menu.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
 } as any;
 
 export default MenuUnstyled;

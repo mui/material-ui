@@ -43,3 +43,5 @@ const theme = extendTheme({
     },
   },
 });
+
+theme.getCssVar('palette-gradient-default');

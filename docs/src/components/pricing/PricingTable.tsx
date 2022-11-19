@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces, MIT-licensed.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
@@ -30,7 +29,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data-rich applications, and the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -120,12 +119,15 @@ export function PlanPrice(props: PlanPriceProps) {
           variant="body2"
           fontWeight="bold"
           color="error.500"
-          sx={{
+          sx={(theme) => ({
             borderRadius: 0.5,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
+            bgcolor: 'error.100',
             textDecoration: 'line-through',
             p: '3px 4px',
-          }}
+            ...theme.applyDarkStyles({
+              bgcolor: 'error.900',
+            }),
+          })}
         >
           $49
         </Typography>
@@ -176,7 +178,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   );
 }
 
-const ColumnHead = ({
+function ColumnHead({
   label,
   metadata,
   tooltip,
@@ -188,7 +190,7 @@ const ColumnHead = ({
   tooltip?: string;
   nested?: boolean;
   href?: string;
-}) => {
+}) {
   const text = (
     <Typography
       {...(href && {
@@ -240,99 +242,128 @@ const ColumnHead = ({
       )}
     </Box>
   );
-};
+}
 
-const ColumnHeadHighlight = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      p: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-      borderRadius: '10px 10px 0 0',
-      borderWidth: '1px 1px 0 1px',
-      borderStyle: 'solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[900], 0.5)
-          : alpha(theme.palette.grey[50], 0.5),
-      ...props.sx,
-    }}
-  />
-);
+function ColumnHeadHighlight(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={[
+        (theme) => ({
+          p: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          borderRadius: '10px 10px 0 0',
+          borderWidth: '1px 1px 0 1px',
+          borderStyle: 'solid',
+          borderColor: 'grey.100',
+          bgcolor: alpha(theme.palette.grey[50], 0.5),
+        }),
+        (theme) =>
+          theme.applyDarkStyles({
+            borderColor: 'primaryDark.700',
+            bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+          }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    />
+  );
+}
 
-const Recommended = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      typography: 'caption',
-      color: 'primary.500',
-      p: '2px 8px',
-      border: '1px solid',
-      borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
-      position: 'absolute',
-      top: 0,
-      left: 20,
-      transform: 'translateY(-50%)',
-      ...props.sx,
-    }}
-  >
-    Recommended
-  </Box>
-);
+function Recommended(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={[
+        {
+          typography: 'caption',
+          color: 'primary.500',
+          p: '2px 8px',
+          border: '1px solid',
+          borderRadius: 2,
+          position: 'absolute',
+          top: 0,
+          left: 20,
+          transform: 'translateY(-50%)',
+          borderColor: 'primary.100',
+          bgcolor: 'primary.50',
+        },
+        (theme) =>
+          theme.applyDarkStyles({
+            borderColor: 'primaryDark.500',
+            bgcolor: 'primaryDark.800',
+          }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    >
+      Recommended
+    </Box>
+  );
+}
 
-const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) => (
-  <Box
-    {...props}
-    sx={{
-      py: 2,
-      px: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      ...(highlighted && {
-        borderWidth: '0 1px 0 1px',
-        borderStyle: 'solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[900], 0.5)
-            : alpha(theme.palette.grey[50], 0.5),
-      }),
-      ...props.sx,
-    }}
-  />
-);
+function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: boolean }) {
+  return (
+    <Box
+      {...props}
+      sx={[
+        {
+          py: 2,
+          px: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        (theme) => ({
+          ...(highlighted && {
+            borderWidth: '0 1px 0 1px',
+            borderStyle: 'solid',
+            borderColor: 'grey.100',
+            bgcolor: alpha(theme.palette.grey[50], 0.5),
+          }),
+        }),
+        (theme) =>
+          theme.applyDarkStyles({
+            ...(highlighted && {
+              borderColor: 'primaryDark.700',
+              bgcolor: alpha(theme.palette.primaryDark[900], 0.5),
+            }),
+          }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    />
+  );
+}
 
-const RowHead = ({
-  children,
-  startIcon,
-  ...props
-}: BoxProps & { startIcon?: React.ReactElement }) => (
-  <Box
-    {...props}
-    sx={{
-      justifyContent: 'flex-start',
-      borderRadius: 1,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-      p: 1,
-      transition: 'none',
-      typography: 'body2',
-      fontWeight: 700,
-      display: 'flex',
-      alignItems: 'center',
-      ...props.sx,
-    }}
-  >
-    {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
-    {children}
-  </Box>
-);
+function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: React.ReactElement }) {
+  return (
+    <Box
+      {...props}
+      sx={[
+        {
+          justifyContent: 'flex-start',
+          borderRadius: 1,
+          p: 1,
+          transition: 'none',
+          typography: 'body2',
+          fontWeight: 700,
+          display: 'flex',
+          alignItems: 'center',
+          bgcolor: 'grey.50',
+        },
+        (theme) =>
+          theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+          }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    >
+      {startIcon && <Box sx={{ lineHeight: 0, mr: 1 }}>{startIcon}</Box>}
+      {children}
+    </Box>
+  );
+}
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
@@ -391,13 +422,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/row-height/" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/row-spanning/" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/row-ordering/" />
+  ),
+  'data-grid/row-pinning': (
+    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
     <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
@@ -504,19 +538,27 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/localization': (
     <ColumnHead label="Localization" nested href="/x/react-data-grid/localization/" />
   ),
-  'date-picker/simple': <ColumnHead label="Date picker" />,
-  'date-picker/range': <ColumnHead label="Date range picker" />,
+  'date-picker/simple': <ColumnHead label="Date Picker" />,
+  'date-picker/range': <ColumnHead label="Date Range Picker" />,
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
-  'bugs/features': (
+  'core-support': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI Core',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
+          'Support for MUI Core (e.g. Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
+      }}
+    />
+  ),
+  'x-support': (
+    <ColumnHead
+      {...{
+        label: 'Technical support for MUI X',
+        tooltip:
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),
@@ -569,7 +611,7 @@ const communityData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  'data-grid/column-groups': pending,
+  'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
@@ -577,6 +619,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
+  'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
@@ -610,8 +653,8 @@ const communityData: Record<string, React.ReactNode> = {
   'mui-x-updates': yes,
   'mui-x-development': yes,
   // Support
-  community: yes,
-  'bugs/features': yes,
+  'core-support': <Info value="Community" />,
+  'x-support': <Info value="Community" />,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
@@ -626,7 +669,7 @@ const proData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  'data-grid/column-groups': pending,
+  'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
@@ -634,6 +677,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
@@ -662,13 +706,13 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
-  'date-picker/range': pending,
+  'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  community: yes,
-  'bugs/features': <Info value={yes} metadata="Priority over Community" />,
+  'core-support': <Info value="Community" />,
+  'x-support': <Info value={yes} metadata="Priority over Community" />,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
@@ -683,7 +727,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   'Joy UI': yes,
   // MUI X
-  'data-grid/column-groups': pending,
+  'data-grid/column-groups': yes,
   'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
@@ -691,6 +735,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
@@ -713,19 +758,19 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/tree-data': yes,
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
-  'data-grid/aggregation': pending,
+  'data-grid/aggregation': yes,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
-  'date-picker/range': pending,
+  'date-picker/range': yes,
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  community: yes,
-  'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
+  'core-support': <Info value={pending} metadata="priority add-on only" />,
+  'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': (
@@ -745,31 +790,39 @@ const premiumData: Record<string, React.ReactNode> = {
   'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
 };
 
-const RowCategory = (props: BoxProps) => (
-  <Box
-    {...props}
-    sx={{
-      typography: 'caption',
-      display: 'block',
-      fontWeight: 500,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-      py: 1,
-      ml: 1,
-      pl: 1.5,
-      borderBottom: '1px solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
-      ...props.sx,
-    }}
-  />
-);
+function RowCategory(props: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={[
+        (theme) => ({
+          typography: 'caption',
+          display: 'block',
+          fontWeight: 500,
+          py: 1,
+          ml: 1,
+          pl: 1.5,
+          borderBottom: '1px solid',
+          bgcolor: 'grey.50',
+          borderColor: 'grey.200',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.600',
+          }),
+        }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    />
+  );
+}
 
-const StickyHead = ({
+function StickyHead({
   container,
   disableCalculation = false,
 }: {
   container: React.MutableRefObject<HTMLElement | null>;
   disableCalculation?: boolean;
-}) => {
+}) {
   const [hidden, setHidden] = React.useState(true);
   React.useEffect(() => {
     function handleScroll() {
@@ -798,29 +851,30 @@ const StickyHead = ({
   }, [container, disableCalculation]);
   return (
     <Box
-      sx={{
-        position: 'fixed',
-        zIndex: 1,
-        top: 56,
-        left: 0,
-        right: 0,
-        transition: '0.3s',
-        ...(hidden && {
-          opacity: 0,
-          top: 0,
+      sx={[
+        (theme) => ({
+          position: 'fixed',
+          zIndex: 1,
+          top: 56,
+          left: 0,
+          right: 0,
+          transition: '0.3s',
+          ...(hidden && {
+            opacity: 0,
+            top: 0,
+          }),
+          py: 1,
+          display: { xs: 'none', md: 'block' },
+          backdropFilter: 'blur(20px)',
+          boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
+          backgroundColor: 'rgba(255,255,255,0.72)',
         }),
-        py: 1,
-        display: { xs: 'none', md: 'block' },
-        backdropFilter: 'blur(20px)',
-        boxShadow: (theme) =>
-          `inset 0px -1px 1px ${
-            theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
-          }`,
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[900], 0.72)
-            : 'rgba(255,255,255,0.72)',
-      }}
+        (theme) =>
+          theme.applyDarkStyles({
+            boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
+            backgroundColor: alpha(theme.palette.primaryDark[900], 0.72),
+          }),
+      ]}
     >
       <Container
         sx={{
@@ -839,7 +893,7 @@ const StickyHead = ({
       </Container>
     </Box>
   );
-};
+}
 
 const divider = <Divider />;
 const nestedDivider = <Divider sx={{ ml: 1 }} />;
@@ -863,18 +917,23 @@ export default function PricingTable({
   function renderRow(key: string) {
     return (
       <Box
-        sx={{
-          ...gridSx,
-          '&:hover': {
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0.3)
-                : alpha(theme.palette.grey[50], 0.4),
-            '@media (hover: none)': {
-              bgcolor: 'initial',
+        sx={[
+          gridSx,
+          (theme) => ({
+            '&:hover': {
+              bgcolor: alpha(theme.palette.grey[50], 0.4),
+              '@media (hover: none)': {
+                bgcolor: 'initial',
+              },
             },
-          },
-        }}
+          }),
+          (theme) =>
+            theme.applyDarkStyles({
+              '&:hover': {
+                bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+              },
+            }),
+        ]}
       >
         {rowHeaders[key]}
         {plans.map((id, index) => (
@@ -998,42 +1057,50 @@ export default function PricingTable({
               }}
             />
           }
-          sx={{
-            p: 1,
-            py: 1.5,
-            justifyContent: 'flex-start',
-            fontWeight: 400,
-            borderRadius: '0px',
-            color: 'text.primary',
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            width: '100%',
-            height: '100%',
-            '&:hover': {
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[900], 0.3)
-                  : alpha(theme.palette.grey[50], 0.4),
-              '@media (hover: none)': {
-                bgcolor: 'initial',
+          sx={[
+            (theme) => ({
+              p: 1,
+              py: 1.5,
+              justifyContent: 'flex-start',
+              fontWeight: 400,
+              borderRadius: '0px',
+              color: 'text.primary',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%',
+              '&:hover': {
+                bgcolor: alpha(theme.palette.grey[50], 0.4),
+                '@media (hover: none)': {
+                  bgcolor: 'initial',
+                },
               },
-            },
-          }}
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+                },
+              }),
+          ]}
         >
-          Data grid
+          Data Grid
         </Button>
       </Box>
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
         <Box
-          sx={{
+          sx={(theme) => ({
             position: 'absolute',
             width: '2px',
             left: 10,
             top: 0,
             bottom: 0,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-          }}
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.700',
+            }),
+          })}
         />
         <RowCategory>Column features</RowCategory>
         {renderRow('data-grid/column-groups')}
@@ -1050,6 +1117,8 @@ export default function PricingTable({
         {renderRow('data-grid/row-height')}
         {nestedDivider}
         {renderRow('data-grid/row-reordering')}
+        {nestedDivider}
+        {renderRow('data-grid/row-pinning')}
         {nestedDivider}
         {renderRow('data-grid/row-spanning')}
         {nestedDivider}
@@ -1127,9 +1196,9 @@ export default function PricingTable({
       {divider}
       {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>
-      {renderRow('community')}
+      {renderRow('core-support')}
       {divider}
-      {renderRow('bugs/features')}
+      {renderRow('x-support')}
       {divider}
       {renderRow('support-duration')}
       {divider}

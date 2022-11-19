@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import type { Theme } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
@@ -12,9 +11,9 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
-import ListDivider from '@mui/joy/ListDivider';
+import Divider from '@mui/joy/Divider';
 import Sheet from '@mui/joy/Sheet';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -71,14 +70,7 @@ export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
     <CssVarsProvider disableTransitionOnChange theme={filesTheme}>
-      <GlobalStyles<Theme>
-        styles={(theme) => ({
-          body: {
-            margin: 0,
-            fontFamily: theme.vars.fontFamily.body,
-          },
-        })}
-      />
+      <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
           <Navigation />
@@ -125,7 +117,7 @@ export default function FilesExample() {
               Files
             </Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
@@ -210,7 +202,6 @@ export default function FilesExample() {
               sx={{
                 borderRadius: 'sm',
                 gridColumn: '1/-1',
-                bgcolor: 'background.componentBg',
                 display: { xs: 'none', sm: 'grid' },
                 gridTemplateColumns: '1fr 1fr 1fr 1fr',
                 '& > *': {
@@ -309,7 +300,6 @@ export default function FilesExample() {
               sx={{
                 display: { xs: 'inherit', sm: 'none' },
                 borderRadius: 'sm',
-                bgcolor: 'background.componentBg',
                 overflow: 'auto',
                 '& > *': {
                   '&:nth-child(n):not(:nth-last-child(-n+4))': {
@@ -384,7 +374,7 @@ export default function FilesExample() {
                     </ListItemContent>
                   </ListItemButton>
                 </ListItem>
-                <ListDivider sx={{ m: 0 }} />
+                <Divider />
                 <ListItem>
                   <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
                     <ListItemContent sx={{ p: 2 }}>
@@ -450,7 +440,6 @@ export default function FilesExample() {
               variant="outlined"
               sx={{
                 '--Card-radius': (theme) => theme.vars.radius.sm,
-                bgcolor: 'background.componentBg',
                 boxShadow: 'none',
               }}
             >
@@ -530,7 +519,6 @@ export default function FilesExample() {
               variant="outlined"
               sx={{
                 '--Card-radius': (theme) => theme.vars.radius.sm,
-                bgcolor: 'background.componentBg',
                 boxShadow: 'none',
               }}
             >
@@ -572,7 +560,6 @@ export default function FilesExample() {
             display: { xs: 'none', sm: 'initial' },
             borderLeft: '1px solid',
             borderColor: 'neutral.outlinedBorder',
-            bgcolor: 'background.componentBg',
           }}
         >
           <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
@@ -581,7 +568,7 @@ export default function FilesExample() {
               <CloseIcon />
             </IconButton>
           </Box>
-          <ListDivider component="hr" />
+          <Divider />
           <Box sx={{ display: 'flex' }}>
             <Button
               variant="soft"
@@ -632,7 +619,7 @@ export default function FilesExample() {
               />
             </AvatarGroup>
           </Box>
-          <ListDivider component="hr" />
+          <Divider />
           <Box
             sx={{
               gap: 2,
@@ -677,9 +664,9 @@ export default function FilesExample() {
               5 August 2016
             </Typography>
           </Box>
-          <ListDivider component="hr" />
+          <Divider />
           <Box sx={{ py: 2, px: 1 }}>
-            <Button variant="plain" size="sm" endIcon={<EditOutlinedIcon />}>
+            <Button variant="plain" size="sm" endDecorator={<EditOutlinedIcon />}>
               Add a description
             </Button>
           </Box>

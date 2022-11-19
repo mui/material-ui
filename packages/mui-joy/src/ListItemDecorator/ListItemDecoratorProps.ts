@@ -29,3 +29,11 @@ export type ListItemDecoratorProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemDecoratorTypeMap<P, D>, D>;
+
+export interface ListItemDecoratorOwnerState extends ListItemDecoratorProps {
+  /**
+   * @internal
+   * The orientation of the parent ListItemButton.
+   */
+  parentOrientation: 'horizontal' | 'vertical';
+}

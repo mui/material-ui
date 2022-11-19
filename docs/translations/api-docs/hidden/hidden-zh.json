@@ -11,7 +11,7 @@
     "only": "Hide the given breakpoint(s).",
     "smDown": "If <code>true</code>, screens this size and down are hidden.",
     "smUp": "If <code>true</code>, screens this size and up are hidden.",
-    "xlDown": "If <code>true</code>, screens this size and down are hidden.",
+    "xlDown": "如果 <code>true</code>, 屏幕大小和下面都将被隐藏。",
     "xlUp": "If <code>true</code>, screens this size and up are hidden.",
     "xsDown": "If <code>true</code>, screens this size and down are hidden.",
     "xsUp": "If <code>true</code>, screens this size and up are hidden."

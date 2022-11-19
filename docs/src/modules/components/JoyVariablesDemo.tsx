@@ -8,7 +8,7 @@ import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
@@ -16,6 +16,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 interface DataItem {
   var: string;
   defaultValue?: string;
+  helperText?: string;
 }
 
 function formatSx(sx: { [k: string]: string }) {
@@ -33,7 +34,7 @@ interface SlotVariablesProps {
   defaultOpen?: boolean;
 }
 
-const SlotVariables = ({ slot, data, renderField, defaultOpen = false }: SlotVariablesProps) => {
+function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVariablesProps) {
   const [open, setOpen] = React.useState(defaultOpen);
   return (
     <React.Fragment>
@@ -75,7 +76,7 @@ const SlotVariables = ({ slot, data, renderField, defaultOpen = false }: SlotVar
       )}
     </React.Fragment>
   );
-};
+}
 
 export default function JoyVariablesDemo(props: {
   componentName: string;
@@ -90,6 +91,7 @@ export default function JoyVariablesDemo(props: {
     <Box
       sx={{
         m: 0,
+        mt: 2,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
@@ -115,7 +117,7 @@ export default function JoyVariablesDemo(props: {
           {props.renderDemo(sx)}
         </Box>
         <BrandingProvider mode="dark">
-          <HighlighedCode
+          <HighlightedCode
             code={
               renderCode
                 ? renderCode(formatSx(sx))
@@ -170,6 +172,7 @@ export default function JoyVariablesDemo(props: {
                     label={item.var}
                     size="sm"
                     variant="outlined"
+                    helperText={item.helperText}
                     value={Number(resolvedValue?.replace('px', '')) || ''}
                     componentsProps={{
                       input: {

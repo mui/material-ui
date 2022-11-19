@@ -10,8 +10,8 @@ import { useRouter } from 'next/router';
 // So we can write code like:
 //
 // <Button
-//   ga-event-category="demo"
-//   ga-event-action="expand"
+//   data-ga-event-category="demo"
+//   data-ga-event-action="expand"
 // >
 //   Foo
 // </Button>
@@ -64,8 +64,8 @@ function GoogleAnalytics() {
   React.useEffect(() => {
     // Wait for the title to be updated.
     setTimeout(() => {
-      const { canonicalAs } = pathnameToLanguage(window.location.pathname);
-      window.ga('set', { page: canonicalAs });
+      const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
+      window.ga('set', { page: canonicalAsServer });
       window.ga('send', { hitType: 'pageview' });
     });
   }, [router.route]);

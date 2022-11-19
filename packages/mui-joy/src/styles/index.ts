@@ -54,7 +54,13 @@ export type {
   Variants,
   VariantProp,
 } from './types/variants';
-export type { Theme, ThemeVars, ThemeScales, ThemeCSSVar } from './types/theme';
+export type {
+  Theme,
+  ThemeVars,
+  ThemeScales,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+} from './types/theme';
 export {
   CssVarsProvider,
   useColorScheme,
@@ -66,6 +72,7 @@ export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 export { default as useThemeProps } from './useThemeProps';
 export { sx as experimental_sx } from './styleFunctionSx';
+export { ColorInversionProvider, useColorInversion } from './ColorInversion';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
 export type { CssVarsThemeOptions } from './extendTheme';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface UseButtonRootSlotOwnProps {
+export interface UseButtonRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   disabled?: boolean;
   tabIndex?: number;

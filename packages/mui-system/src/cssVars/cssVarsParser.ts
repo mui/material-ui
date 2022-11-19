@@ -19,13 +19,16 @@ type NestedRecord<V = any> = {
  * assignNestedKeys(source, ['palette', 'secondary'], 'var(--palette-secondary)')
  * console.log(source) // { palette: { primary: 'var(--palette-primary)', secondary: 'var(--palette-secondary)' } }
  */
-export const assignNestedKeys = <Object = NestedRecord, Value = any>(
-  obj: Object,
+export const assignNestedKeys = <
+  T extends Record<string, any> | null | undefined | string = NestedRecord,
+  Value = any,
+>(
+  obj: T,
   keys: Array<string>,
   value: Value,
   arrayKeys: Array<string> = [],
 ) => {
-  let temp: Record<string, any> = obj;
+  let temp: T = obj;
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {
       if (Array.isArray(temp)) {
@@ -125,7 +128,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
   },
 ) {
   const { prefix, shouldSkipGeneratingVar } = options || {};
-  const css = {} as NestedRecord<string>;
+  const css = {} as Record<string, string | number>;
   const vars = {} as NestedRecord<string>;
   const parsedTheme = {} as T;
 
@@ -133,10 +136,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
     theme,
     (keys, value: string | number | object, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
-        if (
-          !shouldSkipGeneratingVar ||
-          (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
-        ) {
+        if (!shouldSkipGeneratingVar || !shouldSkipGeneratingVar(keys, value)) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });

@@ -8,7 +8,7 @@ type UseListboxStrictPropsRequiredKeys =
   | 'optionStringifier'
   | 'multiple';
 
-export type UseListboxStrictProps<TOption> = Omit<
+export type UseListboxPropsWithDefaults<TOption> = Omit<
   UseListboxParameters<TOption>,
   UseListboxStrictPropsRequiredKeys
 > &
@@ -35,55 +35,59 @@ interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionHoverAction<TOption> {
   type: ActionTypes.optionHover;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface FocusAction<TOption> {
   type: ActionTypes.focus;
   event: React.FocusEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface BlurAction<TOption> {
   type: ActionTypes.blur;
   event: React.FocusEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface KeyDownAction<TOption> {
   type: ActionTypes.keyDown;
   event: React.KeyboardEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface SetValueAction<TOption> {
   type: ActionTypes.setValue;
+  event: null;
   value: TOption | TOption[] | null;
 }
 
 interface SetHighlightAction<TOption> {
   type: ActionTypes.setHighlight;
+  event: null;
   highlight: TOption | null;
 }
 
 interface TextNavigationAction<TOption> {
   type: ActionTypes.textNavigation;
+  event: React.KeyboardEvent;
   searchString: string;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionsChangeAction<TOption> {
   type: ActionTypes.optionsChange;
+  event: null;
   options: TOption[];
   previousOptions: TOption[];
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 export type ListboxAction<TOption> =
@@ -135,7 +139,10 @@ interface UseListboxCommonProps<TOption> {
   /**
    * Callback fired when the highlighted option changes.
    */
-  onHighlightChange?: (option: TOption | null) => void;
+  onHighlightChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    option: TOption | null,
+  ) => void;
   /**
    * A function that tests equality between two options.
    * @default (a, b) => a === b
@@ -178,7 +185,10 @@ interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProp
   /**
    * Callback fired when the value changes.
    */
-  onChange?: (value: TOption) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TOption,
+  ) => void;
 }
 
 interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
@@ -198,7 +208,10 @@ interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps
   /**
    * Callback fired when the value changes.
    */
-  onChange?: (value: TOption[]) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TOption[],
+  ) => void;
 }
 
 export type UseListboxParameters<TOption> =
@@ -228,7 +241,9 @@ interface UseListboxOptionSlotOwnProps {
   'aria-selected': React.AriaAttributes['aria-selected'];
   id?: string;
   onClick: React.MouseEventHandler;
+  onPointerOver: React.PointerEventHandler;
   role: React.AriaRole;
+  tabIndex?: number;
 }
 
 export type UseListboxOptionSlotProps<TOther = {}> = Omit<

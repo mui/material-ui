@@ -5,7 +5,7 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
 ## Code of Conduct
 
 MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
-Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
 
@@ -80,7 +80,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 ### Trying changes on the documentation site
 
 The documentation site is built with MUI and contains examples of all the components.
-This is a great place to experiment with your changes.
+This is the best place to experiment with your changes.
 It's the local development environment used by the maintainers.
 
 To get started:
@@ -89,8 +89,28 @@ To get started:
 yarn start
 ```
 
-You can now access the documentation site [locally](http://localhost:3000).
+You can now access the documentation site locally: http://localhost:3000.
 Changes to the docs will hot reload the site.
+
+### Trying changes on the playground
+
+While we recommend to try your changes on the documentation site—it's not always ideal.
+You might face following problems:
+
+- updating the existing demos prevent you to work in isolation on a single instance of the component
+- emptying an existing page to try your changes in isolation lead to a noisy `git diff`
+- static linters will report issues that you might not care about.
+
+To solve these problems—you can use the playground:
+
+```sh
+yarn docs:create-playground && yarn start
+```
+
+You can now access it locally: http://localhost:3000/playground/.
+
+You can create as many playgrounds as you want by going to the `/docs/pages/playground/` folder and duplicating the index.tsx file with a different name: `<file_name>.tsx`.
+The new playground will be accessible under: `http://localhost:3000/playground/<file_name>`.
 
 ### How to increase the chance of being accepted?
 

@@ -18,7 +18,13 @@ import Podcasts from '@mui/icons-material/Podcasts';
 export default function ExampleIOSList() {
   return (
     <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
-      <Typography level="h3" fontSize="xl2" fontWeight="xl" id="ios-example-demo">
+      <Typography
+        level="h3"
+        fontSize="xl2"
+        fontWeight="xl"
+        id="ios-example-demo"
+        mb={1}
+      >
         Settings
       </Typography>
       <List
@@ -53,7 +59,7 @@ export default function ExampleIOSList() {
         })}
       >
         <ListItem nested>
-          <List aria-label="Personal info" sx={{ '--List-decorator-width': '72px' }}>
+          <List aria-label="Personal info" sx={{ '--List-decorator-size': '72px' }}>
             <ListItem>
               <ListItemDecorator>
                 <Avatar size="lg" sx={{ '--Avatar-size': '60px' }}>
