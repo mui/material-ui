@@ -256,9 +256,9 @@ function ApiDocs(props) {
     createTocEntry('import'),
     ...componentDescriptionToc,
     componentStyles.name && createTocEntry('component-name'),
+    createTocEntry('demos'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
-    createTocEntry('demos'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -331,6 +331,14 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         )}
+        <Heading hash="demos" />
+        <p
+          dangerouslySetInnerHTML={{
+            __html:
+              'The following component guides include examples on how to use this React component:',
+          }}
+        />
+        <span dangerouslySetInnerHTML={{ __html: demos }} />
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
@@ -376,8 +384,6 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        <Heading hash="demos" />
-        <span dangerouslySetInnerHTML={{ __html: demos }} />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">
