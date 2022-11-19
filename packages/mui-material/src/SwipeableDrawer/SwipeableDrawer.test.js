@@ -501,38 +501,14 @@ describe('<SwipeableDrawer />', () => {
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
     });
 
-    it('accessing paper ref', () => {
-      function App() {
-        const ref = React.useRef(null);
-        const [open, setOpen] = React.useState(true);
-
-        return (
-          <SwipeableDrawer
-            onOpen={() => setOpen(true)}
-            onClose={() => setOpen(false)}
-            PaperProps={{ ref }}
-            open={open}
-            anchor="right"
-            data-testid="drawer"
-          >
-            <button data-testid="button" onClick={() => setOpen(!open)}>
-              toggle
-            </button>
-
-            <div
-              data-testid="paper-ref"
-              id={ref.current ? 'ref-acccesible' : 'ref-not-acccesible'}
-            />
-          </SwipeableDrawer>
-        );
-      }
-
-      const { getByTestId } = render(<App />);
-      const paperRef = getByTestId('paper-ref');
-      expect(paperRef).to.have.id('ref-not-acccesible');
-      const button = getByTestId('button');
-      fireEvent.click(button);
-      expect(paperRef).to.have.id('ref-acccesible');
+    it('should be able to attach paper ref passed through PaperProps', () => {
+      const ref = React.createRef();
+      render(
+        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} PaperProps={{ ref }} open>
+          <div />
+        </SwipeableDrawer>,
+      );
+      expect(ref.current).not.to.equal(null);
     });
   });
 
