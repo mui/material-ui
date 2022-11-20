@@ -20,9 +20,11 @@ const testContext = {
   open: false,
 };
 
-const Wrapper = ({ children }) => (
-  <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
-);
+function Wrapper({ children }) {
+  return (
+    <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
+  );
+}
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();

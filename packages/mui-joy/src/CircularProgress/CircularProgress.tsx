@@ -1,18 +1,18 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
-import { keyframes, css } from '@mui/system';
+import { css, keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import {
+  CircularProgressOwnerState,
   CircularProgressProps,
   CircularProgressTypeMap,
-  CircularProgressOwnerState,
 } from './CircularProgressProps';
 
 const circulate = keyframes({
@@ -91,6 +91,8 @@ const CircularProgressRoot = styled('span', {
     '--_thickness-diff':
       'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
     '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth))',
+    '--_outlined-inset':
+      'max(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
     width: 'var(--_root-size)',
     height: 'var(--_root-size)',
     borderRadius: 'var(--_root-size)',
@@ -109,6 +111,19 @@ const CircularProgressRoot = styled('span', {
       fontSize: 'calc(0.2 * var(--_root-size))',
     }),
     ...rest,
+    ...(ownerState.variant === 'outlined' && {
+      '&:before': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        borderRadius: 'inherit',
+        top: 'var(--_outlined-inset)',
+        left: 'var(--_outlined-inset)',
+        right: 'var(--_outlined-inset)',
+        bottom: 'var(--_outlined-inset)',
+        ...rest,
+      },
+    }),
   };
 });
 
@@ -169,7 +184,7 @@ const CircularProgressProgress = styled('circle', {
       : css`
           animation: var(
               --CircularProgress-circulation,
-              0.5s linear 0s infinite normal none running
+              0.8s linear 0s infinite normal none running
             )
             ${circulate};
         `,
@@ -224,6 +239,12 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       ref,
       as: component,
       role: 'progressbar',
+      style: {
+        // Setting this CSS varaible via inline-style
+        // prevents the generation of new CSS every time
+        // `value` prop updates
+        '--CircularProgress-percent': value,
+      },
     },
     className: clsx(classes.root, className),
     ...(value &&

@@ -3,7 +3,7 @@ product: material-ui
 title: App bar React component
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
-materialDesign: https://material.io/components/app-bars-top
+materialDesign: https://m2.material.io/components/app-bars-top
 ---
 
 # App bar
@@ -36,7 +36,7 @@ Uma barra de pesquisa lateral
 
 ## Responsive App bar with Drawer
 
-{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+{{"demo": "DrawerAppBar.js", "bg": true, "iframe": true, "disableLiveEdit": true}}
 
 ## App bar with a primary search field
 
@@ -103,19 +103,19 @@ You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 The app bar hides on scroll down to leave more space for reading.
 
-{{"demo": "HideAppBar.js", "iframe": true}}
+{{"demo": "HideAppBar.js", "iframe": true, "disableLiveEdit": true}}
 
 ### Elevate App bar
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
-{{"demo": "ElevateAppBar.js", "iframe": true}}
+{{"demo": "ElevateAppBar.js", "iframe": true, "disableLiveEdit": true}}
 
 ### Voltar ao topo
 
 A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
-{{"demo": "BackToTop.js", "iframe": true}}
+{{"demo": "BackToTop.js", "iframe": true, "disableLiveEdit": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -148,6 +148,6 @@ function HideOnScroll(props) {
 
 ## Enable color on dark
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+Following the [Material Design guidelines](https://m2.material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createRenderer, describeConformance } from 'test/utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -34,18 +35,13 @@ describe('<IconButton />', () => {
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  ['default', 'primary'].forEach((color) => {
-    it(`can disable the ripple and hover effect for color ${color}`, () => {
-      const { container, getByRole } = render(
-        <IconButton disableRipple color={color} TouchRippleProps={{ className: 'touch-ripple' }}>
-          book
-        </IconButton>,
-      );
-      expect(container.querySelector('.touch-ripple')).to.equal(null);
-      expect(getComputedStyle(getByRole('button'), ':hover').backgroundColor).to.equal(
-        getComputedStyle(getByRole('button')).backgroundColor,
-      );
-    });
+  it('can disable the ripple and hover effect', () => {
+    const { container } = render(
+      <IconButton disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
+        book
+      </IconButton>,
+    );
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
   describe('prop: size', () => {
@@ -104,5 +100,23 @@ describe('<IconButton />', () => {
         'MockedName',
       );
     }).toErrorDev(['MUI: You are providing an onClick event listener']);
+  });
+
+  it('should not throw error for a custom color', () => {
+    expect(() => (
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiIconButton: {
+              defaultProps: {
+                color: 'custom',
+              },
+            },
+          },
+        })}
+      >
+        <IconButton />
+      </ThemeProvider>
+    )).not.to.throw();
   });
 });

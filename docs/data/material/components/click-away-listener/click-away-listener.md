@@ -5,9 +5,9 @@ components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Click-away listener
+# Click-Away Listener
 
-<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
+<p class="description">The ClickAwayListener component detects when a click event happens outside of its child element.</p>
 
 - 📦 [992 B gzipped](/size-snapshot/).
 - ⚛️ Supports portals
