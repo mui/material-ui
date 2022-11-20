@@ -22,18 +22,20 @@ export async function findUp(file, dir = process.cwd()) {
   if (!path.isAbsolute(dir)) {
     throw new Error(`Path "${dir}" must be absolute`);
   }
-  while (path.relative(dir, '/') !== '') {
-    const filepath = path.resolve(dir, file);
-    try {
-      // eslint-disable-next-line no-await-in-loop
-      await fs.stat(filepath);
-      return filepath;
-    } catch (err) {
-      if (err.code !== 'ENOENT') {
-        throw err;
-      }
+
+  const filepath = path.resolve(dir, file);
+  try {
+    await fs.stat(filepath);
+    return filepath;
+  } catch (err) {
+    if (err.code !== 'ENOENT') {
+      throw err;
     }
-    dir = path.dirname(dir);
   }
-  return null;
+
+  if (path.relative(dir, '/') === '') {
+    return null;
+  }
+
+  return findUp(file, path.dirname(dir));
 }
