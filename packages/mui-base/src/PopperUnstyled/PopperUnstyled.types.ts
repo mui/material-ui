@@ -111,10 +111,10 @@ export interface PopperUnstyledOwnProps {
    */
   transition?: boolean;
 
-  ownerState?: object;
+  ownerState?: any;
 }
 
-export interface PopperUnstyledOwnerState extends PopperUnstyledOwnProps {}
+export type PopperUnstyledOwnerState = Omit<PopperUnstyledOwnProps, 'ownerState'>;
 
 export interface PopperUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & PopperUnstyledOwnProps;
