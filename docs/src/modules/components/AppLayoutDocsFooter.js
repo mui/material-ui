@@ -309,6 +309,7 @@ export default function AppLayoutDocsFooter(props) {
 
   const handleClickThumb = (vote) => async () => {
     if (vote !== rating) {
+      setCommentedSection(EMPTY_SECTION);
       setRating(vote);
       setCommentOpen(true);
     }
