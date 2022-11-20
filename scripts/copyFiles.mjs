@@ -51,7 +51,6 @@ async function createModulePackages({ from, to }) {
         type: 'module',
         exports: {
           '.': {
-            import: esm,
             require: cjs,
           },
         },
