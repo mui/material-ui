@@ -27,6 +27,7 @@ import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import BenchImages from '../src/BenchImages';
 
 interface Profile {
   /**
@@ -853,6 +854,7 @@ export default function About() {
         title="About us - MUI"
         description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
       />
+      <BenchImages />
       <AppHeaderBanner />
       <AppHeader />
       <main id="main-content">
