@@ -222,6 +222,10 @@ const pages: MuiPage[] = [
         title: 'ClassName generator',
       },
       {
+        pathname: '/material-ui/experimental-api/css-variables',
+        title: 'CSS variables',
+      },
+      {
         pathname: '/material-ui/experimental-api/css-theme-variables',
         subheader: 'CSS theme variables',
         children: [
