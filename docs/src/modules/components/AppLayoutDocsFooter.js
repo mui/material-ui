@@ -467,14 +467,14 @@ export default function AppLayoutDocsFooter(props) {
               </DialogActions>
               {rating !== 1 && (
                 <Typography id="feedback-description" color="text.secondary">
-                  {t('feedbackMessageToGithub.usecases')}
+                  {t('feedbackMessageToGitHub.usecases')}
                   <br />
-                  {t('feedbackMessageToGithub.callToAction.text')}
+                  {t('feedbackMessageToGitHub.callToAction.text')}
                   <Link
                     href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=4.docs-feedback.yml&page-url=${window.location.href}`}
                     target="_blank"
                   >
-                    {t('feedbackMessageToGithub.callToAction.link')}
+                    {t('feedbackMessageToGitHub.callToAction.link')}
                   </Link>
                 </Typography>
               )}
