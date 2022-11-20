@@ -16,7 +16,7 @@ export interface PopperUnstyledTransitionProps {
 
 export interface PopperUnstyledChildrenProps {
   placement: PopperPlacementType;
-  TransitionProps?: PopperUnstyledTransitionProps
+  TransitionProps?: PopperUnstyledTransitionProps;
 }
 
 export interface PopperUnstyledOwnProps {
@@ -30,9 +30,7 @@ export interface PopperUnstyledOwnProps {
   /**
    * Popper render function or node.
    */
-  children?:
-    | React.ReactNode
-    | ((props: PopperUnstyledChildrenProps) => React.ReactNode);
+  children?: React.ReactNode | ((props: PopperUnstyledChildrenProps) => React.ReactNode);
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -128,20 +126,17 @@ export type PopperUnstyledProps<
   component?: D;
 };
 
-export type PopperTooltipOwnProps =
-  Omit<
-    PopperUnstyledOwnProps,
-    'container'
-    | 'keepMounted'
-    | 'transition'
-  > & {
-    TransitionProps?: PopperUnstyledTransitionProps;
-  }
+export type PopperTooltipOwnProps = Omit<
+  PopperUnstyledOwnProps,
+  'container' | 'keepMounted' | 'transition'
+> & {
+  TransitionProps?: PopperUnstyledTransitionProps;
+};
 
 export interface PopperTooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & PopperTooltipOwnProps;
   defaultComponent: D;
-};
+}
 
 export type PopperTooltipProps<
   D extends React.ElementType = PopperTooltipTypeMap['defaultComponent'],

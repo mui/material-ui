@@ -14,12 +14,17 @@ import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import { getPopperUnstyledUtilityClass } from './popperUnstyledClasses';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { PopperPlacementType, PopperTooltipProps, PopperTooltipTypeMap, PopperUnstyledChildrenProps, PopperUnstyledRootSlotProps, PopperUnstyledTransitionProps, PopperUnstyledTypeMap } from './PopperUnstyled.types';
+import {
+  PopperPlacementType,
+  PopperTooltipProps,
+  PopperTooltipTypeMap,
+  PopperUnstyledChildrenProps,
+  PopperUnstyledRootSlotProps,
+  PopperUnstyledTransitionProps,
+  PopperUnstyledTypeMap,
+} from './PopperUnstyled.types';
 
-function flipPlacement(
-  placement?: PopperPlacementType,
-  direction?: 'ltr' | 'rtl',
-) {
+function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl') {
   if (direction === 'ltr') {
     return placement;
   }
@@ -40,7 +45,9 @@ function flipPlacement(
 
 function resolveAnchorEl(anchorEl: VirtualElement | (() => VirtualElement)): VirtualElement;
 function resolveAnchorEl(anchorEl: HTMLElement | (() => HTMLElement)): HTMLElement;
-function resolveAnchorEl(anchorEl: VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement)): HTMLElement | VirtualElement {
+function resolveAnchorEl(
+  anchorEl: VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement),
+): HTMLElement | VirtualElement {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
@@ -49,7 +56,7 @@ function isHTMLElement(element: HTMLElement | VirtualElement): element is HTMLEl
 }
 
 function isVirtualElement(element: HTMLElement | VirtualElement): element is VirtualElement {
-  return !isHTMLElement(element)
+  return !isHTMLElement(element);
 }
 
 const useUtilityClasses = () => {
@@ -225,10 +232,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
  */
-const PopperUnstyled = React.forwardRef(function PopperUnstyled(
-  props,
-  ref,
-) {
+const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   const {
     anchorEl,
     children,
@@ -265,21 +269,21 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   // If neither are provided let the Modal take care of choosing the container
   let container;
   if (containerProp) {
-    container = containerProp
+    container = containerProp;
   } else if (anchorEl) {
-    const resolvedAnchorEl = resolveAnchorEl(anchorEl)
+    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
     container = isHTMLElement(resolvedAnchorEl)
       ? ownerDocument(resolvedAnchorEl).body
-      : ownerDocument(null).body
+      : ownerDocument(null).body;
   }
-  const display = !open && keepMounted && (!transition || exited) ? 'none' : undefined
+  const display = !open && keepMounted && (!transition || exited) ? 'none' : undefined;
   const transitionProps: PopperUnstyledTransitionProps | undefined = transition
     ? {
         in: open,
         onEnter: handleEnter,
         onExited: handleExited,
-    }
-    : undefined
+      }
+    : undefined;
 
   return (
     <Portal disablePortal={disablePortal} container={container}>
@@ -301,10 +305,9 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
           top: 0,
           left: 0,
           display,
-          ...style
+          ...style,
         }}
         TransitionProps={transitionProps}
-
       >
         {children}
       </PopperTooltip>
@@ -330,9 +333,9 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
         const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
 
         if (
-          resolvedAnchorEl
-          && isHTMLElement(resolvedAnchorEl)
-          && resolvedAnchorEl.nodeType === 1
+          resolvedAnchorEl &&
+          isHTMLElement(resolvedAnchorEl) &&
+          resolvedAnchorEl.nodeType === 1
         ) {
           const box = resolvedAnchorEl.getBoundingClientRect();
 
@@ -354,10 +357,9 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
         } else if (
           !resolvedAnchorEl ||
           typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||
-
           (isVirtualElement(resolvedAnchorEl) &&
-           resolvedAnchorEl.contextElement != null &&
-           resolvedAnchorEl.contextElement.nodeType !== 1)
+            resolvedAnchorEl.contextElement != null &&
+            resolvedAnchorEl.contextElement.nodeType !== 1)
         ) {
           return new Error(
             [

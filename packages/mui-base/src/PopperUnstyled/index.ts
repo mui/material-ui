@@ -13,7 +13,4 @@ export {
   default as popperUnstyledClasses,
   getPopperUnstyledUtilityClass,
 } from './popperUnstyledClasses';
-export type {
-  PopperUnstyledClassKey,
-  PopperUnstyledClasses,
-} from './popperUnstyledClasses';
+export type { PopperUnstyledClassKey, PopperUnstyledClasses } from './popperUnstyledClasses';

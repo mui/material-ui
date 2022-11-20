@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { createRenderer, createMount, describeConformanceUnstyled, screen } from 'test/utils';
 import PopperUnstyled, { popperUnstyledClasses } from '@mui/base/PopperUnstyled';
 
-
 describe('<PopperUnstyled />', () => {
   const { render } = createRenderer();
   const mount = createMount();
