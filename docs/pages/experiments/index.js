@@ -59,7 +59,8 @@ export default function Experiments({ experiments }) {
                 The files under <code>/experiments/*</code> are committed to git.
               </Typography>
               <Typography component="li">
-                These URLs (start with <code>/experiments/*</code>) are not accessible in production.
+                These URLs (start with <code>/experiments/*</code>) are not accessible in
+                production.
               </Typography>
             </ul>
           </Box>
