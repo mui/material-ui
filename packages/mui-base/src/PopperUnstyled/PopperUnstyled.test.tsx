@@ -41,7 +41,7 @@ describe('<PopperUnstyled />', () => {
         anchorEl={() => document.createElement('div')}
         open
         component={CustomComponent}
-        ownerState={{ foo: 'foo' } as any}
+        ownerState={{ foo: 'foo' }}
       />,
     );
 

@@ -111,7 +111,7 @@ export interface PopperUnstyledOwnProps {
    */
   transition?: boolean;
 
-  ownerState?: PopperUnstyledOwnerState;
+  ownerState?: object;
 }
 
 export interface PopperUnstyledOwnerState extends PopperUnstyledOwnProps {}
