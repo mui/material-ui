@@ -14,6 +14,7 @@ export function getWorkspaceRoot() {
 }
 
 /**
+ * Find a file or directory by walking up parent directories
  * @param {string} file
  * @param {string} dir
  * @returns {Promise<string | null>}
