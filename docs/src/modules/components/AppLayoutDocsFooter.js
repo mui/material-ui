@@ -428,7 +428,7 @@ export default function AppLayoutDocsFooter(props) {
             onReset={handleCancelComment}
             onSubmit={handleSubmitComment}
           >
-            <Box sx={{ mb: 3 }}>
+            <Box sx={{ mb: 4 }}>
               {commentedSection.text ? (
                 <Typography
                   id="feedback-description"
@@ -459,7 +459,7 @@ export default function AppLayoutDocsFooter(props) {
                   ref: inputRef,
                 }}
               />
-              <DialogActions sx={{ py: 0 }}>
+              <DialogActions>
                 <Button type="reset">{t('cancel')}</Button>
                 <Button type="submit" variant="contained">
                   {t('submit')}
