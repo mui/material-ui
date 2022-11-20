@@ -170,6 +170,7 @@ module.exports = withDocsInfra({
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
+        // The experiments pages are only meant for experiments, they shouldn't leak to production.
         if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV === 'production') {
           return;
         }
