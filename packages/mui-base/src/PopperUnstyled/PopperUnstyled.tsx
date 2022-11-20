@@ -266,8 +266,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   let container;
   if (containerProp) {
     container = containerProp
-  }
-  if (anchorEl) {
+  } else if (anchorEl) {
     const resolvedAnchorEl = resolveAnchorEl(anchorEl)
     container = isHTMLElement(resolvedAnchorEl)
       ? ownerDocument(resolvedAnchorEl).body
