@@ -121,54 +121,43 @@ const Root = styled('div')(
         borderBottom: '1px solid currentColor',
         textDecoration: 'none',
       },
-      '&:hover .anchor-link-style': {
-        display: 'inline-block',
-        textAlign: 'center',
+      '&:hover .anchor-link-style, & .comment-link-style': {
         lineHeight: '21.5px',
-        marginLeft: 10,
-        height: '26px',
-        width: '26px',
-        background: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-        border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
-        borderRadius: 8,
-        color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-        '&:hover': {
-          color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
-        },
-        '& svg': {
-          width: '0.875rem',
-          height: '0.875rem',
-          fill: 'currentColor',
-        },
-      },
-      '& .comment-link-style': {
-        display: 'none',
-        verticalAlign: 'middle',
         textAlign: 'center',
-        lineHeight: '21.5px',
         marginLeft: 10,
         height: 26,
         width: 26,
-        position: 'absolute',
-        top: `calc(50% - ${26 / 2}px)`,
-        right: 0,
-        background: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         border: '1px solid',
         borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
         borderRadius: 8,
         color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
-        float: 'right',
         cursor: 'pointer',
+        display: 'inline-block',
         '&:hover': {
           color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
         },
         '& svg': {
-          verticalAlign: 'middle',
           width: '0.875rem',
           height: '0.875rem',
           fill: 'currentColor',
           pointerEvents: 'none',
+        },
+      },
+      '& .comment-link-style': {
+        display: 'none',
+        position: 'absolute',
+        top: `calc(50% - ${26 / 2}px)`,
+        right: 0,
+        opacity: 0.5,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shortest,
+        }),
+        '&:hover': {
+          opacity: 1,
+        },
+        '& svg': {
+          verticalAlign: 'middle',
         },
       },
     },
@@ -467,9 +456,13 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-link-style': {
-          background: alpha(darkTheme.palette.primaryDark[800], 0.3),
+        '&:hover .anchor-link-style, & .comment-link-style': {
+          color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
+          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.3),
           borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
+          '&:hover': {
+            color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+          },
         },
       },
       '& h1 code, & h2 code, & h3 code': {
