@@ -1,3 +1,14 @@
+/**
+ * See the docs of the Netlify environment variables:
+ * https://docs.netlify.com/configure-builds/environment-variables/#build-metadata.
+ *
+ * A few comments:
+ * - process.env.CONTEXT === 'production' means that the branch in Netlify was configured as production.
+ *   For example, the `master` branch of the Core team is considered a `production` build on Netlify based
+ *   on https://app.netlify.com/sites/material-ui/settings/deploys#branches.
+ * - Each team has different site https://app.netlify.com/teams/mui/sites.
+ *   The following logic must be compatible with all of them.
+ */
 let DEPLOY_ENV = 'development';
 
 // Same as process.env.PULL_REQUEST_ID
@@ -5,28 +16,13 @@ if (process.env.CONTEXT === 'deploy-preview') {
   DEPLOY_ENV = 'pull-request';
 }
 
-/**
- * ===================================================================================
- * Fun facts about the `process.env.CONTEXT`:
- *
- * - It is defined by Netlify environment variables (https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)
- * - `process.env.CONTEXT === 'production'` does not mean mui.com build, it is the site configuration.
- *   For example, the `master` branch of the Core team is considered a `production` build on Netlify based on https://app.netlify.com/sites/material-ui/settings/deploys#branches.
- *
- * - Each team has different site https://app.netlify.com/teams/mui/sites. Make sure to checkout the right site before making any changes.
- *
- */
 if (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-deploy') {
   DEPLOY_ENV = 'production';
 }
 
-if (process.env.CONTEXT === 'production' && process.env.HEAD === 'master') {
-  // For the Core team site, visit https://app.netlify.com/sites/material-ui/settings/deploys#branches for the config details.
-  DEPLOY_ENV = 'staging';
-}
-
+// The 'master' and 'next' branches are NEVER a production environment. We use these branches for staging.
 if (
-  process.env.CONTEXT === 'branch-deploy' &&
+  (process.env.CONTEXT === 'production' || process.env.CONTEXT === 'branch-deploy') &&
   (process.env.HEAD === 'master' || process.env.HEAD === 'next')
 ) {
   DEPLOY_ENV = 'staging';
