@@ -3,10 +3,12 @@ const mdSysTypescale = {
     small: {
       family: 'Roboto',
       weight: '500',
+      tracking: 0.5,
     },
     medium: {
       family: 'Roboto',
       weight: '500',
+      tracking: 0.5,
     },
     large: {
       family: 'Roboto',
@@ -20,24 +22,29 @@ const mdSysTypescale = {
     small: {
       family: 'Roboto',
       weight: '400',
+      tracking: 0.4,
     },
     medium: {
       family: 'Roboto',
       weight: '400',
+      tracking: 0.25,
     },
     large: {
       family: 'Roboto',
       weight: '400',
+      tracking: 0.15,
     },
   },
   title: {
     small: {
       family: 'Roboto',
       weight: '500',
+      tracking: 0.1,
     },
     medium: {
       family: 'Roboto',
       weight: '500',
+      tracking: 0.15,
     },
     large: {
       family: 'Roboto',
