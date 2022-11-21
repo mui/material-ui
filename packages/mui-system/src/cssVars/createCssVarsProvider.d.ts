@@ -81,6 +81,50 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
+  useCssThemeVars: (
+    theme: {
+      cssVarPrefix?: string;
+      colorSchemes: Record<ColorScheme, Record<string, any>>;
+    },
+    options: {
+      /**
+       * DOM attribute for applying color scheme
+       * @default 'data-color-scheme'
+       */
+      attribute?: string;
+      /**
+       * The node used to attach the color-scheme attribute
+       * @default document
+       */
+      colorSchemeNode?: Document | HTMLElement | null;
+      /**
+       * The CSS selector for attaching the generated custom properties
+       * @default ':root'
+       */
+      colorSchemeSelector?: string;
+      /**
+       * Design system default color scheme.
+       * - provides string if the design system has one default color scheme (either light or dark)
+       * - provides object if the design system has default light & dark color schemes
+       */
+      defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
+      /**
+       * Design system default mode
+       * @default 'light'
+       */
+      defaultMode?: Mode;
+      /**
+       * A function to determine if the key, value should be attached as CSS Variable
+       * `keys` is an array that represents the object path keys.
+       *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+       *  then, keys = ['foo', 'bar']
+       *        value = 'var(--test)'
+       */
+      shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+      mode: Mode;
+      colorScheme: ColorScheme;
+    },
+  ) => {};
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 
