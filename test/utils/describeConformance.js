@@ -496,7 +496,7 @@ function testSlotPropsProp(element, getOptions) {
  */
 function testMaterialUIComponentsProp(element, getOptions) {
   describe('prop components:', () => {
-    const { components, slots, render } = getOptions();
+    const { components, render } = getOptions();
 
     if (!components) {
       // the tests below will cover all the components
@@ -535,12 +535,6 @@ function testMaterialUIComponentsProp(element, getOptions) {
         it(`prioritizes the 'slots.${slotName}' over components.${capitalize(
           slotName,
         )} if both are defined`, () => {
-          if (!slots || !slots[slotName]) {
-            throw new Error(
-              `missing "slots" in options, unable to test "slots" overrides "components" for this Material UI component`,
-            );
-          }
-
           // eslint-disable-next-line react/prop-types
           const ComponentForComponentsProp = React.forwardRef(({ children }, ref) => {
             const SlotComponent = slotOptions.testWithComponent ?? 'div';
@@ -553,7 +547,7 @@ function testMaterialUIComponentsProp(element, getOptions) {
 
           // eslint-disable-next-line react/prop-types
           const ComponentForSlotsProp = React.forwardRef(({ children }, ref) => {
-            const SlotComponent = slots[slotName].testWithComponent ?? 'div';
+            const SlotComponent = components[slotName].testWithComponent ?? 'div';
             return (
               <SlotComponent ref={ref} data-testid="from-slots">
                 {children}
