@@ -26,7 +26,7 @@ export default function Playground() {
   return (
     <Box>
       <Box
-        sx={(theme) => ({
+        sx={{
           mt: 3,
           pt: 4,
           position: 'sticky',
@@ -35,7 +35,7 @@ export default function Playground() {
           border: '1px solid rgba(62, 80, 96, 0.3)',
           borderRadius: 'xs',
           background: 'rgba(0,30,60, 0.95)',
-        })}
+        }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>
           <FormLabel>Playground</FormLabel>
