@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme as md2UseTheme } from '@mui/material/styles';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { grey } from 'docs/src/modules/brandingTheme';
-import { useTheme as md2UseTheme } from '@mui/material/styles';
 import {
   extendTheme,
   CssVarsProvider as MaterialYouCssVarsProvider,
@@ -94,13 +93,13 @@ export const prependLinesSpace = (code: string, size: number = 2) => {
   return newCode.join('\n');
 };
 
-const ModeSwitcher = ({ md2Mode }: { md2Mode: Mode | undefined }) => {
+function ModeSwitcher({ md2Mode }: { md2Mode: Mode | undefined }) {
   const { mode, setMode } = useColorScheme();
   if (md2Mode && mode !== md2Mode) {
     setMode(md2Mode ?? mode);
   }
   return null;
-};
+}
 
 interface MaterialYouUsageDemoProps<ComponentProps> {
   /**
@@ -265,7 +264,7 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
           <IconButton
             aria-label="Reset all"
             size="small"
-            onClick={(e) => setProps(initialProps as T)}
+            onClick={() => setProps(initialProps as T)}
             sx={{
               visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
               // '--IconButton-size': '30px',
@@ -284,7 +283,7 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
             },
           }}
         >
-          {data.map(({ propName, knob, options = [], defaultValue, labels, onChange }) => {
+          {data.map(({ propName, knob, options = [], defaultValue, onChange }) => {
             const resolvedValue = props[propName] ?? defaultValue;
             if (!knob) {
               return null;
@@ -323,7 +322,7 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
                   <Select
                     placeholder="Select a variant..."
                     value={(resolvedValue || 'none') as string}
-                    onChange={(event, val) => {
+                    onChange={(event) => {
                       setProps((latestProps) => ({
                         ...latestProps,
                         [propName]: event.target.value,
