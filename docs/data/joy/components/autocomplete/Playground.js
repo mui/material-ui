@@ -26,12 +26,16 @@ export default function Playground() {
   return (
     <Box>
       <Box
-        sx={{
+        sx={(theme) => ({
+          mt: 3,
           pt: 4,
           position: 'sticky',
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
-        }}
+          border: '1px solid rgba(62, 80, 96, 0.3)',
+          borderRadius: 'xs',
+          background: 'rgba(0,30,60, 0.95)',
+        })}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>
           <FormLabel>Playground</FormLabel>
@@ -50,6 +54,7 @@ export default function Playground() {
               textTransform: 'uppercase',
               fontWeight: 'lg',
               letterSpacing: 'md',
+              px: 2,
             }}
           >
             Flags {flags.length ? `(${flags.length})` : ''}
