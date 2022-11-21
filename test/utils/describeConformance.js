@@ -348,8 +348,8 @@ function testSlotPropsProp(element, getOptions) {
  * @property {object} [testVariantProps]
  * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
  * @property {boolean} [testCustomVariant] - The component supports custom variant
- * @property {object} components - Material UI's components prop
- * @property {object} slots - MUI slots prop
+ * @property {object} [components] - Material UI's components prop
+ * @property {object} [slots] - MUI slots prop
  */
 
 /**
