@@ -167,7 +167,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
   const localPaperRef = React.useRef();
-  const paperRef = PaperProps.ref || localPaperef;
+  const paperRef = PaperProps.ref || localPaperRef;
 
   const touchDetected = React.useRef(false);
 
