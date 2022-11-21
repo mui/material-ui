@@ -181,3 +181,13 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
+
+## Material You version
+
+This component also supports the new Material Design spec - [Material You](https://m3.material.io/). It is implemented in form of a new component in the experimental `@mui/material-next` package.
+
+```js
+import Button from '@mui/material-next/Button';
+```
+
+{{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true}}
