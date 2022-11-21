@@ -229,7 +229,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the `input` will indicate an error.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
