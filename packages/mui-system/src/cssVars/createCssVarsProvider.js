@@ -73,8 +73,8 @@ export default function createCssVarsProvider(options) {
       shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
       selector = defaultSelector,
       // runtime parameters
-      mode,
-      colorScheme,
+      mode: modeProp,
+      colorScheme: colorSchemeProp,
     },
   ) => {
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
@@ -84,19 +84,21 @@ export default function createCssVarsProvider(options) {
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
     const ctx = React.useContext(ColorSchemeContext);
+    const mode = modeProp || ctx?.mode;
+    const colorScheme = colorSchemeProp || ctx?.colorScheme;
     const calculatedMode = (() => {
       // the `calculatedMode` can be controlled with parameter, otherwise listen to the context.
-      if (!mode || !ctx?.mode) {
+      if (!mode) {
         // This scope occurs on the server
         if (defaultMode === 'system') {
           return designSystemMode;
         }
         return defaultMode;
       }
-      return mode || ctx?.mode;
+      return mode;
     })();
     const calculatedColorScheme = (() => {
-      if (!colorScheme || !ctx?.colorScheme) {
+      if (!colorScheme) {
         // This scope occurs on the server
         if (calculatedMode === 'dark') {
           return defaultDarkColorScheme;
