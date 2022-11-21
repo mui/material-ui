@@ -46,6 +46,7 @@ async function generateIndex(options) {
       const typename = path.basename(file).replace('.js', '');
       return `export { default as ${typename} } from './${typename}';\n`;
     })
+    .sort()
     .join('');
 
   await fse.writeFile(path.join(options.outputDir, 'index.js'), index);
