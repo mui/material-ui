@@ -8,7 +8,7 @@ import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 export default function TabsIcon() {
   return (
-    <Tabs aria-label="Icon tabs" defaultValue={0}>
+    <Tabs aria-label="Icon tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
       <TabList>
         <Tab>
           <PhoneIcon />
