@@ -248,7 +248,7 @@ function testSlotsProp(element, getOptions) {
           },
         }),
       );
-      const renderedElement = queryByTestId('custom');
+      const renderedElement = queryByTestId('custom'); // use `query*` instead of `get*` to bypass hidden element, we just want to check the overriding functionality.
       expect(renderedElement).not.to.equal(null);
       if (slotOptions.expectedClassName) {
         expect(renderedElement).to.have.class(slotOptions.expectedClassName);
@@ -276,7 +276,7 @@ function testSlotsProp(element, getOptions) {
           }),
         );
 
-        const renderedElement = queryByTestId('customized');
+        const renderedElement = queryByTestId('customized'); // use `query*` instead of `get*` to bypass hidden element, we just want to check the overriding functionality.
         expect(renderedElement).not.to.equal(null);
 
         expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
@@ -306,7 +306,7 @@ function testSlotPropsProp(element, getOptions) {
           },
         }),
       );
-      const slotComponent = queryByTestId('custom');
+      const slotComponent = queryByTestId('custom'); // use `query*` instead of `get*` to bypass hidden element, we just want to check the overriding functionality.
       expect(slotComponent).not.to.equal(null);
 
       if (slotOptions.expectedClassName) {
