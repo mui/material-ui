@@ -18,12 +18,12 @@ function Button(props: TablePaginationActionsUnstyledButtonSlotProps) {
 
 const styledTablePaginationActions = (
   <TablePaginationActionsUnstyled
-    components={{
-      Root,
-      BackButton: Button,
-      NextButton: Button,
-      FirstButton: Button,
-      LastButton: Button,
+    slots={{
+      root: Root,
+      backButton: Button,
+      nextButton: Button,
+      firstButton: Button,
+      lastButton: Button,
     }}
     count={10}
     getItemAriaLabel={() => ''}
@@ -35,8 +35,11 @@ const styledTablePaginationActions = (
   />
 );
 
-const PolymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   const requiredProps = {
     count: 10,

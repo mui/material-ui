@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
 import { OptionState } from '../ListboxUnstyled';
 import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
@@ -19,23 +19,23 @@ export interface OptionUnstyledOwnProps<TValue> {
   disabled?: boolean;
   className?: string;
   /**
-   * The components used for each slot inside the OptionUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
    * The props used for each slot inside the OptionUnstyled.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'li',
       OptionUnstyledComponentsPropsOverrides,
       OptionUnstyledOwnerState<TValue>
     >;
+  };
+  /**
+   * The components used for each slot inside the OptionUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
   };
   /**
    * A text representation of the option's content.

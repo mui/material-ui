@@ -128,7 +128,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
   },
 ) {
   const { prefix, shouldSkipGeneratingVar } = options || {};
-  const css = {} as NestedRecord<string>;
+  const css = {} as Record<string, string | number>;
   const vars = {} as NestedRecord<string>;
   const parsedTheme = {} as T;
 
@@ -136,10 +136,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
     theme,
     (keys, value: string | number | object, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
-        if (
-          !shouldSkipGeneratingVar ||
-          (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
-        ) {
+        if (!shouldSkipGeneratingVar || !shouldSkipGeneratingVar(keys, value)) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });

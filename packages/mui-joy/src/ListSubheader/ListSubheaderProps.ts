@@ -12,7 +12,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListSubheaderColorOverrides>;
     /**
@@ -30,7 +29,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div
     sticky?: boolean;
     /**
      * The variant to use.
-     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListSubheaderVariantOverrides>;
   };

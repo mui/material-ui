@@ -3,7 +3,7 @@ product: material-ui
 title: React Snackbar component
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
-materialDesign: https://material.io/components/snackbars
+materialDesign: https://m2.material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 ---
 

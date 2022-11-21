@@ -15,7 +15,7 @@ Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"demo": "SwitchUsage.js", "hideToolbar": true}}
+{{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
@@ -73,7 +73,7 @@ The track text **should not** be used to label the switch, you should use [prope
 
 ### Thumb child
 
-Simmilarly to the above, target the thumb's children to display icons inside of it.
+Similarly to the above, target the thumb's children to display icons inside of it.
 
 {{"demo": "ExampleThumbChild.js"}}
 
@@ -92,7 +92,7 @@ Here are a few tips to make sure you have an accessible switch component:
 - The `Switch` will render with the `checkbox` role as opposed to `switch`.
   This is mainly because the latter isn't widely supported yet.
   However, if you believe your audience will support it, make sure to test with assistive technology.
-  Use the `componentProps` prop to change the role:
+  Use the `componentsProps` prop to change the role:
 
   ```jsx
   <Switch componentsProps={{ input: { role: 'switch' } }}>
@@ -101,7 +101,7 @@ Here are a few tips to make sure you have an accessible switch component:
 - Every form control component should have proper labels.
   This includes radio buttons, checkboxes, and switches.
   In most cases, this is done using the `<label>` element.
-  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `componentProps` prop.
+  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `componentsProps` prop.
   ```jsx
   <Switch value="checkedA" componentsProps={{ 'aria-label': 'Switch A' }} />
   ```
@@ -125,7 +125,7 @@ Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Flu
 
 ### iOS
 
-Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and holder the switch.
+Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and hold the switch.
 
 {{"demo": "ExampleIosSwitch.js"}}
 

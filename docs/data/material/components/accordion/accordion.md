@@ -3,7 +3,7 @@ product: material-ui
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
-materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+materialDesign: https://m1.material.io/components/expansion-panels.html
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
@@ -17,7 +17,7 @@ An accordion is a lightweight container that may either be used standalone, or b
 
 :::info
 **Note:**
-Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
+Accordions are no longer documented in the [Material Design guidelines](https://m2.material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
 :::
 
 ## Basic accordion

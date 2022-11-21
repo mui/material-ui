@@ -80,82 +80,92 @@ import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import { expectType } from '@mui/types';
 
 const log = console.log;
-const FakeIcon = () => <div>ICON</div>;
+function FakeIcon() {
+  return <div>ICON</div>;
+}
 
 const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, ref) => (
   <div ref={ref} />
 ));
 
-const AppBarTest = () => (
-  <AppBar position="static">
-    <Toolbar>
-      <IconButton color="inherit" aria-label="menu">
-        <FakeIcon />
-      </IconButton>
-      <Typography variant="h6" color="inherit">
-        Title
-      </Typography>
-      <Button color="inherit">Login</Button>
-    </Toolbar>
-  </AppBar>
-);
+function AppBarTest() {
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton color="inherit" aria-label="menu">
+          <FakeIcon />
+        </IconButton>
+        <Typography variant="h6" color="inherit">
+          Title
+        </Typography>
+        <Button color="inherit">Login</Button>
+      </Toolbar>
+    </AppBar>
+  );
+}
 
-const AvatarTest = () => (
-  <div>
-    <Avatar
-      ref={(elem) => {
-        expectType<HTMLDivElement | null, typeof elem>(elem);
-      }}
-      onClick={(event) => {
-        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
-        log(event);
-      }}
-      alt="Image Alt"
-      src="example.jpg"
-    />
-    <Avatar<'button'>
-      component="button"
-      ref={(elem) => {
-        expectType<HTMLButtonElement | null, typeof elem>(elem);
-      }}
-      onClick={(event) => {
-        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
-        log(event);
-      }}
-      alt="Image Alt"
-      src="example.jpg"
-    />
-    <Avatar
-      component="button"
-      ref={(elem: HTMLButtonElement) => {}}
-      onClick={(event: React.MouseEvent<HTMLButtonElement>) => log(event)}
-      alt="Image Alt"
-      src="example.jpg"
-    />
-    <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
-    <Avatar<typeof TestOverride>
-      component={TestOverride}
-      ref={(elem) => {
-        expectType<HTMLDivElement | null, typeof elem>(elem);
-      }}
-      x={3}
-      alt="Image Alt"
-      src="example.jpg"
-    />
-    {/* @ts-expect-error onClick isn't allowed since we're overriding with a component that doesn't have that prop: */}
-    <Avatar component={TestOverride} onClick={log} />
-  </div>
-);
+function AvatarTest() {
+  return (
+    <div>
+      <Avatar
+        ref={(elem) => {
+          expectType<HTMLDivElement | null, typeof elem>(elem);
+        }}
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
+          log(event);
+        }}
+        alt="Image Alt"
+        src="example.jpg"
+      />
+      <Avatar<'button'>
+        component="button"
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+          log(event);
+        }}
+        alt="Image Alt"
+        src="example.jpg"
+      />
+      <Avatar
+        component="button"
+        ref={(elem: HTMLButtonElement) => {}}
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => log(event)}
+        alt="Image Alt"
+        src="example.jpg"
+      />
+      <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
+      <Avatar<typeof TestOverride>
+        component={TestOverride}
+        ref={(elem) => {
+          expectType<HTMLDivElement | null, typeof elem>(elem);
+        }}
+        x={3}
+        alt="Image Alt"
+        src="example.jpg"
+      />
+      {/* @ts-expect-error onClick isn't allowed since we're overriding with a component that doesn't have that prop: */}
+      <Avatar component={TestOverride} onClick={log} />
+    </div>
+  );
+}
 
-const AvatarClassName = () => <Avatar className="foo" />;
+function AvatarClassName() {
+  return <Avatar className="foo" />;
+}
 
-const BadgeTest = () => (
-  <Badge badgeContent={4} color="primary">
-    <FakeIcon />
-  </Badge>
-);
+function BadgeTest() {
+  return (
+    <Badge badgeContent={4} color="primary">
+      <FakeIcon />
+    </Badge>
+  );
+}
 
-const BottomNavigationTest = () => {
+function BottomNavigationTest() {
   const value = 123;
 
   return (
@@ -165,9 +175,9 @@ const BottomNavigationTest = () => {
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
     </BottomNavigation>
   );
-};
+}
 
-const IconButtonTest = () => (
+const iconButtonTest = () => (
   <div>
     <IconButton aria-label="delete">
       <FakeIcon />
@@ -187,13 +197,14 @@ const IconButtonTest = () => (
   </div>
 );
 
-const IconButtonAsLinkTest = () => {
+const iconButtonAsLinkTest = () => {
   const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>((props, ref) => (
     <ReactRouterLink {...props} ref={ref} />
   ));
-  const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
-    <IconButton component={ForwardedLink} {...props} />
-  );
+  const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> =
+    function ExtendedIconButton(props) {
+      return <IconButton component={ForwardedLink} {...props} />;
+    };
   return (
     <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
       <FakeIcon />
@@ -201,103 +212,109 @@ const IconButtonAsLinkTest = () => {
   );
 };
 
-const CardTest = () => (
-  <Card>
-    <CardContent>
-      <Typography variant="body1">Word of the Day</Typography>
-      <Typography variant="h5" component="h2">
-        be-nev-o-lent
-      </Typography>
-      <Typography variant="body1">adjective</Typography>
-      <Typography component="p">
-        well meaning and kindly.
-        <br />a benevolent smile
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size="small">Learn More</Button>
-    </CardActions>
-  </Card>
-);
-
-const CardMediaTest = () => (
-  <Card>
-    <CardHeader
-      avatar={<Avatar aria-label="recipe">R</Avatar>}
-      title="Shrimp and Chorizo Paella"
-      subheader="September 14, 2016"
-    />
-    <CardMedia image="src.png" component="div">
-      <img src="image/src.png" alt="Contemplative Reptile" />
-    </CardMedia>
-    <CardContent>
-      <Typography component="p">
-        This impressive paella is a perfect party dish and a fun meal to cook together with your
-        guests. Add 1 cup of frozen peas along with the mussels, if you like.
-      </Typography>
-    </CardContent>
-    <CardActions disableSpacing>
-      <IconButton aria-label="add to favorites">
-        <FakeIcon />
-      </IconButton>
-      <IconButton aria-label="share">
-        <FakeIcon />
-      </IconButton>
-      <IconButton aria-label="show more">
-        <FakeIcon />
-      </IconButton>
-    </CardActions>
-    <Collapse in timeout="auto" unmountOnExit>
+function CardTest() {
+  return (
+    <Card>
       <CardContent>
-        <Typography paragraph variant="body2">
-          Method:
+        <Typography variant="body1">Word of the Day</Typography>
+        <Typography variant="h5" component="h2">
+          be-nev-o-lent
         </Typography>
-        <Typography paragraph>
-          Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-          minutes.
-        </Typography>
-        <Typography paragraph>
-          Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.
-          Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly browned, 6
-          to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken and chorizo
-          in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-          stirring often until thickened and fragrant, about 10 minutes. Add saffron broth and
-          remaining 4 1/2 cups chicken broth; bring to a boil.
-        </Typography>
-        <Typography paragraph>
-          Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-          without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-          medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-          again without stirring, until mussels have opened and rice is just tender, 5 to 7 minutes
-          more. (Discard any mussels that don&apos;t open.)
-        </Typography>
-        <Typography>
-          Set aside off of the heat to let rest for 10 minutes, and then serve.
+        <Typography variant="body1">adjective</Typography>
+        <Typography component="p">
+          well meaning and kindly.
+          <br />a benevolent smile
         </Typography>
       </CardContent>
-    </Collapse>
-  </Card>
-);
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  );
+}
 
-const ChipsTest = () => (
-  <div>
-    <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(e) => log(e)} />
-    <Chip avatar={<Avatar src="image.bmp" />} label="Deletable Chip" onDelete={(e) => log(e)} />
-    <Chip
-      avatar={
-        <Avatar>
+function CardMediaTest() {
+  return (
+    <Card>
+      <CardHeader
+        avatar={<Avatar aria-label="recipe">R</Avatar>}
+        title="Shrimp and Chorizo Paella"
+        subheader="September 14, 2016"
+      />
+      <CardMedia image="src.png" component="div">
+        <img src="image/src.png" alt="Contemplative Reptile" />
+      </CardMedia>
+      <CardContent>
+        <Typography component="p">
+          This impressive paella is a perfect party dish and a fun meal to cook together with your
+          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
           <FakeIcon />
-        </Avatar>
-      }
-      label="Clickable Deletable Chip"
-      onClick={(e) => log(e)}
-      onDelete={(e) => log(e)}
-    />
-  </div>
-);
+        </IconButton>
+        <IconButton aria-label="share">
+          <FakeIcon />
+        </IconButton>
+        <IconButton aria-label="show more">
+          <FakeIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph variant="body2">
+            Method:
+          </Typography>
+          <Typography paragraph>
+            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+            minutes.
+          </Typography>
+          <Typography paragraph>
+            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
+            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
+            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
+            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+          </Typography>
+          <Typography paragraph>
+            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
+            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
+            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
+            again without stirring, until mussels have opened and rice is just tender, 5 to 7
+            minutes more. (Discard any mussels that don&apos;t open.)
+          </Typography>
+          <Typography>
+            Set aside off of the heat to let rest for 10 minutes, and then serve.
+          </Typography>
+        </CardContent>
+      </Collapse>
+    </Card>
+  );
+}
 
-const DialogTest = () => {
+function ChipsTest() {
+  return (
+    <div>
+      <Chip label="Basic Chip" />
+      <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(e) => log(e)} />
+      <Chip avatar={<Avatar src="image.bmp" />} label="Deletable Chip" onDelete={(e) => log(e)} />
+      <Chip
+        avatar={
+          <Avatar>
+            <FakeIcon />
+          </Avatar>
+        }
+        label="Clickable Deletable Chip"
+        onClick={(e) => log(e)}
+        onDelete={(e) => log(e)}
+      />
+    </div>
+  );
+}
+
+function DialogTest() {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
     <Dialog onClose={(event) => log(event)} open>
@@ -376,16 +393,18 @@ const DialogTest = () => {
       </DialogContent>
     </Dialog>
   );
-};
+}
 
-const DividerTest = () => (
-  <div>
-    <Divider />
-    <Divider light />
-  </div>
-);
+function DividerTest() {
+  return (
+    <div>
+      <Divider />
+      <Divider light />
+    </div>
+  );
+}
 
-const DrawerTest = () => {
+function DrawerTest() {
   const open = {
     top: false,
     left: false,
@@ -434,9 +453,9 @@ const DrawerTest = () => {
       </Drawer>
     </div>
   );
-};
+}
 
-const SwipeableDrawerTest = () => {
+function SwipeableDrawerTest() {
   const open = {
     top: false,
     left: false,
@@ -486,74 +505,82 @@ const SwipeableDrawerTest = () => {
       </SwipeableDrawer>
     </div>
   );
-};
+}
 
-const AccordionTest = () => (
-  <div>
-    <Accordion onChange={(e) => log(e)} expanded disabled>
-      <AccordionSummary />
-      <AccordionDetails />
-    </Accordion>
-    <Accordion defaultExpanded>
-      <AccordionSummary expandIcon={<FakeIcon />}>
-        <Typography>...</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>...</Typography>
-      </AccordionDetails>
-      <AccordionActions>
-        <Button size="small">Save</Button>
-      </AccordionActions>
-    </Accordion>
-  </div>
-);
+function AccordionTest() {
+  return (
+    <div>
+      <Accordion onChange={(e) => log(e)} expanded disabled>
+        <AccordionSummary />
+        <AccordionDetails />
+      </Accordion>
+      <Accordion defaultExpanded>
+        <AccordionSummary expandIcon={<FakeIcon />}>
+          <Typography>...</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>...</Typography>
+        </AccordionDetails>
+        <AccordionActions>
+          <Button size="small">Save</Button>
+        </AccordionActions>
+      </Accordion>
+    </div>
+  );
+}
 
-const GridTest = () => (
-  <Grid component={Paper} container>
-    <Grid item xs={12}>
-      ...
+function GridTest() {
+  return (
+    <Grid component={Paper} container>
+      <Grid item xs={12}>
+        ...
+      </Grid>
+      <Grid item sm={12}>
+        ...
+      </Grid>
+      <Grid item xl>
+        ...
+      </Grid>
+      <Grid item style={{ color: 'red' }}>
+        ...
+      </Grid>
     </Grid>
-    <Grid item sm={12}>
-      ...
-    </Grid>
-    <Grid item xl>
-      ...
-    </Grid>
-    <Grid item style={{ color: 'red' }}>
-      ...
-    </Grid>
-  </Grid>
-);
+  );
+}
 
-const ImageListTest = () => (
-  <ImageList rowHeight={160} cols={3} onClick={(e) => log(e)}>
-    <ImageListItem cols={1} rows={4} onClick={(e) => log(e)}>
-      <img src="img.png" alt="alt text" />
-    </ImageListItem>
-    ,
-  </ImageList>
-);
+function ImageListTest() {
+  return (
+    <ImageList rowHeight={160} cols={3} onClick={(e) => log(e)}>
+      <ImageListItem cols={1} rows={4} onClick={(e) => log(e)}>
+        <img src="img.png" alt="alt text" />
+      </ImageListItem>
+      ,
+    </ImageList>
+  );
+}
 
-const ListTest = () => (
-  <List>
-    {[0, 1, 2, 3].map((value) => (
-      <ListItem dense button selected={false} key={value} onClick={(e) => log(e)}>
-        <Checkbox checked tabIndex={-1} disableRipple />
-        <ListItemText primary={`Line item ${value + 1}`} />
-        <ListItemSecondaryAction>
-          <IconButton aria-label="comments">
-            <FakeIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
+function ListTest() {
+  return (
+    <List>
+      {[0, 1, 2, 3].map((value) => (
+        <ListItem dense button selected={false} key={value} onClick={(e) => log(e)}>
+          <Checkbox checked tabIndex={-1} disableRipple />
+          <ListItemText primary={`Line item ${value + 1}`} />
+          <ListItemSecondaryAction>
+            <IconButton aria-label="comments">
+              <FakeIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
+      <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
+        an item
       </ListItem>
-    ))}
-    <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
-      an item
-    </ListItem>
-  </List>
-);
+    </List>
+  );
+}
 
-const MenuTest = () => {
+function MenuTest() {
   const anchorEl = document.getElementById('foo')!;
   const options = [
     'Show all notification content',
@@ -616,25 +643,29 @@ const MenuTest = () => {
       />
     </Menu>
   );
-};
+}
 
-const CircularProgressTest = () => (
-  <div>
-    <CircularProgress />
-    <CircularProgress size={50} />
-    <CircularProgress color="secondary" />
-    <CircularProgress color="secondary" size={50} />
-  </div>
-);
+function CircularProgressTest() {
+  return (
+    <div>
+      <CircularProgress />
+      <CircularProgress size={50} />
+      <CircularProgress color="secondary" />
+      <CircularProgress color="secondary" size={50} />
+    </div>
+  );
+}
 
-const LinearProgressTest = () => (
-  <div>
-    <LinearProgress variant="determinate" value={12} />
-    <LinearProgress color="secondary" variant="determinate" value={76} />
-  </div>
-);
+function LinearProgressTest() {
+  return (
+    <div>
+      <LinearProgress variant="determinate" value={12} />
+      <LinearProgress color="secondary" variant="determinate" value={76} />
+    </div>
+  );
+}
 
-const SelectionControlTest = () => {
+function SelectionControlTest() {
   const state = {
     checkedA: true,
     checkedB: false,
@@ -682,9 +713,9 @@ const SelectionControlTest = () => {
       />
     </FormGroup>
   );
-};
+}
 
-const SwitchTest = () => {
+function SwitchTest() {
   const state = {
     checkedA: true,
     checkedB: false,
@@ -718,39 +749,41 @@ const SwitchTest = () => {
       />
     </div>
   );
-};
+}
 
-const SnackbarTest = () => (
-  <div>
-    <Button onClick={(e) => log(e)}>Open simple snackbar</Button>
-    <Snackbar
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left',
-      }}
-      open
-      autoHideDuration={6000}
-      onClose={(event) => log(event)}
-      ContentProps={
-        {
-          // 'aria-describedby': 'message-id',
-          // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
+function SnackbarTest() {
+  return (
+    <div>
+      <Button onClick={(e) => log(e)}>Open simple snackbar</Button>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open
+        autoHideDuration={6000}
+        onClose={(event) => log(event)}
+        ContentProps={
+          {
+            // 'aria-describedby': 'message-id',
+            // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
+          }
         }
-      }
-      message={<span id="message-id">Note archived</span>}
-      action={[
-        <Button key="undo" color="secondary" size="small" onClick={(e) => log(e)}>
-          UNDO
-        </Button>,
-        <IconButton key="close" aria-label="close" color="inherit" onClick={(e) => log(e)}>
-          <FakeIcon />
-        </IconButton>,
-      ]}
-    />
-  </div>
-);
+        message={<span id="message-id">Note archived</span>}
+        action={[
+          <Button key="undo" color="secondary" size="small" onClick={(e) => log(e)}>
+            UNDO
+          </Button>,
+          <IconButton key="close" aria-label="close" color="inherit" onClick={(e) => log(e)}>
+            <FakeIcon />
+          </IconButton>,
+        ]}
+      />
+    </div>
+  );
+}
 
-const SnackbarContentTest = () => {
+function SnackbarContentTest() {
   const action = (
     <Button color="secondary" size="small">
       lorem ipsum dolorem
@@ -775,7 +808,7 @@ const SnackbarContentTest = () => {
       />
     </div>
   );
-};
+}
 
 const StepperTest = () =>
   class DotsMobileStepper extends React.Component<{
@@ -845,100 +878,118 @@ const TableTest = () => {
   ];
 };
 
-const TextFieldTest = () => (
-  <div>
-    <TextField id="name" label="Name" value="Alice" />
-    <TextField id="name" label={<strong>Name</strong>} value="Alice" />
-    <TextField
-      id="name"
-      label="Name"
-      value="Alice"
-      onChange={(event) => log({ name: event.currentTarget.value })}
-    />
-    <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
-    <TextField
-      type="number"
-      inputProps={{
-        min: '0',
-        max: '10',
-        step: '1',
-        style: {
-          // just a long CSS property to test autocompletion
-          WebkitAnimationIterationCount: 0,
-        },
+function TextFieldTest() {
+  return (
+    <div>
+      <TextField id="name" label="Name" value="Alice" />
+      <TextField id="name" label={<strong>Name</strong>} value="Alice" />
+      <TextField
+        id="name"
+        label="Name"
+        value="Alice"
+        onChange={(event) => log({ name: event.currentTarget.value })}
+      />
+      <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
+      <TextField
+        type="number"
+        inputProps={{
+          min: '0',
+          max: '10',
+          step: '1',
+          style: {
+            // just a long CSS property to test autocompletion
+            WebkitAnimationIterationCount: 0,
+          },
+        }}
+      />
+      <Input inputComponent="input" />
+    </div>
+  );
+}
+
+function SelectTest() {
+  return (
+    <Select input={<Input />} value={10} onChange={(e) => log(e.target.value)}>
+      <MenuItem value="">
+        <em>None</em>
+      </MenuItem>
+      <MenuItem value={10}>Ten</MenuItem>
+      <MenuItem value={20}>Twenty</MenuItem>
+      <MenuItem value={30}>Thirty</MenuItem>
+    </Select>
+  );
+}
+
+function InputAdornmentTest() {
+  return (
+    <InputAdornment position="end" onClick={() => alert('Hello')}>
+      Some Icon
+    </InputAdornment>
+  );
+}
+
+function TooltipComponentTest() {
+  return (
+    <div>
+      <Tooltip id="tooltip-top-start" title="Add" placement="top-start">
+        <Button>top-start</Button>
+      </Tooltip>
+      <Tooltip id="tooltip-top-start" title={<strong>Add</strong>} placement="top-start">
+        <Button>top-start</Button>
+      </Tooltip>
+    </div>
+  );
+}
+
+function ClickAwayListenerComponentTest() {
+  return (
+    <ClickAwayListener onClickAway={() => {}}>
+      <div />
+    </ClickAwayListener>
+  );
+}
+
+function TransitionTest() {
+  return (
+    <React.Fragment>
+      <Fade in={false}>
+        <div />
+      </Fade>
+      <Collapse in={false} mountOnEnter unmountOnExit timeout={200}>
+        <div />
+      </Collapse>
+      <Grow in={false} timeout="auto" onEnter={() => {}}>
+        <div />
+      </Grow>
+    </React.Fragment>
+  );
+}
+
+function BackdropTest() {
+  return <Backdrop open onTouchMove={() => {}} />;
+}
+
+function PopoverTest() {
+  return <Popover open />;
+}
+
+function InputLabelTest() {
+  return (
+    <InputLabel
+      classes={{
+        root: 'foo',
+        asterisk: 'foo',
+        disabled: 'foo',
+        error: 'foo',
+        filled: 'foo',
+        focused: 'foo',
+        required: 'foo',
       }}
     />
-    <Input inputComponent="input" />
-  </div>
-);
+  );
+}
 
-const SelectTest = () => (
-  <Select input={<Input />} value={10} onChange={(e) => log(e.target.value)}>
-    <MenuItem value="">
-      <em>None</em>
-    </MenuItem>
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
-);
-
-const InputAdornmentTest = () => (
-  <InputAdornment position="end" onClick={() => alert('Hello')}>
-    Some Icon
-  </InputAdornment>
-);
-
-const TooltipComponentTest = () => (
-  <div>
-    <Tooltip id="tooltip-top-start" title="Add" placement="top-start">
-      <Button>top-start</Button>
-    </Tooltip>
-    <Tooltip id="tooltip-top-start" title={<strong>Add</strong>} placement="top-start">
-      <Button>top-start</Button>
-    </Tooltip>
-  </div>
-);
-
-const ClickAwayListenerComponentTest = () => (
-  <ClickAwayListener onClickAway={() => {}}>
-    <div />
-  </ClickAwayListener>
-);
-
-const TransitionTest = () => (
-  <React.Fragment>
-    <Fade in={false}>
-      <div />
-    </Fade>
-    <Collapse in={false} mountOnEnter unmountOnExit timeout={200}>
-      <div />
-    </Collapse>
-    <Grow in={false} timeout="auto" onEnter={() => {}}>
-      <div />
-    </Grow>
-  </React.Fragment>
-);
-
-const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
-
-const PopoverTest = () => <Popover open />;
-
-const InputLabelTest = () => (
-  <InputLabel
-    classes={{
-      root: 'foo',
-      asterisk: 'foo',
-      disabled: 'foo',
-      error: 'foo',
-      filled: 'foo',
-      focused: 'foo',
-      required: 'foo',
-    }}
-  />
-);
-
-const LinkTest = () => {
+function LinkTest() {
   const dudUrl = 'javascript';
   return (
     <Typography>
@@ -951,7 +1002,7 @@ const LinkTest = () => {
       </Link>
     </Typography>
   );
-};
+}
 
 const refTest = () => {
   // for a detailed explanation of refs in react see https://github.com/mui/material-ui/pull/15199
@@ -982,6 +1033,10 @@ const refTest = () => {
   />;
 };
 
-const CssBaselineTest = () => <CssBaseline>Test</CssBaseline>;
+function CssBaselineTest() {
+  return <CssBaseline>Test</CssBaseline>;
+}
 
-const ScopedCssBaselineTest = () => <ScopedCssBaseline>Test</ScopedCssBaseline>;
+function ScopedCssBaselineTest() {
+  return <ScopedCssBaseline>Test</ScopedCssBaseline>;
+}

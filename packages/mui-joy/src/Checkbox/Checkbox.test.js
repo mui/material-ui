@@ -34,6 +34,18 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('name', 'bar');
   });
 
+  it('renders a `role="checkbox"` with required attribute', () => {
+    const { getByRole } = render(<Checkbox name="bar" required />);
+
+    expect(getByRole('checkbox')).to.have.attribute('required');
+  });
+
+  it('renders a `role="checkbox"` with readOnly attribute', () => {
+    const { getByRole } = render(<Checkbox name="bar" readOnly />);
+
+    expect(getByRole('checkbox')).to.have.attribute('readonly');
+  });
+
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Checkbox />);
 
@@ -107,6 +119,11 @@ describe('<Checkbox />', () => {
     it('should render an indeterminate icon', () => {
       const { getByTestId } = render(<Checkbox indeterminate />);
       expect(getByTestId('HorizontalRuleIcon')).not.to.equal(null);
+    });
+
+    it('should have aria-checked="mixed"', () => {
+      const { getByRole } = render(<Checkbox indeterminate />);
+      expect(getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
     });
   });
 });

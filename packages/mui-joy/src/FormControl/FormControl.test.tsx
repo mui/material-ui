@@ -13,6 +13,7 @@ import Textarea, { textareaClasses } from '@mui/joy/Textarea';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import Autocomplete, { autocompleteClasses } from '@mui/joy/Autocomplete';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -150,6 +151,18 @@ describe('<FormControl />', () => {
       );
 
       expect(getByLabelText('label')).toBeVisible();
+    });
+
+    it('should labeledby form label', () => {
+      const { container, getByRole } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <Select />
+        </FormControl>,
+      );
+
+      const label = container.querySelector('label');
+      expect(getByRole('combobox')).to.have.attribute('aria-labelledby', label?.id);
     });
 
     it('should inherit color prop from FormControl', () => {
@@ -362,6 +375,50 @@ describe('<FormControl />', () => {
 
       expect(getByTestId('switch')).to.have.class(switchClasses.disabled);
       expect(getByLabelText('label')).to.have.attribute('disabled');
+    });
+  });
+
+  describe('Autocomplete', () => {
+    it('should linked the label', () => {
+      const { getByLabelText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <Autocomplete options={[]} />
+        </FormControl>,
+      );
+
+      expect(getByLabelText('label')).toBeVisible();
+    });
+
+    it('should inherit color prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl color="success">
+          <Autocomplete options={[]} data-testid="input" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('input')).to.have.class(autocompleteClasses.colorSuccess);
+    });
+
+    it('should inherit error prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl error>
+          <Autocomplete options={[]} data-testid="input" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('input')).to.have.class(autocompleteClasses.colorDanger);
+    });
+
+    it('should inherit disabled from FormControl', () => {
+      const { getByRole } = render(
+        <FormControl disabled>
+          <FormLabel>label</FormLabel>
+          <Autocomplete options={[]} />
+        </FormControl>,
+      );
+
+      expect(getByRole('combobox')).to.have.attribute('disabled');
     });
   });
 });

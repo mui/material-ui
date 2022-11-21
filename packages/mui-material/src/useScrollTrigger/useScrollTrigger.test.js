@@ -12,14 +12,14 @@ describe('useScrollTrigger', () => {
   describe('defaultTrigger', () => {
     it('should be false by default', () => {
       const getRenderCountRef = React.createRef();
-      const TestDefault = () => {
+      function TestDefault() {
         const trigger = useScrollTrigger();
         return (
           <RenderCounter ref={getRenderCountRef}>
             <span data-testid="trigger">{`${trigger}`}</span>
           </RenderCounter>
         );
-      };
+      }
 
       render(<TestDefault />);
 
@@ -30,7 +30,7 @@ describe('useScrollTrigger', () => {
     it('should be false by default when using ref', () => {
       const getRenderCountRef = React.createRef();
       const triggerRef = React.createRef();
-      const TestDefaultWithRef = () => {
+      function TestDefaultWithRef() {
         const [container, setContainer] = React.useState();
         const trigger = useScrollTrigger({
           target: container,
@@ -41,7 +41,7 @@ describe('useScrollTrigger', () => {
             <span ref={setContainer} />
           </RenderCounter>
         );
-      };
+      }
       render(<TestDefaultWithRef />);
       expect(triggerRef.current.textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(2);

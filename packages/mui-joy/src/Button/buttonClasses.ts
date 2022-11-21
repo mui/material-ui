@@ -39,6 +39,10 @@ export interface ButtonClasses {
   startDecorator: string;
   /** Styles applied to the endDecorator element if supplied. */
   endDecorator: string;
+  /** Styles applied to the root element if `loading={true}`. */
+  loading: string;
+  /** Styles applied to the loadingIndicatorCenter element. */
+  loadingIndicatorCenter: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -67,6 +71,8 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
   'fullWidth',
   'startDecorator',
   'endDecorator',
+  'loading',
+  'loadingIndicatorCenter',
 ]);
 
 export default buttonClasses;
