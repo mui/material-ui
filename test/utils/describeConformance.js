@@ -487,7 +487,7 @@ function testSlotPropsProp(element, getOptions) {
  */
 
 /**
- * >>> This will be DEPRECEATED in v6 <<<
+ * >>> The `components` and `componentsProps` will be deprecated in v6, and removed in v7 (together with this test suite) <<<
  *
  * MUI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
