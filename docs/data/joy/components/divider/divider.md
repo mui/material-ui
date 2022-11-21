@@ -12,7 +12,7 @@ githubLabel: 'component: divider'
 
 Dividers separate content into clear groups.
 
-{{"demo": "DividerUsage.js", "hideToolbar": "true"}}
+{{"demo": "DividerUsage.js", "hideToolbar": "true", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -50,7 +50,7 @@ Use the `Divider` to wrap elements that will be added to it.
 
 Use the `orientation` prop to render a vertical divider.
 
-{{"demo": "VerticalDividers.js", "bg": true}}
+{{"demo": "VerticalDividers.js"}}
 
 #### Vertical with text
 
