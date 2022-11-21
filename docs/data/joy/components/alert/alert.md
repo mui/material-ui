@@ -18,7 +18,7 @@ Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WA
 Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
 
-{{"demo": "AlertUsage.js", "hideToolbar": true}}
+{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
