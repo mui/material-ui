@@ -94,7 +94,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
   }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
 }
 
-function useDemoElement({ demoOptions, demoData, editorCode, setDebouncedError }) {
+function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
   const debouncedSetError = React.useMemo(
     () => debounce(setDebouncedError, 300),
     [setDebouncedError],
@@ -127,13 +127,10 @@ function useDemoElement({ demoOptions, demoData, editorCode, setDebouncedError }
     [demoData, debouncedSetError, editorCode.isPreview, editorCode.value],
   );
 
-  const renderBundledComponent =
-    // No need for a live environment if the code matches with the component rendered server-side.
-    editorCode.value === editorCode.initialEditorCode ||
-    // A limitation from https://github.com/nihgwu/react-runner, we can inject the `window` of the iframe
-    demoOptions.disableLiveEdit;
-
-  return renderBundledComponent ? BundledComponent : LiveComponent;
+  // No need for a live environment if the code matches with the component rendered server-side.
+  return editorCode.value === editorCode.initialEditorCode && liveDemoActive === false
+    ? BundledComponent
+    : LiveComponent;
 }
 
 const Root = styled('div')(({ theme }) => ({
@@ -396,11 +393,13 @@ export default function Demo(props) {
 
   const [debouncedError, setDebouncedError] = React.useState(null);
 
+  const [liveDemoActive, setLiveDemoActive] = React.useState(false);
+
   const demoElement = useDemoElement({
-    demoOptions,
     demoData,
     editorCode,
     setDebouncedError,
+    liveDemoActive,
   });
 
   return (
@@ -459,6 +458,8 @@ export default function Demo(props) {
           </NoSsr>
         )}
         <Collapse in={openDemoSource} unmountOnExit>
+          {/* A limitation from https://github.com/nihgwu/react-runner,
+            we can inject the `window` of the iframe so we need a disableLiveEdit option. */}
           {demoOptions.disableLiveEdit ? (
             <DemoCodeViewer
               code={editorCode.value}
@@ -480,6 +481,9 @@ export default function Demo(props) {
                   ...editorCode,
                   value,
                 });
+              }}
+              onFocus={() => {
+                setLiveDemoActive(true);
               }}
               id={demoSourceId}
               language={demoData.sourceLanguage}

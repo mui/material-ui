@@ -57,7 +57,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   },
 }));
 
-interface DemoEditorProps {
+interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   copyButtonProps: {};
   id: string;
@@ -67,7 +67,7 @@ interface DemoEditorProps {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language, value, onChange, copyButtonProps, children, id } = props;
+  const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
   const wrapperRef = React.useRef<HTMLElement | null>(null);
@@ -100,6 +100,7 @@ export default function DemoEditor(props: DemoEditorProps) {
           }
         }
       }}
+      {...other}
     >
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
