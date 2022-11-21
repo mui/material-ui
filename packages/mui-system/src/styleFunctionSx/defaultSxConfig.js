@@ -1,6 +1,5 @@
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { StyleFunction } from '../Box';
-import { getStyleValue as getValue, TransformFunction } from '../style';
+import { getStyleValue as getValue } from '../style';
 import { handleBreakpoints } from '../breakpoints';
 import { padding, margin } from '../spacing';
 import { borderRadius, borderTransform } from '../borders';
@@ -8,21 +7,7 @@ import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
 import { maxWidth, sizingTransform } from '../sizing';
 
-type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
-
-export interface SxConfigRecord {
-  cssProperty?: keyof React.CSSProperties | false;
-  /**
-   * dot access in `Theme`
-   */
-  themeKey?: string;
-  transform?: TransformFunction;
-  style?: SimpleStyleFunction<any>;
-}
-
-export type SxConfig = Record<string, SxConfigRecord>;
-
-const defaultSxConfig: SxConfig = {
+const defaultSxConfig = {
   // borders
   border: {
     themeKey: 'borders',
@@ -302,7 +287,7 @@ const defaultSxConfig: SxConfig = {
       // no mapping
       const themeMapping = {};
 
-      const styleFromPropValue = (propValueFinal: any) => {
+      const styleFromPropValue = (propValueFinal) => {
         let value = getValue({ themeMapping }, sizingTransform, propValueFinal);
 
         if (propValueFinal === value && typeof propValueFinal === 'string') {
