@@ -40,7 +40,7 @@ describe('<SelectUnstyled> integration', () => {
       </SelectUnstyled>,
     );
 
-    const select = getByRole('button');
+    const select = getByRole('combobox');
 
     act(() => {
       select.focus();
