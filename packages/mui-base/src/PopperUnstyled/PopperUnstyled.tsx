@@ -19,6 +19,7 @@ import {
   PopperTooltipProps,
   PopperTooltipTypeMap,
   PopperUnstyledChildrenProps,
+  PopperUnstyledProps,
   PopperUnstyledRootSlotProps,
   PopperUnstyledTransitionProps,
   PopperUnstyledTypeMap,
@@ -232,7 +233,10 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
  */
-const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
+const PopperUnstyled = React.forwardRef(function PopperUnstyled(
+  props: PopperUnstyledProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const {
     anchorEl,
     children,
@@ -247,6 +251,8 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
     popperRef,
     style,
     transition = false,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -297,6 +303,8 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
         placement={placement}
         popperOptions={popperOptions}
         popperRef={popperRef}
+        slotProps={slotProps}
+        slots={slots}
         {...other}
         style={{
           // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
@@ -318,7 +326,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
 PopperUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
@@ -520,6 +528,6 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   transition: PropTypes.bool,
-};
+} as any;
 
 export default PopperUnstyled;
