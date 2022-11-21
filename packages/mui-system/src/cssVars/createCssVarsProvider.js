@@ -50,6 +50,12 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
+  const defaultSelector = {
+    root: ':root',
+    defaultColorScheme: (key) => `:root, [${defaultAttribute}="${key}"]`,
+    scopedColorScheme: (key) => `[${defaultAttribute}="${key}"]`,
+  };
+
   /**
    * Low level API for generating CSS theme variables. Useful for creating nested CSS variables scopes.
    *
@@ -62,12 +68,10 @@ export default function createCssVarsProvider(options) {
     themeProp,
     {
       // config
-      attribute = defaultAttribute,
-      colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-      colorSchemeSelector = ':root',
       defaultMode = designSystemMode,
       defaultColorScheme = designSystemColorScheme,
       shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+      selector = defaultSelector,
       // runtime parameters
       mode,
       colorScheme,
@@ -117,7 +121,8 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       cssVarPrefix,
       vars: rootVars,
-      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
+      getColorSchemeSelector: (targetColorScheme) =>
+        `${selector.scopedColorScheme(targetColorScheme)} &`,
     };
 
     // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
@@ -158,29 +163,19 @@ export default function createCssVarsProvider(options) {
             excludedVariables[cssVar] = css[cssVar];
             delete css[cssVar];
           });
-          defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
+          // treat excluded variables as scoped color scheme
+          defaultColorSchemeStyleSheet[selector.scopedColorScheme(key)] = excludedVariables;
         }
-        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
+        defaultColorSchemeStyleSheet[selector.defaultColorScheme(key)] = css;
       } else {
-        otherColorSchemesStyleSheet[
-          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
-        ] = css;
+        otherColorSchemesStyleSheet[selector.scopedColorScheme(key)] = css;
       }
     });
-
-    // 5. Declaring effects
-    // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
-    React.useEffect(() => {
-      if (colorScheme && colorSchemeNode) {
-        // attaches attribute to <html> because the css variables are attached to :root (html)
-        colorSchemeNode.setAttribute(attribute, colorScheme);
-      }
-    }, [colorScheme, attribute, colorSchemeNode]);
 
     return {
       theme,
       styles: [
-        { [colorSchemeSelector]: rootCss },
+        { [selector.root]: rootCss },
         defaultColorSchemeStyleSheet,
         otherColorSchemesStyleSheet,
       ],
@@ -230,15 +225,27 @@ export default function createCssVarsProvider(options) {
     });
 
     const { theme, styles } = useCssThemeVars(themeProp, {
-      attribute,
-      colorSchemeNode,
-      colorSchemeSelector,
       defaultMode,
       defaultColorScheme,
+      selector: {
+        root: colorSchemeSelector,
+        defaultColorScheme: (key) => `[${attribute}="${key}"]`,
+        scopedColorScheme: (key) =>
+          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
+      },
       shouldSkipGeneratingVar,
       mode,
       colorScheme,
     });
+
+    // 5. Declaring effects
+    // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
+    React.useEffect(() => {
+      if (colorScheme && colorSchemeNode) {
+        // attaches attribute to <html> because the css variables are attached to :root (html)
+        colorSchemeNode.setAttribute(attribute, colorScheme);
+      }
+    }, [colorScheme, attribute, colorSchemeNode]);
 
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313

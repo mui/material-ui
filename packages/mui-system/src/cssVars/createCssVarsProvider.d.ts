@@ -81,38 +81,31 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  useCssThemeVars: (
+  useCssThemeVars: <T = {}>(
     theme: {
       cssVarPrefix?: string;
       colorSchemes: Record<ColorScheme, Record<string, any>>;
     },
-    options: {
-      /**
-       * DOM attribute for applying color scheme
-       * @default 'data-color-scheme'
-       */
-      attribute?: string;
-      /**
-       * The node used to attach the color-scheme attribute
-       * @default document
-       */
-      colorSchemeNode?: Document | HTMLElement | null;
-      /**
-       * The CSS selector for attaching the generated custom properties
-       * @default ':root'
-       */
-      colorSchemeSelector?: string;
+    options?: {
       /**
        * Design system default color scheme.
        * - provides string if the design system has one default color scheme (either light or dark)
        * - provides object if the design system has default light & dark color schemes
        */
-      defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
+      defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
       /**
        * Design system default mode
        * @default 'light'
        */
       defaultMode?: Mode;
+      /**
+       * The CSS selector for attaching the generated CSS theme variables.
+       */
+      selector?: {
+        root: string;
+        defaultColorScheme: (key: ColorScheme) => string;
+        scopedColorScheme: (key: ColorScheme) => string;
+      };
       /**
        * A function to determine if the key, value should be attached as CSS Variable
        * `keys` is an array that represents the object path keys.
@@ -121,10 +114,13 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
        *        value = 'var(--test)'
        */
       shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-      mode: Mode;
-      colorScheme: ColorScheme;
+      mode?: Mode;
+      colorScheme?: ColorScheme;
     },
-  ) => {};
+  ) => {
+    theme: T;
+    styles: { [k: string]: any }[];
+  };
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 

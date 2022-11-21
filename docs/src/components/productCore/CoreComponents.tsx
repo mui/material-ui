@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, styled, Theme } from '@mui/material/styles';
+import { ThemeProvider, styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -131,7 +131,7 @@ const CODES = {
 `,
 };
 
-export default function CoreComponents() {
+export default function CoreComponents({ scopedTheme }: { scopedTheme: Theme }) {
   const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {
@@ -167,14 +167,8 @@ export default function CoreComponents() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo sx={{ flexGrow: 1 }}>
-              <ThemeProvider
-                theme={(theme: Theme) =>
-                  createTheme(
-                    customized ? buildTheme(theme) : { palette: { mode: theme.palette.mode } },
-                  )
-                }
-              >
+            <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
+              <ThemeProvider theme={customized ? (buildTheme() as Theme) : scopedTheme}>
                 {demo === 'Button' && (
                   <Stack
                     spacing={2}
@@ -281,19 +275,40 @@ export default function CoreComponents() {
                     spacing={1}
                     sx={{ minHeight: 100, py: 2 }}
                   >
-                    <Tooltip title="Appears on hover" arrow placement="top">
+                    <Tooltip
+                      title="Appears on hover"
+                      arrow
+                      placement="top"
+                      slotProps={{ popper: { disablePortal: true } }}
+                    >
                       <Typography color="text.secondary">Top</Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
-                      <Tooltip title="Always display" arrow placement="left" open>
+                      <Tooltip
+                        title="Always display"
+                        arrow
+                        placement="left"
+                        open
+                        slotProps={{ popper: { disablePortal: true } }}
+                      >
                         <Typography color="text.secondary">Left</Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
-                      <Tooltip title="Appears on hover" arrow placement="right">
+                      <Tooltip
+                        title="Appears on hover"
+                        arrow
+                        placement="right"
+                        slotProps={{ popper: { disablePortal: true } }}
+                      >
                         <Typography color="text.secondary">Right</Typography>
                       </Tooltip>
                     </Box>
-                    <Tooltip title="Appears on hover" arrow placement="bottom">
+                    <Tooltip
+                      title="Appears on hover"
+                      arrow
+                      placement="bottom"
+                      slotProps={{ popper: { disablePortal: true } }}
+                    >
                       <Typography color="text.secondary">Bottom</Typography>
                     </Tooltip>
                   </Stack>
