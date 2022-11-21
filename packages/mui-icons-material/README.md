@@ -18,10 +18,9 @@ yarn add @mui/icons-material
 
 <!-- #default-branch-switch -->
 
-These components use the MUI [SvgIcon](https://mui.com/api/svg-icon/) component to
-render the SVG path for each icon.
+These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
 
-If you are not already using MUI in your project, you can add it with:
+If you are not already using Material UI in your project, you can add it with:
 
 ```sh
 // with npm
