@@ -1,6 +1,6 @@
-import { unstable_defaultSxConfig } from '@mui/system';
+import { SxConfig, unstable_defaultSxConfig } from '@mui/system';
 
-const sxConfig = {
+const sxConfig: SxConfig = {
   ...unstable_defaultSxConfig,
   // The default system themeKey is shape
   borderRadius: {

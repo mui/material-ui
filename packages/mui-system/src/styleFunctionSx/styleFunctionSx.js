@@ -1,6 +1,6 @@
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import merge from '../merge';
-import { getPath, getValue } from '../style';
+import { getPath, getStyleValue as getValue } from '../style';
 import {
   handleBreakpoints,
   createEmptyBreakpointObject,

@@ -3,6 +3,7 @@ import {
   Theme as SystemTheme,
   SxProps,
   CSSObject,
+  SxConfig,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -21,6 +22,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
+  unstable_sxConfig?: SxConfig;
 }
 
 interface BaseTheme extends SystemTheme {
@@ -42,6 +44,7 @@ export {};
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
+  unstable_sxConfig: SxConfig;
 }
 
 /**

@@ -5,6 +5,7 @@ import {
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
   CSSObject,
+  SxConfig,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -81,7 +82,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
-  unstable_sxConfig: object;
+  unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
 }
 

@@ -8,5 +8,7 @@ export * from './StandardCssProperties';
 export { default as extendSxProp } from './extendSxProp';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const unstable_defaultSxConfig: object;
+export { default as unstable_defaultSxConfig } from './defaultSxConfig';
+export * from './defaultSxConfig';
+
 export * from './extendSxProp';

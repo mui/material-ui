@@ -7,6 +7,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   colorChannel,
   unstable_styleFunctionSx as styleFunctionSx,
+  SxConfig,
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
@@ -62,7 +63,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   spacing?: SpacingOptions;
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
-  unstable_sxConfig?: object;
+  unstable_sxConfig?: SxConfig;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
