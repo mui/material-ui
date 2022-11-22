@@ -8,13 +8,13 @@ _Nov 21, 2022_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
+- 🚀 @mnajdova added the button as the first component that implements [Material You](https://m3.material.io/) design (MD3)
 - 🌐 @MBilalShafi added Urdu (Pakistan) localization
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
 
-TODO INSERT HIGHLIGHTS
-
 ### `@mui/material@5.10.15`
 
+- [Autocomplete] Fix keyboard navigation when using custom popover (#35160) @sai6855
 - [typescript] Add `background.defaultChannel` to `CssVarsPalette` (#35174) @alexfauquette
 - [l10n] Add Urdu (ur-PK) locale (#35154) @MBilalShafi
 
@@ -22,12 +22,17 @@ TODO INSERT HIGHLIGHTS
 
 - [icons] Update the Material Design icons (#35194) @michaldudak
 
+### `@mui/material-next@6.0.0-alpha.63`
+
+- [Material You] Add theme structure & Button component (#34650) @mnajdova
+
 ### `@mui/base@5.0.0-alpha.106`
 
 - [Select] Add attributes to conform with ARIA 1.2 (#35182) @michaldudak
 
 ### Docs
 
+- [docs] Change MUI -> Material UI in icons-material's readme (#35220) @michaldudak
 - [docs] the pages have no <link rel=canonical so we need to tell Google to not index the staging envs @oliviertassinari
 - [docs] Fix confusion in TOCs when reaching scroll bottom (#35214) @oliviertassinari
 - [docs] Fix typos in section titles (#35025) @iamxukai
@@ -49,6 +54,7 @@ TODO INSERT HIGHLIGHTS
 
 ### Core
 
+- [core] Convert icons scripts to ESM (#35101) @Janpot
 - [core] Group renovate GitHub Action dependency updates @oliviertassinari
 - [core] Upgrade eslint-config-airbnb-typescript (#34642) @Janpot
 - [core] Ensure that prettier CI step fails when code is badly formatted (#35170) @michaldudak
