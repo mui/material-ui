@@ -32,6 +32,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 ### Docs
 
+- [docs] Fix a couple documentation errors (#35217) @danilo-leal
 - [docs] Change MUI -> Material UI in icons-material's readme (#35220) @michaldudak
 - [docs] the pages have no <link rel=canonical so we need to tell Google to not index the staging envs @oliviertassinari
 - [docs] Fix confusion in TOCs when reaching scroll bottom (#35214) @oliviertassinari
