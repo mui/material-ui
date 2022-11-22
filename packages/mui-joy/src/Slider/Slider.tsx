@@ -520,7 +520,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     ownerState,
     additionalProps: {
       'aria-hidden': true,
-    }
+    },
   });
 
   const [SlotThumb, thumbProps] = useSlot('thumb', {

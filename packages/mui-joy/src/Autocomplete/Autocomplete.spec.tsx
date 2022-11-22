@@ -3,7 +3,7 @@ import Autocomplete from '@mui/joy/Autocomplete';
 
 const top100Films = [{ title: 'The Shawshank Redemption', year: 1994 }];
 
-<Autocomplete options={[]} componentsProps={{ listbox: { disablePortal: true } }} />;
+<Autocomplete options={[]} slotProps={{ listbox: { disablePortal: true } }} />;
 
 <Autocomplete multiple placeholder="Favorites" options={[]} defaultValue={['a', 'b']} />;
 
@@ -19,7 +19,7 @@ const top100Films = [{ title: 'The Shawshank Redemption', year: 1994 }];
 
 <Autocomplete
   options={top100Films}
-  componentsProps={{
+  slotProps={{
     clearIndicator: {
       color: 'danger',
       variant: 'outlined',

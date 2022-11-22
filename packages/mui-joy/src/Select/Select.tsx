@@ -523,7 +523,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     } as SelectOwnerState<any> & ListOwnerState,
     internalForwardedProps: {
       component: SelectListbox,
-    }
+    },
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
