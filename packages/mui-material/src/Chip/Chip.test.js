@@ -424,10 +424,7 @@ describe('<Chip />', () => {
 
     it('should unfocus when a esc key is pressed', () => {
       const handleBlur = spy();
-      const handleKeydown = spy();
-      const { getByRole } = render(
-        <Chip onBlur={handleBlur} onClick={() => {}} onKeyDown={handleKeydown} />,
-      );
+      const { getByRole } = render(<Chip onBlur={handleBlur} onClick={() => {}} />);
       const chip = getByRole('button');
       act(() => {
         chip.focus();
