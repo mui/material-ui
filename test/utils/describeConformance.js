@@ -188,35 +188,6 @@ export function testRootClass(element, getOptions) {
       expect(document.querySelectorAll('[classes]').length).to.equal(0);
     }
   });
-
-  it(`root class shouldn't be duplicated`, () => {
-    const { classes, mount, skip } = getOptions();
-    if (classes.root == null) {
-      return;
-    }
-
-    const className = randomStringValue();
-    const randomClasses = randomStringValue();
-
-    // `classes.root` will be applied internally, so we don't need to pass `classes.root`
-    // Here use a random classes object which will be used along with `classes.root`
-    const wrapper = mount(
-      React.cloneElement(element, {
-        className,
-        classes: { root: randomClasses },
-      }),
-    );
-
-    const outermostElement = findOutermostIntrinsic(wrapper).getElement();
-    const classArray = outermostElement.props.className.split(' ');
-    const classSet = new Set(classArray);
-
-    // classes test only for @mui/material
-    if (!skip || !skip.includes('classesRoot')) {
-      // Test that root class aren't duplicated
-      expect(classArray.length === classSet.size).to.equal(true);
-    }
-  });
 }
 
 /**
