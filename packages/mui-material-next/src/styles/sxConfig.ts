@@ -3,8 +3,9 @@ import {
   getStyleValue as getValue,
   createUnaryUnit,
   handleBreakpoints,
+  SxConfig,
+  unstable_defaultSxConfig,
 } from '@mui/system';
-import { SxConfig, unstable_defaultSxConfig } from '@mui/system';
 
 interface PaletteStyleOptions {
   prop: string;

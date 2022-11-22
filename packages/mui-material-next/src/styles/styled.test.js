@@ -30,26 +30,6 @@ describe('styled', () => {
     });
   });
 
-  it('should use theme from context if available', () => {
-    const Div = styled('div')`
-      width: ${(props) => props.theme.spacing(1)};
-    `;
-
-    const theme = extendTheme({
-      spacing: 10,
-    });
-
-    const { container } = render(
-      <CssVarsProvider theme={theme}>
-        <Div>Test</Div>
-      </CssVarsProvider>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({
-      width: '10px',
-    });
-  });
-
   describe('dynamic styles', () => {
     it('can adapt styles to props', () => {
       const Div = styled('div')`
