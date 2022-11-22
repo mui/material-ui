@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  return composeClasses(slots, getBadgeUtilityClass, classes);
+  return composeClasses(slots, getBadgeUtilityClass, classes, ['root', 'badge', 'invisible']);
 };
 
 const BadgeRoot = styled('span', {
@@ -239,7 +239,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   } = invisible ? prevProps : props;
 
   const ownerState = { ...props, anchorOrigin, invisible, color, overlap, variant };
-  const { root: rootClass, ...otherClasses } = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   let displayValue;
 
@@ -257,7 +257,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   return (
     <BadgeUnstyled
-      invisible={invisibleProp}
+      invisible={invisible}
       badgeContent={displayValue}
       showZero={showZero}
       max={max}
@@ -266,7 +266,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         root: RootSlot,
         badge: BadgeSlot,
       }}
-      className={clsx(rootSlotProps?.className, rootClass, className)}
+      className={clsx(rootSlotProps?.className, classes.root, className)}
       slotProps={{
         root: {
           ...rootSlotProps,
@@ -283,7 +283,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         },
         badge: {
           ...badgeSlotProps,
-          className: clsx(otherClasses.badge, badgeSlotProps?.className),
+          className: clsx(classes.badge, badgeSlotProps?.className),
           ...(shouldSpreadAdditionalProps(BadgeSlot) && {
             ownerState: {
               ...badgeSlotProps?.ownerState,

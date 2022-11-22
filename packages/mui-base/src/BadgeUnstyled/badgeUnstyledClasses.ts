@@ -13,10 +13,10 @@ export interface BadgeUnstyledClasses {
 export type BadgeUnstyledClassKey = keyof BadgeUnstyledClasses;
 
 export function getBadgeUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiBadgeBase', slot);
+  return generateUtilityClass('MuiBadge', slot);
 }
 
-const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('MuiBadgeBase', [
+const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('MuiBadge', [
   'root',
   'badge',
   'invisible',
