@@ -9,8 +9,13 @@ on:
       - 'renovate/**'
   pull_request:
     paths:
+      # only runs this CI when changes are in 'docs/**' or 'examples/**'
+      # the negate(!) is necessary, otherwise the CI runs when the changes are and are not in 'docs/**' or 'examples/**'
+      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-and-excluding-paths
       - 'docs/**'
+      - '!docs/**'
       - 'examples/**'
+      - '!examples/**'
 
 permissions: {}
 
