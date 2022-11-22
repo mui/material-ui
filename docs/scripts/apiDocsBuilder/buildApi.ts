@@ -11,11 +11,11 @@ import {
   getBaseComponentInfo,
   getSystemComponentInfo,
   extractApiPage,
-} from 'docs/scripts/buildApiUtils';
+} from './buildApiUtils';
 import generateComponentApi, {
   writePrettifiedFile,
   ReactApi,
-} from 'docs/scripts/ApiBuilders/ComponentApiBuilder';
+} from './ApiBuilders/ComponentApiBuilder';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 

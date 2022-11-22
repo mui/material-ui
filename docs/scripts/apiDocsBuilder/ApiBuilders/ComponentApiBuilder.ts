@@ -24,7 +24,7 @@ import createDescribeableProp, {
 import generatePropDescription from 'docs/src/modules/utils/generatePropDescription';
 import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import * as ttp from 'typescript-to-proptypes';
-import { getUnstyledFilename } from '../helpers';
+import { getUnstyledFilename } from '../../helpers';
 import { ComponentInfo } from '../buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
