@@ -1,5 +1,73 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.10.14
+
+<!-- generated comparing v5.10.13..master -->
+
+_Nov 14, 2022_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 @siriwatknp added the Autocomplete component to the Joy UI (#34315)
+- ♿ @sfavello improved the accessibility of the Material UI's Autocomplete by adding support for the Delete key (#33822)
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.14`
+
+- [Material UI] Add `palette.background.defaultChannel` token (#35061) @siriwatknp
+- [Autocomplete] Remove tags with the Delete key (#33822) @sfavello
+- [IconButton] custom color causes type error (#34521) @kushagra010
+
+### `@mui/system@5.10.14`
+
+- [Unstable_Gridv2] sorted responsize keys based on breakpoint value (#34987) @sai6855
+
+### `@mui/joy@5.0.0-alpha.54`
+
+- [Joy] Export `FormControl`, `LinearProgress` and `ListSubheader` components from `@mui/joy` (#35003) @Studio384
+- [Joy] Miscellaneous fixes (#35044) @siriwatknp
+- [Joy] Add `Autocomplete` component (#34315) @siriwatknp
+- [Joy] Saturate a bit the gray palette (#35148) @danilo-leal
+- [Autocomplete][joy] Fix types (#35153) @siriwatknp
+
+### Docs
+
+- [blog] Fix font size of code blocks on iOS @oliviertassinari
+- [docs] Accessibility - increase default contrastThreshold for WCAG AA compliance (#34901) @kennethbigler
+- [docs] Correct the keepMounted section on the Drawer page (#35076) @michaldudak
+- [docs] Fix code editor styles mismatches (#35108) @oliviertassinari
+- [docs] Allows to access the next MUI-X (#34798) @alexfauquette
+- [docs] Fix bugs with live edit demos (#35106) @oliviertassinari
+- [docs] Fix `MarkdownElement` regression from adding CSS variables (#35096) @siriwatknp
+- [docs] Add a new gold sponsor (#35089) @hbjORbj
+- [docs] Fix scroll issue on expanded live demos (#35064) @bharatkashyap
+- [docs] Improve alignment of the sponsors @oliviertassinari
+- [docs] Improve code font family v2 (#35053) @oliviertassinari
+- [docs] Upgrade to Next.js 13 (#35001) @mnajdova
+- [docs] Fix typo in changelog @oliviertassinari
+- [docs] Update Joy UI templates to use latest components (#35058) @siriwatknp
+- [website] Fix design kits showcase throwing an error (#35093) @cherniavskii
+- [website] Fix margin bug on CTA @oliviertassinari
+- [website] Link respective repositories in product pages (#35046) @sidtohan
+- [website] Migrate blog pages to use CSS theme variables (#34976) @siriwatknp
+- [website] Update DoiT International logo and links with new brand (#35030) @ofir5300
+- [website] Improve visual design app bar (#35111) @oliviertassinari
+
+### Core
+
+- [core] Convert scripts to ES modules (#35036) @michaldudak
+- [core] Show the whole version to make blame easier @oliviertassinari
+- [core] Polish GitHub Action version @oliviertassinari
+- [core] Ignore icons to speed up CodeQL @oliviertassinari
+- [core] Feedback on branch protection @oliviertassinari
+- [core] Revert CI (#35098) @siriwatknp
+- [core] Fix job name to match the CI (#35097) @siriwatknp
+- [core] ESLint fixes for tests (#34924) @Janpot
+- [core] Ignore unrelated folders from github actions (#35028) @siriwatknp
+- [core] Use pretty-quick instead of custom script (#34062) @Janpot
+
+All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @cherniavskii, @danilo-leal, @hbjORbj, @Janpot, @kennethbigler, @kushagra010, @michaldudak, @mnajdova, @ofir5300, @oliviertassinari, @sai6855, @sfavello, @sidtohan, @siriwatknp, @Studio384
+
 ## v5.10.13
 
 <!-- generated comparing v5.10.12..master -->

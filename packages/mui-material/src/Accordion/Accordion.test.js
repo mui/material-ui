@@ -169,6 +169,7 @@ describe('<Accordion />', () => {
             Accordion.propTypes,
             {
               classes: {},
+              // eslint-disable-next-line react/jsx-no-useless-fragment
               children: <React.Fragment />,
             },
             'prop',

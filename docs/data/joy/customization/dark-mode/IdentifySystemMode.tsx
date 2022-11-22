@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 
-const Identifier = () => {
+function Identifier() {
   const { systemMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -32,7 +32,7 @@ const Identifier = () => {
       mode.
     </Typography>
   );
-};
+}
 
 export default function IdentifySystemMode() {
   return (

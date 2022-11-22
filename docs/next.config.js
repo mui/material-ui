@@ -170,7 +170,11 @@ module.exports = withDocsInfra({
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV !== 'production') {
+        // The experiments pages are only meant for experiments, they shouldn't leak to production.
+        if (
+          (page.pathname.startsWith('/experiments/') || page.pathname === '/experiments') &&
+          process.env.DEPLOY_ENV === 'production'
+        ) {
           return;
         }
         // The blog is not translated
