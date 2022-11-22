@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -251,6 +251,7 @@ const EMPTY_SECTION = { hash: '', text: '' };
 export default function AppLayoutDocsFooter(props) {
   const { tableOfContents = [] } = props;
 
+  const theme = useTheme();
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const { activePage } = React.useContext(PageContext);
@@ -312,6 +313,12 @@ export default function AppLayoutDocsFooter(props) {
       setRating(vote);
       setCommentOpen(true);
     }
+
+    // Manualy move focus if commment is already open.
+    // If the comment is closed, onEntered will call focus itself;
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   const handleChangeTextfield = (event) => {
@@ -324,9 +331,20 @@ export default function AppLayoutDocsFooter(props) {
     processFeedback();
   };
 
+  // See https://github.com/mui/mui-toolpad/issues/1164 for context.
+  const handleKeyDownForm = (event) => {
+    const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
+
+    if (event.key === 'Enter' && modifierKey) {
+      const submitButton = event.currentTarget.querySelector('[type="submit"]');
+      submitButton.click();
+    }
+  };
+
   const handleCancelComment = () => {
     setCommentOpen(false);
     setCurrentRatingFromCookie();
+    setCommentedSection(EMPTY_SECTION);
   };
 
   const handleEntered = () => {
@@ -344,6 +362,9 @@ export default function AppLayoutDocsFooter(props) {
         const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
         setCommentOpen(true);
         setCommentedSection(section);
+
+        // Manualy move focus if commment is already open.
+        // If the comment is closed, onEntered will call focus itself;
         if (inputRef.current) {
           inputRef.current.focus();
         }
@@ -422,11 +443,18 @@ export default function AppLayoutDocsFooter(props) {
             </PaginationDiv>
           </React.Fragment>
         )}
-        <Collapse in={commentOpen} unmountOnExit onEntered={handleEntered}>
+        <Collapse
+          in={commentOpen}
+          unmountOnExit
+          onEntered={handleEntered}
+          timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
+        >
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <form
             aria-labelledby="feedback-message"
             onReset={handleCancelComment}
             onSubmit={handleSubmitComment}
+            onKeyDown={handleKeyDownForm}
           >
             <Box sx={{ mb: 4 }}>
               {commentedSection.text ? (
