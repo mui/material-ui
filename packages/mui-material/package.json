@@ -3,7 +3,7 @@
   "version": "5.10.15",
   "private": false,
   "author": "MUI Team",
-  "description": "React components that implement Google's Material Design.",
+  "description": "React components that implement Google's Material Design....",
   "main": "./src/index.ts",
   "keywords": [
     "react",
