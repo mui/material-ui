@@ -19,6 +19,7 @@ import defaultMember, * as name from "module-8";
 import "module-9";
     import "module-10";
 import * from './smdn';
+import \${importName} from 'module11/\${importName}';
   `);
 
     expect(imports[0]).to.equal('@angular2/core');
@@ -33,5 +34,6 @@ import * from './smdn';
     expect(imports[9]).to.equal('module-9');
     expect(imports[10]).to.equal('module-10');
     expect(imports[11]).to.equal('./smdn');
+    expect(imports[12]).to.equal(undefined); // It's not a valid import
   });
 });
