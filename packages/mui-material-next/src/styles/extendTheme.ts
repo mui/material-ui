@@ -7,6 +7,7 @@ import {
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
+  SxProps,
 } from '@mui/system';
 import {
   createTheme as createThemeWithoutVars,

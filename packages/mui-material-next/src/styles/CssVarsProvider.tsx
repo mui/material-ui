@@ -1,12 +1,14 @@
 import {
   unstable_createCssVarsProvider as createCssVarsProvider,
   unstable_styleFunctionSx as styleFunctionSx,
+  SxProps,
 } from '@mui/system';
 import {
   SupportedColorScheme,
   private_createTypography as createTypography,
   private_excludeVariablesFromRoot as excludeVariablesFromRoot,
 } from '@mui/material/styles';
+import { Theme } from './Theme.types';
 import defaultTheme from './defaultTheme';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>

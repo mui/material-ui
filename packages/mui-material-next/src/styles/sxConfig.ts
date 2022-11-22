@@ -26,11 +26,11 @@ function createPaletteStyle(options: PaletteStyleOptions = { prop: 'color' }) {
 
     const styleFromPropValue = (propValueFinal: any) => {
       // check the value in the color mapping first
-      let value = getValue(colorThemeMapping, undefined, propValueFinal);
+      let value = getValue(colorThemeMapping, null, propValueFinal);
 
       if (propValueFinal === value) {
         // haven't found value in colors mapping, so we are checking in the palette mapping
-        value = getValue(paletteThemeMapping, undefined, propValueFinal);
+        value = getValue(paletteThemeMapping, null, propValueFinal);
       }
 
       if (cssProperty === false) {
