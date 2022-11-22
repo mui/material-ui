@@ -39,6 +39,23 @@ describe('<SpeedDialAction />', () => {
     expect(getByText('placeholder')).to.have.class('bar');
   });
 
+  it('should be able to change the Tooltip classes when tooltipOpen is true', () => {
+    const { getByText, container } = render(
+      <SpeedDialAction
+        icon={<Icon>add</Icon>}
+        open
+        tooltipOpen
+        tooltipTitle="placeholder"
+        TooltipClasses={{ tooltip: 'bar' }}
+      />,
+    );
+
+    fireEvent.mouseOver(container.querySelector('button'));
+    clock.tick(100);
+
+    expect(getByText('placeholder')).to.have.class('bar');
+  });
+
   it('should render a Fab', () => {
     const { container } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
