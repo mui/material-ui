@@ -21,7 +21,7 @@ Dividers separate content into clear groups.
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import Avatar from '@mui/joy/Divider';
+import Divider from '@mui/joy/Divider';
 
 export default function MyApp() {
   return <Divider />;
