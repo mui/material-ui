@@ -50,50 +50,44 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
-  function CssVarsProvider({
-    children,
-    theme: themeProp = defaultTheme,
-    modeStorageKey = defaultModeStorageKey,
-    colorSchemeStorageKey = defaultColorSchemeStorageKey,
-    attribute = defaultAttribute,
-    defaultMode = designSystemMode,
-    defaultColorScheme = designSystemColorScheme,
-    disableTransitionOnChange = designSystemTransitionOnChange,
-    storageWindow = typeof window === 'undefined' ? undefined : window,
-    documentNode = typeof document === 'undefined' ? undefined : document,
-    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-    colorSchemeSelector = ':root',
-    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-  }) {
-    const hasMounted = React.useRef(false);
+  const defaultSelector = {
+    root: ':root',
+    defaultColorScheme: (key) => `:root, [${defaultAttribute}="${key}"]`,
+    scopedColorScheme: (key) => `[${defaultAttribute}="${key}"]`,
+  };
 
+  /**
+   * Low level API for generating CSS theme variables. Useful for creating nested CSS variables scopes.
+   *
+   * It receives a raw theme as an input and generates ready-to-use stylesheets that contain CSS variables for all color schemes.
+   * It also attaches an object to `theme.vars.*` that can be used as references to CSS variables, and other utilities.
+   *
+   * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
+   */
+  const useCssThemeVars = (
+    themeProp,
+    {
+      // config
+      defaultMode = designSystemMode,
+      defaultColorScheme = designSystemColorScheme,
+      shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+      selector = defaultSelector,
+      // runtime parameters
+      mode: modeProp,
+      colorScheme: colorSchemeProp,
+    },
+  ) => {
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
-    const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
-    // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
-    const {
-      mode,
-      setMode,
-      systemMode,
-      lightColorScheme,
-      darkColorScheme,
-      colorScheme,
-      setColorScheme,
-    } = useCurrentColorScheme({
-      supportedColorSchemes: allColorSchemes,
-      defaultLightColorScheme,
-      defaultDarkColorScheme,
-      modeStorageKey,
-      colorSchemeStorageKey,
-      defaultMode,
-      storageWindow,
-    });
-
+    const ctx = React.useContext(ColorSchemeContext);
+    const mode = modeProp || ctx?.mode;
+    const colorScheme = colorSchemeProp || ctx?.colorScheme;
     const calculatedMode = (() => {
+      // the `calculatedMode` can be controlled with parameter, otherwise listen to the context.
       if (!mode) {
         // This scope occurs on the server
         if (defaultMode === 'system') {
@@ -129,7 +123,8 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       cssVarPrefix,
       vars: rootVars,
-      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
+      getColorSchemeSelector: (targetColorScheme) =>
+        `${selector.scopedColorScheme(targetColorScheme)} &`,
     };
 
     // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
@@ -170,14 +165,79 @@ export default function createCssVarsProvider(options) {
             excludedVariables[cssVar] = css[cssVar];
             delete css[cssVar];
           });
-          defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
+          // treat excluded variables as scoped color scheme
+          defaultColorSchemeStyleSheet[selector.scopedColorScheme(key)] = excludedVariables;
         }
-        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
+        defaultColorSchemeStyleSheet[selector.defaultColorScheme(key)] = css;
       } else {
-        otherColorSchemesStyleSheet[
-          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
-        ] = css;
+        otherColorSchemesStyleSheet[selector.scopedColorScheme(key)] = css;
       }
+    });
+
+    return {
+      theme,
+      styles: [
+        { [selector.root]: rootCss },
+        defaultColorSchemeStyleSheet,
+        otherColorSchemesStyleSheet,
+      ],
+    };
+  };
+
+  function CssVarsProvider({
+    children,
+    theme: themeProp = defaultTheme,
+    modeStorageKey = defaultModeStorageKey,
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
+    attribute = defaultAttribute,
+    defaultMode = designSystemMode,
+    defaultColorScheme = designSystemColorScheme,
+    disableTransitionOnChange = designSystemTransitionOnChange,
+    storageWindow = typeof window === 'undefined' ? undefined : window,
+    documentNode = typeof document === 'undefined' ? undefined : document,
+    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
+    colorSchemeSelector = ':root',
+    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+  }) {
+    const hasMounted = React.useRef(false);
+
+    const allColorSchemes = Object.keys(themeProp.colorSchemes || {});
+    const defaultLightColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
+    const defaultDarkColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
+
+    // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
+    const {
+      mode,
+      setMode,
+      systemMode,
+      lightColorScheme,
+      darkColorScheme,
+      colorScheme,
+      setColorScheme,
+    } = useCurrentColorScheme({
+      supportedColorSchemes: allColorSchemes,
+      defaultLightColorScheme,
+      defaultDarkColorScheme,
+      modeStorageKey,
+      colorSchemeStorageKey,
+      defaultMode,
+      storageWindow,
+    });
+
+    const { theme, styles } = useCssThemeVars(themeProp, {
+      defaultMode,
+      defaultColorScheme,
+      selector: {
+        root: colorSchemeSelector,
+        defaultColorScheme: (key) => `[${attribute}="${key}"]`,
+        scopedColorScheme: (key) =>
+          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
+      },
+      shouldSkipGeneratingVar,
+      mode,
+      colorScheme,
     });
 
     // 5. Declaring effects
@@ -241,9 +301,7 @@ export default function createCssVarsProvider(options) {
 
     return (
       <ColorSchemeContext.Provider value={contextValue}>
-        <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
-        <GlobalStyles styles={defaultColorSchemeStyleSheet} />
-        <GlobalStyles styles={otherColorSchemesStyleSheet} />
+        <GlobalStyles styles={styles} />
         <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
     );
@@ -325,5 +383,5 @@ export default function createCssVarsProvider(options) {
       ...params,
     });
 
-  return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+  return { CssVarsProvider, useColorScheme, useCssThemeVars, getInitColorSchemeScript };
 }
