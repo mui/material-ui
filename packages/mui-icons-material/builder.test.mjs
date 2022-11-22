@@ -2,17 +2,20 @@ import { expect } from 'chai';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import fse from 'fs-extra';
-import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder';
+import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder.mjs';
+
+const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
 const DISABLE_LOG = true;
 
 // To cut down on test time, use fixtures instead of node_modules
-// const MUI_ICONS_ROOT = path.join(__dirname, '../node_modules/material-design-icons/');
-const MUI_ICONS_ROOT = path.join(__dirname, './fixtures/material-design-icons/');
+// const MUI_ICONS_ROOT = path.join(currentDirectory, '../node_modules/material-design-icons/');
+const MUI_ICONS_ROOT = path.join(currentDirectory, './fixtures/material-design-icons/');
 const MUI_ICONS_SVG_DIR = path.join(MUI_ICONS_ROOT, 'svg');
 
-const GAME_ICONS_ROOT = path.join(__dirname, './fixtures/game-icons/');
+const GAME_ICONS_ROOT = path.join(currentDirectory, './fixtures/game-icons/');
 const GAME_ICONS_SVG_DIR = path.join(GAME_ICONS_ROOT, 'svg/icons/');
 
 describe('builder', () => {
