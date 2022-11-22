@@ -162,7 +162,7 @@ describe('<FormControl />', () => {
       );
 
       const label = container.querySelector('label');
-      expect(getByRole('button')).to.have.attribute('aria-labelledby', label?.id);
+      expect(getByRole('combobox')).to.have.attribute('aria-labelledby', label?.id);
     });
 
     it('should inherit color prop from FormControl', () => {
