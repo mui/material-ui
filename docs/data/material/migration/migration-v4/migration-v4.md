@@ -71,19 +71,11 @@ If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/
 
 ## Update React & TypeScript version
 
+### Update React
+
 The minimum supported version of React has been increased from v16.8.0 to v17.0.0.
 
-The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
-
-:::warning
-We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
-
-We will not change the minimum supported version in a major version of Material UI.
-
-However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
-:::
-
-If you are using a react verison bellow 17.0.0, update your packages to at least v14.11.2 for Material UI and v17.0.0 for react.
+If you are using a React version below 17.0.0, update your packages to at least v14.11.2 for Material UI and v17.0.0 for React.
 
 With npm:
 
@@ -97,7 +89,19 @@ With yarn:
 yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
-If your project includes these packages, you'll need to update them to the `latest` version:
+### Update TypeScript
+
+The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
+
+:::warning
+We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+
+We will not change the minimum supported version in a major version of Material UI.
+
+However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
+:::
+
+If your project includes these packages, you'll need to update them:
 
 - `react-scripts`
 - `@types/react`
