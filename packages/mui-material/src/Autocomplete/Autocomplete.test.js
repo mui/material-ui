@@ -19,6 +19,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -206,6 +207,39 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ value: 'two' });
       checkHighlightIs(getByRole('listbox'), 'two');
+    });
+
+    // https://github.com/mui/material-ui/issues/34998
+    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          ListboxProps={{ style: { padding: 0, maxHeight: '100px' } }}
+          PopperComponent={(props) => {
+            const { disablePortal, anchorEl, open, ...other } = props;
+            return <Box {...other} />;
+          }}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      checkHighlightIs(getByRole('listbox'), 'one');
+      expect(getByRole('listbox')).to.have.property('scrollTop', 0);
     });
 
     it('should keep the current highlight if possible', () => {

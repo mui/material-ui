@@ -18,59 +18,38 @@ Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WA
 Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
 
-{{"demo": "AlertUsage.js", "hideToolbar": true}}
+{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Usage
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Alert from '@mui/joy/Alert';
-
-export default function MyApp() {
-  return <Alert />;
-}
 ```
-
-## Basics
 
 The Alert component wraps around its content, and stretches to fill its enclosing container, as shown below:
 
 {{"demo": "AlertBasic.js"}}
 
-## Anatomy
-
-The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
-
-```html
-<div role="alert" class="JoyAlert-root">
-  This is how an Alert renders in the DOM.
-</div>
-```
-
-### Overriding the root slot
-
-Use the `component` prop to override the root slot with a custom element.
-For example, the following code snippet replaces the default `<div>` with a `<span>`:
-
-```jsx
-<Alert component="span">Alert content</Alert>
-
-// renders as:
-<span role="alert" class="JoyAlert-root">
-  Alert content
-</span>
-```
-
 ## Customization
 
 ### Variants
 
-The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
+The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AlertVariants.js"}}
+
+:::success
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Sizes
+
+The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
+
+{{"demo": "AlertSizes.js"}}
 
 ### Colors
 
@@ -78,12 +57,6 @@ Every palette included in the theme is available via the `color` prop.
 The demo below shows how the values for the `color` prop are affected by the global variants:
 
 {{"demo": "AlertColors.js"}}
-
-### Sizes
-
-The Alert component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`:
-
-{{"demo": "AlertSizes.js"}}
 
 ### Decorators
 
@@ -111,3 +84,13 @@ Here are some factors to consider to ensure that your Alert is accessible:
 - Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
 - Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
 - Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.
+
+## Anatomy
+
+The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
+
+```html
+<div role="alert" class="JoyAlert-root">
+  <!-- Alert contents -->
+</div>
+```

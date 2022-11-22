@@ -166,6 +166,8 @@ export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult 
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';
 
+export { default as responsivePropType } from './responsivePropType';
+
 export { default as createContainer } from './Container/createContainer';
 export * from './Container/createContainer';
 

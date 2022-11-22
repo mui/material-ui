@@ -10,7 +10,7 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
-import { getOverlayAlpha } from '../Paper/Paper';
+import getOverlayAlpha from './getOverlayAlpha';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {

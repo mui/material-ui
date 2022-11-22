@@ -22,7 +22,7 @@ export { default as sizing } from './sizing';
 export * from './sizing';
 export { default as spacing } from './spacing';
 export * from './spacing';
-export { default as style, getPath } from './style';
+export { default as style, getPath, getStyleValue } from './style';
 export { default as typography } from './typography';
 export * from './typography';
 export {
@@ -49,6 +49,7 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as responsivePropType } from './responsivePropType';
 
 /** ----------------- */
 /** Layout components */
