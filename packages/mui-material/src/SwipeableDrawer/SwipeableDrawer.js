@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { flushSync } from 'react-dom';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@mui/utils';
+import { elementTypeAcceptingRef, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useThemeProps } from '@mui/system';
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
@@ -166,8 +166,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
-  const localPaperRef = React.useRef();
-  const paperRef = PaperProps.ref || localPaperRef;
+  const paperRef = React.useRef();
+
+  const handleRef = useForkRef(PaperProps.ref, paperRef);
 
   const touchDetected = React.useRef(false);
 
@@ -227,7 +228,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         }
       }
     },
-    [anchor, paperRef, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
+    [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
   );
 
   const handleBodyTouchEnd = useEventCallback((nativeEvent) => {
@@ -533,7 +534,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
 
     return undefined;
-  }, [variant, paperRef, open, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
+  }, [variant, open, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
 
   React.useEffect(
     () => () => {
@@ -575,7 +576,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
             pointerEvents: variant === 'temporary' && !open ? 'none' : '',
             ...PaperProps.style,
           },
-          ref: paperRef,
+          ref: handleRef,
         }}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
