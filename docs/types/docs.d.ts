@@ -22,7 +22,6 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      */
     component?: React.ElementType;
     sx?: object;
-    test: any;
   }
   export default function HighlightedCode(props: Props): React.ReactElement;
 }
