@@ -1,4 +1,7 @@
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  unstable_styleFunctionSx as styleFunctionSx,
+} from '@mui/system';
 import {
   SupportedColorScheme,
   private_createTypography as createTypography,
@@ -26,6 +29,9 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
         typography: createTypography(theme.palette, theme.typography),
       };
 
+      newTheme.unstable_sx = function sx(props: SxProps<Theme>) {
+        return styleFunctionSx({ sx: props, theme: this });
+      };
       return newTheme;
     },
     shouldSkipGeneratingVar,
