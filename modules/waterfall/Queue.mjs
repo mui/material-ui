@@ -1,4 +1,4 @@
-import waitUntil from './waitUntil';
+import waitUntil from './waitUntil.mjs';
 
 class Queue {
   pendingEntries = [];

@@ -3,13 +3,16 @@ import yargs from 'yargs';
 import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
-import Queue from 'modules/waterfall/Queue';
-import intersection from 'lodash/intersection';
 import globAsync from 'fast-glob';
 import * as svgo from 'svgo';
+import { fileURLToPath } from 'url';
+import intersection from 'lodash/intersection.js';
+import Queue from '../../modules/waterfall/Queue.mjs';
 
-export const RENAME_FILTER_DEFAULT = './renameFilters/default';
-export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
+const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
+
+export const RENAME_FILTER_DEFAULT = './renameFilters/default.mjs';
+export const RENAME_FILTER_MUI = './renameFilters/material-design-icons.mjs';
 
 /**
  * Converts directory separators to slashes, so the path can be used in fast-glob.
@@ -43,6 +46,7 @@ async function generateIndex(options) {
       const typename = path.basename(file).replace('.js', '');
       return `export { default as ${typename} } from './${typename}';\n`;
     })
+    .sort()
     .join('');
 
   await fse.writeFile(path.join(options.outputDir, 'index.js'), index);
@@ -247,7 +251,7 @@ export async function handler(options) {
 
   const [svgPaths, template] = await Promise.all([
     globAsync(normalizePath(path.join(options.svgDir, options.glob))),
-    fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
+    fse.readFile(path.join(currentDirectory, 'templateSvgIcon.js'), {
       encoding: 'utf8',
     }),
   ]);
@@ -267,7 +271,7 @@ export async function handler(options) {
   queue.push(svgPaths);
   await queue.wait({ empty: true });
 
-  let legacyFiles = await globAsync(normalizePath(path.join(__dirname, '/legacy', '*.js')));
+  let legacyFiles = await globAsync(normalizePath(path.join(currentDirectory, '/legacy', '*.js')));
   legacyFiles = legacyFiles.map((file) => path.basename(file));
   let generatedFiles = await globAsync(normalizePath(path.join(options.outputDir, '*.js')));
   generatedFiles = generatedFiles.map((file) => path.basename(file));
@@ -282,14 +286,18 @@ export async function handler(options) {
     );
   }
 
-  await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
-  await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
+  await fse.copy(path.join(currentDirectory, '/legacy'), options.outputDir);
+  await fse.copy(path.join(currentDirectory, '/custom'), options.outputDir);
 
   await generateIndex(options);
 }
 
-if (require.main === module) {
-  yargs
+const nodePath = path.resolve(process.argv[1]);
+const modulePath = path.resolve(fileURLToPath(import.meta.url));
+const isRunningDirectlyViaCLI = nodePath === modulePath;
+
+if (isRunningDirectlyViaCLI) {
+  yargs(process.argv.slice(2))
     .command({
       command: '$0>',
       description: "Build JSX components from SVG's.",
