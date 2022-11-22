@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { styled, extendTheme, CssVarsProvider } from '@mui/material-next/styles';
+import { styled } from '@mui/material-next/styles';
 
 describe('styled', () => {
   const { render } = createRenderer();
