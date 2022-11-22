@@ -11,6 +11,8 @@ on:
     paths:
       - 'docs/**'
       - 'examples/**'
+      - '!docs/**'
+      - '!examples/**'
 
 permissions: {}
 
