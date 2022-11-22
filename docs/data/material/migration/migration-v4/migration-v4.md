@@ -83,6 +83,20 @@ We will not change the minimum supported version in a major version of Material 
 However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
 :::
 
+If you are using a react verison bellow 17.0.0, update your packages to at least v14.11.2 for Material UI and v17.0.0 for react.
+
+With npm:
+
+```sh
+npm update @material-ui/core@^4.11.2 react@^17.0.0
+```
+
+With yarn:
+
+```sh
+yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
+```
+
 If your project includes these packages, you'll need to update them to the `latest` version:
 
 - `react-scripts`
