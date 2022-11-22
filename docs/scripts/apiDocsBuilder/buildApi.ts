@@ -4,7 +4,7 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import * as ttp from 'typescript-to-proptypes';
-import { findComponents } from 'docs/src/modules/utils/find';
+import findComponents from './utils/findComponents';
 import {
   ComponentInfo,
   getMaterialComponentInfo,

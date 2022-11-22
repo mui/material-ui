@@ -11,19 +11,18 @@ import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import { LANGUAGES } from 'docs/src/modules/constants';
-import parseTest from 'docs/src/modules/utils/parseTest';
-import generatePropTypeDescription, {
-  getChained,
-} from 'docs/src/modules/utils/generatePropTypeDescription';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
+import * as ttp from 'typescript-to-proptypes';
+
+import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
+import { LANGUAGES } from '../../../config';
+import parseTest from '../utils/parseTest';
+import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
   DescribeablePropDescriptor,
-} from 'docs/src/modules/utils/createDescribeableProp';
-import generatePropDescription from 'docs/src/modules/utils/generatePropDescription';
-import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
-import * as ttp from 'typescript-to-proptypes';
+} from '../utils/createDescribeableProp';
+import generatePropDescription from '../utils/generatePropDescription';
+import parseStyles, { Styles } from '../utils/parseStyles';
 import { getUnstyledFilename } from '../../helpers';
 import { ComponentInfo } from '../buildApiUtils';
 
