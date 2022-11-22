@@ -410,19 +410,53 @@ describe('experimental_extendTheme', () => {
     });
   });
 
-  it('should not break if the value cannot be parsed by color manipulators', () => {
-    expect(() =>
-      extendTheme({
-        colorSchemes: {
-          light: {
-            palette: {
-              custom: {
-                main: 'green',
+  describe('warnings', () => {
+    it('dependent token: should warn if the value cannot be parsed by color manipulators', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                divider: 'green',
               },
             },
           },
-        },
-      }),
-    ).not.to.throw();
+        }),
+      ).toWarnDev(
+        'MUI: The value of `palette.divider` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
+      );
+    });
+
+    it('independent token: should skip warning', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                Alert: {
+                  errorColor: 'green',
+                },
+              },
+            },
+          },
+        }),
+      ).not.to.throw();
+    });
+
+    it('custom palette should not throw errors', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                gradient: {
+                  primary: 'linear-gradient(#000, transparent)',
+                },
+              },
+            },
+          },
+        }),
+      ).not.to.throw();
+    });
   });
 });
