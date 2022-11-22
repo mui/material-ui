@@ -220,6 +220,67 @@ export function testRootClass(element, getOptions) {
 }
 
 /**
+ * Tests that the utility classes aren't duplicated
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+export function testUtilityClasses(element, getOptions) {
+  it(`utility classes shouldn't be duplicated`, () => {
+    const { classes, mount, skip } = getOptions();
+    if (classes.root == null) {
+      return;
+    }
+
+    // classes test only for @mui/material
+    if (skip && (skip.includes('classesRoot') || skip.includes('utilityClasses'))) {
+      return;
+    }
+
+    const className = randomStringValue();
+    const randomClasses = randomStringValue();
+
+    // `classes.root` will be applied internally, so we don't need to pass `classes.root`
+    // Here use a random classes object which will be used along with `classes.root`
+    const wrapper = mount(
+      React.cloneElement(element, {
+        className,
+        classes: { root: randomClasses },
+      }),
+    );
+
+    const outermostElement = findOutermostIntrinsic(wrapper).getElement();
+    const elementQueue = [];
+    const classArray = [];
+
+    elementQueue.push(outermostElement);
+
+    while (elementQueue.length) {
+      const currentElement = elementQueue.pop();
+      const children = currentElement?.props?.children;
+      const currentClassName = currentElement?.props?.className;
+
+      if (currentClassName) {
+        classArray.push(...currentClassName.split(' '));
+      }
+
+      if (children) {
+        if (Array.isArray(children)) {
+          children.forEach((child) => {
+            elementQueue.push(child);
+          });
+        } else {
+          elementQueue.push(children);
+        }
+      }
+    }
+
+    const classSet = new Set(classArray);
+
+    expect(classArray.length === classSet.size).to.equal(true);
+  });
+}
+
+/**
  * Tests that the component can be rendered with react-test-renderer.
  * This is important for snapshot testing with Jest (even if we don't encourage it).
  * @param {React.ReactElement} element
@@ -882,6 +943,7 @@ const fullSuite = {
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
   themeVariants: testThemeVariants,
+  utilityClasses: testUtilityClasses,
 };
 
 /**
