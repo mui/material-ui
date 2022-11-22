@@ -11,6 +11,10 @@ export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Omit<TabPanelUnstyledOwnProps, 'components' | 'componentsProps'> & {
       /**
+       * Whether or not to keep the panel mounted.
+       */
+      keepMounted?: boolean;
+      /**
        * The size of the component.
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabPanelPropsSizeOverrides>;
