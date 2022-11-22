@@ -18,6 +18,7 @@ describe('<Box />', () => {
       'themeVariants',
       'themeStyleOverrides',
       'themeDefaultProps',
+      'utilityClasses',
     ],
     refInstanceof: window.HTMLDivElement,
   }));

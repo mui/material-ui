@@ -197,13 +197,8 @@ export function testRootClass(element, getOptions) {
  */
 export function testUtilityClasses(element, getOptions) {
   it(`utility classes shouldn't be duplicated`, () => {
-    const { classes, mount, skip } = getOptions();
-    if (classes.root == null) {
-      return;
-    }
-
-    // classes test only for @mui/material
-    if (skip && (skip.includes('classesRoot') || skip.includes('utilityClasses'))) {
+    const { classes, mount } = getOptions();
+    if (!classes?.root) {
       return;
     }
 
