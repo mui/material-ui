@@ -117,7 +117,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     icon,
     id,
     open,
-    TooltipClasses = { tooltip: '' },
+    TooltipClasses,
     tooltipOpen: tooltipOpenProp = false,
     tooltipPlacement = 'left',
     tooltipTitle,
@@ -168,7 +168,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
         <SpeedDialActionStaticTooltipLabel
           style={transitionStyle}
           id={`${id}-label`}
-          className={clsx(classes.staticTooltipLabel, TooltipClasses.tooltip)}
+          className={clsx(classes.staticTooltipLabel, TooltipClasses?.tooltip)}
           ownerState={ownerState}
         >
           {tooltipTitle}
