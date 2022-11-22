@@ -123,7 +123,7 @@ export default function createCssVarsProvider(options) {
     } = cssVarsParser(restThemeProp, { prefix: cssVarPrefix, shouldSkipGeneratingVar });
 
     // 3. Start composing the theme object
-    let theme = {
+    const theme = {
       ...parsedTheme,
       components,
       colorSchemes,
@@ -149,7 +149,17 @@ export default function createCssVarsProvider(options) {
       theme.vars = deepmerge(theme.vars, vars);
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
-        theme = { ...theme, ...parsedScheme };
+        Object.keys(parsedScheme).forEach((schemeKey) => {
+          if (parsedScheme[schemeKey] && typeof parsedScheme[schemeKey] === 'object') {
+            // shallow merge the 1st level structure of the theme.
+            theme[schemeKey] = {
+              ...theme[schemeKey],
+              ...parsedScheme[schemeKey],
+            };
+          } else {
+            theme[schemeKey] = parsedScheme[schemeKey];
+          }
+        });
         if (theme.palette) {
           theme.palette.colorScheme = key;
         }

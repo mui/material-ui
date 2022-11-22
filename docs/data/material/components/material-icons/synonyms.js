@@ -193,10 +193,10 @@ const synonyms = {
     'compliance confidential federal government regulatory secure sensitive',
   Atm: 'alphabet automated bill card cart cash character coin commerce credit currency dollars font letter machine money online payment shopping symbol teller text type',
   AttachEmail: 'attachment clip compose envelop letter link message send',
-  AttachFile: 'add item link mail media paperclip',
+  AttachFile: 'add attachment item link mail media paperclip',
   Attachment: 'compose file image item link paperclip',
   AttachMoney:
-    'bill card cash coin commerce cost credit currency dollars finance online payment price profit sale symbol',
+    'attachment bill card cash coin commerce cost credit currency dollars finance online payment price profit sale symbol',
   Attractions: 'amusement entertainment ferris fun maps park places wheel',
   Attribution: 'attribute body copyright copywriter human people person',
   AudioFile: 'document key music note sound track',
@@ -966,7 +966,7 @@ const synonyms = {
   FireExtinguisher: 'emergency water',
   Fireplace: 'chimney flame home house living pit room warm winter',
   FirstPage: 'arrow back chevron left rewind',
-  Fitbit: 'athlete athletic exercise fitness hobby',
+  Fitbit: 'athlete athletic exercise fitness hobby logo',
   FitnessCenter:
     'athlete dumbbell exercise gym health hobby places sport weights workout',
   FitScreen: 'enlarge format layout reduce scale size',
@@ -1210,10 +1210,11 @@ const synonyms = {
   HeatPump: 'air conditioner cool energy furnance nest usage',
   Height:
     'arrows color doc down editing editor fill format paint resize spreadsheet stretch style text type up writing',
-  Help: '? alert announcement assistance circle information mark punctuation question shape support symbol',
-  HelpCenter: '? assistance information mark punctuation question support symbol',
+  Help: '? alert announcement assistance circle information mark punctuation question recent restore shape support symbol',
+  HelpCenter:
+    '? assistance information mark punctuation question recent restore support symbol',
   HelpOutline:
-    '? alert announcement assistance circle information mark punctuation question shape support symbol',
+    '? alert announcement assistance circle information mark punctuation question recent restore shape support symbol',
   Hevc: 'alphabet character coding efficiency font high letter symbol text type video',
   Hexagon: 'shape sides six',
   HideImage: 'disabled enabled landscape mountains off on photography picture slash',
@@ -1418,7 +1419,7 @@ const synonyms = {
   List: 'editor file format index menu options playlist task todo',
   ListAlt: 'box contained editor format lines reorder sheet stacked task title todo',
   LiveHelp:
-    '? alert announcement assistance bubble chat comment communicate faq information mark message punctuation question speech support symbol',
+    '? alert announcement assistance bubble chat comment communicate faq information mark message punctuation question recent restore speech support symbol',
   LiveTv:
     'Android antennas chrome desktop device hardware iOS mac monitor movie play stream television web window',
   Living:
@@ -1491,7 +1492,7 @@ const synonyms = {
   Loupe: '+ add details focus glass magnifying new plus symbol',
   LowPriority: 'arrange arrow backward bottom list move order task todo',
   Loyalty:
-    'badge card credit heart love membership miles points program sale subscription tag travel trip',
+    'badge benefits card credit heart love membership miles points program sale subscription tag travel trip',
   LteMobiledata:
     'alphabet character font internet letter network speed symbol text type wifi wireless',
   LtePlusMobiledata:
@@ -1623,7 +1624,7 @@ const synonyms = {
     'archive arrow down email envelop incoming letter message move send to',
   MoveUp: 'arrow direction jump navigation transfer',
   Movie: 'cinema film media screen show slate tv video watch',
-  MovieCreation: 'clapperboard film movies slate video',
+  MovieCreation: 'cinema clapperboard film movies slate video',
   MovieFilter: 'clapperboard creation film movies slate stars video',
   Moving: 'arrow direction navigation travel up',
   Mp: 'alphabet character font image letter megapixel photography pixels quality resolution symbol text type',
@@ -1859,8 +1860,6 @@ const synonyms = {
   PhoneEnabled: 'call cell contact device hardware mobile telephone',
   PhoneForwarded:
     'arrow call cell contact device direction hardware mobile right telephone',
-  PhoneInTalk:
-    'call cell connection contact data device hardware mobile network scan service signal sound speaker telephone waves wireless',
   PhoneIphone: 'Android apple cell device hardware iOS mobile tablet',
   Phonelink:
     'Android chrome computer connect desktop device hardware iOS mac mobile sync tablet web windows',
@@ -2364,7 +2363,7 @@ const synonyms = {
   SmokingRooms: 'allowed cigarette places smoke tobacco zone',
   Sms: '3 bubble chat comment communication conversation dots message more service speech three',
   SmsFailed:
-    '! alert attention bubbles caution chat comment communication conversation danger error exclamation important mark message notification service speech symbol warning',
+    '! alert attention bubbles caution chat comment communication conversation danger error exclamation feedback important mark message notification service speech symbol warning',
   SnippetFolder: 'data document drive file sheet slide storage',
   Snooze: 'alarm bell clock duration notification set timer watch',
   Snowboarding:
