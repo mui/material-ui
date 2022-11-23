@@ -125,7 +125,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
         return child;
       });
 
-    // element.type can be a object or string tag.
+    // the type of the element
     newComponent = element.type;
   }
 
