@@ -375,13 +375,12 @@ function testMaterialUIComponentsProp(
         const { mount, testComponentsRootPropWith: component = 'em' } = getOptions();
         const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
 
-        expect(findRootComponent(wrapper, { component }).exists()).to.equal(true);
+        expect(findRootComponent(wrapper, component).exists()).to.equal(true);
       });
     } else {
-      // eslint-disable-next-line react/prop-types
-      const CustomComponent = React.forwardRef(({ className }, ref) => (
-        <i className={className} ref={ref} data-testid="custom" />
-      ));
+      const CustomComponent = React.forwardRef<HTMLElement, { className?: string }>(
+        ({ className }, ref) => <i className={className} ref={ref} data-testid="custom" />,
+      );
 
       forEachSlot(components, (slotName, slotOptions) => {
         it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
@@ -406,8 +405,10 @@ function testMaterialUIComponentsProp(
         it(`prioritizes the 'slots.${slotName}' over components.${capitalize(
           slotName,
         )} if both are defined`, () => {
-          // eslint-disable-next-line react/prop-types
-          const ComponentForComponentsProp = React.forwardRef(({ children }, ref) => {
+          const ComponentForComponentsProp = React.forwardRef<
+            HTMLDivElement,
+            { children: React.ReactNode }
+          >(({ children }, ref) => {
             const SlotComponent = slotOptions.testWithComponent ?? 'div';
             return (
               <SlotComponent ref={ref} data-testid="from-components">
@@ -416,9 +417,11 @@ function testMaterialUIComponentsProp(
             );
           });
 
-          // eslint-disable-next-line react/prop-types
-          const ComponentForSlotsProp = React.forwardRef(({ children }, ref) => {
-            const SlotComponent = components[slotName].testWithComponent ?? 'div';
+          const ComponentForSlotsProp = React.forwardRef<
+            HTMLDivElement,
+            { children: React.ReactNode }
+          >(({ children }, ref) => {
+            const SlotComponent = slotOptions.testWithComponent ?? 'div';
             return (
               <SlotComponent ref={ref} data-testid="from-slots">
                 {children}
@@ -467,7 +470,7 @@ function testMaterialUIComponentsProp(
             const renderedElement = queryByTestId('customized');
             expect(renderedElement).not.to.equal(null);
 
-            expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
+            expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
             if (slotOptions.expectedClassName) {
               expect(renderedElement).to.have.class(slotOptions.expectedClassName);
             }
@@ -496,7 +499,7 @@ function testMaterialUIComponentsProp(
             const renderedElement = queryByTestId('customized');
             expect(renderedElement).not.to.equal(null);
 
-            expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
+            expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
             if (slotOptions.expectedClassName) {
               expect(renderedElement).to.have.class(slotOptions.expectedClassName);
             }
@@ -507,7 +510,10 @@ function testMaterialUIComponentsProp(
   });
 }
 
-function testMaterialUIComponentsPropsProp(element, getOptions) {
+function testMaterialUIComponentsPropsProp(
+  element: React.ReactElement,
+  getOptions: () => ConformanceOptions,
+) {
   const { render, components } = getOptions();
 
   if (!render) {
