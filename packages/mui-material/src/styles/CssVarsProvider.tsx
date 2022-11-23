@@ -12,6 +12,7 @@ const defaultTheme = experimental_extendTheme();
 
 const {
   CssVarsProvider,
+  NestedCssVarsProvider,
   useColorScheme,
   useCssThemeVars: systemUseCssThemeVars,
   getInitColorSchemeScript,
@@ -44,4 +45,5 @@ export {
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
   CssVarsProvider as Experimental_CssVarsProvider,
+  NestedCssVarsProvider as Experimental_NestedCssVarsProvider,
 };

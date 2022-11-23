@@ -80,6 +80,25 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
       }
     >,
   ) => React.ReactElement;
+  NestedCssVarsProvider: (
+    props: React.PropsWithChildren<{
+      /**
+       * Design system default color scheme.
+       * - provides string if the design system has one default color scheme (either light or dark)
+       * - provides object if the design system has default light & dark color schemes
+       */
+      defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
+      /**
+       * Design system default mode
+       * @default 'light'
+       */
+      defaultMode?: Mode;
+      theme?: {
+        cssVarPrefix?: string;
+        colorSchemes: Record<ColorScheme, Record<string, any>>;
+      };
+    }>,
+  ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
   useCssThemeVars: <T = {}>(options?: {
     /**
