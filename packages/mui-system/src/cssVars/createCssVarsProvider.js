@@ -52,8 +52,7 @@ export default function createCssVarsProvider(options) {
 
   const defaultSelector = {
     root: ':root',
-    defaultColorScheme: (key) => `:root, [${defaultAttribute}="${key}"]`,
-    scopedColorScheme: (key) => `[${defaultAttribute}="${key}"]`,
+    colorScheme: (key) => `[${defaultAttribute}="${key}"]`,
   };
 
   /**
@@ -64,19 +63,17 @@ export default function createCssVarsProvider(options) {
    *
    * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
    */
-  const useCssThemeVars = (
-    themeProp,
-    {
-      // config
-      defaultMode = designSystemMode,
-      defaultColorScheme = designSystemColorScheme,
-      shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-      selector = defaultSelector,
-      // runtime parameters
-      mode: modeProp,
-      colorScheme: colorSchemeProp,
-    },
-  ) => {
+  const useCssThemeVars = ({
+    // config
+    defaultMode = designSystemMode,
+    defaultColorScheme = designSystemColorScheme,
+    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+    selector = defaultSelector,
+    // runtime parameters
+    theme: themeProp = defaultTheme,
+    mode: modeProp,
+    colorScheme: colorSchemeProp,
+  }) => {
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -235,14 +232,13 @@ export default function createCssVarsProvider(options) {
       storageWindow,
     });
 
-    const { theme, styles } = useCssThemeVars(themeProp, {
+    const { theme, styles } = useCssThemeVars({
+      theme: themeProp,
       defaultMode,
       defaultColorScheme,
       selector: {
         root: colorSchemeSelector,
-        defaultColorScheme: (key) => `[${attribute}="${key}"]`,
-        scopedColorScheme: (key) =>
-          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
+        colorScheme: (key) => `[${attribute}="${key}"]`,
       },
       shouldSkipGeneratingVar,
       mode,

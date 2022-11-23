@@ -81,58 +81,64 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  useCssThemeVars: <T = {}>(
-    theme: {
+  useCssThemeVars: <T = {}>(options?: {
+    /**
+     * Design system default color scheme.
+     * - provides string if the design system has one default color scheme (either light or dark)
+     * - provides object if the design system has default light & dark color schemes
+     */
+    defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
+    /**
+     * Design system default mode
+     * @default 'light'
+     */
+    defaultMode?: Mode;
+    /**
+     * The CSS selector for attaching the generated CSS theme variables.
+     */
+    selector?: {
+      /**
+       * The selector for attaching CSS variables that are not specific to any color scheme.
+       * @default ':root'
+       */
+      root: string;
+      /**
+       * The selector for the default color scheme CSS variables
+       * @default (key) => `[data-color-scheme="${key}"]`
+       */
+      colorScheme: (key: ColorScheme) => string;
+    };
+    /**
+     * A function to determine if the key, value should be attached as CSS Variable
+     * `keys` is an array that represents the object path keys.
+     *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+     *  then, keys = ['foo', 'bar']
+     *        value = 'var(--test)'
+     */
+    shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+    /**
+     * Controlled mode. If not provided, it will try to read the value from the upper CssVarsProvider.
+     */
+    mode?: Mode;
+    /**
+     * Controlled color scheme. If not provided, it will try to read the value from the upper CssVarsProvider.
+     */
+    colorScheme?: ColorScheme;
+    theme?: {
       cssVarPrefix?: string;
       colorSchemes: Record<ColorScheme, Record<string, any>>;
-    },
-    options?: {
-      /**
-       * Design system default color scheme.
-       * - provides string if the design system has one default color scheme (either light or dark)
-       * - provides object if the design system has default light & dark color schemes
-       */
-      defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
-      /**
-       * Design system default mode
-       * @default 'light'
-       */
-      defaultMode?: Mode;
-      /**
-       * The CSS selector for attaching the generated CSS theme variables.
-       */
-      selector?: {
-        /**
-         * The selector for attaching CSS variables that are not specific to any color scheme.
-         * @default ':root'
-         */
-        root: string;
-        /**
-         * The selector for the default color scheme CSS variables
-         * @default (key) => `[data-color-scheme="${key}"]`
-         */
-        colorScheme: (key: ColorScheme) => string;
-      };
-      /**
-       * A function to determine if the key, value should be attached as CSS Variable
-       * `keys` is an array that represents the object path keys.
-       *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-       *  then, keys = ['foo', 'bar']
-       *        value = 'var(--test)'
-       */
-      shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-      /**
-       * Controlled mode. If not provided, it will try to read the value from the upper CssVarsProvider.
-       */
-      mode?: Mode;
-      /**
-       * Controlled color scheme. If not provided, it will try to read the value from the upper CssVarsProvider.
-       */
-      colorScheme?: ColorScheme;
-    },
-  ) => {
+    };
+  }) => {
+    /**
+     * The theme with extra fields
+     * - `vars`
+     * - `getColorSchemeSelector`
+     */
     theme: T;
-    styles: { [k: string]: any }[];
+    /**
+     * The stylesheet (in JS object format) that contains the generated CSS theme variables.
+     */
+    styles: Record<string, any>;
   };
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
