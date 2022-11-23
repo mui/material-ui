@@ -18,7 +18,7 @@ export interface UnstyledConformanceOptions
     options?: RenderOptions | undefined,
   ) => MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
-  testComponentPropWith?: string;
+  testComponentPropWith?: React.ElementType;
 }
 
 function throwMissingPropError(field: string): never {
