@@ -15,8 +15,7 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   /**
    * The styles you want to apply globally.
    */
-  styles: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.arrayOf(PropTypes.any),
+  styles: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.number,
     PropTypes.object,
