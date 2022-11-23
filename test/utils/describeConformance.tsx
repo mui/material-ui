@@ -138,7 +138,7 @@ export function testComponentProp(
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
-      if (componentPropType && componentPropType === ComponentPropType.FunctionComponent) {
+      if (componentPropType === ComponentPropType.FunctionComponent) {
         expect(
           findRootComponent(wrapper, (component as React.FunctionComponent)({})!.type).exists(),
         ).to.equal(true);
