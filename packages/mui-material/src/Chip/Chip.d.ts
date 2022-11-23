@@ -76,7 +76,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * If `true`, allows the disabled chip to escape focus.
      * If `false`, allows the disabled chip to receive focus.
      * @default false
-    */
+     */
     skipFocusWhenDisabled?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
