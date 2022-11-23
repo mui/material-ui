@@ -14,9 +14,6 @@ describe('Joy <ListItemDecorator />', () => {
     ThemeProvider,
     muiName: 'JoyListItemDecorator',
     refInstanceof: window.HTMLSpanElement,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

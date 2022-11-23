@@ -16,19 +16,10 @@ describe('Joy <Menu />', () => {
     render,
     ThemeProvider,
     muiName: 'JoyMenu',
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLUListElement,
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
-    slots: {
-      root: {
-        expectedClassName: classes.root,
-        testWithComponent: React.forwardRef(({ className }, ref) => (
-          <ul ref={ref} className={className} data-testid="custom" />
-        )),
-        testWithElement: null,
-      },
-    },
     skip: [
       'rootClass', // portal, can't determin the root
       'classesRoot',

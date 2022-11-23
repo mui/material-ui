@@ -5,7 +5,6 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled, useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -157,21 +156,20 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    additionalProps: {
-      role: role ?? getRootProps().role,
-    },
-    ref,
-    className: clsx(classes.root, className),
-    elementType: ListItemButtonRoot,
-    getSlotProps: getRootProps,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
+  const rootProps = getRootProps();
 
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
-      <SlotRoot {...rootProps}>{children}</SlotRoot>
+      <ListItemButtonRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+        {...rootProps}
+        role={role ?? rootProps.role}
+      >
+        {children}
+      </ListItemButtonRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;

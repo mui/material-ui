@@ -16,9 +16,6 @@ describe('Joy <Divider />', () => {
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical' },
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

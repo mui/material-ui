@@ -7,8 +7,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
-import useThemeProps from '../styles/useThemeProps';
-import useSlot from '../utils/useSlot';
+import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
@@ -113,17 +112,15 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: CardRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
-
   return (
     <CardRowContext.Provider value={row}>
-      <SlotRoot {...rootProps}>
+      <CardRoot
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        {...other}
+      >
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) {
             return child;
@@ -144,7 +141,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           }
           return React.cloneElement(child, extraProps);
         })}
-      </SlotRoot>
+      </CardRoot>
     </CardRowContext.Provider>
   );
 }) as OverridableComponent<CardTypeMap>;

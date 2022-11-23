@@ -18,9 +18,6 @@ describe('<RadioGroup />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { row: true },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 

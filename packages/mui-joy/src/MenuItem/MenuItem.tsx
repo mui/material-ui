@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import {
   MenuItemProps,
@@ -75,16 +75,19 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: classes.root,
+  const rootProps = useSlotProps({
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: { ...other, component },
+    externalSlotProps: {},
+    additionalProps: {
+      as: component,
+    },
+    externalForwardedProps: other,
+    className: classes.root,
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return <MenuItemRoot {...rootProps}>{children}</MenuItemRoot>;
 }) as ExtendMenuItem<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {

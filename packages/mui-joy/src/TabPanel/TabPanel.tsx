@@ -5,8 +5,8 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabContext } from '@mui/base/TabsUnstyled';
 import { useTabPanel } from '@mui/base/TabPanelUnstyled';
+import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
@@ -61,7 +61,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   const size = sizeProp ?? tabsSize;
 
-  const ownerState: TabPanelOwnerState = {
+  const ownerState = {
     ...props,
     orientation,
     hidden,
@@ -70,19 +70,21 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
+  const tabPanelRootProps = useSlotProps({
+    elementType: TabPanelRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: {},
+    externalForwardedProps: other,
     additionalProps: {
       role: 'tabpanel',
+      ref,
+      as: component,
     },
-    ref,
-    className: classes.root,
-    elementType: TabPanelRoot,
-    externalForwardedProps: { ...other, component },
-    getSlotProps: getRootProps,
     ownerState,
+    className: classes.root,
   });
 
-  return <SlotRoot {...rootProps}>{!hidden && children}</SlotRoot>;
+  return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
 }) as OverridableComponent<TabPanelTypeMap>;
 
 TabPanel.propTypes /* remove-proptypes */ = {

@@ -16,10 +16,7 @@ describe('Joy <MenuList />', () => {
     refInstanceof: window.HTMLUListElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
-    skip: ['componentsProp', 'classesRoot', 'themeDefaultProps'],
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should have root className', () => {

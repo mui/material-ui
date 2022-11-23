@@ -15,9 +15,6 @@ describe('<CardCover />', () => {
     muiName: 'JoyCardCover',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],
   }));
 

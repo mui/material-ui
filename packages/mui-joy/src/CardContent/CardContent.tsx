@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useThemeProps from '../styles/useThemeProps';
-import useSlot from '../utils/useSlot';
+import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardContentUtilityClass } from './cardContentClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
@@ -43,15 +42,17 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 
   const classes = useUtilityClasses();
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: CardContentRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
-
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <CardContentRoot
+      as={component}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+      ref={ref}
+      {...other}
+    >
+      {children}
+    </CardContentRoot>
+  );
 }) as OverridableComponent<CardContentTypeMap>;
 
 CardContent.propTypes /* remove-proptypes */ = {

@@ -17,9 +17,6 @@ describe('<ModalDialog />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'solid' },
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

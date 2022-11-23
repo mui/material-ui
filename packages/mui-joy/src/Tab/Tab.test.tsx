@@ -23,9 +23,6 @@ describe('Joy <Tab />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

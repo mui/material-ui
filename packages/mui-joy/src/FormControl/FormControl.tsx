@@ -5,7 +5,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import FormControlContext from './FormControlContext';
 import formControlClasses, { getFormControlUtilityClass } from './formControlClasses';
@@ -132,17 +131,15 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     [color, disabled, error, helperText, id, registerEffect, required, size],
   );
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: FormControlRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
-
   return (
     <FormControlContext.Provider value={formControlContextValue}>
-      <SlotRoot {...rootProps} />
+      <FormControlRoot
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        {...other}
+      />
     </FormControlContext.Provider>
   );
 }) as OverridableComponent<FormControlTypeMap>;

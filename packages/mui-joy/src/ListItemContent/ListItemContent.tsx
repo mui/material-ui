@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
 import { getListItemContentUtilityClass } from './listItemContentClasses';
 
@@ -39,15 +38,17 @@ const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) 
 
   const classes = useUtilityClasses();
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: ListItemContentRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
-
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <ListItemContentRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      {...other}
+    >
+      {children}
+    </ListItemContentRoot>
+  );
 }) as OverridableComponent<ListItemContentTypeMap>;
 
 ListItemContent.propTypes /* remove-proptypes */ = {

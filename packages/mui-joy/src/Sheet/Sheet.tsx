@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
@@ -82,15 +81,15 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: SheetRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
-
-  const result = <SlotRoot {...rootProps} />;
+  const result = (
+    <SheetRoot
+      as={component}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+      ref={ref}
+      {...other}
+    />
+  );
 
   if (invertedColors) {
     return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;

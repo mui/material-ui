@@ -4,8 +4,8 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabsList } from '@mui/base/TabsListUnstyled';
+import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
-import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -77,24 +77,27 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: classes.root,
+  const tabsListRootProps = useSlotProps({
     elementType: TabListRoot,
-    externalForwardedProps: { ...other, component },
     getSlotProps: getRootProps,
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    additionalProps: {
+      as: component,
+    },
     ownerState,
+    className: classes.root,
   });
 
   const processedChildren = processChildren();
 
   return (
     // @ts-ignore conflicted ref types
-    <SlotRoot {...rootProps}>
+    <TabListRoot {...tabsListRootProps}>
       <ListProvider row={row} nested>
         {processedChildren}
       </ListProvider>
-    </SlotRoot>
+    </TabListRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 

@@ -24,9 +24,6 @@ describe('Joy <TabPanel />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { size: 'sm' },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

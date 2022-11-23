@@ -18,9 +18,6 @@ describe('<Card />', () => {
     testComponentPropWith: 'li',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

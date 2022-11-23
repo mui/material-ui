@@ -18,9 +18,6 @@ describe('<ChipDelete />', () => {
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import useThemeProps from '../styles/useThemeProps';
-import useSlot from '../utils/useSlot';
+import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
@@ -111,15 +110,17 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: CardOverflowRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-  });
-
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <CardOverflowRoot
+      as={component}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+      ref={ref}
+      {...other}
+    >
+      {children}
+    </CardOverflowRoot>
+  );
 }) as OverridableComponent<CardOverflowTypeMap>;
 
 CardOverflow.propTypes /* remove-proptypes */ = {
