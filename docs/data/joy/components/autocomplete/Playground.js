@@ -32,9 +32,17 @@ export default function Playground() {
           position: 'sticky',
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
-          border: '1px solid rgba(62, 80, 96, 0.3)',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'rgba(62, 80, 96, 0.3)'
+              : theme.palette.neutral[100],
+
           borderRadius: 'xs',
-          background: 'rgba(0,30,60, 0.95)',
+          background: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'rgba(0,30,60, 0.95)'
+              : theme.palette.primary[50],
         }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>
@@ -46,7 +54,7 @@ export default function Playground() {
           />
         </FormControl>
         <Divider sx={{ mt: 4, mb: 2 }} />
-        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+        <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
           <Typography
             id="flags-playground"
             level="body3"
@@ -71,7 +79,6 @@ export default function Playground() {
             </Link>
           )}
         </Box>
-        <Divider sx={{ my: 2 }} />
       </Box>
       <Box sx={{ minWidth: 0, flexBasis: 300, flexGrow: 1 }}>
         <List
