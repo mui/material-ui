@@ -43,5 +43,5 @@ export interface TabPanelOwnerState extends TabPanelProps {
   /**
    * The visibility of the tab panel.
    */
-  visibility: 'hidden' | 'visible';
+  visibility: string;
 }
