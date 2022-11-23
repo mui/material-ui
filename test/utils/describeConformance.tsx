@@ -227,7 +227,10 @@ export function testRootClass(element: React.ReactElement, getOptions: () => Con
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-export function testUtilityClasses(element, getOptions) {
+export function testUtilityClasses(
+  element: React.ReactElement,
+  getOptions: () => ConformanceOptions,
+) {
   it(`utility classes shouldn't be duplicated`, () => {
     const { classes, mount } = getOptions();
     if (!classes?.root) {
@@ -253,7 +256,7 @@ export function testUtilityClasses(element, getOptions) {
     elementQueue.push(outermostElement);
 
     while (elementQueue.length) {
-      const currentElement = elementQueue.pop();
+      const currentElement: React.Component<any> = elementQueue.pop();
       const children = currentElement?.props?.children;
       const currentClassName = currentElement?.props?.className;
 
