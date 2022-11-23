@@ -36,7 +36,7 @@ export interface InputConformanceOptions {
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   componentPropType?: ComponentPropType;
-  testComponentsRootPropWith?: string;
+  testComponentsRootPropWith?: React.ElementType;
   testComponentPropWith?: React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
