@@ -111,12 +111,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * The selector for the default color scheme CSS variables
          * @default (key) => `[data-color-scheme="${key}"]`
          */
-        defaultColorScheme: (key: ColorScheme) => string;
-        /**
-         * The selector for other color schemes
-         * @default (key) => `[data-color-scheme="${key}"]`
-         */
-        scopedColorScheme: (key: ColorScheme) => string;
+        colorScheme: (key: ColorScheme) => string;
       };
       /**
        * A function to determine if the key, value should be attached as CSS Variable

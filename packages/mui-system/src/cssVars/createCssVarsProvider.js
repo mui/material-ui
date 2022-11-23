@@ -123,8 +123,7 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       cssVarPrefix,
       vars: rootVars,
-      getColorSchemeSelector: (targetColorScheme) =>
-        `${selector.scopedColorScheme(targetColorScheme)} &`,
+      getColorSchemeSelector: (targetColorScheme) => `${selector.colorScheme(targetColorScheme)} &`,
     };
 
     // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
@@ -176,21 +175,21 @@ export default function createCssVarsProvider(options) {
             delete css[cssVar];
           });
           // treat excluded variables as scoped color scheme
-          defaultColorSchemeStyleSheet[selector.scopedColorScheme(key)] = excludedVariables;
+          defaultColorSchemeStyleSheet[selector.colorScheme(key)] = excludedVariables;
         }
-        defaultColorSchemeStyleSheet[selector.defaultColorScheme(key)] = css;
+        defaultColorSchemeStyleSheet[`${selector.root}, ${selector.colorScheme(key)}`] = css;
       } else {
-        otherColorSchemesStyleSheet[selector.scopedColorScheme(key)] = css;
+        otherColorSchemesStyleSheet[selector.colorScheme(key)] = css;
       }
     });
 
     return {
       theme,
-      styles: [
-        { [selector.root]: rootCss },
-        defaultColorSchemeStyleSheet,
-        otherColorSchemesStyleSheet,
-      ],
+      styles: {
+        [selector.root]: rootCss,
+        ...defaultColorSchemeStyleSheet,
+        ...otherColorSchemesStyleSheet,
+      },
     };
   };
 
