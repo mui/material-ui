@@ -3,19 +3,13 @@ import { expect } from 'chai';
 import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
 import {
   ConformanceOptions,
+  SlotTestingOptions,
   describeRef,
   randomStringValue,
   testClassName,
   testComponentProp,
   testReactTestRenderer,
 } from './describeConformance';
-
-export interface SlotTestingOptions {
-  testWithComponent?: React.ComponentType;
-  testWithElement?: keyof JSX.IntrinsicElements | null;
-  expectedClassName: string;
-  isOptional?: boolean;
-}
 
 export interface UnstyledConformanceOptions
   extends Omit<Partial<ConformanceOptions>, 'render' | 'skip' | 'classes'> {
@@ -24,7 +18,6 @@ export interface UnstyledConformanceOptions
     options?: RenderOptions | undefined,
   ) => MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
-  slots: Record<string, SlotTestingOptions>;
   testComponentPropWith?: string;
 }
 
