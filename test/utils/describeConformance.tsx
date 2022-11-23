@@ -37,7 +37,7 @@ export interface InputConformanceOptions {
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   componentPropType?: ComponentPropType;
   testComponentsRootPropWith?: string;
-  testComponentPropWith?: string | React.ElementType;
+  testComponentPropWith?: React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
@@ -90,7 +90,7 @@ function testRef(
  * Returns the component with the same constructor as `component` that renders
  * the outermost host
  */
-export function findRootComponent(wrapper: ReactWrapper, component: string | React.ElementType) {
+export function findRootComponent(wrapper: ReactWrapper, component: React.ElementType) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
   return wrapper.find(component as string).filterWhere((componentWrapper) => {
