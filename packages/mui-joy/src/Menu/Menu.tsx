@@ -128,7 +128,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
       anchorEl,
-      component: MenuRoot,
       disablePortal,
       keepMounted,
       modifiers: cachedModifiers,
@@ -140,6 +139,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     getSlotProps: getListboxProps,
     externalForwardedProps: { ...other, component },
     ownerState,
+    internalForwardedProps: {
+      component: MenuRoot,
+    },
   });
 
   const contextValue: MenuUnstyledContextType = React.useMemo(
