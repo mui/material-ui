@@ -1,4 +1,4 @@
-import sleep from './sleep';
+import sleep from './sleep.mjs';
 
 export default async function waitUntil(test, options = {}) {
   const { delay = 5e3, tries = -1 } = options;

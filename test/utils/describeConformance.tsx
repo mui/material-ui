@@ -1,29 +1,72 @@
 /* eslint-env mocha */
-import { expect } from 'chai';
 import * as React from 'react';
+import { expect } from 'chai';
+import { ReactWrapper } from 'enzyme';
 import { ThemeProvider as MDThemeProvider, createTheme } from '@mui/material/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
+import { MuiRenderResult } from './createRenderer';
+
+export interface SlotTestingOptions {
+  testWithComponent?: React.ComponentType;
+  testWithElement?: keyof JSX.IntrinsicElements | null;
+  expectedClassName: string;
+  isOptional?: boolean;
+}
+
+interface SlotTestOverride {
+  slotName: string;
+  slotClassName?: string;
+}
+
+export interface InputConformanceOptions {
+  muiName: string;
+  classes: { root: string };
+  refInstanceof: any;
+  after?: () => void;
+  inheritComponent?: React.ElementType;
+  render: (node: React.ReactElement) => MuiRenderResult;
+  only?: Array<keyof typeof fullSuite>;
+  skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
+  testComponentsRootPropWith?: string;
+  testComponentPropWith?: string;
+  testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
+  testRootOverrides?: SlotTestOverride;
+  testStateOverrides?: { prop?: string; value?: any; styleKey: string };
+  testCustomVariant?: boolean;
+  testVariantProps?: object;
+  wrapMount?: (
+    mount: (node: React.ReactNode) => ReactWrapper,
+  ) => (node: React.ReactNode) => ReactWrapper;
+  slots?: Record<string, SlotTestingOptions>;
+  components?: Record<string, SlotTestingOptions>;
+  ThemeProvider?: React.ElementType;
+}
+
+export interface ConformanceOptions extends InputConformanceOptions {
+  mount: (node: React.ReactNode) => ReactWrapper;
+}
 
 /**
  * @param {object} node
  * @returns
  */
-function assertDOMNode(node) {
+function assertDOMNode(node: unknown) {
   // duck typing a DOM node
-  expect(typeof node.nodeName).to.equal('string');
+  expect(typeof (node as HTMLElement).nodeName).to.equal('string');
 }
 
 /**
  * Utility method to make assertions about the ref on an element
- * @param {React.ReactElement} element - The element should have a component wrapped
- *                                       in withStyles as the root
- * @param {(node: React.ReactNode) => import('enzyme').ReactWrapper} mount - Should be returnvalue of createMount
- * @param {(instance: unknown, wrapper: import('enzyme').ReactWrapper) => void} onRef - Asserts that the ref is a DOM node by default
+ * The element should have a component wrapped in withStyles as the root
  */
-function testRef(element, mount, onRef = assertDOMNode) {
+function testRef(
+  element: React.ReactElement,
+  mount: ConformanceOptions['mount'],
+  onRef: (instance: unknown, wrapper: import('enzyme').ReactWrapper) => void = assertDOMNode,
+) {
   const ref = React.createRef();
   const wrapper = mount(<React.Fragment>{React.cloneElement(element, { ref })}</React.Fragment>);
   onRef(ref.current, wrapper);
@@ -41,14 +84,11 @@ function testRef(element, mount, onRef = assertDOMNode) {
 /**
  * Returns the component with the same constructor as `component` that renders
  * the outermost host
- * @param {import('enzyme').ReactWrapper} wrapper
- * @param {object} options
- * @param {import('react').ElementType} options.component
  */
-export function findRootComponent(wrapper, { component }) {
+export function findRootComponent(wrapper: ReactWrapper, component: string | React.ElementType) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
-  return wrapper.find(component).filterWhere((componentWrapper) => {
+  return wrapper.find(component as string).filterWhere((componentWrapper) => {
     return componentWrapper.contains(outermostHostElement);
   });
 }
@@ -57,7 +97,7 @@ export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
 }
 
-function throwMissingPropError(field) {
+function throwMissingPropError(field: string) {
   throw new Error(`missing "${field}" in options
 
   > describeConformance(element, () => options)
@@ -67,10 +107,8 @@ function throwMissingPropError(field) {
 /**
  * MUI components have a `className` prop. The `className` is applied to
  * the root component.
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-export function testClassName(element, getOptions) {
+export function testClassName(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   it('applies the className to the root component', () => {
     const { mount } = getOptions();
     const className = randomStringValue();
@@ -84,27 +122,26 @@ export function testClassName(element, getOptions) {
 /**
  * MUI components have a `component` prop that allows rendering a different
  * Component from @inheritComponent
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-export function testComponentProp(element, getOptions) {
+export function testComponentProp(
+  element: React.ReactElement,
+  getOptions: () => ConformanceOptions,
+) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
       const { mount, testComponentPropWith: component = 'em' } = getOptions();
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
-      expect(findRootComponent(wrapper, { component }).exists()).to.equal(true);
+      expect(findRootComponent(wrapper, component).exists()).to.equal(true);
     });
   });
 }
 
 /**
  * MUI components can spread additional props to a documented component.
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-export function testPropsSpread(element, getOptions) {
+export function testPropsSpread(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { inheritComponent, mount } = getOptions();
@@ -118,7 +155,7 @@ export function testPropsSpread(element, getOptions) {
     const value = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
-    const root = findRootComponent(wrapper, { component: inheritComponent });
+    const root = findRootComponent(wrapper, inheritComponent);
 
     expect(root.props()).to.have.property(testProp, value);
   });
@@ -129,10 +166,8 @@ export function testPropsSpread(element, getOptions) {
  *
  * This is determined by a given constructor i.e. a React.Component or HTMLElement for
  * components that forward their ref and attach it to a host component.
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-export function describeRef(element, getOptions) {
+export function describeRef(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
@@ -141,7 +176,7 @@ export function describeRef(element, getOptions) {
       testRef(element, mount, (instance, wrapper) => {
         expect(instance).to.be.instanceof(refInstanceof);
 
-        if (inheritComponent !== undefined && instance.nodeType === 1) {
+        if (inheritComponent !== undefined && (instance as HTMLElement).nodeType === 1) {
           const rootHost = findOutermostIntrinsic(wrapper);
           expect(instance).to.equal(rootHost.instance());
         }
@@ -152,10 +187,8 @@ export function describeRef(element, getOptions) {
 
 /**
  * Tests that the root component has the root class
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-export function testRootClass(element, getOptions) {
+export function testRootClass(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   it('applies the root class to the root component if it has this class', () => {
     const { classes, render, skip } = getOptions();
     if (classes.root == null) {
@@ -193,47 +226,40 @@ export function testRootClass(element, getOptions) {
 /**
  * Tests that the component can be rendered with react-test-renderer.
  * This is important for snapshot testing with Jest (even if we don't encourage it).
- * @param {React.ReactElement} element
  */
-export function testReactTestRenderer(element) {
+export function testReactTestRenderer(element: React.ReactElement) {
   it('should render without errors in ReactTestRenderer', () => {
     ReactTestRenderer.act(() => {
       ReactTestRenderer.create(element, {
         createNodeMock: (node) => {
-          return document.createElement(node.type);
+          return document.createElement(node.type as keyof HTMLElementTagNameMap);
         },
       });
     });
   });
 }
 
-/**
- *
- * @param {object} slots
- * @param {(slotName: string, slotOptions: object) => void} callback
- * @returns
- */
-function forEachSlot(slots, callback) {
+function forEachSlot(
+  slots: ConformanceOptions['slots'],
+  callback: (slotName: string, slot: SlotTestingOptions) => void,
+) {
   if (!slots) {
     return;
   }
 
   const slotNames = Object.keys(slots);
-  for (let i = 0; i < slotNames.length; i += 1) {
-    const slotName = slotNames[i];
+  slotNames.forEach((slotName) => {
     const slot = slots[slotName];
-
     callback(slotName, slot);
-  }
+  });
 }
 
-function testSlotsProp(element, getOptions) {
+function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   const { render, slots } = getOptions();
 
-  // eslint-disable-next-line react/prop-types
-  const CustomComponent = React.forwardRef(({ className }, ref) => (
-    <i className={className} ref={ref} data-testid="custom" />
-  ));
+  const CustomComponent = React.forwardRef<HTMLElement, { className?: string }>(
+    ({ className }, ref) => <i className={className} ref={ref} data-testid="custom" />,
+  );
 
   forEachSlot(slots, (slotName, slotOptions) => {
     it(`allows overriding the ${slotName} slot with a component using the slots.${slotName} prop`, () => {
@@ -279,7 +305,7 @@ function testSlotsProp(element, getOptions) {
         const renderedElement = queryByTestId('customized'); // use `query*` instead of `get*` to bypass hidden element, we just want to check the overriding functionality.
         expect(renderedElement).not.to.equal(null);
 
-        expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
+        expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
         if (slotOptions.expectedClassName) {
           expect(renderedElement).to.have.class(slotOptions.expectedClassName);
         }
@@ -288,7 +314,7 @@ function testSlotsProp(element, getOptions) {
   });
 }
 
-function testSlotPropsProp(element, getOptions) {
+function testSlotPropsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   const { render, slots } = getOptions();
 
   if (!render) {
@@ -333,34 +359,13 @@ function testSlotPropsProp(element, getOptions) {
 }
 
 /**
- * @typedef {Object} ConformanceOptions
- * @property {() => void} [after]
- * @property {object} classes - `classes` of the component provided by `@mui/styled-engine`
- * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
- * @property {string} muiName
- * @property {(node: React.ReactElement) => import('./createRenderer').MuiRenderResult} [render] - Should be a return value from createRenderer
- * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
- * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {Array<keyof typeof fullSuite | 'classesRoot'>} [skip] - Skip the specified tests
- * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
- * @property {{ slotName: string, slotClassName: string } | Array<{ slotName: string, slotClassName: string }>} [testDeepOverrides]
- * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
- * @property {object} [testVariantProps]
- * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
- * @property {boolean} [testCustomVariant] - The component supports custom variant
- * @property {object} [components] - Material UI's components prop
- * @property {object} [slots] - MUI slots prop
- */
-
-/**
- * >>> The `components` and `componentsProps` will be deprecated in v6, and removed in v7 (together with this test suite) <<<
- *
  * MUI components have a `components` prop that allows rendering a different
  * Components from @inheritComponent
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-function testMaterialUIComponentsProp(element, getOptions) {
+function testMaterialUIComponentsProp(
+  element: React.ReactElement,
+  getOptions: () => ConformanceOptions,
+) {
   describe('prop components:', () => {
     const { components, render } = getOptions();
 
@@ -588,10 +593,8 @@ function testMaterialUIComponentsPropsProp(element, getOptions) {
 /**
  * MUI theme has a components section that allows specifying default props.
  * Components from @inheritComponent
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-function testThemeDefaultProps(element, getOptions) {
+function testThemeDefaultProps(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
@@ -625,10 +628,11 @@ function testThemeDefaultProps(element, getOptions) {
 /**
  * MUI theme has a components section that allows specifying style overrides.
  * Components from @inheritComponent
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-function testThemeStyleOverrides(element, getOptions) {
+function testThemeStyleOverrides(
+  element: React.ReactElement,
+  getOptions: () => ConformanceOptions,
+) {
   describe('theme style overrides:', () => {
     it("respect theme's styleOverrides custom state", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -662,6 +666,10 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
+      if (!testStateOverrides.prop) {
+        return;
+      }
+
       const { container } = render(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, {
@@ -690,7 +698,9 @@ function testThemeStyleOverrides(element, getOptions) {
         mixBlendMode: 'darken',
       };
 
-      function resolveDeepOverrides(callback) {
+      function resolveDeepOverrides(
+        callback: (styles: Record<string, any>, slot: SlotTestOverride) => void,
+      ) {
         if (!testDeepOverrides) {
           return {};
         }
@@ -822,6 +832,10 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
+      if (!testStateOverrides.prop) {
+        return;
+      }
+
       render(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, {
@@ -841,10 +855,8 @@ function testThemeStyleOverrides(element, getOptions) {
 /**
  * MUI theme has a components section that allows specifying custom variants.
  * Components from @inheritComponent
- * @param {React.ReactElement} element
- * @param {() => ConformanceOptions} getOptions
  */
-function testThemeVariants(element, getOptions) {
+function testThemeVariants(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   describe('theme variants:', () => {
     it("respect theme's variants", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -908,7 +920,7 @@ function testThemeVariants(element, getOptions) {
         components: {
           [muiName]: {
             styleOverrides: {
-              root: ({ ownerState }) => ({
+              root: ({ ownerState }: { ownerState: any }) => ({
                 ...(ownerState.variant === 'unknown' && {
                   mixBlendMode: 'darken',
                 }),
@@ -948,10 +960,11 @@ const fullSuite = {
 /**
  * Tests various aspects of a component that should be equal across MUI
  * components.
- * @param {React.ReactElement} minimalElement - the component with it's minimal required props
- * @param {() => ConformanceOptions} getOptions
  */
-export default function describeConformance(minimalElement, getOptions) {
+export default function describeConformance(
+  minimalElement: React.ReactElement,
+  getOptions: () => InputConformanceOptions,
+) {
   describe('MUI component API', () => {
     const {
       after: runAfterHook = () => {},
@@ -963,8 +976,9 @@ export default function describeConformance(minimalElement, getOptions) {
     } = getOptions();
 
     let filteredTests = Object.keys(fullSuite).filter(
-      (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
-    );
+      (testKey) =>
+        only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
+    ) as (keyof typeof fullSuite)[];
 
     if (!slots) {
       // if `slots` are not defined, do not run tests that depend on them
@@ -983,10 +997,9 @@ export default function describeConformance(minimalElement, getOptions) {
 
     after(runAfterHook);
 
-    function getTestOptions() {
+    function getTestOptions(): ConformanceOptions {
       return {
         ...getOptions(),
-
         mount,
       };
     }
