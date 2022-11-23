@@ -110,7 +110,7 @@ const getCssValue = (keys: string[], value: string | number) => {
  * @returns {{ css: Object, vars: Object }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme).
  *
  * @example
- * const { css, vars, parsedTheme } = parser({
+ * const { css, vars } = parser({
  *   fontSize: 12,
  *   lineHeight: 1.2,
  *   palette: { primary: { 500: 'var(--color)' } }
