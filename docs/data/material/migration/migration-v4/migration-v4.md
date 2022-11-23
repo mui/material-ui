@@ -93,11 +93,10 @@ yarn upgrade @material-ui/core@^4.11.2 react@^17.0.0
 
 The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
 
-:::warning
+:::info
 We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
 
-We will not change the minimum supported version in a major version of Material UI.
-
+We will not change the minimum supported version in a minor version of Material UI.
 However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
 :::
 
