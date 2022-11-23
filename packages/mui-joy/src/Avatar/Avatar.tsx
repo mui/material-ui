@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -148,9 +147,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const {
     alt,
     color: colorProp = 'neutral',
-    component = 'div',
-    slotProps = {},
-    className,
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
     imgProps,
@@ -168,7 +164,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     size,
     variant,
     grouped: !!groupContext,
@@ -177,7 +172,9 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
     ...imgProps,
-    ...(typeof slotProps.img === 'function' ? slotProps.img(ownerState) : slotProps.img),
+    ...(typeof other.slotProps?.img === 'function'
+      ? other.slotProps?.img(ownerState)
+      : other.slotProps?.img),
     src,
     srcSet,
   });
@@ -186,13 +183,12 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
-    className: clsx(classes.root, className),
+    className: classes.root,
     elementType: AvatarRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -205,14 +201,14 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     },
     className: classes.img,
     elementType: AvatarImg,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotFallback, fallbackProps] = useSlot('fallback', {
     className: classes.fallback,
     elementType: AvatarFallback,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 

@@ -10,7 +10,7 @@ import PersonIcon from '../internal/svg-icons/Person';
 describe('<Avatar />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Avatar alt="dummy image" src="/dummy-image.jpg" />, () => ({
+  describeConformance(<Avatar />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -23,7 +23,7 @@ describe('<Avatar />', () => {
     testCustomVariant: true,
     slots: {
       root: { expectedClassName: classes.root },
-      img: { expectedClassName: classes.img },
+      fallback: { expectedClassName: classes.fallback },
     },
     skip: ['classesRoot', 'componentsProp'],
   }));
