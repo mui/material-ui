@@ -104,7 +104,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    component = 'div',
     color = 'primary',
     role = 'alert',
     variant = 'soft',
@@ -122,13 +121,12 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: AlertRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
     additionalProps: {
       role,
@@ -138,14 +136,14 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: AlertStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: AlertEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 

@@ -89,7 +89,6 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   });
 
   const {
-    component = 'div',
     children,
     ratio = '16 / 9',
     minHeight,
@@ -102,7 +101,6 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const ownerState = {
     ...props,
-    component,
     minHeight,
     maxHeight,
     objectFit,
@@ -113,20 +111,18 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const externalForwardedProps = { ...other, component };
-
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: AspectRatioRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotContent, contentProps] = useSlot('content', {
     className: classes.content,
     elementType: AspectRatioContent,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
