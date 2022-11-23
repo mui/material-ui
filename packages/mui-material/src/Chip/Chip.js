@@ -566,7 +566,7 @@ Chip.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * If `true`, allows the disabled chip to escape focus.
-   * If `false`, allows the disabled chip to receive focus
+   * If `false`, allows the disabled chip to receive focus.
    * @default false
    */
   skipFocusWhenDisabled: PropTypes.bool,
