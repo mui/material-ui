@@ -157,6 +157,12 @@ const openRolesData = [
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
       },
+      {
+        title: 'Accessibility Engineer',
+        description:
+          'You will strengthen the core components team, by implementing best practices and guidlines related to the accessibility of the products.',
+        url: '/careers/accessibility-engineer/',
+      },
     ],
   },
   {
