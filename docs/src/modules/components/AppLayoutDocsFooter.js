@@ -499,7 +499,7 @@ export default function AppLayoutDocsFooter(props) {
                   <br />
                   {t('feedbackMessageToGitHub.callToAction.text')}
                   <Link
-                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=4.docs-feedback.yml&page-url=${window.location.href}`}
+                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                     target="_blank"
                   >
                     {t('feedbackMessageToGitHub.callToAction.link')}
