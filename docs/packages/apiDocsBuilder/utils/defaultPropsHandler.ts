@@ -1,7 +1,6 @@
-// @ts-check
-const astTypes = require('ast-types');
-const { parse: parseDoctrine } = require('doctrine');
-const { utils: docgenUtils } = require('react-docgen');
+import astTypes from 'ast-types';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { utils as docgenUtils, NodePath, Documentation, Importer, Handler } from 'react-docgen';
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -15,22 +14,18 @@ const { namedTypes: types } = astTypes;
  * @param {import('react-docgen').Importer} importer
  * @returns {{ value: string; computed: boolean } | null}
  */
-function getDefaultValue(propertyPath, importer) {
+function getDefaultValue(propertyPath: NodePath, importer: Importer) {
   if (!types.AssignmentPattern.check(propertyPath.get('value').node)) {
     return null;
   }
-  /**
-   * @type import('react-docgen').NodePath
-   */
-  let path = propertyPath.get('value', 'right');
+
+  let path: NodePath = propertyPath.get('value', 'right');
   let node = path.node;
 
-  /**
-   * @type {string|undefined}
-   */
-  let defaultValue;
+  let defaultValue: string | undefined;
   if (types.Literal.check(path.node)) {
-    // @ts-expect-error TODO upstream fix
+    // TODO: fix the type error
+    // @ts-ignore
     defaultValue = node.raw;
   } else {
     if (types.AssignmentPattern.check(path.node)) {
@@ -68,11 +63,7 @@ function getDefaultValue(propertyPath, importer) {
   return null;
 }
 
-/**
- * @param {import('doctrine').Annotation} jsdoc
- * @return {{ value: string } | undefined}
- */
-function getJsdocDefaultValue(jsdoc) {
+function getJsdocDefaultValue(jsdoc: Annotation): { value: string } | undefined {
   const defaultTag = jsdoc.tags.find((tag) => tag.title === 'default');
   if (defaultTag === undefined) {
     return undefined;
@@ -86,25 +77,26 @@ function getJsdocDefaultValue(jsdoc) {
  * @param {import('react-docgen').Importer} importer
  * @returns {void}
  */
-function getDefaultValuesFromProps(properties, documentation, importer) {
+function getDefaultValuesFromProps(
+  properties: NodePath,
+  documentation: Documentation,
+  importer: Importer,
+) {
   const { props: documentedProps } = documentation.toObject();
-  /**
-   * @type Record<string, import('react-docgen').NodePath>
-   */
-  const implementedProps = {};
+  const implementedProps: Record<string, NodePath> = {};
   properties
     .filter(
       /**
        * @param {import('react-docgen').NodePath} propertyPath
        */
-      (propertyPath) => types.Property.check(propertyPath.node),
+      (propertyPath: NodePath) => types.Property.check(propertyPath.node),
       undefined,
     )
     .forEach(
       /**
        * @param {import('react-docgen').NodePath} propertyPath
        */
-      (propertyPath) => {
+      (propertyPath: NodePath) => {
         const propName = getPropertyName(propertyPath);
         if (propName) {
           implementedProps[propName] = propertyPath;
@@ -142,12 +134,7 @@ function getDefaultValuesFromProps(properties, documentation, importer) {
   });
 }
 
-/**
- * @param {import('react-docgen').NodePath} componentDefinition
- * @param {import('react-docgen').Importer} importer
- * @returns import('react-docgen').NodePath
- */
-function getRenderBody(componentDefinition, importer) {
+function getRenderBody(componentDefinition: NodePath, importer: Importer): NodePath {
   const value = resolveToValue(componentDefinition, importer);
   if (isReactForwardRefCall(value, importer)) {
     return value.get('arguments', 0, 'body', 'body');
@@ -155,22 +142,15 @@ function getRenderBody(componentDefinition, importer) {
   return value.get('body', 'body');
 }
 
-/**
- * @param {import('react-docgen').NodePath} functionBody
- * @returns import('react-docgen').NodePath | undefined
- */
-function getPropsPath(functionBody) {
-  /**
-   * @type import('react-docgen').NodePath | undefined
-   */
-  let propsPath;
+function getPropsPath(functionBody: NodePath): NodePath | undefined {
+  let propsPath: NodePath | undefined;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
   functionBody
     .filter(
       /**
        * @param {import('react-docgen').NodePath} path
        */
-      (path) => {
+      (path: NodePath) => {
         return types.VariableDeclaration.check(path.node);
       },
       undefined,
@@ -179,7 +159,7 @@ function getPropsPath(functionBody) {
       /**
        * @param {import('react-docgen').NodePath} path
        */
-      (path) => {
+      (path: NodePath) => {
         const declaratorPath = path.get('declarations', 0);
         // find `const {} = props`
         // but not `const ownerState = props`
@@ -195,10 +175,7 @@ function getPropsPath(functionBody) {
   return propsPath;
 }
 
-/**
- * @type {import('react-docgen').Handler}
- */
-const defaultPropsHandler = (documentation, componentDefinition, importer) => {
+const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
   const renderBody = getRenderBody(componentDefinition, importer);
   const props = getPropsPath(renderBody);
   if (props !== undefined) {
@@ -206,4 +183,4 @@ const defaultPropsHandler = (documentation, componentDefinition, importer) => {
   }
 };
 
-module.exports = defaultPropsHandler;
+export default defaultPropsHandler;

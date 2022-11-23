@@ -66,7 +66,7 @@ const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
 
 function findApiPages(relativeFolder: string) {
   let pages: Array<{ pathname: string }> = [];
-  let filePaths = [];
+  let filePaths: string[] = [];
   try {
     filePaths = getAllFiles(path.join(process.cwd(), relativeFolder));
   } catch (error) {

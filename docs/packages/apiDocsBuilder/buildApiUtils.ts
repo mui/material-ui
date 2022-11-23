@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
+// @ts-ignore
 import { getHeaders, getTitle } from '@mui/markdown';
+import { getLineFeed } from '@mui-internal/docs-utilities';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import findPagesMarkdownNew from './utils/findPagesMarkdown';
-import { getLineFeed } from '../helpers';
 
 const systemComponents = fs
   .readdirSync(path.resolve('packages', 'mui-system', 'src'))

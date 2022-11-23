@@ -1,18 +1,18 @@
-const os = require('os');
+import { EOL } from 'os';
 
 /**
  * @param {string} source
  */
-function getLineFeed(source) {
+function getLineFeed(source: string) {
   const match = source.match(/\r?\n/);
-  return match === null ? os.EOL : match[0];
+  return match === null ? EOL : match[0];
 }
 
 const fixBabelIssuesRegExp = /(?<=(\/>)|,)(\r?\n){2}/g;
 /**
  * @param {string} source
  */
-function fixBabelGeneratorIssues(source) {
+function fixBabelGeneratorIssues(source: string) {
   return source.replace(fixBabelIssuesRegExp, '\n');
 }
 
@@ -20,7 +20,7 @@ function fixBabelGeneratorIssues(source) {
  * @param {string} source
  * @param {string} target
  */
-function fixLineEndings(source, target) {
+function fixLineEndings(source: string, target: string) {
   return target.replace(/\r?\n/g, getLineFeed(source));
 }
 
@@ -28,7 +28,7 @@ function fixLineEndings(source, target) {
  * Converts styled or regular component d.ts file to unstyled d.ts
  * @param {string} filename - the file of the styled or regular mui component
  */
-function getUnstyledFilename(filename, definitionFile = false) {
+function getUnstyledFilename(filename: string, definitionFile = false) {
   if (filename.indexOf('Unstyled') > -1) {
     return filename;
   }
@@ -73,9 +73,4 @@ function getUnstyledFilename(filename, definitionFile = false) {
   return definitionFile ? `${unstyledFile}.d.ts` : `${unstyledFile}.js`;
 }
 
-module.exports = {
-  getLineFeed,
-  fixBabelGeneratorIssues,
-  fixLineEndings,
-  getUnstyledFilename,
-};
+export { getLineFeed, fixBabelGeneratorIssues, fixLineEndings, getUnstyledFilename };

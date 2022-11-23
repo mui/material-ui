@@ -1,13 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": [
-    "next-env.d.ts",
-    "types",
-    "src",
-    "pages",
-    "data",
-    "scripts/apiDocsBuilder/utils/generatePropDescription.ts"
-  ],
+  "include": ["next-env.d.ts", "types", "src", "pages", "data"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,
