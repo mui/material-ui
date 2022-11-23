@@ -40,4 +40,8 @@ export interface TabPanelOwnerState extends TabPanelProps {
    * The orientation of the Tabs.
    */
   orientation?: 'horizontal' | 'vertical';
+  /**
+   * The visibility of the tab panel.
+   */
+  visibility: 'hidden' | 'visible';
 }
