@@ -129,8 +129,8 @@ function getContents(markdown) {
 function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
-  if (!matches || !matches[1]) {
-    throw new Error('Missing title in the page');
+  if (matches === null) {
+    return undefined;
   }
 
   return matches[1].replace(/`/g, '');
@@ -153,7 +153,7 @@ function renderInline(markdown) {
 }
 
 const noSEOadvantage = [
-  'https://material.io/',
+  'https://m2.material.io/',
   'https://getbootstrap.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
@@ -286,7 +286,7 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(Or</span> $keyC<span>)</span></span></button></div>\n`;
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>\n`;
     };
 
     const markedOptions = {
@@ -386,8 +386,28 @@ function prepareMarkdown(config) {
     .forEach((translation) => {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
+      const location = headers.filename || `/docs${pageFilename}/${filename}`;
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
+
+      if (title == null || title === '') {
+        throw new Error(`Missing title in the page: ${location}`);
+      }
+
+      if (title.length > 70) {
+        throw new Error(
+          [
+            `The title "${title}" is too long (${title.length} characters).`,
+            'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
+            'https://developers.google.com/search/docs/advanced/appearance/title-link',
+          ].join('\n'),
+        );
+      }
+
+      if (description == null || description === '') {
+        throw new Error(`Missing description in the page: ${location}`);
+      }
+
       const contents = getContents(markdown);
 
       if (headers.unstyled) {
@@ -416,7 +436,6 @@ ${headers.components
   `);
       }
 
-      const location = headers.filename || `/docs${pageFilename}/${filename}`;
       const toc = [];
       const render = createRender({ headingHashes, toc, userLanguage, location });
 

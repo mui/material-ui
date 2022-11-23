@@ -11,7 +11,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -88,7 +87,7 @@ export default function XDateRangeDemo() {
             }}
           >
             <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-              Available in alpha!
+              Available now for your project.
             </Typography>
             <Chip
               label="See docs"
@@ -98,19 +97,6 @@ export default function XDateRangeDemo() {
               sx={{ fontWeight: 500, cursor: 'pointer' }}
             />
           </Box>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Subscribe to our newsletter to get first-hand info about the development and release of
-            new components.
-          </Typography>
-          <EmailSubscribe
-            sx={{
-              '& > div': {
-                maxWidth: 'initial',
-                border: '1px solid',
-                borderColor: 'primaryDark.600',
-              },
-            }}
-          />
         </Frame.Info>
       </ThemeProvider>
     </Frame>

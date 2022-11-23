@@ -1,12 +1,12 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
 export interface ModalUnstyledComponentsPropsOverrides {}
 
-interface ModalUnstyledOwnProps {
+export interface ModalUnstyledOwnProps {
   /**
    * A single child content element.
    */
@@ -20,31 +20,6 @@ interface ModalUnstyledOwnProps {
    * @default false
    */
   closeAfterTransition?: boolean;
-  /**
-   * The components used for each slot inside the Modal.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Backdrop?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Modal.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'div',
-      ModalUnstyledComponentsPropsOverrides,
-      ModalUnstyledOwnerState
-    >;
-    backdrop?: SlotComponentProps<
-      'div',
-      ModalUnstyledComponentsPropsOverrides,
-      ModalUnstyledOwnerState
-    >;
-  };
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -123,6 +98,31 @@ interface ModalUnstyledOwnProps {
    * If `true`, the component is shown.
    */
   open: boolean;
+  /**
+   * The props used for each slot inside the Modal.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'div',
+      ModalUnstyledComponentsPropsOverrides,
+      ModalUnstyledOwnerState
+    >;
+    backdrop?: SlotComponentProps<
+      'div',
+      ModalUnstyledComponentsPropsOverrides,
+      ModalUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Modal.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    backdrop?: React.ElementType;
+  };
 }
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -144,8 +144,9 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
 
 export type ModalUnstyledProps<
   D extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ModalUnstyledTypeMap<P, D>, D>;
+> = OverrideProps<ModalUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
 
 export type ModalUnstyledOwnerState = ModalUnstyledProps & {
   closeAfterTransition: boolean;

@@ -11,7 +11,6 @@ export default function BasicList() {
         level="body3"
         textTransform="uppercase"
         fontWeight="lg"
-        mb={1}
       >
         Ingredients
       </Typography>

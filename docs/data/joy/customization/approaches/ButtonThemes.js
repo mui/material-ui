@@ -1,20 +1,12 @@
 import * as React from 'react';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { CssVarsProvider, extendTheme, styled } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormLabel from '@mui/joy/FormLabel';
-
-const Select = styled('select')(({ theme }) => ({
-  padding: '0.35rem',
-  fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.sm,
-  borderRadius: theme.vars.radius.sm,
-  border: '1px solid',
-  borderColor: theme.vars.palette.neutral[300],
-  ...theme.variants.soft.neutral,
-}));
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 const githubTheme = extendTheme({
   cssVarPrefix: 'gh',
@@ -561,15 +553,20 @@ export default function ButtonThemes() {
           >
             <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
             <Select
-              id="button-theme"
+              componentsProps={{
+                button: {
+                  id: 'button-theme',
+                },
+              }}
+              size="sm"
               value={design}
-              onChange={(event) => setDesign(event.target.value)}
+              onChange={(event, newValue) => setDesign(newValue)}
               sx={{ minWidth: 160 }}
             >
-              <option value="github">GitHub</option>
-              <option value="fluent">Fluent</option>
-              <option value="chakra">Chakra</option>
-              <option value="mantine">Mantine</option>
+              <Option value="github">GitHub</Option>
+              <Option value="fluent">Fluent</Option>
+              <Option value="chakra">Chakra</Option>
+              <Option value="mantine">Mantine</Option>
             </Select>
           </Box>
         </Box>

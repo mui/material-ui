@@ -26,6 +26,7 @@ const SearchButton = styled('button')(({ theme }) => {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
+    margin: 0, // Reset for Safari
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
@@ -85,7 +86,7 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
-const NewStartScreen = () => {
+function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
@@ -105,7 +106,7 @@ const NewStartScreen = () => {
       },
       items: [
         { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text field', href: '/material-ui/react-text-field/' },
+        { name: 'Text Field', href: '/material-ui/react-text-field/' },
         { name: 'Button', href: '/material-ui/react-button/' },
       ],
     },
@@ -117,7 +118,7 @@ const NewStartScreen = () => {
       items: [
         { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
         { name: 'Theming', href: '/material-ui/customization/theming/' },
-        { name: 'Default Theme', href: '/material-ui/customization/default-theme/' },
+        { name: 'Default theme', href: '/material-ui/customization/default-theme/' },
       ],
     },
     {
@@ -126,9 +127,9 @@ const NewStartScreen = () => {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Basics', href: '/system/basics/' },
+        { name: 'Overview', href: '/system/getting-started/overview/' },
         { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/the-sx-prop/' },
+        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
     },
   ];
@@ -141,18 +142,16 @@ const NewStartScreen = () => {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
-              <a href={href} className="DocSearch-NewStartScreenItem">
-                {name}
-                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-              </a>
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {name}
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
       ))}
     </div>
   );
-};
+}
 
 function DocSearcHit(props) {
   const { children, hit } = props;
@@ -468,6 +467,7 @@ export default function AppSearch() {
             '& .DocSearch-Cancel': {
               display: 'block',
               alignSelf: 'center',
+              cursor: 'pointer',
               height: '1.5rem',
               marginRight: theme.spacing(1),
               padding: theme.spacing(0.3, 0.8, 0.6, 0.8),

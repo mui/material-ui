@@ -61,7 +61,7 @@ related to the rendering of JSX.
 The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@mui/material/Pagination';
+import usePagination from '@mui/material/usePagination';
 ```
 
 {{"demo": "UsePagination.js"}}

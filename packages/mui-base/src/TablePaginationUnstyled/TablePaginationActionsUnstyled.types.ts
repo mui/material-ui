@@ -4,7 +4,7 @@ import { SlotComponentProps } from '../utils';
 
 export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
 
-interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TablePaginationActionsUnstyledOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -15,22 +15,22 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    FirstButton?: React.ElementType;
-    LastButton?: React.ElementType;
-    NextButton?: React.ElementType;
-    BackButton?: React.ElementType;
-    FirstPageIcon?: React.ElementType;
-    LastPageIcon?: React.ElementType;
-    NextPageIcon?: React.ElementType;
-    BackPageIcon?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
+    firstButton?: React.ElementType;
+    lastButton?: React.ElementType;
+    nextButton?: React.ElementType;
+    backButton?: React.ElementType;
+    firstPageIcon?: React.ElementType;
+    lastPageIcon?: React.ElementType;
+    nextPageIcon?: React.ElementType;
+    backPageIcon?: React.ElementType;
   };
   /**
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'div',
       TablePaginationActionsUnstyledComponentsPropsOverrides,
@@ -82,11 +82,6 @@ export type TablePaginationActionsUnstyledProps<
   D extends React.ElementType = TablePaginationActionsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationActionsUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

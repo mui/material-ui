@@ -59,6 +59,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popover/Popover.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menus</a></li>\n<li><a href=\"/material-ui/react-popover/\">Popover</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li>\n<li><a href=\"/material-ui/react-popover/\">Popover</a></li></ul>",
   "cssComponent": false
 }

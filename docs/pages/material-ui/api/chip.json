@@ -44,8 +44,12 @@
       "root",
       "sizeSmall",
       "sizeMedium",
+      "colorError",
+      "colorInfo",
       "colorPrimary",
       "colorSecondary",
+      "colorSuccess",
+      "colorWarning",
       "disabled",
       "clickable",
       "clickableColorPrimary",
@@ -57,6 +61,8 @@
       "filled",
       "outlinedPrimary",
       "outlinedSecondary",
+      "filledPrimary",
+      "filledSecondary",
       "avatar",
       "avatarSmall",
       "avatarMedium",
@@ -77,6 +83,8 @@
       "deleteIconColorSecondary",
       "deleteIconOutlinedColorPrimary",
       "deleteIconOutlinedColorSecondary",
+      "deleteIconFilledColorPrimary",
+      "deleteIconFilledColorSecondary",
       "focusVisible"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
@@ -86,6 +94,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Chip/Chip.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-chip/\">Chips</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-chip/\">Chip</a></li></ul>",
   "cssComponent": false
 }

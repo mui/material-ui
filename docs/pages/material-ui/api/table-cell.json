@@ -17,7 +17,12 @@
       }
     },
     "scope": { "type": { "name": "string" } },
-    "size": { "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      }
+    },
     "sortDirection": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false" }
     },
@@ -29,8 +34,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'"
+        "name": "union",
+        "description": "'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'<br>&#124;&nbsp;string"
       }
     }
   },
@@ -58,6 +63,6 @@
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-material/src/TableCell/TableCell.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Tables</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
   "cssComponent": false
 }

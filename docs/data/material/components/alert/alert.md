@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 <p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+**Note:** This component is not documented in the [Material Design guidelines](https://m2.material.io/), but MUI supports it.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -69,7 +69,7 @@ You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/
 
 ## Toast
 
-You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Color
 

@@ -1,0 +1,3 @@
+<Alert size="sm">This is a small Alert.</Alert>
+<Alert size="md">This is a medium Alert.</Alert>
+<Alert size="lg">This is a large Alert.</Alert>

@@ -20,6 +20,7 @@
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
       }
     },
+    "disableEqualOverflow": { "type": { "name": "bool" } },
     "lg": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
     },

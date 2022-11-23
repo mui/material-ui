@@ -13,7 +13,7 @@ githubLabel: 'component: Stack'
 
 ## 使用
 
-然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。 默认情况下， `Stack` 将项目垂直安排在 `column` 中。
+`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
@@ -21,13 +21,13 @@ githubLabel: 'component: Stack'
 
 ## 方向
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically. 然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。
+默认情况下， `Stack` 将项目垂直安排在 `column` 中。 然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。
 
 {{"demo": "DirectionStack.js", "bg": true}}
 
 ## Dividers（分隔线）
 
-使用 `divider` prop 在每个子节之间插入一个元素。 在 [Divider](/material-ui/react-divider/) 组件中运行得尤其好。
+使用 `divider` prop 在每个子节之间插入一个元素。 This works particularly well with the [Divider](/material-ui/react-divider/) component.
 
 {{"demo": "DividerStack.js", "bg": true}}
 

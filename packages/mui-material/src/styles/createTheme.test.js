@@ -250,4 +250,19 @@ describe('createTheme', () => {
       borderBottomRightRadius: '0px',
     });
   });
+
+  it('Throw an informative error when the key `vars` is passed as part of `options` passed', () => {
+    try {
+      createTheme({
+        vars: {
+          primary: '#EF14E2',
+        },
+      });
+    } catch (e) {
+      expect(e.message).to.equal(
+        'MUI: `vars` is a private field used for CSS variables support.\n' +
+          'Please use another name.',
+      );
+    }
+  });
 });

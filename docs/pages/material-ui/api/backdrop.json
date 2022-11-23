@@ -13,6 +13,14 @@
       "default": "{}"
     },
     "invisible": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

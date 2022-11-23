@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, screen } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import MenuList from '@mui/joy/MenuList';
+import Menu from '@mui/joy/Menu';
+import Select from '@mui/joy/Select';
+import RadioGroup from '@mui/joy/RadioGroup';
 
 describe('Joy <List />', () => {
   const { render } = createRenderer();
@@ -15,7 +19,9 @@ describe('Joy <List />', () => {
     ThemeProvider,
     muiName: 'JoyList',
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should have root className', () => {
@@ -39,6 +45,11 @@ describe('Joy <List />', () => {
     expect(container.firstChild).to.have.class(classes.sizeLg);
   });
 
+  it('should have default size="md" classes', () => {
+    const { container } = render(<List size={undefined} />);
+    expect(container.firstChild).to.have.class(classes.sizeMd);
+  });
+
   it('should have nesting classes', () => {
     const { getByRole } = render(
       <ListItem nested>
@@ -51,5 +62,114 @@ describe('Joy <List />', () => {
   it('should have row classes', () => {
     const { getByRole } = render(<List row />);
     expect(getByRole('list')).to.have.class(classes.row);
+  });
+
+  describe('MenuList - integration', () => {
+    it('should have role="group" inside MenuList', () => {
+      render(
+        <MenuList>
+          <List />
+        </MenuList>,
+      );
+      expect(screen.getByRole('group')).toBeVisible();
+    });
+
+    it('should inherit size', () => {
+      render(
+        <MenuList size="sm">
+          <List />
+        </MenuList>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.nesting);
+    });
+
+    it('should use instance size', () => {
+      render(
+        <MenuList size="sm">
+          <List size="lg" />
+        </MenuList>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('Menu - integration', () => {
+    it('should have role="group" inside Menu', () => {
+      render(
+        <Menu open anchorEl={() => document.createElement('div')}>
+          <List />
+        </Menu>,
+      );
+      expect(screen.getByRole('group')).toBeVisible();
+    });
+
+    it('should inherit size', () => {
+      render(
+        <Menu size="sm" open anchorEl={() => document.createElement('div')}>
+          <List />
+        </Menu>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.nesting);
+    });
+
+    it('should use instance size', () => {
+      render(
+        <Menu size="sm" open anchorEl={() => document.createElement('div')}>
+          <List size="lg" />
+        </Menu>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('Select - integration', () => {
+    it('should have role="group" inside Select', () => {
+      render(
+        <Select defaultListboxOpen>
+          <List />
+        </Select>,
+      );
+      expect(screen.getByRole('group')).toBeVisible();
+    });
+
+    it('should inherit size', () => {
+      render(
+        <Select size="sm" defaultListboxOpen>
+          <List />
+        </Select>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.nesting);
+    });
+
+    it('should use instance size', () => {
+      render(
+        <Select size="sm" defaultListboxOpen>
+          <List size="lg" />
+        </Select>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('RadioGroup - integration', () => {
+    it('should have div tag', () => {
+      render(
+        <RadioGroup>
+          <List />
+        </RadioGroup>,
+      );
+
+      expect(screen.getByRole('radiogroup').firstChild).to.have.attribute('role', 'presentation');
+    });
+
+    it('can override by prop', () => {
+      render(
+        <RadioGroup>
+          <List role="none" />
+        </RadioGroup>,
+      );
+
+      expect(screen.getByRole('radiogroup').firstChild).to.have.attribute('role', 'none');
+    });
   });
 });

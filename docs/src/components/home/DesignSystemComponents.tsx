@@ -7,21 +7,26 @@ import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
-const Placeholder = () => (
-  <Box
-    sx={{
-      height: { xs: 1484, sm: 825, md: 605 },
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.100'),
-      borderRadius: 1,
-    }}
-  />
-);
+function Placeholder() {
+  return (
+    <Box
+      sx={(theme) => ({
+        height: { xs: 1484, sm: 825, md: 605 },
+        borderRadius: 1,
+        bgcolor: 'grey.100',
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+        }),
+      })}
+    />
+  );
+}
 
 const MaterialDesignComponents = dynamic(() => import('./MaterialDesignComponents'), {
   loading: Placeholder,
 });
 
-const DesignSystemComponents = () => {
+function DesignSystemComponents() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -40,6 +45,6 @@ const DesignSystemComponents = () => {
       {inView ? <MaterialDesignComponents /> : <Placeholder />}
     </Container>
   );
-};
+}
 
 export default DesignSystemComponents;

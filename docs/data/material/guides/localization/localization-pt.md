@@ -2,7 +2,7 @@
 
 <p class="description">Localização (também referida como "l10n") é o processo de adaptação de um produto ou conteúdo a um idioma ou mercado específico (localidade).</p>
 
-A localidade padrão do Material UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
+A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você quiser usar outras localidades, siga as instruções abaixo.
 
 ## Texto da localidade
 
@@ -30,7 +30,9 @@ const theme = createTheme(
 
 {{"demo": "Locales.js", "defaultCodeOpen": false}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+:::warning
+⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+:::
 
 ### Localidades suportadas
 
@@ -39,15 +41,15 @@ const theme = createTheme(
 | Amharic                 | am-ET                     | `amET`             |
 | Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Arabic (Sudan)          | ar-SD                     | `arSD`             |
-| Armênio                 | hy-AM                     | `hyAM`             |
-| Azerbaijano             | az-AZ                     | `azAZ`             |
+| Armenian                | hy-AM                     | `hyAM`             |
+| Azerbaijani             | az-AZ                     | `azAZ`             |
 | Bangla                  | bn-BD                     | `bnBD`             |
-| Búlgaro                 | bg-BG                     | `bgBG`             |
-| Catalão                 | ca-ES                     | `caES`             |
+| Bulgarian               | bg-BG                     | `bgBG`             |
+| Catalan                 | ca-ES                     | `caES`             |
 | Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
-| Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
+| Chinese (Simplified)    | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
-| Tcheco                  | hr-HR                     | `hrHR`             |
+| Croatian                | hr-HR                     | `hrHR`             |
 | Czech                   | cs-CZ                     | `csCZ`             |
 | Danish                  | da-DK                     | `daDK`             |
 | Dutch                   | nl-NL                     | `nlNL`             |
@@ -87,12 +89,12 @@ const theme = createTheme(
 
 <!-- #default-branch-switch -->
 
-Você pode [encontrar o fonte](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
+You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
-Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
+To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Por favor, considere contribuir com novas traduções de volta para o Material UI abrindo uma pull request. No entanto, Material UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
+Please do consider contributing new translations back to MUI by opening a pull request. However, MUI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## Suporte RTL
 
-Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/material-ui/guides/right-to-left/) para usá-los.
+Right-to-left languages such as Arabic, Persian, or Hebrew are supported. Follow [this guide](/material-ui/guides/right-to-left/) to use them.

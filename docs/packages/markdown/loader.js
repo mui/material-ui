@@ -1,6 +1,7 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
+const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 // TODO: pass as argument
@@ -20,7 +21,7 @@ function upperCaseFirst(string) {
  * @example moduleIDToJSIdentifier('../Box-new.js') === '$$$BoxNewJs'
  */
 function moduleIDToJSIdentifier(moduleID) {
-  const delimiter = /(\.|-|\/)/;
+  const delimiter = /(\.|-|\/|:)/;
   return moduleID
     .split(delimiter)
     .filter((part) => !delimiter.test(part))
@@ -123,7 +124,10 @@ module.exports = async function demoLoader() {
   const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
 
   const demos = {};
+  const importedModuleIDs = new Set();
+  const components = {};
   const demoModuleIDs = new Set();
+  const componentModuleIDs = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -145,6 +149,7 @@ module.exports = async function demoLoader() {
         `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
         '',
       )}`;
+
       const moduleFilepath = path.join(
         path.dirname(this.resourcePath),
         moduleID.replace(/\//g, path.sep),
@@ -152,14 +157,17 @@ module.exports = async function demoLoader() {
       this.addDependency(moduleFilepath);
       demos[demoName] = {
         module: moduleID,
-        raw: await fs.readFile(moduleFilepath, { encoding: 'utf-8' }),
+        raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       };
       demoModuleIDs.add(moduleID);
+      extractImports(demos[demoName].raw).forEach((importModuleID) =>
+        importedModuleIDs.add(importModuleID),
+      );
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
 
-        const jsxPreview = await fs.readFile(previewFilepath, { encoding: 'utf-8' });
+        const jsxPreview = await fs.readFile(previewFilepath, { encoding: 'utf8' });
         this.addDependency(previewFilepath);
 
         demos[demoName].jsxPreview = jsxPreview;
@@ -174,7 +182,7 @@ module.exports = async function demoLoader() {
           moduleTS.replace(/\//g, path.sep),
         );
         this.addDependency(moduleTSFilepath);
-        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf-8' });
+        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf8' });
 
         // In development devs can choose whether they want to work on the TS or JS version.
         // But this leads to building both demo version i.e. more build time.
@@ -187,28 +195,73 @@ module.exports = async function demoLoader() {
     }),
   );
 
-  /**
-   * @param {string} moduleID
-   */
-  function getDemoIdentifier(moduleID) {
-    return moduleIDToJSIdentifier(moduleID);
-  }
+  const componentNames = Array.from(
+    new Set(
+      docs.en.rendered
+        .filter((markdownOrComponentConfig) => {
+          return (
+            typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.component
+          );
+        })
+        .map((componentConfig) => {
+          return componentConfig.component;
+        }),
+    ),
+  );
+
+  componentNames.forEach((componentName) => {
+    const moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+
+    components[moduleID] = componentName;
+    componentModuleIDs.add(moduleID);
+  });
 
   const transformed = `
+  ${Array.from(importedModuleIDs)
+    .map((moduleID) => {
+      return `import * as ${moduleIDToJSIdentifier(
+        moduleID.replace('@', '$'),
+      )} from '${moduleID}';`;
+    })
+    .join('\n')}
+
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
-        return `import ${getDemoIdentifier(moduleID)} from '${moduleID}';`;
+        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
-
-    export const docs = ${JSON.stringify(docs, null, 2)};
-    export const demos = ${JSON.stringify(demos, null, 2)};
-    export const demoComponents = {${Array.from(demoModuleIDs)
+    ${Array.from(componentModuleIDs)
       .map((moduleID) => {
-        return `${JSON.stringify(moduleID)}: ${getDemoIdentifier(moduleID)},`;
+        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`;
       })
-      .join('\n')}};
-  `;
+      .join('\n')}
+export const docs = ${JSON.stringify(docs, null, 2)};
+export const demos = ${JSON.stringify(demos, null, 2)};
+
+demos.scope = {
+  process: {},
+  import: {
+${Array.from(importedModuleIDs)
+  .map((moduleID) => `    "${moduleID}": ${moduleIDToJSIdentifier(moduleID.replace('@', '$'))},`)
+  .join('\n')}
+  },
+};
+
+export const demoComponents = {
+${Array.from(demoModuleIDs)
+  .map((moduleID) => {
+    return `  "${moduleID}": ${moduleIDToJSIdentifier(moduleID)},`;
+  })
+  .join('\n')}
+};
+export const srcComponents = {
+${Array.from(componentModuleIDs)
+  .map((moduleID) => {
+    return `  "${components[moduleID]}": ${moduleIDToJSIdentifier(moduleID)},`;
+  })
+  .join('\n')}
+};
+`;
 
   return transformed;
 };

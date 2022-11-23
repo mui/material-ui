@@ -1,23 +1,56 @@
 ---
-product: material-ui
-title: React Portal（传送门）组件
+product: base
+title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
-packageName: '@mui/base'
 ---
 
 # Portal
 
-<p class="description">传送门组件将其子节点渲染到当前 DOM 结构之外的新 "子类树" 当中。</p>
+<p class="description">The Portal component lets you render its children into a DOM node that exists outside of its own DOM hierarchy.</p>
 
-传送门组件的子节点将被添加到指定的 `container` 中。 [`Modal`](/material-ui/react-modal/) 和 [`Popper`](/material-ui/react-popper/) 组件内部都是用了该组件。
+## Introduction
+
+`Portal` is a utility component built around [React's `createPortal()` API](https://reactjs.org/docs/portals.html). It gives you the functionality of `createPortal()` in a convenient component form.
+
+The `Portal` component is used internally by the [`ModalUnstyled`](/base/react-modal/) and [`Popper`](/base/react-popper/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 示例
+## Component
+
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Portal from '@mui/base/Portal';
+
+export default function MyApp() {
+  return (
+    <Portal>{/* children to be rendered outside of the current DOM node */}</Portal>
+  );
+}
+```
+
+### Basics
+
+Normally, children of a component are rendered within that component's DOM tree. But sometimes it's necessary to mount a child at a different location in the DOM.
+
+:::info
+According to [the React docs](https://reactjs.org/docs/portals.html), portals are useful when "you need the child element to visually 'break out' of its container"—for instance, modals and tooltips, which need to exist outside of the normal flow of the document.
+:::
+
+The `Portal` component accepts a `container` prop that passes a `ref` to the DOM node where its children will be mounted.
+
+The following demo shows how a `<span>` nested within a `Portal` can be appended to a node outside of its own DOM hierarchy—click **Mount children** to see how it behaves:
 
 {{"demo": "SimplePortal.js"}}
 
-## 服务器端
+### Server-side
 
-React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 您必须等到客户端的注水渲染（hydration）之后才能见到子节点。
+:::warning
+React doesn't support the [`createPortal()` API](https://reactjs.org/docs/portals.html) on the server. See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
+:::
+
+The `Portal` component cannot be used to render child elements on the server—client-side hydration is necessary.

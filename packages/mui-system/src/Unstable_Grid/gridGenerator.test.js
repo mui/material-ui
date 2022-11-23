@@ -12,6 +12,8 @@ import {
   generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
+  generateDirectionClasses,
+  filterBreakpointKeys,
 } from './gridGenerator';
 
 const spacing = createSpacing();
@@ -98,6 +100,12 @@ describe('grid generator', () => {
           margin: 3,
         },
       });
+    });
+
+    it('filters out breakpoints keys based on responsize keys', () => {
+      const styles = { sm: 6, md: 3, xl: 2, xs: 1 };
+      const filteredKeys = filterBreakpointKeys(breakpoints.keys, Object.keys(styles));
+      expect(filteredKeys).to.deep.equal(['xs', 'sm', 'md', 'xl']);
     });
 
     describe('custom breakpoints', () => {
@@ -248,6 +256,49 @@ describe('grid generator', () => {
       sinon.assert.match(result, {
         margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
         padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
+      });
+    });
+
+    it('root container with disableEqualOverflow', () => {
+      const result = generateGridStyles({
+        ownerState: { container: true, nested: true, disableEqualOverflow: true },
+      });
+      sinon.assert.match(result, {
+        margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
+        padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+      });
+    });
+
+    it('nested container without disableEqualOverflow but parent has', () => {
+      const result = generateGridStyles({
+        ownerState: {
+          container: true,
+          nested: true,
+          disableEqualOverflow: false,
+          parentDisableEqualOverflow: true,
+        },
+      });
+      sinon.assert.match(result, {
+        margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
+        padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+      });
+    });
+
+    it('item', () => {
+      const result = generateGridStyles({ ownerState: { container: false, nested: false } });
+      expect(result).to.deep.equal({
+        minWidth: 0,
+        boxSizing: 'border-box',
+        padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+      });
+    });
+
+    it('item with disableEqualOverflow', () => {
+      const result = generateGridStyles({
+        ownerState: { container: false, disableEqualOverflow: true },
+      });
+      sinon.assert.match(result, {
+        padding: `calc(var(--Grid-rowSpacing)) 0px 0px calc(var(--Grid-columnSpacing))`,
       });
     });
   });
@@ -524,6 +575,21 @@ describe('grid generator', () => {
           tablet: 4,
         }),
       ).to.deep.equal(['spacing-mobile-3', 'spacing-tablet-4']);
+    });
+  });
+
+  describe('generateDirectionClasses', () => {
+    it('should generate correct direction class names', () => {
+      expect(generateDirectionClasses()).to.deep.equal([]);
+      expect(generateDirectionClasses('row')).to.deep.equal(['direction-xs-row']);
+      expect(generateDirectionClasses('column')).to.deep.equal(['direction-xs-column']);
+      expect(
+        generateDirectionClasses({
+          xs: 'row',
+          sm: 'column',
+          md: 'row',
+        }),
+      ).to.deep.equal(['direction-xs-row', 'direction-sm-column', 'direction-md-row']);
     });
   });
 });

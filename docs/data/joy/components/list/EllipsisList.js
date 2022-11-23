@@ -15,14 +15,14 @@ export default function EllipsisList() {
         level="body4"
         textTransform="uppercase"
         fontWeight="xl"
-        mb={2}
+        mb={1}
         sx={{ letterSpacing: '0.15rem' }}
       >
         Inbox
       </Typography>
       <List
         aria-labelledby="ellipsis-list-demo"
-        sx={{ '--List-decorator-width': '56px' }}
+        sx={{ '--List-decorator-size': '56px' }}
       >
         <ListItem>
           <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>

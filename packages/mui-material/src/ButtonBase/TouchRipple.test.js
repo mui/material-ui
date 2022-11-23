@@ -266,5 +266,11 @@ describe('<TouchRipple />', () => {
       // "react state update on an unmounted component"
       clock.runAll();
     });
+
+    it('should handle empty event.touches', () => {
+      const { instance } = renderTouchRipple();
+
+      expect(() => instance.start({ type: 'touchstart', touches: [] })).not.toErrorDev();
+    });
   });
 });

@@ -10,7 +10,17 @@ import { styled } from '@mui/material/styles';
 const Anchor = styled('a')({});
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-  const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
+  const {
+    to,
+    linkAs,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    legacyBehavior = true,
+    locale,
+    ...other
+  } = props;
 
   return (
     <NextLink
@@ -21,6 +31,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
       scroll={scroll}
       shallow={shallow}
       passHref
+      legacyBehavior={legacyBehavior}
       locale={locale}
     >
       <Anchor ref={ref} {...other} />
@@ -30,6 +41,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
 
 NextLinkComposed.propTypes = {
   href: PropTypes.any,
+  legacyBehavior: PropTypes.bool,
   linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   locale: PropTypes.string,
   passHref: PropTypes.bool,
@@ -48,6 +60,7 @@ const Link = React.forwardRef(function Link(props, ref) {
     as,
     className: classNameProps,
     href,
+    legacyBehavior,
     linkAs: linkAsProp,
     locale,
     noLinkStyle,
@@ -77,7 +90,16 @@ const Link = React.forwardRef(function Link(props, ref) {
   }
 
   const linkAs = linkAsProp || as;
-  const nextjsProps = { to: href, linkAs, replace, scroll, shallow, prefetch, locale };
+  const nextjsProps = {
+    to: href,
+    linkAs,
+    replace,
+    scroll,
+    shallow,
+    prefetch,
+    legacyBehavior,
+    locale,
+  };
 
   if (noLinkStyle) {
     return <NextLinkComposed className={className} ref={ref} {...nextjsProps} {...other} />;
@@ -99,6 +121,7 @@ Link.propTypes = {
   as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string,
   href: PropTypes.any,
+  legacyBehavior: PropTypes.bool,
   linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   locale: PropTypes.string,
   noLinkStyle: PropTypes.bool,

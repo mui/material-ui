@@ -14,7 +14,10 @@ export default function ExampleFilterStatusCheckbox() {
     wrongAddress: false,
   });
   return (
-    <Sheet variant="outlined" sx={{ p: 2, borderRadius: 'sm', width: 300 }}>
+    <Sheet
+      variant="outlined"
+      sx={{ p: 2, borderRadius: 'sm', width: 300, bgcolor: 'background.body' }}
+    >
       <Typography
         id="filter-status"
         sx={{
@@ -39,6 +42,7 @@ export default function ExampleFilterStatusCheckbox() {
               onChange={(event) =>
                 setStatus({ ...status, declinedPayment: event.target.checked })
               }
+              sx={{ color: 'inherit' }}
             />
             <Typography textColor="inherit" sx={{ ml: 'auto' }}>
               8

@@ -170,6 +170,77 @@ export const arEG: Localization = {
   },
 };
 
+export const arSA: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'إظهار المسار',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'الانتقال إلى الصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'الانتقال إلى الصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'الانتقال إلى الصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'الانتقال إلى الصفحة السابقة';
+        },
+        labelRowsPerPage: 'عدد الصفوف في الصفحة:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ${value !== 1 ? 'نجوم' : 'نجمة'}`,
+        emptyLabelText: 'فارغ',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'مسح',
+        closeText: 'إغلاق',
+        loadingText: 'جار التحميل...',
+        noOptionsText: 'لا توجد خيارات',
+        openText: 'فتح',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'إغلاق',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'التنقل عبر الصفحات',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'الانتقال إلى '} صفحة ${page}`;
+          }
+          if (type === 'first') {
+            return 'الانتقال إلى الصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'الانتقال الي الصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'الانتقال إلى الصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'الانتقال إلى الصفحة السابقة';
+        },
+      },
+    },
+  },
+};
+
 export const arSD: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -3234,6 +3305,77 @@ export const ukUA: Localization = {
   },
 };
 
+export const urPK: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'راستہ دکھائیں',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'پہلے صفحے پر جائیں';
+          }
+          if (type === 'last') {
+            return 'آخری صفحے پر جائیں';
+          }
+          if (type === 'next') {
+            return 'اگلے صفحے پر جائیں';
+          }
+          // if (type === 'previous') {
+          return 'پچھلے صفحے پر جائیں';
+        },
+        labelRowsPerPage: 'ایک صفحے پر قطاریں:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${count !== -1 ? `${count} میں سے` : `${to} سے ذیادہ میں سے`} ${from} سے ${to} قطاریں`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ستار${value !== 1 ? 'ے' : 'ہ'}`,
+        emptyLabelText: 'خالی',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'کلئیر',
+        closeText: 'بند کریں',
+        loadingText: 'لوڈ ہو رہا ہے۔۔۔',
+        noOptionsText: 'کوئی آپشن نہیں',
+        openText: 'کھولیں',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'بند کریں',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'صفحات کی ترتیب',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `صفحہ نمبر ${page}${selected ? '' : ' پر جائیں'}`;
+          }
+          if (type === 'first') {
+            return 'پہلے صفحے پر جائیں';
+          }
+          if (type === 'last') {
+            return 'آخری صفحے پر جائیں';
+          }
+          if (type === 'next') {
+            return 'اگلے صفحے پر جائیں';
+          }
+          // if (type === 'previous') {
+          return 'پچھلے صفحے پر جائیں';
+        },
+      },
+    },
+  },
+};
+
 export const viVN: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -3424,7 +3566,7 @@ export const zhTW: Localization = {
           }
           return '上一頁';
         },
-        labelRowsPerPage: '每行行數:',
+        labelRowsPerPage: '每頁行數:',
         labelDisplayedRows: ({ from, to, count }) =>
           `第 ${from} 條到第 ${to} 條，${count !== -1 ? `共 ${count} 條` : `至少 ${to} 條`}`,
       },

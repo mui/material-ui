@@ -12,7 +12,7 @@ import {
   getSystemComponentInfo,
   extractApiPage,
 } from 'docs/scripts/buildApiUtils';
-import buildComponentApi, {
+import generateComponentApi, {
   writePrettifiedFile,
   ReactApi,
 } from 'docs/scripts/ApiBuilders/ComponentApiBuilder';
@@ -216,7 +216,7 @@ async function run(argv: CommandOptions) {
 
         mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
 
-        return buildComponentApi(componentInfo, program);
+        return generateComponentApi(componentInfo, program);
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
         throw error;
