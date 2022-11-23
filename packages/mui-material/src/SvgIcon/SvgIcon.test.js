@@ -58,7 +58,9 @@ describe('<SvgIcon />', () => {
     });
 
     it('should also be able to make an icon accessible with component prop', () => {
-      const Component = () => <svg>{path}</svg>;
+      function Component() {
+        return <svg>{path}</svg>;
+      }
 
       const { container, queryByText } = render(
         <SvgIcon title="Go to link" titleAccess="Network" component={Component} />,
@@ -69,7 +71,9 @@ describe('<SvgIcon />', () => {
     });
 
     it('should inherit a title from component prop', () => {
-      const Component = () => <SvgIcon titleAccess="Componet prop title">{path}</SvgIcon>;
+      function Component() {
+        return <SvgIcon titleAccess="Componet prop title">{path}</SvgIcon>;
+      }
 
       const { container, queryByText } = render(
         <SvgIcon title="Inherit a title" component={Component} />,
@@ -80,7 +84,9 @@ describe('<SvgIcon />', () => {
     });
 
     it('should override the title from component prop', () => {
-      const Component = () => <SvgIcon titleAccess="Componet prop title">{path}</SvgIcon>;
+      function Component() {
+        return <SvgIcon titleAccess="Componet prop title">{path}</SvgIcon>;
+      }
 
       const { container, queryByText } = render(
         <SvgIcon
