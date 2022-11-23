@@ -26,7 +26,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - [Material You] Add theme structure & Button component (#34650) @mnajdova
 
-### `@mui/base@5.0.0-alpha.106`
+### `@mui/base@5.0.0-alpha.107`
 
 - [Select] Add attributes to conform with ARIA 1.2 (#35182) @michaldudak
 
