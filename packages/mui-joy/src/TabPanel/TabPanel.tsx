@@ -44,6 +44,7 @@ const TabPanelRoot = styled('div', {
   }),
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
+  visibility: ownerState.visibility,
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
@@ -74,6 +75,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     orientation,
     hidden,
     size,
+    visibility: hidden ? 'hidden' : 'visible',
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -100,10 +102,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   }, [hidden]);
 
   return (
-    <TabPanelRoot
-      {...tabPanelRootProps}
-      sx={{ visibility: hidden ? "hidden" : "visible" }}
-    >
+    <TabPanelRoot {...tabPanelRootProps}>
       {(keepMounted && mounted) || !hidden ? children : null}
     </TabPanelRoot>
   );
