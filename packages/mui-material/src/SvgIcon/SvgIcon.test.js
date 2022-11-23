@@ -7,25 +7,9 @@ describe('<SvgIcon />', () => {
   const { render } = createRenderer();
 
   let path;
-  let testComponentPropWith;
 
   before(() => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
-
-    testComponentPropWith = function FunctionComponent(props) {
-      return (
-        <svg {...props}>
-          <defs>
-            <linearGradient id="gradient1">
-              <stop offset="20%" stopColor="#39F" />
-              <stop offset="90%" stopColor="#F3F" />
-            </linearGradient>
-          </defs>
-          {props.children}
-        </svg>
-      );
-    };
-    testComponentPropWith.type = 'functionComponent';
   });
 
   describeConformance(
@@ -38,7 +22,18 @@ describe('<SvgIcon />', () => {
       render,
       muiName: 'MuiSvgIcon',
       refInstanceof: window.SVGSVGElement,
-      testComponentPropWith,
+      componentPropType: 'FunctionComponent',
+      testComponentPropWith: (props) => (
+        <svg {...props}>
+          <defs>
+            <linearGradient id="gradient1">
+              <stop offset="20%" stopColor="#39F" />
+              <stop offset="90%" stopColor="#F3F" />
+            </linearGradient>
+          </defs>
+          {props.children}
+        </svg>
+      ),
       skip: ['themeVariants', 'componentsProp'],
     }),
   );

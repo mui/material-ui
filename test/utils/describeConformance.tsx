@@ -21,6 +21,11 @@ interface SlotTestOverride {
   slotClassName?: string;
 }
 
+export enum ComponentPropType {
+  Tag = 'Tag',
+  FunctionComponent = 'FunctionComponent',
+}
+
 export interface InputConformanceOptions {
   muiName: string;
   classes: { root: string };
@@ -30,8 +35,9 @@ export interface InputConformanceOptions {
   render: (node: React.ReactElement) => MuiRenderResult;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
+  componentPropType?: ComponentPropType;
   testComponentsRootPropWith?: string;
-  testComponentPropWith?: string;
+  testComponentPropWith?: string | React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
@@ -87,10 +93,6 @@ function testRef(
 export function findRootComponent(wrapper: ReactWrapper, component: string | React.ElementType) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
-  if (component.type === 'functionComponent') {
-    component = component({}).type;
-  }
-
   return wrapper.find(component as string).filterWhere((componentWrapper) => {
     return componentWrapper.contains(outermostHostElement);
   });
@@ -132,11 +134,17 @@ export function testComponentProp(
 ) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
-      const { mount, testComponentPropWith: component = 'em' } = getOptions();
+      const { mount, testComponentPropWith: component = 'em', componentPropType } = getOptions();
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
-      expect(findRootComponent(wrapper, component).exists()).to.equal(true);
+      if (componentPropType && componentPropType === ComponentPropType.FunctionComponent) {
+        expect(
+          findRootComponent(wrapper, (component as React.FunctionComponent)({})!.type).exists(),
+        ).to.equal(true);
+      } else {
+        expect(findRootComponent(wrapper, component).exists()).to.equal(true);
+      }
     });
   });
 }
