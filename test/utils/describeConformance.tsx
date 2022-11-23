@@ -294,7 +294,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
             slots: {
               [slotName]: slotElement,
             },
-            componentsProps: {
+            slotProps: {
               [slotName]: {
                 'data-testid': 'customized',
               },
@@ -338,6 +338,23 @@ function testSlotPropsProp(element: React.ReactElement, getOptions: () => Confor
       if (slotOptions.expectedClassName) {
         expect(slotComponent).to.have.class(slotOptions.expectedClassName);
       }
+    });
+
+    it(`set custom properties with the slotProps.${slotName} prop as a function`, () => {
+      const { queryByTestId } = render(
+        React.cloneElement(element, {
+          'data-testid': 'shared',
+          slotProps: {
+            [slotName]: (ownerState: Record<string, any>) => ({
+              'data-testid': `${ownerState['data-testid']}-slot`,
+              className: 'custom',
+            }),
+          },
+        }),
+      );
+      const slotComponent = queryByTestId('shared-slot'); // use `query*` instead of `get*` to bypass hidden element, we just want to check the overriding functionality.
+      expect(slotComponent).not.to.equal(null);
+      expect(slotComponent).to.have.class('custom');
     });
 
     if (slotOptions.expectedClassName) {
