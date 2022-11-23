@@ -347,6 +347,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     size = 'medium',
     variant = 'filled',
     tabIndex,
+    skipFocusWhenDisabled,
     ...other
   } = props;
 
@@ -461,7 +462,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
-      tabIndex={disabled ? -1 : tabIndex}
+      tabIndex={skipFocusWhenDisabled && disabled ? -1 : tabIndex}
       ownerState={ownerState}
       {...moreProps}
       {...other}
@@ -563,6 +564,12 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * If `true`, allows the disabled chip to escape focus.
+   * If `false`, allows the disabled chip to receive focus
+   * @default false
+   */
+  skipFocusWhenDisabled: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

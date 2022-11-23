@@ -174,9 +174,16 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.filledPrimary);
     });
 
+    // https://github.com/mui/material-ui/issues/35038
     it('should not be focused when a deletable chip is disabled', () => {
       const { getByTestId } = render(
-        <Chip label="My Chip" disabled data-testid="chip" onDelete={() => {}} />,
+        <Chip
+          label="My Chip"
+          disabled
+          data-testid="chip"
+          skipFocusWhenDisabled
+          onDelete={() => {}}
+        />,
       );
 
       const chip = getByTestId('chip');
