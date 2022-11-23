@@ -2,6 +2,7 @@ import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/sy
 import experimental_extendTheme, { SupportedColorScheme } from './experimental_extendTheme';
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
+import { Theme } from './createTheme';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
@@ -9,30 +10,37 @@ const shouldSkipGeneratingVar = (keys: string[]) =>
 
 const defaultTheme = experimental_extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
-  createCssVarsProvider<SupportedColorScheme>({
-    theme: defaultTheme,
-    attribute: 'data-mui-color-scheme',
-    modeStorageKey: 'mui-mode',
-    colorSchemeStorageKey: 'mui-color-scheme',
-    defaultColorScheme: {
-      light: 'light',
-      dark: 'dark',
-    },
-    resolveTheme: (theme) => {
-      const newTheme = {
-        ...theme,
-        typography: createTypography(theme.palette, theme.typography),
-      };
+const {
+  CssVarsProvider,
+  useColorScheme,
+  useCssThemeVars: systemUseCssThemeVars,
+  getInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme>({
+  theme: defaultTheme,
+  attribute: 'data-mui-color-scheme',
+  modeStorageKey: 'mui-mode',
+  colorSchemeStorageKey: 'mui-color-scheme',
+  defaultColorScheme: {
+    light: 'light',
+    dark: 'dark',
+  },
+  resolveTheme: (theme) => {
+    const newTheme = {
+      ...theme,
+      typography: createTypography(theme.palette, theme.typography),
+    };
 
-      return newTheme;
-    },
-    shouldSkipGeneratingVar,
-    excludeVariablesFromRoot,
-  });
+    return newTheme;
+  },
+  shouldSkipGeneratingVar,
+  excludeVariablesFromRoot,
+});
+
+const useCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
 
 export {
   useColorScheme,
+  useCssThemeVars,
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
   CssVarsProvider as Experimental_CssVarsProvider,
