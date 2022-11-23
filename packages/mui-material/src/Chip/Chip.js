@@ -347,7 +347,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     size = 'medium',
     variant = 'filled',
     tabIndex,
-    skipFocusWhenDisabled,
+    skipFocusWhenDisabled = false,
     ...other
   } = props;
 
