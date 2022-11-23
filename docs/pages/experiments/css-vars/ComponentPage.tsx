@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
@@ -39,6 +40,25 @@ export default function ComponentPage() {
               <Stack direction="row" spacing={2}>
                 <Button variant="outlined">Outlined</Button>
                 <Button variant="contained">Contained</Button>
+              </Stack>
+            </NestedCssVarsProvider>
+          </Box>
+        </Paper>
+
+        <Paper variant="outlined" sx={{ p: 2, mt: 3 }}>
+          <Box sx={{ display: 'flex' }}>
+            <Box sx={{ flexGrow: 1 }}>
+              <Typography variant="h2">Text Field</Typography>
+              <Typography>
+                This is a demo that shows how to create nested CSS variables scope.
+              </Typography>
+            </Box>
+          </Box>
+          <Box className="demo" sx={{ mt: 2, borderRadius: 1, bgcolor: 'background.paper', p: 2 }}>
+            <NestedCssVarsProvider theme={theme}>
+              <Stack direction="row" spacing={2}>
+                <TextField variant="outlined" placeholder="Outlined" label="Label" />
+                <TextField variant="filled" placeholder="Filled" label="Label" />
               </Stack>
             </NestedCssVarsProvider>
           </Box>
