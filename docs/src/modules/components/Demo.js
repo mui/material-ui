@@ -459,7 +459,7 @@ export default function Demo(props) {
         )}
         <Collapse in={openDemoSource} unmountOnExit>
           {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can inject the `window` of the iframe so we need a disableLiveEdit option. */}
+            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
           {demoOptions.disableLiveEdit ? (
             <DemoCodeViewer
               code={editorCode.value}
