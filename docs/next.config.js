@@ -27,16 +27,6 @@ const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 // For crowdin PRs we want to build all locales for testing.
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
-const staging =
-  process.env.REPOSITORY_URL === undefined ||
-  // The linked repository url comes from https://app.netlify.com/sites/material-ui/settings/deploys
-  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
-
-if (staging) {
-  // eslint-disable-next-line no-console
-  console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
-}
-
 module.exports = withTM(
   withDocsInfra({
     webpack: (config, options) => {
