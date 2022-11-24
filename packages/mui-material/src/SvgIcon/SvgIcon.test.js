@@ -22,7 +22,6 @@ describe('<SvgIcon />', () => {
       render,
       muiName: 'MuiSvgIcon',
       refInstanceof: window.SVGSVGElement,
-      componentPropType: 'FunctionComponent',
       testComponentPropWith: (props) => (
         <svg {...props}>
           <defs>

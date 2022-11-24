@@ -21,11 +21,6 @@ interface SlotTestOverride {
   slotClassName?: string;
 }
 
-export enum ComponentPropType {
-  Tag = 'Tag',
-  FunctionComponent = 'FunctionComponent',
-}
-
 export interface InputConformanceOptions {
   muiName: string;
   classes: { root: string };
@@ -35,7 +30,6 @@ export interface InputConformanceOptions {
   render: (node: React.ReactElement) => MuiRenderResult;
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
-  componentPropType?: ComponentPropType;
   testComponentsRootPropWith?: React.ElementType;
   testComponentPropWith?: React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
@@ -90,7 +84,7 @@ function testRef(
  * Returns the component with the same constructor as `component` that renders
  * the outermost host
  */
-export function findRootComponent(wrapper: ReactWrapper, component: React.ElementType) {
+export function findRootComponent(wrapper: ReactWrapper, component: string | React.ElementType) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
   return wrapper.find(component as string).filterWhere((componentWrapper) => {
@@ -134,15 +128,23 @@ export function testComponentProp(
 ) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
-      const { mount, testComponentPropWith: component = 'em', componentPropType } = getOptions();
+      const { mount, testComponentPropWith: component = 'em' } = getOptions();
 
       const wrapper = mount(React.cloneElement(element, { component }));
 
-      if (componentPropType === ComponentPropType.FunctionComponent) {
+      if (typeof component === 'function') {
+        // `component` is a Component.
+        const reactElement = React.createElement(component as any);
+        const finalElement =
+          reactElement.type.prototype instanceof React.Component
+            ? reactElement.type.prototype.render() // class component
+            : (component as React.FunctionComponent)({}); // function component
+
         expect(
-          findRootComponent(wrapper, (component as React.FunctionComponent)({})!.type).exists(),
+          findRootComponent(wrapper, (finalElement as React.ReactElement).type).exists(),
         ).to.equal(true);
       } else {
+        // `component` is a string tag.
         expect(findRootComponent(wrapper, component).exists()).to.equal(true);
       }
     });

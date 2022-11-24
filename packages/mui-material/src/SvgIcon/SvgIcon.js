@@ -96,7 +96,11 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   if (typeof component === 'function') {
-    const element = component({});
+    const reactElement = React.createElement(component);
+    const element =
+      reactElement.type.prototype instanceof React.Component
+        ? reactElement.type.prototype.render() // class component
+        : component({}); // function component
 
     if (inheritViewBox && element.props.viewBox) {
       more.viewBox = element.props.viewBox;
