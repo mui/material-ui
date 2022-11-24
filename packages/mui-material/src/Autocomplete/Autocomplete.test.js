@@ -2410,12 +2410,15 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      console.log(JSON.stringify(firstOption.getBoundingClientRect(), null, 2));
-      fireEvent.mouseMove(firstOption);
+      // move mouse to center of first option
+      const { width, height, top, left } = firstOption.getBoundingClientRect();
+      const x = left + width / 2;
+      const y = top + height / 2;
+      fireEvent.mouseMove(firstOption, { clientX: x, clientY: y });
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
       checkHighlightIs(getByRole('listbox'), 'four');
     });
 
