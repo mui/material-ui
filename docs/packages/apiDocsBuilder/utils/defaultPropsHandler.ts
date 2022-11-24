@@ -1,4 +1,4 @@
-import astTypes from 'ast-types';
+import { namedTypes as types } from 'ast-types';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { utils as docgenUtils, NodePath, Documentation, Importer, Handler } from 'react-docgen';
 
@@ -6,8 +6,6 @@ const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = d
 
 // based on https://github.com/reactjs/react-docgen/blob/735f39ef784312f4c0e740d4bfb812f0a7acd3d5/src/handlers/defaultPropsHandler.js#L1-L112
 // adjusted for material-ui getThemedProps
-
-const { namedTypes: types } = astTypes;
 
 /**
  * @param {import('react-docgen').NodePath} propertyPath
