@@ -22,17 +22,32 @@ describe('<SvgIcon />', () => {
       render,
       muiName: 'MuiSvgIcon',
       refInstanceof: window.SVGSVGElement,
-      testComponentPropWith: (props) => (
-        <svg {...props}>
-          <defs>
-            <linearGradient id="gradient1">
-              <stop offset="20%" stopColor="#39F" />
-              <stop offset="90%" stopColor="#F3F" />
-            </linearGradient>
-          </defs>
-          {props.children}
-        </svg>
-      ),
+      testComponentPropWith: [
+        () => (
+          <svg>
+            <defs>
+              <linearGradient id="gradient1">
+                <stop offset="20%" stopColor="#39F" />
+                <stop offset="90%" stopColor="#F3F" />
+              </linearGradient>
+            </defs>
+          </svg>
+        ),
+        class extends React.PureComponent {
+          render() {
+            return (
+              <svg>
+                <defs>
+                  <linearGradient id="gradient1">
+                    <stop offset="20%" stopColor="#39F" />
+                    <stop offset="90%" stopColor="#F3F" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            );
+          }
+        },
+      ],
       skip: ['themeVariants', 'componentsProp'],
     }),
   );

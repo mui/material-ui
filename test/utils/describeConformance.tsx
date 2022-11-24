@@ -31,7 +31,7 @@ export interface InputConformanceOptions {
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: React.ElementType;
-  testComponentPropWith?: React.ElementType;
+  testComponentPropWith?: Array<React.ElementType>;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
@@ -128,25 +128,30 @@ export function testComponentProp(
 ) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
-      const { mount, testComponentPropWith: component = 'em' } = getOptions();
+      const { mount, testComponentPropWith } = getOptions();
 
-      const wrapper = mount(React.cloneElement(element, { component }));
+      const components =
+        testComponentPropWith instanceof Array ? testComponentPropWith : [testComponentPropWith];
 
-      if (typeof component === 'function') {
-        // `component` is a Component.
-        const reactElement = React.createElement(component as any);
-        const finalElement =
-          reactElement.type.prototype instanceof React.Component
-            ? reactElement.type.prototype.render() // class component
-            : (component as React.FunctionComponent)({}); // function component
+      components.forEach((component) => {
+        const wrapper = mount(React.cloneElement(element, { component }));
 
-        expect(
-          findRootComponent(wrapper, (finalElement as React.ReactElement).type).exists(),
-        ).to.equal(true);
-      } else {
-        // `component` is a string tag.
-        expect(findRootComponent(wrapper, component).exists()).to.equal(true);
-      }
+        if (typeof component === 'function') {
+          // `component` is a Component.
+          const reactElement = React.createElement(component as any);
+          const finalElement =
+            reactElement.type.prototype instanceof React.Component
+              ? reactElement.type.prototype.render() // element from class component
+              : (component as React.FunctionComponent)({}); // element from function component
+
+          expect(
+            findRootComponent(wrapper, (finalElement as React.ReactElement).type).exists(),
+          ).to.equal(true);
+        } else if (component) {
+          // `component` is a string tag.
+          expect(findRootComponent(wrapper, component).exists()).to.equal(true);
+        }
+      });
     });
   });
 }
