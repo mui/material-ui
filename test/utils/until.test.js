@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import until from './until';
 
-const Div = () => <div />;
-const hoc = (Component) => () => <Component />;
+function Div() {
+  return <div />;
+}
+const hoc = (Component) =>
+  function Wrapper() {
+    return <Component />;
+  };
 
 describe('until', () => {
   it('shallow renders the current wrapper one level deep', () => {
@@ -64,11 +69,13 @@ describe('until', () => {
   });
 
   it('shallow renders non-root wrappers', () => {
-    const Container = () => (
-      <div>
-        <Div />
-      </div>
-    );
+    function Container() {
+      return (
+        <div>
+          <Div />
+        </div>
+      );
+    }
     const wrapper = until.call(shallow(<Container />).find(Div));
     expect(wrapper.contains(<div />)).to.equal(true);
   });

@@ -11,18 +11,19 @@ export default function ExampleButtonCheckbox() {
   const [value, setValue] = React.useState([]);
   return (
     <List
-      variant="soft"
+      variant="outlined"
       aria-label="Screens"
       role="group"
       row
       sx={{
+        bgcolor: 'background.body',
         flexGrow: 0,
         '--List-gap': '8px',
         '--List-padding': '8px',
         '--List-radius': '8px',
       }}
     >
-      {['mobile', 'laptop', 'monitor'].map((item) => (
+      {['Mobile', 'Laptop', 'Monitor'].map((item) => (
         <ListItem key={item}>
           <ListItemDecorator
             sx={{
@@ -33,9 +34,9 @@ export default function ExampleButtonCheckbox() {
           >
             {
               {
-                mobile: <PhoneAndroidIcon />,
-                laptop: <LaptopIcon />,
-                monitor: <TvIcon />,
+                Mobile: <PhoneAndroidIcon />,
+                Laptop: <LaptopIcon />,
+                Monitor: <TvIcon />,
               }[item]
             }
           </ListItemDecorator>

@@ -11,7 +11,7 @@ export interface UseInputParameters {
    */
   disabled?: boolean;
   /**
-   * If `true`, the `input` will indicate an error.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;

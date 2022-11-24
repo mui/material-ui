@@ -13,7 +13,7 @@ unstyled: /base/react-slider/
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "SliderUsage.js", "hideToolbar": true}}
+{{"demo": "SliderUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out [Themed components](/joy-ui/customization/themed-components/).
