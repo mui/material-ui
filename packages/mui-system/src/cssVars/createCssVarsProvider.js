@@ -60,7 +60,7 @@ export default function createCssVarsProvider(options) {
    *  ...darkTokens
    * }
    */
-  const recalculateTheme = (theme, { mode, colorScheme, defaultMode, defaultColorScheme }) => {
+  const recalculateTheme = (themeProp, { mode, colorScheme, defaultMode, defaultColorScheme }) => {
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
@@ -85,6 +85,7 @@ export default function createCssVarsProvider(options) {
       }
       return colorScheme;
     })();
+    const theme = { ...themeProp };
     Object.entries(theme.colorSchemes[calculatedColorScheme]).forEach(([schemeKey, scheme]) => {
       if (scheme && typeof scheme === 'object') {
         // shallow merge the 1st level structure of the theme.
@@ -97,8 +98,9 @@ export default function createCssVarsProvider(options) {
       }
     });
     if (theme.palette) {
-      theme.palette.colorScheme = calculatedColorScheme;
+      theme.palette = { ...theme.palette, colorScheme: calculatedColorScheme };
     }
+    return theme;
   };
 
   const useColorScheme = () => {
@@ -237,7 +239,7 @@ export default function createCssVarsProvider(options) {
       storageWindow,
     });
 
-    const { theme, styles } = generateCssThemeVars({
+    const { theme: themeWithVars, styles } = generateCssThemeVars({
       theme: themeProp,
       defaultMode,
       defaultColorScheme,
@@ -249,7 +251,12 @@ export default function createCssVarsProvider(options) {
       shouldSkipGeneratingVar,
     });
 
-    recalculateTheme(theme, { mode, colorScheme, defaultMode, defaultColorScheme });
+    const theme = recalculateTheme(themeWithVars, {
+      mode,
+      colorScheme,
+      defaultMode,
+      defaultColorScheme,
+    });
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
@@ -375,7 +382,7 @@ export default function createCssVarsProvider(options) {
   };
 
   function NestedCssVarsProvider({
-    theme,
+    theme: themeProp,
     children,
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
@@ -389,7 +396,12 @@ export default function createCssVarsProvider(options) {
 
     const { mode, colorScheme } = value;
 
-    recalculateTheme(theme, { mode, colorScheme, defaultMode, defaultColorScheme });
+    const theme = recalculateTheme(themeProp, {
+      mode,
+      colorScheme,
+      defaultMode,
+      defaultColorScheme,
+    });
 
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
   }
