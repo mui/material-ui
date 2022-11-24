@@ -29,7 +29,6 @@ describe('<Link />', () => {
       muiName: 'JoyLink',
       refInstanceof: window.HTMLAnchorElement,
       testVariantProps: { color: 'primary', variant: 'plain' },
-      testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
       testCustomVariant: true,
       slots: {
         root: { expectedClassName: classes.root },
