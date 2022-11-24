@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { getAllBlogPosts } from 'docs/lib/sourcing';
-import Box from '@mui/material/Box';
-import Section from 'docs/src/layouts/Section';
-import Divider from '@mui/material/Divider';
+import Box from '../Box';
+import Section from '../Section';
+import Divider from '../Divider';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import GradientText from 'docs/src/components/typography/GradientText';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
+import Paper from '../Paper';
+import GradientText from '../GradientText';
+import HeroEnd from './HeroEnd';
 import AppFooter from './AppFooter';
 import AppHeader from './AppHeader';
 import PostPreview from './PostPreview';
@@ -34,7 +34,7 @@ export default function Blog() {
 
   return (
     <React.Fragment>
-      {/* <AppHeader /> */}
+      <AppHeader />
       <main id="main-content">
         <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
@@ -58,26 +58,26 @@ export default function Blog() {
                 key={post.slug}
                 component="li"
                 variant="outlined"
-                sx={(theme) => ({
+                sx={{
                   p: 2,
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
                   transition: 'all ease 120ms',
                   '&:hover, &:focus-within': {
-                    borderColor: theme.palette.mode === 'dark' ? 'primary.600' : 'grey.300',
-                    boxShadow: `0px 4px 20px ${
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(0, 0, 0, 0.5)'
-                        : 'rgba(170, 180, 190, 0.3)'
-                    }`,
+                    borderColor: 'grey.300',
+                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                    ':where([data-mui-color-scheme="dark"])': {
+                      borderColor: 'primary.600',
+                      boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                    },
                   },
                   '&:focus-within': {
                     '& a': {
                       outline: 'none',
                     },
                   },
-                })}
+                }}
               >
                 {post.image && (
                   <Box
@@ -98,9 +98,9 @@ export default function Blog() {
           </Box>
         </Section>
       </main>
-      {/* <HeroEnd />
+      <HeroEnd />
       <Divider />
-      <AppFooter /> */}
+      <AppFooter />
     </React.Fragment>
   );
 }

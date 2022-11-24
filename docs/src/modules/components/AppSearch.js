@@ -5,6 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -142,7 +143,7 @@ function NewStartScreen() {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
+            <NextLink key={name} href={href} legacyBehavior>
               <a href={href} className="DocSearch-NewStartScreenItem">
                 {name}
                 <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
@@ -217,13 +218,14 @@ export default function AppSearch() {
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
+  const pathname = usePathname();
   const router = useRouter();
-  const productSpace = getUrlProduct(router.asPath);
+  const productSpace = getUrlProduct(router?.asPath || pathname);
 
   const keyboardNavigator = {
     navigate({ item }) {
       const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
-      router.push(item.pathname, as);
+      router?.push(item.pathname, as);
     },
   };
 

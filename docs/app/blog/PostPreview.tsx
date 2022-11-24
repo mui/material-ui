@@ -1,3 +1,7 @@
+'use client';
+
+// Ideally this would have been server component
+// But most of the MUI component need to be client components
 import * as React from 'react';
 import { BlogPost } from 'docs/lib/sourcing';
 import { alpha } from '@mui/material/styles';
