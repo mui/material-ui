@@ -46,7 +46,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    * Set to `false` to disable `maxWidth`.
    * @default 'sm'
    */
-  maxWidth?: Breakpoint | false;
+  maxWidth?: Breakpoint | false | string;
   /**
    * Callback fired when the backdrop is clicked.
    * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
