@@ -166,11 +166,11 @@ ClassesTable.propTypes = {
 
 function getTranslatedHeader(t, header) {
   const translations = {
+    demos: t('api-docs.demos'),
     import: t('api-docs.import'),
     'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
-    demos: t('api-docs.demos'),
     css: 'CSS',
   };
 
@@ -253,10 +253,10 @@ function ApiDocs(props) {
   }
 
   const toc = [
+    createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
     componentStyles.name && createTocEntry('component-name'),
-    createTocEntry('demos'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
   ].filter(Boolean);
@@ -298,6 +298,14 @@ function ApiDocs(props) {
         <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
         </Typography>
+        <Heading hash="demos" />
+        <p
+          dangerouslySetInnerHTML={{
+            __html:
+              'To see demos and examples on how to use this React component, visit the component guide section:',
+          }}
+        />
+        <span dangerouslySetInnerHTML={{ __html: demos }} />
         <Heading hash="import" />
         <HighlightedCode
           code={`
@@ -331,14 +339,6 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         )}
-        <Heading hash="demos" />
-        <p
-          dangerouslySetInnerHTML={{
-            __html:
-              'The following component guides include examples on how to use this React component:',
-          }}
-        />
-        <span dangerouslySetInnerHTML={{ __html: demos }} />
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
