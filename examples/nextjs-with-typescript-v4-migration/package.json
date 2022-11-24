@@ -10,10 +10,10 @@
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "dependencies": {
-    "@emotion/cache": "^11.0.0",
-    "@emotion/react": "^11.0.0",
-    "@emotion/server": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/styles": "latest",
