@@ -41,7 +41,7 @@ export interface TabPanelOwnerState extends TabPanelProps {
    */
   orientation?: 'horizontal' | 'vertical';
   /**
-   * The visibility of the tab panel.
+   * Whether or not to keep the tab panel mounted.
    */
-  visibility: string;
+  keepMounted?: boolean;
 }
