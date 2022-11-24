@@ -126,7 +126,7 @@ module.exports = function setKarmaConfig(config) {
       module: {
         rules: [
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
@@ -171,7 +171,7 @@ module.exports = function setKarmaConfig(config) {
             },
           },
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -184,7 +184,7 @@ module.exports = function setKarmaConfig(config) {
         ],
       },
       resolve: {
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.mjs', '.ts', '.tsx'],
         fallback: {
           // needed by sourcemap
           fs: false,

@@ -15,7 +15,7 @@ The `Radio` component is the one to be used when you want to allow users to sele
 To allow multiple selection, use the `Checkbox` instead.
 For more in-depth about when to use each, visit [the NNg's documentation](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/).
 
-{{"demo": "RadioUsage.js", "hideToolbar": true}}
+{{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
@@ -139,7 +139,7 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 
 A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-groups) that demonstrate the composition of the components.
 
-{{"demo": "ExampleTiers.js", "bg": true}}
+{{"demo": "ExampleTiers.js"}}
 
 ### Alignment buttons
 
