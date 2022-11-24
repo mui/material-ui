@@ -2,26 +2,26 @@ import * as React from 'react';
 import type { FormControlProps } from './FormControl';
 
 type ContextFromPropsKey =
+  | 'color'
   | 'disabled'
   | 'error'
   | 'fullWidth'
   | 'hiddenLabel'
   | 'margin'
+  | 'onBlur'
+  | 'onFocus'
   | 'required'
+  | 'size'
   | 'variant';
 
 export interface FormControlState extends Pick<FormControlProps, ContextFromPropsKey> {
   adornedStart: boolean;
-  color: string;
   filled: boolean;
   focused: boolean;
-  onBlur: () => void;
   onEmpty: () => void;
   onFilled: () => void;
-  onFocus: () => void;
-  regiterEffect: () => void;
+  registerEffect: () => void;
   setAdornedStart: React.Dispatch<React.SetStateAction<boolean>>;
-  size: string;
 }
 
 /**
