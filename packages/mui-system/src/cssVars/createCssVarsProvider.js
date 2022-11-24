@@ -86,7 +86,7 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
     const theme = { ...themeProp };
-    Object.entries(theme.colorSchemes[calculatedColorScheme]).forEach(([schemeKey, scheme]) => {
+    Object.entries(theme.colorSchemes || {}).forEach(([schemeKey, scheme]) => {
       if (scheme && typeof scheme === 'object') {
         // shallow merge the 1st level structure of the theme.
         theme[schemeKey] = {
