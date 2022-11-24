@@ -12,7 +12,10 @@ import {
 } from './describeConformance';
 
 export interface UnstyledConformanceOptions
-  extends Omit<Partial<ConformanceOptions>, 'render' | 'skip' | 'classes'> {
+  extends Omit<
+    Partial<ConformanceOptions>,
+    'render' | 'skip' | 'classes' | 'testComponentPropWith'
+  > {
   render: (
     element: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
     options?: RenderOptions | undefined,

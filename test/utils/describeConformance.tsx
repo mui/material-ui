@@ -31,7 +31,7 @@ export interface InputConformanceOptions {
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: React.ElementType;
-  testComponentPropWith?: Array<React.ElementType>;
+  testComponentPropWith?: React.ElementType | Array<React.ElementType>;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
@@ -128,7 +128,7 @@ export function testComponentProp(
 ) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
-      const { mount, testComponentPropWith } = getOptions();
+      const { mount, testComponentPropWith = 'em' } = getOptions();
 
       const components =
         testComponentPropWith instanceof Array ? testComponentPropWith : [testComponentPropWith];
