@@ -42,6 +42,65 @@ export default function createCssVarsProvider(options) {
   }
   const ColorSchemeContext = React.createContext(undefined);
 
+  /**
+   * Clone the value of the `theme.colorSchemes.{colorScheme}` and attach back to the theme.
+   *
+   * E.g. if the `colorScheme` is dark:
+   *
+   * theme before: {
+   *  colorSchemes: {
+   *    light: { palette: { ...lightPalette }, ...lightTokens },
+   *    dark: { palette: { ...darkPalette }, ...darkTokens }
+   *  }
+   * }
+   *
+   * theme after: {
+   *  colorSchemes: { ... }, // same as before
+   *  palette: { ...darkPalette },
+   *  ...darkTokens
+   * }
+   */
+  const recalculateTheme = (theme, { mode, colorScheme, defaultMode, defaultColorScheme }) => {
+    const defaultLightColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
+    const defaultDarkColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
+    const calculatedMode = (() => {
+      if (!mode) {
+        // This scope occurs on the server
+        if (defaultMode === 'system') {
+          return designSystemMode;
+        }
+        return defaultMode;
+      }
+      return mode;
+    })();
+    const calculatedColorScheme = (() => {
+      if (!colorScheme) {
+        // This scope occurs on the server
+        if (calculatedMode === 'dark') {
+          return defaultDarkColorScheme;
+        }
+        return defaultLightColorScheme;
+      }
+      return colorScheme;
+    })();
+    Object.entries(theme.colorSchemes[calculatedColorScheme]).forEach(([schemeKey, scheme]) => {
+      if (scheme && typeof scheme === 'object') {
+        // shallow merge the 1st level structure of the theme.
+        theme[schemeKey] = {
+          ...theme[schemeKey],
+          ...scheme,
+        };
+      } else {
+        theme[schemeKey] = scheme;
+      }
+    });
+    if (theme.palette) {
+      theme.palette.colorScheme = calculatedColorScheme;
+    }
+  };
+
   const useColorScheme = () => {
     const value = React.useContext(ColorSchemeContext);
     if (!value) {
@@ -63,7 +122,7 @@ export default function createCssVarsProvider(options) {
    *
    * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
    */
-  const useCssThemeVars = ({
+  const generateCssThemeVars = ({
     theme: themeProp = defaultTheme,
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
@@ -178,54 +237,19 @@ export default function createCssVarsProvider(options) {
       storageWindow,
     });
 
-    const { theme, styles } = useCssThemeVars({
+    const { theme, styles } = generateCssThemeVars({
       theme: themeProp,
       defaultMode,
       defaultColorScheme,
       selector: {
         root: colorSchemeSelector,
-        colorScheme: (key) => `[${attribute}="${key}"]`,
+        colorScheme: (key) =>
+          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
       },
       shouldSkipGeneratingVar,
     });
 
-    const calculatedMode = (() => {
-      // the `calculatedMode` can be controlled with parameter, otherwise listen to the context.
-      if (!mode) {
-        // This scope occurs on the server
-        if (defaultMode === 'system') {
-          return designSystemMode;
-        }
-        return defaultMode;
-      }
-      return mode;
-    })();
-    const calculatedColorScheme = (() => {
-      if (!colorScheme) {
-        // This scope occurs on the server
-        if (calculatedMode === 'dark') {
-          return defaultDarkColorScheme;
-        }
-        // use light color scheme, if default mode is 'light' | 'system'
-        return defaultLightColorScheme;
-      }
-      return colorScheme;
-    })();
-
-    Object.entries(theme.colorSchemes[calculatedColorScheme]).forEach(([schemeKey, scheme]) => {
-      if (scheme && typeof scheme === 'object') {
-        // shallow merge the 1st level structure of the theme.
-        theme[schemeKey] = {
-          ...theme[schemeKey],
-          ...scheme,
-        };
-      } else {
-        theme[schemeKey] = scheme;
-      }
-    });
-    if (theme.palette) {
-      theme.palette.colorScheme = calculatedColorScheme;
-    }
+    recalculateTheme(theme, { mode, colorScheme, defaultMode, defaultColorScheme });
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
@@ -362,48 +386,11 @@ export default function createCssVarsProvider(options) {
         'MUI: `<NestedCssVarsProvider>` must be rendered under <CssVarsProvider />',
       );
     }
-    const defaultLightColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
-    const defaultDarkColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
     const { mode, colorScheme } = value;
-    const calculatedMode = (() => {
-      // the `calculatedMode` can be controlled with parameter, otherwise listen to the context.
-      if (!mode) {
-        // This scope occurs on the server
-        if (defaultMode === 'system') {
-          return designSystemMode;
-        }
-        return defaultMode;
-      }
-      return mode;
-    })();
-    const calculatedColorScheme = (() => {
-      if (!colorScheme) {
-        // This scope occurs on the server
-        if (calculatedMode === 'dark') {
-          return defaultDarkColorScheme;
-        }
-        // use light color scheme, if default mode is 'light' | 'system'
-        return defaultLightColorScheme;
-      }
-      return colorScheme;
-    })();
-    Object.entries(theme.colorSchemes[calculatedColorScheme]).forEach(([schemeKey, scheme]) => {
-      if (scheme && typeof scheme === 'object') {
-        // shallow merge the 1st level structure of the theme.
-        theme[schemeKey] = {
-          ...theme[schemeKey],
-          ...scheme,
-        };
-      } else {
-        theme[schemeKey] = scheme;
-      }
-    });
-    if (theme.palette) {
-      theme.palette.colorScheme = calculatedColorScheme;
-    }
+
+    recalculateTheme(theme, { mode, colorScheme, defaultMode, defaultColorScheme });
+
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
   }
   NestedCssVarsProvider.propTypes = {
@@ -449,7 +436,7 @@ export default function createCssVarsProvider(options) {
     CssVarsProvider,
     NestedCssVarsProvider,
     useColorScheme,
-    useCssThemeVars,
+    generateCssThemeVars,
     getInitColorSchemeScript,
   };
 }

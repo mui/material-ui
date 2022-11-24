@@ -66,7 +66,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * The node used to attach the color-scheme attribute
          * @default document
          */
-        colorSchemeNode?: Document | HTMLElement | null;
+        colorSchemeNode?: Element | null;
         /**
          * The CSS selector for attaching the generated custom properties
          * @default ':root'
@@ -100,7 +100,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
     }>,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  useCssThemeVars: <T = {}>(options?: {
+  generateCssThemeVars: <T = {}>(options?: {
     /**
      * Design system default color scheme.
      * - provides string if the design system has one default color scheme (either light or dark)
@@ -108,10 +108,9 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
      */
     defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
     /**
-     * Design system default mode
      * @default 'light'
      */
-    defaultMode?: Mode;
+    defaultMode?: 'light' | 'dark';
     /**
      * The CSS selector for attaching the generated CSS theme variables.
      */

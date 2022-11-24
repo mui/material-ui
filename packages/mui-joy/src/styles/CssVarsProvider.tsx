@@ -12,7 +12,7 @@ const shouldSkipGeneratingVar = (keys: string[]) =>
 const {
   CssVarsProvider,
   useColorScheme,
-  useCssThemeVars: systemUseCssThemeVars,
+  generateCssThemeVars: systemUseCssThemeVars,
   getInitColorSchemeScript,
 } = createCssVarsProvider<DefaultColorScheme | ExtendedColorScheme>({
   theme: extendTheme(),
@@ -38,12 +38,12 @@ const {
   shouldSkipGeneratingVar,
 });
 
-const useCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
+const generateCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
 
 export {
   CssVarsProvider,
   useColorScheme,
-  useCssThemeVars,
+  generateCssThemeVars,
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
 };

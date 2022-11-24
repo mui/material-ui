@@ -14,7 +14,7 @@ const {
   CssVarsProvider,
   NestedCssVarsProvider,
   useColorScheme,
-  useCssThemeVars: systemUseCssThemeVars,
+  generateCssThemeVars: systemUseCssThemeVars,
   getInitColorSchemeScript,
 } = createCssVarsProvider<SupportedColorScheme>({
   theme: defaultTheme,
@@ -37,11 +37,11 @@ const {
   excludeVariablesFromRoot,
 });
 
-const useCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
+const generateCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
 
 export {
   useColorScheme,
-  useCssThemeVars,
+  generateCssThemeVars,
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
   CssVarsProvider as Experimental_CssVarsProvider,
