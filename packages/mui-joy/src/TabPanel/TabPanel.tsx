@@ -44,7 +44,7 @@ const TabPanelRoot = styled('div', {
   }),
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
-  visibility: ownerState.visibility,
+  visibility: ownerState.keepMounted && ownerState.hidden ? 'hidden' : 'visible',
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
@@ -75,7 +75,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     orientation,
     hidden,
     size,
-    visibility: hidden ? 'hidden' : 'visible',
+    keepMounted,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -93,19 +93,12 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     ownerState,
     className: classes.root,
   });
-  
-  React.useEffect(() => {
-    if (!hidden && !mounted) {
-      setMounted(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hidden]);
 
-  return (
-    <TabPanelRoot {...tabPanelRootProps}>
-      {(keepMounted && mounted) || !hidden ? children : null}
-    </TabPanelRoot>
-  );
+  if (hidden && !keepMounted) {
+    return null;
+  }
+
+  return <TabPanelRoot {...tabPanelRootProps}>{children}</TabPanelRoot>;
 }) as OverridableComponent<TabPanelTypeMap>;
 
 TabPanel.propTypes /* remove-proptypes */ = {
