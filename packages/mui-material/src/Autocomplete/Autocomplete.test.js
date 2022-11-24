@@ -2410,6 +2410,7 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
+      console.log(JSON.stringify(firstOption.getBoundingClientRect(), null, 2));
       fireEvent.mouseMove(firstOption);
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
