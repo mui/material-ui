@@ -36,7 +36,9 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, TooltipPropsColorOverrides>;
     /**
-     * Replace the default slots.
+     * The components used for each slot inside the Tooltip.
+     * Either a string to use a HTML element or a component.
+     * @default {}
      */
     slots?: {
       root?: React.ElementType;

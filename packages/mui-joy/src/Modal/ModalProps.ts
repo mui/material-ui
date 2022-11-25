@@ -28,7 +28,9 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'open'
     > & {
       /**
-       * Replace the default slots.
+       * The components used for each slot inside the Modal.
+       * Either a string to use a HTML element or a component.
+       * @default {}
        */
       slots?: {
         root?: React.ElementType;

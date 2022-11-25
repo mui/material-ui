@@ -387,7 +387,9 @@ Modal.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * Replace the default slots.
+   * The components used for each slot inside the Modal.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,

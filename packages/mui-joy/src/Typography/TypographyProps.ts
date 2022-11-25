@@ -32,7 +32,9 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
       /**
-       * Replace the default slots.
+       * The components used for each slot inside the Typography.
+       * Either a string to use a HTML element or a component.
+       * @default {}
        */
       slots?: {
         root?: React.ElementType;

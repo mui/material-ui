@@ -128,7 +128,9 @@ interface AutocompleteOwnProps<
    */
   color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
   /**
-   * Replace the default slots.
+   * The components used for each slot inside the Autocomplete.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots?: {
     root?: React.ElementType;

@@ -277,7 +277,9 @@ Typography.propTypes /* remove-proptypes */ = {
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * Replace the default slots.
+   * The components used for each slot inside the Typography.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots: PropTypes.shape({
     endDecorator: PropTypes.elementType,

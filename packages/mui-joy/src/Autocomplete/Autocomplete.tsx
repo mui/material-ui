@@ -1018,7 +1018,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * Replace the default slots.
+   * The components used for each slot inside the Autocomplete.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots: PropTypes.shape({
     clearIndicator: PropTypes.elementType,

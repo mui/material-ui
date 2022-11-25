@@ -48,7 +48,9 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
-   * Replace the default slots.
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots?: {
     root?: React.ElementType;

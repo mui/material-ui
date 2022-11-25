@@ -34,7 +34,9 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
       /**
-       * Replace the default slots.
+       * The components used for each slot inside the Link.
+       * Either a string to use a HTML element or a component.
+       * @default {}
        */
       slots?: {
         root?: React.ElementType;

@@ -21,7 +21,9 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     children?: React.ReactNode;
     /**
-     * Replace the default slots.
+     * The components used for each slot inside the Breadcrumbs.
+     * Either a string to use a HTML element or a component.
+     * @default {}
      */
     slots?: {
       root?: React.ElementType;

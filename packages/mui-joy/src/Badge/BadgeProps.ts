@@ -45,8 +45,10 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     children?: React.ReactNode;
     /**
-     * Replace the default slots.
-     */
+   * The components used for each slot inside the Badge.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
     slots?: {
       root?: React.ElementType;
       badge?: React.ElementType;

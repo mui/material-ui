@@ -24,7 +24,9 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      */
     color?: OverridableStringUnion<ColorPaletteProp, CircularProgressPropsColorOverrides>;
     /**
-     * Replace the default slots.
+     * The components used for each slot inside the CircularProgress.
+     * Either a string to use a HTML element or a component.
+     * @default {}
      */
     slots?: {
       root?: React.ElementType;

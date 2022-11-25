@@ -805,7 +805,9 @@ Slider.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * Replace the default slots.
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,
