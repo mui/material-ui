@@ -42,157 +42,12 @@ export default function createCssVarsProvider(options) {
   }
   const ColorSchemeContext = React.createContext(undefined);
 
-  /**
-   * Clone the value of the `theme.colorSchemes.{colorScheme}` and attach back to the theme.
-   *
-   * E.g. if the `colorScheme` is dark:
-   *
-   * theme before: {
-   *  colorSchemes: {
-   *    light: { palette: { ...lightPalette }, ...lightTokens },
-   *    dark: { palette: { ...darkPalette }, ...darkTokens }
-   *  }
-   * }
-   *
-   * theme after: {
-   *  colorSchemes: { ... }, // same as before
-   *  palette: { ...darkPalette },
-   *  ...darkTokens
-   * }
-   */
-  const recalculateTheme = (themeProp, { mode, colorScheme, defaultMode, defaultColorScheme }) => {
-    const defaultLightColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
-    const defaultDarkColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
-    const calculatedMode = (() => {
-      if (!mode) {
-        // This scope occurs on the server
-        if (defaultMode === 'system') {
-          return designSystemMode;
-        }
-        return defaultMode;
-      }
-      return mode;
-    })();
-    const calculatedColorScheme = (() => {
-      if (!colorScheme) {
-        // This scope occurs on the server
-        if (calculatedMode === 'dark') {
-          return defaultDarkColorScheme;
-        }
-        return defaultLightColorScheme;
-      }
-      return colorScheme;
-    })();
-    const theme = { ...themeProp };
-    Object.entries(theme.colorSchemes || {}).forEach(([schemeKey, scheme]) => {
-      if (scheme && typeof scheme === 'object') {
-        // shallow merge the 1st level structure of the theme.
-        theme[schemeKey] = {
-          ...theme[schemeKey],
-          ...scheme,
-        };
-      } else {
-        theme[schemeKey] = scheme;
-      }
-    });
-    if (theme.palette) {
-      theme.palette = { ...theme.palette, colorScheme: calculatedColorScheme };
-    }
-    return theme;
-  };
-
   const useColorScheme = () => {
     const value = React.useContext(ColorSchemeContext);
     if (!value) {
       throw new MuiError('MUI: `useColorScheme` must be called under <CssVarsProvider />');
     }
     return value;
-  };
-
-  const defaultSelector = {
-    root: ':root',
-    colorScheme: (key) => `[${defaultAttribute}="${key}"]`,
-  };
-
-  /**
-   * Low level API for generating CSS theme variables. Useful for creating nested CSS variables scopes.
-   *
-   * It receives a raw theme as an input and generates ready-to-use stylesheets that contain CSS variables for all color schemes.
-   * It also attaches an object to `theme.vars.*` that can be used as references to CSS variables, and other utilities.
-   *
-   * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
-   */
-  const generateCssThemeVars = ({
-    theme: themeProp = defaultTheme,
-    defaultMode = designSystemMode,
-    defaultColorScheme = designSystemColorScheme,
-    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-    selector = defaultSelector,
-  }) => {
-    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
-
-    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-    });
-
-    // 3. Start composing the theme object
-    const theme = {
-      ...restThemeProp,
-      components,
-      colorSchemes,
-      cssVarPrefix,
-      vars: rootVars,
-      getColorSchemeSelector: (targetColorScheme) => `${selector.colorScheme(targetColorScheme)} &`,
-    };
-
-    // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    //    The default color scheme stylesheet is constructed to have the least CSS specificity.
-    //    The other color schemes uses selector, default as data attribute, to increase the CSS specificity so that they can override the default color scheme stylesheet.
-    const defaultColorSchemeStyleSheet = {};
-    const otherColorSchemesStyleSheet = {};
-    Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme, {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-      });
-      theme.vars = deepmerge(theme.vars, vars);
-      const resolvedDefaultColorScheme = (() => {
-        if (typeof defaultColorScheme === 'string') {
-          return defaultColorScheme;
-        }
-        if (defaultMode === 'dark') {
-          return defaultColorScheme.dark;
-        }
-        return defaultColorScheme.light;
-      })();
-      if (key === resolvedDefaultColorScheme) {
-        if (excludeVariablesFromRoot) {
-          const excludedVariables = {};
-          excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
-            excludedVariables[cssVar] = css[cssVar];
-            delete css[cssVar];
-          });
-          // treat excluded variables as scoped color scheme
-          defaultColorSchemeStyleSheet[selector.colorScheme(key)] = excludedVariables;
-        }
-        defaultColorSchemeStyleSheet[`${selector.root}, ${selector.colorScheme(key)}`] = css;
-      } else {
-        otherColorSchemesStyleSheet[selector.colorScheme(key)] = css;
-      }
-    });
-
-    return {
-      theme,
-      styles: {
-        [selector.root]: rootCss,
-        ...defaultColorSchemeStyleSheet,
-        ...otherColorSchemesStyleSheet,
-      },
-    };
   };
 
   function CssVarsProvider({
@@ -237,6 +92,7 @@ export default function createCssVarsProvider(options) {
       storageWindow,
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const { theme: themeWithVars, styles } = generateCssThemeVars({
       theme: themeProp,
       defaultMode,
@@ -249,6 +105,7 @@ export default function createCssVarsProvider(options) {
       shouldSkipGeneratingVar,
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const theme = recalculateTheme(themeWithVars, {
       mode,
       colorScheme,
@@ -377,6 +234,155 @@ export default function createCssVarsProvider(options) {
      * The calculated theme object that will be passed through context.
      */
     theme: PropTypes.object,
+  };
+
+  /**
+   * Clone the value of the `theme.colorSchemes.{colorScheme}` and attach back to the theme.
+   *
+   * E.g. if the `colorScheme` is dark:
+   *
+   * theme before: {
+   *  colorSchemes: {
+   *    light: { palette: { ...lightPalette }, ...lightTokens },
+   *    dark: { palette: { ...darkPalette }, ...darkTokens }
+   *  }
+   * }
+   *
+   * theme after: {
+   *  colorSchemes: { ... }, // same as before
+   *  palette: { ...darkPalette },
+   *  ...darkTokens
+   * }
+   */
+  const recalculateTheme = (themeProp, { mode, colorScheme, defaultMode, defaultColorScheme }) => {
+    const defaultLightColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
+    const defaultDarkColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
+    const calculatedMode = (() => {
+      if (!mode) {
+        // This scope occurs on the server
+        if (defaultMode === 'system') {
+          return designSystemMode;
+        }
+        return defaultMode;
+      }
+      return mode;
+    })();
+    const calculatedColorScheme = (() => {
+      if (!colorScheme) {
+        // This scope occurs on the server
+        if (calculatedMode === 'dark') {
+          return defaultDarkColorScheme;
+        }
+        return defaultLightColorScheme;
+      }
+      return colorScheme;
+    })();
+    const theme = { ...themeProp };
+    const scheme = theme.colorSchemes[calculatedColorScheme] || {};
+
+    Object.keys(scheme).forEach((schemeKey) => {
+      if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
+        // shallow merge the 1st level structure of the theme.
+        theme[schemeKey] = {
+          ...theme[schemeKey],
+          ...scheme[schemeKey],
+        };
+      } else {
+        theme[schemeKey] = scheme[schemeKey];
+      }
+    });
+    if (theme.palette) {
+      theme.palette = { ...theme.palette, colorScheme: calculatedColorScheme };
+    }
+    return theme;
+  };
+
+  /**
+   * @internal
+   */
+  const defaultSelector = {
+    root: ':root',
+    colorScheme: (key) => `[${defaultAttribute}="${key}"]`,
+  };
+  /**
+   * Low level API for generating CSS theme variables. Useful for creating nested CSS variables scopes.
+   *
+   * It receives a raw theme as an input and generates ready-to-use stylesheets that contain CSS variables for all color schemes.
+   * It also attaches an object to `theme.vars.*` that can be used as references to CSS variables, and other utilities.
+   *
+   * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
+   */
+  const generateCssThemeVars = ({
+    theme: themeProp = defaultTheme,
+    defaultMode = designSystemMode,
+    defaultColorScheme = designSystemColorScheme,
+    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+    selector = defaultSelector,
+  }) => {
+    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
+
+    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
+    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
+
+    // 3. Start composing the theme object
+    const theme = {
+      ...restThemeProp,
+      components,
+      colorSchemes,
+      cssVarPrefix,
+      vars: rootVars,
+      getColorSchemeSelector: (targetColorScheme) => `${selector.colorScheme(targetColorScheme)} &`,
+    };
+
+    // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
+    //    The default color scheme stylesheet is constructed to have the least CSS specificity.
+    //    The other color schemes uses selector, default as data attribute, to increase the CSS specificity so that they can override the default color scheme stylesheet.
+    const defaultColorSchemeStyleSheet = {};
+    const otherColorSchemesStyleSheet = {};
+    Object.entries(colorSchemes).forEach(([key, scheme]) => {
+      const { css, vars } = cssVarsParser(scheme, {
+        prefix: cssVarPrefix,
+        shouldSkipGeneratingVar,
+      });
+      theme.vars = deepmerge(theme.vars, vars);
+      const resolvedDefaultColorScheme = (() => {
+        if (typeof defaultColorScheme === 'string') {
+          return defaultColorScheme;
+        }
+        if (defaultMode === 'dark') {
+          return defaultColorScheme.dark;
+        }
+        return defaultColorScheme.light;
+      })();
+      if (key === resolvedDefaultColorScheme) {
+        if (excludeVariablesFromRoot) {
+          const excludedVariables = {};
+          excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
+            excludedVariables[cssVar] = css[cssVar];
+            delete css[cssVar];
+          });
+          // treat excluded variables as scoped color scheme
+          defaultColorSchemeStyleSheet[selector.colorScheme(key)] = excludedVariables;
+        }
+        defaultColorSchemeStyleSheet[`${selector.root}, ${selector.colorScheme(key)}`] = css;
+      } else {
+        otherColorSchemesStyleSheet[selector.colorScheme(key)] = css;
+      }
+    });
+
+    return {
+      theme,
+      styles: {
+        [selector.root]: rootCss,
+        ...defaultColorSchemeStyleSheet,
+        ...otherColorSchemesStyleSheet,
+      },
+    };
   };
 
   function NestedCssVarsProvider({
