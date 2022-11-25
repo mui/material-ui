@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type BadgeSlot = 'root' | 'badge';
 
@@ -17,16 +17,8 @@ export interface BadgeOrigin {
 }
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    BadgeOwnerState
-  >;
-  badge?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    BadgeOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, BadgeOwnerState>;
+  badge?: SlotComponentProps<'div', {}, BadgeOwnerState>;
 }
 
 export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label';
 
@@ -13,36 +13,12 @@ export interface RadioPropsColorOverrides {}
 export interface RadioPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    RadioOwnerState
-  >;
-  radio?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    RadioOwnerState
-  >;
-  icon?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    RadioOwnerState
-  >;
-  action?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    RadioOwnerState
-  >;
-  input?: SlotComponentProps<
-    'input',
-    { component?: React.ElementType; sx?: SxProps },
-    RadioOwnerState
-  >;
-  label?: SlotComponentProps<
-    'label',
-    { component?: React.ElementType; sx?: SxProps },
-    RadioOwnerState
-  >;
+  root?: SlotComponentProps<'span', {}, RadioOwnerState>;
+  radio?: SlotComponentProps<'span', {}, RadioOwnerState>;
+  icon?: SlotComponentProps<'span', {}, RadioOwnerState>;
+  action?: SlotComponentProps<'span', {}, RadioOwnerState>;
+  input?: SlotComponentProps<'input', {}, RadioOwnerState>;
+  label?: SlotComponentProps<'label', {}, RadioOwnerState>;
 }
 
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
@@ -9,21 +9,9 @@ export interface ListItemPropsVariantOverrides {}
 export interface ListItemPropsColorOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    ListItemOwnerState
-  >;
-  startAction?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ListItemOwnerState
-  >;
-  endAction?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ListItemOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, ListItemOwnerState>;
+  startAction?: SlotComponentProps<'span', {}, ListItemOwnerState>;
+  endAction?: SlotComponentProps<'span', {}, ListItemOwnerState>;
 }
 
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {

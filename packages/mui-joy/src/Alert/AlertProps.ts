@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
 
@@ -10,21 +10,9 @@ export interface AlertPropsColorOverrides {}
 export interface AlertPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    AlertOwnerState
-  >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    AlertOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    AlertOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, AlertOwnerState>;
+  startDecorator?: SlotComponentProps<'span', {}, AlertOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, AlertOwnerState>;
 }
 
 export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {

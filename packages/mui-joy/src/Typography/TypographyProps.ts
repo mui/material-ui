@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import {
   ColorPaletteProp,
-  TypographySystem,
   SxProps,
   SystemProps,
+  TypographySystem,
   VariantProp,
 } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
@@ -15,21 +15,9 @@ export interface TypographyPropsColorOverrides {}
 export interface TypographyPropsVariantOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'a',
-    { component?: React.ElementType; sx?: SxProps },
-    TypographyOwnerState
-  >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    TypographyOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    TypographyOwnerState
-  >;
+  root?: SlotComponentProps<'a', {}, TypographyOwnerState>;
+  startDecorator?: SlotComponentProps<'span', {}, TypographyOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, TypographyOwnerState>;
 }
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {

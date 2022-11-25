@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { SlotComponentProps } from '@mui/base/utils';
 import { styled } from '../styles';
 import useSlot from './useSlot';
+import { SlotComponentProps } from './types';
 
 describe('useSlot', () => {
   const { render } = createRenderer();

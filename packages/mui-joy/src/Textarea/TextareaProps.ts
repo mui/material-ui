@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
@@ -10,26 +10,10 @@ export interface TextareaPropsColorOverrides {}
 export interface TextareaPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    TextareaOwnerState
-  >;
-  textarea?: SlotComponentProps<
-    'textarea',
-    { component?: React.ElementType; sx?: SxProps },
-    TextareaOwnerState
-  >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    TextareaOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    TextareaOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, TextareaOwnerState>;
+  textarea?: SlotComponentProps<'textarea', {}, TextareaOwnerState>;
+  startDecorator?: SlotComponentProps<'span', {}, TextareaOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, TextareaOwnerState>;
 }
 
 export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {

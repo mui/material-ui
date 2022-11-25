@@ -1,7 +1,7 @@
-import { SlotComponentProps } from '@mui/base/utils';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type CircularProgressSlot = 'root' | 'svg' | 'track' | 'progress';
 
@@ -10,26 +10,10 @@ export interface CircularProgressPropsSizeOverrides {}
 export interface CircularProgressPropsVariantOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    CircularProgressOwnerState
-  >;
-  svg?: SlotComponentProps<
-    'svg',
-    { component?: React.ElementType; sx?: SxProps },
-    CircularProgressOwnerState
-  >;
-  track?: SlotComponentProps<
-    'circle',
-    { component?: React.ElementType; sx?: SxProps },
-    CircularProgressOwnerState
-  >;
-  progress?: SlotComponentProps<
-    'circle',
-    { component?: React.ElementType; sx?: SxProps },
-    CircularProgressOwnerState
-  >;
+  root?: SlotComponentProps<'span', {}, CircularProgressOwnerState>;
+  svg?: SlotComponentProps<'svg', {}, CircularProgressOwnerState>;
+  track?: SlotComponentProps<'circle', {}, CircularProgressOwnerState>;
+  progress?: SlotComponentProps<'circle', {}, CircularProgressOwnerState>;
 }
 
 export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {

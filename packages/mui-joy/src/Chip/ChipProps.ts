@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
 
@@ -10,32 +10,18 @@ export interface ChipPropsSizeOverrides {}
 export interface ChipPropsVariantOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { component?: React.ElementType; sx?: SxProps }, ChipOwnerState>;
-  label?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ChipOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, ChipOwnerState>;
+  label?: SlotComponentProps<'span', {}, ChipOwnerState>;
   action?: SlotComponentProps<
     'button',
     {
-      component?: React.ElementType;
-      sx?: SxProps;
       href?: string;
       to?: string;
     },
     ChipOwnerState
   >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ChipOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ChipOwnerState
-  >;
+  startDecorator?: SlotComponentProps<'span', {}, ChipOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, ChipOwnerState>;
 }
 
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {

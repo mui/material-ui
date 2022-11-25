@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type AvatarSlot = 'root' | 'img' | 'fallback';
 
@@ -10,21 +10,9 @@ export interface AvatarPropsVariantOverrides {}
 export interface AvatarPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    AvatarOwnerState
-  >;
-  img?: SlotComponentProps<
-    'img',
-    { component?: React.ElementType; sx?: SxProps },
-    AvatarOwnerState
-  >;
-  fallback?: SlotComponentProps<
-    'svg',
-    { component?: React.ElementType; sx?: SxProps },
-    AvatarOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, AvatarOwnerState>;
+  img?: SlotComponentProps<'img', {}, AvatarOwnerState>;
+  fallback?: SlotComponentProps<'svg', {}, AvatarOwnerState>;
 }
 
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {

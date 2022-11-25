@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { PopperUnstyledProps } from '@mui/base';
-import { SlotComponentProps } from '@mui/base/utils';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type TooltipSlot = 'root' | 'arrow';
 
@@ -16,11 +16,7 @@ interface ComponentsProps {
     { component?: React.ElementType; sx?: SxProps } & Omit<PopperUnstyledProps, 'direction'>,
     TooltipOwnerState
   >;
-  arrow?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    TooltipOwnerState
-  >;
+  arrow?: SlotComponentProps<'span', {}, TooltipOwnerState>;
 }
 
 export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {

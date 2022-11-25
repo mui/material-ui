@@ -1,22 +1,14 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { ModalUnstyledOwnProps } from '@mui/base/ModalUnstyled';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type ModalSlot = 'root' | 'backdrop';
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    ModalOwnerState
-  >;
-  backdrop?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    ModalOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, ModalOwnerState>;
+  backdrop?: SlotComponentProps<'div', {}, ModalOwnerState>;
 }
 
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {

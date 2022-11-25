@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { SelectOption, SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type { SelectOption } from '@mui/base/SelectUnstyled';
 
@@ -20,31 +20,11 @@ export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    SelectOwnerState<any>
-  >;
-  button?: SlotComponentProps<
-    'button',
-    { component?: React.ElementType; sx?: SxProps },
-    SelectOwnerState<any>
-  >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SelectOwnerState<any>
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SelectOwnerState<any>
-  >;
-  indicator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SelectOwnerState<any>
-  >;
+  root?: SlotComponentProps<'div', {}, SelectOwnerState<any>>;
+  button?: SlotComponentProps<'button', {}, SelectOwnerState<any>>;
+  startDecorator?: SlotComponentProps<'span', {}, SelectOwnerState<any>>;
+  endDecorator?: SlotComponentProps<'span', {}, SelectOwnerState<any>>;
+  indicator?: SlotComponentProps<'span', {}, SelectOwnerState<any>>;
   listbox?: SlotComponentProps<
     'ul',
     Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {

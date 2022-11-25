@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type SwitchSlot =
   | 'root'
@@ -18,41 +18,13 @@ export interface SwitchPropsColorOverrides {}
 export interface SwitchPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
-  thumb?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
-  action?: SlotComponentProps<
-    'div',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
-  input?: SlotComponentProps<
-    'button',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
-  track?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SwitchOwnerState
-  >;
+  root?: SlotComponentProps<'div', {}, SwitchOwnerState>;
+  thumb?: SlotComponentProps<'span', {}, SwitchOwnerState>;
+  action?: SlotComponentProps<'div', {}, SwitchOwnerState>;
+  input?: SlotComponentProps<'button', {}, SwitchOwnerState>;
+  track?: SlotComponentProps<'span', {}, SwitchOwnerState>;
+  startDecorator?: SlotComponentProps<'span', {}, SwitchOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, SwitchOwnerState>;
 }
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {

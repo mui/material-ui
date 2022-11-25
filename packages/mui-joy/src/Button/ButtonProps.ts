@@ -5,8 +5,8 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIndicatorCenter';
 
@@ -15,26 +15,10 @@ export interface ButtonPropsColorOverrides {}
 export interface ButtonPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'button',
-    { component?: React.ElementType; sx?: SxProps },
-    ButtonOwnerState
-  >;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ButtonOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ButtonOwnerState
-  >;
-  loadingIndicatorCenter?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    ButtonOwnerState
-  >;
+  root?: SlotComponentProps<'button', {}, ButtonOwnerState>;
+  startDecorator?: SlotComponentProps<'span', {}, ButtonOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, ButtonOwnerState>;
+  loadingIndicatorCenter?: SlotComponentProps<'span', {}, ButtonOwnerState>;
 }
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {

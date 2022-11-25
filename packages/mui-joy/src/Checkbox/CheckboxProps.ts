@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
@@ -11,31 +11,11 @@ export interface CheckboxPropsColorOverrides {}
 export interface CheckboxPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    CheckboxOwnerState
-  >;
-  checkbox?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    CheckboxOwnerState
-  >;
-  action?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    CheckboxOwnerState
-  >;
-  input?: SlotComponentProps<
-    'input',
-    { component?: React.ElementType; sx?: SxProps },
-    CheckboxOwnerState
-  >;
-  label?: SlotComponentProps<
-    'label',
-    { component?: React.ElementType; sx?: SxProps },
-    CheckboxOwnerState
-  >;
+  root?: SlotComponentProps<'span', {}, CheckboxOwnerState>;
+  checkbox?: SlotComponentProps<'span', {}, CheckboxOwnerState>;
+  action?: SlotComponentProps<'span', {}, CheckboxOwnerState>;
+  input?: SlotComponentProps<'input', {}, CheckboxOwnerState>;
+  label?: SlotComponentProps<'label', {}, CheckboxOwnerState>;
 }
 
 export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {

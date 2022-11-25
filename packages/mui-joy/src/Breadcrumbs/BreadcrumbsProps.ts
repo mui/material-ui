@@ -1,33 +1,17 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { SxProps } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 
 export interface BreadcrumbsPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'nav',
-    { component?: React.ElementType; sx?: SxProps },
-    BreadcrumbsOwnerState
-  >;
-  ol?: SlotComponentProps<
-    'ol',
-    { component?: React.ElementType; sx?: SxProps },
-    BreadcrumbsOwnerState
-  >;
-  li?: SlotComponentProps<
-    'li',
-    { component?: React.ElementType; sx?: SxProps },
-    BreadcrumbsOwnerState
-  >;
-  separator?: SlotComponentProps<
-    'li',
-    { component?: React.ElementType; sx?: SxProps },
-    BreadcrumbsOwnerState
-  >;
+  root?: SlotComponentProps<'nav', {}, BreadcrumbsOwnerState>;
+  ol?: SlotComponentProps<'ol', {}, BreadcrumbsOwnerState>;
+  li?: SlotComponentProps<'li', {}, BreadcrumbsOwnerState>;
+  separator?: SlotComponentProps<'li', {}, BreadcrumbsOwnerState>;
 }
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {

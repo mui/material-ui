@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import {
   ColorPaletteProp,
   TypographySystem,
@@ -8,6 +7,7 @@ import {
   SxProps,
   SystemProps,
 } from '../styles/types';
+import { SlotComponentProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 
@@ -16,17 +16,9 @@ export interface LinkPropsVariantOverrides {}
 export interface LinkPropsColorOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'a', { component?: React.ElementType; sx?: SxProps }, LinkOwnerState>;
-  startDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    LinkOwnerState
-  >;
-  endDecorator?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    LinkOwnerState
-  >;
+  root?: SlotComponentProps<'a', {}, LinkOwnerState>;
+  startDecorator?: SlotComponentProps<'span', {}, LinkOwnerState>;
+  endDecorator?: SlotComponentProps<'span', {}, LinkOwnerState>;
 }
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {

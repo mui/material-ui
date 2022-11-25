@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
 import { ExtendSliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
 export type SliderSlot =
   | 'root'
@@ -19,46 +19,14 @@ export interface SliderPropsColorOverrides {}
 export interface SliderPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  track?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  rail?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  thumb?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  mark?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  markLabel?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  valueLabel?: SlotComponentProps<
-    'span',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
-  input?: SlotComponentProps<
-    'input',
-    { component?: React.ElementType; sx?: SxProps },
-    SliderOwnerState
-  >;
+  root?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  track?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  rail?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  thumb?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  mark?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  markLabel?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  valueLabel?: SlotComponentProps<'span', {}, SliderOwnerState>;
+  input?: SlotComponentProps<'input', {}, SliderOwnerState>;
 }
 
 export interface SliderOwnProps {
