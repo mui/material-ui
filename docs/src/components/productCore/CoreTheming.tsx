@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { createTheme, useTheme } from '@mui/material/styles';
+import {
+  Theme,
+  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -14,9 +17,6 @@ import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-
-const lightTheme = createTheme();
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
 const code = `
 <Card
@@ -84,10 +84,8 @@ const code = `
   </Box>
 </Card>`;
 
-export default function CoreTheming() {
+export default function CoreTheming({ defaultTheme }: { defaultTheme: Theme }) {
   const [customized, setCustomized] = React.useState(true);
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <Section>
       <Grid container spacing={2}>
@@ -133,9 +131,13 @@ export default function CoreTheming() {
                 minHeight: 188,
               }}
             >
-              <PlayerCard
-                {...(!customized && { theme: mode === 'dark' ? darkTheme : lightTheme })}
-              />
+              {customized ? (
+                <PlayerCard />
+              ) : (
+                <NestedCssVarsProvider theme={defaultTheme}>
+                  <PlayerCard disableTheming />
+                </NestedCssVarsProvider>
+              )}
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
               <HighlightedCode

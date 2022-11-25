@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { ThemeProvider, styled, Theme } from '@mui/material/styles';
+import {
+  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+  styled,
+  Theme,
+} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -131,7 +135,7 @@ const CODES = {
 `,
 };
 
-export default function CoreComponents({ scopedTheme }: { scopedTheme: Theme }) {
+export default function CoreComponents({ defaultTheme }: { defaultTheme: Theme }) {
   const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {
@@ -168,7 +172,11 @@ export default function CoreComponents({ scopedTheme }: { scopedTheme: Theme }) 
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
-              <ThemeProvider theme={customized ? (buildTheme() as Theme) : scopedTheme}>
+              <NestedCssVarsProvider
+                theme={
+                  customized ? (theme) => ({ ...theme, ...(buildTheme() as Theme) }) : defaultTheme
+                }
+              >
                 {demo === 'Button' && (
                   <Stack
                     spacing={2}
@@ -313,7 +321,7 @@ export default function CoreComponents({ scopedTheme }: { scopedTheme: Theme }) 
                     </Tooltip>
                   </Stack>
                 )}
-              </ThemeProvider>
+              </NestedCssVarsProvider>
             </Frame.Demo>
             <Frame.Info
               sx={{

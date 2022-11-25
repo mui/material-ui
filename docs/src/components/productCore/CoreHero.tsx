@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { ThemeProvider, Theme } from '@mui/material/styles';
+import {
+  generateCssThemeVars,
+  experimental_extendTheme as extendTheme,
+  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+} from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -55,6 +60,7 @@ import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 
 function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
@@ -183,7 +189,34 @@ function SlideDemo() {
   );
 }
 
-export default function Hero({ scopedTheme }: { scopedTheme: Theme }) {
+const { palette: lightPalette } = getDesignTokens('light');
+const { palette: darkPalette } = getDesignTokens('dark');
+
+const { theme: nestedTheme, styles } = generateCssThemeVars({
+  theme: extendTheme({
+    cssVarPrefix: 'hero',
+    colorSchemes: {
+      light: {
+        palette: {
+          ...(lightPalette?.primary && { primary: lightPalette?.primary }),
+          ...(lightPalette?.grey && { grey: lightPalette?.grey }),
+          ...(lightPalette?.background && { background: lightPalette?.background }),
+        },
+      },
+      dark: {
+        palette: {
+          ...(darkPalette?.primary && { primary: darkPalette?.primary }),
+          ...(darkPalette?.grey && { grey: darkPalette?.grey }),
+          ...(darkPalette?.background && { background: darkPalette?.background }),
+        },
+      },
+    },
+  }),
+  rootSelector: '.core-hero',
+  colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .core-hero`,
+});
+
+export default function Hero() {
   return (
     <HeroContainer
       left={
@@ -223,8 +256,9 @@ export default function Hero({ scopedTheme }: { scopedTheme: Theme }) {
         overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
-        <ThemeProvider theme={scopedTheme}>
-          <div className="mui-default-theme">
+        <NestedCssVarsProvider theme={nestedTheme}>
+          <GlobalStyles styles={styles} />
+          <div className="core-hero">
             <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
               <Stepper activeStep={1}>
                 <Step>
@@ -429,7 +463,7 @@ export default function Hero({ scopedTheme }: { scopedTheme: Theme }) {
               </Stack>
             </Box>
           </div>
-        </ThemeProvider>
+        </NestedCssVarsProvider>
       }
     />
   );

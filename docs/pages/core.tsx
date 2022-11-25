@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCssThemeVars, experimental_extendTheme as extendTheme } from '@mui/material/styles';
+import { generateCssThemeVars } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
@@ -13,17 +13,9 @@ import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References'
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-const defaultTheme = extendTheme();
+const { theme: defaultTheme, styles } = generateCssThemeVars();
 
 export default function Core() {
-  const { theme: scopedTheme, styles } = useCssThemeVars(defaultTheme, {
-    selector: {
-      root: '.mui-default-theme',
-      defaultColorScheme: (key) =>
-        `.mui-default-theme, [data-mui-color-scheme="${key}"] .mui-default-theme`,
-      scopedColorScheme: (key) => `[data-mui-color-scheme="${key}"] .mui-default-theme`,
-    },
-  });
   return (
     <BrandingCssVarsProvider>
       <Head
@@ -35,10 +27,10 @@ export default function Core() {
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
-        <CoreHero scopedTheme={scopedTheme} />
+        <CoreHero />
         <References companies={CORE_CUSTOMERS} />
-        <CoreComponents scopedTheme={scopedTheme} />
-        <CoreTheming />
+        <CoreComponents defaultTheme={defaultTheme} />
+        <CoreTheming defaultTheme={defaultTheme} />
         <CoreStyling />
         <CoreHeroEnd />
       </main>
