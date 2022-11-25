@@ -160,7 +160,7 @@ const openRolesData = [
       {
         title: 'Accessibility Engineer',
         description:
-          'You will strengthen the core components team, by implementing best practices and guidlines related to the accessibility of the products.',
+          'You will strengthen the core components team by implementing best practices and guidelines related to the accessibility of the products.',
         url: '/careers/accessibility-engineer/',
       },
     ],

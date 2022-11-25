@@ -1,6 +1,6 @@
 # Accessibility Engineer
 
-<p class="description">You will strengthen the core components team, by implementing best practices and guidlines related to the accessibility of the products.</p>
+<p class="description">You will strengthen the core components team by implementing best practices and guidelines related to the accessibility of the products.</p>
 
 ## Details of the Role
 
@@ -46,9 +46,9 @@ This means that the impact of your work in improving the accessibility of our pr
 Depending on the day, you'll:
 
 - **Ensure the components are accessible.**
-  You would basically be an owner of the accessibility across all MUI products. It would be your responsibility to first verify the level of accessibility the components comply with and improve it over time.
+  You would basically be an owner of the accessibility across all MUI products. It would be your responsibility first to verify the level of accessibility the components comply with and improve it over time.
 - **Respond to issues related to accessibility.**
-  Sometimes, users of our products create issues related to a11y, it would be your responsibility to answer them, by either providing best practices or fixing issues that they may have reported.
+  Sometimes, users of our products create issues related to a11y. It would be your responsibility to answer them by either providing best practices or fixing issues that they may have reported.
 - **Intelligently apply accessibility testing tools, use assistive technology, and perform expert manual analysis of the MUI product lines.**
   Having a solid test framework that can help us make sure we stay compliant.
 - **Lead the accessibility training across the company.**
@@ -61,7 +61,7 @@ Depending on the day, you'll:
 - **A track record of accessibility experience with both consumer/enterprise products and assistive technologies, such as screen readers, eye-control, and other accessible technologies**.
   If you've been the accessibility champ in a previous company, pushing towards making sure the user interfaces can be used by disabled people, we want you in our team!
 - **Hands-on knowledge of accessibility guidelines and standards (such as Section 508, WCAG, and EN 301 549) as well as technologies (such as UI Automation, IAccessible, ARIA, and related accessibility APIs)**
-  You would be the one that the team can go to for any a11t topics/questions.
+  You would be the one who the team can go to with any a11y topics/questions.
 - **An advocate of continuous learning; able to absorb and share new ideas, approaches, and techniques for achieving accessibility.**
   Continuous learning is one of the most important parts of this field.
 - **Strong grasp of accessibility techniques in web development applying HTML5, CSS, ARIA, and JavaScript.**
