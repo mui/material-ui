@@ -80,7 +80,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
       }
     >,
   ) => React.ReactElement;
-  NestedCssVarsProvider: (
+  NestedCssVarsProvider: <T extends {}>(
     props: React.PropsWithChildren<{
       /**
        * Design system default color scheme.
@@ -93,10 +93,12 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
        * @default 'light'
        */
       defaultMode?: Mode;
-      theme?: {
-        cssVarPrefix?: string;
-        colorSchemes: Record<ColorScheme, Record<string, any>>;
-      };
+      theme:
+        | {
+            cssVarPrefix?: string;
+            colorSchemes: Record<ColorScheme, Record<string, any>>;
+          }
+        | ((theme: T) => T);
     }>,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;

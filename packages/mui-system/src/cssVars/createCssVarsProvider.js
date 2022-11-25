@@ -5,6 +5,7 @@ import { deepmerge } from '@mui/utils';
 import { GlobalStyles } from '@mui/styled-engine';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
+import useTheme from '../useTheme';
 import systemGetInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -309,14 +310,15 @@ export default function createCssVarsProvider(options) {
    *
    * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
    */
-  const generateCssThemeVars = ({
-    theme: themeProp = defaultTheme,
-    defaultMode = designSystemMode,
-    defaultColorScheme = designSystemColorScheme,
-    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-    rootSelector = ':root',
-    colorSchemeSelector = defaultColorSchemeSelector,
-  }) => {
+  const generateCssThemeVars = (params = {}) => {
+    const {
+      theme: themeProp = defaultTheme,
+      defaultMode = designSystemMode,
+      defaultColorScheme = designSystemColorScheme,
+      shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+      rootSelector = ':root',
+      colorSchemeSelector = defaultColorSchemeSelector,
+    } = params;
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
 
     // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
@@ -395,8 +397,15 @@ export default function createCssVarsProvider(options) {
     }
 
     const { mode, colorScheme } = value;
+    const upperTheme = useTheme();
 
-    const theme = recalculateTheme(themeProp, {
+    let theme = typeof themeProp === 'function' ? themeProp(upperTheme) : themeProp;
+
+    if (!theme.vars) {
+      theme = generateCssThemeVars({ theme, defaultMode, defaultColorScheme }).theme;
+    }
+
+    theme = recalculateTheme(theme, {
       mode,
       colorScheme,
       defaultMode,
