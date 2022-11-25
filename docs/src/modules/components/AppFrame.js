@@ -37,7 +37,12 @@ const nProgressDone = () => {
 };
 
 export function NextNProgressBar() {
-  const router = useRouter();
+  let router;
+  try {
+    router = useRouter();
+  } catch (e) {
+
+  }
   React.useEffect(() => {
     const handleRouteChangeStart = (url, { shallow }) => {
       if (!shallow) {
