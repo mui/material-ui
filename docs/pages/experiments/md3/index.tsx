@@ -167,6 +167,7 @@ function DemoComponents() {
           >
             Button
           </Button>
+          <MD2Button sx={{ borderRadius: 2, color: 'error.main' }}>MD2 Button</MD2Button>
         </Stack>
       </Stack>
       <h4>CSS vars playground</h4>

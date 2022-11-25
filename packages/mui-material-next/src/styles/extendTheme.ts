@@ -8,6 +8,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
   SxProps,
+  unstable_defaultSxConfig as systemDefaultSxConfig,
 } from '@mui/system';
 import {
   createTheme as createThemeWithoutVars,
@@ -426,6 +427,13 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,
+  };
+  theme.unstable_calculateSxConfig = (props) => {
+    console.log(props);
+    if (props.ownerState?.materialYouComponent) {
+      return theme.unstable_sxConfig;
+    }
+    return systemDefaultSxConfig;
   };
   theme.unstable_sx = function sx(props: SxProps<Theme>) {
     return styleFunctionSx({

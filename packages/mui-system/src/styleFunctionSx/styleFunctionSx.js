@@ -71,13 +71,17 @@ export function unstable_createStyleFunctionSx() {
 
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
-    let config = defaultSxConfig;
 
-    if (theme.unstable_sxConfig) {
-      config = theme.unstable_sxConfig;
-    }
     if (!sx) {
       return null; // Emotion & styled-components will neglect null
+    }
+
+    let config = defaultSxConfig;
+
+    if (theme.unstable_sxConfig || theme.unstable_calculateSxConfig) {
+      config = theme.unstable_calculateSxConfig
+        ? theme.unstable_calculateSxConfig(props)
+        : theme.unstable_sxConfig;
     }
 
     /*
