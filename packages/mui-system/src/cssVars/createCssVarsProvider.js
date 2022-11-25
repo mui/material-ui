@@ -134,15 +134,14 @@ export default function createCssVarsProvider(options) {
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
 
     // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const {
-      css: rootCss,
-      vars: rootVars,
-      parsedTheme,
-    } = cssVarsParser(restThemeProp, { prefix: cssVarPrefix, shouldSkipGeneratingVar });
+    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
 
     // 3. Start composing the theme object
     const theme = {
-      ...parsedTheme,
+      ...restThemeProp,
       components,
       colorSchemes,
       cssVarPrefix,
@@ -161,7 +160,6 @@ export default function createCssVarsProvider(options) {
         shouldSkipGeneratingVar,
       });
       theme.vars = deepmerge(theme.vars, vars);
-
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
