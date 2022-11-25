@@ -16,10 +16,8 @@ import Stack from '@mui/material/Stack';
 function MiniApp() {
   // if theme input is not provided, the output theme is the default theme.
   const { styles, theme } = generateCssThemeVars({
-    selector: {
-      root: '.demo',
-      colorScheme: (key) => `[data-mui-color-scheme="${key}"] .demo`,
-    },
+    rootSelector: '.demo',
+    colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .demo`,
   });
   return (
     <NestedCssVarsProvider theme={theme}>

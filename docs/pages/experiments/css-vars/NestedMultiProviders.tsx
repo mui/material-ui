@@ -39,10 +39,8 @@ const customTheme = extendTheme({
 export default function NestedMultiProviders() {
   const { styles, theme: miniAppTheme } = generateCssThemeVars({
     theme: customTheme,
-    selector: {
-      root: '.demo',
-      colorScheme: (key) => `[data-mui-color-scheme="${key}"] .demo`,
-    },
+    rootSelector: '.demo',
+    colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .demo`,
   });
   return (
     <BrandingCssVarsProvider>

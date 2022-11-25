@@ -302,10 +302,7 @@ export default function createCssVarsProvider(options) {
   /**
    * @internal
    */
-  const defaultSelector = {
-    root: ':root',
-    colorScheme: (key) => `[${defaultAttribute}="${key}"]`,
-  };
+  const defaultColorSchemeSelector = (key) => `[${defaultAttribute}="${key}"]`;
   /**
    * Low level API for generating CSS theme variables. Useful for creating nested CSS variables scopes.
    *
@@ -319,7 +316,8 @@ export default function createCssVarsProvider(options) {
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-    selector = defaultSelector,
+    rootSelector = ':root',
+    colorSchemeSelector = defaultColorSchemeSelector,
   }) => {
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
 
@@ -336,7 +334,7 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       cssVarPrefix,
       vars: rootVars,
-      getColorSchemeSelector: (targetColorScheme) => `${selector.colorScheme(targetColorScheme)} &`,
+      getColorSchemeSelector: (targetColorScheme) => `${colorSchemeSelector(targetColorScheme)} &`,
     };
 
     // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
@@ -367,18 +365,18 @@ export default function createCssVarsProvider(options) {
             delete css[cssVar];
           });
           // treat excluded variables as scoped color scheme
-          defaultColorSchemeStyleSheet[selector.colorScheme(key)] = excludedVariables;
+          defaultColorSchemeStyleSheet[colorSchemeSelector(key)] = excludedVariables;
         }
-        defaultColorSchemeStyleSheet[`${selector.root}, ${selector.colorScheme(key)}`] = css;
+        defaultColorSchemeStyleSheet[`${rootSelector}, ${colorSchemeSelector(key)}`] = css;
       } else {
-        otherColorSchemesStyleSheet[selector.colorScheme(key)] = css;
+        otherColorSchemesStyleSheet[colorSchemeSelector(key)] = css;
       }
     });
 
     return {
       theme,
       styles: {
-        [selector.root]: rootCss,
+        [rootSelector]: rootCss,
         ...defaultColorSchemeStyleSheet,
         ...otherColorSchemesStyleSheet,
       },

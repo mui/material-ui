@@ -112,20 +112,15 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
      */
     defaultMode?: 'light' | 'dark';
     /**
-     * The CSS selector for attaching the generated CSS theme variables.
+     * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
+     * @default ':root'
      */
-    selector?: {
-      /**
-       * The selector for attaching CSS variables that are not specific to any color scheme.
-       * @default ':root'
-       */
-      root: string;
-      /**
-       * The selector for the default color scheme CSS variables
-       * @default (key) => `[data-color-scheme="${key}"]`
-       */
-      colorScheme: (key: ColorScheme) => string;
-    };
+    rootSelector: string;
+    /**
+     * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
+     * @default (key) => `[data-color-scheme="${key}"]`
+     */
+    colorSchemeSelector: (key: ColorScheme) => string;
     /**
      * A function to determine if the key, value should be attached as CSS Variable
      * `keys` is an array that represents the object path keys.
