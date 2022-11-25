@@ -1,5 +1,4 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import { Theme } from './createTheme';
 import experimental_extendTheme, { SupportedColorScheme } from './experimental_extendTheme';
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';

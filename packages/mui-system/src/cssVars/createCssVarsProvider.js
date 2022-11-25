@@ -50,11 +50,22 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
-  const defaultSelector = {
-    root: ':root',
-    defaultColorScheme: (key) => `:root, [${defaultAttribute}="${key}"]`,
-    scopedColorScheme: (key) => `[${defaultAttribute}="${key}"]`,
-  };
+  function CssVarsProvider({
+    children,
+    theme: themeProp = defaultTheme,
+    modeStorageKey = defaultModeStorageKey,
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
+    attribute = defaultAttribute,
+    defaultMode = designSystemMode,
+    defaultColorScheme = designSystemColorScheme,
+    disableTransitionOnChange = designSystemTransitionOnChange,
+    storageWindow = typeof window === 'undefined' ? undefined : window,
+    documentNode = typeof document === 'undefined' ? undefined : document,
+    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
+    colorSchemeSelector = ':root',
+    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+  }) {
+    const hasMounted = React.useRef(false);
 
     const allColorSchemes = Object.keys(themeProp.colorSchemes || {});
     const defaultLightColorScheme =
@@ -98,72 +109,6 @@ export default function createCssVarsProvider(options) {
       colorScheme,
       defaultMode,
       defaultColorScheme,
-    });
-
-    return {
-      theme,
-      styles: [
-        { [selector.root]: rootCss },
-        defaultColorSchemeStyleSheet,
-        otherColorSchemesStyleSheet,
-      ],
-    };
-  };
-
-  function CssVarsProvider({
-    children,
-    theme: themeProp = defaultTheme,
-    modeStorageKey = defaultModeStorageKey,
-    colorSchemeStorageKey = defaultColorSchemeStorageKey,
-    attribute = defaultAttribute,
-    defaultMode = designSystemMode,
-    defaultColorScheme = designSystemColorScheme,
-    disableTransitionOnChange = designSystemTransitionOnChange,
-    storageWindow = typeof window === 'undefined' ? undefined : window,
-    documentNode = typeof document === 'undefined' ? undefined : document,
-    colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
-    colorSchemeSelector = ':root',
-    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-  }) {
-    const hasMounted = React.useRef(false);
-
-    const allColorSchemes = Object.keys(themeProp.colorSchemes || {});
-    const defaultLightColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
-    const defaultDarkColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
-
-    // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
-    const {
-      mode,
-      setMode,
-      systemMode,
-      lightColorScheme,
-      darkColorScheme,
-      colorScheme,
-      setColorScheme,
-    } = useCurrentColorScheme({
-      supportedColorSchemes: allColorSchemes,
-      defaultLightColorScheme,
-      defaultDarkColorScheme,
-      modeStorageKey,
-      colorSchemeStorageKey,
-      defaultMode,
-      storageWindow,
-    });
-
-    const { theme, styles } = useCssThemeVars(themeProp, {
-      defaultMode,
-      defaultColorScheme,
-      selector: {
-        root: colorSchemeSelector,
-        defaultColorScheme: (key) => `[${attribute}="${key}"]`,
-        scopedColorScheme: (key) =>
-          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
-      },
-      shouldSkipGeneratingVar,
-      mode,
-      colorScheme,
     });
 
     // 5. Declaring effects
