@@ -168,36 +168,50 @@ export default function XGridFullDemo() {
         <Paper
           id="data-grid-full"
           variant="outlined"
-          sx={{
-            height: 328,
-            overflow: 'auto',
-            '& .MuiDataGrid-root': {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
-              '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
-              '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
-              '& .MuiDataGrid-renderingZone': {
-                '& .MuiDataGrid-cell': {
-                  bgcolor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50',
+          sx={[
+            {
+              height: 328,
+              overflow: 'auto',
+              '& .MuiDataGrid-root': {
+                bgcolor: '#fff',
+                '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+                '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
+                '& .MuiDataGrid-renderingZone': {
+                  '& .MuiDataGrid-cell': {
+                    bgcolor: 'grey.50',
+                  },
                 },
-              },
-              '& .MuiDataGrid-footerContainer': {
-                minHeight: 48,
-                borderTop: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              },
-              '& .MuiTablePagination-root': {
-                fontSize: '0.75rem',
-                '& p': {
-                  fontSize: '0.75rem',
-                },
-                '& .MuiToolbar-root': {
+                '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
+                  borderTop: '1px solid',
+                  borderColor: 'grey.200',
+                },
+                '& .MuiTablePagination-root': {
+                  fontSize: '0.75rem',
+                  '& p': {
+                    fontSize: '0.75rem',
+                  },
+                  '& .MuiToolbar-root': {
+                    minHeight: 48,
+                  },
                 },
               },
             },
-          }}
+            (theme) =>
+              theme.applyDarkStyles({
+                '& .MuiDataGrid-root': {
+                  bgcolor: 'primaryDark.900',
+                  '& .MuiDataGrid-renderingZone': {
+                    '& .MuiDataGrid-cell': {
+                      bgcolor: 'primaryDark.800',
+                    },
+                  },
+                  '& .MuiDataGrid-footerContainer': {
+                    borderColor: 'primaryDark.600',
+                  },
+                },
+              }),
+          ]}
         >
           <DataGridPro
             density="compact"

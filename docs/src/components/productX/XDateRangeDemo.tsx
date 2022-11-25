@@ -40,7 +40,7 @@ export default function XDateRangeDemo() {
               width: 28,
               height: 32,
             },
-            '& .PrivatePickersSlideTransition-root': {
+            '& .MuiPickersSlideTransition-root': {
               minWidth: 258,
               minHeight: 238,
             },

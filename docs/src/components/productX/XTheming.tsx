@@ -6,7 +6,12 @@ import {
   GridRenderEditCellParams,
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import {
+  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+  experimental_extendTheme as extendTheme,
+  generateCssThemeVars,
+} from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -25,10 +30,11 @@ import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
 
-const lightTheme = createTheme();
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
-
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
+
+const { theme: defaultTheme, styles } = generateCssThemeVars({
+  theme: extendTheme(),
+});
 
 export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
@@ -98,6 +104,7 @@ export default function XTheming() {
   }
   return (
     <Section bg="comfort">
+      <GlobalStyles styles={styles} />
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -133,11 +140,13 @@ export default function XTheming() {
             <Paper
               id="data-grid-theming"
               variant="outlined"
-              sx={{
+              sx={(theme) => ({
                 height: 418,
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              }}
+                borderColor: 'grey.200',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                }),
+              })}
             >
               {dataGridStyleOverrides}
               <DataGridPro
@@ -152,24 +161,27 @@ export default function XTheming() {
               />
             </Paper>
           ) : (
-            <ThemeProvider
-              theme={(globalTheme: Theme) => {
-                if (globalTheme.palette.mode === 'dark') {
-                  return darkTheme;
-                }
-                return lightTheme;
-              }}
-            >
+            <NestedCssVarsProvider theme={defaultTheme}>
               <Paper
                 elevation={0}
-                sx={{
-                  height: 418,
-                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                    '& .MuiChip-root': {
-                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
+                sx={[
+                  {
+                    height: 418,
+                    '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                      '& .MuiChip-root': {
+                        color: red[500],
+                      },
                     },
                   },
-                }}
+                  (theme) =>
+                    theme.applyDarkStyles({
+                      '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                        '& .MuiChip-root': {
+                          color: red[300],
+                        },
+                      },
+                    }),
+                ]}
               >
                 <DataGridPro
                   {...data}
@@ -182,7 +194,7 @@ export default function XTheming() {
                   experimentalFeatures={{ newEditingApi: true }}
                 />
               </Paper>
-            </ThemeProvider>
+            </NestedCssVarsProvider>
           )}
         </Grid>
       </Grid>

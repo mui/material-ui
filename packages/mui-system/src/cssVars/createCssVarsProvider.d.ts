@@ -117,12 +117,12 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
      * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
      * @default ':root'
      */
-    rootSelector: string;
+    rootSelector?: string;
     /**
      * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
      * @default (key) => `[data-color-scheme="${key}"]`
      */
-    colorSchemeSelector: (key: ColorScheme) => string;
+    colorSchemeSelector?: (key: ColorScheme) => string;
     /**
      * A function to determine if the key, value should be attached as CSS Variable
      * `keys` is an array that represents the object path keys.
@@ -131,14 +131,6 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
      *        value = 'var(--test)'
      */
     shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-    /**
-     * Controlled mode. If not provided, it will try to read the value from the upper CssVarsProvider.
-     */
-    mode?: Mode;
-    /**
-     * Controlled color scheme. If not provided, it will try to read the value from the upper CssVarsProvider.
-     */
-    colorScheme?: ColorScheme;
     theme?: {
       cssVarPrefix?: string;
       colorSchemes: Record<ColorScheme, Record<string, any>>;

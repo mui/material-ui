@@ -151,32 +151,41 @@ export default function XDataGrid() {
           <Paper
             id="data-grid-demo"
             variant="outlined"
-            sx={{
-              position: 'relative',
-              zIndex: 1,
-              height: 240,
-              borderRadius: '10px 10px 0 0',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              '& .MuiDataGrid-root': {
-                '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
-                '& .MuiDataGrid-footerContainer': {
-                  minHeight: 48,
-                  borderTop: '1px solid',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-                },
-                '& .MuiTablePagination-root': {
-                  fontSize: '0.75rem',
-                  '& p': {
-                    fontSize: '0.75rem',
-                  },
-                  '& .MuiToolbar-root': {
+            sx={[
+              {
+                position: 'relative',
+                zIndex: 1,
+                height: 240,
+                borderRadius: '10px 10px 0 0',
+                borderColor: 'grey.200',
+                '& .MuiDataGrid-root': {
+                  '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+                  '& .MuiDataGrid-footerContainer': {
                     minHeight: 48,
+                    borderTop: '1px solid',
+                    borderColor: 'grey.200',
+                  },
+                  '& .MuiTablePagination-root': {
+                    fontSize: '0.75rem',
+                    '& p': {
+                      fontSize: '0.75rem',
+                    },
+                    '& .MuiToolbar-root': {
+                      minHeight: 48,
+                    },
                   },
                 },
               },
-            }}
+              (theme) =>
+                theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                  '& .MuiDataGrid-root': {
+                    '& .MuiDataGrid-footerContainer': {
+                      borderColor: 'primaryDark.600',
+                    },
+                  },
+                }),
+            ]}
           >
             {dataGridStyleOverrides}
             <DataGridPro
