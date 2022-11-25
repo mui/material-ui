@@ -1,52 +1,6 @@
 import * as React from 'react';
-import { styled } from '@mui/joy/styles';
-import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-
-const Popper = styled(PopperUnstyled)({
-  zIndex: 1500,
-});
-
-const Listbox = styled('ul')(({ theme }) => ({
-  ...theme.variants.outlined.neutral,
-  marginBlock: '0.25rem',
-  padding: '0.45rem',
-  borderRadius: theme.vars.radius.sm,
-  boxShadow: theme.vars.shadow.md,
-  backgroundColor: theme.vars.palette.background.componentBg,
-  gap: theme.spacing(1),
-  display: 'flex',
-  flexDirection: 'column',
-  listStyle: 'none',
-}));
-
-const MenuItem = styled(MenuItemUnstyled, {
-  shouldForwardProp: (prop) => prop !== 'active',
-})<{ active?: boolean }>(({ theme, active }) => ({
-  listStyle: 'none',
-  fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.sm,
-  padding: '0.45rem 0.75rem',
-  borderRadius: theme.vars.radius.xs,
-  minWidth: 120,
-  textDecoration: 'none',
-  display: 'flex',
-  ...theme.variants.plain.neutral,
-  ...(active
-    ? {
-        ...theme.variants.soft.primary,
-        cursor: 'default',
-      }
-    : {
-        '&:hover': {
-          ...theme.variants.softHover.neutral,
-          cursor: 'pointer',
-        },
-        '&:active': theme.variants.outlinedHover.neutral,
-      }),
-  [theme.focus.selector]: theme.focus.default,
-}));
+import JoyMenu, { MenuUnstyledActions } from '@mui/joy/Menu';
+import MenuItem from '@mui/joy/MenuItem';
 
 function Menu({
   control,
@@ -96,17 +50,23 @@ function Menu({
         'aria-expanded': isOpen || undefined,
         'aria-haspopup': 'menu',
       })}
-      <MenuUnstyled
+      <JoyMenu
+        id={id}
+        placement="bottom-end"
         actions={menuActions}
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        slots={{ root: Popper, listbox: Listbox }}
-        slotProps={{ root: { placement: 'bottom-end' }, listbox: { id } }}
+        sx={{ minWidth: 120 }}
       >
         {menus.map(({ label, active, ...item }) => {
           const menuItem = (
-            <MenuItem active={active} {...item}>
+            <MenuItem
+              selected={active}
+              variant={active ? 'soft' : 'plain'}
+              onClick={close}
+              {...item}
+            >
               {label}
             </MenuItem>
           );
@@ -119,7 +79,7 @@ function Menu({
           }
           return React.cloneElement(menuItem, { key: label });
         })}
-      </MenuUnstyled>
+      </JoyMenu>
     </React.Fragment>
   );
 }
