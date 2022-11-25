@@ -3,6 +3,7 @@ import { Theme } from './createTheme';
 import experimental_extendTheme, { SupportedColorScheme } from './experimental_extendTheme';
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
+import { Theme } from './createTheme';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
@@ -12,8 +13,9 @@ const defaultTheme = experimental_extendTheme();
 
 const {
   CssVarsProvider,
+  NestedCssVarsProvider,
   useColorScheme,
-  useCssThemeVars: systemUseCssThemeVars,
+  generateCssThemeVars: systemUseCssThemeVars,
   getInitColorSchemeScript,
 } = createCssVarsProvider<SupportedColorScheme>({
   theme: defaultTheme,
@@ -36,12 +38,13 @@ const {
   excludeVariablesFromRoot,
 });
 
-const useCssThemeVars = systemUseCssThemeVars<Theme>;
+const generateCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
 
 export {
   useColorScheme,
-  useCssThemeVars,
+  generateCssThemeVars,
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
   CssVarsProvider as Experimental_CssVarsProvider,
+  NestedCssVarsProvider as Experimental_NestedCssVarsProvider,
 };

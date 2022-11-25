@@ -9,35 +9,41 @@ const shouldSkipGeneratingVar = (keys: string[]) =>
   (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
   (keys[0] === 'focus' && keys[1] !== 'thickness');
 
-const { CssVarsProvider, useColorScheme, useCssThemeVars, getInitColorSchemeScript } =
-  createCssVarsProvider<DefaultColorScheme | ExtendedColorScheme>({
-    theme: extendTheme(),
-    attribute: 'data-joy-color-scheme',
-    modeStorageKey: 'joy-mode',
-    colorSchemeStorageKey: 'joy-color-scheme',
-    defaultColorScheme: {
-      light: 'light',
-      dark: 'dark',
-    },
-    resolveTheme: (mergedTheme: Theme) => {
-      // `colorInversion` need to be generated after the theme's palette has been calculated.
-      mergedTheme.colorInversion = deepmerge(
-        {
-          soft: createSoftInversion(mergedTheme),
-          solid: createSolidInversion(mergedTheme),
-        },
-        mergedTheme.colorInversion,
-        { clone: false },
-      );
-      return mergedTheme;
-    },
-    shouldSkipGeneratingVar,
-  });
+const {
+  CssVarsProvider,
+  useColorScheme,
+  generateCssThemeVars: systemUseCssThemeVars,
+  getInitColorSchemeScript,
+} = createCssVarsProvider<DefaultColorScheme | ExtendedColorScheme>({
+  theme: extendTheme(),
+  attribute: 'data-joy-color-scheme',
+  modeStorageKey: 'joy-mode',
+  colorSchemeStorageKey: 'joy-color-scheme',
+  defaultColorScheme: {
+    light: 'light',
+    dark: 'dark',
+  },
+  resolveTheme: (mergedTheme: Theme) => {
+    // `colorInversion` need to be generated after the theme's palette has been calculated.
+    mergedTheme.colorInversion = deepmerge(
+      {
+        soft: createSoftInversion(mergedTheme),
+        solid: createSolidInversion(mergedTheme),
+      },
+      mergedTheme.colorInversion,
+      { clone: false },
+    );
+    return mergedTheme;
+  },
+  shouldSkipGeneratingVar,
+});
+
+const generateCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
 
 export {
   CssVarsProvider,
   useColorScheme,
-  useCssThemeVars,
+  generateCssThemeVars,
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
 };
