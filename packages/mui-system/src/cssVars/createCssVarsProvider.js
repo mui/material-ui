@@ -97,11 +97,9 @@ export default function createCssVarsProvider(options) {
       theme: themeProp,
       defaultMode,
       defaultColorScheme,
-      selector: {
-        root: colorSchemeSelector,
-        colorScheme: (key) =>
-          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
-      },
+      rootSelector: colorSchemeSelector,
+      colorSchemeSelector: (key) =>
+        `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
       shouldSkipGeneratingVar,
     });
 
