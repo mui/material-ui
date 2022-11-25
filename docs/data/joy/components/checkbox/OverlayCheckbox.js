@@ -14,10 +14,10 @@ export default function OverlayCheckbox() {
         '& > div': { p: 2, boxShadow: 'sm', borderRadius: 'xs', display: 'flex' },
       }}
     >
-      <Sheet variant="outlined">
+      <Sheet variant="outlined" sx={{ bgcolor: 'background.body' }}>
         <Checkbox overlay label="It works with any parent" />
       </Sheet>
-      <Sheet variant="outlined">
+      <Sheet variant="outlined" sx={{ bgcolor: 'background.body' }}>
         <Checkbox
           label="Focus outline covers the parent!"
           overlay

@@ -1,4 +1,4 @@
-# Migration from @material-ui-pickers
+# Migration from @material-ui/pickers
 
 <p class="description">@material-ui/pickers was moved to the @mui/lab.</p>
 
