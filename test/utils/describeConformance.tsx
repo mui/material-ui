@@ -42,11 +42,12 @@ export interface InputConformanceOptions {
   ) => (node: React.ReactNode) => ReactWrapper;
   /**
    * For testing Joy UI and Material UI (starts from v6).
-  **/
+   */
   slots?: Record<string, SlotTestingOptions>;
   /**
-  * For testing Material UI v5. This test suite is likely to be removed in v7 together with the `components` & `componentsProps` props.
-  **/
+   * For testing Material UI v5.
+   * This test suite is likely to be removed in v7 together with the `components` & `componentsProps` props.
+   */
   components?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
 }
