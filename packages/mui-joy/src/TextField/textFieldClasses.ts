@@ -27,6 +27,10 @@ export interface TextFieldClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the startDecorator element if supplied. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element if supplied. */
+  endDecorator: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -57,6 +61,8 @@ const textFieldClasses: TextFieldClasses = generateUtilityClasses('JoyTextField'
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'startDecorator',
+  'endDecorator',
   'variantPlain',
   'variantOutlined',
   'variantSoft',
