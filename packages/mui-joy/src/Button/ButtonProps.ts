@@ -35,10 +35,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
-   * The components used for each slot inside the Button.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
+     * The components used for each slot inside the Button.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
     slots?: {
       root?: React.ElementType;
       startDecorator?: React.ElementType;
