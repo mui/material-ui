@@ -133,12 +133,12 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@argos-ci/core@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.5.1.tgz#cc7db4bf60e5f0805d10a882ab350de1c33e2006"
-  integrity sha512-e5vJW5Q+ucC3PetBSajZCR2r8l7iGo1gg5Bbz9Q3uuHCpVA60wU63tgmB7ufRYuRItqdILAVlgNKZozjfT+nNQ==
+"@argos-ci/core@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.6.1.tgz#738cdd44ccbf58d2cd9b04aec999be5d842eea80"
+  integrity sha512-4l3dn5SQZgh5Vq/fm1//SrdSB3OudnK74TetVZShSEvBLQ1aR6lMnxoizQt82/HO4C15PTLyIVz5TYVVEJ85sw==
   dependencies:
-    axios "^1.1.2"
+    axios "1.1.2"
     convict "^6.2.3"
     debug "^4.3.4"
     env-ci "^7.3.0"
@@ -4827,7 +4827,16 @@ axe-core@^4.4.3:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.3.tgz#11c74d23d5013c0fa5d183796729bc3482bd2f6f"
   integrity sha512-32+ub6kkdhhWick/UjvEwRchgoetXqTK14INLqbGm5U2TzBkBNF3nQtLYm8ovxSkQWArjEQvftCKryjZaATu3w==
 
-axios@^1.0.0, axios@^1.1.2:
+axios@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.1.2.tgz#8b6f6c540abf44ab98d9904e8daf55351ca4a331"
+  integrity sha512-bznQyETwElsXl2RK7HLLwb5GPpOLlycxHCtrpDR/4RqqBzjARaOTo3jz4IgtntWUYee7Ne4S8UHd92VCuzPaWA==
+  dependencies:
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.0.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.1.3.tgz#8274250dada2edf53814ed7db644b9c2866c1e35"
   integrity sha512-00tXVRwKx/FZr/IDVFt4C+f9FYairX517WoGCL6dpOntqLkZofjhu43F/Xl44UOpqa+9sLFDrG/XAnFsUYgkDA==
