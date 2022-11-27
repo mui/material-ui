@@ -3457,10 +3457,10 @@
     "@types/node" "*"
     "@types/responselike" "*"
 
-"@types/chai-dom@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.13.tgz#a8727ba180a7146eb14e548ad22d33ab1adf6d8c"
-  integrity sha512-A0DqBgZIExkhlH15chRY4qSIBWtl2/ZEvyNjBo+Xp0gZRexz3qjFNHh1mUhhD3TFVacCz1PC8FAPMpUqzSR1AQ==
+"@types/chai-dom@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-1.11.0.tgz#e9bd01f3408b2ffd27755fe4418ff92ffd8f4e66"
+  integrity sha512-Aja99Mmnny+Sz+T2hBK3oEsrcy18yabplT0pGX/QwIke9jMJHdvHlV2f4Tmq5SqxTMYwt1Zjbisv/4r83EUIHw==
   dependencies:
     "@types/chai" "*"
 
