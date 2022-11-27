@@ -1,6 +1,6 @@
-# XXXXXX
+# Lead Designer
 
-<p class="description">XXXXXX.</p>
+<p class="description">We are looking for a lead designer to own most of our design work and manage a small design team.</p>
 
 ## Details of the Role
 
@@ -31,13 +31,16 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-XXXXXX
+We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
 
 ### Why this is interesting
 
-XXXXXX
-
 Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+
+But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
+We envision a future where MUI becomes the default toolkit for web developers to create UIs.
+It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
 
 ## About the role
 
@@ -45,20 +48,28 @@ Our solution empowers React developers to build awesome applications faster – 
 
 Depending on the day, you'll:
 
-- XXXXXX
-- XXXXXX
+- make the product experience more delightful, e.g. visually more appealing
+- pay attention to all the smallest interface interactions so they yield an outstanding UX
+- develop the brand
+- refresh and expand the marketing pages, e.g. with a showcase & case study section
+- design the next features across the different product
+- shape the direction of the design kit products
 
 ## About you
 
+We're looking for someone with an expert eye for visual and UX design. You have enough development skills (CSS-in-JS, JSX) to implement the designed interfaces. Details matter to you.
+
 ### Skills you should have
 
-- XXXXXX
-- XXXXXX
+- **Expert-level knowledge of visual design**. You can create great-looking UIs. You spot small kerning issues without even paying attention which makes you care about the details more than most people.
+- **Expert-level knowledge of UX design**. You can build intuitive UIs, both at the scope of an application and of a component micro-interaction.
+- **Enough development skills to implement the designed interfaces**. Our React engineers are often busy implementing complex components. We are looking for somebody with enough CSS-in-JS and JSX skills to not depend on them to implement the design.
+- **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 
 ### What would be nice if you had, but isn't required
 
-- XXXXXX
-- XXXXXX
+- **You've contributed to a design system before**. You have worked on a library of components in the past, maybe for internal usage in your company.
+- **You have other complementary skills**. We are a tiny team of 6 people. We could use any hidden skills that you might have. Maybe you are great at creating animations or creating illustrations.
 
 ## Benefits & Compensation
 

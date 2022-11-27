@@ -1,6 +1,6 @@
-# React Engineer - X (future)
+# React Engineer - xGrid
 
-<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will strengthen the data grid team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
 
 ## Details of the Role
 
@@ -31,15 +31,12 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-The data grid team (part of MUI X) needs your help.
-The component is off [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-data-grid&package=react-table&package=ag-grid-community&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
-We need to:
+The data grid team (part of MUI X) needs help.
+We have started with the [data grid](/x/react-data-grid/#commercial-version) component.
+We need to build new features on it and introduce new components.
+The enterprise version is built on the open-source version of the components.
 
-- build an headless version for MUI Base.
-- build advanced, in browsers, data analysis features like pivoting and charts integration.
-- build a strong integration with backend APIs, e.g. to handle >100M rows.
-
-We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guiding developers to answers, and just generally being a positive presence in the community.
+We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
 ## About the role
 

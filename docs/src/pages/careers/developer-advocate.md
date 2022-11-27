@@ -4,51 +4,48 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-7 to UTC+2).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
+- Location: Remote (strong requirement for UTC-8 to UTC+2).
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102))
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
 ## About the company
 
 MUI started with Material UI, the most successful React implementation of Google's Material Design.
-It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+It has gained a large following, not only due to its fidelity to Material Design, but also because of the number of components, its carefully designed component API, its obsession with details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
 
-We are a fully distributed team, spread across multiple timezones.
+We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
 For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY).
-We need talented people to keep that going!
-
-We are looking for a dedicated educator and experienced developer to join us as a Developer Advocate to help people get familiar with and use MUI most effectively.
-
-In our [last developer survey](/blog/2021-developer-survey-results/#5-how-can-we-improve-mui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
+In our [last developer survey](/blog/2021-developer-survey-results/#what-else-can-we-do-to-improve-mui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
 We have underinvested in this area for too long.
 Your mission will be to be the voice of the developers of the community inside the company.
 We are looking for someone that can contribute to the following outcomes:
 
-- Amplify the need of the community so the product direction aims at what people need the most.
-- Improve the overall developer experience, resulting in better NPS & CSAT scores, e.g. though educational content.
 - Create momentum in the React community and drive adoption of the library.
+- Improve the overall developer experience, resulting in better NPS & CSAT scores, e.g. though educational content.
+- Amplify the need of the community so the product direction aims at what people need the most.
+
+Both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ## About the role
 
+We are looking for a experienced developer to join us as a Developer Advocate to help the developers get familiar with and use MUI most effectively.
+
 ### Why this is interesting
 
-You will be the first person focusing full-time on developer relations at MUI.
-You will lay the foundations for a team that could grow over time.
-
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
-Hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ### What you'll do on a day-to-day basis
 
@@ -78,8 +75,8 @@ For the right candidate:
 - Level up the showcase, cherry-picking the best websites and apps of the community.
 - Revamp the blog post infrastructure to empower the rest of the team to create more content.
 - Start a monthly newsletter to engage with the community.
-- Organize a MUI Conf
-- Think about creative ways to promote MUI X, MUI X Pro, and new products.
+- Organize a MUIConf (once we go >50 people)
+- Think about creative ways to promote MUI Base, Joy UI, MUI X, MUI X Pro, and new products.
 
 ## About you
 

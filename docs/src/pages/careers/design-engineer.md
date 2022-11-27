@@ -1,6 +1,6 @@
-# XXXXXX
+# Design Engineer
 
-<p class="description">XXXXXX.</p>
+<p class="description">You will breadth to design, concept, prototype, and build new experiences for our products.</p>
 
 ## Details of the Role
 
@@ -31,13 +31,16 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-XXXXXX
+We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
 
 ### Why this is interesting
 
-XXXXXX
-
 Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+
+But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
+We envision a future where MUI becomes the default toolkit for web developers to create UIs.
+It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
 
 ## About the role
 
@@ -45,20 +48,23 @@ Our solution empowers React developers to build awesome applications faster – 
 
 Depending on the day, you'll:
 
-- XXXXXX
-- XXXXXX
+- Work closely with our designers to prototype and implement new components, features, and screens.
+- Design and build entire experiences for sites like mui.com or products like MUI Toolpad.
+- Concept and prototype UX components and motion studies for components like the date picker.
+- Extend our different design systems (Material UI, Joy UI).
+- Create appealing new demos in the docs.
 
 ## About you
 
 ### Skills you should have
 
-- XXXXXX
-- XXXXXX
+- 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
+- Advanced knowledge of modern React, HTML, and CSS.
+- Experience designing and building public facing-sites that work elegantly.
 
 ### What would be nice if you had, but isn't required
 
-- XXXXXX
-- XXXXXX
+- A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
 
 ## Benefits & Compensation
 

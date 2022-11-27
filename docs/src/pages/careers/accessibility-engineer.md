@@ -1,11 +1,11 @@
 # Accessibility Engineer
 
-<p class="description">You will strengthen the core components team by implementing best practices and guidelines related to the accessibility of the products.</p>
+<p class="description">You will become our go-to-expert for accessibility. We need to ensure we pass WCAG 2.1 level AA across products.</p>
 
 ## Details of the Role
 
 - Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102))
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
@@ -13,12 +13,13 @@
 ## About the company
 
 MUI started with Material UI, the most successful React implementation of Google's Material Design.
-It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+It has gained a large following, not only due to its fidelity to Material Design, but also because of the number of components, its carefully designed component API, its obsession with details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
+We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
@@ -27,17 +28,20 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY).
-We need talented people to keep that going!
+Accessibility is a strategic opportunty for MUI, across our products:
 
-We also need help to continue to improve the health of the open-source products: make the core components easier to use, engage more with the community, polish all the details, make the components more accessible, guiding developers to answers, and just generally be a positive presence in the open-source community.
+1. We are building MUI Base for the developers that are looking for a relatively lower-level API while keeping a strong baseline to build on top of that saves them time. For them, it's about having a better customizability experience (style & behavior). The most exigent users of MUI Base, the ones that are dictating the viral growth of if in the community, have strong a11y requirements, so we have to meet them for MUI Base to be successful.
+2. Accessibility is mandated by law. For example in the US, the Americans with Disabilities Act (ADA) is a US law enacted in 1990 to ensure people with disabilities are not discriminated against, in the EU, the European Accessibility Act (AEE) will soon be enacted. Our paid customers are increasingly asking about compliance with WCAG.
+
+Both our open-source community and our premium products are growing fast (x2 YoY).
+We need talented people to keep that going!
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
-Hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
-This means that the impact of your work in improving the accessibility of our products would literally help millions of people who use the products built with our libraries.
+So, by improving the accessibility of our components, you will help millions of end-users who use [the products built with our UI library](https://trends.builtwith.com/framework/Material-UI).
+You will also be responsible to train the developers using MUI's products to a11y. For example, there might be an opportunity to create an eslint plugin aware of Material UI APIs to catch a11y issues before they go to production.
 
 ## About the role
 
@@ -46,31 +50,31 @@ This means that the impact of your work in improving the accessibility of our pr
 Depending on the day, you'll:
 
 - **Ensure the components are accessible.**
-  You would basically be an owner of the accessibility across all MUI products. It would be your responsibility first to verify the level of accessibility the components comply with and improve it over time.
+  You will be the owner of the accessibility across all MUI products. First, you will be responsible first to verify the level of accessibility the components comply with and implementing improvements over time.
 - **Respond to issues related to accessibility.**
-  Sometimes, users of our products create issues related to a11y. It would be your responsibility to answer them by either providing best practices or fixing issues that they may have reported.
-- **Intelligently apply accessibility testing tools, use assistive technology, and perform expert manual analysis of the MUI product lines.**
+  The users of our products create issues related to a11y. You will be responsible to unlock the community, either by providing best practices, guiding them to contribute a fix, or by directly fixing the issues reported.
+- **Intelligently apply accessibility testing tools**. You will use assistive technology and perform expert manual analysis of the MUI product lines.
   Having a solid test framework that can help us make sure we stay compliant.
 - **Lead the accessibility training across the company.**
-  Basically, you would be the go-to person for anything related to accessibility, so mentoring others would be part of that deal.
+  You will be the go-to person for anything related to accessibility. You will mentor other team members.
 
 ## About you
 
 ### Skills you should have
 
-- **A track record of accessibility experience with both consumer/enterprise products and assistive technologies, such as screen readers, eye-control, and other accessible technologies**.
+- **A track record of accessibility experience with both consumer/enterprise products and assistive technologies, such as screen readers, eye control, and other accessibility technologies**.
   If you've been the accessibility champ in a previous company, pushing towards making sure the user interfaces can be used by disabled people, we want you in our team!
-- **Hands-on knowledge of accessibility guidelines and standards (such as Section 508, WCAG, and EN 301 549) as well as technologies (such as UI Automation, IAccessible, ARIA, and related accessibility APIs)**
+- **Hands-on knowledge of accessibility guidelines and standards** (such as Section 508, WCAG, and EN 301 549) as well as technologies (such as UI Automation, IAccessible, ARIA, and related accessibility APIs)
   You would be the one who the team can go to with any a11y topics/questions.
-- **An advocate of continuous learning; able to absorb and share new ideas, approaches, and techniques for achieving accessibility.**
+- **An advocate of continuous learning;** able to absorb and share new ideas, approaches, and techniques for achieving accessibility.
   Continuous learning is one of the most important parts of this field.
-- **Strong grasp of accessibility techniques in web development applying HTML5, CSS, ARIA, and JavaScript.**
-  We are creating products used on the WEB.
-- **Experience with assistive technologies across multiple platforms, including screen readers, magnification, and read-aloud tools.**
+- **Strong grasp of accessibility techniques in web development** applying HTML5, CSS, ARIA, and JavaScript.
+  We are creating products used on the web.
+- **Experience with assistive technologies across multiple platforms**, including screen readers, magnification, and read-aloud tools.
 
 ### What would be nice if you had, but isn't required
 
-- **Certification in accessibility, such as Trusted Tester, CPACC (Certified Professional in Accessibility Core Competencies), WAS (Web Accessibility Specialist).**
+- **Certification in accessibility**, such as Trusted Tester, CPACC (Certified Professional in Accessibility Core Competencies), WAS (Web Accessibility Specialist).
   This would be a clear indication that you went deep into the accessibility topics.
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.

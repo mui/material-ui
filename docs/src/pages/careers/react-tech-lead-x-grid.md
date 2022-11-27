@@ -1,12 +1,12 @@
-# React Engineer - X (future)
+# React Tech Lead - xGrid
 
-<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will lead the development of the data grid, positioning the component as the next industry standard.</p>
 
 ## Details of the Role
 
 - Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102))
-- Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
+- Level: [6 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -51,24 +51,19 @@ Our solution empowers React developers to build awesome applications faster – 
 
 ### What you'll do on a day-to-day basis
 
-Depending on the day, you'll:
+You will extend the [React Engineer](https://mui-org.notion.site/Software-Engineer-fe310cfb22e34fc7881318f9cb1cf023#5f2967e6c60d411ea09ab8a108d95702) responsibilities. Depending on the day, you'll:
 
-- **Help guide architectural decisions**.
-  The future of MUI is discussed and planned in our public RFCs and issues.
-  You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
-- **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
-- **Reduce friction**.
-  A large amount of the work on MUI is reducing friction and making it easier to use.
-  This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
-- **Collaborate with the community**.
-  Many small, as well as meaningful fixes and features, have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
-- **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
-- **Take ownership of features from idea/mockup to live deployment**.
-  You'll shape and guide the direction of crucial new features, including new components.
-- **Ship. Early and often**. You'll iterate and ship frequently.
-  You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
-- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
+- **Lead**. You will leads by inspiring and setting the bar for code quality for the engineering team, and cracking the hard problems:
+  - Guide the approach and execution.
+  - Guide people in making the right technical decisions themselves over imposing them.
+  - Be aware of the current technical landscape and knows where the wind blows.
+- **Shape the product**. You will be laser-focused on the end goal. It's not about solving technical challenges but about the problem solved for the users.
+- **Enable quality work**. You will:
+  - Embody and foster the engineering culture, e.g. rigorousness, push for small single-purpose PRs, encourage peer reviews, create strong feedback loops between decision and outcome.
+  - Empower the team to aim for high-quality outputs. By doing such it aims for the success of delivered solutions.
+  - Push for consistency, follow what's going on in the other teams.
+- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
+- **Be a solver**. You will digs deep into arbitrarily complex problems and finds an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 
 ### The best parts of this job
 
