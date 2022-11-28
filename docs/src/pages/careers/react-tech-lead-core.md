@@ -31,7 +31,7 @@ For additional details about the MUI team and culture, you can check our [career
 The core components team (MUI Core) needs help.
 They are working on 4 products (Material UI, MUI Base, Joy UI, and MUI System) with a tiny team.
 
-We also need help to continue to improve the health of the open-source product: make the core components easier to use, engage more with the community, polish all the details, make the components more accessible, guiding developers to answers, and just generally being a positive presence in the open-source community.
+We also need help to continue to improve the health of the open-source product: make the core components easier to use, engage more with the community, polish all the details, make the components more accessible, guiding developers to answers, and just generally be a positive presence in the open-source community.
 
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
