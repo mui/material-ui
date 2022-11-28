@@ -50,7 +50,7 @@ You will also be responsible to train the developers using MUI's products to a11
 Depending on the day, you'll:
 
 - **Ensure the components are accessible.**
-  You will be the owner of the accessibility across all MUI products. First, you will be responsible first to verify the level of accessibility the components comply with and implementing improvements over time.
+  You will be the owner of the accessibility across all MUI products. First, you will be responsible to verify the level of accessibility the components comply with and then implementing improvements over time.
 - **Respond to issues related to accessibility.**
   The users of our products create issues related to a11y. You will be responsible to unlock the community, either by providing best practices, guiding them to contribute a fix, or by directly fixing the issues reported.
 - **Intelligently apply accessibility testing tools**. You will use assistive technology and perform expert manual analysis of the MUI product lines.
