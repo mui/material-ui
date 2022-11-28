@@ -195,8 +195,7 @@ const openRolesData = [
       },
       {
         title: 'Design Engineer',
-        description:
-          'You will focus on design to implement great product experiences.',
+        description: 'You will focus on design to implement great product experiences.',
         url: '/careers/design-engineer/',
       },
     ],
