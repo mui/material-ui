@@ -40,6 +40,7 @@ describe('<Slider />', () => {
       testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
       testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
       testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
+      testLegacyComponentsProp: true,
       slots: {
         root: {
           expectedClassName: classes.root,
@@ -63,6 +64,7 @@ describe('<Slider />', () => {
           expectedClassName: classes.markLabel,
         },
       },
+      skip: ['slotPropsCallback'],
     }),
   );
 

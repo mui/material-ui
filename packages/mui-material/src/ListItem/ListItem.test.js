@@ -22,10 +22,11 @@ describe('<ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
+    testLegacyComponentsProp: true,
     slots: {
       root: {},
     },
-    skip: ['componentsProp'],
+    skip: ['componentsProp', 'slotPropsCallback'],
   }));
 
   it('should render with gutters classes', () => {
