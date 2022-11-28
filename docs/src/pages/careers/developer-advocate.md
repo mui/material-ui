@@ -33,7 +33,7 @@ Your mission will be to be the voice of the developers of the community inside t
 We are looking for someone that can contribute to the following outcomes:
 
 - Create momentum in the React community and drive adoption of the library.
-- Improve the overall developer experience, resulting in better NPS & CSAT scores, e.g. though educational content.
+- Improve the overall developer experience, resulting in better NPS & CSAT scores, e.g., through educational content.
 - Amplify the need of the community so the product direction aims at what people need the most.
 
 Both our open-source community and our premium products are growing fast (x2 YoY).
