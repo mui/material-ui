@@ -131,7 +131,7 @@
     "dom-accessibility-api": "^0.5.14",
     "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
