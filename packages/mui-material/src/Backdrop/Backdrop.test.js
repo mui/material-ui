@@ -15,7 +15,7 @@ describe('<Backdrop />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',
     testVariantProps: { invisible: true },
-    components: {
+    slots: {
       root: {
         expectedClassName: classes.root,
       },

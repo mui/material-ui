@@ -62,6 +62,12 @@ describe('<Autocomplete />', () => {
         popper: { expectedClassName: classes.popper },
         popupIndicator: { expectedClassName: classes.popupIndicator },
       },
+      slots: {
+        clearIndicator: { expectedClassName: classes.clearIndicator },
+        paper: { expectedClassName: classes.paper },
+        popper: { expectedClassName: classes.popper },
+        popupIndicator: { expectedClassName: classes.popupIndicator },
+      },
       skip: ['componentProp', 'componentsProp', 'slotsProp', 'reactTestRenderer'],
     }),
   );

@@ -25,7 +25,7 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLDivElement,
-    components: {
+    slots: {
       root: {},
     },
     skip: [

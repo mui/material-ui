@@ -42,7 +42,7 @@ describe('<Tooltip />', () => {
       refInstanceof: window.HTMLButtonElement,
       testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
-      components: {
+      slots: {
         popper: {
           expectedClassName: classes.popper,
           testWithComponent: TestPopper,

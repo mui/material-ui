@@ -22,6 +22,10 @@ describe('<Alert />', () => {
       closeButton: {},
       closeIcon: {},
     },
+    slots: {
+      closeButton: {},
+      closeIcon: {},
+    },
   }));
 
   describe('prop: square', () => {

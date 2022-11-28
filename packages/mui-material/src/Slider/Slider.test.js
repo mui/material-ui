@@ -40,7 +40,7 @@ describe('<Slider />', () => {
       testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
       testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
       testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
-      components: {
+      slots: {
         root: {
           expectedClassName: classes.root,
         },
