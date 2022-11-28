@@ -15,12 +15,12 @@ import Stack from '@mui/material/Stack';
 
 function MiniApp() {
   // if theme input is not provided, the output theme is the default theme.
-  const { styles, theme } = generateCssThemeVars({
+  const styles = generateCssThemeVars({
     rootSelector: '.demo',
     colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .demo`,
   });
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider>
       <GlobalStyles styles={styles} />
       <Stack direction="row" spacing={2}>
         <Button variant="outlined">Outlined</Button>
