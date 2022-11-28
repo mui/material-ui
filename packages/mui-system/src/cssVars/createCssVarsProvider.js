@@ -11,6 +11,7 @@ import systemGetInitColorSchemeScript, {
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
+import useTheme from '../useTheme';
 
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
@@ -64,8 +65,13 @@ export default function createCssVarsProvider(options) {
     colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
     colorSchemeSelector = ':root',
     shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
+    disableNestedContext = false,
+    disableStyleSheetGeneration = false,
   }) {
     const hasMounted = React.useRef(false);
+    const upperTheme = useTheme();
+    const ctx = React.useContext(ColorSchemeContext);
+    const nested = !!ctx && !disableNestedContext;
 
     const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
@@ -76,12 +82,12 @@ export default function createCssVarsProvider(options) {
 
     // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
-      mode,
+      mode: stateMode,
       setMode,
       systemMode,
       lightColorScheme,
       darkColorScheme,
-      colorScheme,
+      colorScheme: stateColorScheme,
       setColorScheme,
     } = useCurrentColorScheme({
       supportedColorSchemes: allColorSchemes,
@@ -92,6 +98,14 @@ export default function createCssVarsProvider(options) {
       defaultMode,
       storageWindow,
     });
+
+    let mode = stateMode;
+    let colorScheme = stateColorScheme;
+
+    if (nested) {
+      mode = ctx.mode;
+      colorScheme = ctx.colorScheme;
+    }
 
     const calculatedMode = (() => {
       if (!mode) {
@@ -244,13 +258,28 @@ export default function createCssVarsProvider(options) {
       ],
     );
 
-    return (
-      <ColorSchemeContext.Provider value={contextValue}>
-        <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
-        <GlobalStyles styles={defaultColorSchemeStyleSheet} />
-        <GlobalStyles styles={otherColorSchemesStyleSheet} />
+    const shouldGenerateStyleSheet =
+      !disableStyleSheetGeneration && upperTheme.cssVarPrefix !== cssVarPrefix;
+
+    const element = (
+      <React.Fragment>
+        {shouldGenerateStyleSheet && (
+          <React.Fragment>
+            <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
+            <GlobalStyles styles={defaultColorSchemeStyleSheet} />
+            <GlobalStyles styles={otherColorSchemesStyleSheet} />
+          </React.Fragment>
+        )}
         <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
-      </ColorSchemeContext.Provider>
+      </React.Fragment>
+    );
+
+    if (nested) {
+      return element;
+    }
+
+    return (
+      <ColorSchemeContext.Provider value={contextValue}>{element}</ColorSchemeContext.Provider>
     );
   }
 
@@ -283,6 +312,16 @@ export default function createCssVarsProvider(options) {
      * The initial mode used.
      */
     defaultMode: PropTypes.string,
+    /**
+     * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
+     */
+    disableNestedContext: PropTypes.bool,
+    /**
+     * If `true`, the style sheet won't be generated.
+     *
+     * This is useful for controlling nested CssVarsProvider behavior.
+     */
+    disableStyleSheetGeneration: PropTypes.bool,
     /**
      * Disable CSS transitions when switching between modes or color schemes
      */
