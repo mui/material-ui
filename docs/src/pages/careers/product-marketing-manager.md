@@ -6,7 +6,7 @@
 
 - Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- Level: *No ladders created yet*.
+- Level: _No ladders created yet_.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
@@ -33,8 +33,8 @@ We need talented people to keep that going!
 
 Up to this point we have operated:
 
-- on the open-source side, off word of mouth and SEO
-- on the commercial side, off inbound leads with $0 investment in marketing
+- on the open-source side, through word of mouth and SEO
+- on the commercial side, through inbound leads with $0 investment in marketing
 
 We believe that we could do a lot better. This is a white canvas opportunity at the company, this role is critical to our growth plans. Product Marketing will be a cross-functional role at MUI, partnering with Design, Product, Developer Experience and Sales.
 
