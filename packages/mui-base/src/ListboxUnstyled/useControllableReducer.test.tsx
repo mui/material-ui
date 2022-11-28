@@ -21,7 +21,7 @@ describe('useControllableReducer', () => {
       });
 
       const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
-      const TestComponent = () => {
+      function TestComponent() {
         const props: UseListboxPropsWithDefaults<string> = {
           options: ['a', 'b', 'c'],
           defaultValue: 'a',
@@ -35,7 +35,7 @@ describe('useControllableReducer', () => {
         const [, dispatch] = useControllableReducer(reducer, undefined, props);
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
-      };
+      }
 
       render(<TestComponent />);
       expect(reducer.getCalls()[0].args[1]).to.equal(actionToDispatch);
@@ -53,7 +53,7 @@ describe('useControllableReducer', () => {
       });
 
       const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
-      const TestComponent = () => {
+      function TestComponent() {
         const props: UseListboxPropsWithDefaults<string> = {
           options: ['a', 'b', 'c'],
           defaultValue: 'a',
@@ -67,7 +67,7 @@ describe('useControllableReducer', () => {
         const [, dispatch] = useControllableReducer(internalReducer, externalReducer, props);
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
-      };
+      }
 
       render(<TestComponent />);
       expect(internalReducer.notCalled).to.equal(true);
@@ -86,7 +86,7 @@ describe('useControllableReducer', () => {
       const handleChange = spy();
       const handleHighlightChange = spy();
 
-      const TestComponent = () => {
+      function TestComponent() {
         const props: UseListboxPropsWithDefaults<string> = {
           options: ['a', 'b', 'c'],
           defaultValue: 'a',
@@ -102,7 +102,7 @@ describe('useControllableReducer', () => {
         const [, dispatch] = useControllableReducer(reducer, undefined, props);
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
-      };
+      }
 
       render(<TestComponent />);
       expect(handleChange.getCalls()[0].args[1]).to.equal('b');
@@ -125,7 +125,7 @@ describe('useControllableReducer', () => {
       const handleChange = spy();
       const handleHighlightChange = spy();
 
-      const TestComponent = () => {
+      function TestComponent() {
         const props: UseListboxPropsWithDefaults<string> = {
           options: ['a', 'b', 'c'],
           defaultValue: 'a',
@@ -141,7 +141,7 @@ describe('useControllableReducer', () => {
         const [, dispatch] = useControllableReducer(reducer, undefined, props);
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
-      };
+      }
 
       render(<TestComponent />);
       expect(handleHighlightChange.getCalls()[0].args[1]).to.equal('b');

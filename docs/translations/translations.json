@@ -61,6 +61,7 @@
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
   "diamondSponsors": "Diamond Sponsors",
+  "editorHint": "Press <kbd>Enter</kbd> to start editing",
   "editPage": "Edit this page",
   "emojiLove": "Love",
   "emoojiWarning": "Warning",
@@ -68,11 +69,18 @@
   "feedbackCommentLabel": "Comment",
   "feedbackFailed": "Couldn't submit feedback. Please try again later.",
   "feedbackMessage": "Was this page helpful?",
-  "feedbackMessageDown": "Please let us know what we could do to improve this page.",
-  "feedbackMessageUp": "Please let us know what we should keep doing more of.",
+  "feedbackMessageDown": "How can we improve this page? (optional)",
+  "feedbackMessageUp": "What did you like about this page? (optional)",
+  "feedbackSectionSpecific": "How can we improve the <strong>{{sectionName}}</strong> section? (optional)",
+  "feedbackMessageToGitHub": {
+    "usecases": "Is something broken? Do you need a reply to a problem you've encountered?",
+    "callToAction": {
+      "text": "Please ",
+      "link": "open an issue."
+    }
+  },
   "feedbackNo": "No",
   "feedbackSubmitted": "Feedback submitted",
-  "feedbackTitle": "Thanks for your feedback!",
   "feedbackYes": "Yes",
   "footerCompany": "Company",
   "goToHome": "go to homepage",

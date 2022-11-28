@@ -210,7 +210,7 @@ export default function Hero() {
             accessibility always in mind. We&apos;ve built the foundational UI blocks for your
             design system so you don&apos;t have to.
           </Typography>
-          <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
+          <GetStartedButtons />
         </Box>
       }
       rightSx={{

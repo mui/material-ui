@@ -7,10 +7,10 @@ import Tabs from '@mui/joy/Tabs';
 import TabList, { tabListClasses as classes } from '@mui/joy/TabList';
 import RowListContext from '../List/RowListContext';
 
-const TabsProvider = ({ children, ...props }: TabsUnstyledProps) => {
+function TabsProvider({ children, ...props }: TabsUnstyledProps) {
   const { tabsContextValue } = useTabs(props);
   return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
-};
+}
 
 describe('Joy <TabList />', () => {
   const { render } = createRenderer();
@@ -78,10 +78,10 @@ describe('Joy <TabList />', () => {
   });
 
   it('provides the correct value to RowListContext', () => {
-    const TabItem = () => {
+    function TabItem() {
       const row = React.useContext(RowListContext);
       return <div>{row ? 'horizontal' : 'vertical'}</div>;
-    };
+    }
     render(
       <Tabs orientation="vertical">
         <TabList>

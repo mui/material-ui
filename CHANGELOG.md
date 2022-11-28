@@ -1,5 +1,315 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.16
+
+<!-- generated comparing v5.10.15..master -->
+
+_Nov 28, 2022_
+
+A big thanks to the 13 contributors who made this release possible. This release contains various 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.16`
+
+- &#8203;<!-- 21 -->[Autocomplete] Fix inferred value type when `multiple` prop is `true` (#35275) @fenghan34
+- &#8203;<!-- 19 -->[Chip] Add `skipFocusWhenDisabled` prop to not allow focussing deletable chip if disabled (#35065) @sai6855
+- &#8203;<!-- 18 -->[Chip] Remove unnecessary handleKeyDown event handler (#35231) @ZeeshanTamboli
+- &#8203;<!-- 05 -->[FormControl] Add missing types in `useFormControl` (#35168) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[IconButton] Add missing color classes (#33820) @Zetta56
+- &#8203;<!-- 03 -->[SwipeableDrawer] Make paper ref accessible (#35082) @sai6855
+
+### `@mui/system@5.10.16`
+
+- &#8203;<!-- 02 -->[system] Remove unnecessary parsed theme (#35239) @siriwatknp
+- &#8203;<!-- 01 -->[theme] Fix TypeScript type for custom variants in responsive font sizes (#35057) @ZeeshanTamboli
+
+### `@mui/base@5.0.0-alpha.108`
+
+- &#8203;<!-- 20 -->[Base] Allow useSlotProps to receive undefined elementType (#35192) @leventdeniz
+
+### Docs
+
+- &#8203;<!-- 13 -->[docs] Improve feedback precision (#34641) @alexfauquette
+- &#8203;<!-- 12 -->[docs] Add Black Friday notification @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix migration feedback (#35232) @alexfauquette
+- &#8203;<!-- 10 -->[docs] Improve the useSelect demo styling (#33883) @michaldudak
+- &#8203;<!-- 09 -->[docs] Fix layout jump on first mistake (#35215) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Support demos with side effect imports (#35177) @m4theushw
+- &#8203;<!-- 07 -->[examples] Fix Next.js errors (#35246) @oliviertassinari
+- &#8203;<!-- 06 -->[examples] Updated Remix examples with the lates changes using React 18 (#35092) @58bits
+
+### Core
+
+- &#8203;<!-- 17 -->[core] Remove unused pattern (#35165) @iamxukai
+- &#8203;<!-- 16 -->[core] Fix Base version in changelog (#35224) @siriwatknp
+- &#8203;<!-- 15 -->[core] Migrate `describeConformance` to TypeScript (#35193) @flaviendelangle
+- &#8203;<!-- 14 -->[core] Skip CI for docs and examples paths (#35225) @siriwatknp
+
+All contributors of this release in alphabetical order: @58bits, @alexfauquette, @fenghan34, @flaviendelangle, @iamxukai, @leventdeniz, @m4theushw, @michaldudak, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli, @Zetta56
+
+## 5.10.15
+
+<!-- generated comparing v5.10.14..master -->
+
+_Nov 21, 2022_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 @mnajdova added the button as the first component that implements [Material You](https://m3.material.io/) design (MD3)
+- 🌐 @MBilalShafi added Urdu (Pakistan) localization
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.15`
+
+- [Autocomplete] Fix keyboard navigation when using custom popover (#35160) @sai6855
+- [typescript] Add `background.defaultChannel` to `CssVarsPalette` (#35174) @alexfauquette
+- [l10n] Add Urdu (ur-PK) locale (#35154) @MBilalShafi
+
+### `@mui/icons-material@5.10.15`
+
+- [icons] Update the Material Design icons (#35194) @michaldudak
+
+### `@mui/material-next@6.0.0-alpha.63`
+
+- [Material You] Add theme structure & Button component (#34650) @mnajdova
+
+### `@mui/base@5.0.0-alpha.107`
+
+- [Select] Add attributes to conform with ARIA 1.2 (#35182) @michaldudak
+
+### Docs
+
+- [docs] Fix a couple documentation errors (#35217) @danilo-leal
+- [docs] Change MUI -> Material UI in icons-material's readme (#35220) @michaldudak
+- [docs] the pages have no <link rel=canonical so we need to tell Google to not index the staging envs @oliviertassinari
+- [docs] Fix confusion in TOCs when reaching scroll bottom (#35214) @oliviertassinari
+- [docs] Fix typos in section titles (#35025) @iamxukai
+- [docs] Fix typo in legacy date picker migration guide @oliviertassinari
+- [docs] Iterating on recent Joy UI Component page updates (#35162) @samuelsycamore
+- [docs] Inform that pickers are in X repository (#35189) @alexfauquette
+- [docs] Explain how the `error` prop works in the Unstyled Input (#35171) @michaldudak
+- [docs] Hotfix missing styles in dark mode (#35179) @siriwatknp
+- [docs] Add Joy UI theme typography page (#34811) @siriwatknp
+- [docs] Fix undo/redo in live editor (#35163) @oliviertassinari
+- [docs] Revise the Joy UI "Avatar" component page (#35152) @samuelsycamore
+- [docs] Make navbar backdrop filter consistent with website (#35157) @danilo-leal
+- [docs] Host CodeSandbox on MUI org (#35110) @oliviertassinari
+- [docs] Uplift introduction demos & make consistent with Base (#34316) @danilo-leal
+- [website] Add Security questionnaire in pricing (#35172) @oliviertassinari
+- [website] Fix theme mode toggle state (#35216) @siriwatknp
+- [website] Exclude experiment pages in production (#35180) @siriwatknp
+- [website] Disable SEO for performance pages (#35173) @oliviertassinari
+
+### Core
+
+- [core] Convert icons scripts to ESM (#35101) @Janpot
+- [core] Group renovate GitHub Action dependency updates @oliviertassinari
+- [core] Upgrade eslint-config-airbnb-typescript (#34642) @Janpot
+- [core] Ensure that prettier CI step fails when code is badly formatted (#35170) @michaldudak
+
+All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @iamxukai, @Janpot, @MBilalShafi, @michaldudak, @oliviertassinari, @samuelsycamore, @siriwatknp
+
+## v5.10.14
+
+<!-- generated comparing v5.10.13..master -->
+
+_Nov 14, 2022_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 @siriwatknp added the Autocomplete component to the Joy UI (#34315)
+- ♿ @sfavello improved the accessibility of the Material UI's Autocomplete by adding support for the Delete key (#33822)
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.14`
+
+- [Material UI] Add `palette.background.defaultChannel` token (#35061) @siriwatknp
+- [Autocomplete] Remove tags with the Delete key (#33822) @sfavello
+- [IconButton] custom color causes type error (#34521) @kushagra010
+
+### `@mui/system@5.10.14`
+
+- [Unstable_Gridv2] sorted responsize keys based on breakpoint value (#34987) @sai6855
+
+### `@mui/joy@5.0.0-alpha.54`
+
+- [Joy] Export `FormControl`, `LinearProgress` and `ListSubheader` components from `@mui/joy` (#35003) @Studio384
+- [Joy] Miscellaneous fixes (#35044) @siriwatknp
+- [Joy] Add `Autocomplete` component (#34315) @siriwatknp
+- [Joy] Saturate a bit the gray palette (#35148) @danilo-leal
+- [Autocomplete][joy] Fix types (#35153) @siriwatknp
+
+### Docs
+
+- [blog] Fix font size of code blocks on iOS @oliviertassinari
+- [docs] Accessibility - increase default contrastThreshold for WCAG AA compliance (#34901) @kennethbigler
+- [docs] Correct the keepMounted section on the Drawer page (#35076) @michaldudak
+- [docs] Fix code editor styles mismatches (#35108) @oliviertassinari
+- [docs] Allows to access the next MUI-X (#34798) @alexfauquette
+- [docs] Fix bugs with live edit demos (#35106) @oliviertassinari
+- [docs] Fix `MarkdownElement` regression from adding CSS variables (#35096) @siriwatknp
+- [docs] Add a new gold sponsor (#35089) @hbjORbj
+- [docs] Fix scroll issue on expanded live demos (#35064) @bharatkashyap
+- [docs] Improve alignment of the sponsors @oliviertassinari
+- [docs] Improve code font family v2 (#35053) @oliviertassinari
+- [docs] Upgrade to Next.js 13 (#35001) @mnajdova
+- [docs] Fix typo in changelog @oliviertassinari
+- [docs] Update Joy UI templates to use latest components (#35058) @siriwatknp
+- [website] Fix design kits showcase throwing an error (#35093) @cherniavskii
+- [website] Fix margin bug on CTA @oliviertassinari
+- [website] Link respective repositories in product pages (#35046) @sidtohan
+- [website] Migrate blog pages to use CSS theme variables (#34976) @siriwatknp
+- [website] Update DoiT International logo and links with new brand (#35030) @ofir5300
+- [website] Improve visual design app bar (#35111) @oliviertassinari
+
+### Core
+
+- [core] Convert scripts to ES modules (#35036) @michaldudak
+- [core] Show the whole version to make blame easier @oliviertassinari
+- [core] Polish GitHub Action version @oliviertassinari
+- [core] Ignore icons to speed up CodeQL @oliviertassinari
+- [core] Feedback on branch protection @oliviertassinari
+- [core] Revert CI (#35098) @siriwatknp
+- [core] Fix job name to match the CI (#35097) @siriwatknp
+- [core] ESLint fixes for tests (#34924) @Janpot
+- [core] Ignore unrelated folders from github actions (#35028) @siriwatknp
+- [core] Use pretty-quick instead of custom script (#34062) @Janpot
+
+All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @cherniavskii, @danilo-leal, @hbjORbj, @Janpot, @kennethbigler, @kushagra010, @michaldudak, @mnajdova, @ofir5300, @oliviertassinari, @sai6855, @sfavello, @sidtohan, @siriwatknp, @Studio384
+
+## v5.10.13
+
+<!-- generated comparing v5.10.12..master -->
+
+_Nov 7, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 The slots API has been introduced to the Material UI package by @michaldudak (#34873).
+- 🔥 Live editing of demos is stabilized by @oliviertassinari (#34870).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.13`
+
+- &#8203;<!-- 08 -->[material-ui] Introduce the slots API (#34873) @michaldudak
+- &#8203;<!-- 07 -->[NativeSelectInput] Support CSS theme variables (#34975) @siriwatknp
+
+### `@mui/system@5.10.13`
+
+- &#8203;<!-- 05 -->[system] Add a missing key attribute in getInitColorScheme to fix key issue (#34992) @akshaya-venkatesh8
+
+### `@mui/base@5.0.0-alpha.105`
+
+- &#8203;<!-- 26 -->[base] Avoid calling setState during renders (#34916) @Janpot
+
+### `@mui/joy@5.0.0-alpha.53`
+
+- &#8203;<!-- 06 -->[Select] Fix custom options menu not opening on Avatar click (#34648) @shivam1646
+
+### Docs
+
+- &#8203;<!-- 20 -->[docs] Add a guide for setting dark mode by default (#34839) @siriwatknp
+- &#8203;<!-- 19 -->[docs] Improve code font family (#35027) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Revise and expand Joy UI "Alert" page (#34838) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Live demos v2 (#34870) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix 301 links in the docs @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Fix code display in RTL (#34951) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] New API design rule disabled > disable (#34972) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Explain the usage of Select's onOpen/onClose in the uncontrolled mode (#34755) @michaldudak
+- &#8203;<!-- 12 -->[docs] Add a new gold sponsor (#34984) @hbjORbj
+- &#8203;<!-- 11 -->[docs] Add author and published_time meta tags (#34382) @alexfauquette
+- &#8203;<!-- 10 -->[examples] Next.js examples v13 - fonts (#34971) @PetroSilenius
+- &#8203;<!-- 09 -->[examples] Next.js examples v13 - links (#34970) @PetroSilenius
+- &#8203;<!-- 04 -->[website] Update IPinfo.AI name @oliviertassinari
+- &#8203;<!-- 03 -->[website] Remove date-io from the docs dependencies (#34748) @michaldudak
+- &#8203;<!-- 02 -->[website] Migrate Design-kits page to use CSS theme variables (#34920) @jesrodri
+- &#8203;<!-- 01 -->[website] Migrate Pricing page to use CSS theme variables (#34917) @trizotti
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Remove default access to GitHub action scopes @oliviertassinari
+- &#8203;<!-- 24 -->[core] Fix Pinned-Dependencies @oliviertassinari
+- &#8203;<!-- 23 -->[core] Fix typos in the component name @oliviertassinari
+- &#8203;<!-- 22 -->[core] Fix scorecard regression @oliviertassinari
+- &#8203;<!-- 21 -->[core] Create the docs theme once (#34954) @oliviertassinari
+
+All contributors of this release in alphabetical order: @akshaya-venkatesh8, @alexfauquette, @hbjORbj, @Janpot, @jesrodri, @michaldudak, @oliviertassinari, @PetroSilenius, @samuelsycamore, @shivam1646, @siriwatknp, @trizotti
+
+## v5.10.12
+
+<!-- generated comparing v5.10.11..master -->
+
+_Oct 31, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 The LinearProgress component has been added to Joy UI by @hbjORbj (#34514).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.12`
+
+- &#8203;<!-- 37 -->[Chip] Don't override icon color (#34247) @emlai
+- &#8203;<!-- 09 -->[Radio] Skip default hover style when disableRipple is set (#34902) @VinceCYLiao
+- &#8203;<!-- 08 -->[SwipeableDrawer] Fix React 18 issues (#34505) @mnajdova
+- &#8203;<!-- 05 -->[Tooltip] Save a few bytes (#34853) @oliviertassinari
+
+### `@mui/base@5.0.0-alpha.104`
+
+- &#8203;<!-- 38 -->[ButtonUnstyled] Update to render as link when href or to is provided (#34337) @EduardoSCosta
+
+### `@mui/joy@5.0.0-alpha.52`
+
+- &#8203;<!-- 36 -->[Joy][circularprogress] Prevent new styles from being generated when `value` changes (#34897) @hbjORbj
+- &#8203;<!-- 11 -->[Joy] Add color inversion feature (#32511) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Add `LinearProgress` component (#34514) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 40 -->[blog] Add blog post for high-level overview of all MUI products (#34325) @samuelsycamore
+- &#8203;<!-- 39 -->[blog] Fix hydration mistmatch (#34857) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Revise the Joy UI "Aspect Ratio" page (#34858) @samuelsycamore
+- &#8203;<!-- 20 -->[docs] Fix Safari code font size (#34859) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix spelling mistake (#34955) @punithnayak
+- &#8203;<!-- 18 -->[docs] Fix 404 link of supported Material UI components @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix Safari button misalignment (#34861) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix typo in docs title (#34926) @PunitSoniME
+- &#8203;<!-- 25 -->[docs] Fix missing emotion prefixes (#34958) @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Improve UI display for copy code (#34950) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Standardize all MUI Core "Usage" pages (#34183) @samuelsycamore
+- &#8203;<!-- 14 -->[docs] Update templates' readme files to include required dependencies (#34757) @michaldudak
+- &#8203;<!-- 13 -->[docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
+- &#8203;<!-- 12 -->[docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
+- &#8203;<!-- 07 -->[website] Migrate about-us page to use CSS theme variables (#34919) @brianlu2610
+- &#8203;<!-- 06 -->[website] Migrate Product-Templates page to use CSS theme variables (#34913) @EduardoSCosta
+- &#8203;<!-- 05 -->[website] Migrate career page to use CSS theme variables (#34908) @the-mgi
+- &#8203;<!-- 04 -->[website] Update MUI X open and future roles + about page (#34894) @DanailH
+- &#8203;<!-- 03 -->[website] Remove one DOM node (#34960) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Use `span` for icon image (#34914) @siriwatknp
+- &#8203;<!-- 01 -->[website] Fix subscribe input with Safari (#34869) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 35 -->[core] Ignore compiled icons in CodeQL @oliviertassinari
+- &#8203;<!-- 34 -->[core] Add OSSF Scorecard action (#34854) @oliviertassinari
+- &#8203;<!-- 40 -->[core] Fix extra GitHub Action permission (#34496) @sashashura
+- &#8203;<!-- 33 -->[core] Fix duplicate id @oliviertassinari
+- &#8203;<!-- 41 -->[core] Enforce import \* as React (#34878) @da0x
+- &#8203;<!-- 32 -->[core] A couple of simply fixes from #34870 (#34953) @oliviertassinari
+- &#8203;<!-- 31 -->[core] Migrate outdated pattern to convention @oliviertassinari
+- &#8203;<!-- 30 -->[core] Pin GitHub Actions dependencies (#34929) @renovate[bot]
+- &#8203;<!-- 29 -->[core] Make the reproduction more important in the bug template (#34875) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Fix docs GitHub API rate limit (#34856) @oliviertassinari
+- &#8203;<!-- 42 -->[core] Fix eslint issues (#34964) @mnajdova
+- &#8203;<!-- 27 -->[core] Pin GitHub Action to digests (#34855) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Fix permissions in workflow @oliviertassinari
+- &#8203;<!-- 25 -->[core] memoize context values for react/jsx-no-constructed-context-values (#34849) @Janpot
+- &#8203;<!-- 24 -->[core] Fix @typescript-eslint/default-param-last issues (#34846) @Janpot
+- &#8203;<!-- 23 -->[core] Fix HTML validation error (#34860) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Fix duplicate CodeQL build @oliviertassinari
+- &#8203;<!-- 07 -->[test] Move Firefox tests to CircleCI (#34764) @oliviertassinari
+- &#8203;<!-- 06 -->[test] Use screen when possible for simplicity (#34890) @oliviertassinari
+
+All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @EduardoSCosta, @emlai, @hbjORbj, @Janpot, @michaldudak, @mnajdova, @oliviertassinari, @punithnayak, @PunitSoniME, @renovate[bot], @RoodyCode, @samuelsycamore, @siriwatknp, @VinceCYLiao
+
 ## v5.10.11
 
 <!-- generated comparing v5.10.10..master -->
@@ -8741,7 +9051,7 @@ _Sep 6, 2020_
 A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 
-- 💎 A new diamond sponsor: [DoiT](https://www.doit-intl.com/), thank you!
+- 💎 A new diamond sponsor: [DoiT](https://www.doit.com/), thank you!
 - 📚 Include the default value of the props in IntelliSense (#22447) @eps1lon
 - ⚛️ More source migrated to TypeScript and testing-library (#22441) @baterson
 - And many more 🐛 bug fixes and 📚 improvements.
