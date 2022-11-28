@@ -36,7 +36,7 @@ We have started with the [data grid](/x/react-data-grid/#commercial-version) com
 We need to build new features on it and introduce new components.
 The enterprise version is built on the open-source version of the components.
 
-We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
+We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
 ## About the role
 

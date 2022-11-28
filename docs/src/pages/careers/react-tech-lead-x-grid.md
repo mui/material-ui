@@ -39,7 +39,7 @@ We need to:
 - build advanced, in browsers, data analysis features like pivoting and charts integration.
 - build a strong integration with backend APIs, e.g. to handle >100M rows.
 
-We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guiding developers to answers, and just generally being a positive presence in the community.
+We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, improve the health of the open-source by engaging and collaborating with the community, guide developers to answers, and just generally being a positive presence in the community.
 
 ## About the role
 
