@@ -91,8 +91,9 @@ export default function createCssVarsProvider(options) {
     const mode = ctx?.mode ?? state.mode;
     const colorScheme = ctx?.colorScheme ?? state.colorScheme;
 
+    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    const { theme: themeWithVars, styles } = generateCssThemeVars({
+    const { theme, styles } = generateCssThemeVars({
       theme: themeProp,
       defaultMode,
       defaultColorScheme,
@@ -102,19 +103,75 @@ export default function createCssVarsProvider(options) {
       shouldSkipGeneratingVar,
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    const theme = recalculateTheme(themeWithVars, {
-      mode,
-      colorScheme,
-      defaultMode,
-      defaultColorScheme,
+    const calculatedMode = (() => {
+      if (!mode) {
+        // This scope occurs on the server
+        if (defaultMode === 'system') {
+          return designSystemMode;
+        }
+        return defaultMode;
+      }
+      return mode;
+    })();
+    const calculatedColorScheme = (() => {
+      if (!colorScheme) {
+        // This scope occurs on the server
+        if (calculatedMode === 'dark') {
+          return defaultDarkColorScheme;
+        }
+        return defaultLightColorScheme;
+      }
+      return colorScheme;
+    })();
+    const scheme = theme.colorSchemes[calculatedColorScheme] || {};
+
+    /** 3. Start composing the theme object on the server.
+     *
+     * It makes the codebase more complex but required to support existing projects using Material UI
+     * for case like: { background: alpha(theme.palette.{some color}, 0.2) }
+     *
+     * ==========================================================================================
+     *
+     * Clone the value of the `theme.colorSchemes.{colorScheme}` and attach it back to the theme.
+     *
+     * E.g. if the `colorScheme` is dark:
+     *
+     * theme before: {
+     *  colorSchemes: {
+     *    light: { palette: { ...lightPalette }, ...lightTokens },
+     *    dark: { palette: { ...darkPalette }, ...darkTokens }
+     *  }
+     * }
+     *
+     * theme after: {
+     *  colorSchemes: { ... }, // same as before
+     *  palette: { ...darkPalette, colorScheme: 'dark' },
+     *  ...darkTokens
+     * }
+     */
+    Object.keys(scheme).forEach((schemeKey) => {
+      if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
+        // shallow merge the 1st level structure of the theme to support Material You theme structure.
+        theme[schemeKey] = {
+          ...theme[schemeKey],
+          ...scheme[schemeKey],
+        };
+      } else {
+        theme[schemeKey] = scheme[schemeKey];
+      }
     });
+    if (theme.palette) {
+      theme.palette = { ...theme.palette, colorScheme: calculatedColorScheme };
+    }
 
     // [Skipped if nested]
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
     React.useEffect(() => {
-      if (!nested && colorScheme && colorSchemeNode) {
+      if (nested) {
+        return;
+      }
+      if (colorScheme && colorSchemeNode) {
         // attaches attribute to <html> because the css variables are attached to :root (html)
         colorSchemeNode.setAttribute(attribute, colorScheme);
       }
@@ -124,25 +181,25 @@ export default function createCssVarsProvider(options) {
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
     React.useEffect(() => {
-      if (!nested) {
-        let timer;
-        if (disableTransitionOnChange && hasMounted.current && documentNode) {
-          const css = documentNode.createElement('style');
-          css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
-          documentNode.head.appendChild(css);
-
-          // Force browser repaint
-          (() => window.getComputedStyle(documentNode.body))();
-
-          timer = setTimeout(() => {
-            documentNode.head.removeChild(css);
-          }, 1);
-        }
-        return () => {
-          clearTimeout(timer);
-        };
+      if (nested) {
+        return undefined;
       }
-      return undefined;
+      let timer;
+      if (disableTransitionOnChange && hasMounted.current && documentNode) {
+        const css = documentNode.createElement('style');
+        css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
+        documentNode.head.appendChild(css);
+
+        // Force browser repaint
+        (() => window.getComputedStyle(documentNode.body))();
+
+        timer = setTimeout(() => {
+          documentNode.head.removeChild(css);
+        }, 1);
+      }
+      return () => {
+        clearTimeout(timer);
+      };
     }, [colorScheme, disableTransitionOnChange, documentNode, nested]);
     React.useEffect(() => {
       hasMounted.current = true;
@@ -247,69 +304,6 @@ export default function createCssVarsProvider(options) {
   };
 
   /**
-   * Clone the value of the `theme.colorSchemes.{colorScheme}` and attach back to the theme.
-   *
-   * E.g. if the `colorScheme` is dark:
-   *
-   * theme before: {
-   *  colorSchemes: {
-   *    light: { palette: { ...lightPalette }, ...lightTokens },
-   *    dark: { palette: { ...darkPalette }, ...darkTokens }
-   *  }
-   * }
-   *
-   * theme after: {
-   *  colorSchemes: { ... }, // same as before
-   *  palette: { ...darkPalette },
-   *  ...darkTokens
-   * }
-   */
-  const recalculateTheme = (themeProp, { mode, colorScheme, defaultMode, defaultColorScheme }) => {
-    const defaultLightColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
-    const defaultDarkColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
-    const calculatedMode = (() => {
-      if (!mode) {
-        // This scope occurs on the server
-        if (defaultMode === 'system') {
-          return designSystemMode;
-        }
-        return defaultMode;
-      }
-      return mode;
-    })();
-    const calculatedColorScheme = (() => {
-      if (!colorScheme) {
-        // This scope occurs on the server
-        if (calculatedMode === 'dark') {
-          return defaultDarkColorScheme;
-        }
-        return defaultLightColorScheme;
-      }
-      return colorScheme;
-    })();
-    const theme = { ...themeProp };
-    const scheme = theme.colorSchemes[calculatedColorScheme] || {};
-
-    Object.keys(scheme).forEach((schemeKey) => {
-      if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
-        // shallow merge the 1st level structure of the theme.
-        theme[schemeKey] = {
-          ...theme[schemeKey],
-          ...scheme[schemeKey],
-        };
-      } else {
-        theme[schemeKey] = scheme[schemeKey];
-      }
-    });
-    if (theme.palette) {
-      theme.palette = { ...theme.palette, colorScheme: calculatedColorScheme };
-    }
-    return theme;
-  };
-
-  /**
    * @internal
    */
   const defaultColorSchemeSelector = (key) => `[${defaultAttribute}="${key}"]`;
@@ -393,49 +387,6 @@ export default function createCssVarsProvider(options) {
     };
   };
 
-  function NestedCssVarsProvider({
-    theme: themeProp,
-    children,
-    defaultMode = designSystemMode,
-    defaultColorScheme = designSystemColorScheme,
-  }) {
-    const value = React.useContext(ColorSchemeContext);
-    if (!value) {
-      throw new MuiError(
-        'MUI: `<NestedCssVarsProvider>` must be rendered under <CssVarsProvider />',
-      );
-    }
-
-    const { mode, colorScheme } = value;
-
-    const theme = recalculateTheme(themeProp, {
-      mode,
-      colorScheme,
-      defaultMode,
-      defaultColorScheme,
-    });
-
-    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-  }
-  NestedCssVarsProvider.propTypes = {
-    /**
-     * The component tree.
-     */
-    children: PropTypes.node,
-    /**
-     * The initial color scheme used.
-     */
-    defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    /**
-     * The initial mode used.
-     */
-    defaultMode: PropTypes.string,
-    /**
-     * The calculated theme object that will be passed through context.
-     */
-    theme: PropTypes.object,
-  };
-
   const defaultLightColorScheme =
     typeof designSystemColorScheme === 'string'
       ? designSystemColorScheme
@@ -458,7 +409,6 @@ export default function createCssVarsProvider(options) {
 
   return {
     CssVarsProvider,
-    NestedCssVarsProvider,
     useColorScheme,
     generateCssThemeVars,
     getInitColorSchemeScript,
