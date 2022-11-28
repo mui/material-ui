@@ -41,7 +41,7 @@ We need talented people to keep that going!
 Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 The core components are widely used, you will receive a lot of feedback on your work. The community has high expectations, they will push you to do better, every day.
-The [results of the latest survey](https://mui.com/blog/2021-developer-survey-results/) can give you a great sense for where we will need to push the open-source library in the coming months.
+The [results of the latest survey](https://mui.com/blog/2021-developer-survey-results/) can give you a great sense of where we will need to push the open-source library in the coming months.
 
 ## About the role
 
