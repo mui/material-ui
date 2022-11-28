@@ -53,7 +53,7 @@ Our solution empowers React developers to build awesome applications faster – 
 
 You will extend the [React Engineer](https://mui-org.notion.site/Software-Engineer-fe310cfb22e34fc7881318f9cb1cf023#5f2967e6c60d411ea09ab8a108d95702) responsibilities. Depending on the day, you'll:
 
-- **Lead**. You will leads by inspiring and setting the bar for code quality for the engineering team, and cracking the hard problems:
+- **Lead**. You will lead by inspiring and setting the bar for code quality for the engineering team, and cracking the hard problems:
   - Guide the approach and execution.
   - Guide people in making the right technical decisions themselves over imposing them.
   - Be aware of the current technical landscape and knows where the wind blows.
