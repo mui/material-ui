@@ -100,12 +100,12 @@ We're looking for someone with strong front-end skills. More important than spec
 - **Past work with front-end infrastructure**.
   Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
   It would be great if you could address this in your cover letter!
-
-### What it would be nice if you had, but isn't required
-
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
   You have built complex and advanced features while making sure the accessibility was fully functional.
+
+### What it would be nice if you had, but isn't required
+
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
