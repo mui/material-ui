@@ -18,14 +18,11 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
-    components: {
-      closeButton: {},
-      closeIcon: {},
-    },
     slots: {
       closeButton: {},
       closeIcon: {},
     },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {

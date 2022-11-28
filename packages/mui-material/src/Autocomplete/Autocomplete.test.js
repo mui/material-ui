@@ -56,12 +56,6 @@ describe('<Autocomplete />', () => {
       testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
-      components: {
-        clearIndicator: { expectedClassName: classes.clearIndicator },
-        paper: { expectedClassName: classes.paper },
-        popper: { expectedClassName: classes.popper },
-        popupIndicator: { expectedClassName: classes.popupIndicator },
-      },
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         paper: { expectedClassName: classes.paper },

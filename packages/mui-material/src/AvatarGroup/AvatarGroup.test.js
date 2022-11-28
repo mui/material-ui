@@ -20,9 +20,6 @@ describe('<AvatarGroup />', () => {
       muiName: 'MuiAvatarGroup',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
-      components: {
-        additionalAvatar: { expectedClassName: classes.avatar },
-      },
       slots: {
         additionalAvatar: { expectedClassName: classes.avatar },
       },
