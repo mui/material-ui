@@ -69,7 +69,7 @@ export default function createCssVarsProvider(options) {
     const nested = !!ctx;
     const hasMounted = React.useRef(false);
 
-    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
+    const { colorSchemes = {}, components = {}, ...restThemeProp } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -126,7 +126,6 @@ export default function createCssVarsProvider(options) {
       ...restThemeProp,
       components,
       colorSchemes,
-      cssVarPrefix,
       vars: {},
       getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
@@ -176,7 +175,7 @@ export default function createCssVarsProvider(options) {
     // 3. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const styles = generateCssThemeVars({
-      theme: themeProp,
+      theme: { ...restThemeProp, colorSchemes },
       defaultMode,
       defaultColorScheme,
       rootSelector: colorSchemeSelector,
