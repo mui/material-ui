@@ -341,7 +341,7 @@ export default function createCssVarsProvider(options) {
    * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
    */
   const generateCssThemeVars = ({
-    theme,
+    theme = defaultTheme,
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
