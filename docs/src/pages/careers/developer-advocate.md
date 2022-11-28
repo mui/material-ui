@@ -27,7 +27,7 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-In our [last developer survey](/blog/2021-developer-survey-results/#what-else-can-we-do-to-improve-mui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
+In our [last developer survey](/blog/2021-developer-survey-results/#what-else-can-we-do-to-improve-mui-for-you), we learned that we have a long way to go in helping developers to be successful with our technology.
 We have underinvested in this area for too long.
 Your mission will be to be the voice of the developers of the community inside the company.
 We are looking for someone that can contribute to the following outcomes:
