@@ -10,6 +10,8 @@ import {
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
+import TouchRipple from './TouchRipple';
+import useTouchRipple from './useTouchRipple';
 import { MD3ColorSchemeTokens, styled } from '../styles';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
@@ -258,6 +260,8 @@ export const ButtonRoot = styled('button', {
     '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
+    '--md-comp-ripple-background-color': focusedContainerColor[ownerState.variant ?? 'text'],
+    '--md-comp-ripple-color': labelTextColor[ownerState.variant ?? 'text'],
     // Noramlized styles for buttons
     display: 'inline-flex',
     alignItems: 'center',
@@ -392,6 +396,7 @@ const Button = React.forwardRef(function Button<
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
   const {
     action,
+    centerRipple = false,
     children,
     className,
     color = 'primary',
@@ -399,6 +404,9 @@ const Button = React.forwardRef(function Button<
     disabled = false,
     focusableWhenDisabled = false,
     disableElevation = false,
+    disableFocusRipple = false,
+    disableRipple = false,
+    disableTouchRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
@@ -420,6 +428,7 @@ const Button = React.forwardRef(function Button<
     size = 'medium',
     startIcon: startIconProp,
     tabIndex = 0,
+    TouchRippleProps,
     type,
     variant = 'text',
     ...other
@@ -428,6 +437,7 @@ const Button = React.forwardRef(function Button<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
+  const rippleRef = React.useRef(null);
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && (other.href || other.to)) {
@@ -456,6 +466,29 @@ const Button = React.forwardRef(function Button<
     }),
     [setFocusVisible],
   );
+
+  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
+    disabled,
+    disableFocusRipple,
+    disableRipple,
+    disableTouchRipple,
+    focusVisible,
+    rippleRef,
+  });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (enableTouchRipple && !rippleRef.current) {
+        console.error(
+          [
+            'MUI: The `component` prop provided to Button is invalid.',
+            'Please make sure the children prop is rendered in this custom component.',
+          ].join('\n'),
+        );
+      }
+    }, [enableTouchRipple]);
+  }
 
   const ownerState = {
     ...props,
@@ -490,12 +523,16 @@ const Button = React.forwardRef(function Button<
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...getRootProps()}
+      {...getRootProps(getRippleHandlers(props))}
       {...other}
     >
       {startIcon}
       {children}
       {endIcon}
+      {enableTouchRipple ? (
+        /* TouchRipple is only needed client-side, x2 boost on the server. */
+        <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
+      ) : null}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;

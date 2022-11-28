@@ -5,6 +5,7 @@ import {
   OverridableComponent,
   OverridableTypeMap,
 } from '@mui/types';
+import { TouchRippleProps } from './TouchRipple';
 import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
 
@@ -25,6 +26,12 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      * It currently only supports `focusVisible()` action.
      */
     action?: React.Ref<ButtonActions>;
+    /**
+     * If `true`, the ripples are centered.
+     * They won't start at the cursor interaction position.
+     * @default false
+     */
+    centerRipple?: boolean;
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
@@ -79,6 +86,19 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      */
     disableFocusRipple?: boolean;
     /**
+     * If `true`, the ripple effect is disabled.
+     *
+     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
+     * @default false
+     */
+    disableRipple?: boolean;
+    /**
+     * If `true`, the touch ripple effect is disabled.
+     * @default false
+     */
+    disableTouchRipple?: boolean;
+    /**
      * Element placed after the children.
      */
     endIcon?: React.ReactNode;
@@ -106,6 +126,14 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
+    /**
+     * @default 0
+     */
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
+    /**
+     * Props applied to the `TouchRipple` element.
+     */
+    TouchRippleProps?: Partial<TouchRippleProps>;
     /**
      * The variant to use.
      * @default 'text'
