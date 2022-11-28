@@ -65,6 +65,8 @@ export default function createCssVarsProvider(options) {
     colorSchemeSelector = ':root',
     shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
   }) {
+    const ctx = React.useContext(ColorSchemeContext);
+    const nested = !!ctx;
     const hasMounted = React.useRef(false);
 
     const allColorSchemes = Object.keys(themeProp.colorSchemes || {});
@@ -73,24 +75,21 @@ export default function createCssVarsProvider(options) {
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
-    // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
-    const {
-      mode,
-      setMode,
-      systemMode,
-      lightColorScheme,
-      darkColorScheme,
-      colorScheme,
-      setColorScheme,
-    } = useCurrentColorScheme({
-      supportedColorSchemes: allColorSchemes,
-      defaultLightColorScheme,
-      defaultDarkColorScheme,
-      modeStorageKey,
-      colorSchemeStorageKey,
-      defaultMode,
-      storageWindow,
-    });
+    // The `useCurrentColorScheme` result is neglected if CssVarsProvider is a nested provider.
+    const { setMode, systemMode, lightColorScheme, darkColorScheme, setColorScheme, ...state } =
+      useCurrentColorScheme({
+        supportedColorSchemes: allColorSchemes,
+        defaultLightColorScheme,
+        defaultDarkColorScheme,
+        modeStorageKey,
+        colorSchemeStorageKey,
+        defaultMode,
+        storageWindow,
+      });
+
+    // 1. Get the `mode` and `colorScheme` values. Use the upper provider state if exists.
+    const mode = ctx?.mode ?? state.mode;
+    const colorScheme = ctx?.colorScheme ?? state.colorScheme;
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     const { theme: themeWithVars, styles } = generateCssThemeVars({
@@ -111,35 +110,40 @@ export default function createCssVarsProvider(options) {
       defaultColorScheme,
     });
 
+    // [Skipped if nested]
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
     React.useEffect(() => {
-      if (colorScheme && colorSchemeNode) {
+      if (!nested && colorScheme && colorSchemeNode) {
         // attaches attribute to <html> because the css variables are attached to :root (html)
         colorSchemeNode.setAttribute(attribute, colorScheme);
       }
-    }, [colorScheme, attribute, colorSchemeNode]);
+    }, [colorScheme, attribute, colorSchemeNode, nested]);
 
+    // [Skipped if nested]
     // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
     // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
     React.useEffect(() => {
-      let timer;
-      if (disableTransitionOnChange && hasMounted.current && documentNode) {
-        const css = documentNode.createElement('style');
-        css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
-        documentNode.head.appendChild(css);
+      if (!nested) {
+        let timer;
+        if (disableTransitionOnChange && hasMounted.current && documentNode) {
+          const css = documentNode.createElement('style');
+          css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
+          documentNode.head.appendChild(css);
 
-        // Force browser repaint
-        (() => window.getComputedStyle(documentNode.body))();
+          // Force browser repaint
+          (() => window.getComputedStyle(documentNode.body))();
 
-        timer = setTimeout(() => {
-          documentNode.head.removeChild(css);
-        }, 1);
+          timer = setTimeout(() => {
+            documentNode.head.removeChild(css);
+          }, 1);
+        }
+        return () => {
+          clearTimeout(timer);
+        };
       }
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [colorScheme, disableTransitionOnChange, documentNode]);
+      return undefined;
+    }, [colorScheme, disableTransitionOnChange, documentNode, nested]);
     React.useEffect(() => {
       hasMounted.current = true;
       return () => {
@@ -170,11 +174,19 @@ export default function createCssVarsProvider(options) {
       ],
     );
 
-    return (
-      <ColorSchemeContext.Provider value={contextValue}>
+    const element = (
+      <React.Fragment>
         <GlobalStyles styles={styles} />
         <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
-      </ColorSchemeContext.Provider>
+      </React.Fragment>
+    );
+
+    if (ctx) {
+      return element; // Don't create nested context.
+    }
+
+    return (
+      <ColorSchemeContext.Provider value={contextValue}>{element}</ColorSchemeContext.Provider>
     );
   }
 

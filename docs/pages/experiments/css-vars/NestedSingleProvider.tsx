@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   generateCssThemeVars,
-  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+  Experimental_CssVarsProvider as CssVarsProvider,
 } from '@mui/material/styles';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -20,13 +20,13 @@ function MiniApp() {
     colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .demo`,
   });
   return (
-    <NestedCssVarsProvider theme={theme}>
+    <CssVarsProvider theme={theme}>
       <GlobalStyles styles={styles} />
       <Stack direction="row" spacing={2}>
         <Button variant="outlined">Outlined</Button>
         <Button variant="contained">Contained</Button>
       </Stack>
-    </NestedCssVarsProvider>
+    </CssVarsProvider>
   );
 }
 

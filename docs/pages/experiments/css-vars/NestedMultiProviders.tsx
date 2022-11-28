@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   generateCssThemeVars,
-  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+  Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
 } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
@@ -57,12 +57,12 @@ export default function NestedMultiProviders() {
             </Box>
           </Box>
           <Box className="demo" sx={{ mt: 2, borderRadius: 1, bgcolor: 'background.paper', p: 2 }}>
-            <NestedCssVarsProvider theme={miniAppTheme}>
+            <CssVarsProvider theme={miniAppTheme}>
               <Stack direction="row" spacing={2}>
                 <Button variant="outlined">Outlined</Button>
                 <Button variant="contained">Contained</Button>
               </Stack>
-            </NestedCssVarsProvider>
+            </CssVarsProvider>
           </Box>
         </Paper>
 
@@ -76,12 +76,12 @@ export default function NestedMultiProviders() {
             </Box>
           </Box>
           <Box className="demo" sx={{ mt: 2, borderRadius: 1, bgcolor: 'background.paper', p: 2 }}>
-            <NestedCssVarsProvider theme={miniAppTheme}>
+            <CssVarsProvider theme={miniAppTheme}>
               <Stack direction="row" spacing={2}>
                 <TextField variant="outlined" placeholder="Outlined" label="Label" />
                 <TextField variant="filled" placeholder="Filled" label="Label" />
               </Stack>
-            </NestedCssVarsProvider>
+            </CssVarsProvider>
           </Box>
         </Paper>
       </Container>
