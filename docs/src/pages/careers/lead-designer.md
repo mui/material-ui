@@ -24,7 +24,7 @@ We are building [a low-code platform](https://mui.com/toolpad/) for developers t
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
