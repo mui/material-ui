@@ -1,6 +1,6 @@
 # Developer Advocate
 
-<p class="description">You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote the advanced components.</p>
+<p class="description">You will build a thriving and connected developer community around our platform.</p>
 
 ## Details of the Role
 
@@ -51,17 +51,24 @@ Our solution empowers React developers to build awesome applications faster – 
 
 Depending on the day, you'll:
 
-- You will monitor success metrics, consider how effective initiatives are at achieving goals, and adjust effort accordingly.
-- You will create and implement plans to build, enable and nurture the community.
-- You will compose interesting blog posts. You will be writing tutorials and other technical content.
-- You will participate in and speak at events, and online live streams.
-- You will build inspiring apps, examples, and improve the documentation where needed.
-- You will create technical videos, video tutorials, demos, and additional videos for [our YouTube channel](https://www.youtube.com/channel/UCUdh2wVTrd7hErLo9Rh0HsQ).
-- You will give feedback to product management, to influence the product roadmaps based on developers' needs.
-- You will make sure contributions to the documentation are of high quality, sharing best practices with the developers.
-- You will help other team members grow at engaging with the community. For instance by encouraging and providing critical feedback on new blog posts.
-- You will rework the pages of the documentation that are confusing, base on feedback.
-- You will follow GitHub issues to understand where developers face frustration and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
+- **Content**.
+  - Produce high quality technical “how-to” content (blogs, webinars, demos, talks) addressing common user needs, latest technology advances, and emerging best practices. Videos might go to [our YouTube channel](https://www.youtube.com/channel/UCUdh2wVTrd7hErLo9Rh0HsQ).
+  - Distribute content and leverage pieces to broaden awareness of the MUI brand, via existing connections.
+  - Rework the pages of the documentation that are confusing, base on feedback.
+- **Community**.
+  - Built our developer-focused community.
+  - Deliver presentations at meetups, conferences, and other ecosystem events.
+  - Create & produce events (podcasts, roundtables, hackathons).
+  - Manage the sponsorships of events, newsletters, etc.
+  - Help other team members grow at engaging with the community. For instance by encouraging and providing critical feedback on the blog posts they create, or by keeping track of the health of community contributions.
+- **Relationship-building**.
+  - Create relationships with fellow ecosystem influencers and open-source leaders.
+  - Nurture ongoing connections with user group members to build personal relationships and deeply understand their needs, usage, journeys, and barriers to adoption.
+- **Technical**.
+  - Write code where required to support how-to content, blog posts, and presentations.
+  - Create inspiring sample applications, documentation, and tutorials.
+  - Give feedback to product management, to influence the product roadmaps based on developers' needs.
+  - Follow GitHub issues to understand where developers face frustration and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
 
 For the right candidate:
 

@@ -217,7 +217,8 @@ const openRolesData = [
     roles: [
       {
         title: 'Developer Advocate',
-        description: 'You will own the marketing efforts at MUI.',
+        description:
+          'You will build a thriving and connected developer community around our platform.',
         url: '/careers/developer-advocate/',
       },
     ],
