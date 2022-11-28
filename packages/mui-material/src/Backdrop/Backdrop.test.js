@@ -26,7 +26,7 @@ describe('<Backdrop />', () => {
       'componentsProp',
       // react-transition-group issue
       'reactTestRenderer',
-      'slotPropsCallback',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

@@ -26,7 +26,10 @@ describe('<ListItem />', () => {
     slots: {
       root: {},
     },
-    skip: ['componentsProp', 'slotPropsCallback'],
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render with gutters classes', () => {

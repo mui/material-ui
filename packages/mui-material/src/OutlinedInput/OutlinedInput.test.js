@@ -23,7 +23,11 @@ describe('<OutlinedInput />', () => {
       root: { expectedClassName: classes.root, testWithElement: null },
       input: { expectedClassName: classes.input, testWithElement: null },
     },
-    skip: ['componentProp', 'componentsProp', 'slotPropsCallback'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render a NotchedOutline', () => {

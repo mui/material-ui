@@ -21,7 +21,12 @@ describe('<StepLabel />', () => {
     slots: {
       label: { expectedClassName: classes.label },
     },
-    skip: ['componentProp', 'componentsProp', 'slotsProp', 'slotPropsCallback'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('label content', () => {

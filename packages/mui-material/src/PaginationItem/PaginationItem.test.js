@@ -27,7 +27,7 @@ describe('<PaginationItem />', () => {
       // uses non-standard camel-case fields in `components`
       'slotsProp',
       'slotPropsProp',
-      'slotPropsCallback',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

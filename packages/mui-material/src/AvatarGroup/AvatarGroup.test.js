@@ -24,7 +24,11 @@ describe('<AvatarGroup />', () => {
       slots: {
         additionalAvatar: { expectedClassName: classes.avatar },
       },
-      skip: ['componentsProp', 'slotsProp', 'slotPropsCallback'],
+      skip: [
+        'componentsProp',
+        'slotsProp',
+        'slotPropsCallback', // not supported yet
+      ],
     }),
   );
 

@@ -37,7 +37,7 @@ describe('<Popper />', () => {
       'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
-      'slotPropsCallback',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

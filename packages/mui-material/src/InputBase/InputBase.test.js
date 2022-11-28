@@ -27,7 +27,10 @@ describe('<InputBase />', () => {
       root: { expectedClassName: classes.root, testWithElement: null },
       input: { expectedClassName: classes.input, testWithElement: null },
     },
-    skip: ['componentProp', 'slotPropsCallback'],
+    skip: [
+      'componentProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render an <input /> inside the div', () => {

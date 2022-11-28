@@ -68,7 +68,7 @@ describe('<Autocomplete />', () => {
         'componentsProp',
         'slotsProp',
         'reactTestRenderer',
-        'slotPropsCallback',
+        'slotPropsCallback', // not supported yet
       ],
     }),
   );

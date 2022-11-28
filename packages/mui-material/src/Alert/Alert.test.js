@@ -23,7 +23,10 @@ describe('<Alert />', () => {
       closeButton: {},
       closeIcon: {},
     },
-    skip: ['componentsProp', 'slotPropsCallback'],
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('prop: square', () => {

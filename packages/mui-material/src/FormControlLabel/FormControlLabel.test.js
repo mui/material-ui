@@ -22,7 +22,12 @@ describe('<FormControlLabel />', () => {
     slots: {
       typography: { expectedClassName: classes.label },
     },
-    skip: ['componentProp', 'componentsProp', 'slotsProp', 'slotPropsCallback'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('prop: label', () => {

@@ -64,7 +64,9 @@ describe('<Slider />', () => {
           expectedClassName: classes.markLabel,
         },
       },
-      skip: ['slotPropsCallback'],
+      skip: [
+        'slotPropsCallback', // not supported yet
+      ],
     }),
   );
 
