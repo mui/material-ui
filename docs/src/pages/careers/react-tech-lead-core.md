@@ -60,7 +60,7 @@ You will extend the [React Engineer](https://mui-org.notion.site/Software-Engine
   - Empower the team to aim for high-quality outputs. By doing such it aims for the success of delivered solutions.
   - Push for consistency, follow what's going on in the other teams.
 - **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
-- **Be a solver**. You will digs deep into arbitrarily complex problems and finds an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
+- **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 
 ### The best parts of this job
 
