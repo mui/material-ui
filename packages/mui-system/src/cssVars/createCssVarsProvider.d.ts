@@ -81,7 +81,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  generateCssThemeVars: <T = {}>(options?: {
+  generateCssThemeVars: (options?: {
     /**
      * Design system default color scheme.
      * - provides string if the design system has one default color scheme (either light or dark)
@@ -122,18 +122,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
       cssVarPrefix?: string;
       colorSchemes: Record<ColorScheme, Record<string, any>>;
     };
-  }) => {
-    /**
-     * The theme with extra fields
-     * - `vars`
-     * - `getColorSchemeSelector`
-     */
-    theme: T;
-    /**
-     * The stylesheet (in JS object format) that contains the generated CSS theme variables.
-     */
-    styles: Record<string, any>;
-  };
+  }) => Record<string, any>;
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 

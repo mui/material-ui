@@ -69,39 +69,35 @@ export default function createCssVarsProvider(options) {
     const nested = !!ctx;
     const hasMounted = React.useRef(false);
 
-    const allColorSchemes = Object.keys(themeProp.colorSchemes || {});
+    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
+    const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
 
     // The `useCurrentColorScheme` result is neglected if CssVarsProvider is a nested provider.
-    const { setMode, systemMode, lightColorScheme, darkColorScheme, setColorScheme, ...state } =
-      useCurrentColorScheme({
-        supportedColorSchemes: allColorSchemes,
-        defaultLightColorScheme,
-        defaultDarkColorScheme,
-        modeStorageKey,
-        colorSchemeStorageKey,
-        defaultMode,
-        storageWindow,
-      });
+    const {
+      mode: stateMode,
+      setMode,
+      systemMode,
+      lightColorScheme,
+      darkColorScheme,
+      colorScheme: stateColorScheme,
+      setColorScheme,
+    } = useCurrentColorScheme({
+      supportedColorSchemes: allColorSchemes,
+      defaultLightColorScheme,
+      defaultDarkColorScheme,
+      modeStorageKey,
+      colorSchemeStorageKey,
+      defaultMode,
+      storageWindow,
+    });
 
     // 1. Get the `mode` and `colorScheme` values. Use the upper provider state if exists.
-    const mode = ctx?.mode ?? state.mode;
-    const colorScheme = ctx?.colorScheme ?? state.colorScheme;
-
-    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    const { theme, styles } = generateCssThemeVars({
-      theme: themeProp,
-      defaultMode,
-      defaultColorScheme,
-      rootSelector: colorSchemeSelector,
-      colorSchemeSelector: (key) =>
-        `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
-      shouldSkipGeneratingVar,
-    });
+    const mode = ctx?.mode ?? stateMode;
+    const colorScheme = ctx?.colorScheme ?? stateColorScheme;
 
     const calculatedMode = (() => {
       if (!mode) {
@@ -119,16 +115,28 @@ export default function createCssVarsProvider(options) {
         if (calculatedMode === 'dark') {
           return defaultDarkColorScheme;
         }
+        // use light color scheme, if default mode is 'light' | 'system'
         return defaultLightColorScheme;
       }
       return colorScheme;
     })();
-    const scheme = theme.colorSchemes[calculatedColorScheme] || {};
 
-    /** 3. Start composing the theme object on the server.
-     *
+    // 2. Start composing the theme object on the server.
+    const theme = {
+      ...restThemeProp,
+      components,
+      colorSchemes,
+      cssVarPrefix,
+      vars: {},
+      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
+    };
+
+    /**
      * It makes the codebase more complex but required to support existing projects using Material UI
-     * for case like: { background: alpha(theme.palette.{some color}, 0.2) }
+     * to migrate to CSS variables.
+     *
+     * For example: `{ background: alpha(theme.palette.{some color}, 0.2) }`
+     * The theme.palette.* must exist on the server.
      *
      * ==========================================================================================
      *
@@ -149,6 +157,7 @@ export default function createCssVarsProvider(options) {
      *  ...darkTokens
      * }
      */
+    const scheme = theme.colorSchemes[calculatedColorScheme] || {};
     Object.keys(scheme).forEach((schemeKey) => {
       if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
         // shallow merge the 1st level structure of the theme to support Material You theme structure.
@@ -163,6 +172,22 @@ export default function createCssVarsProvider(options) {
     if (theme.palette) {
       theme.palette = { ...theme.palette, colorScheme: calculatedColorScheme };
     }
+
+    // 3. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    const styles = generateCssThemeVars({
+      theme: themeProp,
+      defaultMode,
+      defaultColorScheme,
+      rootSelector: colorSchemeSelector,
+      colorSchemeSelector: (key) =>
+        `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`,
+      shouldSkipGeneratingVar,
+      onGenerateVars: (vars) => {
+        // attach `vars` to the theme to refer to a CSS variable.
+        theme.vars = deepmerge(theme.vars, vars);
+      },
+    });
 
     // [Skipped if nested]
     // 5. Declaring effects
@@ -232,18 +257,19 @@ export default function createCssVarsProvider(options) {
     );
 
     const element = (
-      <React.Fragment>
-        <GlobalStyles styles={styles} />
-        <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
-      </React.Fragment>
+      <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
     );
 
     if (ctx) {
-      return element; // Don't create nested context.
+      // If nested, the context and stylesheet are not created.
+      return element;
     }
 
     return (
-      <ColorSchemeContext.Provider value={contextValue}>{element}</ColorSchemeContext.Provider>
+      <ColorSchemeContext.Provider value={contextValue}>
+        <GlobalStyles styles={styles} />
+        {element}
+      </ColorSchemeContext.Provider>
     );
   }
 
@@ -316,34 +342,22 @@ export default function createCssVarsProvider(options) {
    * Note: The generated CSS variables are prefixed by `theme.cssVarPrefix` input.
    */
   const generateCssThemeVars = ({
-    theme: themeProp = defaultTheme,
+    theme,
     defaultMode = designSystemMode,
     defaultColorScheme = designSystemColorScheme,
     shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
     rootSelector = ':root',
     colorSchemeSelector = defaultColorSchemeSelector,
+    onGenerateVars,
   }) => {
-    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
+    const { colorSchemes = {}, cssVarPrefix } = theme;
 
-    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
+    const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
     });
+    onGenerateVars?.(rootVars);
 
-    // 3. Start composing the theme object
-    const theme = {
-      ...restThemeProp,
-      components,
-      colorSchemes,
-      cssVarPrefix,
-      vars: rootVars,
-      getColorSchemeSelector: (targetColorScheme) => `${colorSchemeSelector(targetColorScheme)} &`,
-    };
-
-    // 4. Create color CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    //    The default color scheme stylesheet is constructed to have the least CSS specificity.
-    //    The other color schemes uses selector, default as data attribute, to increase the CSS specificity so that they can override the default color scheme stylesheet.
     const defaultColorSchemeStyleSheet = {};
     const otherColorSchemesStyleSheet = {};
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
@@ -351,7 +365,8 @@ export default function createCssVarsProvider(options) {
         prefix: cssVarPrefix,
         shouldSkipGeneratingVar,
       });
-      theme.vars = deepmerge(theme.vars, vars);
+      onGenerateVars?.(vars);
+
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
@@ -378,12 +393,9 @@ export default function createCssVarsProvider(options) {
     });
 
     return {
-      theme,
-      styles: {
-        [rootSelector]: rootCss,
-        ...defaultColorSchemeStyleSheet,
-        ...otherColorSchemesStyleSheet,
-      },
+      [rootSelector]: rootCss,
+      ...defaultColorSchemeStyleSheet,
+      ...otherColorSchemesStyleSheet,
     };
   };
 

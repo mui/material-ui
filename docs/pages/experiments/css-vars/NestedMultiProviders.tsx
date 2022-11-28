@@ -37,7 +37,7 @@ const customTheme = extendTheme({
 });
 
 export default function NestedMultiProviders() {
-  const { styles, theme: miniAppTheme } = generateCssThemeVars({
+  const styles = generateCssThemeVars({
     theme: customTheme,
     rootSelector: '.demo',
     colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .demo`,
@@ -57,7 +57,7 @@ export default function NestedMultiProviders() {
             </Box>
           </Box>
           <Box className="demo" sx={{ mt: 2, borderRadius: 1, bgcolor: 'background.paper', p: 2 }}>
-            <CssVarsProvider theme={miniAppTheme}>
+            <CssVarsProvider theme={customTheme}>
               <Stack direction="row" spacing={2}>
                 <Button variant="outlined">Outlined</Button>
                 <Button variant="contained">Contained</Button>
@@ -76,7 +76,7 @@ export default function NestedMultiProviders() {
             </Box>
           </Box>
           <Box className="demo" sx={{ mt: 2, borderRadius: 1, bgcolor: 'background.paper', p: 2 }}>
-            <CssVarsProvider theme={miniAppTheme}>
+            <CssVarsProvider theme={customTheme}>
               <Stack direction="row" spacing={2}>
                 <TextField variant="outlined" placeholder="Outlined" label="Label" />
                 <TextField variant="filled" placeholder="Filled" label="Label" />
