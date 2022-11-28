@@ -30,6 +30,9 @@ const Main = styled('main', {
   [theme.breakpoints.up('lg')]: {
     width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
+  '& .markdown-body .comment-link-style': {
+    display: 'inline-block',
+  },
 }));
 
 const StyledAppContainer = styled(AppContainer, {
@@ -130,7 +133,7 @@ function AppLayoutDocs(props) {
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>
-              <AppLayoutDocsFooter />
+              <AppLayoutDocsFooter tableOfContents={toc} />
             </NoSsr>
           </StyledAppContainer>
         </Main>
