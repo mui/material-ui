@@ -500,7 +500,7 @@ function CareersContent() {
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
             The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
             fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a
-            simimar pace in 2022 (25), and we plan to triple it in 2023 (75). We&apos;re looking for
+            similar pace in 2022 (25), and we plan to triple it in 2023 (75). We&apos;re looking for
             help keep growing in the following areas:
           </Typography>
         </div>
