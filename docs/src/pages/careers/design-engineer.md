@@ -1,6 +1,6 @@
 # Design Engineer
 
-<p class="description">You will breadth to design, concept, prototype, and build new experiences for our products.</p>
+<p class="description">You will focus on design to implement great product experiences.</p>
 
 ## Details of the Role
 
