@@ -135,6 +135,66 @@ describe('useSlot', () => {
     });
   });
 
+  /**
+   * Simulate `Tooltip`, ...etc
+   */
+  describe('unstyled popper as the root slot', () => {
+    const ItemRoot = styled('div')({});
+    function Item(props: {
+      component?: React.ElementType;
+      slots?: {
+        root?: React.ElementType;
+      };
+      slotProps?: {
+        root?: SlotComponentProps<'button', Record<string, any>, {}>;
+      };
+    }) {
+      const ref = React.useRef(null);
+      const [SlotRoot, rootProps] = useSlot('root', {
+        ref,
+        className: 'root',
+        elementType: PopperUnstyled,
+        externalForwardedProps: props,
+        ownerState: {},
+        additionalProps: {
+          open: true, // !!force the popper to always visible for testing
+        },
+        internalForwardedProps: {
+          component: ItemRoot,
+        },
+      });
+      return <SlotRoot {...rootProps} />;
+    }
+
+    it('should render popper with styled-component', () => {
+      const { getByRole } = render(<Item />);
+      expect(getByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).to.have.tagName('div');
+    });
+
+    it('the root slot should be replaceable', () => {
+      const Listbox = React.forwardRef<HTMLUListElement, { component?: React.ElementType }>(
+        function Listbox({ component }, ref) {
+          return <ul ref={ref} data-component={component} />;
+        },
+      );
+
+      const { getByRole } = render(<Item slots={{ root: Listbox }} />);
+      expect(getByRole('list')).toBeVisible();
+      expect(getByRole('list')).not.to.have.attribute('class');
+      // to test that the `component` prop should not forward to the custom slot.
+      expect(getByRole('list')).not.to.have.attribute('data-component');
+    });
+
+    it('the root component can be changed', () => {
+      const { getByRole } = render(<Item slotProps={{ root: { component: 'aside' } }} />);
+      expect(getByRole('tooltip')).to.have.tagName('aside');
+    });
+  });
+
+  /**
+   * Simulate `Autocomplete`, `Select`, ...etc
+   */
   describe('multiple slots with unstyled popper', () => {
     const ItemRoot = styled('div')({});
     const ItemListbox = styled('ul')({
@@ -169,7 +229,7 @@ describe('useSlot', () => {
         externalForwardedProps: props,
         ownerState: {},
         additionalProps: {
-          open: true,
+          open: true, // !!force the popper to always visible for testing
           role: 'menu',
           anchorEl: () => document.createElement('div'),
         },
@@ -212,6 +272,7 @@ describe('useSlot', () => {
       const { getByRole } = render(<Item slots={{ listbox: Listbox }} />);
       expect(getByRole('list')).toBeVisible();
       expect(getByRole('list')).not.to.have.attribute('class');
+      // to test that the `component` prop should not forward to the custom slot.
       expect(getByRole('list')).not.to.have.attribute('data-component');
     });
 

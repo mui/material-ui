@@ -67,7 +67,7 @@ export default function useSlot<
     ownerState: OwnerState;
     /**
      * The `other` props from the consumer. It has to contain `component`, `slots`, and `slotProps`.
-     * The function will use those props to calculate the final leaf component and the returned props.
+     * The function will use those props to calculate the final rendered element and the returned props.
      *
      * If the slot is not `root`, the rest of the `externalForwardedProps` are neglected.
      */
@@ -90,7 +90,7 @@ export default function useSlot<
         >,
     ) => SlotOwnerState;
     /**
-     * props forward to `T` only if leaf component is not provided.
+     * props forward to `T` only if the `slotProps.*.component` is not provided.
      * e.g. Autocomplete's listbox uses PopperUnstyled + StyledComponent
      */
     internalForwardedProps?: any;
