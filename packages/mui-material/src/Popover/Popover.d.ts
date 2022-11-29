@@ -143,7 +143,7 @@ export function getOffsetLeft(
 ): number;
 
 export function getMargin(
-  marginThreshold: number | Array<number>,
+  marginThreshold: number | number[],
   direction: 'vertical' | 'horizontal',
 ): number;
 
