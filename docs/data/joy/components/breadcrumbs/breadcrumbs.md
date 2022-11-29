@@ -40,7 +40,7 @@ The Breadcrumbs component comes in three sizes: `sm`, `md` (default), and `lg`:
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-### Separator
+### Separators
 
 By default, the Breadcrumbs component inserts a forward slash (/) between each navigation item.
 Use the `separator` prop to define a custom separator, which can be a character or a symbol as well as an icon:
@@ -113,9 +113,7 @@ The Breadcrumbs component is composed of a root `<nav>` that wraps around an `<o
     <li class="MuiBreadcrumbs-li">
       <!-- Link or Typography -->
     </li>
-    <li aria-hidden="true" class="MuiBreadcrumbs-separator">
-      /
-    </li>
+    <li aria-hidden="true" class="MuiBreadcrumbs-separator">/</li>
     <li class="MuiBreadcrumbs-li css-1rqbcrs-JoyBreadcrumbs-ol">
       <!-- Link or Typography -->
     </li>
