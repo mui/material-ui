@@ -58,30 +58,11 @@ import Typography from '@mui/joy/Typography';
 ```
 
 The Breadcrumbs component doesn't accept the `variant`, `color`, `startDecorator`, or `endDecorator` props—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
-As such, most custom styles should be applied directly to those components rather than Breadcrumbs.
+As such, most custom styles that affect the content should be applied directly to those components rather than Breadcrumbs.
 
 The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
-
-## Accessibility
-
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
-
-Be sure to add a `aria-label` description on the Breadcrumbs component.
-
-The accessibility of this component relies on:
-
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
-- The link to the current page has `aria-current` set to page.
-
-## CSS variables
-
-Play around with one of the CSS variables available in the breadcrumbs component to see how the design changes.
-
-{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
 
 ## Common examples
 
@@ -101,3 +82,25 @@ import Menu from '@mui/joy/Menu';
 As an alternative to the behavior of the condensed demo above, consider adding a [Menu](/joy-ui/react-menu/) component to display the condensed links in a dropdown list:
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
+
+## CSS variable playground
+
+Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+
+Be sure to add an informative `aria-label` description to the Breadcrumbs component.
+
+The following features are included to optimize the component's baseline accessibility:
+
+- The set of links is structured using an ordered list (`<ol>`).
+- Visual separators between links are hidden with `aria-hidden` to prevent screen readers from announcing them.
+- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it's easy to locate.
+- The link to the current page has `aria-current` set to `page`.
+
+## Anatomy
