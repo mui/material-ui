@@ -142,6 +142,11 @@ export function getOffsetLeft(
   horizontal: number | 'center' | 'right' | 'left',
 ): number;
 
+export function getMargin(
+  marginThreshold: number | Array<number>,
+  direction: 'vertical' | 'horizontal'
+): number;
+
 /**
  *
  * Demos:

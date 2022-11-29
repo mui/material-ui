@@ -69,7 +69,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-function getMargin(marginThreshold, direction) {
+export function getMargin(marginThreshold, direction) {
   let margin = marginThreshold;
 
   if (Array.isArray(marginThreshold)) {
