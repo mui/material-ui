@@ -528,10 +528,7 @@ Popover.propTypes /* remove-proptypes */ = {
    * or an array of two numbers, first value will be vertical margin and second value horizontal.
    * @default 16
    */
-  marginThreshold: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number.isRequired),
-  ]),
+  marginThreshold: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
