@@ -5,23 +5,7 @@ type SlotCommonProps = {
   sx?: SxProps;
 };
 
-// The `Record<string, unknown>` is to allow arbitrary attributes, e.g. data-*.
-export type RootSlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
-  | (React.ComponentPropsWithRef<TSlotComponent> &
-      TOverrides &
-      SlotCommonProps &
-      TOwnerState &
-      Record<string, unknown>)
-  | ((
-      ownerState: TOwnerState,
-    ) => Record<string, unknown> &
-      React.ComponentPropsWithRef<TSlotComponent> &
-      TOverrides &
-      SlotCommonProps &
-      TOwnerState &
-      Record<string, unknown>);
-
-export type OtherSlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
+export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
   | (React.ComponentPropsWithRef<TSlotComponent> &
       TOverrides &
       SlotCommonProps &
