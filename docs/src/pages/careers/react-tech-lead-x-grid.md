@@ -1,6 +1,6 @@
 # React Tech Lead - xGrid
 
-<p class="description">You will lead the development of the data grid, positioning the component as the next industry standard.</p>
+<p class="description">You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.</p>
 
 ## Details of the Role
 

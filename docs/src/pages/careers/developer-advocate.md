@@ -1,6 +1,6 @@
 # Developer Advocate
 
-<p class="description">You will build a thriving and connected developer community around our platform.</p>
+<p class="description">You will build a thriving and connected developer community around our suite of products.</p>
 
 ## Details of the Role
 

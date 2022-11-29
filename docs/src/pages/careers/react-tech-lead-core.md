@@ -1,6 +1,6 @@
 # React Tech Lead - Core
 
-<p class="description">You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling the adoption of the library.</p>
+<p class="description">You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.</p>
 
 ## Details of the Role
 

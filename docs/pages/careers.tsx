@@ -149,25 +149,25 @@ const openRolesData = [
       {
         title: 'React Tech Lead - Core',
         description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling the adoption of the library.',
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
         url: '/careers/react-tech-lead-core/',
       },
       {
         title: 'React Engineer - Core',
         description:
-          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+          'You will strengthen the core components team by collaborating with the community to land contributions.',
         url: '/careers/react-engineer-core/',
       },
       {
         title: 'React Tech Lead - xGrid',
         description:
-          'You will lead the development of the data grid, positioning the component as the next industry standard.',
+          'You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.',
         url: '/careers/react-tech-lead-x-grid/',
       },
       {
         title: 'React Engineer - xGrid',
         description:
-          'You will strengthen the data grid team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+          'You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x-grid/',
       },
       {
@@ -179,7 +179,7 @@ const openRolesData = [
       {
         title: 'Accessibility Engineer',
         description:
-          'You will become our go-to-expert for accessibility. We need to ensure we pass WCAG 2.1 level AA across products.',
+          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
       },
     ],
@@ -189,8 +189,7 @@ const openRolesData = [
     roles: [
       {
         title: 'Lead Designer',
-        description:
-          'We are looking for a lead designer to own most of our design work and manage a small design team.',
+        description: "You will own most of MUI's design work and manage a small team of designers.",
         url: '/careers/lead-designer/',
       },
       {
@@ -217,7 +216,7 @@ const openRolesData = [
       {
         title: 'Developer Advocate',
         description:
-          'You will build a thriving and connected developer community around our platform.',
+          'You will build a thriving and connected developer community around our suite of products.',
         url: '/careers/developer-advocate/',
       },
     ],

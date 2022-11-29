@@ -1,6 +1,6 @@
 # React Engineer - xGrid
 
-<p class="description">You will strengthen the data grid team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
 ## Details of the Role
 

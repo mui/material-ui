@@ -1,6 +1,6 @@
 # Accessibility Engineer
 
-<p class="description">You will become our go-to-expert for accessibility. We need to ensure we pass WCAG 2.1 level AA across products.</p>
+<p class="description">You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.</p>
 
 ## Details of the Role
 

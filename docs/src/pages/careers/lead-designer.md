@@ -1,6 +1,6 @@
 # Lead Designer
 
-<p class="description">We are looking for a lead designer to own most of our design work and manage a small design team.</p>
+<p class="description">You will own most of MUI's design work and manage a small team of designers.</p>
 
 ## Details of the Role
 
