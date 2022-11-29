@@ -2485,9 +2485,7 @@ describe('<Autocomplete />', () => {
     );
     const firstOption = getAllByRole('option')[0];
     const textbox = getByRole('combobox');
-    act(() => {
-      textbox.focus();
-    });
+    fireEvent.click(textbox);
     // move mouse to center of first option
     // const { width, height, top, left } = firstOption.getBoundingClientRect();
     // const x = left + width / 2;
