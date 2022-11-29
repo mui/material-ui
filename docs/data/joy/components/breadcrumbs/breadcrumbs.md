@@ -24,7 +24,7 @@ import Breadcrumbs from '@mui/joy/Breadcrumbs';
 ```
 
 The Breadcrumbs component acts as a wrapper for navigation links.
-It's designed to be used with the [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) components, as shown below:
+It's designed to be used with the [Link and Typography components](#usage-with-link-and-typography), as shown below:
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
@@ -40,16 +40,35 @@ The Breadcrumbs component comes in three sizes: `sm`, `md` (default), and `lg`:
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-You can add an icon as a decorator to the [Link](/joy-ui/react-link/) and mix it with the `color` prop.
-
-{{"demo": "BreadcrumbsWithIcon.js"}}
-
 ### Separator
 
 By default, the Breadcrumbs component inserts a forward slash (/) between each navigation item.
 Use the `separator` prop to define a custom separator, which can be a character or symbol as well as an icon:
 
 {{"demo": "SeparatorBreadcrumbs.js"}}
+
+## Usage with Link and Typography
+
+```jsx
+import Link from '@mui/joy/Link';
+```
+
+```jsx
+import Typography from '@mui/joy/Typography';
+```
+
+The Breadcrumbs component doesn't accept the `variant`, `color`, `startDecorator`, or `endDecorator` props—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
+As such, most custom styles should be applied directly to those components rather than Breadcrumbs.
+
+The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:
+
+{{"demo": "BreadcrumbsWithIcon.js"}}
+
+## Usage with Menu
+
+You can use the Breadcrumbs component together with the Joy UI [Menu](/joy-ui/react-menu/) component.
+
+{{"demo": "BreadcrumbsWithMenu.js"}}
 
 ### Accessibility
 
@@ -64,7 +83,7 @@ The accessibility of this component relies on:
 - A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
 - The link to the current page has `aria-current` set to page.
 
-## CSS Variables
+## CSS variables
 
 Play around with one of the CSS variables available in the breadcrumbs component to see how the design changes.
 
@@ -77,9 +96,3 @@ Play around with one of the CSS variables available in the breadcrumbs component
 You can change the color of the links. You can learn more about them in [Link](/joy-ui/react-link/).
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
-
-### With [Menu](/joy-ui/react-menu/)
-
-You can use the Breadcrumbs component together with the Joy UI [Menu](/joy-ui/react-menu/) component.
-
-{{"demo": "BreadcrumbsWithMenu.js"}}

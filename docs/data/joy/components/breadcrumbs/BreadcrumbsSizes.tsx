@@ -39,7 +39,7 @@ export default function BasicBreadcrumbs() {
             {item}
           </Link>
         ))}
-        <Typography fontSize="inherit">Philip J. Fry</Typography>
+        <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="lg">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item: string) => (
@@ -56,7 +56,7 @@ export default function BasicBreadcrumbs() {
             {item}
           </Link>
         ))}
-        <Typography fontSize="inherit">Bender</Typography>
+        <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
     </Stack>
   );
