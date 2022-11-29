@@ -198,23 +198,6 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * Replace the default slots.
-   */
-  slots: PropTypes.shape({
-    endDecorator: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-  }),
-  /**
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,
