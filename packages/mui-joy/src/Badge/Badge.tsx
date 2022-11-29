@@ -285,8 +285,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    badge: PropTypes.any,
+    root: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the Badge.
