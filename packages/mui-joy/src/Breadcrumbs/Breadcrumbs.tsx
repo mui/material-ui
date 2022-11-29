@@ -191,27 +191,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    li: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    ol: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside the Breadcrumbs.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    li: PropTypes.elementType,
-    ol: PropTypes.elementType,
-    root: PropTypes.elementType,
-    separator: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

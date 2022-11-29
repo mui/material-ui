@@ -1,18 +1,21 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 
 export interface BreadcrumbsPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'nav', {}, BreadcrumbsOwnerState>;
-  ol?: SlotComponentProps<'ol', {}, BreadcrumbsOwnerState>;
-  li?: SlotComponentProps<'li', {}, BreadcrumbsOwnerState>;
-  separator?: SlotComponentProps<'li', {}, BreadcrumbsOwnerState>;
-}
+export type BreadcrumbsSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BreadcrumbsSlot,
+  {
+    root: SlotProps<'nav', {}, BreadcrumbsOwnerState>;
+    ol: SlotProps<'ol', {}, BreadcrumbsOwnerState>;
+    li: SlotProps<'li', {}, BreadcrumbsOwnerState>;
+    separator: SlotProps<'li', {}, BreadcrumbsOwnerState>;
+  }
+>;
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
   props: P & {
@@ -20,22 +23,6 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * The components used for each slot inside the Breadcrumbs.
-     * Either a string to use a HTML element or a component.
-     * @default {}
-     */
-    slots?: {
-      root?: React.ElementType;
-      ol?: React.ElementType;
-      li?: React.ElementType;
-      separator?: React.ElementType;
-    };
-    /**
-     * The props used for each slot inside the component.
-     * @default {}
-     */
-    slotProps?: ComponentsProps;
     /**
      * Custom separator node.
      * @default '/'
