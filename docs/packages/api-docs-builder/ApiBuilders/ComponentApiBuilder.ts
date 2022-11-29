@@ -11,7 +11,6 @@ import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-// @ts-ignore
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { getUnstyledFilename } from '@mui-internal/docs-utilities';
 import * as ttp from 'typescript-to-proptypes';
