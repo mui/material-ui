@@ -11,7 +11,7 @@ githubLabel: 'component: breadcrumbs'
 ## Introduction
 
 The Breadcrumbs component consists of a list of links that show the user the hierarchy of a given page in relation to the app's structure.
-It provides a simple visual aid for greater context and ease of navigation between higher- and lower-level pages.
+It provides a simple visual aid for better context and ease of navigation between higher- and lower-level pages.
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -43,7 +43,7 @@ To learn how to add custom sizes to the component, check out [Themed components�
 ### Separator
 
 By default, the Breadcrumbs component inserts a forward slash (/) between each navigation item.
-Use the `separator` prop to define a custom separator, which can be a character or symbol as well as an icon:
+Use the `separator` prop to define a custom separator, which can be a character or a symbol as well as an icon:
 
 {{"demo": "SeparatorBreadcrumbs.js"}}
 
@@ -57,7 +57,7 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 ```
 
-The Breadcrumbs component doesn't accept the `variant`, `color`, `startDecorator`, or `endDecorator` props—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
+The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
 As such, most custom styles that affect the content should be applied directly to those components rather than Breadcrumbs.
 
 The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:
@@ -100,7 +100,25 @@ The following features are included to optimize the component's baseline accessi
 
 - The set of links is structured using an ordered list (`<ol>`).
 - Visual separators between links are hidden with `aria-hidden` to prevent screen readers from announcing them.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it's easy to locate.
+- A `<nav>` element with an `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it's easy to locate with assistive technology.
 - The link to the current page has `aria-current` set to `page`.
 
 ## Anatomy
+
+The Breadcrumbs component is composed of a root `<nav>` that wraps around an `<ol>`, with list items corresponding to the trail of links and their separators:
+
+```html
+<nav aria-label="breadcrumbs" class="MuiBreadcrumbs-root">
+  <ol class="MuiBreadcrumbs-ol">
+    <li class="MuiBreadcrumbs-li">
+      <!-- Link or Typography -->
+    </li>
+    <li aria-hidden="true" class="MuiBreadcrumbs-separator">
+      /
+    </li>
+    <li class="MuiBreadcrumbs-li css-1rqbcrs-JoyBreadcrumbs-ol">
+      <!-- Link or Typography -->
+    </li>
+  </ol>
+</nav>
+```
