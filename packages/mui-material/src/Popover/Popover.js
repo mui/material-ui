@@ -69,6 +69,22 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
+function getMargin(marginThreshold, direction) {
+  let margin = marginThreshold;
+
+  if (Array.isArray(marginThreshold)) {
+    margin = direction === 'vertical' ? marginThreshold[0] : marginThreshold[1];
+  }
+
+  // eslint-disable-next-line no-restricted-globals
+  const isNumber = (value) => !isNaN(parseFloat(value));
+  if (isNumber(margin)) {
+    return parseFloat(margin);
+  }
+
+  return 16;
+}
+
 const PopoverRoot = styled(Modal, {
   name: 'MuiPopover',
   slot: 'Root',
@@ -229,13 +245,16 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       // Use the parent window of the anchorEl if provided
       const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
 
+      const verticalMargin = getMargin(marginThreshold, 'vertical');
+      const horizontalMargin = getMargin(marginThreshold, 'horizontal');
+
       // Window thresholds taking required margin into account
-      const heightThreshold = containerWindow.innerHeight - marginThreshold;
-      const widthThreshold = containerWindow.innerWidth - marginThreshold;
+      const heightThreshold = containerWindow.innerHeight - verticalMargin;
+      const widthThreshold = containerWindow.innerWidth - horizontalMargin;
 
       // Check if the vertical axis needs shifting
-      if (top < marginThreshold) {
-        const diff = top - marginThreshold;
+      if (top < verticalMargin) {
+        const diff = top - verticalMargin;
         top -= diff;
         elemTransformOrigin.vertical += diff;
       } else if (bottom > heightThreshold) {
@@ -259,8 +278,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (left < marginThreshold) {
-        const diff = left - marginThreshold;
+      if (left < horizontalMargin) {
+        const diff = left - horizontalMargin;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
       } else if (right > widthThreshold) {
@@ -505,9 +524,14 @@ Popover.propTypes /* remove-proptypes */ = {
   elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * you can pass a number, which will be equal margin on all four sides,
+   * or an array of two numbers, first value will be vertical margin and second value horizontal
    * @default 16
    */
-  marginThreshold: PropTypes.number,
+  marginThreshold: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number.isRequired),
+  ]),
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
