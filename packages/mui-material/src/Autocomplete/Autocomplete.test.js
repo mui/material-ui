@@ -2338,6 +2338,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onHighlightChange', () => {
+    clock.withFakeTimers();
     it('should trigger event when default value is passed', () => {
       const handleHighlightChange = spy();
       const options = ['one', 'two', 'three'];
