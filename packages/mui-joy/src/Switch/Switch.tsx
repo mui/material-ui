@@ -459,13 +459,13 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    action: PropTypes.any,
+    endDecorator: PropTypes.any,
+    input: PropTypes.any,
+    root: PropTypes.any,
+    startDecorator: PropTypes.any,
+    thumb: PropTypes.any,
+    track: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the Switch.

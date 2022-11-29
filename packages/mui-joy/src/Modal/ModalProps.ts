@@ -2,17 +2,21 @@ import * as React from 'react';
 import { ModalUnstyledOwnProps } from '@mui/base/ModalUnstyled';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ModalSlot = 'root' | 'backdrop';
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', {}, ModalOwnerState>;
-  backdrop?: SlotComponentProps<'div', {}, ModalOwnerState>;
-}
+export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ModalSlot,
+  {
+    root: SlotProps<'div', {}, ModalOwnerState>;
+    backdrop: SlotProps<'div', {}, ModalOwnerState>;
+  }
+>;
 
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    ModalSlotsAndSlotProps &
     Pick<
       ModalUnstyledOwnProps,
       | 'children'
@@ -27,20 +31,6 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'keepMounted'
       | 'open'
     > & {
-      /**
-       * The components used for each slot inside the Modal.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      slots?: {
-        root?: React.ElementType;
-        backdrop?: React.ElementType;
-      };
-      /**
-       * The props used for each slot inside the Modal.
-       * @default {}
-       */
-      slotProps?: ComponentsProps;
       /**
        * Callback fired when the component requests to be closed.
        * The `reason` parameter can optionally be used to control the response to `onClose`.

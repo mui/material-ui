@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SelectOption, SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type { SelectOption } from '@mui/base/SelectUnstyled';
 
@@ -19,21 +19,24 @@ export interface SelectPropsVariantOverrides {}
 export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', {}, SelectOwnerState<any>>;
-  button?: SlotComponentProps<'button', {}, SelectOwnerState<any>>;
-  startDecorator?: SlotComponentProps<'span', {}, SelectOwnerState<any>>;
-  endDecorator?: SlotComponentProps<'span', {}, SelectOwnerState<any>>;
-  indicator?: SlotComponentProps<'span', {}, SelectOwnerState<any>>;
-  listbox?: SlotComponentProps<
-    'ul',
-    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
-      component?: React.ElementType;
-      sx?: SxProps;
-    },
-    SelectOwnerState<any>
-  >;
-}
+export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SelectSlot,
+  {
+    root: SlotProps<'div', {}, SelectOwnerState<any>>;
+    button: SlotProps<'button', {}, SelectOwnerState<any>>;
+    startDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    endDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    indicator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    listbox: SlotProps<
+      'ul',
+      Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+        component?: React.ElementType;
+        sx?: SxProps;
+      },
+      SelectOwnerState<any>
+    >;
+  }
+>;
 
 export interface SelectStaticProps extends SelectUnstyledCommonProps {
   /**
@@ -47,24 +50,6 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    * @default 'primary'
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-    button?: React.ElementType;
-    startDecorator?: React.ElementType;
-    endDecorator?: React.ElementType;
-    indicator?: React.ElementType;
-    listbox?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps?: ComponentsProps;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -108,37 +93,38 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }
 
-export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
-  /**
-   * The default selected value. Use when the component is not controlled.
-   */
-  defaultValue?: TValue | null;
+export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
+  SelectSlotsAndSlotProps & {
+    /**
+     * The default selected value. Use when the component is not controlled.
+     */
+    defaultValue?: TValue | null;
 
-  /**
-   * A function to convert the currently selected value to a string.
-   * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
-   */
-  getSerializedValue?: (
-    option: SelectOption<TValue> | null,
-  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
-  /**
-   * Callback fired when an option is selected.
-   */
-  onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TValue | null,
-  ) => void;
-  /**
-   * Function that customizes the rendering of the selected value.
-   */
-  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
-  /**
-   * The selected value.
-   * Set to `null` to deselect all options.
-   */
-  value?: TValue | null;
-}
+    /**
+     * A function to convert the currently selected value to a string.
+     * Used to set a value of a hidden input associated with the select,
+     * so that the selected value can be posted with a form.
+     */
+    getSerializedValue?: (
+      option: SelectOption<TValue> | null,
+    ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+    /**
+     * Callback fired when an option is selected.
+     */
+    onChange?: (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue | null,
+    ) => void;
+    /**
+     * Function that customizes the rendering of the selected value.
+     */
+    renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+    /**
+     * The selected value.
+     * Set to `null` to deselect all options.
+     */
+    value?: TValue | null;
+  };
 
 export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
   /**

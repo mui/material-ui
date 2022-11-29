@@ -7,21 +7,25 @@ import {
   TypographySystem,
   VariantProp,
 } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface TypographyPropsColorOverrides {}
 export interface TypographyPropsVariantOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'a', {}, TypographyOwnerState>;
-  startDecorator?: SlotComponentProps<'span', {}, TypographyOwnerState>;
-  endDecorator?: SlotComponentProps<'span', {}, TypographyOwnerState>;
-}
+export type TypographySlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TypographySlot,
+  {
+    root: SlotProps<'a', {}, TypographyOwnerState>;
+    startDecorator: SlotProps<'span', {}, TypographyOwnerState>;
+    endDecorator: SlotProps<'span', {}, TypographyOwnerState>;
+  }
+>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
+    TypographySlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -31,21 +35,6 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * The color of the component. It supports those theme colors that make sense for this component.
        */
       color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
-      /**
-       * The components used for each slot inside the Typography.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      slots?: {
-        root?: React.ElementType;
-        startDecorator?: React.ElementType;
-        endDecorator?: React.ElementType;
-      };
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      slotProps?: ComponentsProps;
       /**
        * Element placed after the children.
        */

@@ -113,8 +113,8 @@ FormLabel.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    asterisk: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    asterisk: PropTypes.any,
+    root: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the FormLabel.

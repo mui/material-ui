@@ -2,7 +2,7 @@ import * as React from 'react';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SwitchSlot =
   | 'root'
@@ -17,43 +17,28 @@ export interface SwitchPropsVariantOverrides {}
 export interface SwitchPropsColorOverrides {}
 export interface SwitchPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', {}, SwitchOwnerState>;
-  thumb?: SlotComponentProps<'span', {}, SwitchOwnerState>;
-  action?: SlotComponentProps<'div', {}, SwitchOwnerState>;
-  input?: SlotComponentProps<'button', {}, SwitchOwnerState>;
-  track?: SlotComponentProps<'span', {}, SwitchOwnerState>;
-  startDecorator?: SlotComponentProps<'span', {}, SwitchOwnerState>;
-  endDecorator?: SlotComponentProps<'span', {}, SwitchOwnerState>;
-}
+export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SwitchSlot,
+  {
+    root: SlotProps<'div', {}, SwitchOwnerState>;
+    thumb: SlotProps<'span', {}, SwitchOwnerState>;
+    action: SlotProps<'div', {}, SwitchOwnerState>;
+    input: SlotProps<'button', {}, SwitchOwnerState>;
+    track: SlotProps<'span', {}, SwitchOwnerState>;
+    startDecorator: SlotProps<'span', {}, SwitchOwnerState>;
+    endDecorator: SlotProps<'span', {}, SwitchOwnerState>;
+  }
+>;
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    SwitchSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
-      /**
-       * The components used for each slot inside the Switch.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      slots?: {
-        root?: React.ElementType;
-        action?: React.ElementType;
-        thumb?: React.ElementType;
-        track?: React.ElementType;
-        input?: React.ElementType;
-        startDecorator?: React.ElementType;
-        endDecorator?: React.ElementType;
-      };
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      slotProps?: ComponentsProps;
       /**
        * The element that appears at the end of the switch.
        */

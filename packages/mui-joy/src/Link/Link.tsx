@@ -321,9 +321,9 @@ Link.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.any,
+    root: PropTypes.any,
+    startDecorator: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the Link.

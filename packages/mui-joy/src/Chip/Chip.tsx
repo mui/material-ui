@@ -361,11 +361,11 @@ Chip.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    action: PropTypes.any,
+    endDecorator: PropTypes.any,
+    label: PropTypes.any,
+    root: PropTypes.any,
+    startDecorator: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the Chip.

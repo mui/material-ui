@@ -290,9 +290,9 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    endAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endAction: PropTypes.any,
+    root: PropTypes.any,
+    startAction: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the ListItem.

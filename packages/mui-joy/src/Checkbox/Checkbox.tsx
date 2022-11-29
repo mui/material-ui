@@ -449,29 +449,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    checkbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside the Checkbox.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    action: PropTypes.elementType,
-    checkbox: PropTypes.elementType,
-    input: PropTypes.elementType,
-    label: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

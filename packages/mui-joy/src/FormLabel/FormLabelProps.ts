@@ -1,44 +1,34 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type FormLabelSlot = 'root' | 'asterisk';
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'label', {}, FormLabelOwnerState>;
-  asterisk?: SlotComponentProps<'span', {}, FormLabelOwnerState>;
-}
+export type FormLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  FormLabelSlot,
+  {
+    root: SlotProps<'div', {}, FormLabelOwnerState>;
+    asterisk: SlotProps<'div', {}, FormLabelOwnerState>;
+  }
+>;
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * The components used for each slot inside the FormLabel.
-     * Either a string to use a HTML element or a component.
-     * @default {}
-     */
-    slots?: {
-      root?: React.ElementType;
-      asterisk?: React.ElementType;
+  props: P &
+    FormLabelSlotsAndSlotProps & {
+      /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
+       * The asterisk is added if required=`true`
+       */
+      required?: boolean;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
     };
-    /**
-     * The props used for each slot inside the component.
-     * @default {}
-     */
-    slotProps?: ComponentsProps;
-    /**
-     * The asterisk is added if required=`true`
-     */
-    required?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps;
-  };
   defaultComponent: D;
 }
 

@@ -353,27 +353,6 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    endDecorator: PropTypes.any,
-    loadingIndicatorCenter: PropTypes.any,
-    root: PropTypes.any,
-    startDecorator: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Button.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    endDecorator: PropTypes.elementType,
-    loadingIndicatorCenter: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-  }),
-  /**
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,

@@ -331,10 +331,10 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    svg: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    progress: PropTypes.any,
+    root: PropTypes.any,
+    svg: PropTypes.any,
+    track: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the CircularProgress.

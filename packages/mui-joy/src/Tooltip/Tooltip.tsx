@@ -760,8 +760,8 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    arrow: PropTypes.any,
+    root: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the Tooltip.

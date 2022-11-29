@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
@@ -9,15 +9,19 @@ export interface InputPropsVariantOverrides {}
 export interface InputPropsColorOverrides {}
 export interface InputPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', {}, InputOwnerState>;
-  input?: SlotComponentProps<'input', {}, InputOwnerState>;
-  startDecorator?: SlotComponentProps<'span', {}, InputOwnerState>;
-  endDecorator?: SlotComponentProps<'span', {}, InputOwnerState>;
-}
+export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  InputSlot,
+  {
+    root: SlotProps<'div', {}, InputOwnerState>;
+    input: SlotProps<'input', {}, InputOwnerState>;
+    startDecorator: SlotProps<'span', {}, InputOwnerState>;
+    endDecorator: SlotProps<'span', {}, InputOwnerState>;
+  }
+>;
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    InputSlotsAndSlotProps &
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'autoComplete'
@@ -47,22 +51,6 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
-      /**
-       * The components used for each slot inside the Input.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      slots?: {
-        root?: React.ElementType;
-        input?: React.ElementType;
-        startDecorator?: React.ElementType;
-        endDecorator?: React.ElementType;
-      };
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      slotProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */

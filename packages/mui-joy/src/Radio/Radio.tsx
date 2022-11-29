@@ -486,12 +486,12 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    radio: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    action: PropTypes.any,
+    icon: PropTypes.any,
+    input: PropTypes.any,
+    label: PropTypes.any,
+    radio: PropTypes.any,
+    root: PropTypes.any,
   }),
   /**
    * @ignore

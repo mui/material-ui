@@ -1,73 +1,62 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
 export interface ListItemPropsVariantOverrides {}
 export interface ListItemPropsColorOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', {}, ListItemOwnerState>;
-  startAction?: SlotComponentProps<'span', {}, ListItemOwnerState>;
-  endAction?: SlotComponentProps<'span', {}, ListItemOwnerState>;
-}
+export type ListItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListItemSlot,
+  {
+    root: SlotProps<'div', {}, ListItemOwnerState>;
+    startAction: SlotProps<'span', {}, ListItemOwnerState>;
+    endAction: SlotProps<'span', {}, ListItemOwnerState>;
+  }
+>;
 
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & {
-    /**
-     * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
-     */
-    color?: OverridableStringUnion<ColorPaletteProp, ListItemPropsColorOverrides>;
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * The components used for each slot inside the ListItem.
-     * Either a string to use a HTML element or a component.
-     * @default {}
-     */
-    slots?: {
-      root?: React.ElementType;
-      startAction?: React.ElementType;
-      endAction?: React.ElementType;
+  props: P &
+    ListItemSlotsAndSlotProps & {
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'neutral'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, ListItemPropsColorOverrides>;
+      /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
+       * The element to display at the start of ListItem.
+       */
+      startAction?: React.ReactNode;
+      /**
+       * The element to display at the end of ListItem.
+       */
+      endAction?: React.ReactNode;
+      /**
+       * If `true`, the component can contain NestedList.
+       * @default false
+       */
+      nested?: boolean;
+      /**
+       * If `true`, the component has sticky position (with top = 0).
+       * @default false
+       */
+      sticky?: boolean;
+      /**
+       * The variant to use.
+       * @default 'plain'
+       */
+      variant?: OverridableStringUnion<VariantProp, ListItemPropsVariantOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
     };
-    /**
-     * The props used for each slot inside the component.
-     * @default {}
-     */
-    slotProps?: ComponentsProps;
-    /**
-     * The element to display at the start of ListItem.
-     */
-    startAction?: React.ReactNode;
-    /**
-     * The element to display at the end of ListItem.
-     */
-    endAction?: React.ReactNode;
-    /**
-     * If `true`, the component can contain NestedList.
-     * @default false
-     */
-    nested?: boolean;
-    /**
-     * If `true`, the component has sticky position (with top = 0).
-     * @default false
-     */
-    sticky?: boolean;
-    /**
-     * The variant to use.
-     * @default 'plain'
-     */
-    variant?: OverridableStringUnion<VariantProp, ListItemPropsVariantOverrides>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps;
-  };
   defaultComponent: D;
 }
 

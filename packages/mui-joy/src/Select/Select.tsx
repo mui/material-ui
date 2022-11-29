@@ -687,12 +687,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    button: PropTypes.any,
+    endDecorator: PropTypes.any,
+    indicator: PropTypes.any,
+    listbox: PropTypes.any,
+    root: PropTypes.any,
+    startDecorator: PropTypes.any,
   }),
   /**
    * The components used for each slot inside the Select.

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
@@ -9,15 +9,19 @@ export interface TextareaPropsVariantOverrides {}
 export interface TextareaPropsColorOverrides {}
 export interface TextareaPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', {}, TextareaOwnerState>;
-  textarea?: SlotComponentProps<'textarea', {}, TextareaOwnerState>;
-  startDecorator?: SlotComponentProps<'span', {}, TextareaOwnerState>;
-  endDecorator?: SlotComponentProps<'span', {}, TextareaOwnerState>;
-}
+export type TextareaSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TextareaSlot,
+  {
+    root: SlotProps<'div', {}, TextareaOwnerState>;
+    textarea: SlotProps<'textarea', {}, TextareaOwnerState>;
+    startDecorator: SlotProps<'span', {}, TextareaOwnerState>;
+    endDecorator: SlotProps<'span', {}, TextareaOwnerState>;
+  }
+>;
 
 export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    TextareaSlotsAndSlotProps &
     Pick<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       | 'autoComplete'
@@ -42,22 +46,6 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides>;
-      /**
-       * The components used for each slot inside the Textarea.
-       * Either a string to use a HTML element or a component.
-       * @default {}
-       */
-      slots?: {
-        root?: React.ElementType;
-        textarea?: React.ElementType;
-        startDecorator?: React.ElementType;
-        endDecorator?: React.ElementType;
-      };
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      slotProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */
