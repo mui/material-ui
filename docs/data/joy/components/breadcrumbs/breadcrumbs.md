@@ -6,11 +6,12 @@ githubLabel: 'component: breadcrumbs'
 
 # Breadcrumbs
 
-<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
+<p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
 ## Introduction
 
-The Breadcrumbs component shows where in the site hierarchy the user is.
+The Breadcrumbs component consists of a list of links that show the user the hierarchy of a given page in relation to the app's structure.
+It provides a simple visual aid for greater context and ease of navigation between higher- and lower-level pages.
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
