@@ -263,23 +263,12 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
+   * @ignore
    */
   slotProps: PropTypes.shape({
     fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside the Avatar.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    fallback: PropTypes.elementType,
-    img: PropTypes.elementType,
-    root: PropTypes.elementType,
   }),
   /**
    * The `src` attribute for the `img` element.
