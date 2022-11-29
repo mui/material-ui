@@ -469,8 +469,6 @@ const Button = React.forwardRef(function Button<
     tabIndex,
     type,
     variant,
-    // required for making sure the sx prop is handled correctly
-    materialYouComponent: true,
   };
 
   const classes = useUtilityClasses(ownerState);

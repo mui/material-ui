@@ -35,4 +35,5 @@ export default function createStyled<T extends object = DefaultTheme>(options?: 
   rootShouldForwardProp?: (prop: PropertyKey) => boolean;
   slotShouldForwardProp?: (prop: PropertyKey) => boolean;
   styleFunctionSx?: typeof styleFunctionSx;
+  defaultProps?: Record<string, any>;
 }): CreateMUIStyled<T>;
