@@ -37,7 +37,7 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const { render } = createRenderer();
+  const { render, clock } = createRenderer();
 
   describeConformance(
     <Autocomplete
@@ -2497,6 +2497,7 @@ describe('<Autocomplete />', () => {
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     checkHighlightIs(getByRole('listbox'), 'four');
+    clock.tick(1000);
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     checkHighlightIs(getByRole('listbox'), 'five');
     expect(handleHighlightChange.callCount).to.equal(React.version.startsWith('18') ? 8 : 7);
