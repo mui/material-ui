@@ -1,16 +1,16 @@
-import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { OtherSlotProps, RootSlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AlertSlot,
   {
-    root: RootSlotProps<'div', {}, AlertOwnerState>;
-    startDecorator: OtherSlotProps<'span', {}, AlertOwnerState>;
-    endDecorator: OtherSlotProps<'span', {}, AlertOwnerState>;
+    root: SlotProps<'div', {}, AlertOwnerState>;
+    startDecorator: SlotProps<'span', {}, AlertOwnerState>;
+    endDecorator: SlotProps<'span', {}, AlertOwnerState>;
   }
 >;
 
