@@ -14,6 +14,7 @@ import {
   fireEvent,
   userEvent,
   act,
+  screen,
 } from 'test/utils';
 
 describe('SelectUnstyled', () => {
@@ -55,13 +56,13 @@ describe('SelectUnstyled', () => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
         const { getByRole } = render(<SelectUnstyled slots={{ root: 'div' }} />);
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.focus();
+          select.focus();
         });
-        fireEvent.keyDown(button, { key });
+        fireEvent.keyDown(select, { key });
 
-        expect(button).to.have.attribute('aria-expanded', 'true');
+        expect(select).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
         expect(document.activeElement).to.equal(getByRole('listbox'));
       });
@@ -70,13 +71,13 @@ describe('SelectUnstyled', () => {
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
       const { getByRole } = render(<SelectUnstyled slots={{ root: 'div' }} />);
-      const button = getByRole('button');
+      const select = getByRole('combobox');
       act(() => {
-        button.focus();
+        select.focus();
       });
-      fireEvent.keyUp(button, { key: ' ' });
+      fireEvent.keyUp(select, { key: ' ' });
 
-      expect(button).to.have.attribute('aria-expanded', 'true');
+      expect(select).to.have.attribute('aria-expanded', 'true');
       expect(getByRole('listbox')).not.to.equal(null);
       expect(document.activeElement).to.equal(getByRole('listbox'));
     });
@@ -88,15 +89,15 @@ describe('SelectUnstyled', () => {
             <OptionUnstyled value={1}>1</OptionUnstyled>
           </SelectUnstyled>,
         );
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
         userEvent.keyPress(listbox, { key });
 
-        expect(button).to.have.attribute('aria-expanded', 'false');
+        expect(select).to.have.attribute('aria-expanded', 'false');
         expect(queryByRole('listbox')).to.equal(null);
       });
     });
@@ -111,9 +112,9 @@ describe('SelectUnstyled', () => {
             </SelectUnstyled>,
           );
 
-          const button = getByRole('button');
+          const select = getByRole('combobox');
           act(() => {
-            button.click();
+            select.click();
           });
 
           const listbox = getByRole('listbox');
@@ -122,7 +123,7 @@ describe('SelectUnstyled', () => {
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
           userEvent.keyPress(listbox, { key });
 
-          expect(button).to.have.text('2');
+          expect(select).to.have.text('2');
         }),
       );
     });
@@ -140,9 +141,9 @@ describe('SelectUnstyled', () => {
           </SelectUnstyled>,
         );
 
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
@@ -167,9 +168,9 @@ describe('SelectUnstyled', () => {
           </SelectUnstyled>,
         );
 
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
@@ -208,9 +209,9 @@ describe('SelectUnstyled', () => {
           </SelectUnstyled>,
         );
 
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
@@ -238,9 +239,9 @@ describe('SelectUnstyled', () => {
           </SelectUnstyled>,
         );
 
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
@@ -264,9 +265,9 @@ describe('SelectUnstyled', () => {
           </SelectUnstyled>,
         );
 
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
@@ -290,9 +291,9 @@ describe('SelectUnstyled', () => {
           </SelectUnstyled>,
         );
 
-        const button = getByRole('button');
+        const select = getByRole('combobox');
         act(() => {
-          button.click();
+          select.click();
         });
 
         const listbox = getByRole('listbox');
@@ -322,18 +323,18 @@ describe('SelectUnstyled', () => {
         </SelectUnstyled>,
       );
 
-      const button = getByRole('button');
+      const select = getByRole('combobox');
 
       act(() => {
-        button.click();
+        select.click();
       });
 
       const listbox = getByRole('listbox');
       userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
       userEvent.keyPress(listbox, { key: 'Escape' });
 
-      expect(button).to.have.attribute('aria-expanded', 'false');
-      expect(button).to.have.text('1');
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('1');
     });
   });
 
@@ -464,9 +465,9 @@ describe('SelectUnstyled', () => {
         </SelectUnstyled>,
       );
 
-      const button = getByRole('button');
+      const select = getByRole('combobox');
       act(() => {
-        button.click();
+        select.click();
       });
 
       const optionTwo = getByText('Two');
@@ -493,7 +494,7 @@ describe('SelectUnstyled', () => {
         </SelectUnstyled>,
       );
 
-      expect(getByRole('button')).to.have.text('One (1)');
+      expect(getByRole('combobox')).to.have.text('One (1)');
     });
 
     it('renders the selected values as a label if renderValue is not provided', () => {
@@ -504,7 +505,94 @@ describe('SelectUnstyled', () => {
         </SelectUnstyled>,
       );
 
-      expect(getByRole('button')).to.have.text('One');
+      expect(getByRole('combobox')).to.have.text('One');
+    });
+  });
+
+  // according to WAI-ARIA 1.2 (https://www.w3.org/TR/wai-aria-1.2/#combobox)
+  describe('a11y attributes', () => {
+    it('should have the `combobox` role', () => {
+      render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(screen.queryByRole('combobox')).not.to.equal(null);
+    });
+
+    it('should have the aria-haspopup listbox', () => {
+      render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
+    });
+
+    it('should have the aria-expanded attribute', () => {
+      render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
+    });
+
+    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
+      render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      expect(select).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should have the aria-controls attribute', () => {
+      render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+
+      act(() => {
+        select.click();
+      });
+
+      const listbox = screen.getByRole('listbox');
+      const listboxId = listbox.getAttribute('id');
+      expect(listboxId).not.to.equal(null);
+
+      expect(select).to.have.attribute('aria-controls', listboxId!);
+    });
+
+    it('should have the aria-activedescendant attribute', () => {
+      render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      const listbox = screen.getByRole('listbox');
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+      const options = screen.getAllByRole('option');
+      expect(listbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
     });
   });
 
@@ -521,10 +609,10 @@ describe('SelectUnstyled', () => {
       </div>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
 
     act(() => {
-      button.click();
+      select.click();
     });
 
     const listbox = getByRole('listbox');
@@ -535,8 +623,8 @@ describe('SelectUnstyled', () => {
       focusTarget.focus();
     });
 
-    expect(button).to.have.attribute('aria-expanded', 'false');
-    expect(button).to.have.text('1');
+    expect(select).to.have.attribute('aria-expanded', 'false');
+    expect(select).to.have.text('1');
   });
 
   it('closes the listbox when already selected option is selected again with a click', () => {
@@ -549,17 +637,17 @@ describe('SelectUnstyled', () => {
       </SelectUnstyled>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
 
     act(() => {
-      button.click();
+      select.click();
     });
 
     const selectedOption = getByTestId('selected-option');
     fireEvent.click(selectedOption);
 
-    expect(button).to.have.attribute('aria-expanded', 'false');
-    expect(button).to.have.text('1');
+    expect(select).to.have.attribute('aria-expanded', 'false');
+    expect(select).to.have.text('1');
   });
 
   it('focuses the listbox after it is opened', () => {
@@ -569,9 +657,9 @@ describe('SelectUnstyled', () => {
       </SelectUnstyled>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
     act(() => {
-      button.click();
+      select.click();
     });
 
     expect(document.activeElement).to.equal(getByRole('listbox'));

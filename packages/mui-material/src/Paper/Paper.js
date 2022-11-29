@@ -5,20 +5,10 @@ import { chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
+import getOverlayAlpha from '../styles/getOverlayAlpha';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
-
-// Inspired by https://github.com/material-components/material-components-ios/blob/bca36107405594d5b7b16265a5b0ed698f85a5ee/components/Elevation/src/UIColor%2BMaterialElevation.m#L61
-export const getOverlayAlpha = (elevation) => {
-  let alphaValue;
-  if (elevation < 1) {
-    alphaValue = 5.11916 * elevation ** 2;
-  } else {
-    alphaValue = 4.5 * Math.log(elevation + 1) + 2;
-  }
-  return (alphaValue / 100).toFixed(2);
-};
 
 const useUtilityClasses = (ownerState) => {
   const { square, elevation, variant, classes } = ownerState;
