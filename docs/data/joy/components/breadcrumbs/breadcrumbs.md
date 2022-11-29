@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Breadcrumbs component
+githubLabel: 'component: breadcrumbs'
 ---
 
 # Breadcrumbs
@@ -9,12 +10,12 @@ title: React Breadcrumbs component
 
 ## Introduction
 
-The `Breadcrumbs` shows where in the site hierarchy the user is.
+The Breadcrumbs component shows where in the site hierarchy the user is.
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -33,11 +34,11 @@ export default function MyApp() {
 
 ### Basic usage
 
-`Breadcrumbs` is a navigation component that is designed to be used with [`Link`](/joy-ui/react-link/) and [`Typography`](/joy-ui/react-typography/).
+Breadcrumbs is a navigation component that is designed to be used with [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/).
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
-You can add an icon as a decorator to the [`Link`](/joy-ui/react-link/) and mix it with the `color` prop.
+You can add an icon as a decorator to the [Link](/joy-ui/react-link/) and mix it with the `color` prop.
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
 
@@ -51,7 +52,7 @@ You can pass an icon component to the prop `separator`.
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Be sure to add a `aria-label` description on the Breadcrumbs component.
 
 The accessibility of this component relies on:
 
@@ -70,12 +71,12 @@ Play around with one of the CSS variables available in the breadcrumbs component
 
 ### Collapsed Breadcrumbs
 
-You can change the color of the links. You can learn more about them in [`Link`](/joy-ui/react-link/).
+You can change the color of the links. You can learn more about them in [Link](/joy-ui/react-link/).
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
 
-### With [`Menu`](/joy-ui/react-menu/)
+### With [Menu](/joy-ui/react-menu/)
 
-You can use the Joy `Breadcrumbs` component together with the MUI Joy [`Menu`](/joy-ui/react-menu/) component.
+You can use the Breadcrumbs component together with the Joy UI [Menu](/joy-ui/react-menu/) component.
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
