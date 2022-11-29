@@ -1101,7 +1101,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
-        onMouseMove: handleOptionMouseOver,
+        onMouseOver: handleOptionMouseOver,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
         'data-option-index': index,
