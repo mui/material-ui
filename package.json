@@ -100,6 +100,7 @@
     "@types/jsdom": "^20.0.1",
     "@types/lodash": "^4.14.190",
     "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
     "@types/prettier": "^2.7.1",
     "@types/react": "^18.0.25",
     "@types/react-is": "^17.0.3",
