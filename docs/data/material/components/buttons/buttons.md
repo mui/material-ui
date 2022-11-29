@@ -184,7 +184,8 @@ This has the advantage of supporting any element, for instance, a link `<a>` ele
 
 ## Material You version
 
-This component also supports the new Material Design spec - [Material You](https://m3.material.io/). It is implemented in form of a new component in the experimental `@mui/material-next` package.
+The default Button component follows the Material Design 2 specs.
+For the MD3 ([Material You](https://m3.material.io/)) version, install and import from the experimental `@mui/material-next` package:
 
 ```js
 import Button from '@mui/material-next/Button';
