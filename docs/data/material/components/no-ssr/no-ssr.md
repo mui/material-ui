@@ -16,7 +16,6 @@ It is currently re-exported in `@mui/material` for convenience, but it may be de
 
 To continue using this component and avoid future breaking changes, we strongly recommend that you [install MUI Base](/base/getting-started/installation/) and import this component from the `@mui/base` package:
 
-
 ```js
 import NoSsr from '@mui/base/NoSsr';
 ```
