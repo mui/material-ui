@@ -429,7 +429,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     ...input?.unstable_sxConfig,
   };
   theme.unstable_calculateSxConfig = (props) => {
-    console.log(props);
     if (props.ownerState?.materialYouComponent) {
       return theme.unstable_sxConfig;
     }
