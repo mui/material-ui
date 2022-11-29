@@ -32,13 +32,13 @@ export function reset() {
 }
 
 function calculateCurrentX(anchor, touches, doc) {
-  return anchor === 'right' ? doc.body.offsetWidth - touches[0].pageX : touches[0].pageX;
+  const pageX = touches?.[0]?.pageX ?? 0;
+  return anchor === 'right' ? doc.body.offsetWidth - pageX : pageX;
 }
 
 function calculateCurrentY(anchor, touches, containerWindow) {
-  return anchor === 'bottom'
-    ? containerWindow.innerHeight - touches[0].clientY
-    : touches[0].clientY;
+  const clientY = touches?.[0]?.clientY ?? 0;
+  return anchor === 'bottom' ? containerWindow.innerHeight - clientY : clientY;
 }
 
 function getMaxTranslate(horizontalSwipe, paperInstance) {
