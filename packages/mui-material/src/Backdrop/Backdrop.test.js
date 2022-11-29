@@ -15,7 +15,8 @@ describe('<Backdrop />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',
     testVariantProps: { invisible: true },
-    components: {
+    testLegacyComponentsProp: true,
+    slots: {
       root: {
         expectedClassName: classes.root,
       },
@@ -25,6 +26,7 @@ describe('<Backdrop />', () => {
       'componentsProp',
       // react-transition-group issue
       'reactTestRenderer',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

@@ -42,7 +42,8 @@ describe('<Tooltip />', () => {
       refInstanceof: window.HTMLButtonElement,
       testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
-      components: {
+      testLegacyComponentsProp: true,
+      slots: {
         popper: {
           expectedClassName: classes.popper,
           testWithComponent: TestPopper,
@@ -58,6 +59,7 @@ describe('<Tooltip />', () => {
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
+        'slotPropsCallback', // not supported yet
       ],
     }),
   );

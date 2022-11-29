@@ -18,10 +18,15 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
-    components: {
+    testLegacyComponentsProp: true,
+    slots: {
       closeButton: {},
       closeIcon: {},
     },
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('prop: square', () => {

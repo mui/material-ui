@@ -500,6 +500,16 @@ describe('<SwipeableDrawer />', () => {
       setProps({ variant: 'temporary' });
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
     });
+
+    it('should be able to attach paper ref passed through PaperProps', () => {
+      const ref = React.createRef();
+      render(
+        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} PaperProps={{ ref }} open>
+          <div />
+        </SwipeableDrawer>,
+      );
+      expect(ref.current).not.to.equal(null);
+    });
   });
 
   describe('disableSwipeToOpen', () => {
