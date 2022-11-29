@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 
 export default function BasicBreadcrumbs() {
   return (
-    <Breadcrumbs separator="›" aria-label="breadcrumbs">
+    <Breadcrumbs aria-label="breadcrumbs">
       {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item: string) => (
         <Link
           // `preventDefault` is for demo purposes

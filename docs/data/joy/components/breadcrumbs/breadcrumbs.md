@@ -23,11 +23,22 @@ It provides a simple visual aid for greater context and ease of navigation betwe
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 ```
 
-The Breadcrumbs component is designed to be used with [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/), as shown below:
+The Breadcrumbs component acts as a wrapper for navigation links.
+It's designed to be used with the [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) components, as shown below:
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
 ## Customization
+
+### Sizes
+
+The Breadcrumbs component comes in three sizes: `sm`, `md` (default), and `lg`:
+
+{{"demo": "BreadcrumbsSizes.js"}}
+
+:::success
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 You can add an icon as a decorator to the [Link](/joy-ui/react-link/) and mix it with the `color` prop.
 
@@ -35,7 +46,8 @@ You can add an icon as a decorator to the [Link](/joy-ui/react-link/) and mix it
 
 ### Separator
 
-You can pass an icon component to the prop `separator`.
+By default, the Breadcrumbs component inserts a forward slash (/) between each navigation item.
+Use the `separator` prop to define a custom separator, which can be a character or symbol as well as an icon:
 
 {{"demo": "SeparatorBreadcrumbs.js"}}
 
