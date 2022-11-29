@@ -67,7 +67,6 @@ const top100Films = [{ title: 'The Shawshank Redemption', year: 1994 }];
     root: {
       component: 'div',
       'data-testid': 'test',
-      options: [],
     },
     wrapper: {
       component: 'div',
@@ -123,7 +122,6 @@ const top100Films = [{ title: 'The Shawshank Redemption', year: 1994 }];
       expectType<AutocompleteOwnerState<any, any, any, any>, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
-        options: [],
       };
     },
     wrapper: (ownerState) => {

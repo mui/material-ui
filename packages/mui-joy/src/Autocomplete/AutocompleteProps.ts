@@ -10,7 +10,7 @@ import {
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { OtherSlotProps, RootSlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AutocompleteSlot =
   | 'root'
@@ -62,12 +62,12 @@ export interface AutocompleteRenderGroupParams {
 export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AutocompleteSlot,
   {
-    root: RootSlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
-    wrapper: OtherSlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
-    input: OtherSlotProps<'input', {}, AutocompleteOwnerState<any, any, any, any>>;
-    startDecorator: OtherSlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
-    endDecorator: OtherSlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
-    clearIndicator: OtherSlotProps<
+    root: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
+    wrapper: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
+    input: SlotProps<'input', {}, AutocompleteOwnerState<any, any, any, any>>;
+    startDecorator: SlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
+    endDecorator: SlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
+    clearIndicator: SlotProps<
       'button',
       {
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
@@ -76,7 +76,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
       },
       AutocompleteOwnerState<any, any, any, any>
     >;
-    popupIndicator: OtherSlotProps<
+    popupIndicator: SlotProps<
       'button',
       {
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
@@ -85,7 +85,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
       },
       AutocompleteOwnerState<any, any, any, any>
     >;
-    listbox: OtherSlotProps<
+    listbox: SlotProps<
       'ul',
       {
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
@@ -94,7 +94,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
       } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'>,
       AutocompleteOwnerState<any, any, any, any>
     >;
-    option: OtherSlotProps<
+    option: SlotProps<
       'li',
       {
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
@@ -102,9 +102,9 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
       },
       AutocompleteOwnerState<any, any, any, any>
     >;
-    loading: OtherSlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
-    noOptions: OtherSlotProps<'li', {}, AutocompleteOwnerState<any, any, any, any>>;
-    limitTag: OtherSlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
+    loading: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
+    noOptions: SlotProps<'li', {}, AutocompleteOwnerState<any, any, any, any>>;
+    limitTag: SlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
   }
 >;
 
