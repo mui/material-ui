@@ -261,7 +261,6 @@ export const ButtonRoot = styled('button', {
     '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
     '--md-comp-ripple-background-color': focusedContainerColor[ownerState.variant ?? 'text'],
-    '--md-comp-ripple-color': labelTextColor[ownerState.variant ?? 'text'],
     // Noramlized styles for buttons
     display: 'inline-flex',
     alignItems: 'center',
@@ -329,18 +328,15 @@ export const ButtonRoot = styled('button', {
     }),
     '&:hover': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
-      color: labelTextColor[ownerState.variant ?? 'text'],
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
     '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
-      color: labelTextColor[ownerState.variant ?? 'text'],
       backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
-      color: labelTextColor[ownerState.variant ?? 'text'],
       backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.disabled}`]: {
@@ -389,6 +385,18 @@ const ButtonEndIcon = styled('span', {
   marginLeft: 'var(--Button-gap)',
   ...commonIconStyles(ownerState),
 }));
+
+const ButtonContent = styled('span', {
+  name: 'MuiButton',
+  slot: 'Content',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.content];
+  },
+})({
+  zIndex: 1
+});
 
 const Button = React.forwardRef(function Button<
   BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
@@ -527,7 +535,9 @@ const Button = React.forwardRef(function Button<
       {...other}
     >
       {startIcon}
-      {children}
+      <ButtonContent>
+        {children}
+      </ButtonContent>
       {endIcon}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
