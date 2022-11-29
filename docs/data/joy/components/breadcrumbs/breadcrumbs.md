@@ -64,13 +64,7 @@ The demo below shows how to add an icon to the Link with `startDecorator` and ch
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
 
-## Usage with Menu
-
-You can use the Breadcrumbs component together with the Joy UI [Menu](/joy-ui/react-menu/) component.
-
-{{"demo": "BreadcrumbsWithMenu.js"}}
-
-### Accessibility
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
 
@@ -91,8 +85,19 @@ Play around with one of the CSS variables available in the breadcrumbs component
 
 ## Common examples
 
-### Collapsed Breadcrumbs
+### Condensed Breadcrumbs
 
-You can change the color of the links. You can learn more about them in [Link](/joy-ui/react-link/).
+When the page hierarchy is deeply nested, you may want to condense multiple levels into one.
+The demo below only displays a few previous levels until you click the ellipsis to show the full hierarchy:
 
-{{"demo": "CollapsedBreadcrumbs.js"}}
+{{"demo": "CondensedBreadcrumbs.js"}}
+
+### Condensed with Menu
+
+```jsx
+import Menu from '@mui/joy/Menu';
+```
+
+As an alternative to the behavior of the condensed demo above, consider adding a [Menu](/joy-ui/react-menu/) component to display the condensed links in a dropdown list:
+
+{{"demo": "BreadcrumbsWithMenu.js"}}

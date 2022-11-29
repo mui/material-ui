@@ -6,8 +6,8 @@ import Typography from '@mui/joy/Typography';
 
 export default function BasicBreadcrumbs() {
   return (
-    <Stack>
-      <Breadcrumbs separator="/" aria-label="breadcrumbs" size="sm">
+    <Stack sx={{ display: 'flex', alignItems: 'center' }}>
+      <Breadcrumbs separator="—" aria-label="breadcrumbs" size="sm">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item) => (
           <Link
             // `preventDefault` is for demo purposes
@@ -25,7 +25,7 @@ export default function BasicBreadcrumbs() {
 
         <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
-      <Breadcrumbs separator="/" aria-label="breadcrumbs" size="md">
+      <Breadcrumbs separator="—" aria-label="breadcrumbs" size="md">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item) => (
           <Link
             // `preventDefault` is for demo purposes
@@ -41,9 +41,9 @@ export default function BasicBreadcrumbs() {
           </Link>
         ))}
 
-        <Typography fontSize="inherit">Philip J. Fry</Typography>
+        <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
-      <Breadcrumbs separator="/" aria-label="breadcrumbs" size="lg">
+      <Breadcrumbs separator="—" aria-label="breadcrumbs" size="lg">
         {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item) => (
           <Link
             // `preventDefault` is for demo purposes
@@ -59,7 +59,7 @@ export default function BasicBreadcrumbs() {
           </Link>
         ))}
 
-        <Typography fontSize="inherit">Bender</Typography>
+        <Typography fontSize="inherit">Dr. Zoidberg</Typography>
       </Breadcrumbs>
     </Stack>
   );
