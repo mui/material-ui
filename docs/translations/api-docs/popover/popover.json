@@ -10,7 +10,7 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "container": "An HTML element, component instance, or function that returns either. The <code>container</code> will passed to the Modal component.<br>By default, it uses the body of the anchorEl&#39;s top-level document object, so it&#39;s simply <code>document.body</code> most of the time.",
     "elevation": "The elevation of the popover.",
-    "marginThreshold": "Specifies how close to the edge of the window the popover can appear.",
+    "marginThreshold": "Specifies how close to the edge of the window the popover can appear. You can pass a number, which will be equal margin on all four sides, or an array of two numbers, first value will be vertical margin and second value horizontal.",
     "onClose": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
     "open": "If <code>true</code>, the component is shown.",
     "PaperProps": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",

@@ -78,9 +78,11 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   elevation?: number;
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * You can pass a number, which will be equal margin on all four sides,
+   * or an array of two numbers, first value will be vertical margin and second value horizontal.
    * @default 16
    */
-  marginThreshold?: number;
+  marginThreshold?: number | Array<number>;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.

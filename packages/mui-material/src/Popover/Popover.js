@@ -524,8 +524,8 @@ Popover.propTypes /* remove-proptypes */ = {
   elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
-   * you can pass a number, which will be equal margin on all four sides,
-   * or an array of two numbers, first value will be vertical margin and second value horizontal
+   * You can pass a number, which will be equal margin on all four sides,
+   * or an array of two numbers, first value will be vertical margin and second value horizontal.
    * @default 16
    */
   marginThreshold: PropTypes.oneOfType([
