@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["../types/react-docgen.d.ts", "apiDocsBuilder/**/*", "i18n.js"],
+  "include": ["../types/react-docgen.d.ts", "api-docs-builder/**/*", "i18n.js"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,
