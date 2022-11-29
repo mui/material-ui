@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '../styles';
+import { SlotProps } from './types';
 import useSlot from './useSlot';
-import { SlotComponentProps } from './types';
 
 describe('useSlot', () => {
   const { render } = createRenderer();
@@ -47,8 +47,8 @@ describe('useSlot', () => {
         href?: string;
         slots?: { root?: React.ElementType; decorator?: React.ElementType };
         slotProps?: {
-          root?: SlotComponentProps<'button', Record<string, any>, {}>;
-          decorator?: SlotComponentProps<'span', { size?: 'sm' | 'md' } & Record<string, any>, {}>;
+          root?: SlotProps<'button', Record<string, any>, {}>;
+          decorator?: SlotProps<'span', { size?: 'sm' | 'md' } & Record<string, any>, {}>;
         };
       }
     >((props, ref) => {
@@ -146,7 +146,7 @@ describe('useSlot', () => {
         root?: React.ElementType;
       };
       slotProps?: {
-        root?: SlotComponentProps<'button', Record<string, any>, {}>;
+        root?: SlotProps<'button', Record<string, any>, {}>;
       };
     }) {
       const ref = React.useRef(null);
@@ -210,9 +210,9 @@ describe('useSlot', () => {
         option?: React.ElementType;
       };
       slotProps?: {
-        root?: SlotComponentProps<'button', Record<string, any>, {}>;
-        listbox?: SlotComponentProps<'span', Record<string, any>, {}>;
-        option?: SlotComponentProps<'div', Record<string, any>, {}>;
+        root?: SlotProps<'button', Record<string, any>, {}>;
+        listbox?: SlotProps<'span', Record<string, any>, {}>;
+        option?: SlotProps<'div', Record<string, any>, {}>;
       };
     }) {
       const ref = React.useRef(null);
