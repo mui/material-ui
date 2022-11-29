@@ -10,6 +10,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import Ad from 'docs/src/modules/components/Ad';
 
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
@@ -207,8 +208,8 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
-function ApiDocs(props) {
-  const { descriptions, pageContent } = props;
+export default function ApiPage(props) {
+  const { descriptions, disableAd = false, pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -287,7 +288,7 @@ function ApiDocs(props) {
   return (
     <AppLayoutDocs
       description={description}
-      disableAd={false}
+      disableAd={disableAd}
       disableToc={false}
       location={apiSourceLocation}
       title={`${componentName} API`}
@@ -295,8 +296,14 @@ function ApiDocs(props) {
     >
       <MarkdownElement>
         <h1>{componentName} API</h1>
-        <Typography variant="h5" component="p" className="description" gutterBottom>
+        <Typography
+          variant="h5"
+          component="p"
+          className={`description${disableAd ? '' : ' ad'}`}
+          gutterBottom
+        >
           {description}
+          {disableAd ? null : <Ad />}
         </Typography>
         <Heading hash="import" />
         <HighlightedCode
@@ -388,13 +395,12 @@ import { ${componentName} } from '${source}';`}
   );
 }
 
-ApiDocs.propTypes = {
+ApiPage.propTypes = {
   descriptions: PropTypes.object.isRequired,
+  disableAd: PropTypes.bool,
   pageContent: PropTypes.object.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  ApiDocs.propTypes = exactProp(ApiDocs.propTypes);
+  ApiPage.propTypes = exactProp(ApiPage.propTypes);
 }
-
-export default ApiDocs;
