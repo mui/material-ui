@@ -21,5 +21,5 @@ To continue using this component and avoid future breaking changes, we strongly 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 ```
 
-Please refer to the [Click-Away Listener](/base/react-click-away-listener/) page in the MUI Base docs for examples and details on usage.
+Please refer to the [Click-Away Listener](/base/react-click-away-listener/) component page in the MUI Base docs for examples and details on usage.
 :::

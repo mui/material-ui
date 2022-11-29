@@ -21,5 +21,5 @@ To continue using this component and avoid future breaking changes, we strongly 
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 ```
 
-Please refer to the [Textarea Autosize](/base/react-textarea-autosize/) page in the MUI Base docs for examples and details on usage.
+Please refer to the [Textarea Autosize](/base/react-textarea-autosize/) component page in the MUI Base docs for examples and details on usage.
 :::

@@ -20,5 +20,5 @@ To continue using this component and avoid future breaking changes, we strongly 
 import NoSsr from '@mui/base/NoSsr';
 ```
 
-Please refer to the [No-SSR](/base/react-no-ssr/) page in the MUI Base docs for examples and details on usage.
+Please refer to the [No-SSR](/base/react-no-ssr/) component page in the MUI Base docs for examples and details on usage.
 :::

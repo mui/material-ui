@@ -21,5 +21,5 @@ To continue using this component and avoid future breaking changes, we strongly 
 import Portal from '@mui/base/Portal';
 ```
 
-Please refer to the [Portal](/base/react-portal/) page in the MUI Base docs for examples and details on usage.
+Please refer to the [Portal](/base/react-portal/) component page in the MUI Base docs for examples and details on usage.
 :::
