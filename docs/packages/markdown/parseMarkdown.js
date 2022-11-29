@@ -417,13 +417,17 @@ function prepareMarkdown(config) {
         contents.push(`
 ## Unstyled
 
-The component also comes with an [unstyled version](${headers.unstyled}). It's ideal for doing heavy customizations and minimizing bundle size.
+:::success
+[MUI Base](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+:::
         `);
       }
 
       if (headers.components.length > 0) {
         contents.push(`
 ## API
+
+See the documentation below for a complete reference to all of the props and classes available to the components mentioned here.
 
 ${headers.components
   .map((component) => {
