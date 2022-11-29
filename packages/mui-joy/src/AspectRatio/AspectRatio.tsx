@@ -188,10 +188,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the component.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  slotProps: PropTypes.any,
   /**
    * Replace the default slots.
    */
