@@ -317,25 +317,6 @@ Link.propTypes /* remove-proptypes */ = {
    */
   overlay: PropTypes.bool,
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    endDecorator: PropTypes.any,
-    root: PropTypes.any,
-    startDecorator: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Link.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    endDecorator: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-  }),
-  /**
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,

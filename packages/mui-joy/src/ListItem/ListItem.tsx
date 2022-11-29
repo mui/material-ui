@@ -286,25 +286,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    endAction: PropTypes.any,
-    root: PropTypes.any,
-    startAction: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the ListItem.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    endAction: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startAction: PropTypes.elementType,
-  }),
-  /**
    * The element to display at the start of ListItem.
    */
   startAction: PropTypes.node,

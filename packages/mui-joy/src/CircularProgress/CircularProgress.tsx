@@ -327,27 +327,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    progress: PropTypes.any,
-    root: PropTypes.any,
-    svg: PropTypes.any,
-    track: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the CircularProgress.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    progress: PropTypes.elementType,
-    root: PropTypes.elementType,
-    svg: PropTypes.elementType,
-    track: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

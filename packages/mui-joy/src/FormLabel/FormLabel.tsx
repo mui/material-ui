@@ -109,23 +109,6 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    asterisk: PropTypes.any,
-    root: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the FormLabel.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    asterisk: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

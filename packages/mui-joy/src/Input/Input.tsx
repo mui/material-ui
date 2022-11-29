@@ -431,27 +431,6 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    endDecorator: PropTypes.any,
-    input: PropTypes.any,
-    root: PropTypes.any,
-    startDecorator: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Input.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    endDecorator: PropTypes.elementType,
-    input: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-  }),
-  /**
    * Leading adornment for this input.
    */
   startDecorator: PropTypes.node,

@@ -482,29 +482,6 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    action: PropTypes.any,
-    icon: PropTypes.any,
-    input: PropTypes.any,
-    label: PropTypes.any,
-    radio: PropTypes.any,
-    root: PropTypes.any,
-  }),
-  /**
-   * @ignore
-   */
-  slots: PropTypes.shape({
-    action: PropTypes.elementType,
-    icon: PropTypes.elementType,
-    input: PropTypes.elementType,
-    label: PropTypes.elementType,
-    radio: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

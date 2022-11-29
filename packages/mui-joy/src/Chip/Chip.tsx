@@ -357,27 +357,14 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside.
-   * @default {}
+   * @ignore
    */
   slotProps: PropTypes.shape({
-    action: PropTypes.any,
-    endDecorator: PropTypes.any,
-    label: PropTypes.any,
-    root: PropTypes.any,
-    startDecorator: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Chip.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    action: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    label: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * Element placed before the children.

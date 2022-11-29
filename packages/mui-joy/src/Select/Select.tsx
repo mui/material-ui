@@ -683,31 +683,6 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    button: PropTypes.any,
-    endDecorator: PropTypes.any,
-    indicator: PropTypes.any,
-    listbox: PropTypes.any,
-    root: PropTypes.any,
-    startDecorator: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    button: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    indicator: PropTypes.elementType,
-    listbox: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-  }),
-  /**
    * Leading adornment for the select.
    */
   startDecorator: PropTypes.node,

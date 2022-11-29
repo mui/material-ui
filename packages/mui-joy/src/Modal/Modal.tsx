@@ -379,23 +379,6 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * The props used for each slot inside the Modal.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    backdrop: PropTypes.any,
-    root: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Modal.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    backdrop: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

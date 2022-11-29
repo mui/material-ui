@@ -455,33 +455,6 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    action: PropTypes.any,
-    endDecorator: PropTypes.any,
-    input: PropTypes.any,
-    root: PropTypes.any,
-    startDecorator: PropTypes.any,
-    thumb: PropTypes.any,
-    track: PropTypes.any,
-  }),
-  /**
-   * The components used for each slot inside the Switch.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    action: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    input: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-    thumb: PropTypes.elementType,
-    track: PropTypes.elementType,
-  }),
-  /**
    * The element that appears at the end of the switch.
    */
   startDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
