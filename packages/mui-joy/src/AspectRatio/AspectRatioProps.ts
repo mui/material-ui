@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
-import { OtherSlotProps, RootSlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AspectRatioSlot = 'root' | 'content';
 
@@ -11,8 +11,8 @@ export interface AspectRatioPropsVariantOverrides {}
 export type AspectRatioSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AspectRatioSlot,
   {
-    root: RootSlotProps<'div', {}, AspectRatioOwnerState>;
-    content: OtherSlotProps<'div', {}, AspectRatioOwnerState>;
+    root: SlotProps<'div', {}, AspectRatioOwnerState>;
+    content: SlotProps<'div', {}, AspectRatioOwnerState>;
   }
 >;
 

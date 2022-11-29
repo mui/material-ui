@@ -185,18 +185,6 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   ratio: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.any,
-  /**
-   * Replace the default slots.
-   */
-  slots: PropTypes.shape({
-    content: PropTypes.elementType,
-    root: PropTypes.elementType,
-  }),
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
