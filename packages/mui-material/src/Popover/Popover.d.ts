@@ -82,7 +82,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    * or an array of two numbers, first value will be vertical margin and second value horizontal.
    * @default 16
    */
-  marginThreshold?: number | Array<number>;
+  marginThreshold?: number | number[];
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.
