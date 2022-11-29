@@ -15,29 +15,19 @@ It provides a simple visual aid for greater context and ease of navigation betwe
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
-To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
-:::
-
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
-
-export default function MyApp() {
-  return <Breadcrumbs />;
-}
 ```
 
-### Basic usage
-
-Breadcrumbs is a navigation component that is designed to be used with [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/).
+The Breadcrumbs component is designed to be used with [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/), as shown below:
 
 {{"demo": "BasicBreadcrumbs.js"}}
+
+## Customization
 
 You can add an icon as a decorator to the [Link](/joy-ui/react-link/) and mix it with the `color` prop.
 
