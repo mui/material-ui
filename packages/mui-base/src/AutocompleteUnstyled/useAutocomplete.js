@@ -926,11 +926,14 @@ export default function useAutocomplete(props) {
   };
 
   const handleOptionMouseOver = (event) => {
-    setHighlightedIndex({
-      event,
-      index: Number(event.currentTarget.getAttribute('data-option-index')),
-      reason: 'mouse',
-    });
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    if (highlightedIndexRef.current !== index) {
+      setHighlightedIndex({
+        event,
+        index,
+        reason: 'mouse',
+      });
+    }
   };
 
   const handleOptionTouchStart = () => {
@@ -1098,7 +1101,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
-        onMouseOver: handleOptionMouseOver,
+        onMouseMove: handleOptionMouseOver,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
         'data-option-index': index,

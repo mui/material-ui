@@ -2472,10 +2472,11 @@ describe('<Autocomplete />', () => {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
-
+    const handleHighlightChange = spy();
     const { getAllByRole, getByRole } = render(
       <Autocomplete
         open
+        onHighlightChange={handleHighlightChange}
         options={['one', 'two', 'three', 'four', 'five']}
         renderInput={(params) => <TextField {...params} />}
         ListboxProps={{ style: { maxHeight: '100px' } }}
@@ -2498,6 +2499,7 @@ describe('<Autocomplete />', () => {
     checkHighlightIs(getByRole('listbox'), 'four');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     checkHighlightIs(getByRole('listbox'), 'five');
+    expect(handleHighlightChange.callCount).to.equal(React.version.startsWith('18') ? 8 : 7);
   });
 
   it('should filter options when new input value matches option', () => {
