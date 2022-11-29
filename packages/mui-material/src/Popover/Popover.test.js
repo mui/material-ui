@@ -929,7 +929,7 @@ describe('<Popover />', () => {
     });
 
     it('should return 8 (first array item) when direction vertical and marginThreshold is array of 2 numbers [8, 12]', () => {
-      const direction = 'horizontal';
+      const direction = 'vertical';
       const margin = getMargin([8, 12], direction);
       expect(margin).to.equal(8);
     });
