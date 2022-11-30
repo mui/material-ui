@@ -13,6 +13,6 @@ export function createRender(context: {
 
 export function getHeaders(markdown: string): Record<string, string | string[]>;
 
-export function getTitle(markdown: string): string | undefined;
+export function getTitle(markdown: string): string;
 
 export function renderInline(markdown: string): string;
