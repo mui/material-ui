@@ -163,7 +163,13 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
   return (
     <React.Fragment>
-      {typeof value === 'string' ? <Typography variant="body2">{value}</Typography> : value}
+      {typeof value === 'string' ? (
+        <Typography variant="body2" color="text.secondary">
+          {value}
+        </Typography>
+      ) : (
+        value
+      )}
       {metadata && (
         <Typography
           variant="caption"
@@ -308,7 +314,7 @@ function Cell({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       {...props}
       sx={[
         {
-          py: 2,
+          py: '18px',
           px: 2,
           display: 'flex',
           flexDirection: 'column',
@@ -598,6 +604,13 @@ const rowHeaders: Record<string, React.ReactNode> = {
       }}
     />
   ),
+  'security-questionnaire': (
+    <ColumnHead
+      {...{
+        label: 'Security questionnaire',
+      }}
+    />
+  ),
 };
 
 const yes = <IconImage name="yes" title="Included" />;
@@ -660,6 +673,7 @@ const communityData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
+  'security-questionnaire': no,
 };
 
 const proData: Record<string, React.ReactNode> = {
@@ -718,6 +732,7 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
+  'security-questionnaire': no,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -788,6 +803,7 @@ const premiumData: Record<string, React.ReactNode> = {
   ),
   'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
   'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
+  'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
 function RowCategory(props: BoxProps) {
@@ -1207,6 +1223,8 @@ export default function PricingTable({
       {renderRow('pre-screening')}
       {divider}
       {renderRow('issue-escalation')}
+      {divider}
+      {renderRow('security-questionnaire')}
       {divider}
     </Box>
   );

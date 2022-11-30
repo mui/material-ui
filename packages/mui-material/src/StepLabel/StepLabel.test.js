@@ -17,10 +17,16 @@ describe('<StepLabel />', () => {
     render,
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { error: true },
+    testLegacyComponentsProp: true,
     slots: {
       label: { expectedClassName: classes.label },
     },
-    skip: ['componentProp', 'componentsProp', 'slotsProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('label content', () => {
@@ -48,7 +54,9 @@ describe('<StepLabel />', () => {
 
   describe('prop: StepIconComponent', () => {
     it('should render', () => {
-      const CustomizedIcon = () => <div data-testid="custom-icon" />;
+      function CustomizedIcon() {
+        return <div data-testid="custom-icon" />;
+      }
       const { container, getByTestId } = render(
         <Step active completed>
           <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
@@ -207,7 +215,9 @@ describe('<StepLabel />', () => {
 
   describe('renders <StepIcon> with the className completed', () => {
     it('renders with completed className when completed', () => {
-      const CustomizedIcon = () => <div data-testid="custom-icon" />;
+      function CustomizedIcon() {
+        return <div data-testid="custom-icon" />;
+      }
       const { container } = render(
         <Step completed>
           <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
@@ -221,7 +231,9 @@ describe('<StepLabel />', () => {
 
   describe('renders <StepIcon> with the className active', () => {
     it('renders with active className when active', () => {
-      const CustomizedIcon = () => <div data-testid="custom-icon" />;
+      function CustomizedIcon() {
+        return <div data-testid="custom-icon" />;
+      }
       const { container } = render(
         <Step active>
           <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>

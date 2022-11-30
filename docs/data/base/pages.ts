@@ -52,7 +52,7 @@ const pages = [
         subheader: 'navigation',
         children: [
           { pathname: '/base/react-menu', title: 'Menu' },
-          { pathname: '/base/react-table-pagination', title: 'Table pagination' },
+          { pathname: '/base/react-table-pagination', title: 'Table Pagination' },
           { pathname: '/base/react-tabs', title: 'Tabs' },
         ],
       },
@@ -62,9 +62,9 @@ const pages = [
         children: [
           { pathname: '/base/react-click-away-listener', title: 'Click-Away Listener' },
           { pathname: '/base/react-focus-trap', title: 'Focus Trap' },
-          { pathname: '/base/react-form-control', title: 'Form control' },
+          { pathname: '/base/react-form-control', title: 'Form Control' },
           { pathname: '/base/react-modal', title: 'Modal' },
-          { pathname: '/base/react-no-ssr', title: 'No SSR' },
+          { pathname: '/base/react-no-ssr', title: 'No-SSR' },
           { pathname: '/base/react-popper', title: 'Popper' },
           { pathname: '/base/react-portal', title: 'Portal' },
           { pathname: '/base/react-textarea-autosize', title: 'Textarea Autosize' },
