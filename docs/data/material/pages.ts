@@ -222,10 +222,6 @@ const pages: MuiPage[] = [
         title: 'ClassName generator',
       },
       {
-        pathname: '/material-ui/experimental-api/css-variables',
-        title: 'CSS variables',
-      },
-      {
         pathname: '/material-ui/experimental-api/css-theme-variables',
         subheader: 'CSS theme variables',
         children: [
@@ -235,6 +231,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
             title: 'Migrating to CSS theme variables',
+          },
+          {
+            pathname: '/material-ui/experimental-api/css-variables',
+            title: 'TODO merge with other pages',
           },
         ],
       },
