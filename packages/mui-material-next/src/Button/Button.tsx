@@ -647,8 +647,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * Callback fired when the component is focused with a keyboard.
-   * We trigger a `onFocus` callback too.
+   * @ignore
    */
   onFocusVisible: PropTypes.func,
   /**
