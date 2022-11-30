@@ -8,6 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
+import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
@@ -521,7 +522,7 @@ const Button = React.forwardRef(function Button<
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...getRootProps(getRippleHandlers(props))}
+      {...getRootProps(getRippleHandlers(props) as unknown as EventHandlers)}
       {...other}
     >
       {startIcon}
@@ -545,6 +546,12 @@ Button.propTypes /* remove-proptypes */ = {
    * It currently only supports `focusVisible()` action.
    */
   action: refType,
+  /**
+   * If `true`, the ripples are centered.
+   * They won't start at the cursor interaction position.
+   * @default false
+   */
+  centerRipple: PropTypes.bool,
   /**
    * The content of the component.
    */
@@ -578,6 +585,24 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableElevation: PropTypes.bool,
+  /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple: PropTypes.bool,
   /**
    * Element placed after the children.
    */
@@ -675,6 +700,10 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * Props applied to the `TouchRipple` element.
+   */
+  TouchRippleProps: PropTypes.object,
   /**
    * @ignore
    */

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { TouchRippleActions } from './TouchRipple';
 import { useEventCallback } from '@mui/material/utils';
+import { TouchRippleActions } from './TouchRipple';
 
 interface UseTouchRippleProps {
   disabled: boolean;

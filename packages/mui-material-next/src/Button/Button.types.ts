@@ -46,15 +46,11 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      * @default 'a'
      */
     LinkComponent?: React.ElementType;
-    /**
+    /*
      * Callback fired when the component is focused with a keyboard.
      * We trigger a `onFocus` callback too.
      */
     onFocusVisible?: React.FocusEventHandler<any>;
-    /**
-     * @default 0
-     */
-    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The content of the component.
      */
