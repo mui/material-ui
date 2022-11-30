@@ -23,6 +23,7 @@ describe('<PaginationItem />', () => {
     },
     skip: [
       'componentProp',
+      'componentsProp',
       // uses non-standard camel-case fields in `components`
       'slotsProp',
       'slotPropsProp',

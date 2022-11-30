@@ -19,7 +19,7 @@ describe('<FormControlLabel />', () => {
     testVariantProps: { disabled: true },
     testLegacyComponentsProp: true,
     refInstanceof: window.HTMLLabelElement,
-    components: {
+    slots: {
       typography: { expectedClassName: classes.label },
     },
     skip: [
