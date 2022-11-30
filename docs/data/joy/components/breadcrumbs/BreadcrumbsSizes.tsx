@@ -4,7 +4,7 @@ import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 
-export default function BasicBreadcrumbs() {
+export default function BreadcrumbsSizes() {
   return (
     <Stack sx={{ display: 'flex', alignItems: 'center' }}>
       <Breadcrumbs separator="—" aria-label="breadcrumbs" size="sm">
