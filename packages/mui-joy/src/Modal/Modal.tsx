@@ -87,7 +87,6 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
 
   const {
     children,
-    component = 'div',
     container,
     disableAutoFocus = false,
     disableEnforceFocus = false,
@@ -227,14 +226,12 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     }
   };
 
-  const externalForwardedProps = { ...other, component };
-
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: { role: 'presentation', onKeyDown: handleKeyDown },
     ref: handleRef,
     className: classes.root,
     elementType: ModalRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -246,7 +243,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     },
     className: classes.backdrop,
     elementType: ModalBackdrop,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -295,11 +292,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.

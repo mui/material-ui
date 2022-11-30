@@ -222,7 +222,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component,
     formControl,
     focused,
     error: errorProp = false,
@@ -265,13 +264,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: TextareaRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -287,7 +285,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
       minRows,
       maxRows,
     },
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
     ownerState,
@@ -296,14 +294,14 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: TextareaStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: TextareaEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 

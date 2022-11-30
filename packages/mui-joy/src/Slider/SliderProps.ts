@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SlotComponentProps } from '@mui/base';
 import { ExtendSliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SliderSlot =
   | 'root'
@@ -14,42 +14,25 @@ export type SliderSlot =
   | 'valueLabel'
   | 'input';
 
+export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SliderSlot,
+  {
+    root: SlotProps<'span', {}, SliderOwnerState>;
+    track: SlotProps<'span', {}, SliderOwnerState>;
+    rail: SlotProps<'span', {}, SliderOwnerState>;
+    thumb: SlotProps<'span', {}, SliderOwnerState>;
+    mark: SlotProps<'span', {}, SliderOwnerState>;
+    markLabel: SlotProps<'span', {}, SliderOwnerState>;
+    valueLabel: SlotProps<'span', {}, SliderOwnerState>;
+    input: SlotProps<'input', {}, SliderOwnerState>;
+  }
+>;
+
 export interface SliderPropsVariantOverrides {}
 export interface SliderPropsColorOverrides {}
 export interface SliderPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  track?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  rail?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  thumb?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  mark?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  markLabel?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  valueLabel?: SlotComponentProps<'span', {}, SliderOwnerState>;
-  input?: SlotComponentProps<'input', {}, SliderOwnerState>;
-}
-
-export interface SliderOwnProps {
-  /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-    track?: React.ElementType;
-    rail?: React.ElementType;
-    thumb?: React.ElementType;
-    mark?: React.ElementType;
-    markLabel?: React.ElementType;
-    valueLabel?: React.ElementType;
-    input?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps?: ComponentsProps;
+export interface SliderOwnProps extends SliderSlotsAndSlotProps {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'

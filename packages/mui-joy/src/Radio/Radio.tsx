@@ -223,7 +223,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const {
     checked: checkedProp,
     checkedIcon,
-    component,
     defaultChecked,
     disabled: disabledProp,
     disableIcon: disableIconProp = false,
@@ -302,34 +301,33 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: RadioRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotRadio, radioProps] = useSlot('radio', {
     className: classes.radio,
     elementType: RadioRadio,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotIcon, iconProps] = useSlot('icon', {
     className: classes.icon,
     elementType: RadioIcon,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: RadioAction,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -345,7 +343,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.input,
     elementType: RadioInput,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     ownerState,
   });
@@ -356,7 +354,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.label,
     elementType: RadioLabel,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -409,11 +407,6 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */

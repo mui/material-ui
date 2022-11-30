@@ -165,7 +165,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     action,
-    component = 'button',
     color: colorProp = 'primary',
     variant = 'solid',
     size = 'md',
@@ -207,7 +206,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
-    component,
     color,
     fullWidth,
     variant,
@@ -219,13 +217,12 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: ButtonRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -233,14 +230,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: ButtonStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: ButtonEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -249,7 +246,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     {
       className: classes.loadingIndicatorCenter,
       elementType: ButtonLoadingCenter,
-      externalForwardedProps,
+      externalForwardedProps: other,
       ownerState,
     },
   );
@@ -306,11 +303,6 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false

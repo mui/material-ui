@@ -166,7 +166,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
-    component = 'a',
     children,
     disabled = false,
     onBlur,
@@ -212,7 +211,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     disabled,
     focusVisible,
     underline,
@@ -223,7 +221,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -233,21 +230,21 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: handleRef,
     className: classes.root,
     elementType: LinkRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: StartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: EndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -280,11 +277,6 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false

@@ -202,7 +202,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     children,
     className,
     color = 'primary',
-    component = 'div',
     slotProps = {},
     onClick,
     disabled = false,
@@ -219,7 +218,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
-    component,
     variant,
     clickable,
     focusVisible: false,
@@ -237,7 +235,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   ownerState.focusVisible = focusVisible;
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, slotProps };
+  const externalForwardedProps = { ...other, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
@@ -280,7 +278,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: ChipEndDecorator,
-    externalForwardedProps: { ...other, slotProps },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -329,11 +327,6 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false

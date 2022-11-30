@@ -188,7 +188,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     uncheckedIcon,
     checkedIcon = defaultCheckedIcon,
     label,
-    component = 'span',
     defaultChecked,
     disabled: disabledExternalProp,
     disableIcon = false,
@@ -260,27 +259,26 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: CheckboxRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotCheckbox, checkboxProps] = useSlot('checkbox', {
     className: classes.checkbox,
     elementType: CheckboxCheckbox,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: CheckboxAction,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -299,7 +297,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     },
     className: classes.input,
     elementType: CheckboxInput,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -310,7 +308,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     },
     className: classes.label,
     elementType: CheckboxLabel,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -363,11 +361,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */

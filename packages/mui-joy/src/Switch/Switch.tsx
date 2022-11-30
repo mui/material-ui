@@ -223,7 +223,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const {
     checked: checkedProp,
-    component = 'div',
     defaultChecked,
     disabled: disabledExternalProp,
     onBlur,
@@ -285,13 +284,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: SwitchRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -301,7 +299,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     className: classes.startDecorator,
     elementType: SwitchStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -311,28 +309,28 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     className: classes.endDecorator,
     elementType: SwitchEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotTrack, trackProps] = useSlot('track', {
     className: classes.track,
     elementType: SwitchTrack,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
     elementType: SwitchThumb,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: SwitchAction,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -343,7 +341,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     className: classes.input,
     elementType: SwitchInput,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -394,11 +392,6 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */

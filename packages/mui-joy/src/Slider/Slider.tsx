@@ -402,8 +402,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
     className,
-    component = 'span',
-    slotProps = {},
     classes: classesProp,
     disableSwap = false,
     disabled = false,
@@ -478,13 +476,12 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SliderRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -492,7 +489,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotRail, railProps] = useSlot('rail', {
     className: classes.rail,
     elementType: SliderRail,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -502,21 +499,21 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     },
     className: classes.track,
     elementType: SliderTrack,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotMark, markProps] = useSlot('mark', {
     className: classes.mark,
     elementType: SliderMark,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotMarkLabel, markLabelProps] = useSlot('markLabel', {
     className: classes.markLabel,
     elementType: SliderMarkLabel,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
     additionalProps: {
       'aria-hidden': true,
@@ -526,7 +523,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
     elementType: SliderThumb,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getThumbProps,
     ownerState,
   });
@@ -534,7 +531,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotInput, inputProps] = useSlot('input', {
     className: classes.input,
     elementType: SliderInput,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getHiddenInputProps,
     ownerState,
   });
@@ -542,7 +539,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const [SlotValueLabel, valueLabelProps] = useSlot('valueLabel', {
     className: classes.valueLabel,
     elementType: SliderValueLabel,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -681,11 +678,6 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
@@ -790,35 +782,6 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    input: PropTypes.elementType,
-    mark: PropTypes.elementType,
-    markLabel: PropTypes.elementType,
-    rail: PropTypes.elementType,
-    root: PropTypes.elementType,
-    thumb: PropTypes.elementType,
-    track: PropTypes.elementType,
-    valueLabel: PropTypes.elementType,
-  }),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

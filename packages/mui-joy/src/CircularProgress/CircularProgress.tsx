@@ -1,10 +1,10 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { css, keyframes } from '@mui/system';
-import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
@@ -207,7 +207,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     children,
     className,
     color = 'primary',
-    component = 'span',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -219,7 +218,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const ownerState = {
     ...props,
     color,
-    component,
     size,
     variant,
     thickness,
@@ -229,13 +227,12 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: CircularProgressRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
     additionalProps: {
       role: 'progressbar',
@@ -256,21 +253,21 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const [SlotSvg, svgProps] = useSlot('svg', {
     className: classes.svg,
     elementType: CircularProgressSvg,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotTrack, trackProps] = useSlot('track', {
     className: classes.track,
     elementType: CircularProgressTrack,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotProgress, progressProps] = useSlot('progress', {
     className: classes.progress,
     elementType: CircularProgressProgress,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -306,11 +303,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The boolean to select a variant.
    * Use indeterminate when there is no progress value.
