@@ -122,6 +122,14 @@ function defaultIsEnabled(): boolean {
 
 /**
  * Utility component that locks focus inside the component.
+ *
+ * Demos:
+ *
+ * - [Focus Trap](https://mui.com/base/react-focus-trap/)
+ *
+ * API:
+ *
+ * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
  */
 function FocusTrap(props: FocusTrapProps) {
   const {
