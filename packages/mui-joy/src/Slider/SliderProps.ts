@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExtendSliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
+import { SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -32,36 +32,33 @@ export interface SliderPropsVariantOverrides {}
 export interface SliderPropsColorOverrides {}
 export interface SliderPropsSizeOverrides {}
 
-export interface SliderOwnProps extends SliderSlotsAndSlotProps {
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  color?: OverridableStringUnion<ColorPaletteProp, SliderPropsColorOverrides>;
-  /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
-   */
-  size?: OverridableStringUnion<'sm' | 'md' | 'lg', SliderPropsSizeOverrides>;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps;
-  /**
-   * The variant to use.
-   * @default 'solid'
-   */
-  variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
-}
-
-export type SliderTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendSliderUnstyledTypeMap<{
-  props: P & SliderOwnProps;
+export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
+  props: P &
+    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
+    SliderSlotsAndSlotProps & {
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'primary'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, SliderPropsColorOverrides>;
+      /**
+       * The size of the component.
+       * It accepts theme values between 'sm' and 'lg'.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', SliderPropsSizeOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+      /**
+       * The variant to use.
+       * @default 'solid'
+       */
+      variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
+    };
   defaultComponent: D;
-}>;
+};
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
