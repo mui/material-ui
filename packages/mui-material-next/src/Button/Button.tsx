@@ -260,7 +260,6 @@ export const ButtonRoot = styled('button', {
     '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
-    '--md-comp-ripple-background-color': focusedContainerColor[ownerState.variant ?? 'text'],
     // Noramlized styles for buttons
     display: 'inline-flex',
     alignItems: 'center',
@@ -388,18 +387,6 @@ const ButtonEndIcon = styled('span', {
   marginLeft: 'var(--Button-gap)',
   ...commonIconStyles(ownerState),
 }));
-
-const ButtonContent = styled('span', {
-  name: 'MuiButton',
-  slot: 'Content',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.content];
-  },
-})({
-  zIndex: 1,
-});
 
 const Button = React.forwardRef(function Button<
   BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
@@ -538,7 +525,7 @@ const Button = React.forwardRef(function Button<
       {...other}
     >
       {startIcon}
-      <ButtonContent>{children}</ButtonContent>
+      {children}
       {endIcon}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
