@@ -428,12 +428,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,
   };
-  theme.unstable_calculateSxConfig = (props) => {
-    if (props.ownerState?.materialYouComponent) {
-      return theme.unstable_sxConfig;
-    }
-    return systemDefaultSxConfig;
-  };
   theme.unstable_sx = function sx(props: SxProps<Theme>) {
     return styleFunctionSx({
       sx: props,

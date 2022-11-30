@@ -78,10 +78,8 @@ export function unstable_createStyleFunctionSx() {
 
     let config = defaultSxConfig;
 
-    if (theme.unstable_sxConfig || theme.unstable_calculateSxConfig) {
-      config = theme.unstable_calculateSxConfig
-        ? theme.unstable_calculateSxConfig(props)
-        : theme.unstable_sxConfig;
+    if (theme.unstable_sxConfig) {
+      config = theme.unstable_sxConfig;
     }
 
     /*

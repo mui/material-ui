@@ -194,7 +194,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   };
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SystemSxProps<Theme>) => CSSObject;
-  unstable_calculateSxConfig: (props: any) => SxConfig;
 }
 
 export type SxProps = SystemSxProps<Theme>;

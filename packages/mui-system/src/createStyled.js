@@ -81,12 +81,11 @@ export default function createStyled(input = {}) {
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
-    defaultProps = {},
   } = input;
 
   const systemSx = (props) => {
     const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-    return styleFunctionSx({ ...props, ownerState: { ...props.ownerState, ...defaultProps }, theme });
+    return styleFunctionSx({ ...props, theme });
   };
   systemSx.__mui_systemSx = true;
 
