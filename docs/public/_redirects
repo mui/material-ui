@@ -398,8 +398,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/joy-ui/guides/applying-dark-mode/ /:lang/joy-ui/customization/dark-mode/ 301
 /experimental-api/classname-generator/ /material-ui/experimental-api/classname-generator/ 301
 /:lang/experimental-api/classname-generator/ /:lang/material-ui/experimental-api/classname-generator/ 301
-/experimental-api/css-variables/ /material-ui/experimental-api/css-variables/ 301
-/:lang/experimental-api/css-variables/ /:lang/material-ui/experimental-api/css-variables/ 301
+/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
+/:lang/experimental-api/css-variables/ /:lang/material-ui/experimental-api/css-theme-variables/overview/ 301
 # 2023
 
 # Proxies
