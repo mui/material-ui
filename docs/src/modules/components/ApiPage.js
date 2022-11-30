@@ -302,7 +302,7 @@ function ApiDocs(props) {
         <p
           dangerouslySetInnerHTML={{
             __html:
-              'For examples and details on the usage of this React component, visit the component demo page:',
+              'For examples and details on the usage of this React component, visit the component demo pages:',
           }}
         />
         <span dangerouslySetInnerHTML={{ __html: demos }} />
