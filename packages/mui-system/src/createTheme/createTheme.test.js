@@ -105,7 +105,7 @@ describe('createTheme', () => {
             variants: [
               {
                 props: {}, // all props
-                style: ({ t }) =>
+                style: ({ theme: t }) =>
                   t.unstable_sx({
                     color: 'primary.main',
                     bgcolor: 'secondary.main',
