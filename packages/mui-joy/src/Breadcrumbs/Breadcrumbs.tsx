@@ -82,38 +82,35 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     name: 'JoyBreadcrumbs',
   });
 
-  const { children, className, component = 'nav', size = 'md', separator = '/', ...other } = props;
+  const { children, className, size = 'md', separator = '/', ...other } = props;
 
   const ownerState = {
     ...props,
-    component,
     separator,
     size,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const externalForwardedProps = { ...other, component };
-
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: BreadcrumbsRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotOl, olProps] = useSlot('ol', {
     className: classes.ol,
     elementType: BreadcrumbsOl,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotLi, liProps] = useSlot('li', {
     className: classes.li,
     elementType: BreadcrumbsLi,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -123,7 +120,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     },
     className: classes.separator,
     elementType: BreadcrumbsSeparator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -171,11 +168,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * Custom separator node.
    * @default '/'
