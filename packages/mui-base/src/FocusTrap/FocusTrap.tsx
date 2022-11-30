@@ -399,7 +399,7 @@ FocusTrap.propTypes /* remove-proptypes */ = {
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
    * This prop should be memoized.
    * It can be used to support multiple focus trap mounted at the same time.
-   * @default function defaultIsEnabled() {
+   * @default function defaultIsEnabled(): boolean {
    *   return true;
    * }
    */
