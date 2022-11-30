@@ -116,15 +116,14 @@ export default function createCssVarsProvider(options) {
     })();
 
     // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const {
-      css: rootCss,
-      vars: rootVars,
-      parsedTheme,
-    } = cssVarsParser(restThemeProp, { prefix: cssVarPrefix, shouldSkipGeneratingVar });
+    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
 
     // 3. Start composing the theme object
-    let theme = {
-      ...parsedTheme,
+    const theme = {
+      ...restThemeProp,
       components,
       colorSchemes,
       cssVarPrefix,
@@ -138,18 +137,24 @@ export default function createCssVarsProvider(options) {
     const defaultColorSchemeStyleSheet = {};
     const otherColorSchemesStyleSheet = {};
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const {
-        css,
-        vars,
-        parsedTheme: parsedScheme,
-      } = cssVarsParser(scheme, {
+      const { css, vars } = cssVarsParser(scheme, {
         prefix: cssVarPrefix,
         shouldSkipGeneratingVar,
       });
       theme.vars = deepmerge(theme.vars, vars);
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
-        theme = { ...theme, ...parsedScheme };
+        Object.keys(scheme).forEach((schemeKey) => {
+          if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
+            // shallow merge the 1st level structure of the theme.
+            theme[schemeKey] = {
+              ...theme[schemeKey],
+              ...scheme[schemeKey],
+            };
+          } else {
+            theme[schemeKey] = scheme[schemeKey];
+          }
+        });
         if (theme.palette) {
           theme.palette.colorScheme = key;
         }

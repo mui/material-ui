@@ -158,6 +158,7 @@ module.exports = withDocsInfra({
     SLACK_FEEDBACKS_TOKEN: process.env.SLACK_FEEDBACKS_TOKEN,
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
+    GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -170,7 +171,11 @@ module.exports = withDocsInfra({
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV === 'production') {
+        // The experiments pages are only meant for experiments, they shouldn't leak to production.
+        if (
+          (page.pathname.startsWith('/experiments/') || page.pathname === '/experiments') &&
+          process.env.DEPLOY_ENV === 'production'
+        ) {
           return;
         }
         // The blog is not translated

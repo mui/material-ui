@@ -34,13 +34,13 @@ interface ColorInversionProviderProps {
   variant?: VariantProp;
 }
 
-export const ColorInversionProvider = ({ children, variant }: ColorInversionProviderProps) => {
+export function ColorInversionProvider({ children, variant }: ColorInversionProviderProps) {
   const theme = useSystemTheme(defaultTheme);
   return (
     <VariantOverride.Provider value={variant ? theme.colorInversionConfig[variant] : undefined}>
       {children}
     </VariantOverride.Provider>
   );
-};
+}
 
 export default VariantOverride;
