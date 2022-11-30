@@ -299,13 +299,15 @@ function ApiDocs(props) {
           {description}
         </Typography>
         <Heading hash="demos" />
-        <p
-          dangerouslySetInnerHTML={{
-            __html:
-              'For examples and details on the usage of this React component, visit the component demo pages:',
-          }}
-        />
-        <span dangerouslySetInnerHTML={{ __html: demos }} />
+        <div className="MuiCallout-root MuiCallout-info">
+          <p
+            dangerouslySetInnerHTML={{
+              __html:
+                'For examples and details on the usage of this React component, visit the component demo pages:',
+            }}
+          />
+          <span dangerouslySetInnerHTML={{ __html: demos }} />
+        </div>
         <Heading hash="import" />
         <HighlightedCode
           code={`
