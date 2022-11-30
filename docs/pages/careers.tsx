@@ -409,11 +409,11 @@ function CareersContent() {
                 ['Remote work:', 'Our entire company is distributed.'],
                 [
                   'Retreats:',
-                  'We meet up once ever 8 months for a short week of meetings, events, and fun!',
+                  'We meet up every eight months for a short week of meetings, events, and fun!',
                 ],
                 [
                   'Equipment:',
-                  'MUI will let you choose new hardware of your choice (initial grant of $2,500 USD).',
+                  'MUI will provide the hardware of your choice (initial grant of $2,500 USD).',
                 ],
                 ['Time off:', 'We provide five weeks of paid time off.'],
               ].map((textArray) => (
@@ -496,10 +496,10 @@ function CareersContent() {
             {`Open roles (${openRolesData.reduce((acc, item) => acc + item.roles.length, 0)})`}
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
-            The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
+company is bootstrapped (so far). It was incorporated in mid 2019 and is growing"
             fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a
             similar pace in 2022 (25), and we plan to triple it in 2023 (75). We&apos;re looking for
-            help keep growing in the following areas:
+            help to keep growing in the following areas:
           </Typography>
         </div>
         <Divider
