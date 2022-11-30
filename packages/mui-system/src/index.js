@@ -31,7 +31,6 @@ export {
   extendSxProp as unstable_extendSxProp,
   unstable_defaultSxConfig,
 } from './styleFunctionSx';
-export { default as experimental_sx } from './sx';
 export { default as unstable_getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
 export { default as createBox } from './createBox';

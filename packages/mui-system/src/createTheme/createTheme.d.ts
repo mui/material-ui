@@ -1,6 +1,8 @@
+import { CSSObject } from '@mui/styled-engine';
 import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
 import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './createSpacing';
+import { SxConfig, SxProps } from '../styleFunctionSx';
 
 export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
 
@@ -32,6 +34,8 @@ export interface Theme {
   mixins?: unknown;
   typography?: unknown;
   zIndex?: unknown;
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SxProps<Theme>) => CSSObject;
 }
 
 /**
