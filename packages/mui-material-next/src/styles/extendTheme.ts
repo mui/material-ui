@@ -8,7 +8,6 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
   SxProps,
-  unstable_defaultSxConfig as systemDefaultSxConfig,
 } from '@mui/system';
 import {
   createTheme as createThemeWithoutVars,
