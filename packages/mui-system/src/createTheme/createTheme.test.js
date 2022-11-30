@@ -60,8 +60,8 @@ describe('createTheme', () => {
         this.skip();
       }
 
-      const Test = styled('div')(({ theme }) =>
-        theme.unstable_sx({
+      const Test = styled('div')(({ theme: t }) =>
+        t.unstable_sx({
           color: 'primary.main',
           bgcolor: 'secondary.main',
           m: 2,
@@ -105,22 +105,23 @@ describe('createTheme', () => {
             variants: [
               {
                 props: {}, // all props
-                style: ({ theme }) => theme.unstable_sx({
-                  color: 'primary.main',
-                  bgcolor: 'secondary.main',
-                  m: 2,
-                  p: 1,
-                  fontSize: 'fontSize',
-                  maxWidth: 'sm',
-                }),
+                style: ({ t }) =>
+                  t.unstable_sx({
+                    color: 'primary.main',
+                    bgcolor: 'secondary.main',
+                    m: 2,
+                    p: 1,
+                    fontSize: 'fontSize',
+                    maxWidth: 'sm',
+                  }),
               },
             ],
           },
         },
       };
 
-      const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(({ theme }) =>
-        theme.unstable_sx({
+      const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(({ theme: t }) =>
+        t.unstable_sx({
           color: 'primary.main',
           bgcolor: 'secondary.main',
           m: 2,
@@ -154,8 +155,8 @@ describe('createTheme', () => {
   });
 
   it('does not throw if used without ThemeProvider', function test() {
-    const Test = styled('div')(({ theme }) =>
-      theme.unstable_sx({
+    const Test = styled('div')(({ theme: t }) =>
+      t.unstable_sx({
         color: 'primary.main',
         bgcolor: 'secondary.main',
         m: 2,

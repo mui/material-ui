@@ -20,6 +20,7 @@ export interface ThemeOptions {
   components?: Record<string, any>;
   typography?: unknown;
   zIndex?: Record<string, number>;
+  unstable_sxConfig?: SxConfig;
 }
 
 export interface Theme {

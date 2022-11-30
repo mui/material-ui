@@ -1,0 +1,12 @@
+<ThemeProvider theme={theme}>
+  <Box
+    sx={{
+      background: 'primary.main',
+      color: 'primary.contrastText',
+      p: 1,
+      borderRadius: 2,
+    }}
+  >
+    Primary main background
+  </Box>
+</ThemeProvider>

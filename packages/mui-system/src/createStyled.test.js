@@ -293,9 +293,10 @@ describe('createStyled', () => {
         components: {
           MuiButton: {
             styleOverrides: {
-              root: ({ theme }) => theme.unstable_sx({
-                pt: 10,
-              }),
+              root: ({ theme }) =>
+                theme.unstable_sx({
+                  pt: 10,
+                }),
               icon: ({ ownerState, theme }) => [
                 ownerState.color === 'primary' &&
                   theme.unstable_sx({
