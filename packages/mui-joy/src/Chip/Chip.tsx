@@ -2,7 +2,6 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
@@ -11,6 +10,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -202,9 +202,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    componentsProps = {},
     color: colorProp = 'primary',
-    component,
+    slotProps = {},
     onClick,
     disabled = false,
     size = 'md',
@@ -216,10 +215,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const clickable = !!onClick || !!componentsProps.action;
+  const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
     ...props,
-    component,
     disabled,
     size,
     color,
@@ -229,9 +227,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   };
 
   const resolvedActionProps =
-    typeof componentsProps.action === 'function'
-      ? componentsProps.action(ownerState)
-      : componentsProps.action;
+    typeof slotProps.action === 'function' ? slotProps.action(ownerState) : slotProps.action;
   const actionRef = React.useRef<HTMLElement | null>(null);
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
@@ -242,42 +238,51 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   ownerState.focusVisible = focusVisible;
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, slotProps };
 
-  const labelProps = useSlotProps({
-    elementType: ChipLabel,
-    externalSlotProps: componentsProps.label,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ChipRoot,
+    externalForwardedProps,
     ownerState,
+  });
+
+  const [SlotLabel, labelProps] = useSlot('label', {
     className: classes.label,
+    elementType: ChipLabel,
+    externalForwardedProps,
+    ownerState,
   });
 
   // @ts-ignore internal logic.
   const id = useId(labelProps.id);
 
-  const actionProps = useSlotProps({
+  const [SlotAction, actionProps] = useSlot('action', {
+    className: classes.action,
     elementType: ChipAction,
+    externalForwardedProps,
+    ownerState,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.action,
     additionalProps: {
       'aria-labelledby': id,
       as: resolvedActionProps?.component,
       onClick,
     },
-    ownerState,
-    className: classes.action,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: ChipStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: ChipStartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: ChipEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: ChipEndDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
   const chipContextValue = React.useMemo(
@@ -287,25 +292,19 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   return (
     <ChipContext.Provider value={chipContextValue}>
-      <ChipRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        ownerState={ownerState}
-        {...other}
-      >
-        {clickable && <ChipAction {...actionProps} />}
+      <SlotRoot {...rootProps}>
+        {clickable && <SlotAction {...actionProps} />}
 
         {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
-        <ChipLabel {...labelProps} id={id}>
+        <SlotLabel {...labelProps} id={id}>
           {children}
-        </ChipLabel>
+        </SlotLabel>
         {startDecorator && (
-          <ChipStartDecorator {...startDecoratorProps}>{startDecorator}</ChipStartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {endDecorator && <ChipEndDecorator {...endDecoratorProps}>{endDecorator}</ChipEndDecorator>}
-      </ChipRoot>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
     </ChipContext.Provider>
   );
 }) as OverridableComponent<ChipTypeMap>;
@@ -332,22 +331,6 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -369,6 +352,16 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * Element placed before the children.
    */

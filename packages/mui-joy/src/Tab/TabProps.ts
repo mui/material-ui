@@ -5,7 +5,6 @@ import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../
 export type TabSlot = 'root';
 
 export interface TabPropsColorOverrides {}
-
 export interface TabPropsVariantOverrides {}
 
 export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {

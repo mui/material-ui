@@ -13,7 +13,7 @@ export interface TabsPropsSizeOverrides {}
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabsUnstyledOwnProps, 'components' | 'componentsProps'> & {
+    Omit<TabsUnstyledOwnProps, 'slots' | 'slotProps'> & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

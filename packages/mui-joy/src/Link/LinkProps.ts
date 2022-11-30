@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import {
   ColorPaletteProp,
-  TypographySystem,
-  VariantProp,
   SxProps,
   SystemProps,
   ApplyColorInversion,
+  TypographySystem,
+  VariantProp,
 } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 
@@ -16,14 +16,18 @@ export interface LinkPropsVariantOverrides {}
 
 export interface LinkPropsColorOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'a', { sx?: SxProps }, LinkOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
-}
+export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  LinkSlot,
+  {
+    root: SlotProps<'a', {}, LinkOwnerState>;
+    startDecorator: SlotProps<'span', {}, LinkOwnerState>;
+    endDecorator: SlotProps<'span', {}, LinkOwnerState>;
+  }
+>;
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
+    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -34,11 +38,6 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'primary'
        */
       color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
       /**
        * If `true`, the component is disabled.
        * @default false

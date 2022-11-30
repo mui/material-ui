@@ -41,6 +41,10 @@ export interface SwitchClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the startDecorator element. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element. */
+  endDecorator: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
@@ -70,6 +74,8 @@ const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default switchClasses;

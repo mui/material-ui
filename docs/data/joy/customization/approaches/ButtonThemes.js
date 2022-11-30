@@ -553,7 +553,7 @@ export default function ButtonThemes() {
           >
             <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
             <Select
-              componentsProps={{
+              slotProps={{
                 button: {
                   id: 'button-theme',
                 },
