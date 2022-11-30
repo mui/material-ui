@@ -158,6 +158,7 @@ describe('useSlot', () => {
         ownerState: {},
         additionalProps: {
           open: true, // !!force the popper to always visible for testing
+          anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
           component: ItemRoot,
