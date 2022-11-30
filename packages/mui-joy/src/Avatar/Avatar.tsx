@@ -169,19 +169,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     grouped: !!groupContext,
   };
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({
-    ...imgProps,
-    ...(typeof other.slotProps?.img === 'function'
-      ? other.slotProps?.img(ownerState)
-      : other.slotProps?.img),
-    src,
-    srcSet,
-  });
-
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && loaded !== 'error';
-
   const classes = useUtilityClasses(ownerState);
 
   const [SlotRoot, rootProps] = useSlot('root', {
@@ -211,6 +198,17 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     externalForwardedProps: other,
     ownerState,
   });
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded({
+    ...imgProps,
+    ...imageProps,
+    src,
+    srcSet,
+  });
+
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
 
   if (hasImgNotFailing) {
     children = <SlotImg {...imageProps} />;
@@ -262,14 +260,6 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
-  /**
-   * @ignore
-   */
-  slotProps: PropTypes.shape({
-    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The `src` attribute for the `img` element.
    */
