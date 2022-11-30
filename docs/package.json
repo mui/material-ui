@@ -36,6 +36,7 @@
     "@mui/icons-material": "^5.10.16",
     "@mui/joy": "5.0.0-alpha.56",
     "@mui/lab": "5.0.0-alpha.110",
+    "@mui/markdown": "*",
     "@mui/material": "^5.10.16",
     "@mui/material-next": "6.0.0-alpha.64",
     "@mui/styled-engine": "^5.10.16",

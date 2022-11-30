@@ -238,7 +238,6 @@
     "benchmark",
     "packages/*",
     "docs",
-    "docs/packages/*",
     "test"
   ]
 }

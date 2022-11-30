@@ -12,7 +12,7 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES } from 'docs/config';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import generatePropTypeDescription, {
   getChained,
