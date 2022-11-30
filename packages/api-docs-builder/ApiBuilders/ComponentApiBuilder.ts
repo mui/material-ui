@@ -16,7 +16,7 @@ import { getUnstyledFilename } from '@mui-internal/docs-utilities';
 import * as ttp from 'typescript-to-proptypes';
 
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
-import { LANGUAGES } from '../../../config';
+import { LANGUAGES } from 'docs/config';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
