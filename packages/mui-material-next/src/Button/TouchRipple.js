@@ -17,7 +17,7 @@ const enterKeyframe = keyframes`
   }
   100% {
     transform: scale(1);
-    opacity: 0.3;
+    opacity: 0.12;
   }
 `;
 
@@ -54,7 +54,7 @@ export const TouchRippleRipple = styled(Ripple, {
   opacity: 0;
   position: absolute;
   &.${touchRippleClasses.rippleVisible} {
-    opacity: 0.3;
+    opacity: 0.12;
     transform: scale(1);
     animation-name: ${enterKeyframe};
     animation-duration: ${DURATION}ms;
@@ -66,7 +66,7 @@ export const TouchRippleRipple = styled(Ripple, {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: var(--md-comp-ripple-background-color, currentColor);
+    background-color: currentColor;
   }
   & .${touchRippleClasses.childLeaving} {
     opacity: 0;

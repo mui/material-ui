@@ -97,8 +97,8 @@ export const ButtonRoot = styled('button', {
     elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${tokens.sys.color.surface}`,
     filled: tokens.sys.color[ownerState.color ?? 'primary'],
     filledTonal: tokens.sys.color.secondaryContainer,
-    outlined: 'none',
-    text: 'none',
+    outlined: 'transparent',
+    text: 'transparent',
   };
 
   const labelTextColor = {
@@ -122,8 +122,8 @@ export const ButtonRoot = styled('button', {
     filledTonal: theme.vars
       ? `rgba(${theme.vars.sys.color.onSurfaceChannel} / 0.12)`
       : alpha(theme.sys.color.onSurface, 0.12),
-    outlined: 'none',
-    text: 'none',
+    outlined: 'transparent',
+    text: 'transparent',
   };
 
   const hoveredContainerColor = {
@@ -268,7 +268,6 @@ export const ButtonRoot = styled('button', {
     position: 'relative',
     boxSizing: 'border-box',
     WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
     border: 0,
@@ -300,7 +299,7 @@ export const ButtonRoot = styled('button', {
     fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size), // the pxToRem should be moved to typescale in the future
     lineHeight: `calc(${tokens.sys.typescale.label.large.lineHeight} / ${theme.sys.typescale.label.large.size})`,
     borderRadius: `var(--Button-radius, ${borderRadius})`,
-    background: containerColor[ownerState.variant ?? 'text'],
+    backgroundColor: containerColor[ownerState.variant ?? 'text'],
     color: labelTextColor[ownerState.variant ?? 'text'],
     boxShadow: containerElevation[ownerState.variant ?? 'text'],
     // Outlined varaiant
@@ -333,11 +332,15 @@ export const ButtonRoot = styled('button', {
     },
     '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
-      backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
+      ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
+        backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
+      }),
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
-      backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
+      ...((ownerState.disableFocusRipple || ownerState.disableRipple) && {
+        backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
+      }),
     },
     [`&.${buttonClasses.disabled}`]: {
       // Allows deverloper to specify the disabled icon color var
@@ -345,7 +348,7 @@ export const ButtonRoot = styled('button', {
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
       color: disabledLabelTextColor,
-      background: disabeldContainerColor[ownerState.variant ?? 'text'],
+      backgroundColor: disabeldContainerColor[ownerState.variant ?? 'text'],
       boxShadow: 'var(--md-comp-button-disabled-container-elevation, none)', // Should be md.sys.elevation.level0
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${
@@ -395,7 +398,7 @@ const ButtonContent = styled('span', {
     return [styles.content];
   },
 })({
-  zIndex: 1
+  zIndex: 1,
 });
 
 const Button = React.forwardRef(function Button<
@@ -535,9 +538,7 @@ const Button = React.forwardRef(function Button<
       {...other}
     >
       {startIcon}
-      <ButtonContent>
-        {children}
-      </ButtonContent>
+      <ButtonContent>{children}</ButtonContent>
       {endIcon}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */

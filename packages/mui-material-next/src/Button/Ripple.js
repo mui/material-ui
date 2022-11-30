@@ -6,16 +6,7 @@ import clsx from 'clsx';
  * @ignore - internal component.
  */
 function Ripple(props) {
-  const {
-    className,
-    classes,
-    rippleX,
-    rippleY,
-    rippleSize,
-    in: inProp,
-    onExited,
-    timeout,
-  } = props;
+  const { className, classes, rippleX, rippleY, rippleSize, in: inProp, onExited, timeout } = props;
   const [leaving, setLeaving] = React.useState(false);
 
   const rippleClassName = clsx(className, classes.ripple, classes.rippleVisible);
