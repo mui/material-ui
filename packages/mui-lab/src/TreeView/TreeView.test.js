@@ -94,9 +94,9 @@ describe('<TreeView />', () => {
     });
 
     it('should not crash when unmounting with duplicate ids', () => {
-      const CustomTreeItem = () => {
+      function CustomTreeItem() {
         return <TreeItem nodeId="iojerogj" />;
-      };
+      }
       function App() {
         const [isVisible, hideTreeView] = React.useReducer(() => false, true);
 

@@ -62,10 +62,10 @@ describe('StylesProvider', () => {
     });
 
     const useStyles = makeStyles({ root: { display: 'flex' } });
-    const Button = (props) => {
+    function Button(props) {
       const classes = useStyles();
       return <button type="button" className={classes.root} {...props} />;
-    };
+    }
 
     function assertRendering(markup, sheetsRegistry) {
       expect(markup.match('Hello World')).not.to.equal(null);

@@ -12,7 +12,6 @@ const Root = styled('div')(({ theme }) => ({
   '& pre': {
     backgroundColor: theme.palette.primaryDark[800],
     color: '#f8f8f2', // fallback color until Prism's theme is loaded
-    direction: 'ltr',
     overflow: 'auto',
     margin: 0,
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.

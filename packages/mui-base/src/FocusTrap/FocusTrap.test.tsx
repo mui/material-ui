@@ -381,16 +381,18 @@ describe('<FocusTrap />', () => {
       });
 
       it('should restore the focus', () => {
-        const Test = (props: GenericProps) => (
-          <div>
-            <input data-testid="outside-input" />
-            <FocusTrap open disableAutoFocus {...props}>
-              <div tabIndex={-1} data-testid="root">
-                <input data-testid="focus-input" />
-              </div>
-            </FocusTrap>
-          </div>
-        );
+        function Test(props: GenericProps) {
+          return (
+            <div>
+              <input data-testid="outside-input" />
+              <FocusTrap open disableAutoFocus {...props}>
+                <div tabIndex={-1} data-testid="root">
+                  <input data-testid="focus-input" />
+                </div>
+              </FocusTrap>
+            </div>
+          );
+        }
 
         const { setProps } = render(<Test />);
 
