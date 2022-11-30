@@ -4,7 +4,7 @@
 
 Joy UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
 
-To understand how to do this, it helps to have an accurate mental model of Joy UI components.
+To understand how to do this, it helps to have an accurate mental model of MUI components.
 
 ## The mental model
 
@@ -28,17 +28,17 @@ For simpler components, the root slot is often filled by the native HTML element
 For example, the [Button's](/joy-ui/react-button/) root slot is a `<button>` element.
 This component _only_ has a root slot; more complex components may have additional [interior slots](#interior-slots).
 
+
 ### The component prop
 
 Use the `component` prop to override a component's root slot.
-The example below shows how to replace the Button's `<button>` tag with a `<div>`:
+The demo below shows how to replace the Button's `<button>` tag with a `<div>`:
 
-```jsx
-<Button component="div" />
-```
+{{"demo": "OverridingRootSlot.js"}}
 
 :::info
 If you provide a non-interactive element like a `<div>` or a `<span>`, the Button will automatically add the necessary accessibility attributes.
+Try inspecting the demo Button above in your browser's dev tools to see this feature in action.
 :::
 
 ## Interior slots
@@ -53,9 +53,7 @@ For example, the [Slider](/joy-ui/react-slider/) is composed of a root `<span>` 
 Use the `slots` prop to override a component's interior slots.
 The example below shows how to override the listbox slot in the [Select](/joy-ui/react-select/) component—a `<ul>` by default—with an `<ol>`:
 
-```jsx
-<Select slots={{ listbox: 'ol' }} />
-```
+{{"demo": "OverridingInternalSlot.js"}}
 
 Note that you can also use the `slots` prop to override the root slot:
 
