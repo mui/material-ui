@@ -7,11 +7,6 @@ const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = d
 // based on https://github.com/reactjs/react-docgen/blob/735f39ef784312f4c0e740d4bfb812f0a7acd3d5/src/handlers/defaultPropsHandler.js#L1-L112
 // adjusted for material-ui getThemedProps
 
-/**
- * @param {import('react-docgen').NodePath} propertyPath
- * @param {import('react-docgen').Importer} importer
- * @returns {{ value: string; computed: boolean } | null}
- */
 function getDefaultValue(propertyPath: NodePath, importer: Importer) {
   if (!types.AssignmentPattern.check(propertyPath.get('value').node)) {
     return null;
@@ -22,8 +17,7 @@ function getDefaultValue(propertyPath: NodePath, importer: Importer) {
 
   let defaultValue: string | undefined;
   if (types.Literal.check(path.node)) {
-    // TODO: fix the type error
-    // @ts-ignore
+    // @ts-expect-error TODO upstream fix
     defaultValue = node.raw;
   } else {
     if (types.AssignmentPattern.check(path.node)) {
@@ -69,12 +63,6 @@ function getJsdocDefaultValue(jsdoc: Annotation): { value: string } | undefined 
   return { value: defaultTag.description || '' };
 }
 
-/**
- * @param {import('react-docgen').NodePath} properties
- * @param {import('react-docgen').Documentation} documentation
- * @param {import('react-docgen').Importer} importer
- * @returns {void}
- */
 function getDefaultValuesFromProps(
   properties: NodePath,
   documentation: Documentation,
@@ -83,24 +71,13 @@ function getDefaultValuesFromProps(
   const { props: documentedProps } = documentation.toObject();
   const implementedProps: Record<string, NodePath> = {};
   properties
-    .filter(
-      /**
-       * @param {import('react-docgen').NodePath} propertyPath
-       */
-      (propertyPath: NodePath) => types.Property.check(propertyPath.node),
-      undefined,
-    )
-    .forEach(
-      /**
-       * @param {import('react-docgen').NodePath} propertyPath
-       */
-      (propertyPath: NodePath) => {
-        const propName = getPropertyName(propertyPath);
-        if (propName) {
-          implementedProps[propName] = propertyPath;
-        }
-      },
-    );
+    .filter((propertyPath: NodePath) => types.Property.check(propertyPath.node), undefined)
+    .forEach((propertyPath: NodePath) => {
+      const propName = getPropertyName(propertyPath);
+      if (propName) {
+        implementedProps[propName] = propertyPath;
+      }
+    });
 
   // Sometimes we list props in .propTypes even though they're implemented by another component
   // These props are spread so they won't appear in the component implementation.
@@ -144,31 +121,20 @@ function getPropsPath(functionBody: NodePath): NodePath | undefined {
   let propsPath: NodePath | undefined;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
   functionBody
-    .filter(
-      /**
-       * @param {import('react-docgen').NodePath} path
-       */
-      (path: NodePath) => {
-        return types.VariableDeclaration.check(path.node);
-      },
-      undefined,
-    )
-    .forEach(
-      /**
-       * @param {import('react-docgen').NodePath} path
-       */
-      (path: NodePath) => {
-        const declaratorPath = path.get('declarations', 0);
-        // find `const {} = props`
-        // but not `const ownerState = props`
-        if (
-          declaratorPath.get('init', 'name').value === 'props' &&
-          declaratorPath.get('id', 'type').value === 'ObjectPattern'
-        ) {
-          propsPath = declaratorPath.get('id');
-        }
-      },
-    );
+    .filter((path: NodePath) => {
+      return types.VariableDeclaration.check(path.node);
+    }, undefined)
+    .forEach((path: NodePath) => {
+      const declaratorPath = path.get('declarations', 0);
+      // find `const {} = props`
+      // but not `const ownerState = props`
+      if (
+        declaratorPath.get('init', 'name').value === 'props' &&
+        declaratorPath.get('id', 'type').value === 'ObjectPattern'
+      ) {
+        propsPath = declaratorPath.get('id');
+      }
+    });
 
   return propsPath;
 }
