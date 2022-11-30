@@ -230,7 +230,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS theme variables',
+            title: 'Migrating to CSS variables',
           },
           {
             pathname: '/material-ui/experimental-api/css-variables',
