@@ -4,27 +4,27 @@
 
 ## Motivation
 
-In most design, a vivid background is used to emphasize the container to bring user's first attention on it. For example, the application's header can use the primary background to make the website more appealing.
+The [global variants](/joy-ui/main-features/global-variants/) feature lets you control the hierarchy of importance by using a consistent `variant` prop that exists on most Joy UI components. It works great for a flat layer of components, however, it produces issues when you have multiple layers of components that use the global variants.
 
-<!-- some images -->
+The example below shows the problem when the interface has more than one layer that applies the global variants:
 
-However, it usually requires a lot of customization effort because you have to add extra styles to all components within the container to have enough contrast with the background. Also, some components are interactive so you have to custom the styles for other states, including hover, active, disabled and focus. If you don't cover all of the possible states, it could lead to visual bugs.
+{{"demo": "ColorInversionMotivation.js"}}
 
-We believe that if the components can adapt their colors to match the parent's background, it would save a lot of time.
+On the **left**, the `Button`'s variant is `solid` which has the highest emphasis level among other components.
+
+On the **right**, the problem arises when the container's variant changes to `solid`. The variant on the button loss its meaning because the button's background blends with the container which is less emphasized than the chip component. Moreover, the text and icon button don't have enough contrast to the parent's background.
+
+The color inversion feature is created to solve this issue because we believe that these scenarios are common in web design and development.
 
 ## Overview
 
-Color inversion is a special feature that inverts the components' styles to match their parent's background. The key factor that makes this feature possible is the Joy UI global variants because it allows the parent and children to communicate to each other via CSS variables.
+When color inversion is enabled on the parent, the children invert their styles to match the background by keeping the same hierarchy of importance based on their variants.
 
-The demo below demonstrate the result without the feature (left) and the result when color inversion is enabled (right):
-
-<!-- demo that can changed between variants, colors -->
+{{"demo": "ColorInversionOverview.js"}}
 
 ## Usage
 
-To enable the feature, set `invertedColors` to true on the `Sheet` or `Card` component.
-
-The children will adapt their colors when the parent's variant is `solid` or `soft`.
+To enable the feature, set `invertedColors` to true on the surface component either `Sheet` or `Card`.
 
 ```js
 <Card variant="solid" color="primary" invertedColors>
@@ -37,7 +37,7 @@ The children will adapt their colors when the parent's variant is `solid` or `so
 
 ## Common examples
 
-You will find
+Here are some examples that apply the color inversion feature.
 
 ### Header
 
@@ -57,4 +57,8 @@ You will find
 
 ## How it works
 
-## Frequently ask questions
+## Trade-offs
+
+### Benefits
+
+### Disadvantages
