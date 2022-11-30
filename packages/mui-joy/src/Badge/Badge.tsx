@@ -146,7 +146,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     },
     badgeInset: badgeInsetProp = 0,
     children,
-    component = 'span',
     size: sizeProp = 'md',
     color: colorProp = 'primary',
     invisible: invisibleProp = false,
@@ -190,20 +189,19 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   if (invisible && badgeContentProp === 0) {
     displayValue = '';
   }
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: BadgeRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotBadge, badgeProps] = useSlot('badge', {
     className: classes.badge,
     elementType: BadgeBadge,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -252,11 +250,6 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the badge is invisible.
    * @default false
