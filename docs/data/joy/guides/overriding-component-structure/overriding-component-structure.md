@@ -28,7 +28,6 @@ For simpler components, the root slot is often filled by the native HTML element
 For example, the [Button's](/joy-ui/react-button/) root slot is a `<button>` element.
 This component _only_ has a root slot; more complex components may have additional [interior slots](#interior-slots).
 
-
 ### The component prop
 
 Use the `component` prop to override a component's root slot.
