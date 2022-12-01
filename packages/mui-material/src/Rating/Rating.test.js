@@ -151,7 +151,7 @@ describe('<Rating />', () => {
     expect(
       window
         .getComputedStyle(container.querySelector(`.${classes.labelEmptyValueActive}`))
-        .getPropertyValue(height),
+        .getPropertyValue("height"),
     ).to.have.equal(120);
   });
 
