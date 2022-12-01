@@ -6,10 +6,10 @@ const theme = createTheme({
     // You can now use the background key in sx
     // by providing direct values from the palette
     background: {
-      themeKey: 'palette',
+      themeKey: 'colour',
     },
   },
-  palette: {
+  colour: {
     primary: {
       main: '#007FFF',
       contrastText: '#FFFFFF',
