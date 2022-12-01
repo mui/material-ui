@@ -2,13 +2,6 @@ import * as React from 'react';
 import { createTheme, ThemeProvider, Box, Stack } from '@mui/system';
 
 // Retain type safety.
-declare module '@mui/system' {
-  interface Shape {
-    sm: number;
-    md: number;
-    lg: number;
-  }
-}
 
 const theme = createTheme({
   unstable_sxConfig: {
@@ -29,16 +22,10 @@ export default function ChangeTheBehaviorSxProp() {
   return (
     <Stack direction="row" gap={1}>
       <ThemeProvider theme={theme}>
-        <Box sx={{ borderRadius: 'sm', bgcolor: '#007FFF', color: '#FFF', p: 1 }}>
-          sm border radius
-        </Box>
-        <Box sx={{ borderRadius: 'md', bgcolor: '#007FFF', color: '#FFF', p: 1 }}>
-          md border radius
-        </Box>
-        <Box sx={{ borderRadius: 'lg', bgcolor: '#007FFF', color: '#FFF', p: 1 }}>
-          lg border radius
-        </Box>
-      </Stack>
-    </ThemeProvider>
+        <Box sx={{ borderRadius: 'sm', border: '1px solid black', p: 4 }} />
+        <Box sx={{ borderRadius: 'md', border: '1px solid black', p: 4 }} />
+        <Box sx={{ borderRadius: 'lg', border: '1px solid black', p: 4 }} />
+      </ThemeProvider>
+    </Stack>
   );
 }

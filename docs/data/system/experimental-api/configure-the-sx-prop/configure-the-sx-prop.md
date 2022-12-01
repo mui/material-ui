@@ -1,4 +1,4 @@
-# Extend the sx prop
+# Configure the sx prop
 
 <p class="description">Learn about the experimental API for extending or changing the behavior of the sx prop.</p>
 
@@ -10,7 +10,7 @@ You can add new keys to be processed by the `sx` prop by extending the `unstable
 
 ## Override existing behavior
 
-There is also a possibility to change some of the existing behavior. You can simply provide a custom config in the for the specific key.
+There is also a possibility to change some of the existing behavior. For example, in some design systems, the border radiuses need to be restricted to specific values, instead of allowing any number to be used, as it is done by default in the MUI System. You can change this behavior, by providing a custom config for the `borderRadius` property:
 
 {{"demo": "ChangeTheBehaviorSxProp.js" }}
 

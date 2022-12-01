@@ -69,8 +69,8 @@ const pages = [
     icon: 'ExperimentIcon',
     children: [
       {
-        pathname: '/system/experimental-api/extend-sx-prop',
-        title: 'Extend the `sx` prop',
+        pathname: '/system/experimental-api/configure-the-sx-prop',
+        title: 'Configure the `sx` prop',
       },
     ],
   },

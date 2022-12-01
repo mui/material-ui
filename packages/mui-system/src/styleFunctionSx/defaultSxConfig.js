@@ -281,34 +281,6 @@ const defaultSxConfig = {
   minHeight: {
     transform: sizingTransform,
   },
-  size: {
-    style: (props) => {
-      const { size } = props;
-      // no mapping
-      const themeMapping = {};
-
-      const styleFromPropValue = (propValueFinal) => {
-        let value = getValue({ themeMapping }, sizingTransform, propValueFinal);
-
-        if (propValueFinal === value && typeof propValueFinal === 'string') {
-          // Haven't found value
-          value = getValue(
-            themeMapping,
-            sizingTransform,
-            `size${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
-            propValueFinal,
-          );
-        }
-
-        return {
-          width: value,
-          height: value,
-        };
-      };
-
-      return handleBreakpoints(props, size, styleFromPropValue);
-    },
-  },
   boxSizing: {},
 
   // typography
