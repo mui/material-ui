@@ -24,7 +24,10 @@ const Badge = React.forwardRef(function Badge(
 const styledBadge = <BadgeUnstyled slots={{ root: Root, badge: Badge }} />;
 
 const polymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

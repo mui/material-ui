@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
 import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
@@ -57,7 +57,7 @@ export interface MultiLineInputUnstyledProps {
 }
 
 export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInputUnstyledProps) &
-  UseInputParameters & {
+  Omit<UseInputParameters, 'error'> & {
     'aria-describedby'?: string;
     'aria-label'?: string;
     'aria-labelledby'?: string;
@@ -79,6 +79,11 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      * Trailing adornment for this input.
      */
     endAdornment?: React.ReactNode;
+    /**
+     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+     * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+     */
+    error?: boolean;
     /**
      * The id of the `input` element.
      */

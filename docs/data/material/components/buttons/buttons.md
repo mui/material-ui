@@ -181,3 +181,14 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
+
+## Material You version
+
+The default Button component follows the Material Design 2 specs.
+For the MD3 ([Material You](https://m3.material.io/)) version, install and import from the experimental `@mui/material-next` package:
+
+```js
+import Button from '@mui/material-next/Button';
+```
+
+{{"demo": "ButtonMaterialYouPlayground.js", "hideToolbar": true}}

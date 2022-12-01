@@ -94,7 +94,7 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/navigation',
         subheader: 'navigation',
         children: [
-          { pathname: '/material-ui/react-bottom-navigation', title: 'Button Navigation' },
+          { pathname: '/material-ui/react-bottom-navigation', title: 'Bottom Navigation' },
           { pathname: '/material-ui/react-breadcrumbs' },
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
@@ -230,7 +230,11 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS theme variables',
+            title: 'Migrating to CSS variables',
+          },
+          {
+            pathname: '/material-ui/experimental-api/css-variables',
+            title: 'TODO merge with other pages',
           },
         ],
       },

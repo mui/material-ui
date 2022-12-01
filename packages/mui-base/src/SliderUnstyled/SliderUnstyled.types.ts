@@ -1,5 +1,5 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';

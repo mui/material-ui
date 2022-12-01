@@ -159,13 +159,16 @@ const Menu = React.forwardRef(function Menu(
     open,
   });
 
-  const contextValue: MenuUnstyledContextType = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    open: true,
-  };
+  const contextValue: MenuUnstyledContextType = React.useMemo(
+    () => ({
+      registerItem,
+      unregisterItem,
+      getItemState,
+      getItemProps,
+      open: true,
+    }),
+    [getItemProps, getItemState, registerItem, unregisterItem],
+  );
 
   return (
     <ul className="menu-root" {...other} {...getListboxProps()}>

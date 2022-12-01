@@ -8,7 +8,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
-import { getOverlayAlpha } from '../Paper/Paper';
+import getOverlayAlpha from './getOverlayAlpha';
 
 const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   if (index === 0) {
@@ -250,6 +250,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.TableCell, 'border', darken(alpha(palette.divider, 1), 0.68));
       setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
     }
+
+    palette.background.defaultChannel = colorChannel(palette.background.default); // MUI X - DataGrid needs this token.
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
     palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);

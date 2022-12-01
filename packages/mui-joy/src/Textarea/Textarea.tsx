@@ -39,10 +39,19 @@ const TextareaRoot = styled('div', {
     {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
+      '--Textarea-placeholderColor': 'inherit',
       '--Textarea-placeholderOpacity': 0.5,
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
-      '--Textarea-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      ...(ownerState.color === 'context'
+        ? {
+            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Textarea-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
@@ -66,10 +75,10 @@ const TextareaRoot = styled('div', {
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--internal-paddingBlock':
+      '--_Textarea-paddingBlock':
         'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
       '--Textarea-decorator-childRadius':
-        'max(var(--Textarea-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Textarea-radius) / 2))',
+        'max(var(--Textarea-radius) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) / 2, var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
       '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
       '--Button-radius': 'var(--Textarea-decorator-childRadius)',
@@ -133,7 +142,7 @@ const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
   overridesResolver: (props, styles) => styles.textarea,
-})<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   resize: 'none',
   border: 'none', // remove the native textarea width
   minWidth: 0, // remove the native textarea width
@@ -151,16 +160,28 @@ const TextareaInput = styled(TextareaAutosize, {
   lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor: 'currentColor',
   },
   '&::-webkit-input-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-    color: 'inherit',
   },
-  '&::-moz-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
-}));
+  '&::-moz-placeholder': {
+    // Firefox 19+
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+  '&:-ms-input-placeholder': {
+    // IE11
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+  '&::-ms-input-placeholder': {
+    // Edge
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+});
 
 const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',

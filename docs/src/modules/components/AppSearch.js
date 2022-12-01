@@ -26,6 +26,7 @@ const SearchButton = styled('button')(({ theme }) => {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
+    margin: 0, // Reset for Safari
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
@@ -141,11 +142,9 @@ function NewStartScreen() {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
-              <a href={href} className="DocSearch-NewStartScreenItem">
-                {name}
-                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-              </a>
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {name}
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
