@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
+  activeElement,
   exactProp,
   elementAcceptingRef,
   unstable_useForkRef as useForkRef,
@@ -220,11 +221,11 @@ function FocusTrap(props) {
         return;
       }
 
-      if (!rootElement.contains(doc.activeElement)) {
+      if (!rootElement.contains(activeElement(doc))) {
         // if the focus event is not coming from inside the children's react tree, reset the refs
         if (
           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-          doc.activeElement !== reactFocusEventTarget.current
+          activeElement(doc) !== reactFocusEventTarget.current
         ) {
           reactFocusEventTarget.current = null;
         } else if (reactFocusEventTarget.current !== null) {
@@ -237,8 +238,8 @@ function FocusTrap(props) {
 
         let tabbable = [];
         if (
-          doc.activeElement === sentinelStart.current ||
-          doc.activeElement === sentinelEnd.current
+          activeElement(doc) === sentinelStart.current ||
+          activeElement(doc) === sentinelEnd.current
         ) {
           tabbable = getTabbable(rootRef.current);
         }
@@ -269,9 +270,10 @@ function FocusTrap(props) {
         return;
       }
 
+      const rootEl = rootRef.current.getRootNode();
       // Make sure the next tab starts from the right place.
       // doc.activeElement referes to the origin.
-      if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
+      if (activeElement(rootEl) === rootRef.current && nativeEvent.shiftKey) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
@@ -279,7 +281,7 @@ function FocusTrap(props) {
       }
     };
 
-    doc.addEventListener('focusin', contain);
+    activeElement().getRootNode().addEventListener('focusin', contain);
     doc.addEventListener('keydown', loopFocus, true);
 
     // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
@@ -297,7 +299,7 @@ function FocusTrap(props) {
     return () => {
       clearInterval(interval);
 
-      doc.removeEventListener('focusin', contain);
+      activeElement().getRootNode().removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
