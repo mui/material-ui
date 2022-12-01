@@ -1,4 +1,4 @@
-<ThemeProvider theme={theme}>
+<ThemeProvider theme={customTheme}>
   <Box
     sx={{
       size: 10,
