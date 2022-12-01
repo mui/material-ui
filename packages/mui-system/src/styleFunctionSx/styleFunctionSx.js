@@ -76,11 +76,7 @@ export function unstable_createStyleFunctionSx() {
       return null; // Emotion & styled-components will neglect null
     }
 
-    let config = defaultSxConfig;
-
-    if (theme.unstable_sxConfig) {
-      config = theme.unstable_sxConfig;
-    }
+    const config = theme.unstable_sxConfig ?? defaultSxConfig;
 
     /*
      * Receive `sxInput` as object or callback
