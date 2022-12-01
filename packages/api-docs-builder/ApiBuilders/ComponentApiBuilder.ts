@@ -14,9 +14,9 @@ import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/util
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { getUnstyledFilename } from '@mui-internal/docs-utilities';
 import * as ttp from 'typescript-to-proptypes';
+import { LANGUAGES } from 'docs/config';
 
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
-import { LANGUAGES } from 'docs/config';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
