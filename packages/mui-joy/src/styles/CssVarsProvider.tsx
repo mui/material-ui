@@ -34,6 +34,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       { clone: false },
     );
 
+    // TOOD remove this intermediary function call.
     mergedTheme.unstable_sx = function sx(props: SxProps) {
       return styleFunctionSx({ sx: props, theme: this });
     };
