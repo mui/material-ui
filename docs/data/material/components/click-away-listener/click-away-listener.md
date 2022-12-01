@@ -13,7 +13,7 @@ githubLabel: 'component: ClickAwayListener'
 
 :::warning
 Click-Away Listener is a part of the standalone [MUI Base](/base/getting-started/overview/) component library.
-It is currently re-exported from `@mui/material` for your convenience, but will may be removed from this package in a future major version, after `@mui/base` gets a stable release.
+It is currently re-exported from `@mui/material` for your convenience, but it will be removed from this package in a future major version, after `@mui/base` gets a stable release.
 
 Please refer to the [Click-Away Listener](/base/react-click-away-listener/) component page in the MUI Base docs for examples and details on usage.
 :::
