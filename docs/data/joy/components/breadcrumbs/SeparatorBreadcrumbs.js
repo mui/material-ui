@@ -8,9 +8,10 @@ export default function SeparatorBreadcrumbs() {
   return (
     <Breadcrumbs separator={<KeyboardArrowLeft />} aria-label="breadcrumbs">
       <Typography fontSize="inherit">Amy</Typography>
-      {['Fry', 'Leela', 'Bender', 'Linda'].map((item) => (
+      {['Characters', 'Futurama', 'TV Shows', 'Home'].map((item) => (
         <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          // `preventDefault` is for demo purposes
+          // and is generally not needed in your app
           onClick={(event) => event.preventDefault()}
           key={item}
           underline="hover"

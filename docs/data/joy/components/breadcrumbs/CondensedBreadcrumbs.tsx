@@ -5,8 +5,8 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 
-export default function CollapsedBreadcrumbs() {
-  const [collapsed, setCollapsed] = React.useState<boolean>(true);
+export default function CondensedBreadcrumbs() {
+  const [condensed, setCondensed] = React.useState<boolean>(true);
   const [navigationItems, setNavigationItems] = React.useState<string[]>([
     'Programs',
     'Files',
@@ -15,12 +15,12 @@ export default function CollapsedBreadcrumbs() {
 
   return (
     <Breadcrumbs separator="›" aria-label="breadcrumbs">
-      {collapsed ? (
+      {condensed ? (
         <Button
           size="sm"
           onClick={() => {
             setNavigationItems((prev) => ['Root', 'Home', ...prev]);
-            setCollapsed(false);
+            setCondensed(false);
           }}
           variant="plain"
           color="info"
