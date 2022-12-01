@@ -1,3 +1,4 @@
+export { default as activeElement } from './activeElement';
 export { default as chainPropTypes } from './chainPropTypes';
 export { default as deepmerge } from './deepmerge';
 export { isPlainObject } from './deepmerge';
