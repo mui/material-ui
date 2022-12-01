@@ -1,9 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { getByShadowTestId } from "shadow-dom-testing-library"
 import { expect } from 'chai';
 import { act, createRenderer, screen } from 'test/utils';
 import FocusTrap from '@mui/base/FocusTrap';
 import Portal from '@mui/base/Portal';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<FocusTrap />', () => {
   const { clock, render } = createRenderer();
@@ -40,6 +42,51 @@ describe('<FocusTrap />', () => {
       initialFocus.focus();
     });
     expect(getByTestId('root')).toHaveFocus();
+  });
+
+  it('should return focus to the root when used in shadow DOM', () => {
+    const shadowHost = document.createElement('div');
+    shadowHost.attachShadow({ mode: 'open' });
+    const shadowRoot = document.createElement('span');
+    shadowHost.appendChild(shadowRoot);
+
+    const theme = createTheme({
+      components: {
+        MuiPopover: {
+          defaultProps: {
+            container: shadowRoot,
+          },
+        },
+        MuiPopper: {
+          defaultProps: {
+            container: shadowRoot,
+          },
+        },
+        MuiModal: {
+          defaultProps: {
+            container: shadowRoot,
+          },
+        },
+      },
+    });
+
+    ReactDOM.createRoot(shadowRoot).render(
+      <ThemeProvider theme={theme}>
+        <FocusTrap open>
+        <div tabIndex={-1} data-testid="root">
+          <input autoFocus data-testid="auto-focus" />
+        </div>
+      </FocusTrap>,
+
+      </ThemeProvider>,
+    );
+
+    expect(getByShadowTestId(shadowHost, 'auto-focus')).toHaveFocus();
+
+    act(() => {
+      initialFocus.focus();
+    });
+    expect(getByShadowTestId(shadowHost, 'root')).toHaveFocus();
   });
 
   it('should not return focus to the children when disableEnforceFocus is true', () => {
