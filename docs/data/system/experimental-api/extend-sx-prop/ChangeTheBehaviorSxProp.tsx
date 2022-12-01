@@ -25,7 +25,7 @@ const theme = createTheme({
   },
 });
 
-export default function ExtendSxProp() {
+export default function ChangeTheBehaviorSxProp() {
   return (
     <Stack direction="row" gap={1}>
       <ThemeProvider theme={theme}>
