@@ -7,7 +7,7 @@ githubLabel: 'component: Portal'
 
 # Portal
 
-<p class="description">The Portal component lets you render its children into a DOM node that exists outside of its own DOM hierarchy.</p>
+<p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
 ## MUI Base
 
