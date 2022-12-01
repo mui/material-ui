@@ -27,8 +27,8 @@ const theme = createTheme({
 
 export default function ExtendSxProp() {
   return (
-    <ThemeProvider theme={theme}>
-      <Stack direction="row" gap={1}>
+    <Stack direction="row" gap={1}>
+      <ThemeProvider theme={theme}>
         <Box sx={{ borderRadius: 'sm', bgcolor: '#007FFF', color: '#FFF', p: 1 }}>
           sm border radius
         </Box>
