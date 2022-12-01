@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider, Box, handleBreakpoints } from '@mui/system';
 
-const theme = createTheme({
+const customTheme = createTheme({
   unstable_sxConfig: {
     size: {
       style: (props) => {
@@ -25,7 +25,7 @@ const theme = createTheme({
 
 export default function ExtendSxProp() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Box
         sx={{
           size: 10,

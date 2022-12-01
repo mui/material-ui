@@ -70,7 +70,7 @@ const pages = [
     children: [
       {
         pathname: '/system/experimental-api/configure-the-sx-prop',
-        title: 'Configure the `sx` prop',
+        title: 'Configure the sx prop',
       },
     ],
   },

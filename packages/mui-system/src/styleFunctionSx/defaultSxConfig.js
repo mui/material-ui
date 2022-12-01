@@ -1,6 +1,3 @@
-import { unstable_capitalize as capitalize } from '@mui/utils';
-import { getStyleValue as getValue } from '../style';
-import { handleBreakpoints } from '../breakpoints';
 import { padding, margin } from '../spacing';
 import { borderRadius, borderTransform } from '../borders';
 import { gap, rowGap, columnGap } from '../cssGrid';

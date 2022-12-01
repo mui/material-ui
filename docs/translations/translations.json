@@ -187,7 +187,7 @@
     "/system/react-grid": "Grid",
     "/system/react-stack": "Stack",
     "/system/experimental-api": "Experimental APIs",
-    "/system/experimental-api/configure-the-sx-prop": "Configure the `sx` prop",
+    "/system/experimental-api/configure-the-sx-prop": "Configure the sx prop",
     "/system/styles": "Styles",
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
