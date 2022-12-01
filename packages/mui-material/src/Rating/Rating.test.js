@@ -126,7 +126,7 @@ describe('<Rating />', () => {
         MuiRating: {
           styleOverrides: {
             labelEmptyValueActive: {
-              color: 'green',
+              height: 120,
             },
           },
         },
@@ -151,8 +151,8 @@ describe('<Rating />', () => {
     expect(
       window
         .getComputedStyle(container.querySelector(`.${classes.labelEmptyValueActive}`))
-        .getPropertyValue('color'),
-    ).to.have.equal('green');
+        .getPropertyValue(height),
+    ).to.have.equal(120);
   });
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`
