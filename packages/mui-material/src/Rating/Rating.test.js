@@ -138,7 +138,7 @@ describe('<Rating />', () => {
       </ThemeProvider>,
     );
 
-    expect(container.querySelector(classes.labelEmptyValueActive)).to.equal(null);
+    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).to.equal(null);
 
     act(() => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
