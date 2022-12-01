@@ -84,12 +84,10 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const handleFocus = (event) => {
     if (onFocus) {
-      console.log('ppppp1');
       onFocus(event);
     }
 
     if (muiFormControl && muiFormControl.onFocus) {
-      console.log('ppppp12');
       muiFormControl.onFocus(event);
     }
   };
