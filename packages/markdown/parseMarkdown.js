@@ -1,7 +1,6 @@
 const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
-const { LANGUAGES_IGNORE_PAGES } = require('../../src/modules/constants');
 const prism = require('./prism');
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
@@ -174,9 +173,10 @@ const noSEOadvantage = [
  * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
  * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
  * @param {string} context.userLanguage
+ * @param {function(string):boolean} context.ignoreLanguagePages
  */
 function createRender(context) {
-  const { headingHashes, toc, userLanguage } = context;
+  const { headingHashes, toc, userLanguage, ignoreLanguagePages } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
 
@@ -266,7 +266,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !LANGUAGES_IGNORE_PAGES(href)) {
+      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 
@@ -371,9 +371,10 @@ function resolveComponentApiUrl(product, componentPkg, component) {
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
+ * @param {function(string):boolean} config.ignoreLanguagePages
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {} } = config;
+  const { pageFilename, translations, componentPackageMapping = {}, ignoreLanguagePages } = config;
 
   const demos = {};
   /**
@@ -444,7 +445,13 @@ ${headers.components
       }
 
       const toc = [];
-      const render = createRender({ headingHashes, toc, userLanguage, location });
+      const render = createRender({
+        headingHashes,
+        toc,
+        userLanguage,
+        location,
+        ignoreLanguagePages,
+      });
 
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
