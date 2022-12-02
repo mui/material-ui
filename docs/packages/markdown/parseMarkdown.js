@@ -130,7 +130,7 @@ function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
   if (matches === null) {
-    return undefined;
+    return '';
   }
 
   return matches[1].replace(/`/g, '');

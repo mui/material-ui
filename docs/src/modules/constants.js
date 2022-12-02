@@ -1,10 +1,9 @@
+const { LANGUAGES } = require('../../config');
+
 const CODE_VARIANTS = {
   JS: 'JS',
   TS: 'TS',
 };
-
-// Valid languages to server-side render in production
-const LANGUAGES = ['en'];
 
 // Server side rendered languages
 const LANGUAGES_SSR = ['en'];

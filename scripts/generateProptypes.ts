@@ -10,7 +10,7 @@ import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
-} from '../docs/scripts/helpers';
+} from '@mui-internal/docs-utilities';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -356,7 +356,7 @@ async function run(argv: HandlerArgv) {
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
     try {
       await generateProptypes(program, sourceFile, tsFile);
-    } catch (error) {
+    } catch (error: any) {
       error.message = `${tsFile}: ${error.message}`;
       throw error;
     }
@@ -377,7 +377,7 @@ async function run(argv: HandlerArgv) {
 }
 
 yargs
-  .command({
+  .command<HandlerArgv>({
     command: '$0',
     describe: 'Generates Component.propTypes from TypeScript declarations',
     builder: (command) => {
