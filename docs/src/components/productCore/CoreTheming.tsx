@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  Theme,
-  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
-} from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -84,7 +81,7 @@ const code = `
   </Box>
 </Card>`;
 
-export default function CoreTheming({ defaultTheme }: { defaultTheme: Theme }) {
+export default function CoreTheming() {
   const [customized, setCustomized] = React.useState(true);
   return (
     <Section>
@@ -134,9 +131,9 @@ export default function CoreTheming({ defaultTheme }: { defaultTheme: Theme }) {
               {customized ? (
                 <PlayerCard />
               ) : (
-                <NestedCssVarsProvider theme={defaultTheme}>
+                <CssVarsProvider>
                   <PlayerCard disableTheming />
-                </NestedCssVarsProvider>
+                </CssVarsProvider>
               )}
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>

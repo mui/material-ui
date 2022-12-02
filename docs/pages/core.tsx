@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { generateCssThemeVars } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
@@ -13,8 +12,6 @@ import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References'
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
-const { theme: defaultTheme, styles } = generateCssThemeVars();
-
 export default function Core() {
   return (
     <BrandingCssVarsProvider>
@@ -23,14 +20,13 @@ export default function Core() {
         description="Get a growing list of React components, ready-to-use, free forever and with accessibility always in mind."
         card="/static/social-previews/core-preview.jpg"
       />
-      <GlobalStyles styles={styles} />
       <AppHeaderBanner />
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
         <CoreHero />
         <References companies={CORE_CUSTOMERS} />
-        <CoreComponents defaultTheme={defaultTheme} />
-        <CoreTheming defaultTheme={defaultTheme} />
+        <CoreComponents />
+        <CoreTheming />
         <CoreStyling />
         <CoreHeroEnd />
       </main>

@@ -1,10 +1,8 @@
 import * as React from 'react';
 import {
-  generateCssThemeVars,
   experimental_extendTheme as extendTheme,
-  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+  Experimental_CssVarsProvider as CssVarsProvider,
 } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -192,28 +190,24 @@ function SlideDemo() {
 const { palette: lightPalette } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
 
-const { theme: nestedTheme, styles } = generateCssThemeVars({
-  theme: extendTheme({
-    cssVarPrefix: 'hero',
-    colorSchemes: {
-      light: {
-        palette: {
-          ...(lightPalette?.primary && { primary: lightPalette?.primary }),
-          ...(lightPalette?.grey && { grey: lightPalette?.grey }),
-          ...(lightPalette?.background && { background: lightPalette?.background }),
-        },
-      },
-      dark: {
-        palette: {
-          ...(darkPalette?.primary && { primary: darkPalette?.primary }),
-          ...(darkPalette?.grey && { grey: darkPalette?.grey }),
-          ...(darkPalette?.background && { background: darkPalette?.background }),
-        },
+const customTheme = extendTheme({
+  cssVarPrefix: 'hero',
+  colorSchemes: {
+    light: {
+      palette: {
+        ...(lightPalette?.primary && { primary: lightPalette?.primary }),
+        ...(lightPalette?.grey && { grey: lightPalette?.grey }),
+        ...(lightPalette?.background && { background: lightPalette?.background }),
       },
     },
-  }),
-  rootSelector: '.core-hero',
-  colorSchemeSelector: (key) => `[data-mui-color-scheme="${key}"] .core-hero`,
+    dark: {
+      palette: {
+        ...(darkPalette?.primary && { primary: darkPalette?.primary }),
+        ...(darkPalette?.grey && { grey: darkPalette?.grey }),
+        ...(darkPalette?.background && { background: darkPalette?.background }),
+      },
+    },
+  },
 });
 
 export default function Hero() {
@@ -256,214 +250,209 @@ export default function Hero() {
         overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
-        <NestedCssVarsProvider theme={nestedTheme}>
-          <GlobalStyles styles={styles} />
-          <div className="core-hero">
-            <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
-              <Stepper activeStep={1}>
-                <Step>
-                  <StepLabel>Search for React UI libraries</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Spot MUI</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Choose MUI</StepLabel>
-                </Step>
-              </Stepper>
-            </Paper>
-            <Box
-              sx={{
-                '& > div': {
-                  width: 370,
-                  display: 'inline-flex',
-                  verticalAlign: 'top',
-                },
-              }}
-            >
-              <Stack spacing={4}>
-                <div>
-                  <Accordion
-                    elevation={0}
-                    variant="outlined"
-                    defaultExpanded
-                    disableGutters
-                    sx={{ borderBottom: 0 }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography variant="body2">Usage</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography variant="body2">
-                        MUI components work in isolation. They are self-supporting, and will only
-                        inject the styles they need to display.
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                  <Accordion elevation={0} variant="outlined" disableGutters>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
-                      aria-controls="panel2a-content"
-                      id="panel2a-header"
-                    >
-                      <Typography variant="body2">Globals</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography variant="body2">
-                        MUI usage experience can be improved with a handful of important globals
-                        that you&apos;ll need to be aware of.
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                  <Accordion disabled elevation={0} disableGutters>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
-                      aria-controls="panel3a-content"
-                      id="panel3a-header"
-                    >
-                      <Typography variant="body2">Secret Files</Typography>
-                    </AccordionSummary>
-                  </Accordion>
-                </div>
-                {/* <DatePickerDemo /> */}
-                <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
-                  Check out this library!
-                </Alert>
-                <SwitchToggleDemo />
-                <TabsDemo />
-                <Paper elevation={0} variant="outlined" sx={{ overflow: 'hidden' }}>
-                  <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                    <ListItem alignItems="flex-start">
-                      <ListItemAvatar>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary="Brunch this weekend?"
-                        secondary={
-                          <React.Fragment>
-                            <Typography
-                              sx={{ display: 'inline' }}
-                              component="span"
-                              variant="body2"
-                              color="text.primary"
-                            >
-                              Michael Scott
-                            </Typography>
-                            {" — I'll be in your neighborhood doing errands this…"}
-                          </React.Fragment>
-                        }
-                      />
-                    </ListItem>
-                    <Divider variant="inset" component="li" />
-                    <ListItem alignItems="flex-start">
-                      <ListItemAvatar>
-                        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary="Summer BBQ"
-                        secondary={
-                          <React.Fragment>
-                            <Typography
-                              sx={{ display: 'inline' }}
-                              component="span"
-                              variant="body2"
-                              color="text.primary"
-                            >
-                              to Jim, Pam and Ryan
-                            </Typography>
-                            {" — Wish I could come, but I'm out of town this…"}
-                          </React.Fragment>
-                        }
-                      />
-                    </ListItem>
-                  </List>
-                </Paper>
-              </Stack>
-              <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Button variant="contained" startIcon={<ShoppingCartRounded fontSize="small" />}>
-                    Add to Cart
-                  </Button>
-                  <Button variant="outlined" startIcon={<ShoppingCartRounded fontSize="small" />}>
-                    Add to Cart
-                  </Button>
-                </Box>
-                <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
-                  <Typography
-                    id="temperature-slider"
-                    component="div"
-                    variant="subtitle2"
-                    sx={{ mb: 1, fontWeight: 400 }}
-                  >
-                    Temperature range
-                  </Typography>
-                  <SlideDemo />
-                </Paper>
-                <TextField id="core-hero-input" defaultValue="Ultraviolet" label="Basement" />
-                <Box
-                  sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}
+        <CssVarsProvider theme={customTheme}>
+          <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
+            <Stepper activeStep={1}>
+              <Step>
+                <StepLabel>Search for React UI libraries</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Spot MUI</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Choose MUI</StepLabel>
+              </Step>
+            </Stepper>
+          </Paper>
+          <Box
+            sx={{
+              '& > div': {
+                width: 370,
+                display: 'inline-flex',
+                verticalAlign: 'top',
+              },
+            }}
+          >
+            <Stack spacing={4}>
+              <div>
+                <Accordion
+                  elevation={0}
+                  variant="outlined"
+                  defaultExpanded
+                  disableGutters
+                  sx={{ borderBottom: 0 }}
                 >
-                  <BadgeVisibilityDemo />
-                  <Paper
-                    variant="outlined"
-                    elevation={0}
-                    sx={{
-                      py: 2,
-                      px: 2,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
                   >
-                    <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-                  </Paper>
-                </Box>
-                <Card sx={{ maxWidth: 345 }}>
-                  <CardHeader
-                    avatar={
-                      <Avatar
-                        sx={{ bgcolor: 'primary.50', color: 'primary.600', fontWeight: 'bold' }}
-                      >
-                        YN
-                      </Avatar>
-                    }
-                    title="Yosemite National Park"
-                    subheader="California, United States"
-                  />
-                  <CardMedia
-                    height={125}
-                    alt=""
-                    component="img"
-                    image="/static/images/cards/yosemite.jpeg"
-                  />
-                  <CardContent sx={{ pb: 0 }}>
-                    <Typography variant="body2" color="text.secondary">
-                      Not just a great valley, but a shrine to human foresight, the strength of
-                      granite, the power of glaciers, the persistence of life, and the tranquility
-                      of the High Sierra. It&apos;s famed for its giant, ancient sequoia trees, and
-                      the granite cliffs of El Capitan and Half Dome.
+                    <Typography variant="body2">Usage</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography variant="body2">
+                      MUI components work in isolation. They are self-supporting, and will only
+                      inject the styles they need to display.
                     </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteBorderRounded fontSize="small" />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                      <ShareRounded fontSize="small" />
-                    </IconButton>
-                    <IconButton aria-label="share" sx={{ ml: 'auto' }}>
-                      <RateReviewOutlined fontSize="small" />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </Stack>
-            </Box>
-          </div>
-        </NestedCssVarsProvider>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion elevation={0} variant="outlined" disableGutters>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                  >
+                    <Typography variant="body2">Globals</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography variant="body2">
+                      MUI usage experience can be improved with a handful of important globals that
+                      you&apos;ll need to be aware of.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion disabled elevation={0} disableGutters>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
+                    aria-controls="panel3a-content"
+                    id="panel3a-header"
+                  >
+                    <Typography variant="body2">Secret Files</Typography>
+                  </AccordionSummary>
+                </Accordion>
+              </div>
+              {/* <DatePickerDemo /> */}
+              <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
+                Check out this library!
+              </Alert>
+              <SwitchToggleDemo />
+              <TabsDemo />
+              <Paper elevation={0} variant="outlined" sx={{ overflow: 'hidden' }}>
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                  <ListItem alignItems="flex-start">
+                    <ListItemAvatar>
+                      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Brunch this weekend?"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            Michael Scott
+                          </Typography>
+                          {" — I'll be in your neighborhood doing errands this…"}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem alignItems="flex-start">
+                    <ListItemAvatar>
+                      <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Summer BBQ"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            to Jim, Pam and Ryan
+                          </Typography>
+                          {" — Wish I could come, but I'm out of town this…"}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </List>
+              </Paper>
+            </Stack>
+            <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Button variant="contained" startIcon={<ShoppingCartRounded fontSize="small" />}>
+                  Add to Cart
+                </Button>
+                <Button variant="outlined" startIcon={<ShoppingCartRounded fontSize="small" />}>
+                  Add to Cart
+                </Button>
+              </Box>
+              <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
+                <Typography
+                  id="temperature-slider"
+                  component="div"
+                  variant="subtitle2"
+                  sx={{ mb: 1, fontWeight: 400 }}
+                >
+                  Temperature range
+                </Typography>
+                <SlideDemo />
+              </Paper>
+              <TextField id="core-hero-input" defaultValue="Ultraviolet" label="Basement" />
+              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <BadgeVisibilityDemo />
+                <Paper
+                  variant="outlined"
+                  elevation={0}
+                  sx={{
+                    py: 2,
+                    px: 2,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+                </Paper>
+              </Box>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      sx={{ bgcolor: 'primary.50', color: 'primary.600', fontWeight: 'bold' }}
+                    >
+                      YN
+                    </Avatar>
+                  }
+                  title="Yosemite National Park"
+                  subheader="California, United States"
+                />
+                <CardMedia
+                  height={125}
+                  alt=""
+                  component="img"
+                  image="/static/images/cards/yosemite.jpeg"
+                />
+                <CardContent sx={{ pb: 0 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    Not just a great valley, but a shrine to human foresight, the strength of
+                    granite, the power of glaciers, the persistence of life, and the tranquility of
+                    the High Sierra. It&apos;s famed for its giant, ancient sequoia trees, and the
+                    granite cliffs of El Capitan and Half Dome.
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteBorderRounded fontSize="small" />
+                  </IconButton>
+                  <IconButton aria-label="share">
+                    <ShareRounded fontSize="small" />
+                  </IconButton>
+                  <IconButton aria-label="share" sx={{ ml: 'auto' }}>
+                    <RateReviewOutlined fontSize="small" />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Stack>
+          </Box>
+        </CssVarsProvider>
       }
     />
   );

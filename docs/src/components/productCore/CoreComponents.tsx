@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
-  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
+  Experimental_CssVarsProvider as CssVarsProvider,
+  experimental_extendTheme as extendTheme,
   styled,
-  Theme,
 } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -135,7 +135,9 @@ const CODES = {
 `,
 };
 
-export default function CoreComponents({ defaultTheme }: { defaultTheme: Theme }) {
+const customTheme = extendTheme(buildTheme());
+
+export default function CoreComponents() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {
@@ -172,11 +174,7 @@ export default function CoreComponents({ defaultTheme }: { defaultTheme: Theme }
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
-              <NestedCssVarsProvider
-                theme={
-                  customized ? (theme) => ({ ...theme, ...(buildTheme() as Theme) }) : defaultTheme
-                }
-              >
+              <CssVarsProvider theme={customized ? customTheme : undefined}>
                 {demo === 'Button' && (
                   <Stack
                     spacing={2}
@@ -321,7 +319,7 @@ export default function CoreComponents({ defaultTheme }: { defaultTheme: Theme }
                     </Tooltip>
                   </Stack>
                 )}
-              </NestedCssVarsProvider>
+              </CssVarsProvider>
             </Frame.Demo>
             <Frame.Info
               sx={{
