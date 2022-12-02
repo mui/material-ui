@@ -64,7 +64,6 @@ export type {
 export {
   CssVarsProvider,
   useColorScheme,
-  generateCssThemeVars,
   getInitColorSchemeScript,
   shouldSkipGeneratingVar,
 } from './CssVarsProvider';

@@ -66,7 +66,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * The node used to attach the color-scheme attribute
          * @default document
          */
-        colorSchemeNode?: Element | null;
+        colorSchemeNode?: Document | HTMLElement | null;
         /**
          * The CSS selector for attaching the generated custom properties
          * @default ':root'
@@ -80,73 +80,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
       }
     >,
   ) => React.ReactElement;
-  NestedCssVarsProvider: <T extends {}>(
-    props: React.PropsWithChildren<{
-      /**
-       * Design system default color scheme.
-       * - provides string if the design system has one default color scheme (either light or dark)
-       * - provides object if the design system has default light & dark color schemes
-       */
-      defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
-      /**
-       * Design system default mode
-       * @default 'light'
-       */
-      defaultMode?: Mode;
-      theme:
-        | {
-            cssVarPrefix?: string;
-            colorSchemes: Record<ColorScheme, Record<string, any>>;
-          }
-        | ((theme: T) => T);
-    }>,
-  ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  generateCssThemeVars: <T = {}>(options?: {
-    /**
-     * Design system default color scheme.
-     * - provides string if the design system has one default color scheme (either light or dark)
-     * - provides object if the design system has default light & dark color schemes
-     */
-    defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
-    /**
-     * @default 'light'
-     */
-    defaultMode?: 'light' | 'dark';
-    /**
-     * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
-     * @default ':root'
-     */
-    rootSelector?: string;
-    /**
-     * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
-     * @default (key) => `[data-color-scheme="${key}"]`
-     */
-    colorSchemeSelector?: (key: ColorScheme) => string;
-    /**
-     * A function to determine if the key, value should be attached as CSS Variable
-     * `keys` is an array that represents the object path keys.
-     *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-     *  then, keys = ['foo', 'bar']
-     *        value = 'var(--test)'
-     */
-    shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-    theme?: {
-      cssVarPrefix?: string;
-      colorSchemes: Record<ColorScheme, Record<string, any>>;
-    };
-  }) => {
-    /**
-     * The theme with extra fields
-     * - `vars`
-     * - `getColorSchemeSelector`
-     */
-    theme: T;
-    /**
-     * The stylesheet (in JS object format) that contains the generated CSS theme variables.
-     */
-    styles: Record<string, any>;
-  };
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 

@@ -9,13 +9,9 @@ const shouldSkipGeneratingVar = (keys: string[]) =>
   (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
   (keys[0] === 'focus' && keys[1] !== 'thickness');
 
-const {
-  CssVarsProvider,
-  NestedCssVarsProvider: SystemNestedCssVarsProvider,
-  useColorScheme,
-  generateCssThemeVars: systemUseCssThemeVars,
-  getInitColorSchemeScript,
-} = createCssVarsProvider<DefaultColorScheme | ExtendedColorScheme>({
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+  DefaultColorScheme | ExtendedColorScheme
+>({
   theme: extendTheme(),
   attribute: 'data-joy-color-scheme',
   modeStorageKey: 'joy-mode',
@@ -39,15 +35,4 @@ const {
   shouldSkipGeneratingVar,
 });
 
-const generateCssThemeVars = systemUseCssThemeVars as typeof systemUseCssThemeVars<Theme>;
-const NestedCssVarsProvider =
-  SystemNestedCssVarsProvider as typeof SystemNestedCssVarsProvider<Theme>;
-
-export {
-  CssVarsProvider,
-  NestedCssVarsProvider,
-  useColorScheme,
-  generateCssThemeVars,
-  getInitColorSchemeScript,
-  shouldSkipGeneratingVar,
-};
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };
