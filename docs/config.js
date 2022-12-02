@@ -1,8 +1,8 @@
 // Valid languages to server-side render in production
-const LANGUAGES = ['en', 'zh', 'pt'];
+const LANGUAGES = ['en'];
 
 // Server side rendered languages
-const LANGUAGES_SSR = ['en', 'zh', 'pt'];
+const LANGUAGES_SSR = ['en'];
 
 // Work in progress
 const LANGUAGES_IN_PROGRESS = LANGUAGES.slice();
