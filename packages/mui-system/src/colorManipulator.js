@@ -111,6 +111,16 @@ export const colorChannel = (color) => {
     .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
+export const safeColorChannel = (color, warning) => {
+  try {
+    return colorChannel(color);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+};
 
 /**
  * Converts a color object with type and values to a string.
@@ -240,6 +250,16 @@ export function alpha(color, value) {
 
   return recomposeColor(color);
 }
+export function safeAlpha(color, value, warning) {
+  try {
+    return alpha(color, value);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Darkens a color.
@@ -259,6 +279,16 @@ export function darken(color, coefficient) {
     }
   }
   return recomposeColor(color);
+}
+export function safeDarken(color, coefficient, warning) {
+  try {
+    return darken(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
 }
 
 /**
@@ -285,6 +315,16 @@ export function lighten(color, coefficient) {
 
   return recomposeColor(color);
 }
+export function safeLighten(color, coefficient, warning) {
+  try {
+    return lighten(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
+}
 
 /**
  * Darken or lighten a color, depending on its luminance.
@@ -295,4 +335,14 @@ export function lighten(color, coefficient) {
  */
 export function emphasize(color, coefficient = 0.15) {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+}
+export function safeEmphasize(color, coefficient, warning) {
+  try {
+    return safeEmphasize(color, coefficient);
+  } catch (error) {
+    if (warning && process.env.NODE_ENV !== 'production') {
+      console.warn(warning);
+    }
+    return color;
+  }
 }
