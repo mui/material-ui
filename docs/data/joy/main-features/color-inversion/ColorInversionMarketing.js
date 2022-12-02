@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
@@ -76,6 +77,7 @@ export default function ColorInversionMarketing() {
             'success',
             'warning',
           ];
+
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}

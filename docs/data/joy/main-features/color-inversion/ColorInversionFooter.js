@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -50,6 +51,7 @@ export default function ColorInversionFooter() {
               'success',
               'warning',
             ];
+
             const nextColor = colors.indexOf(color);
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}

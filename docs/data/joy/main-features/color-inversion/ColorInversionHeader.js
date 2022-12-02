@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
@@ -52,6 +53,7 @@ export default function ColorInversionHeader() {
             'success',
             'warning',
           ];
+
           const nextColor = colors.indexOf(color);
           setColor(colors[nextColor + 1] ?? colors[0]);
         }}
