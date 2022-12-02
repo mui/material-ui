@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { deepmerge } from '@mui/utils';
 import { GlobalStyles } from '@mui/styled-engine';
+import { useTheme as muiUseTheme } from '@mui/private-theming';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import systemGetInitColorSchemeScript, {
@@ -11,7 +12,6 @@ import systemGetInitColorSchemeScript, {
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
-import useTheme from '../useTheme';
 
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
@@ -69,7 +69,7 @@ export default function createCssVarsProvider(options) {
     disableStyleSheetGeneration = false,
   }) {
     const hasMounted = React.useRef(false);
-    const upperTheme = useTheme();
+    const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
@@ -258,8 +258,13 @@ export default function createCssVarsProvider(options) {
       ],
     );
 
-    const shouldGenerateStyleSheet =
-      !disableStyleSheetGeneration && upperTheme.cssVarPrefix !== cssVarPrefix;
+    let shouldGenerateStyleSheet = true;
+    if (
+      disableStyleSheetGeneration ||
+      (upperTheme.cssVarPrefix !== undefined && upperTheme.cssVarPrefix === cssVarPrefix)
+    ) {
+      shouldGenerateStyleSheet = false;
+    }
 
     const element = (
       <React.Fragment>
