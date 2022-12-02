@@ -27,6 +27,9 @@ const DraggableChip = function DraggableChip({ dropped }: { dropped?: boolean })
       ref={setNodeRef}
       {...attributes}
       {...listeners}
+      {...(dropped && {
+        tabIndex: -1,
+      })}
       size="sm"
       variant="soft"
       sx={{
@@ -81,6 +84,9 @@ const DraggableText = function DraggableText({ dropped }: { dropped?: boolean })
       ref={setNodeRef}
       {...attributes}
       {...listeners}
+      {...(dropped && {
+        tabIndex: -1,
+      })}
       fontSize="xl2"
       fontWeight="lg"
       sx={{
@@ -227,6 +233,7 @@ export default function ColorInversion() {
           </Typography>
           <Box
             sx={{
+              minHeight: 120,
               p: 3,
               display: 'flex',
               justifyContent: 'center',
@@ -287,9 +294,7 @@ export default function ColorInversion() {
                 <HighlightedCode
                   copyButtonHidden
                   language="jsx"
-                  code={`<Card variant="solid" color="primary"
-      invertedColors
->`}
+                  code={`<Card variant="solid" color="primary" invertedColors>`}
                 />
               </BrandingProvider>
             </Box>
