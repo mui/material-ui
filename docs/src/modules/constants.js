@@ -6,7 +6,7 @@ const CODE_VARIANTS = {
 };
 
 // Server side rendered languages
-const LANGUAGES_SSR = ['en', 'zh', 'pt'];
+const LANGUAGES_SSR = ['en'];
 
 // Work in progress
 const LANGUAGES_IN_PROGRESS = LANGUAGES.slice();
@@ -16,14 +16,6 @@ const LANGUAGES_LABEL = [
   {
     code: 'en',
     text: 'English',
-  },
-  {
-    code: 'zh',
-    text: '中文',
-  },
-  {
-    code: 'pt',
-    text: 'Português',
   },
 ];
 

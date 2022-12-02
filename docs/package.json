@@ -60,7 +60,6 @@
     "@types/react-virtualized": "^9.21.21",
     "@types/react-window": "^1.8.5",
     "@types/styled-components": "5.1.26",
-    "accept-language": "^3.0.18",
     "autoprefixer": "^10.4.13",
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^4.1.0",
