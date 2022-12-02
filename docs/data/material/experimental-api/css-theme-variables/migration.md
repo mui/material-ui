@@ -1,4 +1,4 @@
-# Migrating to CSS variables
+# Migrating to CSS theme variables
 
 <p class="description">A step-by-step migration guide to start using CSS theme variables in your project.</p>
 

@@ -52,7 +52,7 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Unstyled table pagination](https://mui.com/base/react-table-pagination/)
+ * - [Unstyled Table Pagination](https://mui.com/base/react-table-pagination/)
  *
  * API:
  *
