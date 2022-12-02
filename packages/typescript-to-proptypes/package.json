@@ -8,6 +8,7 @@
     "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/typescript-to-proptypes"
   },
+  "main": "src/index.ts",
   "author": "merceyz <merceyz@users.noreply.github.com>",
   "license": "MIT",
   "keywords": [

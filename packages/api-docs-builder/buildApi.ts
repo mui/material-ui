@@ -4,18 +4,18 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import * as ttp from 'typescript-to-proptypes';
-import { findComponents } from 'docs/src/modules/utils/find';
+import findComponents from './utils/findComponents';
 import {
   ComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
   getSystemComponentInfo,
   extractApiPage,
-} from 'docs/scripts/buildApiUtils';
+} from './buildApiUtils';
 import generateComponentApi, {
   writePrettifiedFile,
   ReactApi,
-} from 'docs/scripts/ApiBuilders/ComponentApiBuilder';
+} from './ApiBuilders/ComponentApiBuilder';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -66,7 +66,7 @@ const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
 
 function findApiPages(relativeFolder: string) {
   let pages: Array<{ pathname: string }> = [];
-  let filePaths = [];
+  let filePaths: string[] = [];
   try {
     filePaths = getAllFiles(path.join(process.cwd(), relativeFolder));
   } catch (error) {
