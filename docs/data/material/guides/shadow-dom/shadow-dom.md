@@ -14,7 +14,7 @@ The following code snippet shows how to apply styles inside of the shadow DOM:
 ```tsx
 const container = document.querySelector('#root');
 const shadowContainer = container.attachShadow({ mode: 'open' });
-const emotionRoot = document.createElement('style');
+const emotionRoot = document.createElement('div');
 const shadowRootElement = document.createElement('div');
 shadowContainer.appendChild(emotionRoot);
 shadowContainer.appendChild(shadowRootElement);
