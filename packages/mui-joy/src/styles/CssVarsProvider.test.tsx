@@ -537,10 +537,10 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('contain expected colorInversion', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.colorInversion).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
