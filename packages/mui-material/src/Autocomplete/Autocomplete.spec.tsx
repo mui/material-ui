@@ -66,6 +66,24 @@ function MyAutocomplete<
   renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
 />;
 
+interface Option {
+  label: string;
+  value: string;
+}
+const options: Option[] = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+];
+const defaultOptions = [options[0], options[1]];
+<MyAutocomplete
+  multiple
+  options={options}
+  defaultValue={defaultOptions}
+  isOptionEqualToValue={(o, v) => o.label === v.label}
+  getOptionLabel={(o) => o.label}
+  renderInput={() => null}
+/>;
+
 interface Tag {
   color: string;
   label: string;

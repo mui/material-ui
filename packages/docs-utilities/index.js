@@ -1,11 +1,11 @@
-const os = require('os');
+const { EOL } = require('os');
 
 /**
  * @param {string} source
  */
 function getLineFeed(source) {
   const match = source.match(/\r?\n/);
-  return match === null ? os.EOL : match[0];
+  return match === null ? EOL : match[0];
 }
 
 const fixBabelIssuesRegExp = /(?<=(\/>)|,)(\r?\n){2}/g;
@@ -73,9 +73,4 @@ function getUnstyledFilename(filename, definitionFile = false) {
   return definitionFile ? `${unstyledFile}.d.ts` : `${unstyledFile}.js`;
 }
 
-module.exports = {
-  getLineFeed,
-  fixBabelGeneratorIssues,
-  fixLineEndings,
-  getUnstyledFilename,
-};
+export { getLineFeed, fixBabelGeneratorIssues, fixLineEndings, getUnstyledFilename };

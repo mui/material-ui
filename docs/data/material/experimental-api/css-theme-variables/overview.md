@@ -28,8 +28,8 @@ For server-side applications, there are some trade-offs to consider:
 
 |                                                      | Compare to the default method | Reason                                                                                                       |
 | ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
-| [First Contentful Paint (FCP)](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
+| HTML size                                            | Bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
+| [First Contentful Paint (FCP)](https://web.dev/fcp/) | Larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
 | [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
 
 :::warning
