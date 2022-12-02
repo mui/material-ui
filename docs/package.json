@@ -23,6 +23,8 @@
     "@babel/core": "^7.20.2",
     "@babel/plugin-transform-object-assign": "^7.18.6",
     "@babel/runtime-corejs2": "^7.20.1",
+    "@dnd-kit/core": "6.0.5",
+    "@dnd-kit/utilities": "3.2.0",
     "@docsearch/react": "^3.3.0",
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
