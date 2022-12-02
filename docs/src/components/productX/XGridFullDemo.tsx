@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { ThemeProvider } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
@@ -10,7 +9,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-full" pro />;
@@ -227,11 +225,9 @@ export default function XGridFullDemo() {
           />
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Frame.Info sx={{ p: 1 }}>
-          <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
-        </Frame.Info>
-      </ThemeProvider>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ p: 1 }}>
+        <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
+      </Frame.Info>
     </Frame>
   );
 }

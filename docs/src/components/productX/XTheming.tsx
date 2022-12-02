@@ -6,12 +6,7 @@ import {
   GridRenderEditCellParams,
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import {
-  Experimental_NestedCssVarsProvider as NestedCssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  generateCssThemeVars,
-} from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -31,10 +26,6 @@ import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
 
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
-
-const { theme: defaultTheme, styles } = generateCssThemeVars({
-  theme: extendTheme(),
-});
 
 export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
@@ -104,7 +95,6 @@ export default function XTheming() {
   }
   return (
     <Section bg="comfort">
-      <GlobalStyles styles={styles} />
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -161,7 +151,7 @@ export default function XTheming() {
               />
             </Paper>
           ) : (
-            <NestedCssVarsProvider theme={defaultTheme}>
+            <CssVarsProvider>
               <Paper
                 elevation={0}
                 sx={[
@@ -194,7 +184,7 @@ export default function XTheming() {
                   experimentalFeatures={{ newEditingApi: true }}
                 />
               </Paper>
-            </NestedCssVarsProvider>
+            </CssVarsProvider>
           )}
         </Grid>
       </Grid>
