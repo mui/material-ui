@@ -1,10 +1,10 @@
 import { deepmerge } from '@mui/utils';
 import {
-  safeColorChannel,
-  safeAlpha,
-  safeDarken,
-  safeLighten,
-  safeEmphasize,
+  private_safeColorChannel as safeColorChannel,
+  private_safeAlpha as safeAlpha,
+  private_safeDarken as safeDarken,
+  private_safeLighten as safeLighten,
+  private_safeEmphasize as safeEmphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
 /**
@@ -111,7 +112,7 @@ export const colorChannel = (color) => {
     .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
-export const safeColorChannel = (color, warning) => {
+export const private_safeColorChannel = (color, warning) => {
   try {
     return colorChannel(color);
   } catch (error) {
@@ -250,7 +251,7 @@ export function alpha(color, value) {
 
   return recomposeColor(color);
 }
-export function safeAlpha(color, value, warning) {
+export function private_safeAlpha(color, value, warning) {
   try {
     return alpha(color, value);
   } catch (error) {
@@ -280,7 +281,7 @@ export function darken(color, coefficient) {
   }
   return recomposeColor(color);
 }
-export function safeDarken(color, coefficient, warning) {
+export function private_safeDarken(color, coefficient, warning) {
   try {
     return darken(color, coefficient);
   } catch (error) {
@@ -315,7 +316,7 @@ export function lighten(color, coefficient) {
 
   return recomposeColor(color);
 }
-export function safeLighten(color, coefficient, warning) {
+export function private_safeLighten(color, coefficient, warning) {
   try {
     return lighten(color, coefficient);
   } catch (error) {
@@ -336,9 +337,9 @@ export function safeLighten(color, coefficient, warning) {
 export function emphasize(color, coefficient = 0.15) {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
-export function safeEmphasize(color, coefficient, warning) {
+export function private_safeEmphasize(color, coefficient, warning) {
   try {
-    return safeEmphasize(color, coefficient);
+    return private_safeEmphasize(color, coefficient);
   } catch (error) {
     if (warning && process.env.NODE_ENV !== 'production') {
       console.warn(warning);
