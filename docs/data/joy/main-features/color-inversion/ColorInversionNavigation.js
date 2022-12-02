@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Badge, { badgeClasses } from '@mui/joy/Badge';
