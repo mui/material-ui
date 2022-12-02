@@ -11,9 +11,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
-import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 
@@ -29,6 +27,9 @@ const Main = styled('main', {
   }),
   [theme.breakpoints.up('lg')]: {
     width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
+  },
+  '& .markdown-body .comment-link-style': {
+    display: 'inline-block',
   },
 }));
 
@@ -115,11 +116,6 @@ function AppLayoutDocs(props) {
           largeCard={false}
           card="https://mui.com/static/logo.png"
         />
-        {disableAd ? null : (
-          <AdGuest>
-            <Ad />
-          </AdGuest>
-        )}
         <Main disableToc={disableToc}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
@@ -130,7 +126,7 @@ function AppLayoutDocs(props) {
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>
-              <AppLayoutDocsFooter />
+              <AppLayoutDocsFooter tableOfContents={toc} />
             </NoSsr>
           </StyledAppContainer>
         </Main>

@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.10.15",
+  "version": "5.10.16",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -58,10 +58,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
-    "@mui/private-theming": "^5.10.15",
-    "@mui/styled-engine": "^5.10.14",
-    "@mui/types": "^7.2.1",
-    "@mui/utils": "^5.10.15",
+    "@mui/private-theming": "^5.10.16",
+    "@mui/styled-engine": "^5.10.16",
+    "@mui/types": "^7.2.2",
+    "@mui/utils": "^5.10.16",
     "clsx": "^1.2.1",
     "csstype": "^3.1.1",
     "prop-types": "^15.8.1"
