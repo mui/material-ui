@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const data = [
-  { title: '3.2M', metadata: 'Weekly downloads on npm' },
+  { title: '4M', metadata: 'Weekly downloads on npm' },
   { title: '82.9k', metadata: 'Stars on GitHub' },
   { title: '2.6k', metadata: 'Open-source contributors' },
   { title: '18.1k', metadata: 'Followers on Twitter' },
