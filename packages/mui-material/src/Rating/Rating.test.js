@@ -149,7 +149,7 @@ describe('<Rating />', () => {
 
       noValueRadio.focus();
     });
-    
+
     expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
       height: '120px',
     });
