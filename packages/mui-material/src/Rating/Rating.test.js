@@ -121,6 +121,10 @@ describe('<Rating />', () => {
   });
 
   it('should apply labelEmptyValueActive styles from theme', () => {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const theme = createTheme({
       components: {
         MuiRating: {
@@ -138,8 +142,6 @@ describe('<Rating />', () => {
       </ThemeProvider>,
     );
 
-    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).to.equal(null);
-
     act(() => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
         return radio.checked;
@@ -147,7 +149,6 @@ describe('<Rating />', () => {
 
       noValueRadio.focus();
     });
-    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).to.have.tagName('label');
     expect(
       window
         .getComputedStyle(container.querySelector(`.${classes.labelEmptyValueActive}`))
