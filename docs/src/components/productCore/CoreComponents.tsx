@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  styled,
-} from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -32,7 +28,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import { buildTheme } from 'docs/src/components/home/MaterialDesignComponents';
+import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
@@ -134,8 +130,6 @@ const CODES = {
 </div>
 `,
 };
-
-const customTheme = extendTheme(buildTheme());
 
 export default function CoreComponents() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);

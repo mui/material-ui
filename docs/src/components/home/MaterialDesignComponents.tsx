@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {
   styled,
-  ThemeProvider,
   Theme,
   ThemeOptions,
   alpha,
-  useCssThemeVars,
   experimental_extendTheme as extendTheme,
+  Experimental_CssVarsProvider as CssVarsProvider,
 } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -36,7 +34,7 @@ import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
-import { getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 
 const Grid = styled('div')(({ theme }) => [
   {
@@ -126,7 +124,7 @@ function Demo({
   ...props
 }: {
   name: string;
-  theme: Theme;
+  theme: Theme | undefined;
   children: React.ReactElement;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
@@ -174,13 +172,21 @@ function Demo({
         className="mui-default-theme"
         sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        <ThemeProvider theme={props.theme}>
-          {React.cloneElement(children, {
+        {props.theme ? (
+          <CssVarsProvider disableStyleSheetGeneration theme={props.theme}>
+            {React.cloneElement(children, {
+              ...(control && {
+                [control.prop]: propValue,
+              }),
+            })}
+          </CssVarsProvider>
+        ) : (
+          React.cloneElement(children, {
             ...(control && {
               [control.prop]: propValue,
             }),
-          })}
-        </ThemeProvider>
+          })
+        )}
       </Box>
       <Typography fontWeight="semiBold" variant="body2">
         {name}
@@ -478,23 +484,28 @@ export function buildTheme(): ThemeOptions {
   };
 }
 
-const defaultTheme = extendTheme();
+const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
+const { palette: darkPalette } = getDesignTokens('dark');
+export const customTheme = extendTheme({
+  cssVarPrefix: 'muidocs',
+  colorSchemes: {
+    light: {
+      palette: lightPalette,
+    },
+    dark: {
+      palette: darkPalette,
+    },
+  },
+  ...designTokens,
+  ...buildTheme(),
+});
 
 export default function MaterialDesignComponents() {
   const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
   const [customized, setCustomized] = React.useState(false);
-  const { theme: scopedTheme, styles } = useCssThemeVars(defaultTheme, {
-    selector: {
-      root: '.mui-default-theme',
-      defaultColorScheme: (key) =>
-        `.mui-default-theme, [data-mui-color-scheme="${key}"] .mui-default-theme`,
-      scopedColorScheme: (key) => `[data-mui-color-scheme="${key}"] .mui-default-theme`,
-    },
-  });
-  const theme = customized ? (buildTheme() as Theme) : scopedTheme;
+  const theme = customized ? customTheme : undefined;
   return (
     <div>
-      <GlobalStyles styles={styles} />
       <Box
         sx={{
           mt: { xs: 2, md: 4 },
