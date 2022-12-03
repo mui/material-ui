@@ -170,19 +170,15 @@ export default function CoreComponents() {
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               <CssVarsProvider theme={customized ? customTheme : undefined}>
                 {demo === 'Button' && (
-                  <Stack
-                    spacing={2}
-                    direction={{ xs: 'column', sm: 'row' }}
+                  <Box
                     sx={{
                       height: '100%',
                       py: 5,
+                      gap: 1,
+                      display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      '& > button': {
-                        mt: 0,
-                        mx: 0.5,
-                      },
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>
@@ -194,7 +190,7 @@ export default function CoreComponents() {
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
                       Add to Cart
                     </Button>
-                  </Stack>
+                  </Box>
                 )}
                 {demo === 'Text field' && (
                   <Stack
@@ -251,10 +247,7 @@ export default function CoreComponents() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      '& > div': {
-                        mt: 1,
-                        mx: 0.5,
-                      },
+                      gap: 1,
                     }}
                   >
                     <Alert variant="standard" color="info">
