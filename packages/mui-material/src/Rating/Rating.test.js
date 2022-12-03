@@ -149,12 +149,9 @@ describe('<Rating />', () => {
 
       noValueRadio.focus();
     });
-    expect(
-      window
-        .getComputedStyle(container.querySelector(`.${classes.labelEmptyValueActive}`))
-        .getPropertyValue('height'),
-    ).to.have.equal('120px');
-  });
+    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
+      height: '120px',
+    });
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`
   // It ensures that keyboard navigation for Arrow and TAB keys is handled by the browser
