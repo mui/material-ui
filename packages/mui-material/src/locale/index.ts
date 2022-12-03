@@ -3567,7 +3567,8 @@ export const zhTW: Localization = {
           return '上一頁';
         },
         labelRowsPerPage: '每頁數量:',
-        labelDisplayedRows: ({ from, to, count }) => `${from} ~ ${to} / ${count !== -1 ? count : `${to} 以上`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from} ~ ${to} / ${count !== -1 ? count : `${to} 以上`}`,
       },
     },
     MuiRating: {
