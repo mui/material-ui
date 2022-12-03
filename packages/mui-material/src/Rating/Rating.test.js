@@ -120,7 +120,7 @@ describe('<Rating />', () => {
     expect(container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it('should apply labelEmptyValueActive styles from theme', () => {
+  it('should apply labelEmptyValueActive styles from theme', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
