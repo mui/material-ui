@@ -99,6 +99,7 @@ const Root = styled('div')(
     '& p, & ul, & ol': {
       marginTop: 0,
       marginBottom: 16,
+      color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
     },
     '& ul': {
       paddingLeft: 30,
@@ -245,10 +246,13 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '& > p, & > ul': {
+      '& > ul, & > p': {
         '&:last-child': {
           margin: 0,
         },
+      },
+      '& > p, & ul, li': {
+        color: 'inherit',
       },
       '&.MuiCallout-error': {
         color: `var(--muidocs-palette-error-900, ${lightTheme.palette.error[900]})`,
@@ -418,7 +422,7 @@ const Root = styled('div')(
       },
     },
     '& li': {
-      marginBottom: 2,
+      marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
       },
@@ -451,6 +455,9 @@ const Root = styled('div')(
       },
       '& h5': {
         color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
+      },
+      '& p, & ul, & ol': {
+        color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link-style, & .comment-link-style': {
