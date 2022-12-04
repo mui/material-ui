@@ -28,29 +28,41 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  const transformed = root.findJSXElements().forEach((path) => {
-    if (path.node.type !== 'JSXElement') {
-      return;
-    }
+  root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) => {
+      return node.source.value.startsWith('@mui/joy');
+    })
+    .forEach((path) => {
+      path.node.specifiers.forEach((node) => {
+        // Process only Joy UI components
+        root.findJSXElements(node.local.name).forEach((elementPath) => {
+          if (elementPath.node.type !== 'JSXElement') {
+            return;
+          }
 
-    path.node.openingElement.attributes.forEach((node) => {
-      if (node.type !== 'JSXAttribute') {
-        return;
-      }
+          elementPath.node.openingElement.attributes.forEach((elementNode) => {
+            if (elementNode.type !== 'JSXAttribute') {
+              return;
+            }
 
-      switch (node.name.name) {
-        case 'components':
-          transformComponentsProp(node);
-          break;
+            switch (elementNode.name.name) {
+              case 'components':
+                transformComponentsProp(elementNode);
+                break;
 
-        case 'componentsProps':
-          transformComponentsPropsProp(node);
-          break;
+              case 'componentsProps':
+                transformComponentsPropsProp(elementNode);
+                break;
 
-        default:
-      }
+              default:
+            }
+          });
+        });
+      });
     });
-  });
+
+  const transformed = root.findJSXElements();
 
   return transformed.toSource(printOptions);
 }
