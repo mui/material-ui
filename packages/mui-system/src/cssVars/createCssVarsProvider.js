@@ -261,7 +261,7 @@ export default function createCssVarsProvider(options) {
     let shouldGenerateStyleSheet = true;
     if (
       disableStyleSheetGeneration ||
-      (upperTheme.cssVarPrefix !== undefined && upperTheme.cssVarPrefix === cssVarPrefix)
+      (upperTheme?.cssVarPrefix !== undefined && upperTheme?.cssVarPrefix === cssVarPrefix)
     ) {
       shouldGenerateStyleSheet = false;
     }
