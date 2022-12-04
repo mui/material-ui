@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,11 +8,11 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 export default function CoreHeroEnd() {
   return (
-    <ThemeProvider theme={brandingDarkTheme}>
+    <BrandingProvider mode="dark">
       <Section bg="dim">
         <Box>
           <Grid container spacing={2} alignItems="center">
@@ -42,6 +41,6 @@ export default function CoreHeroEnd() {
           </Grid>
         </Box>
       </Section>
-    </ThemeProvider>
+    </BrandingProvider>
   );
 }

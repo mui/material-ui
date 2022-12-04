@@ -11,6 +11,7 @@ import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -176,8 +177,8 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {canonicalAs.startsWith('/joy-ui') ? (
-        children
+      {canonicalAs.startsWith('/joy-ui/') ? (
+        <CssVarsProvider>{children}</CssVarsProvider>
       ) : (
         <StylesProvider jss={jss}>
           <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>

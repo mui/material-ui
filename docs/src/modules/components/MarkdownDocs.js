@@ -6,11 +6,12 @@ import { useTheme } from '@mui/system';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@mui/utils';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
 function noComponent(moduleID) {
@@ -34,7 +35,7 @@ JoyModeObserver.propTypes = {
 export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
     disableToc = false,
@@ -50,35 +51,31 @@ export default function MarkdownDocs(props) {
   const localizedDoc = docs[userLanguage] || docs.en;
   const { description, location, rendered, title, toc } = localizedDoc;
 
-  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
-  const Provider = isJoy ? CssVarsProvider : React.Fragment;
-  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
+  const isJoy = canonicalAs.startsWith('/joy-ui/');
 
   return (
-    <AppLayoutDocs
-      description={description}
-      disableAd={disableAd}
-      disableToc={disableToc}
-      location={location}
-      title={title}
-      toc={toc}
-    >
-      <Provider>
+    <ThemeProvider>
+      <AppLayoutDocs
+        description={description}
+        disableAd={disableAd}
+        disableToc={disableToc}
+        location={location}
+        title={title}
+        toc={toc}
+      >
         {disableAd ? null : (
-          <Wrapper>
-            <AdGuest>
-              <Ad />
-            </AdGuest>
-          </Wrapper>
+          <AdGuest>
+            <Ad />
+          </AdGuest>
         )}
-        {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
+        {isJoy && (
+          <CssVarsProvider>
+            <JoyModeObserver mode={theme.palette.mode} />
+          </CssVarsProvider>
+        )}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
-            return (
-              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
-              </Wrapper>
-            );
+            return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
           }
 
           if (renderedMarkdownOrDemo.component) {
@@ -89,11 +86,7 @@ export default function MarkdownDocs(props) {
               throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
             }
 
-            return (
-              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
-              </Wrapper>
-            );
+            return <Component key={index} {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
           }
 
           const name = renderedMarkdownOrDemo.demo;
@@ -132,7 +125,6 @@ export default function MarkdownDocs(props) {
           return (
             <Demo
               key={index}
-              mode={theme.palette.mode}
               demo={{
                 raw: demo.raw,
                 js: demoComponents[demo.module] ?? noComponent(demo.module),
@@ -147,8 +139,8 @@ export default function MarkdownDocs(props) {
             />
           );
         })}
-      </Provider>
-    </AppLayoutDocs>
+      </AppLayoutDocs>
+    </ThemeProvider>
   );
 }
 

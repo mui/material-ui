@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,7 +8,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import BrandingProvider from 'docs/src/BrandingProvider';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
@@ -75,7 +74,7 @@ export default function XRoadmap() {
     />
   );
   return (
-    <ThemeProvider theme={brandingDarkTheme}>
+    <BrandingProvider mode="dark">
       <Section bg="dim">
         <Box>
           <Grid container spacing={2} alignItems="center" justifyContent="space-between">
@@ -184,6 +183,6 @@ export default function XRoadmap() {
           </Grid>
         </Box>
       </Section>
-    </ThemeProvider>
+    </BrandingProvider>
   );
 }

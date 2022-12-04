@@ -6,7 +6,8 @@ import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
@@ -22,40 +23,40 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
   },
 }));
 
-function TopLayoutCareers(props) {
+export default function TopLayoutCareers(props) {
   const { docs } = props;
   const { description, rendered, title } = docs.en;
 
   return (
-    <BrandingProvider>
-      <AppHeader />
-      <Head title={`${title} - MUI`} description={description}>
-        <meta name="robots" content="noindex,nofollow" />
-      </Head>
-      <StyledDiv>
-        <StyledAppContainer component="main" sx={{ py: { xs: 3, sm: 4, md: 8 } }}>
-          <Link
-            href="/careers/#open-roles"
-            rel="nofollow"
-            variant="body2"
-            sx={{ display: 'block', mb: 2 }}
-          >
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {'< Back to open roles'}
-          </Link>
-          {rendered.map((chunk, index) => {
-            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
-          })}
-        </StyledAppContainer>
-        <Divider />
-        <AppFooter />
-      </StyledDiv>
-    </BrandingProvider>
+    <ThemeProvider>
+      <BrandingCssVarsProvider>
+        <AppHeader />
+        <Head title={`${title} - MUI`} description={description}>
+          <meta name="robots" content="noindex,nofollow" />
+        </Head>
+        <StyledDiv>
+          <StyledAppContainer component="main" sx={{ py: { xs: 3, sm: 4, md: 8 } }}>
+            <Link
+              href="/careers/#open-roles"
+              rel="nofollow"
+              variant="body2"
+              sx={{ display: 'block', mb: 2 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {'< Back to open roles'}
+            </Link>
+            {rendered.map((chunk, index) => {
+              return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+            })}
+          </StyledAppContainer>
+          <Divider />
+          <AppFooter />
+        </StyledDiv>
+      </BrandingCssVarsProvider>
+    </ThemeProvider>
   );
 }
 
 TopLayoutCareers.propTypes = {
   docs: PropTypes.object.isRequired,
 };
-
-export default TopLayoutCareers;

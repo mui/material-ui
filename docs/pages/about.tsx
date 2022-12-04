@@ -25,6 +25,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
@@ -848,17 +849,19 @@ function AboutContent() {
 
 export default function About() {
   return (
-    <BrandingCssVarsProvider>
-      <Head
-        title="About us - MUI"
-        description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
-      />
-      <AppHeaderBanner />
-      <AppHeader />
-      <main id="main-content">
-        <AboutContent />
-      </main>
-      <AppFooter />
-    </BrandingCssVarsProvider>
+    <ThemeProvider>
+      <BrandingCssVarsProvider>
+        <Head
+          title="About us - MUI"
+          description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
+        />
+        <AppHeaderBanner />
+        <AppHeader />
+        <main id="main-content">
+          <AboutContent />
+        </main>
+        <AppFooter />
+      </BrandingCssVarsProvider>
+    </ThemeProvider>
   );
 }

@@ -17,6 +17,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import IconImage from 'docs/src/components/icon/IconImage';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
@@ -591,18 +592,20 @@ function CareersContent() {
 
 export default function Careers() {
   return (
-    <BrandingCssVarsProvider>
-      <Head
-        title="Careers - MUI"
-        description="Interested in joining MUI? Learn about the roles we're hiring for."
-      />
-      <AppHeaderBanner />
-      <AppHeader />
-      <main id="main-content">
-        <CareersContent />
-      </main>
-      <Divider />
-      <AppFooter />
-    </BrandingCssVarsProvider>
+    <ThemeProvider>
+      <BrandingCssVarsProvider>
+        <Head
+          title="Careers - MUI"
+          description="Interested in joining MUI? Learn about the roles we're hiring for."
+        />
+        <AppHeaderBanner />
+        <AppHeader />
+        <main id="main-content">
+          <CareersContent />
+        </main>
+        <Divider />
+        <AppFooter />
+      </BrandingCssVarsProvider>
+    </ThemeProvider>
   );
 }

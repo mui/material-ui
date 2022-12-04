@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider, useTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { brandingDarkTheme, brandingLightTheme } from 'docs/src/modules/brandingTheme';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 
@@ -14,16 +14,19 @@ interface BrandingProviderProps {
 }
 
 export default function BrandingProvider(props: BrandingProviderProps) {
-  const { children, mode: modeProp } = props;
-  const upperTheme = useTheme();
-  const mode = modeProp || upperTheme.palette.mode;
-  const theme = mode === 'dark' ? brandingDarkTheme : brandingLightTheme;
+  const { children, mode } = props;
+
+  if (mode === 'dark') {
+    return <ThemeProvider theme={() => brandingDarkTheme}>{children}</ThemeProvider>;
+  }
+
+  // TODO replace this with
   return (
-    <ThemeProvider theme={modeProp ? () => theme : theme}>
-      {modeProp ? null : <NextNProgressBar />}
-      {modeProp ? null : <CssBaseline />}
-      {modeProp ? null : <SkipLink />}
+    <React.Fragment>
+      <NextNProgressBar />
+      <CssBaseline />
+      <SkipLink />
       {children}
-    </ThemeProvider>
+    </React.Fragment>
   );
 }

@@ -10,15 +10,15 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
-    color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+    color: theme.vars.palette.text.primary,
     '& strong': {
-      color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      color: theme.vars.palette.text.primary,
     },
     wordBreak: 'break-word',
     '& pre': {
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
-      backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+      backgroundColor: theme.vars.palette.primaryDark[800],
       color: '#f8f8f2',
       colorScheme: 'dark',
       borderRadius: `var(--muidocs-shape-borderRadius, ${
@@ -236,7 +236,7 @@ const Root = styled('div')(
       margin: '20px 0',
       '& p': {
         marginTop: 10,
-        color: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
+        color: theme.vars.palette.primaryDark[800],
       },
     },
     '& .MuiCallout-root': {

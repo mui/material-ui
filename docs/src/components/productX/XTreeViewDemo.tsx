@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TreeView from '@mui/lab/TreeView';
@@ -15,7 +15,7 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import BrandingProvider from 'docs/src/BrandingProvider';
 import Chip from '@mui/material/Chip';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 
@@ -271,7 +271,7 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
+      <BrandingProvider mode="dark">
         <Frame.Info>
           <Box
             sx={{
@@ -297,7 +297,7 @@ export default function XDateRangeDemo() {
           </Typography>
           <EmailSubscribe />
         </Frame.Info>
-      </ThemeProvider>
+      </BrandingProvider>
     </Frame>
   );
 }

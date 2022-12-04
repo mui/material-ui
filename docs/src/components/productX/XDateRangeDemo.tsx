@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
@@ -10,7 +9,7 @@ import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePi
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -76,7 +75,7 @@ export default function XDateRangeDemo() {
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
+      <BrandingProvider mode="dark">
         <Frame.Info>
           <Box
             sx={{
@@ -98,7 +97,7 @@ export default function XDateRangeDemo() {
             />
           </Box>
         </Frame.Info>
-      </ThemeProvider>
+      </BrandingProvider>
     </Frame>
   );
 }

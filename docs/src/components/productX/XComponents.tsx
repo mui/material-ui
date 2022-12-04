@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shouldForwardProp } from '@mui/system';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
@@ -24,7 +24,7 @@ import ROUTES from 'docs/src/route';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
 const WIP = DEMOS.slice(2);
@@ -199,7 +199,7 @@ export default function XComponents() {
                       </Grid>
                     )}
                   </Frame.Demo>
-                  <ThemeProvider theme={brandingDarkTheme}>
+                  <BrandingProvider mode="dark">
                     <Frame.Info>
                       <Box
                         sx={{
@@ -225,7 +225,7 @@ export default function XComponents() {
                       </Typography>
                       <EmailSubscribe />
                     </Frame.Info>
-                  </ThemeProvider>
+                  </BrandingProvider>
                 </Frame>
               </Box>
             </Fade>

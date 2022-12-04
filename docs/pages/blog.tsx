@@ -19,6 +19,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
@@ -246,209 +247,219 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     );
   };
   return (
-    <BrandingCssVarsProvider>
-      <Head
-        title="Blog - MUI"
-        description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
-        disableAlternateLocale
-      />
-      <AppHeader />
-      <main id="main-content">
-        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
-          <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
-            Blog
-          </Typography>
-          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: { xs: 5, md: 10 } }}>
-            The <GradientText>latest</GradientText> about MUI
-          </Typography>
-          <Box
-            component="ul"
-            sx={{
-              display: 'grid',
-              m: 0,
-              p: 0,
-              gap: 2,
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            }}
+    <ThemeProvider>
+      <BrandingCssVarsProvider>
+        <Head
+          title="Blog - MUI"
+          description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
+          disableAlternateLocale
+        />
+        <AppHeader />
+        <main id="main-content">
+          <Section
+            bg="gradient"
+            sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}
           >
-            {[firstPost, secondPost].map((post) => (
-              <Paper
-                key={post.slug}
-                component="li"
-                variant="outlined"
-                sx={[
-                  {
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    transition: 'all ease 120ms',
-                    '&:hover, &:focus-within': {
-                      borderColor: 'grey.300',
-                      boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                    },
-                    '&:focus-within': {
-                      '& a': {
-                        outline: 'none',
-                      },
-                    },
-                  },
-                  (theme) =>
-                    theme.applyDarkStyles({
-                      '&:hover, &:focus-within': {
-                        borderColor: 'primary.600',
-                        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
-                      },
-                    }),
-                ]}
-              >
-                {post.image && (
-                  <Box
-                    component="img"
-                    src={post.image}
-                    sx={{
-                      aspectRatio: '16 / 9',
-                      width: '100%',
-                      height: 'auto',
-                      objectFit: 'cover',
-                      borderRadius: '4px',
-                    }}
-                  />
-                )}
-                <PostPreview {...post} />
-              </Paper>
-            ))}
-          </Box>
-        </Section>
-        <Container
-          ref={postListRef}
-          sx={{
-            mt: -6,
-            display: 'grid',
-            gridTemplateColumns: { md: '1fr 380px' },
-            columnGap: 8,
-          }}
-        >
-          <Typography
-            component="h2"
-            color="text.primary"
-            variant="h5"
-            fontWeight="700"
-            sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
-          >
-            Posts{' '}
-            {Object.keys(selectedTags).length ? (
-              <span>
-                tagged as{' '}
-                <Typography component="span" variant="inherit" color="primary" noWrap>
-                  &quot;{Object.keys(selectedTags)[0]}&quot;
-                </Typography>
-              </span>
-            ) : (
-              ''
-            )}
-          </Typography>
-          <Box sx={{ gridRow: 'span 2' }}>
-            <Box
-              sx={(theme) => ({
-                position: 'sticky',
-                top: 100,
-                alignSelf: 'start',
-                mb: 2,
-                mt: { xs: 3, sm: 2, md: 9 }, // margin-top makes the title appear when scroll into view
-                p: 2,
-                borderRadius: 1,
-                border: '1px solid',
-                background: 'rgba(255, 255, 255, 0.2)',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                ...theme.applyDarkStyles({
-                  background: alpha(theme.palette.primaryDark[700], 0.2),
-                  borderColor: (theme.vars || theme).palette.primaryDark[700],
-                }),
-              })}
+            <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
+              Blog
+            </Typography>
+            <Typography
+              component="h1"
+              variant="h2"
+              textAlign="center"
+              sx={{ mb: { xs: 5, md: 10 } }}
             >
-              <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
-                Filter by tag
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {Object.keys(tagInfo).map((tag) => {
-                  const selected = !!selectedTags[tag];
-                  return (
-                    <Chip
-                      key={tag}
-                      variant={selected ? 'filled' : 'outlined'}
-                      {...(selected
-                        ? {
-                            label: tag,
-                            onDelete: () => {
-                              postListRef.current?.scrollIntoView();
-                              removeTag(tag);
-                            },
-                          }
-                        : {
-                            label: tag,
-                            onClick: () => {
-                              postListRef.current?.scrollIntoView();
-                              router.push(
-                                {
-                                  query: {
-                                    ...router.query,
-                                    tags: tag,
-                                  },
-                                },
-                                undefined,
-                                { shallow: true },
-                              );
-                            },
-                          })}
-                      size="small"
+              The <GradientText>latest</GradientText> about MUI
+            </Typography>
+            <Box
+              component="ul"
+              sx={{
+                display: 'grid',
+                m: 0,
+                p: 0,
+                gap: 2,
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              }}
+            >
+              {[firstPost, secondPost].map((post) => (
+                <Paper
+                  key={post.slug}
+                  component="li"
+                  variant="outlined"
+                  sx={[
+                    {
+                      p: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      position: 'relative',
+                      transition: 'all ease 120ms',
+                      '&:hover, &:focus-within': {
+                        borderColor: 'grey.300',
+                        boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                      },
+                      '&:focus-within': {
+                        '& a': {
+                          outline: 'none',
+                        },
+                      },
+                    },
+                    (theme) =>
+                      theme.applyDarkStyles({
+                        '&:hover, &:focus-within': {
+                          borderColor: 'primary.600',
+                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+                        },
+                      }),
+                  ]}
+                >
+                  {post.image && (
+                    <Box
+                      component="img"
+                      src={post.image}
                       sx={{
-                        py: 1.2,
+                        aspectRatio: '16 / 9',
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'cover',
+                        borderRadius: '4px',
                       }}
                     />
-                  );
-                })}
-              </Box>
-            </Box>
-          </Box>
-          <Box>
-            <Box component="ul" sx={{ p: 0, m: 0 }}>
-              {displayedPosts.map((post) => (
-                <Box
-                  component="li"
-                  key={post.slug}
-                  sx={() => ({
-                    py: 2.5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    '&:not(:last-of-type)': {
-                      borderBottom: '1px solid',
-                      borderColor: 'divider',
-                    },
-                  })}
-                >
+                  )}
                   <PostPreview {...post} />
-                </Box>
+                </Paper>
               ))}
             </Box>
-            <Pagination
-              page={page + 1}
-              count={totalPage}
-              variant="outlined"
-              shape="rounded"
-              onChange={(_, value) => {
-                setPage(value - 1);
-                postListRef.current?.scrollIntoView();
-              }}
-              sx={{ mt: 1, mb: 8 }}
-            />
-          </Box>
-        </Container>
-      </main>
-      <HeroEnd />
-      <Divider />
-      <AppFooter />
-    </BrandingCssVarsProvider>
+          </Section>
+          <Container
+            ref={postListRef}
+            sx={{
+              mt: -6,
+              display: 'grid',
+              gridTemplateColumns: { md: '1fr 380px' },
+              columnGap: 8,
+            }}
+          >
+            <Typography
+              component="h2"
+              color="text.primary"
+              variant="h5"
+              fontWeight="700"
+              sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
+            >
+              Posts{' '}
+              {Object.keys(selectedTags).length ? (
+                <span>
+                  tagged as{' '}
+                  <Typography component="span" variant="inherit" color="primary" noWrap>
+                    &quot;{Object.keys(selectedTags)[0]}&quot;
+                  </Typography>
+                </span>
+              ) : (
+                ''
+              )}
+            </Typography>
+            <Box sx={{ gridRow: 'span 2' }}>
+              <Box
+                sx={(theme) => ({
+                  position: 'sticky',
+                  top: 100,
+                  alignSelf: 'start',
+                  mb: 2,
+                  mt: { xs: 3, sm: 2, md: 9 }, // margin-top makes the title appear when scroll into view
+                  p: 2,
+                  borderRadius: 1,
+                  border: '1px solid',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  borderColor: (theme.vars || theme).palette.grey[200],
+                  ...theme.applyDarkStyles({
+                    background: alpha(theme.palette.primaryDark[700], 0.2),
+                    borderColor: (theme.vars || theme).palette.primaryDark[700],
+                  }),
+                })}
+              >
+                <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
+                  Filter by tag
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                  {Object.keys(tagInfo).map((tag) => {
+                    const selected = !!selectedTags[tag];
+                    return (
+                      <Chip
+                        key={tag}
+                        variant={selected ? 'filled' : 'outlined'}
+                        {...(selected
+                          ? {
+                              label: tag,
+                              onDelete: () => {
+                                postListRef.current?.scrollIntoView();
+                                removeTag(tag);
+                              },
+                            }
+                          : {
+                              label: tag,
+                              onClick: () => {
+                                postListRef.current?.scrollIntoView();
+                                router.push(
+                                  {
+                                    query: {
+                                      ...router.query,
+                                      tags: tag,
+                                    },
+                                  },
+                                  undefined,
+                                  { shallow: true },
+                                );
+                              },
+                            })}
+                        size="small"
+                        sx={{
+                          py: 1.2,
+                        }}
+                      />
+                    );
+                  })}
+                </Box>
+              </Box>
+            </Box>
+            <Box>
+              <Box component="ul" sx={{ p: 0, m: 0 }}>
+                {displayedPosts.map((post) => (
+                  <Box
+                    component="li"
+                    key={post.slug}
+                    sx={() => ({
+                      py: 2.5,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      position: 'relative',
+                      '&:not(:last-of-type)': {
+                        borderBottom: '1px solid',
+                        borderColor: 'divider',
+                      },
+                    })}
+                  >
+                    <PostPreview {...post} />
+                  </Box>
+                ))}
+              </Box>
+              <Pagination
+                page={page + 1}
+                count={totalPage}
+                variant="outlined"
+                shape="rounded"
+                onChange={(_, value) => {
+                  setPage(value - 1);
+                  postListRef.current?.scrollIntoView();
+                }}
+                sx={{ mt: 1, mb: 8 }}
+              />
+            </Box>
+          </Container>
+        </main>
+        <HeroEnd />
+        <Divider />
+        <AppFooter />
+      </BrandingCssVarsProvider>
+    </ThemeProvider>
   );
 }

@@ -9,7 +9,8 @@ import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import Section from 'docs/src/layouts/Section';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
@@ -50,67 +51,69 @@ export default function Components() {
     );
   }
   return (
-    <BrandingProvider>
-      <Head
-        title="Components - MUI"
-        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
-      />
-      <AppHeader />
-      <main id="main-content">
-        <Section bg="gradient" sx={{ py: { xs: 2, sm: 4 } }}>
-          <Typography component="h1" variant="h2" sx={{ mb: 4, pl: 1 }}>
-            All Components
-          </Typography>
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-            }}
-          >
-            {(componentPageData?.children || []).map((page) => (
-              <Box key={page.pathname} sx={{ pb: 2 }}>
-                <Typography
-                  component="h2"
-                  variant="body2"
-                  sx={{
-                    fontWeight: 500,
-                    color: 'grey.600',
-                    px: 1,
-                  }}
-                >
-                  {pageToTitleI18n(page, t)}
-                </Typography>
-                <List>
-                  {(page.children || []).map((nestedPage) => {
-                    if (nestedPage.children) {
-                      return (
-                        <ListItem key={nestedPage.pathname} sx={{ py: 0, px: 1 }}>
-                          <Box sx={{ width: '100%', pt: 1 }}>
-                            <Typography
-                              component="div"
-                              variant="body2"
-                              sx={{
-                                fontWeight: 500,
-                                color: 'grey.600',
-                              }}
-                            >
-                              {pageToTitleI18n(nestedPage, t) || ''}
-                            </Typography>
-                            <List>{nestedPage.children.map(renderItem)}</List>
-                          </Box>
-                        </ListItem>
-                      );
-                    }
-                    return renderItem(nestedPage);
-                  })}
-                </List>
-              </Box>
-            ))}
-          </Box>
-        </Section>
-      </main>
-      <Divider />
-      <AppFooter />
-    </BrandingProvider>
+    <ThemeProvider>
+      <BrandingCssVarsProvider>
+        <Head
+          title="Components - MUI"
+          description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
+        />
+        <AppHeader />
+        <main id="main-content">
+          <Section bg="gradient" sx={{ py: { xs: 2, sm: 4 } }}>
+            <Typography component="h1" variant="h2" sx={{ mb: 4, pl: 1 }}>
+              All Components
+            </Typography>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              }}
+            >
+              {(componentPageData?.children || []).map((page) => (
+                <Box key={page.pathname} sx={{ pb: 2 }}>
+                  <Typography
+                    component="h2"
+                    variant="body2"
+                    sx={{
+                      fontWeight: 500,
+                      color: 'grey.600',
+                      px: 1,
+                    }}
+                  >
+                    {pageToTitleI18n(page, t)}
+                  </Typography>
+                  <List>
+                    {(page.children || []).map((nestedPage) => {
+                      if (nestedPage.children) {
+                        return (
+                          <ListItem key={nestedPage.pathname} sx={{ py: 0, px: 1 }}>
+                            <Box sx={{ width: '100%', pt: 1 }}>
+                              <Typography
+                                component="div"
+                                variant="body2"
+                                sx={{
+                                  fontWeight: 500,
+                                  color: 'grey.600',
+                                }}
+                              >
+                                {pageToTitleI18n(nestedPage, t) || ''}
+                              </Typography>
+                              <List>{nestedPage.children.map(renderItem)}</List>
+                            </Box>
+                          </ListItem>
+                        );
+                      }
+                      return renderItem(nestedPage);
+                    })}
+                  </List>
+                </Box>
+              ))}
+            </Box>
+          </Section>
+        </main>
+        <Divider />
+        <AppFooter />
+      </BrandingCssVarsProvider>
+    </ThemeProvider>
   );
 }

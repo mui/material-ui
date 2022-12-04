@@ -12,33 +12,36 @@ import WhatToExpect from 'docs/src/components/pricing/WhatToExpect';
 import FAQ from 'docs/src/components/pricing/FAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Pricing() {
   return (
-    <BrandingCssVarsProvider>
-      <Head
-        title="Pricing - MUI"
-        description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
-      />
-      <AppHeaderBanner />
-      <AppHeader />
-      <main id="main-content">
-        <HeroPricing />
-        <PricingList /> {/* Mobile, Tablet */}
-        <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-          <PricingTable /> {/* Desktop */}
-        </Container>
-        <EarlyBird />
-        <Testimonials />
-        <WhatToExpect />
-        <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
-        <FAQ />
-        <HeroEnd />
-        <Divider />
-      </main>
-      <AppFooter />
-    </BrandingCssVarsProvider>
+    <ThemeProvider>
+      <BrandingCssVarsProvider>
+        <Head
+          title="Pricing - MUI"
+          description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
+        />
+        <AppHeaderBanner />
+        <AppHeader />
+        <main id="main-content">
+          <HeroPricing />
+          <PricingList /> {/* Mobile, Tablet */}
+          <Container sx={{ display: { xs: 'none', md: 'block' } }}>
+            <PricingTable /> {/* Desktop */}
+          </Container>
+          <EarlyBird />
+          <Testimonials />
+          <WhatToExpect />
+          <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
+          <FAQ />
+          <HeroEnd />
+          <Divider />
+        </main>
+        <AppFooter />
+      </BrandingCssVarsProvider>
+    </ThemeProvider>
   );
 }

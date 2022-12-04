@@ -13,6 +13,7 @@ import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 
 const Main = styled('main', {
@@ -100,39 +101,41 @@ function AppLayoutDocs(props) {
   }
 
   return (
-    <AppFrame>
-      <GlobalStyles
-        styles={{
-          ':root': {
-            '--MuiDocs-navDrawer-width': '300px',
-            '--MuiDocs-toc-width': '240px',
-          },
-        }}
-      />
-      <AdManager>
-        <Head
-          title={`${title} - ${productName}`}
-          description={description}
-          largeCard={false}
-          card="https://mui.com/static/logo.png"
+    <BrandingCssVarsProvider>
+      <AppFrame>
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--MuiDocs-navDrawer-width': '300px',
+              '--MuiDocs-toc-width': '240px',
+            },
+          }}
         />
-        <Main disableToc={disableToc}>
-          {/*
+        <AdManager>
+          <Head
+            title={`${title} - ${productName}`}
+            description={description}
+            largeCard={false}
+            card="https://mui.com/static/logo.png"
+          />
+          <Main disableToc={disableToc}>
+            {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
-          <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
-            <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
-            {children}
-            <NoSsr>
-              <AppLayoutDocsFooter tableOfContents={toc} />
-            </NoSsr>
-          </StyledAppContainer>
-        </Main>
-      </AdManager>
-      <BackToTop />
-    </AppFrame>
+            {disableToc ? null : <AppTableOfContents toc={toc} />}
+            <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
+              <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
+              {children}
+              <NoSsr>
+                <AppLayoutDocsFooter tableOfContents={toc} />
+              </NoSsr>
+            </StyledAppContainer>
+          </Main>
+        </AdManager>
+        <BackToTop />
+      </AppFrame>
+    </BrandingCssVarsProvider>
   );
 }
 
