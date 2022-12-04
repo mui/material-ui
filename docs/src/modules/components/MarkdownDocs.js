@@ -65,9 +65,11 @@ export default function MarkdownDocs(props) {
     >
       <Provider>
         {disableAd ? null : (
-          <AdGuest>
-            <Ad />
-          </AdGuest>
+          <Wrapper>
+            <AdGuest>
+              <Ad />
+            </AdGuest>
+          </Wrapper>
         )}
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
