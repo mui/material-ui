@@ -26,6 +26,7 @@ const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
 
   const slots = {
     root: ['root', !open && exited && 'hidden'],
+    backdrop: ['backdrop'],
   };
 
   return composeClasses(slots, getModalUtilityClass, classes);
@@ -66,7 +67,7 @@ const defaultManager = new ModalManager();
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled<
   BaseComponentType extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
->(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
+>(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<Element> | undefined) {
   const {
     children,
     classes: classesProp,
@@ -292,7 +293,12 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
   }
 
   return (
-    <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
+    <Portal
+      // @ts-expect-error TODO: include ref to MUI Base Portal props
+      ref={handlePortalRef}
+      container={container}
+      disablePortal={disablePortal}
+    >
       {/*
        * Marking an element with the role presentation indicates to assistive technology
        * that this element should be ignored; it exists to support the web application and

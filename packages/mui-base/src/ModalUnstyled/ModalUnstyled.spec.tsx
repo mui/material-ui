@@ -1,5 +1,8 @@
 import * as React from 'react';
-import ModalUnstyled, { ModalUnstyledBackdropSlotProps, ModalUnstyledRootSlotProps } from '@mui/base/ModalUnstyled';
+import ModalUnstyled, {
+  ModalUnstyledBackdropSlotProps,
+  ModalUnstyledRootSlotProps,
+} from '@mui/base/ModalUnstyled';
 import { expectType } from '@mui/types';
 
 function Root(props: ModalUnstyledRootSlotProps) {
@@ -50,6 +53,7 @@ const polymorphicComponentTest = () => {
         <div />
       </ModalUnstyled>
 
+      {/* @ts-expect-error */}
       <ModalUnstyled<'button'>
         component="button"
         ref={(elem) => {
