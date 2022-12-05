@@ -246,13 +246,12 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '& > p': {
-        color: 'inherit',
+      '& > ul, & > p': {
         '&:last-child': {
           margin: 0,
         },
       },
-      '& ul, li': {
+      '& > p, & ul, li': {
         color: 'inherit',
       },
       '&.MuiCallout-error': {
@@ -423,6 +422,7 @@ const Root = styled('div')(
       },
     },
     '& li': {
+      marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
       },
