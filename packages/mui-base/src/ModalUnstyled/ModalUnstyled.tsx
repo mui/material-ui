@@ -421,7 +421,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * The props used for each slot inside the Modal.
    * @default {}
@@ -439,6 +439,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
     backdrop: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
-};
+} as any;
 
 export default ModalUnstyled;
