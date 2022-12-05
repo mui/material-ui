@@ -298,7 +298,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       name,
       value,
       readOnly,
-      required,
+      required: required ?? formControl?.required,
       'aria-describedby': formControl?.['aria-describedby'],
       ...(indeterminate && {
         // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked#values

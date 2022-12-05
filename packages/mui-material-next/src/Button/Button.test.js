@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 
@@ -280,66 +280,11 @@ describe('<Button />', () => {
     expect(endIcon).not.to.have.class(classes.startIcon);
   });
 
-  it('should have a ripple by default', () => {
-    const { getByRole } = render(
-      <Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>,
-    );
-    const button = getByRole('button');
-
-    expect(button.querySelector('.touch-ripple')).not.to.equal(null);
-  });
-
-  it('can disable the ripple', () => {
-    const { getByRole } = render(
-      <Button disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
-        Hello World
-      </Button>,
-    );
-    const button = getByRole('button');
-
-    expect(button.querySelector('.touch-ripple')).to.equal(null);
-  });
-
   it('can disable the elevation', () => {
     const { getByRole } = render(<Button disableElevation>Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.disableElevation);
-  });
-
-  it('should have a focusRipple by default', () => {
-    const { getByRole } = render(
-      <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
-        Hello World
-      </Button>,
-    );
-    const button = getByRole('button');
-
-    fireEvent.keyDown(document.body, { key: 'TAB' });
-    act(() => {
-      button.focus();
-    });
-
-    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
-  });
-
-  it('can disable the focusRipple', () => {
-    const { getByRole } = render(
-      <Button
-        disableFocusRipple
-        TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
-      >
-        Hello World
-      </Button>,
-    );
-    const button = getByRole('button');
-
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
-      button.focus();
-    });
-
-    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
   describe('server-side', () => {
@@ -366,7 +311,7 @@ describe('<Button />', () => {
     expect(button).to.have.attribute('href', 'https://google.com');
   });
 
-  it('should forward classes to ButtonBase', () => {
+  it('should render disabled class', () => {
     const disabledClassName = 'testDisabledClassName';
     const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
 

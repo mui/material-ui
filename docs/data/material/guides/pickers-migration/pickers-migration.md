@@ -1,6 +1,12 @@
-# Migration from @material-ui-pickers
+# Migration from @material-ui/pickers
 
 <p class="description">@material-ui/pickers was moved to the @mui/lab.</p>
+
+:::info
+**Stable package available**: The pickers are not available in `@mui/lab` after `v5.0.0-alpha.89`.
+They have been moved from `@mui/lab` to the MUI X packages `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/react-date-pickers/migration-lab/).
+:::
 
 :::warning
 **⚠️ The date picker components were rewritten**. In most places, the logic was rewritten from scratch, so it isn't possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to upgrade, the easiest way might be to go through each picker usage in your codebase, and rewrite them one at a time. Don't forget to run your tests after each!

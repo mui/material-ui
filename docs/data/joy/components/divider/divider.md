@@ -12,7 +12,7 @@ githubLabel: 'component: divider'
 
 Dividers separate content into clear groups.
 
-{{"demo": "DividerUsage.js", "hideToolbar": "true"}}
+{{"demo": "DividerUsage.js", "hideToolbar": "true", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -21,7 +21,7 @@ Dividers separate content into clear groups.
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import Avatar from '@mui/joy/Divider';
+import Divider from '@mui/joy/Divider';
 
 export default function MyApp() {
   return <Divider />;
@@ -50,7 +50,7 @@ Use the `Divider` to wrap elements that will be added to it.
 
 Use the `orientation` prop to render a vertical divider.
 
-{{"demo": "VerticalDividers.js", "bg": true}}
+{{"demo": "VerticalDividers.js"}}
 
 #### Vertical with text
 

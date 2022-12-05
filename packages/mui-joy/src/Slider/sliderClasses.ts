@@ -11,6 +11,8 @@ export interface SliderClasses {
   disabled: string;
   /** State class applied to the root if a thumb is being dragged. */
   dragging: string;
+  /** State class applied to the thumb element if it has keyboard focused. */
+  focusVisible: string;
   /** Class name applied to the rail element. */
   rail: string;
   /** Class name applied to the track element. */
@@ -61,6 +63,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
   'root',
   'disabled',
   'dragging',
+  'focusVisible',
   'marked',
   'vertical',
   'trackInverted',
