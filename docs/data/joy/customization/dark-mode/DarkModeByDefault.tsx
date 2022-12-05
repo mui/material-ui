@@ -4,6 +4,8 @@ import Sheet from '@mui/joy/Sheet';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 
+const theme = extendTheme({ cssVarPrefix: 'demo' });
+
 export default function DarkModeByDefault() {
   return (
     <CssVarsProvider
@@ -11,7 +13,7 @@ export default function DarkModeByDefault() {
       // the props below are specific to this demo,
       // you might not need them in your app.
       //
-      theme={extendTheme({ cssVarPrefix: 'demo' })}
+      theme={theme}
       // the selector to apply CSS theme variables stylesheet.
       colorSchemeSelector="#demo_dark-mode-by-default"
       //
