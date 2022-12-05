@@ -142,19 +142,15 @@ const AutocompleteWrapper = styled('div', {
   alignItems: 'center',
   flexWrap: 'wrap',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingInlineStart: 0,
-    paddingBlockStart:
-      'calc(var(--_Input-paddingBlock) - max(var(--Autocomplete-wrapper-gap), 0px))',
-    paddingBlockEnd: 'var(--_Input-paddingBlock)',
+    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapper-gap))',
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
         marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart:
-          'calc(-1 * min(var(--Autocomplete-wrapper-gap), var(--_Input-paddingBlock)))',
+        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'var(--Input-gap)',
+          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
         },
       }),
   },

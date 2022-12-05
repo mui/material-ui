@@ -33,6 +33,7 @@ const ChipDeleteRoot = styled('button', {
 })<{ ownerState: ChipDeleteOwnerState }>(({ theme, ownerState }) => [
   {
     '--Icon-margin': 'initial', // prevent overrides from parent
+    '--Icon-fontSize': 'calc(var(--Chip-delete-size) * 0.8)', // icon size should follow ChipDelete's size
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
     width: 'var(--Chip-delete-size, 2rem)',
     height: 'var(--Chip-delete-size, 2rem)',
