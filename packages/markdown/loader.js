@@ -1,4 +1,4 @@
-const { promises: fs, readdirSync } = require('fs');
+const { promises: fs, readdirSync, existsSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
 const extractImports = require('./extractImports');
@@ -107,7 +107,32 @@ module.exports = async function demoLoader() {
       .map(async (translation) => {
         const filepath = path.join(path.dirname(englishFilepath), translation.filename);
         this.addDependency(filepath);
-        const markdown = await fs.readFile(filepath, { encoding: 'utf8' });
+        let markdown = await fs.readFile(filepath, { encoding: 'utf8' });
+
+        const toInsert = {};
+
+        // Get all the markdown content to insert
+        await Promise.all(
+          markdown.match(/^{{(?:"insert":[^}]*)}}$/gm).map(async (string) => {
+            const toInsertData = JSON.parse(string.slice(1, string.length - 1));
+
+            const insertedFile = path.join(path.dirname(englishFilepath), toInsertData.insert);
+            this.addDependency(insertedFile);
+
+            const insertedMarkdown = await fs.readFile(insertedFile, { encoding: 'utf8' });
+
+            toInsert[toInsertData.insert] = {
+              ...toInsertData,
+              text: insertedMarkdown,
+            };
+          }),
+        );
+
+        // Replace markdown insert by the associated content
+        markdown = markdown.replace(/^{{("(?:insert)":[^}]*)}}$/gm, (_, captured) => {
+          const { insert } = JSON.parse(`{${captured}}`);
+          return toInsert[insert].text;
+        });
 
         return {
           ...translation,
@@ -149,15 +174,28 @@ module.exports = async function demoLoader() {
       // TODO: const moduleID = demoName;
       // The import paths currently use a completely different format.
       // They should just use relative imports.
-      const moduleID = `./${demoName.replace(
+      let moduleID = `./${demoName.replace(
         `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
         '',
       )}`;
 
-      const moduleFilepath = path.join(
+      let moduleFilepath = path.join(
         path.dirname(this.resourcePath),
         moduleID.replace(/\//g, path.sep),
       );
+
+      // If the file does not exist, it's probably because it's path is relative to `docs` folder.
+      if (!existsSync(moduleFilepath)) {
+        const newModuleFilepath = path.join(
+          this.resourcePath.match(/^(.*\/docs\/)/g)[0],
+          moduleID.replace(/\//g, path.sep),
+        );
+        if (existsSync(newModuleFilepath)) {
+          moduleID = path.relative(path.dirname(this.resourcePath), newModuleFilepath);
+          moduleFilepath = newModuleFilepath;
+        }
+      }
+
       this.addDependency(moduleFilepath);
       demos[demoName] = {
         module: moduleID,
