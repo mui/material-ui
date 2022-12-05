@@ -78,7 +78,7 @@ const Div = styled('div')(({ theme }) => ({
 }));
 ```
 
-:::info
+:::warning
 You can't use `theme.vars` to create an inset shadow because the value refers to the CSS variable, not the actual shadow.
 
 - `theme.vars.shadow.sm` returns `'var(--joy-shadow-sm)'`

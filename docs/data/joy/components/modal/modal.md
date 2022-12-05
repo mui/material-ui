@@ -30,7 +30,6 @@ Joy UI provides three modal-related components:
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
-**Note:**
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
 
 A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action.
@@ -60,7 +59,7 @@ Use the `ModalClose` component to render a close button that inherits the modal'
 {{"demo": "BasicModal.js"}}
 
 :::info
-💡 **Quick tip:** The `ModalClose` accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
+`ModalClose` accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
 :::
 
 ### Close reason

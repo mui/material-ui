@@ -17,7 +17,7 @@ MUI Base includes prebuilt components with production-ready functionality, along
 With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
 :::info
-**Note:** as of today, MUI Base is in alpha.
+MUI Base is currently in alpha.
 
 We're adding new components and features regularly, and you're welcome to contribute!
 

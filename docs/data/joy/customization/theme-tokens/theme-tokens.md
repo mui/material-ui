@@ -133,7 +133,7 @@ function App() {
 ```
 
 :::info
-**Note**: Joy UI will add the prefix (default as `joy`) to all CSS variables.
+Joy UI will add the prefix (default as `joy`) to all CSS variables.
 To change it, use `<CssVarsProvider theme={extendTheme({ cssVarPrefix: 'myproduct' })}>`. and the generated CSS variables will then be:
 
 ```diff

@@ -110,8 +110,8 @@ We're also using the `ListDivider` as a visual separator.
 
 {{"demo": "SelectCustomOption.js"}}
 
-:::info
-💡 **Keep in mind:** By default, the option children is used for displaying the selected value.
+:::warning
+By default, the option children are used for displaying the selected value.
 Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
 
@@ -122,8 +122,8 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 
 {{"demo": "SelectGroupedOptions.js"}}
 
-:::info
-💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
+:::warning
+If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
 
 ```jsx
 <Select

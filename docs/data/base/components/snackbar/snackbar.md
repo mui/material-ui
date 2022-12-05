@@ -37,7 +37,7 @@ Unstyled Snackbar doesn't impose any restrictions on its implementation—it's u
 
 Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
 
-:::info
+:::success
 You may want to implement Unstyled Snackbar with [Click-Away Listener](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
 But this behavior is optional for a snackbar.
 :::

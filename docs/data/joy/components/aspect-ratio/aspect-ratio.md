@@ -105,7 +105,7 @@ function App() {
 
 ### Mobile carousel
 
-:::info
+:::warning
 In designs like this, make sure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
 :::
 

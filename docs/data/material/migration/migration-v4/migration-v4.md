@@ -41,8 +41,8 @@ Additionally, v5 is the only version that fully supports React 18, so you will n
 
 To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
-:::info
-💡 Create small commits as you go to ensure a smooth migration.
+:::success
+Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
