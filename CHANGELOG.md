@@ -35,7 +35,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   -<Autocomplete components={{Root: CustomRoot}} componentsProps={{input: { className: 'custom-input' }}} />
   +<Autocomplete slots={{root: CustomRoot}} slotProps={{input: { className: 'custom-input' }}} />
   ```
-  - `@mui-codemod` [README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-components-to-slots) explains how to run the appropriate codemod for this breaking change.
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-components-to-slots) to help with the migration.
 
 #### Changes
 
