@@ -3,7 +3,7 @@
   // The props below are specific to this demo,
   // you might not need them in your app.
   //
-  theme={extendTheme({ cssVarPrefix: 'demo' })}
+  theme={theme}
   // the local storage key to use.
   modeStorageKey="demo_identify-system-mode"
   // set as root provider
