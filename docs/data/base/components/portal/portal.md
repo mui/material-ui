@@ -45,7 +45,7 @@ According to [the React docs](https://reactjs.org/docs/portals.html), portals ar
 
 The Portal component accepts a `container` prop that passes a `ref` to the DOM node where its children will be mounted.
 
-The following demo shows how a `<span>` nested within a Portal can be appended to a node outside of its own DOM hierarchy—click **Mount children** to see how it behaves:
+The following demo shows how a `<span>` nested within a Portal can be appended to a node outside of the Portal's DOM hierarchy—click **Mount children** to see how it behaves:
 
 {{"demo": "SimplePortal.js"}}
 
