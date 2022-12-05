@@ -53,7 +53,7 @@ export default function NestedCssVarsProviders() {
         <CssVarsProvider theme={nestedTheme}>
           <div
             style={{
-              background: 'var(--background-default)',
+              background: 'var(--nested-background-default)',
               height: 40,
               color: '#000',
               padding: '1rem',
@@ -72,10 +72,10 @@ export default function NestedCssVarsProviders() {
         }}
       >
         Background should be blue.
-        <CssVarsProvider theme={nestedTheme}>
+        <CssVarsProvider theme={nestedTheme} disableStyleSheetGeneration>
           <div
             style={{
-              background: 'var(--background-default)',
+              background: 'var(--nested-background-default)',
               height: 40,
               color: '#000',
               padding: '1rem',
