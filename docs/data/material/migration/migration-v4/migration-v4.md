@@ -314,7 +314,7 @@ If you want to run the transformers one by one, check out the [preset-safe codem
 This codemod transforms the `<TextField/>`, `<FormControl/>`, and `<Select/>` components by applying `variant="standard"` if no variant is defined—the default variant has changed from `"standard"` in v4 to `"outlined"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
 :::
 
 ```js
@@ -344,7 +344,7 @@ For more details, check out the [variant-prop codemod README](https://github.com
 This codemod transforms the `<Link />` component by applying `underline="hover"` if there is no `underline` prop defined—the default `underline` has changed from `"hover"` in v4 to `"always"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
 :::
 
 ```js

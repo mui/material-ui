@@ -307,7 +307,7 @@ the transformation would look like this:
  export default App;
 ```
 
-:::success
+:::error
 When using JavaScript (rather than TypeScript), remove `<void, 'child' | 'small'>`.
 :::
 

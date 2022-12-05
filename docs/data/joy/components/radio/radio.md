@@ -89,7 +89,7 @@ You can also use it directly in the `RadioGroup` component as it will automatica
 
 {{"demo": "OverlayRadio.js"}}
 
-:::success
+:::info
 Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
 :::
 

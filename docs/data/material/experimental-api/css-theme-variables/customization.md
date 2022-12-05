@@ -296,6 +296,6 @@ getInitColorSchemeScript({
 });
 ```
 
-:::success
+:::warning
 In development, make sure to clear local storage and refresh the page after you configure the `defaultMode`.
 :::

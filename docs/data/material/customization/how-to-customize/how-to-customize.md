@@ -117,7 +117,7 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | selected      | `.Mui-selected`     |
 
 :::error
-⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
 :::
 
 ```css

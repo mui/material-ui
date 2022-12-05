@@ -67,7 +67,7 @@ It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/o
 
 To create a gradient overlay, frequently seen when a colorful image is used as background, insert an additional `CardCover` component.
 
-:::success
+:::warning
 Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content.
 :::
 
