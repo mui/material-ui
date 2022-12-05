@@ -59,7 +59,7 @@ The Avatar component supports Joy UI's four [global variants](/joy-ui/main-featu
 
 {{"demo": "AvatarVariants.js"}}
 
-:::success
+:::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 Note that you lose the global variants when you add custom variants.
 :::
@@ -70,7 +70,7 @@ The Avatar component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AvatarSizes.js"}}
 
-:::success
+:::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 

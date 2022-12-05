@@ -13,7 +13,7 @@ The `Breadcrumbs` shows where in the site hierarchy the user is.
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 

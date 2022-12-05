@@ -153,7 +153,6 @@ The modal components can be nested:
 {{"demo": "NestedModals.js"}}
 
 :::warning
-⚠️ **Keep in mind:**
 Though it is possible to create nested modals, stacking more than two at a time is discouraged.
 This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
 :::
@@ -215,7 +214,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
 
 - Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
-  **Keep in mind:** A modal window can sit on top of either the parent application, or another modal window.
+  A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.
   This can lead to [conflicting behaviors](#focus-trap).
   :::

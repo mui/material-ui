@@ -51,7 +51,7 @@ The following demo shows how a `<span>` nested within a Portal can be appended t
 
 ### Server-side
 
-:::warning
+:::error
 React doesn't support the [`createPortal()` API](https://reactjs.org/docs/portals.html) on the server.
 See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
 :::

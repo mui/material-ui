@@ -57,7 +57,7 @@ const Div = styled('div')(({ theme }) => ({
 ```
 
 :::warning
-⚠️ The format of the channel tokens is using empty space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
+The format of the channel tokens uses a space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct format

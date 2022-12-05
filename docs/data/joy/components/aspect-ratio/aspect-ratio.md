@@ -38,7 +38,7 @@ The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main
 
 {{"demo": "VariantsRatio.js"}}
 
-:::success
+:::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 Note that you lose the global variants when you add custom variants.
 :::

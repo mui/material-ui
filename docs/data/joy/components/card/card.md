@@ -88,7 +88,7 @@ By default, whenever you have additional action elements such as links and butto
 In some cases, you might have to manually control each element's `z-index`.
 
 :::success
-Use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused.
+Use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children are focused.
 :::
 
 {{"demo": "MultipleInteractionCard.js" }}

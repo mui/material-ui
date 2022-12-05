@@ -191,8 +191,8 @@ const Text = styled('p')(({ theme }) => ({
 }));
 ```
 
-:::warning
-**Note:** Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
+:::success
+Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
 
 If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
 :::
@@ -277,7 +277,7 @@ As an example, let's customize Joy UI's [`Button`](/joy-ui/react-button/) so the
 {{"demo": "BootstrapVariantTokens.js"}}
 
 :::warning
-**⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
+Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
 
 ```js
 extendTheme({
@@ -360,5 +360,5 @@ const theme = extendTheme({
 {{"demo": "CustomVariantStyle.js"}}
 
 :::warning
-**Keep in mind:** changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
+Changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
 :::

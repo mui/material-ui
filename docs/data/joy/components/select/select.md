@@ -16,7 +16,7 @@ The `Select` component is used to trigger a popup that displays a list of `Optio
 
 {{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
 :::
 

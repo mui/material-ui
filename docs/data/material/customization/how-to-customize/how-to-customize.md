@@ -41,7 +41,7 @@ In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you 
 {{"demo": "DevTools.js"}}
 
 :::warning
-⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+These class names can't be used as CSS selectors because they are unstable.
 :::
 
 ### Overriding styles with class names
@@ -146,7 +146,7 @@ You can do this with **dynamic CSS** or **CSS variables**.
 #### Dynamic CSS
 
 :::warning
-⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+If you are using TypeScript, you will need to update the prop's types of the new component.
 :::
 
 {{"demo": "DynamicCSS.js", "defaultCodeOpen": false}}
