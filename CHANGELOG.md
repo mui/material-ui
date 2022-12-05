@@ -8,7 +8,7 @@ _Dec 5, 2022_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- @mnajdova added a Material You Button playground (#35222)
+- @mnajdova added a [Material You Button playground](https://mui.com/material-ui/react-button/#material-you-version) (#35222)
 - 🔧 @hbjORbj renamed `components` / `componentProps` to `slots` / `slotProps` prop in Joy UI to create consistency across products (#34997)
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
 
@@ -20,11 +20,24 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/system@5.10.17`
 
-- &#8203;<!-- 04 -->[system] Add flags for nested CssVarsProvider (#35277) @siriwatknp
+- &#8203;<!-- 04 -->[system] Add support for nested CssVarsProvider (#35277) @siriwatknp
 
 ### `@mui/joy@5.0.0-alpha.57`
 
+#### BREAKING CHANGE
+
 - &#8203;<!-- 08 -->[Joy] Add `slots`/`slotProps` props to the typing of all components and apply `useSlot` to all components (#34997) @hbjORbj
+
+  - Change all occurrences of `components` and `componentsProps` props in Joy UI components to `slots` and `slotProps`, respectively.
+  - Change casing of slots' fields to camelCase
+
+  ```diff
+  -<Autocomplete components={{Root: CustomRoot}} componentsProps={{input: { className: 'custom-input' }}} />
+  +<Autocomplete slots={{root: CustomRoot}} slotProps={{input: { className: 'custom-input' }}} />
+  ```
+
+#### Changes
+
 - &#8203;<!-- 07 -->[Joy] Miscellaneous fixes (#35345) @siriwatknp
 - &#8203;<!-- 06 -->[Joy][textarea] Expose decorator classes (#35247) @zignis
 
