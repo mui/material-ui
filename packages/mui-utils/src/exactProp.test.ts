@@ -32,4 +32,17 @@ describe('exactProp()', () => {
       PropTypes.checkPropTypes(exactProp(propTypes), props, 'props', 'Component');
     }).toErrorDev('The following props are not supported: `foo`. Please remove them');
   });
+
+  it('should allow data- types', () => {
+    const props = {
+      'data-foo': false,
+    };
+    const propTypes = {
+      bar: PropTypes.bool,
+    };
+
+    expect(() => {
+      PropTypes.checkPropTypes(exactProp(propTypes), props, 'props', 'Component');
+    }).not.toErrorDev();
+  });
 });
