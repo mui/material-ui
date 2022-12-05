@@ -254,12 +254,16 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   });
 
   return (
-    <LinkRoot {...rootProps}>
-      {startDecorator && <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>}
+    <TypographyContext.Provider value>
+      <LinkRoot {...rootProps}>
+        {startDecorator && (
+          <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>
+        )}
 
-      {children}
-      {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
-    </LinkRoot>
+        {children}
+        {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
+      </LinkRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
