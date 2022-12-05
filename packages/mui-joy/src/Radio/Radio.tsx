@@ -337,7 +337,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       id,
       name,
       readOnly,
-      required,
+      required: required ?? formControl?.required,
       value: String(value),
       'aria-describedby': formControl?.['aria-describedby'],
     },

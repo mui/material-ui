@@ -46,6 +46,13 @@ describe('Joy <Input />', () => {
     expect(screen.getByTestId('end')).toBeVisible();
   });
 
+  describe('prop: required', () => {
+    it('should pass to `input` element', () => {
+      const { getByRole } = render(<Input required />);
+      expect(getByRole('textbox')).to.have.attribute('required');
+    });
+  });
+
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
       const { container, getByRole } = render(<Input disabled />);

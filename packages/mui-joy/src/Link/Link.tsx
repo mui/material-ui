@@ -249,14 +249,16 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   });
 
   return (
-    <SlotRoot {...rootProps}>
-      {startDecorator && (
-        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
-      )}
+    <TypographyContext.Provider value>
+      <SlotRoot {...rootProps}>
+        {startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+        )}
 
-      {children}
-      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-    </SlotRoot>
+        {children}
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
