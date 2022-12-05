@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
+import Typography from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
@@ -181,6 +182,17 @@ describe('<Link />', () => {
 
         expect(getByTestId('root')).to.have.class(classes[`underline${capitalize(underline)}`]);
       });
+    });
+  });
+
+  describe('Typography', () => {
+    it('should be a span by default', () => {
+      const { container } = render(
+        <Link href="/">
+          hello <Typography>test</Typography>
+        </Link>,
+      );
+      expect(container.querySelector('span')).to.have.text('test');
     });
   });
 });

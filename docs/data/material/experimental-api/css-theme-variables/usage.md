@@ -1,4 +1,4 @@
-# Usage
+# CSS theme variables - Usage
 
 <p class="description">Learn how to use the experimental APIs to adopt CSS theme variables.</p>
 

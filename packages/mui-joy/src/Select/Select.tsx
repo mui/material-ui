@@ -16,7 +16,7 @@ import {
 import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
@@ -79,14 +79,15 @@ const SelectRoot = styled('div', {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
-      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
       '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '--Select-indicator-color': theme.vars.palette.text.tertiary,
+      '--Select-indicator-color': variantStyle?.backgroundColor
+        ? variantStyle?.color
+        : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
@@ -108,10 +109,10 @@ const SelectRoot = styled('div', {
       // variables for controlling child components
       '--Select-decorator-childOffset':
         'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
-      '--internal-paddingBlock':
+      '--_Select-paddingBlock':
         'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
       '--Select-decorator-childRadius':
-        'max(var(--Select-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Select-radius) / 2))',
+        'max(var(--Select-radius) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) / 2, var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decorator-childHeight)',
       '--IconButton-size': 'var(--Select-decorator-childHeight)',
       '--Button-radius': 'var(--Select-decorator-childRadius)',
@@ -125,6 +126,9 @@ const SelectRoot = styled('div', {
       borderRadius: 'var(--Select-radius)',
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
+      }),
+      ...(ownerState.size && {
+        paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element
       }),
       paddingInline: `var(--Select-paddingInline)`,
       fontFamily: theme.vars.fontFamily.body,
@@ -190,19 +194,21 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
+  fontFamily: 'inherit',
   cursor: 'pointer',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
 }));
 
-const SelectListbox = styled(ListRoot, {
+const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
@@ -227,7 +233,6 @@ const SelectStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   alignItems: 'center',
   marginInlineEnd: 'var(--Select-gap)',
@@ -436,12 +441,16 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     elementType: SelectRoot,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!listboxOpen && event.target !== buttonRef.current && !event.isPropagationStopped()) {
+        if (
+          !listboxOpen &&
+          !buttonRef.current?.contains(event.target as Node) &&
+          !event.isPropagationStopped()
+        ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
           handleOpenChange(true);
         }
-        handlers.onClick?.(event);
+        handlers.onMouseDown?.(event);
       },
     }),
     externalSlotProps: componentsProps.root,

@@ -21,7 +21,7 @@ export default function TextareaFormProps() {
         }}
       >
         <Textarea
-          placeholder="Try to submit with empty text!"
+          placeholder="Try to submit with no text!"
           required
           sx={{ mb: 1 }}
         />

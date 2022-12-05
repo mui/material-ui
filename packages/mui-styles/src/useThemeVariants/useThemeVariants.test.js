@@ -9,11 +9,11 @@ import withStyles from '../withStyles';
 describe('useThemeVariants', () => {
   const { render } = createRenderer();
 
-  const ComponentInternal = (props) => {
+  function ComponentInternal(props) {
     const { className, ...other } = props;
     const themeVariantsClasses = useThemeVariants(props, 'Test');
     return <div className={`${themeVariantsClasses} ${className}`} {...other} />;
-  };
+  }
 
   const Component = withStyles({}, { name: 'Test' })(ComponentInternal);
 
