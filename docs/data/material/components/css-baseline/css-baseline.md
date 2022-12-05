@@ -71,7 +71,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 ### Scrollbars
 
 :::error
-This API is deprecated. 
+This API is deprecated.
 Consider using [color-scheme](#color-scheme) instead.
 :::
 

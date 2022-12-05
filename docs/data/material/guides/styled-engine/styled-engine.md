@@ -9,9 +9,9 @@ This API is supported by multiple popular styling libraries, which makes it poss
 ## How to switch to styled-components
 
 :::error
-Using `styled-components` as an engine at this moment is not working when used in a SSR projects. 
-The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. 
-For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742). 
+Using `styled-components` as an engine at this moment is not working when used in a SSR projects.
+The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages.
+For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742).
 We strongly recommend using Emotion for SSR projects.
 :::
 
