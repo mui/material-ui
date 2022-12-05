@@ -113,7 +113,7 @@ module.exports = async function demoLoader() {
 
         // Get all the markdown content to insert
         await Promise.all(
-          markdown.match(/^{{(?:"insert":[^}]*)}}$/gm).map(async (string) => {
+          (markdown.match(/^{{(?:"insert":[^}]*)}}$/gm) || []).map(async (string) => {
             const toInsertData = JSON.parse(string.slice(1, string.length - 1));
 
             const insertedFile = path.join(path.dirname(englishFilepath), toInsertData.insert);
