@@ -462,5 +462,16 @@ describe('<FormControl />', () => {
 
       expect(getByRole('combobox')).to.have.attribute('disabled');
     });
+
+    it('should inherit required from FormControl', () => {
+      const { getByRole } = render(
+        <FormControl disabled>
+          <FormLabel>label</FormLabel>
+          <Autocomplete options={[]} />
+        </FormControl>,
+      );
+
+      expect(getByRole('combobox')).to.have.attribute('disabled');
+    });
   });
 });

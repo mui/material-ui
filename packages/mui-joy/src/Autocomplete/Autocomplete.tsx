@@ -480,7 +480,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       name,
       readOnly,
       disabled,
-      required,
+      required: required ?? formControl?.required,
       type,
       'aria-invalid': error || undefined,
       'aria-label': ariaLabel,
