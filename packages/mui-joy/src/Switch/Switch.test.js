@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('<Switch />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Switch />, () => ({
+  describeConformance(<Switch startDecorator="1" endDecorator="2" />, () => ({
     classes,
     render,
     ThemeProvider,
@@ -21,14 +21,23 @@ describe('<Switch />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+      thumb: { expectedClassName: classes.thumb },
+      track: { expectedClassName: classes.track },
+      action: { expectedClassName: classes.action },
+      input: { expectedClassName: classes.input },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
 
-  it('should pass `componentsProps` down to slots', () => {
+  it('should pass `slotProps` down to slots', () => {
     const { container } = render(
       <Switch
         data-testid="root-switch"
-        componentsProps={{
+        slotProps={{
           thumb: { className: 'custom-thumb' },
           track: { className: 'custom-track' },
           action: { className: 'custom-action' },

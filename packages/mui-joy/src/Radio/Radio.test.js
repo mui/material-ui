@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('<Radio />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Radio />, () => ({
+  describeConformance(<Radio label="demo" />, () => ({
     classes,
     render,
     ThemeProvider,
@@ -16,6 +16,14 @@ describe('<Radio />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     refInstanceof: window.HTMLSpanElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+      radio: { expectedClassName: classes.radio },
+      icon: { expectedClassName: classes.icon },
+      action: { expectedClassName: classes.action },
+      input: { expectedClassName: classes.input },
+      label: { expectedClassName: classes.label },
+    },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 
