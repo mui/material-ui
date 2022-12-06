@@ -136,21 +136,6 @@ You can change the default number of columns (12) with the `columns` prop.
 
 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
-### white-space: nowrap
-
-The initial setting on flex items is `min-width: auto`.
-This causes a positioning conflict when children use `white-space: nowrap;`.
-You can reproduce the issue with:
-
-```jsx
-<Grid xs>
-  <Typography noWrap>
-```
-
-In order for the item to stay within the container you need to set `min-width: 0`.
-
-{{"demo": "AutoGridNoWrap.js", "bg": true}}
-
 ### direction: column | column-reverse
 
 The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
