@@ -40,7 +40,6 @@ export default function InteractiveStack() {
               p: 2,
               pt: value + 1,
               pb: value + 1,
-              color: 'text.secondary',
               typography: 'body2',
               backgroundColor: (theme) =>
                 theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
