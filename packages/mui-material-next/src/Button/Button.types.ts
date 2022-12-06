@@ -5,7 +5,7 @@ import {
   OverridableComponent,
   OverridableTypeMap,
 } from '@mui/types';
-import { TouchRippleProps } from './TouchRipple';
+import { TouchRippleProps } from './TouchRipple.types';
 import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
 
@@ -78,9 +78,6 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
     disableElevation?: boolean;
     /**
      * If `true`, the ripple effect is disabled.
-     *
-     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
      * @default false
      */
     disableRipple?: boolean;

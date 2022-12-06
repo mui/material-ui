@@ -4,6 +4,7 @@ import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes, useThemeProps } from '@mui/system';
 import styled from '@mui/material/styles/styled';
+import { TouchRippleActions, TouchRippleProps } from './TouchRipple.types';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
 
@@ -31,7 +32,7 @@ const exitKeyframe = keyframes`
 `;
 
 export const TouchRippleRoot = styled('span', {
-  name: 'MuiTouchRipple',
+  name: 'PrivateTouchRipple',
   slot: 'Root',
 })({
   overflow: 'hidden',
@@ -48,7 +49,7 @@ export const TouchRippleRoot = styled('span', {
 // This `styled()` function invokes keyframes. `styled-components` only supports keyframes
 // in string templates. Do not convert these styles in JS object as it will break.
 export const TouchRippleRipple = styled(Ripple, {
-  name: 'MuiTouchRipple',
+  name: 'PrivateTouchRipple',
   slot: 'Ripple',
 })`
   opacity: 0;
@@ -78,16 +79,17 @@ export const TouchRippleRipple = styled(Ripple, {
 
 /**
  * @ignore - internal component.
- *
- * TODO v5: Make private
  */
-const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTouchRipple' });
+const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(function TouchRipple(
+  inProps,
+  ref,
+) {
+  const props = useThemeProps({ props: inProps, name: 'PrivateTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
-  const [ripples, setRipples] = React.useState([]);
+  const [ripples, setRipples] = React.useState<React.ReactNode[]>([]);
   const nextKey = React.useRef(0);
-  const rippleCallback = React.useRef(null);
+  const rippleCallback = React.useRef<(() => void) | null>();
 
   React.useEffect(() => {
     if (rippleCallback.current) {
@@ -100,11 +102,11 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const ignoringMouseDown = React.useRef(false);
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  const startTimer = React.useRef(null);
+  const startTimer = React.useRef<ReturnType<typeof setTimeout>>();
 
   // This is the hook called once the previous timeout is ready.
-  const startTimerCommit = React.useRef(null);
-  const container = React.useRef(null);
+  const startTimerCommit = React.useRef<(() => void) | null>(null);
+  const container = React.useRef<HTMLSpanElement | null>(null);
 
   React.useEffect(() => {
     return () => {
@@ -113,7 +115,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   }, []);
 
   const startCommit = React.useCallback(
-    (params) => {
+    (params: { rippleX: number; rippleY: number; rippleSize: number; cb: () => void }) => {
       const { rippleX, rippleY, rippleSize, cb } = params;
 
       setRipples((oldRipples) => [
@@ -138,19 +140,20 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     [classes],
   );
 
-  const start = React.useCallback(
-    (event = {}, options = {}, cb = () => {}) => {
+  const start = React.useCallback<TouchRippleActions['start']>(
+    (event, options = {}, cb = () => {}) => {
       const {
         center = centerProp,
-        fakeElement = false, // For test purposes
+        // @ts-ignore For test purposes
+        fakeElement = false,
       } = options;
 
-      if (event.type === 'mousedown' && ignoringMouseDown.current) {
+      if (event?.type === 'mousedown' && ignoringMouseDown.current) {
         ignoringMouseDown.current = false;
         return;
       }
 
-      if (event.type === 'touchstart') {
+      if (event?.type === 'touchstart') {
         ignoringMouseDown.current = true;
       }
 
@@ -165,19 +168,22 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
           };
 
       // Get the size of the ripple
-      let rippleX;
-      let rippleY;
-      let rippleSize;
+      let rippleX: number;
+      let rippleY: number;
+      let rippleSize: number;
 
       if (
         center ||
-        (event.clientX === 0 && event.clientY === 0) ||
-        (!event.clientX && !event.touches)
+        ((event as React.MouseEvent)?.clientX === 0 &&
+          (event as React.MouseEvent)?.clientY === 0) ||
+        (!(event as React.MouseEvent)?.clientX && !(event as React.TouchEvent)?.touches)
       ) {
         rippleX = Math.round(rect.width / 2);
         rippleY = Math.round(rect.height / 2);
       } else {
-        const { clientX, clientY } = event.touches ? event.touches[0] : event;
+        const { clientX, clientY } = (event as React.TouchEvent)?.touches
+          ? (event as React.TouchEvent)?.touches[0]
+          : (event as React.MouseEvent);
         rippleX = Math.round(clientX - rect.left);
         rippleY = Math.round(clientY - rect.top);
       }
@@ -198,7 +204,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
       }
 
       // Touche devices
-      if (event.touches) {
+      if ((event as React.TouchEvent)?.touches) {
         // check that this isn't another touchstart due to multitouch
         // otherwise we will only clear a single timer when unmounting while two
         // are running
@@ -222,12 +228,12 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     [centerProp, startCommit],
   );
 
-  const stop = React.useCallback((event, cb) => {
+  const stop = React.useCallback<TouchRippleActions['stop']>((event, cb) => {
     clearTimeout(startTimer.current);
 
     // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
-    if (event.type === 'touchend' && startTimerCommit.current) {
+    if (event?.type === 'touchend' && startTimerCommit.current) {
       startTimerCommit.current();
       startTimerCommit.current = null;
       startTimer.current = setTimeout(() => {
@@ -259,7 +265,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   return (
     <TouchRippleRoot
       className={clsx(classes.root, touchRippleClasses.root, className)}
-      ref={container}
+      ref={container as React.Ref<any>}
       {...other}
     >
       <TransitionGroup component={null} exit>

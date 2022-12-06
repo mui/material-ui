@@ -16,6 +16,7 @@ import useTouchRipple from './useTouchRipple';
 import { MD3ColorSchemeTokens, styled } from '../styles';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
+import { TouchRippleActions } from '@mui/material/ButtonBase/TouchRipple';
 
 const useUtilityClasses = (styleProps: ButtonOwnerState) => {
   const {
@@ -433,7 +434,7 @@ const Button = React.forwardRef(function Button<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
-  const rippleRef = React.useRef(null);
+  const rippleRef = React.useRef<TouchRippleActions | null>(null);
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && (other.href || other.to)) {
@@ -526,7 +527,7 @@ const Button = React.forwardRef(function Button<
       {endIcon}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
+        <TouchRipple ref={rippleRef as React.Ref<any>} center={centerRipple} {...TouchRippleProps} />
       ) : null}
     </ButtonRoot>
   );
@@ -583,9 +584,6 @@ Button.propTypes /* remove-proptypes */ = {
   disableElevation: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
-   *
-   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -693,7 +691,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the `TouchRipple` element.
    */
-  TouchRippleProps: PropTypes.object,
+  TouchRippleProps: PropTypes.any,
   /**
    * @ignore
    */

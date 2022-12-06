@@ -2,10 +2,20 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
+interface RippleProps {
+  className?: string;
+  classes: Record<string, string>;
+  rippleX: number;
+  rippleY: number;
+  rippleSize: number;
+  in?: boolean;
+  onExited?: () => void;
+  timeout: number;
+}
 /**
  * @ignore - internal component.
  */
-function Ripple(props) {
+function Ripple(props: RippleProps) {
   const { className, classes, rippleX, rippleY, rippleSize, in: inProp, onExited, timeout } = props;
   const [leaving, setLeaving] = React.useState(false);
 
