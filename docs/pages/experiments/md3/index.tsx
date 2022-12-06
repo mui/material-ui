@@ -76,7 +76,7 @@ function DemoComponents() {
           </Button>
         ))}
       </Stack>
-      <h4>Enabled with disabled ripple</h4>
+      <h4>Enabled without a ripple effect</h4>
       <Stack direction="row" gap={1}>
         {variants.map((variant) => (
           <Button key={`${variant}-enabled`} variant={variant} disableRipple>
