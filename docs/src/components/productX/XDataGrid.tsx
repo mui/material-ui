@@ -91,7 +91,7 @@ export default function XDataGrid() {
         const checkbox = document.querySelector(
           '#data-grid-demo div[data-field="__check__"] input',
         ) as HTMLInputElement | null;
-        if (checkbox) {
+        if (checkbox && !checkbox.checked) {
           checkbox.click();
         }
       }
