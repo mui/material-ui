@@ -72,7 +72,7 @@ export default function XPlans() {
                   top: '50%',
                   transform: 'translate(-50%, -50%)',
                   ...theme.applyDarkStyles({
-                    content: `url(/static/branding/mui-x/Mocktable-dark.png)`,
+                    content: 'url(/static/branding/mui-x/Mocktable-dark.png)',
                   }),
                 })}
               />

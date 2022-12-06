@@ -6,7 +6,7 @@ import {
   GridRenderEditCellParams,
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -25,8 +25,7 @@ import EditProgress from 'docs/src/components/x-grid/EditProgress';
 import Status from 'docs/src/components/x-grid/Status';
 import EditStatus from 'docs/src/components/x-grid/EditStatus';
 
-const lightTheme = createTheme();
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
+const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
 
 export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
@@ -139,7 +138,7 @@ export default function XTheming() {
                 }),
               })}
             >
-              <XGridGlobalStyles selector="#data-grid-theming" pro />
+              {dataGridStyleOverrides}
               <DataGridPro
                 {...data}
                 columns={getColumns()}
@@ -152,26 +151,27 @@ export default function XTheming() {
               />
             </Paper>
           ) : (
-            <ThemeProvider
-              theme={(globalTheme: Theme) => {
-                if (globalTheme.palette.mode === 'dark') {
-                  return darkTheme;
-                }
-                return lightTheme;
-              }}
-            >
+            <CssVarsProvider>
               <Paper
                 elevation={0}
-                sx={{
-                  height: 418,
-                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                    '& .MuiChip-root': {
-                      // don't need to use `theme.applyDarkStyles` because this section is client rendered
-                      // and it is wrapped with the ThemeProvider to provide the default styles.
-                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
+                sx={[
+                  {
+                    height: 418,
+                    '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                      '& .MuiChip-root': {
+                        color: red[500],
+                      },
                     },
                   },
-                }}
+                  (theme) =>
+                    theme.applyDarkStyles({
+                      '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                        '& .MuiChip-root': {
+                          color: red[300],
+                        },
+                      },
+                    }),
+                ]}
               >
                 <DataGridPro
                   {...data}
@@ -184,7 +184,7 @@ export default function XTheming() {
                   experimentalFeatures={{ newEditingApi: true }}
                 />
               </Paper>
-            </ThemeProvider>
+            </CssVarsProvider>
           )}
         </Grid>
       </Grid>

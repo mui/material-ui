@@ -78,13 +78,14 @@ export default function XHero() {
           <Paper
             sx={(theme) => ({
               backgroundColor: '#fff',
-              border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-              boxShadow: `0px 4px 20px ${'rgba(170, 180, 190, 0.3)'}`,
+              border: '1px solid',
+              borderColor: 'grey.200',
+              boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
               mb: { md: 2, lg: 3, xl: 4 },
               ...theme.applyDarkStyles({
                 backgroundColor: 'primaryDark.800',
-                border: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
-                boxShadow: `0px 4px 20px ${'rgba(0, 0, 0, 0.3)'}`,
+                borderColor: 'primaryDark.600',
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
               }),
             })}
           >
@@ -94,9 +95,10 @@ export default function XHero() {
                 py: 1.5,
                 position: 'relative',
                 borderRadius: 0,
-                borderBottom: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
+                borderBottom: '1px solid',
+                borderColor: 'grey.200',
                 ...theme.applyDarkStyles({
-                  borderBottom: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
+                  borderColor: 'primaryDark.600',
                 }),
               })}
             >
@@ -104,7 +106,7 @@ export default function XHero() {
             </Box>
             <Box
               sx={[
-                (theme) => ({
+                {
                   height: { md: 300, xl: 370 },
                   '& .MuiDataGrid-root': {
                     borderRadius: 1,
@@ -117,7 +119,8 @@ export default function XHero() {
                       },
                     },
                     '& .MuiDataGrid-columnHeaders': {
-                      borderBottom: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
+                      borderBottom: '1px solid',
+                      borderColor: 'grey.200',
                     },
                     '& .MuiDataGrid-columnHeaderTitleContainer': {
                       padding: 0,
@@ -133,7 +136,8 @@ export default function XHero() {
                     '& .MuiDataGrid-cell': {
                       fontSize: '0.875rem',
                       color: 'text.secondary',
-                      borderBottom: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
+                      borderBottom: '1px solid',
+                      borderColor: 'grey.200',
                     },
                     '& .MuiDataGrid-viewport': {
                       '& .MuiDataGrid-cell': {
@@ -151,15 +155,15 @@ export default function XHero() {
                       },
                     },
                   },
-                }),
+                },
                 (theme) =>
                   theme.applyDarkStyles({
                     '& .MuiDataGrid-root': {
                       '& .MuiDataGrid-columnHeaders': {
-                        borderBottom: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
+                        borderColor: 'primaryDark.600',
                       },
                       '& .MuiDataGrid-cell': {
-                        borderBottom: `1px solid ${alpha(theme.palette.primaryDark[600], 0.5)}`,
+                        borderColor: alpha(theme.palette.primaryDark[600], 0.5),
                       },
                       '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
                         '& .MuiChip-root': {
@@ -192,16 +196,17 @@ export default function XHero() {
             <Paper
               sx={(theme) => ({
                 backgroundColor: '#fff',
-                border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-                boxShadow: `0px 4px 20px ${'rgba(170, 180, 190, 0.3)'}`,
+                border: '1px solid',
+                borderColor: 'grey.200',
+                boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                ...theme.applyDarkStyles({
+                  backgroundColor: 'primaryDark.800',
+                  borderColor: 'primaryDark.600',
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+                }),
                 minWidth: 300,
                 mr: { md: 2, lg: 3, xl: 4 },
                 flexGrow: 1,
-                ...theme.applyDarkStyles({
-                  backgroundColor: 'primaryDark.800',
-                  border: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
-                  boxShadow: `0px 4px 20px ${'rgba(0, 0, 0, 0.3)'}`,
-                }),
               })}
             >
               <Box sx={{ p: 2 }}>
@@ -212,9 +217,10 @@ export default function XHero() {
             </Paper>
             <Paper
               sx={[
-                (theme) => ({
-                  border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-                  boxShadow: `0px 4px 20px ${'rgba(170, 180, 190, 0.3)'}`,
+                {
+                  border: '1px solid',
+                  borderColor: 'grey.200',
+                  boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
                   '& > div': {
                     borderRadius: 1,
                     overflow: 'auto',
@@ -227,7 +233,7 @@ export default function XHero() {
                     width: { xs: 28, xl: 32 },
                     height: 32,
                   },
-                  '& .PrivatePickersSlideTransition-root': {
+                  '& .MuiPickersSlideTransition-root': {
                     minWidth: { xs: 268, xl: 300 },
                     minHeight: { xs: 238, xl: 288 },
                   },
@@ -243,11 +249,11 @@ export default function XHero() {
                     height: { xs: 28, xl: 32 },
                     fontWeight: 400,
                   },
-                }),
+                },
                 (theme) =>
                   theme.applyDarkStyles({
-                    border: `1px solid ${(theme.vars || theme).palette.primaryDark[600]}`,
-                    boxShadow: `0px 4px 20px ${'rgba(0, 0, 0, 0.3)'}`,
+                    borderColor: 'primaryDark.600',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
                     '& > div': {
                       backgroundColor: 'primaryDark.800',
                     },

@@ -53,10 +53,8 @@ export default function XGridGlobalStyles({
                 fontSize: '1rem',
               },
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-              },
-              '& .MuiDataGrid-columnsContainer': {
-                bgcolor: '#fff',
+                borderBottom: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
               },
               '& .MuiDataGrid-columnHeaderTitleContainer': {
                 padding: 0,
@@ -77,7 +75,8 @@ export default function XGridGlobalStyles({
                 backgroundColor: (theme.vars || theme).palette.grey[50],
               },
               '& .MuiDataGrid-cell': {
-                borderBottom: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
+                borderBottom: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
               },
               '& .MuiDataGrid-editInputCell': {
                 fontSize: '0.75rem',
@@ -105,7 +104,6 @@ export default function XGridGlobalStyles({
                   borderRadius: (theme.vars || theme).shape.borderRadius,
                   padding: theme.spacing(0.5),
                   border: '1px solid',
-                  bgcolor: 'transparent',
                   borderColor: (theme.vars || theme).palette.grey[200],
                   '&:last-of-type': {
                     marginLeft: theme.spacing(1),
@@ -140,10 +138,7 @@ export default function XGridGlobalStyles({
                 color: (theme.vars || theme).palette.primary[300],
               },
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: `1px solid ${(theme.vars || theme).palette.primaryDark[500]}`,
-              },
-              '& .MuiDataGrid-columnsContainer': {
-                bgcolor: (theme.vars || theme).palette.primaryDark[800],
+                borderColor: (theme.vars || theme).palette.primaryDark[500],
               },
               '& .MuiDataGrid-columnSeparator': {
                 color: (theme.vars || theme).palette.primaryDark[400],
@@ -157,7 +152,7 @@ export default function XGridGlobalStyles({
                 backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               },
               '& .MuiDataGrid-cell': {
-                borderBottom: `1px solid ${alpha(theme.palette.primaryDark[500], 0.5)}`,
+                borderColor: alpha(theme.palette.primaryDark[500], 0.5),
               },
               '& .MuiTablePagination-root': {
                 '& .MuiIconButton-root': {
@@ -165,7 +160,6 @@ export default function XGridGlobalStyles({
                     color: (theme.vars || theme).palette.primaryDark[100],
                     borderColor: (theme.vars || theme).palette.primaryDark[300],
                   },
-                  bgcolor: (theme.vars || theme).palette.primaryDark[600],
                   borderColor: (theme.vars || theme).palette.primaryDark[500],
                 },
               },

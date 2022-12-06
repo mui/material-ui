@@ -32,17 +32,22 @@ const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
 })<{ ratio: number; src: string }>(({ src, ratio, theme }) => ({
   height: 0,
-  backgroundImage: `url(${src.replace('$mode', 'light')})`,
+  backgroundImage: `url(${src.replace('$mode', theme.palette.mode)})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   paddingBottom: `${(1 / ratio) * 100}%`,
   margin: 'auto',
-  ...theme.applyDarkStyles({
-    backgroundImage: `url(${src.replace('$mode', 'dark')})`,
-  }),
 }));
 
 function PrefetchImages() {
+  function makeImg(component: 'sparkline' | 'chart', mode: string, num: number) {
+    return {
+      loading: 'lazy' as const,
+      width: 100,
+      height: 100,
+      src: `/static/branding/mui-x/${component}-${mode}${num}.png`,
+    };
+  }
   return (
     <Box
       sx={{
@@ -58,36 +63,14 @@ function PrefetchImages() {
     >
       {[...Array(2)].map((_, index) => (
         <React.Fragment key={index}>
-          <Box
-            component="img"
-            alt=""
-            loading="lazy"
-            width={100}
-            height={100}
-            src={`/static/branding/mui-x/sparkline-light${index + 1}.png`}
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url("/static/branding/mui-x/sparkline-dark${index + 1}.png")`,
-              })
-            }
-          />
+          <img alt="" {...makeImg('sparkline', 'light', index + 1)} />
+          <img alt="" {...makeImg('sparkline', 'dark', index + 1)} />
         </React.Fragment>
       ))}
       {[...Array(4)].map((_, index) => (
         <React.Fragment key={index}>
-          <Box
-            component="img"
-            alt=""
-            loading="lazy"
-            width={100}
-            height={100}
-            src={`/static/branding/mui-x/chart-light${index + 1}.png`}
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url("/static/branding/mui-x/chart-dark${index + 1}.png")`,
-              })
-            }
-          />
+          <img alt="" {...makeImg('chart', 'light', index + 1)} />
+          <img alt="" {...makeImg('chart', 'dark', index + 1)} />
         </React.Fragment>
       ))}
     </Box>
