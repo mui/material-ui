@@ -106,8 +106,8 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## Auto-layout
 
-The Auto-layout makes the _items_ equitably share the available space.
-That also means you can set the width of one _item_ and the others will automatically resize around it.
+The Auto-layout makes the grid items equitably share the available space.
+That also means you can set the width of one grid item and the others will automatically resize around it.
 
 {{"demo": "AutoGrid.js", "bg": true}}
 
@@ -143,7 +143,7 @@ This causes a positioning conflict when children use `white-space: nowrap;`.
 You can reproduce the issue with:
 
 ```jsx
-<Grid item xs>
+<Grid xs>
   <Typography noWrap>
 ```
 
