@@ -1,5 +1,4 @@
 import * as React from 'react';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
