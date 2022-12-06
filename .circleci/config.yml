@@ -192,23 +192,7 @@ jobs:
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
             ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
-  test_lint:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - run:
-          name: Eslint
-          command: yarn lint:ci
-      - run:
-          name: Stylelint
-          command: yarn stylelint
-      - run:
-          name: Lint JSON
-          command: yarn jsonlint
-      - run:
-          name: Lint Markdown
-          command: yarn markdownlint
+
   test_static:
     <<: *defaults
     steps:
