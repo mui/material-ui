@@ -527,7 +527,11 @@ const Button = React.forwardRef(function Button<
       {endIcon}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple ref={rippleRef as React.Ref<any>} center={centerRipple} {...TouchRippleProps} />
+        <TouchRipple
+          ref={rippleRef as React.Ref<any>}
+          center={centerRipple}
+          {...TouchRippleProps}
+        />
       ) : null}
     </ButtonRoot>
   );
