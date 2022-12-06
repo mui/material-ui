@@ -18,6 +18,28 @@ The grid, based on a 12-column grid layout, creates visual consistency between l
 ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
+## Component
+
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Grid from '@mui/joy/Grid';
+import Sheet from '@mui/joy/Sheet';
+
+export default function MyApp() {
+  return (
+    <Grid container>
+      <Grid xs={6}>
+        <Sheet>Item 1</Sheet>
+      </Grid>    
+      <Grid xs={6}>
+        <Sheet>Item 2</Sheet>
+      </Grid>
+    </Grid>
+  );
+}
+```
+
 ### Basic grid
 
 Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
