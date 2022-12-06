@@ -1,4 +1,5 @@
 import * as React from 'react';
+// eslint-disable-next-line no-restricted-imports the type is only exported from root
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { TouchRippleClasses, TouchRippleClassKey } from './touchRippleClasses';
 
@@ -25,7 +26,3 @@ export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> 
    */
   classes?: Partial<TouchRippleClasses>;
 };
-
-declare const TouchRipple: React.ForwardRefRenderFunction<TouchRippleActions, TouchRippleProps>;
-
-export default TouchRipple;

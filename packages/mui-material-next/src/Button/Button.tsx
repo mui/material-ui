@@ -12,11 +12,11 @@ import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import TouchRipple from './TouchRipple';
+import { TouchRippleActions } from './TouchRipple.types';
 import useTouchRipple from './useTouchRipple';
 import { MD3ColorSchemeTokens, styled } from '../styles';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
-import { TouchRippleActions } from '@mui/material/ButtonBase/TouchRipple';
 
 const useUtilityClasses = (styleProps: ButtonOwnerState) => {
   const {
@@ -434,7 +434,7 @@ const Button = React.forwardRef(function Button<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
-  const rippleRef = React.useRef<TouchRippleActions | null>(null);
+  const rippleRef = React.useRef<TouchRippleActions>(null);
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && (other.href || other.to)) {
@@ -468,7 +468,6 @@ const Button = React.forwardRef(function Button<
     disabled,
     disableRipple,
     disableTouchRipple,
-    focusVisible,
     rippleRef,
   });
 
@@ -527,11 +526,7 @@ const Button = React.forwardRef(function Button<
       {endIcon}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple
-          ref={rippleRef as React.Ref<any>}
-          center={centerRipple}
-          {...TouchRippleProps}
-        />
+        <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
     </ButtonRoot>
   );
@@ -695,7 +690,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the `TouchRipple` element.
    */
-  TouchRippleProps: PropTypes.any,
+  TouchRippleProps: PropTypes.object,
   /**
    * @ignore
    */

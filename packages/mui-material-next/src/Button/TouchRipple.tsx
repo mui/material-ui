@@ -84,6 +84,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
   inProps,
   ref,
 ) {
+  // eslint-disable-next-line material-ui/mui-name-matches-component-name private component
   const props = useThemeProps({ props: inProps, name: 'PrivateTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
@@ -106,7 +107,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
 
   // This is the hook called once the previous timeout is ready.
   const startTimerCommit = React.useRef<(() => void) | null>(null);
-  const container = React.useRef<HTMLSpanElement | null>(null);
+  const container = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
     return () => {
@@ -181,9 +182,10 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
         rippleX = Math.round(rect.width / 2);
         rippleY = Math.round(rect.height / 2);
       } else {
-        const { clientX, clientY } = (event as React.TouchEvent)?.touches
-          ? (event as React.TouchEvent)?.touches[0]
-          : (event as React.MouseEvent);
+        const { clientX, clientY } =
+          event && (event as React.TouchEvent).touches
+            ? (event as React.TouchEvent).touches[0]
+            : (event as React.MouseEvent);
         rippleX = Math.round(clientX - rect.left);
         rippleY = Math.round(clientY - rect.top);
       }
@@ -265,7 +267,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
   return (
     <TouchRippleRoot
       className={clsx(classes.root, touchRippleClasses.root, className)}
-      ref={container as React.Ref<any>}
+      ref={container}
       {...other}
     >
       <TransitionGroup component={null} exit>

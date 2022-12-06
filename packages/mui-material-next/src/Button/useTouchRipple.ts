@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useEventCallback } from '@mui/material/utils';
-import { TouchRippleActions } from './TouchRipple';
+import { TouchRippleActions } from './TouchRipple.types';
 
 interface UseTouchRippleProps {
   disabled: boolean;
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
   disableTouchRipple?: boolean;
-  focusVisible: boolean;
   rippleRef: React.RefObject<TouchRippleActions>;
 }
 
@@ -24,7 +23,7 @@ interface RippleEventHandlers {
 }
 
 const useTouchRipple = (props: UseTouchRippleProps) => {
-  const { disabled, disableRipple, disableTouchRipple, focusVisible, rippleRef } = props;
+  const { disabled, disableRipple, disableTouchRipple, rippleRef } = props;
 
   function useRippleHandler(
     rippleAction: keyof TouchRippleActions,
