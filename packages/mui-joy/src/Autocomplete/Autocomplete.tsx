@@ -149,10 +149,9 @@ const AutocompleteWrapper = styled('div', {
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
         marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart:
-          'calc(-1 * min(var(--Autocomplete-wrapper-gap), var(--_Input-paddingBlock)))',
+        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'var(--Input-gap)',
+          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
         },
       }),
   },
@@ -483,7 +482,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       name,
       readOnly,
       disabled,
-      required,
+      required: required ?? formControl?.required,
       type,
       'aria-invalid': error || undefined,
       'aria-label': ariaLabel,

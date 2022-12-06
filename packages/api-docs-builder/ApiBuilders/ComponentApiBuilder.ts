@@ -11,20 +11,19 @@ import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
-import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import { LANGUAGES } from 'docs/src/modules/constants';
-import parseTest from 'docs/src/modules/utils/parseTest';
-import generatePropTypeDescription, {
-  getChained,
-} from 'docs/src/modules/utils/generatePropTypeDescription';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
+import { getUnstyledFilename } from '@mui-internal/docs-utilities';
+import * as ttp from 'typescript-to-proptypes';
+import { LANGUAGES } from 'docs/config';
+
+import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
+import parseTest from '../utils/parseTest';
+import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
 import createDescribeableProp, {
   DescribeablePropDescriptor,
-} from 'docs/src/modules/utils/createDescribeableProp';
-import generatePropDescription from 'docs/src/modules/utils/generatePropDescription';
-import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
-import * as ttp from 'typescript-to-proptypes';
-import { getUnstyledFilename } from '../helpers';
+} from '../utils/createDescribeableProp';
+import generatePropDescription from '../utils/generatePropDescription';
+import parseStyles, { Styles } from '../utils/parseStyles';
 import { ComponentInfo } from '../buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');

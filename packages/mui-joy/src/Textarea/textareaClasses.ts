@@ -5,6 +5,10 @@ export interface TextareaClasses {
   root: string;
   /** Styles applied to the textarea element. */
   textarea: string;
+  /** Styles applied to the startDecorator element if supplied. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element if supplied. */
+  endDecorator: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
   /** Styles applied to the root element if `disabled={true}`. */
@@ -52,6 +56,8 @@ export function getTextareaUtilityClass(slot: string): string {
 const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
   'root',
   'textarea',
+  'startDecorator',
+  'endDecorator',
   'formControl',
   'disabled',
   'error',

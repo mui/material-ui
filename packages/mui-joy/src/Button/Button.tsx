@@ -132,7 +132,7 @@ export const ButtonRoot = styled('button', {
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
+      fontWeight: theme.vars.fontWeight.lg,
       lineHeight: 1,
       ...(ownerState.fullWidth && {
         width: '100%',

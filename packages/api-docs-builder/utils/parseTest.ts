@@ -2,7 +2,7 @@ import * as babel from '@babel/core';
 import { readFile, existsSync } from 'fs-extra';
 import * as path from 'path';
 
-const workspaceRoot = path.join(__dirname, '../../../../');
+const workspaceRoot = path.join(__dirname, '../../../');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
 
 function withExtension(filepath: string, extension: string) {

@@ -3,6 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": "./index.js",
     "./loader": "./loader.js",
