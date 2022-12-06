@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-interface RippleProps {
+export interface RippleProps {
   className?: string;
   classes: Record<string, string>;
   rippleX: number;
