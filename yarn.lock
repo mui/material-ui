@@ -1252,50 +1252,50 @@
   dependencies:
     "@chakra-ui/utils" "2.0.12"
 
-"@chakra-ui/styled-system@2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.3.5.tgz#88f1530d77c30285c6aa7c561d4bd770bebd705c"
-  integrity sha512-Xj78vEq/R+1OVx36tJnAb/vLtX6DD9k/yxj3lCigl3q5Qjr6aglPBjqHdfFbGaQeB0Gt4ABPyxUDO3sAhdxC4w==
+"@chakra-ui/styled-system@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.4.0.tgz#4b50079606331e4e8fda7ea59da9db51b446d40c"
+  integrity sha512-G4HpbFERq4C1cBwKNDNkpCiliOICLXjYwKI/e/6hxNY+GlPxt8BCzz3uhd3vmEoG2vRM4qjidlVjphhWsf6vRQ==
   dependencies:
     csstype "^3.0.11"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/system@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.3.tgz#1557f573a3394e375411631b0836f0e79c9f68f9"
-  integrity sha512-nOEXC08d4PiK/4QwSV4tnci2SoWjDHEVSveWW9qoRRr1iZUbQffpwYyJY4pBpPJE7CsA2w3GXK7NdMFRwPtamQ==
+"@chakra-ui/system@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.4.tgz#425bf7eebf61bd92aa68f60a6b62c380274fbe4e"
+  integrity sha512-/2m8hFfFzOMO2OlwHxTWqINOBJMjxWwU5V/AcB7C0qS51Dcj9c7kupilM6QdqiOLLdMS7mIVRSYr8jn8gMw9fA==
   dependencies:
     "@chakra-ui/color-mode" "2.1.10"
     "@chakra-ui/react-utils" "2.0.9"
-    "@chakra-ui/styled-system" "2.3.5"
-    "@chakra-ui/theme-utils" "2.0.4"
+    "@chakra-ui/styled-system" "2.4.0"
+    "@chakra-ui/theme-utils" "2.0.5"
     "@chakra-ui/utils" "2.0.12"
     react-fast-compare "3.2.0"
 
-"@chakra-ui/theme-tools@2.0.13":
-  version "2.0.13"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-2.0.13.tgz#cde5503b4044832ab659904281e8a260deae73bb"
-  integrity sha512-Dvai4lljtrs9f2aha3b9yajmxroNaVGNvkKkwh77dRW2jcNNBXepkGWfNLXVkP68Yydz5O+Lt5DKvETrEho9cQ==
+"@chakra-ui/theme-tools@2.0.14":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-2.0.14.tgz#6c523284ab384ca57a3aef1fcfa7c32ed357fbde"
+  integrity sha512-lVcDmq5pyU0QbsIFKjt/iVUFDap7di2QHvPvGChA1YSjtg1PtuUi+BxEXWzp3Nfgw/N4rMvlBs+S0ynJypdwbg==
   dependencies:
     "@chakra-ui/anatomy" "2.1.0"
-    "@ctrl/tinycolor" "^3.4.0"
+    color2k "^2.0.0"
 
-"@chakra-ui/theme-utils@2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.4.tgz#7357dd03734bc74d3a8be09db19d6b73c8f34075"
-  integrity sha512-vrYuZxzc31c1bevfJRCk4j68dUw4Bxt6QAm3RZcUQyvTnS6q5FhMz+R1X6vS3+IfIhSscZFxwRQSp/TpyY4Vtw==
+"@chakra-ui/theme-utils@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.5.tgz#ad1e53fc7f71326d15b9b01a157c7e2a029f3dda"
+  integrity sha512-QQowSM8fvQlTmT0w9wtqUlWOB4i+9eA7P4XRm4bfhBMZ7XpK4ctV95sPeGqaXVccsz5m0q1AuGWa+j6eMCbrrg==
   dependencies:
-    "@chakra-ui/styled-system" "2.3.5"
-    "@chakra-ui/theme" "2.2.1"
+    "@chakra-ui/styled-system" "2.4.0"
+    "@chakra-ui/theme" "2.2.2"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/theme@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-2.2.1.tgz#83f5e484640bf8d97075f9fa3ca41f02c5caf3f7"
-  integrity sha512-6qEJMfnTjB5vGoY1kO/fDarK0Ivrb77UzDw8rY0aTHbjLJkOVxtd7d2H7m8xufh6gecCI5HuXqq8I297pLYm+w==
+"@chakra-ui/theme@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-2.2.2.tgz#5ea69adde78ee6ea59f9dce674947ed8be2ebc62"
+  integrity sha512-7DlOQiXmnaqYyqXwqmfFSCWGkUonuqmNC5mmUCwxI435KgHNCaE2bIm6DI7N2NcIcuVcfc8Vn0UqrDoGU3zJBg==
   dependencies:
     "@chakra-ui/anatomy" "2.1.0"
-    "@chakra-ui/theme-tools" "2.0.13"
+    "@chakra-ui/theme-tools" "2.0.14"
 
 "@chakra-ui/utils@2.0.12":
   version "2.0.12"
@@ -1318,11 +1318,6 @@
   integrity sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
-
-"@ctrl/tinycolor@^3.4.0":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz#75b4c27948c81e88ccd3a8902047bcd797f38d32"
-  integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
 "@date-io/core@^2.15.0":
   version "2.15.0"
@@ -5844,6 +5839,11 @@ color-support@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-support/-/color-support-1.1.3.tgz#93834379a1cc9a0c61f82f52f0d04322251bd5a2"
   integrity sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==
+
+color2k@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/color2k/-/color2k-2.0.0.tgz#86992c82e248c29f524023ed0822bc152c4fa670"
+  integrity sha512-DWX9eXOC4fbJNiuvdH4QSHvvfLWyFo9TuFp7V9OzdsbPAdrWAuYc8qvFP2bIQ/LKh4LrAVnJ6vhiQYPvAHdtTg==
 
 color@^4.2.3:
   version "4.2.3"
