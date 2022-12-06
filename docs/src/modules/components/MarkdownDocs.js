@@ -10,6 +10,8 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import Ad from 'docs/src/modules/components/Ad';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -62,6 +64,11 @@ export default function MarkdownDocs(props) {
       toc={toc}
     >
       <Provider>
+        {disableAd ? null : (
+          <AdGuest>
+            <Ad />
+          </AdGuest>
+        )}
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
