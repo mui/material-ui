@@ -4,7 +4,7 @@ import { ValidationMap } from 'prop-types';
 // the module was forked.
 
 const specialProperty = 'exact-prop: \u200b';
-const ignorePrefixes = ["data-"]
+const ignorePrefixes = ['data-'];
 
 export default function exactProp<T>(propTypes: ValidationMap<T>): ValidationMap<T> {
   if (process.env.NODE_ENV === 'production') {
@@ -15,7 +15,9 @@ export default function exactProp<T>(propTypes: ValidationMap<T>): ValidationMap
     ...propTypes,
     [specialProperty]: (props: { [key: string]: unknown }) => {
       const unsupportedProps = Object.keys(props).filter(
-        (prop) => !ignorePrefixes.some((prefix) => prop.startsWith(prefix)) && !propTypes.hasOwnProperty(prop)
+        (prop) =>
+          !ignorePrefixes.some((prefix) => prop.startsWith(prefix)) &&
+          !propTypes.hasOwnProperty(prop),
       );
       if (unsupportedProps.length > 0) {
         return new Error(
