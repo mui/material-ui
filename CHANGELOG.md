@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.10.16..master -->
 
-_Dec 5, 2022_
+_Dec 6, 2022_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
