@@ -749,9 +749,6 @@ workflows:
       - test_unit:
           requires:
             - checkout
-      - test_lint:
-          requires:
-            - checkout
       - test_static:
           requires:
             - checkout
