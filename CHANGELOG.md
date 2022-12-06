@@ -36,6 +36,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   -<Autocomplete components={{listbox: CustomListbox}} componentsProps={{listbox: { className: 'custom-listbox' }}} />
   +<Autocomplete slots={{listbox: CustomListbox}} slotProps={{listbox: { className: 'custom-listbox' }}} />
   ```
+
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-components-to-slots) to help with the migration.
 
 #### Changes
