@@ -15,6 +15,9 @@ describe('Joy <IconButton />', () => {
     muiName: 'JoyIconButton',
     testVariantProps: { variant: 'solid', color: 'success' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

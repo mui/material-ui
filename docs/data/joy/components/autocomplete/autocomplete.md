@@ -301,7 +301,7 @@ In the event you want the avoid autofill, you can try the following:
 
   ```jsx
   <Autocomplete
-    componentsProps={{
+    slotProps={{
       input: {
         autoComplete: 'new-password',
       },
@@ -318,7 +318,7 @@ You can work around the issue with the `disablePortal` prop.
 
 ```jsx
 <Autocomplete
-  componentsProps={{
+  slotProps={{
     listbox: {
       disablePortal: true,
     },

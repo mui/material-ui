@@ -1,4 +1,4 @@
-import HomeIcon from '@mui/icons-material/Home';
+import PublicIcon from '@mui/icons-material/Public';
 import * as React from 'react';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
@@ -8,23 +8,25 @@ export default function BreadcrumbsWithIcon() {
   return (
     <Breadcrumbs separator="›" aria-label="breadcrumbs">
       <Link
-        // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+        // `preventDefault` is for demo purposes
+        // and is generally not needed in your app
         onClick={(event) => event.preventDefault()}
         underline="hover"
         color="primary"
         fontSize="inherit"
         href="/"
       >
-        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Jake
+        <PublicIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+        United States
       </Link>
-      {['Rosa', 'Charles'].map((item) => (
+      {['Springfield', 'Simpson'].map((item) => (
         <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          // `preventDefault` is for demo purposes
+          // and is generally not needed in your app
           onClick={(event) => event.preventDefault()}
           key={item}
           underline="hover"
-          color="primary"
+          color="success"
           fontSize="inherit"
           href="/"
         >
@@ -32,7 +34,7 @@ export default function BreadcrumbsWithIcon() {
         </Link>
       ))}
 
-      <Typography fontSize="inherit">Hitchcock</Typography>
+      <Typography fontSize="inherit">Homer</Typography>
     </Breadcrumbs>
   );
 }

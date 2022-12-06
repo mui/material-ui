@@ -4,9 +4,9 @@ import { PropTypeDescriptor } from 'react-docgen';
 import {
   isElementTypeAcceptingRefProp,
   isElementAcceptingRefProp,
-} from 'docs/src/modules/utils/generatePropTypeDescription';
+} from './generatePropTypeDescription';
 import { DescribeablePropDescriptor } from './createDescribeableProp';
-import { escapeCell } from './helpers';
+import escapeCell from './escapeCell';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   if (type.type === 'AllLiteral') {

@@ -52,7 +52,7 @@ export default function ExampleChoiceChipCheckbox() {
                       setValue((val) => val.filter((text) => text !== item));
                     }
                   }}
-                  componentsProps={{
+                  slotProps={{
                     action: ({ checked }) => ({
                       sx: checked
                         ? {
