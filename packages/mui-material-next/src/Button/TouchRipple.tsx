@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/mui-name-matches-component-name */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
@@ -84,7 +85,6 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
   inProps,
   ref,
 ) {
-  // eslint-disable-next-line material-ui/mui-name-matches-component-name private component
   const props = useThemeProps({ props: inProps, name: 'PrivateTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
