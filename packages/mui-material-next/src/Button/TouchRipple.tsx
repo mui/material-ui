@@ -267,9 +267,8 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
   return (
     <TouchRippleRoot
       className={clsx(classes.root, touchRippleClasses.root, className)}
-      // @ts-ignore 
-      ref={container}
       {...other}
+      ref={container}
     >
       <TransitionGroup component={null} exit>
         {ripples}
