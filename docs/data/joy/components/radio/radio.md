@@ -119,7 +119,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 ```jsx
 <Radio
   value="radioA"
-  componentsProps={{
+  slotProps={{
     input: {
       'aria-label': 'Radio A',
     },

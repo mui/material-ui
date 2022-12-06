@@ -127,7 +127,7 @@ If you'd like to set a `max-height` for a long list of options, make sure to spe
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,
@@ -153,7 +153,7 @@ Alternatively, you can do it manually by targeting the button slot:
 ```jsx
 <label htmlFor="select-button" id="select-label">Label</label>
 <Select
-  componentsProps={{
+  slotProps={{
     button: {
       id: 'select-button',
       'aria-labelledby': 'select-label select-button',

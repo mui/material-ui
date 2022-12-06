@@ -5,6 +5,10 @@ export interface TextareaClasses {
   root: string;
   /** Styles applied to the textarea element. */
   textarea: string;
+  /** Styles applied to the startDecorator element if supplied. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element if supplied. */
+  endDecorator: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
   /** Styles applied to the root element if `disabled={true}`. */
@@ -31,10 +35,6 @@ export interface TextareaClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the startDecorator element if supplied. */
-  startDecorator: string;
-  /** Styles applied to the endDecorator element if supplied. */
-  endDecorator: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -52,6 +52,8 @@ export function getTextareaUtilityClass(slot: string): string {
 const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
   'root',
   'textarea',
+  'startDecorator',
+  'endDecorator',
   'formControl',
   'disabled',
   'error',
@@ -65,8 +67,6 @@ const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'startDecorator',
-  'endDecorator',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

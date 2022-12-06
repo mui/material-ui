@@ -111,7 +111,10 @@ const RatingRoot = styled('span', {
 const RatingLabel = styled('label', {
   name: 'MuiRating',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
+  overridesResolver: ({ ownerState }, styles) => [
+    styles.label,
+    ownerState.emptyValueFocused && styles.labelEmptyValueActive,
+  ],
 })(({ ownerState }) => ({
   cursor: 'inherit',
   ...(ownerState.emptyValueFocused && {
