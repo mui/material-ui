@@ -15,8 +15,6 @@ interface RippleEventHandlers {
   onBlur: React.FocusEventHandler;
   onContextMenu: React.MouseEventHandler;
   onDragLeave: React.DragEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
-  onKeyUp: React.KeyboardEventHandler;
   onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
   onMouseUp: React.MouseEventHandler;
@@ -26,20 +24,7 @@ interface RippleEventHandlers {
 }
 
 const useTouchRipple = (props: UseTouchRippleProps) => {
-  const {
-    disabled,
-    disableFocusRipple,
-    disableRipple,
-    disableTouchRipple,
-    focusVisible,
-    rippleRef,
-  } = props;
-
-  React.useEffect(() => {
-    if (focusVisible && !disableFocusRipple && !disableRipple) {
-      rippleRef.current?.start();
-    }
-  }, [rippleRef, focusVisible, disableFocusRipple, disableRipple]);
+  const { disabled, disableRipple, disableTouchRipple, focusVisible, rippleRef } = props;
 
   function useRippleHandler(
     rippleAction: keyof TouchRippleActions,
@@ -53,39 +38,6 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
       return true;
     });
   }
-
-  const keydownRef = React.useRef(false);
-  const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
-    if (
-      !disableFocusRipple &&
-      !keydownRef.current &&
-      focusVisible &&
-      rippleRef.current &&
-      event.key === ' '
-    ) {
-      keydownRef.current = true;
-      rippleRef.current.stop(event, () => {
-        rippleRef?.current?.start(event);
-      });
-    }
-  });
-
-  const handleKeyUp = useEventCallback((event: React.KeyboardEvent) => {
-    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
-    if (
-      !disableFocusRipple &&
-      event.key === ' ' &&
-      rippleRef.current &&
-      focusVisible &&
-      !event.defaultPrevented
-    ) {
-      keydownRef.current = false;
-      rippleRef.current.stop(event, () => {
-        rippleRef?.current?.start(event);
-      });
-    }
-  });
 
   const handleBlur = useRippleHandler('stop', false);
   const handleMouseDown = useRippleHandler('start');
@@ -108,8 +60,6 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
   const getRippleHandlers = React.useMemo(() => {
     const rippleHandlers = {
       onBlur: handleBlur,
-      onKeyDown: handleKeyDown,
-      onKeyUp: handleKeyUp,
       onMouseDown: handleMouseDown,
       onMouseUp: handleMouseUp,
       onMouseLeave: handleMouseLeave,
@@ -137,8 +87,6 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
     };
   }, [
     handleBlur,
-    handleKeyDown,
-    handleKeyUp,
     handleMouseDown,
     handleMouseUp,
     handleMouseLeave,

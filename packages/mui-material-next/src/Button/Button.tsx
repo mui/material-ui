@@ -338,9 +338,7 @@ export const ButtonRoot = styled('button', {
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
-      ...((ownerState.disableFocusRipple || ownerState.disableRipple) && {
-        backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
-      }),
+      backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.disabled}`]: {
       // Allows deverloper to specify the disabled icon color var
@@ -403,7 +401,6 @@ const Button = React.forwardRef(function Button<
     disabled = false,
     focusableWhenDisabled = false,
     disableElevation = false,
-    disableFocusRipple = false,
     disableRipple = false,
     disableTouchRipple = false,
     endIcon: endIconProp,
@@ -468,7 +465,6 @@ const Button = React.forwardRef(function Button<
 
   const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
     disabled,
-    disableFocusRipple,
     disableRipple,
     disableTouchRipple,
     focusVisible,
@@ -585,11 +581,6 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableElevation: PropTypes.bool,
-  /**
-   * If `true`, the  keyboard focus ripple is disabled.
-   * @default false
-   */
-  disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
    *

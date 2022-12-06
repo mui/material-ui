@@ -77,11 +77,6 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      */
     disableElevation?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple is disabled.
-     * @default false
-     */
-    disableFocusRipple?: boolean;
-    /**
      * If `true`, the ripple effect is disabled.
      *
      * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
