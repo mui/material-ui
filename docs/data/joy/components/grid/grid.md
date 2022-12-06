@@ -46,7 +46,7 @@ Column widths are integer values between 1 and 12; they apply at any breakpoint 
 
 A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
-<!-- {{"demo": "BasicGrid.js", "bg": true}} -->
+{{"demo": "BasicGrid.js", "bg": true}}
 
 ### Grid with multiple breakpoints
 
