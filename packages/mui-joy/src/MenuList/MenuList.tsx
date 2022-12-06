@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: MenuListProps) => {
 };
 
 const MenuListRoot = styled(StyledList, {
-  name: 'MuiMenuList',
+  name: 'JoyMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
@@ -50,7 +50,7 @@ const MenuListRoot = styled(StyledList, {
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiMenuList',
+    name: 'JoyMenuList',
   });
 
   const {

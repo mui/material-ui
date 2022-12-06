@@ -745,41 +745,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * Replace the default slots.
-   */
-  components: PropTypes.shape({
-    clearIndicator: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    input: PropTypes.elementType,
-    limitTag: PropTypes.elementType,
-    listbox: PropTypes.elementType,
-    loading: PropTypes.elementType,
-    noOptions: PropTypes.elementType,
-    option: PropTypes.elementType,
-    popupIndicator: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-    wrapper: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    limitTag: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
@@ -988,7 +953,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   popupIcon: PropTypes.node,
   /**
-   * If `true`, the component becomes read-only. It is also supported in multiple tags where the tag cannot be deleted.
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
    * @default false
    */
   readOnly: PropTypes.bool,
