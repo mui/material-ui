@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TreeView from '@mui/lab/TreeView';
@@ -15,6 +15,7 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import Chip from '@mui/material/Chip';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 
@@ -270,31 +271,33 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark">
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            mb: 0.5,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
-            Coming soon!
+      <ThemeProvider theme={brandingDarkTheme}>
+        <Frame.Info>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mb: 0.5,
+            }}
+          >
+            <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
+              Coming soon!
+            </Typography>
+            <Chip
+              label="Available in the lab"
+              size="small"
+              href="/material-ui/react-tree-view"
+              component="a"
+              sx={{ fontWeight: 500, cursor: 'pointer' }}
+            />
+          </Box>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Subscribe to our newsletter to get first-hand info about the development and release of
+            new components.
           </Typography>
-          <Chip
-            label="Available in the lab"
-            size="small"
-            href="/material-ui/react-tree-view"
-            component="a"
-            sx={{ fontWeight: 500, cursor: 'pointer' }}
-          />
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Subscribe to our newsletter to get first-hand info about the development and release of
-          new components.
-        </Typography>
-        <EmailSubscribe />
-      </Frame.Info>
+          <EmailSubscribe />
+        </Frame.Info>
+      </ThemeProvider>
     </Frame>
   );
 }

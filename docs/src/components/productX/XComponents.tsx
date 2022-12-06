@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shouldForwardProp } from '@mui/system';
-import { styled } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
@@ -24,6 +24,7 @@ import ROUTES from 'docs/src/route';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
 const WIP = DEMOS.slice(2);
@@ -198,31 +199,33 @@ export default function XComponents() {
                       </Grid>
                     )}
                   </Frame.Demo>
-                  <Frame.Info data-mui-color-scheme="dark">
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        lineHeight: 1,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-                        Coming soon!
+                  <ThemeProvider theme={brandingDarkTheme}>
+                    <Frame.Info>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          lineHeight: 1,
+                          mb: 0.5,
+                        }}
+                      >
+                        <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+                          Coming soon!
+                        </Typography>
+                        <Chip
+                          variant="outlined"
+                          label="PNG Preview"
+                          size="small"
+                          sx={{ fontWeight: 500 }}
+                        />
+                      </Box>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                        Subscribe to our newsletter to get first-hand info about the development and
+                        release of new components.
                       </Typography>
-                      <Chip
-                        variant="outlined"
-                        label="PNG Preview"
-                        size="small"
-                        sx={{ fontWeight: 500 }}
-                      />
-                    </Box>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                      Subscribe to our newsletter to get first-hand info about the development and
-                      release of new components.
-                    </Typography>
-                    <EmailSubscribe />
-                  </Frame.Info>
+                      <EmailSubscribe />
+                    </Frame.Info>
+                  </ThemeProvider>
                 </Frame>
               </Box>
             </Fade>
