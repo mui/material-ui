@@ -201,7 +201,12 @@ export default function CoreComponents() {
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
-                    <TextField variant="filled" label="Password" type="password" />
+                    <TextField
+                      variant="filled"
+                      label="Password"
+                      type="password"
+                      autoComplete="new-password" // prevent chrome auto-fill
+                    />
                   </Stack>
                 )}
                 {demo === 'Table' && (
