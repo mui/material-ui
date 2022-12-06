@@ -2,6 +2,7 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Grid from '@mui/joy/Grid';
+import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Sheet from '@mui/joy/Sheet';
 import RadioGroup from '@mui/joy/RadioGroup';
@@ -52,8 +53,8 @@ export default function InteractiveStack() {
       <Sheet sx={{ p: 2 }}>
         <Grid container spacing={3}>
           <Grid xs={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">direction</FormLabel>
+            <FormControl>
+              <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
               <RadioGroup
                 row
                 name="direction"
@@ -71,8 +72,8 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid xs={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">alignItems</FormLabel>
+            <FormControl>
+              <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
               <RadioGroup
                 row
                 name="alignItems"
@@ -91,8 +92,8 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid xs={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">justifyContent</FormLabel>
+            <FormControl>
+              <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
               <RadioGroup
                 row
                 name="justifyContent"
@@ -112,8 +113,8 @@ export default function InteractiveStack() {
             </FormControl>
           </Grid>
           <Grid xs={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">spacing</FormLabel>
+            <FormControl>
+              <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
               <RadioGroup
                 row
                 name="spacing"
@@ -124,14 +125,20 @@ export default function InteractiveStack() {
                 }}
               >
                 {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (
-                  <Radio key={value} label={value} value={value.toString()} />
+                  <Radio
+                    key={value}
+                    label={value.toString()}
+                    value={value.toString()}
+                  />
                 ))}
               </RadioGroup>
             </FormControl>
           </Grid>
         </Grid>
       </Sheet>
-      <HighlightedCode code={jsx} language="jsx" />
+      <BrandingProvider mode="dark">
+        <HighlightedCode code={jsx} language="jsx" />
+      </BrandingProvider>
     </Stack>
   );
 }
