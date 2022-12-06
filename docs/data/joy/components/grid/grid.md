@@ -31,7 +31,7 @@ export default function MyApp() {
     <Grid container>
       <Grid xs={6}>
         <Sheet>Item 1</Sheet>
-      </Grid>    
+      </Grid>
       <Grid xs={6}>
         <Sheet>Item 2</Sheet>
       </Grid>
