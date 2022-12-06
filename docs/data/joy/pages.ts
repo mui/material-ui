@@ -68,7 +68,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
-        children: [{ pathname: '/joy-ui/react-card' }, { pathname: '/joy-ui/react-sheet' }],
+        children: [
+          { pathname: '/joy-ui/react-card' },
+          { pathname: '/joy-ui/react-sheet' },
+          { pathname: '/joy-ui/react-grid' },
+        ],
       },
       {
         pathname: '/joy-ui/components/navigation',
