@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { SlotComponentProps } from '@mui/base/utils';
 import { styled } from '../styles';
+import { SlotProps } from './types';
 import useSlot from './useSlot';
 
 describe('useSlot', () => {
@@ -45,10 +45,10 @@ describe('useSlot', () => {
         className?: string;
         component?: React.ElementType;
         href?: string;
-        components?: { root?: React.ElementType; decorator?: React.ElementType };
-        componentsProps?: {
-          root?: SlotComponentProps<'button', Record<string, any>, {}>;
-          decorator?: SlotComponentProps<'span', { size?: 'sm' | 'md' } & Record<string, any>, {}>;
+        slots?: { root?: React.ElementType; decorator?: React.ElementType };
+        slotProps?: {
+          root?: SlotProps<'button', Record<string, any>, {}>;
+          decorator?: SlotProps<'span', { size?: 'sm' | 'md' } & Record<string, any>, {}>;
         };
       }
     >((props, ref) => {
@@ -92,7 +92,7 @@ describe('useSlot', () => {
 
     it('should append classes', () => {
       const { getByRole } = render(
-        <Item className="foo-bar" componentsProps={{ decorator: { className: 'foo-bar' } }} />,
+        <Item className="foo-bar" slotProps={{ decorator: { className: 'foo-bar' } }} />,
       );
       expect(getByRole('button')).to.have.class('root');
       expect(getByRole('button')).to.have.class('foo-bar');
@@ -106,13 +106,13 @@ describe('useSlot', () => {
     });
 
     it('slot ownerstate should be overriable', () => {
-      const { getByRole } = render(<Item componentsProps={{ decorator: { size: 'sm' } }} />);
+      const { getByRole } = render(<Item slotProps={{ decorator: { size: 'sm' } }} />);
       expect(getByRole('button').firstChild).to.have.class('size-sm');
     });
 
-    it('componentsProps has higher priority', () => {
+    it('slotProps has higher priority', () => {
       const { getByRole } = render(
-        <Item data-item="foo" componentsProps={{ root: { 'data-item': 'bar' } }} />,
+        <Item data-item="foo" slotProps={{ root: { 'data-item': 'bar' } }} />,
       );
       expect(getByRole('button')).to.have.attribute('data-item', 'bar');
     });
@@ -122,19 +122,80 @@ describe('useSlot', () => {
       expect(getByRole('link')).toBeVisible();
     });
 
-    it('use componentsProps `component` over `component` prop', () => {
+    it('use slotProps `component` over `component` prop', () => {
       const { getByRole } = render(
-        <Item component="div" componentsProps={{ root: { component: 'a', href: '/' } }} />,
+        <Item component="div" slotProps={{ root: { component: 'a', href: '/' } }} />,
       );
       expect(getByRole('link')).toBeVisible();
     });
 
     it('can change decorator leaf component', () => {
-      const { getByRole } = render(<Item componentsProps={{ decorator: { component: 'div' } }} />);
+      const { getByRole } = render(<Item slotProps={{ decorator: { component: 'div' } }} />);
       expect(getByRole('button').firstChild).to.have.tagName('div');
     });
   });
 
+  /**
+   * Simulate `Tooltip`, ...etc
+   */
+  describe('unstyled popper as the root slot', () => {
+    const ItemRoot = styled('div')({});
+    function Item(props: {
+      component?: React.ElementType;
+      slots?: {
+        root?: React.ElementType;
+      };
+      slotProps?: {
+        root?: SlotProps<'button', Record<string, any>, {}>;
+      };
+    }) {
+      const ref = React.useRef(null);
+      const [SlotRoot, rootProps] = useSlot('root', {
+        ref,
+        className: 'root',
+        elementType: PopperUnstyled,
+        externalForwardedProps: props,
+        ownerState: {},
+        additionalProps: {
+          open: true, // !!force the popper to always visible for testing
+          anchorEl: () => document.createElement('div'),
+        },
+        internalForwardedProps: {
+          component: ItemRoot,
+        },
+      });
+      return <SlotRoot {...rootProps} />;
+    }
+
+    it('should render popper with styled-component', () => {
+      const { getByRole } = render(<Item />);
+      expect(getByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).to.have.tagName('div');
+    });
+
+    it('the root slot should be replaceable', () => {
+      const Listbox = React.forwardRef<HTMLUListElement, { component?: React.ElementType }>(
+        function Listbox({ component }, ref) {
+          return <ul ref={ref} data-component={component} />;
+        },
+      );
+
+      const { getByRole } = render(<Item slots={{ root: Listbox }} />);
+      expect(getByRole('list')).toBeVisible();
+      expect(getByRole('list')).not.to.have.attribute('class');
+      // to test that the `component` prop should not forward to the custom slot.
+      expect(getByRole('list')).not.to.have.attribute('data-component');
+    });
+
+    it('the root component can be changed', () => {
+      const { getByRole } = render(<Item slotProps={{ root: { component: 'aside' } }} />);
+      expect(getByRole('tooltip')).to.have.tagName('aside');
+    });
+  });
+
+  /**
+   * Simulate `Autocomplete`, `Select`, ...etc
+   */
   describe('multiple slots with unstyled popper', () => {
     const ItemRoot = styled('div')({});
     const ItemListbox = styled('ul')({
@@ -142,19 +203,19 @@ describe('useSlot', () => {
     });
     const ItemOption = styled('div')({});
 
-    const Item = (props: {
+    function Item(props: {
       component?: React.ElementType;
-      components?: {
+      slots?: {
         root?: React.ElementType;
         listbox?: React.ElementType;
         option?: React.ElementType;
       };
-      componentsProps?: {
-        root?: SlotComponentProps<'button', Record<string, any>, {}>;
-        listbox?: SlotComponentProps<'span', Record<string, any>, {}>;
-        option?: SlotComponentProps<'div', Record<string, any>, {}>;
+      slotProps?: {
+        root?: SlotProps<'button', Record<string, any>, {}>;
+        listbox?: SlotProps<'span', Record<string, any>, {}>;
+        option?: SlotProps<'div', Record<string, any>, {}>;
       };
-    }) => {
+    }) {
       const ref = React.useRef(null);
       const [SlotRoot, rootProps] = useSlot('root', {
         ref,
@@ -169,7 +230,7 @@ describe('useSlot', () => {
         externalForwardedProps: props,
         ownerState: {},
         additionalProps: {
-          open: true,
+          open: true, // !!force the popper to always visible for testing
           role: 'menu',
           anchorEl: () => document.createElement('div'),
         },
@@ -194,7 +255,7 @@ describe('useSlot', () => {
           </SlotListbox>
         </React.Fragment>
       );
-    };
+    }
 
     it('should render popper with styled-component', () => {
       const { getByRole } = render(<Item />);
@@ -205,22 +266,24 @@ describe('useSlot', () => {
     });
 
     it('the listbox slot should be replaceable', () => {
-      const Listbox = ({ component }: { component?: React.ElementType }) => (
-        <ul data-component={component} />
-      );
-      const { getByRole } = render(<Item components={{ listbox: Listbox }} />);
+      function Listbox({ component }: { component?: React.ElementType }) {
+        return <ul data-component={component} />;
+      }
+
+      const { getByRole } = render(<Item slots={{ listbox: Listbox }} />);
       expect(getByRole('list')).toBeVisible();
       expect(getByRole('list')).not.to.have.attribute('class');
+      // to test that the `component` prop should not forward to the custom slot.
       expect(getByRole('list')).not.to.have.attribute('data-component');
     });
 
     it('the listbox leaf component can be changed', () => {
-      const { getByRole } = render(<Item componentsProps={{ listbox: { component: 'div' } }} />);
+      const { getByRole } = render(<Item slotProps={{ listbox: { component: 'div' } }} />);
       expect(getByRole('menu')).to.have.tagName('div');
     });
 
     it('the option leaf component can be changed', () => {
-      const { getByRole } = render(<Item componentsProps={{ option: { component: 'div' } }} />);
+      const { getByRole } = render(<Item slotProps={{ option: { component: 'div' } }} />);
       expect(getByRole('menuitem')).to.have.tagName('div');
     });
   });

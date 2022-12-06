@@ -15,7 +15,7 @@ describe('Joy UI <Grid />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    refInstanceof: window.HTMLElement,
+    refInstanceof: window.HTMLDivElement,
     muiName: 'JoyGrid',
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot'],

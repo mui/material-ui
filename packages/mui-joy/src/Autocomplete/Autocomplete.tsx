@@ -142,19 +142,15 @@ const AutocompleteWrapper = styled('div', {
   alignItems: 'center',
   flexWrap: 'wrap',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingInlineStart: 0,
-    paddingBlockStart:
-      'calc(var(--_Input-paddingBlock) - max(var(--Autocomplete-wrapper-gap), 0px))',
-    paddingBlockEnd: 'var(--_Input-paddingBlock)',
+    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapper-gap))',
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
         marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart:
-          'calc(-1 * min(var(--Autocomplete-wrapper-gap), var(--_Input-paddingBlock)))',
+        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'var(--Input-gap)',
+          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
         },
       }),
   },
@@ -378,7 +374,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
-  // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     value,
@@ -391,7 +386,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     size,
     color,
     variant,
-  } as OwnerState;
+  };
 
   const classes = useUtilityClasses(ownerState);
 
@@ -485,7 +480,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       name,
       readOnly,
       disabled,
-      required,
+      required: required ?? formControl?.required,
       type,
       'aria-invalid': error || undefined,
       'aria-label': ariaLabel,
@@ -750,41 +745,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * Replace the default slots.
-   */
-  components: PropTypes.shape({
-    clearIndicator: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    input: PropTypes.elementType,
-    limitTag: PropTypes.elementType,
-    listbox: PropTypes.elementType,
-    loading: PropTypes.elementType,
-    noOptions: PropTypes.elementType,
-    option: PropTypes.elementType,
-    popupIndicator: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-    wrapper: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    limitTag: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
@@ -993,7 +953,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   popupIcon: PropTypes.node,
   /**
-   * If `true`, the component becomes read-only. It is also supported in multiple tags where the tag cannot be deleted.
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
    * @default false
    */
   readOnly: PropTypes.bool,

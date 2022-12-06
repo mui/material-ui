@@ -135,6 +135,7 @@ export default function JoyVariablesDemo(props: {
           flexBasis: 240,
           flexGrow: 1,
           borderRadius: 'sm',
+          boxShadow: 'sm',
         }}
       >
         <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
@@ -174,7 +175,7 @@ export default function JoyVariablesDemo(props: {
                     variant="outlined"
                     helperText={item.helperText}
                     value={Number(resolvedValue?.replace('px', '')) || ''}
-                    componentsProps={{
+                    slotProps={{
                       input: {
                         onKeyDown: (event) => {
                           if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {
