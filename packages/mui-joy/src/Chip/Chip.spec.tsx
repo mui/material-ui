@@ -1,5 +1,6 @@
-import Chip from '@mui/joy/Chip';
 import * as React from 'react';
+import Chip, { ChipOwnerState } from '@mui/joy/Chip';
+import { expectType } from '@mui/types';
 
 <Chip />;
 
@@ -32,3 +33,73 @@ import * as React from 'react';
 
 // @ts-expect-error there is no size `xl2`
 <Chip size="xl2" />;
+
+<Chip
+  slots={{
+    root: 'div',
+    startDecorator: 'div',
+    endDecorator: 'div',
+    action: 'div',
+    label: 'div',
+  }}
+/>;
+
+<Chip
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    startDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    endDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    action: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    label: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Chip
+  slotProps={{
+    root: (ownerState) => {
+      expectType<ChipOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    startDecorator: (ownerState) => {
+      expectType<ChipOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    endDecorator: (ownerState) => {
+      expectType<ChipOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    action: (ownerState) => {
+      expectType<ChipOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    label: (ownerState) => {
+      expectType<ChipOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

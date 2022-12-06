@@ -35,8 +35,8 @@ export default function useSlot<
   ExternalSlotProps extends { component?: React.ElementType },
   ExternalForwardedProps extends {
     component?: React.ElementType;
-    components?: { [k in T]?: React.ElementType };
-    componentsProps?: {
+    slots?: { [k in T]?: React.ElementType };
+    slotProps?: {
       [k in T]?:
         | WithCommonProps<ExternalSlotProps>
         | ((ownerState: OwnerState) => WithCommonProps<ExternalSlotProps>);
@@ -66,8 +66,8 @@ export default function useSlot<
      */
     ownerState: OwnerState;
     /**
-     * The `other` props from the consumer. It has to contain `component`, `components`, and `componentsProps`.
-     * The function will use those props to calculate the final leaf component and the returned props.
+     * The `other` props from the consumer. It has to contain `component`, `slots`, and `slotProps`.
+     * The function will use those props to calculate the final rendered element and the returned props.
      *
      * If the slot is not `root`, the rest of the `externalForwardedProps` are neglected.
      */
@@ -80,17 +80,17 @@ export default function useSlot<
      * For overriding the component's ownerState for the slot.
      * This is required for some components that need styling via `ownerState`.
      *
-     * It is a function because `componentsProps.{slot}` can be a function which has to be resolved first.
+     * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
      */
     getSlotOwnerState?: (
       mergedProps: SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
-          Exclude<Exclude<ExternalForwardedProps['componentsProps'], undefined>[T], undefined>
+          Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
         >,
     ) => SlotOwnerState;
     /**
-     * props forward to `T` only if leaf component is not provided.
+     * props forward to `T` only if the `slotProps.*.component` is not provided.
      * e.g. Autocomplete's listbox uses PopperUnstyled + StyledComponent
      */
     internalForwardedProps?: any;
@@ -98,7 +98,7 @@ export default function useSlot<
 ) {
   const {
     className,
-    elementType,
+    elementType: initialElementType,
     ownerState,
     externalForwardedProps,
     getSlotOwnerState,
@@ -107,14 +107,16 @@ export default function useSlot<
   } = parameters;
   const {
     component: rootComponent,
-    components = { [name]: undefined },
-    componentsProps = { [name]: undefined },
+    slots = { [name]: undefined },
+    slotProps = { [name]: undefined },
     ...other
   } = externalForwardedProps;
 
-  // `componentsProps[name]` can be a callback that receives the component's `ownerState`.
+  const elementType = slots[name] || initialElementType;
+
+  // `slotProps[name]` can be a callback that receives the component's ownerState.
   // `resolvedComponentsProps` is always a plain object.
-  const resolvedComponentsProps = resolveComponentProps(componentsProps[name], ownerState);
+  const resolvedComponentsProps = resolveComponentProps(slotProps[name], ownerState);
 
   const {
     props: { component: slotComponent, ...mergedProps },
@@ -143,8 +145,8 @@ export default function useSlot<
   const props = appendOwnerState(
     elementType,
     {
-      ...(name === 'root' && !rootComponent && !components[name] && internalForwardedProps),
-      ...(name !== 'root' && !components[name] && internalForwardedProps),
+      ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
+      ...(name !== 'root' && !slots[name] && internalForwardedProps),
       ...(mergedProps as { className: string } & SlotProps &
         ExternalSlotProps &
         AdditionalProps &
@@ -157,5 +159,5 @@ export default function useSlot<
     finalOwnerState as OwnerState & SlotOwnerState,
   );
 
-  return [components[name] || elementType, props] as [ElementType, typeof props];
+  return [elementType, props] as [ElementType, typeof props];
 }

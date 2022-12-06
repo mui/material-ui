@@ -75,7 +75,7 @@ If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/
 
 The minimum supported version of React has been increased from v16.8.0 to v17.0.0.
 
-If you are using a React version below 17.0.0, update your packages to at least v14.11.2 for Material UI and v17.0.0 for React.
+If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
 With npm:
 

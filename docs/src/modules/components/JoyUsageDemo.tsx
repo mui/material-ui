@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
@@ -18,7 +19,6 @@ import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import * as React from 'react';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -291,7 +291,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       }))
                     }
                     endDecorator={resolvedValue ? 'True' : 'False'}
-                    componentsProps={{
+                    slotProps={{
                       endDecorator: {
                         sx: {
                           minWidth: 30,
@@ -504,7 +504,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Select
                     placeholder="Select a variant..."
-                    componentsProps={{
+                    slotProps={{
                       listbox: {
                         sx: {
                           '--List-decorator-size': '24px',
@@ -548,11 +548,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   key={propName}
                   label={propName}
                   size="sm"
-                  value={
-                    typeof props[propName] === 'string'
-                      ? props[propName] || ''
-                      : String(defaultValue) || ''
-                  }
+                  value={props[propName] ?? ''}
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
@@ -679,7 +675,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             value={placement}
                             overlay
                             disableIcon
-                            componentsProps={{
+                            slotProps={{
                               action: ({ checked }) => ({
                                 sx: (theme) => ({
                                   ...(checked && {
