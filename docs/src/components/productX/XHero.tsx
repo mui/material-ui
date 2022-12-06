@@ -176,12 +176,11 @@ export default function XHero() {
             >
               <DataGridPro
                 {...data}
-                disableSelectionOnClick
+                disableRowSelectionOnClick
                 checkboxSelection
                 hideFooter
                 loading={loading}
                 density="compact"
-                experimentalFeatures={{ newEditingApi: true }}
               />
             </Box>
           </Paper>

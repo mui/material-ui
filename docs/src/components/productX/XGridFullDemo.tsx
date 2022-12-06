@@ -217,8 +217,7 @@ export default function XGridFullDemo() {
             }}
             loading={loading}
             checkboxSelection
-            disableSelectionOnClick
-            experimentalFeatures={{ newEditingApi: true }}
+            disableRowSelectionOnClick
             {...pagination}
           />
         </Paper>

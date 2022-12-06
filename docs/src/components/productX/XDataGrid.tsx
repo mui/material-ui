@@ -38,7 +38,7 @@ const code = `<DataGrid
     },
   ]}
   checkboxSelection
-  disableSelectionOnClick
+  disableRowSelectionOnClick
   pagination
 />`;
 
@@ -194,9 +194,8 @@ export default function XDataGrid() {
               loading={loading}
               density="compact"
               checkboxSelection
-              disableSelectionOnClick
+              disableRowSelectionOnClick
               pagination
-              experimentalFeatures={{ newEditingApi: true }}
             />
           </Paper>
           <Frame.Info

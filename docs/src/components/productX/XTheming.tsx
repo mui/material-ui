@@ -142,12 +142,11 @@ export default function XTheming() {
               <DataGridPro
                 {...data}
                 columns={getColumns()}
-                disableSelectionOnClick
+                disableRowSelectionOnClick
                 checkboxSelection
                 loading={loading}
                 pagination
                 density="compact"
-                experimentalFeatures={{ newEditingApi: true }}
               />
             </Paper>
           ) : (
@@ -176,12 +175,11 @@ export default function XTheming() {
                 <DataGridPro
                   {...data}
                   columns={getColumns()}
-                  disableSelectionOnClick
+                  disableRowSelectionOnClick
                   checkboxSelection
                   loading={loading}
                   pagination
                   density="compact"
-                  experimentalFeatures={{ newEditingApi: true }}
                 />
               </Paper>
             </CssVarsProvider>
