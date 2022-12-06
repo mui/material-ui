@@ -4,8 +4,6 @@ const { prepareMarkdown } = require('./parseMarkdown');
 const extractImports = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
-// TODO: pass as argument
-const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja'];
 
 /**
  * @param {string} string
@@ -39,14 +37,14 @@ const packages = [
   {
     product: 'material-ui',
     paths: [
-      path.join(__dirname, '../../../packages/mui-lab/src'),
-      path.join(__dirname, '../../../packages/mui-material/src'),
-      path.join(__dirname, '../../../packages/mui-base/src'),
+      path.join(__dirname, '../../packages/mui-lab/src'),
+      path.join(__dirname, '../../packages/mui-material/src'),
+      path.join(__dirname, '../../packages/mui-base/src'),
     ],
   },
   {
     product: 'base',
-    paths: [path.join(__dirname, '../../../packages/mui-base/src')],
+    paths: [path.join(__dirname, '../../packages/mui-base/src')],
   },
 ];
 
@@ -75,6 +73,7 @@ packages.forEach((pkg) => {
  */
 module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath;
+  const config = this.getOptions();
 
   const englishFilename = path.basename(englishFilepath, '.md');
 
@@ -94,7 +93,7 @@ module.exports = async function demoLoader() {
         if (
           filename.startsWith(englishFilename) &&
           matchNotEnglishMarkdown !== null &&
-          LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
+          config.languagesInProgress.indexOf(matchNotEnglishMarkdown[1]) !== -1
         ) {
           return {
             filename,
@@ -121,7 +120,12 @@ module.exports = async function demoLoader() {
     .replace(this.rootContext, '')
     // win32 to posix
     .replace(/\\/g, '/');
-  const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
+  const { docs } = prepareMarkdown({
+    pageFilename,
+    translations,
+    componentPackageMapping,
+    ignoreLanguagePages: config.ignoreLanguagePages,
+  });
 
   const demos = {};
   const importedModuleIDs = new Set();

@@ -55,7 +55,7 @@ export default function ExampleAlignmentButtons() {
               }[item]
             }
             variant={alignment === item ? 'solid' : 'plain'}
-            componentsProps={{
+            slotProps={{
               input: { 'aria-label': item },
               action: {
                 sx: { borderRadius: 0, transition: 'none' },

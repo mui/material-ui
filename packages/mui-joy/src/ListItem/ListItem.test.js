@@ -10,7 +10,7 @@ import ListSubheader from '@mui/joy/ListSubheader';
 describe('Joy <ListItem />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItem />, () => ({
+  describeConformance(<ListItem startAction="1" endAction="2" />, () => ({
     classes,
     inheritComponent: 'li',
     render,
@@ -19,6 +19,11 @@ describe('Joy <ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      startAction: { expectedClassName: classes.startAction },
+      endAction: { expectedClassName: classes.endAction },
+    },
     skip: ['componentsProp', 'classesRoot'],
   }));
 

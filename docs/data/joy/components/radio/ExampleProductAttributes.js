@@ -48,7 +48,7 @@ export default function ExampleProductAttributes() {
                 color={color}
                 checkedIcon={<Done fontSize="xl2" />}
                 value={color}
-                componentsProps={{
+                slotProps={{
                   input: { 'aria-label': color },
                   radio: {
                     sx: {
