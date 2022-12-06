@@ -8,7 +8,7 @@ _Dec 5, 2022_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- @mnajdova added a [Material You Button playground](https://mui.com/material-ui/react-button/#material-you-version) (#35222)
+- 🛝 @mnajdova added a [Material You Button playground](https://mui.com/material-ui/react-button/#material-you-version) (#35222)
 - 🔧 @hbjORbj renamed `components` / `componentProps` to `slots` / `slotProps` prop in Joy UI to create consistency across products (#34997)
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
 
@@ -29,11 +29,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 08 -->[Joy] Add `slots`/`slotProps` props to the typing of all components and apply `useSlot` to all components (#34997) @hbjORbj
 
   - Change all occurrences of `components` and `componentsProps` props in Joy UI components to `slots` and `slotProps`, respectively.
-  - Change casing of slots' fields to camelCase
 
   ```diff
-  -<Autocomplete components={{Root: CustomRoot}} componentsProps={{input: { className: 'custom-input' }}} />
-  +<Autocomplete slots={{root: CustomRoot}} slotProps={{input: { className: 'custom-input' }}} />
+  -<Autocomplete components={{listbox: CustomListbox}} componentsProps={{listbox: { className: 'custom-listbox' }}} />
+  +<Autocomplete slots={{listbox: CustomListbox}} slotProps={{listbox: { className: 'custom-listbox' }}} />
   ```
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-components-to-slots) to help with the migration.
 
@@ -57,9 +56,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 13 -->[docs] Fix ad margin on API pages (#35201) @oliviertassinari
 - &#8203;<!-- 12 -->[docs] Revise and expand the Joy UI "Badge" page (#35199) @samuelsycamore
 - &#8203;<!-- 11 -->[docs] Update MUI Base docs with latest style conventions (#35034) @samuelsycamore
-- &#8203;<!-- 09 -->[I10n] Improve Chinese (Taiwan) zh-TW locale (#35328) @happyincent
+- &#8203;<!-- 09 -->[l10n] Improve Chinese (Taiwan) zh-TW locale (#35328) @happyincent
 - &#8203;<!-- 02 -->[website] Update MUI stats: GitHub stars, Twitter followers, etc. (#35318) @nomandhoni-cs
-- &#8203;<!-- 01 -->[website] Remove BlackFriday notification @oliviertassinari
 
 ### Core
 
@@ -68,6 +66,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 25 -->[core] Move the internal packages from docs/packages (#35305) @michaldudak
 - &#8203;<!-- 24 -->[core] Clean up the API docs generation scripts (#35244) @michaldudak
 - &#8203;<!-- 03 -->[test] Scope the tests to just Material UI components (#35219) @siriwatknp
+- &#8203;<!-- 01 -->[website] Remove BlackFriday notification @oliviertassinari
 
 All contributors of this release in alphabetical order: @flaviendelangle, @guotie, @happyincent, @hbjORbj, @Juneezee, @michaldudak, @mnajdova, @nomandhoni-cs, @oliviertassinari, @Pandey-utkarsh, @sai6855, @samuelsycamore, @siriwatknp, @Uzwername, @zignis
 
