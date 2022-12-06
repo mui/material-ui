@@ -12,7 +12,7 @@ githubLabel: 'component: stack'
 
 ## Usage
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/joy-ui/react-grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while `Grid` handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
