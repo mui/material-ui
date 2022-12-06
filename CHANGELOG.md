@@ -14,6 +14,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.10.17`
 
+- &#8203;<!-- 31 -->[Slider] Fix `markActive` theme class not getting applied (#35067) @ZeeshanTamboli
+- &#8203;<!-- 30 -->[SwipeableDrawer] Fix missing close animation when initial open is true (#35010) @sai6855
 - &#8203;<!-- 28 -->[material-ui] Add channel colors if possible (#35178) @siriwatknp
 - &#8203;<!-- 10 -->[Fab] Increase disabled styles precedence (#35304) @Uzwername
 - &#8203;<!-- 05 -->[Rating] Apply `labelEmptyValueActive` style overrides from theme (#35315) @sai6855
@@ -43,6 +45,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 29 -->[docs] Improve spacing with ul (#35302) @oliviertassinari
 - &#8203;<!-- 23 -->[docs] Correct grammatically incorrect sentences in CONTRIBUTING.md (#34949) @Pandey-utkarsh
 - &#8203;<!-- 22 -->[docs] Move the demo higher in the API TOC (#35202) @oliviertassinari
 - &#8203;<!-- 21 -->[docs] Fix incorrect link in minimizing-bundle-size (#35297) @Juneezee
