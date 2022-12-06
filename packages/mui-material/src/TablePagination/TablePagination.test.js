@@ -277,7 +277,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: count=-1', () => {
     it('should display the "of more than" text and keep the nextButton enabled', () => {
-      const Test = () => {
+      function Test() {
         const [page, setPage] = React.useState(0);
         return (
           <table>
@@ -295,7 +295,7 @@ describe('<TablePagination />', () => {
             </TableFooter>
           </table>
         );
-      };
+      }
 
       const { container, getByRole } = render(<Test />);
 

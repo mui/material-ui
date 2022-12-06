@@ -9,6 +9,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
@@ -73,7 +74,7 @@ const ListItemRoot = styled('li', {
     boxSizing: 'border-box',
     borderRadius: 'var(--List-item-radius)',
     display: 'flex',
-    flex: 'none',
+    flex: 'none', // prevent children from shrinking when the List's height is limited.
     position: 'relative',
     paddingBlockStart: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
     paddingBlockEnd: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
@@ -192,22 +193,38 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      role,
+    },
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotStartAction, startActionProps] = useSlot('startAction', {
+    className: classes.startAction,
+    elementType: ListItemStartAction,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotEndAction, endActionProps] = useSlot('endAction', {
+    className: classes.endAction,
+    elementType: ListItemEndAction,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
     <ListSubheaderDispatch.Provider value={setSubheaderId}>
       <NestedListContext.Provider value={nested ? subheaderId || true : false}>
-        <ListItemRoot
-          ref={ref}
-          as={component}
-          className={clsx(classes.root, className)}
-          ownerState={ownerState}
-          role={role}
-          {...other}
-        >
-          {startAction && (
-            <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
-              {startAction}
-            </ListItemStartAction>
-          )}
+        <SlotRoot {...rootProps}>
+          {startAction && <SlotStartAction {...startActionProps}>{startAction}</SlotStartAction>}
 
           {React.Children.map(children, (child, index) =>
             React.isValidElement(child)
@@ -222,12 +239,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
               : child,
           )}
 
-          {endAction && (
-            <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
-              {endAction}
-            </ListItemEndAction>
-          )}
-        </ListItemRoot>
+          {endAction && <SlotEndAction {...endActionProps}>{endAction}</SlotEndAction>}
+        </SlotRoot>
       </NestedListContext.Provider>
     </ListSubheaderDispatch.Provider>
   );

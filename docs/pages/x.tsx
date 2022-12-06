@@ -21,7 +21,7 @@ export default function X() {
         card="/static/social-previews/x-preview.jpg"
       />
       <AppHeaderBanner />
-      <AppHeader />
+      <AppHeader gitHubRepository="https://github.com/mui/mui-x" />
       <main id="main-content">
         <XHero />
         <References companies={ADVANCED_CUSTOMERS} />

@@ -29,16 +29,46 @@ describe('<Slider />', () => {
 
   const { render } = createRenderer();
 
-  describeConformance(<Slider value={0} />, () => ({
-    classes,
-    inheritComponent: SliderUnstyled,
-    render,
-    refInstanceof: window.HTMLSpanElement,
-    muiName: 'MuiSlider',
-    testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
-    testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
-    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
-  }));
+  describeConformance(
+    <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
+    () => ({
+      classes,
+      inheritComponent: SliderUnstyled,
+      render,
+      refInstanceof: window.HTMLSpanElement,
+      muiName: 'MuiSlider',
+      testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
+      testVariantProps: { color: 'primary', orientation: 'vertical', size: 'small' },
+      testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
+      testLegacyComponentsProp: true,
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        thumb: {
+          expectedClassName: classes.thumb,
+        },
+        track: {
+          expectedClassName: classes.track,
+        },
+        rail: {
+          expectedClassName: classes.rail,
+        },
+        input: {
+          expectedClassName: classes.input,
+        },
+        mark: {
+          expectedClassName: classes.mark,
+        },
+        markLabel: {
+          expectedClassName: classes.markLabel,
+        },
+      },
+      skip: [
+        'slotPropsCallback', // not supported yet
+      ],
+    }),
+  );
 
   it('should call handlers', () => {
     const handleChange = spy();
@@ -1262,9 +1292,9 @@ describe('<Slider />', () => {
       // ARRANGE
       const dataTestId = 'slider-input-testid';
       const name = 'custom-input';
-      const CustomInput = ({ ownerState, ...props }) => (
-        <input {...props} data-testid={dataTestId} name={name} />
-      );
+      function CustomInput({ ownerState, ...props }) {
+        return <input {...props} data-testid={dataTestId} name={name} />;
+      }
 
       // ACT
       const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);

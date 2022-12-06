@@ -22,7 +22,26 @@ export default function Home() {
       <Head
         title="MUI: The React component library you always wanted"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
-      />
+      >
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'MUI',
+              url: 'https://mui.com/',
+              logo: 'https://mui.com/static/logo.png',
+              sameAs: [
+                'https://twitter.com/MUI_hq',
+                'https://github.com/mui/',
+                'https://opencollective.com/mui',
+              ],
+            }),
+          }}
+        />
+      </Head>
       <NoSsr>
         <NewsletterToast />
       </NoSsr>
@@ -40,26 +59,6 @@ export default function Home() {
         <Divider />
       </main>
       <AppFooter />
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: `
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "MUI",
-  "url": "https://mui.com/",
-  "logo": "https://mui.com/static/logo.png",
-  "sameAs": [
-    "https://twitter.com/MUI_hq",
-    "https://github.com/mui/",
-    "https://opencollective.com/mui"
-  ]
-}
-          `,
-        }}
-      />
     </BrandingCssVarsProvider>
   );
 }

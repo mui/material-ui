@@ -15,7 +15,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
-import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
@@ -142,11 +142,9 @@ function NewStartScreen() {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
-              <a href={href} className="DocSearch-NewStartScreenItem">
-                {name}
-                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-              </a>
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {name}
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>

@@ -3,7 +3,7 @@ import Typography from '@mui/joy/Typography';
 
 export default function NestedTypography() {
   return (
-    <Typography mb={2} maxWidth={400}>
+    <Typography mb={2} maxWidth={400} lineHeight="lg">
       Typography lets you create <Typography variant="soft">nested</Typography>{' '}
       typography. Use your{' '}
       <Typography variant="outlined" color="success">

@@ -1,11 +1,12 @@
+import * as React from 'react';
 import Alert from '@mui/joy/Alert';
+import Stack from '@mui/joy/Stack';
 import Box from '@mui/joy/Box';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 
 import Typography from '@mui/joy/Typography';
-import * as React from 'react';
 
 export default function AlertColors() {
   const [variant, setVariant] = React.useState('solid');
@@ -14,16 +15,11 @@ export default function AlertColors() {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        gap: 3,
+        justifyContent: 'center',
+        width: '100%',
       }}
     >
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, minmax(150px, 1fr))',
-          gap: 1,
-        }}
-      >
+      <Stack spacing={1} sx={{ width: '100%', maxWidth: 400 }}>
         <Alert variant={variant} color="primary">
           Primary
         </Alert>
@@ -42,15 +38,8 @@ export default function AlertColors() {
         <Alert variant={variant} color="warning">
           Warning
         </Alert>
-      </Box>
-      <Sheet
-        sx={{
-          background: 'transparent',
-          pl: 4,
-          borderLeft: '1px solid',
-          borderColor: 'divider',
-        }}
-      >
+      </Stack>
+      <Sheet sx={{ pl: 4, ml: 3, borderLeft: '1px solid', borderColor: 'divider' }}>
         <Typography
           level="body2"
           fontWeight="xl"

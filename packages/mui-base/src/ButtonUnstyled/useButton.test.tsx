@@ -10,12 +10,12 @@ describe('useButton', () => {
   describe('state: active', () => {
     describe('when using a button element', () => {
       it('is set when triggered by mouse', () => {
-        const TestComponent = () => {
+        function TestComponent() {
           const buttonRef = React.useRef(null);
           const { active, getRootProps } = useButton({ ref: buttonRef });
 
           return <button {...getRootProps()} className={active ? 'active' : ''} />;
-        };
+        }
 
         const { getByRole } = render(<TestComponent />);
         const button = getByRole('button');
@@ -26,12 +26,12 @@ describe('useButton', () => {
       });
 
       it('is set when triggered by keyboard', () => {
-        const TestComponent = () => {
+        function TestComponent() {
           const buttonRef = React.useRef(null);
           const { active, getRootProps } = useButton({ ref: buttonRef });
 
           return <button {...getRootProps()} className={active ? 'active' : ''} />;
-        };
+        }
 
         const { getByRole } = render(<TestComponent />);
         const button = getByRole('button');
@@ -45,12 +45,12 @@ describe('useButton', () => {
 
     describe('when using a span element', () => {
       it('is set when triggered by mouse', () => {
-        const TestComponent = () => {
+        function TestComponent() {
           const buttonRef = React.useRef(null);
           const { active, getRootProps } = useButton({ ref: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
-        };
+        }
 
         const { getByRole } = render(<TestComponent />);
         const button = getByRole('button');
@@ -61,12 +61,12 @@ describe('useButton', () => {
       });
 
       it('is set when triggered by keyboard', () => {
-        const TestComponent = () => {
+        function TestComponent() {
           const buttonRef = React.useRef(null);
           const { active, getRootProps } = useButton({ ref: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
-        };
+        }
 
         const { getByRole } = render(<TestComponent />);
         const button = getByRole('button');
@@ -84,11 +84,11 @@ describe('useButton', () => {
       }
 
       it('calls them when provided in props', () => {
-        const TestComponent = (props: WithClickHandler) => {
+        function TestComponent(props: WithClickHandler) {
           const ref = React.useRef(null);
           const { getRootProps } = useButton({ ...props, ref });
           return <button {...getRootProps()} />;
-        };
+        }
 
         const handleClick = spy();
 
@@ -101,11 +101,11 @@ describe('useButton', () => {
       it('calls them when provided in getRootProps()', () => {
         const handleClick = spy();
 
-        const TestComponent = () => {
+        function TestComponent() {
           const ref = React.useRef(null);
           const { getRootProps } = useButton({ ref });
           return <button {...getRootProps({ onClick: handleClick })} />;
-        };
+        }
 
         const { getByRole } = render(<TestComponent />);
         fireEvent.click(getByRole('button'));
@@ -117,11 +117,11 @@ describe('useButton', () => {
         const handleClickExternal = spy();
         const handleClickInternal = spy();
 
-        const TestComponent = (props: WithClickHandler) => {
+        function TestComponent(props: WithClickHandler) {
           const ref = React.useRef(null);
           const { getRootProps } = useButton({ ...props, ref });
           return <button {...getRootProps({ onClick: handleClickInternal })} />;
-        };
+        }
 
         const { getByRole } = render(<TestComponent onClick={handleClickExternal} />);
         fireEvent.click(getByRole('button'));

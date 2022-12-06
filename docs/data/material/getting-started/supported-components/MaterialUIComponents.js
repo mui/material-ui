@@ -254,9 +254,7 @@ export default function MaterialUIComponents() {
                     Support in MUI X
                   </Link>
                 ) : null}
-                {component.materialUI === 'Composable' ? (
-                  <React.Fragment>{'Composable'}</React.Fragment>
-                ) : null}
+                {component.materialUI === 'Composable' ? 'Composable' : null}
                 {component.materialUI == null ? '❌ No support' : null}
               </TableCell>
             </TableRow>

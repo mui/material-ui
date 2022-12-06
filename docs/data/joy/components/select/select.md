@@ -14,7 +14,7 @@ unstyled: /base/react-select/
 
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
-{{"demo": "SelectUsage.js", "hideToolbar": true}}
+{{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
@@ -51,6 +51,20 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the select.
 
 {{"demo": "SelectDecorators.js"}}
+
+If you have interactive elements as the select's decorators, call `stopPropagation()` from the mouse down event to prevent the popup from being opened.
+
+```jsx
+<IconButton
+  onMouseDown={(event) => {
+    // don't open the popup when clicking on this button
+    event.stopPropagation();
+  }}
+  onClick={() => {
+    // click handler goes here
+  }
+>...</IconButton>
+```
 
 ### Indicator
 
@@ -113,7 +127,7 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,
@@ -139,7 +153,7 @@ Alternatively, you can do it manually by targeting the button slot:
 ```jsx
 <label htmlFor="select-button" id="select-label">Label</label>
 <Select
-  componentsProps={{
+  slotProps={{
     button: {
       id: 'select-button',
       'aria-labelledby': 'select-label select-button',

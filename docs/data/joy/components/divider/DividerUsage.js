@@ -22,7 +22,7 @@ export default function DividerUsages() {
         },
       ]}
       renderDemo={(props) => (
-        <Sheet>
+        <Sheet sx={{ my: 2, bgcolor: 'transparent' }}>
           <Sheet
             sx={{
               height: 12,
@@ -38,20 +38,20 @@ export default function DividerUsages() {
             sx={{ width: 300, pb: 3 }}
           >
             <Sheet
-              variant="soft"
               sx={{
                 height: props.orientation === 'vertical' ? 120 : 40,
                 flexGrow: 1,
                 borderRadius: 'xs',
+                bgcolor: 'background.level3',
               }}
             />
             <Divider {...props} />
             <Sheet
-              variant="soft"
               sx={{
                 height: props.orientation === 'vertical' ? 120 : 40,
                 flexGrow: 1,
                 borderRadius: 'xs',
+                bgcolor: 'background.level3',
               }}
             />
           </Stack>

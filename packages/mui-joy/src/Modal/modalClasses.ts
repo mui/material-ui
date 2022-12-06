@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface ModalClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the backdrop element. */
+  backdrop: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -33,6 +35,7 @@ export function getModalUtilityClass(slot: string): string {
 
 const modalClasses: ModalClasses = generateUtilityClasses('JoyModal', [
   'root',
+  'backdrop',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
