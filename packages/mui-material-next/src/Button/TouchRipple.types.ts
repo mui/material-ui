@@ -1,9 +1,9 @@
 import * as React from 'react';
 // eslint-disable-next-line no-restricted-imports
 import { InternalStandardProps as StandardProps } from '@mui/material';
-import { TouchRippleClasses, TouchRippleClassKey } from './touchRippleClasses';
+import { TouchRippleClasses } from './touchRippleClasses';
 
-export type TouchRippleClassKey;
+export type { TouchRippleClassKey } from './touchRippleClasses';
 
 export interface StartActionOptions {
   pulsate?: boolean;
