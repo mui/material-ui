@@ -1,6 +1,6 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import { LANGUAGES } from '../constants';
+import { LANGUAGES } from 'docs/config';
 
 function pascalCase(str: string) {
   return upperFirst(camelCase(str));
@@ -105,9 +105,4 @@ export function pathnameToLanguage(pathname: string): {
     canonicalAsServer,
     canonicalPathname,
   };
-}
-
-export function escapeCell(value: string): string {
-  // As the pipe is use for the table structure
-  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }

@@ -37,6 +37,7 @@ export interface InputConformanceOptions {
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
   testCustomVariant?: boolean;
   testVariantProps?: object;
+  testLegacyComponentsProp?: boolean;
   wrapMount?: (
     mount: (node: React.ReactNode) => ReactWrapper,
   ) => (node: React.ReactNode) => ReactWrapper;
@@ -254,37 +255,14 @@ function forEachSlot(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
-  const { render, slots } = getOptions();
+  const { render, slots, testLegacyComponentsProp } = getOptions();
 
   const CustomComponent = React.forwardRef<HTMLElement, { className?: string }>(
     ({ className }, ref) => <i className={className} ref={ref} data-testid="custom" />,
   );
 
   forEachSlot(slots, (slotName, slotOptions) => {
-    it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
-      slotName,
-    )} prop`, () => {
-      if (!render) {
-        throwMissingPropError('render');
-      }
-
-      const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
-
-      const components = {
-        [capitalize(slotName)]: slotComponent,
-      };
-
-      const { queryByTestId } = render(React.cloneElement(element, { components }));
-      const renderedElement = queryByTestId('custom');
-      expect(renderedElement).not.to.equal(null);
-      if (slotOptions.expectedClassName) {
-        expect(renderedElement).to.have.class(slotOptions.expectedClassName);
-      }
-    });
-
-    it(`allows overriding the ${slotName} slot with a component using the slots.${capitalize(
-      slotName,
-    )} prop`, () => {
+    it(`allows overriding the ${slotName} slot with a component using the slots.${slotName} prop`, () => {
       if (!render) {
         throwMissingPropError('render');
       }
@@ -303,85 +281,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
       }
     });
 
-    it(`prioritizes the 'slots.${slotName}' over components.${capitalize(
-      slotName,
-    )} if both are defined`, () => {
-      if (!render) {
-        throwMissingPropError('render');
-      }
-
-      const ComponentForComponentsProp = React.forwardRef<
-        HTMLDivElement,
-        { children: React.ReactNode }
-      >(({ children }, ref) => {
-        const SlotComponent = slotOptions.testWithComponent ?? 'div';
-        return (
-          <SlotComponent ref={ref} data-testid="from-components">
-            {children}
-          </SlotComponent>
-        );
-      });
-
-      const ComponentForSlotsProp = React.forwardRef<HTMLDivElement, { children: React.ReactNode }>(
-        ({ children }, ref) => {
-          const SlotComponent = slotOptions.testWithComponent ?? 'div';
-          return (
-            <SlotComponent ref={ref} data-testid="from-slots">
-              {children}
-            </SlotComponent>
-          );
-        },
-      );
-
-      const components = {
-        [capitalize(slotName)]: ComponentForComponentsProp,
-      };
-
-      const slotOverrides = {
-        [slotName]: ComponentForSlotsProp,
-      };
-
-      const { queryByTestId } = render(
-        React.cloneElement(element, { components, slots: slotOverrides }),
-      );
-
-      expect(queryByTestId('from-slots')).not.to.equal(null);
-      expect(queryByTestId('from-components')).to.equal(null);
-    });
-
     if (slotOptions.testWithElement !== null) {
-      it(`allows overriding the ${slotName} slot with an element using the components.${capitalize(
-        slotName,
-      )} prop`, () => {
-        if (!render) {
-          throwMissingPropError('render');
-        }
-
-        const slotElement = slotOptions.testWithElement ?? 'i';
-
-        const components = {
-          [capitalize(slotName)]: slotElement,
-        };
-
-        const componentsProps = {
-          [slotName]: {
-            'data-testid': 'customized',
-          },
-        };
-
-        const { queryByTestId } = render(
-          React.cloneElement(element, { components, componentsProps }),
-        );
-
-        const renderedElement = queryByTestId('customized');
-        expect(renderedElement).not.to.equal(null);
-
-        expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
-        if (slotOptions.expectedClassName) {
-          expect(renderedElement).to.have.class(slotOptions.expectedClassName);
-        }
-      });
-
       it(`allows overriding the ${slotName} slot with an element using the slots.${slotName} prop`, () => {
         if (!render) {
           throwMissingPropError('render');
@@ -412,33 +312,122 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => Conformanc
         }
       });
     }
+
+    // For testing Material UI components v5, and v6. Likely to be removed in v7.
+    if (testLegacyComponentsProp) {
+      it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
+        slotName,
+      )} prop`, () => {
+        if (!render) {
+          throwMissingPropError('render');
+        }
+
+        const slotComponent = slotOptions.testWithComponent ?? CustomComponent;
+
+        const components = {
+          [capitalize(slotName)]: slotComponent,
+        };
+
+        const { queryByTestId } = render(React.cloneElement(element, { components }));
+        const renderedElement = queryByTestId('custom');
+        expect(renderedElement).not.to.equal(null);
+        if (slotOptions.expectedClassName) {
+          expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+        }
+      });
+
+      it(`prioritizes the 'slots.${slotName}' over components.${capitalize(
+        slotName,
+      )} if both are defined`, () => {
+        if (!render) {
+          throwMissingPropError('render');
+        }
+
+        const ComponentForComponentsProp = React.forwardRef<
+          HTMLDivElement,
+          { children: React.ReactNode }
+        >(({ children }, ref) => {
+          const SlotComponent = slotOptions.testWithComponent ?? 'div';
+          return (
+            <SlotComponent ref={ref} data-testid="from-components">
+              {children}
+            </SlotComponent>
+          );
+        });
+
+        const ComponentForSlotsProp = React.forwardRef<
+          HTMLDivElement,
+          { children: React.ReactNode }
+        >(({ children }, ref) => {
+          const SlotComponent = slotOptions.testWithComponent ?? 'div';
+          return (
+            <SlotComponent ref={ref} data-testid="from-slots">
+              {children}
+            </SlotComponent>
+          );
+        });
+
+        const components = {
+          [capitalize(slotName)]: ComponentForComponentsProp,
+        };
+
+        const slotOverrides = {
+          [slotName]: ComponentForSlotsProp,
+        };
+
+        const { queryByTestId } = render(
+          React.cloneElement(element, { components, slots: slotOverrides }),
+        );
+
+        expect(queryByTestId('from-slots')).not.to.equal(null);
+        expect(queryByTestId('from-components')).to.equal(null);
+      });
+
+      if (slotOptions.testWithElement !== null) {
+        it(`allows overriding the ${slotName} slot with an element using the components.${capitalize(
+          slotName,
+        )} prop`, () => {
+          if (!render) {
+            throwMissingPropError('render');
+          }
+
+          const slotElement = slotOptions.testWithElement ?? 'i';
+
+          const components = {
+            [capitalize(slotName)]: slotElement,
+          };
+
+          const componentsProps = {
+            [slotName]: {
+              'data-testid': 'customized',
+            },
+          };
+
+          const { queryByTestId } = render(
+            React.cloneElement(element, { components, componentsProps }),
+          );
+
+          const renderedElement = queryByTestId('customized');
+          expect(renderedElement).not.to.equal(null);
+
+          expect(renderedElement!.nodeName.toLowerCase()).to.equal(slotElement);
+          if (slotOptions.expectedClassName) {
+            expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+          }
+        });
+      }
+    }
   });
 }
 
 function testSlotPropsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
-  const { render, slots } = getOptions();
+  const { render, slots, testLegacyComponentsProp } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
   }
 
   forEachSlot(slots, (slotName, slotOptions) => {
-    it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, () => {
-      const componentsProps = {
-        [slotName]: {
-          'data-testid': 'custom',
-        },
-      };
-
-      const { queryByTestId } = render(React.cloneElement(element, { componentsProps }));
-      const slotComponent = queryByTestId('custom');
-      expect(slotComponent).not.to.equal(null);
-
-      if (slotOptions.expectedClassName) {
-        expect(slotComponent).to.have.class(slotOptions.expectedClassName);
-      }
-    });
-
     it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} prop`, () => {
       const slotProps = {
         [slotName]: {
@@ -453,27 +442,6 @@ function testSlotPropsProp(element: React.ReactElement, getOptions: () => Confor
       if (slotOptions.expectedClassName) {
         expect(slotComponent).to.have.class(slotOptions.expectedClassName);
       }
-    });
-
-    it(`prioritizes the 'slotProps.${slotName}' over componentsProps.${slotName} if both are defined`, () => {
-      const componentsProps = {
-        [slotName]: {
-          'data-testid': 'custom',
-          'data-from-components-props': 'true',
-        },
-      };
-
-      const slotProps = {
-        [slotName]: {
-          'data-testid': 'custom',
-          'data-from-slot-props': 'true',
-        },
-      };
-
-      const { queryByTestId } = render(React.cloneElement(element, { componentsProps, slotProps }));
-      const slotComponent = queryByTestId('custom');
-      expect(slotComponent).to.have.attribute('data-from-slot-props', 'true');
-      expect(slotComponent).not.to.have.attribute('data-from-components-props');
     });
 
     if (slotOptions.expectedClassName) {
@@ -491,6 +459,71 @@ function testSlotPropsProp(element: React.ReactElement, getOptions: () => Confor
         expect(getByTestId('custom')).to.have.class(slotProps[slotName].className);
       });
     }
+
+    if (testLegacyComponentsProp) {
+      it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, () => {
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+          },
+        };
+
+        const { queryByTestId } = render(React.cloneElement(element, { componentsProps }));
+        const slotComponent = queryByTestId('custom');
+        expect(slotComponent).not.to.equal(null);
+
+        if (slotOptions.expectedClassName) {
+          expect(slotComponent).to.have.class(slotOptions.expectedClassName);
+        }
+      });
+
+      it(`prioritizes the 'slotProps.${slotName}' over componentsProps.${slotName} if both are defined`, () => {
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+            'data-from-components-props': 'true',
+          },
+        };
+
+        const slotProps = {
+          [slotName]: {
+            'data-testid': 'custom',
+            'data-from-slot-props': 'true',
+          },
+        };
+
+        const { queryByTestId } = render(
+          React.cloneElement(element, { componentsProps, slotProps }),
+        );
+        const slotComponent = queryByTestId('custom');
+        expect(slotComponent).to.have.attribute('data-from-slot-props', 'true');
+        expect(slotComponent).not.to.have.attribute('data-from-components-props');
+      });
+    }
+  });
+}
+
+function testSlotPropsCallback(element: React.ReactElement, getOptions: () => ConformanceOptions) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets custom properties on the ${slotName} slot's element with the slotProps.${slotName} callback`, () => {
+      const slotProps = {
+        [slotName]: (ownerState: Record<string, any>) => ({
+          'data-testid': ownerState.className,
+        }),
+      };
+
+      const { queryByTestId } = render(
+        React.cloneElement(element, { slotProps, className: 'custom' }),
+      );
+      const slotComponent = queryByTestId('custom');
+      expect(slotComponent).not.to.equal(null);
+    });
   });
 }
 
@@ -870,6 +903,7 @@ const fullSuite = {
   rootClass: testRootClass,
   reactTestRenderer: testReactTestRenderer,
   slotPropsProp: testSlotPropsProp,
+  slotPropsCallback: testSlotPropsCallback,
   slotsProp: testSlotsProp,
   themeDefaultProps: testThemeDefaultProps,
   themeStyleOverrides: testThemeStyleOverrides,
@@ -898,7 +932,7 @@ export default function describeConformance(
         only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
     ) as (keyof typeof fullSuite)[];
 
-    const slotBasedTests = ['slotsProp', 'slotPropsProp'];
+    const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
 
     if (!slots) {
       // if `slots` are not defined, do not run tests that depend on them

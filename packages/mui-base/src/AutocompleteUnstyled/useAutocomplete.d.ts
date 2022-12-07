@@ -27,13 +27,11 @@ export function createFilterOptions<T>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
-export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends
-  | undefined
-  | false
-  ? DisableClearable extends true
-    ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
-    : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>
-  : Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>;
+export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends true
+  ? Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : DisableClearable extends true
+  ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
   T,
