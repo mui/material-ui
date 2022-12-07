@@ -161,14 +161,6 @@ export const ButtonRoot = styled('button', {
         ),
   };
 
-  const hoveredContainerElevation = {
-    elevated: theme.shadows[4], // not the correct value, need to be validated
-    filled: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-    filledTonal: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-    outlined: 'none',
-    text: 'none',
-  };
-
   const pressedContainerColor = {
     elevated: theme.vars
       ? `rgba(${tokens.sys.color.primaryChannel} / ${tokens.sys.state.pressed.stateLayerOpacity})`
@@ -236,12 +228,37 @@ export const ButtonRoot = styled('button', {
   };
 
   const containerElevation = {
-    elevated: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-    filled: 'none', // md.sys.elevation.level0
-    filledTonal: 'none', // md.sys.elevation.level0
-    outlined: 'none', // md.sys.elevation.level0
-    text: 'none', // md.sys.elevation.level0
+    elevated: tokens.sys.elevation[1],
+    filled: tokens.sys.elevation[0],
+    filledTonal: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
   };
+
+  const hoveredContainerElevation = {
+    elevated: tokens.sys.elevation[2],
+    filled: tokens.sys.elevation[1],
+    filledTonal: tokens.sys.elevation[1],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
+  };
+
+  const focusedContainerElevation = {
+    elevated: tokens.sys.elevation[1],
+    filled: tokens.sys.elevation[0],
+    filledTonal: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
+  };
+
+  const pressedContainerElevation = {
+    elevated: tokens.sys.elevation[1],
+    filled: tokens.sys.elevation[0],
+    filledTonal: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
+  };
+
   const disabledLabelTextColor = theme.vars
     ? `rgba(${theme.vars.sys.color.onSurfaceChannel} / 0.38)`
     : alpha(theme.sys.color.onSurface, 0.38);
@@ -336,10 +353,12 @@ export const ButtonRoot = styled('button', {
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
         backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
       }),
+      boxShadow: pressedContainerElevation[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
       backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
+      boxShadow: focusedContainerElevation[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.disabled}`]: {
       // Allows deverloper to specify the disabled icon color var
@@ -348,7 +367,7 @@ export const ButtonRoot = styled('button', {
       cursor: 'default',
       color: disabledLabelTextColor,
       backgroundColor: disabeldContainerColor[ownerState.variant ?? 'text'],
-      boxShadow: 'var(--md-comp-button-disabled-container-elevation, none)', // Should be md.sys.elevation.level0
+      boxShadow: tokens.sys.elevation[0],
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${
           theme.vars

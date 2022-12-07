@@ -143,6 +143,7 @@ export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'co
   sys?: {
     typescale?: Partial<MD3Typescale>;
     state?: Partial<MD3States>;
+    elevation?: string[];
   };
 }
 
@@ -172,6 +173,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     color: MD3ColorSchemeTokens;
     typescale: MD3Typescale;
     state: MD3States;
+    elevation: string[];
   };
   md3: {
     shape: Shapes;
@@ -187,6 +189,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       color: MD3ColorSchemeTokens;
       typescale: MD3Typescale;
       state: MD3States;
+      elevation: string[];
     };
     md3: {
       shape: Shapes;

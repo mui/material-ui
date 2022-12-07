@@ -21,6 +21,7 @@ import createMd3DarkColorScheme from './createDarkColorScheme';
 import md3Typescale from './typescale';
 import md3Typeface from './typeface';
 import md3State from './states';
+import { elevationLight, elevationDark } from './elevation';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -74,6 +75,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       typescale: { ...md3Typescale, ...input.sys?.typescale },
       state: { ...md3State, ...input.sys?.state },
       color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color },
+      elevation: colorSchemesInput.light?.sys?.elevation ?? elevationLight,
     },
     md3: {
       shape: {
@@ -108,13 +110,14 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       typescale: { ...md3Typescale, ...input.sys?.typescale },
       state: { ...md3State, ...input.sys?.state },
       color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color },
+      elevation: colorSchemesInput.dark?.sys?.elevation ?? elevationDark,
     },
   });
 
-  const { color: lightSysColor } = lightSys;
+  const { color: lightSysColor, elevation: lightSysElevation } = lightSys;
   const { palette: lightRefPalette } = lightRef;
 
-  const { color: darkSysColor } = darkSys;
+  const { color: darkSysColor, elevation: darkSysElevation } = darkSys;
   const { palette: darkRefPalette } = darkRef;
 
   let theme: Theme = {
@@ -137,7 +140,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.light?.opacity,
         },
         overlays: colorSchemesInput.light?.overlays || defaultLightOverlays,
-        sys: { color: lightSysColor },
+        sys: { color: lightSysColor, elevation: lightSysElevation },
         ref: { palette: lightRefPalette },
       },
       dark: {
@@ -152,7 +155,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
           ...colorSchemesInput.dark?.opacity,
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
-        sys: { color: darkSysColor },
+        sys: { color: darkSysColor, elevation: darkSysElevation },
         ref: { palette: darkRefPalette },
       },
     },
