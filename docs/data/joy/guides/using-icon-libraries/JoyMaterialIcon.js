@@ -18,7 +18,12 @@ export default function JoyMaterialIcon() {
       </Stack>
       <Stack spacing={2}>
         {['sm', 'md', 'lg'].map((size) => (
-          <Input key={size} size={size} startDecorator={<Person />} placeholder="Placeholder" />
+          <Input
+            key={size}
+            size={size}
+            startDecorator={<Person />}
+            placeholder="Placeholder"
+          />
         ))}
       </Stack>
       <Stack spacing={2}>
