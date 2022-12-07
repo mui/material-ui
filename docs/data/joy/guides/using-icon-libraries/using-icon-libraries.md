@@ -1,0 +1,108 @@
+# Using icon libraries
+
+<p class="description">Learn how to use your favorite icon library with Joy UI.</p>
+
+## Overview
+
+To use icons with Joy UI, apply the styles with specific CSS variables like the example below.
+
+```jsx
+import { CssVarsProvider } from '@mui/joy/styles';
+import GlobalStyles from '@mui/joy/GlobalStyles';
+// The `GlobalStyles` component is used to create a global style sheet.
+// You can replace it with your preferred CSS solution.
+
+function App() {
+  return (
+    <CssVarsProvider>
+      <GlobalStyles styles={{
+        // the {selector} depends on the icon library
+        '{selector}': {
+          color: "var(--Icon-color)",
+          margin: "var(--Icon-margin)",
+          fontSize: "var(--Icon-fontSize, 20px)",
+          width: "1em",
+          height: "1em"
+        }
+      }}>
+    </CssVarsProvider>
+  )
+}
+```
+
+Joy UI components, such as `Button` and `Input`, can control those variables based on their size and variant to make the icons fit nicely.
+
+Below are integration examples of some popular icon libraries:
+
+## Material icons
+
+:::warning
+To use `@mui/icons-material` with Joy UI, you will have to install Material UI (`@mui/material`) because it is a peer dependency. There is almost no increase in the production bundle size if you configure [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) in your build process.
+
+We are aware of this limitation and considering removing the peer dependency. You can keep track of the progress in [this issue](https://github.com/mui/material-ui/issues/34489).
+:::
+
+- [Browse icons](/material-ui/material-icons/)
+- [Installation](/material-ui/getting-started/installation/)
+
+{{"demo": "JoyMaterialIcon.js"}}
+
+## React icons
+
+- [Browse icons](https://react-icons.github.io/react-icons/search)
+- [Installation](https://react-icons.github.io/react-icons)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-react-icons-n6jljq?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     title="joy-ui-react-icons"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+## Ionicons
+
+- [Browse icons](https://ionic.io/ionicons)
+- [Installation](https://ionic.io/ionicons/usage)
+
+<iframe src="https://codesandbox.io/embed/inspiring-visvesvaraya-etcc3x?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     title="inspiring-visvesvaraya-etcc3x"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+## Heroicons
+
+- [Browse icons](hhttps://heroicons.com/)
+- [Installation](https://github.com/tailwindlabs/heroicons#react)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-heroicons-wv2ev1?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     title="joy-ui-heroicons"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+## Bootstrap icons
+
+- [Browse icons](https://icons.getbootstrap.com/)
+- [Installation](https://icons.getbootstrap.com/#install)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-bootstrap-icons-x8g0cm?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     title="joy-ui-bootstrap"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+## Fontawesome
+
+- [Browse icons](https://fontawesome.com/icons)
+- [Installation](https://fontawesome.com/docs/web/use-with/react/)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-fontawesome-kjbnqj?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     title="joy-ui-fontawesome"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>

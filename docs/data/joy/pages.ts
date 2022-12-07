@@ -108,6 +108,10 @@ const pages = [
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',
       },
+      {
+        pathname: '/joy-ui/guides/using-icon-libraries',
+        title: 'Using icon libraries',
+      },
     ],
   },
 ];
