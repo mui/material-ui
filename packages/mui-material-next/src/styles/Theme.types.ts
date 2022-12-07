@@ -153,6 +153,7 @@ export interface ColorSystemOptions extends MD2ColorSystemOptions {
   };
   sys?: {
     color?: Partial<MD3ColorSchemeTokens>;
+    elevation?: string[];
   };
 }
 
