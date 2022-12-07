@@ -58,7 +58,7 @@ Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-va
 
 {{"demo": "TabsVariants.js"}}
 
-:::success
+:::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
 

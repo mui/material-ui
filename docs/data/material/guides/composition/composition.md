@@ -193,7 +193,7 @@ ref forwarding. However, only the following component types can be given a `ref`
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from
 React in your console similar to:
 
-:::info
+:::warning
 Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 :::
 
