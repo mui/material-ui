@@ -29,7 +29,7 @@
         "name": "union",
         "description": "{ bottom?: number, left?: number, right?: number, top?: number }<br>&#124;&nbsp;number"
       },
-      "default": "{ top: 16, right: 16, bottom: 16, left: 16 }"
+      "default": "16"
     },
     "onClose": { "type": { "name": "func" } },
     "PaperProps": {

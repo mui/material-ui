@@ -912,19 +912,27 @@ describe('<Popover />', () => {
       expect(leftMargin).to.equal(16);
     });
 
-    it('should return 8 when 8 is used for marginThreshold', () => {
-      const marginThreshold = 8;
+    it('should return 11 for top and left margin and 0 for bottom and right margin when 11 is used for marginThreshold', () => {
+      const marginThreshold = 11;
       const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins(marginThreshold);
-      expect(topMargin).to.equal(8);
-      expect(bottomMargin).to.equal(8);
-      expect(rightMargin).to.equal(8);
-      expect(leftMargin).to.equal(8);
+      expect(topMargin).to.equal(11);
+      expect(leftMargin).to.equal(11);
+      expect(bottomMargin).to.equal(0);
+      expect(rightMargin).to.equal(0);
     });
 
-    it('should return 8 when top-margin is set to 8 for marginThreshold, others should be 16 (default-value)', () => {
-      const marginThreshold = { top: 8 };
+    it('should return 13 for top and left margin and 0 for bottom and right margin when string "13px" is used for marginThreshold', () => {
+      const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins('13px');
+      expect(topMargin).to.equal(13);
+      expect(leftMargin).to.equal(13);
+      expect(bottomMargin).to.equal(0);
+      expect(rightMargin).to.equal(0);
+    });
+
+    it('should return 12 for top-margin for marginThreshold { top: 12 } and other values should be 16 (default-value)', () => {
+      const marginThreshold = { top: 12 };
       const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins(marginThreshold);
-      expect(topMargin).to.equal(8);
+      expect(topMargin).to.equal(12);
       expect(bottomMargin).to.equal(16);
       expect(rightMargin).to.equal(16);
       expect(leftMargin).to.equal(16);

@@ -76,9 +76,9 @@ export function getMargins(marginThreshold) {
   if (isNumber(marginThreshold)) {
     const margin = parseFloat(marginThreshold);
     return {
-      bottomMargin: margin,
+      bottomMargin: 0,
       leftMargin: margin,
-      rightMargin: margin,
+      rightMargin: 0,
       topMargin: margin,
     };
   }
@@ -130,7 +130,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className,
     container: containerProp,
     elevation = 8,
-    marginThreshold = { top: 16, right: 16, bottom: 16, left: 16 },
+    marginThreshold = 16,
     open,
     PaperProps = {},
     transformOrigin = {
@@ -245,8 +245,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       // Calculate element positioning
       let top = anchorOffset.top - elemTransformOrigin.vertical;
       let left = anchorOffset.left - elemTransformOrigin.horizontal;
-      const bottom = top + elemRect.height;
-      const right = left + elemRect.width;
 
       // Use the parent window of the anchorEl if provided
       const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
@@ -260,12 +258,17 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const heightThreshold = containerWindow.innerHeight - verticalMargin;
       const widthThreshold = containerWindow.innerWidth - horizontalMargin;
 
+      let bottom = top + elemRect.height;
+
       // Check if the vertical axis needs shifting
       if (top < topMargin) {
         const diff = top - topMargin;
         top -= diff;
         elemTransformOrigin.vertical += diff;
-      } else if (bottom > heightThreshold) {
+        bottom += diff;
+      }
+
+      if (bottom > heightThreshold) {
         const diff = bottom - heightThreshold;
         top -= diff;
         elemTransformOrigin.vertical += diff;
@@ -273,6 +276,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
       if (process.env.NODE_ENV !== 'production') {
         if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
+          // eslint-disable-next-line
+          console.log(elemRect.height, heightThreshold);
           console.error(
             [
               'MUI: The popover component is too tall.',
@@ -285,12 +290,17 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         }
       }
 
+      let right = left + elemRect.width;
+
       // Check if the horizontal axis needs shifting
       if (left < leftMargin) {
         const diff = left - leftMargin;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
-      } else if (right > widthThreshold) {
+        right += diff;
+      }
+
+      if (right > widthThreshold) {
         const diff = right - widthThreshold;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
@@ -532,9 +542,9 @@ Popover.propTypes /* remove-proptypes */ = {
   elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
-   * You can pass a number, which will be equal margin on all four sides,
-   * or an object with values for top, bottom, right and left, for unset values 16 is used.
-   * @default { top: 16, right: 16, bottom: 16, left: 16 }
+   * You can pass a number (used for top/left margin)
+   * or an object with values for top, bottom, right and left (default-value for unset values in object ist 16)
+   * @default 16
    */
   marginThreshold: PropTypes.oneOfType([
     PropTypes.shape({
