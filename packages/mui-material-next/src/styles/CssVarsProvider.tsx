@@ -7,7 +7,7 @@ import {
 import defaultTheme from './defaultTheme';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions|motion)/) ||
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =

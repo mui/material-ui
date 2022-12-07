@@ -21,6 +21,7 @@ import createMd3DarkColorScheme from './createDarkColorScheme';
 import md3Typescale from './typescale';
 import md3Typeface from './typeface';
 import md3State from './states';
+import createMotions from './motion';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -52,6 +53,11 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
   const md3DarkColors = createMd3DarkColorScheme(getCssVar, md3CommonPalette);
 
+  const motion = createMotions(input.sys?.motion);
+  const typescale = { ...md3Typescale, ...input.sys?.typescale };
+  const typeface = { ...md3Typeface, ...input.ref?.typeface };
+  const state = { ...md3State, ...input.sys?.state };
+
   const {
     palette: lightPalette,
     // @ts-ignore - sys is md3 specific token
@@ -66,13 +72,14 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     useMaterialYou: true,
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.light?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color },
     },
     md3: {
@@ -100,13 +107,14 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     // @ts-ignore - it's fine, everything that is not supported will be spread
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.dark?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color },
     },
   });
