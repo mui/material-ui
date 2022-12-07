@@ -40,14 +40,14 @@ export interface InputConformanceOptions {
   testVariantProps?: object;
   testLegacyComponentsProp?: boolean;
   wrapMount?: (
-    mount: (node: React.ReactNode) => ReactWrapper,
-  ) => (node: React.ReactNode) => ReactWrapper;
+    mount: (node: React.ReactElement) => ReactWrapper,
+  ) => (node: React.ReactElement) => ReactWrapper;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
 }
 
 export interface ConformanceOptions extends InputConformanceOptions {
-  mount: (node: React.ReactNode) => ReactWrapper;
+  mount: (node: React.ReactElement) => ReactWrapper;
 }
 
 /**
