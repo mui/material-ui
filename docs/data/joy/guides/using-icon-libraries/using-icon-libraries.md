@@ -2,9 +2,65 @@
 
 <p class="description">Learn how to use your favorite icon library with Joy UI.</p>
 
-## Overview
+## MUI Material icon
 
-To use icons with Joy UI, apply the styles with specific CSS variables like the example below.
+[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
+includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+
+### Installation
+
+This section assumes that you've already installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions.
+
+:::warning
+To use `@mui/icons-material` with Joy UI, you will have to install Material UI (`@mui/material`) because it is a required dependency. The increase of the production bundle size is very little if you configure [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) in your build process.
+
+We are aware of this limitation and considering removing the dependency. You can keep track of the progress from [this issue](https://github.com/mui/material-ui/issues/34489).
+:::
+
+#### npm
+
+```sh
+npm install @mui/icons-material @mui/material
+```
+
+#### yarn
+
+```sh
+yarn add @mui/icons-material @mui/material
+```
+
+### Usage
+
+The icons from `@mui/icons-material` package work with Joy UI by default. Start by
+
+- [Browse icons](/material-ui/material-icons/)
+- [Installation](/material-ui/getting-started/installation/)
+
+{{"demo": "JoyMaterialIcon.js"}}
+
+### Size
+
+To control the size of the icon, use `fontSize` prop. The value can be one of the keys in `theme.fontSize` (default as `"xl"`).
+
+```js
+import { CssVarsProvider } from '@mui/joy/styles';
+import Person from '@mui/icons-material/Person';
+
+function App() {
+  return (
+    <CssVarsProvider>
+      <Person fontSize="sm" />
+      <Person fontSize="md" />
+      <Person fontSize="xl" />
+      {/* …other sizes */}
+    </CssVarsProvider>
+  );
+}
+```
+
+## 3rd-party icons
+
+To use icon libraries, web font icons, or plain svg icons with Joy UI, apply the styles with specific CSS variables like the example below.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -16,7 +72,8 @@ function App() {
   return (
     <CssVarsProvider>
       <GlobalStyles styles={{
-        // the {selector} depends on the icon library
+        // The {selector} is the CSS selector to target the icon.
+        // We recommend to use a class over a tag if it is possible.
         '{selector}': {
           color: "var(--Icon-color)",
           margin: "var(--Icon-margin)",
@@ -30,24 +87,13 @@ function App() {
 }
 ```
 
-Joy UI components, such as `Button` and `Input`, can control those variables based on their size and variant to make the icons fit nicely.
+Joy UI components can control those variables based on their size and variant to make the icons fit perfectly.
 
-Below are integration examples of some popular icon libraries:
+---
 
-## Material icons
+Here is a collection of well-known icon libraries that you can use with Joy UI.
 
-:::warning
-To use `@mui/icons-material` with Joy UI, you will have to install Material UI (`@mui/material`) because it is a peer dependency. There is almost no increase in the production bundle size if you configure [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) in your build process.
-
-We are aware of this limitation and considering removing the peer dependency. You can keep track of the progress in [this issue](https://github.com/mui/material-ui/issues/34489).
-:::
-
-- [Browse icons](/material-ui/material-icons/)
-- [Installation](/material-ui/getting-started/installation/)
-
-{{"demo": "JoyMaterialIcon.js"}}
-
-## React icons
+### React icons
 
 - [Browse icons](https://react-icons.github.io/react-icons/search)
 - [Installation](https://react-icons.github.io/react-icons)
@@ -59,7 +105,7 @@ We are aware of this limitation and considering removing the peer dependency. Yo
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## Ionicons
+### Ionicons
 
 - [Browse icons](https://ionic.io/ionicons)
 - [Installation](https://ionic.io/ionicons/usage)
@@ -71,7 +117,7 @@ We are aware of this limitation and considering removing the peer dependency. Yo
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## Heroicons
+### Heroicons
 
 - [Browse icons](hhttps://heroicons.com/)
 - [Installation](https://github.com/tailwindlabs/heroicons#react)
@@ -83,7 +129,7 @@ We are aware of this limitation and considering removing the peer dependency. Yo
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## Bootstrap icons
+### Bootstrap icons
 
 - [Browse icons](https://icons.getbootstrap.com/)
 - [Installation](https://icons.getbootstrap.com/#install)
@@ -95,7 +141,7 @@ We are aware of this limitation and considering removing the peer dependency. Yo
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-## Fontawesome
+### Fontawesome
 
 - [Browse icons](https://fontawesome.com/icons)
 - [Installation](https://fontawesome.com/docs/web/use-with/react/)
