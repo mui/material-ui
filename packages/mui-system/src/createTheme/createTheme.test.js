@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import { experimental_sx as sx, styled, ThemeProvider } from '@mui/system';
+import { createTheme, styled, ThemeProvider } from '@mui/system';
 
-describe('sx', () => {
+describe('createTheme', () => {
   const { render } = createRenderer();
   const breakpointsValues = {
     xs: 0,
@@ -15,7 +15,7 @@ describe('sx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = {
+  const theme = createTheme({
     spacing: (val) => `${val * 10}px`,
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -52,7 +52,7 @@ describe('sx', () => {
         lineHeight: 1.43,
       },
     },
-  };
+  });
 
   describe('system', () => {
     it('resolves system when used inside styled()', function test() {
@@ -60,8 +60,8 @@ describe('sx', () => {
         this.skip();
       }
 
-      const Test = styled('div')(
-        sx({
+      const Test = styled('div')(({ theme: t }) =>
+        t.unstable_sx({
           color: 'primary.main',
           bgcolor: 'secondary.main',
           m: 2,
@@ -105,22 +105,23 @@ describe('sx', () => {
             variants: [
               {
                 props: {}, // all props
-                style: sx({
-                  color: 'primary.main',
-                  bgcolor: 'secondary.main',
-                  m: 2,
-                  p: 1,
-                  fontSize: 'fontSize',
-                  maxWidth: 'sm',
-                }),
+                style: ({ theme: t }) =>
+                  t.unstable_sx({
+                    color: 'primary.main',
+                    bgcolor: 'secondary.main',
+                    m: 2,
+                    p: 1,
+                    fontSize: 'fontSize',
+                    maxWidth: 'sm',
+                  }),
               },
             ],
           },
         },
       };
 
-      const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(
-        sx({
+      const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(({ theme: t }) =>
+        t.unstable_sx({
           color: 'primary.main',
           bgcolor: 'secondary.main',
           m: 2,
@@ -154,8 +155,8 @@ describe('sx', () => {
   });
 
   it('does not throw if used without ThemeProvider', function test() {
-    const Test = styled('div')(
-      sx({
+    const Test = styled('div')(({ theme: t }) =>
+      t.unstable_sx({
         color: 'primary.main',
         bgcolor: 'secondary.main',
         m: 2,
