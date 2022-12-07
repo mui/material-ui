@@ -31,32 +31,15 @@ yarn add @mui/icons-material @mui/material
 
 ### Usage
 
-The icons from `@mui/icons-material` package work with Joy UI by default. Start by
-
-- [Browse icons](/material-ui/material-icons/)
-- [Installation](/material-ui/getting-started/installation/)
+By default, Joy UI components are able to control the color, font-size, and margin of the icons when their size, or variant change.
 
 {{"demo": "JoyMaterialIcon.js"}}
 
 ### Size
 
-To control the size of the icon, use `fontSize` prop. The value can be one of the keys in `theme.fontSize` (default as `"xl"`).
+To control the size of the icon, use `fontSize` prop. The value can be one of the keys in `theme.fontSize` (the default value is `"xl"`).
 
-```js
-import { CssVarsProvider } from '@mui/joy/styles';
-import Person from '@mui/icons-material/Person';
-
-function App() {
-  return (
-    <CssVarsProvider>
-      <Person fontSize="sm" />
-      <Person fontSize="md" />
-      <Person fontSize="xl" />
-      {/* …other sizes */}
-    </CssVarsProvider>
-  );
-}
-```
+{{"demo": "IconFontSizes.js"}}
 
 ## 3rd-party icons
 
