@@ -17,6 +17,13 @@ export interface PopoverPosition {
   left: number;
 }
 
+export interface PopoverMargins {
+  bottom?: number;
+  left?: number;
+  right?: number;
+  top?: number;
+}
+
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
 export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
@@ -82,7 +89,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    * or an array of two numbers, first value will be vertical margin and second value horizontal.
    * @default 16
    */
-  marginThreshold?: number | number[];
+  marginThreshold?: PopoverMargins | number;
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the component is shown.
@@ -142,10 +149,7 @@ export function getOffsetLeft(
   horizontal: number | 'center' | 'right' | 'left',
 ): number;
 
-export function getMargin(
-  marginThreshold: number | number[],
-  direction: 'vertical' | 'horizontal',
-): number;
+export function getMargins(marginThreshold: PopoverMargins | number): PopoverMargins;
 
 /**
  *

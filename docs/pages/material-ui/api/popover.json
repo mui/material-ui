@@ -25,8 +25,11 @@
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "marginThreshold": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
-      "default": "16"
+      "type": {
+        "name": "union",
+        "description": "{ bottom?: number, left?: number, right?: number, top?: number }<br>&#124;&nbsp;number"
+      },
+      "default": "{ top: 16, right: 16, bottom: 16, left: 16 }"
     },
     "onClose": { "type": { "name": "func" } },
     "PaperProps": {

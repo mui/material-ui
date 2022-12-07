@@ -8,7 +8,7 @@ import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Popover, { popoverClasses as classes } from '@mui/material/Popover';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { getMargin, getOffsetLeft, getOffsetTop } from './Popover';
+import { getMargins, getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
@@ -904,52 +904,30 @@ describe('<Popover />', () => {
   });
 
   describe('getMargin', () => {
-    it('should return 16 (default-value) when direction vertical and marginThreshold is undefined', () => {
-      const direction = 'vertical';
-      const margin = getMargin(undefined, direction);
-      expect(margin).to.equal(16);
+    it('should return 16 for all margins when empty object is used for marginThreshold', () => {
+      const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins({});
+      expect(topMargin).to.equal(16);
+      expect(bottomMargin).to.equal(16);
+      expect(rightMargin).to.equal(16);
+      expect(leftMargin).to.equal(16);
     });
 
-    it('should return 16 (default-value) when direction horizontal and marginThreshold is undefined', () => {
-      const direction = 'horizontal';
-      const margin = getMargin(undefined, direction);
-      expect(margin).to.equal(16);
+    it('should return 8 when 8 is used for marginThreshold', () => {
+      const marginThreshold = 8;
+      const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins(marginThreshold);
+      expect(topMargin).to.equal(8);
+      expect(bottomMargin).to.equal(8);
+      expect(rightMargin).to.equal(8);
+      expect(leftMargin).to.equal(8);
     });
 
-    it('should return 8 when direction vertical and marginThreshold is 8', () => {
-      const direction = 'vertical';
-      const margin = getMargin(8, direction);
-      expect(margin).to.equal(8);
-    });
-
-    it('should return 8 when direction horizontal and marginThreshold is 8', () => {
-      const direction = 'horizontal';
-      const margin = getMargin(8, direction);
-      expect(margin).to.equal(8);
-    });
-
-    it('should return 8 (first array item) when direction vertical and marginThreshold is array of 2 numbers [8, 12]', () => {
-      const direction = 'vertical';
-      const margin = getMargin([8, 12], direction);
-      expect(margin).to.equal(8);
-    });
-
-    it('should return 12 (second array item) when direction horizontal and marginThreshold is array of 2 numbers [8, 12]', () => {
-      const direction = 'horizontal';
-      const margin = getMargin([8, 12], direction);
-      expect(margin).to.equal(12);
-    });
-
-    it('should return 16 (default-value) when direction vertical and marginThreshold is empty array', () => {
-      const direction = 'horizontal';
-      const margin = getMargin([], direction);
-      expect(margin).to.equal(16);
-    });
-
-    it('should return 16 (default-value) when direction horizontal and marginThreshold is array of just one element [8]', () => {
-      const direction = 'horizontal';
-      const margin = getMargin([8], direction);
-      expect(margin).to.equal(16);
+    it('should return 8 when top-margin is set to 8 for marginThreshold, others should be 16 (default-value)', () => {
+      const marginThreshold = { top: 8 };
+      const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins(marginThreshold);
+      expect(topMargin).to.equal(8);
+      expect(bottomMargin).to.equal(16);
+      expect(rightMargin).to.equal(16);
+      expect(leftMargin).to.equal(16);
     });
   });
 });

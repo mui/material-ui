@@ -69,20 +69,26 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-export function getMargin(marginThreshold, direction) {
-  let margin = marginThreshold;
-
-  if (Array.isArray(marginThreshold)) {
-    margin = direction === 'vertical' ? marginThreshold[0] : marginThreshold[1];
-  }
-
+export function getMargins(marginThreshold) {
   // eslint-disable-next-line no-restricted-globals
   const isNumber = (value) => !isNaN(parseFloat(value));
-  if (isNumber(margin)) {
-    return parseFloat(margin);
+
+  if (isNumber(marginThreshold)) {
+    const margin = parseFloat(marginThreshold);
+    return {
+      bottomMargin: margin,
+      leftMargin: margin,
+      rightMargin: margin,
+      topMargin: margin,
+    };
   }
 
-  return 16;
+  return {
+    bottomMargin: marginThreshold?.bottom ?? 16,
+    leftMargin: marginThreshold?.left ?? 16,
+    rightMargin: marginThreshold?.right ?? 16,
+    topMargin: marginThreshold?.top ?? 16,
+  };
 }
 
 const PopoverRoot = styled(Modal, {
@@ -124,7 +130,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className,
     container: containerProp,
     elevation = 8,
-    marginThreshold = 16,
+    marginThreshold = { top: 16, right: 16, bottom: 16, left: 16 },
     open,
     PaperProps = {},
     transformOrigin = {
@@ -245,16 +251,18 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       // Use the parent window of the anchorEl if provided
       const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
 
-      const verticalMargin = getMargin(marginThreshold, 'vertical');
-      const horizontalMargin = getMargin(marginThreshold, 'horizontal');
+      const { topMargin, bottomMargin, leftMargin, rightMargin } = getMargins(marginThreshold);
+
+      const verticalMargin = topMargin + bottomMargin;
+      const horizontalMargin = leftMargin + rightMargin;
 
       // Window thresholds taking required margin into account
       const heightThreshold = containerWindow.innerHeight - verticalMargin;
       const widthThreshold = containerWindow.innerWidth - horizontalMargin;
 
       // Check if the vertical axis needs shifting
-      if (top < verticalMargin) {
-        const diff = top - verticalMargin;
+      if (top < topMargin) {
+        const diff = top - topMargin;
         top -= diff;
         elemTransformOrigin.vertical += diff;
       } else if (bottom > heightThreshold) {
@@ -278,8 +286,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (left < horizontalMargin) {
-        const diff = left - horizontalMargin;
+      if (left < leftMargin) {
+        const diff = left - leftMargin;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
       } else if (right > widthThreshold) {
@@ -525,10 +533,18 @@ Popover.propTypes /* remove-proptypes */ = {
   /**
    * Specifies how close to the edge of the window the popover can appear.
    * You can pass a number, which will be equal margin on all four sides,
-   * or an array of two numbers, first value will be vertical margin and second value horizontal.
-   * @default 16
+   * or an object with values for top, bottom, right and left, for unset values 16 is used.
+   * @default { top: 16, right: 16, bottom: 16, left: 16 }
    */
-  marginThreshold: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  marginThreshold: PropTypes.oneOfType([
+    PropTypes.shape({
+      bottom: PropTypes.number,
+      left: PropTypes.number,
+      right: PropTypes.number,
+      top: PropTypes.number,
+    }),
+    PropTypes.number,
+  ]),
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
