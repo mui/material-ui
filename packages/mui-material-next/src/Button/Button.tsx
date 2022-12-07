@@ -206,6 +206,7 @@ export const ButtonRoot = styled('button', {
           theme.sys.color[ownerState.color ?? 'primary'],
           1 - theme.sys.state.focus.stateLayerOpacity,
         ),
+    // According to the spec, this should be: secondaryContainerChannel / 1 - focusStateLayerOpacity, but this doesn't have the enough contrast
     filledTonal: theme.vars
       ? `rgba(${tokens.sys.color.primaryChannel} / 0.3)`
       : alpha(theme.sys.color.primary, 0.3),
