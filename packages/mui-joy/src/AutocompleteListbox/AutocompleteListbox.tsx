@@ -1,8 +1,8 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
@@ -91,6 +91,7 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
 
   const {
     children,
+    className,
     component,
     color = 'neutral',
     variant = 'outlined',
@@ -101,7 +102,6 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
   const ownerState = {
     ...props,
     size,
-    component,
     color,
     variant,
     nesting: false,
@@ -113,20 +113,18 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: AutocompleteListbox,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-      as: component,
-      role: 'listbox',
-    },
-    className: classes.root,
-  });
-
-  return <AutocompleteListboxRoot {...rootProps}>{children}</AutocompleteListboxRoot>;
+  return (
+    <AutocompleteListboxRoot
+      ref={ref}
+      as={component}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+      role="listbox"
+      {...other}
+    >
+      {children}
+    </AutocompleteListboxRoot>
+  );
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {
@@ -138,6 +136,10 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'

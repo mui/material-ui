@@ -7,7 +7,7 @@ export default function HoverCheckbox() {
     <Checkbox
       uncheckedIcon={<Done />}
       label="Label"
-      componentsProps={{
+      slotProps={{
         root: ({ checked, focusVisible }) => ({
           sx: !checked
             ? {

@@ -1,6 +1,8 @@
 import { deepmerge } from '@mui/utils';
+import { unstable_styleFunctionSx as styleFunctionSx, SxProps } from '@mui/system';
 import extendTheme from './extendTheme';
 import type { Theme, CssVarsThemeOptions, ColorSystemOptions } from './Theme.types';
+import defaultSxConfig from './sxConfig';
 
 export const getThemeWithVars = (
   themeInput?: Omit<CssVarsThemeOptions, 'colorSchemes'> & ColorSystemOptions,
@@ -77,5 +79,10 @@ export const getThemeWithVars = (
 };
 
 const defaultTheme = getThemeWithVars();
+
+defaultTheme.unstable_sxConfig = defaultSxConfig;
+defaultTheme.unstable_sx = function sx(props: SxProps<Theme>) {
+  return styleFunctionSx({ sx: props, theme: this });
+};
 
 export default defaultTheme;

@@ -116,18 +116,20 @@ const finalTheme = createTheme({
   components: {
     MuiChip: {
       styleOverrides: {
-        root: sx({
-          px: 1,
-          py: 0.25,
-          borderRadius: 1,
-        }),
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            px: 1,
+            py: 0.25,
+            borderRadius: 1,
+          }),
         label: {
           padding: 'initial',
         },
-        icon: sx({
-          mr: 0.5,
-          ml: '-2px',
-        }),
+        icon: ({ theme }) =>
+          theme.unstable_sx({
+            mr: 0.5,
+            ml: '-2px',
+          }),
       },
     },
   },

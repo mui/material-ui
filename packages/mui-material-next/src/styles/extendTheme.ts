@@ -6,6 +6,8 @@ import {
   lighten,
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
+  unstable_styleFunctionSx as styleFunctionSx,
+  SxProps,
 } from '@mui/system';
 import {
   createTheme as createThemeWithoutVars,
@@ -14,6 +16,7 @@ import {
   ColorSystem as MD2ColorSystem,
   Overlays,
 } from '@mui/material/styles';
+import defaultSxConfig from './sxConfig';
 import { Theme, MD3Palettes, MD3ColorSchemeTokens, CssVarsThemeOptions } from './Theme.types';
 import md3CommonPalette from './palette';
 import createMd3LightColorScheme from './createLightColorScheme';
@@ -419,6 +422,17 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  theme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...input?.unstable_sxConfig,
+  };
+  theme.unstable_sx = function sx(props: SxProps<Theme>) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return theme;
 }
