@@ -800,4 +800,43 @@ describe('createCssVarsProvider', () => {
       expect(container.firstChild.textContent).to.equal('paper');
     });
   });
+
+  describe('Nested providers', () => {
+    it('independent context', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {
+              color: 'light',
+            },
+            dark: {
+              color: 'dark',
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      function Toggle(props) {
+        const { mode, setMode } = useColorScheme();
+        return (
+          <button onClick={() => setMode('dark')} {...props}>
+            {mode}
+          </button>
+        );
+      }
+      const { getByTestId } = render(
+        <CssVarsProvider>
+          <Toggle data-testid="outer" />
+          <CssVarsProvider disableNestedContext>
+            <Toggle data-testid="inner" />
+          </CssVarsProvider>
+        </CssVarsProvider>,
+      );
+      fireEvent.click(getByTestId('inner'));
+
+      // state changes in nested provider should not affect the upper context
+      // if `disableNestedContext` is true.
+      expect(getByTestId('outer')).to.have.text('light');
+    });
+  });
 });

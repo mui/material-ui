@@ -22,7 +22,7 @@ describe('<Badge />', () => {
   };
 
   describeConformance(
-    <Badge>
+    <Badge badgeContent="1">
       <button />
     </Badge>,
     () => ({
@@ -34,6 +34,10 @@ describe('<Badge />', () => {
       muiName: 'JoyBadge',
       testVariantProps: { color: 'neutral', variant: 'soft' },
       testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        badge: { expectedClassName: classes.badge },
+      },
       skip: ['classesRoot', 'componentsProp'],
     }),
   );

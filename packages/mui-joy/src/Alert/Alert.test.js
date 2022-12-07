@@ -8,7 +8,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 describe('<Alert />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Alert />, () => ({
+  describeConformance(<Alert startDecorator="1" endDecorator="2" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -18,6 +18,11 @@ describe('<Alert />', () => {
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

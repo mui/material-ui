@@ -36,7 +36,7 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
   }
 
   if (transform) {
-    value = transform(value, userValue);
+    value = transform(value, userValue, themeMapping);
   }
 
   return value;
