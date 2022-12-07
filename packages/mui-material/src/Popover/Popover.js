@@ -542,18 +542,18 @@ Popover.propTypes /* remove-proptypes */ = {
   elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
-   * You can pass a number (used for top/left margin)
-   * or an object with values for top, bottom, right and left (default-value for unset values in object ist 16)
+   * You can pass a number, which will be equal margin on all four sides,
+   * or an array of two numbers, first value will be vertical margin and second value horizontal.
    * @default 16
    */
   marginThreshold: PropTypes.oneOfType([
+    PropTypes.number,
     PropTypes.shape({
       bottom: PropTypes.number,
       left: PropTypes.number,
       right: PropTypes.number,
       top: PropTypes.number,
     }),
-    PropTypes.number,
   ]),
   /**
    * Callback fired when the component requests to be closed.
