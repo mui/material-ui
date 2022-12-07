@@ -10,6 +10,7 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
+    lineHeight: 1.625,
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
@@ -422,7 +423,7 @@ const Root = styled('div')(
       },
     },
     '& li': {
-      marginBottom: 4,
+      marginBottom: 6,
       '& pre': {
         marginTop: theme.spacing(1),
       },
