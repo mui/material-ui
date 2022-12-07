@@ -49,7 +49,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    * If `true`, the component is shown.
    * @default false
    */
-  open: boolean;
+  open?: boolean;
   /**
    * The element is used to intercept the touch events on the edge.
    */
