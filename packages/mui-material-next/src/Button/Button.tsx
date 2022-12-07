@@ -207,8 +207,8 @@ export const ButtonRoot = styled('button', {
           1 - theme.sys.state.focus.stateLayerOpacity,
         ),
     filledTonal: theme.vars
-      ? `rgba(${tokens.sys.color.secondaryContainerChannel} / calc(1 - ${tokens.sys.state.focus.stateLayerOpacity}))`
-      : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.focus.stateLayerOpacity),
+      ? `rgba(${tokens.sys.color.primaryChannel} / 0.3)`
+      : alpha(theme.sys.color.primary, 0.3),
     outlined: theme.vars
       ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
           tokens.sys.state.focus.stateLayerOpacity
