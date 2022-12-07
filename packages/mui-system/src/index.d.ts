@@ -119,10 +119,9 @@ export {
   default as unstable_styleFunctionSx,
   unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
+  unstable_defaultSxConfig,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
-
-export { default as experimental_sx } from './sx';
 
 export { default as Box } from './Box';
 export * from './Box';

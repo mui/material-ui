@@ -380,7 +380,11 @@ const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
-  overridesResolver: (props, styles) => styles.mark,
+  overridesResolver: (props, styles) => {
+    const { markActive } = props;
+
+    return [styles.mark, markActive && styles.markActive];
+  },
 })(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,

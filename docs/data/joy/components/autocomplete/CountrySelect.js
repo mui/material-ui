@@ -10,7 +10,7 @@ export default function CountrySelect() {
     <Autocomplete
       id="country-select-demo"
       placeholder="Choose a country"
-      componentsProps={{
+      slotProps={{
         input: {
           autoComplete: 'new-password', // disable autocomplete and autofill
         },

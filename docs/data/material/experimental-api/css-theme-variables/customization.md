@@ -1,4 +1,4 @@
-# Customization
+# CSS theme variables - Customization
 
 <p class="description">A guide for customizing CSS theme variables in Material UI.</p>
 

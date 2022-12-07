@@ -175,7 +175,7 @@ export default function JoyVariablesDemo(props: {
                     variant="outlined"
                     helperText={item.helperText}
                     value={Number(resolvedValue?.replace('px', '')) || ''}
-                    componentsProps={{
+                    slotProps={{
                       input: {
                         onKeyDown: (event) => {
                           if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {

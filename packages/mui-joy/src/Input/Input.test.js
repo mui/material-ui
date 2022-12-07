@@ -8,7 +8,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('Joy <Input />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Input />, () => ({
+  describeConformance(<Input startDecorator="1" endDecorator="2" />, () => ({
     render,
     classes,
     ThemeProvider,
@@ -17,6 +17,12 @@ describe('Joy <Input />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'solid', fullWidth: true },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      input: { expectedClassName: classes.input },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
@@ -38,6 +44,13 @@ describe('Joy <Input />', () => {
   it('should have endDecorator', () => {
     render(<Input endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
+  });
+
+  describe('prop: required', () => {
+    it('should pass to `input` element', () => {
+      const { getByRole } = render(<Input required />);
+      expect(getByRole('textbox')).to.have.attribute('required');
+    });
   });
 
   describe('prop: disabled', () => {

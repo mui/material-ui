@@ -5,9 +5,7 @@ import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 export type ListSlot = 'root';
 
 export interface ListPropsSizeOverrides {}
-
 export interface ListPropsVariantOverrides {}
-
 export interface ListPropsColorOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
