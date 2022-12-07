@@ -27,7 +27,7 @@
     "marginThreshold": {
       "type": {
         "name": "union",
-        "description": "{ bottom?: number, left?: number, right?: number, top?: number }<br>&#124;&nbsp;number"
+        "description": "number<br>&#124;&nbsp;{ bottom?: number, left?: number, right?: number, top?: number }"
       },
       "default": "16"
     },
