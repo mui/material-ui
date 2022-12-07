@@ -133,6 +133,45 @@ export interface Shapes {
   borderRadius: number;
 }
 
+export interface MD3Easing {
+  linear: string;
+  standard: string;
+  standardAccelerate: string;
+  standardDecelerate: string;
+  emphasized: string;
+  emphasizedDecelerate: string;
+  emphasizedAccelerate: string;
+  legacy: string;
+  legacyDecelerate: string;
+  legacyAccelerate: string;
+}
+export interface MD3Duration {
+  short: number[];
+  medium: number[];
+  long: number[];
+  extraLong: number[];
+}
+
+export interface MotionOptions {
+  easing?: Partial<MD3Easing>;
+  duration?: Partial<MD3Duration>;
+  create?: (
+    props: string | string[],
+    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+  ) => string;
+  getAutoHeightDuration?: (height: number) => number;
+}
+
+export interface Motion {
+  easing: MD3Easing;
+  duration: MD3Duration;
+  create: (
+    props: string | string[],
+    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+  ) => string;
+  getAutoHeightDuration: (height: number) => number;
+}
+
 export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
   md3?: {
     shape?: Partial<Shapes>;
@@ -143,6 +182,7 @@ export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'co
   sys?: {
     typescale?: Partial<MD3Typescale>;
     state?: Partial<MD3States>;
+    motion?: MotionOptions;
   };
 }
 
@@ -172,6 +212,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     color: MD3ColorSchemeTokens;
     typescale: MD3Typescale;
     state: MD3States;
+    motion: Motion;
   };
   md3: {
     shape: Shapes;
