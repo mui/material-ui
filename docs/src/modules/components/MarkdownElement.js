@@ -1,311 +1,497 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { connect } from 'react-redux';
-import marked from 'marked';
-import { withStyles } from '@material-ui/core/styles';
-import textToHash from 'docs/src/modules/utils/textToHash';
-import compose from 'docs/src/modules/utils/compose';
-import prism from 'docs/src/modules/components/prism';
+import { alpha, darken, styled } from '@mui/material/styles';
+import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
-// Monkey patch to preserve non-breaking spaces
-// https://github.com/chjj/marked/blob/6b0416d10910702f73da9cb6bb3d4c8dcb7dead7/lib/marked.js#L142-L150
-marked.Lexer.prototype.lex = function lex(src) {
-  src = src
-    .replace(/\r\n|\r/g, '\n')
-    .replace(/\t/g, '    ')
-    .replace(/\u2424/g, '\n');
-
-  return this.token(src, true);
-};
-
-const renderer = new marked.Renderer();
-renderer.heading = (text, level) => {
-  // Small title. No need for an anchor.
-  // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
-  if (level >= 4) {
-    return `<h${level}>${text}</h${level}>`;
-  }
-
-  // eslint-disable-next-line no-underscore-dangle
-  const escapedText = textToHash(text, global.__MARKED_UNIQUE__);
-
-  return (
-    `
-    <h${level}>
-      <a class="anchor-link" id="${escapedText}"></a>${text}` +
-    `<a class="anchor-link-style" aria-label="Anchor" href="#${escapedText}">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M46.9 13.9c-.5-.6-1.2-.94-2.07-.94h-6.67l1.86-8.98c.17-.85 0-1.7-.52-2.3-.48-.6-1.2-.94-2.07-.94-1.6 0-3.2 1.27-3.54 2.93l-.5 2.42c0 .07-.07.13-.07.2l-1.37 6.62H20.7l1.88-8.96c.16-.85 0-1.7-.53-2.3-.48-.6-1.2-.94-2.07-.94-1.65 0-3.2 1.27-3.56 2.93l-.52 2.58v.08l-1.37 6.64H7.3c-1.67 0-3.22 1.3-3.58 2.96-.16.86 0 1.7.52 2.3.48.6 1.2.93 2.07.93h6.97l-2 9.65H4c-1.67 0-3.22 1.27-3.56 2.94-.2.8 0 1.67.5 2.27.5.6 1.2.93 2.08.93H10l-1.84 9.05c-.2.84 0 1.67.52 2.3.5.6 1.25.92 2.08.92 1.66 0 3.2-1.3 3.55-2.94l1.94-9.33h11.22l-1.87 9.05c-.15.84.03 1.67.53 2.3.5.6 1.2.92 2.07.92 1.65 0 3.22-1.3 3.56-2.94l1.9-9.33h7c1.6 0 3.2-1.28 3.53-2.93.2-.87 0-1.7-.52-2.3-.48-.62-1.2-.96-2.05-.96h-6.7l2.02-9.65h6.93c1.67 0 3.22-1.27 3.56-2.92.2-.85 0-1.7-.5-2.3l-.04.03zM17.53 28.77l1.95-9.65H30.7l-1.97 9.66H17.5h.03z"/></svg>
-      </a></h${level}>
-  `
-  );
-};
-
-const externs = [
-  'https://material.io/',
-  'https://www.styled-components.com/',
-  'https://emotion.sh/',
-  'https://getbootstrap.com/',
-];
-
-renderer.link = (href, title, text) => {
-  let more = '';
-
-  if (externs.some(domain => href.indexOf(domain) !== -1)) {
-    more = ' target="_blank" rel="noopener nofollow"';
-  }
-
-  // eslint-disable-next-line no-underscore-dangle
-  const userLanguage = global.__MARKED_USER_LANGUAGE__;
-  let finalHref = href;
-
-  if (userLanguage !== 'en' && finalHref.indexOf('/') === 0) {
-    finalHref = `/${userLanguage}${finalHref}`;
-  }
-
-  return `<a href="${finalHref}"${more}>${text}</a>`;
-};
-
-const markedOptions = {
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  highlight(code, lang) {
-    let language;
-    switch (lang) {
-      case 'ts':
-        language = prism.languages.tsx;
-        break;
-
-      case 'js':
-      case 'sh':
-        language = prism.languages.jsx;
-        break;
-
-      default:
-        language = prism.languages[lang];
-        break;
-    }
-
-    if (!language) {
-      if (lang) {
-        throw new Error(`unsuppored language: "${lang}", "${code}"`);
-      } else {
-        language = prism.languages.jsx;
-      }
-    }
-
-    return prism.highlight(code, language);
+const Root = styled('div')(({ theme }) => ({
+  ...theme.typography.body1,
+  color: theme.palette.text.primary,
+  '& strong': {
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
-  renderer,
-};
-
-const styles = theme => ({
-  root: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 16,
+  wordBreak: 'break-word',
+  '& pre': {
+    margin: theme.spacing(2, 'auto'),
+    padding: theme.spacing(2),
+    backgroundColor: blueDark[800],
+    colorScheme: 'dark',
+    direction: 'ltr',
+    borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderColor: blueDark[700],
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    maxWidth: 'calc(100vw - 32px)',
+    maxHeight: '400px',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 'calc(100vw - 32px - 16px)',
+    },
+  },
+  '& code, & code[class*="language-"]': {
+    direction: 'ltr',
+    display: 'inline-block',
+    ...theme.typography.body2,
+    fontSize: theme.typography.pxToRem(13),
+    fontFamily: theme.typography.fontFamilyCode,
+    fontWeight: 400,
+    WebkitFontSmoothing: 'subpixel-antialiased',
+    padding: '0 5px',
+    borderRadius: 5,
+  },
+  // inline code
+  '& code': {
     color: theme.palette.text.primary,
-    '& .anchor-link': {
-      marginTop: -96 - 29, // Offset for the anchor.
-      position: 'absolute',
-    },
-    '& pre, & pre[class*="language-"]': {
-      margin: '24px 0',
-      padding: '12px 18px',
-      backgroundColor: theme.palette.background.paper,
-      borderRadius: theme.shape.borderRadius,
-      overflow: 'auto',
-      WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
-    },
+    backgroundColor: alpha(theme.palette.primary.light, 0.15),
+  },
+  // block code
+  '& code[class*="language-"]': {
+    color: '#fff',
+    padding: 0,
+    backgroundColor: blueDark[800],
+  },
+  '& h1': {
+    ...theme.typography.h3,
+    fontSize: theme.typography.pxToRem(36),
+    fontFamily: `"PlusJakartaSans-ExtraBold", ${theme.typography.fontFamilySystem}`,
+    margin: '10px 0',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
+    fontWeight: 800,
+  },
+  '& .description': {
+    ...theme.typography.subtitle1,
+    fontWeight: 400,
+    margin: '0 0 40px',
+  },
+  '& h2': {
+    ...theme.typography.h5,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 700,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    margin: '40px 0 4px',
+  },
+  '& h3': {
+    ...theme.typography.h6,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: theme.typography.fontWeightSemiBold,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    margin: '24px 0 8px',
+  },
+  '& h4': {
+    ...theme.typography.subtitle1,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: theme.typography.fontWeightSemiBold,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '24px 0 8px',
+  },
+  '& h5': {
+    ...theme.typography.subtitle2,
+    fontWeight: theme.typography.fontWeightSemiBold,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '20px 0 8px',
+  },
+  '& p, & ul, & ol': {
+    marginTop: 0,
+    marginBottom: 16,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[900],
+  },
+  '& ul': {
+    ...(theme.direction === 'rtl' && {
+      paddingRight: 30,
+    }),
+    ...(theme.direction !== 'rtl' && {
+      paddingLeft: 30,
+    }),
+  },
+  '& h1, & h2, & h3, & h4': {
     '& code': {
-      display: 'inline-block',
-      lineHeight: 1.6,
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-      padding: '3px 6px',
-      color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.paper,
-      fontSize: 14,
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      // Remove scroll on small screens.
+      wordBreak: 'break-all',
     },
-    '& p code, & ul code, & pre code': {
-      fontSize: 14,
-      lineHeight: 1.6,
+    '& .anchor-link-style': {
+      // To prevent the link to get the focus.
+      display: 'none',
     },
-    '& h1': {
-      ...theme.typography.h2,
-      margin: '32px 0 16px',
-    },
-    '& .description': {
-      ...theme.typography.h5,
-      margin: '0 0 40px',
-    },
-    '& h2': {
-      ...theme.typography.h4,
-      margin: '32px 0 24px',
-    },
-    '& h3': {
-      ...theme.typography.h5,
-      margin: '32px 0 24px',
-    },
-    '& h4': {
-      ...theme.typography.h6,
-      margin: '24px 0 16px',
-    },
-    '& h5': {
-      ...theme.typography.subtitle2,
-      margin: '24px 0 16px',
-    },
-    '& p, & ul, & ol': {
-      lineHeight: 1.6,
-    },
-    '& h1, & h2, & h3, & h4': {
-      '& code': {
-        fontSize: 'inherit',
-        lineHeight: 'inherit',
-        // Remove scroll on small screens.
-        wordBreak: 'break-all',
-      },
-      '& .anchor-link-style': {
-        opacity: 0,
-        // To prevent the link to get the focus.
-        display: 'none',
-      },
-      '&:hover .anchor-link-style': {
-        display: 'inline-block',
-        opacity: 1,
-        padding: '0 8px',
-        color: theme.palette.text.hint,
-        '&:hover': {
-          color: theme.palette.text.secondary,
-        },
-        '& svg': {
-          width: '0.55em',
-          height: '0.55em',
-          fill: 'currentColor',
-        },
-      },
-    },
-    '& table': {
-      width: '100%',
-      display: 'block',
-      overflowX: 'auto',
-      WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
-      borderCollapse: 'collapse',
-      borderSpacing: 0,
-      overflow: 'hidden',
-      '& .prop-name': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-      },
-      '& .required': {
-        color: theme.palette.type === 'light' ? '#006500' : '#9bc89b',
-      },
-      '& .prop-type': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        color: theme.palette.type === 'light' ? '#932981' : '#dbb0d0',
-      },
-      '& .prop-default': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        borderBottom: `1px dotted ${theme.palette.text.hint}`,
-      },
-    },
-    '& thead': {
-      fontSize: 14,
-      fontWeight: theme.typography.fontWeightMedium,
-      color: theme.palette.text.secondary,
-    },
-    '& tbody': {
-      fontSize: 14,
-      lineHeight: 1.5,
-      color: theme.palette.text.primary,
-    },
-    '& td': {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      padding: '8px 16px 8px 8px',
-      textAlign: 'left',
-    },
-    '& td:last-child': {
-      paddingRight: 24,
-    },
-    '& td compact': {
-      paddingRight: 24,
-    },
-    '& td code': {
-      fontSize: 13,
-      lineHeight: 1.6,
-    },
-    '& th': {
-      whiteSpace: 'pre',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      fontWeight: theme.typography.fontWeightMedium,
-      padding: '0 16px 0 8px',
-      textAlign: 'left',
-    },
-    '& th:last-child': {
-      paddingRight: 24,
-    },
-    '& tr': {
-      height: 48,
-    },
-    '& thead tr': {
-      height: 64,
-    },
-    '& strong': {
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '& blockquote': {
-      borderLeft: `5px solid ${theme.palette.text.hint}`,
-      backgroundColor: theme.palette.background.paper,
-      padding: '4px 24px',
-      margin: '24px 0',
-    },
-    '& a, & a code': {
-      // Style taken from the Link component
-      color: theme.palette.secondary.main,
+    '& a:not(.anchor-link-style):hover': {
+      color: 'currentColor',
+      borderBottom: '1px solid currentColor',
       textDecoration: 'none',
-      '&:hover': {
-        textDecoration: 'underline',
-      },
     },
-    '& img': {
-      maxWidth: '100%',
+    '&:hover .anchor-link-style': {
+      display: 'inline-block',
+      textAlign: 'center',
+      lineHeight: '21.5px',
+      marginLeft: 10,
+      height: '26px',
+      width: '26px',
+      background: theme.palette.mode === 'dark' ? alpha(blue[800], 0.3) : theme.palette.primary[50],
+      border: '1px solid',
+      borderColor: theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[200],
+      borderRadius: 8,
+      color: theme.palette.text.secondary,
+      '&:hover': {
+        color: theme.palette.text.primary,
+      },
+      '& svg': {
+        width: '0.875rem',
+        height: '0.875rem',
+        fill: 'currentColor',
+      },
     },
   },
+  '& h1 code': {
+    fontWeight: theme.typography.fontWeightSemiBold,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h2 code': {
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: theme.typography.fontWeightSemiBold,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h3 code': {
+    fontSize: theme.typography.pxToRem(18),
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& table': {
+    // Trade display table for scroll overflow
+    display: 'block',
+    wordBreak: 'normal',
+    overflowX: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderCollapse: 'collapse',
+    marginBottom: '20px',
+    borderSpacing: 0,
+    '& .prop-name, & .prop-type, & .prop-default': {
+      fontWeight: 400,
+      fontFamily: theme.typography.fontFamilyCode,
+      WebkitFontSmoothing: 'subpixel-antialiased',
+      fontSize: theme.typography.pxToRem(13),
+    },
+    '& .required': {
+      color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
+    },
+    '& .optional': {
+      color: theme.palette.mode === 'light' ? '#45529f' : '#a5b3ff',
+    },
+    '& .prop-type': {
+      color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
+    },
+    '& .prop-default': {
+      borderBottom: `1px dotted ${theme.palette.divider}`,
+    },
+  },
+  '& td': {
+    ...theme.typography.body2,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    color: theme.palette.text.secondary,
+  },
+  '& td code': {
+    lineHeight: 1.6,
+  },
+  '& th': {
+    fontSize: theme.typography.pxToRem(14),
+    lineHeight: theme.typography.pxToRem(24),
+    fontWeight: 500,
+    color: theme.palette.text.primary,
+    whiteSpace: 'pre',
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
+  '& blockquote': {
+    borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderLeft: '8px solid',
+    borderColor:
+      theme.palette.mode === 'dark'
+        ? // Support Material Design theme
+          theme.palette.warning[500] ?? theme.palette.warning.dark
+        : theme.palette.warning[300] ?? theme.palette.warning.light,
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? // Support Material Design theme
+          alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
+        : theme.palette.warning[50] ?? theme.palette.warning.light,
+    padding: '10px 20px',
+    margin: '20px 0',
+    '& p': {
+      marginTop: 10,
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
+    },
+  },
+  '& .MuiCallout-root': {
+    padding: '16px',
+    margin: '16px 0',
+    border: '1px solid',
+    borderRadius: theme.shape.borderRadius,
+    '& > p': {
+      color: 'inherit',
+      '&:last-child': {
+        margin: 0,
+      },
+    },
+    '& ul, li': {
+      color: 'inherit',
+    },
+    '&.MuiCallout-error': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.error[50] ?? '#fff'
+          : theme.palette.error[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35)
+          : theme.palette.error[50] ?? theme.palette.error.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.error[800] ?? theme.palette.error.dark
+          : theme.palette.error[200] ?? theme.palette.error.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.error[100] ?? '#fff'
+            : theme.palette.error[800] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.error[100] ?? '#fff'
+            : theme.palette.error[800] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.error.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
+    },
+    '&.MuiCallout-info': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primary[50] ?? '#fff'
+          : theme.palette.primary[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
+          : alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.primary[800] ?? theme.palette.primary.dark
+          : theme.palette.primary[100] ?? theme.palette.primary.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.primary[100] ?? '#fff'
+            : theme.palette.primary[800] ?? theme.palette.text.primary,
+      },
+    },
+    '&.MuiCallout-success': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.success[50] ?? '#fff'
+          : theme.palette.success[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
+          : theme.palette.success[50] ?? theme.palette.success.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.success[800] ?? theme.palette.success.dark
+          : theme.palette.success[200] ?? theme.palette.success.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.success[100] ?? '#fff'
+            : theme.palette.success[900] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.success[100] ?? '#fff'
+            : theme.palette.success[900] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.success.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
+    },
+    '&.MuiCallout-warning': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.warning[50] ?? '#fff'
+          : theme.palette.grey[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
+          : alpha(theme.palette.warning[50] ?? theme.palette.warning.light, 0.6),
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.warning[800] ?? theme.palette.warning.dark
+          : theme.palette.warning[300] ?? theme.palette.warning.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.warning[100] ?? '#fff'
+            : theme.palette.warning[800] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.warning[100] ?? '#fff'
+            : theme.palette.warning[800] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.warning.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
+    },
+  },
+  '& a, & a code': {
+    // Style taken from the Link component
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+    textDecoration: 'underline',
+    textDecorationColor: alpha(theme.palette.primary.main, 0.4),
+    '&:hover': {
+      textDecorationColor: 'inherit',
+    },
+  },
+  '& a code': {
+    color:
+      theme.palette.mode === 'dark'
+        ? theme.palette.primary.light
+        : darken(theme.palette.primary.main, 0.04),
+  },
+  '& img, video': {
+    maxWidth: '100%',
+  },
+  '& img': {
+    // Avoid layout jump
+    display: 'inline-block',
+  },
+  '& hr': {
+    height: 1,
+    margin: theme.spacing(6, 0),
+    border: 0,
+    flexShrink: 0,
+    backgroundColor: theme.palette.divider,
+  },
+  '& kbd.key': {
+    padding: '5px',
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    margin: '0 1px',
+    font: '11px Consolas,Liberation Mono,Menlo,monospace',
+    lineHeight: '10px',
+    color: theme.palette.text.primary,
+    verticalAlign: 'middle',
+    backgroundColor: theme.palette.mode === 'dark' ? blueDark[900] : theme.palette.grey[50],
+    border: `1px solid ${theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[300]}`,
+    borderRadius: 5,
+    boxShadow: `inset 0 -1px 0 ${
+      theme.palette.mode === 'dark' ? blueDark[700] : theme.palette.grey[300]
+    }`,
+  },
+  '& details': {
+    marginBottom: theme.spacing(1.5),
+    padding: theme.spacing(0.5, 0, 0.5, 1),
+    '& summary': {
+      cursor: 'pointer',
+    },
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
+  },
+  '& .MuiCode-root': {
+    position: 'relative',
+    '&:hover': {
+      '& .MuiCode-copy': {
+        display: 'block',
+      },
+    },
+  },
+  '& .MuiCode-copy': {
+    minWidth: 64,
+    display: 'none',
+    backgroundColor: alpha(blueDark[600], 0.5),
+    cursor: 'pointer',
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    fontFamily: 'inherit',
+    fontSize: '0.813rem',
+    fontWeight: 500,
+    padding: theme.spacing(0.5, 1),
+    borderRadius: 4,
+    border: `1px solid`,
+    borderColor: blueDark[500],
+    color: blueDark[50],
+    '&:hover, &:focus': {
+      opacity: 1,
+      color: '#fff',
+      backgroundColor: alpha(blueDark[600], 0.7),
+      borderColor: blueDark[500],
+      '& .MuiCode-copyKeypress': {
+        opacity: 1,
+      },
+    },
+    '&[data-copied]': {
+      // style of the button when it is in copied state.
+      borderColor: blue[700],
+      color: '#fff',
+      backgroundColor: blueDark[600],
+    },
+    '&:focus-visible': {
+      outline: '2px solid',
+      outlineOffset: 2,
+      outlineColor: blueDark[500],
+    },
+  },
+  '& .MuiCode-copyKeypress': {
+    pointerEvents: 'none',
+    userSelect: 'none',
+    opacity: 0,
+    position: 'absolute',
+    left: '50%',
+    top: '100%',
+    minWidth: '100%',
+    marginTop: theme.spacing(0.5),
+    whiteSpace: 'nowrap',
+    transform: 'translateX(-50%)',
+    '& > span': {
+      opacity: 0.72,
+    },
+  },
+  '& li': {
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
+  },
+}));
+
+const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
+  const { className, renderedMarkdown, ...other } = props;
+  const more = {};
+
+  if (typeof renderedMarkdown === 'string') {
+    // workaround for https://github.com/facebook/react/issues/17170
+    // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
+    more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
+  }
+
+  return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
 });
 
-function MarkdownElement(props) {
-  const { classes, className, dispatch, text, userLanguage, ...other } = props;
-
-  // eslint-disable-next-line no-underscore-dangle
-  global.__MARKED_USER_LANGUAGE__ = userLanguage;
-
-  /* eslint-disable react/no-danger */
-  return (
-    <div
-      className={clsx(classes.root, 'markdown-body', className)}
-      dangerouslySetInnerHTML={{ __html: marked(text, markedOptions) }}
-      {...other}
-    />
-  );
-  /* eslint-enable */
-}
-
 MarkdownElement.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  dispatch: PropTypes.func,
-  text: PropTypes.string,
-  userLanguage: PropTypes.string.isRequired,
+  renderedMarkdown: PropTypes.string,
 };
 
-export default compose(
-  connect(state => ({
-    userLanguage: state.options.userLanguage,
-  })),
-  withStyles(styles, { flip: false }),
-)(MarkdownElement);
+export default MarkdownElement;

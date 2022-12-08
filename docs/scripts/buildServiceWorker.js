@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-
-import path from 'path';
-import fse from 'fs-extra';
+const path = require('path');
+const fse = require('fs-extra');
 
 async function prepend(file, string) {
   const data = await fse.readFile(file, 'utf8');

@@ -1,9 +1,12 @@
-/* eslint-disable no-console */
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
 const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
+
+const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
+const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
+const dangerCommand = process.env.DANGER_COMMAND;
 
 const parsedSizeChangeThreshold = 300;
 const gzipSizeChangeThreshold = 100;
@@ -31,19 +34,18 @@ const UPSTREAM_REMOTE = 'danger-upstream';
  * scripts exit to avoid adding internal remotes to the local machine. This is
  * not an issue in CI.
  */
-async function cleanup() {
+async function reportBundleSizeCleanup() {
   await git(`remote remove ${UPSTREAM_REMOTE}`);
 }
 
 /**
  * creates a callback for Object.entries(comparison).filter that excludes every
  * entry that does not exceed the given threshold values for parsed and gzip size
- *
  * @param {number} parsedThreshold
  * @param {number} gzipThreshold
  */
 function createComparisonFilter(parsedThreshold, gzipThreshold) {
-  return comparisonEntry => {
+  return (comparisonEntry) => {
     const [, snapshot] = comparisonEntry;
     return (
       Math.abs(snapshot.parsed.absoluteDiff) >= parsedThreshold ||
@@ -53,8 +55,8 @@ function createComparisonFilter(parsedThreshold, gzipThreshold) {
 }
 
 /**
- * checks if the bundle is of a package e.b. `@material-ui/core` but not
- * `@material-ui/core/Paper`
+ * checks if the bundle is of a package e.b. `@mui/material` but not
+ * `@mui/material/Paper`
  * @param {[string, any]} comparisonEntry
  */
 function isPackageComparison(comparisonEntry) {
@@ -66,35 +68,14 @@ function isPackageComparison(comparisonEntry) {
  * Generates a user-readable string from a percentage change
  * @param {number} change
  * @param {string} goodEmoji emoji on reduction
- * @param {string} badEmooji emoji on increase
+ * @param {string} badEmoji emoji on increase
  */
-function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle:') {
+function addPercent(change, goodEmoji = '', badEmoji = ':small_red_triangle:') {
   const formatted = (change * 100).toFixed(2);
   if (/^-|^0(?:\.0+)$/.test(formatted)) {
     return `${formatted}% ${goodEmoji}`;
   }
-  return `+${formatted}% ${badEmooji}`;
-}
-
-/**
- * Generates a Markdown table
- * @param {{ label: string, align: 'left' | 'center' | 'right'}[]} headers
- * @param {string[][]} body
- * @returns {string}
- */
-function generateMDTable(headers, body) {
-  const headerRow = headers.map(header => header.label);
-  const alignmentRow = headers.map(header => {
-    if (header.align === 'right') {
-      return ' ---:';
-    }
-    if (header.align === 'center') {
-      return ':---:';
-    }
-    return ' --- ';
-  });
-
-  return [headerRow, alignmentRow, ...body].map(row => row.join(' | ')).join('\n');
+  return `+${formatted}% ${badEmoji}`;
 }
 
 function generateEmphasizedChange([bundle, { parsed, gzip }]) {
@@ -105,7 +86,48 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]) {
   return `**${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
 }
 
-async function run() {
+/**
+ * Puts results in different buckets wh
+ * @param {*} results
+ */
+function sieveResults(results) {
+  const main = [];
+  const pages = [];
+
+  results.forEach((entry) => {
+    const [bundleId] = entry;
+
+    if (bundleId.startsWith('docs:')) {
+      pages.push(entry);
+    } else {
+      main.push(entry);
+    }
+  });
+
+  return { all: results, main, pages };
+}
+
+function prepareBundleSizeReport() {
+  markdown(
+    `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
+  );
+}
+
+// A previous build might have failed to produce a snapshot
+// Let's walk up the tree a bit until we find a commit that has a successful snapshot
+async function loadLastComparison(upstreamRef, n = 0) {
+  const mergeBaseCommit = await git(`merge-base HEAD~${n} ${UPSTREAM_REMOTE}/${upstreamRef}`);
+  try {
+    return await loadComparison(mergeBaseCommit, upstreamRef);
+  } catch (err) {
+    if (n >= 5) {
+      throw err;
+    }
+    return loadLastComparison(upstreamRef, n + 1);
+  }
+}
+
+async function reportBundleSize() {
   // Use git locally to grab the commit which represents the place
   // where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
@@ -116,16 +138,17 @@ async function run() {
     // ignore if it already exist for local testing
   }
   await git(`fetch ${UPSTREAM_REMOTE}`);
-  const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
-  const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
+  const comparison = await loadLastComparison(upstreamRef);
 
-  const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
-  const results = Object.entries(comparison.bundles);
-  const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
+  const detailedComparisonRoute = `/size-comparison?circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
+
+  const { all: allResults, main: mainResults } = sieveResults(Object.entries(comparison.bundles));
+  const anyResultsChanges = allResults.filter(createComparisonFilter(1, 1));
 
   if (anyResultsChanges.length > 0) {
-    const importantChanges = results
+    const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
       .map(generateEmphasizedChange);
@@ -135,62 +158,32 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const detailsTable = generateMDTable(
-      [
-        { label: 'bundle' },
-        { label: 'parsed diff', align: 'right' },
-        { label: 'gzip diff', align: 'right' },
-        { label: 'prev parsed', align: 'right' },
-        { label: 'current parsed', align: 'right' },
-        { label: 'prev gzip', align: 'right' },
-        { label: 'current gzip', align: 'right' },
-      ],
-      results.map(([bundle, { parsed, gzip }]) => {
-        return [
-          bundle,
-          addPercent(parsed.relativeDiff),
-          addPercent(gzip.relativeDiff),
-          parsed.previous.toLocaleString(),
-          parsed.current.toLocaleString(),
-          gzip.previous.toLocaleString(),
-          gzip.current.toLocaleString(),
-        ];
-      }),
-    );
-
-    const details = `
-  <details>
-  <summary>Details of bundle changes.</summary>
-
-  <p>Comparing: ${commitRange}</p>
-
-  ${detailsTable}
-
-  </details>`;
+    const details = `[Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
-    // this can later be removed to reduce PR noise. It is kept for now for debug
-    // purposes only. DangerJS will swallow console.logs if it completes successfully
-    markdown(`No bundle size changes comparing ${commitRange}`);
+    markdown(`[No bundle size changes](${detailedComparisonUrl})`);
   }
 }
 
-(async () => {
-  let exitCode = 0;
-  try {
-    await run();
-  } catch (err) {
-    console.error(err);
-    exitCode = 1;
+async function run() {
+  switch (dangerCommand) {
+    case 'prepareBundleSizeReport':
+      prepareBundleSizeReport();
+      break;
+    case 'reportBundleSize':
+      try {
+        await reportBundleSize();
+      } finally {
+        await reportBundleSizeCleanup();
+      }
+      break;
+    default:
+      throw new TypeError(`Unrecognized danger command '${dangerCommand}'`);
   }
+}
 
-  try {
-    await cleanup();
-  } catch (err) {
-    console.error(err);
-    exitCode = 1;
-  }
-
-  process.exit(exitCode);
-})();
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

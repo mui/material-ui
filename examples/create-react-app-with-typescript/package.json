@@ -1,19 +1,16 @@
 {
   "name": "create-react-app-with-typescript",
-  "version": "3.2.2",
+  "version": "5.0.0",
   "private": true,
-  "main": "src/index.tsx",
   "dependencies": {
-    "@material-ui/core": "latest",
-    "@types/react": "*",
-    "@types/react-dom": "*",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest"
-  },
-  "devDependencies": {
-    "@types/jest": "*",
-    "@types/node": "*",
+    "react-scripts": "latest",
     "typescript": "latest"
   },
   "scripts": {
@@ -22,13 +19,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

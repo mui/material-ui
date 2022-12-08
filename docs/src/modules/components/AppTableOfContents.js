@@ -1,128 +1,95 @@
 /* eslint-disable react/no-danger */
-
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import marked from 'marked';
-import warning from 'warning';
 import throttle from 'lodash/throttle';
-import clsx from 'clsx';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import textToHash from 'docs/src/modules/utils/textToHash';
+import { styled, alpha } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import compose from 'docs/src/modules/utils/compose';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
-const styles = theme => ({
-  root: {
-    top: 70 + 29,
-    // Fix IE 11 position sticky issue.
-    marginTop: 70 + 29,
-    width: 175,
-    flexShrink: 0,
-    order: 2,
-    position: 'sticky',
-    height: 'calc(100vh - 70px - 29px)',
-    overflowY: 'auto',
-    padding: theme.spacing(2, 2, 2, 0),
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
+const Nav = styled('nav')(({ theme }) => ({
+  top: 0,
+  order: 1,
+  width: 240,
+  flexShrink: 0,
+  position: 'sticky',
+  height: '100vh',
+  overflowY: 'auto',
+  padding: theme.spacing('calc(var(--MuiDocs-header-height) + 1rem)', 4, 2, 0),
+  display: 'none',
+  [theme.breakpoints.up('sm')]: {
+    display: 'block',
   },
-  contents: {
-    marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1.5),
-  },
-  ul: {
-    padding: 0,
-    margin: 0,
-    listStyleType: 'none',
-  },
-  item: {
-    fontSize: 13,
-    padding: theme.spacing(0.5, 0, 0.5, 1),
-    borderLeft: '4px solid transparent',
-    boxSizing: 'content-box',
-    '&:hover': {
-      borderLeft: `4px solid ${
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-      }`,
-    },
-    '&$active,&:active': {
-      borderLeft: `4px solid ${
-        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
-      }`,
-    },
-  },
-  secondaryItem: {
-    paddingLeft: theme.spacing(2.5),
-  },
-  active: {},
+}));
+
+const NavLabel = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(1),
+  paddingLeft: theme.spacing(1.4),
+  fontSize: theme.typography.pxToRem(11),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: theme.palette.grey[600],
+}));
+
+const NavList = styled(Typography)({
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
 });
 
-const renderer = new marked.Renderer();
-
-function setRenderer(itemsCollector, unique) {
-  renderer.heading = (text, level) => {
-    if (level === 2) {
-      itemsCollector.current.push({
-        text,
-        level,
-        hash: textToHash(text, unique),
-        children: [],
-      });
-    } else if (level === 3) {
-      if (!itemsCollector.current[itemsCollector.current.length - 1]) {
-        throw new Error(`Missing parent level for: ${text}`);
-      }
-
-      itemsCollector.current[itemsCollector.current.length - 1].children.push({
-        text,
-        level,
-        hash: textToHash(text, unique),
-      });
-    }
+const NavItem = styled(Link, {
+  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'secondary',
+})(({ active, secondary, theme }) => {
+  const activeStyles = {
+    borderLeftColor:
+      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+    '&:hover': {
+      borderLeftColor:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+    },
   };
-}
 
-function getItemsServer(contents, itemsCollector) {
-  marked(contents.join(''), { renderer });
-  return itemsCollector.current;
-}
-
-function getItemsClient(items) {
-  const itemsClient = [];
-
-  items.forEach(item2 => {
-    itemsClient.push({
-      ...item2,
-      node: document.getElementById(item2.hash),
-    });
-
-    if (item2.children.length > 0) {
-      item2.children.forEach(item3 => {
-        itemsClient.push({
-          ...item3,
-          node: document.getElementById(item3.hash),
-        });
-      });
-    }
-  });
-  return itemsClient;
-}
+  return {
+    fontSize: theme.typography.pxToRem(13),
+    padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
+    margin: theme.spacing(0.5, 0, 1, 0),
+    borderLeft: `1px solid transparent`,
+    boxSizing: 'border-box',
+    fontWeight: 500,
+    '&:hover': {
+      borderLeftColor:
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.grey[200],
+    },
+    ...(!active && {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,
+    }),
+    // TODO: We probably want `aria-current="location"` instead.
+    ...(active && activeStyles),
+    '&:active': activeStyles,
+  };
+});
 
 const noop = () => {};
 
 function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
-    callback,
-    delay,
-  ]);
+  const throttledCallback = React.useMemo(
+    () => (callback ? throttle(callback, delay) : noop),
+    [callback, delay],
+  );
 
   React.useEffect(() => {
     if (throttledCallback === noop) {
-      return () => {};
+      return undefined;
     }
 
     window.addEventListener('scroll', throttledCallback);
@@ -133,20 +100,37 @@ function useThrottledOnScroll(callback, delay) {
   }, [throttledCallback]);
 }
 
-function AppTableOfContents(props) {
-  const { classes, contents, t } = props;
+function flatten(headings) {
+  const itemsWithNode = [];
 
-  const itemsServer = React.useMemo(() => {
-    const itemsCollectorRef = { current: [] };
-    setRenderer(itemsCollectorRef, {});
-    return getItemsServer(contents, itemsCollectorRef);
-  }, [contents]);
+  headings.forEach((item) => {
+    itemsWithNode.push(item);
 
-  const itemsClientRef = React.useRef([]);
-  React.useEffect(() => {
-    itemsClientRef.current = getItemsClient(itemsServer);
-  }, [itemsServer]);
+    if (item.children.length > 0) {
+      item.children.forEach((subitem) => {
+        itemsWithNode.push(subitem);
+      });
+    }
+  });
+  return itemsWithNode;
+}
 
+const shouldShowJobAd = () => {
+  const date = new Date();
+  const timeZoneOffset = date.getTimezoneOffset();
+  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
+  if (timeZoneOffset <= -5.5 * 60 || timeZoneOffset >= 8 * 60) {
+    return false;
+  }
+  return true;
+};
+
+export default function AppTableOfContents(props) {
+  const { toc } = props;
+  const t = useTranslate();
+  const showAddJob = shouldShowJobAd();
+
+  const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -157,20 +141,25 @@ function AppTableOfContents(props) {
     }
 
     let active;
-    for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
+    for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
         break;
       }
 
-      const item = itemsClientRef.current[i];
+      const item = items[i];
+      const node = document.getElementById(item.hash);
 
-      warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
+      if (process.env.NODE_ENV !== 'production') {
+        if (!node) {
+          console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
+        }
+      }
 
       if (
-        item.node &&
-        item.node.offsetTop <
+        node &&
+        node.offsetTop <
           document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
@@ -181,12 +170,17 @@ function AppTableOfContents(props) {
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
     }
-  }, [activeState]);
+  }, [activeState, items]);
 
   // Corresponds to 10 frames at 60 Hz
-  useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
+  useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
 
-  const handleClick = hash => () => {
+  const handleClick = (hash) => (event) => {
+    // Ignore click for new tab/new window behavior
+    if (openLinkInNewTab(event)) {
+      return;
+    }
+
     // Used to disable findActiveIndex if the page scrolls due to a click
     clickedRef.current = true;
     unsetClickedRef.current = setTimeout(() => {
@@ -206,58 +200,93 @@ function AppTableOfContents(props) {
   );
 
   const itemLink = (item, secondary) => (
-    <Link
+    <NavItem
       display="block"
-      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
-      className={clsx(
-        classes.item,
-        { [classes.secondaryItem]: secondary },
-        activeState === item.hash ? classes.active : undefined,
-      )}
+      active={activeState === item.hash}
+      secondary={secondary}
     >
       <span dangerouslySetInnerHTML={{ __html: item.text }} />
-    </Link>
+    </NavItem>
   );
 
   return (
-    <nav className={classes.root}>
-      {itemsServer.length > 0 ? (
+    <Nav aria-label={t('pageTOC')}>
+      <NoSsr>
+        <TableOfContentsBanner />
+        {showAddJob && (
+          <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            underline="none"
+            sx={(theme) => ({
+              mb: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'auto',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Box sx={{ p: 1 }}>
+              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+                {'🚀 Join the MUI team!'}
+              </Typography>
+              <Typography
+                component="span"
+                variant="caption"
+                fontWeight="normal"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {"We're looking for React Engineers and other amazing roles－come find out more!"}
+              </Typography>
+            </Box>
+          </Link>
+        )}
+      </NoSsr>
+      {toc.length > 0 ? (
         <React.Fragment>
-          <Typography gutterBottom className={classes.contents}>
-            {t('tableOfContents')}
-          </Typography>
-          <Typography component="ul" className={classes.ul}>
-            {itemsServer.map(item2 => (
-              <li key={item2.text}>
-                {itemLink(item2)}
-                {item2.children.length > 0 ? (
-                  <ul className={classes.ul}>
-                    {item2.children.map(item3 => (
-                      <li key={item3.text}>{itemLink(item3, true)}</li>
+          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+          <NavList component="ul">
+            {toc.map((item) => (
+              <li key={item.text}>
+                {itemLink(item)}
+                {item.children.length > 0 ? (
+                  <NavList as="ul">
+                    {item.children.map((subitem) => (
+                      <li key={subitem.text}>{itemLink(subitem, true)}</li>
                     ))}
-                  </ul>
+                  </NavList>
                 ) : null}
               </li>
             ))}
-          </Typography>
+          </NavList>
         </React.Fragment>
       ) : null}
-    </nav>
+    </Nav>
   );
 }
 
 AppTableOfContents.propTypes = {
-  classes: PropTypes.object.isRequired,
-  contents: PropTypes.array.isRequired,
-  t: PropTypes.func.isRequired,
+  toc: PropTypes.array.isRequired,
 };
-
-export default compose(
-  connect(state => ({
-    t: state.options.t,
-  })),
-  withStyles(styles),
-)(AppTableOfContents);

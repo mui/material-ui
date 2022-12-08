@@ -1,0 +1,3 @@
+<BpCheckbox />
+<BpCheckbox defaultChecked />
+<BpCheckbox disabled />

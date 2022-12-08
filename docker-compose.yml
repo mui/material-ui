@@ -1,8 +1,0 @@
-hub:
-  image: selenium/hub:3.11.0
-  ports:
-    - 4444:4444
-chrome:
-  image: selenium/node-chrome:3.11.0
-  links:
-    - hub

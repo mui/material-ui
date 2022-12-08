@@ -1,27 +1,48 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom"],
-    "jsx": "react",
+    "lib": ["es2020", "dom"],
+    "jsx": "preserve",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "baseUrl": "./packages",
+    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": true,
+    "noErrorTruncation": false,
+    "allowJs": true,
     "paths": {
-      "@material-ui/core": ["./material-ui/src"],
-      "@material-ui/core/*": ["./material-ui/src/*"],
-      "@material-ui/lab": ["./material-ui-lab/src"],
-      "@material-ui/lab/*": ["./material-ui-lab/src/*"],
-      "@material-ui/styles": ["./material-ui-styles/src"],
-      "@material-ui/styles/*": ["./material-ui-styles/src/*"],
-      "@material-ui/system": ["./material-ui-system/src"],
-      "@material-ui/types": ["./material-ui-types"]
-    }
+      "@mui/material": ["./packages/mui-material/src"],
+      "@mui/material/*": ["./packages/mui-material/src/*"],
+      "@mui/lab": ["./packages/mui-lab/src"],
+      "@mui/lab/*": ["./packages/mui-lab/src/*"],
+      "@mui/markdown": ["./docs/packages/markdown"],
+      "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
+      "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
+      "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
+      "@mui/styled-engine-sc/*": ["./packages/mui-styled-engine-sc/src/*"],
+      "@mui/styles": ["./packages/mui-styles/src"],
+      "@mui/styles/*": ["./packages/mui-styles/src/*"],
+      "@mui/system": ["./packages/mui-system/src"],
+      "@mui/system/*": ["./packages/mui-system/src/*"],
+      "@mui/private-theming": ["./packages/mui-private-theming/src"],
+      "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
+      "@mui/types": ["./packages/mui-types"],
+      "@mui/base": ["./packages/mui-base/src"],
+      "@mui/base/*": ["./packages/mui-base/src/*"],
+      "@mui/docs": ["./packages/mui-docs/src"],
+      "@mui/docs/*": ["./packages/mui-docs/src/*"],
+      "@mui/material-next": ["./packages/mui-material-next/src"],
+      "@mui/material-next/*": ["./packages/mui-material-next/src/*"],
+      "@mui/joy": ["./packages/mui-joy/src"],
+      "@mui/joy/*": ["./packages/mui-joy/src/*"],
+      "test/*": ["./test/*"],
+      "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
+    },
+    // Otherwise we get react-native typings which conflict with dom.lib.
+    "types": ["node", "react", "react-is/next"]
   },
-  "exclude": ["**/build/"]
+  "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }

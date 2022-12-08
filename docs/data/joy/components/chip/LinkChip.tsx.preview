@@ -1,0 +1,3 @@
+<Chip componentsProps={{ action: { component: 'a', href: '#as-link' } }}>
+  Anchor chip
+</Chip>

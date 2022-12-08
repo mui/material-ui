@@ -1,22 +1,33 @@
-# The best pattern people should follow is ignoring the editors' files in their
-# global .gitignore configuration file.
-# However, in order to prevent issues. We also ignore editors' files here.
-.idea
-.vscode
-
-*.log
+# It is best to ignoring editor and system files in a local .gitignore configuration file.
+# However, in order to prevent issues, they are ignored here.
 .DS_STORE
+.idea
+# IntelliJ IDEA module file
+*.iml
+.vscode/*
+!.vscode/launch.json
+*.log
+*.tsbuildinfo
 /.eslintcache
-/.next
 /.nyc_output
+/benchmark/**/dist
 /coverage
+/docs/.env.local
 /docs/export
+/docs/pages/playground.tsx
 /examples/**/.cache
-/packages/material-ui-codemod/lib
-/packages/material-ui-icons/material-io-tools-icons
+/packages/mui-codemod/lib
+/packages/mui-envinfo/*.tgz
+/packages/mui-icons-material/src/*.js
+/test/bundling/fixtures/*/yarn.lock
+# created by test/bundling/scripts/createFixture
+/test/bundling/fixtures/**/*.fixture.js
+# created by test/bundling/fixtures/gatsby gatsby build
+/test/bundling/fixtures/gatsby/.cache
+/test/bundling/fixtures/gatsby/public
 /test/regressions/screenshots
-/test/selenium-output
 /tmp
+.next
 build
 node_modules
 package-lock.json

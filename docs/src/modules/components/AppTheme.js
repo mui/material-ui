@@ -1,21 +1,20 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'docs/src/modules/components/Head';
 
-function AppTheme(props) {
-  const { children, description, title } = props;
+export default function AppTheme(props) {
+  const { children } = props;
+
   return (
     <React.Fragment>
-      <Head title={title} description={description} />
+      <Head>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       {children}
     </React.Fragment>
   );
 }
 
 AppTheme.propTypes = {
-  children: PropTypes.element.isRequired,
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
-
-export default AppTheme;

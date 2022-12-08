@@ -1,49 +1,32 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import Paper from '@material-ui/core/Paper';
-import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
-import compose from 'docs/src/modules/utils/compose';
+import AdInHouse from 'docs/src/modules/components/AdInHouse';
+import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const styles = theme => ({
-  root: {
-    position: 'relative',
-    minHeight: 116,
-    maxWidth: 345,
-    display: 'block',
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(3),
-  },
-  info: {
-    ...theme.typography.caption,
-    position: 'absolute',
-    padding: theme.spacing(1),
-    cursor: 'default',
-    bottom: 0,
-    right: 0,
-  },
-  paper: {
-    padding: theme.spacing(1),
-    display: 'block',
-  },
-});
+function PleaseDisableAdblock(props) {
+  const t = useTranslate();
 
-function getAdblock(classes, t) {
   return (
-    <Paper component="span" elevation={0} className={classes.paper}>
+    <Paper
+      component="span"
+      elevation={0}
+      sx={{ display: 'block', p: 1.5, border: '2px solid', borderColor: 'primary.main' }}
+      {...props}
+    >
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('adblock')}
       </Typography>
-      <Typography variant="body2" display="block" component="span">
+      <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('thanks')}{' '}
-        <span role="img" aria-label="Love">
+        <span role="img" aria-label={t('emojiLove')}>
           ❤️
         </span>
       </Typography>
@@ -51,74 +34,204 @@ function getAdblock(classes, t) {
   );
 }
 
-class Ad extends React.Component {
-  random = Math.random();
+const disableAd =
+  process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
+const inHouseAds = [
+  {
+    name: 'scaffoldhub',
+    link: 'https://scaffoldhub.io/?partner=1',
+    img: '/static/ads-in-house/scaffoldhub.png',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
+  },
+  {
+    name: 'templates',
+    link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
+    img: '/static/ads-in-house/themes-2.jpg',
+    description:
+      '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards, and more.',
+  },
+  {
+    name: 'themes',
+    link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
+    img: '/static/ads-in-house/themes.png',
+    description:
+      '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
+  },
+  {
+    name: 'tidelift',
+    link: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    img: '/static/ads-in-house/tidelift.png',
+    description:
+      '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
+  },
+  {
+    name: 'figma',
+    link: 'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
+    img: '/static/ads-in-house/figma.png',
+    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
+  },
+];
 
-  state = {
-    disable: process.env.NODE_ENV !== 'production',
-    adblock: null,
+class AdErrorBoundary extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    eventLabel: PropTypes.string,
   };
 
-  componentDidMount() {
-    if (this.state.disable) {
-      return;
-    }
-    this.checkAdblock();
+  state = { didError: false };
+
+  static getDerivedStateFromError() {
+    return { didError: true };
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timerAdblock);
+  componentDidCatch() {
+    // send explicit `'null'`
+    const eventLabel = String(this.props.eventLabel);
+    // TODO: Use proper error monitoring service (e.g. Sentry) instead
+    window.ga('send', {
+      hitType: 'event',
+      eventCategory: 'ad',
+      eventAction: 'crash',
+      eventLabel,
+    });
   }
-
-  checkAdblock = (attempt = 1) => {
-    if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
-      this.setState({
-        adblock: false,
-      });
-      return;
-    }
-
-    if (attempt < 30) {
-      this.timerAdblock = setTimeout(() => {
-        this.checkAdblock(attempt + 1);
-      }, 500);
-    }
-
-    if (attempt > 6 && this.state.adblock !== true) {
-      this.setState({
-        adblock: true,
-      });
-    }
-  };
 
   render() {
-    const { classes, t } = this.props;
-    const { adblock, disable } = this.state;
+    const { didError } = this.state;
+    const { children } = this.props;
 
-    if (disable) {
-      return <span className={classes.root}>{getAdblock(classes, t)}</span>;
+    if (didError) {
+      return null;
     }
-
-    return (
-      <span className={classes.root}>
-        {this.random >= 0.9 ? <AdCodeFund /> : <AdCarbon />}
-        {adblock === true ? getAdblock(classes, t) : null}
-        {adblock === false ? (
-          <Tooltip id="ad-info" title={t('adTitle')} placement="left">
-            <span className={classes.info}>i</span>
-          </Tooltip>
-        ) : null}
-      </span>
-    );
+    return children;
   }
 }
 
-Ad.propTypes = {
-  classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-};
+function Ad() {
+  const [adblock, setAdblock] = React.useState(null);
+  const [carbonOut, setCarbonOut] = React.useState(null);
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(Ad);
+  const { current: randomAdblock } = React.useRef(Math.random());
+  const { current: randomInHouse } = React.useRef(Math.random());
+
+  let children;
+  let label;
+  // Hide the content to google bot to avoid its indexation.
+  if (/Googlebot/.test(navigator.userAgent) || disableAd) {
+    children = <span />;
+  } else if (adblock) {
+    if (randomAdblock < 0.2) {
+      children = <PleaseDisableAdblock />;
+      label = 'in-house-adblock';
+    } else {
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
+      label = 'in-house';
+    }
+  } else if (carbonOut) {
+    children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
+    label = 'in-house-carbon';
+  } else {
+    children = <AdCarbon />;
+    label = 'carbon';
+  }
+
+  const ad = React.useContext(AdContext);
+  const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
+
+  const timerAdblock = React.useRef();
+
+  const checkAdblock = React.useCallback(
+    (attempt = 1) => {
+      if (
+        document.querySelector('.ea-placement') ||
+        document.querySelector('#carbonads') ||
+        document.querySelector('.carbonads') ||
+        carbonOut
+      ) {
+        if (
+          document.querySelector('#carbonads a') &&
+          document.querySelector('#carbonads a').getAttribute('href') ===
+            'https://material-ui-next.com/discover-more/backers'
+        ) {
+          setCarbonOut(true);
+        }
+
+        setAdblock(false);
+        return;
+      }
+
+      if (attempt < 30) {
+        timerAdblock.current = setTimeout(() => {
+          checkAdblock(attempt + 1);
+        }, 500);
+      }
+
+      if (attempt > 6) {
+        setAdblock(true);
+      }
+    },
+    [carbonOut],
+  );
+
+  React.useEffect(() => {
+    if (disableAd) {
+      return undefined;
+    }
+    checkAdblock();
+
+    return () => {
+      clearTimeout(timerAdblock.current);
+    };
+  }, [checkAdblock]);
+
+  React.useEffect(() => {
+    // Avoid an exceed on the Google Analytics quotas.
+    if (Math.random() < 0.9 || !eventLabel) {
+      return undefined;
+    }
+
+    const delay = setTimeout(() => {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'ad',
+        eventAction: 'display',
+        eventLabel,
+      });
+    }, 2500);
+
+    return () => {
+      clearTimeout(delay);
+    };
+  }, [eventLabel]);
+
+  return (
+    <Box
+      component="span"
+      sx={{
+        position: 'relative',
+        display: 'block',
+        m: (theme) => theme.spacing(4, 0, 3),
+        ...(adShape === 'image' && {
+          minHeight: 126,
+        }),
+        ...(adShape === 'inline' && {
+          minHeight: 126,
+          display: 'flex',
+          alignItems: 'flex-end',
+        }),
+        ...(adShape === 'inline2' && {
+          minHeight: 126,
+          display: 'flex',
+          alignItems: 'flex-end',
+        }),
+      }}
+      data-ga-event-category="ad"
+      data-ga-event-action="click"
+      data-ga-event-label={eventLabel}
+    >
+      <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
+    </Box>
+  );
+}
+
+export default Ad;

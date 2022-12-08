@@ -1,21 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { createMuiTheme, withStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Hidden from '@material-ui/core/Hidden';
+import * as React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import Navigator from './Navigator';
 import Content from './Content';
 import Header from './Header';
 
-let theme = createMuiTheme({
-  typography: {
-    h5: {
-      fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5,
-    },
-  },
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}.
+    </Typography>
+  );
+}
+
+let theme = createTheme({
   palette: {
     primary: {
       light: '#63ccff',
@@ -23,170 +29,183 @@ let theme = createMuiTheme({
       dark: '#006db3',
     },
   },
+  typography: {
+    h5: {
+      fontWeight: 500,
+      fontSize: 26,
+      letterSpacing: 0.5,
+    },
+  },
   shape: {
     borderRadius: 8,
+  },
+  components: {
+    MuiTab: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+  },
+  mixins: {
+    toolbar: {
+      minHeight: 48,
+    },
   },
 });
 
 theme = {
   ...theme,
-  overrides: {
+  components: {
     MuiDrawer: {
-      paper: {
-        backgroundColor: '#18202c',
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#081627',
+        },
       },
     },
     MuiButton: {
-      label: {
-        textTransform: 'none',
-      },
-      contained: {
-        boxShadow: 'none',
-        '&:active': {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+        contained: {
           boxShadow: 'none',
+          '&:active': {
+            boxShadow: 'none',
+          },
         },
       },
     },
     MuiTabs: {
-      root: {
-        marginLeft: theme.spacing(1),
-      },
-      indicator: {
-        height: 3,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        backgroundColor: theme.palette.common.white,
+      styleOverrides: {
+        root: {
+          marginLeft: theme.spacing(1),
+        },
+        indicator: {
+          height: 3,
+          borderTopLeftRadius: 3,
+          borderTopRightRadius: 3,
+          backgroundColor: theme.palette.common.white,
+        },
       },
     },
     MuiTab: {
-      root: {
-        textTransform: 'none',
-        margin: '0 16px',
-        minWidth: 0,
-        padding: 0,
-        [theme.breakpoints.up('md')]: {
-          padding: 0,
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          margin: '0 16px',
           minWidth: 0,
+          padding: 0,
+          [theme.breakpoints.up('md')]: {
+            padding: 0,
+            minWidth: 0,
+          },
         },
       },
     },
     MuiIconButton: {
-      root: {
-        padding: theme.spacing(1),
+      styleOverrides: {
+        root: {
+          padding: theme.spacing(1),
+        },
       },
     },
     MuiTooltip: {
-      tooltip: {
-        borderRadius: 4,
+      styleOverrides: {
+        tooltip: {
+          borderRadius: 4,
+        },
       },
     },
     MuiDivider: {
-      root: {
-        backgroundColor: '#404854',
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgb(255,255,255,0.15)',
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            color: '#4fc3f7',
+          },
+        },
       },
     },
     MuiListItemText: {
-      primary: {
-        fontWeight: theme.typography.fontWeightMedium,
+      styleOverrides: {
+        primary: {
+          fontSize: 14,
+          fontWeight: theme.typography.fontWeightMedium,
+        },
       },
     },
     MuiListItemIcon: {
-      root: {
-        color: 'inherit',
-        marginRight: 0,
-        '& svg': {
-          fontSize: 20,
+      styleOverrides: {
+        root: {
+          color: 'inherit',
+          minWidth: 'auto',
+          marginRight: theme.spacing(2),
+          '& svg': {
+            fontSize: 20,
+          },
         },
       },
     },
     MuiAvatar: {
-      root: {
-        width: 32,
-        height: 32,
+      styleOverrides: {
+        root: {
+          width: 32,
+          height: 32,
+        },
       },
-    },
-  },
-  props: {
-    MuiTab: {
-      disableRipple: true,
-    },
-  },
-  mixins: {
-    ...theme.mixins,
-    toolbar: {
-      minHeight: 48,
     },
   },
 };
 
 const drawerWidth = 256;
 
-const styles = {
-  root: {
-    display: 'flex',
-    minHeight: '100vh',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appContent: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  mainContent: {
-    flex: 1,
-    padding: '48px 36px 0',
-    background: '#eaeff1',
-  },
-};
+export default function Paperbase() {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
-class Paperbase extends React.Component {
-  state = {
-    mobileOpen: false,
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
+  return (
+    <ThemeProvider theme={theme}>
+      <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+        <CssBaseline />
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        >
+          {isSmUp ? null : (
+            <Navigator
+              PaperProps={{ style: { width: drawerWidth } }}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+            />
+          )}
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <ThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <CssBaseline />
-          <nav className={classes.drawer}>
-            <Hidden smUp implementation="js">
-              <Navigator
-                PaperProps={{ style: { width: drawerWidth } }}
-                variant="temporary"
-                open={this.state.mobileOpen}
-                onClose={this.handleDrawerToggle}
-              />
-            </Hidden>
-            <Hidden xsDown implementation="css">
-              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-            </Hidden>
-          </nav>
-          <div className={classes.appContent}>
-            <Header onDrawerToggle={this.handleDrawerToggle} />
-            <main className={classes.mainContent}>
-              <Content />
-            </main>
-          </div>
-        </div>
-      </ThemeProvider>
-    );
-  }
+          <Navigator
+            PaperProps={{ style: { width: drawerWidth } }}
+            sx={{ display: { sm: 'block', xs: 'none' } }}
+          />
+        </Box>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <Header onDrawerToggle={handleDrawerToggle} />
+          <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
+            <Content />
+          </Box>
+          <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1' }}>
+            <Copyright />
+          </Box>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  );
 }
-
-Paperbase.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Paperbase);

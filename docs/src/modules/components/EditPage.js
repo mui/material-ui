@@ -1,13 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTheme } from '@mui/material/styles';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
-
-function EditPage(props) {
-  const { markdownLocation, sourceCodeRootUrl, t, userLanguage } = props;
+export default function EditPage(props) {
+  const theme = useTheme();
+  const { markdownLocation } = props;
+  const t = useTranslate();
+  const userLanguage = useUserLanguage();
+  const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
+  const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
 
@@ -16,14 +20,31 @@ function EditPage(props) {
       component="a"
       href={
         userLanguage === 'en'
-          ? `${sourceCodeRootUrl}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
+          ? `${process.env.SOURCE_CODE_ROOT_URL}${markdownLocation}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL.replace(
+              'https://github.com/mui/',
+              '',
+            ).replace('/blob/', '%20%2F%20')}${crowdInPath}`
       }
       target="_blank"
-      rel="noopener"
+      rel="noopener nofollow"
+      size="small"
+      endIcon={<EditRoundedIcon />}
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
+      sx={{
+        ml: { md: -1, lg: 0 },
+        mb: 2,
+        fontWeight: 500,
+        fontSize: theme.typography.pxToRem(12.5),
+        color:
+          theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+        '& svg': {
+          width: 14,
+          height: 14,
+        },
+      }}
     >
       {t('editPage')}
     </Button>
@@ -32,12 +53,4 @@ function EditPage(props) {
 
 EditPage.propTypes = {
   markdownLocation: PropTypes.string.isRequired,
-  sourceCodeRootUrl: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
-  userLanguage: PropTypes.string.isRequired,
 };
-
-export default connect(state => ({
-  t: state.options.t,
-  userLanguage: state.options.userLanguage,
-}))(EditPage);

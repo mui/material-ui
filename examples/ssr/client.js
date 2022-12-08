@@ -1,48 +1,24 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
+import theme from './theme';
+import createEmotionCache from './createEmotionCache';
 
-class Main extends React.Component {
-  componentDidMount() {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }
+const cache = createEmotionCache();
 
-  render() {
-    return <App />;
-  }
+function Main() {
+  return (
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
+  );
 }
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-    accent: red,
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
-
-// Create a new class name generator.
-const generateClassName = createGenerateClassName();
-
-ReactDOM.hydrate(
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>,
-  document.querySelector('#root'),
-);
+ReactDOM.hydrate(<Main />, document.querySelector('#root'));

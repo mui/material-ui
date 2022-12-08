@@ -1,41 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'gatsby';
-import withRoot from '../withRoot';
+import * as React from 'react';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import ProTip from '../components/ProTip';
+import Link from '../components/Link';
+import Copyright from '../components/Copyright';
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-});
-
-function About(props) {
-  const { classes } = props;
-
+export default function About() {
   return (
-    <div className={classes.root}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Material-UI
-      </Typography>
-      <Typography variant="subtitle1" component="h2" gutterBottom>
-        about page
-      </Typography>
-      <Typography gutterBottom>
+    <Container maxWidth="sm">
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Gatsby example
+        </Typography>
         <Link to="/">Go to the main page</Link>
-      </Typography>
-      <Button variant="contained" color="primary">
-        Do nothing button
-      </Button>
-    </div>
+        <ProTip />
+        <Copyright />
+      </Box>
+    </Container>
   );
 }
-
-About.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withRoot(withStyles(styles)(About));

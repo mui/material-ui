@@ -1,199 +1,156 @@
-/* eslint-disable react/no-array-index-key */
-
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Portal from '@material-ui/core/Portal';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Head from 'docs/src/modules/components/Head';
-import AppContent from 'docs/src/modules/components/AppContent';
+import path from 'path';
+import { useRouter } from 'next/router';
+import { useTheme } from '@mui/system';
 import Demo from 'docs/src/modules/components/Demo';
-import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import Ad from 'docs/src/modules/components/Ad';
-import EditPage from 'docs/src/modules/components/EditPage';
-import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
-import {
-  getHeaders,
-  getTitle,
-  getDescription,
-  demoRegexp,
-} from 'docs/src/modules/utils/parseMarkdown';
-import compose from 'docs/src/modules/utils/compose';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { exactProp } from '@mui/utils';
+import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
-const styles = theme => ({
-  root: {
-    marginBottom: 100,
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-  },
-  markdownElement: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    padding: theme.spacing(0, 1),
-  },
-});
+function noComponent(moduleID) {
+  return function NoComponent() {
+    throw new Error(`No demo component provided for '${moduleID}'`);
+  };
+}
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
+function JoyModeObserver({ mode }) {
+  const { setMode } = useColorScheme();
+  React.useEffect(() => {
+    setMode(mode);
+  }, [mode, setMode]);
+  return null;
+}
 
-function MarkdownDocs(props) {
+JoyModeObserver.propTypes = {
+  mode: PropTypes.oneOf(['light', 'dark']),
+};
+
+export default function MarkdownDocs(props) {
+  const theme = useTheme();
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const {
-    classes,
-    disableAd,
-    disableToc,
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-    userLanguage,
+    disableAd = false,
+    disableToc = false,
+    demos = {},
+    docs,
+    demoComponents,
+    srcComponents,
   } = props;
 
-  let demos;
-  let markdown = markdownProp;
+  const userLanguage = useUserLanguage();
+  const t = useTranslate();
 
-  if (req) {
-    demos = {};
-    const markdowns = {};
-    req.keys().forEach(filename => {
-      if (filename.indexOf('.md') !== -1) {
-        const match = filename.match(/-([a-z]{2})\.md$/);
+  const localizedDoc = docs[userLanguage] || docs.en;
+  const { description, location, rendered, title, toc } = localizedDoc;
 
-        if (match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1) {
-          markdowns[match[1]] = req(filename);
-        } else {
-          markdowns.en = req(filename);
-        }
-      } else if (filename.indexOf('.tsx') !== -1) {
-        const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '').replace(/\.tsx/g, '.js')}`;
-
-        demos[demoName] = {
-          ...demos[demoName],
-          tsx: req(filename).default,
-          rawTS: reqSource(filename),
-        };
-      } else {
-        const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '')}`;
-
-        demos[demoName] = {
-          ...demos[demoName],
-          js: req(filename).default,
-          raw: reqSource(filename),
-        };
-      }
-    });
-    markdown = markdowns[userLanguage] || markdowns.en;
-  }
-
-  const headers = getHeaders(markdown);
-  // eslint-disable-next-line no-underscore-dangle
-  global.__MARKED_UNIQUE__ = {};
+  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
+  const Provider = isJoy ? CssVarsProvider : React.Fragment;
+  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
   return (
-    <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
-      {({ contents, markdownLocation }) => (
-        <AppFrame>
-          <Head
-            title={`${headers.title || getTitle(markdown)} - Material-UI`}
-            description={headers.description || getDescription(markdown)}
-          />
-          {disableToc ? null : <AppTableOfContents contents={contents} />}
-          {disableAd ? null : (
-            <Portal container={() => document.querySelector('.description')}>
-              <Ad />
-            </Portal>
-          )}
-          <AppContent disableToc={disableToc} className={classes.root}>
-            <div className={classes.header}>
-              <EditPage
-                markdownLocation={markdownLocation}
-                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-              />
-            </div>
-            {contents.map((content, index) => {
-              if (demos && demoRegexp.test(content)) {
-                let demoOptions;
-                try {
-                  demoOptions = JSON.parse(`{${content}}`);
-                } catch (err) {
-                  console.error(err); // eslint-disable-line no-console
-                  return null;
-                }
+    <AppLayoutDocs
+      description={description}
+      disableAd={disableAd}
+      disableToc={disableToc}
+      location={location}
+      title={title}
+      toc={toc}
+    >
+      <Provider>
+        {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
+        {rendered.map((renderedMarkdownOrDemo, index) => {
+          if (typeof renderedMarkdownOrDemo === 'string') {
+            return (
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
+                <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
+              </Wrapper>
+            );
+          }
 
-                const name = demoOptions.demo;
-                if (!demos || !demos[name]) {
-                  const errorMessage = [
-                    `Missing demo: ${name}. You can use one of the following:`,
-                    Object.keys(demos),
-                  ].join('\n');
+          if (renderedMarkdownOrDemo.component) {
+            const name = renderedMarkdownOrDemo.component;
+            const Component = srcComponents?.[name];
 
-                  if (userLanguage === 'en') {
-                    throw new Error(errorMessage);
-                  }
+            if (Component === undefined) {
+              throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
+            }
 
-                  warning(false, errorMessage);
+            return (
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
+                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
+              </Wrapper>
+            );
+          }
 
-                  const warnIcon = (
-                    <span role="img" aria-label="warning">
-                      ⚠️
-                    </span>
-                  );
-                  return (
-                    <div key={content}>
-                      {warnIcon} Missing demo `{name}` {warnIcon}
-                    </div>
-                  );
-                }
+          const name = renderedMarkdownOrDemo.demo;
+          const demo = demos?.[name];
+          if (demo === undefined) {
+            const errorMessage = [
+              `Missing demo: ${name}. You can use one of the following:`,
+              Object.keys(demos),
+            ].join('\n');
 
-                return (
-                  <Demo
-                    key={content}
-                    demo={demos[name]}
-                    demoOptions={demoOptions}
-                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-                  />
-                );
-              }
+            if (userLanguage === 'en') {
+              throw new Error(errorMessage);
+            }
 
-              return (
-                <MarkdownElement className={classes.markdownElement} key={index} text={content} />
-              );
-            })}
-          </AppContent>
-        </AppFrame>
-      )}
-    </MarkdownDocsContents>
+            if (process.env.NODE_ENV !== 'production') {
+              console.error(errorMessage);
+            }
+
+            const warnIcon = (
+              <span role="img" aria-label={t('emojiWarning')}>
+                ⚠️
+              </span>
+            );
+            return (
+              <div key={index}>
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {warnIcon} Missing demo `{name}` {warnIcon}
+              </div>
+            );
+          }
+
+          const splitLocationBySlash = location.split('/');
+          splitLocationBySlash.pop();
+          const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
+
+          return (
+            <Demo
+              key={index}
+              mode={theme.palette.mode}
+              demo={{
+                raw: demo.raw,
+                js: demoComponents[demo.module] ?? noComponent(demo.module),
+                jsxPreview: demo.jsxPreview,
+                rawTS: demo.rawTS,
+                tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
+              }}
+              disableAd={disableAd}
+              demoOptions={renderedMarkdownOrDemo}
+              githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
+            />
+          );
+        })}
+      </Provider>
+    </AppLayoutDocs>
   );
 }
 
 MarkdownDocs.propTypes = {
-  classes: PropTypes.object.isRequired,
+  demoComponents: PropTypes.object,
+  demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
-  markdown: PropTypes.string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  markdownLocation: PropTypes.string,
-  req: PropTypes.func,
-  reqPrefix: PropTypes.string,
-  reqSource: PropTypes.func,
-  userLanguage: PropTypes.string.isRequired,
+  docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
-MarkdownDocs.defaultProps = {
-  disableAd: false,
-  disableToc: false,
-};
-
-export default compose(
-  connect(state => ({
-    userLanguage: state.options.userLanguage,
-  })),
-  withStyles(styles),
-)(MarkdownDocs);
+if (process.env.NODE_ENV !== 'production') {
+  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
+}

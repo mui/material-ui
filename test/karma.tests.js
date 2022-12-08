@@ -1,15 +1,59 @@
-// https://github.com/airbnb/enzyme/issues/1792
-import 'core-js/modules/es6.array.from';
-
-import './utils/performance';
 import './utils/init';
+import './utils/setupKarma';
 
-const integrationContext = require.context(
-  '../packages/material-ui/test/integration',
+const materialIntegrationContext = require.context(
+  '../packages/mui-material/test/integration',
   true,
-  /\.test\.js$/,
+  /\.test\.(js|ts|tsx)$/,
 );
-integrationContext.keys().forEach(integrationContext);
+materialIntegrationContext.keys().forEach(materialIntegrationContext);
 
-const unitContext = require.context('../packages/material-ui/src/', true, /\.test\.js$/);
-unitContext.keys().forEach(unitContext);
+const baseIntegrationContext = require.context(
+  '../packages/mui-base/test/integration',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+baseIntegrationContext.keys().forEach(baseIntegrationContext);
+
+const materialUnitContext = require.context(
+  '../packages/mui-material/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+materialUnitContext.keys().forEach(materialUnitContext);
+
+const labUnitContext = require.context('../packages/mui-lab/src/', true, /\.test\.(js|ts|tsx)$/);
+labUnitContext.keys().forEach(labUnitContext);
+
+const styledEngineContext = require.context(
+  '../packages/mui-styled-engine/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineContext.keys().forEach(styledEngineContext);
+
+const styledEngineSCContext = require.context(
+  '../packages/mui-styled-engine-sc/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineSCContext.keys().forEach(styledEngineSCContext);
+
+const systemContext = require.context('../packages/mui-system/src/', true, /\.test\.(js|ts|tsx)$/);
+systemContext.keys().forEach(systemContext);
+
+const baseUnitContext = require.context('../packages/mui-base/src/', true, /\.test\.(js|ts|tsx)$/);
+baseUnitContext.keys().forEach(baseUnitContext);
+
+const utilsContext = require.context('../packages/mui-utils/src/', true, /\.test\.(js|ts|tsx)$/);
+utilsContext.keys().forEach(utilsContext);
+
+const materialNextContext = require.context(
+  '../packages/mui-material-next/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+materialNextContext.keys().forEach(materialNextContext);
+
+const joyContext = require.context('../packages/mui-joy/src', true, /\.test\.(js|ts|tsx)$/);
+joyContext.keys().forEach(joyContext);

@@ -1,391 +1,241 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useRouter } from 'next/router';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
-import Router from 'next/router';
-import Interpolate from '@trendmicro/react-interpolate';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import NoSsr from '@material-ui/core/NoSsr';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import MenuIcon from '@material-ui/icons/Menu';
-import LanguageIcon from '@material-ui/icons/Language';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MuiLink from '@material-ui/core/Link';
-import ColorsIcon from '@material-ui/icons/InvertColors';
-import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
-import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
-import NProgressBar from '@material-ui/docs/NProgressBar';
-import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
-import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
-import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
-import Link from 'docs/src/modules/components/Link';
-import AppDrawer from 'docs/src/modules/components/AppDrawer';
-import AppSearch from 'docs/src/modules/components/AppSearch';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Stack from '@mui/material/Stack';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
+import SettingsIcon from '@mui/icons-material/SettingsOutlined';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import NProgressBar from '@mui/docs/NProgressBar';
+import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
+import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import PageTitle from 'docs/src/modules/components/PageTitle';
-import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
-import compose from 'docs/src/modules/utils/compose';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import SkipLink from 'docs/src/modules/components/SkipLink';
+import PageContext from 'docs/src/modules/components/PageContext';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { debounce } from '@mui/material/utils';
+import NextLink from 'next/link';
+import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
-Router.onRouteChangeStart = () => {
+const nProgressStart = debounce(() => {
   NProgress.start();
-};
+}, 200);
 
-Router.onRouteChangeComplete = () => {
+const nProgressDone = () => {
+  nProgressStart.clear();
   NProgress.done();
 };
 
-Router.onRouteChangeError = () => {
-  NProgress.done();
-};
+export function NextNProgressBar() {
+  const router = useRouter();
+  React.useEffect(() => {
+    const handleRouteChangeStart = (url, { shallow }) => {
+      if (!shallow) {
+        nProgressStart();
+      }
+    };
 
-export const languages = [
-  {
-    code: 'en',
-    text: '🇺🇸 English',
-  },
-  {
-    code: 'zh',
-    text: '🇨🇳 中文',
-  },
-  {
-    code: 'ru',
-    text: '🇷🇺 Русский',
-  },
-  {
-    code: 'pt',
-    text: '🇧🇷 Português',
-  },
-  {
-    code: 'fr',
-    text: '🇫🇷 Français',
-  },
-  {
-    code: 'es',
-    text: '🇪🇸 Español',
-  },
-  {
-    code: 'de',
-    text: '🇩🇪 Deutsch',
-  },
-  {
-    code: 'ja',
-    text: '🇯🇵 日本語',
-  },
-];
+    const handleRouteChangeDone = (url, { shallow }) => {
+      if (!shallow) {
+        nProgressDone();
+      }
+    };
 
-const styles = theme => ({
-  root: {
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeDone);
+    router.events.on('routeChangeError', handleRouteChangeDone);
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeDone);
+      router.events.off('routeChangeError', handleRouteChangeDone);
+    };
+  }, [router]);
+
+  return <NProgressBar />;
+}
+
+const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+export function DeferredAppSearch() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <React.Fragment>
+      {/* Suspense isn't supported for SSR yet */}
+      {mounted ? (
+        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
+          <AppSearch />
+        </React.Suspense>
+      ) : (
+        <Box sx={{ minWidth: { sm: 200 } }} />
+      )}
+    </React.Fragment>
+  );
+}
+
+const RootDiv = styled('div')(({ theme }) => {
+  return {
     display: 'flex',
-  },
-  banner: {
-    display: 'block',
-    padding: 4,
-    textAlign: 'center',
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.getContrastText(theme.palette.primary.dark),
-  },
-  grow: {
-    flex: '1 1 auto',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: '0 1 auto',
-  },
-  skipNav: {
-    position: 'fixed',
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
-    transition: theme.transitions.create('top', {
-      easing: theme.transitions.easing.easeIn,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    left: theme.spacing(2),
-    top: theme.spacing(-10),
-    zIndex: theme.zIndex.tooltip + 1,
-    '&:focus': {
-      top: theme.spacing(2),
-      transition: theme.transitions.create('top', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-  },
-  appBar: {
+    background: theme.palette.mode === 'dark' && theme.palette.primaryDark[900],
+    // TODO: Should be handled by the main component
+  };
+});
+
+const StyledAppBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== 'disablePermanent',
+})(({ disablePermanent, theme }) => {
+  return {
+    padding: theme.spacing(1, 2),
     transition: theme.transitions.create('width'),
-    '@media print': {
-      position: 'absolute',
-    },
-  },
-  appBarHome: {
+    ...(disablePermanent && {
+      boxShadow: 'none',
+    }),
+    ...(!disablePermanent && {
+      [theme.breakpoints.up('lg')]: {
+        width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
+      },
+    }),
     boxShadow: 'none',
-  },
-  appBarShift: {
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 240px)',
-    },
-  },
-  drawer: {
-    [theme.breakpoints.up('lg')]: {
-      flexShrink: 0,
-      width: 240,
-    },
-  },
-  navIconHide: {
+    backdropFilter: 'blur(20px)',
+    borderStyle: 'solid',
+    borderColor:
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primary[100], 0.08)
+        : theme.palette.grey[100],
+    borderWidth: 0,
+    borderBottomWidth: 'thin',
+    background:
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primaryDark[900], 0.7)
+        : 'rgba(255,255,255,0.7)',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+  };
+});
+
+const GrowingDiv = styled('div')({
+  flex: '1 1 auto',
+});
+
+const NavIconButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== 'disablePermanent',
+})(({ disablePermanent, theme }) => {
+  if (disablePermanent) {
+    return {};
+  }
+  return {
     [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
-  },
-  '@global': {
-    '#main-content': {
-      outline: 'none',
-    },
-  },
+  };
 });
 
-class AppFrame extends React.Component {
-  state = {
-    languageMenu: null,
-    mobileOpen: false,
-  };
-
-  componentDidMount() {
-    const { canonical } = pathnameToLanguage(window.location.pathname);
-    this.canonical = canonical;
+const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) => {
+  if (disablePermanent) {
+    return {};
   }
-
-  handleDrawerOpen = () => {
-    this.setState({ mobileOpen: true });
+  return {
+    [theme.breakpoints.up('lg')]: {
+      flexShrink: 0,
+      width: 'var(--MuiDocs-navDrawer-width)',
+    },
   };
+});
 
-  handleDrawerClose = () => {
-    this.setState({ mobileOpen: false });
-  };
+export default function AppFrame(props) {
+  const { children, disableDrawer = false, className } = props;
+  const t = useTranslate();
 
-  handleLanguageIconClick = event => {
-    this.setState({ languageMenu: event.currentTarget });
-  };
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
 
-  handleLanguageMenuClose = () => {
-    this.setState({ languageMenu: null });
-  };
+  const { activePage } = React.useContext(PageContext);
 
-  handleTogglePaletteType = () => {
-    const paletteType = this.props.reduxTheme.paletteType === 'light' ? 'dark' : 'light';
-    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
+  const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
-      payload: {
-        paletteType,
-      },
-    });
-  };
-
-  handleToggleDirection = () => {
-    this.props.dispatch({
-      type: ACTION_TYPES.THEME_CHANGE,
-      payload: {
-        direction: this.props.reduxTheme.direction === 'ltr' ? 'rtl' : 'ltr',
-      },
-    });
-  };
-
-  render() {
-    const { children, classes, reduxTheme, t, userLanguage } = this.props;
-    const { languageMenu } = this.state;
-
-    return (
-      <PageTitle t={t}>
-        {title => {
-          let disablePermanent = false;
-          let navIconClassName = '';
-          let appBarClassName = classes.appBar;
-
-          if (title === null) {
-            // home route, don't shift app bar or dock drawer
-            disablePermanent = true;
-            appBarClassName += ` ${classes.appBarHome}`;
-          } else {
-            navIconClassName = classes.navIconHide;
-            appBarClassName += ` ${classes.appBarShift}`;
-          }
-
-          return (
-            <div className={classes.root}>
-              <NProgressBar />
-              <CssBaseline />
-              <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
-                Skip to content
-              </MuiLink>
-              <Notifications />
-              <MarkdownLinks />
-              <AppBar className={appBarClassName}>
-                <Typography className={classes.banner} variant="body2" noWrap>
-                  <Interpolate
-                    replacement={{
-                      versionNumber: (
-                        <Link color="inherit" href="/versions/">
-                          {`v${process.env.LIB_VERSION}`}
-                        </Link>
-                      ),
-                    }}
-                  >
-                    {t('topBanner')}
-                  </Interpolate>
-                </Typography>
-                <Toolbar>
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="Open drawer"
-                    onClick={this.handleDrawerOpen}
-                    className={navIconClassName}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  {title !== null && (
-                    <Typography className={classes.title} variant="h6" noWrap>
-                      {title}
-                    </Typography>
-                  )}
-                  <div className={classes.grow} />
-                  <AppSearch />
-                  <Tooltip title="Change language" enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      aria-owns={languageMenu ? 'language-menu' : undefined}
-                      aria-haspopup="true"
-                      aria-label="Change language"
-                      onClick={this.handleLanguageIconClick}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="language"
-                    >
-                      <LanguageIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <NoSsr>
-                    <Menu
-                      id="language-menu"
-                      anchorEl={languageMenu}
-                      open={Boolean(languageMenu)}
-                      onClose={this.handleLanguageMenuClose}
-                    >
-                      {languages
-                        .filter(language => LANGUAGES.indexOf(language.code) !== -1)
-                        .map(language => (
-                          <MenuItem
-                            component="a"
-                            data-no-link="true"
-                            href={
-                              language.code === 'en'
-                                ? this.canonical
-                                : `/${language.code}${this.canonical}`
-                            }
-                            key={language.code}
-                            selected={userLanguage === language.code}
-                            onClick={this.handleLanguageMenuClose}
-                          >
-                            {language.text}
-                          </MenuItem>
-                        ))}
-                    </Menu>
-                  </NoSsr>
-                  <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      aria-label={t('editWebsiteColors')}
-                      component={Link}
-                      naked
-                      href="/style/color/#color-tool"
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="colors"
-                    >
-                      <ColorsIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('toggleTheme')} enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      onClick={this.handleTogglePaletteType}
-                      aria-label={t('toggleTheme')}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="dark"
-                    >
-                      {reduxTheme.paletteType === 'light' ? (
-                        <LightbulbOutlineIcon />
-                      ) : (
-                        <LightbulbFullIcon />
-                      )}
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('toggleRTL')} enterDelay={300}>
-                    <IconButton
-                      color="inherit"
-                      onClick={this.handleToggleDirection}
-                      aria-label={t('toggleRTL')}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="rtl"
-                    >
-                      {reduxTheme.direction === 'rtl' ? (
-                        <FormatTextdirectionLToR />
-                      ) : (
-                        <FormatTextdirectionRToL />
-                      )}
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={t('github')} enterDelay={300}>
-                    <IconButton
-                      edge="end"
-                      component="a"
-                      color="inherit"
-                      href="https://github.com/mui-org/material-ui"
-                      aria-label={t('github')}
-                      data-ga-event-category="AppBar"
-                      data-ga-event-action="github"
-                    >
-                      <GithubIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Toolbar>
-              </AppBar>
-              <AppDrawer
-                className={classes.drawer}
-                disablePermanent={disablePermanent}
-                onClose={this.handleDrawerClose}
-                onOpen={this.handleDrawerOpen}
-                mobileOpen={this.state.mobileOpen}
-              />
-              {children}
-            </div>
-          );
-        }}
-      </PageTitle>
-    );
-  }
+  return (
+    <RootDiv className={className}>
+      <NextNProgressBar />
+      <CssBaseline />
+      <SkipLink />
+      <MarkdownLinks />
+      <StyledAppBar disablePermanent={disablePermanent}>
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--MuiDocs-header-height': '64px',
+            },
+          }}
+        />
+        <Toolbar variant="dense" disableGutters>
+          <NavIconButton
+            edge="start"
+            color="primary"
+            aria-label={t('appFrame.openDrawer')}
+            disablePermanent={disablePermanent}
+            onClick={() => setMobileOpen(true)}
+            sx={{ ml: '1px' }}
+          >
+            <SvgHamburgerMenu />
+          </NavIconButton>
+          <NextLink href="/" passHref /* onClick={onClose} */>
+            <Box
+              component="a"
+              aria-label={t('goToHome')}
+              sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
+            >
+              <SvgMuiLogo width={30} />
+            </Box>
+          </NextLink>
+          <GrowingDiv />
+          <Stack direction="row" spacing={1.3}>
+            <AppFrameBanner />
+            <DeferredAppSearch />
+            <Tooltip title={t('appFrame.github')} enterDelay={300}>
+              <IconButton
+                component="a"
+                color="primary"
+                href={process.env.SOURCE_CODE_REPO}
+                data-ga-event-category="header"
+                data-ga-event-action="github"
+              >
+                <GitHubIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Notifications />
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="primary" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
+                <SettingsIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        </Toolbar>
+      </StyledAppBar>
+      <StyledAppNavDrawer
+        disablePermanent={disablePermanent}
+        onClose={() => setMobileOpen(false)}
+        onOpen={() => setMobileOpen(true)}
+        mobileOpen={mobileOpen}
+      />
+      {children}
+      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+    </RootDiv>
+  );
 }
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  reduxTheme: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  userLanguage: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  disableDrawer: PropTypes.bool,
 };
-
-export default compose(
-  connect(state => ({
-    reduxTheme: state.theme,
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  })),
-  withStyles(styles),
-)(AppFrame);

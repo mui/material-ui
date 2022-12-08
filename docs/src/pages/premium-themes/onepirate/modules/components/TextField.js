@@ -1,59 +1,72 @@
-import React from 'react';
-import clsx from 'clsx';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import MuiTextField from '@material-ui/core/TextField';
-import { capitalize } from '@material-ui/core/utils/helpers';
+import clsx from 'clsx';
+import { styled } from '@mui/material/styles';
+import MuiTextField from '@mui/material/TextField';
+import { selectClasses } from '@mui/material/Select';
+import { inputLabelClasses } from '@mui/material/InputLabel';
 
-const styles = theme => ({
-  root: {
+const inputStyleMappingClasses = {
+  small: 'OnePirateTextField-inputSizeSmall',
+  medium: 'OnePirateTextField-inputSizeMedium',
+  large: 'OnePirateTextField-inputSizeLarge',
+  xlarge: 'OnePirateTextField-inputSizeXLarge',
+};
+
+const classes = {
+  root: 'OnePirateTextField-root',
+  input: 'OnePirateTextField-input',
+  inputBorder: 'OnePirateTextField-inputBorder',
+};
+
+const styles = ({ theme }) => ({
+  [`& .${classes.root}`]: {
     padding: 0,
     'label + &': {
       marginTop: theme.spacing(3),
     },
   },
-  input: {
+  [`& .${classes.input}`]: {
     minWidth: theme.spacing(6),
     backgroundColor: theme.palette.common.white,
-    '&$disabled': {
+    '&.Mui-disabled': {
       backgroundColor: theme.palette.divider,
     },
   },
-  inputBorder: {
+  [`& .${classes.inputBorder}`]: {
     border: '1px solid #e9ddd0',
     '&:focus': {
       borderColor: theme.palette.secondary.main,
     },
   },
-  disabled: {},
-  inputSizeSmall: {
+  [`& .${inputStyleMappingClasses.small}`]: {
     fontSize: 14,
     padding: theme.spacing(1),
-    width: `calc(100% - ${theme.spacing(2)}px)`,
+    width: `calc(100% - ${theme.spacing(2)})`,
   },
-  inputSizeMedium: {
+  [`& .${inputStyleMappingClasses.medium}`]: {
     fontSize: 16,
     padding: theme.spacing(2),
-    width: `calc(100% - ${theme.spacing(4)}px)`,
+    width: `calc(100% - ${theme.spacing(4)})`,
   },
-  inputSizeLarge: {
+  [`& .${inputStyleMappingClasses.large}`]: {
     fontSize: 18,
-    padding: 22,
-    width: `calc(100% - ${22 * 2}px)`,
+    padding: 20,
+    width: `calc(100% - ${20 * 2}px)`,
   },
-  inputSizeXlarge: {
+  [`& .${inputStyleMappingClasses.xlarge}`]: {
     fontSize: 20,
     padding: 25,
     width: `calc(100% - ${25 * 2}px)`,
   },
-  formLabel: {
+  [`& .${inputLabelClasses.root}`]: {
     fontSize: 18,
   },
-  select: {
+  [`& .${selectClasses.select}`]: {
     height: 'auto',
     borderRadius: 0,
   },
-  selectIcon: {
+  [`& .${selectClasses.icon}`]: {
     top: '50%',
     marginTop: -12,
   },
@@ -61,66 +74,66 @@ const styles = theme => ({
 
 function TextField(props) {
   const {
-    classes,
-    InputProps: {
-      classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
-      ...InputPropsOther
-    } = {},
+    InputProps = {},
     InputLabelProps,
     noBorder,
-    size,
+    size = 'medium',
     SelectProps,
     ...other
   } = props;
 
+  const {
+    classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
+    ...InputPropsOther
+  } = InputProps;
+
   return (
     <MuiTextField
       InputProps={{
-        disableUnderline: true,
         classes: {
           root: classes.root,
           input: clsx(
             classes.input,
-            classes[`inputSize${capitalize(size)}`],
+            inputStyleMappingClasses[size],
             {
               [classes.inputBorder]: !noBorder,
             },
             InputPropsClassesInput,
           ),
-          disabled: classes.disabled,
           ...InputPropsClassesOther,
         },
+        disableUnderline: true,
         ...InputPropsOther,
       }}
       InputLabelProps={{
         ...InputLabelProps,
         shrink: true,
-        className: classes.formLabel,
       }}
-      SelectProps={{
-        ...SelectProps,
-        classes: {
-          select: classes.select,
-          icon: classes.selectIcon,
-        },
-      }}
+      SelectProps={SelectProps}
       {...other}
     />
   );
 }
 
 TextField.propTypes = {
-  classes: PropTypes.object.isRequired,
+  /**
+   * Props applied to the [`InputLabel`](/material-ui/api/input-label/) element.
+   * Pointer events like `onClick` are enabled if and only if `shrink` is `true`.
+   */
   InputLabelProps: PropTypes.object,
+  /**
+   * Props applied to the Input element.
+   * It will be a [`FilledInput`](/material-ui/api/filled-input/),
+   * [`OutlinedInput`](/material-ui/api/outlined-input/) or [`Input`](/material-ui/api/input/)
+   * component depending on the `variant` prop value.
+   */
   InputProps: PropTypes.object,
   noBorder: PropTypes.bool,
+  /**
+   * Props applied to the [`Select`](/material-ui/api/select/) element.
+   */
   SelectProps: PropTypes.object,
-  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
 
-TextField.defaultProps = {
-  noBorder: false,
-  size: 'medium',
-};
-
-export default withStyles(styles)(TextField);
+export default styled(TextField)(styles);

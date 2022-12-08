@@ -1,6 +1,11 @@
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
 Last modified: October 7th, 2018.
 
-Material-UI is committed to protecting and respecting your privacy. This Privacy Policy sets out how we collect and process personal information about you when you visit our website argos-ci.com, when you use our products and services (our “Services”), or when you otherwise do business or make contact with us.
+<!-- markdownlint-restore -->
+
+MUI is committed to protecting and respecting your privacy. This Privacy Policy sets out how we collect and process personal information about you when you visit the website mui.com, when you use our products and services (our "Services"), or when you otherwise do business or make contact with us.
 
 Please read this policy carefully to understand how we handle and treat your personal information.
 
@@ -41,10 +46,10 @@ We use cookies to understand and save your preferences for future visits, to adv
 
 You may refuse to accept cookies by activating the setting on your browser which allows you to refuse the setting of cookies. You can find information on popular browsers and how to adjust your cookie preferences at the following websites:
 
-- [Microsoft Internet Explorer](https://www.microsoft.com/info/cookies.mspx)
-- [Mozilla Firefox](https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences)
-- [Google Chrome](https://support.google.com/accounts/answer/61416)
-- [Apple Safari](https://support.apple.com/en-us/HT201265)
+- Microsoft Internet Explorer
+- Mozilla Firefox
+- Google Chrome
+- Apple Safari
 
 However, if you choose to disable cookies, you may be unable to access certain parts of our site. Unless you have adjusted your browser setting so that it will refuse cookies, our system will issue cookies when you log on to our site.
 

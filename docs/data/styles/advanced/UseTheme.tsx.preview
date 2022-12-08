@@ -1,0 +1,7 @@
+<ThemeProvider<MyTheme>
+  theme={{
+    spacing: '8px',
+  }}
+>
+  <DeepChild />
+</ThemeProvider>

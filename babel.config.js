@@ -1,158 +1,172 @@
-const bpmr = require('babel-plugin-module-resolver');
+const path = require('path');
 
-function resolvePath(sourcePath, currentFile, opts) {
-  if (sourcePath === 'markdown') {
-    const base = currentFile.substring(__dirname.length).slice(0, -3);
-    return `${__dirname}/docs/src/${base}/`;
-  }
+const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
+const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
-  return bpmr.resolvePath(sourcePath, currentFile, opts);
-}
-
-let defaultPresets;
-
-// We release a ES version of Material-UI.
-// It's something that matches the latest official supported features of JavaScript.
-// Nothing more (stage-1, etc), nothing less (require, etc).
-if (process.env.BABEL_ENV === 'es') {
-  defaultPresets = [];
-} else {
-  defaultPresets = [
-    [
-      '@babel/preset-env',
-      {
-        modules: ['esm', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
-      },
-    ],
-  ];
+function resolveAliasPath(relativeToBabelConf) {
+  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+  return `./${resolvedPath.replace('\\', '/')}`;
 }
 
 const defaultAlias = {
-  '@material-ui/core': './packages/material-ui/src',
-  '@material-ui/docs': './packages/material-ui-docs/src',
-  '@material-ui/icons': './packages/material-ui-icons/src',
-  '@material-ui/lab': './packages/material-ui-lab/src',
-  '@material-ui/styles': './packages/material-ui-styles/src',
-  '@material-ui/system': './packages/material-ui-system/src',
-  '@material-ui/utils': './packages/material-ui-utils/src',
+  '@mui/material': resolveAliasPath('./packages/mui-material/src'),
+  '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
+  '@mui/icons-material': resolveAliasPath('./packages/mui-icons-material/lib'),
+  '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
+  '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
+  '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
+  '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
+  '@mui/system': resolveAliasPath('./packages/mui-system/src'),
+  '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
+  '@mui/base': resolveAliasPath('./packages/mui-base/src'),
+  '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
+  '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
+  '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
 };
 
 const productionPlugins = [
-  'babel-plugin-transform-react-constant-elements',
-  'babel-plugin-transform-dev-warning',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-  [
-    'babel-plugin-transform-react-remove-prop-types',
-    {
-      mode: 'unsafe-wrap',
-    },
-  ],
 ];
 
-module.exports = {
-  presets: defaultPresets.concat(['@babel/preset-react']),
-  plugins: [
+module.exports = function getBabelConfig(api) {
+  const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
+
+  const presets = [
+    [
+      '@babel/preset-env',
+      {
+        bugfixes: true,
+        browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
+        debug: process.env.MUI_BUILD_VERBOSE === 'true',
+        modules: useESModules ? false : 'commonjs',
+        shippedProposals: api.env('modern'),
+      },
+    ],
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic',
+      },
+    ],
+    '@babel/preset-typescript',
+  ];
+
+  const plugins = [
+    [
+      'babel-plugin-macros',
+      {
+        muiError: {
+          errorCodesPath,
+          missingError,
+        },
+      },
+    ],
+    'babel-plugin-optimize-clsx',
+    // Need the following 3 proposals for all targets in .browserslistrc.
+    // With our usage the transpiled loose mode is equivalent to spec mode.
     ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-private-methods', { loose: true }],
+    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
-    '@babel/plugin-transform-object-assign',
-    '@babel/plugin-transform-runtime',
-  ],
-  ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
-  env: {
-    cjs: {
-      plugins: productionPlugins,
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        useESModules,
+        // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
+        version: '^7.4.4',
+      },
+    ],
+    [
+      'babel-plugin-transform-react-remove-prop-types',
+      {
+        mode: 'unsafe-wrap',
+      },
+    ],
+  ];
+
+  if (process.env.NODE_ENV === 'production') {
+    plugins.push(...productionPlugins);
+  }
+  if (process.env.NODE_ENV === 'test') {
+    plugins.push([
+      'babel-plugin-module-resolver',
+      {
+        alias: defaultAlias,
+        root: ['./'],
+      },
+    ]);
+  }
+
+  return {
+    assumptions: {
+      noDocumentAll: true,
     },
-    coverage: {
-      plugins: [
-        'babel-plugin-istanbul',
-        [
-          'babel-plugin-module-resolver',
-          {
-            root: ['./'],
-            alias: defaultAlias,
-          },
-        ],
-      ],
-    },
-    development: {
-      plugins: [
-        [
-          'babel-plugin-module-resolver',
-          {
-            alias: {
-              modules: './modules',
+    presets,
+    plugins,
+    ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
+    overrides: [
+      {
+        exclude: /\.test\.(js|ts|tsx)$/,
+        plugins: ['@babel/plugin-transform-react-constant-elements'],
+      },
+    ],
+    env: {
+      coverage: {
+        plugins: [
+          'babel-plugin-istanbul',
+          [
+            'babel-plugin-module-resolver',
+            {
+              root: ['./'],
+              alias: defaultAlias,
             },
-          },
+          ],
         ],
-      ],
-    },
-    'docs-development': {
-      presets: ['next/babel', '@zeit/next-typescript/babel'],
-      plugins: [
-        'babel-plugin-preval',
-        [
-          'babel-plugin-module-resolver',
-          {
-            alias: {
-              ...defaultAlias,
-              '@material-ui/docs': './packages/material-ui-docs/src',
-              docs: './docs',
-              modules: './modules',
-              pages: './pages',
+      },
+      development: {
+        plugins: [
+          [
+            'babel-plugin-module-resolver',
+            {
+              alias: {
+                ...defaultAlias,
+                modules: './modules',
+                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
+              },
+              root: ['./'],
             },
-            transformFunctions: ['require', 'require.context'],
-            resolvePath,
-          },
+          ],
         ],
-      ],
-    },
-    'docs-production': {
-      presets: ['next/babel', '@zeit/next-typescript/babel'],
-      plugins: [
-        'babel-plugin-preval',
-        [
-          'babel-plugin-module-resolver',
-          {
-            alias: {
-              ...defaultAlias,
-              '@material-ui/docs': './packages/material-ui-docs/src',
-              docs: './docs',
-              modules: './modules',
-              pages: './pages',
+      },
+      legacy: {
+        plugins: [
+          // IE11 support
+          '@babel/plugin-transform-object-assign',
+        ],
+      },
+      test: {
+        sourceMaps: 'both',
+        plugins: [
+          [
+            'babel-plugin-module-resolver',
+            {
+              root: ['./'],
+              alias: defaultAlias,
             },
-            transformFunctions: ['require', 'require.context'],
-            resolvePath,
-          },
+          ],
         ],
-        'babel-plugin-transform-react-constant-elements',
-        'babel-plugin-transform-dev-warning',
-        ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-        ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
-      ],
-    },
-    esm: {
-      plugins: productionPlugins,
-    },
-    es: {
-      plugins: productionPlugins,
-    },
-    production: {
-      plugins: productionPlugins,
-    },
-    'production-umd': {
-      plugins: productionPlugins,
-    },
-    test: {
-      sourceMaps: 'both',
-      plugins: [
-        [
-          'babel-plugin-module-resolver',
-          {
-            root: ['./'],
-            alias: defaultAlias,
-          },
+      },
+      benchmark: {
+        plugins: [
+          ...productionPlugins,
+          [
+            'babel-plugin-module-resolver',
+            {
+              alias: defaultAlias,
+            },
+          ],
         ],
-      ],
+      },
     },
-  },
+  };
 };

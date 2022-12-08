@@ -7,7 +7,7 @@ async function retry(tryFunction, options = {}) {
   let output = null;
   let exitErr = null;
 
-  const bail = err => {
+  const bail = (err) => {
     exitErr = err;
   };
 

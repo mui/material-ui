@@ -1,0 +1,10 @@
+<Badge badgeContent={12} invisible={invisible}>
+  <Typography fontSize="xl">🛍</Typography>
+</Badge>
+<Switch
+  startDecorator="invisible"
+  checked={invisible}
+  onChange={(event) => setInvisible(event.target.checked)}
+  variant={invisible ? 'solid' : 'outlined'}
+  sx={{ '--Switch-track-width': '40px' }}
+/>

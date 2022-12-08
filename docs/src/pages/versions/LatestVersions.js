@@ -1,25 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 
-const styles = {
-  root: {
-    width: '100%',
-  },
-};
-
-function LatestVersions(props) {
-  const { classes } = props;
-
+function LatestVersions() {
   return (
-    <Paper className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <Table>
         <TableBody>
           <TableRow>
@@ -31,7 +21,7 @@ function LatestVersions(props) {
                 variant="body2"
                 color="secondary"
                 rel="nofollow"
-                href="https://material-ui.netlify.com/"
+                href="https://material-ui.netlify.app/"
               >
                 Documentation
               </Link>
@@ -40,7 +30,7 @@ function LatestVersions(props) {
               <Link
                 variant="body2"
                 color="secondary"
-                href="https://github.com/mui-org/material-ui/tree/master"
+                href="https://github.com/mui/material-ui/tree/master"
               >
                 Source code
               </Link>
@@ -55,7 +45,7 @@ function LatestVersions(props) {
                 variant="body2"
                 color="secondary"
                 rel="nofollow"
-                href="https://next--material-ui.netlify.com/"
+                href="https://next--material-ui.netlify.app/"
               >
                 Documentation
               </Link>
@@ -64,7 +54,7 @@ function LatestVersions(props) {
               <Link
                 variant="body2"
                 color="secondary"
-                href="https://github.com/mui-org/material-ui/tree/next"
+                href="https://github.com/mui/material-ui/tree/next"
               >
                 Source code
               </Link>
@@ -72,12 +62,8 @@ function LatestVersions(props) {
           </TableRow>
         </TableBody>
       </Table>
-    </Paper>
+    </Box>
   );
 }
 
-LatestVersions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LatestVersions);
+export default LatestVersions;

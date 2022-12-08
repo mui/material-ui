@@ -1,0 +1,45 @@
+{
+  "buildCommand": "build:codesandbox",
+  "installCommand": "install:codesandbox",
+  "node": "14",
+  "packages": [
+    "packages/mui-material",
+    "packages/mui-codemod",
+    "packages/mui-icons-material",
+    "packages/mui-lab",
+    "packages/mui-styles",
+    "packages/mui-system",
+    "packages/mui-private-theming",
+    "packages/mui-types",
+    "packages/mui-utils",
+    "packages/mui-base",
+    "packages/mui-styled-engine",
+    "packages/mui-styled-engine-sc",
+    "packages/mui-material-next",
+    "packages/mui-joy"
+  ],
+  "publishDirectory": {
+    "@mui/codemod": "packages/mui-codemod/build",
+    "@mui/material": "packages/mui-material/build",
+    "@mui/icons-material": "packages/mui-icons-material/build",
+    "@mui/lab": "packages/mui-lab/build",
+    "@mui/styles": "packages/mui-styles/build",
+    "@mui/styled-engine": "packages/mui-styled-engine/build",
+    "@mui/styled-engine-sc": "packages/mui-styled-engine-sc/build",
+    "@mui/system": "packages/mui-system/build",
+    "@mui/private-theming": "packages/mui-private-theming/build",
+    "@mui/types": "packages/mui-types/build",
+    "@mui/utils": "packages/mui-utils/build",
+    "@mui/base": "packages/mui-base/build",
+    "@mui/material-next": "packages/mui-material-next/build",
+    "@mui/joy": "packages/mui-joy/build"
+  },
+  "sandboxes": [
+    "material-ui-issue-latest-s2dsx",
+    "github/mui/material-ui/tree/HEAD/examples/create-react-app",
+    "github/mui/material-ui/tree/HEAD/examples/create-react-app-with-typescript",
+    "github/mui/material-ui/tree/HEAD/examples/joy-cra-typescript",
+    "github/mui/material-ui/tree/HEAD/examples/base-cra-typescript"
+  ],
+  "silent": true
+}
