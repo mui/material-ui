@@ -26,7 +26,7 @@ import Stack from '@mui/joy/Stack';
 
 The Stack component acts as a generic container, wrapping around the elements to be arranged.
 
-To control the space between children, use the `spacing` prop.
+Use the `spacing` prop to control the space between children.
 The spacing value can be any number, including decimals, or a string.
 (The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.)
 
