@@ -119,7 +119,7 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 :::warning
-Note: Only the first argument (`options`) is being processed by the `createTheme` function.
+Only the first argument (`options`) is processed by the `createTheme` function.
 If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
 :::
 
