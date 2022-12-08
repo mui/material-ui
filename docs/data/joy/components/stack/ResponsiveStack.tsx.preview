@@ -1,9 +1,3 @@
-<Stack
-  direction={{ xs: 'column', sm: 'row' }}
-  spacing={{ xs: 1, sm: 2, md: 4 }}
-  justifyContent="center"
->
-  <Item>Item 1</Item>
-  <Item>Item 2</Item>
-  <Item>Item 3</Item>
-</Stack>
+<Item>Item 1</Item>
+<Item>Item 2</Item>
+<Item>Item 3</Item>
