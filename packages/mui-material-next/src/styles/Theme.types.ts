@@ -89,7 +89,7 @@ export interface MD3Typeface {
   };
 }
 
-export interface MD3States {
+export interface MD3State {
   hover: {
     stateLayerOpacity: number;
   };
@@ -129,21 +129,35 @@ export interface MD3Typescale {
   display: TypescaleValue;
 }
 
-export interface Shapes {
-  borderRadius: number;
+export interface MD3Shape {
+  corner: {
+    none: string;
+    extraSmall: string;
+    extraSmallTop: string;
+    small: string;
+    medium: string;
+    large: string;
+    largeEnd: string;
+    largeTop: string;
+    extraLarge: string;
+    extraLargeTop: string;
+    full: string;
+  };
+}
+
+export interface MD3ShapeOptions {
+  corner?: Partial<MD3Shape['corner']>;
 }
 
 export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
-  md3?: {
-    shape?: Partial<Shapes>;
-  };
   ref?: {
     typeface?: Partial<MD3Typeface>;
   };
   sys?: {
     typescale?: Partial<MD3Typescale>;
-    state?: Partial<MD3States>;
+    state?: Partial<MD3State>;
     elevation?: string[];
+    shape?: MD3ShapeOptions;
   };
 }
 
@@ -173,11 +187,9 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   sys: {
     color: MD3ColorSchemeTokens;
     typescale: MD3Typescale;
-    state: MD3States;
+    state: MD3State;
     elevation: string[];
-  };
-  md3: {
-    shape: Shapes;
+    shape: MD3Shape;
   };
   palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
@@ -189,11 +201,9 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     sys: {
       color: MD3ColorSchemeTokens;
       typescale: MD3Typescale;
-      state: MD3States;
+      state: MD3State;
       elevation: string[];
-    };
-    md3: {
-      shape: Shapes;
+      shape: MD3Shape;
     };
   };
   unstable_sxConfig: SxConfig;
