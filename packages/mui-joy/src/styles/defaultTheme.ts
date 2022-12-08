@@ -1,7 +1,9 @@
 import { deepmerge } from '@mui/utils';
+import { unstable_styleFunctionSx as styleFunctionSx } from '@mui/system';
 import extendTheme from './extendTheme';
+import defaultSxConfig from './sxConfig';
 import type { CssVarsThemeOptions, ColorSystemOptions } from './extendTheme';
-import type { Theme, RuntimeColorSystem } from './types';
+import type { Theme, RuntimeColorSystem, SxProps } from './types';
 import { createVariant, createSoftInversion, createSolidInversion } from './variantUtils';
 
 export const getThemeWithVars = (
@@ -94,5 +96,10 @@ defaultTheme.colorInversion = deepmerge(
   },
   defaultTheme.colorInversion,
 );
+
+defaultTheme.unstable_sxConfig = defaultSxConfig;
+defaultTheme.unstable_sx = function sx(props: SxProps) {
+  return styleFunctionSx({ sx: props, theme: this });
+};
 
 export default defaultTheme;
