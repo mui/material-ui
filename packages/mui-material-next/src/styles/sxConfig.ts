@@ -4,6 +4,7 @@ import {
   SxConfig,
   unstable_defaultSxConfig,
   createUnaryUnit,
+  getValue,
 } from '@mui/system';
 
 interface PaletteStyleOptions {
@@ -37,28 +38,6 @@ function createPaletteStyle(options: PaletteStyleOptions = { prop: 'color' }) {
     return handleBreakpoints(props, propValue, styleFromPropValue);
   };
   return fn;
-}
-
-export function getValue(
-  transformer: (arg: number | string) => number | string,
-  propValue: number | string,
-) {
-  if (typeof propValue === 'string' || propValue == null) {
-    return propValue;
-  }
-
-  const abs = Math.abs(propValue);
-  const transformed = transformer(abs);
-
-  if (propValue >= 0) {
-    return transformed;
-  }
-
-  if (typeof transformed === 'number') {
-    return -transformed;
-  }
-
-  return `-${transformed}`;
 }
 
 // eslint-disable-next-line no-restricted-globals
