@@ -48,12 +48,19 @@ It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achievin
 
 Depending on the day, you'll:
 
-- make the product experience more delightful, e.g. visually more appealing
-- pay attention to all the smallest interface interactions so they yield an outstanding UX
-- develop the brand
-- refresh and expand the marketing pages, e.g. with a showcase & case study section
-- design the next features across the different product
-- shape the direction of the design kit products
+- Make the product experience more delightful, e.g. visually more appealing
+- Pay attention to all the smallest interface interactions so they yield an outstanding UX
+- Develop the brand
+- Refresh and expand the marketing pages, e.g. with a showcase & case study section
+- Design the next features across the different product
+- Shape the direction of the design kit products
+- **Solve organization issues**
+  - You will improve how the design responsibilities are covered.
+  - You will ensure the consistency of design and product direction throughout all the products and all customer-facing artifacts.
+- **Exercise team leadership**
+  - You will overseas the overall design quality
+  - You will manage designer's career
+  - You will hire and maintain a great team
 
 ## About you
 
