@@ -78,7 +78,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
   const cachedModifiers = React.useMemo(

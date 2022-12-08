@@ -38,6 +38,10 @@ describe('Joy <Select />', () => {
   }));
 
   describeJoyColorInversion(<Select />, { muiName: 'JoySelect', classes });
+  describeJoyColorInversion(
+    <Select listboxOpen slotProps={{ listbox: { 'data-testid': 'test-element' } }} />,
+    { muiName: 'JoySelect', classes },
+  );
 
   it('should be able to mount the component', () => {
     render(

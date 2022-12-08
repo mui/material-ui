@@ -135,14 +135,17 @@ export default function useSlot<
     useForkRef(resolvedComponentsProps?.ref, name === 'root' ? parameters.ref : undefined),
   ) as ((instance: any | null) => void) | null;
 
-  const slotOwnerState = getSlotOwnerState ? getSlotOwnerState(mergedProps as any) : {};
+  // @ts-ignore internal logic
+  const { disableColorInversion = false, ...slotOwnerState } = getSlotOwnerState
+    ? getSlotOwnerState(mergedProps as any)
+    : {};
   const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
 
   const { getColor } = useColorInversion(finalOwnerState.variant);
   if (name === 'root') {
     // for the root slot, color inversion is calculated before the `useSlot` and pass through `ownerState`.
     finalOwnerState.color = (mergedProps as any).color ?? (ownerState as any).color;
-  } else {
+  } else if (!disableColorInversion) {
     finalOwnerState.color = getColor((mergedProps as any).color, finalOwnerState.color);
   }
 

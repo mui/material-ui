@@ -549,6 +549,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       size: mergedProps.size || size,
       variant: mergedProps.variant || 'outlined',
       color: mergedProps.color || 'neutral',
+      disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
       anchorEl,

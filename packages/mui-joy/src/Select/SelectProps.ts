@@ -29,10 +29,14 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
     indicator: SlotProps<'span', {}, SelectOwnerState<any>>;
     listbox: SlotProps<
       'ul',
-      Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
-        component?: React.ElementType;
-        sx?: SxProps;
-      },
+      {
+        color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
+        variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
+        size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
+      } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+          component?: React.ElementType;
+          sx?: SxProps;
+        },
       SelectOwnerState<any>
     >;
   }

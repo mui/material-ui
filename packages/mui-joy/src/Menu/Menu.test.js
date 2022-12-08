@@ -38,7 +38,12 @@ describe('Joy <Menu />', () => {
   }));
 
   describeJoyColorInversion(
-    <Menu anchorEl={() => document.createElement('div')} open data-testid="test-element" />,
+    <Menu
+      open
+      disablePortal
+      anchorEl={() => document.createElement('div')}
+      data-testid="test-element"
+    />,
     {
       muiName: 'JoyMenu',
       classes,

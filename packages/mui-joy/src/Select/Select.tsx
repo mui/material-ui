@@ -536,6 +536,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       row: false,
       wrap: false,
     } as SelectOwnerState<any> & ListOwnerState,
+    getSlotOwnerState: (mergedProps) => ({
+      size: mergedProps.size || size,
+      variant: mergedProps.variant || 'outlined',
+      color: mergedProps.color || 'neutral',
+      disableColorInversion: !mergedProps.disablePortal,
+    }),
     internalForwardedProps: {
       component: SelectListbox,
     },
