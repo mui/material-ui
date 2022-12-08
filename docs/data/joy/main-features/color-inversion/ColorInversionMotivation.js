@@ -9,61 +9,53 @@ import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 export default function ColorInversionMotivation() {
+  const demo = (
+    <Card sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}>
+      <Chip
+        size="sm"
+        variant="soft"
+        sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
+      >
+        New
+      </Chip>
+      <IconButton
+        variant="outlined"
+        color="neutral"
+        size="sm"
+        sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
+      >
+        <BookmarkOutlinedIcon />
+      </IconButton>
+      <Typography fontSize="xl2" fontWeight="lg">
+        Learn how to build super fast websites.
+      </Typography>
+      <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
+        Read more
+      </Button>
+    </Card>
+  );
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, pt: 3 }}>
       {/* Left: The global variants are applied to children only */}
-      <Card sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}>
-        <Chip
-          size="sm"
-          variant="soft"
-          sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
-        >
-          New
-        </Chip>
-        <IconButton
-          variant="outlined"
-          color="neutral"
-          size="sm"
-          sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
-        >
-          <BookmarkOutlinedIcon />
-        </IconButton>
-        <Typography fontSize="xl2" fontWeight="lg">
-          Learn how to build super fast websites.
+      <Box>
+        {demo}
+        <Typography level="body3" mt={2} textAlign="center">
+          <b>One layer</b> <br /> global variants are applied only to the children.
         </Typography>
-        <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
-          Read more
-        </Button>
-      </Card>
+      </Box>
 
       {/* Right: The global variants are applied to both parent and children */}
-      <Card
-        variant="solid"
-        color="primary"
-        sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}
-      >
-        <Chip
-          size="sm"
-          variant="soft"
-          sx={{ alignSelf: 'flex-start', borderRadius: 'xl' }}
-        >
-          New
-        </Chip>
-        <IconButton
-          variant="outlined"
-          color="neutral"
-          size="sm"
-          sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
-        >
-          <BookmarkOutlinedIcon />
-        </IconButton>
-        <Typography fontSize="xl2" fontWeight="lg">
-          Learn how to build super fast websites.
+      <Box>
+        {React.cloneElement(demo, {
+          variant: 'solid',
+          color: 'primary',
+        })}
+        <Typography level="body3" mt={2} textAlign="center">
+          <b>Two layers</b>
+          <br /> global variants are applied to the card and children.
         </Typography>
-        <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
-          Read more
-        </Button>
-      </Card>
+      </Box>
     </Box>
   );
 }
