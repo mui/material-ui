@@ -57,13 +57,13 @@ Depending on the day, you'll:
 
 Tasks that you might work on once you join:
 
-- Explore ways to provide a theme builder/sell themes on the platform that deeply integrate with MUI Core and the documentation
+- Explore ways to provide a theme builder/sell themes on the platform that deeply integrate with MUI Core and the documentation.
 - Develop the SEA & SEO strategy, create new blog posts, try retargeting, Google Ads, etc.
-- Improve the fulfilment workflow of MUI X Pro & Premium
-- Develop a Figma plugin & backend to push [MUI for Figma](https://mui.com/store/items/figma-react/) to reduce the collaboration friction between designers and developers
+- Improve the fulfillment workflow of MUI X Pro & Premium.
+- Develop a Figma plugin & backend to push [MUI for Figma](https://mui.com/store/items/figma-react/) to reduce the collaboration friction between designers and developers.
 - Add a search page to scale the hosting to more items from contributors.
 - Revamp the design of the store to match the new brand of mui.com.
-- Migrate the store from Gatsby to Next.js or Remix. Gatsby was introduced at a point in time where it had more downloads than Next.js. Our CEO has experience with Next.js since 2017 but wanted to ensure that MUI was supporting Gatsby well too.
+- Migrate the store from Gatsby to Next.js or Remix. Gatsby was introduced at a point in time when it had more downloads than Next.js. Our CEO has experience with Next.js since 2017 but wanted to ensure that MUI was supporting Gatsby well too.
   This requirement [is no longer relevant](https://npm-stat.com/charts.html?package=next&package=gatsby), and since the DX of Next.js is significantly better, time to migrate.
 
 ## About you

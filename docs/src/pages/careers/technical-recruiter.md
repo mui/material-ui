@@ -66,7 +66,7 @@ Depending on the day, you'll:
 
 - 5-8 years of recruiting experience, with a strong background in technical R&D hiring.
 - Previous experience recruiting and scaling an early-stage team.
-- Demonstrated success of establishing credibility and trust with diverse groups.
+- Demonstrated success in establishing credibility and trust with diverse groups.
 
 ## Benefits & Compensation
 
@@ -76,4 +76,4 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/b0f83db9-709d-4259-bad9-ec155efa46bf/application?utm_source=ZNRrPGBkqO)

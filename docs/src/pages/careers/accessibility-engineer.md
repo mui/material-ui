@@ -88,4 +88,4 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/ebc6db2a-fda9-431e-b45a-692377ef74aa/application?utm_source=ZNRrPGBkqO)

@@ -244,12 +244,6 @@ const nextRolesData = [
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'React Support Engineer - X',
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
