@@ -11,7 +11,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 export default function ColorInversionMotivation() {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, pt: 3 }}>
-      {/* Left: The global variants are applied on children only */}
+      {/* Left: The global variants are applied to children only */}
       <Card sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}>
         <Chip
           size="sm"
@@ -29,14 +29,14 @@ export default function ColorInversionMotivation() {
           <BookmarkOutlined />
         </IconButton>
         <Typography fontSize="xl2" fontWeight="lg">
-          Learn how to build super fast website.
+          Learn how to build super fast websites.
         </Typography>
         <Button variant="solid" endDecorator={<KeyboardArrowRight />}>
           Read more
         </Button>
       </Card>
 
-      {/* Right: The global variants are applied on both parent and children */}
+      {/* Right: The global variants are applied to both parent and children */}
       <Card
         variant="solid"
         color="primary"
@@ -58,7 +58,7 @@ export default function ColorInversionMotivation() {
           <BookmarkOutlined />
         </IconButton>
         <Typography fontSize="xl2" fontWeight="lg">
-          Learn how to build super fast website.
+          Learn how to build super fast websites.
         </Typography>
         <Button variant="solid" endDecorator={<KeyboardArrowRight />}>
           Read more

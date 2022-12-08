@@ -17,13 +17,13 @@ import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
-import PieChart from '@mui/icons-material/PieChart';
-import Sms from '@mui/icons-material/Sms';
-import Person from '@mui/icons-material/Person';
-import BubbleChart from '@mui/icons-material/BubbleChart';
-import MoreVert from '@mui/icons-material/MoreVert';
-import Add from '@mui/icons-material/Add';
-import Settings from '@mui/icons-material/Settings';
+import PieChartIcon from '@mui/icons-material/PieChart';
+import SmsIcon from '@mui/icons-material/Sms';
+import PersonIcon from '@mui/icons-material/Person';
+import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AddIcon from '@mui/icons-material/Add';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function ColorInversionNavigation() {
   return (
@@ -58,7 +58,7 @@ export default function ColorInversionNavigation() {
                 alignSelf: 'center',
               }}
             >
-              <BubbleChart sx={{ m: 0 }} />
+              <BubbleChartIcon sx={{ m: 0 }} />
             </Sheet>
           }
           sx={{ py: 1 }}
@@ -76,7 +76,7 @@ export default function ColorInversionNavigation() {
         >
           <ListItemButton>
             <ListItemDecorator>
-              <PieChart />
+              <PieChartIcon />
             </ListItemDecorator>
             Dashboard
           </ListItemButton>
@@ -86,7 +86,7 @@ export default function ColorInversionNavigation() {
           </ListItemButton>
           <ListItemButton selected variant="soft">
             <ListItemDecorator>
-              <Sms />
+              <SmsIcon />
             </ListItemDecorator>
             Chat
             <Chip size="sm" color="danger" sx={{ ml: 'auto' }}>
@@ -95,7 +95,7 @@ export default function ColorInversionNavigation() {
           </ListItemButton>
           <ListItemButton>
             <ListItemDecorator>
-              <Person />
+              <PersonIcon />
             </ListItemDecorator>
             Team
           </ListItemButton>
@@ -128,7 +128,7 @@ export default function ColorInversionNavigation() {
           <Avatar src="/static/images/avatar/2.jpg" size="lg" />
           <Typography sx={{ flex: 1 }}>Jerry Wilson</Typography>
           <IconButton>
-            <MoreVert />
+            <MoreVertIcon />
           </IconButton>
         </Box>
       </Sheet>
@@ -182,14 +182,14 @@ export default function ColorInversionNavigation() {
           </IconButton>
         </Badge>
         <IconButton variant="soft" aria-label="Add another chat">
-          <Add />
+          <AddIcon />
         </IconButton>
         <IconButton
           variant="outlined"
           aria-label="Add another chat"
           sx={{ mt: 'auto' }}
         >
-          <Settings />
+          <SettingsIcon />
         </IconButton>
       </Sheet>
     </Box>

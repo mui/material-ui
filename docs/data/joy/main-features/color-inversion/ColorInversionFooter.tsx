@@ -17,8 +17,8 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import GitHub from '@mui/icons-material/GitHub';
-import Send from '@mui/icons-material/Send';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function ColorInversionFooter() {
   const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
@@ -63,7 +63,7 @@ export default function ColorInversionFooter() {
           <FacebookRoundedIcon />
         </IconButton>
         <IconButton variant="plain">
-          <GitHub />
+          <GitHubIcon />
         </IconButton>
         <Input
           variant="soft"
@@ -72,7 +72,7 @@ export default function ColorInversionFooter() {
           name="email"
           endDecorator={
             <Button variant="soft" aria-label="subscribe">
-              <Send />
+              <SendIcon />
             </Button>
           }
           sx={{ ml: 'auto', display: { xs: 'none', md: 'flex' } }}
