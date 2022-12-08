@@ -4,7 +4,6 @@ import {
   SxConfig,
   unstable_defaultSxConfig,
   createUnaryUnit,
-  border,
 } from '@mui/system';
 
 interface PaletteStyleOptions {
