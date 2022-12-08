@@ -6,50 +6,45 @@ githubLabel: 'component: stack'
 
 # Stack
 
-<p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
+<p class="description">Stack is a container component for arranging elements vertically or horizontally.</p>
 
 ## Introduction
 
-`Stack` is concerned with one-dimensional layouts, while `Grid` handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+The Stack component manages the layout of its immediate children along the vertical or horizontal axis, with optional spacing and dividers between each child.
+
+:::info
+Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ hortizontal arrangement.
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Stack from '@mui/joy/Stack';
-import Sheet from '@mui/joy/Sheet';
-
-export default function MyApp() {
-  return (
-    <Stack>
-      <Sheet>Item 1</Sheet>
-      <Sheet>Item 2</Sheet>
-    </Stack>
-  );
-}
 ```
 
-### Basic stack
+The Stack component acts as a generic container, wrapping around the elements to be arranged.
 
-To control space between children, use the `spacing` prop.
-The spacing value can be any number, including decimals and any string.
-The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
+To control the space between children, use the `spacing` prop.
+The spacing value can be any number, including decimals, or a string.
+(The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.)
 
 {{"demo": "BasicStack.js", "bg": true}}
 
+## Customization
+
 ### Direction
 
-By default, `Stack` arranges items vertically in a `column`.
-However, the `direction` prop can be used to position items horizontally in a `row` as well.
+By default, Stack arranges items vertically in a column.
+Use the `direction` prop to position items horizontally in a row:
 
 {{"demo": "DirectionStack.js", "bg": true}}
 
 ### Dividers
 
-Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/joy-ui/react-divider/) component.
+Use the `divider` prop to insert an element between each child.
+This works particularly well with the [Divider](/joy-ui/react-divider/) component, as shown below:
 
 {{"demo": "DividerStack.js", "bg": true}}
 
@@ -59,17 +54,32 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 {{"demo": "ResponsiveStack.js", "bg": true}}
 
-### Interactive
+### System props
+
+As a CSS utility component, Stack supports all [MUI System properties](/system/properties/).
+You can use them as props directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Stack mt={2}>
+```
+
+## Interactive demo
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-### System props
+## Accessibility
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a margin-top:
+(if there's anything to say on this topic—otherwise, this section can be removed)
 
-```jsx
-<Stack mt={2}>
+## Anatomy
+
+The Stack component is composed of a single root `<div>` element:
+
+```html
+<div class="JoyStack-root">
+  <!-- Stack contents -->
+</div>
 ```
