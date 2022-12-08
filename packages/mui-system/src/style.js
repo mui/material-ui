@@ -45,6 +45,8 @@ export function getStyleValue(themeMapping, transform, propValueFinal, userValue
 function style(options) {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
+  // false positive
+  // eslint-disable-next-line react/function-component-definition
   const fn = (props) => {
     if (props[prop] == null) {
       return null;
