@@ -181,6 +181,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   }
 
   const ownerState = {
+    ...props,
     sticky,
     startAction,
     endAction,
@@ -192,7 +193,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested,
     component,
     role,
-    ...props,
   };
 
   const classes = useUtilityClasses(ownerState);

@@ -43,7 +43,7 @@ describe('<Badge />', () => {
   );
 
   describeJoyColorInversion(
-    <Badge>
+    <Badge badgeContent="1" slotProps={{ badge: { 'data-testid': 'test-element' } }}>
       <button />
     </Badge>,
     { muiName: 'JoyBadge', classes },

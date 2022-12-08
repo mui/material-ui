@@ -15,24 +15,26 @@ export default function describeJoyColorInversion(
   options: {
     muiName: string;
     classes: { colorContext: string; colorPrimary: string; colorSuccess: string };
+    wrapper?: (node: React.ReactElement) => React.ReactElement;
   },
 ) {
+  const { classes, muiName, wrapper = (node) => node } = options;
   const { render } = createRenderer();
   const getTestElement = (result: MuiRenderResult) => {
     const { container, queryByTestId } = result;
     return queryByTestId('test-element') ?? container.firstChild?.firstChild;
   };
-  describe('Joy Color Inversion', () => {
+  describe('Color Inversion', () => {
     describe('Feature enabled', () => {
       it('implicit color value', () => {
         const result = render(
           <ThemeProvider>
             <Sheet invertedColors variant="solid" color="primary">
-              {element}
+              {wrapper(element)}
             </Sheet>
           </ThemeProvider>,
         );
-        expect(getTestElement(result)).to.have.class(options.classes.colorContext);
+        expect(getTestElement(result)).to.have.class(classes.colorContext);
       });
 
       it('implicit color with theme default color', () => {
@@ -40,7 +42,7 @@ export default function describeJoyColorInversion(
           <ThemeProvider
             theme={{
               components: {
-                [options.muiName]: {
+                [muiName]: {
                   defaultProps: {
                     color: 'success',
                   },
@@ -49,11 +51,11 @@ export default function describeJoyColorInversion(
             }}
           >
             <Sheet invertedColors variant="solid" color="primary">
-              {React.cloneElement(element)}
+              {wrapper(element)}
             </Sheet>
           </ThemeProvider>,
         );
-        expect(getTestElement(result)).to.have.class(options.classes.colorContext);
+        expect(getTestElement(result)).to.have.class(classes.colorContext);
       });
     });
 
@@ -61,11 +63,11 @@ export default function describeJoyColorInversion(
       const result = render(
         <ThemeProvider>
           <Sheet invertedColors variant="solid" color="primary">
-            {React.cloneElement(element, { color: 'primary' })}
+            {wrapper(React.cloneElement(element, { color: 'primary' }))}
           </Sheet>
         </ThemeProvider>,
       );
-      expect(getTestElement(result)).to.have.class(options.classes.colorPrimary);
+      expect(getTestElement(result)).to.have.class(classes.colorPrimary);
     });
   });
 }

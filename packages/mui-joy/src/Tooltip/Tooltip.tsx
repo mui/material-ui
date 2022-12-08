@@ -14,6 +14,7 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -228,13 +229,19 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onClose,
     onOpen,
     open: openProp,
+    disablePortal,
+    direction,
+    keepMounted,
+    modifiers,
     placement = 'bottom',
     title,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<HTMLElement>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -554,12 +561,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           offset: [0, 10],
         },
       },
+      ...(modifiers ?? []),
     ];
 
     return {
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef]);
+  }, [arrowRef, modifiers]);
 
   const ownerState = {
     ...props,
@@ -594,6 +602,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           }
         : childNode,
       open: childNode ? open : false,
+      disablePortal,
+      keepMounted,
+      direction,
       ...interactiveWrapperListeners,
     },
     ref: null,

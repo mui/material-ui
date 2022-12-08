@@ -31,6 +31,8 @@ export interface RadioClasses {
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Class name applied to the root element if `size="md"`. */
@@ -67,6 +69,7 @@ const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

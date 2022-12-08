@@ -20,7 +20,7 @@ const valueToPercent = (value: number, min: number, max: number) =>
 const Identity = (x: any) => x;
 
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
-  const { disabled, dragging, marked, orientation, track, color, size } = ownerState;
+  const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -31,6 +31,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
+      variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],

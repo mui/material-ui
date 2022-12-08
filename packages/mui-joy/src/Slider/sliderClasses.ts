@@ -45,6 +45,16 @@ export interface SliderClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Styles applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -84,6 +94,11 @@ const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
+  'variantPlain',
+  'variantOutlined',
+  'variantSoft',
+  'variantSolid',
   'disabled',
   'sizeSm',
   'sizeMd',
