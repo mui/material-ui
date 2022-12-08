@@ -174,7 +174,7 @@ export default function CoreComponents() {
                     sx={{
                       height: '100%',
                       py: 5,
-                      gap: 1,
+                      gap: 2,
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
