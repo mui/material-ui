@@ -12,7 +12,7 @@ const mdSysShape: MD3Shape = {
     largeTop: '16px 16px 0 0',
     extraLarge: '28px',
     extraLargeTop: '28px 28px 0 0',
-    full: '999px',
+    full: '100px',
   },
 };
 
