@@ -108,7 +108,7 @@
     "@types/sinon": "^10.0.13",
     "@types/stylis": "^4.0.2",
     "@types/webpack": "^5.28.0",
-    "@types/yargs": "^17.0.13",
+    "@types/yargs": "^17.0.17",
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
     "babel-loader": "^8.3.0",
