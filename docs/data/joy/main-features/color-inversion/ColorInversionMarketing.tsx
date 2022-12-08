@@ -5,7 +5,7 @@ import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import ArrowForward from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 /**
  * Credit: https://flutter.dev/
@@ -45,7 +45,7 @@ export default function ColorInversionMarketing() {
           <Button sx={{ minWidth: 120 }}>Install</Button>
           <Button
             variant="plain"
-            endDecorator={<ArrowForward fontSize="md" />}
+            endDecorator={<ArrowForwardIcon fontSize="md" />}
             sx={{
               '&:hover': { '--Button-gap': '0.75rem' },
               '& span': { transition: '0.3s' },

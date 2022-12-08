@@ -13,10 +13,10 @@ import MenuItem from '@mui/joy/MenuItem';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Chip from '@mui/joy/Chip';
-import Add from '@mui/icons-material/Add';
-import BubbleChart from '@mui/icons-material/BubbleChart';
-import Notifications from '@mui/icons-material/Notifications';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import AddIcon from '@mui/icons-material/Add';
+import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function ColorInversionHeader() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -66,7 +66,7 @@ export default function ColorInversionHeader() {
           onClick={(event) => {
             setAnchorEl(event.currentTarget);
           }}
-          endDecorator={<KeyboardArrowDown />}
+          endDecorator={<KeyboardArrowDownIcon />}
         >
           Main
         </Chip>
@@ -87,7 +87,7 @@ export default function ColorInversionHeader() {
         >
           <MenuItem onClick={() => setAnchorEl(null)}>
             <ListItemDecorator>
-              <BubbleChart />
+              <BubbleChartIcon />
             </ListItemDecorator>
             Products
           </MenuItem>
@@ -112,7 +112,7 @@ export default function ColorInversionHeader() {
       <Box sx={{ display: 'flex', flexDirection: 'row-reverse', flexShrink: 0 }}>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <Button
-            startDecorator={<Add />}
+            startDecorator={<AddIcon />}
             sx={{ borderRadius: 'xl', display: { xs: 'none', md: 'inline-flex' } }}
           >
             New Invoice
@@ -140,12 +140,12 @@ export default function ColorInversionHeader() {
           />
           <Badge badgeContent={2} variant="solid" color="danger">
             <IconButton variant="soft" sx={{ borderRadius: 'xl' }}>
-              <Notifications />
+              <NotificationsIcon />
             </IconButton>
           </Badge>
           <IconButton sx={{ borderRadius: 'xl' }}>
             <Avatar src="/static/images/avatar/1.jpg" size="sm" />
-            <KeyboardArrowDown />
+            <KeyboardArrowDownIcon />
           </IconButton>
         </Box>
       </Box>

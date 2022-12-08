@@ -17,7 +17,7 @@ import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
-import PieChartIcon from '@mui/icons-material/PieChart';
+import PieChart from '@mui/icons-material/PieChart';
 import SmsIcon from '@mui/icons-material/Sms';
 import PersonIcon from '@mui/icons-material/Person';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
@@ -76,7 +76,7 @@ export default function ColorInversionNavigation() {
         >
           <ListItemButton>
             <ListItemDecorator>
-              <PieChartIcon />
+              <PieChart />
             </ListItemDecorator>
             Dashboard
           </ListItemButton>

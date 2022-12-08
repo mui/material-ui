@@ -5,8 +5,8 @@ import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import BookmarkOutlined from '@mui/icons-material/BookmarkOutlined';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 export default function ColorInversionMotivation() {
   return (
@@ -26,12 +26,12 @@ export default function ColorInversionMotivation() {
           size="sm"
           sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
         >
-          <BookmarkOutlined />
+          <BookmarkOutlinedIcon />
         </IconButton>
         <Typography fontSize="xl2" fontWeight="lg">
           Learn how to build super fast websites.
         </Typography>
-        <Button variant="solid" endDecorator={<KeyboardArrowRight />}>
+        <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
           Read more
         </Button>
       </Card>
@@ -55,12 +55,12 @@ export default function ColorInversionMotivation() {
           size="sm"
           sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
         >
-          <BookmarkOutlined />
+          <BookmarkOutlinedIcon />
         </IconButton>
         <Typography fontSize="xl2" fontWeight="lg">
           Learn how to build super fast websites.
         </Typography>
-        <Button variant="solid" endDecorator={<KeyboardArrowRight />}>
+        <Button variant="solid" endDecorator={<KeyboardArrowRightIcon />}>
           Read more
         </Button>
       </Card>
