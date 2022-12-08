@@ -13,16 +13,16 @@ const Item = styled(Sheet)(({ theme }) => ({
 
 export default function DividerStack() {
   return (
-      <Stack
-        direction="row"
-        divider={<Divider orientation="vertical" />}
-        spacing={2}
-        justifyContent="center"
-        sx={{ width: '100%' }}
-      >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Stack>
+    <Stack
+      direction="row"
+      divider={<Divider orientation="vertical" />}
+      spacing={2}
+      justifyContent="center"
+      sx={{ width: '100%' }}
+    >
+      <Item>Item 1</Item>
+      <Item>Item 2</Item>
+      <Item>Item 3</Item>
+    </Stack>
   );
 }
