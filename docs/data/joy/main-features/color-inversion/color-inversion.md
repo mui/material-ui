@@ -4,17 +4,17 @@
 
 ## Motivation
 
-[Global variants](/joy-ui/main-features/global-variants/) provide a consistent `variant` prop that lets you control the hierarchy of importance when multiple Joy UI components are grouped together. However, there are some issues when you have multiple layers of components that use global variants.
+[Global variants](/joy-ui/main-features/global-variants/) provide a consistent `variant` prop that lets you control the hierarchy of importance within a group of Joy UI components. However, they are not working as expected when global variants are used in multiple layers.
 
-The example below shows the problem when the interface has more than one layer that applies the global variants:
+The example below (on your right-hand side) shows the problem when the interface has more than one layer that applies the global variants:
 
 {{"demo": "ColorInversionMotivation.js"}}
 
 On the **left**, the `Button`'s variant is `solid` which is the highest emphasis level compared to other components. This conforms to the visual appearance on the screen.
 
-On the **right**, the problem arises when the container's variant is changed to `solid`. The button lacks contrast because the button's background blends with the container. Also, the text and the icon button don't have enough contrast to the parent's background.
+On the **right**, the problem arises when the container's variant becomes `solid`. The button is no longer the highest emphasis element because the it has the same background as the container. Also, the text and the icon button don't have enough contrast to the parent's background.
 
-The color inversion solves this issue, keeping the global variants meaningful when multiple layers are composed together.
+The color inversion is implemented to solves this issue, keeping the global variants meaningful when multiple layers of global variants are composed together.
 
 ## Overview
 
@@ -23,15 +23,15 @@ When color inversion is enabled on the parent component, the children with impli
 {{"demo": "ColorInversionOverview.js"}}
 
 :::info
-**Implicit** color refers to components that don't have the `color` prop specified. Color inversion has **no effect** on those children that have an **explicit** `color` prop.
+**Implicit** color refers to components that don't have the `color` prop specified.
+
+Color inversion has **no effect** on those children that have an **explicit** `color` prop.
 
 ```js
-// This chip has implicit color.
-// The styles change when color inversion is enabled.
+// implicit color. The styles change when color inversion is enabled.
 <Chip variant="soft">…</Chip>
 
-// This chip has an explicit color.
-// Color inversion has no effect.
+// explicit color. Color inversion has no effect.
 <Chip variant="soft" color="primary">…</Chip>
 ```
 

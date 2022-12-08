@@ -7,7 +7,7 @@ import Typography from '@mui/joy/Typography';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-export default function ColorInversionMotivation() {
+export default function ColorInversionOverview() {
   return (
     <Card
       variant="solid"
@@ -24,7 +24,6 @@ export default function ColorInversionMotivation() {
       </Chip>
       <IconButton
         variant="outlined"
-        color="neutral"
         size="sm"
         sx={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}
       >
