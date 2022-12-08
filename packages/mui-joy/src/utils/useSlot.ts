@@ -135,14 +135,16 @@ export default function useSlot<
     useForkRef(resolvedComponentsProps?.ref, name === 'root' ? parameters.ref : undefined),
   ) as ((instance: any | null) => void) | null;
 
-  const finalOwnerState = getSlotOwnerState
-    ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
-    : ownerState;
+  const slotOwnerState = getSlotOwnerState ? getSlotOwnerState(mergedProps as any) : {};
+  const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
 
-  // @ts-ignore internal logic
   const { getColor } = useColorInversion(finalOwnerState.variant);
-  // @ts-ignore internal logic
-  finalOwnerState.color = getColor(mergedProps.color, finalOwnerState.color);
+  if (name === 'root') {
+    // for the root slot, color inversion is calculated before the `useSlot` and pass through `ownerState`.
+    finalOwnerState.color = (mergedProps as any).color ?? (ownerState as any).color;
+  } else {
+    finalOwnerState.color = getColor((mergedProps as any).color, finalOwnerState.color);
+  }
 
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
@@ -153,17 +155,24 @@ export default function useSlot<
     {
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
-      ...(mergedProps as { className: string } & SlotProps &
-        ExternalSlotProps &
-        AdditionalProps &
-        (T extends 'root' ? ExternalForwardedProps : {})),
+      ...mergedProps,
       ...(LeafComponent && {
         as: LeafComponent,
       }),
       ref,
     },
-    finalOwnerState as OwnerState & SlotOwnerState,
+    finalOwnerState,
   );
 
-  return [elementType, props] as [ElementType, typeof props];
+  Object.keys(slotOwnerState).forEach((propName) => {
+    delete props[propName];
+  });
+
+  return [elementType, props] as [
+    ElementType,
+    { className: string; ownerState: OwnerState & SlotOwnerState } & SlotProps &
+      ExternalSlotProps &
+      AdditionalProps &
+      (T extends 'root' ? ExternalForwardedProps : {}),
+  ];
 }
