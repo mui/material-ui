@@ -111,6 +111,19 @@ describe('<Menu />', () => {
 
       expect(screen.getByTestId('paper')).to.have.class('bar');
     });
+
+    it('should be able to change the root element style', () => {
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          PaperProps={{ 'data-testid': 'paper' }}
+          PopoverClasses={{ root: 'foo' }}
+        />,
+      );
+
+      expect(screen.getByTestId('paper').parentElement).to.have.class('foo');
+    });
   });
 
   it('should pass onClose prop to Popover', () => {
