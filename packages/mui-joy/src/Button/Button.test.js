@@ -29,7 +29,7 @@ describe('Joy <Button />', () => {
     }),
   );
 
-  describeJoyColorInversion(<Button>Button</Button>, { classes });
+  describeJoyColorInversion(<Button>Button</Button>, { muiName: 'JoyButton', classes });
 
   it('by default, should render with the root, variantSolid, sizeMd and colorPrimary classes', () => {
     const { getByRole } = render(<Button>Hello World</Button>);

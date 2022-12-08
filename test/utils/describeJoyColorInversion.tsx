@@ -6,19 +6,58 @@ import { createRenderer } from './createRenderer';
 
 export default function describeJoyColorInversion(
   element: React.ReactElement,
-  options: { classes: { colorContext: string } },
+  options: {
+    muiName: string;
+    classes: { colorContext: string; colorPrimary: string; colorSuccess: string };
+  },
 ) {
   const { render } = createRenderer();
   describe('Joy Color Inversion', () => {
-    it('should have color `context` if the feature is enabled with implicit color', () => {
+    describe('Feature enabled', () => {
+      it('implicit color value', () => {
+        const { container } = render(
+          <ThemeProvider>
+            <Sheet invertedColors variant="solid" color="primary">
+              {element}
+            </Sheet>
+          </ThemeProvider>,
+        );
+        expect(container.firstChild?.firstChild).to.have.class(options.classes.colorContext);
+      });
+
+      it('implicit color with theme default color', () => {
+        const { getByTestId } = render(
+          <ThemeProvider
+            theme={{
+              components: {
+                [options.muiName]: {
+                  defaultProps: {
+                    color: 'success',
+                  },
+                },
+              },
+            }}
+          >
+            {React.cloneElement(element, { color: 'success', 'data-testid': 'element' })}
+            <Sheet data-testid="sheet" invertedColors variant="solid" color="primary">
+              {React.cloneElement(element)}
+            </Sheet>
+          </ThemeProvider>,
+        );
+        expect(getByTestId('element')).to.have.class(options.classes.colorSuccess);
+        expect(getByTestId('sheet')?.firstChild).to.have.class(options.classes.colorContext);
+      });
+    });
+
+    it('should use instance color', () => {
       const { container } = render(
         <ThemeProvider>
           <Sheet invertedColors variant="solid" color="primary">
-            {element}
+            {React.cloneElement(element, { color: 'primary' })}
           </Sheet>
         </ThemeProvider>,
       );
-      expect(container.firstChild?.firstChild).to.have.class(options.classes.colorContext);
+      expect(container.firstChild?.firstChild).to.have.class(options.classes.colorPrimary);
     });
   });
 }
