@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
@@ -13,7 +12,7 @@ import MenuItem from '@mui/joy/MenuItem';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Chip from '@mui/joy/Chip';
-import Add from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add';
 import BubbleChart from '@mui/icons-material/BubbleChart';
 import Notifications from '@mui/icons-material/Notifications';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';

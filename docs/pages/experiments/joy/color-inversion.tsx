@@ -98,7 +98,7 @@ const DraggableText = function DraggableText({ dropped }: { dropped?: boolean })
         }),
       }}
     >
-      Learn how to build super fast website.
+      Learn how to build super fast websites.
     </Typography>
   );
 };
@@ -229,7 +229,7 @@ export default function ColorInversion() {
       >
         <Container>
           <Typography textColor="text.secondary" mt={5} mb={3} textAlign="center">
-            Drag and drop the elements below to the containers to see the differences.
+            Drag and drop the elements below to the containers to see the difference.
           </Typography>
           <Box
             sx={{
@@ -253,7 +253,7 @@ export default function ColorInversion() {
                 <Typography color="danger" fontWeight="xl">
                   Without
                 </Typography>{' '}
-                the color inversion{' '}
+                color inversion{' '}
               </Typography>
               <Card variant="solid" color="primary" sx={{ gap: 2, maxWidth: 300, boxShadow: 'md' }}>
                 <Droppable id="chip">{renderDroppableChip()}</Droppable>
@@ -274,10 +274,10 @@ export default function ColorInversion() {
 
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Typography my={2}>
-                Color inversion is{' '}
                 <Typography color="success" fontWeight="xl">
-                  enabled
+                  With
                 </Typography>
+                color inversion
               </Typography>
               <Card
                 variant="solid"

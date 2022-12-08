@@ -118,7 +118,7 @@ export default function ColorInversionHeader() {
             New Invoice
           </Button>
           <Input
-            placeholder="Search anything"
+            placeholder="Search for anything..."
             variant="soft"
             size="sm"
             endDecorator={
