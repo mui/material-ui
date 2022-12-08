@@ -38,8 +38,6 @@ export default function InteractiveGrid() {
               <Sheet
                 sx={{
                   p: 2,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                   height: '100%',
                   pt: `${(value + 1) * 10}px`,
                   pb: `${(value + 1) * 10}px`,

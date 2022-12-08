@@ -1,4 +1,4 @@
-<Grid container spacing={3}>
+<Grid container spacing={3} sx={{ flexGrow: 1 }}>
   <Grid xs="auto">
     <Item>variable width content</Item>
   </Grid>
