@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import useSlot from '../utils/useSlot';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
@@ -146,20 +146,23 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     children,
     className,
-    color = 'primary',
-    component = 'span',
+    component = 'div',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the bar.
+    style,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
-    color,
     component,
+    color,
     size,
     variant,
     thickness,
@@ -170,28 +173,29 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: LinearProgressRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-    additionalProps: {
-      role: 'progressbar',
-      style: {
+  return (
+    <LinearProgressRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      role="progressbar"
+      style={{
         // Setting this CSS varaible via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
-        '--LinearProgress-percent': value,
-      },
-      ...(typeof value === 'number' &&
+        ...({ '--LinearProgress-percent': value } as React.CSSProperties),
+        ...style,
+      }}
+      ownerState={ownerState}
+      {...(typeof value === 'number' &&
         determinate && {
           'aria-valuenow': Math.round(value),
-        }),
-    },
-  });
-
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+        })}
+      {...other}
+    >
+      {children}
+    </LinearProgressRoot>
+  );
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
