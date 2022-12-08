@@ -23,7 +23,6 @@ import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
 import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
-import { IconButtonOwnerState } from '../IconButton';
 import {
   StyledInputRoot,
   StyledInputHtml,
@@ -107,7 +106,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   return composeClasses(slots, getAutocompleteUtilityClass, {});
 };
 
-const AutocompleteRoot = styled(StyledInputRoot, {
+const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -163,7 +162,7 @@ const AutocompleteWrapper = styled('div', {
   },
 }));
 
-const AutocompleteInput = styled(StyledInputHtml, {
+const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   name: 'JoyAutocomplete',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
@@ -178,13 +177,13 @@ const AutocompleteInput = styled(StyledInputHtml, {
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator, {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator, {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -197,11 +196,11 @@ const AutocompleteEndDecorator = styled(StyledInputEndDecorator, {
   }),
 }));
 
-const AutocompleteClearIndicator = styled(StyledIconButton, {
+const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
-})<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(!ownerState.hasPopupIcon && {
     marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   }),
@@ -209,11 +208,11 @@ const AutocompleteClearIndicator = styled(StyledIconButton, {
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
 
-const AutocompletePopupIndicator = styled(StyledIconButton, {
+const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   ...(ownerState.popupOpen && {
@@ -549,7 +548,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || 'outlined',
-      color: mergedProps.variant || 'neutral',
+      color: mergedProps.color || 'neutral',
     }),
     additionalProps: {
       anchorEl,
