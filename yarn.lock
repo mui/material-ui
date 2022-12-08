@@ -15077,7 +15077,7 @@ stylis-plugin-rtl@^2.1.1:
   dependencies:
     cssjanus "^2.0.1"
 
-stylis@4.1.3, stylis@^4.1.2:
+stylis@4.1.3, stylis@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.1.3.tgz#fd2fbe79f5fed17c55269e16ed8da14c84d069f7"
   integrity sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==
