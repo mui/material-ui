@@ -205,7 +205,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     required,
     value,
     color: colorProp,
-    variant,
+    variant: variantProp,
     size: sizeProp = 'md',
     ...other
   } = props;
@@ -213,11 +213,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const formControl = React.useContext(FormControlContext);
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const { getColor } = useColorInversion(variant);
-  const color = getColor(
-    inProps.color,
-    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
-  );
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
@@ -246,10 +241,16 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useCheckboxProps);
 
   const isCheckboxActive = checked || indeterminate;
+  const activeVariant = variantProp || 'solid';
+  const inactiveVariant = variantProp || 'outlined';
+  const variant = isCheckboxActive ? activeVariant : inactiveVariant;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const activeVariant = variant || 'solid';
-  const inactiveVariant = variant || 'outlined';
 
   const ownerState = {
     ...props,
@@ -259,7 +260,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     overlay,
     focusVisible,
     color: isCheckboxActive ? activeColor : inactiveColor,
-    variant: isCheckboxActive ? activeVariant : inactiveVariant,
+    variant,
     size,
   };
 

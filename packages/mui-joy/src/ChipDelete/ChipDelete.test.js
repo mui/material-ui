@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip from '@mui/joy/Chip';
 import ChipDelete, { chipDeleteClasses as classes } from '@mui/joy/ChipDelete';
@@ -20,6 +20,8 @@ describe('<ChipDelete />', () => {
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<ChipDelete />, { muiName: 'JoyChipDelete', classes });
 
   describe('Chip context', () => {
     it('disabled', () => {
