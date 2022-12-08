@@ -8,8 +8,12 @@ import {
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
+import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
+import TouchRipple from './TouchRipple';
+import { TouchRippleActions } from './TouchRipple.types';
+import useTouchRipple from './useTouchRipple';
 import { MD3ColorSchemeTokens, styled } from '../styles';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ExtendButton, ButtonTypeMap, ButtonOwnerState } from './Button.types';
@@ -95,8 +99,8 @@ export const ButtonRoot = styled('button', {
     elevated: `linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05)), ${tokens.sys.color.surface}`,
     filled: tokens.sys.color[ownerState.color ?? 'primary'],
     filledTonal: tokens.sys.color.secondaryContainer,
-    outlined: 'none',
-    text: 'none',
+    outlined: 'transparent',
+    text: 'transparent',
   };
 
   const labelTextColor = {
@@ -120,8 +124,8 @@ export const ButtonRoot = styled('button', {
     filledTonal: theme.vars
       ? `rgba(${theme.vars.sys.color.onSurfaceChannel} / 0.12)`
       : alpha(theme.sys.color.onSurface, 0.12),
-    outlined: 'none',
-    text: 'none',
+    outlined: 'transparent',
+    text: 'transparent',
   };
 
   const hoveredContainerColor = {
@@ -155,14 +159,6 @@ export const ButtonRoot = styled('button', {
           theme.sys.color[ownerState.color ?? 'primary'],
           theme.sys.state.hover.stateLayerOpacity,
         ),
-  };
-
-  const hoveredContainerElevation = {
-    elevated: theme.shadows[4], // not the correct value, need to be validated
-    filled: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-    filledTonal: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-    outlined: 'none',
-    text: 'none',
   };
 
   const pressedContainerColor = {
@@ -210,9 +206,10 @@ export const ButtonRoot = styled('button', {
           theme.sys.color[ownerState.color ?? 'primary'],
           1 - theme.sys.state.focus.stateLayerOpacity,
         ),
+    // According to the spec, this should be: secondaryContainerChannel / 1 - focusStateLayerOpacity, but this doesn't have the enough contrast
     filledTonal: theme.vars
-      ? `rgba(${tokens.sys.color.secondaryContainerChannel} / calc(1 - ${tokens.sys.state.focus.stateLayerOpacity}))`
-      : alpha(theme.sys.color.secondaryContainer, 1 - theme.sys.state.focus.stateLayerOpacity),
+      ? `rgba(${tokens.sys.color.primaryChannel} / 0.3)`
+      : alpha(theme.sys.color.primary, 0.3),
     outlined: theme.vars
       ? `rgba(${tokens.sys.color[`${ownerState.color ?? 'primary'}Channel`]} / ${
           tokens.sys.state.focus.stateLayerOpacity
@@ -232,12 +229,37 @@ export const ButtonRoot = styled('button', {
   };
 
   const containerElevation = {
-    elevated: '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-    filled: 'none', // md.sys.elevation.level0
-    filledTonal: 'none', // md.sys.elevation.level0
-    outlined: 'none', // md.sys.elevation.level0
-    text: 'none', // md.sys.elevation.level0
+    elevated: tokens.sys.elevation[1],
+    filled: tokens.sys.elevation[0],
+    filledTonal: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
   };
+
+  const hoveredContainerElevation = {
+    elevated: tokens.sys.elevation[2],
+    filled: tokens.sys.elevation[1],
+    filledTonal: tokens.sys.elevation[1],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
+  };
+
+  const focusedContainerElevation = {
+    elevated: tokens.sys.elevation[1],
+    filled: tokens.sys.elevation[0],
+    filledTonal: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
+  };
+
+  const pressedContainerElevation = {
+    elevated: tokens.sys.elevation[1],
+    filled: tokens.sys.elevation[0],
+    filledTonal: tokens.sys.elevation[0],
+    outlined: tokens.sys.elevation[0],
+    text: tokens.sys.elevation[0],
+  };
+
   const disabledLabelTextColor = theme.vars
     ? `rgba(${theme.vars.sys.color.onSurfaceChannel} / 0.38)`
     : alpha(theme.sys.color.onSurface, 0.38);
@@ -265,7 +287,6 @@ export const ButtonRoot = styled('button', {
     position: 'relative',
     boxSizing: 'border-box',
     WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
     border: 0,
@@ -296,7 +317,7 @@ export const ButtonRoot = styled('button', {
     fontSize: theme.typography.pxToRem(theme.sys.typescale.label.large.size), // the pxToRem should be moved to typescale in the future
     lineHeight: `calc(${tokens.sys.typescale.label.large.lineHeight} / ${theme.sys.typescale.label.large.size})`,
     borderRadius: `var(--Button-radius, ${borderRadius})`,
-    background: containerColor[ownerState.variant ?? 'text'],
+    backgroundColor: containerColor[ownerState.variant ?? 'text'],
     color: labelTextColor[ownerState.variant ?? 'text'],
     boxShadow: containerElevation[ownerState.variant ?? 'text'],
     // Outlined varaiant
@@ -324,19 +345,20 @@ export const ButtonRoot = styled('button', {
     }),
     '&:hover': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-hovered-icon-color)',
-      color: labelTextColor[ownerState.variant ?? 'text'],
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
     '&:active': {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
-      color: labelTextColor[ownerState.variant ?? 'text'],
-      backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
+      ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
+        backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
+      }),
+      boxShadow: pressedContainerElevation[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.focusVisible}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-focused-icon-color)',
-      color: labelTextColor[ownerState.variant ?? 'text'],
       backgroundColor: focusedContainerColor[ownerState.variant ?? 'text'],
+      boxShadow: focusedContainerElevation[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.disabled}`]: {
       // Allows deverloper to specify the disabled icon color var
@@ -344,8 +366,8 @@ export const ButtonRoot = styled('button', {
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
       color: disabledLabelTextColor,
-      background: disabeldContainerColor[ownerState.variant ?? 'text'],
-      boxShadow: 'var(--md-comp-button-disabled-container-elevation, none)', // Should be md.sys.elevation.level0
+      backgroundColor: disabeldContainerColor[ownerState.variant ?? 'text'],
+      boxShadow: tokens.sys.elevation[0],
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${
           theme.vars
@@ -391,6 +413,7 @@ const Button = React.forwardRef(function Button<
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
   const {
     action,
+    centerRipple = false,
     children,
     className,
     color = 'primary',
@@ -398,6 +421,8 @@ const Button = React.forwardRef(function Button<
     disabled = false,
     focusableWhenDisabled = false,
     disableElevation = false,
+    disableRipple = false,
+    disableTouchRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
@@ -419,6 +444,7 @@ const Button = React.forwardRef(function Button<
     size = 'medium',
     startIcon: startIconProp,
     tabIndex = 0,
+    TouchRippleProps,
     type,
     variant = 'text',
     ...other
@@ -427,6 +453,7 @@ const Button = React.forwardRef(function Button<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
+  const rippleRef = React.useRef<TouchRippleActions>(null);
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && (other.href || other.to)) {
@@ -455,6 +482,27 @@ const Button = React.forwardRef(function Button<
     }),
     [setFocusVisible],
   );
+
+  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
+    disabled,
+    disableRipple,
+    disableTouchRipple,
+    rippleRef,
+  });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (enableTouchRipple && !rippleRef.current) {
+        console.error(
+          [
+            'MUI: The `component` prop provided to Button is invalid.',
+            'Please make sure the children prop is rendered in this custom component.',
+          ].join('\n'),
+        );
+      }
+    }, [enableTouchRipple]);
+  }
 
   const ownerState = {
     ...props,
@@ -489,12 +537,16 @@ const Button = React.forwardRef(function Button<
       as={ComponentProp}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...getRootProps()}
+      {...getRootProps(getRippleHandlers(props) as unknown as EventHandlers)}
       {...other}
     >
       {startIcon}
       {children}
       {endIcon}
+      {enableTouchRipple ? (
+        /* TouchRipple is only needed client-side, x2 boost on the server. */
+        <TouchRipple center={centerRipple} {...TouchRippleProps} ref={rippleRef} />
+      ) : null}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
@@ -509,6 +561,12 @@ Button.propTypes /* remove-proptypes */ = {
    * It currently only supports `focusVisible()` action.
    */
   action: refType,
+  /**
+   * If `true`, the ripples are centered.
+   * They won't start at the cursor interaction position.
+   * @default false
+   */
+  centerRipple: PropTypes.bool,
   /**
    * The content of the component.
    */
@@ -542,6 +600,16 @@ Button.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableElevation: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the touch ripple effect is disabled.
+   * @default false
+   */
+  disableTouchRipple: PropTypes.bool,
   /**
    * Element placed after the children.
    */
@@ -586,8 +654,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * Callback fired when the component is focused with a keyboard.
-   * We trigger a `onFocus` callback too.
+   * @ignore
    */
   onFocusVisible: PropTypes.func,
   /**
@@ -639,6 +706,10 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * Props applied to the `TouchRipple` element.
+   */
+  TouchRippleProps: PropTypes.object,
   /**
    * @ignore
    */
