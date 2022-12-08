@@ -409,7 +409,7 @@ function CareersContent() {
                 ['Remote work:', 'Our entire company is distributed.'],
                 [
                   'Retreats:',
-                  'We meet up every eight months for a short week of meetings, events, and fun!',
+                  'We meet up every eight months for a week of working and having fun together!',
                 ],
                 [
                   'Equipment:',
