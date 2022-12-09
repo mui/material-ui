@@ -44,7 +44,7 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
-import { useColorInversion } from '../styles/ColorInversion';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
@@ -282,7 +282,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const props = useThemeProps({
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyAutocomplete',
   });
@@ -554,7 +554,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     additionalProps: {
       anchorEl,
       open: popupOpen,
-      modifiers: defaultModifiers,
+      disablePortal: false,
       style: anchorEl
         ? {
             width: anchorEl.clientWidth,
@@ -614,6 +614,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       variant: mergedProps.variant || 'plain',
       color: mergedProps.color || 'neutral',
+      disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
       as: 'li',
@@ -637,6 +638,44 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  const modifiers = React.useMemo(
+    () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
+    [listboxProps.modifiers],
+  );
+
+  let popup = null;
+  if (anchorEl) {
+    popup = (
+      <ListProvider nested>
+        <SlotListbox {...listboxProps} modifiers={modifiers}>
+          {groupedOptions.map((option, index) => {
+            if (groupBy) {
+              const typedOption = option as AutocompleteGroupedOption;
+              return renderGroup({
+                key: String(typedOption.key),
+                group: typedOption.group,
+                children: typedOption.options.map((option2, index2) =>
+                  renderListOption(option2, typedOption.index + index2),
+                ),
+              });
+            }
+            return renderListOption(option, index);
+          })}
+          {loading && groupedOptions.length === 0 ? (
+            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
+          ) : null}
+          {groupedOptions.length === 0 && !freeSolo && !loading ? (
+            <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+          ) : null}
+        </SlotListbox>
+      </ListProvider>
+    );
+    if (!listboxProps.disablePortal) {
+      // For portal popup, the children should not inherit color inversion from the upper parent.
+      popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
+    }
+  }
+
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>
@@ -656,32 +695,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           <SlotPopupIndicator {...popupIndicatorProps}>{popupIcon}</SlotPopupIndicator>
         ) : null}
       </SlotRoot>
-      {anchorEl ? (
-        // `nested` is for grouped options use case.
-        <ListProvider nested>
-          <SlotListbox {...listboxProps}>
-            {groupedOptions.map((option, index) => {
-              if (groupBy) {
-                const typedOption = option as AutocompleteGroupedOption;
-                return renderGroup({
-                  key: String(typedOption.key),
-                  group: typedOption.group,
-                  children: typedOption.options.map((option2, index2) =>
-                    renderListOption(option2, typedOption.index + index2),
-                  ),
-                });
-              }
-              return renderListOption(option, index);
-            })}
-            {loading && groupedOptions.length === 0 ? (
-              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-            ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
-            ) : null}
-          </SlotListbox>
-        </ListProvider>
-      ) : null}
+      {popup}
     </React.Fragment>
   );
 }) as AutocompleteComponent;

@@ -11,9 +11,9 @@ export interface ListItemPropsColorOverrides {}
 export type ListItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemSlot,
   {
-    root: SlotProps<'div', {}, ListItemOwnerState>;
-    startAction: SlotProps<'span', {}, ListItemOwnerState>;
-    endAction: SlotProps<'span', {}, ListItemOwnerState>;
+    root: SlotProps<'li', {}, ListItemOwnerState>;
+    startAction: SlotProps<'div', {}, ListItemOwnerState>;
+    endAction: SlotProps<'div', {}, ListItemOwnerState>;
   }
 >;
 

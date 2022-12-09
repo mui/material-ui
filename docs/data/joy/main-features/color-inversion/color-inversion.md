@@ -68,6 +68,18 @@ To enable the feature set `invertedColors` to true on the surface components:
 - The surface component should have `soft` or `solid` variant to enable this feature.
   :::
 
+### Portal popup
+
+By default, color inversion has no effect on the popup slot of `Autocomplete`, `Menu`, and `Tooltip`.
+
+To enable color inversion for those slots, set `disablePortal` to true.
+
+{{"demo": "ColorInversionPopup.js"}}
+
+:::info
+The popup slot of the `Select` component has `disablePortal` set to true by default.
+:::
+
 ## Common examples
 
 ### Header

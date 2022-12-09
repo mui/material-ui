@@ -9,9 +9,18 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
+
+const defaultModifiers = [
+  {
+    name: 'offset',
+    options: {
+      offset: [0, 4],
+    },
+  },
+];
 
 const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;
@@ -33,10 +42,7 @@ const MenuRoot = styled(StyledList, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
-  const variantStyle =
-    ownerState.color === 'context'
-      ? undefined
-      : theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
@@ -72,27 +78,13 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     id,
     onClose,
     open = false,
-    modifiers,
+    modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
-
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      ...(modifiers || []),
-    ],
-    [modifiers],
-  );
 
   const {
     registerItem,
@@ -123,7 +115,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
-    modifiers,
     open,
     nesting: false,
     row: false,
@@ -144,11 +135,15 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       ref,
       component: MenuRoot,
       as: component, // use `as` to insert the component inside of the MenuRoot
-      modifiers: cachedModifiers,
     },
     className: classes.root,
     ownerState,
   });
+
+  const modifiers = React.useMemo(
+    () => [...defaultModifiers, ...(modifiersProp || [])],
+    [modifiersProp],
+  );
 
   const contextValue: MenuUnstyledContextType = React.useMemo(
     () => ({
@@ -161,12 +156,26 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [getItemProps, getItemState, open, registerItem, unregisterItem],
   );
 
-  return (
-    <PopperUnstyled {...rootProps}>
+  const result = (
+    <PopperUnstyled {...rootProps} modifiers={modifiers}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider nested>{children}</ListProvider>
+        <ListProvider nested>
+          {disablePortal ? (
+            children
+          ) : (
+            // For portal popup, the children should not inherit color inversion from the upper parent.
+            <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
+          )}
+        </ListProvider>
       </MenuUnstyledContext.Provider>
     </PopperUnstyled>
+  );
+
+  return disablePortal ? (
+    result
+  ) : (
+    // For portal popup, the children should not inherit color inversion from the upper parent.
+    <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
   );
 }) as OverridableComponent<MenuTypeMap>;
 

@@ -19,7 +19,7 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import { useColorInversion } from '../styles/ColorInversion';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
@@ -41,6 +41,25 @@ function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> |
 
   return JSON.stringify(selectedOption.value);
 }
+
+const defaultModifiers: PopperUnstyledProps['modifiers'] = [
+  {
+    name: 'offset',
+    options: {
+      offset: [0, 4],
+    },
+  },
+  {
+    // popper will have the same width as root element when open
+    name: 'equalWidth',
+    enabled: true,
+    phase: 'beforeWrite',
+    requires: ['computeStyles'],
+    fn: ({ state }) => {
+      state.styles.popper.width = `${state.rects.reference.width}px`;
+    },
+  },
+];
 
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
@@ -303,7 +322,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     action,
     autoFocus,
     children,
-    slotProps = {},
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
@@ -452,13 +470,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
-  const externalForwardedProps = { ...other, slotProps };
-
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (
@@ -486,36 +502,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.button,
     elementType: SelectButton,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getButtonProps,
     ownerState,
   });
-
-  const resolveListboxProps =
-    typeof slotProps.listbox === 'function' ? slotProps.listbox(ownerState) : slotProps.listbox;
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      {
-        // popper will have the same width as root element when open
-        name: 'equalWidth',
-        enabled: true,
-        phase: 'beforeWrite',
-        requires: ['computeStyles'],
-        fn: ({ state }) => {
-          state.styles.popper.width = `${state.rects.reference.width}px`;
-        },
-      },
-      ...(resolveListboxProps?.modifiers || []),
-    ],
-    [resolveListboxProps?.modifiers],
-  );
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
@@ -524,11 +514,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
-      modifiers: cachedModifiers,
     },
     className: classes.listbox,
     elementType: PopperUnstyled,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,
@@ -550,21 +539,21 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -577,6 +566,30 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     }),
     [color, getOptionProps, getOptionState],
   );
+
+  const modifiers = React.useMemo(
+    () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
+    [listboxProps.modifiers],
+  );
+
+  let result = null;
+  if (anchorEl) {
+    result = (
+      // @ts-ignore internal logic: `listboxComponent` should not replace `SelectListbox`.
+      <SlotListbox {...listboxProps} modifiers={modifiers}>
+        <SelectUnstyledContext.Provider value={context}>
+          {/* for building grouped options */}
+          <ListProvider nested>{children}</ListProvider>
+        </SelectUnstyledContext.Provider>
+      </SlotListbox>
+    );
+    if (!listboxProps.disablePortal) {
+      result = (
+        // For portal popup, the children should not inherit color inversion from the upper parent.
+        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
+      );
+    }
+  }
 
   return (
     <React.Fragment>
@@ -592,15 +605,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
         {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
       </SlotRoot>
-      {anchorEl && (
-        // @ts-ignore internal logic: `listboxComponent` should not replace `SelectListbox`.
-        <SlotListbox {...listboxProps}>
-          <SelectUnstyledContext.Provider value={context}>
-            {/* for building grouped options */}
-            <ListProvider nested>{children}</ListProvider>
-          </SelectUnstyledContext.Provider>
-        </SlotListbox>
-      )}
+      {result}
 
       {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>

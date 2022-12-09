@@ -14,7 +14,7 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
-import { useColorInversion } from '../styles/ColorInversion';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -232,7 +232,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     disablePortal,
     direction,
     keepMounted,
-    modifiers,
+    modifiers: modifiersProp,
     placement = 'bottom',
     title,
     color: colorProp = 'neutral',
@@ -543,32 +543,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
-  const popperOptions = React.useMemo(() => {
-    const tooltipModifiers = [
-      {
-        name: 'arrow',
-        enabled: Boolean(arrowRef),
-        options: {
-          element: arrowRef,
-          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
-          // make the arrow looks nice with the Tooltip's border radius
-          padding: 6,
-        },
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 10],
-        },
-      },
-      ...(modifiers ?? []),
-    ];
-
-    return {
-      modifiers: tooltipModifiers,
-    };
-  }, [arrowRef, modifiers]);
-
   const ownerState = {
     ...props,
     arrow,
@@ -587,7 +561,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       id,
       popperRef,
       placement,
-      popperOptions,
       anchorEl: followCursor
         ? {
             getBoundingClientRect: () =>
@@ -602,6 +575,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           }
         : childNode,
       open: childNode ? open : false,
+      modifiers: modifiersProp,
       disablePortal,
       keepMounted,
       direction,
@@ -627,13 +601,45 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+          // make the arrow looks nice with the Tooltip's border radius
+          padding: 6,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+      ...(rootProps.modifiers || []),
+    ],
+    [arrowRef, rootProps.modifiers],
+  );
+
+  const result = (
+    <SlotRoot {...rootProps} modifiers={modifiers}>
+      {title}
+      {arrow ? <SlotArrow {...arrowProps} /> : null}
+    </SlotRoot>
+  );
+
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <SlotRoot {...rootProps}>
-        {title}
-        {arrow ? <SlotArrow {...arrowProps} /> : null}
-      </SlotRoot>
+      {disablePortal ? (
+        result
+      ) : (
+        // For portal popup, the children should not inherit color inversion from the upper parent.
+        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
+      )}
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;

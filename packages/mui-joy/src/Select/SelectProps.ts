@@ -33,10 +33,7 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
-          component?: React.ElementType;
-          sx?: SxProps;
-        },
+      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
       SelectOwnerState<any>
     >;
   }
