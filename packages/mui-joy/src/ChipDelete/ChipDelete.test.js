@@ -73,7 +73,7 @@ describe('<ChipDelete />', () => {
       const handleDelete = spy();
       const { getByRole } = render(
         <Chip>
-          <ChipDelete onDelete={handleDelete} />
+          <ChipDelete onDelete={handleDelete} onClick={() => {}} />
         </Chip>,
       );
       const chipDelete = getByRole('button');
@@ -82,8 +82,8 @@ describe('<ChipDelete />', () => {
       });
       fireEvent.keyDown(chipDelete, { key: 'Backspace' });
       fireEvent.keyDown(chipDelete, { key: 'Enter' });
-
-      expect(handleDelete.callCount).to.equal(2);
+      fireEvent.click(chipDelete);
+      expect(handleDelete.callCount).to.equal(3);
     });
   });
 });
