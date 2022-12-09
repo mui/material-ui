@@ -192,7 +192,9 @@ export default function useButton(parameters: UseButtonParameters) {
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseButtonRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;
+    const propsEventHandlers = extractEventHandlers(parameters, [
+      'onDelete',
+    ]) as Partial<UseButtonParameters>;
     const externalEventHandlers = {
       ...propsEventHandlers,
       ...otherHandlers,
