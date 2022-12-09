@@ -76,9 +76,9 @@ export function getMargins(marginThreshold) {
   if (isNumber(marginThreshold)) {
     const margin = parseFloat(marginThreshold);
     return {
-      bottomMargin: 0,
+      bottomMargin: margin,
       leftMargin: margin,
-      rightMargin: 0,
+      rightMargin: margin,
       topMargin: margin,
     };
   }
@@ -251,59 +251,88 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
       const { topMargin, bottomMargin, leftMargin, rightMargin } = getMargins(marginThreshold);
 
-      const verticalMargin = topMargin + bottomMargin;
-      const horizontalMargin = leftMargin + rightMargin;
-
-      // Window thresholds taking required margin into account
-      const heightThreshold = containerWindow.innerHeight - verticalMargin;
-      const widthThreshold = containerWindow.innerWidth - horizontalMargin;
-
-      let bottom = top + elemRect.height;
-
       // Check if the vertical axis needs shifting
       if (top < topMargin) {
         const diff = top - topMargin;
         top -= diff;
         elemTransformOrigin.vertical += diff;
-        bottom += diff;
       }
 
-      if (bottom > heightThreshold) {
-        const diff = bottom - heightThreshold;
-        top -= diff;
-        elemTransformOrigin.vertical += diff;
+      const bottom = containerWindow.innerHeight - (top + elemRect.height);
+      if (bottom < bottomMargin) {
+        const diff = bottom - bottomMargin;
+        top += diff;
+        elemTransformOrigin.vertical -= diff;
       }
 
       if (process.env.NODE_ENV !== 'production') {
-        if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
+        const verticalMargin = topMargin + bottomMargin;
+        const horizontalMargin = leftMargin + rightMargin;
+        const heightThreshold = containerWindow.innerHeight - verticalMargin;
+        const widthThreshold = containerWindow.innerWidth - horizontalMargin;
+
+        if (heightThreshold < 0) {
           // eslint-disable-next-line
-          console.log(elemRect.height, heightThreshold);
+          console.error(
+            [
+              'MUI: The popover component is too tall.',
+              `It does not fit in its container (height: ${containerWindow.innerHeight}px, expected margin: ${verticalMargin}px)`,
+              'Please consider adding a `max-height` to improve the user-experience.',
+            ].join('\n'),
+          );
+        }
+
+        if (elemRect.height > heightThreshold && elemRect.height && heightThreshold > 0) {
+          // eslint-disable-next-line
           console.error(
             [
               'MUI: The popover component is too tall.',
               `Some part of it can not be seen on the screen (${
                 elemRect.height - heightThreshold
-              }px).`,
+              }px). (Height: ${elemRect.height} Threshold: ${heightThreshold})`,
               'Please consider adding a `max-height` to improve the user-experience.',
             ].join('\n'),
           );
         }
-      }
 
-      let right = left + elemRect.width;
+        if (widthThreshold < 0) {
+          // eslint-disable-next-line
+          console.error(
+            [
+              'MUI: The popover component is too wide.',
+              `It does not fit in its container (height: ${containerWindow.innerWidth}px, expected margin: ${horizontalMargin}px)`,
+              'Please consider adding a `max-width` to improve the user-experience.',
+            ].join('\n'),
+          );
+        }
+
+        if (elemRect.width > widthThreshold && elemRect.width && widthThreshold > 0) {
+          // eslint-disable-next-line
+          console.error(
+            [
+              'MUI: The popover component is too wide.',
+              `Some part of it can not be seen on the screen (${
+                elemRect.width - widthThreshold
+              }px).`,
+              'Please consider adding a `max-width` to improve the user-experience.',
+            ].join('\n'),
+          );
+        }
+      }
 
       // Check if the horizontal axis needs shifting
       if (left < leftMargin) {
         const diff = left - leftMargin;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
-        right += diff;
       }
 
-      if (right > widthThreshold) {
-        const diff = right - widthThreshold;
-        left -= diff;
-        elemTransformOrigin.horizontal += diff;
+      const right = containerWindow.innerWidth - (left + elemRect.width);
+
+      if (right < rightMargin) {
+        const diff = right - rightMargin;
+        left += diff;
+        elemTransformOrigin.horizontal -= diff;
       }
 
       return {
