@@ -41,7 +41,7 @@ In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you 
 {{"demo": "DevTools.js"}}
 
 :::warning
-⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+These class names can't be used as CSS selectors because they are unstable.
 :::
 
 ### Overriding styles with class names
@@ -117,7 +117,7 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | selected      | `.Mui-selected`     |
 
 :::error
-⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
 :::
 
 ```css
@@ -146,7 +146,7 @@ You can do this with **dynamic CSS** or **CSS variables**.
 #### Dynamic CSS
 
 :::warning
-⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+If you are using TypeScript, you will need to update the prop's types of the new component.
 :::
 
 {{"demo": "DynamicCSS.js", "defaultCodeOpen": false}}
@@ -194,8 +194,8 @@ The `styleOverrides` key in the `MuiCssBaseline` component slot also supports ca
 
 {{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
 
-:::info
-**Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+:::success
+It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
 :::
 
 ```diff
