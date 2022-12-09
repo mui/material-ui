@@ -18,7 +18,6 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          defaultValue="Controlled"
         />
         <TextField
           id="outlined-textarea"
@@ -40,7 +39,6 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          defaultValue="Controlled"
           variant="filled"
         />
         <TextField
@@ -65,7 +63,6 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
-          defaultValue="Controlled"
           variant="standard"
         />
         <TextField
