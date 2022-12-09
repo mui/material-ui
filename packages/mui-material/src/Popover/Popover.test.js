@@ -593,9 +593,10 @@ describe('<Popover />', () => {
   describe('update position', () => {
     let windowInnerHeight;
 
+    const marginThreshold = 8;
     beforeEach(() => {
       windowInnerHeight = window.innerHeight;
-      window.innerHeight = 8;
+      window.innerHeight = 2 * marginThreshold;
     });
 
     afterEach(() => {
@@ -619,7 +620,7 @@ describe('<Popover />', () => {
             },
           }}
           transitionDuration={0}
-          marginThreshold={8}
+          marginThreshold={marginThreshold}
         >
           <div />
         </Popover>,
@@ -639,6 +640,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
+
       expect(beforeStyle).not.to.deep.equal(afterStyle);
     });
 
@@ -734,8 +736,15 @@ describe('<Popover />', () => {
     });
   });
 
-  [0, 18, 16].forEach((marginThreshold) => {
-    describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
+  [
+    0, 18, 16,
+    { top: 40, left: 30 },
+    { right: 11, left: 30 },
+    { bottom: 20, left: 30 }
+  ].forEach((marginThreshold) => {
+    const { topMargin, rightMargin, bottomMargin, leftMargin } = getMargins(marginThreshold);
+
+    describe(`positioning when \`marginThreshold=${JSON.stringify(marginThreshold)}\``, () => {
       function getElementStyleOfOpenPopover(anchorEl = document.createElement('svg')) {
         let style;
         render(
@@ -757,26 +766,27 @@ describe('<Popover />', () => {
       }
 
       specify('when no movement is needed', () => {
-        const negative = marginThreshold === 0 ? '' : '-';
+        const negativeH = (topMargin + bottomMargin) === 0 ? '' : '-';
+        const negativeV = (leftMargin + rightMargin) === 0 ? '' : '-';
         const positioningStyle = getElementStyleOfOpenPopover();
 
-        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.top).to.equal(`${topMargin}px`);
+        expect(positioningStyle.left).to.equal(`${leftMargin}px`);
         expect(positioningStyle.transformOrigin).to.match(
-          new RegExp(`${negative}${marginThreshold}px ${negative}${marginThreshold}px( 0px)?`),
+          new RegExp(`${negativeH}${leftMargin}px ${negativeV}${topMargin}px( 0px)?`),
         );
       });
 
       specify('top < marginThreshold', () => {
         const mockedAnchor = document.createElement('div');
         stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-          left: marginThreshold,
-          top: marginThreshold - 1,
+          left: leftMargin,
+          top: topMargin - 1,
         }));
         const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
 
-        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.top).to.equal(`${topMargin}px`);
+        expect(positioningStyle.left).to.equal(`${leftMargin}px`);
         expect(positioningStyle.transformOrigin).to.match(/0px -1px( 0ms)?/);
       });
 
@@ -785,7 +795,7 @@ describe('<Popover />', () => {
 
         before(() => {
           windowInnerHeight = window.innerHeight;
-          window.innerHeight = marginThreshold * 2;
+          window.innerHeight = topMargin + bottomMargin;
         });
 
         after(() => {
@@ -795,14 +805,14 @@ describe('<Popover />', () => {
         specify('test', () => {
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold,
-            top: marginThreshold + 1,
+            left: leftMargin,
+            top: topMargin + 1,
           }));
 
           const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
 
-          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${topMargin}px`);
+          expect(positioningStyle.left).to.equal(`${leftMargin}px`);
           expect(positioningStyle.transformOrigin).to.match(/0px 1px( 0px)?/);
         });
       });
@@ -810,15 +820,15 @@ describe('<Popover />', () => {
       specify('left < marginThreshold', () => {
         const mockedAnchor = document.createElement('div');
         stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-          left: marginThreshold - 1,
-          top: marginThreshold,
+          left: leftMargin - 1,
+          top: topMargin,
         }));
 
         const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
 
-        expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.top).to.equal(`${topMargin}px`);
 
-        expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+        expect(positioningStyle.left).to.equal(`${leftMargin}px`);
 
         expect(positioningStyle.transformOrigin).to.match(/-1px 0px( 0px)?/);
       });
@@ -828,7 +838,7 @@ describe('<Popover />', () => {
 
         before(() => {
           innerWidthContainer = window.innerWidth;
-          window.innerWidth = marginThreshold * 2;
+          window.innerWidth = leftMargin + rightMargin;
         });
 
         after(() => {
@@ -838,14 +848,14 @@ describe('<Popover />', () => {
         specify('test', () => {
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
-            left: marginThreshold + 1,
-            top: marginThreshold,
+            left: leftMargin + 1,
+            top: topMargin,
           }));
 
           const positioningStyle = getElementStyleOfOpenPopover(mockedAnchor);
 
-          expect(positioningStyle.top).to.equal(`${marginThreshold}px`);
-          expect(positioningStyle.left).to.equal(`${marginThreshold}px`);
+          expect(positioningStyle.top).to.equal(`${topMargin}px`);
+          expect(positioningStyle.left).to.equal(`${leftMargin}px`);
           expect(positioningStyle.transformOrigin).to.match(/1px 0px( 0px)?/);
         });
       });
@@ -912,21 +922,21 @@ describe('<Popover />', () => {
       expect(leftMargin).to.equal(16);
     });
 
-    it('should return 11 for top and left margin and 0 for bottom and right margin when 11 is used for marginThreshold', () => {
+    it('should return 11 for top, right, bottom, left margin when 11 is used for marginThreshold', () => {
       const marginThreshold = 11;
       const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins(marginThreshold);
       expect(topMargin).to.equal(11);
       expect(leftMargin).to.equal(11);
-      expect(bottomMargin).to.equal(0);
-      expect(rightMargin).to.equal(0);
+      expect(bottomMargin).to.equal(11);
+      expect(rightMargin).to.equal(11);
     });
 
-    it('should return 13 for top and left margin and 0 for bottom and right margin when string "13px" is used for marginThreshold', () => {
+    it('should return 13 for top, right, bottom, left margin when string "13px" is used for marginThreshold', () => {
       const { topMargin, bottomMargin, rightMargin, leftMargin } = getMargins('13px');
       expect(topMargin).to.equal(13);
       expect(leftMargin).to.equal(13);
-      expect(bottomMargin).to.equal(0);
-      expect(rightMargin).to.equal(0);
+      expect(bottomMargin).to.equal(13);
+      expect(rightMargin).to.equal(13);
     });
 
     it('should return 12 for top-margin for marginThreshold { top: 12 } and other values should be 16 (default-value)', () => {
