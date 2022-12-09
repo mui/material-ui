@@ -13,6 +13,7 @@ const whitelist = [
   'Image',
   'HTMLElement',
   'HTMLInputElement',
+  'HTMLTextAreaElement',
   'Node',
   'Performance',
   'document',
