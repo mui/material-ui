@@ -2,10 +2,10 @@
 
 <p class="description">Learn how to use your favorite icon library with Joy UI.</p>
 
-## MUI Material icon
+## MUI Material Icons
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
-includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [SVG Icon](/material-ui/api/svg-icon/) components.
 
 ### Installation
 
@@ -14,7 +14,8 @@ This section assumes that you've already installed Joy UI in your app—see [Ins
 :::warning
 To use `@mui/icons-material` with Joy UI, you will have to install Material UI (`@mui/material`) because it is a required dependency. The increase of the production bundle size is very little if you configure [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) in your build process.
 
-We are aware of this limitation and considering removing the dependency. You can keep track of the progress from [this issue](https://github.com/mui/material-ui/issues/34489).
+We are aware of this limitation and are considering removing the dependency. 
+You can keep track of the progress in [this issue](https://github.com/mui/material-ui/issues/34489).
 :::
 
 #### npm
@@ -31,7 +32,7 @@ yarn add @mui/icons-material @mui/material
 
 ### Usage
 
-By default, Joy UI components are able to control the color, font-size, and margin of the icons when their size, or variant change.
+By default, Joy UI components are able to control an icon's color, font size, and margins when its size or variant changes.
 
 {{"demo": "JoyMaterialIcon.js"}}
 
@@ -41,9 +42,9 @@ To control the size of the icon, use `fontSize` prop. The value can be one of th
 
 {{"demo": "IconFontSizes.js"}}
 
-## 3rd-party icons
+## Third-party icons
 
-To use icon libraries, web font icons, or plain svg icons with Joy UI, apply the styles with specific CSS variables like the example below.
+To use other icon libraries, web font icons, or plain SVG icons with Joy UI, apply the styles with specific CSS variables as shown in the example below:
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -56,7 +57,7 @@ function App() {
     <CssVarsProvider>
       <GlobalStyles styles={{
         // The {selector} is the CSS selector to target the icon.
-        // We recommend to use a class over a tag if it is possible.
+        // We recommend using a class over a tag if possible.
         '{selector}': {
           color: "var(--Icon-color)",
           margin: "var(--Icon-margin)",
@@ -76,7 +77,7 @@ Joy UI components can control those variables based on their size and variant to
 
 Here is a collection of well-known icon libraries that you can use with Joy UI.
 
-### React icons
+### React Icons
 
 - [Browse icons](https://react-icons.github.io/react-icons/search)
 - [Installation](https://react-icons.github.io/react-icons)
@@ -102,7 +103,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 
 ### Heroicons
 
-- [Browse icons](hhttps://heroicons.com/)
+- [Browse icons](https://heroicons.com/)
 - [Installation](https://github.com/tailwindlabs/heroicons#react)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-heroicons-wv2ev1?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
@@ -112,7 +113,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Bootstrap icons
+### Bootstrap Icons
 
 - [Browse icons](https://icons.getbootstrap.com/)
 - [Installation](https://icons.getbootstrap.com/#install)
@@ -124,7 +125,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Fontawesome
+### Font Awesome Icons
 
 - [Browse icons](https://fontawesome.com/icons)
 - [Installation](https://fontawesome.com/docs/web/use-with/react/)
