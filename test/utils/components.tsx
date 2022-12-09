@@ -18,13 +18,13 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
   /**
    * @public
    */
-  errors: any[] = [];
+  errors: unknown[] = [];
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error: unknown) {
     return { error };
   }
 
-  componentDidCatch(error: any) {
+  componentDidCatch(error: unknown) {
     this.errors.push(error);
   }
 
