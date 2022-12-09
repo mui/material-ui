@@ -85,7 +85,7 @@ const AvatarImg = styled('img', {
   textIndent: 10000,
 });
 
-const AvatarFallback = styled(Person, {
+const AvatarFallback = styled(Person as unknown as 'svg', {
   name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,

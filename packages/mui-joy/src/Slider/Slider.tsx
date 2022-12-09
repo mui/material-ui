@@ -270,7 +270,7 @@ const SliderMark = styled('span', {
   name: 'JoySlider',
   slot: 'Mark',
   overridesResolver: (props, styles) => styles.mark,
-})<{ ownerState: SliderOwnerState & { percent: number } }>(({ ownerState }) => {
+})<{ ownerState: SliderOwnerState & { percent?: number } }>(({ ownerState }) => {
   return {
     position: 'absolute',
     width: 'var(--Slider-mark-size)',
