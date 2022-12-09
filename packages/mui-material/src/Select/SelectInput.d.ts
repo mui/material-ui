@@ -9,8 +9,8 @@ import { MenuProps } from '../Menu';
  * For example, when the browser auto-fills the `Select` you'll receive a `React.ChangeEvent`.
  */
 export type SelectChangeEvent<T = string> =
-  | (Event & { target: { value: T; name: string } })
-  | React.ChangeEvent<HTMLInputElement>;
+  & (Event & { target: { value: T; name: string } })
+  & React.ChangeEvent<HTMLInputElement>;
 
 export interface SelectInputProps<T = unknown> {
   autoFocus?: boolean;
