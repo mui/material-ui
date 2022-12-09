@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, act, fireEvent } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip from '@mui/joy/Chip';
 import ChipDelete, { chipDeleteClasses as classes } from '@mui/joy/ChipDelete';
@@ -65,6 +66,24 @@ describe('<ChipDelete />', () => {
         </Chip>,
       );
       expect(getByRole('button')).to.have.class(classes.colorNeutral);
+    });
+  });
+  describe('Chip onDelete', () => {
+    it('should call onDelete function when backspace or enter is pressed', () => {
+      const handleDelete = spy();
+      const { getByRole } = render(
+        <Chip>
+          <ChipDelete onDelete={handleDelete} />
+        </Chip>,
+      );
+      const chipDelete = getByRole('button');
+      act(() => {
+        chipDelete.focus();
+      });
+      fireEvent.keyDown(chipDelete, { key: 'Backspace' });
+      fireEvent.keyDown(chipDelete, { key: 'Enter' });
+
+      expect(handleDelete.callCount).to.equal(2);
     });
   });
 });

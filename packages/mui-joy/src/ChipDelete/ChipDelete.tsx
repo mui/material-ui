@@ -75,6 +75,9 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     variant: variantProp,
     color: colorProp,
     disabled: disabledProp,
+    onKeyDown,
+    onDelete,
+    onClick,
     ...other
   } = props;
   const chipContext = React.useContext(ChipContext);
@@ -101,6 +104,29 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const handleOnDelete = (
+    event: React.KeyboardEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    if ('key' in event) {
+      event.preventDefault();
+      if (event.key === 'Backspace' || event.key === 'Enter') {
+        if (!disabled && onDelete) {
+          onDelete(event);
+        }
+      }
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+    } else {
+      if (!disabled && onDelete) {
+        onDelete(event);
+      }
+      if (onClick) {
+        onClick(event);
+      }
+    }
+  };
+
   const rootProps = useSlotProps({
     elementType: ChipDeleteRoot,
     getSlotProps: getRootProps,
@@ -109,6 +135,8 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ownerState,
     additionalProps: {
       as: component,
+      onKeyDown: handleOnDelete,
+      onClick: handleOnDelete,
     },
     className: classes.root,
   });
@@ -143,6 +171,18 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    * If `undefined`, the value inherits from the parent chip via a React context.
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * Callback fired when component is not disabled and backspace or enter is pressed or when chip is clicked.
+   */
+  onDelete: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

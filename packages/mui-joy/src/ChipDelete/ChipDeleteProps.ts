@@ -24,6 +24,10 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      */
     disabled?: boolean;
     /**
+     * Callback fired when component is not disabled and backspace or enter is pressed or when chip is clicked.
+     */
+    onDelete?: React.EventHandler<any>;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
