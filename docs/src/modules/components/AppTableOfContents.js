@@ -10,6 +10,8 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
+import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
@@ -130,7 +132,8 @@ const shouldShowJobAd = () => {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const showAddJob = shouldShowJobAd();
+  const showSurveyBanner = FEATURE_TOGGLE.enable_docs_survey_banner;
+  const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -218,9 +221,54 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
+        {showSurveyBanner && <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            underline="none"
+            sx={(theme) => ({
+              mb: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'auto',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Box sx={{ p: 1 }}>
+              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+                {'🚀 MUI Developer Survey 2022 is live!'}
+              </Typography>
+              <Typography
+                component="span"
+                variant="caption"
+                fontWeight="normal"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {"Please take a few minutes to complete the survey. Let us know what we can improve and help us define the roadmap for 2023!"}
+              </Typography>
+            </Box>
+          </Link>}
         {showAddJob && (
           <Link
-            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            href={ROUTES.survey2022Docs}
             underline="none"
             sx={(theme) => ({
               mb: 2,
