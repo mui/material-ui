@@ -254,7 +254,7 @@ export default function AppTableOfContents(props) {
           >
             <Box sx={{ p: 1 }}>
               <Typography component="span" variant="button" fontWeight="500" color="text.primary">
-                {'🚀 MUI Developer Survey 2022 is live!'}
+                {'📫 MUI Developer Survey 2022 is live!'}
               </Typography>
               <Typography
                 component="span"

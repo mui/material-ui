@@ -6,7 +6,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const getSurveyMessage = () => (
   <React.Fragment>
-    Help shape the future of MUI!&nbsp;&nbsp;🚀&nbsp;Please take a few minutes to complete the&nbsp;
+    Help shape the future of MUI!&nbsp;&nbsp;📫&nbsp;Please take a few minutes to complete the&nbsp;
     <Link
       href={ROUTES.survey2022Website}
       target="_blank"
