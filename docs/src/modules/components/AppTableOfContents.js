@@ -132,7 +132,7 @@ const shouldShowJobAd = () => {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const showSurveyBanner = FEATURE_TOGGLE.enable_docs_survey_banner;
+  const showSurveyBanner = FEATURE_TOGGLE.enable_docs_survey_sidebanner;
   const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
