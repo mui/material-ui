@@ -146,7 +146,6 @@ export default function AppTableOfContents(props) {
     }
 
     let active;
-    q;
     for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
