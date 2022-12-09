@@ -257,7 +257,7 @@ const Root = styled('div')(
       '&.MuiCallout-error': {
         color: `var(--muidocs-palette-error-900, ${lightTheme.palette.error[900]})`,
         backgroundColor: `var(--muidocs-palette-error-50, ${lightTheme.palette.error[50]})`,
-        borderColor: `var(--muidocs-palette-error-200, ${lightTheme.palette.error[200]})`,
+        borderColor: `var(--muidocs-palette-error-100, ${lightTheme.palette.error[200]})`,
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
         },
@@ -271,8 +271,8 @@ const Root = styled('div')(
       },
       '&.MuiCallout-info': {
         color: `var(--muidocs-palette-primary-900, ${lightTheme.palette.primary[900]})`,
-        backgroundColor: alpha(lightTheme.palette.primary[50], 0.8),
-        borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+        backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+        borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[200]})`,
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
@@ -294,8 +294,11 @@ const Root = styled('div')(
       },
       '&.MuiCallout-warning': {
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-        backgroundColor: alpha(lightTheme.palette.warning[50], 0.6),
-        borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
+        backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
+        borderColor: `var(--muidocs-palette-warning-800, ${alpha(
+          lightTheme.palette.warning[600],
+          0.3,
+        )})`,
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
@@ -504,29 +507,35 @@ const Root = styled('div')(
       '& .MuiCallout-root': {
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[900], 0.35),
-          borderColor: `var(--muidocs-palette-error-800, ${darkTheme.palette.error[800]})`,
+          backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
+          borderColor: `var(--muidocs-palette-error-800, ${alpha(
+            lightTheme.palette.error[600],
+            0.3,
+          )})`,
           '& strong': {
             color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
           },
           '& a': {
-            color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
+            color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[200]})`,
           },
         },
         '&.MuiCallout-info': {
           color: `var(--muidocs-palette-primary-50, ${darkTheme.palette.primary[50]})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.2),
-          borderColor: `var(--muidocs-palette-primary-800, ${darkTheme.palette.primary[800]})`,
+          backgroundColor: alpha(darkTheme.palette.grey[700], 0.2),
+          borderColor: `var(--muidocs-palette-primary-800, ${darkTheme.palette.grey[800]})`,
           '& strong': {
-            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
+            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[200]})`,
           },
         },
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[900], 0.35),
-          borderColor: `var(--muidocs-palette-success-800, ${darkTheme.palette.success[800]})`,
+          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
+          borderColor: `var(--muidocs-palette-success-800, ${alpha(
+            lightTheme.palette.success[600],
+            0.3,
+          )})`,
           '& strong': {
-            color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
+            color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[200]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
@@ -534,9 +543,13 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[900], 0.35),
+          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
+          borderColor: `var(--muidocs-palette-warning-800, ${alpha(
+            darkTheme.palette.warning[600],
+            0.3,
+          )})`,
           '& strong': {
-            color: `var(--muidocs-palette-warning-800, ${darkTheme.palette.warning[800]})`,
+            color: `var(--muidocs-palette-warning-800, ${darkTheme.palette.warning[200]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
