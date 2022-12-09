@@ -369,8 +369,8 @@ You could end up accidentally using two class name generators in a variety of sc
 - You are using `StylesProvider` for a **subset** of your React tree.
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
-:::info
-💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::success
+If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 :::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.

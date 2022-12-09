@@ -86,7 +86,7 @@ export const decorators = [withThemeProvider];
 // ...other storybook exports
 ```
 
-:::warning
+:::info
 
 This solution has been tested on the following versions:
 

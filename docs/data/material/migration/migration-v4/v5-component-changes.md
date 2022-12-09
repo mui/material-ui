@@ -394,7 +394,7 @@ This was an exception to Material Design, and was removed from the specification
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-:::warning
+:::error
 If you had previously customized `determinate`, then your customizations are most likely no longer valid.
 Please remove them.
 :::
