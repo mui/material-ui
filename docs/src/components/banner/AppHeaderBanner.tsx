@@ -13,7 +13,13 @@ const getSurveyMessage = () => (
       data-ga-event-category="survey-2022"
       data-ga-event-action="click"
       data-ga-event-label="header"
-      sx={{ color: '#fff', textDecoration: 'underline' }}
+      sx={{
+        color: '#fff',
+        '&:hover': {
+          color: '#fffa',
+        },
+        textDecoration: 'underline',
+      }}
     >
       MUI developer survey 2022 &#8594;
     </Link>
@@ -31,7 +37,9 @@ const getDefaultHiringMessage = () => (
         fontWeight: 'semiBold',
         textDecoration: 'underline',
         color: '#fff',
-        '&:hover': { color: 'grey.200' },
+        '&:hover': {
+          color: '#fffa',
+        },
       }}
     >
       Check the careers page →
