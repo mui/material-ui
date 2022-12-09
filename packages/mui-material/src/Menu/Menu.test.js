@@ -112,17 +112,17 @@ describe('<Menu />', () => {
       expect(screen.getByTestId('paper')).to.have.class('bar');
     });
 
-    it('should be able to change the root element style', () => {
+    it('should be able to change the Popover root element style when Menu classes prop is also provided', () => {
       render(
         <Menu
           anchorEl={document.createElement('div')}
           open
-          PaperProps={{ 'data-testid': 'paper' }}
+          data-testid="popover"
+          classes={{ paper: 'bar' }}
           PopoverClasses={{ root: 'foo' }}
         />,
       );
-
-      expect(screen.getByTestId('paper').parentElement).to.have.class('foo');
+      expect(screen.getByTestId('popover')).to.have.class('foo');
     });
   });
 
