@@ -670,6 +670,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         </SlotListbox>
       </ListProvider>
     );
+
     if (!listboxProps.disablePortal) {
       // For portal popup, the children should not inherit color inversion from the upper parent.
       popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;

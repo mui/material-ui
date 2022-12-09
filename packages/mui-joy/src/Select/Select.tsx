@@ -583,6 +583,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         </SelectUnstyledContext.Provider>
       </SlotListbox>
     );
+
     if (!listboxProps.disablePortal) {
       result = (
         // For portal popup, the children should not inherit color inversion from the upper parent.

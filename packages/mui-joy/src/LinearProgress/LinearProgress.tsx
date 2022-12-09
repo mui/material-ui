@@ -240,6 +240,10 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

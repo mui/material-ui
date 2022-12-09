@@ -249,6 +249,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     inProps.color,
     formControl?.error ? 'danger' : formControl?.color ?? colorProp,
   );
+
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
 

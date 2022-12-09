@@ -674,6 +674,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   describeChild: PropTypes.bool,
   /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
+  /**
    * Do not respond to focus-visible events.
    * @default false
    */
@@ -689,6 +694,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableInteractive: PropTypes.bool,
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: PropTypes.bool,
   /**
    * Do not respond to long press touch events.
    * @default false
@@ -721,6 +731,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
+  /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).
    * @default 0
@@ -731,6 +748,38 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 1500
    */
   leaveTouchDelay: PropTypes.number,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
   /**
    * Callback fired when the component requests to be closed.
    *
