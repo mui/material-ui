@@ -145,7 +145,8 @@ export default function AppTableOfContents(props) {
       return;
     }
 
-    let active;q
+    let active;
+    q;
     for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
@@ -221,7 +222,8 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
-        {showSurveyBanner && <Link
+        {showSurveyBanner && (
+          <Link
             href={ROUTES.survey2022Docs}
             underline="none"
             sx={(theme) => ({
@@ -262,10 +264,13 @@ export default function AppTableOfContents(props) {
                 sx={{ mt: 0.5 }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {"Please take a few minutes to complete the survey. Let us know what we can improve and help us define the roadmap for 2023!"}
+                {
+                  'Please take a few minutes to complete the survey. Let us know what we can improve and help us define the roadmap for 2023!'
+                }
               </Typography>
             </Box>
-          </Link>}
+          </Link>
+        )}
         {showAddJob && (
           <Link
             href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"

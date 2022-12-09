@@ -5,11 +5,10 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { alpha } from '@mui/material/styles';
 
 export default function AppFrameBanner() {
-
   //const bannerMessage  = `🚀 We're hiring a Designer, Full-stack Engineer, React Support Engineer, and more!`;
   //const bannerLink = ROUTES.careers
   const bannerMessage = `📫 Take a few minutes to complete our survey and help us shape the roadmap for 2023!`;
-  const bannerLink = ROUTES.survey2022Docs;  
+  const bannerLink = ROUTES.survey2022Docs;
 
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link

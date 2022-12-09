@@ -4,41 +4,42 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-const getSurveyMessage = () => <React.Fragment>
-  Help shape the future of MUI!&nbsp;&nbsp;🚀&nbsp;Please take a few minutes to
-  complete the&nbsp;
-  <Link
-    href={ROUTES.survey2022Website}
-    target="_blank"
-    data-ga-event-category="survey-2022"
-    data-ga-event-action="click"
-    data-ga-event-label="header"
-    sx={{ color: '#fff', textDecoration: 'underline' }}
-  >
-    MUI developer survey 2022 &#8594;
-  </Link>
+const getSurveyMessage = () => (
+  <React.Fragment>
+    Help shape the future of MUI!&nbsp;&nbsp;🚀&nbsp;Please take a few minutes to complete the&nbsp;
+    <Link
+      href={ROUTES.survey2022Website}
+      target="_blank"
+      data-ga-event-category="survey-2022"
+      data-ga-event-action="click"
+      data-ga-event-label="header"
+      sx={{ color: '#fff', textDecoration: 'underline' }}
+    >
+      MUI developer survey 2022 &#8594;
+    </Link>
   </React.Fragment>
+);
 
-const getDefaultHiringMessage = () => <React.Fragment>
-  🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
-      more!&nbsp;&#160;
-      
-      <Link
-        href={ROUTES.careers} // Fix me!
-        target="_blank"
-        sx={{
-          fontWeight: 'semiBold',
-          textDecoration: 'underline',
-          color: '#fff',
-          '&:hover': { color: 'grey.200' },
-        }}
-      >
-        Check the careers page →
-      </Link>
-</React.Fragment>
+const getDefaultHiringMessage = () => (
+  <React.Fragment>
+    🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+    more!&nbsp;&#160;
+    <Link
+      href={ROUTES.careers} // Fix me!
+      target="_blank"
+      sx={{
+        fontWeight: 'semiBold',
+        textDecoration: 'underline',
+        color: '#fff',
+        '&:hover': { color: 'grey.200' },
+      }}
+    >
+      Check the careers page →
+    </Link>
+  </React.Fragment>
+);
 
 export default function AppHeaderBanner() {
-
   const bannerMessage = getSurveyMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (
@@ -62,7 +63,7 @@ export default function AppHeaderBanner() {
         }),
       })}
     >
-    {bannerMessage}
+      {bannerMessage}
     </Typography>
   ) : null;
 }
