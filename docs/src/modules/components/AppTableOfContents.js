@@ -145,7 +145,7 @@ export default function AppTableOfContents(props) {
       return;
     }
 
-    let active;
+    let active;q
     for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
@@ -222,7 +222,7 @@ export default function AppTableOfContents(props) {
       <NoSsr>
         <TableOfContentsBanner />
         {showSurveyBanner && <Link
-            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            href={ROUTES.survey2022Docs}
             underline="none"
             sx={(theme) => ({
               mb: 2,
@@ -268,7 +268,7 @@ export default function AppTableOfContents(props) {
           </Link>}
         {showAddJob && (
           <Link
-            href={ROUTES.survey2022Docs}
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
             underline="none"
             sx={(theme) => ({
               mb: 2,
