@@ -48,7 +48,9 @@ const getDefaultHiringMessage = () => (
 );
 
 export default function AppHeaderBanner() {
-  const bannerMessage = getSurveyMessage();
+  const bannerMessage = FEATURE_TOGGLE.enable_survey_banners
+    ? getSurveyMessage()
+    : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography
