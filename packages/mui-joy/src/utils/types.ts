@@ -6,14 +6,13 @@ type SlotCommonProps = {
 };
 
 export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
-  | (React.ComponentPropsWithRef<TSlotComponent> &
+  | (Omit<React.ComponentPropsWithRef<TSlotComponent>, 'color'> &
       TOverrides &
       SlotCommonProps &
       Record<string, unknown>)
   | ((
       ownerState: TOwnerState,
-    ) => Record<string, unknown> &
-      React.ComponentPropsWithRef<TSlotComponent> &
+    ) => Omit<React.ComponentPropsWithRef<TSlotComponent>, 'color'> &
       TOverrides &
       SlotCommonProps &
       Record<string, unknown>);

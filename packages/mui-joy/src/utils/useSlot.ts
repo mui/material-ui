@@ -38,9 +38,7 @@ export default function useSlot<
     component?: React.ElementType;
     slots?: { [k in T]?: React.ElementType };
     slotProps?: {
-      [k in T]?:
-        | WithCommonProps<ExternalSlotProps>
-        | ((ownerState: OwnerState) => WithCommonProps<ExternalSlotProps>);
+      [k in T]?: ExternalSlotProps | ((ownerState: OwnerState) => ExternalSlotProps);
     };
   },
   AdditionalProps,
@@ -84,7 +82,8 @@ export default function useSlot<
      * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
      */
     getSlotOwnerState?: (
-      mergedProps: SlotProps &
+      mergedProps: AdditionalProps &
+        SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
           Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
@@ -173,9 +172,11 @@ export default function useSlot<
 
   return [elementType, props] as [
     ElementType,
-    { className: string; ownerState: OwnerState & SlotOwnerState } & SlotProps &
+    { className: string; ownerState: OwnerState & SlotOwnerState } & AdditionalProps &
+      SlotProps &
       ExternalSlotProps &
-      AdditionalProps &
-      (T extends 'root' ? ExternalForwardedProps : {}),
+      ExtractComponentProps<
+        Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
+      >,
   ];
 }
