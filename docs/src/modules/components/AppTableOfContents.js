@@ -10,7 +10,6 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
-import ROUTES from 'docs/src/route';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
