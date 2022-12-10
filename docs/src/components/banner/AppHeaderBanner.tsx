@@ -8,7 +8,7 @@ const getSurveyMessage = () => (
   <React.Fragment>
     Help shape the future of MUI!&nbsp;&nbsp;📫&nbsp;Please take a few minutes to complete the&nbsp;
     <Link
-      href={ROUTES.survey2022Website}
+      href={'https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website'}
       target="_blank"
       data-ga-event-category="survey-2022"
       data-ga-event-action="click"
@@ -48,7 +48,8 @@ const getDefaultHiringMessage = () => (
 );
 
 export default function AppHeaderBanner() {
-  const bannerMessage = FEATURE_TOGGLE.enable_survey_banners
+  const showSurveyMessage = true;
+  const bannerMessage = showSurveyMessage
     ? getSurveyMessage()
     : getDefaultHiringMessage();
 
