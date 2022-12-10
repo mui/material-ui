@@ -71,11 +71,7 @@ describe('<ChipDelete />', () => {
   describe('Chip onDelete', () => {
     it('should call onDelete function when backspace or enter is pressed', () => {
       const handleDelete = spy();
-      const { getByRole } = render(
-        <Chip>
-          <ChipDelete onDelete={handleDelete} onClick={() => {}} />
-        </Chip>,
-      );
+      const { getByRole } = render(<ChipDelete onDelete={handleDelete} onClick={() => {}} />);
       const chipDelete = getByRole('button');
       act(() => {
         chipDelete.focus();
