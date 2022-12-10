@@ -10,13 +10,14 @@ import {
   Mark,
 } from './useSlider.types';
 
-export type SliderUnstyledOwnerState = SliderUnstyledProps & {
+type AdditionalOwnerState = {
   disabled: boolean;
   focusedThumbIndex: number;
   isRtl: boolean;
-  mark: boolean | Mark[];
   max: number;
   min: number;
+  dragging: boolean;
+  marked: boolean;
   orientation: 'horizontal' | 'vertical';
   scale: (value: number) => number;
   step: number | null;
@@ -24,6 +25,9 @@ export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   valueLabelDisplay: 'on' | 'auto' | 'off';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 };
+
+export type SliderUnstyledOwnerState = Omit<SliderUnstyledProps, keyof AdditionalOwnerState> &
+  AdditionalOwnerState;
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement;

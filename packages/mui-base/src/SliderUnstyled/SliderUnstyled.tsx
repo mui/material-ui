@@ -8,10 +8,11 @@ import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
+import { SliderUnstyledOwnerState, SliderUnstyledProps } from './SliderUnstyled.types';
 
-const Identity = (x) => x;
+const Identity = (x: any) => x;
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
   const slots = {
@@ -40,9 +41,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
-const Forward = ({ children }) => children;
+const Forward = ({ children }: { children: React.ReactElement }) => children;
 
-const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
+const SliderUnstyled = React.forwardRef(function SliderUnstyled(props: SliderUnstyledProps, ref) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
@@ -76,7 +77,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const ownerState = {
+  const ownerState: SliderUnstyledOwnerState = {
     ...props,
     marks: marksProp,
     classes: classesProp,
@@ -90,6 +91,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     track,
     valueLabelDisplay,
     valueLabelFormat,
+    marked: false,
+    dragging: false,
+    focusedThumbIndex: -1,
   };
 
   const {
@@ -356,7 +360,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -398,7 +402,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
       PropTypes.shape({
         label: PropTypes.node,
         value: PropTypes.number.isRequired,
-      }),
+      }).isRequired,
     ),
     PropTypes.bool,
   ]),
@@ -510,7 +514,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
    * Controls when the value label is displayed:
    *
@@ -530,6 +534,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default (x) => x
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-};
+} as any;
 
 export default SliderUnstyled;
