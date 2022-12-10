@@ -60,6 +60,7 @@ export default function InteractiveStack() {
                 onChange={(event) => {
                   setDirection(event.target.value);
                 }}
+                sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
               >
                 <Radio label="row" value="row" />
                 <Radio label="row-reverse" value="row-reverse" />

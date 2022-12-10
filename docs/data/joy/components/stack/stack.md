@@ -70,10 +70,6 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## Accessibility
-
-(if there's anything to say on this topic—otherwise, this section can be removed)
-
 ## Anatomy
 
 The Stack component is composed of a single root `<div>` element:
