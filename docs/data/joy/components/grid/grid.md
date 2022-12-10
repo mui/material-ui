@@ -12,41 +12,27 @@ githubLabel: 'component: Grid'
 
 The grid, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 :::warning
 ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
-## Component
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Grid from '@mui/joy/Grid';
-import Sheet from '@mui/joy/Sheet';
-
-export default function MyApp() {
-  return (
-    <Grid container>
-      <Grid xs={6}>
-        <Sheet>Item 1</Sheet>
-      </Grid>
-      <Grid xs={6}>
-        <Sheet>Item 2</Sheet>
-      </Grid>
-    </Grid>
-  );
-}
 ```
 
-### Basic grid
+The Grid component acts as a generic container, wrapping around the elements to be arranged.
 
 Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
 
 A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
 {{"demo": "BasicGrid.js", "bg": true}}
+
+## Customization
 
 ### Grid with multiple breakpoints
 
@@ -98,7 +84,7 @@ For instance, this is not working. The grid item misses the value for `md`:
 
 :::
 
-## Interactive
+## Interactive demo
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
@@ -130,6 +116,16 @@ You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
+## System props
+
+As a CSS utility component, Grid supports all [MUI System properties](/system/properties/).
+You can use them as props directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Grid mt={2}>
+```
+
 ## Limitations
 
 ### Negative margin
@@ -150,11 +146,12 @@ But as seen below, you can easily use [the system](/system/grid/) and CSS Grid t
 
 {{"demo": "CSSGrid.js", "bg": true}}
 
-## System props
+## Anatomy
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a padding:
+The Grid component is composed of a single root `<div>` element:
 
-```jsx
-<Grid p={2}>
+```html
+<div class="JoyGrid-root">
+  <!-- Grid contents -->
+</div>
 ```
