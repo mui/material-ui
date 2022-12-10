@@ -70,6 +70,22 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
+## Limitations
+
+### Margin on the children
+
+Customizing the margin on the children is not supported.
+
+For instance, the top-margin on the `Button` component below will be ignored.
+
+```jsx
+<Stack>
+  <Button sx={{ marginTop: '30px' }}>...</Button>
+</Stack>
+```
+
+A [RFC](https://github.com/mui/material-ui/issues/33754) to address this issue is already open.
+
 ## Anatomy
 
 The Stack component is composed of a single root `<div>` element:
