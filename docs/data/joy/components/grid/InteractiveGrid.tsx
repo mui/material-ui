@@ -82,6 +82,7 @@ export default function InteractiveGrid() {
                       (event.target as HTMLInputElement).value as GridDirection,
                     );
                   }}
+                  sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
                 >
                   <Radio label="row" value="row" />
                   <Radio label="row-reverse" value="row-reverse" />
