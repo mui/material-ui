@@ -35,8 +35,6 @@ const ROUTES = {
   dataGridDocs: '/x/react-data-grid/getting-started/',
   dataGridFeatures: '/x/react-data-grid/#features',
   dataGridFeaturesComparison: '/x/react-data-grid/getting-started/#feature-comparison',
-  survey2022Website: 'https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website',
-  survey2022Docs: 'https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs',
 };
 
 export default ROUTES;

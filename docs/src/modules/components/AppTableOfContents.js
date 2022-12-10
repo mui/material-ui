@@ -11,7 +11,6 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import ROUTES from 'docs/src/route';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
@@ -132,7 +131,7 @@ const shouldShowJobAd = () => {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const showSurveyBanner = FEATURE_TOGGLE.enable_docs_survey_sidebanner;
+  const showSurveyBanner = true;
   const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
@@ -223,7 +222,7 @@ export default function AppTableOfContents(props) {
         <TableOfContentsBanner />
         {showSurveyBanner && (
           <Link
-            href={ROUTES.survey2022Docs}
+            href={'https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs'}
             underline="none"
             sx={(theme) => ({
               mb: 2,
