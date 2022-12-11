@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -221,13 +220,14 @@ export default function AppTableOfContents(props) {
         <TableOfContentsBanner />
         {showSurveyBanner && (
           <Link
-            href={'https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs'}
-            underline="none"
+            href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"
+            target="_blank"
             sx={(theme) => ({
               mb: 2,
+              p: 1,
               display: 'flex',
               flexDirection: 'column',
-              overflow: 'auto',
+              alignItems: 'flex-start',
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.primary[900], 0.2)
@@ -249,34 +249,33 @@ export default function AppTableOfContents(props) {
               },
             })}
           >
-            <Box sx={{ p: 1 }}>
-              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
-                {'📫 MUI Developer Survey 2022 is live!'}
-              </Typography>
-              <Typography
-                component="span"
-                variant="caption"
-                fontWeight="normal"
-                color="text.secondary"
-                sx={{ mt: 0.5 }}
-              >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {
-                  'Please take a few minutes to complete the survey. Let us know what we can improve and help us define the roadmap for 2023!'
-                }
-              </Typography>
-            </Box>
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'📫 MUI Developer Survey 2022 is live!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {
+                'Please take a few minutes to complete the survey. Let us know what we can improve and help us define the roadmap for 2023!'
+              }
+            </Typography>
           </Link>
         )}
         {showAddJob && (
           <Link
             href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
-            underline="none"
+            target="_blank"
             sx={(theme) => ({
               mb: 2,
+              p: 1,
               display: 'flex',
               flexDirection: 'column',
-              overflow: 'auto',
+              alignItems: 'flex-start',
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.primary[900], 0.2)
@@ -298,21 +297,19 @@ export default function AppTableOfContents(props) {
               },
             })}
           >
-            <Box sx={{ p: 1 }}>
-              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
-                {'🚀 Join the MUI team!'}
-              </Typography>
-              <Typography
-                component="span"
-                variant="caption"
-                fontWeight="normal"
-                color="text.secondary"
-                sx={{ mt: 0.5 }}
-              >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {"We're looking for React Engineers and other amazing roles－come find out more!"}
-              </Typography>
-            </Box>
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'🚀 Join the MUI team!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {"We're looking for React Engineers and other amazing roles－come find out more!"}
+            </Typography>
           </Link>
         )}
       </NoSsr>
