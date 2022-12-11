@@ -10,7 +10,7 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
-    lineHeight: 1.625, // Increased compared to the 1.5 default to make the docs easier to read.
+    lineHeight: 1.5625, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
