@@ -25,6 +25,10 @@ export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyled
   const { children, className, value } = props;
   const classes = useValueLabelClasses(props);
 
+  if (!children) {
+    return null;
+  }
+
   return React.cloneElement(
     children,
     {

@@ -472,11 +472,12 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element.isRequired,
+        children: PropTypes.element,
         className: PropTypes.string,
         open: PropTypes.bool,
-        theme: PropTypes.any,
-        value: PropTypes.node,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),
   }),
