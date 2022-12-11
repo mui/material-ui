@@ -17,6 +17,7 @@ const Root = styled('div')(
     },
     wordBreak: 'break-word',
     '& pre': {
+      lineHeight: 1.5,
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
       backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
@@ -423,7 +424,7 @@ const Root = styled('div')(
       },
     },
     '& li': {
-      marginBottom: 6,
+      marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
       },
