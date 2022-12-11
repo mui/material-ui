@@ -16,7 +16,7 @@ import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
 
-function Identity<T>(x: T): T {
+function Identity(x: any) {
   return x;
 }
 
@@ -50,7 +50,16 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
 };
 
 const Forward = ({ children }: { children: React.ReactElement }) => children;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Slider](https://mui.com/base/react-slider/)
+ *
+ * API:
+ *
+ * - [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
+ */
 const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
 >(props: SliderUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
@@ -452,8 +461,10 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default function Identity<T>(x: T): T {
-   * return x;
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x: any) {
+   *   return x;
    * }
    */
   scale: PropTypes.func,
@@ -539,8 +550,10 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default function Identity<T>(x: T): T {
-   * return x;
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x: any) {
+   *   return x;
    * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),

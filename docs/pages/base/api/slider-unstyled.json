@@ -5,9 +5,6 @@
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "defaultValue": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
-    },
     "disabled": { "type": { "name": "bool" } },
     "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },
@@ -29,7 +26,10 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x: any) {\n  return x;\n}"
+    },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -62,7 +62,7 @@
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "(x) => x"
+      "default": "function Identity(x: any) {\n  return x;\n}"
     }
   },
   "name": "SliderUnstyled",

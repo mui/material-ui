@@ -16,8 +16,9 @@ import { SliderProps, SliderTypeMap, SliderOwnerState } from './SliderProps';
 const valueToPercent = (value: number, min: number, max: number) =>
   ((value - min) * 100) / (max - min);
 
-const Identity = (x: any) => x;
-
+function Identity(x: any) {
+  return x;
+}
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, color, size } = ownerState;
 
@@ -770,8 +771,10 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default function Identity<T>(x: T): T {
-   * return x;
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x: any) {
+   *   return x;
    * }
    */
   scale: PropTypes.func,
@@ -835,8 +838,10 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default function Identity<T>(x: T): T {
-   * return x;
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x: any) {
+   *   return x;
    * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
