@@ -16,8 +16,6 @@ import {
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
 
-const Identity = (x: any) => x;
-
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
@@ -70,13 +68,13 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
-    scale = Identity,
+    scale = (x: any) => x,
     step = 1,
     tabIndex,
     track = 'normal',
     value: valueProp,
     valueLabelDisplay = 'off',
-    valueLabelFormat = Identity,
+    valueLabelFormat = (x: any) => x,
     isRtl = false,
     slotProps = {},
     slots = {},
