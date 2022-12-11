@@ -41,25 +41,6 @@ function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> |
   return JSON.stringify(selectedOption.value);
 }
 
-const defaultModifiers: PopperUnstyledProps['modifiers'] = [
-  {
-    name: 'offset',
-    options: {
-      offset: [0, 4],
-    },
-  },
-  {
-    // popper will have the same width as root element when open
-    name: 'equalWidth',
-    enabled: true,
-    phase: 'beforeWrite',
-    requires: ['computeStyles'],
-    fn: ({ state }) => {
-      state.styles.popper.width = `${state.rects.reference.width}px`;
-    },
-  },
-];
-
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
 
@@ -549,8 +530,26 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [color, getOptionProps, getOptionState],
   );
 
-  const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
+  const modifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      {
+        // popper will have the same width as root element when open
+        name: 'equalWidth',
+        enabled: true,
+        phase: 'beforeWrite',
+        requires: ['computeStyles'],
+        fn: ({ state }) => {
+          state.styles.popper.width = `${state.rects.reference.width}px`;
+        },
+      },
+      ...(listboxProps.modifiers || []),
+    ],
     [listboxProps.modifiers],
   );
 

@@ -12,15 +12,6 @@ import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
-const defaultModifiers = [
-  {
-    name: 'offset',
-    options: {
-      offset: [0, 4],
-    },
-  },
-];
-
 const useUtilityClasses = (ownerState: MenuProps) => {
   const { open, variant, color, size } = ownerState;
   const slots = {
@@ -149,7 +140,15 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   );
 
   const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(modifiersProp || [])],
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
     [modifiersProp],
   );
 

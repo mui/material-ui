@@ -70,7 +70,7 @@ const TooltipRoot = styled('div', {
     zIndex: 1500,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.shadow.sm,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
     lineHeight: theme.vars.lineHeight.sm,
@@ -228,6 +228,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onClose,
     onOpen,
     open: openProp,
+    disablePortal,
+    direction,
+    keepMounted,
+    modifiers: modifiersProp,
     placement = 'bottom',
     title,
     color = 'neutral',
@@ -536,31 +540,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
-  const popperOptions = React.useMemo(() => {
-    const tooltipModifiers = [
-      {
-        name: 'arrow',
-        enabled: Boolean(arrowRef),
-        options: {
-          element: arrowRef,
-          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
-          // make the arrow looks nice with the Tooltip's border radius
-          padding: 6,
-        },
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 10],
-        },
-      },
-    ];
-
-    return {
-      modifiers: tooltipModifiers,
-    };
-  }, [arrowRef]);
-
   const ownerState = {
     ...props,
     arrow,
@@ -579,7 +558,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       id,
       popperRef,
       placement,
-      popperOptions,
       anchorEl: followCursor
         ? {
             getBoundingClientRect: () =>
@@ -594,6 +572,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           }
         : childNode,
       open: childNode ? open : false,
+      disablePortal,
+      keepMounted,
+      direction,
       ...interactiveWrapperListeners,
     },
     ref: null,
@@ -616,10 +597,33 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+          // make the arrow looks nice with the Tooltip's border radius
+          padding: 6,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
+    [arrowRef, modifiersProp],
+  );
+
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <SlotRoot {...rootProps}>
+      <SlotRoot {...rootProps} modifiers={modifiers}>
         {title}
         {arrow ? <SlotArrow {...arrowProps} /> : null}
       </SlotRoot>
