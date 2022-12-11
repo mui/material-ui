@@ -1,10 +1,10 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { css, keyframes } from '@mui/system';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -146,7 +146,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     children,
     className,
-    component = 'div',
+    component,
     color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',

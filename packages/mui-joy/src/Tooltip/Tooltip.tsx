@@ -575,7 +575,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           }
         : childNode,
       open: childNode ? open : false,
-      modifiers: modifiersProp,
       disablePortal,
       keepMounted,
       direction,

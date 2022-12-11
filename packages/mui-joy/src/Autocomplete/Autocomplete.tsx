@@ -60,15 +60,6 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   </ListItem>
 );
 
-const defaultModifiers = [
-  {
-    name: 'offset',
-    options: {
-      offset: [0, 4],
-    },
-  },
-];
-
 const defaultVariantMapping = {
   plain: 'plain',
   outlined: 'plain',
@@ -554,7 +545,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     additionalProps: {
       anchorEl,
       open: popupOpen,
-      disablePortal: false,
       style: anchorEl
         ? {
             width: anchorEl.clientWidth,
@@ -639,7 +629,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   };
 
   const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(listboxProps.modifiers || []),
+    ],
     [listboxProps.modifiers],
   );
 

@@ -13,15 +13,6 @@ import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
-const defaultModifiers = [
-  {
-    name: 'offset',
-    options: {
-      offset: [0, 4],
-    },
-  },
-];
-
 const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;
   const slots = {
@@ -49,7 +40,7 @@ const MenuRoot = styled(StyledList, {
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.popup, // for sticky List
+      theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     boxShadow: theme.shadow.md,
@@ -141,7 +132,15 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   });
 
   const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(modifiersProp || [])],
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
     [modifiersProp],
   );
 
