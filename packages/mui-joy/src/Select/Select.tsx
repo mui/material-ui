@@ -213,14 +213,14 @@ const SelectListbox = styled(StyledList, {
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface, // for sticky List
+      theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     outline: 'none',
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+    ...(!variantStyle?.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.popup,
     }),
   };
 });
@@ -246,15 +246,18 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
-  display: 'inherit',
-  alignItems: 'center',
-  marginInlineStart: 'var(--Select-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-}));
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
+    display: 'inherit',
+    alignItems: 'center',
+    marginInlineStart: 'var(--Select-gap)',
+    color: variantStyle?.color,
+  };
+});
 
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
@@ -292,7 +295,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     action,
     autoFocus,
     children,
-    slotProps = {},
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledExternalProp,
@@ -437,13 +439,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
-  const externalForwardedProps = { ...other, slotProps };
-
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (
@@ -471,15 +471,66 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.button,
     elementType: SelectButton,
-    externalForwardedProps,
+    externalForwardedProps: other,
     getSlotProps: getButtonProps,
     ownerState,
   });
 
-  const resolveListboxProps =
-    typeof slotProps.listbox === 'function' ? slotProps.listbox(ownerState) : slotProps.listbox;
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
+  const [SlotListbox, listboxProps] = useSlot('listbox', {
+    additionalProps: {
+      ref: listboxRef,
+      anchorEl,
+      disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom' as const,
+    },
+    className: classes.listbox,
+    elementType: PopperUnstyled,
+    externalForwardedProps: other,
+    getSlotProps: getListboxProps,
+    ownerState: {
+      ...ownerState,
+      nesting: false,
+      row: false,
+      wrap: false,
+    } as SelectOwnerState<any> & ListOwnerState,
+    internalForwardedProps: {
+      component: SelectListbox,
+    },
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: SelectStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: SelectEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotIndicator, indicatorProps] = useSlot('indicator', {
+    className: classes.indicator,
+    elementType: SelectIndicator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const context = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+      color,
+    }),
+    [color, getOptionProps, getOptionState],
+  );
+
+  const modifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
     () => [
       {
         name: 'offset',
@@ -497,64 +548,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           state.styles.popper.width = `${state.rects.reference.width}px`;
         },
       },
-      ...(resolveListboxProps?.modifiers || []),
+      ...(listboxProps.modifiers || []),
     ],
-    [resolveListboxProps?.modifiers],
-  );
-
-  const [SlotListbox, listboxProps] = useSlot('listbox', {
-    additionalProps: {
-      ref: listboxRef,
-      anchorEl,
-      disablePortal: true,
-      open: listboxOpen,
-      placement: 'bottom' as const,
-      modifiers: cachedModifiers,
-    },
-    className: classes.listbox,
-    elementType: PopperUnstyled,
-    externalForwardedProps,
-    getSlotProps: getListboxProps,
-    ownerState: {
-      ...ownerState,
-      nesting: false,
-      row: false,
-      wrap: false,
-    } as SelectOwnerState<any> & ListOwnerState,
-    internalForwardedProps: {
-      component: SelectListbox,
-    },
-  });
-
-  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
-    className: classes.startDecorator,
-    elementType: SelectStartDecorator,
-    externalForwardedProps,
-    ownerState,
-  });
-
-  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
-    className: classes.endDecorator,
-    elementType: SelectEndDecorator,
-    externalForwardedProps,
-    ownerState,
-  });
-
-  const [SlotIndicator, indicatorProps] = useSlot('indicator', {
-    className: classes.indicator,
-    elementType: SelectIndicator,
-    externalForwardedProps,
-    ownerState,
-  });
-
-  const context = React.useMemo(
-    () => ({
-      getOptionProps,
-      getOptionState,
-      listboxRef,
-      color,
-    }),
-    [color, getOptionProps, getOptionState],
+    [listboxProps.modifiers],
   );
 
   return (
@@ -573,7 +569,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       </SlotRoot>
       {anchorEl && (
         // @ts-ignore internal logic: `listboxComponent` should not replace `SelectListbox`.
-        <SlotListbox {...listboxProps}>
+        <SlotListbox {...listboxProps} modifiers={modifiers}>
           <SelectUnstyledContext.Provider value={context}>
             {/* for building grouped options */}
             <ListProvider nested>{children}</ListProvider>

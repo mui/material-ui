@@ -58,7 +58,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     fontSize: theme.vars.fontSize.md,
   }),
   boxSizing: 'border-box',
-  boxShadow: theme.vars.shadow.md,
+  boxShadow: theme.shadow.md,
   borderRadius: 'var(--ModalDialog-radius)',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: theme.vars.lineHeight.md,
