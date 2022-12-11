@@ -9,7 +9,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import { SliderUnstyledRootSlotProps } from './SliderUnstyled.types';
+import { SliderUnstyledRootSlotProps } from '@mui/base';
 
 type Touches = Array<{ identifier: number; clientX: number; clientY: number }>;
 
