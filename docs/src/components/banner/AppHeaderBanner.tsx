@@ -8,20 +8,17 @@ const getSurveyMessage = () => (
   <React.Fragment>
     Help shape the future of MUI!&nbsp;&nbsp;📫&nbsp;Please take a few minutes to complete the&nbsp;
     <Link
-      href={'https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website'}
+      href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
       target="_blank"
-      data-ga-event-category="survey-2022"
-      data-ga-event-action="click"
-      data-ga-event-label="header"
+      color="inherit"
+      underline="always"
       sx={{
-        color: '#fff',
         '&:hover': {
-          color: '#fffa',
+          opacity: 0.9,
         },
-        textDecoration: 'underline',
       }}
     >
-      MUI developer survey 2022 &#8594;
+      MUI developer survey 2022 →
     </Link>
   </React.Fragment>
 );
@@ -33,12 +30,11 @@ const getDefaultHiringMessage = () => (
     <Link
       href={ROUTES.careers} // Fix me!
       target="_blank"
+      color="inherit"
+      underline="always"
       sx={{
-        fontWeight: 'semiBold',
-        textDecoration: 'underline',
-        color: '#fff',
         '&:hover': {
-          color: '#fffa',
+          opacity: 0.9,
         },
       }}
     >
