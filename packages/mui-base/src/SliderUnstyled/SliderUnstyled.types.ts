@@ -11,28 +11,6 @@ import {
   Mark,
 } from './useSlider.types';
 
-// type AdditionalOwnerState = {
-//   disabled: boolean;
-//   focusedThumbIndex: number;
-//   isRtl: boolean;
-//   max: number;
-//   min: number;
-//   dragging: boolean;
-//   marked: boolean;
-//   orientation: 'horizontal' | 'vertical';
-//   scale: (value: number) => number;
-//   step: number | null;
-//   track: 'normal' | false | 'inverted';
-//   valueLabelDisplay: 'on' | 'auto' | 'off';
-//   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
-// };
-
-// export type SliderUnstyledOwnerState<BaseComponentType> = Omit<
-//   SliderUnstyledProps<BaseComponentType>,
-//   keyof AdditionalOwnerState
-// > &
-//   AdditionalOwnerState;
-
 export type PartialSliderUnstyledOwnerState = Omit<
   SliderUnstyledOwnerState,
   'focusedThumbIndex' | 'marked' | 'dragging'
