@@ -668,12 +668,11 @@ Slider.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element,
+        children: PropTypes.element.isRequired,
         className: PropTypes.string,
         open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+        theme: PropTypes.any,
+        value: PropTypes.node,
       }),
     ]),
   }),
@@ -792,12 +791,11 @@ Slider.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element,
+        children: PropTypes.element.isRequired,
         className: PropTypes.string,
         open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+        theme: PropTypes.any,
+        value: PropTypes.node,
       }),
     ]),
   }),

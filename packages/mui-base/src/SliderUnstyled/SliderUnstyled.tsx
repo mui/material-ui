@@ -314,7 +314,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
 SliderUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The label of the slider.
@@ -366,10 +366,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -410,7 +406,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
       PropTypes.shape({
         label: PropTypes.node,
         value: PropTypes.number.isRequired,
-      }).isRequired,
+      }),
     ),
     PropTypes.bool,
   ]),
@@ -472,12 +468,11 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element,
+        children: PropTypes.element.isRequired,
         className: PropTypes.string,
         open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+        theme: PropTypes.any,
+        value: PropTypes.node,
       }),
     ]),
   }),
@@ -522,7 +517,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
    * Controls when the value label is displayed:
    *
