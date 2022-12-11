@@ -17,7 +17,7 @@ import {
 } from './SliderUnstyled.types';
 
 function Identity<T>(x: T): T {
-  return x
+  return x;
 }
 
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
