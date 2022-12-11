@@ -153,10 +153,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoStandardBg', safeLighten(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', safeLighten(palette.success.light, 0.9));
       setColor(palette.Alert, 'warningStandardBg', safeLighten(palette.warning.light, 0.9));
-      setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-light'));
-      setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-light'));
-      setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-light'));
-      setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-light'));
+      setColor(palette.Alert, 'errorIconColor', getCssVar('palette-error-main'));
+      setColor(palette.Alert, 'infoIconColor', getCssVar('palette-info-main'));
+      setColor(palette.Alert, 'successIconColor', getCssVar('palette-success-main'));
+      setColor(palette.Alert, 'warningIconColor', getCssVar('palette-warning-main'));
       setColor(palette.AppBar, 'defaultBg', getCssVar('palette-grey-100'));
       setColor(palette.Avatar, 'defaultBg', getCssVar('palette-grey-400'));
       setColor(palette.Chip, 'defaultBorder', getCssVar('palette-grey-400'));
