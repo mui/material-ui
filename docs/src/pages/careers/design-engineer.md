@@ -1,6 +1,6 @@
-# Engineering Manager - Toolpad
+# Design Engineer
 
-<p class="description">You will grow the small engineering team currently working on MUI Toolpad.</p>
+<p class="description">You will focus on design to implement great product experiences.</p>
 
 ## Details of the Role
 
@@ -31,21 +31,16 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-Our mission is to empower as many people as possible to build great UIs, faster.
-The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
-We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
-
-A few months back we started to work on [MUI Toolpad](https://github.com/mui/mui-toolpad), an ambitious project to deliver on this objective.
-We have found the beginning of a market fit in this low-code segment.
-We need help to structure & grow the engineering team.
+We are aiming to make high-end design accessible to the many, empowering developers that lack access to a designer as well as saving time for designers with a source they can trust.
+[According to our last survey](https://mui.com/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library), the quality of the design execution (UX & UI) is the most important criteria used by developers & designers to pick their next UI library.
 
 ### Why this is interesting
 
 Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
-Toolpad targets around half of this audience.
-While the team is still very small (5), we believe that the headcount on this product has needs to grow +14% MoM until the end of 2023 (>70 people).
-Growing the Toolpad engineering team will be full of challenges.
+But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
+We envision a future where MUI becomes the default toolkit for web developers to create UIs.
+It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
 
 ## About the role
 
@@ -53,30 +48,23 @@ Growing the Toolpad engineering team will be full of challenges.
 
 Depending on the day, you'll:
 
-- Hire and grow a diverse engineering team in a fast-scaling organization.
-- Cultivate excellence in the craft of the software your team builds.
-- Act as a servant leader for the engineers that report to you. You will support the career growth of individuals on your team.
-- Develop a great work environment.
-- Work directly with users and the engineering team to improve the product.
-- Improve our processes, e.g. the lifecycle of feature development from design through testing and release.
-
-For the right candidate:
-
-- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on toolpad from one to multiple
+- Work closely with our designers to prototype and implement new components, features, and screens.
+- Design and build entire experiences for sites like mui.com or products like MUI Toolpad.
+- Concept and prototype UX components and motion studies for components like the date picker.
+- Extend our different design systems (Material UI, Joy UI).
+- Create appealing new demos in the docs.
 
 ## About you
 
 ### Skills you should have
 
-- You've managed or supported a diverse, distributed engineers on small or large teams.
-- You have an interest in building a support structure for engineers to help them succeed.
-- You have phenomenal communication skills for working across the organization, capable of building strong relationships with peers and leadership.
-- You have had strong expertise and mastery of React or front-end development in the past.
-- You have deep empathy for users. You have experience with customer support or OSS community support.
+- 3+ years of relevant web front-end development experience at a tech-forward, product-driven company.
+- Advanced knowledge of modern React, HTML, and CSS.
+- Experience designing and building public facing-sites that work elegantly.
 
 ### What would be nice if you had, but isn't required
 
-- **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams. Previous experience with highly active repository workflows is a definite plus for this role.
+- A good understanding of the formal elements of design, not just limited to the web and including typography, layout, balance, and proportion.
 
 ## Benefits & Compensation
 
@@ -86,4 +74,4 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/c45a0b2d-aa37-4dec-8bcd-e70040f3af49/application?utm_source=ZNRrPGBkqO)
