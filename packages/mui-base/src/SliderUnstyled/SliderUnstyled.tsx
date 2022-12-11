@@ -8,7 +8,12 @@ import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
-import { SliderUnstyledOwnerState, SliderUnstyledProps } from './SliderUnstyled.types';
+import {
+  PartialSliderUnstyledOwnerState,
+  SliderUnstyledOwnerState,
+  SliderUnstyledProps,
+  // SliderUnstyledTypeMap,
+} from './SliderUnstyled.types';
 
 const Identity = (x: any) => x;
 
@@ -43,7 +48,10 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
 
 const Forward = ({ children }: { children: React.ReactElement }) => children;
 
-const SliderUnstyled = React.forwardRef(function SliderUnstyled(props: SliderUnstyledProps, ref) {
+const SliderUnstyled = React.forwardRef(function SliderUnstyled(
+  props: SliderUnstyledProps,
+  ref: React.Ref<any>,
+) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
@@ -77,7 +85,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props: SliderUns
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const ownerState: SliderUnstyledOwnerState = {
+  const partialOwnerState: PartialSliderUnstyledOwnerState = {
     ...props,
     marks: marksProp,
     classes: classesProp,
@@ -90,10 +98,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props: SliderUns
     step,
     track,
     valueLabelDisplay,
-    valueLabelFormat,
-    marked: false,
-    dragging: false,
-    focusedThumbIndex: -1,
+    valueLabelFormat
   };
 
   const {
@@ -111,11 +116,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props: SliderUns
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+  } = useSlider({ ...partialOwnerState, ref });
 
-  ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
-  ownerState.dragging = dragging;
-  ownerState.focusedThumbIndex = focusedThumbIndex;
+  const ownerState: SliderUnstyledOwnerState = {
+    ...partialOwnerState,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
+    dragging,
+    focusedThumbIndex,
+  };
 
   const classes = useUtilityClasses(ownerState);
 

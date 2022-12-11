@@ -29,6 +29,11 @@ type AdditionalOwnerState = {
 export type SliderUnstyledOwnerState = Omit<SliderUnstyledProps, keyof AdditionalOwnerState> &
   AdditionalOwnerState;
 
+export type PartialSliderUnstyledOwnerState = Omit<
+  SliderUnstyledOwnerState,
+  'focusedThumbIndex' | 'marked' | 'dragging'
+>;
+
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement;
   index: number;
