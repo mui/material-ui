@@ -133,10 +133,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@argos-ci/core@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.6.1.tgz#738cdd44ccbf58d2cd9b04aec999be5d842eea80"
-  integrity sha512-4l3dn5SQZgh5Vq/fm1//SrdSB3OudnK74TetVZShSEvBLQ1aR6lMnxoizQt82/HO4C15PTLyIVz5TYVVEJ85sw==
+"@argos-ci/core@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.6.2.tgz#ceba5432355568f01dac2f300d57ae8cf18704e3"
+  integrity sha512-DZIJKAPi+V6togghWGU1Ny4a8viZ0fgGkm3jN4PEcdfe4EA/GwX1afy8Do5zsOeN/n4aiz02yKYQVu0wLVItQg==
   dependencies:
     axios "1.1.2"
     convict "^6.2.3"
