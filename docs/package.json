@@ -87,7 +87,7 @@
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.21",
     "lz-string": "^1.4.4",
-    "markdown-to-jsx": "^7.1.7",
+    "markdown-to-jsx": "^7.1.8",
     "material-ui-popup-state": "^2.0.1",
     "next": "13.0.6",
     "notistack": "2.0.8",
