@@ -497,12 +497,10 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     size = 'medium',
     slotProps,
     slots,
-    scale = (x) => x,
-    valueLabelFormat = (x) => x,
     ...other
   } = props;
 
-  const ownerState = { ...props, color, size, valueLabelFormat, scale };
+  const ownerState = { ...props, color, size };
 
   const classes = extendUtilityClasses(ownerState);
 
@@ -767,7 +765,9 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @default function Identity<T>(x: T): T {
+   * return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -867,7 +867,9 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @default function Identity<T>(x: T): T {
+   * return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

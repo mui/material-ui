@@ -147,7 +147,9 @@ export interface SliderUnstyledOwnProps {
   orientation?: 'horizontal' | 'vertical';
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @default function Identity<T>(x: T): T {
+   * return x;
+   * }
    */
   scale?: (value: number) => number;
   /**
@@ -255,7 +257,9 @@ export interface SliderUnstyledOwnProps {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @default function Identity<T>(x: T): T {
+   * return x;
+   * }
    */
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }

@@ -16,6 +16,10 @@ import {
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
 
+function Identity<T>(x: T): T {
+  return x;
+}
+
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
@@ -68,13 +72,13 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
-    scale = (x: any) => x,
+    scale = Identity,
     step = 1,
     tabIndex,
     track = 'normal',
     value: valueProp,
     valueLabelDisplay = 'off',
-    valueLabelFormat = (x: any) => x,
+    valueLabelFormat = Identity,
     isRtl = false,
     slotProps = {},
     slots = {},
@@ -448,7 +452,9 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @default function Identity<T>(x: T): T {
+   * return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -532,7 +538,9 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @default function Identity<T>(x: T): T {
+   * return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 } as any;
