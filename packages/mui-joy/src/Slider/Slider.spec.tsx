@@ -92,7 +92,7 @@ import Slider, { SliderOwnerState } from '@mui/joy/Slider';
       };
     },
     mark: (ownerState) => {
-      expectType<SliderOwnerState, typeof ownerState>(ownerState);
+      expectType<SliderOwnerState & { percent?: number }, typeof ownerState>(ownerState);
       return {
         'data-testid': 'test',
       };

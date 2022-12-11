@@ -21,7 +21,7 @@ export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
     track: SlotProps<'span', {}, SliderOwnerState>;
     rail: SlotProps<'span', {}, SliderOwnerState>;
     thumb: SlotProps<'span', {}, SliderOwnerState>;
-    mark: SlotProps<'span', {}, SliderOwnerState>;
+    mark: SlotProps<'span', {}, SliderOwnerState & { percent?: number }>;
     markLabel: SlotProps<'span', {}, SliderOwnerState>;
     valueLabel: SlotProps<'span', {}, SliderOwnerState>;
     input: SlotProps<'input', {}, SliderOwnerState>;
