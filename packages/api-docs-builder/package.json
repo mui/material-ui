@@ -7,7 +7,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.20.2",
+    "@babel/core": "^7.20.5",
     "@mui-internal/docs-utilities": "*",
     "@mui/markdown": "*",
     "ast-types": "^0.14.2",
@@ -19,7 +19,7 @@
     "yargs": "^17.6.2"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.9",
     "chai": "^4.3.7",
     "sinon": "^14.0.2",

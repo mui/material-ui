@@ -6,6 +6,8 @@ import {
   private_safeLighten as safeLighten,
   private_safeEmphasize as safeEmphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
+  unstable_defaultSxConfig as defaultSxConfig,
+  unstable_styleFunctionSx as styleFunctionSx,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
@@ -389,6 +391,17 @@ export default function extendTheme(options = {}, ...args) {
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  theme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...input?.unstable_sxConfig,
+  };
+  theme.unstable_sx = function sx(props) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return theme;
 }

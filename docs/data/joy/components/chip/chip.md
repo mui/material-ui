@@ -16,7 +16,7 @@ The badge component is most frequently used to signal status (online, offline, b
 
 {{"demo": "ChipUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
 :::
 

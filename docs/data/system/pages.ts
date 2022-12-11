@@ -64,6 +64,17 @@ const pages = [
     children: pagesApi,
   },
   {
+    pathname: '/system/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      {
+        pathname: '/system/experimental-api/configure-the-sx-prop',
+        title: 'Configure the sx prop',
+      },
+    ],
+  },
+  {
     pathname: '/system/styles',
     title: 'Styles',
     legacy: true,

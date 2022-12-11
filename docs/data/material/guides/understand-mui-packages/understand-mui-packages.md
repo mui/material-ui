@@ -102,7 +102,7 @@ See the [Styled engine guide](/material-ui/guides/styled-engine/) for more detai
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 
 :::warning
-⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
+Prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
 This package is now deprecated and will be removed in the future.
 Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
 :::
