@@ -23,13 +23,7 @@ describe('Joy <Box />', () => {
     refInstanceof: window.HTMLDivElement,
   }));
 
-  it('respects theme from context', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-    if (isJSDOM) {
-      this.skip();
-    }
-
+  it('respects theme from context', () => {
     const { container } = render(
       <ThemeProvider
         theme={{
@@ -214,24 +208,6 @@ describe('Joy <Box />', () => {
       });
     });
 
-    it('letterSpacing', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
-      const { container } = render(
-        <CssVarsProvider theme={theme}>
-          <Box sx={{ letterSpacing: 'md' }} />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild).toHaveComputedStyle({
-        letterSpacing: '1.328px',
-      });
-    });
-
     it('lineHeight', function test() {
       const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
@@ -248,6 +224,37 @@ describe('Joy <Box />', () => {
       expect(container.firstChild).toHaveComputedStyle({
         lineHeight: '24px',
       });
+    });
+  });
+});
+
+// eslint-disable-next-line mocha/max-top-level-suites
+describe('theme.unstable_sx', () => {
+  const theme = extendTheme({
+    colorSchemes: {
+      light: {
+        palette: {
+          primary: {
+            500: 'rgb(0, 0, 255)',
+          },
+        },
+      },
+    },
+  });
+
+  it('bgcolor', () => {
+    expect(theme.unstable_sx({ bgcolor: 'primary.500' })).to.deep.equal({
+      // TODO fixme
+      // backgroundColor: 'var(--joy-palette-primary-500)',
+      backgroundColor: 'primary.500',
+    });
+  });
+
+  it('borderRadius', () => {
+    expect(theme.unstable_sx({ borderRadius: 'md' })).to.deep.equal({
+      // TODO fixme
+      // borderRadius: 'var(--joy-radius-md)',
+      borderRadius: '12px',
     });
   });
 });
