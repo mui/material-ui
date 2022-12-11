@@ -497,6 +497,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     size = 'medium',
     slotProps,
     slots,
+    scale = (x) => x,
+    valueLabelFormat = (x) => x,
     ...other
   } = props;
 
