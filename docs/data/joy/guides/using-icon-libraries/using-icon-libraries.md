@@ -11,10 +11,29 @@ includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?ico
 
 This section assumes that you've already installed Joy UI in your app—see [Installation](/joy-ui/getting-started/installation/) for instructions.
 
-:::warning
-To use `@mui/icons-material` with Joy UI, you will have to install Material UI (`@mui/material`) because it is a required dependency. The increase of the production bundle size is very little if you configure [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) in your build process.
+#### yarn
 
-We are aware of this limitation and are considering removing the dependency. 
+```sh
+yarn add @mui/icons-material @mui/material
+```
+
+:::warning
+Because `@mui/material` is a required dependency of `@mui/icons-material`, you have add a workaround with yarn resolutions:
+
+```json
+{
+  "dependencies": {
+    "@mui/material": "npm:@mui/joy@latest"
+  },
+  "resolutions": {
+    "@mui/material": "npm:@mui/joy@latest"
+  }
+}
+```
+
+After that, run `yarn install` in your terminal.
+
+We are aware of this limitation and are considering removing the dependency.
 You can keep track of the progress in [this issue](https://github.com/mui/material-ui/issues/34489).
 :::
 
@@ -24,11 +43,40 @@ You can keep track of the progress in [this issue](https://github.com/mui/materi
 npm install @mui/icons-material @mui/material
 ```
 
-#### yarn
+:::warning
 
-```sh
-yarn add @mui/icons-material @mui/material
+Because `@mui/material` is a required dependency of `@mui/icons-material`, you have update your bundler's config to add an alias.
+
+Here is an example of how you can do it, if you use [`webpack`](https://webpack.js.org/):
+
+**webpack.config.js**
+
+```diff
+ module.exports = {
+   //...
++  resolve: {
++    alias: {
++      '@mui/styled-engine': '@mui/styled-engine-sc'
++    },
++  },
+ };
 ```
+
+If you use TypeScript, you will need to update the TSConfig.
+
+**tsconfig.json**
+
+```diff
+ {
+   "compilerOptions": {
++    "paths": {
++      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
++    }
+   },
+ }
+```
+
+:::
 
 ### Usage
 
