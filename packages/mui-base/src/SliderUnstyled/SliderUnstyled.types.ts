@@ -1,9 +1,9 @@
 import { Theme } from '@mui/system';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { SliderValueLabelUnstyled } from '@mui/base';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
+import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import {
   UseSliderHiddenInputProps,
   UseSliderRootSlotProps,

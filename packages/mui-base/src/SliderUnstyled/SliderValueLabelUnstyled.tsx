@@ -1,12 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import sliderUnstyledClasses from './sliderUnstyledClasses';
 import { SliderValueLabelUnstyledProps } from '@mui/base';
+import sliderUnstyledClasses from './sliderUnstyledClasses';
 
-const useValueLabelClasses = (props: SliderValueLabelUnstyledProps) => {
-  const { open } = props;
-
+const useValueLabelClasses = (open: boolean) => {
   const utilityClasses = {
     offset: clsx({
       [sliderUnstyledClasses.valueLabelOpen]: open,
@@ -22,8 +20,8 @@ const useValueLabelClasses = (props: SliderValueLabelUnstyledProps) => {
  * @ignore - internal component.
  */
 export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyledProps) {
-  const { children, className, value } = props;
-  const classes = useValueLabelClasses(props);
+  const { children, className, value, open } = props;
+  const classes = useValueLabelClasses(open);
 
   if (!children) {
     return null;
@@ -48,7 +46,6 @@ export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyled
 SliderValueLabelUnstyled.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
-  theme: PropTypes.any,
-  value: PropTypes.node,
   open: PropTypes.bool,
+  value: PropTypes.node,
 };

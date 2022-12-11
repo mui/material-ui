@@ -2,12 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import {
-  PartialSliderUnstyledOwnerState,
-  SliderUnstyledOwnerState,
-  SliderUnstyledProps,
-  SliderUnstyledTypeMap,
-} from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
@@ -15,6 +9,12 @@ import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
+import {
+  PartialSliderUnstyledOwnerState,
+  SliderUnstyledOwnerState,
+  SliderUnstyledProps,
+  SliderUnstyledTypeMap,
+} from './SliderUnstyled.types';
 
 function Identity(x: any) {
   return x;
