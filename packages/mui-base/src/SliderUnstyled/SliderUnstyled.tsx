@@ -51,7 +51,7 @@ const Forward = ({ children }: { children: React.ReactElement }) => children;
 
 const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
->(props: SliderUnstyledProps<BaseComponentType>, ref: React.Ref<any>) {
+>(props: SliderUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,

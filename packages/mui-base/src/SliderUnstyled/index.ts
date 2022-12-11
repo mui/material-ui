@@ -3,3 +3,4 @@ export { default as SliderValueLabelUnstyled } from './SliderValueLabelUnstyled'
 export { default as sliderUnstyledClasses } from './sliderUnstyledClasses';
 export { default as useSlider } from './useSlider';
 export * from './sliderUnstyledClasses';
+export * from './SliderUnstyled.types';
