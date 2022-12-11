@@ -16,9 +16,6 @@ describe('<LinearProgress />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { determinate: true },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
