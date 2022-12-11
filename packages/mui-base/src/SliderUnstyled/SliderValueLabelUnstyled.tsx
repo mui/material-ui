@@ -2,8 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import sliderUnstyledClasses from './sliderUnstyledClasses';
+import { SliderValueLabelUnstyledProps } from './SliderUnstyled.types';
 
-const useValueLabelClasses = (props) => {
+const useValueLabelClasses = (props: SliderValueLabelUnstyledProps) => {
   const { open } = props;
 
   const utilityClasses = {
@@ -20,7 +21,7 @@ const useValueLabelClasses = (props) => {
 /**
  * @ignore - internal component.
  */
-export default function SliderValueLabelUnstyled(props) {
+export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyledProps) {
   const { children, className, value } = props;
   const classes = useValueLabelClasses(props);
 
@@ -45,4 +46,5 @@ SliderValueLabelUnstyled.propTypes = {
   className: PropTypes.string,
   theme: PropTypes.any,
   value: PropTypes.node,
+  open: PropTypes.bool,
 };

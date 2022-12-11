@@ -62,6 +62,14 @@ export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElem
 
 export interface SliderUnstyledComponentsPropsOverrides {}
 
+export interface SliderValueLabelUnstyledProps {
+  children: React.ReactElement;
+  className?: string;
+  theme?: any;
+  value: React.ReactNode;
+  open?: boolean;
+}
+
 export interface SliderUnstyledOwnProps {
   /**
    * The label of the slider.
