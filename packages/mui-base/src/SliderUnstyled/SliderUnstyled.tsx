@@ -16,7 +16,9 @@ import {
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
 
-const Identity = (x: any) => x;
+function Identity<T>(x: T): T {
+  return x
+}
 
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
