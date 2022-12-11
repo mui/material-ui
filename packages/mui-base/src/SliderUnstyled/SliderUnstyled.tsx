@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
@@ -12,7 +13,7 @@ import {
   PartialSliderUnstyledOwnerState,
   SliderUnstyledOwnerState,
   SliderUnstyledProps,
-  // SliderUnstyledTypeMap,
+  SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
 
 const Identity = (x: any) => x;
@@ -48,10 +49,9 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
 
 const Forward = ({ children }: { children: React.ReactElement }) => children;
 
-const SliderUnstyled = React.forwardRef(function SliderUnstyled(
-  props: SliderUnstyledProps,
-  ref: React.Ref<any>,
-) {
+const SliderUnstyled = React.forwardRef(function SliderUnstyled<
+  BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
+>(props: SliderUnstyledProps<BaseComponentType>, ref: React.Ref<any>) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
@@ -98,7 +98,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(
     step,
     track,
     valueLabelDisplay,
-    valueLabelFormat
+    valueLabelFormat,
   };
 
   const {
@@ -309,7 +309,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(
       })}
     </Root>
   );
-});
+}) as OverridableComponent<SliderUnstyledTypeMap>;
 
 SliderUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

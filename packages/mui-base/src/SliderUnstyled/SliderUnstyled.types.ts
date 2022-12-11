@@ -10,7 +10,34 @@ import {
   Mark,
 } from './useSlider.types';
 
-type AdditionalOwnerState = {
+// type AdditionalOwnerState = {
+//   disabled: boolean;
+//   focusedThumbIndex: number;
+//   isRtl: boolean;
+//   max: number;
+//   min: number;
+//   dragging: boolean;
+//   marked: boolean;
+//   orientation: 'horizontal' | 'vertical';
+//   scale: (value: number) => number;
+//   step: number | null;
+//   track: 'normal' | false | 'inverted';
+//   valueLabelDisplay: 'on' | 'auto' | 'off';
+//   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
+// };
+
+// export type SliderUnstyledOwnerState<BaseComponentType> = Omit<
+//   SliderUnstyledProps<BaseComponentType>,
+//   keyof AdditionalOwnerState
+// > &
+//   AdditionalOwnerState;
+
+export type PartialSliderUnstyledOwnerState = Omit<
+  SliderUnstyledOwnerState,
+  'focusedThumbIndex' | 'marked' | 'dragging'
+>;
+
+export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;
   focusedThumbIndex: number;
   isRtl: boolean;
@@ -24,15 +51,7 @@ type AdditionalOwnerState = {
   track: 'normal' | false | 'inverted';
   valueLabelDisplay: 'on' | 'auto' | 'off';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
-};
-
-export type SliderUnstyledOwnerState = Omit<SliderUnstyledProps, keyof AdditionalOwnerState> &
-  AdditionalOwnerState;
-
-export type PartialSliderUnstyledOwnerState = Omit<
-  SliderUnstyledOwnerState,
-  'focusedThumbIndex' | 'marked' | 'dragging'
->;
+}
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement;
