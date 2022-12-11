@@ -145,7 +145,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     children,
     className,
-    component = 'div',
+    component,
     color = 'primary',
     size = 'md',
     variant = 'soft',
