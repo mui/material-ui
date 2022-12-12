@@ -9,7 +9,7 @@ import {
   SliderUnstyledThumbSlotProps,
   SliderUnstyledTrackSlotProps,
   SliderUnstyledValueLabelSlotProps,
-} from './SliderUnstyled.types';
+} from '@mui/base/SliderUnstyled';
 import SliderUnstyled from './SliderUnstyled';
 
 const Root = React.forwardRef(function Root(
