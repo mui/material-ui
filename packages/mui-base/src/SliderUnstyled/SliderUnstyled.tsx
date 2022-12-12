@@ -88,6 +88,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
+    defaultValue,
     slotProps = {},
     slots = {},
     ...other
@@ -104,6 +105,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     classes: classesProp,
     disabled,
     isRtl,
+    defaultValue,
     max,
     min,
     orientation,
@@ -378,6 +380,10 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
    * If `true`, the component is disabled.
    * @default false
