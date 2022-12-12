@@ -83,7 +83,8 @@ export default function useSlot<
      * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
      */
     getSlotOwnerState?: (
-      mergedProps: SlotProps &
+      mergedProps: AdditionalProps &
+        SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
           Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
@@ -147,10 +148,7 @@ export default function useSlot<
     {
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
-      ...(mergedProps as { className: string } & SlotProps &
-        ExternalSlotProps &
-        AdditionalProps &
-        (T extends 'root' ? ExternalForwardedProps : {})),
+      ...mergedProps,
       ...(LeafComponent && {
         as: LeafComponent,
       }),
@@ -159,5 +157,13 @@ export default function useSlot<
     finalOwnerState as OwnerState & SlotOwnerState,
   );
 
-  return [elementType, props] as [ElementType, typeof props];
+  return [elementType, props] as [
+    ElementType,
+    { className: string; ownerState: OwnerState & SlotOwnerState } & AdditionalProps &
+      SlotProps &
+      ExternalSlotProps &
+      ExtractComponentProps<
+        Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
+      >,
+  ];
 }

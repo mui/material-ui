@@ -14,7 +14,8 @@ import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBan
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
   order: 1,
-  width: 240,
+  width: 'var(--MuiDocs-toc-width)',
+  paddingLeft: 2, // Fix truncated focus outline style
   flexShrink: 0,
   position: 'sticky',
   height: '100vh',
