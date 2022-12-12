@@ -1,5 +1,65 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.0
+
+<!-- generated comparing v5.10.17..master -->
+
+_Dec 12, 2022_
+
+A big thanks to the 18 contributors who made this release possible.
+This release contains various 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.10.18`
+
+- [Alert] Update icon color in all variants (#35414) @danilo-leal
+- [Select] Fix `MenuProps.PopoverClasses` being overriden (#35394) @vitorfrs-dev
+- [SwipeableDrawer] fixed typescript warning "prop open undefined" (#34710) @kraftware
+
+### `@mui/icons-material@5.10.18`
+
+- [icons] Restore the PhoneInTalk icons (#35409) @michaldudak
+
+### `@mui/system@5.10.18`
+
+- [system] Enable configuring the `sx` prop in the `theme` (#35150) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.58`
+
+- [Joy] Miscellaneous fixes (#35447) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.110`
+
+- [PopperUnstyled] Update PopperTooltip to have correct width when closing with transition (#34714) @EduardoSCosta
+
+### `@mui/material-next@6.0.0-alpha.66`
+
+- [Material You] Add ripple on the button (#35299) @mnajdova
+
+### Docs
+
+- [docs] Simplify state management in Text Field demo page (#35051) @PratikDev
+- [docs] Improve `Responsive App bar with Drawer` demo (#35418) @ZeeshanTamboli
+- [docs] Improve line-height readability (#35387) @oliviertassinari
+- [docs] Improve a bit the Composition docs (#35329) @oliviertassinari
+- [docs] Refactor `ToggleButtonSizes` demo (#35375) @Armanio
+- [docs] Standardize the usage of callouts in the MUI Core docs (#35361) @samuelsycamore
+- [docs] Format feedback to add a link to the commented section (#35381) @alexfauquette
+- [docs] Direct users from Material UI to MUI Base for duplicated components (#35293) @samuelsycamore
+- [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
+- [website] New wave of open roles (#35240) @mnajdova
+- [website] Developer survey 2022 (#35407) @joserodolfofreitas
+
+### Core
+
+- [core] Fix @mui/material package building (#35324) @timbset
+- [core] Fix leaking theme color override (#35444) @oliviertassinari
+- [dependencies] Bump next to 13.0.6 (#35405) @michaldudak
+- [typescript] Add null to return type of OverridableComponent (#35311) @tsollbach
+- [website] Migrate X page to use CSS theme variables (#34922) @jesrodri
+- [website] Migrate `/core` page to use CSS variables (#35366) @siriwatknp
+
+All contributors of this release in alphabetical order: @alexfauquette, @Armanio, @danilo-leal, @EduardoSCosta, @flaviendelangle, @jesrodri, @joserodolfofreitas, @kraftware, @michaldudak, @mnajdova, @oliviertassinari, @PratikDev, @samuelsycamore, @siriwatknp, @Spanishiwa, @timbset, @tsollbach, @vitorfrs-dev, @ZeeshanTamboli
+
 ## 5.10.17
 
 <!-- generated comparing v5.10.16..master -->
