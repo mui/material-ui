@@ -10,11 +10,6 @@ import {
   Mark,
 } from './useSlider.types';
 
-export type PartialSliderUnstyledOwnerState = Omit<
-  SliderUnstyledOwnerState,
-  'focusedThumbIndex' | 'marked' | 'dragging'
->;
-
 export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;
   focusedThumbIndex: number;

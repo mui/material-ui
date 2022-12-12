@@ -5,6 +5,9 @@
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
+    "defaultValue": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },

@@ -10,7 +10,6 @@ import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
 import {
-  PartialSliderUnstyledOwnerState,
   SliderUnstyledOwnerState,
   SliderUnstyledProps,
   SliderUnstyledTypeMap,
@@ -96,7 +95,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const partialOwnerState: PartialSliderUnstyledOwnerState = {
+  const partialOwnerState: Omit<
+    SliderUnstyledOwnerState,
+    'focusedThumbIndex' | 'marked' | 'dragging'
+  > = {
     ...props,
     marks: marksProp,
     classes: classesProp,
