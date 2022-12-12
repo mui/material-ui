@@ -48,6 +48,6 @@ SliderValueLabelUnstyled.propTypes = {
   className: PropTypes.string,
   open: PropTypes.bool,
   // eslint-disable-next-line react/no-unused-prop-types
-  theme:PropTypes.any,
+  theme: PropTypes.any,
   value: PropTypes.node,
 };
