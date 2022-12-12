@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Select from '@mui/joy/Select';
+import Select, { SelectOwnerState } from '@mui/joy/Select';
 
 <Select defaultListboxOpen />;
 <Select
@@ -39,7 +39,7 @@ interface Value {
 />;
 <Select sx={{ bgcolor: (theme) => theme.vars.palette.background.body }} />;
 <Select
-  componentsProps={{
+  slotProps={{
     button: {
       'aria-labelledby': 'some-id',
       'aria-describedby': 'some-id',
@@ -61,3 +61,84 @@ interface Value {
 <Select invalidProp={0} />;
 
 <Select component="a" href="#" />;
+
+<Select
+  slots={{
+    root: 'div',
+    button: 'div',
+    startDecorator: 'div',
+    endDecorator: 'div',
+    indicator: 'div',
+    listbox: 'div',
+  }}
+/>;
+
+<Select
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    button: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    startDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    endDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    indicator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    listbox: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Select
+  slotProps={{
+    root: (ownerState) => {
+      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    button: (ownerState) => {
+      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    startDecorator: (ownerState) => {
+      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    endDecorator: (ownerState) => {
+      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    indicator: (ownerState) => {
+      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    listbox: (ownerState) => {
+      expectType<SelectOwnerState<any>, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

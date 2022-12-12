@@ -10,12 +10,14 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
+    lineHeight: 1.5625, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     },
     wordBreak: 'break-word',
     '& pre': {
+      lineHeight: 1.5, // Developers likes when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
       backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
@@ -246,13 +248,12 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '& > p': {
-        color: 'inherit',
+      '& > ul, & > p': {
         '&:last-child': {
           margin: 0,
         },
       },
-      '& ul, li': {
+      '& > p, & ul, li': {
         color: 'inherit',
       },
       '&.MuiCallout-error': {
@@ -423,6 +424,7 @@ const Root = styled('div')(
       },
     },
     '& li': {
+      marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
       },

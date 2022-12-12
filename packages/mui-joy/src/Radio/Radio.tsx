@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
@@ -223,8 +223,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const {
     checked: checkedProp,
     checkedIcon,
-    component,
-    componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
     disableIcon: disableIconProp = false,
@@ -304,44 +302,36 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
     elementType: RadioRoot,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
-    additionalProps: {
-      as: component,
-      ref,
-    },
-    className: classes.root,
     ownerState,
   });
 
-  const radioProps = useSlotProps({
-    elementType: RadioRadio,
-    externalSlotProps: componentsProps.radio,
+  const [SlotRadio, radioProps] = useSlot('radio', {
     className: classes.radio,
+    elementType: RadioRadio,
+    externalForwardedProps: other,
     ownerState,
   });
 
-  const radioIconProps = useSlotProps({
-    elementType: RadioIcon,
-    externalSlotProps: componentsProps.icon,
+  const [SlotIcon, iconProps] = useSlot('icon', {
     className: classes.icon,
+    elementType: RadioIcon,
+    externalForwardedProps: other,
     ownerState,
   });
 
-  const radioActionProps = useSlotProps({
-    elementType: RadioAction,
-    externalSlotProps: componentsProps.action,
+  const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
+    elementType: RadioAction,
+    externalForwardedProps: other,
     ownerState,
   });
 
-  const radioInputProps = useSlotProps({
-    elementType: RadioInput,
-    getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
-    externalSlotProps: componentsProps.input,
-    className: classes.input,
+  const [SlotInput, inputProps] = useSlot('input', {
     additionalProps: {
       type: 'radio',
       id,
@@ -351,36 +341,40 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       value: String(value),
       'aria-describedby': formControl?.['aria-describedby'],
     },
+    className: classes.input,
+    elementType: RadioInput,
+    externalForwardedProps: other,
+    getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     ownerState,
   });
 
-  const radioLabelProps = useSlotProps({
-    elementType: RadioLabel,
-    externalSlotProps: componentsProps.label,
-    className: classes.label,
-    ownerState,
+  const [SlotLabel, labelProps] = useSlot('label', {
     additionalProps: {
       htmlFor: id,
     },
+    className: classes.label,
+    elementType: RadioLabel,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <RadioRoot {...rootProps}>
-      <RadioRadio {...radioProps}>
+    <SlotRoot {...rootProps}>
+      <SlotRadio {...radioProps}>
         {checked && !disableIcon && checkedIcon}
         {!checked && !disableIcon && uncheckedIcon}
-        {!checkedIcon && !uncheckedIcon && !disableIcon && <RadioIcon {...radioIconProps} />}
-        <RadioAction {...radioActionProps}>
-          <RadioInput {...radioInputProps} />
-        </RadioAction>
-      </RadioRadio>
+        {!checkedIcon && !uncheckedIcon && !disableIcon && <SlotIcon {...iconProps} />}
+        <SlotAction {...actionProps}>
+          <SlotInput {...inputProps} />
+        </SlotAction>
+      </SlotRadio>
       {label && (
-        <RadioLabel {...radioLabelProps}>
+        <SlotLabel {...labelProps}>
           {/* Automatically adjust the Typography to render `span` */}
           <TypographyContext.Provider value>{label}</TypographyContext.Provider>
-        </RadioLabel>
+        </SlotLabel>
       )}
-    </RadioRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<RadioTypeMap>;
 
@@ -413,23 +407,6 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    radio: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The default checked state. Use when the component is not controlled.
    */

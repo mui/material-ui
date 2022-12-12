@@ -22,7 +22,7 @@ export default function SwitchLabel() {
         color={checked ? 'success' : 'neutral'}
         variant="outlined"
         endDecorator={checked ? 'On' : 'Off'}
-        componentsProps={{
+        slotProps={{
           endDecorator: {
             sx: {
               minWidth: 24,

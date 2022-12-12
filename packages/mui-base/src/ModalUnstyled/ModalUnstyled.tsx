@@ -97,14 +97,14 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     ...other
   } = props;
 
-  const [exited, setExited] = React.useState(true);
-  const mountNodeRef = React.useRef<Node | null>(null);
-  const modalRef = React.useRef<Element>(null);
-  const handleRef = useForkRef(modalRef, forwardedRef);
+  const [exited, setExited] = React.useState(!open);
   const modal = React.useRef<{
     modalRef?: typeof modalRef.current;
     mountNode?: typeof mountNodeRef.current;
   }>({});
+  const mountNodeRef = React.useRef<Node | null>(null);
+  const modalRef = React.useRef<Element>(null);
+  const handleRef = useForkRef(modalRef, forwardedRef);
   const hasTransition = getHasTransition(children);
 
   const ariaHiddenProp = props['aria-hidden'] ?? true;

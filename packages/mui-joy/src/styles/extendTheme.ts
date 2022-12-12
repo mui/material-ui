@@ -6,14 +6,17 @@ import {
   createSpacing,
   unstable_createGetCssVar as systemCreateGetCssVar,
   colorChannel,
+  unstable_styleFunctionSx as styleFunctionSx,
+  SxConfig,
 } from '@mui/system';
+import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales } from './types';
+import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createVariant } from './variantUtils';
@@ -60,6 +63,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   spacing?: SpacingOptions;
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
+  unstable_sxConfig?: SxConfig;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -220,6 +224,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-common-white'),
         surface: getCssVar('palette-common-white'),
+        popup: getCssVar('palette-common-white'),
         level1: getCssVar('palette-neutral-50'),
         level2: getCssVar('palette-neutral-100'),
         level3: getCssVar('palette-neutral-200'),
@@ -307,6 +312,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-neutral-900'),
         surface: getCssVar('palette-common-black'),
+        popup: getCssVar('palette-neutral-800'),
         level1: getCssVar('palette-neutral-800'),
         level2: getCssVar('palette-neutral-700'),
         level3: getCssVar('palette-neutral-600'),
@@ -622,6 +628,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);
   });
+
+  theme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...themeOptions?.unstable_sxConfig,
+  };
+  theme.unstable_sx = function sx(props: SxProps) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return theme;
 }
