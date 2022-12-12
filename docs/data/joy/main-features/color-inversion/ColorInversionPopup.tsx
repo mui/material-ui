@@ -46,13 +46,13 @@ export default function ColorInversionPopup() {
         sx={{ width: 240 }}
         open
         slotProps={{
-          listbox: { disablePortal: true, modifiers, sx: { maxHeight: 200 } },
+          listbox: { disablePortal: true, modifiers, sx: { maxHeight: 160 } },
         }}
       />
       <Button
         variant="soft"
         endDecorator={<KeyboardArrowDownIcon />}
-        ref={(node) => setMenuButton(node)}
+        onClick={(event) => setMenuButton(event.currentTarget)}
       >
         Actions
       </Button>
@@ -61,6 +61,7 @@ export default function ColorInversionPopup() {
         modifiers={modifiers}
         anchorEl={menuButton}
         open={!!menuButton}
+        onClose={() => setMenuButton(null)}
       >
         <MenuItem>New tab</MenuItem>
         <MenuItem>New window</MenuItem>
