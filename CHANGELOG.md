@@ -6,7 +6,7 @@
 
 _Dec 12, 2022_
 
-A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔥 @mnajdova enabled configuration of the `sx` prop in the `theme` (#35150)
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
