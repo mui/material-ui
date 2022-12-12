@@ -84,7 +84,7 @@ const sxConfig: SxConfig = {
     style: createPaletteStyle({ prop: 'borderRightColor' }),
   },
   borderRadius: {
-    style: borderRadius,
+    style: createBorderRadiusStyle,
   },
 };
 
