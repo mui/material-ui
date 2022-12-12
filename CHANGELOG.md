@@ -6,20 +6,22 @@
 
 _Dec 12, 2022_
 
-A big thanks to the 18 contributors who made this release possible.
-This release contains various 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-### `@mui/material@5.10.18`
+- 🔥 @mnajdova enabled configuration of the `sx` prop in the `theme` (#35150)
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.11.0`
 
 - [Alert] Update icon color in all variants (#35414) @danilo-leal
 - [Select] Fix `MenuProps.PopoverClasses` being overriden (#35394) @vitorfrs-dev
-- [SwipeableDrawer] fixed typescript warning "prop open undefined" (#34710) @kraftware
+- [SwipeableDrawer] Fixed typescript warning "prop open undefined" (#34710) @kraftware
 
-### `@mui/icons-material@5.10.18`
+### `@mui/icons-material@5.11.0`
 
 - [icons] Restore the PhoneInTalk icons (#35409) @michaldudak
 
-### `@mui/system@5.10.18`
+### `@mui/system@5.11.0`
 
 - [system] Enable configuring the `sx` prop in the `theme` (#35150) @mnajdova
 
