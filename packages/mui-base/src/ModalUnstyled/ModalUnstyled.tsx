@@ -48,23 +48,23 @@ const defaultManager = new ModalManager();
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * *   [Dialog](/material-ui/api/dialog/)
- * *   [Drawer](/material-ui/api/drawer/)
- * *   [Menu](/material-ui/api/menu/)
- * *   [Popover](/material-ui/api/popover/)
+ * *   [Dialog](https://mui.com/material-ui/api/dialog/)
+ * *   [Drawer](https://mui.com/material-ui/api/drawer/)
+ * *   [Menu](https://mui.com/material-ui/api/menu/)
+ * *   [Popover](https://mui.com/material-ui/api/popover/)
  *
- * If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/api/dialog/) component
+ * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/material-ui/api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  *
  * Demos:
  *
- * - [Unstyled Modal](/base/react-modal/)
+ * - [Unstyled Modal](https://mui.com/base/react-modal/)
  *
  * API:
  *
- * - [ModalUnstyled API](/base/api/modal-unstyled/)
+ * - [ModalUnstyled API](https://mui.com/base/api/modal-unstyled/)
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled<
   BaseComponentType extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
