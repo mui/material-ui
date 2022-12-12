@@ -1,4 +1,3 @@
-import { Theme } from '@mui/system';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
@@ -287,7 +286,6 @@ export type SliderUnstyledRootSlotProps = UseSliderRootSlotProps & {
   children: React.ReactNode;
   className: string;
   ownerState: SliderUnstyledOwnerState;
-  theme: Theme;
 };
 
 export type SliderUnstyledTrackSlotProps = {

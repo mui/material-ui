@@ -67,7 +67,13 @@ describe('<SliderUnstyled />', () => {
 
     const Root = React.forwardRef(
       (
-        { ownerState: ownerStateProp, theme: themeProp, ...other }: SliderUnstyledRootSlotProps,
+        {
+          ownerState: ownerStateProp,
+          theme: themeProp,
+          ...other
+        }: SliderUnstyledRootSlotProps & {
+          theme: any;
+        },
         ref: React.ForwardedRef<HTMLSpanElement>,
       ) => {
         ownerState = ownerStateProp;
