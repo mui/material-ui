@@ -2,7 +2,7 @@ import { MD3Shape } from './Theme.types';
 
 const mdSysShape: MD3Shape = {
   corner: {
-    none: '0',
+    none: '0px',
     extraSmall: '4px',
     extraSmallTop: '4px 4px 0 0',
     small: '8px',
