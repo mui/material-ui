@@ -250,7 +250,7 @@ export default function AppTableOfContents(props) {
             })}
           >
             <Typography component="span" variant="button" fontWeight="500" color="text.primary">
-              {'📫 MUI Developer Survey 2022 is live!'}
+              {'📫 MUI Developer survey 2022 is live!'}
             </Typography>
             <Typography
               component="span"
