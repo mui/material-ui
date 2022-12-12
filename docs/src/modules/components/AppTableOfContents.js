@@ -261,7 +261,7 @@ export default function AppTableOfContents(props) {
             >
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {
-                'Please take a few minutes to complete the survey. Let us know what we can improve and help us define the roadmap for 2023!'
+                'Influence the future of MUI. Help define the roadmap for 2023!'
               }
             </Typography>
           </Link>
