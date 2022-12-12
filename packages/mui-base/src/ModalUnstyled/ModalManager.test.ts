@@ -172,7 +172,7 @@ describe('ModalManager', () => {
       modalManager.mount(modal, {});
       expect(container1.style.overflow).to.equal('hidden');
       expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(document)}px`);
-      expect(fixedNode.style.paddingRight).to.equal(`${0 + getScrollbarSize(document)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(document)}px`);
       modalManager.remove(modal);
       expect(container1.style.overflow).to.equal('');
       expect(container1.style.paddingRight).to.equal('20px');
@@ -339,14 +339,14 @@ describe('ModalManager', () => {
       modal2.setAttribute('aria-hidden', 'true');
 
       expect(modal2).toBeAriaHidden();
-      modalManager.add({ modalRef: modal2 }, container2);
+      modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
       expect(modal2).not.toBeAriaHidden();
     });
 
     it('should add aria-hidden to container siblings', () => {
       const secondSibling = document.createElement('input');
       container2.appendChild(secondSibling);
-      modalManager.add({}, container2);
+      modalManager.add(getDummyModal(), container2);
       expect(container2.children[0]).toBeAriaHidden();
       expect(container2.children[1]).toBeAriaHidden();
     });
@@ -378,7 +378,7 @@ describe('ModalManager', () => {
       const numberOfChildren = 16;
       expect(container2.children.length).equal(numberOfChildren);
 
-      modalManager.add({}, container2);
+      modalManager.add(getDummyModal(), container2);
       expect(container2.children[0]).toBeAriaHidden();
       for (let i = 1; i < numberOfChildren; i += 1) {
         expect(container2.children[i]).not.toBeAriaHidden();
@@ -392,12 +392,12 @@ describe('ModalManager', () => {
       container2.appendChild(modal2);
       container2.appendChild(modal3);
 
-      modalManager.add({ modalRef: modal2 }, container2);
+      modalManager.add({ ...getDummyModal(), modalRef: modal2 }, container2);
       // Simulate the main React DOM true.
       expect(container2.children[0]).toBeAriaHidden();
       expect(container2.children[1]).not.toBeAriaHidden();
 
-      modalManager.add({ modalRef: modal3 }, container2);
+      modalManager.add({ ...getDummyModal(), modalRef: modal3 }, container2);
       expect(container2.children[0]).toBeAriaHidden();
       expect(container2.children[1]).toBeAriaHidden();
       expect(container2.children[2]).not.toBeAriaHidden();

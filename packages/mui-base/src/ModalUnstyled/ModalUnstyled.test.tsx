@@ -13,7 +13,7 @@ describe('<ModalUnstyled />', () => {
   });
 
   beforeEach(() => {
-    document.body.setAttribute('style', savedBodyStyle);
+    document.body.setAttribute('style', savedBodyStyle.cssText);
   });
 
   describeConformanceUnstyled(
