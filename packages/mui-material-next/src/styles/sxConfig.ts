@@ -43,7 +43,7 @@ function createPaletteStyle(options: PaletteStyleOptions = { prop: 'color' }) {
 // eslint-disable-next-line no-restricted-globals
 const isNumber = (value: string | number) => typeof value === 'number' || !isNaN(parseFloat(value));
 
-const borderRadius = (props: Record<string, any>) => {
+const createBorderRadiusStyle = (props: Record<string, any>) => {
   if (props.borderRadius !== undefined && props.borderRadius !== null) {
     const numberTransformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
     const styleFromPropValue = (propValue: string | number) => ({
