@@ -12,7 +12,7 @@ describe('motion', () => {
       sys: {
         motion: {
           duration: {
-            medium: [250, 310, 360, 420],
+            medium1: '310ms',
           },
         },
       },
@@ -63,12 +63,12 @@ describe('motion', () => {
 
     it('should create default transition without arguments', () => {
       const transition = create();
-      expect(transition).to.equal(`all ${duration.medium[1]}ms ${easing.standard} 0ms`);
+      expect(transition).to.equal(`all ${duration.medium1} ${easing.standard} 0ms`);
     });
 
     it('should take string props as a first argument', () => {
       const transition = create('color');
-      expect(transition).to.equal(`color ${duration.medium[1]}ms ${easing.standard} 0ms`);
+      expect(transition).to.equal(`color ${duration.medium1} ${easing.standard} 0ms`);
     });
 
     it('should also take array of props as first argument', () => {
@@ -97,22 +97,22 @@ describe('motion', () => {
 
     it('should optionally accept string "easing" option in second argument', () => {
       const transition = create('transform', { easing: easing.linear });
-      expect(transition).to.equal(`transform ${duration.medium[1]}ms ${easing.linear} 0ms`);
+      expect(transition).to.equal(`transform ${duration.medium1} ${easing.linear} 0ms`);
     });
 
     it('should optionally accept number "delay" option in second argument', () => {
       const transition = create('size', { delay: 150 });
-      expect(transition).to.equal(`size ${duration.medium[1]}ms ${easing.standard} 150ms`);
+      expect(transition).to.equal(`size ${duration.medium1} ${easing.standard} 150ms`);
     });
 
     it('should optionally accept string "delay" option in second argument', () => {
       const transition = create('size', { delay: '150ms' });
-      expect(transition).to.equal(`size ${duration.medium[1]}ms ${easing.standard} 150ms`);
+      expect(transition).to.equal(`size ${duration.medium1} ${easing.standard} 150ms`);
     });
 
     it('should round decimal digits of "delay" prop to whole numbers', () => {
       const transition = create('size', { delay: 1.547 });
-      expect(transition).to.equal(`size ${duration.medium[1]}ms ${easing.standard} 2ms`);
+      expect(transition).to.equal(`size ${duration.medium1} ${easing.standard} 2ms`);
     });
 
     it('should return zero when not passed arguments', () => {

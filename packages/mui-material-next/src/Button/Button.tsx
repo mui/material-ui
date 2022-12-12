@@ -309,7 +309,7 @@ export const ButtonRoot = styled('button', {
     transition: theme.sys.motion.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
       {
-        duration: theme.sys.motion.duration.short[3],
+        duration: tokens.sys.motion.duration.short3,
       },
     ),
     fontFamily: tokens.sys.typescale.label.large.family,

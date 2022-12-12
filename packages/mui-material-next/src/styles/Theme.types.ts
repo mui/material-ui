@@ -146,10 +146,22 @@ export interface MD3Easing {
   legacyAccelerate: string;
 }
 export interface MD3Duration {
-  short: number[];
-  medium: number[];
-  long: number[];
-  extraLong: number[];
+  short1: string,
+  short2: string,
+  short3: string,
+  short4: string,
+  medium1: string,
+  medium2: string,
+  medium3: string,
+  medium4: string,
+  long1: string,
+  long2: string,
+  long3: string,
+  long4: string,
+  extraLong1: string,
+  extraLong2: string,
+  extraLong3: string,
+  extraLong4: string,
 }
 
 export interface MotionOptions {
@@ -232,6 +244,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       typescale: MD3Typescale;
       state: MD3States;
       elevation: string[];
+      motion: Omit<Motion, 'create' | 'getAutoHeightDuration'>
     };
     md3: {
       shape: Shapes;

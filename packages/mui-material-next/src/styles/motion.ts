@@ -2,10 +2,22 @@ import { MD3Duration, MD3Easing, MotionOptions } from './Theme.types';
 
 // Follows https://m3.material.io/styles/motion/easing-and-duration/tokens-specs
 export const duration: MD3Duration = {
-  short: [50, 100, 150, 200],
-  medium: [250, 300, 350, 400],
-  long: [450, 500, 550, 600],
-  extraLong: [700, 800, 900, 1000],
+  short1: '50ms',
+  short2: '100ms',
+  short3: '150ms',
+  short4: '200ms',
+  medium1: '250ms',
+  medium2: '300ms',
+  medium3: '350ms',
+  medium4: '400ms',
+  long1: '450ms',
+  long2: '500ms',
+  long3: '550ms',
+  long4: '600ms',
+  extraLong1: '700ms',
+  extraLong2: '800ms',
+  extraLong3: '900ms',
+  extraLong4: '1000ms',
 };
 
 export const easing: MD3Easing = {
@@ -49,10 +61,10 @@ export default function createMotions(inputMotion: MotionOptions = {}) {
 
   const create = (
     props = ['all'],
-    options: { duration?: number; easing?: string; delay?: number } = {},
+    options: { duration?: number | string; easing?: string | string; delay?: number | string } = {},
   ) => {
     const {
-      duration: durationOption = mergedDuration.medium[1],
+      duration: durationOption = mergedDuration.medium1,
       easing: easingOption = mergedEasing.standard,
       delay = 0,
       ...other
