@@ -260,9 +260,7 @@ export default function AppTableOfContents(props) {
               sx={{ mt: 0.5 }}
             >
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              {
-                'Influence the future of MUI. Help define the roadmap for 2023!'
-              }
+              {'Influence the future of MUI. Help define the roadmap for 2023!'}
             </Typography>
           </Link>
         )}
