@@ -6,7 +6,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const getSurveyMessage = () => (
   <React.Fragment>
-    Influence the future of MUI!&nbsp;&nbsp;📫&nbsp;Please take a few minutes for the&nbsp;
+    🚀&nbsp;Influence the future of MUI!&nbsp;&nbsp;Please take a few minutes for the&nbsp;
     <Link
       href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
       target="_blank"
