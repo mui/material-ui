@@ -55,7 +55,6 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - [core] Fix @mui/material package building (#35324) @timbset
 - [core] Fix leaking theme color override (#35444) @oliviertassinari
-- [dependencies] Bump next to 13.0.6 (#35405) @michaldudak
 - [typescript] Add null to return type of OverridableComponent (#35311) @tsollbach
 - [website] Migrate X page to use CSS theme variables (#34922) @jesrodri
 - [website] Migrate `/core` page to use CSS variables (#35366) @siriwatknp
