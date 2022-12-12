@@ -8,12 +8,13 @@ import {
   unstable_createChainedFunction as createChainedFunction,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import {
   ModalUnstyledOwnerState,
   ModalUnstyledOwnProps,
   ModalUnstyledProps,
   ModalUnstyledTypeMap,
-} from '@mui/base/ModalUnstyled';
+} from './ModalUnstyled.types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
@@ -83,13 +84,11 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     hideBackdrop = false,
     keepMounted = false,
     // private
-    // eslint-disable-next-line react/prop-types
     manager = defaultManager,
     onBackdropClick,
     onClose,
     onKeyDown,
     open,
-    /* eslint-disable react/prop-types */
     onTransitionEnter,
     onTransitionExited,
     slotProps = {},
@@ -319,7 +318,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
       </Root>
     </Portal>
   );
-});
+}) as OverridableComponent<ModalUnstyledTypeMap>;
 
 ModalUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -53,7 +53,6 @@ const polymorphicComponentTest = () => {
         <div />
       </ModalUnstyled>
 
-      {/* @ts-expect-error */}
       <ModalUnstyled<'button'>
         component="button"
         ref={(elem) => {
