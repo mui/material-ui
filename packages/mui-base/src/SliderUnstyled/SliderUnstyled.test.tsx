@@ -1,4 +1,7 @@
-import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/base/SliderUnstyled';
+import SliderUnstyled, {
+  sliderUnstyledClasses as classes,
+  SliderUnstyledRootSlotProps,
+} from '@mui/base/SliderUnstyled';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
@@ -9,7 +12,6 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import { SliderUnstyledRootSlotProps } from '@mui/base';
 
 type Touches = Array<{ identifier: number; clientX: number; clientY: number }>;
 

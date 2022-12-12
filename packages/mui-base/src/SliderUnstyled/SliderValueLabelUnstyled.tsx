@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SliderValueLabelUnstyledProps } from '@mui/base';
 import sliderUnstyledClasses from './sliderUnstyledClasses';
+import { SliderValueLabelUnstyledProps } from './SliderValueLabelUnstyled.types';
 
 const useValueLabelClasses = (open: boolean) => {
   const utilityClasses = {
