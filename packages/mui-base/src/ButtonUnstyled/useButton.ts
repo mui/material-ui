@@ -7,10 +7,7 @@ import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
-export default function useButton(
-  parameters: UseButtonParameters,
-  excludeExtractEventHandlersKeys: string[] = [],
-) {
+export default function useButton(parameters: UseButtonParameters) {
   const {
     disabled = false,
     focusableWhenDisabled,
@@ -195,10 +192,7 @@ export default function useButton(
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseButtonRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(
-      parameters,
-      excludeExtractEventHandlersKeys,
-    ) as Partial<UseButtonParameters>;
+    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;
     const externalEventHandlers = {
       ...propsEventHandlers,
       ...otherHandlers,

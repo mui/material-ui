@@ -69,7 +69,7 @@ describe('<ChipDelete />', () => {
     });
   });
   describe('Chip onDelete', () => {
-    it('should call onDelete function when backspace or enter is pressed', () => {
+    it('should call onDelete function when backspace or enter or delete is pressed', () => {
       const handleDelete = spy();
       const { getByRole } = render(<ChipDelete onDelete={handleDelete} onClick={() => {}} />);
       const chipDelete = getByRole('button');
@@ -78,8 +78,22 @@ describe('<ChipDelete />', () => {
       });
       fireEvent.keyDown(chipDelete, { key: 'Backspace' });
       fireEvent.keyDown(chipDelete, { key: 'Enter' });
+      fireEvent.keyDown(chipDelete, { key: 'Delete' });
       fireEvent.click(chipDelete);
-      expect(handleDelete.callCount).to.equal(3);
+      expect(handleDelete.callCount).to.equal(4);
+    });
+
+    it('should call onDelete function when ChipDelete is disabled', () => {
+      const handleDelete = spy();
+      const { getByRole } = render(
+        <ChipDelete disabled onDelete={handleDelete} onClick={() => {}} />,
+      );
+      const chipDelete = getByRole('button');
+      act(() => {
+        chipDelete.focus();
+      });
+      fireEvent.click(chipDelete);
+      expect(handleDelete.callCount).to.equal(0);
     });
   });
 });

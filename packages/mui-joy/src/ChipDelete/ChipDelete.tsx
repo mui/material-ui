@@ -88,14 +88,11 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
-  const { focusVisible, getRootProps } = useButton(
-    {
-      ...props,
-      disabled,
-      ref: handleRef,
-    },
-    ['onDelete'],
-  );
+  const { focusVisible, getRootProps } = useButton({
+    ...props,
+    disabled,
+    ref: handleRef,
+  });
 
   const ownerState = {
     ...props,
@@ -107,12 +104,12 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const handleOnDelete = (
+  const handleDelete = (
     event: React.KeyboardEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     if ('key' in event) {
       event.preventDefault();
-      if (event.key === 'Backspace' || event.key === 'Enter') {
+      if (event.key === 'Backspace' || event.key === 'Enter' || event.key === 'Delete') {
         if (!disabled && onDelete) {
           onDelete(event);
         }
@@ -138,13 +135,13 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ownerState,
     additionalProps: {
       as: component,
-      onKeyDown: handleOnDelete,
-      onClick: handleOnDelete,
+      onKeyDown: handleDelete,
+      onClick: handleDelete,
     },
     className: classes.root,
   });
-
-  return <ChipDeleteRoot {...rootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
+  const { onDelete: excludeOnDelete, ...restOfRootProps } = rootProps;
+  return <ChipDeleteRoot {...restOfRootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
