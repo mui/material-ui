@@ -227,34 +227,3 @@ describe('Joy <Box />', () => {
     });
   });
 });
-
-// eslint-disable-next-line mocha/max-top-level-suites
-describe('theme.unstable_sx', () => {
-  const theme = extendTheme({
-    colorSchemes: {
-      light: {
-        palette: {
-          primary: {
-            500: 'rgb(0, 0, 255)',
-          },
-        },
-      },
-    },
-  });
-
-  it('bgcolor', () => {
-    expect(theme.unstable_sx({ bgcolor: 'primary.500' })).to.deep.equal({
-      // TODO fixme
-      // backgroundColor: 'var(--joy-palette-primary-500)',
-      backgroundColor: 'primary.500',
-    });
-  });
-
-  it('borderRadius', () => {
-    expect(theme.unstable_sx({ borderRadius: 'md' })).to.deep.equal({
-      // TODO fixme
-      // borderRadius: 'var(--joy-radius-md)',
-      borderRadius: '12px',
-    });
-  });
-});
