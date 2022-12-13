@@ -268,7 +268,7 @@ export const ButtonRoot = styled('button', {
     theme.sys.typescale.label.large.tracking / theme.sys.typescale.label.large.size
   }rem`;
 
-  const borderRadiusValue: string | number = tokens.md3.shape.borderRadius;
+  const borderRadiusValue: string | number = tokens.sys.shape.corner.full;
   const borderRadius = Number.isNaN(Number(borderRadiusValue))
     ? borderRadiusValue
     : `${borderRadiusValue}px`;

@@ -23,7 +23,7 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
     root: SlotProps<'div', {}, SwitchOwnerState>;
     thumb: SlotProps<'span', {}, SwitchOwnerState>;
     action: SlotProps<'div', {}, SwitchOwnerState>;
-    input: SlotProps<'button', {}, SwitchOwnerState>;
+    input: SlotProps<'input', {}, SwitchOwnerState>;
     track: SlotProps<'span', {}, SwitchOwnerState>;
     startDecorator: SlotProps<'span', {}, SwitchOwnerState>;
     endDecorator: SlotProps<'span', {}, SwitchOwnerState>;
