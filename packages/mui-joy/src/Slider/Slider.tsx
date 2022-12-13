@@ -252,6 +252,7 @@ const SliderThumb = styled('span', {
   }),
   '&::before': {
     // use pseudo element to create thumb's ring
+    boxSizing: 'border-box',
     content: '""',
     display: 'block',
     position: 'absolute',
