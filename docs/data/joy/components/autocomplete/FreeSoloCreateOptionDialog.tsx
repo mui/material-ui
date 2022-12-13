@@ -120,7 +120,7 @@ export default function FreeSoloCreateOptionDialog() {
               Did you miss any film in our list? Please, add it!
             </Typography>
             <Stack spacing={2}>
-            <FormControl id="name">
+              <FormControl id="name">
                 <FormLabel>Title</FormLabel>
                 <Input
                   autoFocus
