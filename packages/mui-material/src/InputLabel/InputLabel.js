@@ -210,7 +210,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'normal'
    */
-  size: PropTypes.oneOfType([
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['normal', 'small']),
     PropTypes.string,
   ]),
