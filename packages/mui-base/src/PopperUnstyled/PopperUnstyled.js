@@ -84,7 +84,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState(rtlPlacement);
-  const [tooltipAnchorEl, setTooltipAnchorEl] = React.useState(anchorEl);
+  const [tooltipAnchorEl, setTooltipAnchorEl] = React.useState(resolveAnchorEl(anchorEl));
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -94,7 +94,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
 
   React.useEffect(() => {
     if (anchorEl) {
-      setTooltipAnchorEl(anchorEl);
+      setTooltipAnchorEl(resolveAnchorEl(anchorEl));
     }
   }, [anchorEl]);
 
@@ -107,11 +107,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       setPlacement(data.placement);
     };
 
-    const resolvedAnchorEl = resolveAnchorEl(tooltipAnchorEl);
-
     if (process.env.NODE_ENV !== 'production') {
-      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
+      if (tooltipAnchorEl && tooltipAnchorEl.nodeType === 1) {
+        const box = tooltipAnchorEl.getBoundingClientRect();
 
         if (
           process.env.NODE_ENV !== 'test' &&
@@ -161,7 +159,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolveAnchorEl(tooltipAnchorEl), tooltipRef.current, {
+    const popper = createPopper(tooltipAnchorEl, tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
