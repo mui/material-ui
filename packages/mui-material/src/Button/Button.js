@@ -159,7 +159,7 @@ const ButtonRoot = styled(ButtonBase, {
       }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.color === 'inherit' && {
-          border: `1px solid inherit`,
+          border: '1px solid inherit',
         }),
     },
     ...(ownerState.variant === 'text' && {
