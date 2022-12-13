@@ -60,6 +60,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Format feedback to add a link to the commented section (#35381) @alexfauquette
 - [docs] Direct users from Material UI to MUI Base for duplicated components (#35293) @samuelsycamore
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
+- [docs] Update callouts design (#35390) @danilo-leal
 - [website] New wave of open roles (#35240) @mnajdova
 - [website] Developer survey 2022 (#35407) @joserodolfofreitas
 
