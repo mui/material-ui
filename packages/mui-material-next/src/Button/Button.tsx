@@ -306,11 +306,10 @@ export const ButtonRoot = styled('button', {
     padding: '10px 24px',
     minWidth: 64,
     letterSpacing,
-    // Taken from MD2, haven't really found a spec on transitions
-    transition: theme.transitions.create(
+    transition: theme.sys.motion.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
       {
-        duration: theme.transitions.duration.short,
+        duration: tokens.sys.motion.duration.short3,
       },
     ),
     fontFamily: tokens.sys.typescale.label.large.family,

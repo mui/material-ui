@@ -149,6 +149,57 @@ export interface MD3ShapeOptions {
   corner?: Partial<MD3Shape['corner']>;
 }
 
+export interface MD3Easing {
+  linear: string;
+  standard: string;
+  standardAccelerate: string;
+  standardDecelerate: string;
+  emphasized: string;
+  emphasizedDecelerate: string;
+  emphasizedAccelerate: string;
+  legacy: string;
+  legacyDecelerate: string;
+  legacyAccelerate: string;
+}
+export interface MD3Duration {
+  short1: string;
+  short2: string;
+  short3: string;
+  short4: string;
+  medium1: string;
+  medium2: string;
+  medium3: string;
+  medium4: string;
+  long1: string;
+  long2: string;
+  long3: string;
+  long4: string;
+  extraLong1: string;
+  extraLong2: string;
+  extraLong3: string;
+  extraLong4: string;
+}
+
+export interface MotionOptions {
+  easing?: Partial<MD3Easing>;
+  duration?: Partial<MD3Duration>;
+  create?: (
+    props: string | string[],
+    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+  ) => string;
+  getAutoHeightDuration?: (height: number) => number;
+}
+
+export interface Motion {
+  easing: MD3Easing;
+  duration: MD3Duration;
+  create: (
+    props: string | string[],
+    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+  ) => string;
+  getAutoHeightDuration: (height: number) => number;
+}
+
 export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'colorSchemes'> {
   ref?: {
     typeface?: Partial<MD3Typeface>;
@@ -157,6 +208,7 @@ export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'co
     typescale?: Partial<MD3Typescale>;
     state?: Partial<MD3State>;
     elevation?: string[];
+    motion?: MotionOptions;
     shape?: MD3ShapeOptions;
   };
 }
@@ -189,6 +241,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     typescale: MD3Typescale;
     state: MD3State;
     elevation: string[];
+    motion: Motion;
     shape: MD3Shape;
   };
   palette: MD2Theme['palette'];
@@ -203,6 +256,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       typescale: MD3Typescale;
       state: MD3State;
       elevation: string[];
+      motion: Omit<Motion, 'create' | 'getAutoHeightDuration'>;
       shape: MD3Shape;
     };
   };

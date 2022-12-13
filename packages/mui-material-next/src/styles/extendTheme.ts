@@ -25,6 +25,7 @@ import md3Typescale from './typescale';
 import md3Typeface from './typeface';
 import md3State from './state';
 import { elevationLight, elevationDark } from './elevation';
+import createMotions from './motion';
 import md3shape from './shape';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
@@ -62,6 +63,11 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     corner: { ...input.sys?.shape?.corner, ...md3shape.corner },
   };
 
+  const motion = createMotions(input.sys?.motion);
+  const typescale = { ...md3Typescale, ...input.sys?.typescale };
+  const typeface = { ...md3Typeface, ...input.ref?.typeface };
+  const state = { ...md3State, ...input.sys?.state };
+
   const {
     palette: lightPalette,
     // @ts-ignore - sys is md3 specific token
@@ -76,13 +82,14 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     useMaterialYou: true,
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.light?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color },
       elevation: colorSchemesInput.light?.sys?.elevation ?? elevationLight,
       shape,
@@ -106,13 +113,14 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     // @ts-ignore - it's fine, everything that is not supported will be spread
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.dark?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color },
       elevation: colorSchemesInput.dark?.sys?.elevation ?? elevationDark,
       shape,
