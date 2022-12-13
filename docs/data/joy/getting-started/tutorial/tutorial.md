@@ -243,9 +243,6 @@ Here's a recap of the components used:
 - [Typography](/joy-ui/react-typography/)
 - [Button](/joy-ui/react-button/)
 - [Link](/joy-ui/react-link/)
-- [Form Control](/joy-ui/react-form-control/)
-- [Form Label](/joy-ui/react-form-label/)
-- [Input](/joy-ui/react-input/)
 
 Here are some of the major features introduced:
 
