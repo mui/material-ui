@@ -338,7 +338,8 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 
 // Icons import
@@ -435,25 +436,27 @@ export default function EmailExample() {
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>
           </Box>
-          <TextField
-            size="sm"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
-                </Typography>
-              </IconButton>
-            }
-            sx={{
-              flexBasis: '500px',
-              display: {
-                xs: 'none',
-                sm: 'flex',
-              },
-            }}
-          />
+          <FormControl>
+            <Input 
+              size="sm"
+              placeholder="Search anything…"
+              startDecorator={<SearchRoundedIcon color="primary" />}
+              endDecorator={
+                <IconButton variant="outlined" size="sm" color="neutral">
+                  <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
+                    /
+                  </Typography>
+                </IconButton>
+              }
+              sx={{
+                flexBasis: '500px',
+                display: {
+                  xs: 'none',
+                  sm: 'flex',
+                },
+              }}
+            />
+          </FormControl>
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
             <IconButton
               size="sm"
