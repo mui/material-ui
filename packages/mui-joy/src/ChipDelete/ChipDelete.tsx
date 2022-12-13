@@ -140,6 +140,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     },
     className: classes.root,
   });
+
   const { onDelete: excludeOnDelete, ...restOfRootProps } = rootProps;
   return <ChipDeleteRoot {...restOfRootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
