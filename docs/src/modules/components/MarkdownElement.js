@@ -295,10 +295,7 @@ const Root = styled('div')(
       '&.MuiCallout-warning': {
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
         backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
-        borderColor: `var(--muidocs-palette-warning-600, ${alpha(
-          lightTheme.palette.warning[600],
-          0.3,
-        )})`,
+        borderColor: alpha(lightTheme.palette.warning[600], 0.3),
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
@@ -508,10 +505,7 @@ const Root = styled('div')(
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
           backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
-          borderColor: `var(--muidocs-palette-error-600, ${alpha(
-            lightTheme.palette.error[600],
-            0.3,
-          )})`,
+          borderColor: alpha(lightTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
           },
@@ -530,10 +524,7 @@ const Root = styled('div')(
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
           backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
-          borderColor: `var(--muidocs-palette-success-600, ${alpha(
-            lightTheme.palette.success[600],
-            0.3,
-          )})`,
+          borderColor: alpha(lightTheme.palette.success[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
@@ -544,10 +535,7 @@ const Root = styled('div')(
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
           backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
-          borderColor: `var(--muidocs-palette-warning-600, ${alpha(
-            darkTheme.palette.warning[600],
-            0.3,
-          )})`,
+          borderColor: alpha(darkTheme.palette.warning[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
