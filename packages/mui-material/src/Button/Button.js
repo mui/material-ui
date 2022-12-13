@@ -149,12 +149,18 @@ const ButtonRoot = styled(ButtonBase, {
       }),
     },
     [`&.${buttonClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
+      span: {
+        color: (theme.vars || theme).palette.action.disabled,
+      },
       ...(ownerState.variant === 'contained' && {
         color: (theme.vars || theme).palette.action.disabled,
         boxShadow: (theme.vars || theme).shadows[0],
         backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color === 'inherit' && {
+          border: `1px solid currentColor`, //
+        }),
     },
     ...(ownerState.variant === 'text' && {
       padding: '6px 8px',
@@ -343,7 +349,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {children}
+      <span>{children}</span>
       {endIcon}
     </ButtonRoot>
   );
