@@ -150,9 +150,6 @@ const ButtonRoot = styled(ButtonBase, {
     },
     [`&.${buttonClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
-      ...(ownerState.variant === 'outlined' && {
-        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-      }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.color === 'secondary' && {
           border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
