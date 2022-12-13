@@ -23,7 +23,19 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### `@mui/system@5.11.0`
 
+#### BREAKING CHANGES
+
 - [system] Enable configuring the `sx` prop in the `theme` (#35150) @mnajdova
+
+  The breaking change is regarding an experimental API:
+
+  ```diff
+  -import { styled, experimental_sx } from '@mui/material/styles';
+  +import { styled } from '@mui/material/styles';
+
+  -const Component = styled('div)(experimental_sx({ p: 1 }});
+  +const Component = styled('div)(({ theme }) => theme.unstable_sx({ p: 1 }});
+  ```
 
 ### `@mui/joy@5.0.0-alpha.58`
 
