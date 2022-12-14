@@ -126,6 +126,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const Input = slots.input || JoyInput;
 
   return (
+    // @ts-ignore neglect 'context' color
     <SlotRoot {...rootProps}>
       {label && (
         <FormLabel
