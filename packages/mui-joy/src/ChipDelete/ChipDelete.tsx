@@ -175,7 +175,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    */
   onClick: PropTypes.func,
   /**
-   * Callback fired when component is not disabled and `Backspace` or `Enter` or `Delete` is pressed or when chip is clicked.
+   * Callback fired when component is not disabled and `Backspace`, `Enter` or `Delete` is pressed or when chip is clicked.
    */
   onDelete: PropTypes.func,
   /**
