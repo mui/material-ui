@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import { extendTheme, useTheme, CssVarsProvider } from '@mui/joy/styles';
@@ -49,8 +50,9 @@ describe('extendTheme', () => {
   });
 
   describe('theme.unstable_sx', () => {
-    let originalMatchmedia;
     const { render } = createRenderer();
+
+    let originalMatchmedia;
     const storage = {};
     beforeEach(() => {
       originalMatchmedia = window.matchMedia;
@@ -72,8 +74,8 @@ describe('extendTheme', () => {
     afterEach(() => {
       window.matchMedia = originalMatchmedia;
     });
-    
-    const theme = extendTheme({
+
+    const customTheme = extendTheme({
       colorSchemes: {
         light: {
           palette: {
@@ -88,14 +90,14 @@ describe('extendTheme', () => {
     it('bgcolor', () => {
       let styles = {};
 
-      const Test = () => {
+      function Test() {
         const theme = useTheme();
         styles = theme.unstable_sx({ bgcolor: 'primary.500' });
         return null;
-      };
+      }
 
-      const { container } = render(
-        <CssVarsProvider theme={theme}>
+      render(
+        <CssVarsProvider theme={customTheme}>
           <Test />
         </CssVarsProvider>,
       );
@@ -108,14 +110,14 @@ describe('extendTheme', () => {
     it('borderRadius', () => {
       let styles = {};
 
-      const Test = () => {
+      function Test() {
         const theme = useTheme();
         styles = theme.unstable_sx({ borderRadius: 'md' });
         return null;
-      };
+      }
 
-      const { container } = render(
-        <CssVarsProvider theme={theme}>
+      render(
+        <CssVarsProvider theme={customTheme}>
           <Test />
         </CssVarsProvider>,
       );
