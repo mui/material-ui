@@ -188,7 +188,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('does not bounce focus around due to sync focus-restore + focus-contain', () => {
-    const eventLog: Array<any> = [];
+    const eventLog: string[] = [];
     function Test(props: GenericProps) {
       return (
         <div onBlur={() => eventLog.push('blur')}>
