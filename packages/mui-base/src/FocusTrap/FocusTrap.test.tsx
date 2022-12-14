@@ -19,9 +19,7 @@ describe('<FocusTrap />', () => {
     initialFocus.tabIndex = 0;
     document.body.appendChild(initialFocus);
     act(() => {
-      if (initialFocus) {
-        initialFocus.focus();
-      }
+      initialFocus!.focus();
     });
   });
 
