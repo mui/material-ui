@@ -2,13 +2,13 @@
   size="sm"
   variant="outlined"
   color="danger"
-  endDecorator={<ChipDelete />}
+  endDecorator={<ChipDelete onDelete={handleDelete} />}
 >
   Remove
 </Chip>
-<Chip variant="soft" color="danger" endDecorator={<ChipDelete />}>
+<Chip variant="soft" color="danger" endDecorator={<ChipDelete onDelete={handleDelete} />}>
   Delete
 </Chip>
-<Chip size="lg" variant="solid" color="danger" endDecorator={<ChipDelete />}>
+<Chip size="lg" variant="solid" color="danger" endDecorator={<ChipDelete onDelete={handleDelete} />}>
   Delete
 </Chip>
