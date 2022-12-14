@@ -30,17 +30,17 @@ As you increase the month, the component automatically watches for valid values 
 The Fields are a perfect match to the calendar view, but they are available as stand-alone components, and you can import them from the latest v6 package.
 
 ```jsx
-import { Unstable_DateField as DateField } from ‘@mui/x-date-pickers/DateField'
+import { Unstable_DateField as DateField } from '@mui/x-date-pickers/DateField';
 
-<DateField label=”My first field” />
+<DateField label="My first field" />;
 ```
 
 They are also included by default on the new pickers.
 
 ```jsx
-import { Unstable_NextDatePicker as NextDatePicker } from ‘@mui/x-date-pickers/NextDatePicker'
+import { Unstable_NextDatePicker as NextDatePicker } from '@mui/x-date-pickers/NextDatePicker';
 
-<NextDatePicker label=”My first v6 picker” />
+<NextDatePicker label="My first v6 picker" />;
 ```
 
 ## Enhanced keyboard usability
@@ -103,7 +103,7 @@ Add quick and customizable shortcuts to your users. Choose to display them on le
 We believe that after using the date fields, you'll have no reason to come back to the masked input approach.
 It has a few irreparable usability issues, and it sets some hard limits on what we can do with the input.
 
-However, they are still available during the pre-release, and you can find their documentation under the documentation pages prefixed with “Legacy“.
+However, they are still available during the pre-release, and you can find their documentation under the documentation pages prefixed with 'Legacy'.
 
 The plan is to replace them entirely on the v6 stable release. But in the end, it's all up to you, and we'd love to listen to what you think.
 
