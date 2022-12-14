@@ -83,7 +83,7 @@ describe('<ChipDelete />', () => {
       expect(handleDelete.callCount).to.equal(4);
     });
 
-    it('should call onDelete function when ChipDelete is disabled', () => {
+    it('should not call onDelete function when ChipDelete is disabled', () => {
       const handleDelete = spy();
       const { getByRole } = render(
         <ChipDelete disabled onDelete={handleDelete} onClick={() => {}} />,

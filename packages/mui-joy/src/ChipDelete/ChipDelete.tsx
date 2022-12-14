@@ -104,26 +104,24 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const handleDelete = (
-    event: React.KeyboardEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    if ('key' in event) {
-      event.preventDefault();
-      if (event.key === 'Backspace' || event.key === 'Enter' || event.key === 'Delete') {
-        if (!disabled && onDelete) {
-          onDelete(event);
-        }
-      }
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
-    } else {
+  const handleClickDelete = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (!disabled && onDelete) {
+      onDelete(event);
+    }
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
+  const handleKeyDelete = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (['Backspace', 'Enter', 'Delete'].includes(event.key)) {
       if (!disabled && onDelete) {
         onDelete(event);
       }
-      if (onClick) {
-        onClick(event);
-      }
+    }
+    if (onKeyDown) {
+      onKeyDown(event);
     }
   };
 
@@ -135,8 +133,8 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ownerState,
     additionalProps: {
       as: component,
-      onKeyDown: handleDelete,
-      onClick: handleDelete,
+      onKeyDown: handleKeyDelete,
+      onClick: handleClickDelete,
     },
     className: classes.root,
   });
@@ -177,7 +175,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    */
   onClick: PropTypes.func,
   /**
-   * Callback fired when component is not disabled and backspace or enter is pressed or when chip is clicked.
+   * Callback fired when component is not disabled and `Backspace` or `Enter` or `Delete` is pressed or when chip is clicked.
    */
   onDelete: PropTypes.func,
   /**
