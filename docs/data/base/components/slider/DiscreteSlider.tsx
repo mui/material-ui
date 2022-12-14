@@ -132,7 +132,6 @@ export default function DiscreteSlider() {
         aria-label="Temperature"
         defaultValue={30}
         getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
         step={10}
         marks
         min={10}

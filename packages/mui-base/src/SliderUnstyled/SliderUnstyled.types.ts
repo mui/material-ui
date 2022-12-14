@@ -21,7 +21,6 @@ export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   scale: (value: number) => number;
   step: number | null;
   track: 'normal' | false | 'inverted';
-  valueLabelDisplay: 'on' | 'auto' | 'off';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 };
 
@@ -225,15 +224,6 @@ export interface SliderUnstyledOwnProps {
    */
   value?: number | number[];
   /**
-   * Controls when the value label is displayed:
-   *
-   * - `auto` the value label will display when the thumb is hovered or focused.
-   * - `on` will display persistently.
-   * - `off` will never display.
-   * @default 'off'
-   */
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
-  /**
    * The format function the value label's value.
    *
    * When a function is provided, it should have the following signature:
@@ -319,7 +309,6 @@ export type SliderUnstyledValueLabelSlotProps = {
   open?: boolean;
   ownerState: SliderUnstyledOwnerState;
   valueLabel?: string | React.ReactNode;
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 };
 

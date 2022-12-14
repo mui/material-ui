@@ -497,6 +497,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     size = 'medium',
     slotProps,
     slots,
+    valueLabelDisplay = 'off',
     ...other
   } = props;
 
@@ -564,6 +565,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
           ...(shouldSpreadAdditionalProps(ValueLabelSlot) && {
             ownerState: { ...valueLabelSlotProps?.ownerState, color, size },
           }),
+          valueLabelDisplay,
         },
         mark: markSlotProps,
         markLabel: markLabelSlotProps,

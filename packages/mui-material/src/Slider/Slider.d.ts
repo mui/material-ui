@@ -80,6 +80,15 @@ export type SliderTypeMap<
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     * Controls when the value label is displayed:
+     *
+     * - `auto` the value label will display when the thumb is hovered or focused.
+     * - `on` will display persistently.
+     * - `off` will never display.
+     * @default 'off'
+     */
+    valueLabelDisplay?: 'on' | 'auto' | 'off';
   };
   defaultComponent: D;
 }>;

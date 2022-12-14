@@ -66,7 +66,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     tabIndex,
     track = 'normal',
     value: valueProp,
-    valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
     slotProps = {},
@@ -88,7 +87,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     scale,
     step,
     track,
-    valueLabelDisplay,
     valueLabelFormat,
   };
 
@@ -246,20 +244,22 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
-        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
+        const ValueLabelComponent =
+          valueLabelProps?.valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
         return (
           <React.Fragment key={index}>
             <ValueLabelComponent
               {...(!isHostComponent(ValueLabelComponent) && {
                 valueLabelFormat,
-                valueLabelDisplay,
+                valueLabelDisplay: valueLabelProps?.valueLabelDisplay,
                 value:
                   typeof valueLabelFormat === 'function'
                     ? valueLabelFormat(scale(value), index)
                     : valueLabelFormat,
                 index,
-                open: open === index || active === index || valueLabelDisplay === 'on',
+                open:
+                  open === index || active === index || valueLabelProps?.valueLabelDisplay === 'on',
                 disabled,
               })}
               {...valueLabelProps}
@@ -511,15 +511,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * For ranged sliders, provide an array with two values.
    */
   value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-  /**
-   * Controls when the value label is displayed:
-   *
-   * - `auto` the value label will display when the thumb is hovered or focused.
-   * - `on` will display persistently.
-   * - `off` will never display.
-   * @default 'off'
-   */
-  valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
   /**
    * The format function the value label's value.
    *

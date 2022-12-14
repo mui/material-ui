@@ -56,10 +56,6 @@
     "value": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "valueLabelDisplay": {
-      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
-      "default": "'off'"
-    },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
       "default": "(x) => x"
