@@ -1,8 +1,10 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
     "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
     "disableEnforceFocus": { "type": { "name": "bool" } },
@@ -18,7 +20,6 @@
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
     "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
     "slotProps": {
       "type": {
         "name": "shape",
