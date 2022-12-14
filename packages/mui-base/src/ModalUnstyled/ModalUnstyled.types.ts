@@ -168,7 +168,6 @@ export interface ModalUnstyledRootSlotProps {
   className?: string;
   onKeyDown: React.KeyboardEventHandler;
   ownerState: ModalUnstyledOwnerState;
-  ref: React.Ref<any>;
   role: React.AriaRole;
 }
 
