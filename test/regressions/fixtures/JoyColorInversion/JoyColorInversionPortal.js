@@ -55,7 +55,7 @@ export default function ColorInversionPopup() {
           <Button ref={(node) => setMenuButton(node)} variant="soft">
             Actions
           </Button>
-          <Menu disablePortal anchorEl={menuButton} open={!!menuButton}>
+          <Menu disablePortal={false} anchorEl={menuButton} open={!!menuButton}>
             <MenuItem>New tab</MenuItem>
             <MenuItem>New window</MenuItem>
             <ListDivider />
@@ -106,8 +106,11 @@ export default function ColorInversionPopup() {
             <ListDivider />
             <MenuItem>Delete</MenuItem>
           </Menu>
-          {/* default `disablePortal` of the Select is true. */}
-          <Select placeholder="Choose one" listboxOpen>
+          <Select
+            placeholder="Choose one"
+            listboxOpen
+            slotProps={{ listbox: { disablePortal: true } }}
+          >
             <Option value="1">Option 1</Option>
             <Option value="2">Option 2</Option>
             <Option value="3">Option 3</Option>
