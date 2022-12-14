@@ -45,7 +45,7 @@ npm install @mui/icons-material @mui/material
 
 :::warning
 
-Because `@mui/material` is a required dependency of `@mui/icons-material`, you have update your bundler's config to add an alias.
+Because `@mui/material` is a required dependency of `@mui/icons-material`, you have to update your bundler's config to add an alias.
 
 Here is an example of how you can do it, if you use [`webpack`](https://webpack.js.org/):
 
@@ -56,7 +56,7 @@ Here is an example of how you can do it, if you use [`webpack`](https://webpack.
    //...
 +  resolve: {
 +    alias: {
-+      '@mui/styled-engine': '@mui/styled-engine-sc'
++      '@mui/material': '@mui/joy'
 +    },
 +  },
  };
@@ -70,7 +70,7 @@ If you use TypeScript, you will need to update the TSConfig.
  {
    "compilerOptions": {
 +    "paths": {
-+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
++      "@mui/material": ["./node_modules/@mui/joy"]
 +    }
    },
  }
