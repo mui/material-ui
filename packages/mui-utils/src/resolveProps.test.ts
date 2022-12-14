@@ -44,4 +44,28 @@ describe('resolveProps', () => {
       foo: '',
     });
   });
+
+  it('merge components and componentsProps props', () => {
+    expect(
+      resolveProps(
+        { components: { Input: 'Input' }, componentsProps: { input: 'input' } },
+        { components: { Root: 'Root' }, componentsProps: { root: 'root' } },
+      ),
+    ).to.deep.equal({
+      components: { Root: 'Root', Input: 'Input' },
+      componentsProps: { root: 'root', input: 'input' },
+    });
+  });
+
+  it('merge slots and slotProps props', () => {
+    expect(
+      resolveProps(
+        { slots: { input: 'input' }, slotProps: { input: 'input' } },
+        { slots: { root: 'root' }, slotProps: { root: 'root' } },
+      ),
+    ).to.deep.equal({
+      slots: { root: 'root', input: 'input' },
+      slotProps: { root: 'root', input: 'input' },
+    });
+  });
 });

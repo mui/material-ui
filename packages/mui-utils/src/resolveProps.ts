@@ -4,14 +4,24 @@
  * @param {object} props
  * @returns {object} resolved props
  */
-export default function resolveProps<T extends { className?: string } & Record<string, unknown>>(
-  defaultProps: T,
-  props: T,
-) {
+export default function resolveProps<
+  T extends {
+    className?: string;
+    components?: Record<string, unknown>;
+    componentsProps?: Record<string, unknown>;
+    slots?: Record<string, unknown>;
+    slotProps?: Record<string, unknown>;
+  } & Record<string, unknown>,
+>(defaultProps: T, props: T) {
   const output = { ...props };
 
   Object.keys(defaultProps).forEach((propName: keyof T) => {
-    if (output[propName] === undefined) {
+    if (propName.toString().match(/^(components|componentsProps|slots|slotProps)$/)) {
+      output[propName] = {
+        ...(defaultProps[propName] as any),
+        ...(output[propName] as any),
+      };
+    } else if (output[propName] === undefined) {
       output[propName] = defaultProps[propName];
     }
   });
