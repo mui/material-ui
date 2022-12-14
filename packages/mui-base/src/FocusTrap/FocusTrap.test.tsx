@@ -26,7 +26,7 @@ describe('<FocusTrap />', () => {
   });
 
   afterEach(() => {
-    document.body.removeChild(initialFocus as HTMLElement);
+    document.body.removeChild(initialFocus!);
   });
 
   it('should return focus to the root', () => {
