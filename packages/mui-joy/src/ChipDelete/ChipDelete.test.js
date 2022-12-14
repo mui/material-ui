@@ -69,7 +69,7 @@ describe('<ChipDelete />', () => {
     });
   });
   describe('Chip onDelete', () => {
-    it('should call onDelete function when backspace or enter or delete is pressed', () => {
+    it('should call onDelete function when backspace, enter or delete is pressed', () => {
       const handleDelete = spy();
       const { getByRole } = render(<ChipDelete onDelete={handleDelete} onClick={() => {}} />);
       const chipDelete = getByRole('button');
