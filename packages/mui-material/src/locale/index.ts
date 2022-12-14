@@ -2110,7 +2110,7 @@ export const koKR: Localization = {
   },
 };
 
-export const kzKZ: Localization = {
+export const kkKZ: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {

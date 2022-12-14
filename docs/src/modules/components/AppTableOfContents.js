@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -131,7 +130,8 @@ const shouldShowJobAd = () => {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const showAddJob = shouldShowJobAd();
+  const showSurveyBanner = true;
+  const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -219,15 +219,16 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
-        {showAddJob && (
+        {showSurveyBanner && (
           <Link
-            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
-            underline="none"
+            href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"
+            target="_blank"
             sx={(theme) => ({
               mb: 2,
+              p: 1,
               display: 'flex',
               flexDirection: 'column',
-              overflow: 'auto',
+              alignItems: 'flex-start',
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.primary[900], 0.2)
@@ -249,21 +250,65 @@ export default function AppTableOfContents(props) {
               },
             })}
           >
-            <Box sx={{ p: 1 }}>
-              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
-                {'🚀 Join the MUI team!'}
-              </Typography>
-              <Typography
-                component="span"
-                variant="caption"
-                fontWeight="normal"
-                color="text.secondary"
-                sx={{ mt: 0.5 }}
-              >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {"We're looking for React Engineers and other amazing roles－come find out more!"}
-              </Typography>
-            </Box>
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'📫 MUI Developer survey 2022 is live!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {'Influence the future of MUI. Help define the roadmap for 2023!'}
+            </Typography>
+          </Link>
+        )}
+        {showAddJob && (
+          <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            target="_blank"
+            sx={(theme) => ({
+              mb: 2,
+              p: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'🚀 Join the MUI team!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {"We're looking for React Engineers and other amazing roles－come find out more!"}
+            </Typography>
           </Link>
         )}
       </NoSsr>
