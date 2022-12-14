@@ -47,6 +47,7 @@ describe('Joy <Menu />', () => {
     {
       muiName: 'JoyMenu',
       classes,
+      portalSlot: 'root',
     },
   );
 

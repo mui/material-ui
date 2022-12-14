@@ -16,13 +16,18 @@ export default function describeJoyColorInversion(
     muiName: string;
     classes: { colorContext: string; colorPrimary: string; colorSuccess: string };
     wrapper?: (node: React.ReactElement) => React.ReactElement;
+    portalSlot?: string;
   },
 ) {
-  const { classes, muiName, wrapper = (node) => node } = options;
+  const { classes, muiName, wrapper = (node) => node, portalSlot } = options;
   const { render } = createRenderer();
-  const getTestElement = (result: MuiRenderResult) => {
+  const getTestElement = (result: MuiRenderResult, id = '') => {
     const { container, queryByTestId } = result;
-    return queryByTestId('test-element') ?? container.firstChild?.firstChild;
+    let testElement = queryByTestId('test-element') ?? container.firstChild?.firstChild;
+    if (id) {
+      testElement = queryByTestId(id) ?? testElement;
+    }
+    return testElement;
   };
   describe('Color Inversion', () => {
     describe('Feature enabled', () => {
@@ -56,6 +61,53 @@ export default function describeJoyColorInversion(
           </ThemeProvider>,
         );
         expect(getTestElement(result)).to.have.class(classes.colorContext);
+      });
+    });
+
+    describe('Portal slot', () => {
+      if (!portalSlot) {
+        return;
+      }
+
+      const getProps = (disablePortal: boolean) =>
+        portalSlot === 'root'
+          ? {
+              disablePortal,
+              ...(!element.props.slotProps?.root?.['data-testid'] && {
+                'data-testid': 'test-portal',
+              }),
+            }
+          : {
+              slotProps: {
+                ...element.props.slotProps,
+                [portalSlot]: {
+                  ...element.props.slotProps?.[portalSlot],
+                  disablePortal,
+                  'data-testid': 'test-portal',
+                },
+              },
+            };
+
+      it('If `disablePortal` is false, color inversion should NOT apply', () => {
+        const result = render(
+          <ThemeProvider>
+            <Sheet invertedColors variant="solid" color="primary">
+              {wrapper(React.cloneElement(element, getProps(false)))}
+            </Sheet>
+          </ThemeProvider>,
+        );
+        expect(getTestElement(result, 'test-portal')).not.to.have.class(classes.colorContext);
+      });
+
+      it('If `disablePortal` is true, color inversion should WORK', () => {
+        const result = render(
+          <ThemeProvider>
+            <Sheet invertedColors variant="solid" color="primary">
+              {wrapper(React.cloneElement(element, getProps(true)))}
+            </Sheet>
+          </ThemeProvider>,
+        );
+        expect(getTestElement(result, 'test-portal')).to.have.class(classes.colorContext);
       });
     });
 

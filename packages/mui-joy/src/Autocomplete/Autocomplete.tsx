@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
@@ -645,7 +646,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   if (anchorEl) {
     popup = (
       <ListProvider nested>
-        <SlotListbox {...listboxProps} modifiers={modifiers}>
+        <SlotListbox
+          {...listboxProps}
+          className={clsx(
+            listboxProps.className,
+            listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
+          )}
+          modifiers={modifiers}
+        >
           {groupedOptions.map((option, index) => {
             if (groupBy) {
               const typedOption = option as AutocompleteGroupedOption;

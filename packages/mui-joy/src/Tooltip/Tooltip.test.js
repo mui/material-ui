@@ -60,7 +60,7 @@ describe('<Tooltip />', () => {
     >
       <button>Hello World</button>
     </Tooltip>,
-    { muiName: 'JoyTooltip', classes },
+    { muiName: 'JoyTooltip', classes, portalSlot: 'root' },
   );
 
   describe('prop: variant', () => {

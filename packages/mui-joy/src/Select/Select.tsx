@@ -1,12 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverrideProps, DefaultComponentProps } from '@mui/types';
+import clsx from 'clsx';
+import { OverridableComponent, OverrideProps, DefaultComponentProps } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import PopperUnstyled, {
+  PopperUnstyledProps,
+  PopperUnstyledTypeMap,
+} from '@mui/base/PopperUnstyled';
 import {
   useSelect,
   SelectUnstyledContext,
@@ -78,14 +82,7 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     indicator: ['indicator', open && 'expanded'],
-    listbox: [
-      'listbox',
-      open && 'expanded',
-      disabled && 'disabled',
-      variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
-    ],
+    listbox: ['listbox', open && 'expanded', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getSelectUtilityClass, {});
@@ -516,7 +513,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       placement: 'bottom' as const,
     },
     className: classes.listbox,
-    elementType: PopperUnstyled,
+    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
     externalForwardedProps: other,
     getSlotProps: getListboxProps,
     ownerState: {
@@ -575,8 +572,14 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   let result = null;
   if (anchorEl) {
     result = (
-      // @ts-ignore internal logic: `listboxComponent` should not replace `SelectListbox`.
-      <SlotListbox {...listboxProps} modifiers={modifiers}>
+      <SlotListbox
+        {...listboxProps}
+        className={clsx(
+          listboxProps.className,
+          listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
+        )}
+        modifiers={modifiers}
+      >
         <SelectUnstyledContext.Provider value={context}>
           {/* for building grouped options */}
           <ListProvider nested>{children}</ListProvider>

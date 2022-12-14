@@ -3,6 +3,7 @@ import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
 import { useColorInversion } from '../styles/ColorInversion';
+import { ApplyColorInversion } from '../styles/types';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -172,7 +173,10 @@ export default function useSlot<
 
   return [elementType, props] as [
     ElementType,
-    { className: string; ownerState: OwnerState & SlotOwnerState } & AdditionalProps &
+    {
+      className: string;
+      ownerState: ApplyColorInversion<OwnerState & SlotOwnerState>;
+    } & AdditionalProps &
       SlotProps &
       ExternalSlotProps &
       ExtractComponentProps<

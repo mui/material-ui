@@ -49,7 +49,11 @@ describe('Joy <Autocomplete />', () => {
     skip: ['componentsProp', 'classesRoot'],
   }));
 
-  describeJoyColorInversion(<Autocomplete options={[]} />, { muiName: 'JoyAutocomplete', classes });
+  describeJoyColorInversion(<Autocomplete options={[]} open />, {
+    muiName: 'JoyAutocomplete',
+    classes,
+    portalSlot: 'listbox',
+  });
 
   it('should be customizable in the theme', () => {
     render(
