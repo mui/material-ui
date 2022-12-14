@@ -52,7 +52,9 @@ export default function useSlot<
    * e.g. the `externalForwardedProps` are spread to `root` slot but not other slots.
    */
   name: T,
-  parameters: (T extends 'root' ? { ref: React.ForwardedRef<any> } : {}) & {
+  parameters: (T extends 'root' // root slot must pass a `ref` as a parameter
+    ? { ref: React.ForwardedRef<any> }
+    : { ref?: React.ForwardedRef<any> }) & {
     /**
      * The slot's className
      */
@@ -129,11 +131,7 @@ export default function useSlot<
     externalSlotProps: resolvedComponentsProps,
   });
 
-  const ref = useForkRef(
-    internalRef,
-    // @ts-ignore `ref` is required for the 'root' slot
-    useForkRef(resolvedComponentsProps?.ref, name === 'root' ? parameters.ref : undefined),
-  ) as ((instance: any | null) => void) | null;
+  const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
   const finalOwnerState = getSlotOwnerState
     ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }

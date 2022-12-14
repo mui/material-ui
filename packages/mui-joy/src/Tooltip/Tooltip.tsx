@@ -588,9 +588,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {
-    additionalProps: {
-      ref: setArrowRef,
-    },
+    ref: setArrowRef,
     className: classes.arrow,
     elementType: TooltipArrow,
     externalForwardedProps: other,
