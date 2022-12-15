@@ -194,7 +194,8 @@ Modify your `package.json` commands:
   }
 ```
 
-If you are using Nextjs >= v12.1.1, you can make use of their [Modularize Imports](https://nextjs.org/docs/advanced-features/compiler#modularize-imports) without `.babelrc` configuration, so that you can still use [SWC](https://nextjs.org/docs/advanced-features/compiler#why-swc).
+If you are using Next.js >= v12.1.1, you can make use of their [Modularize Imports](https://nextjs.org/docs/advanced-features/compiler#modularize-imports) feature.
+This does not require adding Babel configuration, so you can still use [SWC](https://nextjs.org/docs/advanced-features/compiler#why-swc) if you prefer.
 
 Create a `next.config.js` file in the root directory:
 
