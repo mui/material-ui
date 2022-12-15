@@ -146,7 +146,7 @@ describe('useSlot', () => {
         root?: React.ElementType;
       };
       slotProps?: {
-        root?: SlotProps<'button', Record<string, any>, {}>;
+        root?: SlotProps<'div', Record<string, any>, {}>;
       };
     }) {
       const ref = React.useRef(null);
@@ -197,7 +197,7 @@ describe('useSlot', () => {
    * Simulate `Autocomplete`, `Select`, ...etc
    */
   describe('multiple slots with unstyled popper', () => {
-    const ItemRoot = styled('div')({});
+    const ItemRoot = styled('button')({});
     const ItemListbox = styled('ul')({
       margin: 'initial', // prevent Popper error.
     });
@@ -212,7 +212,7 @@ describe('useSlot', () => {
       };
       slotProps?: {
         root?: SlotProps<'button', Record<string, any>, {}>;
-        listbox?: SlotProps<'span', Record<string, any>, {}>;
+        listbox?: SlotProps<'ul', Record<string, any>, {}>;
         option?: SlotProps<'div', Record<string, any>, {}>;
       };
     }) {
@@ -226,7 +226,7 @@ describe('useSlot', () => {
       });
       const [SlotListbox, listboxProps] = useSlot('listbox', {
         className: 'listbox',
-        elementType: PopperUnstyled,
+        elementType: PopperUnstyled as unknown as 'ul',
         externalForwardedProps: props,
         ownerState: {},
         additionalProps: {

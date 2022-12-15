@@ -105,7 +105,7 @@ function AppLayoutDocs(props) {
         styles={{
           ':root': {
             '--MuiDocs-navDrawer-width': '300px',
-            '--MuiDocs-toc-width': '240px',
+            '--MuiDocs-toc-width': '242px',
           },
         }}
       />

@@ -1,13 +1,12 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { css, keyframes } from '@mui/system';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import useSlot from '../utils/useSlot';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
@@ -146,20 +145,21 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     children,
     className,
+    component,
     color = 'primary',
-    component = 'span',
     size = 'md',
     variant = 'soft',
     thickness,
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the bar.
+    style,
     ...other
   } = props;
 
   const ownerState = {
     ...props,
-    color,
     component,
+    color,
     size,
     variant,
     thickness,
@@ -170,28 +170,29 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: clsx(classes.root, className),
-    elementType: LinearProgressRoot,
-    externalForwardedProps: { ...other, component },
-    ownerState,
-    additionalProps: {
-      role: 'progressbar',
-      style: {
+  return (
+    <LinearProgressRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      role="progressbar"
+      style={{
         // Setting this CSS varaible via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
-        '--LinearProgress-percent': value,
-      },
-      ...(typeof value === 'number' &&
+        ...({ '--LinearProgress-percent': value } as React.CSSProperties),
+        ...style,
+      }}
+      ownerState={ownerState}
+      {...(typeof value === 'number' &&
         determinate && {
           'aria-valuenow': Math.round(value),
-        }),
-    },
-  });
-
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+        })}
+      {...other}
+    >
+      {children}
+    </LinearProgressRoot>
+  );
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
@@ -235,6 +236,10 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

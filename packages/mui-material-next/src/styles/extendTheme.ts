@@ -23,8 +23,10 @@ import createMd3LightColorScheme from './createLightColorScheme';
 import createMd3DarkColorScheme from './createDarkColorScheme';
 import md3Typescale from './typescale';
 import md3Typeface from './typeface';
-import md3State from './states';
+import md3State from './state';
 import { elevationLight, elevationDark } from './elevation';
+import createMotions from './motion';
+import md3shape from './shape';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -55,6 +57,16 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
   const md3DarkColors = createMd3DarkColorScheme(getCssVar, md3CommonPalette);
+  const shape = {
+    ...input.sys?.shape,
+    ...md3shape,
+    corner: { ...input.sys?.shape?.corner, ...md3shape.corner },
+  };
+
+  const motion = createMotions(input.sys?.motion);
+  const typescale = { ...md3Typescale, ...input.sys?.typescale };
+  const typeface = { ...md3Typeface, ...input.ref?.typeface };
+  const state = { ...md3State, ...input.sys?.state };
 
   const {
     palette: lightPalette,
@@ -70,21 +82,17 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     useMaterialYou: true,
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.light?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3LightColors, ...colorSchemesInput.light?.sys?.color },
       elevation: colorSchemesInput.light?.sys?.elevation ?? elevationLight,
-    },
-    md3: {
-      shape: {
-        borderRadius: 100,
-        ...input?.shape,
-      },
+      shape,
     },
     palette: {
       ...(colorSchemesInput.light && colorSchemesInput.light?.palette),
@@ -105,15 +113,17 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     // @ts-ignore - it's fine, everything that is not supported will be spread
     ref: {
       ...input.ref,
-      typeface: { ...md3Typeface, ...input.ref?.typeface },
+      typeface,
       palette: deepmerge(md3CommonPalette, colorSchemesInput.dark?.ref?.palette),
     },
     sys: {
       ...input.sys,
-      typescale: { ...md3Typescale, ...input.sys?.typescale },
-      state: { ...md3State, ...input.sys?.state },
+      typescale,
+      state,
+      motion,
       color: { ...md3DarkColors, ...colorSchemesInput.dark?.sys?.color },
       elevation: colorSchemesInput.dark?.sys?.elevation ?? elevationDark,
+      shape,
     },
   });
 

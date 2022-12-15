@@ -268,7 +268,7 @@ export const ButtonRoot = styled('button', {
     theme.sys.typescale.label.large.tracking / theme.sys.typescale.label.large.size
   }rem`;
 
-  const borderRadiusValue: string | number = tokens.md3.shape.borderRadius;
+  const borderRadiusValue: string | number = tokens.sys.shape.corner.full;
   const borderRadius = Number.isNaN(Number(borderRadiusValue))
     ? borderRadiusValue
     : `${borderRadiusValue}px`;
@@ -306,11 +306,10 @@ export const ButtonRoot = styled('button', {
     padding: '10px 24px',
     minWidth: 64,
     letterSpacing,
-    // Taken from MD2, haven't really found a spec on transitions
-    transition: theme.transitions.create(
+    transition: theme.sys.motion.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
       {
-        duration: theme.transitions.duration.short,
+        duration: tokens.sys.motion.duration.short3,
       },
     ),
     fontFamily: tokens.sys.typescale.label.large.family,

@@ -1,4 +1,6 @@
-const mdSysState = {
+import { MD3State } from './Theme.types';
+
+const mdSysState: MD3State = {
   hover: {
     stateLayerOpacity: 0.08,
   },
