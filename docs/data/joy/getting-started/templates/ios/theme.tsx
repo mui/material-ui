@@ -555,21 +555,18 @@ export default extendTheme({
           ...(ownerState.variant === 'ios' && {
             '--Input-focusedThickness': '0px',
             '--Input-placeholderOpacity': '1',
+            '--Input-placeholderColor': theme.vars.palette.label.tertiary,
             color: theme.vars.palette.label.primary,
+          }),
+          ...(ownerState.type === 'search' && {
+            '--Input-placeholderColor': theme.vars.palette.label.secondary,
+            backgroundColor: theme.vars.palette.fill.tertiary,
+            borderRadius: '11px',
           }),
         }),
         input: ({ theme, ownerState }) => ({
           ...(ownerState.variant === 'ios' && {
             caretColor: theme.vars.palette.system.blue,
-            '&::-webkit-input-placeholder': {
-              color: theme.vars.palette.label.tertiary,
-            },
-            '&::-moz-placeholder': {
-              color: theme.vars.palette.label.tertiary,
-            }, // Firefox 19+
-            '&::-ms-input-placeholder': {
-              color: theme.vars.palette.label.tertiary,
-            }, // Edge
           }),
         }),
       },

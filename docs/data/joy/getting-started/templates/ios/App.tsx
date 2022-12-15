@@ -9,7 +9,7 @@ import Navigation, { NavigationView } from './Navigation';
 import ColorSystem from './ColorSystem';
 import TypographySystem from './TypographySystem';
 import iosTheme from './theme';
-import IPhone from './IPhone';
+import Bars from './Bars';
 
 function SystemMaterials() {
   const theme = useTheme();
@@ -46,7 +46,7 @@ function SystemMaterials() {
 
 export default function IosExample() {
   // const [disableTheme, setDisableTheme] = React.useState(false);
-  const [view, setView] = React.useState<NavigationView>('iphone');
+  const [view, setView] = React.useState<NavigationView>('bars');
   return (
     <CssVarsProvider
       defaultMode="system"
@@ -77,7 +77,7 @@ export default function IosExample() {
             pb: 'calc(2rem + env(safe-area-inset-bottom))',
           }}
         >
-          {view === 'iphone' && <IPhone />}
+          {view === 'bars' && <Bars />}
           {view === 'color' && <ColorSystem />}
           {view === 'text' && <TypographySystem />}
           {view === 'material' && <SystemMaterials />}

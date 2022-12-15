@@ -25,14 +25,16 @@ import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import Frame from './Frame';
 
-const Navbar = ({ sx, ...props }: SheetProps) => (
-  <Sheet
-    {...props}
-    sx={[(theme) => theme.materials.navbar, ...(Array.isArray(sx) ? sx : [sx])]}
-  />
-);
+function Navbar({ sx, ...props }: SheetProps) {
+  return (
+    <Sheet
+      {...props}
+      sx={[(theme) => theme.materials.navbar, ...(Array.isArray(sx) ? sx : [sx])]}
+    />
+  );
+}
 
-export default function IPhone() {
+export default function Bars() {
   return (
     <Box
       sx={{

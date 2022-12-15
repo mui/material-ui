@@ -5,13 +5,20 @@ import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import IconButton from '@mui/joy/IconButton';
 import Tooltip from '@mui/joy/Tooltip';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
-import TabletMacIcon from '@mui/icons-material/TabletMac';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import LayersIcon from '@mui/icons-material/Layers';
+import HorizontalSplitIcon from '@mui/icons-material/HorizontalSplit';
+import TuneIcon from '@mui/icons-material/Tune';
+import ViewDayIcon from '@mui/icons-material/ViewDay';
 
-export type NavigationView = 'iphone' | 'ipad' | 'color' | 'text' | 'material';
+export type NavigationView =
+  | 'bars'
+  | 'controls'
+  | 'views'
+  | 'color'
+  | 'text'
+  | 'material';
 
 export default function Navigation({
   value,
@@ -37,36 +44,46 @@ export default function Navigation({
       <nav>
         <List>
           <ListItem>
-            <Tooltip title="UI Components — iPhone" size="sm" placement="right">
+            <Tooltip arrow title="UI Components — Bars" size="sm" placement="right">
               <IconButton
-                variant={value === 'iphone' ? 'soft' : 'plain'}
-                color={value === 'iphone' ? 'primary' : 'neutral'}
-                onClick={() => onItemClick('iphone')}
+                variant={value === 'bars' ? 'soft' : 'plain'}
+                color={value === 'bars' ? 'primary' : 'neutral'}
+                onClick={() => onItemClick('bars')}
               >
-                <PhoneIphoneIcon />
+                <HorizontalSplitIcon />
               </IconButton>
             </Tooltip>
           </ListItem>
           <ListItem>
             <Tooltip
-              title="UI Components — iPad"
+              arrow
+              title="UI Components — Controls"
               size="sm"
               placement="right"
-              describeChild
             >
               <IconButton
-                disabled
-                variant={value === 'ipad' ? 'soft' : 'plain'}
-                color={value === 'ipad' ? 'primary' : 'neutral'}
-                onClick={() => onItemClick('ipad')}
+                variant={value === 'controls' ? 'soft' : 'plain'}
+                color={value === 'controls' ? 'primary' : 'neutral'}
+                onClick={() => onItemClick('controls')}
               >
-                <TabletMacIcon />
+                <TuneIcon />
+              </IconButton>
+            </Tooltip>
+          </ListItem>
+          <ListItem>
+            <Tooltip arrow title="UI Components — Views" size="sm" placement="right">
+              <IconButton
+                variant={value === 'views' ? 'soft' : 'plain'}
+                color={value === 'views' ? 'primary' : 'neutral'}
+                onClick={() => onItemClick('views')}
+              >
+                <ViewDayIcon />
               </IconButton>
             </Tooltip>
           </ListItem>
           <ListDivider />
           <ListItem>
-            <Tooltip title="Colors" size="sm" placement="right">
+            <Tooltip arrow title="Colors" size="sm" placement="right">
               <IconButton
                 variant={value === 'color' ? 'soft' : 'plain'}
                 color={value === 'color' ? 'primary' : 'neutral'}
@@ -77,7 +94,7 @@ export default function Navigation({
             </Tooltip>
           </ListItem>
           <ListItem>
-            <Tooltip title="Text styles" size="sm" placement="right">
+            <Tooltip arrow title="Text styles" size="sm" placement="right">
               <IconButton
                 variant={value === 'text' ? 'soft' : 'plain'}
                 color={value === 'text' ? 'primary' : 'neutral'}
@@ -88,7 +105,7 @@ export default function Navigation({
             </Tooltip>
           </ListItem>
           <ListItem>
-            <Tooltip title="Materials" size="sm" placement="right">
+            <Tooltip arrow title="Materials" size="sm" placement="right">
               <IconButton
                 variant={value === 'material' ? 'soft' : 'plain'}
                 color={value === 'material' ? 'primary' : 'neutral'}
