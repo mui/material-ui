@@ -1230,17 +1230,19 @@ describe('<Select />', () => {
       // avoid karma reload.
       event.preventDefault();
     });
-    const Form = (props) => (
-      <form onSubmit={handleSubmit}>
-        <Select required name="country" {...props}>
-          <MenuItem value="" />
-          <MenuItem value="france">France</MenuItem>
-          <MenuItem value="germany">Germany</MenuItem>
-          <MenuItem value="china">China</MenuItem>
-        </Select>
-        <button type="submit" />
-      </form>
-    );
+    function Form(props) {
+      return (
+        <form onSubmit={handleSubmit}>
+          <Select required name="country" {...props}>
+            <MenuItem value="" />
+            <MenuItem value="france">France</MenuItem>
+            <MenuItem value="germany">Germany</MenuItem>
+            <MenuItem value="china">China</MenuItem>
+          </Select>
+          <button type="submit" />
+        </form>
+      );
+    }
     const { container, setProps } = render(<Form value="" />);
 
     fireEvent.click(container.querySelector('button[type=submit]'));

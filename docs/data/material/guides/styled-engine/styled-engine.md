@@ -9,7 +9,10 @@ This API is supported by multiple popular styling libraries, which makes it poss
 ## How to switch to styled-components
 
 :::error
-❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
+Using `styled-components` as an engine at this moment is not working when used in a SSR projects.
+The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages.
+For more details, take a look at this [issue](https://github.com/mui/material-ui/issues/29742).
+We strongly recommend using Emotion for SSR projects.
 :::
 
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively.
@@ -106,7 +109,7 @@ You can use these `styled-component` examples as a reference:
 - [and many others](https://github.com/mui/material-ui/tree/master/examples)
 
 :::warning
-**Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/material-ui/getting-started/installation/) for more info.
+`@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/material-ui/getting-started/installation/) for more info.
 :::
 
 This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.

@@ -7,10 +7,10 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
@@ -41,7 +41,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.375em), 0.75rem)',
 });
 
 const EndDecorator = styled('span', {
@@ -50,7 +50,7 @@ const EndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
+  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)', // for end decorator, 0.25em looks better.
 });
 
 const LinkRoot = styled('a', {
@@ -98,9 +98,10 @@ const LinkRoot = styled('a', {
       } / var(--Link-underlineOpacity, 0.72))`,
       ...(ownerState.variant
         ? {
-            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+            paddingBlock: 'min(0.15em, 4px)',
+            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
             ...(!ownerState.nested && {
-              marginInline: '-0.25em',
+              marginInline: '-0.375em',
             }),
           }
         : {
@@ -165,8 +166,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
-    component = 'a',
-    componentsProps = {},
     children,
     disabled = false,
     onBlur,
@@ -212,7 +211,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     disabled,
     focusVisible,
     underline,
@@ -224,41 +222,43 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: LinkRoot,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
+  const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      ref: handleRef,
-      as: component,
       onBlur: handleBlur,
       onFocus: handleFocus,
     },
-    ownerState,
+    ref: handleRef,
     className: classes.root,
+    elementType: LinkRoot,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: StartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: EndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: EndDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <LinkRoot {...rootProps}>
-      {startDecorator && <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>}
+    <TypographyContext.Provider value>
+      <SlotRoot {...rootProps}>
+        {startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+        )}
 
-      {children}
-      {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
-    </LinkRoot>
+        {children}
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
@@ -279,20 +279,6 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false

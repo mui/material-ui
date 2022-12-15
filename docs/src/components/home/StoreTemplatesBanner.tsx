@@ -8,6 +8,10 @@ import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
 const ratio = 900 / 494;
 
+// 'transparent' is interpreted as transparent black in Safari
+// See https://css-tricks.com/thing-know-gradients-transparent-black/
+const transparent = 'rgba(255,255,255,0)';
+
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
   width: 200,
@@ -233,11 +237,11 @@ export default function StoreTemplatesBanner() {
           width: '100%',
           height: '100%',
           pointerEvents: 'none',
-          background: `linear-gradient(to bottom, ${(theme.vars || theme).palette.grey[50]} 0%, ${
-            'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-          } 30%, ${
-            'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-          } 70%, ${(theme.vars || theme).palette.grey[50]} 100%)`,
+          background: `linear-gradient(to bottom, ${
+            (theme.vars || theme).palette.grey[50]
+          } 0%, ${transparent} 30%, ${transparent} 70%, ${
+            (theme.vars || theme).palette.grey[50]
+          } 100%)`,
           zIndex: 2,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to bottom, ${
@@ -283,7 +287,7 @@ export default function StoreTemplatesBanner() {
           zIndex: 10,
           background: `linear-gradient(to right, ${
             (theme.vars || theme).palette.grey[50]
-          }, ${'rgba(255,255,255,0)'})`,
+          }, ${transparent})`,
           ...theme.applyDarkStyles({
             background: `linear-gradient(to right, ${
               (theme.vars || theme).palette.primaryDark[900]

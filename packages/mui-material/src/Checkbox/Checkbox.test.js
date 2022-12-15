@@ -114,7 +114,7 @@ describe('<Checkbox />', () => {
 
   it('should allow custom icon font sizes', () => {
     const fontSizeSpy = spy();
-    const MyIcon = (props) => {
+    function MyIcon(props) {
       const { fontSize, ...other } = props;
 
       React.useEffect(() => {
@@ -122,7 +122,7 @@ describe('<Checkbox />', () => {
       });
 
       return <div {...other} />;
-    };
+    }
     render(<Checkbox icon={<MyIcon fontSize="foo" />} />);
 
     expect(fontSizeSpy.args[0][0]).to.equal('foo');

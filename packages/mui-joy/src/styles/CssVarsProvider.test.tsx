@@ -51,7 +51,7 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('All CSS vars', () => {
     it('palette', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -70,7 +70,7 @@ describe('[Joy] CssVarsProvider', () => {
             </div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -332,6 +332,7 @@ describe('[Joy] CssVarsProvider', () => {
         JSON.stringify({
           body: 'var(--joy-palette-background-body)',
           surface: 'var(--joy-palette-background-surface)',
+          popup: 'var(--joy-palette-background-popup)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
@@ -345,7 +346,7 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('font', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -356,7 +357,7 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="letter-spacing">{JSON.stringify(theme.vars.letterSpacing)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -417,14 +418,14 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('shape', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
             <div data-testid="radius">{JSON.stringify(theme.vars.radius)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -444,7 +445,7 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('shadow ring & channel', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -452,7 +453,7 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="shadow-channel">{theme.vars.shadowChannel}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -467,10 +468,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Focus', () => {
     it('contain expected focus', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.focus).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -484,10 +485,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Typography', () => {
     it('contain expected typography', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.typography).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -503,10 +504,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Variant', () => {
     it('contain expected variants', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.variants).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -537,10 +538,10 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('contain expected colorInversion', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.colorInversion).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -554,10 +555,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Spacing', () => {
     it('provides spacing utility', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.spacing(2)}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -571,10 +572,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Breakpoints', () => {
     it('provides breakpoint utilities', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.breakpoints.up('sm')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -588,11 +589,11 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Skipped vars', () => {
     it('should not contain `variants` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.variants ? 'variants' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -604,11 +605,11 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('should not contain `typography` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -620,10 +621,10 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('should contain only `focus.thickness` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         return <div>{JSON.stringify(theme.vars.focus)}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>

@@ -17,7 +17,7 @@ const babel = require('@babel/core');
 const prettier = require('prettier');
 const typescriptToProptypes = require('typescript-to-proptypes');
 const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('./helpers');
+const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
 
 const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 

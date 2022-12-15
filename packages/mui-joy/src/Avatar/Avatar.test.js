@@ -21,6 +21,10 @@ describe('<Avatar />', () => {
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      fallback: { expectedClassName: classes.fallback },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
@@ -96,9 +100,7 @@ describe('<Avatar />', () => {
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(
-        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
-      );
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -116,9 +118,7 @@ describe('<Avatar />', () => {
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(
-        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
-      );
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);

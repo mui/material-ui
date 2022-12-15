@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
@@ -27,7 +27,7 @@ const useUtilityClasses = (ownerState: MenuProps) => {
   return composeClasses(slots, getMenuUtilityClass, {});
 };
 
-const MenuRoot = styled(ListRoot, {
+const MenuRoot = styled(StyledList, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -39,14 +39,14 @@ const MenuRoot = styled(ListRoot, {
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface, // for sticky List
+      theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     overflow: 'auto',
     zIndex: 1300, // the same value as Material UI Menu. TODO: revisit the appropriate value later.
     ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.popup,
     }),
   };
 });
@@ -68,25 +68,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     id,
     onClose,
     open = false,
-    modifiers,
+    modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
     ...other
   } = props;
-
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      ...(modifiers || []),
-    ],
-    [modifiers],
-  );
 
   const {
     registerItem,
@@ -117,7 +103,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
-    modifiers,
     open,
     nesting: false,
     row: false,
@@ -138,7 +123,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       ref,
       component: MenuRoot,
       as: component, // use `as` to insert the component inside of the MenuRoot
-      modifiers: cachedModifiers,
     },
     className: classes.root,
     ownerState,
@@ -155,8 +139,21 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [getItemProps, getItemState, open, registerItem, unregisterItem],
   );
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
+    [modifiersProp],
+  );
+
   return (
-    <PopperUnstyled {...rootProps}>
+    <PopperUnstyled {...rootProps} modifiers={modifiers}>
       <MenuUnstyledContext.Provider value={contextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>

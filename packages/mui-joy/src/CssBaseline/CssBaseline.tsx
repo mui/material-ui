@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/system';
 import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
+import { Components } from '../styles/components';
 import { CssBaselineProps } from './CssBaselineProps';
 
 /**
@@ -12,8 +13,6 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
     <React.Fragment>
       <GlobalStyles
         styles={(theme: Theme) => {
-          const defaultTypographyLevel =
-            (theme as any).components?.JoyTypography?.defaultProps?.level || 'body1';
           const colorSchemeStyles: Record<string, any> = {};
           if (!disableColorScheme) {
             // The CssBaseline is wrapped inside a CssVarsProvider
@@ -25,6 +24,9 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
               };
             });
           }
+          const defaultTypographyLevel =
+            (theme as unknown as { components: Components<Theme> }).components?.JoyTypography
+              ?.defaultProps?.level ?? 'body1';
           return {
             html: {
               WebkitFontSmoothing: 'antialiased',
@@ -44,6 +46,7 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
             body: {
               margin: 0, // Remove the margin in all browsers.
               color: theme.vars.palette.text.primary,
+              fontFamily: theme.vars.fontFamily.body,
               ...(theme.typography as any)[defaultTypographyLevel],
               backgroundColor: theme.vars.palette.background.body,
               '@media print': {

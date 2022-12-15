@@ -208,13 +208,13 @@ const MyStyledButton = (props) => (
 
 ### How can I use the `sx` syntax with the `styled()` utility?
 
-If you are one of those who prefers the `sx` syntax and wants to use it in both the `sx` prop and the `styled()` utility, you can use the `experimental_sx` utility from the `@mui/system`:
+If you prefer the `sx` syntax and want to use it in both the `sx` prop and the `styled()` utility, you can use the `unstable_sx` utility from the `theme`:
 
 {{"demo": "UsingWithSx.js", "defaultCodeOpen": true}}
 
-The overhead added by using the `experimental_sx` utility is the same as if you were to use the `sx` prop on the component.
+The overhead added by using the `unstable_sx` utility is the same as if you were to use the `sx` prop on the component.
 
-> Note: You can use `experimental_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
+> Note: You can use `unstable_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
 
 ## How to use components selector API
 
