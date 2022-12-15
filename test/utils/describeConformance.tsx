@@ -2,7 +2,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import { ThemeProvider as MDThemeProvider, createTheme as mdCreateTheme } from '@mui/material/styles';
+import {
+  ThemeProvider as MDThemeProvider,
+  createTheme as mdCreateTheme,
+} from '@mui/material/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
@@ -553,7 +556,12 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render, ThemeProvider = MDThemeProvider, createTheme = mdCreateTheme } = getOptions();
+      const {
+        muiName,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -593,7 +601,13 @@ function testThemeStyleOverrides(
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render, ThemeProvider = MDThemeProvider, createTheme = mdCreateTheme } = getOptions();
+      const {
+        muiName,
+        testStateOverrides,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -820,7 +834,13 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const { muiName, testVariantProps, render, ThemeProvider = MDThemeProvider, createTheme = mdCreateTheme } = getOptions();
+      const {
+        muiName,
+        testVariantProps,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');
@@ -867,7 +887,13 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const { muiName, testCustomVariant, render, ThemeProvider = MDThemeProvider, createTheme = mdCreateTheme } = getOptions();
+      const {
+        muiName,
+        testCustomVariant,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!testCustomVariant) {
         return;

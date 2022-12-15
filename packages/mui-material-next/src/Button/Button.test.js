@@ -18,9 +18,7 @@ describe('<Button />', () => {
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     ThemeProvider: CssVarsProvider,
     createTheme: extendTheme,
-    skip: [
-      'componentsProp',
-    ],
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text and colorPrimary classes but no others', () => {
@@ -54,7 +52,7 @@ describe('<Button />', () => {
     it(`should render an ${variant} button`, () => {
       const { getByRole } = render(<Button variant={variant}>Hello World</Button>);
       const button = getByRole('button');
-  
+
       expect(button).to.have.class(classes.root);
       expect(button).to.have.class(classes[variant]);
       expect(button).to.have.class(classes.colorPrimary);
@@ -62,11 +60,15 @@ describe('<Button />', () => {
     });
 
     // these two variants do not support different colors
-    if(variant !== 'elevated' && variant !== 'filledTonal') {
+    if (variant !== 'elevated' && variant !== 'filledTonal') {
       it(`should render an ${variant} secondary button`, () => {
-        const { getByRole } = render(<Button variant={variant} color="secondary">Hello World</Button>);
+        const { getByRole } = render(
+          <Button variant={variant} color="secondary">
+            Hello World
+          </Button>,
+        );
         const button = getByRole('button');
-    
+
         expect(button).to.have.class(classes.root);
         expect(button).to.have.class(classes[variant]);
         expect(button).to.have.class(classes.colorSecondary);
@@ -75,9 +77,13 @@ describe('<Button />', () => {
       });
 
       it(`should render an ${variant} tertiary button`, () => {
-        const { getByRole } = render(<Button variant={variant} color="tertiary">Hello World</Button>);
+        const { getByRole } = render(
+          <Button variant={variant} color="tertiary">
+            Hello World
+          </Button>,
+        );
         const button = getByRole('button');
-    
+
         expect(button).to.have.class(classes.root);
         expect(button).to.have.class(classes[variant]);
         expect(button).to.have.class(classes.colorTertiary);
@@ -85,7 +91,7 @@ describe('<Button />', () => {
         expect(button).not.to.have.class(classes.colorPrimary);
       });
     }
-  })
+  });
 
   it('should render a small button', () => {
     const { getByRole } = render(<Button size="small">Hello World</Button>);
