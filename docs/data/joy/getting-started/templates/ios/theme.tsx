@@ -26,7 +26,7 @@ declare module '@mui/joy/Tabs' {
 }
 
 declare module '@mui/joy/TabList' {
-  interface TabListVariantOverrides {
+  interface TabListPropsVariantOverrides {
     ios: true;
   }
 }
@@ -356,6 +356,12 @@ export default extendTheme({
       },
     },
   },
+  unstable_sxConfig: {
+    material: {
+      cssProperty: false,
+      themeKey: 'materials',
+    },
+  },
   typography: {
     // @ts-ignore
     display1: undefined,
@@ -463,6 +469,9 @@ export default extendTheme({
             '--Switch-thumb-size': '27px',
             '--Switch-track-height': '31px',
             '--Switch-track-width': '51px',
+            '&:active': {
+              '--Switch-thumb-width': '32px',
+            },
           }),
         }),
         track: ({ ownerState, theme }) => ({
@@ -479,6 +488,7 @@ export default extendTheme({
           ...(ownerState.variant === 'ios' && {
             backgroundColor: '#fff',
             boxShadow: `0 0 0 0.5px rgba(0 0 0 / .04), 0 3px 8px 0px rgba(0 0 0 / .15), 0 3px 1px 0 rgba(0 0 0 / .06)`,
+            transition: 'width 0.2s, left 0.2s',
           }),
         }),
       },

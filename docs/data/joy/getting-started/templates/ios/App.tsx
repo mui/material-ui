@@ -1,33 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Head from 'next/head';
 import { CssVarsProvider, useTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
-import Typography from '@mui/joy/Typography';
 
 import Header from './Header';
 import Navigation, { NavigationView } from './Navigation';
 import ColorSystem from './ColorSystem';
+import TypographySystem from './TypographySystem';
 import iosTheme from './theme';
 import IPhone from './IPhone';
 
-const TypographySystem = () => {
-  const theme = useTheme();
-  return (
-    <Box>
-      {(Object.keys(theme.typography) as Array<keyof typeof theme.typography>).map(
-        (level) => (
-          <Typography key={level} level={level} textAlign="center">
-            {level}
-          </Typography>
-        ),
-      )}
-    </Box>
-  );
-};
-
-const SystemMaterials = () => {
+function SystemMaterials() {
   const theme = useTheme();
   return (
     <Box
@@ -66,7 +50,7 @@ const SystemMaterials = () => {
       )}
     </Box>
   );
-};
+}
 
 export default function IosExample() {
   // const [disableTheme, setDisableTheme] = React.useState(false);
@@ -78,9 +62,6 @@ export default function IosExample() {
       // theme={disableTheme ? undefined : iosTheme}
       theme={iosTheme}
     >
-      <Head>
-        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
-      </Head>
       <CssBaseline />
       <Box
         sx={{
