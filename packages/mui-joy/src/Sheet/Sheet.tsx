@@ -8,7 +8,8 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
-import { SheetProps, SheetTypeMap } from './SheetProps';
+import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { variant, color } = ownerState;
@@ -24,11 +25,11 @@ const useUtilityClasses = (ownerState: SheetProps) => {
   return composeClasses(slots, getSheetUtilityClass, {});
 };
 
-const SheetRoot = styled('div', {
+export const SheetRoot = styled('div', {
   name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
   return [
@@ -36,7 +37,7 @@ const SheetRoot = styled('div', {
       '--List-item-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
-        theme.vars.palette.background.body, // for sticky List
+        theme.vars.palette.background.surface, // for sticky List
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
@@ -45,10 +46,11 @@ const SheetRoot = styled('div', {
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
     variantStyle,
+    ownerState.invertedColors && theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -58,18 +60,28 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     name: 'JoySheet',
   });
 
-  const { className, color = 'neutral', component = 'div', variant = 'plain', ...other } = props;
+  const {
+    className,
+    color: colorProp = 'neutral',
+    component = 'div',
+    variant = 'plain',
+    invertedColors = false,
+    ...other
+  } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
+    invertedColors,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
+  const result = (
     <SheetRoot
       as={component}
       ownerState={ownerState}
@@ -78,6 +90,11 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
       {...other}
     />
   );
+
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<SheetTypeMap>;
 
 Sheet.propTypes /* remove-proptypes */ = {
@@ -106,6 +123,11 @@ Sheet.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -53,8 +53,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     anchorEl,
     children,
     component,
-    components = {},
-    componentsProps = {},
     direction,
     disablePortal,
     modifiers,
@@ -63,6 +61,8 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
+    slotProps = {},
+    slots = {},
     TransitionProps,
     ...other
   } = props;
@@ -84,6 +84,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState(rtlPlacement);
+  const [tooltipAnchorEl, setTooltipAnchorEl] = React.useState(anchorEl);
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -91,8 +92,14 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     }
   });
 
+  React.useEffect(() => {
+    if (anchorEl) {
+      setTooltipAnchorEl(anchorEl);
+    }
+  }, [anchorEl]);
+
   useEnhancedEffect(() => {
-    if (!anchorEl || !open) {
+    if (!tooltipAnchorEl || !open) {
       return undefined;
     }
 
@@ -100,7 +107,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       setPlacement(data.placement);
     };
 
-    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
+    const resolvedAnchorEl = resolveAnchorEl(tooltipAnchorEl);
 
     if (process.env.NODE_ENV !== 'production') {
       if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
@@ -154,7 +161,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolveAnchorEl(anchorEl), tooltipRef.current, {
+    const popper = createPopper(resolveAnchorEl(tooltipAnchorEl), tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
@@ -166,7 +173,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popper.destroy();
       handlePopperRefRef.current(null);
     };
-  }, [anchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+  }, [tooltipAnchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
 
   const childProps = { placement };
 
@@ -175,10 +182,10 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   }
 
   const classes = useUtilityClasses();
-  const Root = component ?? components.Root ?? 'div';
+  const Root = component ?? slots.root ?? 'div';
   const rootProps = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       role: 'tooltip',
@@ -339,21 +346,6 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Popper.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
@@ -468,6 +460,21 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
    * A ref that points to the used popper instance.
    */
   popperRef: refType,
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */

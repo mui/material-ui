@@ -64,7 +64,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
   });
-
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 

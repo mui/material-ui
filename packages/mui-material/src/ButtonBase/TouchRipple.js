@@ -178,7 +178,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   );
 
   const start = React.useCallback(
-    (event = {}, options = {}, cb) => {
+    (event = {}, options = {}, cb = () => {}) => {
       const {
         pulsate = false,
         center = centerProp || options.pulsate,
@@ -305,7 +305,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   return (
     <TouchRippleRoot
-      className={clsx(classes.root, touchRippleClasses.root, className)}
+      className={clsx(touchRippleClasses.root, classes.root, className)}
       ref={container}
       {...other}
     >

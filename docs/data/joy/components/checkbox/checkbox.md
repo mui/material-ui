@@ -14,7 +14,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 The `Checkbox` component is the one to be used when you want to allow users to select multiple options.
 For toggling between on and off or single option selection, consider using a switch or radio button, respectively.
 
-{{"demo": "CheckboxUsage.js", "hideToolbar": true}}
+{{"demo": "CheckboxUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
+:::info
+To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -77,11 +81,17 @@ It's common to find it in tables where you have one checkbox that selects every 
 Use the `indeterminate` prop to circle around these states.
 
 :::warning
-**⚠️ Keep in mind:** When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values.
+When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values.
 It has no accessibility or UX implications.
 :::
 
 {{"demo": "IndeterminateCheckbox.js"}}
+
+### Helper text
+
+To add a description to the checkbox, use `FormControl` and `FormHelperText`. The checkbox will be linked to the helper text via `aria-describedby` attribute.
+
+{{"demo": "HelperTextCheckbox.js"}}
 
 ### Group
 
@@ -119,3 +129,7 @@ Don't forget to use the `label` prop to ensure proper checkbox accessibility.
 You can use checkboxes to create a chip alike design, most often used to filter between different options.
 
 {{"demo": "ExampleChoiceChipCheckbox.js"}}
+
+### Viewport checklist
+
+{{"demo": "ExampleButtonCheckbox.js"}}

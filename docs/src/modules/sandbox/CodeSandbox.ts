@@ -31,12 +31,11 @@ const createReactApp = (demo: {
   };
 
   const { dependencies, devDependencies } = SandboxDependencies(demo, {
-    commitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
 
   files['package.json'] = {
     content: {
-      name: title,
       description,
       dependencies,
       devDependencies,
@@ -102,13 +101,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       product: 'joy-ui',
     },
     {
-      commitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     },
   );
 
   files['package.json'] = {
     content: {
-      name: title,
       description,
       dependencies,
       devDependencies,

@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { useTheme, styled, Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
+import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 
 export type IconImageProps = {
   name:
     | 'product-core'
     | 'product-advanced'
+    | 'product-toolpad'
     | 'product-templates'
     | 'product-designkits'
     | 'block-green'
@@ -44,24 +46,28 @@ const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 export default function IconImage(props: IconImageProps) {
   const { name, title, ...other } = props;
   const theme = useTheme();
-  let width = '';
-  let height = '';
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  let width;
+  let height;
   let category = '';
   let mode = `-${theme.palette.mode}`;
   if (name.startsWith('product-')) {
-    width = '36';
-    height = '36';
+    width = 36;
+    height = 36;
   }
   if (name.startsWith('block-')) {
     category = 'pricing/';
     mode = '';
-    width = '13';
-    height = '15';
+    width = 13;
+    height = 15;
   }
   if (['yes', 'no', 'time'].indexOf(name) !== -1) {
     category = 'pricing/';
-    width = '18';
-    height = '18';
+    width = 18;
+    height = 18;
   }
   if (
     [
@@ -87,6 +93,10 @@ export default function IconImage(props: IconImageProps) {
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
+  }
+  if (!mounted && !!theme.vars) {
+    // Prevent hydration mismatch between the light and dark mode image source.
+    return <Box component="span" sx={{ width, height, display: 'inline-block' }} />;
   }
   const element = (
     <Img

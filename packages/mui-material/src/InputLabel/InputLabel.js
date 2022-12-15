@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
@@ -117,7 +118,14 @@ const InputLabelRoot = styled(FormLabel, {
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
-  const { disableAnimation = false, margin, shrink: shrinkProp, variant, ...other } = props;
+  const {
+    disableAnimation = false,
+    margin,
+    shrink: shrinkProp,
+    variant,
+    className,
+    ...other
+  } = props;
 
   const muiFormControl = useFormControl();
 
@@ -143,11 +151,13 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
   return (
     <InputLabelRoot
       data-shrink={shrink}
       ownerState={ownerState}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
       classes={classes}
     />
@@ -167,6 +177,10 @@ InputLabel.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the

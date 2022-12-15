@@ -22,15 +22,15 @@ export { default as sizing } from './sizing';
 export * from './sizing';
 export { default as spacing } from './spacing';
 export * from './spacing';
-export { default as style, getPath } from './style';
+export { default as style, getPath, getStyleValue } from './style';
 export { default as typography } from './typography';
 export * from './typography';
 export {
   default as unstable_styleFunctionSx,
   unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
+  unstable_defaultSxConfig,
 } from './styleFunctionSx';
-export { default as experimental_sx } from './sx';
 export { default as unstable_getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
 export { default as createBox } from './createBox';
@@ -48,6 +48,7 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as responsivePropType } from './responsivePropType';
 
 /** ----------------- */
 /** Layout components */
@@ -57,3 +58,6 @@ export * from './Container';
 
 export { default as Unstable_Grid } from './Unstable_Grid/Grid';
 export * from './Unstable_Grid';
+
+export { default as Stack } from './Stack/Stack';
+export * from './Stack';

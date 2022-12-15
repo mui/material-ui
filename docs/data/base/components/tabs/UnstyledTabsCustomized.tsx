@@ -19,6 +19,19 @@ const blue = {
   900: '#003A75',
 };
 
+const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
+};
+
 const Tab = styled(TabUnstyled)`
   font-family: IBM Plex Sans, sans-serif;
   color: white;
@@ -27,10 +40,10 @@ const Tab = styled(TabUnstyled)`
   font-weight: bold;
   background-color: transparent;
   width: 100%;
-  padding: 12px 16px;
+  padding: 12px;
   margin: 6px 6px;
   border: none;
-  border-radius: 5px;
+  border-radius: 7px;
   display: flex;
   justify-content: center;
 
@@ -40,13 +53,11 @@ const Tab = styled(TabUnstyled)`
 
   &:focus {
     color: #fff;
-    border-radius: 3px;
-    outline: 2px solid ${blue[200]};
-    outline-offset: 2px;
+    outline: 3px solid ${blue[200]};
   }
 
   &.${tabUnstyledClasses.selected} {
-    background-color: ${blue[50]};
+    background-color: #fff;
     color: ${blue[600]};
   }
 
@@ -62,16 +73,19 @@ const TabPanel = styled(TabPanelUnstyled)`
   font-size: 0.875rem;
 `;
 
-const TabsList = styled(TabsListUnstyled)`
-  min-width: 320px;
+const TabsList = styled(TabsListUnstyled)(
+  ({ theme }) => `
+  min-width: 400px;
   background-color: ${blue[500]};
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   align-content: space-between;
-`;
+  box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  `,
+);
 
 export default function UnstyledTabsCustomized() {
   return (

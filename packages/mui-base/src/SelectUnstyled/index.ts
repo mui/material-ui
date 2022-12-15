@@ -10,3 +10,5 @@ export * from './SelectUnstyled.types';
 export { default as useSelect } from './useSelect';
 
 export * from './useSelect.types';
+
+export * from './utils';

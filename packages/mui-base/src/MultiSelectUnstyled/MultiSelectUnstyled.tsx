@@ -23,9 +23,27 @@ import {
 } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
+import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+}
+
+function defaultFormValueProvider<TValue>(selectedOptions: SelectOption<TValue>[]) {
+  if (selectedOptions.length === 0) {
+    return '';
+  }
+
+  if (
+    selectedOptions.every(
+      (o) =>
+        typeof o.value === 'string' || typeof o.value === 'number' || typeof o.value === 'boolean',
+    )
+  ) {
+    return selectedOptions.map((o) => String(o.value));
+  }
+
+  return JSON.stringify(selectedOptions.map((o) => o.value));
 }
 
 function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
@@ -51,34 +69,38 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
  * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
-const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
+const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue extends {}>(
   props: MultiSelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
     children,
     component,
-    components = {},
-    componentsProps = {},
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
+    getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
+    name,
     onChange,
     onListboxOpenChange,
+    optionStringifier = defaultOptionStringifier,
+    renderValue: renderValueProp,
+    slotProps = {},
+    slots = {},
     value: valueProp,
     ...other
   } = props;
 
-  const renderValue = props.renderValue ?? defaultRenderMultipleValues;
+  const renderValue = renderValueProp ?? defaultRenderMultipleValues;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -97,19 +119,15 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? components.Root ?? 'button';
-  const ListboxRoot = components.Listbox ?? 'ul';
-  const Popper = components.Popper ?? PopperUnstyled;
+  const Button = component ?? slots.root ?? 'button';
+  const ListboxRoot = slots.listbox ?? 'ul';
+  const Popper = slots.popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleButtonRef = useForkRef(forwardedRef, buttonRef, handleButtonRefChange);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -141,6 +159,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
+    optionStringifier,
     value: valueProp,
   });
 
@@ -168,7 +187,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     useSlotProps({
       elementType: Button,
       getSlotProps: getButtonProps,
-      externalSlotProps: componentsProps.root,
+      externalSlotProps: slotProps.root,
       externalForwardedProps: other,
       ownerState,
       className: classes.root,
@@ -178,7 +197,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     useSlotProps({
       elementType: ListboxRoot,
       getSlotProps: getListboxProps,
-      externalSlotProps: componentsProps.listbox,
+      externalSlotProps: slotProps.listbox,
       additionalProps: {
         ref: listboxRef,
       },
@@ -188,7 +207,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const popperProps: MultiSelectUnstyledPopperSlotProps<TValue> = useSlotProps({
     elementType: Popper,
-    externalSlotProps: componentsProps.popper,
+    externalSlotProps: slotProps.popper,
     additionalProps: {
       anchorEl: buttonRef.current,
       disablePortal: true,
@@ -200,15 +219,18 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     className: classes.popper,
   });
 
-  const context: SelectUnstyledContextType = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-  };
+  const context: SelectUnstyledContextType = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+    }),
+    [getOptionProps, getOptionState],
+  );
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
+      <Button {...buttonProps}>{renderValue(selectedOptions)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
@@ -218,6 +240,8 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
           </ListboxRoot>
         </Popper>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOptions)} />}
     </React.Fragment>
   );
 }) as MultiSelectUnstyledType;
@@ -242,25 +266,6 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the select will be initially open.
    * @default false
    */
@@ -276,6 +281,12 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * A function to convert the currently selected values to a type accepted by HTML input.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected values can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
+  /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.
    */
@@ -286,6 +297,11 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   listboxOpen: PropTypes.bool,
   /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
+  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -295,9 +311,36 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier: PropTypes.func,
+  /**
    * Function that customizes the rendering of the selected values.
    */
   renderValue: PropTypes.func,
+  /**
+   * The props used for each slot inside the MultiSelect.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the MultiSelect.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The selected values.
    * Set to an empty array to deselect all options.

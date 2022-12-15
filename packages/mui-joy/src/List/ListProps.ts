@@ -5,9 +5,7 @@ import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 export type ListSlot = 'root';
 
 export interface ListPropsSizeOverrides {}
-
 export interface ListPropsVariantOverrides {}
-
 export interface ListPropsColorOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
@@ -27,12 +25,6 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     row?: boolean;
     /**
-     * If `true`, this list creates new list CSS variables scope to prevent the children from inheriting variables from the upper parent.
-     * This props is used in the listbox of Menu, Select.
-     * @default false
-     */
-    scoped?: boolean;
-    /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
      */
@@ -46,6 +38,13 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
+    /**
+     * Only for horizontal list.
+     * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
+     *
+     * @default false
+     */
+    wrap?: boolean;
   };
   defaultComponent: D;
 }
@@ -56,3 +55,16 @@ export type ListProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListTypeMap<P, D>, D>;
+
+export interface ListOwnerState extends ListProps {
+  /**
+   * @internal
+   * The explicit size specified on the element instance.
+   */
+  instanceSize?: ListProps['size'];
+  /**
+   * @internal
+   * If `true`, the element is rendered in a nested list item.
+   */
+  nesting?: boolean | string;
+}

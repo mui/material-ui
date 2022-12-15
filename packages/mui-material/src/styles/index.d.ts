@@ -64,7 +64,6 @@ export {
   ColorObject,
   StyledEngineProvider,
   SxProps,
-  experimental_sx,
 } from '@mui/system';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
@@ -128,4 +127,10 @@ export type {
   ThemeVars,
   ThemeCssVar,
   ThemeCssVarOverrides,
+  ColorSystemOptions,
 } from './experimental_extendTheme';
+export { default as getOverlayAlpha } from './getOverlayAlpha';
+
+// Private methods for creating parts of the theme
+export { default as private_createTypography } from './createTypography';
+export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

@@ -445,5 +445,22 @@ describe('<Stack />', () => {
         flexDirection: 'column',
       });
     });
+
+    it('should list responsive styles in correct order', () => {
+      const styles = style({
+        ownerState: {
+          direction: { xs: 'column', lg: 'row' },
+          spacing: { xs: 0, md: 2, xl: 4 },
+        },
+        theme,
+      });
+      const keysForResponsiveStyles = Object.keys(styles).filter((prop) => prop.includes('@media'));
+      expect(keysForResponsiveStyles).to.deep.equal([
+        '@media (min-width:0px)',
+        '@media (min-width:900px)',
+        '@media (min-width:1200px)',
+        '@media (min-width:1536px)',
+      ]);
+    });
   });
 });

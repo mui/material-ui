@@ -27,13 +27,11 @@ export function createFilterOptions<T>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
-export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends
-  | undefined
-  | false
-  ? DisableClearable extends true
-    ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
-    : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>
-  : Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>;
+export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends true
+  ? Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : DisableClearable extends true
+  ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
   T,
@@ -41,6 +39,17 @@ export interface UseAutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
 > {
+  /**
+   * @internal The prefix of the state class name, temporary for Joy UI
+   * @default 'Mui'
+   */
+  unstable_classNamePrefix?: string;
+  /**
+   * @internal
+   * Temporary for Joy UI because the parent listbox is the document object
+   * TODO v6: Normalize the logic and remove this param.
+   */
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -318,12 +327,12 @@ export default function useAutocomplete<
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {
-  getRootProps: () => React.HTMLAttributes<HTMLDivElement>;
+  getRootProps: (externalProps?: any) => React.HTMLAttributes<HTMLDivElement>;
   getInputProps: () => React.InputHTMLAttributes<HTMLInputElement>;
   // We pass `getInputLabelProps()` to `@mui/material/InputLabel` which does not implement HTMLLabelElement#color.
   getInputLabelProps: () => Omit<React.HTMLAttributes<HTMLLabelElement>, 'color'>;
-  getClearProps: () => React.HTMLAttributes<HTMLDivElement>;
-  getPopupIndicatorProps: () => React.HTMLAttributes<HTMLDivElement>;
+  getClearProps: () => React.HTMLAttributes<HTMLButtonElement>;
+  getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   getTagProps: AutocompleteGetTagProps;
   getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
   getOptionProps: ({

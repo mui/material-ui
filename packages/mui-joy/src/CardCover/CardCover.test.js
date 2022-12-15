@@ -15,8 +15,7 @@ describe('<CardCover />', () => {
     muiName: 'JoyCardCover',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'solid' },
-    skip: ['classesRoot', 'componentsProp'],
+    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
   }));
 
   it('add data-attribute to the first child', () => {

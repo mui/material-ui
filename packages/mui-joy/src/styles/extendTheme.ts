@@ -6,17 +6,20 @@ import {
   createSpacing,
   unstable_createGetCssVar as systemCreateGetCssVar,
   colorChannel,
+  unstable_styleFunctionSx as styleFunctionSx,
+  SxConfig,
 } from '@mui/system';
+import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
-import { Variants } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales } from './types';
+import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
+import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import { createVariant } from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -54,10 +57,13 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
+  colorInversion?: Partial2Level<VariantOverrides>;
+  colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
+  unstable_sxConfig?: SxConfig;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -101,10 +107,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVar(`palette-${color}-700`),
     solidDisabledColor: `#fff`,
     solidDisabledBg: getCssVar(`palette-${color}-200`),
-
-    overrideTextPrimary: getCssVar(`palette-${color}-700`),
-    overrideTextSecondary: getCssVar(`palette-${color}-500`),
-    overrideTextTertiary: getCssVar(`palette-${color}-400`),
   });
 
   const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -134,14 +136,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidActiveBg: getCssVar(`palette-${color}-800`),
     solidDisabledColor: getCssVar(`palette-${color}-700`),
     solidDisabledBg: getCssVar(`palette-${color}-900`),
-
-    overrideTextPrimary: getCssVar(`palette-${color}-200`),
-    overrideTextSecondary: getCssVar(`palette-${color}-400`),
-    overrideTextTertiary: getCssVar(`palette-${color}-500`),
   });
 
   const lightColorSystem = {
     palette: {
+      mode: 'light',
       primary: {
         ...colors.blue,
         ...createLightModeVariantVariables('primary'),
@@ -177,10 +176,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidActiveBg: getCssVar(`palette-neutral-800`),
         solidDisabledColor: getCssVar(`palette-neutral-300`),
         solidDisabledBg: getCssVar(`palette-neutral-50`),
-
-        overrideTextPrimary: getCssVar(`palette-neutral-700`),
-        overrideTextSecondary: getCssVar(`palette-neutral-500`),
-        overrideTextTertiary: getCssVar(`palette-neutral-400`),
       },
       danger: {
         ...colors.red,
@@ -229,19 +224,22 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-common-white'),
         surface: getCssVar('palette-common-white'),
+        popup: getCssVar('palette-common-white'),
         level1: getCssVar('palette-neutral-50'),
         level2: getCssVar('palette-neutral-100'),
         level3: getCssVar('palette-neutral-200'),
         tooltip: getCssVar('palette-neutral-800'),
+        backdrop: 'rgba(255 255 255 / 0.5)',
       },
-      divider: getCssVar('palette-neutral-200'),
-      focusVisible: getCssVar('palette-primary-200'),
+      divider: `rgba(${getCssVar('palette-neutral-mainChannel')} / 0.28)`,
+      focusVisible: getCssVar('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
     shadowChannel: '187 187 187',
   };
   const darkColorSystem = {
     palette: {
+      mode: 'dark',
       primary: {
         ...colors.blue,
         ...createDarkModeVariantVariables('primary'),
@@ -277,10 +275,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidActiveBg: getCssVar(`palette-neutral-800`),
         solidDisabledColor: getCssVar(`palette-neutral-700`),
         solidDisabledBg: getCssVar(`palette-neutral-900`),
-
-        overrideTextPrimary: getCssVar(`palette-neutral-200`),
-        overrideTextSecondary: getCssVar(`palette-neutral-400`),
-        overrideTextTertiary: getCssVar(`palette-neutral-500`),
       },
       danger: {
         ...colors.red,
@@ -318,12 +312,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-neutral-900'),
         surface: getCssVar('palette-common-black'),
+        popup: getCssVar('palette-neutral-800'),
         level1: getCssVar('palette-neutral-800'),
         level2: getCssVar('palette-neutral-700'),
         level3: getCssVar('palette-neutral-600'),
         tooltip: getCssVar('palette-neutral-600'),
+        backdrop: `rgba(${getCssVar('palette-neutral-darkChannel')} / 0.5)`,
       },
-      divider: getCssVar('palette-neutral-800'),
+      divider: `rgba(${getCssVar('palette-neutral-mainChannel')} / 0.24)`,
       focusVisible: getCssVar('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -367,10 +363,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       xl3: 900,
     },
     focus: {
+      thickness: '2px',
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
-        outlineOffset: getCssVar('focus-outlineOffset', '0px'), // reset user agent stylesheet
-        outline: `4px solid ${getCssVar('palette-focusVisible')}`,
+        outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness')})`,
+        outline: `${getCssVar('focus-thickness')} solid ${getCssVar('palette-focusVisible')}`,
       },
     },
     lineHeight: {
@@ -528,7 +525,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   const { palette: firstColorSchemePalette } = Object.entries(colorSchemes)[0][1];
-  const variantInput = { palette: firstColorSchemePalette, prefix: cssVarPrefix, getCssVar };
+  const variantInput = { palette: firstColorSchemePalette, cssVarPrefix, getCssVar };
 
   const theme = {
     colorSchemes,
@@ -552,9 +549,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                     fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
                   }),
                 ...(ownerState.color &&
-                  ownerState.color !== 'inherit' && {
-                    color: themeProp.vars.palette[ownerState.color]?.plainColor,
+                  ownerState.color !== 'inherit' &&
+                  ownerState.color !== 'context' &&
+                  themeProp.vars.palette[ownerState.color!] && {
+                    color: themeProp.vars.palette[ownerState.color].plainColor,
                   }),
+                ...(ownerState.color === 'context' && {
+                  color: theme.variants.plain?.context?.color,
+                }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
                     '--Icon-fontSize': themeProp.vars.fontSize[instanceFontSize],
@@ -584,17 +586,16 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidHover: createVariant('solidHover', variantInput),
         solidActive: createVariant('solidActive', variantInput),
         solidDisabled: createVariant('solidDisabled', variantInput),
-        // variant overrides
-        plainOverrides: createTextOverrides(variantInput),
-        outlinedOverrides: createTextOverrides(variantInput),
-        softOverrides: createTextOverrides(variantInput),
-        solidOverrides: createContainedOverrides(variantInput),
       },
       variantsInput,
     ),
     cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
+    colorInversionConfig: {
+      soft: ['plain', 'outlined', 'soft', 'solid'],
+      solid: ['plain', 'outlined', 'soft', 'solid'],
+    },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
   /**
@@ -605,8 +606,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
         main: '500' as keyof PaletteRange,
-        light: '100' as keyof PaletteRange,
-        dark: '900' as keyof PaletteRange,
+        light: '200' as keyof PaletteRange,
+        dark: '800' as keyof PaletteRange,
       };
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);
@@ -627,6 +628,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);
   });
+
+  theme.unstable_sxConfig = {
+    ...defaultSxConfig,
+    ...themeOptions?.unstable_sxConfig,
+  };
+  theme.unstable_sx = function sx(props: SxProps) {
+    return styleFunctionSx({
+      sx: props,
+      theme: this,
+    });
+  };
 
   return theme;
 }

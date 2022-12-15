@@ -5,14 +5,15 @@
 ## About the company
 
 MUI started with Material UI, the most successful React implementation of Google's Material Design.
-It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
 
-We are a fully distributed team, spread across multiple timezones.
+We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
 For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
@@ -27,7 +28,7 @@ Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](/core/):
   - [MUI Base](/base/getting-started/overview/): the unstyled version of the components.
-  - [MUI System](/system/basics/): our most recent take on styling for React components.
+  - [MUI System](/system/getting-started/overview/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](/x/): as mentioned, a growing set of advanced components.
   Today, the flagship is the [Data Grid](/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
@@ -43,7 +44,6 @@ Some criteria for applying to this role:
 - Location: fully remote (preference for UTC-6 to UTC +3).
 - Type of work: full-time (as a contractor or employee, [depending primarily on location](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
 - Level: [3 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
-- Start date: immediately.
 
 We need someone experienced enough to help two different teams with hard problems.
 You'll be responsible for ensuring that the MUI Toolpad and MUI X teams have spot-on design and product work.

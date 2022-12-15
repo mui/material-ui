@@ -25,9 +25,11 @@ export default function DividedList() {
           <List
             variant="outlined"
             sx={{
+              bgcolor: 'background.body',
               minWidth: 240,
               borderRadius: 'sm',
-              '--List-decorator-width': '48px',
+              boxShadow: 'sm',
+              '--List-decorator-size': '48px',
               '--List-item-paddingLeft': '1.5rem',
               '--List-item-paddingRight': '1rem',
             }}

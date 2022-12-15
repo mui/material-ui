@@ -4,9 +4,9 @@
 
 Quando o servidor recebe a solicitação, ele renderiza o(s) componente(s) requerido(s) em uma cadeia HTML e o envia como uma resposta ao cliente. A partir desse momento, o cliente assume as funções de renderização.
 
-## Material UI no servidor
+## Material-UI no servidor
 
-O Material UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
+O Material-UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
 
 1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. Renderize a árvore React com o coletor do lado do servidor.
@@ -82,7 +82,7 @@ When rendering, we will wrap `App`, the root component, inside a [`CacheProvider
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Material UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
+MUI is using Emotion as its default styled engine. We need to extract the styles from the Emotion instance. For this, we need to share the same cache configuration for both the client and server:
 
 `getCache.js`
 
@@ -96,7 +96,7 @@ export default function getCache() {
 }
 ```
 
-With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
+With this we are creating a new Emotion cache instance and using this to extract the critical styles for the html as well.
 
 Vamos ver como isso é passado na função `renderFullPage`.
 
@@ -119,8 +119,8 @@ function handleRender(req, res) {
   // Render the component to a string.
   app.use(handleRender);
 
-  const port = 3000;
-  app.listen(port);
+const port = 3000;
+app.listen(port);
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
@@ -212,4 +212,4 @@ We host different reference implementations which you can find in the [GitHub re
 
 ## Resolução de problemas
 
-Confira a resposta no FAQ: [Minha aplicação não é renderizada corretamente no servidor](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Check out the FAQ answer: [My App doesn't render correctly on the server](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type MenuSlot = 'root' | 'listbox';
+export type MenuSlot = 'root';
 
 export interface MenuPropsSizeOverrides {}
 export interface MenuPropsColorOverrides {}
@@ -39,6 +39,10 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', MenuPropsSizeOverrides>;
       /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+      /**
        * The variant to use.
        * @default 'plain'
        */
@@ -51,3 +55,5 @@ export type MenuProps<
   D extends React.ElementType = MenuTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<MenuTypeMap<P, D>, D>;
+
+export interface MenuOwnerState extends MenuProps {}

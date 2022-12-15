@@ -8,7 +8,7 @@ import AspectRatio, { aspectRatioClasses as classes } from '@mui/joy/AspectRatio
 describe('<AspectRatio />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<AspectRatio />, () => ({
+  describeConformance(<AspectRatio>16/9</AspectRatio>, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -17,6 +17,11 @@ describe('<AspectRatio />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      content: { expectedClassName: classes.content },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 
@@ -75,7 +80,7 @@ describe('<AspectRatio />', () => {
 
   it('able to pass the props to content slot', () => {
     const { getByTestId } = render(
-      <AspectRatio componentsProps={{ content: { 'data-testid': 'content' } }} />,
+      <AspectRatio slotProps={{ content: { 'data-testid': 'content' } }} />,
     );
     expect(getByTestId('content')).toBeVisible();
   });

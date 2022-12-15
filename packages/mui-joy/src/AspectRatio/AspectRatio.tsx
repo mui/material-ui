@@ -1,15 +1,15 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useThemeProps } from '../styles';
+import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
-import { AspectRatioProps, AspectRatioTypeMap } from './AspectRatioProps';
+import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
-const useUtilityClasses = (ownerState: AspectRatioProps) => {
+const useUtilityClasses = (ownerState: AspectRatioOwnerState) => {
   const { variant, color } = ownerState;
   const slots = {
     root: ['root'],
@@ -28,7 +28,7 @@ const AspectRatioRoot = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ ownerState }) => {
+})<{ ownerState: AspectRatioOwnerState }>(({ ownerState }) => {
   const minHeight =
     typeof ownerState.minHeight === 'number' ? `${ownerState.minHeight}px` : ownerState.minHeight;
   const maxHeight =
@@ -49,8 +49,8 @@ const AspectRatioRoot = styled('div', {
 const AspectRatioContent = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => [
+  overridesResolver: (props, styles) => styles.content,
+})<{ ownerState: AspectRatioOwnerState }>(({ theme, ownerState }) => [
   {
     flex: 1,
     position: 'relative',
@@ -89,10 +89,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   });
 
   const {
-    className,
-    component = 'div',
     children,
-    componentsProps,
     ratio = '16 / 9',
     minHeight,
     maxHeight,
@@ -104,7 +101,6 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const ownerState = {
     ...props,
-    component,
     minHeight,
     maxHeight,
     objectFit,
@@ -115,26 +111,31 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: AspectRatioRoot,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotContent, contentProps] = useSlot('content', {
+    className: classes.content,
+    elementType: AspectRatioContent,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
   return (
-    <AspectRatioRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      <AspectRatioContent
-        ownerState={ownerState}
-        {...componentsProps?.content}
-        className={clsx(classes.content, componentsProps?.content?.className, className)}
-      >
+    <SlotRoot {...rootProps}>
+      <SlotContent {...contentProps}>
         {React.Children.map(children, (child, index) =>
           index === 0 && React.isValidElement(child)
-            ? React.cloneElement(child, { 'data-first-child': '' })
+            ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
             : child,
         )}
-      </AspectRatioContent>
-    </AspectRatioRoot>
+      </SlotContent>
+    </SlotRoot>
   );
 }) as OverridableComponent<AspectRatioTypeMap>;
 
@@ -149,26 +150,10 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the AspectRatio.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    content: PropTypes.object.isRequired,
-  }),
   /**
    * The maximum calculated height of the element (not the CSS height).
    */

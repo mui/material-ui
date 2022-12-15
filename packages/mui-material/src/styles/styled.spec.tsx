@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  styled,
-  css,
-  ThemeProvider,
-  createTheme,
-  experimental_sx as sx,
-} from '@mui/material/styles';
+import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,
@@ -51,7 +45,9 @@ interface PropsFooVariant {
 interface PropsBarVariant {
   variant: 'bar';
 }
-const Component = (props: PropsFooVariant | PropsBarVariant) => <div />;
+function Component(props: PropsFooVariant | PropsBarVariant) {
+  return <div />;
+}
 const StyledComponent = styled(Component)(({ theme }) => ({}));
 const rendered = (
   <React.Fragment>
@@ -85,14 +81,14 @@ const ButtonIcon = styled('span', {
   overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: ButtonProps }>({});
 
-const Button = ({
+function Button({
   children,
   startIcon,
   endIcon,
   color = 'primary',
   variant = 'contained',
   ...props
-}: React.PropsWithChildren<ButtonProps>) => {
+}: React.PropsWithChildren<ButtonProps>) {
   const ownerState = { startIcon, endIcon, color, variant, ...props };
   return (
     <ButtonRoot ownerState={ownerState}>
@@ -101,7 +97,7 @@ const Button = ({
       {endIcon && <ButtonIcon ownerState={ownerState}>{endIcon}</ButtonIcon>}
     </ButtonRoot>
   );
-};
+}
 
 <ThemeProvider
   theme={createTheme({
@@ -138,13 +134,14 @@ const Button = ({
           mark: (props) => ({
             ...(props['data-index'] === 0 && {}),
           }),
-          thumb: sx({
-            p: 1,
-          }),
-          track: ({ ownerState }) => [
-            sx({ height: 10 }),
+          thumb: ({ theme }) =>
+            theme.unstable_sx({
+              p: 1,
+            }),
+          track: ({ ownerState, theme }) => [
+            theme.unstable_sx({ height: 10 }),
             ownerState.orientation === 'vertical' &&
-              sx({
+              theme.unstable_sx({
                 my: 2,
               }),
           ],
@@ -157,7 +154,3 @@ const Button = ({
     Hello
   </Button>
 </ThemeProvider>;
-
-/**
- * ============================================================
- */

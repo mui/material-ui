@@ -6,9 +6,10 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
-import { MenuTypeMap, MenuProps } from './MenuProps';
+import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
 const useUtilityClasses = (ownerState: MenuProps) => {
@@ -26,26 +27,32 @@ const useUtilityClasses = (ownerState: MenuProps) => {
   return composeClasses(slots, getMenuUtilityClass, {});
 };
 
-const MenuRoot = styled(PopperUnstyled, {
+const MenuRoot = styled(StyledList, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  // ownerState should be forwarded to ListRoot
-  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
-})<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
+})<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    boxShadow: theme.vars.shadow.md,
-    zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.body,
-    }),
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
+    '--List-item-stickyBackground':
+      variantStyle?.backgroundColor ||
+      variantStyle?.background ||
+      theme.vars.palette.background.popup,
+    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    ...scopedVariables,
+    boxShadow: theme.shadow.md,
+    overflow: 'auto',
+    zIndex: 1300, // the same value as Material UI Menu. TODO: revisit the appropriate value later.
+    ...(!variantStyle?.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.popup,
+    }),
   };
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const props = useThemeProps<typeof inProps>({
+  const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
   });
@@ -54,31 +61,18 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
+    component,
     color = 'neutral',
-    disablePortal = true,
+    disablePortal = false,
     keepMounted = false,
     id,
     onClose,
     open = false,
-    modifiers,
+    modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
     ...other
   } = props;
-
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      ...(modifiers || []),
-    ],
-    [modifiers],
-  );
 
   const {
     registerItem,
@@ -109,11 +103,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
-    instanceSize: inProps.size, // For ListRoot
-    modifiers,
     open,
     nesting: false,
-    scoped: true,
     row: false,
   };
 
@@ -130,25 +121,43 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       disablePortal,
       keepMounted,
       ref,
-      component: ListRoot,
-      modifiers: cachedModifiers,
+      component: MenuRoot,
+      as: component, // use `as` to insert the component inside of the MenuRoot
     },
     className: classes.root,
     ownerState,
   });
 
-  const contextValue: MenuUnstyledContextType = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    open,
-  };
+  const contextValue: MenuUnstyledContextType = React.useMemo(
+    () => ({
+      registerItem,
+      unregisterItem,
+      getItemState,
+      getItemProps,
+      open,
+    }),
+    [getItemProps, getItemState, open, registerItem, unregisterItem],
+  );
+
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
+    [modifiersProp],
+  );
 
   return (
-    <MenuRoot {...rootProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-    </MenuRoot>
+    <PopperUnstyled {...rootProps} modifiers={modifiers}>
+      <MenuUnstyledContext.Provider value={contextValue}>
+        <ListProvider nested>{children}</ListProvider>
+      </MenuUnstyledContext.Provider>
+    </PopperUnstyled>
   );
 }) as OverridableComponent<MenuTypeMap>;
 
@@ -180,6 +189,11 @@ Menu.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
@@ -243,6 +257,14 @@ Menu.propTypes /* remove-proptypes */ = {
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
   /**
    * The variant to use.
