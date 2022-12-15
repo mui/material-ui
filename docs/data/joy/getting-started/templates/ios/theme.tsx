@@ -358,8 +358,7 @@ export default extendTheme({
   },
   unstable_sxConfig: {
     material: {
-      cssProperty: false,
-      themeKey: 'materials',
+      style: (props) => props.theme.materials?.[props.material],
     },
   },
   typography: {

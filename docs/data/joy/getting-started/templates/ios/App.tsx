@@ -24,15 +24,7 @@ function SystemMaterials() {
     >
       {(Object.keys(theme.materials) as Array<keyof typeof theme.materials>).map(
         (material) => (
-          <Box
-            key={material}
-            sx={{
-              p: 5,
-              // backgroundImage:
-              //   'url(https://images.unsplash.com/photo-1620121684840-edffcfc4b878?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80)',
-              // backgroundSize: 'cover',
-            }}
-          >
+          <Box key={material} sx={{ p: 5 }}>
             <Box
               sx={{
                 borderRadius: 'sm',
@@ -40,7 +32,7 @@ function SystemMaterials() {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                ...theme.materials[material],
+                material,
               }}
             >
               {material}
