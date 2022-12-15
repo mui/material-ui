@@ -114,8 +114,8 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   };
 
   const handleKeyDelete = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    event.preventDefault();
     if (['Backspace', 'Enter', 'Delete'].includes(event.key)) {
+      event.preventDefault();
       if (!disabled && onDelete) {
         onDelete(event);
       }
