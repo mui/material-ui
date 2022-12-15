@@ -159,6 +159,7 @@ export default function TemplateCollection() {
                 <NextLink
                   href={`/joy-ui/getting-started/templates/${name}/`}
                   passHref
+                  legacyBehavior
                 >
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <Link
