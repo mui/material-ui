@@ -81,7 +81,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('should warn if the root content is not focusable', () => {
-    const UnfocusableDialog = React.forwardRef<HTMLInputElement>((_, ref) => <div ref={ref} />);
+    const UnfocusableDialog = React.forwardRef<HTMLDivElement>((_, ref) => <div ref={ref} />);
 
     expect(() => {
       render(
