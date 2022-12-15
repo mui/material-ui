@@ -398,6 +398,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
         };
       } else {
         result[color] = {
+          colorScheme: 'dark',
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
           [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
