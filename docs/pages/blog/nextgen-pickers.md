@@ -71,9 +71,9 @@ Try out the live demo of the `DateField` below.
 
 Now that you've seen what's fundamentally different with the pickers, let us brief you on some other noteworthy refinements the components are getting.
 
-- **Customization of elements and sub-components in the Clock and Calendar**
+- **Customization of layout and internal components**
 
-Yeah, you read it right. Combining the concept of slots and grid layout, you now can rearrange, extend, and customize most of the components used internally by those views, and make them perfectly suited to your use cases.
+Combining the concept of slots and grid layout, you now can rearrange, extend, and customize most of the components used internally by the pickers views, and make them perfectly suited to your use cases.
 
 - **Default render input**
 
