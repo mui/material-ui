@@ -62,9 +62,7 @@ describe('<FocusTrap />', () => {
     expect(getByTestId('auto-focus')).toHaveFocus();
 
     act(() => {
-      if (initialFocus) {
-        initialFocus.focus();
-      }
+      initialFocus!.focus();
     });
 
     expect(initialFocus).toHaveFocus();
