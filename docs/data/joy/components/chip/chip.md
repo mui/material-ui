@@ -49,7 +49,11 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons to 
 ### Delete button
 
 To add a delete action inside a chip, use the complementary `ChipDelete` component.
-The `onDelete` callback is fired on `ChipDelete` when `Backspace`, `Enter` or `Delete` is pressed or when `ChipDelete` is clicked. Note that its design will automatically adapt to the parent `Chip`.
+
+The `onDelete` callback is fired on `ChipDelete` either when:
+
+- `Backspace`, `Enter` or `Delete` is pressed.
+- The `ChipDelete` is clicked.
 
 ```jsx
 import ChipDelete from '@mui/joy/ChipDelete';

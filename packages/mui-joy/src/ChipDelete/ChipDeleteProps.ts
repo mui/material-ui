@@ -24,9 +24,13 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      */
     disabled?: boolean;
     /**
-     * Callback fired when component is not disabled and `Backspace`, `Enter` or `Delete` is pressed or when chip is clicked.
+     * Callback fired when the component is not disabled and either:
+     * - `Backspace`, `Enter` or `Delete` is pressed.
+     * - The component is clicked.
      */
-    onDelete?: React.EventHandler<any>;
+    onDelete?: React.EventHandler<
+      React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>
+    >;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
