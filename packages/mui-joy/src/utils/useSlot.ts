@@ -34,7 +34,7 @@ export default function useSlot<
   ElementType extends React.ElementType,
   SlotProps,
   OwnerState extends {},
-  ExternalSlotProps extends { component?: React.ElementType },
+  ExternalSlotProps extends { component?: React.ElementType; ref?: React.Ref<any> },
   ExternalForwardedProps extends {
     component?: React.ElementType;
     slots?: { [k in T]?: React.ElementType };
