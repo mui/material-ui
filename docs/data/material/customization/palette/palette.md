@@ -96,7 +96,7 @@ const theme = createTheme({
       main: '#f57c00',
       dark: '#ef6c00',
       contrastText: 'rgba(0, 0, 0, 0.87)',
-    }
+    },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     contrastThreshold: 3,
@@ -192,6 +192,7 @@ declare module '@mui/material/styles' {
   interface Palette {
     neutral: Palette['primary'];
   }
+  
   interface PaletteOptions {
     neutral: PaletteOptions['primary'];
   }
@@ -199,9 +200,11 @@ declare module '@mui/material/styles' {
   interface PaletteColor {
     darker?: string;
   }
+  
   interface SimplePaletteColorOptions {
     darker?: string;
   }
+  
   interface ThemeOptions {
     status: {
       danger: React.CSSProperties['color'];
