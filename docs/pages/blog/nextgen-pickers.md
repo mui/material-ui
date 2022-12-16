@@ -67,34 +67,44 @@ Try out the live demo of the `DateField` below.
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
+### Fields roadmap
+
+The Fields are still in alpha, and there are many improvements on the way. The following list describes some of the most noticeable.
+
+- **Auto section switching**  
+  So users don't need to manually navigate to the next section of the date after fulfilling the current one.
+
+- **Smart pasting**  
+  Date strings pasted on Fields are parsed and matched with the sections of the date.
+
+- **Support days of the week**  
+  Support selecting a date by navigating days of the week with arrow keys, or text editing.
+
+We'd love to see more of your [feedback](https://github.com/mui/mui-x/issues/new/choose) to help us improve these components even further.
 ## Other Significant improvements
 
 Now that you've seen what's fundamentally different with the pickers, let us brief you on some other noteworthy refinements the components are getting.
 
-- **Customization of layout and internal components**
+- **Customization of layout and internal components**  
+  Combining the concept of slots and grid layout, you now can rearrange, extend, and customize most of the components used internally by the pickers views, and make them perfectly suited to your use cases.
 
-Combining the concept of slots and grid layout, you now can rearrange, extend, and customize most of the components used internally by the pickers views, and make them perfectly suited to your use cases.
+- **Default render input**  
+  You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
+  In which case you can do it by:
 
-- **Default render input**
+  1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/s/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
+  2. Build a new field component using the Field's headless API (documentation coming soon).
+  3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use cases.
 
-You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
-In which case you can do it by:
-
-1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/s/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
-2. Build a new field component using the Field's headless API (documentation coming soon).
-3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use cases.
-
-- **Drag to edit**
-
-Editing a date range is even easier now with the new interface using drag and drop. Change `start` and `end` dates at will.
+- **Drag to edit**  
+  Editing a date range is even easier now with the new interface using drag and drop. Change `start` and `end` dates at will.
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/nextgen-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
 
-- **Range shortcuts**
-
-Add quick and customizable shortcuts to your users. Choose to display them on left, right, bottom or top.
+- **Range shortcuts**  
+  Add quick and customizable shortcuts to your users. Choose to display them on left, right, bottom or top.
 
 <img src="/static/blog/nextgen-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
 
