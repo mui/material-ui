@@ -70,6 +70,14 @@ export type SliderTypeMap<
       thumbColorSecondary?: string;
       /** Class name applied to the thumb element if `size="small"`. */
       thumbSizeSmall?: string;
+      /** Class name applied to the thumb label element. */
+      valueLabel: string;
+      /** Class name applied to the thumb label element if it's open. */
+      valueLabelOpen: string;
+      /** Class name applied to the thumb label's circle element. */
+      valueLabelCircle: string;
+      /** Class name applied to the thumb label's label element. */
+      valueLabelLabel: string;
     };
     /**
      * The size of the slider.

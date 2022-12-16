@@ -5,7 +5,6 @@ import { chainPropTypes } from '@mui/utils';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
-import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
 
@@ -95,7 +94,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     getRootProps,
     getHiddenInputProps,
     getThumbProps,
-    open,
     active,
     axis,
     range,
@@ -153,7 +151,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ownerState,
   });
 
-  const ValueLabel = slots.valueLabel ?? SliderValueLabelUnstyled;
+  const ValueLabel = slots.valueLabel;
   const valueLabelProps = useSlotProps({
     elementType: ValueLabel,
     externalSlotProps: slotProps.valueLabel,
@@ -244,26 +242,22 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
-        const ValueLabelComponent =
-          valueLabelProps?.valueLabelDisplay === 'off' ? Forward : ValueLabel;
+        const ValueLabelComponent = ValueLabel ?? Forward;
 
         return (
           <React.Fragment key={index}>
             <ValueLabelComponent
               {...(!isHostComponent(ValueLabelComponent) && {
                 valueLabelFormat,
-                valueLabelDisplay: valueLabelProps?.valueLabelDisplay,
                 value:
                   typeof valueLabelFormat === 'function'
                     ? valueLabelFormat(scale(value), index)
                     : valueLabelFormat,
                 index,
-                open:
-                  open === index || active === index || valueLabelProps?.valueLabelDisplay === 'on',
                 disabled,
               })}
               {...valueLabelProps}
-              className={clsx(classes.valueLabel, valueLabelProps.className)}
+              className={valueLabelProps.className}
             >
               <Thumb
                 data-index={index}
