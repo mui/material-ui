@@ -6,17 +6,12 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlider } from '@mui/base/SliderUnstyled';
+import { useSlider, valueToPercent, Identity } from '@mui/base/SliderUnstyled';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
-
-const valueToPercent = (value: number, min: number, max: number) =>
-  ((value - min) * 100) / (max - min);
-
-const Identity = (x: any) => x;
 
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
