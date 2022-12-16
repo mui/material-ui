@@ -18,6 +18,7 @@
 - [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css)
 - [Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs)
 - [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
+- [Next.js + @mui/styles (v4 migration helper)](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
 
 Create React App 是一个很棒的学习 React 的项目。 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 

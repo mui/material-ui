@@ -15,17 +15,18 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
-import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
 
-const SearchButton = styled('button')(({ theme }) => {
-  return {
+const SearchButton = styled('button')(({ theme }) => [
+  {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
+    margin: 0,
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
@@ -41,27 +42,28 @@ const SearchButton = styled('button')(({ theme }) => {
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : theme.palette.grey[50],
-    color: theme.palette.text.secondary,
+    backgroundColor: (theme.vars || theme).palette.grey[50],
+    color: (theme.vars || theme).palette.text.secondary,
     fontSize: theme.typography.pxToRem(14),
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
-    }`,
+    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     borderRadius: 10,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
     '&:hover': {
-      background:
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[700], 0.4)
-          : alpha(theme.palette.grey[100], 0.7),
-      borderColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
+      background: alpha(theme.palette.grey[100], 0.7),
+      borderColor: (theme.vars || theme).palette.grey[300],
     },
-  };
-});
+  },
+  theme.applyDarkStyles({
+    backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+    borderColor: (theme.vars || theme).palette.primaryDark[700],
+    '&:hover': {
+      background: alpha(theme.palette.primaryDark[700], 0.4),
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
+    },
+  }),
+]);
 
 const SearchLabel = styled('span')(({ theme }) => {
   return {
@@ -76,16 +78,18 @@ const Shortcut = styled('div')(({ theme }) => {
     fontWeight: 700,
     lineHeight: '20px',
     marginLeft: theme.spacing(0.5),
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
-    }`,
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
+    backgroundColor: '#FFF',
     padding: theme.spacing(0, 0.8),
     borderRadius: 5,
+    ...theme.applyDarkStyles({
+      borderColor: (theme.vars || theme).palette.primaryDark[500],
+      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+    }),
   };
 });
 
-const NewStartScreen = () => {
+function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
@@ -105,7 +109,7 @@ const NewStartScreen = () => {
       },
       items: [
         { name: 'Material Icons', href: '/material-ui/material-icons/' },
-        { name: 'Text field', href: '/material-ui/react-text-field/' },
+        { name: 'Text Field', href: '/material-ui/react-text-field/' },
         { name: 'Button', href: '/material-ui/react-button/' },
       ],
     },
@@ -117,7 +121,7 @@ const NewStartScreen = () => {
       items: [
         { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
         { name: 'Theming', href: '/material-ui/customization/theming/' },
-        { name: 'Default Theme', href: '/material-ui/customization/default-theme/' },
+        { name: 'Default theme', href: '/material-ui/customization/default-theme/' },
       ],
     },
     {
@@ -126,9 +130,9 @@ const NewStartScreen = () => {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Basics', href: '/system/basics/' },
+        { name: 'Overview', href: '/system/getting-started/overview/' },
         { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/the-sx-prop/' },
+        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
     },
   ];
@@ -141,18 +145,16 @@ const NewStartScreen = () => {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
-              <a href={href} className="DocSearch-NewStartScreenItem">
-                {name}
-                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-              </a>
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {name}
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
       ))}
     </div>
   );
-};
+}
 
 function DocSearcHit(props) {
   const { children, hit } = props;
@@ -293,12 +295,12 @@ export default function AppSearch() {
       <SearchButton ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[500],
-          }}
+          sx={(theme) => ({
+            color: 'primary.500',
+            ...theme.applyDarkStyles({
+              color: 'primary.300',
+            }),
+          })}
         />
         <SearchLabel>{search}</SearchLabel>
         <Shortcut>
@@ -468,6 +470,7 @@ export default function AppSearch() {
             '& .DocSearch-Cancel': {
               display: 'block',
               alignSelf: 'center',
+              cursor: 'pointer',
               height: '1.5rem',
               marginRight: theme.spacing(1),
               padding: theme.spacing(0.3, 0.8, 0.6, 0.8),

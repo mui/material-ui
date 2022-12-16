@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import ModalUnstyled, { modalUnstyledClasses as classes } from '@mui/base/ModalUnstyled';
 
 describe('<ModalUnstyled />', () => {
+  const mount = createMount();
   const { render } = createRenderer();
   let savedBodyStyle;
 
@@ -15,20 +16,21 @@ describe('<ModalUnstyled />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformance(
+  describeConformanceUnstyled(
     <ModalUnstyled open>
       <div />
     </ModalUnstyled>,
     () => ({
-      classes,
       inheritComponent: 'div',
       render,
+      mount,
       refInstanceof: window.HTMLDivElement,
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+      },
       skip: [
-        'rootClass', // portal, can't determin the root
-        'themeDefaultProps', // unstyled
-        'themeStyleOverrides', // unstyled
-        'themeVariants', // unstyled
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
@@ -47,7 +49,7 @@ describe('<ModalUnstyled />', () => {
     );
 
     render(
-      <ModalUnstyled open components={{ Root }}>
+      <ModalUnstyled open slots={{ root: Root }}>
         <div />
       </ModalUnstyled>,
     );
@@ -56,13 +58,31 @@ describe('<ModalUnstyled />', () => {
     expect(theme).not.to.equal(null);
   });
 
+  it('default exited state is opposite of open prop', () => {
+    let exited = null;
+
+    const Root = React.forwardRef(({ ownerState: ownerStateProp, ...other }, ref) => {
+      exited = ownerStateProp.exited;
+
+      return <span ref={ref} {...other} />;
+    });
+
+    render(
+      <ModalUnstyled open slots={{ root: Root }}>
+        <div />
+      </ModalUnstyled>,
+    );
+
+    expect(exited).to.equal(false);
+  });
+
   it('does not forward style props as DOM attributes if component slot is primitive', () => {
     const elementRef = React.createRef();
     render(
       <ModalUnstyled
         open
-        components={{
-          Root: 'span',
+        slots={{
+          root: 'span',
         }}
         ref={elementRef}
       >

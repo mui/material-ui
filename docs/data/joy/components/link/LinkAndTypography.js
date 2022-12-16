@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import CallMade from '@mui/icons-material/CallMade';
+import Launch from '@mui/icons-material/Launch';
 import LinkIcon from '@mui/icons-material/Link';
 
-export default function Links() {
+export default function LinkAndTypography() {
   return (
     <Box sx={{ maxWidth: 360 }}>
       <Typography
@@ -18,7 +18,6 @@ export default function Links() {
             aria-labelledby="heading-demo"
             href="#heading-demo"
             fontSize="md"
-            ml={0.5}
             borderRadius="sm"
           >
             <LinkIcon />
@@ -32,7 +31,7 @@ export default function Links() {
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore{' '}
-        <Link href="#heading-demo" endDecorator={<CallMade />}>
+        <Link href="#heading-demo" endDecorator={<Launch />}>
           Magna Aliqua
         </Link>
         . Maecenas sed enim ut sem viverra aliquet eget.

@@ -4,25 +4,28 @@
 
 ## Componentes de navegação
 
-Existem dois componentes principais disponíveis para realizar navegações. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest. It renders a native `<a>` element and applies the `href` as an attribute.
+Existem dois componentes principais disponíveis para realizar navegações. The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest. The most common one is the [`Link`](/components/links/) as its name might suggest.
 
 {{"demo": "LinkDemo.js"}}
 
-Você também pode fazer com que um botão execute ações de navegação. For instance, with a `Button` component: Se seu componente está estendendo [`ButtonBase`](/material-ui/api/button-base/), fornecer uma propriedade `href` habilita o modo de link.
+Você também pode fazer com que um botão execute ações de navegação. If your component is extending [`ButtonBase`](/material-ui/api/button-base/), providing a `href` prop enables the link mode. For instance, with a `Button` component:
 
 {{"demo": "ButtonDemo.js"}}
 
 ## Global theme Link
 
-Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material UI allows configuring this component once. For instance, with react-router:
+Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once. For instance, with react-router:
 
-```jsx
+```tsx
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
+
 const LinkBehavior = React.forwardRef<
-  any,
+  HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material UI) -> to (react-router)
+  // Map href (MUI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -31,7 +34,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      },
+      } as LinkProps,
     },
     MuiButtonBase: {
       defaultProps: {
@@ -44,15 +47,17 @@ const theme = createTheme({
 
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
-> ⚠️ Esta abordagem tem limitações com TypeScript. A propriedade `href` só aceita uma string. No caso de você precisar fornecer uma estrutura mais rica, consulte a próxima seção.
+:::warning
+⚠️ This approach has limitations with TypeScript. The `href` prop only accepts a string. In the event you need to provide a richer structure, see the next section.
+:::
 
 ## Propriedade `component`
 
-Você pode conseguir a integração com bibliotecas de roteamento de terceiros com a propriedade `component`. You can learn more about this prop in the [composition guide](/material-ui/guides/composition/#component-prop).
+You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
 
 ### Link
 
-Here are a few demos with [react-router](https://github.com/remix-run/react-router). Você pode aplicar a mesma estratégia com todos os componentes: BottomNavigation, Card, etc.
+Here are a few demos with [react-router](https://github.com/remix-run/react-router). You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 {{"demo": "LinkRouter.js"}}
 
@@ -60,7 +65,7 @@ Here are a few demos with [react-router](https://github.com/remix-run/react-rout
 
 {{"demo": "ButtonRouter.js"}}
 
-**Nota**: O componente base do botão adiciona o atributo `role=""button"` quando identifica a intenção de renderizar um botão sem um `<button>` elemento nativo. Isso pode criar problemas ao renderizar um link. Se você não estiver usando um das propriedades `href`, `to`, ou `component="a` você precisa substituir o atributo `role`. A demonstração acima consegue isso definindo `role={undefined}` **after** os "spread" "props".
+**Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props.
 
 ```jsx
 const LinkBehavior = React.forwardRef((props, ref) => (
@@ -80,7 +85,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js
 
-O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material UI.
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. Este componente não tem estilo e é o único responsável pelo manuseio da navegação. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
@@ -103,7 +108,7 @@ O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-ref
   }
   ```
 
-- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of Material UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of MUI](/material-ui/react-link/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';
@@ -124,4 +129,4 @@ O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-ref
 
 ### Gatsby
 
-O componente [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) do Gatsby é construído em `@reach/router`. Você pode usar a mesma documentação anterior para react-router. Ao contrário do Next.js, ele não exige que você faça uma "gambiarra".
+The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`. You can use the same previous documentation for react-router. Unlike Next.js, it doesn't require you to create an adapter.

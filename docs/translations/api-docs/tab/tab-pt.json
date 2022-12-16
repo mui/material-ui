@@ -9,7 +9,7 @@
     "icon": "The icon element.",
     "iconPosition": "The position of the icon relative to the label.",
     "label": "The label element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "You can provide your own value. Otherwise, we fallback to the child position index.",
     "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
   },

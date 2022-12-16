@@ -32,12 +32,7 @@ export type BordersProps = PropsFor<typeof borders>;
 
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
-export function handleBreakpoints<Props>(
-  props: Props,
-  propValue: any,
-  styleFromPropValue: (value: any) => any,
-): any;
+export { handleBreakpoints } from './breakpoints';
 
 /**
  * @returns An enhanced stylefunction that considers breakpoints
@@ -124,10 +119,9 @@ export {
   default as unstable_styleFunctionSx,
   unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
+  unstable_defaultSxConfig,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
-
-export { default as experimental_sx } from './sx';
 
 export { default as Box } from './Box';
 export * from './Box';
@@ -170,6 +164,8 @@ export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult 
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';
 
+export { default as responsivePropType } from './responsivePropType';
+
 export { default as createContainer } from './Container/createContainer';
 export * from './Container/createContainer';
 
@@ -178,3 +174,6 @@ export * from './Container';
 
 export { default as Unstable_Grid } from './Unstable_Grid';
 export * from './Unstable_Grid';
+
+export { default as Stack } from './Stack';
+export * from './Stack';

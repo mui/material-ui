@@ -25,7 +25,7 @@ function getUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base/react-menu/)
+ * - [Unstyled Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
@@ -38,9 +38,9 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
     children,
     disabled: disabledProp = false,
     component,
-    components = {},
-    componentsProps = {},
     label,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -54,11 +54,11 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
 
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? components.Root ?? 'li';
+  const Root = component ?? slots.root ?? 'li';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     className: classes.root,
     ownerState,
@@ -82,21 +82,6 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the MenuItem.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the MenuItem.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the menu item will be disabled.
    * @default false
    */
@@ -106,6 +91,21 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
+  /**
+   * The props used for each slot inside the MenuItem.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the MenuItem.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
 } as any;
 
 export default MenuItemUnstyled;

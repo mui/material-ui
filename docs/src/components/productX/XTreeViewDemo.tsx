@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TreeView from '@mui/lab/TreeView';
@@ -15,7 +15,6 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import Chip from '@mui/material/Chip';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 
@@ -191,11 +190,13 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-const TreeItem = (
+function TreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
-) => <StyledTreeItem ContentComponent={CustomContent} {...props} />;
+) {
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
+}
 
 export default function XDateRangeDemo() {
   return (
@@ -269,41 +270,31 @@ export default function XDateRangeDemo() {
           </TreeView>
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Frame.Info>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              mb: 0.5,
-            }}
-          >
-            <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
-              Coming soon!
-            </Typography>
-            <Chip
-              label="Available in the lab"
-              size="small"
-              href="/material-ui/react-tree-view"
-              component="a"
-              sx={{ fontWeight: 500, cursor: 'pointer' }}
-            />
-          </Box>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Subscribe to our newsletter to get first-hand info about the development and release of
-            new components.
+      <Frame.Info data-mui-color-scheme="dark">
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            mb: 0.5,
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
+            Coming soon!
           </Typography>
-          <EmailSubscribe
-            sx={{
-              '& > div': {
-                maxWidth: 'initial',
-                border: '1px solid',
-                borderColor: 'primaryDark.600',
-              },
-            }}
+          <Chip
+            label="Available in the lab"
+            size="small"
+            href="/material-ui/react-tree-view"
+            component="a"
+            sx={{ fontWeight: 500, cursor: 'pointer' }}
           />
-        </Frame.Info>
-      </ThemeProvider>
+        </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Subscribe to our newsletter to get first-hand info about the development and release of
+          new components.
+        </Typography>
+        <EmailSubscribe />
+      </Frame.Info>
     </Frame>
   );
 }

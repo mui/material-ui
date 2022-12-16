@@ -25,6 +25,13 @@ export type MenuItemProps<
   },
 > = OverrideProps<MenuItemTypeMap<P, D>, D>;
 
+export interface MenuItemOwnerState extends MenuItemProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+}
+
 export type ExtendMenuItem<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendMenuItemTypeMap<M>, 'a'>,
 ) => JSX.Element) &

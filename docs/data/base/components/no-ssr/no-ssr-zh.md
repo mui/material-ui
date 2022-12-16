@@ -1,32 +1,57 @@
 ---
-product: material-ui
-title: React No SSR（非服务端渲染）的组件
+product: base
+title: No SSR React component
 components: NoSsr
-packageName: '@mui/base'
 ---
 
-# 非服务端渲染（SSR）
+# No SSR
 
-<p class="description">NoSsr 的目的是从服务器端渲染（SSR）里删除组件。</p>
+<p class="description">The NoSsr component defers the rendering of children components from the server to the client.</p>
 
-该组件可用于各种情况：
+## Introduction
 
-- 对于不支持服务端渲染的依赖包实施补救。
-- 通过仅在首屏上呈现，来改善客户端上的首次绘制时间。
-- 减少服务器上的渲染时间。
-- 在过重的服务器负载下，您可以打开服务降级。
-- 通过仅渲染重要的内容（使用 `defer` 属性），从而来改善交互时间。
+`NoSsr` is a utility component that prevents its children from being rendered on the server.
+
+This component can be useful in a variety of situations:
+
+- To create an escape hatch for broken dependencies that don't support server-side rendering (SSR)
+- To improve the time to first paint by only rendering above the fold
+- To reduce the rendering time on the server
+- To turn on service degradation when the server load is too heavy
+- To improve the Time to Interactive (TTI) by only rendering what's important (using the `defer` prop)
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Client-side deferring
+## Component
+
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import NoSsr from '@mui/base/NoSsr';
+
+export default function MyApp() {
+  return <NoSsr>{/* element to be rendered on the client side */}</NoSsr>;
+}
+```
+
+### Basics
+
+At its core, the `NoSsr` component's purpose is to defer rendering from the server to the client, as shown in the following demo:
 
 {{"demo": "SimpleNoSsr.js"}}
 
-## 延迟帧数
+## Customization
 
-在其核心中，NoSr 组件的目的是 **推迟渲染**。 正如在前一个演示中所展示的那样，您可以使用它来将推迟从服务器到客户端的渲染。
+### Delay client-side rendering
 
-但你也可以使用它来推迟客户端自身的渲染。 您可以使用 `defer` 属性来**等待一个屏幕帧**后，再渲染子组件。 React 会做 [2 次提交](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) 而不是 1 次。
+You can also use `NoSsr` to delay the rendering of specific components on the client side—for example, to let the rest of the application load before an especially complex or data-heavy component.
+
+The following demo shows how to use the `defer` prop to prioritize rendering the rest of the app outside of what is nested within `NoSsr`:
 
 {{"demo": "FrameDeferring.js"}}
+
+:::warning
+When using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
+:::

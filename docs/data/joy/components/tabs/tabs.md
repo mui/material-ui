@@ -19,7 +19,7 @@ Joy UI provides four tabs-related components:
 - `Tab`: A button to toggle a selected tab.
 - `TabPanel`: A pane that displays on the screen when its value matches with the selected tab.
 
-{{"demo": "TabsUsage.js", "hideToolbar": true}}
+{{"demo": "TabsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -52,15 +52,15 @@ To target the initially selected tab, specify the `value` prop to the `TabPanel`
 
 {{"demo": "TabsBasic.js"}}
 
-### Variant
+### Variants
 
 Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
 
-:::info
-ℹ️ **Note:** the `TabPanel` component is the only one that doesn't support both global variant and color props.
-:::
-
 {{"demo": "TabsVariants.js"}}
+
+:::info
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
 
 ### Disabled tab
 
@@ -120,7 +120,7 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 {{"demo": "TabsPricingExample.js"}}
 
-### Page tabs
+### Page tabs with chips
 
 {{"demo": "TabsPageExample.js"}}
 

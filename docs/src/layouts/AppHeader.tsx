@@ -9,7 +9,6 @@ import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
-import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
@@ -19,24 +18,30 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Header = styled('header')(({ theme }) => ({
-  position: 'sticky',
-  top: 0,
-  transition: theme.transitions.create('top'),
-  zIndex: theme.zIndex.appBar,
-  backdropFilter: 'blur(20px)',
-  boxShadow: `inset 0px -1px 1px ${
-    theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
-  }`,
-  backgroundColor:
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 0.72)
-      : 'rgba(255,255,255,0.72)',
-}));
+const Header = styled('header')(({ theme }) => [
+  {
+    position: 'sticky',
+    top: 0,
+    transition: theme.transitions.create('top'),
+    zIndex: theme.zIndex.appBar,
+    backdropFilter: 'blur(8px)',
+    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
+    backgroundColor: 'rgba(255,255,255,0.8)',
+  },
+  theme.applyDarkStyles({
+    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
+    backgroundColor: alpha(theme.palette.primaryDark[900], 0.7),
+  }),
+]);
 
 const HEIGHT = 56;
 
-export default function AppHeader() {
+interface AppHeaderProps {
+  gitHubRepository?: string;
+}
+
+export default function AppHeader(props: AppHeaderProps) {
+  const { gitHubRepository = 'https://github.com/mui' } = props;
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -44,7 +49,12 @@ export default function AppHeader() {
   const t = useTranslate();
 
   React.useEffect(() => {
-    const initialMode = getCookie('paletteMode') || 'system';
+    let initialMode = 'system';
+    try {
+      initialMode = localStorage.getItem('mui-mode') || initialMode;
+    } catch (error) {
+      // do nothing
+    }
     setMode(initialMode);
   }, []);
 
@@ -52,7 +62,7 @@ export default function AppHeader() {
     const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
 
-    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+    localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
     changeTheme({ paletteMode });
   };
 
@@ -84,7 +94,7 @@ export default function AppHeader() {
             <IconButton
               component="a"
               color="primary"
-              href="https://github.com/mui"
+              href={gitHubRepository}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >

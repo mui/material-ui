@@ -21,10 +21,10 @@ export default function SelectCustomValueAppearance() {
   return (
     <Select
       defaultValue="Eric"
-      componentsProps={{
+      slotProps={{
         listbox: {
           sx: {
-            '--List-decorator-width': '48px',
+            '--List-decorator-size': '48px',
           },
         },
       }}

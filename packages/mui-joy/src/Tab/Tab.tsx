@@ -5,19 +5,21 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/TabUnstyled';
 import { useSlotProps } from '@mui/base/utils';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
+import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
-  const { selected, disabled, focusVisible, variant, color } = ownerState;
+  const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
 
   const slots = {
     root: [
       'root',
+      orientation,
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       selected && 'selected',
@@ -29,7 +31,7 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
   return composeClasses(slots, getTabUtilityClass, {});
 };
 
-const TabRoot = styled(ListItemButtonRoot, {
+const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -39,9 +41,9 @@ const TabRoot = styled(ListItemButtonRoot, {
     justifyContent: 'center',
     flexGrow: 1,
     ...(ownerState.selected && {
-      boxShadow: theme.vars.shadow.sm,
+      boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
-      ...(!variantStyle.backgroundColor && {
+      ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.body,
         '&:hover': {
           backgroundColor: theme.vars.palette.background.body,
@@ -68,6 +70,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     onClick,
     onFocus,
     component = 'button',
+    orientation = 'horizontal',
     variant = 'plain',
     color = 'neutral',
     ...other
@@ -94,6 +97,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const ownerState = {
     ...props,
+    orientation,
     row,
     active,
     focusVisible,
@@ -118,8 +122,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     className: classes.root,
   });
 
-  // @ts-ignore `onChange` is conflicted
-  return <TabRoot {...tabRootProps}>{children}</TabRoot>;
+  return (
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      {/* @ts-ignore ListItemButton base is div which conflict with TabProps 'button' */}
+      <TabRoot {...tabRootProps}>{children}</TabRoot>
+    </ListItemButtonOrientationContext.Provider>
+  );
 }) as OverridableComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
@@ -172,6 +180,11 @@ Tab.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

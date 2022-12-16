@@ -13,7 +13,7 @@ export default function SponsorCard({
 }: {
   item: {
     src: string;
-    srcSet: string;
+    srcSet?: string;
     name: string;
     description: string;
     href: string;

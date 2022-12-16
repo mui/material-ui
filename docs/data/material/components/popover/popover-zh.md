@@ -11,8 +11,8 @@ githubLabel: 'component: Popover'
 
 使用`弹出框`组件时，你需要了解的事项：
 
-- 该组件构建在 [`Modal`](/material-ui/react-modal/) 组件之上。
-- 不同于 [`Popper`](/material-ui/react-popper/) 组件，滚动（scroll）和 click away 行为是被阻止的。
+- The component is built on top of the [`Modal`](/material-ui/react-modal/) component.
+- The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

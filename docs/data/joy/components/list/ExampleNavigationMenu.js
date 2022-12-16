@@ -147,7 +147,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
               '--List-radius': '8px',
               '--List-padding': '4px',
               '--List-divider-gap': '4px',
-              '--List-decorator-width': '32px',
+              '--List-decorator-size': '32px',
             }}
           >
             <ListItem role="none">

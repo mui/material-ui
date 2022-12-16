@@ -47,8 +47,9 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   onOpen: React.ReactEventHandler<{}>;
   /**
    * If `true`, the component is shown.
+   * @default false
    */
-  open: boolean;
+  open?: boolean;
   /**
    * The element is used to intercept the touch events on the edge.
    */
@@ -65,7 +66,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  *
  * Demos:
  *
- * - [Drawers](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *

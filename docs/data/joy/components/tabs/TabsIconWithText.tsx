@@ -9,27 +9,55 @@ import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 export default function TabsIconWithText() {
   return (
-    <Tabs aria-label="Icon tabs" defaultValue={0}>
-      <TabList>
-        <Tab>
-          <ListItemDecorator>
-            <PhoneIcon />
-          </ListItemDecorator>
-          Recents
-        </Tab>
-        <Tab>
-          <ListItemDecorator>
-            <FavoriteIcon />
-          </ListItemDecorator>
-          Favorite
-        </Tab>
-        <Tab>
-          <ListItemDecorator>
-            <PersonPinIcon />
-          </ListItemDecorator>
-          Nearby
-        </Tab>
-      </TabList>
-    </Tabs>
+    <div>
+      <Tabs
+        aria-label="Icon tabs"
+        defaultValue={0}
+        sx={{ mb: 2, borderRadius: 'lg' }}
+      >
+        <TabList>
+          <Tab>
+            <ListItemDecorator>
+              <PhoneIcon />
+            </ListItemDecorator>
+            Recents
+          </Tab>
+          <Tab>
+            <ListItemDecorator>
+              <FavoriteIcon />
+            </ListItemDecorator>
+            Favorite
+          </Tab>
+          <Tab>
+            <ListItemDecorator>
+              <PersonPinIcon />
+            </ListItemDecorator>
+            Nearby
+          </Tab>
+        </TabList>
+      </Tabs>
+      <Tabs aria-label="Icon tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
+        <TabList>
+          <Tab orientation="vertical">
+            <ListItemDecorator>
+              <PhoneIcon />
+            </ListItemDecorator>
+            Recents
+          </Tab>
+          <Tab orientation="vertical">
+            <ListItemDecorator>
+              <FavoriteIcon />
+            </ListItemDecorator>
+            Favorite
+          </Tab>
+          <Tab orientation="vertical">
+            <ListItemDecorator>
+              <PersonPinIcon />
+            </ListItemDecorator>
+            Nearby
+          </Tab>
+        </TabList>
+      </Tabs>
+    </div>
   );
 }

@@ -6,9 +6,9 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { MenuListProps, MenuListTypeMap } from './MenuListProps';
+import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
 const useUtilityClasses = (ownerState: MenuListProps) => {
@@ -25,13 +25,14 @@ const useUtilityClasses = (ownerState: MenuListProps) => {
   return composeClasses(slots, getMenuListUtilityClass, {});
 };
 
-const MenuListRoot = styled(ListRoot, {
-  name: 'MuiMenuList',
+const MenuListRoot = styled(StyledList, {
+  name: 'JoyMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuListProps; component?: React.ElementType }>(({ theme, ownerState }) => {
+})<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
@@ -40,7 +41,7 @@ const MenuListRoot = styled(ListRoot, {
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     overflow: 'auto',
-    ...(!variantStyle.backgroundColor && {
+    ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
   };
@@ -49,7 +50,7 @@ const MenuListRoot = styled(ListRoot, {
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiMenuList',
+    name: 'JoyMenuList',
   });
 
   const {
@@ -90,7 +91,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     variant,
     color,
     size,
-    instanceSize: size,
     nesting: false,
     row: false,
   };
@@ -109,14 +109,18 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const contextValue = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    getListboxProps,
-    open: true,
-  } as MenuUnstyledContextType;
+  const contextValue = React.useMemo(
+    () =>
+      ({
+        registerItem,
+        unregisterItem,
+        getItemState,
+        getItemProps,
+        getListboxProps,
+        open: true,
+      } as MenuUnstyledContextType),
+    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+  );
 
   return (
     <MenuListRoot {...listboxProps}>
@@ -153,7 +157,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -182,7 +189,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default MenuList;

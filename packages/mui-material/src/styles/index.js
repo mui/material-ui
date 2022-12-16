@@ -13,7 +13,6 @@ export {
   lighten,
   css,
   keyframes,
-  experimental_sx,
 } from '@mui/system';
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
@@ -35,3 +34,8 @@ export { default as withTheme } from './withTheme';
 
 export * from './CssVarsProvider';
 export { default as experimental_extendTheme } from './experimental_extendTheme';
+export { default as getOverlayAlpha } from './getOverlayAlpha';
+
+// Private methods for creating parts of the theme
+export { default as private_createTypography } from './createTypography';
+export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

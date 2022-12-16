@@ -6875,7 +6875,7 @@ Here are some highlights ✨:
 
 - After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
   With this version, you can take advantage of all the icons recently released by Google:
-  https://material.io/tools/icons/. There are more than 5,000 icons.
+  https://m2.material.io/tools/icons/. There are more than 5,000 icons.
   (#12016, #12036, #12170, #12111, #12225)
 
 - The 1.4.0 release of Material UI has introduced a new implementation of the Tooltip and Popper component.
@@ -8464,7 +8464,7 @@ The `inputType` property was renamed `type`.
 
 - [Checkbox, Radio, Switch] Change default color, add color prop (#10138) @mbrookes
 
-The Material Design specification says that selection controls elements should [use the application's secondary color](https://material.io/guidelines/components/selection-controls.html).
+The Material Design specification says that selection controls elements should [use the application's secondary color](https://m2.material.io/guidelines/components/selection-controls.html).
 
 ```diff
 -<Checkbox />
@@ -9002,7 +9002,7 @@ Here are some highlights ✨:
 
 - [core] Revise the theme.palette.primary & secondary approach (#9794) @mbrookes
 
-It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://material.io/color/).
+It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://m2.material.io/color/).
 
 - Instead of using a rich color object of 14 different keys, we rely on an object of 4 different keys: `light`, `main`, `dark` and `contrastText`.
 - Providing the full-color object used to be required. Now, we will provide a nice default to the different values using the `main` value.
@@ -11418,7 +11418,7 @@ _Apr 6, 2017_
 
 We are continuing investing in the documentation and the test suite.
 
-Visual regression tests are now sent to [argos-ci](https://www.argos-ci.com/mui/material-ui).
+Visual regression tests are now sent to [argos-ci](https://app.argos-ci.com/mui/material-ui/builds).
 Thanks @agamrafaeli for increasing the test coverage of 1% since the last release (95.23%).
 Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 
@@ -13558,7 +13558,7 @@ _May 24, 2015_
 
 ### Breaking Changes
 
-- Refactored all CSS into Javascript (#30, #316)
+- Refactored all CSS into JavaScript (#30, #316)
   - All Material UI components now have their styles defined inline. This solves
     many problems with CSS as mentions in [@vjeux's presentation](https://speakerdeck.com/vjeux/react-css-in-js)
     such as polluting the global namespace with classes that really should be

@@ -155,6 +155,27 @@ describe('<ListItemText />', () => {
     expect(texts[1]).have.text('This is the secondary text');
   });
 
+  it('should use variant if provided', () => {
+    const { getByText } = render(
+      <ListItemText
+        primary="This is the primary text"
+        primaryTypographyProps={{ variant: 'h3' }}
+        secondary="This is the secondary text"
+        secondaryTypographyProps={{ variant: 'h4' }}
+      />,
+    );
+    expect(getByText('This is the primary text')).to.have.tagName('h3');
+    expect(getByText('This is the secondary text')).to.have.tagName('h4');
+  });
+
+  it('should fall back to the default tag name if no variant provided', () => {
+    const { getByText } = render(
+      <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
+    );
+    expect(getByText('This is the primary text')).to.have.tagName('span');
+    expect(getByText('This is the secondary text')).to.have.tagName('p');
+  });
+
   it('should pass primaryTypographyProps to primary Typography component', () => {
     const { container } = render(
       <ListItemText

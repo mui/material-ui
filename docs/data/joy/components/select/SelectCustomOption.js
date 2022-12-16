@@ -9,15 +9,15 @@ export default function SelectCustomOption() {
   return (
     <Select
       defaultValue="1"
-      componentsProps={{
+      slotProps={{
         listbox: {
           sx: {
-            '--List-decorator-width': '44px',
+            '--List-decorator-size': '44px',
           },
         },
       }}
       sx={{
-        '--List-decorator-width': '44px',
+        '--List-decorator-size': '44px',
         minWidth: 240,
       }}
     >
