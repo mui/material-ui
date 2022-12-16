@@ -41,6 +41,12 @@ declare module '@mui/joy/Tab' {
   }
 }
 
+declare module '@mui/joy/Button' {
+  interface ButtonPropsVariantOverrides {
+    label: true;
+  }
+}
+
 declare module '@mui/joy/IconButton' {
   interface IconButtonPropsVariantOverrides {
     ios: true;
@@ -167,15 +173,39 @@ export default extendTheme({
         primary: {
           plainColor: 'var(--ios-palette-system-blue)',
           plainHoverBg: undefined,
-          plainActiveBg: undefined,
+          plainActiveBg: 'var(--ios-palette-fill-tertiary)',
+          plainDisabledColor: 'rgba(60 60 67 / 0.3)',
+          softColor: 'var(--ios-palette-system-blue)',
+          softHoverColor: undefined,
+          softBg: 'rgba(0 122 255 / 0.15)',
+          softHoverBg: undefined,
+          softActiveBg: 'rgba(0 122 255 / 0.2)',
+          softDisabledBg: 'rgba(120 120 128 / 0.16)',
+          softDisabledColor: 'rgba(60 60 67 / 0.3)',
+          solidBg: 'var(--ios-palette-system-blue)',
+          solidHoverBg: undefined,
+          solidActiveBg: 'rgba(0 122 255 / 0.8)',
+          solidDisabledBg: 'rgba(120 120 128 / 0.16)',
+          solidDisabledColor: 'rgba(60 60 67 / 0.3)',
           mainChannel: '0 122 255',
         },
         neutral: {
           plainColor: 'var(--ios-palette-label-primary)',
           plainHoverColor: undefined,
           plainHoverBg: undefined,
-          plainActiveBg: undefined,
-          // mainChannel: '142 142 147',
+          plainActiveBg: 'var(--ios-palette-fill-tertiary)',
+          plainDisabledColor: 'rgba(60 60 67 / 0.3)',
+          softColor: 'var(--ios-palette-system-blue)',
+          softHoverColor: undefined,
+          softBg: 'rgba(120 120 128 / 0.16)',
+          softDisabledBg: 'rgba(120 120 128 / 0.16)',
+          softDisabledColor: 'rgba(60 60 67 / 0.3)',
+          softHoverBg: undefined,
+          softActiveBg: 'rgba(120 120 128 / 0.32)',
+        },
+        danger: {
+          plainColor: 'var(--ios-palette-system-red)',
+          solidBg: 'var(--ios-palette-system-red)',
         },
         system: {
           red: '#FF3B30',
@@ -237,15 +267,39 @@ export default extendTheme({
         primary: {
           plainColor: 'var(--ios-palette-system-blue)',
           plainHoverBg: undefined,
-          plainActiveBg: undefined,
+          plainActiveBg: 'var(--ios-palette-fill-tertiary)',
+          plainDisabledColor: 'rgba(235 235 245 / 0.3)',
+          softColor: 'var(--ios-palette-system-blue)',
+          softHoverColor: undefined,
+          softBg: 'rgba(16 109 220 / 0.3)',
+          softHoverBg: undefined,
+          softActiveBg: 'rgba(16 109 220 / 0.6)',
+          softDisabledBg: 'rgba(120 120 128 / 0.32)',
+          softDisabledColor: 'rgba(235 235 245 / 0.3)',
+          solidBg: 'var(--ios-palette-system-blue)',
+          solidHoverBg: undefined,
+          solidActiveBg: 'rgba(0 122 255 / 0.8)',
+          solidDisabledBg: 'rgba(120 120 128 / 0.32)',
+          solidDisabledColor: 'rgba(235 235 245 / 0.3)',
           mainChannel: '10 132 255',
         },
         neutral: {
           plainColor: 'var(--ios-palette-label-primary)',
           plainHoverColor: undefined,
           plainHoverBg: undefined,
-          plainActiveBg: undefined,
-          // mainChannel: '142 142 147',
+          plainActiveBg: 'var(--ios-palette-fill-tertiary)',
+          plainDisabledColor: 'rgba(235 235 245 / 0.3)',
+          softColor: 'var(--ios-palette-system-blue)',
+          softHoverColor: undefined,
+          softBg: 'rgba(120 120 128 / 0.32)',
+          softDisabledBg: 'rgba(120 120 128 / 0.32)',
+          softDisabledColor: 'rgba(235 235 245 / 0.3)',
+          softHoverBg: undefined,
+          softActiveBg: 'rgba(120 120 128 / 0.6)',
+        },
+        danger: {
+          plainColor: 'var(--ios-palette-system-red)',
+          solidBg: 'var(--ios-palette-system-red)',
         },
         system: {
           red: '#FF453A',
@@ -455,14 +509,72 @@ export default extendTheme({
         }),
       },
     },
+    JoyButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => [
+          {
+            '--Icon-color': 'currentColor',
+            ...(ownerState.size === 'sm' && {
+              ...theme.typography.subheadline,
+              fontWeight: '400',
+              paddingInline: '10px',
+              minHeight: '28px',
+              borderRadius: '14px',
+              '--Button-gap': '0px',
+            }),
+            ...(ownerState.size === 'md' && {
+              fontWeight: '400',
+              minHeight: '34px',
+              paddingInline: '12px',
+              borderRadius: '17px',
+              '--Button-gap': '2px',
+            }),
+            ...(ownerState.size === 'lg' && {
+              fontWeight: '400',
+              minHeight: 50,
+              paddingInline: '20px',
+              borderRadius: '12px',
+              '--Button-gap': '2px',
+            }),
+          },
+          ownerState.variant === 'label' && {
+            cursor: 'pointer',
+            minHeight: 44,
+            paddingInline: '17px',
+            color: theme.vars.palette.system.blue,
+            '&:active': {
+              backgroundColor: theme.vars.palette.fill.tertiary,
+            },
+          },
+        ],
+        startDecorator: ({ ownerState }) => ({
+          ...(ownerState.size === 'sm' && {
+            '--Icon-margin': '0 0 0 -4.2px',
+          }),
+          ...(ownerState.size === 'md' && {
+            '--Icon-margin': '0 0 0 -5.17px',
+          }),
+          ...(ownerState.size === 'lg' && {
+            '--Icon-margin': '0 0 0 -8px',
+          }),
+        }),
+      },
+    },
     JoyIconButton: {
       defaultProps: {
         variant: 'ios',
       },
       styleOverrides: {
-        root: ({ ownerState, theme }) => ({
-          ...(ownerState.variant === 'ios' && {
+        root: ({ ownerState, theme }) => [
+          {
+            '--Icon-color': 'currentColor',
+            borderRadius: '50%',
             cursor: 'pointer',
+            ...(ownerState.size === 'sm' && {
+              '--IconButton-size': '28px',
+            }),
+          },
+          ownerState.variant === 'ios' && {
             ...(ownerState.size === 'md' && {
               '--IconButton-size': '44px',
               '--Icon-fontSize': '28px',
@@ -476,8 +588,8 @@ export default extendTheme({
             '&:active': {
               backgroundColor: theme.vars.palette.fill.tertiary,
             },
-          }),
-        }),
+          },
+        ],
       },
     },
     JoySwitch: {
@@ -544,6 +656,29 @@ export default extendTheme({
               outline: 'none',
             },
           }),
+        }),
+      },
+    },
+    JoyList: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          '--List-divider-gap': '0px',
+          ...(ownerState.size === 'md' && {
+            '--List-item-paddingY': '5px',
+            '--List-item-paddingX': '16px',
+            '--List-item-minHeight': '44px',
+          }),
+        }),
+      },
+    },
+    JoyListDivider: {
+      defaultProps: {
+        inset: 'startDecorator',
+      },
+      styleOverrides: {
+        root: ({ theme }) => ({
+          '--Divider-thickness': '0.5px',
+          backgroundColor: theme.vars.palette.separator.nonOpaque,
         }),
       },
     },

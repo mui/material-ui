@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CssVarsProvider, useTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
+import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 
 import Header from './Header';
@@ -9,6 +10,8 @@ import ColorSystem from './ColorSystem';
 import TypographySystem from './TypographySystem';
 import iosTheme from './theme';
 import Bars from './Bars';
+import Controls from './Controls';
+import Views from './Views';
 
 function SystemMaterials() {
   const theme = useTheme();
@@ -54,6 +57,13 @@ export default function IosExample() {
       theme={iosTheme}
     >
       <CssBaseline />
+      <GlobalStyles
+        styles={(theme) => ({
+          ':root': {
+            '--Icon-color': theme.vars.palette.label.secondary,
+          },
+        })}
+      />
       <Box
         sx={{
           '--header-height': '44px',
@@ -77,6 +87,8 @@ export default function IosExample() {
           }}
         >
           {view === 'bars' && <Bars />}
+          {view === 'controls' && <Controls />}
+          {view === 'views' && <Views />}
           {view === 'color' && <ColorSystem />}
           {view === 'text' && <TypographySystem />}
           {view === 'material' && <SystemMaterials />}

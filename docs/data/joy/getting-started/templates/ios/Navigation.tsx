@@ -3,7 +3,7 @@ import Sheet from '@mui/joy/Sheet';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
-import IconButton from '@mui/joy/IconButton';
+import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Tooltip from '@mui/joy/Tooltip';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
@@ -38,6 +38,12 @@ export default function Navigation({
         maxHeight:
           'calc(100vh - var(--header-height) - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
         borderRadius: '10px',
+        [`& .${iconButtonClasses.variantSoft}`]: {
+          backgroundColor: 'rgba(255 255 255 / 0.6)',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: 'rgba(0 0 0 / 0.5)',
+          },
+        },
         ...theme.materials.ultrathin,
       })}
     >
