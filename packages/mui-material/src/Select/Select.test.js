@@ -1,13 +1,5 @@
-import Divider from '@mui/material/Divider';
-import InputBase from '@mui/material/InputBase';
-import InputLabel from '@mui/material/InputLabel';
-import ListSubheader from '@mui/material/ListSubheader';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Select from '@mui/material/Select';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { expect } from 'chai';
 import * as React from 'react';
+import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
   act,
@@ -17,6 +9,14 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import ListSubheader from '@mui/material/ListSubheader';
+import InputBase from '@mui/material/InputBase';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
