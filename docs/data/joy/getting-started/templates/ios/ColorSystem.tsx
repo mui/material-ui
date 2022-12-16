@@ -7,17 +7,27 @@ import Sheet from '@mui/joy/Sheet';
 
 import Frame from './Frame';
 
-// @ts-ignore
-const ColorSwatch = ({ name, rawLight, rawDark, cssVar }) => (
-  <Frame name={name}>
-    <Box
-      sx={{
-        '& > div': {
-          display: 'flex',
-          justifyContent: 'center',
-          backgroundImage: (
-            theme,
-          ) => `linear-gradient(90deg, ${theme.vars.palette.fill.tertiary} 50%, transparent 50%)
+function ColorSwatch({
+  name,
+  rawLight,
+  rawDark,
+  cssVar,
+}: {
+  name: string;
+  rawLight: string;
+  rawDark: string;
+  cssVar: string;
+}) {
+  return (
+    <Frame name={name}>
+      <Box
+        sx={{
+          '& > div': {
+            display: 'flex',
+            justifyContent: 'center',
+            backgroundImage: (
+              theme,
+            ) => `linear-gradient(90deg, ${theme.vars.palette.fill.tertiary} 50%, transparent 50%)
                   ,linear-gradient(90deg, transparent 50%, ${theme.vars.palette.fill.tertiary} 50%)
                   ,linear-gradient(90deg, ${theme.vars.palette.fill.tertiary} 50%, transparent 50%)
                   ,linear-gradient(90deg, transparent 50%, ${theme.vars.palette.fill.tertiary} 50%)
@@ -25,68 +35,69 @@ const ColorSwatch = ({ name, rawLight, rawDark, cssVar }) => (
                   ,linear-gradient(90deg, transparent 50%, ${theme.vars.palette.fill.tertiary} 50%)
                   ,linear-gradient(90deg, ${theme.vars.palette.fill.tertiary} 50%, transparent 50%)
                   ,linear-gradient(90deg, transparent 50%, ${theme.vars.palette.fill.tertiary} 50%)`,
-          backgroundRepeat: 'repeat-x',
-          backgroundSize:
-            '20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px',
-          backgroundPosition:
-            '0 0, 0 10px, 0 20px, 0 30px, 0 40px, 0 50px, 0 60px, 0 70px, 0 80px',
-        },
-      }}
-    >
-      <Sheet
-        data-joy-color-scheme="light"
-        sx={{ height: '80px', alignItems: 'flex-end' }}
+            backgroundRepeat: 'repeat-x',
+            backgroundSize:
+              '20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px, 20px 10px',
+            backgroundPosition:
+              '0 0, 0 10px, 0 20px, 0 30px, 0 40px, 0 50px, 0 60px, 0 70px, 0 80px',
+          },
+        }}
       >
-        <Typography
-          level="caption1"
-          fontWeight="xl"
-          noWrap
-          sx={{
-            top: 0,
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-          }}
+        <Sheet
+          data-joy-color-scheme="light"
+          sx={{ height: '80px', alignItems: 'flex-end' }}
         >
-          {rawLight}
-        </Typography>
-        <Box
-          sx={{
-            width: '120px',
-            height: '120px',
-            borderRadius: '50%',
-            background: `linear-gradient(to bottom, ${cssVar} 50%, transparent 50%)`,
-            transform: 'translateY(50%)',
-          }}
-        />
-      </Sheet>
-      <Sheet data-joy-color-scheme="dark" sx={{ height: '80px' }}>
-        <Typography
-          level="caption1"
-          fontWeight="xl"
-          noWrap
-          sx={{
-            bottom: 0,
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-          }}
-        >
-          {rawDark}
-        </Typography>
-        <Box
-          sx={{
-            width: '120px',
-            height: '120px',
-            borderRadius: '50%',
-            background: `linear-gradient(to top, ${cssVar} 50%, transparent 50%)`,
-            transform: 'translateY(-50%)',
-          }}
-        />
-      </Sheet>
-    </Box>
-  </Frame>
-);
+          <Typography
+            level="caption1"
+            fontWeight="xl"
+            noWrap
+            sx={{
+              top: 0,
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          >
+            {rawLight}
+          </Typography>
+          <Box
+            sx={{
+              width: '120px',
+              height: '120px',
+              borderRadius: '50%',
+              background: `linear-gradient(to bottom, ${cssVar} 50%, transparent 50%)`,
+              transform: 'translateY(50%)',
+            }}
+          />
+        </Sheet>
+        <Sheet data-joy-color-scheme="dark" sx={{ height: '80px' }}>
+          <Typography
+            level="caption1"
+            fontWeight="xl"
+            noWrap
+            sx={{
+              bottom: 0,
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          >
+            {rawDark}
+          </Typography>
+          <Box
+            sx={{
+              width: '120px',
+              height: '120px',
+              borderRadius: '50%',
+              background: `linear-gradient(to top, ${cssVar} 50%, transparent 50%)`,
+              transform: 'translateY(-50%)',
+            }}
+          />
+        </Sheet>
+      </Box>
+    </Frame>
+  );
+}
 
 export default function ColorSystem() {
   const theme = useTheme();
