@@ -16,8 +16,11 @@ import CropFreeIcon from '@mui/icons-material/CropFree';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import SearchIcon from '@mui/icons-material/Search';
 import MicIcon from '@mui/icons-material/Mic';
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from '@mui/icons-material/EditOutlined';
 import StarIcon from '@mui/icons-material/StarRounded';
+import UploadIcon from '@mui/icons-material/UploadOutlined';
+import FolderIcon from '@mui/icons-material/FolderOutlined';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import Frame from './Frame';
 
 export default function Bars() {
@@ -62,8 +65,8 @@ export default function Bars() {
               Title
             </Typography>
             <Box sx={{ width: 0, writingMode: 'tb-rl' }}>
-              <IconButton color="primary" variant="plain">
-                <AddRoundedIcon fontSize="xl2" />
+              <IconButton>
+                <AddRoundedIcon />
               </IconButton>
             </Box>
           </Sheet>
@@ -113,7 +116,7 @@ export default function Bars() {
                 Parent Title
               </Link>
               <IconButton>
-                <CropFreeIcon fontSize="xl2" />
+                <CropFreeIcon />
               </IconButton>
             </Box>
             <Typography
@@ -177,8 +180,8 @@ export default function Bars() {
                 Title
               </Typography>
               <Box sx={{ width: 0, writingMode: 'tb-rl' }}>
-                <IconButton color="primary" variant="plain">
-                  <AddRoundedIcon fontSize="xl2" />
+                <IconButton>
+                  <AddRoundedIcon />
                 </IconButton>
               </Box>
             </Box>
@@ -211,7 +214,7 @@ export default function Bars() {
               >
                 Parent Title
               </Link>
-              <IconButton color="primary" variant="plain" sx={{ ml: 'auto' }}>
+              <IconButton sx={{ ml: 'auto' }}>
                 <EditIcon />
               </IconButton>
             </Box>
@@ -310,52 +313,169 @@ export default function Bars() {
         <Frame name="Tab Bars">
           <Sheet
             sx={{
-              material: 'navbar',
+              material: 'toolbar',
               pb: '47px',
               px: 2,
             }}
           >
-            <Tabs sx={{ '--Tabs-gap': '0px' }}>
-              <TabList variant="plain" sx={{ justifyContent: 'space-around' }}>
-                <Tab
-                  orientation="vertical"
-                  sx={{
-                    bgcolor: 'transparent',
-                    color: 'system.blue',
-                    boxShadow: 'none',
-                  }}
-                >
+            <Tabs variant="iosBar" defaultValue={0}>
+              <TabList variant="iosBar">
+                <Tab variant="iosBar" orientation="vertical">
                   <ListItemDecorator>
-                    <StarIcon fontSize="xl3" />
+                    <StarIcon />
                   </ListItemDecorator>
                   Tab 1
                 </Tab>
-                <Tab
-                  orientation="vertical"
-                  sx={{
-                    bgcolor: 'transparent',
-                    boxShadow: 'none',
-                  }}
-                >
+                <Tab variant="iosBar" orientation="vertical">
                   <ListItemDecorator>
-                    <StarIcon fontSize="xl3" />
+                    <StarIcon />
                   </ListItemDecorator>
                   Sharing
                 </Tab>
-                <Tab
-                  orientation="vertical"
-                  sx={{
-                    bgcolor: 'transparent',
-                    boxShadow: 'none',
-                  }}
-                >
+                <Tab variant="iosBar" orientation="vertical">
                   <ListItemDecorator>
-                    <StarIcon fontSize="xl3" />
+                    <StarIcon />
                   </ListItemDecorator>
                   Browse
                 </Tab>
               </TabList>
             </Tabs>
+          </Sheet>
+        </Frame>
+        <Frame>
+          <Sheet
+            sx={{
+              material: 'toolbar',
+              pb: '47px',
+              px: 2,
+            }}
+          >
+            <Tabs variant="iosBar" defaultValue={0}>
+              <TabList variant="iosBar" sx={{ justifyContent: 'space-around' }}>
+                <Tab variant="iosBar" orientation="vertical">
+                  <ListItemDecorator>
+                    <StarIcon />
+                  </ListItemDecorator>
+                  Tab 1
+                </Tab>
+                <Tab variant="iosBar" orientation="vertical">
+                  <ListItemDecorator>
+                    <StarIcon />
+                  </ListItemDecorator>
+                  Tab 2
+                </Tab>
+                <Tab variant="iosBar" orientation="vertical">
+                  <ListItemDecorator>
+                    <StarIcon />
+                  </ListItemDecorator>
+                  Tab 3
+                </Tab>
+                <Tab variant="iosBar" orientation="vertical">
+                  <ListItemDecorator>
+                    <StarIcon />
+                  </ListItemDecorator>
+                  Tab 4
+                </Tab>
+              </TabList>
+            </Tabs>
+          </Sheet>
+        </Frame>
+        <Frame name="Toolbars">
+          <Sheet
+            sx={{
+              material: 'toolbar',
+              pt: '5px',
+              pb: '47px',
+              px: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <IconButton>
+              <CropFreeIcon />
+            </IconButton>
+            <IconButton>
+              <UploadIcon />
+            </IconButton>
+          </Sheet>
+        </Frame>
+        <Frame>
+          <Sheet
+            sx={{
+              material: 'toolbar',
+              pt: '5px',
+              pb: '47px',
+              px: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <IconButton>
+              <CropFreeIcon />
+            </IconButton>
+            <IconButton>
+              <UploadIcon />
+            </IconButton>
+            <IconButton>
+              <EditIcon />
+            </IconButton>
+          </Sheet>
+        </Frame>
+        <Frame>
+          <Sheet
+            sx={{
+              material: 'toolbar',
+              pt: '5px',
+              pb: '47px',
+              px: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <IconButton>
+              <CropFreeIcon />
+            </IconButton>
+            <IconButton>
+              <UploadIcon />
+            </IconButton>
+            <IconButton>
+              <EditIcon />
+            </IconButton>
+            <IconButton>
+              <FolderIcon />
+            </IconButton>
+          </Sheet>
+        </Frame>
+        <Frame>
+          <Sheet
+            sx={{
+              material: 'toolbar',
+              pt: '5px',
+              pb: '47px',
+              px: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <IconButton>
+              <CropFreeIcon />
+            </IconButton>
+            <IconButton>
+              <UploadIcon />
+            </IconButton>
+            <IconButton>
+              <EditIcon />
+            </IconButton>
+            <IconButton>
+              <FolderIcon />
+            </IconButton>
+            <IconButton>
+              <DeleteIcon />
+            </IconButton>
           </Sheet>
         </Frame>
       </Box>

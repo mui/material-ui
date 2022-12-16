@@ -4,7 +4,7 @@ import type {} from '@mui/joy/IconButton';
 import type {} from '@mui/joy/Input';
 import type {} from '@mui/joy/Tabs';
 import type {} from '@mui/joy/TabList';
-import type {} from '@mui/joy/Tab';
+import { tabClasses } from '@mui/joy/Tab';
 import type {} from '@mui/joy/Switch';
 import { sliderClasses } from '@mui/joy/Slider';
 import type {} from '@mui/joy/LinearProgress';
@@ -16,24 +16,28 @@ interface IosMaterial {
     thin: CSSObject;
     ultrathin: CSSObject;
     navbar: CSSObject;
+    toolbar: CSSObject;
   };
 }
 
 declare module '@mui/joy/Tabs' {
   interface TabsPropsVariantOverrides {
     ios: true;
+    iosBar: true;
   }
 }
 
 declare module '@mui/joy/TabList' {
   interface TabListPropsVariantOverrides {
     ios: true;
+    iosBar: true;
   }
 }
 
 declare module '@mui/joy/Tab' {
   interface TabPropsVariantOverrides {
     ios: true;
+    iosBar: true;
   }
 }
 
@@ -355,6 +359,16 @@ export default extendTheme({
         backdropFilter: 'blur(20px) saturate(130%)',
       },
     },
+    toolbar: {
+      backgroundColor: 'rgba(249 249 249 / 0.94)',
+      boxShadow: '0 -0.5px 0 0 rgba(0 0 0 / 0.3)',
+      backdropFilter: 'blur(20px)',
+      [`[data-joy-color-scheme="dark"] &`]: {
+        backgroundColor: 'rgba(22 22 22 / 0.8)',
+        boxShadow: '0 -0.5px 0 0 rgba(255 255 255 / 0.16)',
+        backdropFilter: 'blur(20px) saturate(130%)',
+      },
+    },
   },
   unstable_sxConfig: {
     material: {
@@ -448,12 +462,20 @@ export default extendTheme({
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.variant === 'ios' && {
+            cursor: 'pointer',
+            ...(ownerState.size === 'md' && {
+              '--IconButton-size': '44px',
+              '--Icon-fontSize': '28px',
+            }),
             ...(ownerState.color === 'neutral' && {
               color: theme.vars.palette.label.secondary,
             }),
             ...(ownerState.color === 'primary' && {
               color: theme.vars.palette.system.blue,
             }),
+            '&:active': {
+              backgroundColor: theme.vars.palette.fill.tertiary,
+            },
           }),
         }),
       },
@@ -580,6 +602,10 @@ export default extendTheme({
           ...(ownerState.variant === 'ios' && {
             background: 'none',
           }),
+          ...(ownerState.variant === 'iosBar' && {
+            background: 'none',
+            '--Tabs-gap': '0px',
+          }),
         }),
       },
     },
@@ -594,6 +620,11 @@ export default extendTheme({
             '--List-padding': '2px',
             '--List-item-minHeight': '24px',
             backgroundColor: theme.vars.palette.fill.tertiary,
+          }),
+          ...(ownerState.variant === 'iosBar' && {
+            background: 'none',
+            justifyContent: 'space-around',
+            '--List-decorator-color': '#999999',
           }),
         }),
       },
@@ -624,6 +655,23 @@ export default extendTheme({
                 },
               },
             }),
+          }),
+          ...(ownerState.variant === 'iosBar' && {
+            background: 'none',
+            '&:hover': {
+              background: 'none',
+            },
+            fontSize: '10px',
+            lineHeight: '12px',
+            boxShadow: 'none',
+            color: theme.vars.palette.label.secondary,
+            fontWeight: theme.vars.fontWeight.md,
+            [`&.${tabClasses.selected}`]: {
+              color: theme.vars.palette.system.blue,
+            },
+            '& svg': {
+              fontSize: theme.vars.fontSize.xl3,
+            },
           }),
         }),
       },
