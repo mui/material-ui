@@ -3078,13 +3078,13 @@
   dependencies:
     esquery "^1.0.1"
 
-"@playwright/test@1.28.1":
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.28.1.tgz#e5be297e024a3256610cac2baaa9347fd57c7860"
-  integrity sha512-xN6spdqrNlwSn9KabIhqfZR7IWjPpFK1835tFNgjrlysaSezuX8PYUwaz38V/yI8TJLG9PkAMEXoHRXYXlpTPQ==
+"@playwright/test@1.29.0":
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.29.0.tgz#c41155e6c43561653b235c32493aaeb0858df773"
+  integrity sha512-gp5PVBenxTJsm2bATWDNc2CCnrL5OaA/MXQdJwwkGQtqTjmY+ZOqAdLqo49O9MLTDh2vYh+tHWDnmFsILnWaeA==
   dependencies:
     "@types/node" "*"
-    playwright-core "1.28.1"
+    playwright-core "1.29.0"
 
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
@@ -12758,17 +12758,17 @@ platform@^1.3.3:
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
   integrity sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==
 
-playwright-core@1.28.1:
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.28.1.tgz#8400be9f4a8d1c0489abdb9e75a4cc0ffc3c00cb"
-  integrity sha512-3PixLnGPno0E8rSBJjtwqTwJe3Yw72QwBBBxNoukIj3lEeBNXwbNiKrNuB1oyQgTBw5QHUhNO3SteEtHaMK6ag==
+playwright-core@1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.29.0.tgz#314653618395afef5031156d691c7aa0826e5d05"
+  integrity sha512-pboOm1m0RD6z1GtwAbEH60PYRfF87vKdzOSRw2RyO0Y0a7utrMyWN2Au1ojGvQr4umuBMODkKTv607YIRypDSQ==
 
-playwright@^1.28.1:
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.28.1.tgz#f23247f1de466ff73d7230d94df96271e5da6583"
-  integrity sha512-92Sz6XBlfHlb9tK5UCDzIFAuIkHHpemA9zwUaqvo+w7sFMSmVMGmvKcbptof/eJObq63PGnMhM75x7qxhTR78Q==
+playwright@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.29.0.tgz#14b70f373a7d433b9e304ee1666cb70e93336364"
+  integrity sha512-vtXgX3FPNcAJq1QoIVCvmiHHKOLVTZkSYEo60n+EnX5MrNznAJzGquxT8c2sv+BG3CDyLeKm351e491HnF7yjw==
   dependencies:
-    playwright-core "1.28.1"
+    playwright-core "1.29.0"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
