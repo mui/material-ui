@@ -292,7 +292,7 @@ export default extendTheme({
           softColor: 'var(--ios-palette-system-blue)',
           softHoverColor: undefined,
           softBg: 'rgba(120 120 128 / 0.32)',
-          softDisabledBg: 'rgba(120 120 128 / 0.32)',
+          softDisabledBg: 'rgba(120 120 128 / 0.24)',
           softDisabledColor: 'rgba(235 235 245 / 0.3)',
           softHoverBg: undefined,
           softActiveBg: 'rgba(120 120 128 / 0.6)',
@@ -364,7 +364,7 @@ export default extendTheme({
     md: '17px',
     sm: '16px',
     xs: '15px',
-    xs2: '14px',
+    xs2: '13px',
     xs3: '12px',
   },
   materials: {
@@ -445,44 +445,44 @@ export default extendTheme({
     body4: undefined,
     body5: undefined,
     largeTitle: {
-      fontSize: '34px',
+      fontSize: 'var(--ios-fontSize-xl3)',
       lineHeight: '41px',
     },
     title1: {
-      fontSize: '28px',
+      fontSize: 'var(--ios-fontSize-xl2)',
       lineHeight: '34px',
     },
     title2: {
-      fontSize: '22px',
+      fontSize: 'var(--ios-fontSize-xl)',
       lineHeight: '28px',
     },
     title3: {
-      fontSize: '20px',
+      fontSize: 'var(--ios-fontSize-lg)',
       lineHeight: '24px',
     },
     headline: {
-      fontSize: '17px',
+      fontSize: 'var(--ios-fontSize-md)',
       lineHeight: '22px',
       fontWeight: '600',
     },
     body: {
-      fontSize: '17px',
+      fontSize: 'var(--ios-fontSize-md)',
       lineHeight: '22px',
     },
     callout: {
-      fontSize: '16px',
+      fontSize: 'var(--ios-fontSize-sm)',
       lineHeight: '22px',
     },
     subheadline: {
-      fontSize: '15px',
+      fontSize: 'var(--ios-fontSize-xs)',
       lineHeight: '18px',
     },
     footnote: {
-      fontSize: '14px',
+      fontSize: 'var(--ios-fontSize-xs2)',
       lineHeight: '18px',
     },
     caption1: {
-      fontSize: '12px',
+      fontSize: 'var(--ios-fontSize-xs3)',
       lineHeight: '16px',
     },
     caption2: {
@@ -654,6 +654,9 @@ export default extendTheme({
               '0 0.5px 4px 0 rgba(0 0 0 / .12), 0 6px 13px 0 rgba(0 0 0 / .12)',
             [`&.${sliderClasses.focusVisible}`]: {
               outline: 'none',
+            },
+            '&::before': {
+              border: 'none',
             },
           }),
         }),
