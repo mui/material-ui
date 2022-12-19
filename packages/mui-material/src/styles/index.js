@@ -21,7 +21,7 @@ export {
 export function experimental_sx() {
   throw new MuiError(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
-      'To migrate, see https://mui.com/material-ui/customization/theme-components/#the-sx-syntax-experimental',
+      'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );
 }
 export { default as createTheme, createMuiTheme } from './createTheme';

@@ -38,7 +38,7 @@ export {
 export function experimental_sx() {
   throw new MuiError(
     'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
-      'You should remove the import and replace the usage with `theme.unstable_sx(…same value you pass to experimental_sx)` instead.',
+      'For more details, see https://github.com/mui/material-ui/pull/35150.',
   );
 }
 export { default as unstable_getThemeValue } from './getThemeValue';
