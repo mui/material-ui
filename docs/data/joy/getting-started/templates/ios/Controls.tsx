@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Divider, { DividerProps } from '@mui/joy/Divider';
@@ -8,9 +9,8 @@ import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import LinearProgress from '@mui/joy/LinearProgress';
-import Link from '@mui/joy/Link';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import List from '@mui/joy/List';
+import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -34,13 +34,7 @@ import MenuRounded from '@mui/icons-material/MenuRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import SearchIcon from '@mui/icons-material/Search';
-import MicIcon from '@mui/icons-material/Mic';
-import EditIcon from '@mui/icons-material/EditOutlined';
-import StarIcon from '@mui/icons-material/StarRounded';
 import UploadIcon from '@mui/icons-material/UploadOutlined';
-import FolderIcon from '@mui/icons-material/FolderOutlined';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import Frame from './Frame';
 
 function Navbar({ sx, ...props }: SheetProps) {
@@ -125,7 +119,7 @@ export default function Views() {
       sx={{
         display: 'grid',
         gridTemplateColumns: 'auto 393px 393px',
-        gridTemplateRows: 'repeat(100, auto)',
+        gridTemplateRows: 'repeat(20, auto)',
         gap: 2,
         alignItems: 'flex-start',
         '& > .wrapper': {
@@ -572,7 +566,7 @@ export default function Views() {
 
       <Box className="wrapper">
         <Frame name="Grouped Table Views">
-          <Sheet sx={{ py: 2, bgcolor: 'groupedBackground.primary' }}>
+          <Box sx={{ py: 2, bgcolor: 'groupedBackground.primary' }}>
             <Sheet>
               <Divider />
               <List>
@@ -594,6 +588,43 @@ export default function Views() {
               <Divider />
             </Sheet>
 
+            <Typography
+              level="footnote"
+              textTransform="uppercase"
+              textColor="label.secondary"
+              sx={{ mx: 2, mb: '7px', mt: 4 }}
+            >
+              Grouped table view header
+            </Typography>
+            <Sheet>
+              <Divider />
+              <List>
+                <ListItemButton>
+                  <ListItemContent>Title</ListItemContent>
+                  <KeyboardArrowRightRounded />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Title</ListItemContent>
+                  <KeyboardArrowRightRounded />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Title</ListItemContent>
+                  <KeyboardArrowRightRounded />
+                </ListItemButton>
+              </List>
+              <Divider />
+            </Sheet>
+            <Typography
+              level="footnote"
+              textTransform="uppercase"
+              textColor="label.secondary"
+              sx={{ mx: 2, mt: '7px', mb: 4 }}
+            >
+              Grouped table view footer
+            </Typography>
+
             <Box sx={{ mt: 4, px: 2 }}>
               <List sx={{ bgcolor: 'background.primary', '--List-radius': '12px' }}>
                 <ListItemButton>
@@ -612,7 +643,227 @@ export default function Views() {
                 </ListItemButton>
               </List>
             </Box>
+
+            <Box sx={{ mt: 4, px: 2 }}>
+              <Typography
+                level="footnote"
+                textTransform="uppercase"
+                textColor="label.secondary"
+                sx={{ mb: '7px', mt: 4 }}
+              >
+                Grouped table view header
+              </Typography>
+              <List sx={{ bgcolor: 'background.primary', '--List-radius': '12px' }}>
+                <ListItemButton>
+                  <ListItemContent>Title</ListItemContent>
+                  <KeyboardArrowRightRounded />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Title</ListItemContent>
+                  <KeyboardArrowRightRounded />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Title</ListItemContent>
+                  <KeyboardArrowRightRounded />
+                </ListItemButton>
+              </List>
+              <Typography
+                level="footnote"
+                textTransform="uppercase"
+                textColor="label.secondary"
+                sx={{ mt: '7px', mb: 4 }}
+              >
+                Grouped table view footer
+              </Typography>
+            </Box>
+          </Box>
+        </Frame>
+      </Box>
+
+      <Box className="wrapper">
+        <Frame name="Table View Section Index">
+          <Sheet>
+            <List>
+              <ListItem nested>
+                <ListSubheader>A</ListSubheader>
+                <List>
+                  <ListItemButton>Alexander Valley</ListItemButton>
+                  <ListDivider />
+                  <ListItemButton>Anderson Valley</ListItemButton>
+                  <ListDivider />
+                  <ListItemButton>Atlas Peak</ListItemButton>
+                </List>
+              </ListItem>
+              <ListItem nested>
+                <ListSubheader>B</ListSubheader>
+                <List>
+                  <ListItemButton>Bennett Valley</ListItemButton>
+                </List>
+              </ListItem>
+              <ListItem nested>
+                <ListSubheader>C</ListSubheader>
+                <List>
+                  <ListItemButton>Calistoga</ListItemButton>
+                  <ListDivider />
+                  <ListItemButton>Chalk Hill</ListItemButton>
+                </List>
+              </ListItem>
+              <ListItem nested>
+                <ListSubheader>D</ListSubheader>
+                <List>
+                  <ListItemButton>Diamond Mountain</ListItemButton>
+                  <ListDivider />
+                  <ListItemButton>Dry Creek Vally</ListItemButton>
+                </List>
+              </ListItem>
+              <ListItem nested>
+                <ListSubheader>F</ListSubheader>
+                <List>
+                  <ListItemButton>Fort Ross / Seaview</ListItemButton>
+                </List>
+              </ListItem>
+              <ListItem nested>
+                <ListSubheader>G</ListSubheader>
+                <List>
+                  <ListItemButton>Green Valley</ListItemButton>
+                </List>
+              </ListItem>
+              <ListItem nested>
+                <ListSubheader>H</ListSubheader>
+                <List>
+                  <ListItemButton>Howell Mountain</ListItemButton>
+                </List>
+              </ListItem>
+            </List>
+            <List
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                right: 0,
+                transform: 'translateY(-50)',
+                '--List-item-minHeight': '0px',
+                '--List-item-paddingX': '5px',
+              }}
+            >
+              {['#', 'A', 'B', 'C', 'D', 'F', 'G'].map((text) => (
+                <ListItem
+                  key={text}
+                  color="primary"
+                  sx={(theme) => ({
+                    ...theme.typography.caption2,
+                    lineHeight: '10px',
+                    fontWeight: 'lg',
+                  })}
+                >
+                  {text}
+                </ListItem>
+              ))}
+            </List>
           </Sheet>
+        </Frame>
+      </Box>
+
+      <Box className="wrapper">
+        <Frame name="Menus">
+          <List
+            sx={{
+              material: 'regular',
+              '--List-radius': '12px',
+              '& > [role="separator"]': {
+                height: 8,
+                marginInline: 0,
+                backgroundColor: 'rgba(0 0 0 / 0.08)',
+              },
+            }}
+          >
+            <ListItem sx={{ py: '10px' }}>
+              <AspectRatio ratio="1" sx={{ boxShadow: 'sm', minWidth: 64 }}>
+                <img alt="" src="" />
+              </AspectRatio>
+              <ListItemContent sx={{ mx: 1.5 }}>
+                <Typography>Label</Typography>
+                <Typography level="body2" textColor="label.secondary">
+                  Sublabel
+                </Typography>
+              </ListItemContent>
+              <IconButton
+                variant="soft"
+                color="neutral"
+                sx={{ color: 'label.primary', mr: '-4px' }}
+              >
+                <UploadIcon />
+              </IconButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem nested>
+              <List>
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+              </List>
+            </ListItem>
+            <ListDivider />
+            <ListItem nested>
+              <List>
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+              </List>
+            </ListItem>
+            <ListDivider />
+            <ListItem nested>
+              <List>
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+                <ListDivider />
+                <ListItemButton>
+                  <ListItemContent>Action</ListItemContent>
+                  <CropFreeIcon />
+                </ListItemButton>
+              </List>
+            </ListItem>
+          </List>
         </Frame>
       </Box>
     </Box>

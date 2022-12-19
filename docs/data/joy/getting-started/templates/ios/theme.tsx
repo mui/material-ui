@@ -674,6 +674,18 @@ export default extendTheme({
         }),
       },
     },
+    JoyListSubheader: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          minBlockSize: '29px',
+          fontWeight: theme.vars.fontWeight.lg,
+          paddingBlock: '3px',
+          backgroundColor: theme.vars.palette.fill.secondary,
+          color: theme.vars.palette.label.primary,
+          ...theme.typography.body,
+        }),
+      },
+    },
     JoyListDivider: {
       defaultProps: {
         inset: 'startDecorator',
