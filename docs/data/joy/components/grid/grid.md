@@ -104,12 +104,6 @@ a column based on the natural width of its content.
 
 {{"demo": "VariableWidthGrid.js", "bg": true}}
 
-## Complex Grid
-
-The following demo illustrates how the grid can be used to build complex layouts.
-
-{{"demo": "ComplexGrid.js", "bg": true}}
-
 ## Columns
 
 You can change the default number of columns (12) with the `columns` prop.
