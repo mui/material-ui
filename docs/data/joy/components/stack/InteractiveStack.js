@@ -31,7 +31,7 @@ export default function InteractiveStack() {
         justifyContent={justifyContent}
         alignItems={alignItems}
         spacing={spacing}
-        sx={{ height: 240 }}
+        sx={{ height: 300, pt: 2, pb: 2 }}
       >
         {[0, 1, 2].map((value) => (
           <Sheet
@@ -80,6 +80,7 @@ export default function InteractiveStack() {
                 onChange={(event) => {
                   setAlignItems(event.target.value);
                 }}
+                sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
               >
                 <Radio label="flex-start" value="flex-start" />
                 <Radio label="center" value="center" />
@@ -100,6 +101,7 @@ export default function InteractiveStack() {
                 onChange={(event) => {
                   setJustifyContent(event.target.value);
                 }}
+                sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
               >
                 <Radio label="flex-start" value="flex-start" />
                 <Radio label="center" value="center" />
@@ -121,6 +123,7 @@ export default function InteractiveStack() {
                 onChange={(event) => {
                   setSpacing(Number(event.target.value));
                 }}
+                sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
               >
                 {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (
                   <Radio
