@@ -111,7 +111,7 @@
     "@types/yargs": "^17.0.17",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
-    "babel-loader": "^8.3.0",
+    "babel-loader": "^9.1.0",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
