@@ -42,6 +42,12 @@ function genericValueTest() {
   // notched prop should be available (inherited from OutlinedInputProps) and NOT throw typescript error
   <Select notched />;
 
+  <Select onChange={(event) => console.log(event.target.value)} value={1}>
+    <MenuItem value={1} />
+    {/* The value in onChange only be a number */}
+    <MenuItem value={2} />
+  </Select>;
+
   // disabledUnderline prop should be available (inherited from InputProps) and NOT throw typescript error
   <Select disableUnderline />;
 }
