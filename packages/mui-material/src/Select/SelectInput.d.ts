@@ -9,12 +9,12 @@ import { MenuProps } from '../Menu';
  * For example, when the browser auto-fills the `Select` you'll receive a `React.ChangeEvent`.
  */
 
-type Target<T = string> = {
+interface Target<T = string> {
   target: {
     value: T;
     name: string;
   };
-};
+}
 
 export type SelectChangeEvent<T = string> =
   | (Event & Target<T>)
