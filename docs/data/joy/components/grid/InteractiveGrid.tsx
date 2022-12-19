@@ -104,6 +104,7 @@ export default function InteractiveGrid() {
                       (event.target as HTMLInputElement).value as GridJustification,
                     );
                   }}
+                  sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
                 >
                   <Radio label="flex-start" value="flex-start" />
                   <Radio label="center" value="center" />
@@ -127,6 +128,7 @@ export default function InteractiveGrid() {
                       (event.target as HTMLInputElement).value as GridItemsAlignment,
                     );
                   }}
+                  sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
                 >
                   <Radio label="flex-start" value="flex-start" />
                   <Radio label="center" value="center" />
