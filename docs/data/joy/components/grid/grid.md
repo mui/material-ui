@@ -16,8 +16,6 @@ The grid, based on a 12-column grid layout, creates visual consistency between l
 ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Basics
 
 ```jsx
