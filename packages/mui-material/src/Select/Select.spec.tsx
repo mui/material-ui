@@ -43,8 +43,8 @@ function genericValueTest() {
   <Select notched />;
 
   <Select onChange={(event) => console.log(event.target.value)} value={1}>
-    <MenuItem value={1} />
     {/* The value in onChange only be a number */}
+    <MenuItem value={1} />
     <MenuItem value={2} />
   </Select>;
 
