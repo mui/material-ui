@@ -46,6 +46,7 @@ const useExternalPropsFromInputBase = [
  */
 const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   Button: ['disableRipple'],
+  Box: ['component', 'sx'],
   // `classes` is always external since it is applied from a HOC
   // In DialogContentText we pass it through
   // Therefore it's considered "unused" in the actual component but we still want to document it.

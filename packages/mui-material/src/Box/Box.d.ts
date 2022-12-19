@@ -1,5 +1,5 @@
-import { SxProps, SystemProps } from '@mui/system';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { SxProps, SystemProps, createBox } from '@mui/system';
+import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -29,7 +29,7 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * - [Box API](https://mui.com/material-ui/api/box/)
  */
-declare const Box: OverridableComponent<BoxTypeMap>;
+declare const Box: ReturnType<typeof createBox<Theme>>;
 
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],

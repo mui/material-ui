@@ -170,9 +170,9 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T extends object = Theme> {
   props: P &
-    SystemProps<Theme> & {
+    SystemProps<T> & {
       children?: React.ReactNode;
       /**
        * The component used for the root node.
@@ -183,7 +183,7 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
-      sx?: SxProps<Theme>;
+      sx?: SxProps<T>;
     };
   defaultComponent: D;
 }
@@ -203,6 +203,7 @@ declare const Box: OverridableComponent<BoxTypeMap>;
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BoxTypeMap<P, D>, D>;
+  T extends object = Theme,
+> = OverrideProps<BoxTypeMap<P, D, T>, D>;
 
 export default Box;
