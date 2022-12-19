@@ -80,4 +80,15 @@ describe('resolveProps', () => {
       },
     });
   });
+
+  it('should not merge props that are not intended', () => {
+    expect(
+      resolveProps(
+        { notTheSlotProps: { style: { color: 'red' } } },
+        { notTheSlotProps: { className: 'input' } },
+      ),
+    ).to.deep.equal({
+      notTheSlotProps: { className: 'input' },
+    });
+  });
 });
