@@ -12,6 +12,11 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 
+import {
+  brandingDarkTheme as darkTheme,
+  brandingLightTheme as lightTheme,
+} from 'docs/src/modules/brandingTheme';
+
 const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
 const Wrapper = styled('div')({
@@ -39,6 +44,60 @@ const Table = styled('table')(({ theme }) => {
     // as a workaround, use negative margin with overflow `hidden` on the parent
     marginLeft: -1,
     marginRight: -1,
+    '.anchor-link-style': { display: 'none' },
+    tr: {
+      scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
+    },
+    td: { paddingRight: 30 },
+    'td span.prop-name': {
+      whiteSpace: 'nowrap',
+    },
+    'td:hover': { paddingRight: 0 },
+    'td:hover .anchor-link-style': {
+      lineHeight: '20px',
+      textAlign: 'center',
+      marginLeft: 10,
+      height: 20,
+      width: 20,
+      backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      border: '1px solid',
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+      borderRadius: 8,
+      color: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+      cursor: 'pointer',
+      display: 'inline-block',
+      '&:hover': {
+        color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+      },
+      '& svg': {
+        width: '0.875rem',
+        height: '0.875rem',
+        fill: 'currentColor',
+        pointerEvents: 'none',
+      },
+    },
+    '& .comment-link-style': {
+      display: 'none',
+      position: 'absolute',
+      top: `calc(50% - ${20 / 2}px)`,
+      right: 0,
+      opacity: 0.5,
+      transition: theme.transitions.create('opacity', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        opacity: 1,
+      },
+      '& svg': {
+        verticalAlign: 'middle',
+      },
+    },
+    '& tbody tr:hover': {
+      backgroundColor: alpha(lightTheme.palette.primary.light, 0.05),
+    },
+    '& tbody tr:target': {
+      backgroundColor: alpha(lightTheme.palette.primary.light, 0.05),
+    },
   };
 });
 
@@ -63,15 +122,29 @@ function PropsTable(props) {
             const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (
-                <tr key={propName}>
+                <tr key={propName} id={`props-${propName}`}>
                   <td align="left">
-                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
+                    <span
+                      className={clsx('prop-name', propData.required ? 'required' : null)}
+                      id={`prop-name-${propName}`}
+                    >
                       {propName}
                       {propData.required && (
                         <sup>
                           <Asterisk title="required">*</Asterisk>
                         </sup>
                       )}
+
+                      <a
+                        aria-labelledby={`prop-name-${propName}`}
+                        className="anchor-link-style"
+                        href={`#props-${propName}`}
+                        tabIndex={-1}
+                      >
+                        <svg>
+                          <use xlinkHref="#anchor-link-icon" />
+                        </svg>
+                      </a>
                     </span>
                   </td>
                   <td align="left">
