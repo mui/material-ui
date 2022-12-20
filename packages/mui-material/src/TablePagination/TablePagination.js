@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -106,7 +107,24 @@ const TablePaginationDisplayedRows = styled('p', {
   flexShrink: 0,
 }));
 
-function defaultLabelDisplayedRows({ from, to, count }) {
+function defaultLabelDisplayedRows({ from, to, count, direction }) {
+  if (direction === 'rtl') {
+    return (
+      <React.Fragment>
+        {from}–{to} <span dir="rtl">of </span>
+        {count !== -1 ? (
+          count
+        ) : (
+          <React.Fragment>
+            <span dir="rtl">more </span>
+            <span dir="rtl">than </span>
+            {to}
+          </React.Fragment>
+        )}
+      </React.Fragment>
+    );
+  }
+
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
 }
 
@@ -158,6 +176,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     showLastButton = false,
     ...other
   } = props;
+
+  const theme = useTheme();
 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
@@ -234,6 +254,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: getLabelDisplayedRowsTo(),
             count: count === -1 ? -1 : count,
+            direction: theme.direction,
             page,
           })}
         </TablePaginationDisplayedRows>
