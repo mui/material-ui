@@ -11,7 +11,7 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
-import FingerPrint from '@mui/icons-material/FingerPrint';
+import Fingerprint from '@mui/icons-material/Fingerprint';
 import ViewOverlay from './ViewOverlay';
 
 export default function Views() {
@@ -177,7 +177,7 @@ export default function Views() {
       <ViewOverlay name="Touch ID">
         <ModalDialog>
           <Box sx={{ p: 2 }}>
-            <FingerPrint fontSize="xl3" sx={{ color: 'system.red' }} />
+            <Fingerprint fontSize="xl3" sx={{ color: 'system.red' }} />
             <Typography fontWeight="lg">Touch ID</Typography>
             <Typography level="footnote" sx={{ mt: '2px' }}>
               john.appleseed@icloud.com
