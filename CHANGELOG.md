@@ -17,7 +17,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [InputLabel] Enable `size` prop overrides via TypeScript module augmentation (#35460) @MickaelAustoni
 - [l10n] Change Kazakh locale name to match ISO-639-1 codes (#34664) @talgautb
 - [TextField] Fix error focus style (#35167) @42tte
-- Bring `experimental_sx` back with error code (#35528) @siriwatknp
+- [core] Bring `experimental_sx` back with error code (#35528) @siriwatknp
 
 ### `@mui/utils@5.11.1`
 
@@ -41,7 +41,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Docs
 
-- [docs] migration-v4 `Select` component `onChange` event type (#35509) @tzynwang
+- [docs] Fixed the `Select` component `onChange` event type in the migration guide (#35509) @tzynwang
 - [docs] Add missing comma to `Providing the colors directly` section (#35507) @cassidoo
 - [docs] Add `CardMedia` example without `component="img"` prop (#35470) @lucasmfredmark
 - [docs] Fix `unstable_sxConfig` typo (#35478) @siriwatknp
