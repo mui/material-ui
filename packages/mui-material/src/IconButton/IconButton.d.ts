@@ -10,10 +10,7 @@ export interface IconButtonPropsColorOverrides {}
 
 export interface IconButtonPropsSizeOverrides {}
 
-export type IconButtonTypeMap<
-  P = {},
-  D extends React.ElementType = 'button',
-> = ExtendButtonBaseTypeMap<{
+export type IconButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
      * The icon to display.
@@ -61,6 +58,14 @@ export type IconButtonTypeMap<
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     * The shape of the IconButton.
+     * @default 'circular'
+     */
+    variant?: OverridableStringUnion<
+      'circular' | 'rounded' | 'square',
+      IconButtonPropsSizeOverrides
+    >;
   };
   defaultComponent: D;
 }>;

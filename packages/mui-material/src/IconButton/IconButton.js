@@ -100,6 +100,12 @@ const IconButtonRoot = styled(ButtonBase, {
         padding: 12,
         fontSize: theme.typography.pxToRem(28),
       }),
+      ...(ownerState.variant === 'rounded' && {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+      }),
+      ...(ownerState.variant === 'square' && {
+        borderRadius: 0,
+      }),
       [`&.${iconButtonClasses.disabled}`]: {
         backgroundColor: 'transparent',
         color: (theme.vars || theme).palette.action.disabled,
@@ -122,6 +128,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disabled = false,
     disableFocusRipple = false,
     size = 'medium',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -132,6 +139,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disabled,
     disableFocusRipple,
     size,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -245,6 +253,14 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The shape of the IconButton.
+   * @default 'circular'
+   */
+  variant: PropTypes.oneOfType([
+    PropTypes.oneOf(['circular', 'rounded', 'square']),
+    PropTypes.string,
   ]),
 };
 
