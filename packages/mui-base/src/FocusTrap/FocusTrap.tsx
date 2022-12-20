@@ -7,6 +7,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
 } from '@mui/utils';
+import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [
@@ -21,8 +22,14 @@ const candidatesSelector = [
   '[contenteditable]:not([contenteditable="false"])',
 ].join(',');
 
-function getTabIndex(node) {
-  const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
+interface OrderedTabNode {
+  documentOrder: number;
+  tabIndex: number;
+  node: HTMLElement;
+}
+
+function getTabIndex(node: HTMLElement): number {
+  const tabindexAttr = parseInt(node.getAttribute('tabindex') || '', 10);
 
   if (!Number.isNaN(tabindexAttr)) {
     return tabindexAttr;
@@ -47,7 +54,7 @@ function getTabIndex(node) {
   return node.tabIndex;
 }
 
-function isNonTabbableRadio(node) {
+function isNonTabbableRadio(node: HTMLInputElement): boolean {
   if (node.tagName !== 'INPUT' || node.type !== 'radio') {
     return false;
   }
@@ -56,7 +63,8 @@ function isNonTabbableRadio(node) {
     return false;
   }
 
-  const getRadio = (selector) => node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
+  const getRadio = (selector: string) =>
+    node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
 
   let roving = getRadio(`[name="${node.name}"]:checked`);
 
@@ -67,7 +75,7 @@ function isNonTabbableRadio(node) {
   return roving !== node;
 }
 
-function isNodeMatchingSelectorFocusable(node) {
+function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
   if (
     node.disabled ||
     (node.tagName === 'INPUT' && node.type === 'hidden') ||
@@ -78,24 +86,24 @@ function isNodeMatchingSelectorFocusable(node) {
   return true;
 }
 
-function defaultGetTabbable(root) {
-  const regularTabNodes = [];
-  const orderedTabNodes = [];
+function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
+  const regularTabNodes: HTMLElement[] = [];
+  const orderedTabNodes: OrderedTabNode[] = [];
 
   Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
-    const nodeTabIndex = getTabIndex(node);
+    const nodeTabIndex = getTabIndex(node as HTMLElement);
 
-    if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node)) {
+    if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node as HTMLInputElement)) {
       return;
     }
 
     if (nodeTabIndex === 0) {
-      regularTabNodes.push(node);
+      regularTabNodes.push(node as HTMLElement);
     } else {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,
-        node,
+        node: node as HTMLElement,
       });
     }
   });
@@ -108,14 +116,22 @@ function defaultGetTabbable(root) {
     .concat(regularTabNodes);
 }
 
-function defaultIsEnabled() {
+function defaultIsEnabled(): boolean {
   return true;
 }
 
 /**
  * Utility component that locks focus inside the component.
+ *
+ * Demos:
+ *
+ * - [Focus Trap](https://mui.com/base/react-focus-trap/)
+ *
+ * API:
+ *
+ * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
  */
-function FocusTrap(props) {
+function FocusTrap(props: FocusTrapProps) {
   const {
     children,
     disableAutoFocus = false,
@@ -125,18 +141,19 @@ function FocusTrap(props) {
     isEnabled = defaultIsEnabled,
     open,
   } = props;
-  const ignoreNextEnforceFocus = React.useRef();
-  const sentinelStart = React.useRef(null);
-  const sentinelEnd = React.useRef(null);
-  const nodeToRestore = React.useRef(null);
-  const reactFocusEventTarget = React.useRef(null);
+  const ignoreNextEnforceFocus = React.useRef(false);
+  const sentinelStart = React.useRef<HTMLDivElement>(null);
+  const sentinelEnd = React.useRef<HTMLDivElement>(null);
+  const nodeToRestore = React.useRef<EventTarget | null>(null);
+  const reactFocusEventTarget = React.useRef<EventTarget | null>(null);
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
 
-  const rootRef = React.useRef(null);
+  const rootRef = React.useRef<HTMLElement>(null);
+  // @ts-expect-error TODO upstream fix
   const handleRef = useForkRef(children.ref, rootRef);
-  const lastKeydown = React.useRef(null);
+  const lastKeydown = React.useRef<KeyboardEvent | null>(null);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -166,7 +183,7 @@ function FocusTrap(props) {
             ].join('\n'),
           );
         }
-        rootRef.current.setAttribute('tabIndex', -1);
+        rootRef.current.setAttribute('tabIndex', '-1');
       }
 
       if (activated.current) {
@@ -181,9 +198,9 @@ function FocusTrap(props) {
         // in nodeToRestore.current being null.
         // Not all elements in IE11 have a focus method.
         // Once IE11 support is dropped the focus() call can be unconditional.
-        if (nodeToRestore.current && nodeToRestore.current.focus) {
+        if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
           ignoreNextEnforceFocus.current = true;
-          nodeToRestore.current.focus();
+          (nodeToRestore.current as HTMLElement).focus();
         }
 
         nodeToRestore.current = null;
@@ -202,8 +219,9 @@ function FocusTrap(props) {
 
     const doc = ownerDocument(rootRef.current);
 
-    const contain = (nativeEvent) => {
+    const contain = (nativeEvent: FocusEvent | null) => {
       const { current: rootElement } = rootRef;
+
       // Cleanup functions are executed lazily in React 17.
       // Contain can be called between the component being unmounted and its cleanup function being run.
       if (rootElement === null) {
@@ -235,12 +253,12 @@ function FocusTrap(props) {
           return;
         }
 
-        let tabbable = [];
+        let tabbable: string[] | HTMLElement[] = [];
         if (
           doc.activeElement === sentinelStart.current ||
           doc.activeElement === sentinelEnd.current
         ) {
-          tabbable = getTabbable(rootRef.current);
+          tabbable = getTabbable(rootRef.current as HTMLElement);
         }
 
         if (tabbable.length > 0) {
@@ -251,10 +269,12 @@ function FocusTrap(props) {
           const focusNext = tabbable[0];
           const focusPrevious = tabbable[tabbable.length - 1];
 
-          if (isShiftTab) {
-            focusPrevious.focus();
-          } else {
-            focusNext.focus();
+          if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
+            if (isShiftTab) {
+              focusPrevious.focus();
+            } else {
+              focusNext.focus();
+            }
           }
         } else {
           rootElement.focus();
@@ -262,7 +282,7 @@ function FocusTrap(props) {
       }
     };
 
-    const loopFocus = (nativeEvent) => {
+    const loopFocus = (nativeEvent: KeyboardEvent) => {
       lastKeydown.current = nativeEvent;
 
       if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
@@ -275,7 +295,9 @@ function FocusTrap(props) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
-        sentinelEnd.current.focus();
+        if (sentinelEnd.current) {
+          sentinelEnd.current.focus();
+        }
       }
     };
 
@@ -289,8 +311,8 @@ function FocusTrap(props) {
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      if (doc.activeElement.tagName === 'BODY') {
-        contain();
+      if (doc.activeElement && doc.activeElement.tagName === 'BODY') {
+        contain(null);
       }
     }, 50);
 
@@ -302,7 +324,7 @@ function FocusTrap(props) {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
-  const onFocus = (event) => {
+  const onFocus = (event: FocusEvent) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }
@@ -315,7 +337,7 @@ function FocusTrap(props) {
     }
   };
 
-  const handleFocusSentinel = (event) => {
+  const handleFocusSentinel = (event: React.FocusEvent<HTMLDivElement>) => {
     if (nodeToRestore.current === null) {
       nodeToRestore.current = event.relatedTarget;
     }
@@ -344,7 +366,7 @@ function FocusTrap(props) {
 FocusTrap.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A single child content element.
@@ -385,7 +407,7 @@ FocusTrap.propTypes /* remove-proptypes */ = {
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
    * This prop should be memoized.
    * It can be used to support multiple focus trap mounted at the same time.
-   * @default function defaultIsEnabled() {
+   * @default function defaultIsEnabled(): boolean {
    *   return true;
    * }
    */
@@ -394,11 +416,11 @@ FocusTrap.propTypes /* remove-proptypes */ = {
    * If `true`, focus is locked.
    */
   open: PropTypes.bool.isRequired,
-};
+} as any;
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  FocusTrap['propTypes' + ''] = exactProp(FocusTrap.propTypes);
+  (FocusTrap as any)['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
 export default FocusTrap;
