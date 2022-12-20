@@ -24,24 +24,24 @@ function SystemMaterials() {
         gap: 2,
       }}
     >
-      {(Object.keys(theme.materials) as Array<keyof typeof theme.materials>).map(
-        (material) => (
-          <Box key={material} sx={{ p: 5 }}>
-            <Box
-              sx={{
-                borderRadius: 'sm',
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                material,
-              }}
-            >
-              {material}
-            </Box>
+      {(
+        Object.keys(theme.materials || {}) as Array<keyof typeof theme.materials>
+      ).map((material) => (
+        <Box key={material} sx={{ p: 5 }}>
+          <Box
+            sx={{
+              borderRadius: 'sm',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              material,
+            }}
+          >
+            {material}
           </Box>
-        ),
-      )}
+        </Box>
+      ))}
     </Box>
   );
 }

@@ -1,18 +1,11 @@
 import { CSSObject } from '@mui/system';
 import { extendTheme } from '@mui/joy/styles';
-import type {} from '@mui/joy/IconButton';
-import type {} from '@mui/joy/Input';
-import type {} from '@mui/joy/Tabs';
-import type {} from '@mui/joy/TabList';
 import { tabClasses } from '@mui/joy/Tab';
-import type {} from '@mui/joy/Switch';
 import { sliderClasses } from '@mui/joy/Slider';
-import type {} from '@mui/joy/LinearProgress';
-import type {} from '@mui/joy/ModalDialog';
 import { listItemButtonClasses } from '@mui/joy/ListItemButton';
 
 interface IosMaterial {
-  materials: {
+  materials?: {
     thick: CSSObject;
     regular: CSSObject;
     thin: CSSObject;
