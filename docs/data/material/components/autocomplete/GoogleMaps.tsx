@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
+import { ListItem } from '@mui/material';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -138,6 +139,9 @@ export default function GoogleMaps() {
       )}
       renderOption={(props, option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
+        if (!matches) {
+          return <ListItem sx={{ color: 'text.secondary' }}>No options</ListItem>;
+        }
         const parts = parse(
           option.structured_formatting.main_text,
           matches.map((match: any) => [match.offset, match.offset + match.length]),
