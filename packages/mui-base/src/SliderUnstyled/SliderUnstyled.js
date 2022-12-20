@@ -246,6 +246,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
         return (
           <React.Fragment key={index}>
+            {/* TODO v6: Change component structure. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider.  */}
             <ValueLabelComponent
               {...(!isHostComponent(ValueLabelComponent) && {
                 valueLabelFormat,
