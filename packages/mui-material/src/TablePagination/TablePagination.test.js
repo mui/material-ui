@@ -10,6 +10,7 @@ import TablePagination, { tablePaginationClasses as classes } from '@mui/materia
 import { inputClasses } from '@mui/material/Input';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { filledInputClasses } from '@mui/material/FilledInput';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -273,6 +274,36 @@ describe('<TablePagination />', () => {
       expect(container).not.to.include.text('Rows per page');
       expect(queryByRole('listbox')).to.equal(null);
     });
+
+    it('renders the RTL tags', () => {
+      const { container } = render(
+        <div dir="rtl">
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  count={0}
+                  page={0}
+                  rowsPerPage={10}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>
+        </div>,
+        {
+          wrapper: ({ children }) => (
+            <ThemeProvider theme={createTheme({ direction: 'rtl' })}>{children}</ThemeProvider>
+          ),
+        },
+      );
+
+      const directionNode = container.querySelector('p > span');
+
+      expect(directionNode).to.have.text('of ');
+      expect(directionNode).to.have.attribute('dir', 'rtl');
+    });
   });
 
   describe('prop: count=-1', () => {
@@ -302,6 +333,41 @@ describe('<TablePagination />', () => {
       expect(container).to.have.text('Rows per page:101–10 of more than 10');
       fireEvent.click(getByRole('button', { name: 'Go to next page' }));
       expect(container).to.have.text('Rows per page:1011–20 of more than 20');
+    });
+
+    it('renders the "of more than" RTL tags', () => {
+      const { container } = render(
+        <div dir="rtl">
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  page={0}
+                  count={-1}
+                  rowsPerPage={10}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>
+        </div>,
+        {
+          wrapper: ({ children }) => (
+            <ThemeProvider theme={createTheme({ direction: 'rtl' })}>{children}</ThemeProvider>
+          ),
+        },
+      );
+
+      const rtlElements = container.querySelectorAll('p > span');
+
+      expect(rtlElements[0]).to.have.text('of ');
+      expect(rtlElements[1]).to.have.text('more ');
+      expect(rtlElements[2]).to.have.text('than ');
+
+      expect(rtlElements[0]).to.have.attribute('dir', 'rtl');
+      expect(rtlElements[1]).to.have.attribute('dir', 'rtl');
+      expect(rtlElements[2]).to.have.attribute('dir', 'rtl');
     });
   });
 
