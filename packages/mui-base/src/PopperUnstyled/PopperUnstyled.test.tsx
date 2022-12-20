@@ -14,8 +14,6 @@ describe('<PopperUnstyled />', () => {
   };
 
   describeConformanceUnstyled(<PopperUnstyled {...defaultProps} />, () => ({
-    muiName: 'PopperUnstyled',
-    classes: {},
     inheritComponent: 'div',
     render,
     mount,
