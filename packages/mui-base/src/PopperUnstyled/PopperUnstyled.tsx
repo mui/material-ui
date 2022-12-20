@@ -44,11 +44,15 @@ function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl
   }
 }
 
-function resolveAnchorEl(anchorEl: VirtualElement | (() => VirtualElement)): VirtualElement;
-function resolveAnchorEl(anchorEl: HTMLElement | (() => HTMLElement)): HTMLElement;
 function resolveAnchorEl(
-  anchorEl: VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement),
-): HTMLElement | VirtualElement {
+  anchorEl:
+    | VirtualElement
+    | (() => VirtualElement)
+    | HTMLElement
+    | (() => HTMLElement)
+    | null
+    | undefined,
+): HTMLElement | VirtualElement | null | undefined {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
@@ -108,10 +112,10 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
    * placement initialized from prop but can change during lifetime if modifiers.flip.
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
-  const [placement, setPlacement] = React.useState(rtlPlacement);
-  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState(
-    resolveAnchorEl(anchorEl),
-  );
+  const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
+  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState<
+    HTMLElement | VirtualElement | null | undefined
+  >(resolveAnchorEl(anchorEl));
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -135,7 +139,11 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     };
 
     if (process.env.NODE_ENV !== 'production') {
-      if (resolvedAnchorElement && isHTMLElement(resolvedAnchorElement) && resolvedAnchorElement.nodeType === 1) {
+      if (
+        resolvedAnchorElement &&
+        isHTMLElement(resolvedAnchorElement) &&
+        resolvedAnchorElement.nodeType === 1
+      ) {
         const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
@@ -285,9 +293,10 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
     container = containerProp;
   } else if (anchorEl) {
     const resolvedAnchorEl = resolveAnchorEl(anchorEl);
-    container = isHTMLElement(resolvedAnchorEl)
-      ? ownerDocument(resolvedAnchorEl).body
-      : ownerDocument(null).body;
+    container =
+      resolvedAnchorEl && isHTMLElement(resolvedAnchorEl)
+        ? ownerDocument(resolvedAnchorEl).body
+        : ownerDocument(null).body;
   }
   const display = !open && keepMounted && (!transition || exited) ? 'none' : undefined;
   const transitionProps: PopperUnstyledTransitionProps | undefined = transition
