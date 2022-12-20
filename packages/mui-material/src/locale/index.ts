@@ -5,9 +5,7 @@ export interface Localization {
     MuiAlert?: {
       defaultProps: Pick<ComponentsPropsList['MuiAlert'], 'closeText'>;
     };
-    MuiBreadcrumbs?: {
-      defaultProps: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'>;
-    };
+    MuiBreadcrumbs?: { defaultProps: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'> };
     MuiTablePagination?: {
       defaultProps: Pick<
         ComponentsPropsList['MuiTablePagination'],
