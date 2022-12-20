@@ -1,12 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import {
   ColorPaletteProp,
-  TypographySystem,
-  VariantProp,
   SxProps,
   SystemProps,
+  TypographySystem,
+  VariantProp,
 } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 
@@ -14,8 +15,18 @@ export interface LinkPropsVariantOverrides {}
 
 export interface LinkPropsColorOverrides {}
 
+export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  LinkSlot,
+  {
+    root: SlotProps<'a', {}, LinkOwnerState>;
+    startDecorator: SlotProps<'span', {}, LinkOwnerState>;
+    endDecorator: SlotProps<'span', {}, LinkOwnerState>;
+  }
+>;
+
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
+    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -47,6 +58,10 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       overlay?: boolean;
       /**
+       * The system color.
+       */
+      textColor?: SystemProps['color'];
+      /**
        * Element placed before the children.
        */
       startDecorator?: React.ReactNode;
@@ -75,3 +90,14 @@ export type LinkProps<
     focusVisible?: boolean;
   },
 > = OverrideProps<LinkTypeMap<P, D>, D>;
+
+export interface LinkOwnerState extends LinkProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the element is rendered by a Typography component.
+   */
+  nested: boolean;
+}

@@ -12,4 +12,10 @@ function testOnChange() {
   />;
 }
 
-const TabTest = () => <Tabs TabIndicatorProps={{ style: { backgroundColor: 'green' } }} />;
+function TabTest() {
+  return <Tabs TabIndicatorProps={{ style: { backgroundColor: 'green' } }} />;
+}
+
+function TabIndicatorSxTest() {
+  return <Tabs TabIndicatorProps={{ sx: {} }} />;
+}

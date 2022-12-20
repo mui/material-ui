@@ -8,7 +8,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import {
   DesignKitImagesSet1,
   DesignKitImagesSet2,
@@ -23,13 +22,16 @@ export default function TemplateHero() {
           <Typography
             fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
+            sx={(theme) => ({
+              color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'start' },
               '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
             <IconImage name="product-designkits" /> Design kits
           </Typography>
@@ -44,7 +46,7 @@ export default function TemplateHero() {
           <Button
             component={Link}
             noLinkStyle
-            href={ROUTES.storeDesign}
+            href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta#design"
             size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
@@ -58,20 +60,21 @@ export default function TemplateHero() {
         <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
           <DesignKitTools />
           <Box
-            sx={{
+            sx={(theme) => ({
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
               zIndex: 1,
-              background: (theme) =>
-                `linear-gradient(90deg, ${theme.palette.primaryDark[900]} 1%, ${alpha(
-                  theme.palette.primaryDark[900],
-                  0.5,
-                )})`,
-              opacity: (theme) => (theme.palette.mode === 'dark' ? 1 : 0),
-            }}
+              background: `linear-gradient(90deg, ${
+                (theme.vars || theme).palette.primaryDark[900]
+              } 1%, ${alpha(theme.palette.primaryDark[900], 0.5)})`,
+              opacity: 0,
+              ...theme.applyDarkStyles({
+                opacity: 1,
+              }),
+            })}
           />
           <Box
             sx={{

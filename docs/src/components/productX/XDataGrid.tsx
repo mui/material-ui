@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGridPro, GridApi } from '@mui/x-data-grid-pro';
+import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -38,7 +38,7 @@ const code = `<DataGrid
     },
   ]}
   checkboxSelection
-  disableSelectionOnClick
+  disableRowSelectionOnClick
   pagination
 />`;
 
@@ -54,7 +54,7 @@ const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro
 
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
-  const gridApiRef = React.useRef<GridApi>();
+  const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
     [DEMOS[1]]: <LibraryAddCheckRounded fontSize="small" />,
@@ -91,7 +91,7 @@ export default function XDataGrid() {
         const checkbox = document.querySelector(
           '#data-grid-demo div[data-field="__check__"] input',
         ) as HTMLInputElement | null;
-        if (checkbox) {
+        if (checkbox && !checkbox.checked) {
           checkbox.click();
         }
       }
@@ -116,7 +116,7 @@ export default function XDataGrid() {
         gridApiRef.current.showFilterPanel('name');
       }
     }
-  }, [demo, loading, firstRowId]);
+  }, [demo, loading, firstRowId, gridApiRef]);
   return (
     <Section>
       <Grid container spacing={2}>
@@ -151,41 +151,50 @@ export default function XDataGrid() {
           <Paper
             id="data-grid-demo"
             variant="outlined"
-            sx={{
-              position: 'relative',
-              zIndex: 1,
-              height: 240,
-              borderRadius: '10px 10px 0 0',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              '& .MuiDataGrid-root': {
-                '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
-                '& .MuiDataGrid-footerContainer': {
-                  minHeight: 48,
-                  borderTop: '1px solid',
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-                },
-                '& .MuiTablePagination-root': {
-                  fontSize: '0.75rem',
-                  '& p': {
-                    fontSize: '0.75rem',
-                  },
-                  '& .MuiToolbar-root': {
+            sx={[
+              {
+                position: 'relative',
+                zIndex: 1,
+                height: 240,
+                borderRadius: '10px 10px 0 0',
+                borderColor: 'grey.200',
+                '& .MuiDataGrid-root': {
+                  '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+                  '& .MuiDataGrid-footerContainer': {
                     minHeight: 48,
+                    borderTop: '1px solid',
+                    borderColor: 'grey.200',
+                  },
+                  '& .MuiTablePagination-root': {
+                    fontSize: '0.75rem',
+                    '& p': {
+                      fontSize: '0.75rem',
+                    },
+                    '& .MuiToolbar-root': {
+                      minHeight: 48,
+                    },
                   },
                 },
               },
-            }}
+              (theme) =>
+                theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                  '& .MuiDataGrid-root': {
+                    '& .MuiDataGrid-footerContainer': {
+                      borderColor: 'primaryDark.600',
+                    },
+                  },
+                }),
+            ]}
           >
             {dataGridStyleOverrides}
             <DataGridPro
               {...data}
-              apiRef={gridApiRef as React.MutableRefObject<GridApi>}
+              apiRef={gridApiRef}
               loading={loading}
               density="compact"
               checkboxSelection
-              disableSelectionOnClick
+              disableRowSelectionOnClick
               pagination
             />
           </Paper>
@@ -209,7 +218,12 @@ export default function XDataGrid() {
           >
             <Box sx={{ position: 'relative' }}>
               <Box sx={{ position: 'relative', zIndex: 1 }}>
-                <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+                <HighlightedCode
+                  copyButtonHidden
+                  component={MarkdownElement}
+                  code={code}
+                  language="jsx"
+                />
               </Box>
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo

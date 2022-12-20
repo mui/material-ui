@@ -1,86 +1,46 @@
 import { deepmerge } from '@mui/utils';
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import { Theme, DefaultColorScheme, ExtendedColorScheme, FontSize } from './types';
-import { Components } from './components';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  unstable_styleFunctionSx as styleFunctionSx,
+} from '@mui/system';
 import extendTheme from './extendTheme';
-import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import { createSoftInversion, createSolidInversion } from './variantUtils';
+import type { Theme, DefaultColorScheme, ExtendedColorScheme, SxProps } from './types';
+
+const shouldSkipGeneratingVar = (keys: string[]) =>
+  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
+  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
+  (keys[0] === 'focus' && keys[1] !== 'thickness');
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme,
-  Theme
+  DefaultColorScheme | ExtendedColorScheme
 >({
-  theme: {
-    ...extendTheme(),
-    components: {
-      // TODO: find a way to abstract SvgIcon out of @mui/material
-      MuiSvgIcon: {
-        defaultProps: {
-          fontSize: 'xl',
-        },
-        styleOverrides: {
-          root: ({ ownerState, theme }) => {
-            const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
-            return {
-              color: 'var(--Icon-color)',
-              ...(ownerState.fontSize &&
-                ownerState.fontSize !== 'inherit' && {
-                  fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
-                }),
-              ...(ownerState.color &&
-                ownerState.color !== 'inherit' && {
-                  color: theme.vars.palette[ownerState.color].plainColor,
-                }),
-              ...(instanceFontSize &&
-                instanceFontSize !== 'inherit' && {
-                  '--Icon-fontSize': theme.vars.fontSize[instanceFontSize],
-                }),
-            };
-          },
-        },
-      },
-    } as Components<Theme>,
-  },
+  theme: extendTheme(),
+  attribute: 'data-joy-color-scheme',
+  modeStorageKey: 'joy-mode',
+  colorSchemeStorageKey: 'joy-color-scheme',
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
-  prefix: 'joy',
   resolveTheme: (mergedTheme: Theme) => {
-    mergedTheme.variants = deepmerge(
+    // `colorInversion` need to be generated after the theme's palette has been calculated.
+    mergedTheme.colorInversion = deepmerge(
       {
-        plain: createVariant('plain', mergedTheme),
-        plainHover: createVariant('plainHover', mergedTheme),
-        plainActive: createVariant('plainActive', mergedTheme),
-        plainDisabled: createVariant('plainDisabled', mergedTheme),
-        outlined: createVariant('outlined', mergedTheme),
-        outlinedHover: createVariant('outlinedHover', mergedTheme),
-        outlinedActive: createVariant('outlinedActive', mergedTheme),
-        outlinedDisabled: createVariant('outlinedDisabled', mergedTheme),
-        soft: createVariant('soft', mergedTheme),
-        softHover: createVariant('softHover', mergedTheme),
-        softActive: createVariant('softActive', mergedTheme),
-        softDisabled: createVariant('softDisabled', mergedTheme),
-        solid: createVariant('solid', mergedTheme),
-        solidHover: createVariant('solidHover', mergedTheme),
-        solidActive: createVariant('solidActive', mergedTheme),
-        solidDisabled: createVariant('solidDisabled', mergedTheme),
-
-        // variant overrides
-        plainOverrides: createTextOverrides(mergedTheme),
-        outlinedOverrides: createTextOverrides(mergedTheme),
-        softOverrides: createTextOverrides(mergedTheme),
-        solidOverrides: createContainedOverrides(mergedTheme),
-      } as typeof mergedTheme.variants,
-      mergedTheme.variants,
+        soft: createSoftInversion(mergedTheme),
+        solid: createSolidInversion(mergedTheme),
+      },
+      mergedTheme.colorInversion,
       { clone: false },
     );
+
+    // TOOD remove this intermediary function call.
+    mergedTheme.unstable_sx = function sx(props: SxProps) {
+      return styleFunctionSx({ sx: props, theme: this });
+    };
     return mergedTheme;
   },
-  shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' ||
-    keys[0] === 'variants' ||
-    keys[0] === 'focus' ||
-    keys[0] === 'breakpoints',
+  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };

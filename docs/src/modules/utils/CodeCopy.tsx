@@ -15,7 +15,7 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
  *  <button className="MuiCode-copy">...</button>
  * </div>
  */
-export const useCodeCopy = () => {
+export function useCodeCopy(): any {
   const rootNode = React.useContext(CodeBlockContext);
   return {
     onMouseEnter: (event: React.MouseEvent) => {
@@ -36,13 +36,13 @@ export const useCodeCopy = () => {
       }
     },
   };
-};
+}
 
-const InitCodeCopy = () => {
+function InitCodeCopy() {
   const rootNode = React.useContext(CodeBlockContext);
   const router = useRouter();
   React.useEffect(() => {
-    let key = 'Ctrl';
+    let key = 'Ctrl + ';
     if (typeof window !== 'undefined') {
       const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
       if (macOS) {
@@ -54,55 +54,84 @@ const InitCodeCopy = () => {
     ) as HTMLCollectionOf<HTMLDivElement>;
 
     if (codeRoots !== null) {
+      const listeners: Array<() => void> = [];
       Array.from(codeRoots).forEach((elm) => {
-        elm.addEventListener('mouseenter', () => {
+        const handleMouseEnter = () => {
           rootNode.current = elm;
-        });
-        elm.addEventListener('mouseleave', () => {
+        };
+
+        elm.addEventListener('mouseenter', handleMouseEnter);
+        listeners.push(() => elm.removeEventListener('mouseenter', handleMouseEnter));
+
+        const handleMouseLeave = () => {
           if (rootNode.current === elm) {
             (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
             rootNode.current = null;
           }
-        });
-        elm.addEventListener('focusin', () => {
+        };
+        elm.addEventListener('mouseleave', handleMouseLeave);
+        listeners.push(() => elm.removeEventListener('mouseleave', handleMouseLeave));
+
+        const handleFocusin = () => {
           // use `focusin` because it bubbles from the copy button
           rootNode.current = elm;
-        });
-        elm.addEventListener('focusout', () => {
+        };
+        elm.addEventListener('focusin', handleFocusin);
+        listeners.push(() => elm.removeEventListener('focusin', handleFocusin));
+
+        const handleFocusout = () => {
           // use `focusout` because it bubbles from the copy button
           if (rootNode.current === elm) {
             rootNode.current = null;
           }
-        });
+        };
+        elm.addEventListener('focusout', handleFocusout);
+        listeners.push(() => elm.removeEventListener('focusout', handleFocusout));
+
+        async function handleClick(event: MouseEvent) {
+          const trigger = event.currentTarget as HTMLButtonElement;
+          const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
+          const textNode = trigger.childNodes[0];
+          textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
+          trigger.dataset.copied = 'true';
+          setTimeout(() => {
+            if (trigger) {
+              textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
+              delete trigger.dataset.copied;
+            }
+          }, 2000);
+          try {
+            if (pre.textContent) {
+              await copy(pre.textContent);
+            }
+            // eslint-disable-next-line no-empty
+          } catch (error) {}
+        }
+
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
         if (btn) {
           const keyNode = btn.childNodes[1]?.childNodes[1];
+          if (!keyNode) {
+            // skip the logic if the btn is not generated from the markdown.
+            return;
+          }
           keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null;
-          btn.addEventListener('click', async function handleClick(event) {
-            const trigger = event.currentTarget as HTMLButtonElement;
-            const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
-            const textNode = trigger.childNodes[0];
-            textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
-            trigger.dataset.copied = 'true';
-            setTimeout(() => {
-              if (trigger) {
-                textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
-                delete trigger.dataset.copied;
-              }
-            }, 2000);
-            try {
-              if (pre.textContent) {
-                await copy(pre.textContent);
-              }
-              // eslint-disable-next-line no-empty
-            } catch (error) {}
-          });
+          btn.addEventListener('click', handleClick);
+          listeners.push(() => btn.removeEventListener('click', handleClick));
         }
       });
+
+      return () => {
+        listeners.forEach((removeEventListener) => {
+          removeEventListener();
+        });
+      };
     }
+
+    return undefined;
   }, [rootNode, router.pathname]);
   return null;
-};
+}
 
 interface CodeCopyProviderProps {
   children: React.ReactNode;
@@ -112,7 +141,7 @@ interface CodeCopyProviderProps {
  * Place <CodeCopyProvider> at the page level. It will check the keydown event and try to initiate copy click if rootNode exist.
  * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
  */
-export const CodeCopyProvider = ({ children }: CodeCopyProviderProps) => {
+export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
@@ -148,4 +177,4 @@ export const CodeCopyProvider = ({ children }: CodeCopyProviderProps) => {
       {children}
     </CodeBlockContext.Provider>
   );
-};
+}

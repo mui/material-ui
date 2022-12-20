@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SwitchClasses {
   /** Styles applied to the root element. */
@@ -41,15 +41,19 @@ export interface SwitchClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the startDecorator element. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element. */
+  endDecorator: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
 
 export function getSwitchUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSwitch', slot);
+  return generateUtilityClass('JoySwitch', slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
+const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
   'root',
   'checked',
   'disabled',
@@ -70,6 +74,8 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default switchClasses;

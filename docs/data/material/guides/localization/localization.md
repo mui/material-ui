@@ -30,7 +30,9 @@ const theme = createTheme(
 
 {{"demo": "Locales.js"}}
 
-> ⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+:::warning
+The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own [localization](/x/react-data-grid/localization/).
+:::
 
 ### Supported locales
 
@@ -38,6 +40,7 @@ const theme = createTheme(
 | :---------------------- | :------------------ | :---------- |
 | Amharic                 | am-ET               | `amET`      |
 | Arabic (Egypt)          | ar-EG               | `arEG`      |
+| Arabic (Saudi Arabia)   | ar-SA               | `arSA`      |
 | Arabic (Sudan)          | ar-SD               | `arSD`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
@@ -65,7 +68,7 @@ const theme = createTheme(
 | Italian                 | it-IT               | `itIT`      |
 | Japanese                | ja-JP               | `jaJP`      |
 | Khmer                   | kh-KH               | `khKH`      |
-| Kazakh                  | kz-KZ               | `kzKZ`      |
+| Kazakh                  | kk-KZ               | `kkKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
 | Macedonian              | mk-MK               | `mkMK`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
@@ -83,6 +86,7 @@ const theme = createTheme(
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
+| Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
 <!-- #default-branch-switch -->

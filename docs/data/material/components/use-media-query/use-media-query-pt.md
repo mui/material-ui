@@ -12,22 +12,22 @@ Algumas das principais características:
 
 - ⚛️ Tem uma API React idiomática.
 - 🚀 É performático, ele observa o documento para detectar quando suas consultas de mídia mudam, em vez de pesquisar os valores periodicamente.
-- 📦 [1 kB gzipped](/size-snapshot).
+- 📦 [1 kB gzipped](/size-snapshot/).
 - 🤖 Suporta a renderização do lado do servidor.
 
 [A paleta](/system/palette/) com funções de estilo.
 
 ## Consulta de mídia simples
 
-Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser qualquer consulta de mídia CSS válida, por exemplo [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
 ⚠️ Você não pode usar `'print'` devido a limitação de navegadores, por exemplo, este bug presente no [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Usando auxiliares de ponto de quebra do Material UI
+## Usando auxiliares de ponto de quebra do Material-UI
 
-Você pode usar os [auxiliares de ponto de quebra](/material-ui/customization/breakpoints/) do Material UI da seguinte maneira:
+You can use MUI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -111,24 +111,27 @@ const theme = createTheme({
 
 ## Renderização do lado servidor
 
-> ⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da escolha. O suporte só pode ser parcial.
+:::warning
+⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
+Be aware of the tradeoff. The support can only be partial.
+:::
 
-Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exemplo, você poderia usar:
+Try relying on client-side CSS media queries first. For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/material-ui/customization/breakpoints/#css-media-queries)
-- or [`sx prop`](/system/basics/#heading-the-sx-prop)
+- or [`sx prop`](/system/getting-started/the-sx-prop/)
 
-Se nenhuma das alternativas acima for uma opção, você poderá continuar lendo esta seção da documentação.
+If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 
-Primeiro, você precisa adivinhar as características da solicitação do cliente, no servidor. Você tem a opção entre usar:
+First, you need to guess the characteristics of the client request, from the server. You have the choice between using:
 
 - **User agent**. Analise a string do user agent do cliente para extrair informações. É recomendável usar [ua-parser-js](https://github.com/faisalman/ua-parser-js) para analisar o user agent.
 - **Client hints**. Leia as dicas que o cliente está enviando para o servidor. Esteja ciente de que esse recurso [não é suportado em qualquer lugar](https://caniuse.com/#search=client%20hint).
 
-Por fim, você precisa fornecer uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) para o `useMediaQuery` com as características adivinhadas anteriormente. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular o matchMedia.
+Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
-Por exemplo, no lado do servidor:
+For instance on the server-side:
 
 ```js
 import ReactDOMServer from 'react-dom/server';
@@ -138,7 +141,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = (query) => ({
+  const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
       // O CSS estimado pelo navegador.
       width: deviceType === 'mobile' ? '0px' : '1024px',
@@ -164,16 +167,15 @@ function handleRender(req, res) {
 
   // …
 }
-}
 ```
 
 {{"demo": "ServerSide.js", "defaultCodeOpen": false}}
 
-Certifique-se de fornecer a mesma implementação de mídia de correspondência customizada para o lado do cliente para garantir uma correspondência de hidratação.
+Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
 ## Migrando de `withWidth()`
 
-O componente de ordem superior `withWidth()` injeta a largura da tela da página. Você pode reproduzir o mesmo comportamento com o hook `useWidth`:
+The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
 
 {{"demo": "UseWidth.js"}}
 
@@ -191,11 +193,11 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 - `options.noSsr` (_bool_ [opcional]): Padrão `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
-Nota: Você pode alterar as opções padrão usando [`default props`](/material-ui/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
+Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Retornos
 
-`matches`: Matches é `true` se o documento coincidir com a consulta de mídia, e `false` quando isso não ocorrer.
+`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 
 #### Exemplos
 

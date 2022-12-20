@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface BadgeClasses {
   /** Class name applied to the root element. */
@@ -37,6 +37,8 @@ export interface BadgeClasses {
   sizeMd: string;
   /** Styles applied to the badge `span` element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the badge `span` element if `variant="outlined"`. */
   variantOutlined: string;
   /** Styles applied to the badge `span` element if `variant="soft"`. */
@@ -48,10 +50,10 @@ export interface BadgeClasses {
 export type BadgeClassKey = keyof BadgeClasses;
 
 export function getBadgeUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiBadge', slot);
+  return generateUtilityClass('JoyBadge', slot);
 }
 
-const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
+const badgeClasses: BadgeClasses = generateUtilityClasses('JoyBadge', [
   'root',
   'badge',
   'anchorOriginTopRight',
@@ -70,6 +72,7 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'variantPlain',
   'variantOutlined',
   'variantSoft',
   'variantSolid',

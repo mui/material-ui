@@ -16,7 +16,7 @@ npm install @mui/lab
 yarn add @mui/lab
 ```
 
-The lab has peer dependencies on the Material Design components and on the emotion library.
+The lab has peer dependencies on the Material Design components and on the Emotion library.
 If you are not already using them in your project, you can install with:
 
 <!-- #default-branch-switch -->

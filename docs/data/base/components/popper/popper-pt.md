@@ -1,39 +1,63 @@
 ---
 product: base
-title: React Popper component
+title: Unstyled React Popper component
 components: PopperUnstyled
 githubLabel: 'component: Popper'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
 # Unstyled popper
 
-<p class="description">The Popper component lets you create components that are displayed on top of other elements.</p>
+<p class="description">The PopperUnstyled component lets you create tooltips and popovers that display information about an element on the page.</p>
 
-**Features**:
+## Introduction
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for perfect positioning.
-- 💄 It's an alternative API to [react-popper](https://popper.js.org/react-popper/v2/). It aims for simplicity.
-- The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
-- The children are placed in a [`Portal`](/base/react-portal/) prepended to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal` prop.
-- The page scroll isn't blocked when the popper opens.
-- The placement of the popper updates with the available area in the viewport.
-
-**Caveats**:
-
-- Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](/base/react-click-away-listener/)
-
-**Bundle size**: 📦 [8 kB gzipped](/size-snapshot).
+`PopperUnstyled` is a utility component for creating various kinds of popups. It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for positioning.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic Popper
+## Component
 
-By default, the popper is mounted to the DOM when its `open` prop is set to `true` and removed from it when `open` turns `false`. If you want that to happen with a transition, use the `keepMounted` prop (see the [Transition](#transition) example below).
+### Usage
 
-{{"demo": "SimplePopper.js"}}
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-## Placement
+```jsx
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 
-The popper's default placement is `bottom`. You can change it using the `placement` prop. Play around with the interactive demo below to see the many possible values there are for it.
+export default function MyApp() {
+  return <PopperUnstyled>{/* the popper's content */}</PopperUnstyled>;
+}
+```
+
+### Basics
+
+By default, the popper is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` is `false`.
+
+`anchorEl` is passed as the reference object to create a new `Popper.js` instance. The children are placed in a [`Portal`](/base/react-portal/) prepended to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal` prop.
+
+The following demo shows how to create and style a basic popper. Click **Toggle Popper** to see how it behaves:
+
+{{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
+
+:::warning
+By default, clicking outside the popper does not hide it. If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component.
+:::
+
+## Customization
+
+### Placement
+
+The popper's default placement is `bottom`. You can change it using the `placement` prop. Try changing this value to `top` in the interactive demo below to see how it works:
 
 {{"demo": "PlacementPopper.js"}}
+
+### Transitions
+
+You can animate the open and close states of the popper with a render prop child and a transition component, as long as the component meets these conditions:
+
+- Is a direct child descendent of the popper
+- Calls the `onEnter` callback prop when the enter transition starts
+- Calls the `onExited` callback prop when the exit transition is completed
+
+These two callbacks allow the popper to unmount the child content when closed and fully transitioned.

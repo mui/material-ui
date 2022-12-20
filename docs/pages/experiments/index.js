@@ -22,7 +22,10 @@ export default function Experiments({ experiments }) {
       categories[categoryName] = [];
     }
     categories[categoryName].push({
-      name: capitalize(paths[1] || paths[0]),
+      name: name
+        .replace(/^\//, '')
+        .replace(/\/$/, '')
+        .replace(`${categoryName.toLowerCase()}/`, ''),
       pathname: `/experiments/${name}`,
     });
   });
@@ -53,13 +56,11 @@ export default function Experiments({ experiments }) {
           <Box sx={{ textAlign: 'left' }}>
             <ul>
               <Typography component="li">
-                All the files under <code>/experiments</code> are committed to git.
+                The files under <code>/experiments/*</code> are committed to git.
               </Typography>
               <Typography component="li">
-                URLs start with <code>/experiments/*</code> are deployed only on the pull request.
-              </Typography>
-              <Typography component="li">
-                <code>/experiments/*</code> are not included in docsearch indexing.
+                These URLs (start with <code>/experiments/*</code>) are not accessible in
+                production.
               </Typography>
             </ul>
           </Box>

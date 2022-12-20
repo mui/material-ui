@@ -32,12 +32,14 @@ export default function VerticalSlider() {
         aria-label="Temperature"
         orientation="vertical"
         getAriaValueText={valuetext}
+        valueLabelDisplay="auto"
         defaultValue={30}
       />
       <Slider
         aria-label="Temperature"
         orientation="vertical"
         defaultValue={30}
+        valueLabelDisplay="auto"
         disabled
       />
       <Slider
@@ -45,6 +47,7 @@ export default function VerticalSlider() {
         orientation="vertical"
         getAriaValueText={valuetext}
         defaultValue={[20, 37]}
+        valueLabelDisplay="auto"
         marks={marks}
       />
     </Stack>

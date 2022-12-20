@@ -192,6 +192,32 @@ describe('breakpoints', () => {
         expect(values).to.equal(3);
       });
 
+      it('return prop as it is for prop of fixed string value', () => {
+        const directionValue = 'columns';
+        const values = resolveBreakpointValues({
+          values: directionValue,
+        });
+        expect(values).to.equal('columns');
+      });
+
+      it('given custom base, resolve breakpoint values for prop of string type', () => {
+        const directionValue = 'columns';
+        const values = resolveBreakpointValues({
+          values: directionValue,
+          base: { small: true },
+        });
+        expect(values).to.deep.equal({ small: directionValue });
+      });
+
+      it('given custom base, resolve breakpoint values for prop of number type', () => {
+        const spacingValue = 3;
+        const values = resolveBreakpointValues({
+          values: spacingValue,
+          base: { small: true },
+        });
+        expect(values).to.deep.equal({ small: spacingValue });
+      });
+
       it('given custom base, resolve breakpoint values for prop of array type', () => {
         const columns = [1, 2, 3];
         const customBase = { extraSmall: true, small: true, medium: true, large: true };

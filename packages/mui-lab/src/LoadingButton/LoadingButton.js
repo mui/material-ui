@@ -112,7 +112,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   }),
   ...(ownerState.loadingPosition === 'end' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
@@ -163,6 +163,12 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const loadingButtonLoadingIndicator = loading ? (
+    <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+      {loadingIndicator}
+    </LoadingButtonLoadingIndicator>
+  ) : null;
+
   return (
     <LoadingButtonRoot
       disabled={disabled || loading}
@@ -173,32 +179,8 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       classes={classes}
       ownerState={ownerState}
     >
-      {ownerState.loadingPosition === 'end' ? (
-        <React.Fragment>
-          {children}
-          {loading && (
-            <LoadingButtonLoadingIndicator
-              className={classes.loadingIndicator}
-              ownerState={ownerState}
-            >
-              {loadingIndicator}
-            </LoadingButtonLoadingIndicator>
-          )}
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          {loading && (
-            <LoadingButtonLoadingIndicator
-              className={classes.loadingIndicator}
-              ownerState={ownerState}
-            >
-              {loadingIndicator}
-            </LoadingButtonLoadingIndicator>
-          )}
-
-          {children}
-        </React.Fragment>
-      )}
+      {ownerState.loadingPosition === 'end' ? children : loadingButtonLoadingIndicator}
+      {ownerState.loadingPosition === 'end' ? loadingButtonLoadingIndicator : children}
     </LoadingButtonRoot>
   );
 });

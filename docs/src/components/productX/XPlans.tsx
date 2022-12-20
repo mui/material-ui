@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -13,19 +13,17 @@ import ROUTES from 'docs/src/route';
 import Frame from 'docs/src/components/action/Frame';
 
 const Image = styled('img')(({ theme }) => ({
-  filter:
-    theme.palette.mode === 'dark'
-      ? 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))'
-      : 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.1))',
+  filter: 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.1))',
   transition: '0.3s',
   display: 'block',
   height: 'auto',
   borderRadius: '8px',
+  ...theme.applyDarkStyles({
+    filter: 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))',
+  }),
 }));
 
 export default function XPlans() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <Section>
       <Grid container spacing={2} alignItems="center">
@@ -38,7 +36,7 @@ export default function XPlans() {
                   Available with <GradientText>MIT and commercial licenses</GradientText>
                 </Typography>
               }
-              description="The advanced components are available under two licenses: MUI X, the MIT licensed, free to use version; and MUI X Pro, the commercially license version with the most advanced features."
+              description="MUI X components are available under two licenses: MIT for the free community version, and commercial for Pro and Premium plans."
             />
             <Button
               component={Link}
@@ -63,17 +61,20 @@ export default function XPlans() {
               }}
             >
               <Image
-                src={`/static/branding/mui-x/Mocktable-${mode}.png`}
+                src={`/static/branding/mui-x/Mocktable-light.png`}
                 alt=""
                 loading="lazy"
                 width="300"
-                sx={{
+                sx={(theme) => ({
                   width: { sm: 480 },
                   position: 'absolute',
                   left: '50%',
                   top: '50%',
                   transform: 'translate(-50%, -50%)',
-                }}
+                  ...theme.applyDarkStyles({
+                    content: 'url(/static/branding/mui-x/Mocktable-dark.png)',
+                  }),
+                })}
               />
             </Frame.Demo>
           </Frame>

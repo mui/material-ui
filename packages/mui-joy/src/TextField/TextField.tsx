@@ -8,10 +8,11 @@ import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
 import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
-import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
+import useSlot from '../utils/useSlot';
+import { TextFieldOwnerState, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
-const useUtilityClasses = (ownerState: TextFieldProps) => {
+const useUtilityClasses = (ownerState: TextFieldOwnerState) => {
   const { error, disabled, variant, size, color, fullWidth } = ownerState;
   const slots = {
     root: [
@@ -29,10 +30,10 @@ const useUtilityClasses = (ownerState: TextFieldProps) => {
 };
 
 const TextFieldRoot = styled('div', {
-  name: 'MuiTextField',
+  name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextFieldOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
@@ -58,15 +59,15 @@ const TextFieldRoot = styled('div', {
 const TextField = React.forwardRef(function TextField(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiTextField',
+    name: 'JoyTextField',
   });
 
   const {
     children,
     className,
     component,
-    components = {},
-    componentsProps = {},
+    slots = {},
+    slotProps = {},
     label,
     helperText,
     id: idOverride,
@@ -79,7 +80,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onBlur,
     onChange,
     onFocus,
-    inputRef,
     color,
     disabled = false,
     error = false,
@@ -114,24 +114,26 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Input = components.Input || JoyInput;
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: TextFieldRoot,
+    externalForwardedProps: { ...other, component, slots, slotProps },
+    ownerState,
+  });
+
+  const Input = slots.input || JoyInput;
 
   return (
-    <TextFieldRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {label && (
         <FormLabel
           htmlFor={id}
           id={formLabelId}
           required={required}
-          {...componentsProps.label}
-          {...(components.Label && {
-            component: components.Label,
+          {...slotProps.label}
+          {...(slots.label && {
+            component: slots.label,
           })}
         >
           {label}
@@ -139,11 +141,10 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       )}
 
       <Input
-        {...componentsProps.input}
+        {...slotProps.input}
         id={id}
         name={name}
         type={type}
-        inputRef={inputRef}
         aria-describedby={helperTextId}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
@@ -166,15 +167,15 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {helperText && (
         <FormHelperText
           id={helperTextId}
-          {...componentsProps.helperText}
-          {...(components.HelperText && {
-            component: components.HelperText,
+          {...slotProps.helperText}
+          {...(slots.helperText && {
+            component: slots.helperText,
           })}
         >
           {helperText}
         </FormHelperText>
       )}
-    </TextFieldRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<TextFieldTypeMap>;
 
@@ -184,13 +185,11 @@ TextField.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * This prop helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   * @ignore
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element is focused during the first mount.
+   * @ignore
    */
   autoFocus: PropTypes.bool,
   /**
@@ -217,28 +216,13 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  components: PropTypes.shape({
-    HelperText: PropTypes.elementType,
-    Input: PropTypes.elementType,
-    Label: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * @ignore
-   */
-  componentsProps: PropTypes.shape({
-    helperText: PropTypes.object,
-    input: PropTypes.object,
-    label: PropTypes.object,
-    root: PropTypes.object,
-  }),
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue: PropTypes.any,
-  /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
   /**
@@ -265,15 +249,6 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
-  /**
    * The label content.
    */
   label: PropTypes.node,
@@ -298,8 +273,7 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   required: PropTypes.bool,
   /**
@@ -311,24 +285,68 @@ TextField.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * @ignore
+   */
+  slotProps: PropTypes.shape({
+    helperText: PropTypes.object,
+    input: PropTypes.object,
+    label: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * @ignore
+   */
+  slots: PropTypes.shape({
+    helperText: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * Leading adornment for this input.
    */
   startDecorator: PropTypes.node,
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'plain'
+   * @ignore
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
+  ]),
   /**
-   * The value of the `input` element, required for a controlled component.
+   * @ignore
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

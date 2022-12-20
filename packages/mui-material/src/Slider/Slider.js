@@ -1,8 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses } from '@mui/base';
+import {
+  chainPropTypes,
+  unstable_generateUtilityClasses as generateUtilityClasses,
+} from '@mui/utils';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
@@ -33,22 +35,11 @@ const SliderRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    const marks =
-      ownerState.marksProp === true && ownerState.step !== null
-        ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map(
-            (_, index) => ({
-              value: ownerState.min + ownerState.step * index,
-            }),
-          )
-        : ownerState.marksProp || [];
-
-    const marked = marks.length > 0 && marks.some((mark) => mark.label);
-
     return [
       styles.root,
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
-      marked && styles.marked,
+      ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.track === 'inverted' && styles.trackInverted,
       ownerState.track === false && styles.trackFalse,
@@ -61,7 +52,7 @@ const SliderRoot = styled('span', {
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: theme.palette[ownerState.color].main,
+  color: (theme.vars || theme).palette[ownerState.color].main,
   WebkitTapHighlightColor: 'transparent',
   ...(ownerState.orientation === 'horizontal' && {
     height: 4,
@@ -101,7 +92,7 @@ const SliderRoot = styled('span', {
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: theme.palette.grey[400],
+    color: (theme.vars || theme).palette.grey[400],
   },
   [`&.${sliderClasses.dragging}`]: {
     [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -198,8 +189,8 @@ const SliderTrack = styled('span', {
       display: 'none',
     }),
     ...(ownerState.track === 'inverted' && {
-      backgroundColor: color,
-      borderColor: color,
+      backgroundColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
+      borderColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
     }),
   };
 });
@@ -260,7 +251,7 @@ const SliderThumb = styled('span', {
     borderRadius: 'inherit',
     width: '100%',
     height: '100%',
-    boxShadow: theme.shadows[2],
+    boxShadow: (theme.vars || theme).shadows[2],
     ...(ownerState.size === 'small' && {
       boxShadow: 'none',
     }),
@@ -277,13 +268,21 @@ const SliderThumb = styled('span', {
     transform: 'translate(-50%, -50%)',
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${
+      theme.vars
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color].main, 0.16)
+    }`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${
+      theme.vars
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color].main, 0.16)
+    }`,
   },
   [`&.${sliderClasses.disabled}`]: {
     '&:hover': {
@@ -320,31 +319,48 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  top: -10,
-  transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
-  backgroundColor: theme.palette.grey[600],
+  backgroundColor: (theme.vars || theme).palette.grey[600],
   borderRadius: 2,
-  color: theme.palette.common.white,
+  color: (theme.vars || theme).palette.common.white,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
+  ...(ownerState.orientation === 'horizontal' && {
+    top: '-10px',
+    transformOrigin: 'bottom center',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      bottom: 0,
+      left: '50%',
+    },
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    right: '30px',
+    top: '24px',
+    transformOrigin: 'right center',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      right: '-20%',
+      top: '25%',
+    },
+  }),
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(12),
     padding: '0.25rem 0.5rem',
   }),
-  '&:before': {
-    position: 'absolute',
-    content: '""',
-    width: 8,
-    height: 8,
-    bottom: 0,
-    left: '50%',
-    transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: 'inherit',
-  },
 }));
 
 SliderValueLabel.propTypes /* remove-proptypes */ = {
@@ -364,7 +380,11 @@ const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
-  overridesResolver: (props, styles) => styles.mark,
+  overridesResolver: (props, styles) => {
+    const { markActive } = props;
+
+    return [styles.mark, markActive && styles.markActive];
+  },
 })(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,
@@ -380,7 +400,7 @@ const SliderMark = styled('span', {
     transform: 'translate(-50%, 1px)',
   }),
   ...(markActive && {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
     opacity: 0.8,
   }),
 }));
@@ -405,7 +425,7 @@ const SliderMarkLabel = styled('span', {
   overridesResolver: (props, styles) => styles.markLabel,
 })(({ theme, ownerState, markLabelActive }) => ({
   ...theme.typography.body2,
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
   whiteSpace: 'nowrap',
   ...(ownerState.orientation === 'horizontal' && {
@@ -423,7 +443,7 @@ const SliderMarkLabel = styled('span', {
     },
   }),
   ...(markLabelActive && {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
   }),
 }));
 
@@ -475,6 +495,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     componentsProps = {},
     color = 'primary',
     size = 'medium',
+    slotProps,
+    slots,
     ...other
   } = props;
 
@@ -482,47 +504,70 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
   const classes = extendUtilityClasses(ownerState);
 
+  // support both `slots` and `components` for backward compatibility
+  const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
+  const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
+  const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
+  const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
+  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? SliderValueLabel;
+  const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
+  const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
+  const InputSlot = slots?.input ?? components.Input;
+
+  const rootSlotProps = slotProps?.root ?? componentsProps.root;
+  const railSlotProps = slotProps?.rail ?? componentsProps.rail;
+  const trackSlotProps = slotProps?.track ?? componentsProps.track;
+  const thumbSlotProps = slotProps?.thumb ?? componentsProps.thumb;
+  const valueLabelSlotProps = slotProps?.valueLabel ?? componentsProps.valueLabel;
+  const markSlotProps = slotProps?.mark ?? componentsProps.mark;
+  const markLabelSlotProps = slotProps?.markLabel ?? componentsProps.markLabel;
+  const inputSlotProps = slotProps?.input ?? componentsProps.input;
+
   return (
     <SliderUnstyled
       {...other}
       isRtl={isRtl}
-      components={{
-        Root: SliderRoot,
-        Rail: SliderRail,
-        Track: SliderTrack,
-        Thumb: SliderThumb,
-        ValueLabel: SliderValueLabel,
-        Mark: SliderMark,
-        MarkLabel: SliderMarkLabel,
-        ...components,
+      slots={{
+        root: RootSlot,
+        rail: RailSlot,
+        track: TrackSlot,
+        thumb: ThumbSlot,
+        valueLabel: ValueLabelSlot,
+        mark: MarkSlot,
+        markLabel: MarkLabelSlot,
+        input: InputSlot,
       }}
-      componentsProps={{
+      slotProps={{
         ...componentsProps,
         root: {
-          ...componentsProps.root,
-          ...(shouldSpreadAdditionalProps(components.Root) && {
+          ...rootSlotProps,
+          ...(shouldSpreadAdditionalProps(RootSlot) && {
             as: component,
-            ownerState: { ...componentsProps.root?.ownerState, color, size },
+            ownerState: { ...rootSlotProps?.ownerState, color, size },
           }),
         },
+        rail: railSlotProps,
         thumb: {
-          ...componentsProps.thumb,
-          ...(shouldSpreadAdditionalProps(components.Thumb) && {
-            ownerState: { ...componentsProps.thumb?.ownerState, color, size },
+          ...thumbSlotProps,
+          ...(shouldSpreadAdditionalProps(ThumbSlot) && {
+            ownerState: { ...thumbSlotProps?.ownerState, color, size },
           }),
         },
         track: {
-          ...componentsProps.track,
-          ...(shouldSpreadAdditionalProps(components.Track) && {
-            ownerState: { ...componentsProps.track?.ownerState, color, size },
+          ...trackSlotProps,
+          ...(shouldSpreadAdditionalProps(TrackSlot) && {
+            ownerState: { ...trackSlotProps?.ownerState, color, size },
           }),
         },
         valueLabel: {
-          ...componentsProps.valueLabel,
-          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
-            ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
+          ...valueLabelSlotProps,
+          ...(shouldSpreadAdditionalProps(ValueLabelSlot) && {
+            ownerState: { ...valueLabelSlotProps?.ownerState, color, size },
           }),
         },
+        mark: markSlotProps,
+        markLabel: markLabelSlotProps,
+        input: inputSlotProps,
       }}
       classes={classes}
       ref={ref}
@@ -586,8 +631,11 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -601,26 +649,33 @@ Slider.propTypes /* remove-proptypes */ = {
     ValueLabel: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Slider.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    mark: PropTypes.object,
-    markLabel: PropTypes.object,
-    rail: PropTypes.object,
-    root: PropTypes.object,
-    thumb: PropTypes.object,
-    track: PropTypes.object,
-    valueLabel: PropTypes.shape({
-      className: PropTypes.string,
-      components: PropTypes.shape({
-        Root: PropTypes.elementType,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
-      style: PropTypes.object,
-      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-    }),
+    ]),
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -722,6 +777,45 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+      }),
+    ]),
+  }),
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

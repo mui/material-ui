@@ -51,6 +51,8 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 }
 
 function breakpoints(styleFunction) {
+  // false positive
+  // eslint-disable-next-line react/function-component-definition
   const newStyleFunction = (props) => {
     const theme = props.theme || {};
     const base = styleFunction(props);
@@ -85,7 +87,7 @@ function breakpoints(styleFunction) {
 }
 
 export function createEmptyBreakpointObject(breakpointsInput = {}) {
-  const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
+  const breakpointsInOrder = breakpointsInput.keys?.reduce((acc, key) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
     return acc;
@@ -158,12 +160,14 @@ export function resolveBreakpointValues({
       acc[breakpoint] =
         breakpointValues[i] != null ? breakpointValues[i] : breakpointValues[previous];
       previous = i;
-    } else {
+    } else if (typeof breakpointValues === 'object') {
       acc[breakpoint] =
         breakpointValues[breakpoint] != null
           ? breakpointValues[breakpoint]
-          : breakpointValues[previous] || breakpointValues;
+          : breakpointValues[previous];
       previous = breakpoint;
+    } else {
+      acc[breakpoint] = breakpointValues;
     }
     return acc;
   }, {});

@@ -90,7 +90,7 @@ const RatingRoot = styled('span', {
   textAlign: 'left',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
   [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
@@ -111,7 +111,10 @@ const RatingRoot = styled('span', {
 const RatingLabel = styled('label', {
   name: 'MuiRating',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
+  overridesResolver: ({ ownerState }, styles) => [
+    styles.label,
+    ownerState.emptyValueFocused && styles.labelEmptyValueActive,
+  ],
 })(({ ownerState }) => ({
   cursor: 'inherit',
   ...(ownerState.emptyValueFocused && {
@@ -151,7 +154,7 @@ const RatingIcon = styled('span', {
     transform: 'scale(1.2)',
   }),
   ...(ownerState.iconEmpty && {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   }),
 }));
 
@@ -354,8 +357,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
-  const handleRef = useForkRef(handleFocusRef, ref);
+  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {

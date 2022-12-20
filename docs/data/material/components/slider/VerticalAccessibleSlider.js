@@ -20,6 +20,7 @@ export default function VerticalSlider() {
         orientation="vertical"
         defaultValue={30}
         aria-label="Temperature"
+        valueLabelDisplay="auto"
         onKeyDown={preventHorizontalKeyboardNavigation}
       />
     </Box>

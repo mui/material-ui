@@ -1,5 +1,6 @@
-import Link from '@mui/joy/Link';
 import * as React from 'react';
+import Link, { LinkOwnerState } from '@mui/joy/Link';
+import { expectType } from '@mui/types';
 
 <Link />;
 <Link component="div" />;
@@ -17,6 +18,8 @@ import * as React from 'react';
 <Link color="success" />;
 <Link color="warning" />;
 <Link color="neutral" />;
+
+<Link textColor="neutral.500" />;
 
 // `level`
 <Link level="h2" />;
@@ -43,11 +46,56 @@ import * as React from 'react';
 // @ts-expect-error there is no color `secondary`
 <Link color="secondary" />;
 
-// @ts-expect-error there is no level `h7`
-<Link level="h7" />;
-
-// @ts-expect-error there is no level `body4`
-<Link level="body4" />;
+// @ts-expect-error there is no level `unknown`
+<Link level="unknown" />;
 
 // @ts-expect-error there is no underline `never`
 <Link underline="never" />;
+
+<Link
+  slots={{
+    root: 'div',
+    startDecorator: 'div',
+    endDecorator: 'div',
+  }}
+/>;
+
+<Link
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    startDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    endDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Link
+  slotProps={{
+    root: (ownerState) => {
+      expectType<LinkOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    startDecorator: (ownerState) => {
+      expectType<LinkOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    endDecorator: (ownerState) => {
+      expectType<LinkOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

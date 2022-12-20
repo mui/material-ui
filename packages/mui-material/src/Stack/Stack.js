@@ -4,6 +4,7 @@ import {
   createUnarySpacing,
   getValue,
   handleBreakpoints,
+  mergeBreakpointsInOrder,
   unstable_extendSxProp as extendSxProp,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
@@ -44,6 +45,7 @@ const getSideFromDirection = (direction) => {
 export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
+    flexDirection: 'column',
     ...handleBreakpoints(
       { theme },
       resolveBreakpointValues({
@@ -60,7 +62,10 @@ export const style = ({ ownerState, theme }) => {
     const transformer = createUnarySpacing(theme);
 
     const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
+      if (
+        (typeof ownerState.spacing === 'object' && ownerState.spacing[breakpoint] != null) ||
+        (typeof ownerState.direction === 'object' && ownerState.direction[breakpoint] != null)
+      ) {
         acc[breakpoint] = true;
       }
       return acc;
@@ -76,6 +81,17 @@ export const style = ({ ownerState, theme }) => {
       base,
     });
 
+    if (typeof directionValues === 'object') {
+      Object.keys(directionValues).forEach((breakpoint, index, breakpoints) => {
+        const directionValue = directionValues[breakpoint];
+        if (!directionValue) {
+          const previousDirectionValue =
+            index > 0 ? directionValues[breakpoints[index - 1]] : 'column';
+          directionValues[breakpoint] = previousDirectionValue;
+        }
+      });
+    }
+
     const styleFromPropValue = (propValue, breakpoint) => {
       return {
         '& > :not(style) + :not(style)': {
@@ -88,6 +104,8 @@ export const style = ({ ownerState, theme }) => {
     };
     styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
   }
+
+  styles = mergeBreakpointsInOrder(theme.breakpoints, styles);
 
   return styles;
 };

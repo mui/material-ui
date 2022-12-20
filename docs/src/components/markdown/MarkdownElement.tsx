@@ -8,10 +8,10 @@ import {
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   '& pre': {
-    backgroundColor: theme.palette.primaryDark[800],
-    direction: 'ltr',
+    backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+    color: '#f8f8f2', // fallback color until Prism's theme is loaded
     overflow: 'auto',
     margin: 0,
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
@@ -20,12 +20,15 @@ const Root = styled('div')(({ theme }) => ({
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
-  '& code[class*="language-"]': {
+  '& code': {
     // Avoid layout jump after hydration (style injected by prism)
     ...theme.typography.caption,
     fontFamily: theme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
+    // Reset for Safari
+    // https://github.com/necolas/normalize.css/blob/master/normalize.css#L102
+    fontSize: '1em',
   },
 }));
 

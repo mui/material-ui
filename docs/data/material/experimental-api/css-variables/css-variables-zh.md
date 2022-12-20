@@ -8,9 +8,12 @@ This solves the problem of dark-mode SSR flickering; lets you provide your users
 
 Previously, these CSS variables were only available as an experimental API in the MUI System package. Now they are ready for experimental use with Material UI components.
 
-> If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
-> 
-> We'd appreciate any feedback about this API, as it is still in development.
+:::info
+If you want to see wider support for this API across Material UI's component library, please feel free to contribute to the ongoing development. Make sure to check the [GitHub issue](https://github.com/mui/material-ui/issues/32049) that keeps track of our progress, to see if anyone else is currently working on a component you're interested in.
+<br/>
+<br/>
+We'd appreciate any feedback about this API, as it is still in development.
+:::
 
 ## Introduction
 
@@ -20,7 +23,7 @@ All of these variables are accessible in an object in the theme called `vars`. T
 
 ## Usage
 
-`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the theme.
+`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the `theme.vars`.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -30,13 +33,15 @@ function App() {
 }
 ```
 
+If you use TypeScript, check out the [theme types setup](#typescript).
+
 ### Customizing components
 
 Because the CSS variables API is an experimental feature, it is currently only supported by the `Button` component. To customize it using CSS variables, you'll need to wrap your application with `Experimental_CssVarsProvider`.
 
 Play around with the demo below!
 
-{{"demo": "CssVariablesCustomization.js", "iframe": true }}
+{{"demo": "CssVariablesCustomization.js" }}
 
 If you are using TypeScript you should use module augmentation to update the `Theme` structure:
 
@@ -76,7 +81,7 @@ const theme = experimental_extendTheme({
 });
 ```
 
-{{"demo": "CssVarsCustomTheme.js", "iframe": true }}
+{{"demo": "CssVarsCustomTheme.js" }}
 
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 
@@ -184,6 +189,26 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 export function onRenderBody({ setPreBodyComponents }) {
   setPreBodyComponents([getInitColorSchemeScript()]);
 }
+```
+
+### TypeScript
+
+You need to import the theme augmentation to include `theme.vars` and other utilities related to CSS variables to the theme:
+
+```ts
+// this can be the root file of you application
+import type {} from '@mui/material/themeCssVarsAugmentation';
+```
+
+Then, you will be able to access `theme.vars` in any of the styling APIs, for example the `styled`:
+
+```ts
+import { styled } from '@mui/material/styles';
+
+const StyledComponent = styled('button')(({ theme }) => ({
+  // typed-safe
+  color: theme.vars.palette.primary.main,
+}));
 ```
 
 ## API

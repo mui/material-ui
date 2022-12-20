@@ -12,7 +12,7 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 [1 kB gzipped](/size-snapshot).
+- 📦 [1 kB gzipped](/size-snapshot/).
 - 🤖 It supports server-side rendering.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -20,7 +20,7 @@ Some of the key features:
 ## Basic media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
+The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -118,15 +118,17 @@ const theme = createTheme({
 
 ## Server-side rendering
 
-> ⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
-> Be aware of the tradeoff. The support can only be partial.
+:::warning
+Server-side rendering and client-side media queries are fundamentally at odds.
+Be aware of the tradeoff. The support can only be partial.
+:::
 
 Try relying on client-side CSS media queries first.
 For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/material-ui/customization/breakpoints/#css-media-queries)
-- or [`sx prop`](/system/basics/#heading-the-sx-prop)
+- or [`sx prop`](/system/getting-started/the-sx-prop/)
 
 If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 

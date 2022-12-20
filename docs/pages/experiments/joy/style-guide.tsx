@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
+import Container from '@mui/joy/Container';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
@@ -19,7 +19,7 @@ const rgb2hex = (rgb: string) =>
     .map((n) => parseInt(n, 10).toString(16).padStart(2, '0'))
     .join('')}`;
 
-const ColorSchemePicker = () => {
+function ColorSchemePicker() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -58,9 +58,9 @@ const ColorSchemePicker = () => {
       </Box>
     </Box>
   );
-};
+}
 
-const ColorToken = ({ name, value }: { name: string; value: string }) => {
+function ColorToken({ name, value }: { name: string; value: string }) {
   const [color, setColor] = React.useState('');
   const ref = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
@@ -86,20 +86,25 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
       <Typography level="body3">{color}</Typography>
     </Box>
   );
-};
+}
 
-const PaletteTokens = () => {
+function PaletteTokens() {
   const { colorScheme } = useColorScheme();
   const { palette } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <React.Fragment>
-      <Typography level="h5" sx={{ mb: 1 }}>
-        Palette ({colorScheme})
-      </Typography>
-
+      {mounted && (
+        <Typography level="h5" sx={{ mb: 1 }}>
+          Palette ({colorScheme})
+        </Typography>
+      )}
       <Box>
         {Object.entries(palette).map(([key, nestedObj]) => {
-          if (typeof nestedObj === 'string') {
+          if (typeof nestedObj === 'string' && mounted) {
             return <ColorToken key={key} name={key} value={nestedObj} />;
           }
           return (
@@ -133,9 +138,9 @@ const PaletteTokens = () => {
       </Box>
     </React.Fragment>
   );
-};
+}
 
-const TypographyScale = () => {
+function TypographyScale() {
   const { typography } = useTheme();
   return (
     <React.Fragment>
@@ -152,7 +157,7 @@ const TypographyScale = () => {
       })}
     </React.Fragment>
   );
-};
+}
 
 export default function JoyStyleGuide() {
   return (

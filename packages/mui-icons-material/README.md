@@ -1,6 +1,6 @@
 # @mui/icons-material
 
-This package provides the Google [Material icons](https://fonts.google.com/icons) packaged as a set of [React](https://facebook.github.io/react/) components.
+This package provides the Google [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](https://mui.com/material-ui/api/svg-icon/) components.
 
 ## Installation
 
@@ -18,10 +18,9 @@ yarn add @mui/icons-material
 
 <!-- #default-branch-switch -->
 
-These components use the MUI [SvgIcon](https://mui.com/api/svg-icon/) component to
-render the SVG path for each icon.
+These components use the Material UI's [SvgIcon](https://mui.com/material-ui/api/svg-icon) component to render the SVG path for each icon.
 
-If you are not already using MUI in your project, you can add it with:
+If you are not already using Material UI in your project, you can add it with:
 
 ```sh
 // with npm
@@ -35,8 +34,8 @@ yarn add @mui/material
 
 <!-- #default-branch-switch -->
 
-- [The documentation](https://mui.com/components/icons/#svg-material-icons)
-- [The icons search](https://mui.com/components/material-icons/)
+- [The documentation](https://mui.com/material-ui/icons/#svgicon)
+- [The icons search](https://mui.com/material-ui/material-icons/)
 
 ## Contributing
 
@@ -48,4 +47,4 @@ To synchronize with Material Icons, do the following:
 1. Inside this workspace run `yarn src:download`
 2. Inside this workspace run `yarn src:icons`
 3. Inside the root run `yarn docs:mdicons:synonyms`
-4. If the number of icons changed significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/src/pages/components and update the numbers.
+4. If the number of icons changed significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.

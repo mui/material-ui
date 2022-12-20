@@ -43,6 +43,8 @@ describe('MenuItemUnstyled', () => {
         expectedClassName: menuItemUnstyledClasses.root,
       },
     },
-    skip: ['reactTestRenderer'], // Need to be wrapped in MenuUnstyledContext
+    skip: [
+      'reactTestRenderer', // Need to be wrapped in MenuUnstyledContext
+    ],
   }));
 });

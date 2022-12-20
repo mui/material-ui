@@ -12,12 +12,29 @@ const rule = {
       noNameValue:
         'Unable to resolve `name`. Please hardcode the `name` i.e. use a string literal.',
     },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          customHooks: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const [options = {}] = context.options;
     const { customHooks = [] } = options;
 
     function resolveUseThemePropsNameLiteral(node) {
+      if (!node.arguments[0].properties) {
+        return null;
+      }
       const nameProperty = node.arguments[0].properties.find(
         (property) => property.key.name === 'name',
       );

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
@@ -13,12 +13,15 @@ import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBan
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
   order: 1,
-  width: 240,
+  width: 'var(--MuiDocs-toc-width)',
+  paddingLeft: 2, // Fix truncated focus outline style
   flexShrink: 0,
   position: 'sticky',
   height: '100vh',
   overflowY: 'auto',
-  padding: theme.spacing('calc(var(--MuiDocs-header-height) + 1rem)', 4, 2, 0),
+  paddingTop: 'calc(var(--MuiDocs-header-height) + 1rem)',
+  paddingBottom: theme.spacing(4),
+  paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
   [theme.breakpoints.up('sm')]: {
     display: 'block',
@@ -114,9 +117,21 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
+const shouldShowJobAd = () => {
+  const date = new Date();
+  const timeZoneOffset = date.getTimezoneOffset();
+  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
+  if (timeZoneOffset <= -5.5 * 60 || timeZoneOffset >= 8 * 60) {
+    return false;
+  }
+  return true;
+};
+
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
+  const showSurveyBanner = true;
+  const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -204,6 +219,98 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
+        {showSurveyBanner && (
+          <Link
+            href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=docs"
+            target="_blank"
+            sx={(theme) => ({
+              mb: 2,
+              p: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'📫 MUI Developer survey 2022 is live!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {'Influence the future of MUI. Help define the roadmap for 2023!'}
+            </Typography>
+          </Link>
+        )}
+        {showAddJob && (
+          <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            target="_blank"
+            sx={(theme) => ({
+              mb: 2,
+              p: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+              {'🚀 Join the MUI team!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              fontWeight="normal"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {"We're looking for React Engineers and other amazing roles－come find out more!"}
+            </Typography>
+          </Link>
+        )}
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>

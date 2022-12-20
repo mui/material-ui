@@ -21,7 +21,7 @@ export default function CustomizedInputBase() {
         placeholder="Search Google Maps"
         inputProps={{ 'aria-label': 'search google maps' }}
       />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

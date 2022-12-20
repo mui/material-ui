@@ -8,7 +8,6 @@ import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
-
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 
@@ -85,7 +84,7 @@ function ProductItem({
   );
 }
 
-const ProductsSwitcher = ({
+function ProductsSwitcher({
   inView = false,
   productIndex,
   setProductIndex,
@@ -93,7 +92,7 @@ const ProductsSwitcher = ({
   inView?: boolean;
   productIndex: number;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+}) {
   const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
@@ -178,6 +177,6 @@ const ProductsSwitcher = ({
       </Stack>
     </React.Fragment>
   );
-};
+}
 
 export default ProductsSwitcher;

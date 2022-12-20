@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -8,8 +9,10 @@ import {
 } from '@mui/utils';
 import { createPopper } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import * as React from 'react';
+import composeClasses from '../composeClasses';
 import Portal from '../Portal';
+import { getPopperUnstyledUtilityClass } from './popperUnstyledClasses';
+import { useSlotProps } from '../utils';
 
 function flipPlacement(placement, direction) {
   if (direction === 'ltr') {
@@ -34,6 +37,14 @@ function resolveAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+const useUtilityClasses = () => {
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getPopperUnstyledUtilityClass, {});
+};
+
 const defaultPopperOptions = {};
 
 /* eslint-disable react/prop-types */
@@ -41,6 +52,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   const {
     anchorEl,
     children,
+    component,
     direction,
     disablePortal,
     modifiers,
@@ -49,6 +61,8 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
+    slotProps = {},
+    slots = {},
     TransitionProps,
     ...other
   } = props;
@@ -70,6 +84,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState(rtlPlacement);
+  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState(
+    resolveAnchorEl(anchorEl),
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -77,8 +94,14 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     }
   });
 
+  React.useEffect(() => {
+    if (anchorEl) {
+      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
+    }
+  }, [anchorEl]);
+
   useEnhancedEffect(() => {
-    if (!anchorEl || !open) {
+    if (!resolvedAnchorElement || !open) {
       return undefined;
     }
 
@@ -86,11 +109,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       setPlacement(data.placement);
     };
 
-    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
-
     if (process.env.NODE_ENV !== 'production') {
-      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
+      if (resolvedAnchorElement && resolvedAnchorElement.nodeType === 1) {
+        const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
           process.env.NODE_ENV !== 'test' &&
@@ -140,7 +161,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolveAnchorEl(anchorEl), tooltipRef.current, {
+    const popper = createPopper(resolvedAnchorElement, tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
@@ -152,7 +173,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popper.destroy();
       handlePopperRefRef.current(null);
     };
-  }, [anchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+  }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
 
   const childProps = { placement };
 
@@ -160,10 +181,26 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     childProps.TransitionProps = TransitionProps;
   }
 
+  const classes = useUtilityClasses();
+  const Root = component ?? slots.root ?? 'div';
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      role: 'tooltip',
+      ref: ownRef,
+    },
+    ownerState: {
+      // shallow merge ownerState from external component, e.g. Joy Menu.
+      ...props,
+      ...ownerState,
+    },
+    className: classes.root,
+  });
+
   return (
-    <div ref={ownRef} role="tooltip" {...other}>
-      {typeof children === 'function' ? children(childProps) : children}
-    </div>
+    <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
   );
 });
 /* eslint-enable react/prop-types */
@@ -423,6 +460,21 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
    * A ref that points to the used popper instance.
    */
   popperRef: refType,
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * @ignore
    */

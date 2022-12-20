@@ -2,7 +2,7 @@
 product: material-ui
 components: Link
 githubLabel: 'component: link'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
 # Links 链接
@@ -13,7 +13,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## 简单的链接
 
-链接（Links）组件是基于 [文字铸排（Typography）](/material-ui/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
+The Link component is built on top of the [Typography](/material-ui/api/typography/) component, meaning that you can use its props.
 
 {{"demo": "Links.js"}}
 
@@ -41,7 +41,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
 - 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类。 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明。
 - 为了获得最佳的用户体验，链接应该从页面上的文字中脱颖而出。 For instance, you can keep the default `underline="always"` behavior.

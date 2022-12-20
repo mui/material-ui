@@ -1,8 +1,11 @@
+import { OverridableStringUnion } from '@mui/types';
 import {
   Breakpoints,
   Spacing,
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
+  CSSObject,
+  SxConfig,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -17,7 +20,7 @@ import {
   LetterSpacing,
   TypographySystem,
 } from './typography';
-import { Variants } from './variants';
+import { Variants, VariantOverrides, ColorInversionConfig } from './variants';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -33,11 +36,15 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
     : never
   : never;
 
+/**
+ * Does not work for these cases:
+ * - { borderRadius: string | number } // the value can't be a union
+ * - { shadows: [string, string, ..., string] } // the value can't be an array
+ */
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
 export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
   palette: ColorSystem['palette'] & {
-    mode: 'light' | 'dark';
     colorScheme: DefaultColorScheme | ExtendedColorScheme;
   };
 }
@@ -45,6 +52,7 @@ export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
 export interface ThemeScales {
   radius: Radius;
   shadow: Shadow;
+  focus: { thickness: string };
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
@@ -52,23 +60,30 @@ export interface ThemeScales {
   letterSpacing: LetterSpacing;
 }
 
-export interface ThemeVars extends ThemeScales, ColorSystem {}
+interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
+  palette: Omit<ColorSystem['palette'], 'mode'>;
+}
+export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 
-export type ThemeCSSVar = NormalizeVars<ThemeVars>;
+export interface ThemeCssVarOverrides {}
+
+export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
+  colorInversion: VariantOverrides;
+  colorInversionConfig: ColorInversionConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
-  prefix: string;
+  cssVarPrefix: string;
   vars: ThemeVars;
-  getCssVar: <CustomVar extends string = never>(
-    field: ThemeCSSVar | CustomVar,
-    ...vars: (ThemeCSSVar | CustomVar)[]
-  ) => string;
+  getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
+  getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SxProps) => CSSObject;
 }
 
 export type SxProps = SystemSxProps<Theme>;

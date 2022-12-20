@@ -1,6 +1,8 @@
 export { default } from './TablePaginationUnstyled';
-export type { default as TablePaginationUnstyledProps } from './TablePaginationUnstyledProps';
-export * from './TablePaginationUnstyledProps';
-export type { default as TablePaginationActionsUnstyledProps } from './TablePaginationActionsUnstyledProps';
+export * from './TablePaginationUnstyled.types';
+
+export { default as TablePaginationActionsUnstyled } from './TablePaginationActionsUnstyled';
+export * from './TablePaginationActionsUnstyled.types';
+
 export { default as tablePaginationUnstyledClasses } from './tablePaginationUnstyledClasses';
 export * from './tablePaginationUnstyledClasses';

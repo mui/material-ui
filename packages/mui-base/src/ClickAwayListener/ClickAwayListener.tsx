@@ -11,7 +11,7 @@ import {
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(
   eventProp: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler,
-): 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' {
+): 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' | 'pointerdown' | 'pointerup' {
   return eventProp.substring(2).toLowerCase() as any;
 }
 
@@ -22,7 +22,12 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
   );
 }
 
-type ClickAwayMouseEventHandler = 'onClick' | 'onMouseDown' | 'onMouseUp';
+type ClickAwayMouseEventHandler =
+  | 'onClick'
+  | 'onMouseDown'
+  | 'onMouseUp'
+  | 'onPointerDown'
+  | 'onPointerUp';
 type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
 
 export interface ClickAwayListenerProps {
@@ -58,7 +63,7 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click away listener](https://mui.com/base/react-click-away-listener/)
+ * - [Click-Away Listener](https://mui.com/base/react-click-away-listener/)
  *
  * API:
  *
@@ -228,7 +233,14 @@ ClickAwayListener.propTypes /* remove-proptypes */ = {
    * The mouse event to listen to. You can disable the listener by providing `false`.
    * @default 'onClick'
    */
-  mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
+  mouseEvent: PropTypes.oneOf([
+    'onClick',
+    'onMouseDown',
+    'onMouseUp',
+    'onPointerDown',
+    'onPointerUp',
+    false,
+  ]),
   /**
    * Callback fired when a "click away" event is detected.
    */

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -11,11 +10,12 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getLinkUtilityClass } from './linkClasses';
-import { LinkProps, LinkTypeMap } from './LinkProps';
+import useSlot from '../utils/useSlot';
+import linkClasses, { getLinkUtilityClass } from './linkClasses';
+import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
 
-const useUtilityClasses = (ownerState: LinkProps) => {
+const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
 
   const slots = {
@@ -36,32 +36,38 @@ const useUtilityClasses = (ownerState: LinkProps) => {
 };
 
 const StartDecorator = styled('span', {
-  name: 'MuiLink',
+  name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: LinkProps }>({
+})<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.375em), 0.75rem)',
 });
 
 const EndDecorator = styled('span', {
-  name: 'MuiLink',
+  name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: LinkProps }>({
+})<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',
+  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)', // for end decorator, 0.25em looks better.
 });
 
 const LinkRoot = styled('a', {
-  name: 'MuiLink',
+  name: 'JoyLink',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: LinkProps }>(({ theme, ownerState }) => {
+})<{ ownerState: LinkOwnerState }>(({ theme, ownerState }) => {
   return [
     {
       '--Icon-fontSize': '1.25em',
+      '--CircularProgress-size': '1em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+      ...(ownerState.level === 'inherit' && {
+        fontSize: 'inherit',
+        fontFamily: 'inherit',
+        lineHeight: 'inherit',
+      }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
       }),
@@ -92,15 +98,18 @@ const LinkRoot = styled('a', {
       } / var(--Link-underlineOpacity, 0.72))`,
       ...(ownerState.variant
         ? {
-            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-            marginInline: '-0.25em',
+            paddingBlock: 'min(0.15em, 4px)',
+            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+            ...(!ownerState.nested && {
+              marginInline: '-0.375em',
+            }),
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.plainColor,
+            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             cursor: 'pointer',
-            '&.Mui-disabled': {
+            [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
             },
           }),
       userSelect: 'none',
@@ -120,8 +129,8 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--Link-overlayRadius, var(--internal-action-radius, inherit))`,
-              margin: `var(--Link-overlayMargin)`,
+              borderRadius: `var(--internal-action-radius, inherit)`,
+              margin: `var(--internal-action-margin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
@@ -132,26 +141,31 @@ const LinkRoot = styled('a', {
             [theme.focus.selector]: theme.focus.default,
           }),
     },
-    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    ownerState.variant && {
+      ...theme.variants[ownerState.variant]?.[ownerState.color!],
+      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
+      [`&.${linkClasses.disabled}`]:
+        theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    },
   ];
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const { color = 'primary', ...themeProps } = useThemeProps<typeof inProps & LinkProps>({
+  const {
+    color = 'primary',
+    textColor,
+    ...themeProps
+  } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
-    name: 'MuiLink',
+    name: 'JoyLink',
   });
 
   const nested = React.useContext(TypographyContext);
 
-  const props = extendSxProp(themeProps) as LinkProps;
+  const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
-    className,
-    component = 'a',
     children,
     disabled = false,
     onBlur,
@@ -197,7 +211,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     disabled,
     focusVisible,
     underline,
@@ -209,29 +222,43 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <LinkRoot
-      className={clsx(classes.root, className)}
-      as={component}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-      ref={handleRef}
-      ownerState={ownerState}
-      {...other}
-    >
-      {startDecorator && (
-        <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
-          {startDecorator}
-        </StartDecorator>
-      )}
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      onBlur: handleBlur,
+      onFocus: handleFocus,
+    },
+    ref: handleRef,
+    className: classes.root,
+    elementType: LinkRoot,
+    externalForwardedProps: other,
+    ownerState,
+  });
 
-      {children}
-      {endDecorator && (
-        <EndDecorator ownerState={ownerState} className={classes.endDecorator}>
-          {endDecorator}
-        </EndDecorator>
-      )}
-    </LinkRoot>
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: EndDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  return (
+    <TypographyContext.Provider value>
+      <SlotRoot {...rootProps}>
+        {startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+        )}
+
+        {children}
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
@@ -245,22 +272,13 @@ Link.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the link.
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -305,6 +323,10 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * The system color.
+   */
+  textColor: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  /**
    * Controls when the link should have an underline.
    * @default 'hover'
    */
@@ -314,7 +336,7 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

@@ -11,7 +11,7 @@ Material UI provides several different ways to customize a component's styles. Y
 
 1. [One-off customization](#1-one-off-customization)
 1. [Reusable component](#2-reusable-component)
-1. [Global theme variation](#3-global-theme-overrides)
+1. [Global theme overrides](#3-global-theme-overrides)
 1. [Global CSS override](#4-global-css-override)
 
 ## 1. One-off customization
@@ -20,7 +20,7 @@ To change the styles of _one single instance_ of a component, you can use one of
 
 ### The `sx` prop
 
-The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases.
+The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases.
 It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
@@ -40,12 +40,14 @@ In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you 
 
 {{"demo": "DevTools.js"}}
 
-> ⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+:::warning
+These class names can't be used as CSS selectors because they are unstable.
+:::
 
 ### Overriding styles with class names
 
 If you want to override a component's styles using custom classes, you can use the `className` prop, available on each component.
-To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section—[Overriding nested component styles](#overriding-nested-component-styles).
+To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section **"Overriding nested component styles"** under the [`sx` prop section](#the-sx-prop).
 
 Visit the [Style library interoperability](/material-ui/guides/interoperability/) guide to find examples of this approach using different styling libraries.
 
@@ -114,7 +116,9 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
-> ⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+:::error
+Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+:::
 
 ```css
 /* ❌ NOT OK */
@@ -141,7 +145,9 @@ You can do this with **dynamic CSS** or **CSS variables**.
 
 #### Dynamic CSS
 
-> ⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+:::warning
+If you are using TypeScript, you will need to update the prop's types of the new component.
+:::
 
 {{"demo": "DynamicCSS.js", "defaultCodeOpen": false}}
 
@@ -184,7 +190,13 @@ If you are already using the [CssBaseline](/material-ui/react-css-baseline/) com
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
-> Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+The `styleOverrides` key in the `MuiCssBaseline` component slot also supports callback from which you can access the theme. Here is how you can achieve the same by using this approach.
+
+{{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
+
+:::success
+It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+:::
 
 ```diff
  import * as React from 'react';
@@ -192,7 +204,7 @@ If you are already using the [CssBaseline](/material-ui/react-css-baseline/) com
 
 +const inputGlobalStyles = <GlobalStyles styles={...} />;
 
- const Input = (props) => {
+ function Input(props) {
    return (
      <React.Fragment>
 -      <GlobalStyles styles={...} />

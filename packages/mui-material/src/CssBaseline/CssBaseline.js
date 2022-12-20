@@ -11,20 +11,29 @@ export const html = (theme, enableColorScheme) => ({
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
+  // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   ...theme.typography.body1,
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: (theme.vars || theme).palette.background.default,
   '@media print': {
     // Save printer ink.
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: (theme.vars || theme).palette.common.white,
   },
 });
 
 export const styles = (theme, enableColorScheme = false) => {
+  const colorSchemeStyles = {};
+  if (enableColorScheme && theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+        colorScheme: scheme.palette?.mode,
+      };
+    });
+  }
   let defaultStyles = {
     html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
@@ -39,9 +48,10 @@ export const styles = (theme, enableColorScheme = false) => {
       // Add support for document.body.requestFullScreen().
       // Other elements, if background transparent, are not supported.
       '&::backdrop': {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
+    ...colorSchemeStyles,
   };
 
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;

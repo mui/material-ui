@@ -38,7 +38,7 @@ Here are the most significant improvements since the beginning of the year:
 
 - 🦴 We have added a new "wave" animation to the [Skeleton](https://v4.mui.com/components/skeleton/#animations) component.
 
-  <video autoplay muted loop style="max-height: 95px; margin-bottom: 24px;">
+  <video style="max-height: 95px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
   </video>
 
@@ -67,10 +67,10 @@ But this summary is just scratching the surface. We have accepted 572 commits fr
 We are thrilled to welcome two new full-time developers on MUI:
 
 - [Dmitriy Kovalenko](https://github.com/dmtrKovalenko), the author of @material-ui/pickers.
-  <img src="https://avatars0.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Damien Tassone](https://github.com/dtassone/), an experienced developer in the finance industry.
-  <img src="https://avatars0.githubusercontent.com/u/936978" alt="damien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/936978" alt="damien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 ### Growth between Q4 2019 and Q1 2020
 

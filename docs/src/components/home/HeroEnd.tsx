@@ -4,10 +4,12 @@ import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-const Placeholder = () => <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
+function Placeholder() {
+  return <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
+}
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 
-const HeroEnd = () => {
+export default function HeroEnd() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -16,18 +18,20 @@ const HeroEnd = () => {
   return (
     <Box
       ref={ref}
-      sx={{
-        background: (theme) =>
-          theme.palette.mode === 'dark'
-            ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
-            : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-      }}
+      sx={(theme) => ({
+        background: `linear-gradient(180deg, ${
+          (theme.vars || theme).palette.grey[50]
+        } 0%, #FFFFFF 100%)`,
+        ...theme.applyDarkStyles({
+          background: `linear-gradient(180deg, ${
+            (theme.vars || theme).palette.primaryDark[900]
+          } 0%, #001E3C 100%)`,
+        }),
+      })}
     >
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         {inView ? <StartToday /> : <Placeholder />}
       </Container>
     </Box>
   );
-};
-
-export default HeroEnd;
+}

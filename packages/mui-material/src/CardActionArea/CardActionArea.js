@@ -27,13 +27,13 @@ const CardActionAreaRoot = styled(ButtonBase, {
   textAlign: 'inherit',
   width: '100%',
   [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: theme.palette.action.hoverOpacity,
+    opacity: (theme.vars || theme).palette.action.hoverOpacity,
     '@media (hover: none)': {
       opacity: 0,
     },
   },
   [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: theme.palette.action.focusOpacity,
+    opacity: (theme.vars || theme).palette.action.focusOpacity,
   },
 }));
 

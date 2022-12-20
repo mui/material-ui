@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useInput } from '@mui/base';
 import { styled } from '@mui/system';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
 const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
   400: '#3399FF',
+  500: '#007FFF',
   600: '#0072E5',
 };
 
@@ -25,37 +27,43 @@ const grey = {
 const StyledInputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
-  font-size: 0.875rem;
   font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
+  padding: 12px;
+  border-radius: 12px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 8px;
-  padding: 12px 12px;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? null : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    border-color: ${blue[400]};
   }
 
   &:focus {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 `,
 );
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { getRootProps, getInputProps } = useInput(props, ref);
+  const { getRootProps, getInputProps } = useInput(props);
+
+  const inputProps = getInputProps();
+
+  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
+  inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
     <div {...getRootProps()}>
-      <StyledInputElement {...props} {...getInputProps()} />
+      <StyledInputElement {...props} {...inputProps} />
     </div>
   );
 });
 
 export default function UseInput() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something..." />;
+  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
 }

@@ -37,6 +37,7 @@
     "name": { "type": { "name": "string" } },
     "onBlur": { "type": { "name": "func" } },
     "onChange": { "type": { "name": "func" } },
+    "onInvalid": { "type": { "name": "func" } },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
@@ -46,6 +47,14 @@
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       }
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
     },
     "startAdornment": { "type": { "name": "node" } },
     "sx": {
@@ -72,6 +81,7 @@
       "colorSecondary",
       "fullWidth",
       "hiddenLabel",
+      "readOnly",
       "input",
       "inputSizeSmall",
       "inputMultiline",
@@ -87,6 +97,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/InputBase/InputBase.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

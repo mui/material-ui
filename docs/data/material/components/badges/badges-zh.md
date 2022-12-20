@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: React Badge（徽章）组件
-components: Badge, BadgeUnstyled
+components: Badge
 githubLabel: 'component: badge'
 unstyled: /base/react-badge/
 ---
@@ -26,7 +26,7 @@ Use `color` prop to apply theme palette to component.
 
 ## 徽章组件的可见性
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBadges.js"}}
 
@@ -66,6 +66,6 @@ The badge hides automatically when `badgeContent` is zero. 您可以使用 `show
 
 ## Accessibility
 
-您不能指望徽章的内容被正确的读出。 您应该提供一个完整的描述，例如， 使用 `aria-label`：
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
 
 {{"demo": "AccessibleBadges.js"}}

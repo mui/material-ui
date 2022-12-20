@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { GridRenderEditCellParams } from '@mui/x-data-grid';
+import { GridRenderEditCellParams, useGridApiContext } from '@mui/x-data-grid';
 import { debounce } from '@mui/material/utils';
 import { alpha } from '@mui/material/styles';
-import Slider from '@mui/material/Slider';
+import Slider, { SliderValueLabelProps } from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 
-function ValueLabelComponent(props: {
-  open: boolean;
-  value: number;
-  children: React.ReactElement;
-}) {
+function ValueLabelComponent(props: SliderValueLabelProps) {
   const { children, open, value } = props;
   return (
     <Tooltip open={open} enterTouchDelay={0} placement="top" title={value} arrow>
@@ -19,14 +15,15 @@ function ValueLabelComponent(props: {
 }
 
 export default function EditProgress(props: GridRenderEditCellParams) {
-  const { id, value, api, field } = props;
+  const { id, value, field } = props;
+  const apiRef = useGridApiContext();
   const [valueState, setValueState] = React.useState(Number(value));
 
   const updateCellEditProps = React.useCallback(
-    (newValue) => {
-      api.setEditCellValue({ id, field, value: newValue });
+    (newValue: number | number[]) => {
+      apiRef.current.setEditCellValue({ id, field, value: newValue });
     },
-    [api, field, id],
+    [field, id, apiRef],
   );
 
   const debouncedUpdateCellEditProps = React.useMemo(
@@ -88,8 +85,8 @@ export default function EditProgress(props: GridRenderEditCellParams) {
       max={1}
       step={0.00001}
       onChange={handleChange}
-      components={{
-        ValueLabel: ValueLabelComponent,
+      slots={{
+        valueLabel: ValueLabelComponent,
       }}
       valueLabelDisplay="auto"
       valueLabelFormat={(newValue) => `${(newValue * 100).toLocaleString()} %`}

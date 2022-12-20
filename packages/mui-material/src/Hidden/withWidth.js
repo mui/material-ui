@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { getDisplayName } from '@mui/utils';
 import { getThemeProps } from '@mui/system';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 import useTheme from '../styles/useTheme';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';
@@ -107,8 +106,6 @@ const withWidth =
     if (process.env.NODE_ENV !== 'production') {
       WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
     }
-
-    hoistNonReactStatics(WithWidth, Component);
 
     return WithWidth;
   };

@@ -1,15 +1,15 @@
 ---
 product: material-ui
-title: Text field React component
+title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
-materialDesign: https://material.io/components/text-fields
+materialDesign: https://m2.material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
-# Text field
+# Text Field
 
-<p class="description">Text fields let users enter and edit text.</p>
+<p class="description">Text Fields let users enter and edit text.</p>
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
@@ -22,7 +22,7 @@ It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "BasicTextFields.js"}}
 
-**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/)
+**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://m2.material.io/)
 ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
 but MUI will continue to support it.
 

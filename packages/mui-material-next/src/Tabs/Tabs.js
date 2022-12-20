@@ -106,7 +106,7 @@ const TabsScroller = styled('div', {
     width: '100%',
   }),
   ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on MacOS
+    // Hide dimensionless scrollbar on macOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
       display: 'none', // Safari + Chrome
@@ -151,7 +151,7 @@ const TabsScrollbarSize = styled(ScrollbarSize, {
 })({
   overflowX: 'auto',
   overflowY: 'hidden',
-  // Hide dimensionless scrollbar on MacOS
+  // Hide dimensionless scrollbar on macOS
   scrollbarWidth: 'none', // Firefox
   '&::-webkit-scrollbar': {
     display: 'none', // Safari + Chrome

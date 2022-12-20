@@ -9,15 +9,21 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 
 export default function EarlyBird() {
   return (
-    <Container sx={{ pt: 2, pb: { xs: 2, sm: 4, md: 8 } }} id="early-bird">
+    <Container
+      sx={{
+        pt: 2,
+        pb: { xs: 2, sm: 4, md: 8 },
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
+      }}
+      id="early-bird"
+    >
       <Stack
-        sx={{
+        sx={(theme) => ({
           borderRadius: 1,
           p: 2,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.50'),
+          bgcolor: 'primary.50',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100',
+          borderColor: 'primary.100',
           display: 'flex',
           flexDirection: {
             xs: 'column',
@@ -28,23 +34,26 @@ export default function EarlyBird() {
             xs: 'flex-start',
             sm: 'center',
           },
-        }}
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.500',
+          }),
+        })}
       >
         <Box>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
             🐦&nbsp;&nbsp;Early bird special!
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 700 }}>
-            Buy now at a reduced price (~25% off), and get early access to MUI X Pro, with the added
-            opportunity to influence its development. This perpetual license gives access to support
-            and updates for one year. The early bird special is available for a limited time, so
-            don&apos;t miss this opportunity!
+            Buy now at a reduced price (~25% off), and get early access to MUI X Premium, with the
+            added opportunity to influence its development. The early bird special is available for
+            a limited time, so don&apos;t miss this opportunity!
           </Typography>
         </Box>
         <Button
           component={Link}
           noLinkStyle
-          href="https://mui.com/store/items/material-ui-pro/"
+          href="https://mui.com/store/items/mui-x-premium/"
           variant="contained"
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}

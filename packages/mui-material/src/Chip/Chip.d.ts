@@ -73,9 +73,19 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
+     * If `true`, allows the disabled chip to escape focus.
+     * If `false`, allows the disabled chip to receive focus.
+     * @default false
+     */
+    skipFocusWhenDisabled?: boolean;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     *  @ignore
+     */
+    tabIndex?: number;
     /**
      * The variant to use.
      * @default 'filled'
@@ -90,7 +100,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Chips](https://mui.com/material-ui/react-chip/)
+ * - [Chip](https://mui.com/material-ui/react-chip/)
  *
  * API:
  *

@@ -12,7 +12,7 @@ describe('Joy <ListItemContent />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiListItemContent',
+    muiName: 'JoyListItemContent',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));

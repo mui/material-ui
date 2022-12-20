@@ -36,6 +36,14 @@
       "default": "{}"
     },
     "popperRef": { "type": { "name": "custom", "description": "ref" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "transition": { "type": { "name": "bool" } }
   },
   "name": "PopperUnstyled",
@@ -44,6 +52,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-popper/\">Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-popper/\">Unstyled Popper</a></li></ul>",
   "cssComponent": false
 }

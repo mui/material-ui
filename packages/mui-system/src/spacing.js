@@ -44,7 +44,7 @@ const getCssProperties = memoize((prop) => {
   return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
-const marginKeys = [
+export const marginKeys = [
   'm',
   'mt',
   'mr',
@@ -67,7 +67,7 @@ const marginKeys = [
   'marginBlockEnd',
 ];
 
-const paddingKeys = [
+export const paddingKeys = [
   'p',
   'pt',
   'pr',
@@ -93,7 +93,7 @@ const paddingKeys = [
 const spacingKeys = [...marginKeys, ...paddingKeys];
 
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
-  const themeSpacing = getPath(theme, themeKey) ?? defaultValue;
+  const themeSpacing = getPath(theme, themeKey, false) ?? defaultValue;
 
   if (typeof themeSpacing === 'number') {
     return (abs) => {

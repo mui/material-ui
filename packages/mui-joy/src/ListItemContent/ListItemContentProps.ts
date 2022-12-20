@@ -29,3 +29,5 @@ export type ListItemContentProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemContentTypeMap<P, D>, D>;
+
+export interface ListItemContentOwnerState extends ListItemContentProps {}

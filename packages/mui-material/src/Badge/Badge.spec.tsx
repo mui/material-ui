@@ -3,7 +3,7 @@ import Badge from '@mui/material/Badge';
 
 function classesTest() {
   return (
-    <Badge badgeContent={4} classes={{ badge: 'testBadgeClassName' }}>
+    <Badge badgeContent={4} classes={{ badge: 'testBadgeClassName', colorInfo: 'colorInfoClass' }}>
       <div>Hello World</div>
     </Badge>
   );

@@ -2,19 +2,9 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "BackdropComponent": { "type": { "name": "elementType" } },
-    "BackdropProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}"
-    },
-    "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}"
-    },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
     "disableEnforceFocus": { "type": { "name": "bool" } },
@@ -29,7 +19,18 @@
       "deprecated": true,
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
-    "onClose": { "type": { "name": "func" } }
+    "onClose": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
+      "default": "{}"
+    }
   },
   "name": "ModalUnstyled",
   "styles": {
@@ -39,8 +40,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.js",
+  "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-modal/\">Modal</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-modal/\">Unstyled Modal</a></li></ul>",
   "cssComponent": false
 }

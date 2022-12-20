@@ -58,7 +58,7 @@ const SpeedDialRoot = styled('div', {
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.speedDial,
+  zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',

@@ -17,6 +17,7 @@ import { expectType } from '@mui/types';
     | 'inherit'
     | 'initial'
     | 'revert'
+    | 'revert-layer'
     | 'unset'
     | 'italic'
     | 'normal'

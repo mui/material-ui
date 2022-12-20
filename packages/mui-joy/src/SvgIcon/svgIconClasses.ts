@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SvgIconClasses {
   /** Styles applied to the root element. */
@@ -44,10 +44,10 @@ export interface SvgIconClasses {
 export type SvgIconClassKey = keyof SvgIconClasses;
 
 export function getSvgIconUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSvgIcon', slot);
+  return generateUtilityClass('JoySvgIcon', slot);
 }
 
-const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
+const svgIconClasses: SvgIconClasses = generateUtilityClasses('JoySvgIcon', [
   'root',
   'colorInherit',
   'colorPrimary',

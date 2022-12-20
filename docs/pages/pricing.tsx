@@ -12,19 +12,19 @@ import WhatToExpect from 'docs/src/components/pricing/WhatToExpect';
 import FAQ from 'docs/src/components/pricing/FAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Pricing() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="Pricing - MUI"
-        description="The community edition lets you get going right away. Switch to a commercial plan for more components & professional support."
+        description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <HeroPricing />
         <PricingList /> {/* Mobile, Tablet */}
         <Container sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -39,6 +39,6 @@ export default function Pricing() {
         <Divider />
       </main>
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }

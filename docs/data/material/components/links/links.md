@@ -2,7 +2,7 @@
 product: material-ui
 components: Link
 githubLabel: 'component: link'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#link
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
 # Links
@@ -45,11 +45,22 @@ Here is a [more detailed guide](/material-ui/guides/routing/#link).
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
 - When providing the content for the link, avoid generic descriptions like "click here" or "go to".
   Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline="always"` behavior.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
+  The demo below illustrates how to properly link with a `<button>`:
 
 {{"demo": "ButtonLink.js"}}
+
+### Keyboard accessibility
+
+- Interactive elements should receive focus in a coherent order when the user presses the <kbd class="key">Tab</kbd> key.
+- Users should be able to open a link by pressing <kbd class="key">Enter</kbd>.
+
+### Screen reader accessibility
+
+- When a link receives focus, screen readers should announce a descriptive link name.
+  If the link opens in a new window or browser tab, add an [`aria-label`](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8) to inform screen reader users—for example, _"To learn more, visit the About page which opens in a new window."_

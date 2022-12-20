@@ -1727,13 +1727,15 @@ export default function DataTable() {
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
-              '& code[class*="language-"]': {
-                fontSize: 'inherit',
-              },
             },
           }}
         >
-          <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+          <HighlightedCode
+            copyButtonHidden
+            component={MarkdownElement}
+            code={code}
+            language="jsx"
+          />
         </Box>
       }
     />

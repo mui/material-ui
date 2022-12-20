@@ -1,11 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';
-import TabsUnstyledProps, { TabsUnstyledTypeMap } from './TabsUnstyledProps';
+import {
+  TabsUnstyledProps,
+  TabsUnstyledRootSlotProps,
+  TabsUnstyledTypeMap,
+} from './TabsUnstyled.types';
 import useTabs from './useTabs';
 import Context from './TabsContext';
 
@@ -23,7 +26,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/base/react-tabs/)
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
@@ -32,20 +35,19 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {
     children,
-    className,
     value: valueProp,
     defaultValue,
     orientation = 'horizontal',
     direction = 'ltr',
     component,
-    components = {},
-    componentsProps = {},
     onChange,
     selectionFollowsFocus,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
-  const { tabsContextValue, getRootProps } = useTabs(props);
+  const { tabsContextValue } = useTabs(props);
 
   const ownerState = {
     ...props,
@@ -55,20 +57,20 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabsRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabsRootProps = appendOwnerState(
-    TabsRoot,
-    { ...other, ...componentsProps.root },
+  const TabsRoot: React.ElementType = component ?? slots.root ?? 'div';
+  const tabsRootProps: WithOptionalOwnerState<TabsUnstyledRootSlotProps> = useSlotProps({
+    elementType: TabsRoot,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+    },
     ownerState,
-  );
+    className: classes.root,
+  });
 
   return (
-    <TabsRoot
-      {...getRootProps()}
-      {...tabsRootProps}
-      ref={ref}
-      className={clsx(classes.root, componentsProps.root?.className, className)}
-    >
+    <TabsRoot {...tabsRootProps}>
       <Context.Provider value={tabsContextValue}>{children}</Context.Provider>
     </TabsRoot>
   );
@@ -84,29 +86,10 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Tabs.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Tabs.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -130,6 +113,21 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * changes on activation.
    */
   selectionFollowsFocus: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Tabs.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Tabs.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this prop to `false`.

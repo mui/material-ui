@@ -1,6 +1,6 @@
 # Composição
 
-<p class="description">Material UI tenta tornar a composição a mais simples possível.</p>
+<p class="description">Material-UI tenta tornar a composição a mais simples possível.</p>
 
 ## Encapsulando componentes
 
@@ -20,11 +20,11 @@ const WrappedIcon = (props) => <Icon {...props} />; WrappedIcon.muiName = Icon.m
 
 ## Propriedade Componente
 
-Material UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
+Material-UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
 
 ### Como é que funciona?
 
-O componente customizado será renderizado pelo Material UI desta forma:
+O componente customizado será renderizado pelo Material-UI desta forma:
 
 ```js
 return React.createElement(props.component, props);
@@ -114,7 +114,7 @@ import { Link } from 'react-router-dom';
 
 ### Usando TypeScript
 
-Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. Para um exemplo de código relativo ao Button e o react-router-dom veja [estas demonstrações](/material-ui/guides/routing/#component-prop).
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. For a code example concerning Button and react-router-dom checkout [these demos](/material-ui/guides/routing/#component-prop).
 
 To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
@@ -163,23 +163,26 @@ Esta seção aborda advertências ao usar um componente customizado como `childr
 
 Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
-- Qualquer componente do Material UI
-- Componentes React.forwardRef
-- Component</code> ou `React.&lt;/li&gt;
+- Qualquer componente do Material-UI
+- Componentes de classe, ou seja, `React. Component` ou `React.</li>
 <li>Componentes DOM (ou hospedeiro), por exemplo, <code>div` ou `button`
-- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactlazy)
+- [Componentes React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
 - [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
-> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::info
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::
 
-Note que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref. Em alguns casos, um aviso adicional é emitido para ajudar na depuração, semelhante a:
+Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref. In some instances, an additional warning is issued to help with debugging, similar to:
 
-> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::warning
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::
 
-Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 -const MyButton = () => <div role="button" />;
@@ -197,11 +200,11 @@ Só as duas formas de utilização mais comuns são cobertas aqui. Para mais inf
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-Para descobrir se o componente de Material UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
+To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. If you need to forward refs the description will link to this section.
 
 ### Advertência com StrictMode
 
-Se você usar componentes de classe para os casos descritos acima, ainda verá avisos em `React. StrictMode`. `ReactDOM.findDOMNode` é usado internamente para compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Fazendo isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
  class Component extends React. Component {

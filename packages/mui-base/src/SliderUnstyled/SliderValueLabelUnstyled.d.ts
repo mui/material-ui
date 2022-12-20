@@ -1,21 +1,18 @@
 import * as React from 'react';
 
-export interface ValueLabelUnstyledProps {
+export interface SliderValueLabelUnstyledProps {
+  children?: React.ReactElement;
   className?: string;
   style?: React.CSSProperties;
   /**
-   * The components used for each slot inside the ValueLabel.
-   * Either a string to use a HTML element or a component.
-   * @default {}
+   * If `true`, the value label is visible.
    */
-  components?: {
-    Root?: React.ElementType;
-  };
+  open: boolean;
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value: number;
   /**
    * Controls when the value label is displayed:
    *
@@ -27,4 +24,4 @@ export interface ValueLabelUnstyledProps {
   valueLabelDisplay?: 'on' | 'auto' | 'off';
 }
 
-export default function SliderValueLabelUnstyled(props: ValueLabelUnstyledProps): JSX.Element;
+export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyledProps): JSX.Element;

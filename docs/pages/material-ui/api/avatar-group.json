@@ -2,11 +2,16 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
       "default": "{}"
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "default": "{}"
+    },
     "spacing": {
       "type": {
         "name": "union",
@@ -35,6 +40,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatars</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li></ul>",
   "cssComponent": false
 }

@@ -19,8 +19,12 @@ function ThemeValuesCanBeSpread() {
     sx={[
       { color: 'primary.textColor', typography: 'body2' },
       (theme) => theme.variants.outlined,
-      (theme) => theme.variants.outlinedHover,
-      (theme) => theme.variants.outlinedDisabled,
+      (theme) => ({
+        '&:hover': theme.variants.outlinedHover,
+      }),
+      (theme) => ({
+        '&:disabled': theme.variants.outlinedDisabled,
+      }),
     ]}
   />;
 }

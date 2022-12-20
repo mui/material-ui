@@ -133,11 +133,18 @@ export interface PopoverActions {
   updatePosition(): void;
 }
 
+export function getOffsetTop(rect: DOMRect, vertical: number | 'center' | 'bottom' | 'top'): number;
+
+export function getOffsetLeft(
+  rect: DOMRect,
+  horizontal: number | 'center' | 'right' | 'left',
+): number;
+
 /**
  *
  * Demos:
  *
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  * - [Popover](https://mui.com/material-ui/react-popover/)
  *
  * API:

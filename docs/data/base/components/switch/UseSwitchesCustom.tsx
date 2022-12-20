@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import { useSwitch, UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { useSwitch, UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 
 const blue = {
   700: '#0059B2',
@@ -79,7 +79,7 @@ const SwitchTrack = styled('span')(
 `,
 );
 
-function MUISwitch(props: UseSwitchProps) {
+function MUISwitch(props: UseSwitchParameters) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {

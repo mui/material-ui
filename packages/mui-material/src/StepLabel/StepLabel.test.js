@@ -10,14 +10,23 @@ import StepLabel, { stepLabelClasses as classes } from '@mui/material/StepLabel'
 describe('<StepLabel />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<StepLabel />, () => ({
+  describeConformance(<StepLabel>Step One</StepLabel>, () => ({
     classes,
     inheritComponent: 'span',
     muiName: 'MuiStepLabel',
     render,
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { error: true },
-    skip: ['componentProp', 'componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      label: { expectedClassName: classes.label },
+    },
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('label content', () => {
@@ -45,7 +54,9 @@ describe('<StepLabel />', () => {
 
   describe('prop: StepIconComponent', () => {
     it('should render', () => {
-      const CustomizedIcon = () => <div data-testid="custom-icon" />;
+      function CustomizedIcon() {
+        return <div data-testid="custom-icon" />;
+      }
       const { container, getByTestId } = render(
         <Step active completed>
           <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
@@ -199,6 +210,38 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       expect(getByTestId('label')).to.have.class('step-label-test');
+    });
+  });
+
+  describe('renders <StepIcon> with the className completed', () => {
+    it('renders with completed className when completed', () => {
+      function CustomizedIcon() {
+        return <div data-testid="custom-icon" />;
+      }
+      const { container } = render(
+        <Step completed>
+          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+        </Step>,
+      );
+
+      const icon = container.querySelector(`.${classes.iconContainer}`);
+      expect(icon).to.have.class(classes.completed);
+    });
+  });
+
+  describe('renders <StepIcon> with the className active', () => {
+    it('renders with active className when active', () => {
+      function CustomizedIcon() {
+        return <div data-testid="custom-icon" />;
+      }
+      const { container } = render(
+        <Step active>
+          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+        </Step>,
+      );
+
+      const icon = container.querySelector(`.${classes.iconContainer}`);
+      expect(icon).to.have.class(classes.active);
     });
   });
 });

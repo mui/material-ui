@@ -64,12 +64,12 @@ describe('<LoadingButton />', () => {
 
     it('is rendered before the children when `loading`', () => {
       render(
-        <LoadingButton loadingIndicator="loading..." loading>
+        <LoadingButton loadingIndicator="loading…" loading>
           Test
         </LoadingButton>,
       );
 
-      expect(screen.getByRole('button')).to.have.text('loading...Test');
+      expect(screen.getByRole('button')).to.have.text('loading…Test');
     });
   });
 });

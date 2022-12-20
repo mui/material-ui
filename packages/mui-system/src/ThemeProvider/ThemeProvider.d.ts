@@ -16,7 +16,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
  * It should preferably be used at **the root of your component tree**.
  * API:
  *
- * - [ThemeProvider API](/material-ui/customization/theming/#themeprovider)
+ * - [ThemeProvider API](https://mui.com/material-ui/customization/theming/#themeprovider)
  */
 export default function ThemeProvider<T = DefaultTheme>(
   props: ThemeProviderProps<T>,

@@ -71,10 +71,10 @@ const PaginationItemEllipsis = styled('div', {
   minWidth: 32,
   padding: '0 6px',
   margin: '0 3px',
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   height: 'auto',
   [`&.${paginationItemClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
   ...(ownerState.size === 'small' && {
     minWidth: 26,
@@ -104,45 +104,49 @@ const PaginationItemPage = styled(ButtonBase, {
     height: 32,
     padding: '0 6px',
     margin: '0 3px',
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     [`&.${paginationItemClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
     [`&.${paginationItemClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
     [`&.${paginationItemClasses.selected}`]: {
-      backgroundColor: theme.palette.action.selected,
+      backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.action.selected,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected,
+          backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.selected} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          : alpha(
+              theme.palette.action.selected,
+              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            ),
       },
       [`&.${paginationItemClasses.disabled}`]: {
         opacity: 1,
-        color: theme.palette.action.disabled,
-        backgroundColor: theme.palette.action.selected,
+        color: (theme.vars || theme).palette.action.disabled,
+        backgroundColor: (theme.vars || theme).palette.action.selected,
       },
     },
     ...(ownerState.size === 'small' && {
@@ -160,63 +164,78 @@ const PaginationItemPage = styled(ButtonBase, {
       fontSize: theme.typography.pxToRem(15),
     }),
     ...(ownerState.shape === 'rounded' && {
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: (theme.vars || theme).shape.borderRadius,
     }),
   }),
   ({ theme, ownerState }) => ({
     ...(ownerState.variant === 'text' && {
       [`&.${paginationItemClasses.selected}`]: {
         ...(ownerState.color !== 'standard' && {
-          color: theme.palette[ownerState.color].contrastText,
-          backgroundColor: theme.palette[ownerState.color].main,
+          color: (theme.vars || theme).palette[ownerState.color].contrastText,
+          backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
           '&:hover': {
-            backgroundColor: theme.palette[ownerState.color].dark,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
-              backgroundColor: theme.palette[ownerState.color].main,
+              backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
             },
           },
           [`&.${paginationItemClasses.focusVisible}`]: {
-            backgroundColor: theme.palette[ownerState.color].dark,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
           },
         }),
         [`&.${paginationItemClasses.disabled}`]: {
-          color: theme.palette.action.disabled,
+          color: (theme.vars || theme).palette.action.disabled,
         },
       },
     }),
     ...(ownerState.variant === 'outlined' && {
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+      border: theme.vars
+        ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+        : `1px solid ${
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+          }`,
       [`&.${paginationItemClasses.selected}`]: {
         ...(ownerState.color !== 'standard' && {
-          color: theme.palette[ownerState.color].main,
-          border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.activatedOpacity,
-          ),
+          color: (theme.vars || theme).palette[ownerState.color].main,
+          border: `1px solid ${
+            theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+              : alpha(theme.palette[ownerState.color].main, 0.5)
+          }`,
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.activatedOpacity
+              })`
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.activatedOpacity),
           '&:hover': {
-            backgroundColor: alpha(
-              theme.palette[ownerState.color].main,
-              theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-            ),
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / calc(${
+                  theme.vars.palette.action.activatedOpacity
+                } + ${theme.vars.palette.action.focusOpacity}))`
+              : alpha(
+                  theme.palette[ownerState.color].main,
+                  theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+                ),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: 'transparent',
             },
           },
           [`&.${paginationItemClasses.focusVisible}`]: {
-            backgroundColor: alpha(
-              theme.palette[ownerState.color].main,
-              theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-            ),
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / calc(${
+                  theme.vars.palette.action.activatedOpacity
+                } + ${theme.vars.palette.action.focusOpacity}))`
+              : alpha(
+                  theme.palette[ownerState.color].main,
+                  theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+                ),
           },
         }),
         [`&.${paginationItemClasses.disabled}`]: {
-          borderColor: theme.palette.action.disabledBackground,
-          color: theme.palette.action.disabled,
+          borderColor: (theme.vars || theme).palette.action.disabledBackground,
+          color: (theme.vars || theme).palette.action.disabled,
         },
       },
     }),
@@ -244,17 +263,13 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
-    components = {
-      first: FirstPageIcon,
-      last: LastPageIcon,
-      next: NavigateNextIcon,
-      previous: NavigateBeforeIcon,
-    },
+    components = {},
     disabled = false,
     page,
     selected = false,
     shape = 'circular',
     size = 'medium',
+    slots = {},
     type = 'page',
     variant = 'text',
     ...other
@@ -277,16 +292,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: components.next || NavigateNextIcon,
-          next: components.previous || NavigateBeforeIcon,
-          last: components.first || FirstPageIcon,
-          first: components.last || LastPageIcon,
+          previous: slots.next || components.next || NavigateNextIcon,
+          next: slots.previous || components.previous || NavigateBeforeIcon,
+          last: slots.first || components.first || FirstPageIcon,
+          first: slots.last || components.last || LastPageIcon,
         }
       : {
-          previous: components.previous || NavigateBeforeIcon,
-          next: components.next || NavigateNextIcon,
-          first: components.first || FirstPageIcon,
-          last: components.last || LastPageIcon,
+          previous: slots.previous || components.previous || NavigateBeforeIcon,
+          next: slots.next || components.next || NavigateNextIcon,
+          first: slots.first || components.first || FirstPageIcon,
+          last: slots.last || components.last || LastPageIcon,
         };
 
   const Icon = normalizedIcons[type];
@@ -349,13 +364,12 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for first, last, next & previous item type
-   * @default {
-   *   first: FirstPageIcon,
-   *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
-   * }
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
+   * @default {}
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,
@@ -390,6 +404,19 @@ PaginationItem.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

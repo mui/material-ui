@@ -30,7 +30,6 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
      * The icon to display.
      */
     icon?: string | React.ReactElement;
-
     /**
      * The position of the icon relative to the label.
      * @default 'top'

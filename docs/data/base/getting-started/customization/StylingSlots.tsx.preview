@@ -1,0 +1,1 @@
+<SwitchUnstyled slots={{ root: Root, thumb: Thumb, input: Input }} />

@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { useListbox } from '@mui/base/ListboxUnstyled';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { SinonSpy, spy } from 'sinon';
+import { useListbox } from '@mui/base/ListboxUnstyled';
+import { createRenderer, createEvent, fireEvent } from 'test/utils';
 
 describe('useListbox', () => {
   const { render } = createRenderer();
   describe('prop: id', () => {
     it('propagates it to the root element', () => {
-      const Listbox = () => {
+      function Listbox() {
         const { getRootProps } = useListbox({ options: [], id: 'test-id' });
         return <ul {...getRootProps()} />;
-      };
+      }
       const { getByRole } = render(<Listbox />);
 
       const listbox = getByRole('listbox');
@@ -19,7 +20,7 @@ describe('useListbox', () => {
 
     it('uses the provided id to create option ids', () => {
       const options = ['one', 'two'];
-      const Listbox = () => {
+      function Listbox() {
         const { getRootProps, getOptionProps } = useListbox({ options, id: 'test-id' });
         return (
           <ul {...getRootProps()}>
@@ -30,7 +31,7 @@ describe('useListbox', () => {
             ))}
           </ul>
         );
-      };
+      }
       const { getAllByRole } = render(<Listbox />);
 
       const optionElements = getAllByRole('option');
@@ -40,10 +41,10 @@ describe('useListbox', () => {
     });
 
     it('generates a unique id if not provided explicitly', () => {
-      const Listbox = () => {
+      function Listbox() {
         const { getRootProps } = useListbox({ options: [] });
         return <ul {...getRootProps()} />;
-      };
+      }
 
       const { getAllByRole } = render(
         <React.Fragment>
@@ -55,5 +56,73 @@ describe('useListbox', () => {
       const listboxes = getAllByRole('listbox');
       expect(listboxes[0].id).not.to.equal(listboxes[1].id);
     });
+  });
+
+  describe('preventing default behavior on keyDown', () => {
+    ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown', 'Enter', ' '].forEach((key) =>
+      it(`prevents default behavior when ${key} is pressed in activeDescendant focus management mode`, () => {
+        function Listbox() {
+          const { getRootProps } = useListbox({ options: [], focusManagement: 'activeDescendant' });
+          return <div {...getRootProps()} />;
+        }
+
+        const { getByRole } = render(<Listbox />);
+        const listbox = getByRole('listbox');
+        listbox.focus();
+
+        const event = createEvent.keyDown(listbox, {
+          key,
+        });
+
+        event.preventDefault = spy();
+        fireEvent(listbox, event);
+
+        expect((event.preventDefault as SinonSpy).calledOnce).to.equal(true);
+      }),
+    );
+
+    ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].forEach((key) =>
+      it(`prevents default behavior when ${key} is pressed in DOM focus management mode`, () => {
+        function Listbox() {
+          const { getRootProps } = useListbox({ options: [], focusManagement: 'DOM' });
+          return <div {...getRootProps()} />;
+        }
+
+        const { getByRole } = render(<Listbox />);
+        const listbox = getByRole('listbox');
+        listbox.focus();
+
+        const event = createEvent.keyDown(listbox, {
+          key,
+        });
+
+        event.preventDefault = spy();
+        fireEvent(listbox, event);
+
+        expect((event.preventDefault as SinonSpy).calledOnce).to.equal(true);
+      }),
+    );
+
+    ['Enter', ' '].forEach((key) =>
+      it(`does not prevent default behavior when ${key} is pressed in DOM focus management mode`, () => {
+        function Listbox() {
+          const { getRootProps } = useListbox({ options: [], focusManagement: 'DOM' });
+          return <div {...getRootProps()} />;
+        }
+
+        const { getByRole } = render(<Listbox />);
+        const listbox = getByRole('listbox');
+        listbox.focus();
+
+        const event = createEvent.keyDown(listbox, {
+          key,
+        });
+
+        event.preventDefault = spy();
+        fireEvent(listbox, event);
+
+        expect((event.preventDefault as SinonSpy).notCalled).to.equal(true);
+      }),
+    );
   });
 });

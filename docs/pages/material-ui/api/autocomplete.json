@@ -20,7 +20,10 @@
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ clearIndicator?: object, paper?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+      },
       "default": "{}"
     },
     "defaultValue": {
@@ -82,6 +85,13 @@
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {

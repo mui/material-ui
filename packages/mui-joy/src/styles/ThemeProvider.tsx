@@ -1,58 +1,35 @@
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
-import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
-import extendTheme, { ThemeInput, ColorSystemInput } from './extendTheme';
-import { Theme, RuntimeColorSystem } from './types';
-
-const getThemeWithVars = (
-  themeInput?: Omit<ThemeInput, 'colorSchemes'> & ColorSystemInput,
-): Theme => {
-  const {
-    colorSchemes,
-    breakpoints,
-    spacing,
-    getCssVar,
-    palette: runtimePalette,
-    ...scales
-  } = extendTheme(themeInput);
-  const colorSchemePalette = deepmerge(
-    colorSchemes[runtimePalette?.colorScheme || 'light'].palette,
-    runtimePalette,
-  );
-  const {
-    mode = 'light',
-    colorScheme = 'light',
-    ...palette
-  } = colorSchemePalette as RuntimeColorSystem['palette'];
-
-  const defaultTheme = {
-    ...scales,
-    colorSchemes: {
-      ...colorSchemes,
-      [colorScheme]: palette,
-    },
-    palette: {
-      ...palette,
-      mode,
-      colorScheme,
-    },
-    breakpoints,
-    spacing,
-    getCssVar,
-    vars: { ...scales, palette },
-  };
-  return defaultTheme;
-};
+import {
+  ThemeProvider as SystemThemeProvider,
+  unstable_styleFunctionSx as styleFunctionSx,
+  useTheme as useSystemTheme,
+} from '@mui/system';
+import { SxProps } from './types';
+import defaultTheme, { getThemeWithVars } from './defaultTheme';
+import type { CssVarsThemeOptions } from './extendTheme';
 
 export const useTheme = () => {
-  return useSystemTheme(getThemeWithVars());
+  return useSystemTheme(defaultTheme);
+};
+
+const getTheme = (themeInput: CssVarsThemeOptions) => {
+  const theme = getThemeWithVars(themeInput);
+  theme.unstable_sx = function sx(props: SxProps) {
+    return styleFunctionSx({ sx: props, theme: this });
+  };
+
+  return theme;
 };
 
 export default function ThemeProvider({
   children,
   theme: themeInput,
 }: React.PropsWithChildren<{
-  theme?: ThemeInput;
+  theme?: CssVarsThemeOptions;
 }>) {
-  return <SystemThemeProvider theme={getThemeWithVars(themeInput)}>{children}</SystemThemeProvider>;
+  return (
+    <SystemThemeProvider theme={themeInput ? getTheme(themeInput) : defaultTheme}>
+      {children}
+    </SystemThemeProvider>
+  );
 }

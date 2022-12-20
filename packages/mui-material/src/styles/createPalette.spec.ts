@@ -17,5 +17,5 @@ import { createTheme, Theme } from '@mui/material/styles';
 }
 
 {
-  const themeCommons: Theme['palette']['common'] = common;
+  const themeCommons: Pick<Theme['palette']['common'], 'black' | 'white'> = common;
 }

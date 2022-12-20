@@ -15,6 +15,8 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
+import Chip from '@mui/material/Chip';
+import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -188,11 +190,13 @@ const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-const TreeItem = (
+function TreeItem(
   props: TreeItemProps & {
     ContentProps?: { lastNestedChild?: boolean };
   },
-) => <StyledTreeItem ContentComponent={CustomContent} {...props} />;
+) {
+  return <StyledTreeItem ContentComponent={CustomContent} {...props} />;
+}
 
 export default function XDateRangeDemo() {
   return (
@@ -211,7 +215,7 @@ export default function XDateRangeDemo() {
             defaultExpanded={['2', '2.3', '3']}
             defaultCollapseIcon={<IndeterminateCheckBoxOutlined fontSize="small" />}
             defaultExpandIcon={<AddBoxOutlined fontSize="small" />}
-            sx={{ height: { xs: 300, sm: 380 }, overflowY: 'auto', p: 1 }}
+            sx={{ height: { xs: 260, sm: 300 }, overflowY: 'auto', p: 1 }}
           >
             <TreeItem nodeId="1" label="Drive">
               <TreeItem nodeId="1.1" label="Backup">
@@ -242,11 +246,6 @@ export default function XDateRangeDemo() {
                   label="My Dog.png"
                   ContentProps={{ lastNestedChild: true }}
                 />
-                <TreeItem
-                  nodeId="1.2.3"
-                  label="Friends.png"
-                  ContentProps={{ lastNestedChild: true }}
-                />
               </TreeItem>
             </TreeItem>
             <TreeItem nodeId="2" label="Favorite">
@@ -268,41 +267,34 @@ export default function XDateRangeDemo() {
                 />
               </TreeItem>
             </TreeItem>
-            <TreeItem nodeId="3" label="Screenshots">
-              <TreeItem
-                nodeId="3.1"
-                label="Screen Shot 2564-09-06 at 14.30.52.png"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem
-                nodeId="3.2"
-                label="screencapture-localhost-3000-branding-x-advanced-2021-08-30-19_40_59.png"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem
-                nodeId="3.3"
-                label="Screen Recording 2564-08-27 at 10.01.39.mp4"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem
-                nodeId="3.4"
-                label="Screen Shot 2564-08-25 at 18.22.20.png"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem
-                nodeId="3.5"
-                label="Screen Shot 2564-08-25 at 15.27.54.png"
-                ContentProps={{ lastNestedChild: true }}
-              />
-              <TreeItem
-                nodeId="3.6"
-                label="Screen Shot 2564-08-25 at 15.27.46.png"
-                ContentProps={{ lastNestedChild: true }}
-              />
-            </TreeItem>
           </TreeView>
         </Paper>
       </Frame.Demo>
+      <Frame.Info data-mui-color-scheme="dark">
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            mb: 0.5,
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
+            Coming soon!
+          </Typography>
+          <Chip
+            label="Available in the lab"
+            size="small"
+            href="/material-ui/react-tree-view"
+            component="a"
+            sx={{ fontWeight: 500, cursor: 'pointer' }}
+          />
+        </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Subscribe to our newsletter to get first-hand info about the development and release of
+          new components.
+        </Typography>
+        <EmailSubscribe />
+      </Frame.Info>
     </Frame>
   );
 }

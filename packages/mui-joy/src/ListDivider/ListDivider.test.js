@@ -13,7 +13,7 @@ describe('Joy <ListDivider />', () => {
     inheritComponent: 'li',
     render,
     ThemeProvider,
-    muiName: 'MuiListDivider',
+    muiName: 'JoyListDivider',
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { inset: 'gutter' },
     skip: ['componentsProp', 'classesRoot'],
@@ -29,12 +29,29 @@ describe('Joy <ListDivider />', () => {
     expect(container.firstChild).to.have.class('foo-bar');
   });
 
-  it('should have aria-orientation set to horizontal', () => {
-    render(
-      <List row>
-        <ListDivider />
-      </List>,
-    );
-    expect(screen.getByRole('separator')).to.have.attribute('aria-orientation', 'horizontal');
+  describe('aria-orientation', () => {
+    it('should not have aria-orientation by default', () => {
+      // The
+      render(<ListDivider />);
+      expect(screen.getByRole('separator')).not.to.have.attribute('aria-orientation');
+    });
+
+    it('should have aria-orientation set to vertical', () => {
+      render(
+        <List row>
+          <ListDivider />
+        </List>,
+      );
+      expect(screen.getByRole('separator')).to.have.attribute('aria-orientation', 'vertical');
+    });
+
+    it('should not add aria-orientation if role is custom', () => {
+      render(
+        <List row>
+          <ListDivider role="presentation" />
+        </List>,
+      );
+      expect(screen.getByRole('presentation')).not.to.have.attribute('aria-orientation');
+    });
   });
 });

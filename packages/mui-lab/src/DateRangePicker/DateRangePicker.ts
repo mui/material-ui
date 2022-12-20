@@ -34,17 +34,6 @@ const DateRangePicker = React.forwardRef(function DeprecatedDateRangePicker() {
   return null;
 }) as DateRangePickerComponent;
 
-DateRangePicker.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-} as any;
-
 export default DateRangePicker;
 
 export type DateRangePickerProps = Record<any, any>;

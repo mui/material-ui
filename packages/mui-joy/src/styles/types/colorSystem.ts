@@ -1,4 +1,4 @@
-import { OverridableStringUnion } from '@mui/types';
+import { OverridableStringUnion, Simplify } from '@mui/types';
 
 /**
  * ====================================================
@@ -69,11 +69,6 @@ export interface PaletteVariant {
   solidDisabledColor: string;
   solidDisabledBg: string;
   solidDisabledBorder: string;
-
-  // override palette.text
-  overrideTextPrimary: string;
-  overrideTextSecondary: string;
-  overrideTextTertiary: string;
 }
 
 export interface PaletteRangeOverrides {}
@@ -96,6 +91,11 @@ export type ExtendedPaletteRange = OverridableStringUnion<
 
 export interface PaletteRange extends Record<ExtendedPaletteRange, string>, PaletteVariant {}
 
+export interface PaletteCommon {
+  white: string;
+  black: string;
+}
+
 export interface PaletteText {
   primary: string;
   secondary: string;
@@ -103,9 +103,13 @@ export interface PaletteText {
 }
 export interface PaletteBackground {
   body: string;
+  surface: string;
+  popup: string;
   level1: string;
   level2: string;
   level3: string;
+  tooltip: string;
+  backdrop: string;
 }
 
 export interface ColorPalettePropOverrides {}
@@ -127,12 +131,14 @@ export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
 
 export interface Palette {
+  mode: 'light' | 'dark';
   primary: PalettePrimary;
   neutral: PaletteNeutral;
   danger: PaletteDanger;
   info: PaletteInfo;
   success: PaletteSuccess;
   warning: PaletteWarning;
+  common: PaletteCommon;
   text: PaletteText;
   background: PaletteBackground;
   divider: string;
@@ -144,3 +150,9 @@ export interface ColorSystem {
   shadowRing: string;
   shadowChannel: string;
 }
+
+export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<
+  Omit<T, 'color'> & {
+    color: T['color'] | 'context';
+  }
+>;

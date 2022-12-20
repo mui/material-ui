@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface AutocompleteClasses {
   /** Styles applied to the root element. */
@@ -21,7 +22,7 @@ export interface AutocompleteClasses {
   inputRoot: string;
   /** Styles applied to the input element. */
   input: string;
-  /** Styles applied to the input element if tag focused. */
+  /** Styles applied to the input element if the input is focused. */
   inputFocused: string;
   /** Styles applied to the endAdornment element. */
   endAdornment: string;
