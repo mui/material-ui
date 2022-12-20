@@ -1,5 +1,61 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.1
+
+<!-- generated comparing v5.11.0..master -->
+
+_Dec 20, 2022_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 @mnajdova added motion and shape design tokens to Material You package (#35384 and #35393).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.11.1`
+
+- [Chip] Fix hover and focus style with CSS Variables (#35502) @DimaAbr
+- [InputLabel] Enable `size` prop overrides via TypeScript module augmentation (#35460) @MickaelAustoni
+- [l10n] Change Kazakh locale name to match ISO-639-1 codes (#34664) @talgautb
+- [TextField] Fix error focus style (#35167) @42tte
+- Bring `experimental_sx` back with error code (#35528) @siriwatknp
+
+### `@mui/utils@5.11.1`
+
+- [Theme] Merge components and slots props (#35477) @siriwatknp
+
+### `@mui/material-next@6.0.0-alpha.67`
+
+- [Material You] Add motion design tokens (#35384) @mnajdova
+- [Material You] Add shape design tokens (#35393) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.59`
+
+- [Tooltip] Fix arrow does not appear (#35473) @siriwatknp
+- [Input] Fix autofill styles (#35056) @siriwatknp
+- [ChipDelete] Add onDelete prop to ChipDelete (#35412) @sai6855
+
+### `@mui/base@5.0.0-alpha.111`
+
+- [Button][base] Set active class when a subcomponent is clicked (#35410) @michaldudak
+- [Popper][base] Fix Tooltip Anchor Element Setter (#35469) @sydneyjodon-wk
+
+### Docs
+
+- [docs] migration-v4 `Select` component `onChange` event type (#35509) @tzynwang
+- [docs] Add missing comma to `Providing the colors directly` section (#35507) @cassidoo
+- [docs] Add `CardMedia` example without `component="img"` prop (#35470) @lucasmfredmark
+- [docs] Fix `unstable_sxConfig` typo (#35478) @siriwatknp
+- [docs] List component introduction example default code is missing ListItemContent component (#35492) @Miigaarino
+- [website] Close our first people role @oliviertassinari
+- [website] Update product icons (#35413) @danilo-leal
+
+### Core
+
+- [test] Terminate BrowserStack after 5 minutes (#35454) @oliviertassinari
+- [test] Fix broken master branch (#35446) @oliviertassinari
+
+All contributors of this release in alphabetical order: @42tte, @cassidoo, @danilo-leal, @DimaAbr, @lucasmfredmark, @michaldudak, @MickaelAustoni, @Miigaarino, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @sydneyjodon-wk, @talgautb, @tzynwang
+
 ## 5.11.0
 
 <!-- generated comparing v5.10.17..master -->
