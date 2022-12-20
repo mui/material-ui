@@ -141,7 +141,7 @@ export default function GoogleMaps() {
         const matches = option.structured_formatting.main_text_matched_substrings;
         if (!matches) {
           return (
-            <ListItem sx={{ color: 'text.secondary', padding: '14px 16px' }}>
+            <ListItem sx={{ color: 'text.secondary', pt: '6px', pb: '6px' }}>
               No options
             </ListItem>
           );
