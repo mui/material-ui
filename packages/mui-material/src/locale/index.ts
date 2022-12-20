@@ -28,7 +28,6 @@ export interface Localization {
     };
   };
 }
-
 export const amET: Localization = {
   components: {
     MuiBreadcrumbs: {
