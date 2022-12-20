@@ -116,7 +116,11 @@ export default function GoogleMaps() {
       renderOption={(props, option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
         if (!matches) {
-          return <ListItem sx={{ color: 'text.secondary' }}>No options</ListItem>;
+          return (
+            <ListItem sx={{ color: 'text.secondary', padding: '14px 16px' }}>
+              No options
+            </ListItem>
+          );
         }
         const parts = parse(
           option.structured_formatting.main_text,
