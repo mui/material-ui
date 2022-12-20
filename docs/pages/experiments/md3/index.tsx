@@ -159,7 +159,7 @@ function DemoComponents() {
               bgcolor: 'error',
               border: 1,
               borderColor: 'tertiary',
-              borderRadius: '1px',
+              borderRadius: 'medium',
             }}
           >
             Button

@@ -136,45 +136,58 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
   },
 );
 
-export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>({
-  border: 'none', // remove the native input width
-  minWidth: 0, // remove the native input width
-  outline: 0, // remove the native input outline
-  padding: 0, // remove the native input padding
-  flex: 1,
-  alignSelf: 'stretch',
-  color: 'inherit',
-  backgroundColor: 'transparent',
-  fontFamily: 'inherit',
-  fontSize: 'inherit',
-  fontStyle: 'inherit',
-  fontWeight: 'inherit',
-  lineHeight: 'inherit',
-  textOverflow: 'ellipsis',
-  '&:-webkit-autofill': {
-    WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: 'currentColor',
-  },
-  '&::-webkit-input-placeholder': {
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-  '&::-moz-placeholder': {
-    // Firefox 19+
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-  '&:-ms-input-placeholder': {
-    // IE11
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-  '&::-ms-input-placeholder': {
-    // Edge
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-});
+export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
+  ({ ownerState }) => ({
+    border: 'none', // remove the native input width
+    minWidth: 0, // remove the native input width
+    outline: 0, // remove the native input outline
+    padding: 0, // remove the native input padding
+    flex: 1,
+    alignSelf: 'stretch',
+    color: 'inherit',
+    backgroundColor: 'transparent',
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    fontStyle: 'inherit',
+    fontWeight: 'inherit',
+    lineHeight: 'inherit',
+    textOverflow: 'ellipsis',
+    '&:-webkit-autofill': {
+      paddingInline: 'var(--Input-paddingInline)',
+      ...(!ownerState.startDecorator && {
+        marginInlineStart: 'calc(-1 * var(--Input-paddingInline))',
+        paddingInlineStart: 'var(--Input-paddingInline)',
+        borderTopLeftRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+        borderBottomLeftRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+      }),
+      ...(!ownerState.endDecorator && {
+        marginInlineEnd: 'calc(-1 * var(--Input-paddingInline))',
+        paddingInlineEnd: 'var(--Input-paddingInline)',
+        borderTopRightRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+        borderBottomRightRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+      }),
+    },
+    '&::-webkit-input-placeholder': {
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+    '&::-moz-placeholder': {
+      // Firefox 19+
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+    '&:-ms-input-placeholder': {
+      // IE11
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+    '&::-ms-input-placeholder': {
+      // Edge
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+  }),
+);
 
 export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({

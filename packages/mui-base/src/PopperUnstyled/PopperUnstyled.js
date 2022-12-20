@@ -84,7 +84,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState(rtlPlacement);
-  const [tooltipAnchorEl, setTooltipAnchorEl] = React.useState(anchorEl);
+  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState(
+    resolveAnchorEl(anchorEl),
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -94,12 +96,12 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
 
   React.useEffect(() => {
     if (anchorEl) {
-      setTooltipAnchorEl(anchorEl);
+      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
     }
   }, [anchorEl]);
 
   useEnhancedEffect(() => {
-    if (!tooltipAnchorEl || !open) {
+    if (!resolvedAnchorElement || !open) {
       return undefined;
     }
 
@@ -107,11 +109,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       setPlacement(data.placement);
     };
 
-    const resolvedAnchorEl = resolveAnchorEl(tooltipAnchorEl);
-
     if (process.env.NODE_ENV !== 'production') {
-      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
+      if (resolvedAnchorElement && resolvedAnchorElement.nodeType === 1) {
+        const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
           process.env.NODE_ENV !== 'test' &&
@@ -161,7 +161,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolveAnchorEl(tooltipAnchorEl), tooltipRef.current, {
+    const popper = createPopper(resolvedAnchorElement, tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
@@ -173,7 +173,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popper.destroy();
       handlePopperRefRef.current(null);
     };
-  }, [tooltipAnchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+  }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
 
   const childProps = { placement };
 

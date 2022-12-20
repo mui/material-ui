@@ -18,7 +18,7 @@ You can change this behavior by providing a custom config for the `borderRadius`
 
 ## API
 
-Each key in the `unstable_sx` config can define the following properties:
+Each value of the config inside `unstable_sxConfig` accepts the following properties:
 
 - `cssProperty` (_string_ [optional]): Indicates the CSS property, if it is different than the key
 - `themeKey` (_string_ [optional]): The path of the theme mapping
