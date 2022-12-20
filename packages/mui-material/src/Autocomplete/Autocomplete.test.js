@@ -2731,4 +2731,30 @@ describe('<Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
   });
+
+  describe('List virtualization', () => {
+    const samples = [...Array(200).keys()];
+
+    it('should use virtualization for large lists', () => {
+      render(
+        <Autocomplete
+          multiple
+          options={samples}
+          disableCloseOnSelect
+          getOptionLabel={(option) => option.title}
+          renderOption={(props, option, { selected }) => {
+            return (
+              <li {...props}>
+                {option} {selected}
+              </li>
+            );
+          }}
+          style={{ width: 500 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Checkboxes" placeholder="Favorites" />
+          )}
+        />,
+      );
+    });
+  });
 });

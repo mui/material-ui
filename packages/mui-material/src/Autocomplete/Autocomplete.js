@@ -8,6 +8,7 @@ import {
   createFilterOptions,
 } from '@mui/base';
 import { alpha } from '@mui/system';
+import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -360,9 +361,66 @@ const AutocompleteGroupUl = styled('ul', {
   },
 });
 
+function AutocompleteVirtualList({ items, renderGroup, renderListOption, groupBy }) {
+  const cache = React.useRef(
+    new CellMeasurerCache({
+      fixedWidth: true,
+      defaultHeight: 48,
+    }),
+  );
+
+  return (
+    <AutoSizer>
+      {({ width, height }) => (
+        <List
+          width={width}
+          height={height}
+          rowHeight={cache.current.rowHeight}
+          deferredMeasurementCache={cache.current}
+          rowCount={items.length}
+          // eslint-disable-next-line react/no-unstable-nested-components
+          rowRenderer={({ key, index, style, parent }) => {
+            return (
+              <CellMeasurer
+                key={key}
+                cache={cache.current}
+                parent={parent}
+                columnIndex={0}
+                rowIndex={index}
+              >
+                {({ registerChild }) => (
+                  <li style={style} ref={registerChild}>
+                    {groupBy
+                      ? renderGroup({
+                          key: items[index].key,
+                          group: items[index].group,
+                          children: items[index].options.map((option2, index2) =>
+                            renderListOption(option2, items[index].index + index2),
+                          ),
+                        })
+                      : renderListOption(items[index], index)}
+                  </li>
+                )}
+              </CellMeasurer>
+            );
+          }}
+        />
+      )}
+    </AutoSizer>
+  );
+}
+
+AutocompleteVirtualList.propTypes = {
+  groupBy: PropTypes.bool,
+  items: PropTypes.array.isRequired,
+  renderGroup: PropTypes.func.isRequired,
+  renderListOption: PropTypes.func.isRequired,
+};
+
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
+  const maxRowsBeforeVirtualize = 200;
   const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
@@ -642,19 +700,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 ownerState={ownerState}
                 {...getListboxProps()}
                 {...ListboxProps}
+                sx={{ minHeight: groupedOptions.length > maxRowsBeforeVirtualize ? '40vh' : '' }}
               >
-                {groupedOptions.map((option, index) => {
-                  if (groupBy) {
-                    return renderGroup({
-                      key: option.key,
-                      group: option.group,
-                      children: option.options.map((option2, index2) =>
-                        renderListOption(option2, option.index + index2),
-                      ),
-                    });
-                  }
-                  return renderListOption(option, index);
-                })}
+                {groupedOptions.length <= maxRowsBeforeVirtualize &&
+                  groupedOptions.map((option, index) => {
+                    if (groupBy) {
+                      return renderGroup({
+                        key: option.key,
+                        group: option.group,
+                        children: option.options.map((option2, index2) =>
+                          renderListOption(option2, option.index + index2),
+                        ),
+                      });
+                    }
+                    return renderListOption(option, index);
+                  })}
+                {groupedOptions.length > maxRowsBeforeVirtualize && (
+                  <AutocompleteVirtualList
+                    groupBy={groupBy}
+                    renderGroup={renderGroup}
+                    renderListOption={renderListOption}
+                    items={groupedOptions}
+                  />
+                )}
               </AutocompleteListbox>
             ) : null}
           </AutocompletePaper>
