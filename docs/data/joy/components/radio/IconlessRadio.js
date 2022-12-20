@@ -27,13 +27,21 @@ export default function IconlessRadio() {
         sx={{ gap: 1.5 }}
       >
         {['512GB', '1TB', '2TB'].map((value) => (
-          <Sheet key={value} sx={{ p: 2, borderRadius: 'md' }}>
+          <Sheet
+            key={value}
+            sx={{
+              p: 2,
+              borderRadius: 'md',
+              boxShadow: 'sm',
+              bgcolor: 'background.body',
+            }}
+          >
             <Radio
               label={`${value} SSD storage`}
               overlay
               disableIcon
               value={value}
-              componentsProps={{
+              slotProps={{
                 label: ({ checked }) => ({
                   sx: {
                     fontWeight: 'lg',

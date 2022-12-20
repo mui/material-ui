@@ -5,6 +5,7 @@ import { elementTypeAcceptingRef } from '@mui/utils';
 import { useThemeProps } from '@mui/system';
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
+import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
@@ -150,7 +151,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
-    open,
+    open = false,
     PaperProps = {},
     SwipeAreaProps,
     swipeAreaWidth = 20,
@@ -167,6 +168,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
+
+  const handleRef = useForkRef(PaperProps.ref, paperRef);
 
   const touchDetected = React.useRef(false);
 
@@ -574,7 +577,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
             pointerEvents: variant === 'temporary' && !open ? 'none' : '',
             ...PaperProps.style,
           },
-          ref: paperRef,
+          ref: handleRef,
         }}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
@@ -666,6 +669,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func.isRequired,
   /**
    * If `true`, the component is shown.
+   * @default false
    */
   open: PropTypes.bool.isRequired,
   /**

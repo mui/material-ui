@@ -108,7 +108,10 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
    * placement initialized from prop but can change during lifetime if modifiers.flip.
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
-  const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
+  const [placement, setPlacement] = React.useState(rtlPlacement);
+  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState(
+    resolveAnchorEl(anchorEl),
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
@@ -116,8 +119,14 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     }
   });
 
+  React.useEffect(() => {
+    if (anchorEl) {
+      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
+    }
+  }, [anchorEl]);
+
   useEnhancedEffect(() => {
-    if (!anchorEl || !open) {
+    if (!resolvedAnchorElement || !open) {
       return undefined;
     }
 
@@ -125,11 +134,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       setPlacement(data.placement);
     };
 
-    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
-
     if (process.env.NODE_ENV !== 'production') {
-      if (resolvedAnchorEl && isHTMLElement(resolvedAnchorEl) && resolvedAnchorEl.nodeType === 1) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
+      if (resolvedAnchorElement && isHTMLElement(resolvedAnchorElement) && resolvedAnchorElement.nodeType === 1) {
+        const box = resolvedAnchorElement.getBoundingClientRect();
 
         if (
           process.env.NODE_ENV !== 'test' &&
@@ -179,7 +186,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(resolveAnchorEl(anchorEl), tooltipRef.current!, {
+    const popper = createPopper(resolvedAnchorElement, tooltipRef.current!, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
@@ -191,7 +198,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       popper.destroy();
       handlePopperRefRef.current!(null);
     };
-  }, [anchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+  }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
 
   const childProps: PopperUnstyledChildrenProps = { placement: placement! };
 

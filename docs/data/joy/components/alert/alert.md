@@ -13,12 +13,12 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 The Alert component can be used to provide important and potentially time-sensitive information in a way that does not interfere with the user's tasks. (Source: [ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).)
 
-:::warning
+:::info
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
 Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
 :::
 
-{{"demo": "AlertUsage.js", "hideToolbar": true}}
+{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -40,7 +40,7 @@ The Alert component supports Joy UI's four [global variants](/joy-ui/main-featur
 
 {{"demo": "AlertVariants.js"}}
 
-:::success
+:::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 Note that you lose the global variants when you add custom variants.
 :::
@@ -50,6 +50,10 @@ Note that you lose the global variants when you add custom variants.
 The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AlertSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Colors
 

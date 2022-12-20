@@ -9,7 +9,7 @@ export interface TabPanelPropsSizeOverrides {}
 
 export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabPanelUnstyledOwnProps, 'components' | 'componentsProps'> & {
+    Omit<TabPanelUnstyledOwnProps, 'slots' | 'slotProps'> & {
       /**
        * The size of the component.
        */

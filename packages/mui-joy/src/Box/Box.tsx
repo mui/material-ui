@@ -4,13 +4,11 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { BoxTypeMap } from './BoxProps';
 import defaultTheme from '../styles/defaultTheme';
-import styleFunctionSx from '../styles/styleFunctionSx';
 
 const Box = createBox({
   defaultTheme,
   defaultClassName: 'JoyBox-root',
   generateClassName: ClassNameGenerator.generate,
-  styleFunctionSx,
 }) as OverridableComponent<BoxTypeMap>;
 
 Box.propTypes /* remove-proptypes */ = {

@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<Rating />', () => {
   const { render } = createRenderer();
@@ -117,6 +118,41 @@ describe('<Rating />', () => {
     });
 
     expect(container.querySelector('.customized')).to.have.tagName('label');
+  });
+
+  it('should apply labelEmptyValueActive styles from theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiRating: {
+          styleOverrides: {
+            labelEmptyValueActive: {
+              height: '120px',
+            },
+          },
+        },
+      },
+    });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Rating value={null} />
+      </ThemeProvider>,
+    );
+
+    act(() => {
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => {
+        return radio.checked;
+      });
+
+      noValueRadio.focus();
+    });
+
+    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
+      height: '120px',
+    });
   });
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`

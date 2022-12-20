@@ -79,7 +79,7 @@ We'd also like to keep it within reach of individuals and small teams, while sti
 Here is a list of everything that has changed:
 
 :::warning
-⚠️ Please note: The following **pricing** changes apply only to **new customers**.
+The following **pricing** changes apply only to **new customers**.
 Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/legal/mui-x-eula-2022-05-08/) once.
 Their last renewal can have a support duration of up to 5 years.
 :::
