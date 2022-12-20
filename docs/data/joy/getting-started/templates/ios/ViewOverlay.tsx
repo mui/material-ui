@@ -11,6 +11,7 @@ export default function ViewOverlay({
       {...props}
       sx={[
         (theme) => ({
+          position: 'relative',
           display: 'flex',
           flexDirection: 'column',
           bgcolor: 'rgba(0 0 0 / 0.2)',

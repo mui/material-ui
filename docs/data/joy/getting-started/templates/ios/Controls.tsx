@@ -779,8 +779,15 @@ export default function Views() {
             }}
           >
             <ListItem sx={{ py: '10px' }}>
-              <AspectRatio ratio="1" sx={{ boxShadow: 'sm', minWidth: 64 }}>
-                <img alt="" src="" />
+              <AspectRatio
+                ratio="1"
+                sx={{
+                  boxShadow: 'sm',
+                  minWidth: 64,
+                  '--AspectRatio-radius': '12px',
+                }}
+              >
+                <img alt="" src="https://via.placeholder.com/128" />
               </AspectRatio>
               <ListItemContent sx={{ mx: 1.5 }}>
                 <Typography>Label</Typography>

@@ -8,6 +8,8 @@ import { tabClasses } from '@mui/joy/Tab';
 import type {} from '@mui/joy/Switch';
 import { sliderClasses } from '@mui/joy/Slider';
 import type {} from '@mui/joy/LinearProgress';
+import type {} from '@mui/joy/ModalDialog';
+import { listItemButtonClasses } from '@mui/joy/ListItemButton';
 
 interface IosMaterial {
   materials: {
@@ -18,6 +20,12 @@ interface IosMaterial {
     navbar: CSSObject;
     toolbar: CSSObject;
   };
+}
+
+declare module '@mui/joy/ModalDialog' {
+  interface ModalDialogPropsVariantOverrides {
+    ios: true;
+  }
 }
 
 declare module '@mui/joy/Tabs' {
@@ -147,6 +155,9 @@ declare module '@mui/joy/styles' {
       primary: string;
       secondary: string;
       tertiary: string;
+      primaryElevated: string;
+      secondaryElevated: string;
+      tertiaryElevated: string;
     };
     separator: {
       opaque: string;
@@ -158,6 +169,9 @@ declare module '@mui/joy/styles' {
     primary: string;
     secondary: string;
     tertiary: string;
+    primaryElevated: string;
+    secondaryElevated: string;
+    tertiaryElevated: string;
   }
 
   interface Theme extends IosMaterial {}
@@ -237,11 +251,17 @@ export default extendTheme({
           primary: '#FFFFFF',
           secondary: '#F2F2F7',
           tertiary: '#FFFFFF',
+          primaryElevated: '#FFFFFF',
+          secondaryElevated: '#F2F2F7',
+          tertiaryElevated: '#FFFFFF',
         },
         groupedBackground: {
           primary: '#F2F2F7',
           secondary: '#FFFFFF',
           tertiary: '#F2F2F7',
+          primaryElevated: '#F2F2F7',
+          secondaryElevated: '#FFFFFF',
+          tertiaryElevated: '#F2F2F7',
         },
         label: {
           primary: '#000000',
@@ -328,11 +348,17 @@ export default extendTheme({
           primary: '#000000',
           secondary: '#1C1C1E',
           tertiary: '#2C2C2E',
+          primaryElevated: '#1C1C1E',
+          secondaryElevated: '#2C2C2E',
+          tertiaryElevated: '#3A3A3C',
         },
         groupedBackground: {
           primary: '#000000',
           secondary: '#1C1C1E',
           tertiary: '#2C2C2E',
+          primaryElevated: '#1C1C1E',
+          secondaryElevated: '#2C2C2E',
+          tertiaryElevated: '#3A3A3C',
         },
         label: {
           primary: '#ffffff',
@@ -355,17 +381,6 @@ export default extendTheme({
   },
   fontFamily: {
     body: '"SF Pro", var(--ios-fontFamily-fallback)',
-  },
-  fontSize: {
-    xl3: '34px',
-    xl2: '28px',
-    xl: '22px',
-    lg: '20px',
-    md: '17px',
-    sm: '16px',
-    xs: '15px',
-    xs2: '13px',
-    xs3: '12px',
   },
   materials: {
     thick: {
@@ -428,6 +443,17 @@ export default extendTheme({
     material: {
       style: (props) => props.theme.materials?.[props.material],
     },
+  },
+  fontSize: {
+    xl3: '34px',
+    xl2: '28px',
+    xl: '22px',
+    lg: '20px',
+    md: '17px',
+    sm: '16px',
+    xs: '15px',
+    xs2: '13px',
+    xs3: '12px',
   },
   typography: {
     // @ts-ignore
@@ -711,6 +737,33 @@ export default extendTheme({
         }),
       },
     },
+    JoyModalDialog: {
+      defaultProps: {
+        variant: 'ios',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => [
+          ownerState.variant === 'ios' && {
+            minWidth:
+              'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 270px))',
+            boxShadow: 'none',
+            borderRadius: '14px',
+            backgroundColor: 'rgba(242 242 242 / 0.8)',
+            backdropFilter: 'blur(20px)',
+            textAlign: 'center',
+            padding: 0,
+            [`[data-joy-color-scheme="dark"] &`]: {
+              backgroundColor: 'rgba(30 30 30 / 0.75)',
+              backdropFilter: 'blur(30px) saturate(90%)',
+            },
+            [`& .${listItemButtonClasses.root}`]: {
+              flex: 1,
+              justifyContent: 'center',
+            },
+          },
+        ],
+      },
+    },
     JoyFormControl: {
       styleOverrides: {
         root: {
@@ -735,9 +788,22 @@ export default extendTheme({
             backgroundColor: theme.vars.palette.fill.tertiary,
             borderRadius: '11px',
           }),
+          ...(ownerState.size === 'sm' && {
+            borderRadius: '5px',
+            minHeight: '26px',
+          }),
+          ...(ownerState.variant === 'outlined' && {
+            '--Input-focusedThickness': '0px',
+            borderWidth: '0.5px',
+            borderColor: 'rgba(60 60 67 / 0.29)',
+            [theme.getColorSchemeSelector('dark')]: {
+              borderColor: 'rgba(84 84 88 / 0.65)',
+            },
+          }),
         }),
         input: ({ theme, ownerState }) => ({
-          ...(ownerState.variant === 'ios' && {
+          ...((ownerState.variant === 'ios' ||
+            ownerState.variant === 'outlined') && {
             caretColor: theme.vars.palette.system.blue,
           }),
         }),
