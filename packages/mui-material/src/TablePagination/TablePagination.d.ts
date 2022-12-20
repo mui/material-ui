@@ -8,11 +8,13 @@ import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 import { TablePaginationClasses } from './tablePaginationClasses';
 
+type Direction = 'rtl' | 'ltr';
 export interface LabelDisplayedRowsArgs {
   from: number;
   to: number;
   count: number;
   page: number;
+  direction: Direction;
 }
 
 export interface TablePaginationTypeMap<P, D extends React.ElementType> {
