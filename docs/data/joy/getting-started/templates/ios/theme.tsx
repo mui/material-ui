@@ -744,6 +744,7 @@ export default extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => [
           ownerState.variant === 'ios' && {
+            '--ModalDialog-padding': '0px',
             minWidth:
               'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 270px))',
             boxShadow: 'none',
@@ -751,7 +752,6 @@ export default extendTheme({
             backgroundColor: 'rgba(242 242 242 / 0.8)',
             backdropFilter: 'blur(20px)',
             textAlign: 'center',
-            padding: 0,
             [`[data-joy-color-scheme="dark"] &`]: {
               backgroundColor: 'rgba(30 30 30 / 0.75)',
               backdropFilter: 'blur(30px) saturate(90%)',
