@@ -76,7 +76,7 @@ const defaultPopperOptions = {};
 
 const PopperTooltip = React.forwardRef(function PopperTooltip(
   props: PopperTooltipProps,
-  ref: React.ForwardedRef<any>,
+  ref: React.ForwardedRef<HTMLElement>,
 ) {
   const {
     anchorEl,
