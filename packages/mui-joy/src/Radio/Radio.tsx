@@ -204,8 +204,8 @@ const RadioIcon = styled('span', {
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: RadioOwnerState }>(({ ownerState }) => ({
-  width: '50%',
-  height: '50%',
+  width: 'calc((var(--Radio-size) - var(--variant-borderWidth)) / 2)',
+  height: 'calc((var(--Radio-size) - var(--variant-borderWidth)) / 2)',
   borderRadius: 'inherit',
   color: 'inherit',
   backgroundColor: 'currentColor',
