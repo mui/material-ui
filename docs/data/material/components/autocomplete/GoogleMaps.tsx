@@ -33,7 +33,7 @@ interface MainTextMatchedSubstrings {
 interface StructuredFormatting {
   main_text: string;
   secondary_text: string;
-  main_text_matched_substrings: readonly MainTextMatchedSubstrings[];
+  main_text_matched_substrings?: readonly MainTextMatchedSubstrings[];
 }
 interface PlaceType {
   description: string;
@@ -138,7 +138,8 @@ export default function GoogleMaps() {
         <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, option) => {
-        const matches = option.structured_formatting.main_text_matched_substrings;
+        const matches =
+          option.structured_formatting.main_text_matched_substrings || [];
 
         const parts = parse(
           option.structured_formatting.main_text,
