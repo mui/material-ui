@@ -116,6 +116,7 @@ export default function PaletteThemeViewer() {
         </thead>
         <tbody>
           {paletteTokens
+            .filter((token) => token !== 'mode')
             .filter((token) => (text ? token.toLowerCase().includes(text) : true))
             .map((token) => (
               <tr key={token}>
