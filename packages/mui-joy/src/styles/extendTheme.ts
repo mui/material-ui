@@ -552,10 +552,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                   ownerState.color !== 'inherit' &&
                   ownerState.color !== 'context' &&
                   themeProp.vars.palette[ownerState.color!] && {
-                    color: themeProp.vars.palette[ownerState.color].plainColor,
+                    color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
                   }),
                 ...(ownerState.color === 'context' && {
-                  color: theme.variants.plain?.context?.color,
+                  color: theme.vars.palette.text.secondary,
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {
