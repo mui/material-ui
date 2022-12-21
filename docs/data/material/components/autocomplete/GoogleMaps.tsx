@@ -127,6 +127,7 @@ export default function GoogleMaps() {
       includeInputInList
       filterSelectedOptions
       value={value}
+      noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
@@ -166,6 +167,7 @@ export default function GoogleMaps() {
                     key={index}
                     style={{
                       fontWeight: part.highlight ? 700 : 400,
+                      wordWrap:'break-word'
                     }}
                   >
                     {part.text}
