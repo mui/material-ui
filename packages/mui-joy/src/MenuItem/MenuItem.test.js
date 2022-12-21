@@ -20,9 +20,11 @@ const testContext = {
   open: false,
 };
 
-const Wrapper = ({ children }) => (
-  <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
-);
+function Wrapper({ children }) {
+  return (
+    <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
+  );
+}
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
@@ -46,8 +48,19 @@ describe('Joy <MenuItem />', () => {
     testComponentPropWith: 'a',
     muiName: 'JoyMenuItem',
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
+
+  it('should render with the variant class', () => {
+    const { getByRole } = render(<MenuItem variant="outlined" />);
+    expect(getByRole('menuitem')).to.have.class(classes.variantOutlined);
+  });
+
+  it('should render with primary color class', () => {
+    const { getByRole } = render(<MenuItem color="primary" />);
+    expect(getByRole('menuitem')).to.have.class(classes.colorPrimary);
+  });
 
   it('should render a focusable menuitem', () => {
     render(<MenuItem />);

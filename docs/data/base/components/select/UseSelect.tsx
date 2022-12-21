@@ -1,56 +1,72 @@
 import * as React from 'react';
 import { useSelect, SelectOption } from '@mui/base';
 import { styled } from '@mui/system';
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+
+const blue = {
+  100: '#DAECFF',
+  200: '#99CCF3',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  900: '#003A75',
+};
 
 const grey = {
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
 };
 
 const Root = styled('div')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
   position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-  color: #000;
 `;
 
-const Toggle = styled('div')(
+const Toggle = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   min-width: 320px;
-  background: var(--color, ${theme.palette.mode === 'dark' ? grey[900] : '#fff'});
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  box-shadow: ${
-    theme.palette.mode === 'dark'
-      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
-      : `0 5px 13px -3px ${grey[200]}`
-  };
-  border-radius: 0.75em;
-  margin: 0.5em;
-  padding: 10px;
+  padding: 12px;
+  border-radius: 12px;
   text-align: left;
   line-height: 1.5;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 
-  & .placeholder {
-    opacity: 0.8;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+
+  box-shadow: 0 0 0 2px var(--color) inset;
+
+  &:hover {
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+  }
+
+  &:focus-visible {
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? grey[600] : grey[200]};
+  }
+
+  & > svg {
+    font-size: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 10px;
   }
   `,
 );
@@ -60,43 +76,63 @@ const Listbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
+  min-height: calc(1.5em + 22px);
+  min-width: 320px;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: left;
+  line-height: 1.5;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   padding: 5px;
   margin: 5px 0 0 0;
-  list-style: none;
   position: absolute;
   height: auto;
-  transition: opacity 0.1s ease;
   width: 100%;
-  box-shadow: ${
-    theme.palette.mode === 'dark'
-      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
-      : `0 5px 13px -3px ${grey[200]}`
-  };
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 0.75em;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   z-index: 1;
   outline: 0px;
+  list-style: none;
 
   &.hidden {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s 0.5s ease, visibility 0.4s 0.5s step-end;
+    transition: opacity 0.4s ease, visibility 0.4s step-end;
+  }
+  `,
+);
+
+const Option = styled('li')(
+  ({ theme }) => `
+  padding: 8px;
+  border-radius: 0.45em;
+
+  &[aria-selected='true'] {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  & > li {
-    padding: 8px;
-    border-radius: 0.45em;
+  &.highlighted,
+  &:hover {
+    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  }
 
-    &:hover {
-      background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    }
+  &[aria-selected='true'].highlighted {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
 
-    &[aria-selected='true'] {
-      background: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    }
+  &:before {
+    content: '';
+    width: 1ex;
+    height: 1ex;
+    margin-right: 1ex;
+    background-color: var(--color);
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
   }
   `,
 );
@@ -106,14 +142,23 @@ interface Props {
   placeholder?: string;
 }
 
+function renderSelectedValue(value: string | null, options: SelectOption<string>[]) {
+  const selectedOption = options.find((option) => option.value === value);
+
+  return selectedOption ? `${selectedOption.label} (${value})` : null;
+}
+
 function CustomSelect({ options, placeholder }: Props) {
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const [listboxVisible, setListboxVisible] = React.useState(false);
 
-  const { getButtonProps, getListboxProps, getOptionProps, value } = useSelect({
-    listboxRef,
-    options,
-  });
+  const { getButtonProps, getListboxProps, getOptionProps, getOptionState, value } =
+    useSelect({
+      listboxRef,
+      onOpenChange: setListboxVisible,
+      open: listboxVisible,
+      options,
+    });
 
   React.useEffect(() => {
     if (listboxVisible) {
@@ -122,21 +167,32 @@ function CustomSelect({ options, placeholder }: Props) {
   }, [listboxVisible]);
 
   return (
-    <Root
-      onMouseOver={() => setListboxVisible(true)}
-      onMouseOut={() => setListboxVisible(false)}
-      onFocus={() => setListboxVisible(true)}
-      onBlur={() => setListboxVisible(false)}
-    >
+    <Root>
       <Toggle {...getButtonProps()} style={{ '--color': value } as any}>
-        {value ?? <span className="placeholder">{placeholder ?? ' '}</span>}
+        {renderSelectedValue(value, options) || (
+          <span className="placeholder">{placeholder ?? ' '}</span>
+        )}
+
+        <UnfoldMoreRoundedIcon />
       </Toggle>
-      <Listbox {...getListboxProps()} className={listboxVisible ? '' : 'hidden'}>
-        {options.map((option) => (
-          <li key={option.value} {...getOptionProps(option)}>
-            {option.label}
-          </li>
-        ))}
+      <Listbox
+        {...getListboxProps()}
+        aria-hidden={!listboxVisible}
+        className={listboxVisible ? '' : 'hidden'}
+      >
+        {options.map((option) => {
+          const optionState = getOptionState(option);
+          return (
+            <Option
+              key={option.value}
+              {...getOptionProps(option)}
+              style={{ '--color': option.value } as any}
+              className={optionState.highlighted ? 'highlighted' : ''}
+            >
+              {option.label}
+            </Option>
+          );
+        })}
       </Listbox>
     </Root>
   );

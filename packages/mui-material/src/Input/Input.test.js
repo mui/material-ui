@@ -16,7 +16,17 @@ describe('<Input />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    skip: ['componentProp', 'componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      // can't test with DOM element as Input places an ownerState prop on it unconditionally.
+      root: { expectedClassName: classes.root, testWithElement: null },
+      input: { expectedClassName: classes.input, testWithElement: null },
+    },
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should forward classes to InputBase', () => {

@@ -12,7 +12,6 @@ export interface UseButtonRootSlotOwnProps {
   onKeyUp: React.KeyboardEventHandler;
   onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  onMouseUp: React.MouseEventHandler;
   ref: React.Ref<any>;
 }
 

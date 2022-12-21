@@ -9,7 +9,7 @@ export interface TabPanelPropsSizeOverrides {}
 
 export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabPanelUnstyledOwnProps, 'components' | 'componentsProps'> & {
+    Omit<TabPanelUnstyledOwnProps, 'slots' | 'slotProps'> & {
       /**
        * The size of the component.
        */
@@ -27,7 +27,13 @@ export type TabPanelProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabPanelTypeMap<P, D>, D>;
 
-export type TabPanelOwnerState = TabPanelProps & {
+export interface TabPanelOwnerState extends TabPanelProps {
+  /**
+   * If `true`, the element is not visible on the screen.
+   */
   hidden: boolean;
+  /**
+   * The orientation of the Tabs.
+   */
   orientation?: 'horizontal' | 'vertical';
-};
+}

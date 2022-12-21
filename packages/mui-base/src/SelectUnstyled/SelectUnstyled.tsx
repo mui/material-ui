@@ -61,22 +61,20 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
  * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
-const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
+const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {}>(
   props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
     children,
     component,
-    components = {},
-    componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
@@ -88,6 +86,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     onListboxOpenChange,
     optionStringifier = defaultOptionStringifier,
     renderValue: renderValueProp,
+    slotProps = {},
+    slots = {},
     value: valueProp,
     ...other
   } = props;
@@ -111,19 +111,15 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? components.Root ?? 'button';
-  const ListboxRoot = components.Listbox ?? 'ul';
-  const Popper = components.Popper ?? PopperUnstyled;
+  const Button = component ?? slots.root ?? 'button';
+  const ListboxRoot = slots.listbox ?? 'ul';
+  const Popper = slots.popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleButtonRef = useForkRef(forwardedRef, buttonRef, handleButtonRefChange);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -179,7 +175,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = useSlotProps({
     elementType: Button,
     getSlotProps: getButtonProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     ownerState,
     className: classes.root,
@@ -189,7 +185,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     {
       elementType: ListboxRoot,
       getSlotProps: getListboxProps,
-      externalSlotProps: componentsProps.listbox,
+      externalSlotProps: slotProps.listbox,
       additionalProps: {
         ref: listboxRef,
       },
@@ -200,7 +196,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
 
   const popperProps: SelectUnstyledPopperSlotProps<TValue> = useSlotProps({
     elementType: Popper,
-    externalSlotProps: componentsProps.popper,
+    externalSlotProps: slotProps.popper,
     additionalProps: {
       anchorEl: buttonRef.current,
       disablePortal: true,
@@ -212,11 +208,14 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     className: classes.popper,
   });
 
-  const context: SelectUnstyledContextType = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-  };
+  const context: SelectUnstyledContextType = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+    }),
+    [getOptionProps, getOptionState],
+  );
 
   return (
     <React.Fragment>
@@ -256,25 +255,6 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the select will be initially open.
    * @default false
    */
@@ -282,7 +262,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the select is disabled.
    * @default false
@@ -331,10 +311,29 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   renderValue: PropTypes.func,
   /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  value: PropTypes.any,
 } as any;
 
 export default SelectUnstyled;

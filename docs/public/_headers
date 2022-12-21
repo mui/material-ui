@@ -7,6 +7,12 @@
 /favicon.ico
   Content-Type: image/x-icon
 
+/performance/*
+  X-Robots-Tag: noindex
+
+/experiments/*
+  X-Robots-Tag: noindex
+
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   # Block usage in iframes.
@@ -14,6 +20,5 @@
   # Force the browser to trust the Content-Type header
   # https://stackoverflow.com/questions/18337630/what-is-x-content-type-options-nosniff
   X-Content-Type-Options: nosniff
-  # Disable it (default) as it can cause security issues.
-  X-XSS-Protection: 0
+  X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin

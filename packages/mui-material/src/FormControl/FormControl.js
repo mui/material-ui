@@ -73,7 +73,7 @@ const FormControlRoot = styled('div', {
  * </FormControl>
  * ```
  *
- * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
+ * ⚠️ Only one `InputBase` can be used within a FormControl because it creates visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
@@ -180,17 +180,36 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     };
   }
 
-  const onFilled = React.useCallback(() => {
-    setFilled(true);
-  }, []);
-
-  const onEmpty = React.useCallback(() => {
-    setFilled(false);
-  }, []);
-
-  const childContext = {
+  const childContext = React.useMemo(() => {
+    return {
+      adornedStart,
+      setAdornedStart,
+      color,
+      disabled,
+      error,
+      filled,
+      focused,
+      fullWidth,
+      hiddenLabel,
+      size,
+      onBlur: () => {
+        setFocused(false);
+      },
+      onEmpty: () => {
+        setFilled(false);
+      },
+      onFilled: () => {
+        setFilled(true);
+      },
+      onFocus: () => {
+        setFocused(true);
+      },
+      registerEffect,
+      required,
+      variant,
+    };
+  }, [
     adornedStart,
-    setAdornedStart,
     color,
     disabled,
     error,
@@ -198,19 +217,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     focused,
     fullWidth,
     hiddenLabel,
-    size,
-    onBlur: () => {
-      setFocused(false);
-    },
-    onEmpty,
-    onFilled,
-    onFocus: () => {
-      setFocused(true);
-    },
     registerEffect,
     required,
+    size,
     variant,
-  };
+  ]);
 
   return (
     <FormControlContext.Provider value={childContext}>

@@ -1,12 +1,13 @@
 {
   "name": "@mui/types",
-  "version": "7.1.5",
+  "version": "7.2.3",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
   "types": "./index.d.ts",
   "files": [
-    "index.d.ts"
+    "index.d.ts",
+    "OverridableComponentAugmentation.ts"
   ],
   "keywords": [
     "react",
@@ -25,8 +26,8 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build": "mkdir build && cpy index.d.ts build/ && cpy OverridableComponentAugmentation.ts build/ && yarn build:copy-files",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",

@@ -43,6 +43,7 @@ const TabPanelRoot = styled('div', {
     fontSize: theme.vars.fontSize.lg,
   }),
   flexGrow: 1,
+  fontFamily: theme.vars.fontFamily.body,
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
@@ -103,7 +104,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

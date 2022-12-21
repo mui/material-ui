@@ -5,7 +5,6 @@ import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 export type TabSlot = 'root';
 
 export interface TabPropsColorOverrides {}
-
 export interface TabPropsVariantOverrides {}
 
 export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -57,9 +56,25 @@ export type TabProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabTypeMap<P, D>, D>;
 
-export type TabOwnerState = TabProps & {
+export interface TabOwnerState extends TabProps {
+  /**
+   * If `true`, the tab is activated by mouse or keyboard.
+   */
   active: boolean;
-  focusVisible: boolean;
+  /**
+   * If `true`, the tab's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the tab is disabled.
+   */
   disabled: boolean;
+  /**
+   * If `true`, the tab is disabled.
+   */
   selected: boolean;
-};
+  /**
+   * @internal
+   */
+  row: boolean;
+}

@@ -50,9 +50,11 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
+function LinkRouter(props) {
+  return <Link {...props} component={RouterLink} />;
+}
 
-const Page = () => {
+function Page() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -77,7 +79,7 @@ const Page = () => {
       })}
     </Breadcrumbs>
   );
-};
+}
 
 export default function RouterBreadcrumbs() {
   const [open, setOpen] = React.useState(true);

@@ -1,31 +1,36 @@
 import * as React from 'react';
-import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { TypographyClasses } from './typographyClasses';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import {
   ColorPaletteProp,
-  TypographySystem,
   SxProps,
   SystemProps,
+  TypographySystem,
   VariantProp,
 } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface TypographyPropsColorOverrides {}
-
 export interface TypographyPropsVariantOverrides {}
+
+export type TypographySlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TypographySlot,
+  {
+    root: SlotProps<'a', {}, TypographyOwnerState>;
+    startDecorator: SlotProps<'span', {}, TypographyOwnerState>;
+    endDecorator: SlotProps<'span', {}, TypographyOwnerState>;
+  }
+>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
+    TypographySlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
        */
       children?: React.ReactNode;
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<TypographyClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        */
@@ -97,3 +102,10 @@ export type TypographyProps<
     component?: React.ElementType;
   },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
+
+export interface TypographyOwnerState extends TypographyProps {
+  /**
+   * If `true`, the element is rendered in a Typography.
+   */
+  nesting: boolean;
+}

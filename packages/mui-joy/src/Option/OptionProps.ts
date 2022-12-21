@@ -5,6 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
+import { OptionState } from '@mui/base/ListboxUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type OptionSlot = 'root';
@@ -13,7 +14,7 @@ export interface OptionPropsVariantOverrides {}
 
 export interface OptionPropsColorOverrides {}
 
-export interface OptionTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
@@ -62,6 +63,8 @@ export type OptionProps<
     component?: React.ElementType;
   },
 > = OverrideProps<OptionTypeMap<P, D>, D>;
+
+export interface OptionOwnerState extends Omit<OptionProps, 'disabled'>, OptionState {}
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,

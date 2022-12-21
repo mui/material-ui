@@ -9,13 +9,13 @@ There are two main use cases for using them together:
 1. Your existing project already uses Material UI but you're willing to explore the new components and style Joy UI offers.
 2. You've started your project with Joy UI but you find a key component you need is missing.
 
-:::warning
-**⚠️ Note:** Once Joy UI reaches component parity with Material UI, we recommend you to _choose one or the other_. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
+:::success
+Once Joy UI reaches component parity with Material UI, we recommend that you _choose one or the other_. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
 :::
 
 Additionally, keep these in mind when using them together:
 
-- Both of them use [MUI System](/system/getting-started/overview/) as their syle engine, which uses React context for theming.
+- Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
 - Joy UI requires wrapping your application with the `CssVarsProvider` component but you're able to import it from either @mui/joy or @mui/material.
 
 ## Case A: Joy UI in a Material UI project
@@ -32,7 +32,8 @@ import {
 import { extendTheme as extendJoyTheme } from '@mui/joy/styles';
 
 const joyTheme = extendJoyTheme({
-  // This is required to point to `var(--mui-*)` because we are using `CssVarsProvider` from Material UI.
+  // This is required to point to `var(--mui-*)` because we are using
+  // `CssVarsProvider` from Material UI.
   cssVarPrefix: 'mui',
   colorSchemes: {
     light: {
@@ -79,8 +80,9 @@ const joyTheme = extendJoyTheme({
   },
 });
 
-// Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)` because
-//       some of the values in the Joy UI theme refers to CSS variables abd not raw colors.
+// Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)`
+// because some of the values in the Joy UI theme refers to CSS variables and
+// not raw colors.
 const muiTheme = extendMuiTheme();
 
 // You can use your own `deepmerge` function.
@@ -100,7 +102,7 @@ export default function App() {
 
 Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-eph5gi?fontsize=12&module=%2Fdemo.tsx&moduleview=1&theme=dark)
+[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-vvvv59?file=/demo.tsx)
 
 ## Case B: Material UI in a Joy UI project
 
@@ -117,7 +119,8 @@ import {
 } from '@mui/joy/styles';
 
 const muiTheme = extendMuiTheme({
-  // This is required to point to `var(--joy-*)` because we are using `CssVarsProvider` from Joy UI.
+  // This is required to point to `var(--joy-*)` because we are using
+  // `CssVarsProvider` from Joy UI.
   cssVarPrefix: 'joy',
   colorSchemes: {
     light: {
@@ -200,7 +203,7 @@ export default function App() {
 
 Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-cy4nj7?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark)
+[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-k86j2j?file=/demo.tsx)
 
 ## TypeScript setup
 

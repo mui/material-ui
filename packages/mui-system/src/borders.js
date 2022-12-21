@@ -4,7 +4,7 @@ import compose from './compose';
 import { createUnaryUnit, getValue } from './spacing';
 import { handleBreakpoints } from './breakpoints';
 
-function getBorder(value) {
+export function borderTransform(value) {
   if (typeof value !== 'number') {
     return value;
   }
@@ -15,31 +15,31 @@ function getBorder(value) {
 export const border = style({
   prop: 'border',
   themeKey: 'borders',
-  transform: getBorder,
+  transform: borderTransform,
 });
 
 export const borderTop = style({
   prop: 'borderTop',
   themeKey: 'borders',
-  transform: getBorder,
+  transform: borderTransform,
 });
 
 export const borderRight = style({
   prop: 'borderRight',
   themeKey: 'borders',
-  transform: getBorder,
+  transform: borderTransform,
 });
 
 export const borderBottom = style({
   prop: 'borderBottom',
   themeKey: 'borders',
-  transform: getBorder,
+  transform: borderTransform,
 });
 
 export const borderLeft = style({
   prop: 'borderLeft',
   themeKey: 'borders',
-  transform: getBorder,
+  transform: borderTransform,
 });
 
 export const borderColor = style({
@@ -67,6 +67,8 @@ export const borderLeftColor = style({
   themeKey: 'palette',
 });
 
+// false positive
+// eslint-disable-next-line react/function-component-definition
 export const borderRadius = (props) => {
   if (props.borderRadius !== undefined && props.borderRadius !== null) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');

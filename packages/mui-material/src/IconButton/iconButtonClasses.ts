@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface IconButtonClasses {
   /** Styles applied to the root element. */
@@ -13,6 +14,14 @@ export interface IconButtonClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
+  /** Styles applied to the root element if `color="error"`. */
+  colorError: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `size="small"`. */
@@ -35,6 +44,10 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'colorInherit',
   'colorPrimary',
   'colorSecondary',
+  'colorError',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
   'edgeStart',
   'edgeEnd',
   'sizeSmall',

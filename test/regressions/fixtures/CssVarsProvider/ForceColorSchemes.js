@@ -22,9 +22,9 @@ const { CssVarsProvider } = createCssVarsProvider({
   },
 });
 
-export default function DarkModeSpecificity() {
+export default function ForceColorSchemes() {
   return (
-    <CssVarsProvider modeStorageKey="force-color-schemes">
+    <CssVarsProvider>
       <div
         data-color-scheme="dark"
         style={{

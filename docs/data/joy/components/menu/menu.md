@@ -18,7 +18,7 @@ Joy UI provides three menu-related components:
 - `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
 - `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
 
-{{"demo": "MenuUsage.js", "hideToolbar": true}}
+{{"demo": "MenuUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -47,13 +47,17 @@ Choosing an option should immediately, and ideally, commit the option and close 
 
 {{"demo": "BasicMenu.js"}}
 
-### Size
+### Sizes
 
 The menu component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 When specifying a size for the `Menu` component, menu items inside of it will inherit the value.
 
 {{"demo": "SizeMenu.js"}}
+
+:::info
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Selected
 
@@ -104,4 +108,4 @@ It supports mouse and keyboard navigation between menu items.
 
 This example is quite common in dashboard applications where the side navigation is shrunk into icons, and the menu is triggered by hovering them.
 
-{{"demo": "MenuIconSideNavExample.js", "bg": true}}
+{{"demo": "MenuIconSideNavExample.js"}}

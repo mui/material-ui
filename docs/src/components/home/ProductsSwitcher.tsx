@@ -84,7 +84,7 @@ function ProductItem({
   );
 }
 
-const ProductsSwitcher = ({
+function ProductsSwitcher({
   inView = false,
   productIndex,
   setProductIndex,
@@ -92,7 +92,7 @@ const ProductsSwitcher = ({
   inView?: boolean;
   productIndex: number;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+}) {
   const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
@@ -177,6 +177,6 @@ const ProductsSwitcher = ({
       </Stack>
     </React.Fragment>
   );
-};
+}
 
 export default ProductsSwitcher;

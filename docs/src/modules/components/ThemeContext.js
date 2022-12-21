@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider as MuiThemeProvider,
-  createTheme as createLegacyModeTheme,
-  unstable_createMuiStrictModeTheme as createStrictModeTheme,
-} from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
@@ -116,13 +112,6 @@ if (process.env.NODE_ENV !== 'production') {
   DispatchContext.displayName = 'ThemeDispatchContext';
 }
 
-let createTheme;
-if (process.env.REACT_STRICT_MODE) {
-  createTheme = createStrictModeTheme;
-} else {
-  createTheme = createLegacyModeTheme;
-}
-
 export function ThemeProvider(props) {
   const { children } = props;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -186,7 +175,10 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteMode = getCookie('paletteMode') || preferredMode;
+      let nextPaletteMode = localStorage.getItem('mui-mode') || preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      if (nextPaletteMode === 'system') {
+        nextPaletteMode = preferredMode;
+      }
 
       dispatch({
         type: 'CHANGE',
@@ -255,6 +247,7 @@ export function ThemeProvider(props) {
   }, [theme]);
 
   useEnhancedEffect(() => {
+    // To support light and dark mode images in the docs
     if (theme.palette.mode === 'dark') {
       document.body.classList.remove('mode-light');
       document.body.classList.add('mode-dark');

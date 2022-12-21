@@ -13,7 +13,7 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(color)}`],
+    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor)}`],
     deleteIcon: [
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
@@ -47,7 +47,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, clickable, onDelete, size, variant } = ownerState;
+    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -55,7 +55,7 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
       { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
@@ -129,7 +129,6 @@ const ChipRoot = styled('div', {
         fontSize: theme.typography.pxToRem(10),
       },
       [`& .${chipClasses.icon}`]: {
-        color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
         marginLeft: 5,
         marginRight: -6,
         ...(ownerState.size === 'small' && {
@@ -137,8 +136,11 @@ const ChipRoot = styled('div', {
           marginLeft: 4,
           marginRight: -4,
         }),
-        ...(ownerState.color !== 'default' && {
-          color: 'inherit',
+        ...(ownerState.iconColor === ownerState.color && {
+          color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
+          ...(ownerState.color !== 'default' && {
+            color: 'inherit',
+          }),
         }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
@@ -178,9 +180,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.onDelete && {
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
-                theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity
-              }))`
+            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
             : alpha(
                 theme.palette.action.selected,
                 theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -202,9 +202,7 @@ const ChipRoot = styled('div', {
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
-              theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.hoverOpacity
-            }))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -212,9 +210,7 @@ const ChipRoot = styled('div', {
       },
       [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
-              theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity
-            }))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -344,6 +340,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onKeyUp,
     size = 'medium',
     variant = 'filled',
+    tabIndex,
+    skipFocusWhenDisabled = false, // TODO v6: Rename to `focusableWhenDisabled`.
     ...other
   } = props;
 
@@ -396,6 +394,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
+    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
     onDelete: !!onDelete,
     clickable,
     variant,
@@ -457,6 +456,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
+      tabIndex={skipFocusWhenDisabled && disabled ? -1 : tabIndex}
       ownerState={ownerState}
       {...moreProps}
       {...other}
@@ -559,6 +559,12 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * If `true`, allows the disabled chip to escape focus.
+   * If `false`, allows the disabled chip to receive focus.
+   * @default false
+   */
+  skipFocusWhenDisabled: PropTypes.bool,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -566,6 +572,10 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.number,
   /**
    * The variant to use.
    * @default 'filled'

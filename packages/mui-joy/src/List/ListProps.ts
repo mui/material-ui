@@ -5,9 +5,7 @@ import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 export type ListSlot = 'root';
 
 export interface ListPropsSizeOverrides {}
-
 export interface ListPropsVariantOverrides {}
-
 export interface ListPropsColorOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
@@ -57,3 +55,16 @@ export type ListProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListTypeMap<P, D>, D>;
+
+export interface ListOwnerState extends ListProps {
+  /**
+   * @internal
+   * The explicit size specified on the element instance.
+   */
+  instanceSize?: ListProps['size'];
+  /**
+   * @internal
+   * If `true`, the element is rendered in a nested list item.
+   */
+  nesting?: boolean | string;
+}

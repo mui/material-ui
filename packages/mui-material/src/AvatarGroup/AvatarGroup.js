@@ -67,8 +67,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const {
     children: childrenProp,
     className,
+    component = 'div',
     componentsProps = {},
     max = 5,
+    slotProps = {},
     spacing = 'medium',
     total,
     variant = 'circular',
@@ -80,6 +82,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ...props,
     max,
     spacing,
+    component,
     variant,
   };
 
@@ -113,8 +116,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
+  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
+
   return (
     <AvatarGroupRoot
+      as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
@@ -124,9 +130,9 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
         <AvatarGroupAvatar
           ownerState={ownerState}
           variant={variant}
-          {...componentsProps.additionalAvatar}
-          className={clsx(classes.avatar, componentsProps.additionalAvatar?.className)}
-          style={{ marginLeft, ...componentsProps.additionalAvatar?.style }}
+          {...additionalAvatarSlotProps}
+          className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
+          style={{ marginLeft, ...additionalAvatarSlotProps?.style }}
         >
           +{extraAvatars}
         </AvatarGroupAvatar>
@@ -168,7 +174,17 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The props used for each slot inside the AvatarGroup.
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -189,6 +205,17 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     }
 
     return null;
+  }),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    additionalAvatar: PropTypes.object,
   }),
   /**
    * Spacing between avatars.

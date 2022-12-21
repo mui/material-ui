@@ -5,10 +5,10 @@ import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled'
 import { ThemeProvider } from '@mui/joy/styles';
 import Tab, { tabClasses as classes } from '@mui/joy/Tab';
 
-const TabsProvider = ({ children, ...props }: TabsUnstyledProps) => {
+function TabsProvider({ children, ...props }: TabsUnstyledProps) {
   const { tabsContextValue } = useTabs(props);
   return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
-};
+}
 
 describe('Joy <Tab />', () => {
   const { render } = createRenderer();
@@ -22,6 +22,7 @@ describe('Joy <Tab />', () => {
     muiName: 'JoyTab',
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

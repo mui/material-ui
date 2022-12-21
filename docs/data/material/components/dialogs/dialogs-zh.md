@@ -3,7 +3,7 @@ product: material-ui
 title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
-materialDesign: https://material.io/components/dialogs
+materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 ---
 
@@ -78,7 +78,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 ## 响应式全屏
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery).
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/).
 
 ```jsx
 import useMediaQuery from '@mui/material/useMediaQuery';
