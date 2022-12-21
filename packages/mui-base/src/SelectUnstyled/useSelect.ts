@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
   unstable_useForkRef as useForkRef,
+  unstable_useId as useId,
 } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
@@ -32,7 +33,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     buttonRef: buttonRefProp,
     defaultValue,
     disabled = false,
-    listboxId,
+    listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false,
     onChange,
@@ -47,6 +48,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
+  const listboxId = useId(listboxIdProp);
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -72,12 +74,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     }
   }, [listboxFocusRequested]);
 
-  const updateListboxRef = (listboxElement: HTMLUListElement | null) => {
-    listboxRef.current = listboxElement;
-    focusListboxIfRequested();
-  };
-
-  const handleListboxRef = useForkRef(useForkRef(listboxRefProp, listboxRef), updateListboxRef);
+  const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -208,31 +205,39 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   let useListboxParameters: UseListboxParameters<SelectOption<TValue>>;
 
   if (props.multiple) {
+    const onChangeMultiple = onChange as (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue[],
+    ) => void;
     useListboxParameters = {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
       listboxRef: handleListboxRef,
       multiple: true,
-      onChange: (newOptions) => {
+      onChange: (e, newOptions) => {
         const newValues = newOptions.map((o) => o.value);
         setValue(newValues);
-        (onChange as (value: TValue[]) => void)?.(newValues);
+        onChangeMultiple?.(e, newValues);
       },
       options,
       optionStringifier,
       value: selectedOption as SelectOption<TValue>[],
     };
   } else {
+    const onChangeSingle = onChange as (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue | null,
+    ) => void;
     useListboxParameters = {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
       listboxRef: handleListboxRef,
       multiple: false,
-      onChange: (option: SelectOption<TValue> | null) => {
+      onChange: (e, option: SelectOption<TValue> | null) => {
         setValue(option?.value ?? null);
-        (onChange as (value: TValue | null) => void)?.(option?.value ?? null);
+        onChangeSingle?.(e, option?.value ?? null);
       },
       options,
       optionStringifier,
@@ -259,8 +264,10 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         onMouseDown: createHandleMouseDown(otherHandlers),
         onKeyDown: createHandleButtonKeyDown(otherHandlers),
       }),
+      role: 'combobox' as const,
       'aria-expanded': open,
       'aria-haspopup': 'listbox' as const,
+      'aria-controls': listboxId,
     };
   };
 

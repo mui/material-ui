@@ -67,6 +67,13 @@ const GOLDs = [
     description: 'Icons, illustrations, design tools, and more.',
     href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/40.png',
+    srcSet: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/80.png 2x',
+    name: 'RIDI',
+    description: 'Digital content platform for webcomics and more.',
+    href: 'https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
@@ -82,12 +89,12 @@ export default function GoldSponsors() {
           component="h3"
           variant="h5"
           fontWeight="extraBold"
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.warning[300]
-                : theme.palette.warning[700],
-          }}
+          sx={(theme) => ({
+            color: 'warning.700',
+            ...theme.applyDarkStyles({
+              color: 'warning.300',
+            }),
+          })}
         >
           Gold
         </Typography>
@@ -101,15 +108,17 @@ export default function GoldSponsors() {
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <Paper
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               p: 2,
               display: 'flex',
               alignItems: 'center',
               height: '100%',
               borderStyle: 'dashed',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-            }}
+              borderColor: 'grey.300',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.400',
+              }),
+            })}
           >
             <IconButton
               aria-label="Sponsor MUI"
@@ -118,12 +127,14 @@ export default function GoldSponsors() {
               target="_blank"
               rel="noopener noreferrer"
               color="primary"
-              sx={{
+              sx={(theme) => ({
                 mr: 2,
                 border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-              }}
+                borderColor: 'grey.300',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.400',
+                }),
+              })}
             >
               <AddRounded />
             </IconButton>

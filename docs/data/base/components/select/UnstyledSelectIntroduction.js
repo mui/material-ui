@@ -33,7 +33,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   return (
     <button type="button" {...other} ref={ref}>
       {other.children}
-      {ownerState.open ? <UnfoldMoreRoundedIcon /> : <UnfoldMoreRoundedIcon />}
+      <UnfoldMoreRoundedIcon />
     </button>
   );
 });
@@ -45,18 +45,8 @@ Button.propTypes = {
     autoFocus: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
-    components: PropTypes.shape({
-      Listbox: PropTypes.elementType,
-      Popper: PropTypes.func,
-      Root: PropTypes.elementType,
-    }),
-    componentsProps: PropTypes.shape({
-      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    }),
     defaultListboxOpen: PropTypes.bool,
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.any,
     disabled: PropTypes.bool.isRequired,
     focusVisible: PropTypes.bool.isRequired,
     getSerializedValue: PropTypes.func,
@@ -68,7 +58,17 @@ Button.propTypes = {
     open: PropTypes.bool.isRequired,
     optionStringifier: PropTypes.func,
     renderValue: PropTypes.func,
-    value: PropTypes.object,
+    slotProps: PropTypes.shape({
+      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
+    slots: PropTypes.shape({
+      listbox: PropTypes.elementType,
+      popper: PropTypes.func,
+      root: PropTypes.elementType,
+    }),
+    value: PropTypes.any,
   }).isRequired,
 };
 
@@ -172,14 +172,14 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 CustomSelect.propTypes = {
@@ -188,10 +188,10 @@ CustomSelect.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.func,
-    Root: PropTypes.elementType,
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
   }),
 };
 

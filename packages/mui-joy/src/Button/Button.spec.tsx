@@ -1,7 +1,8 @@
 import * as React from 'react';
 import NextLink from 'next/link';
 import JoyLink from '@mui/material/Link';
-import Button from '@mui/joy/Button';
+import Button, { ButtonOwnerState } from '@mui/joy/Button';
+import { expectType } from '@mui/types';
 
 <Button>Button</Button>;
 
@@ -73,14 +74,86 @@ function Icon() {
 <Button
   variant="solid"
   color="success"
-  endIcon={<Icon />}
+  endDecorator={<Icon />}
   sx={{ width: 'var(--Button-minHeight)' }}
 >
   <Icon />
 </Button>;
-<Button variant="solid" startIcon={<Icon />} size="sm">
+<Button variant="solid" startDecorator={<Icon />} size="sm">
   Add to cart
 </Button>;
-<Button variant="outlined" endIcon={<Icon />} color="success">
+<Button variant="outlined" endDecorator={<Icon />} color="success">
   Checkout
 </Button>;
+
+<Button loading variant="outlined" disabled>
+  disabled
+</Button>;
+<Button loading loadingIndicator="Loading…" variant="outlined">
+  Fetch data
+</Button>;
+<Button endDecorator={<Icon />} loading loadingPosition="end">
+  Send
+</Button>;
+<Button loading loadingPosition="start" startDecorator={<Icon />}>
+  Save
+</Button>;
+
+<Button
+  slots={{
+    root: 'div',
+    startDecorator: 'div',
+    endDecorator: 'div',
+    loadingIndicatorCenter: 'div',
+  }}
+/>;
+
+<Button
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    startDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    endDecorator: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    loadingIndicatorCenter: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Button
+  slotProps={{
+    root: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    startDecorator: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    endDecorator: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    loadingIndicatorCenter: (ownerState) => {
+      expectType<ButtonOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

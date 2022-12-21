@@ -3,7 +3,7 @@ product: material-ui
 title: React Chip（纸片）组件
 components: Chip
 githubLabel: 'component: chip'
-materialDesign: https://material.io/components/chips
+materialDesign: https://m2.material.io/components/chips
 ---
 
 # Chip

@@ -14,18 +14,31 @@ import {
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
 import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
+import FormControlContext from '../FormControl/FormControlContext';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
+}
+
+function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
 }
 
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
@@ -69,10 +82,12 @@ const SelectRoot = styled('div', {
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
-      '--Select-focusedThickness': '2px',
+      '--Select-focusedThickness': theme.vars.focus.thickness,
       '--Select-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '--Select-indicator-color': theme.vars.palette.text.tertiary,
+      '--Select-indicator-color': variantStyle?.backgroundColor
+        ? variantStyle?.color
+        : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
@@ -94,10 +109,10 @@ const SelectRoot = styled('div', {
       // variables for controlling child components
       '--Select-decorator-childOffset':
         'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
-      '--internal-paddingBlock':
+      '--_Select-paddingBlock':
         'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
       '--Select-decorator-childRadius':
-        'max((var(--Select-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Select-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Select-radius) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) / 2, var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decorator-childHeight)',
       '--IconButton-size': 'var(--Select-decorator-childHeight)',
       '--Button-radius': 'var(--Select-decorator-childRadius)',
@@ -111,6 +126,9 @@ const SelectRoot = styled('div', {
       borderRadius: 'var(--Select-radius)',
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
+      }),
+      ...(ownerState.size && {
+        paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element
       }),
       paddingInline: `var(--Select-paddingInline)`,
       fontFamily: theme.vars.fontFamily.body,
@@ -176,31 +194,33 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
+  fontFamily: 'inherit',
   cursor: 'pointer',
-  ...(!ownerState.value && {
+  ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
 }));
 
-const SelectListbox = styled(ListRoot, {
+const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface, // for sticky List
+      theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     outline: 'none',
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+    ...(!variantStyle?.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.popup,
     }),
   };
 });
@@ -213,7 +233,6 @@ const SelectStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   alignItems: 'center',
   marginInlineEnd: 'var(--Select-gap)',
@@ -227,26 +246,41 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
-  display: 'inherit',
-  alignItems: 'center',
-  marginInlineStart: 'var(--Select-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-}));
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
+    display: 'inherit',
+    alignItems: 'center',
+    marginInlineStart: 'var(--Select-gap)',
+    color: variantStyle?.color,
+  };
+});
 
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Icon-fontSize': '1.125rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Icon-fontSize': '1.25rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Icon-fontSize': '1.5rem',
+  }),
   color: 'var(--Select-indicator-color)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-});
+  [`.${selectClasses.endDecorator} + &`]: {
+    marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+}));
 
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
@@ -261,10 +295,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     action,
     autoFocus,
     children,
-    componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
+    getSerializedValue = defaultFormValueProvider,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -273,13 +307,13 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onClose,
     renderValue: renderValueProp,
     value: valueProp,
-    size = 'md',
+    size: sizeProp = 'md',
     variant = 'outlined',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
-    // props to forward to the button (all handlers should go through componentsProps.button)
+    // props to forward to the button (all handlers should go through slotProps.button)
     'aria-describedby': ariaDescribedby,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
@@ -294,6 +328,24 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     id?: string;
     name?: string;
   };
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -383,52 +435,102 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
-    return options.find((o) => value === o.value);
+  const selectedOption = React.useMemo(() => {
+    return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref: handleRef,
+    className: classes.root,
     elementType: SelectRoot,
+    externalForwardedProps: other,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!listboxOpen && event.target !== buttonRef.current && !event.isPropagationStopped()) {
+        if (
+          !listboxOpen &&
+          !buttonRef.current?.contains(event.target as Node) &&
+          !event.isPropagationStopped()
+        ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
           handleOpenChange(true);
         }
-        handlers.onClick?.(event);
+        handlers.onMouseDown?.(event);
       },
     }),
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref: handleRef,
-    },
     ownerState,
-    className: classes.root,
   });
 
-  const buttonProps = useSlotProps({
-    elementType: SelectButton,
-    getSlotProps: getButtonProps,
-    externalSlotProps: componentsProps.button,
+  const [SlotButton, buttonProps] = useSlot('button', {
     additionalProps: {
-      'aria-describedby': ariaDescribedby,
+      'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledby,
-      id,
+      'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      id: id ?? formControl?.htmlFor,
       name,
     },
-    ownerState,
     className: classes.button,
+    elementType: SelectButton,
+    externalForwardedProps: other,
+    getSlotProps: getButtonProps,
+    ownerState,
   });
 
-  const resolveListboxProps =
-    typeof componentsProps.listbox === 'function'
-      ? componentsProps.listbox(ownerState)
-      : componentsProps.listbox;
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
+  const [SlotListbox, listboxProps] = useSlot('listbox', {
+    additionalProps: {
+      ref: listboxRef,
+      anchorEl,
+      disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom' as const,
+    },
+    className: classes.listbox,
+    elementType: PopperUnstyled,
+    externalForwardedProps: other,
+    getSlotProps: getListboxProps,
+    ownerState: {
+      ...ownerState,
+      nesting: false,
+      row: false,
+      wrap: false,
+    } as SelectOwnerState<any> & ListOwnerState,
+    internalForwardedProps: {
+      component: SelectListbox,
+    },
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: SelectStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: SelectEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotIndicator, indicatorProps] = useSlot('indicator', {
+    className: classes.indicator,
+    elementType: SelectIndicator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const context = React.useMemo(
+    () => ({
+      getOptionProps,
+      getOptionState,
+      listboxRef,
+      color,
+    }),
+    [color, getOptionProps, getOptionState],
+  );
+
+  const modifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
     () => [
       {
         name: 'offset',
@@ -446,85 +548,36 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           state.styles.popper.width = `${state.rects.reference.width}px`;
         },
       },
-      ...(resolveListboxProps?.modifiers || []),
+      ...(listboxProps.modifiers || []),
     ],
-    [resolveListboxProps?.modifiers],
+    [listboxProps.modifiers],
   );
-
-  const { component: listboxComponent, ...listboxProps } = useSlotProps({
-    elementType: SelectListbox,
-    getSlotProps: getListboxProps,
-    externalSlotProps: componentsProps.listbox,
-    additionalProps: {
-      ref: listboxRef,
-      anchorEl,
-      disablePortal: true,
-      open: listboxOpen,
-      placement: 'bottom' as const,
-      modifiers: cachedModifiers,
-    },
-    ownerState: {
-      ...ownerState,
-      nesting: false,
-      row: false,
-      wrap: false,
-    } as SelectOwnerState<any> & ListOwnerState,
-    className: classes.listbox,
-  });
-
-  const startDecoratorProps = useSlotProps({
-    elementType: SelectStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
-    className: classes.startDecorator,
-  });
-
-  const endDecoratorProps = useSlotProps({
-    elementType: SelectEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
-    className: classes.endDecorator,
-  });
-
-  const indicatorProps = useSlotProps({
-    elementType: SelectIndicator,
-    externalSlotProps: componentsProps.indicator,
-    ownerState,
-    className: classes.indicator,
-  });
-
-  const context = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-    color,
-  };
 
   return (
     <React.Fragment>
-      <SelectRoot {...rootProps}>
+      <SlotRoot {...rootProps}>
         {startDecorator && (
-          <SelectStartDecorator {...startDecoratorProps}>{startDecorator}</SelectStartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        <SelectButton {...buttonProps}>
-          {selectedOptions ? renderValue(selectedOptions) : placeholder}
-        </SelectButton>
-        {endDecorator && (
-          <SelectEndDecorator {...endDecoratorProps}>{endDecorator}</SelectEndDecorator>
-        )}
+        <SlotButton {...buttonProps}>
+          {selectedOption ? renderValue(selectedOption) : placeholder}
+        </SlotButton>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
-        {indicator && <SelectIndicator {...indicatorProps}>{indicator}</SelectIndicator>}
-      </SelectRoot>
+        {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+      </SlotRoot>
       {anchorEl && (
         // @ts-ignore internal logic: `listboxComponent` should not replace `SelectListbox`.
-        <PopperUnstyled {...listboxProps} as={listboxComponent} component={SelectListbox}>
+        <SlotListbox {...listboxProps} modifiers={modifiers}>
           <SelectUnstyledContext.Provider value={context}>
             {/* for building grouped options */}
             <ListProvider nested>{children}</ListProvider>
           </SelectUnstyledContext.Provider>
-        </PopperUnstyled>
+        </SlotListbox>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
@@ -577,21 +630,9 @@ Select.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -601,6 +642,12 @@ Select.propTypes /* remove-proptypes */ = {
    * Trailing adornment for the select.
    */
   endDecorator: PropTypes.node,
+  /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
   /**
    * The indicator(*) for the select.
    *    ________________
@@ -647,7 +694,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  value: PropTypes.any,
   /**
    * The variant to use.
    * @default 'solid'

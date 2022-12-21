@@ -59,7 +59,7 @@ import { Button, TextField } from '@mui/material';
 
 This is the option we document in all the demos since it requires no configuration.
 It is encouraged for library authors that are extending the components.
-Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+Head to [Option 2](#option-two-use-a-babel-plugin) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [the main file of `@mui/material`](https://unpkg.com/@mui/material), this file can serve as a handy reference as to which modules are public.
 
@@ -183,15 +183,15 @@ If you wish, `babel-plugin-import` can be configured through `config-overrides.j
 Modify your `package.json` commands:
 
 ```diff
-  "scripts": {
--   "start": "react-scripts start",
-+   "start": "react-app-rewired start",
--   "build": "react-scripts build",
-+   "build": "react-app-rewired build",
--   "test": "react-scripts test",
-+   "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-}
+   "scripts": {
+-    "start": "react-scripts start",
++    "start": "react-app-rewired start",
+-    "build": "react-scripts build",
++    "build": "react-app-rewired build",
+-    "test": "react-scripts test",
++    "test": "react-app-rewired test",
+     "eject": "react-scripts eject"
+  }
 ```
 
 Enjoy significantly faster start times.

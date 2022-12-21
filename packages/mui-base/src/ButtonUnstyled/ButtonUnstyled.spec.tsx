@@ -20,11 +20,14 @@ const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(
 });
 
 function ButtonWithCustomRoot(props: ButtonUnstyledProps) {
-  return <ButtonUnstyled {...props} components={{ Root: CustomButtonRoot }} />;
+  return <ButtonUnstyled {...props} slots={{ root: CustomButtonRoot }} />;
 }
 
-const PolymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

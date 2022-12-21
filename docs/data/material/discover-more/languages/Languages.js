@@ -21,7 +21,6 @@ export default function Languages() {
               <TableCell>
                 <Link
                   variant="body2"
-                  color="secondary"
                   data-no-markdown-link="true"
                   href={language.code === 'en' ? '/' : `/${language.code}/`}
                 >

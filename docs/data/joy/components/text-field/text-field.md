@@ -14,7 +14,7 @@ unstyled: /base/react-input/
 Text fields allow users to enter text into a UI.
 They typically appear in forms and dialogs.
 
-{{"demo": "TextFieldUsage.js", "hideToolbar": true}}
+{{"demo": "TextFieldUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -29,6 +29,13 @@ export default function MyApp() {
   return <TextField placeholder="Search anything…" />;
 }
 ```
+
+### Composition
+
+`TextField` is composed of smallar components－`FormControl`, `FormLabel`, `FormerHelperText`, and `Input`.
+You can either use each one of them separately or plainly use the `TextField` itself.
+
+{{"demo": "TextFieldComposition.js"}}
 
 ### Variants
 

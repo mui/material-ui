@@ -8,7 +8,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('Joy <Textarea />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Textarea />, () => ({
+  describeConformance(<Textarea startDecorator="1" endDecorator="2" />, () => ({
     render,
     classes,
     ThemeProvider,
@@ -17,6 +17,12 @@ describe('Joy <Textarea />', () => {
     testDeepOverrides: { slotName: 'textarea', slotClassName: classes.textarea },
     testCustomVariant: true,
     testVariantProps: { variant: 'solid' },
+    slots: {
+      root: { expectedClassName: classes.root },
+      textarea: { expectedClassName: classes.textarea },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
@@ -33,6 +39,21 @@ describe('Joy <Textarea />', () => {
   it('should have endDecorator', () => {
     render(<Textarea endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
+  });
+
+  it('should pass props to Textarea', () => {
+    const { container } = render(
+      <Textarea
+        slotProps={{
+          textarea: {
+            maxLength: 5,
+          },
+        }}
+      />,
+    );
+
+    const textarea = container.querySelector('textarea')!;
+    expect(textarea).to.have.attr('maxlength', '5');
   });
 
   describe('prop: disabled', () => {

@@ -2,6 +2,7 @@
 product: joy-ui
 title: React Select component
 githubLabel: 'component: select'
+waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 unstyled: /base/react-select/
 ---
 
@@ -13,9 +14,9 @@ unstyled: /base/react-select/
 
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
-{{"demo": "SelectUsage.js", "hideToolbar": true}}
+{{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
 :::
 
@@ -45,18 +46,25 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 
 {{"demo": "SelectBasic.js"}}
 
-### Field
-
-Use the `FormLabel` component to add a label to the select component.
-Make sure to provide an appropriate `aria-label` and an id to the button's `aria-describedby`.
-
-{{"demo": "SelectFieldDemo.js"}}
-
 ### Decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the select.
 
 {{"demo": "SelectDecorators.js"}}
+
+If you have interactive elements as the select's decorators, call `stopPropagation()` from the mouse down event to prevent the popup from being opened.
+
+```jsx
+<IconButton
+  onMouseDown={(event) => {
+    // don't open the popup when clicking on this button
+    event.stopPropagation();
+  }}
+  onClick={() => {
+    // click handler goes here
+  }
+>...</IconButton>
+```
 
 ### Indicator
 
@@ -102,8 +110,8 @@ We're also using the `ListDivider` as a visual separator.
 
 {{"demo": "SelectCustomOption.js"}}
 
-:::info
-💡 **Keep in mind:** By default, the option children is used for displaying the selected value.
+:::warning
+By default, the option children are used for displaying the selected value.
 Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
 
@@ -114,12 +122,12 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 
 {{"demo": "SelectGroupedOptions.js"}}
 
-:::info
-💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
+:::warning
+If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,
@@ -131,6 +139,31 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 ```
 
 :::
+
+## Accessibility
+
+In order for the select to be accessible, **it should be linked to a label**.
+
+The `FormControl` automatically generates a unique id that links the select with the `FormLabel` component:
+
+{{"demo": "SelectFieldDemo.js"}}
+
+Alternatively, you can do it manually by targeting the button slot:
+
+```jsx
+<label htmlFor="select-button" id="select-label">Label</label>
+<Select
+  slotProps={{
+    button: {
+      id: 'select-button',
+      'aria-labelledby': 'select-label select-button',
+    }
+  }}
+>
+  <Option value="option1">Option I</Option>
+  <Option value="option2">Option II</Option>
+</Select>
+```
 
 ## Common examples
 

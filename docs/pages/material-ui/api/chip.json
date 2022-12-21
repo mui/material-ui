@@ -24,6 +24,7 @@
       },
       "default": "'medium'"
     },
+    "skipFocusWhenDisabled": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",
@@ -44,8 +45,12 @@
       "root",
       "sizeSmall",
       "sizeMedium",
+      "colorError",
+      "colorInfo",
       "colorPrimary",
       "colorSecondary",
+      "colorSuccess",
+      "colorWarning",
       "disabled",
       "clickable",
       "clickableColorPrimary",

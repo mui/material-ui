@@ -23,14 +23,14 @@ export interface MenuItemUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
   };
   /**
    * The props used for each slot inside the MenuItem.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'li',
       MenuItemUnstyledComponentsPropsOverrides,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ModalUnstyled, {
-  ModalUnstyledRootSlotProps,
   ModalUnstyledBackdropSlotProps,
+  ModalUnstyledRootSlotProps,
 } from '@mui/base/ModalUnstyled';
 import { expectType } from '@mui/types';
 
@@ -16,13 +16,16 @@ function Backdrop(props: ModalUnstyledBackdropSlotProps) {
 }
 
 const styledModal = (
-  <ModalUnstyled open components={{ Root, Backdrop }}>
+  <ModalUnstyled open slots={{ root: Root, backdrop: Backdrop }}>
     <div />
   </ModalUnstyled>
 );
 
-const PolymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

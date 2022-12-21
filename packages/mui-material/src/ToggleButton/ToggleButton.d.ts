@@ -89,7 +89,7 @@ export type ToggleButtonTypeMap<
  *
  * Demos:
  *
- * - [Toggle button](https://mui.com/material-ui/react-toggle-button/)
+ * - [Toggle Button](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *

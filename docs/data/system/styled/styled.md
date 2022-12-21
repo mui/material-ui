@@ -18,7 +18,7 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses MUI's default `theme` if no theme is available in React context.
-2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) and [`variants`](/material-ui/customization/theme-components/#adding-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) and [`variants`](/material-ui/customization/theme-components/#creating-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
 3. It adds support for the [the `sx` prop](/system/getting-started/the-sx-prop/) (can be skipped).
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account all props used internally in the MUI components: `ownerState`, `theme`, `sx`, and `as`.
 
@@ -208,13 +208,13 @@ const MyStyledButton = (props) => (
 
 ### How can I use the `sx` syntax with the `styled()` utility?
 
-If you are one of those who prefers the `sx` syntax and wants to use it in both the `sx` prop and the `styled()` utility, you can use the `experimental_sx` utility from the `@mui/system`:
+If you prefer the `sx` syntax and want to use it in both the `sx` prop and the `styled()` utility, you can use the `unstable_sx` utility from the `theme`:
 
 {{"demo": "UsingWithSx.js", "defaultCodeOpen": true}}
 
-The overhead added by using the `experimental_sx` utility is the same as if you were to use the `sx` prop on the component.
+The overhead added by using the `unstable_sx` utility is the same as if you were to use the `sx` prop on the component.
 
-> Note: You can use `experimental_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
+> Note: You can use `unstable_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
 
 ## How to use components selector API
 

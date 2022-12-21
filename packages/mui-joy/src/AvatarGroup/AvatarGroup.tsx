@@ -49,13 +49,16 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
 
-  const ownerState = {
-    ...props,
-    color,
-    component,
-    size,
-    variant,
-  };
+  const ownerState = React.useMemo(
+    () => ({
+      ...props,
+      color,
+      component,
+      size,
+      variant,
+    }),
+    [color, component, props, size, variant],
+  );
 
   const classes = useUtilityClasses();
 

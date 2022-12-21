@@ -4,10 +4,10 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 
 export const TypographyContext = React.createContext(false);
@@ -37,7 +37,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),
@@ -49,7 +49,7 @@ const EndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),
@@ -89,11 +89,15 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
+  ...(ownerState.color && {
+    color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+  }),
   ...(ownerState.variant && {
     borderRadius: theme.vars.radius.xs,
-    paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+    paddingBlock: 'min(0.15em, 4px)',
+    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
     ...(!ownerState.nesting && {
-      marginInline: '-0.25em',
+      marginInline: '-0.375em',
     }),
     ...theme.variants[ownerState.variant]?.[ownerState.color!],
   }),
@@ -117,11 +121,9 @@ const defaultVariantMapping: Record<string, string> = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const {
-    color: colorThemeProp,
-    textColor,
-    ...themeProps
-  } = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const { color, textColor, ...themeProps } = useThemeProps<
+    typeof inProps & { component?: React.ElementType }
+  >({
     props: inProps,
     name: 'JoyTypography',
   });
@@ -132,7 +134,6 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 
   const {
     component: componentProp,
-    componentsProps = {},
     gutterBottom = false,
     noWrap = false,
     level: levelProp = 'body1',
@@ -140,12 +141,9 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     children,
     endDecorator,
     startDecorator,
-    variant = colorThemeProp ? 'plain' : undefined,
+    variant,
     ...other
   } = props;
-
-  const color = colorThemeProp || (variant ? 'neutral' : undefined);
-
   const level = nesting ? inProps.level || 'inherit' : levelProp;
 
   const component =
@@ -158,7 +156,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...props,
     level,
     component,
-    color,
+    color: variant ? color ?? 'neutral' : color,
     gutterBottom,
     noWrap,
     nesting,
@@ -166,43 +164,40 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
 
-  const rootProps = useSlotProps({
-    elementType: TypographyRoot,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    externalForwardedProps: other,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: TypographyRoot,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: StartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: EndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: EndDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
   return (
     <TypographyContext.Provider value>
-      <TypographyRoot {...rootProps}>
+      <SlotRoot {...rootProps}>
         {startDecorator && (
-          <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
         {children}
-        {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
-      </TypographyRoot>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
     </TypographyContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
@@ -228,15 +223,6 @@ Typography.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * Element placed after the children.
    */

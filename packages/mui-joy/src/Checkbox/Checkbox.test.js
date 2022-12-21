@@ -7,14 +7,22 @@ import { ThemeProvider } from '@mui/joy/styles';
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Checkbox />, () => ({
+  describeConformance(<Checkbox label="demo" />, () => ({
     classes,
+    inheritComponent: 'span',
     render,
     ThemeProvider,
     muiName: 'JoyCheckbox',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     refInstanceof: window.HTMLSpanElement,
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      checkbox: { expectedClassName: classes.checkbox },
+      input: { expectedClassName: classes.input },
+      action: { expectedClassName: classes.action },
+      label: { expectedClassName: classes.label },
+    },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],
   }));
 
@@ -32,6 +40,18 @@ describe('<Checkbox />', () => {
     const { getByRole } = render(<Checkbox name="bar" />);
 
     expect(getByRole('checkbox')).to.have.property('name', 'bar');
+  });
+
+  it('renders a `role="checkbox"` with required attribute', () => {
+    const { getByRole } = render(<Checkbox name="bar" required />);
+
+    expect(getByRole('checkbox')).to.have.attribute('required');
+  });
+
+  it('renders a `role="checkbox"` with readOnly attribute', () => {
+    const { getByRole } = render(<Checkbox name="bar" readOnly />);
+
+    expect(getByRole('checkbox')).to.have.attribute('readonly');
   });
 
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
@@ -107,6 +127,11 @@ describe('<Checkbox />', () => {
     it('should render an indeterminate icon', () => {
       const { getByTestId } = render(<Checkbox indeterminate />);
       expect(getByTestId('HorizontalRuleIcon')).not.to.equal(null);
+    });
+
+    it('should have aria-checked="mixed"', () => {
+      const { getByRole } = render(<Checkbox indeterminate />);
+      expect(getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
     });
   });
 });

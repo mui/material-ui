@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import {
@@ -14,12 +15,17 @@ import {
 } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
-  const { focusVisible, disabled, selected } = ownerState;
-  // Does not need to create state clases: focusVisible, disabled, and selected because ListItemButton already takes care of them.
-  // Otherwise, there will be duplicated classes.
+const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible?: boolean }) => {
+  const { focusVisible, disabled, selected, color, variant } = ownerState;
   const slots = {
-    root: ['root', focusVisible && 'focusVisible', disabled && 'disabled', selected && 'selected'],
+    root: [
+      'root',
+      focusVisible && 'focusVisible',
+      disabled && 'disabled',
+      selected && 'selected',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, {});
@@ -27,7 +33,7 @@ const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }
   return composedClasses;
 };
 
-const MenuItemRoot = styled(ListItemButtonRoot, {
+const MenuItemRoot = styled(StyledListItemButton, {
   name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -98,7 +104,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

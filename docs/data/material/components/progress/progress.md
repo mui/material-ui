@@ -3,7 +3,7 @@ product: material-ui
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
 githubLabel: 'component: progress'
-materialDesign: https://material.io/components/progress-indicators
+materialDesign: https://m2.material.io/components/progress-indicators
 ---
 
 # Progress
@@ -69,7 +69,7 @@ The progress components accept a value in the range 0 - 100. This simplifies thi
 
 ```jsx
 // MIN = Minimum expected value
-// MAX = Maximium expected value
+// MAX = Maximum expected value
 // Function to normalise the values (MIN / MAX could be integrated)
 const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 

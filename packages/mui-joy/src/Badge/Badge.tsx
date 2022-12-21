@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
 
@@ -146,8 +146,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     },
     badgeInset: badgeInsetProp = 0,
     children,
-    component = 'span',
-    componentsProps = {},
     size: sizeProp = 'md',
     color: colorProp = 'primary',
     invisible: invisibleProp = false,
@@ -192,30 +190,26 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     displayValue = '';
   }
 
-  const rootProps = useSlotProps({
-    elementType: BadgeRoot,
-    ownerState,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: BadgeRoot,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeBadge,
-    ownerState,
-    externalSlotProps: componentsProps.badge,
+  const [SlotBadge, badgeProps] = useSlot('badge', {
     className: classes.badge,
+    elementType: BadgeBadge,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <BadgeRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {children}
-      <BadgeBadge {...badgeProps}>{displayValue}</BadgeBadge>
-    </BadgeRoot>
+      <SlotBadge {...badgeProps}>{displayValue}</SlotBadge>
+    </SlotRoot>
   );
 }) as OverridableComponent<BadgeTypeMap>;
 
@@ -257,19 +251,6 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the badge is invisible.
    * @default false
    */
@@ -288,7 +269,10 @@ Badge.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -14,7 +14,7 @@ export default function BasicModalDialog() {
       <Button
         variant="outlined"
         color="neutral"
-        startIcon={<Add />}
+        startDecorator={<Add />}
         onClick={() => setOpen(true)}
       >
         New project

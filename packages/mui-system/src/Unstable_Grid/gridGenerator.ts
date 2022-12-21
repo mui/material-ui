@@ -1,6 +1,7 @@
 import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
-import { GridOwnerState } from './GridProps';
+import { ResponsiveStyleValue } from '../styleFunctionSx';
+import { GridDirection, GridOwnerState } from './GridProps';
 
 interface Props {
   theme: { breakpoints: Breakpoints; spacing?: Spacing };
@@ -8,55 +9,59 @@ interface Props {
 }
 
 interface Iterator<T> {
-  (appendStyle: (responsizeStyles: Record<string, any>, style: object) => void, value: T): void;
+  (appendStyle: (responsiveStyles: Record<string, any>, style: object) => void, value: T): void;
 }
+
+export const filterBreakpointKeys = (breakpointsKeys: Breakpoint[], responsiveKeys: string[]) =>
+  breakpointsKeys.filter((key: string) => responsiveKeys.includes(key));
 
 export const traverseBreakpoints = <T = unknown>(
   breakpoints: Breakpoints,
-  responsize: T | T[] | Record<string, any> | undefined,
+  responsive: T | T[] | Record<string, any> | undefined,
   iterator: Iterator<T>,
 ) => {
   const smallestBreakpoint = breakpoints.keys[0]; // the keys is sorted from smallest to largest by `createBreakpoints`.
 
-  if (Array.isArray(responsize)) {
-    responsize.forEach((breakpointValue, index) => {
-      iterator((responsizeStyles, style) => {
+  if (Array.isArray(responsive)) {
+    responsive.forEach((breakpointValue, index) => {
+      iterator((responsiveStyles, style) => {
         if (index <= breakpoints.keys.length - 1) {
           if (index === 0) {
-            Object.assign(responsizeStyles, style);
+            Object.assign(responsiveStyles, style);
           } else {
-            responsizeStyles[breakpoints.up(breakpoints.keys[index])] = style;
+            responsiveStyles[breakpoints.up(breakpoints.keys[index])] = style;
           }
         }
       }, breakpointValue as T);
     });
-  } else if (responsize && typeof responsize === 'object') {
+  } else if (responsive && typeof responsive === 'object') {
     // prevent null
-    // responsize could be a very big object, pick the smallest responsive values
+    // responsive could be a very big object, pick the smallest responsive values
+
     const keys =
-      Object.keys(responsize).length > breakpoints.keys.length
+      Object.keys(responsive).length > breakpoints.keys.length
         ? breakpoints.keys
-        : Object.keys(responsize);
+        : filterBreakpointKeys(breakpoints.keys, Object.keys(responsive));
 
     keys.forEach((key) => {
       if (breakpoints.keys.indexOf(key as Breakpoint) !== -1) {
-        // @ts-ignore already checked that responsize is an object
-        const breakpointValue: T = responsize[key];
+        // @ts-ignore already checked that responsive is an object
+        const breakpointValue: T = responsive[key];
         if (breakpointValue !== undefined) {
-          iterator((responsizeStyles, style) => {
+          iterator((responsiveStyles, style) => {
             if (smallestBreakpoint === key) {
-              Object.assign(responsizeStyles, style);
+              Object.assign(responsiveStyles, style);
             } else {
-              responsizeStyles[breakpoints.up(key as Breakpoint)] = style;
+              responsiveStyles[breakpoints.up(key as Breakpoint)] = style;
             }
           }, breakpointValue);
         }
       }
     });
-  } else if (typeof responsize === 'number' || typeof responsize === 'string') {
-    iterator((responsizeStyles, style) => {
-      Object.assign(responsizeStyles, style);
-    }, responsize);
+  } else if (typeof responsive === 'number' || typeof responsive === 'string') {
+    iterator((responsiveStyles, style) => {
+      Object.assign(responsiveStyles, style);
+    }, responsive);
   }
 };
 
@@ -254,4 +259,17 @@ export const generateSpacingClassNames = (
     return classNames;
   }
   return [];
+};
+
+export const generateDirectionClasses = (
+  direction: ResponsiveStyleValue<GridDirection> | undefined,
+): string[] => {
+  if (direction === undefined) {
+    return [];
+  }
+  if (typeof direction === 'object') {
+    return Object.entries(direction).map(([key, value]) => `direction-${key}-${value}`);
+  }
+
+  return [`direction-xs-${String(direction)}`];
 };

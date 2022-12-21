@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -20,12 +20,18 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  return composeClasses(slots, getFabUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getFabUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
 const FabRoot = styled(ButtonBase, {
   name: 'MuiFab',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
@@ -69,11 +75,6 @@ const FabRoot = styled(ButtonBase, {
     },
     [`&.${fabClasses.focusVisible}`]: {
       boxShadow: (theme.vars || theme).shadows[6],
-    },
-    [`&.${fabClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-      boxShadow: (theme.vars || theme).shadows[0],
-      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
     },
     ...(ownerState.size === 'small' && {
       width: 40,
@@ -126,6 +127,13 @@ const FabRoot = styled(ButtonBase, {
         },
       }),
   }),
+  ({ theme }) => ({
+    [`&.${fabClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
+      boxShadow: (theme.vars || theme).shadows[0],
+      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+    },
+  }),
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
@@ -165,6 +173,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       {...other}
+      classes={classes}
     >
       {children}
     </FabRoot>

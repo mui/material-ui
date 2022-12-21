@@ -23,7 +23,7 @@ export interface MergeSlotPropsParameters<
    */
   getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
   /**
-   * Props provided to the `componentsProps.*` of the unstyled component.
+   * Props provided to the `slotProps.*` of the unstyled component.
    */
   externalSlotProps?: WithCommonProps<ExternalSlotProps>;
   /**
@@ -64,7 +64,7 @@ export type MergeSlotPropsResult<
  * 1. The internal props (specified as a getter function to work with get*Props hook result)
  * 2. Additional props (specified internally on an unstyled component)
  * 3. External props specified on the owner component. These should only be used on a root slot.
- * 4. External props specified in the `componentsProps.*` prop.
+ * 4. External props specified in the `slotProps.*` prop.
  * 5. The `className` prop - combined from all the above.
  * @param parameters
  * @returns

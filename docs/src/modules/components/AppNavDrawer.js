@@ -92,26 +92,28 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-const ProductIdentifier = ({ name, metadata, versionSelector }) => (
-  <Box sx={{ flexGrow: 1 }}>
-    <Typography
-      sx={(theme) => ({
-        ml: 1,
-        color: theme.palette.grey[600],
-        fontSize: theme.typography.pxToRem(11),
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: '.08rem',
-      })}
-    >
-      {metadata}
-    </Typography>
-    <Box sx={{ display: 'flex' }}>
-      <ProductDrawerButton productName={name} />
-      {versionSelector}
+function ProductIdentifier({ name, metadata, versionSelector }) {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Typography
+        sx={(theme) => ({
+          ml: 1,
+          color: theme.palette.grey[600],
+          fontSize: theme.typography.pxToRem(11),
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '.08rem',
+        })}
+      >
+        {metadata}
+      </Typography>
+      <Box sx={{ display: 'flex' }}>
+        <ProductDrawerButton productName={name} />
+        {versionSelector}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+}
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
@@ -294,10 +296,12 @@ export default function AppNavDrawer(props) {
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
-    const renderVersionSelector = (versions = [], sx) => {
+    const renderVersionSelector = (versions, sx) => {
       if (!versions?.length) {
         return null;
       }
+
+      const currentVersion = versions.find((version) => version.current) || versions[0];
       return (
         <React.Fragment>
           <Button
@@ -329,7 +333,7 @@ export default function AppNavDrawer(props) {
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >
-            {versions[0].text}
+            {currentVersion.text}
           </Button>
           <Menu
             id="mui-version-menu"
@@ -373,7 +377,7 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref>
+          <NextLink href="/" passHref legacyBehavior>
             <Box
               component="a"
               onClick={onClose}
@@ -450,7 +454,28 @@ export default function AppNavDrawer(props) {
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
-                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                {
+                  text: 'v6-alpha',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
+                {
+                  text: 'v5',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
                 { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
               ])}
             />
@@ -462,7 +487,28 @@ export default function AppNavDrawer(props) {
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATE_PICKERS_VERSION is set from the X repo
-                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+                {
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v6-alpha`,
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
+                {
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v5`,
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
               ])}
             />
           )}
