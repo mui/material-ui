@@ -74,7 +74,9 @@ It's usually more common to see input components using decorators at the top and
 
 ## Common examples
 
-### TBD
+### Newsletter Subscription
+
+{{"demo": "InputSubscription.js"}}
 
 ## Accessibility
 
