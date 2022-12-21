@@ -2,6 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Table from '@mui/material/Table';
 
 describe('<TableCell />', () => {
   const { render } = createRenderer();
@@ -95,13 +98,13 @@ describe('<TableCell />', () => {
   });
   it('scope should be undefined in table cell when component is td even when table cell is rendered with in table head', () => {
     const { container } = render(
-      <table>
-        <thead>
-          <tr>
+      <Table>
+        <TableHead>
+          <TableRow>
             <TableCell component="td" />
-          </tr>
-        </thead>
-      </table>,
+          </TableRow>
+        </TableHead>
+      </Table>,
     );
     expect(container.querySelector('td')).not.to.have.attribute('scope');
   });
