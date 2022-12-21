@@ -277,7 +277,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * @ignore
+   * Use to apply selected styling.
+   * @default false
    */
   selected: PropTypes.bool,
   /**
