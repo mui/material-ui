@@ -137,6 +137,12 @@ But as seen below, you can easily use [the system](/system/grid/) and CSS Grid t
 
 {{"demo": "CSSGrid.js", "bg": true}}
 
+## Common examples
+
+### Profile cards
+
+{{"demo": "ProfileCards.js"}}
+
 ## Anatomy
 
 The Grid component is composed of a single root `<div>` element:
