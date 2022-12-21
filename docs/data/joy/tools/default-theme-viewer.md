@@ -12,9 +12,13 @@ The tokens can be accessed from `theme.vars.palette.{token}`. Each token has bot
 
 {{"demo": "PaletteThemeViewer.js"}}
 
+To customize the theme palette, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
+
 ## Radius
 
 {{"demo": "RadiusThemeViewer.js"}}
+
+To customize the theme radius, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
 
 ## Typography
 
@@ -27,3 +31,5 @@ To customize the theme typography, see [theme typography customization](/joy-ui/
 ## Shadow
 
 {{"demo": "ShadowThemeViewer.js"}}
+
+To customize the theme shadow, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
