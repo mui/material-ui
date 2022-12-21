@@ -389,7 +389,7 @@ function AutocompleteVirtualList({ items, renderGroup, renderListOption, groupBy
                 rowIndex={index}
               >
                 {({ registerChild }) => (
-                  <li style={style} ref={registerChild}>
+                  <div style={style} ref={registerChild}>
                     {groupBy
                       ? renderGroup({
                           key: items[index].key,
@@ -399,7 +399,7 @@ function AutocompleteVirtualList({ items, renderGroup, renderListOption, groupBy
                           ),
                         })
                       : renderListOption(items[index], index)}
-                  </li>
+                  </div>
                 )}
               </CellMeasurer>
             );
