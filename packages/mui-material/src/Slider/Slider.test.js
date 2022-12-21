@@ -33,7 +33,6 @@ describe('<Slider />', () => {
     <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
     () => ({
       classes,
-      inheritComponent: SliderUnstyled,
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiSlider',
@@ -66,6 +65,7 @@ describe('<Slider />', () => {
       },
       skip: [
         'slotPropsCallback', // not supported yet
+        'propsSpread',
       ],
     }),
   );

@@ -2,7 +2,6 @@ import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/ty
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
-import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import {
   UseSliderHiddenInputProps,
   UseSliderRootSlotProps,
@@ -170,7 +169,7 @@ export interface SliderUnstyledOwnProps {
       SliderUnstyledOwnerState
     >;
     valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
+      React.ElementType,
       SliderUnstyledComponentsPropsOverrides,
       SliderUnstyledOwnerState
     >;
