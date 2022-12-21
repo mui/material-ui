@@ -146,7 +146,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
-  const [anchorElement, setAnchorElement] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const handleRef = useForkRef(ref, inputRefProp);
@@ -156,9 +155,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (node) {
       setDisplayNode(node);
-      setAnchorElement(node.parentNode);
     }
   }, []);
+
+  const anchorElement = displayNode?.parentNode;
 
   React.useImperativeHandle(
     handleRef,
