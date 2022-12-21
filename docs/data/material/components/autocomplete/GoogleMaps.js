@@ -125,27 +125,23 @@ export default function GoogleMaps() {
         return (
           <li {...props}>
             <Grid container alignItems="center">
-              <Grid item xs={2}>
-                <LocationOnIcon sx={{ color: 'text.secondary', mr: 2 }} />
+              <Grid item sx={{ display: 'flex', width: 44 }}>
+                <LocationOnIcon sx={{ color: 'text.secondary' }} />
               </Grid>
-              <Grid item xs={10}>
+              <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
                   <Box
                     key={index}
+                    component="span"
                     sx={{
                       fontWeight: part.highlight ? 700 : 400,
-                      wordWrap: 'break-word',
                     }}
                   >
                     {part.text}
                   </Box>
                 ))}
 
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ wordWrap: 'break-word' }}
-                >
+                <Typography variant="body2" color="text.secondary">
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>
