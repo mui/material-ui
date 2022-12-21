@@ -2,44 +2,22 @@
 
 <p class="description">Type of callouts.</p>
 
-:::error
-❌ **Error callout**
-
-This is an error alert — check it out!
-:::
-
 :::info
-ℹ️ **Info callout**
-
-This is an info alert — check it out!
-:::
-
-:::warning
-⚠️ **Warning callout**
-
-This is an warning alert — check it out!
+This is an info callout.
+It says, "Here's a bit of extra insight to help you understand this feature."
 :::
 
 :::success
-✅ **Success callout**
-
-This is an success alert — check it out!
+This is a success callout.
+It says, "Here's an actionable suggestion to help you succeed."
 :::
 
-:::info
+:::warning
+This is a warning callout.
+It says, "Be careful! Keep this detail in mind to avoid potential issues."
+:::
 
-**Title**
-
-Some description
-
-- list item 1
-- list item 2
-  ```js
-  <div>Test</div>
-  ```
-- list item 3
-  ```js
-  <div>Test</div>
-  ```
-
+:::error
+This is an error callout.
+It says, "You will fail if you don't heed this dire warning."
 :::

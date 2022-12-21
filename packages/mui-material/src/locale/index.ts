@@ -2110,7 +2110,7 @@ export const koKR: Localization = {
   },
 };
 
-export const kzKZ: Localization = {
+export const kkKZ: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
@@ -3566,23 +3566,23 @@ export const zhTW: Localization = {
           }
           return '上一頁';
         },
-        labelRowsPerPage: '每頁行數:',
+        labelRowsPerPage: '每頁數量:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `第 ${from} 條到第 ${to} 條，${count !== -1 ? `共 ${count} 條` : `至少 ${to} 條`}`,
+          `${from} ~ ${to} / ${count !== -1 ? count : `${to} 以上`}`,
       },
     },
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} 顆星`,
-        emptyLabelText: '無標簽',
+        emptyLabelText: '無標籤',
       },
     },
     MuiAutocomplete: {
       defaultProps: {
         clearText: '清空',
         closeText: '關閉',
-        loadingText: '載入中……',
-        noOptionsText: '没有可用選項',
+        loadingText: '載入中…',
+        noOptionsText: '沒有可用選項',
         openText: '打開',
       },
     },
