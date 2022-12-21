@@ -13,7 +13,7 @@ import {
   screen,
 } from 'test/utils';
 
-type Touches = Array<{ identifier: number; clientX: number; clientY: number }>;
+type Touches = Array<Pick<Touch, 'identifier' | 'clientX' | 'clientY'>>;
 
 function createTouches(touches: Touches) {
   return {
@@ -167,6 +167,7 @@ describe('<SliderUnstyled />', () => {
       );
 
       if (container.firstChild !== null) {
+        // container.firstChild doesn't have getBoundingClientRect method. hence typescript is throwing error.
         // @ts-expect-error
         stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
           width: 100,
@@ -211,6 +212,7 @@ describe('<SliderUnstyled />', () => {
       const { getByRole, setProps, container } = render(<SliderUnstyled defaultValue={0} />);
 
       if (container.firstChild !== null) {
+        // container.firstChild doesn't have getBoundingClientRect method. hence typescript is throwing error.
         // @ts-expect-error
         stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
           width: 100,
@@ -252,6 +254,7 @@ describe('<SliderUnstyled />', () => {
       const { getByRole, container } = render(<SliderUnstyled disabled defaultValue={21} />);
       const thumb = getByRole('slider');
       if (container.firstChild) {
+        // container.firstChild doesn't have getBoundingClientRect method. hence typescript is throwing error.
         // @ts-expect-error
         stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
           width: 100,
