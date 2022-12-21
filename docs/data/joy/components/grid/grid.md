@@ -40,7 +40,7 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
-## Spacing
+### Spacing
 
 To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
@@ -55,7 +55,7 @@ It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/
 
 {{"demo": "RowAndColumnSpacing.js", "bg": true}}
 
-## Responsive values
+### Responsive values
 
 You can switch the props' value based on the active breakpoint.
 
@@ -82,13 +82,7 @@ For instance, this is not working. The grid item misses the value for `md`:
 
 :::
 
-## Interactive demo
-
-Below is an interactive demo that lets you explore the visual results of the different settings:
-
-{{"demo": "InteractiveGrid.js", "hideToolbar": true, "bg": true}}
-
-## Auto-layout
+### Auto-layout
 
 The Auto-layout makes the grid items equitably share the available space.
 That also means you can set the width of one grid item and the others will automatically resize around it.
@@ -102,13 +96,13 @@ a column based on the natural width of its content.
 
 {{"demo": "VariableWidthGrid.js", "bg": true}}
 
-## Columns
+### Columns
 
 You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
-## System props
+### System props
 
 As a CSS utility component, Grid supports all [MUI System properties](/system/properties/).
 You can use them as props directly on the component.
@@ -117,6 +111,12 @@ For instance, a margin-top:
 ```jsx
 <Grid mt={2}>
 ```
+
+## Interactive demo
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
+
+{{"demo": "InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Limitations
 
