@@ -157,9 +157,7 @@ export default function GoogleMaps() {
                   <Box
                     key={index}
                     component="span"
-                    sx={{
-                      fontWeight: part.highlight ? 700 : 400,
-                    }}
+                    sx={{ fontWeight: part.highlight ? 700 : 400 }}
                   >
                     {part.text}
                   </Box>
