@@ -6,14 +6,14 @@ githubLabel: 'component: Grid'
 
 # Grid
 
-<p class="description">The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
+<p class="description">Grid acts as a generic container, wrapping around the elements to be arranged.</p>
 
 ## Introduction
 
-The grid, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+The Grid component, based on a 12-column grid layout, creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to the [`DataGrid`](/x/react-data-grid/) component.
 :::
 
 ## Basics
@@ -22,11 +22,11 @@ The grid, based on a 12-column grid layout, creates visual consistency between l
 import Grid from '@mui/joy/Grid';
 ```
 
-The Grid component acts as a generic container, wrapping around the elements to be arranged.
+Column widths are integer values between 1 and 12. They apply at any breakpoint and indicate how many columns are occupied by the component.
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+By default, the value given to a breakpoint is applied to all the other **wider** breakpoints.
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size, even if you do not pass any value for wider breakpoints like `sm` or `md`.
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
@@ -85,14 +85,13 @@ For instance, this is not working. The grid item misses the value for `md`:
 ### Auto-layout
 
 The Auto-layout makes the grid items equitably share the available space.
-That also means you can set the width of one grid item and the others will automatically resize around it.
+This also means that you can set the width of one grid item, and the others will automatically resize around it.
 
 {{"demo": "AutoGrid.js", "bg": true}}
 
 ### Variable width content
 
-Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size
-a column based on the natural width of its content.
+Set one of the size breakpoint props to `"auto"` instead of `true` or a `number` to render a column based on the natural width of its content.
 
 {{"demo": "VariableWidthGrid.js", "bg": true}}
 
