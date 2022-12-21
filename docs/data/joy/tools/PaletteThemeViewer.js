@@ -58,12 +58,24 @@ export default function PaletteThemeViewer() {
       component="span"
       data-joy-color-scheme={colorScheme}
       sx={{
+        position: 'relative',
         width: '1em',
         height: '1em',
         fontSize: 'var(--Icon-fontSize)',
         borderRadius: '2px',
-        bgcolor: token,
-        boxShadow: 'inset 0 0 0 1px #bababa',
+        backgroundImage: `linear-gradient(90deg, var(--joy-palette-text-tertiary) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, var(--joy-palette-text-tertiary) 50%)`,
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: '100% 50%, 100% 50%',
+        backgroundPosition: '0 0, 0 100%',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          display: 'block',
+          inset: 0,
+          bgcolor: token,
+          borderRadius: 'inherit',
+          boxShadow: 'inset 0 0 0 1px #bababa',
+        },
       }}
     />
   );
@@ -109,19 +121,23 @@ export default function PaletteThemeViewer() {
               <tr key={token}>
                 <td>
                   <Typography
-                    level="body2"
+                    fontSize="sm"
                     endDecorator={
-                      light[token].match(/[0-9]+\s[0-9]+\s[0-9]+/) ? (
+                      light[token].match(/^[0-9]+\s[0-9]+\s[0-9]+$/) ? (
                         <Tooltip
                           size="sm"
                           arrow
                           title={
                             <Typography>
-                              To create a translucent color: <br />
-                              <code>
+                              Translucent color usage: <br />
+                              <Typography
+                                fontFamily="code"
+                                component="code"
+                                sx={{ py: 1, display: 'block' }}
+                              >
                                 rgba(var(--joy-palette-{token.replace('.', '-')}) /
                                 0.6)
-                              </code>
+                              </Typography>
                             </Typography>
                           }
                           sx={{ pointerEvents: 'none' }}

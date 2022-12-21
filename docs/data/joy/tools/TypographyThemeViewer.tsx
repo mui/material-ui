@@ -93,7 +93,9 @@ export default function FontSizeThemeViewer() {
                   placement="bottom-start"
                   sx={{ pointerEvents: 'none' }}
                 >
-                  <Typography sx={{ cursor: 'zoom-in' }}>{level}</Typography>
+                  <Typography fontSize="sm" sx={{ cursor: 'zoom-in' }}>
+                    {level}
+                  </Typography>
                 </Tooltip>
               </td>
               <td>

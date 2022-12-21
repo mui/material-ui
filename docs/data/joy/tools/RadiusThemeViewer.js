@@ -37,7 +37,7 @@ export default function RadiusThemeViewer() {
         {tokens.map((token) => (
           <tr key={token}>
             <td>
-              <Typography level="body2">{token}</Typography>
+              <Typography fontSize="sm">{token}</Typography>
             </td>
             <td>
               <Typography level="body2">{defaultTheme.radius[token]}</Typography>

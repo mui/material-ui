@@ -26,10 +26,11 @@ export default function ShadowThemeViewer() {
   const formatShadowLayers = (shadow: string) =>
     shadow
       .split(', ')
-      .map((token) => `${token},`)
       .reduce<Array<React.ReactNode>>(
         (result, curr, index, array) =>
-          array.length - 1 !== index ? [...result, curr, <br />] : [...result, curr],
+          array.length - 1 !== index
+            ? [...result, `${curr},`, <br />]
+            : [...result, curr],
         [],
       );
   return (
@@ -58,25 +59,34 @@ export default function ShadowThemeViewer() {
         {tokens.map((token) => (
           <tr key={token}>
             <td>
-              <Typography level="body2">{token}</Typography>
+              <Typography fontSize="sm">{token}</Typography>
             </td>
             <td>
               <Typography level="body2">
                 {formatShadowLayers(defaultTheme.shadow[token])}
               </Typography>
             </td>
-            <td>
+            <td data-joy-color-scheme="light">
               <Sheet
-                data-joy-color-scheme="light"
                 variant="outlined"
-                sx={{ width: 64, height: 64, boxShadow: token, borderRadius: 'xs' }}
+                sx={{
+                  width: 64,
+                  height: 64,
+                  boxShadow: (theme) => theme.shadow[token],
+                  borderRadius: 'xs',
+                  mr: 2,
+                }}
               />
             </td>
-            <td>
+            <td data-joy-color-scheme="dark">
               <Sheet
-                data-joy-color-scheme="dark"
                 variant="outlined"
-                sx={{ width: 64, height: 64, boxShadow: token, borderRadius: 'xs' }}
+                sx={{
+                  width: 64,
+                  height: 64,
+                  boxShadow: (theme) => theme.shadow[token],
+                  borderRadius: 'xs',
+                }}
               />
             </td>
           </tr>
