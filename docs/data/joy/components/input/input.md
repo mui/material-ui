@@ -6,25 +6,27 @@ unstyled: /base/react-input/
 
 # Input
 
-<p class="description">Input component gives you a input HTML element that automatically adjusts its height to match the length of the content within.</p>
+<p class="description">An input is a UI element that accepts text data from the user.</p>
 
 ## Introduction
+
+The Input component replaces the native HTML `<input>` tag, and offers expanded customization and accessibility features.
 
 {{"demo": "InputUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Input from '@mui/joy/Input';
-
-export default function MyApp() {
-  return <Input placeholder="Type anything…" />;
-}
 ```
+
+The Input component, unlike the [Textarea](/joy-ui/react-textarea/), does not wrap the text data by default, as shown below:
+
+{{"demo": "BasicInput.js"}}
+
+## Customization
 
 ### Variants
 
@@ -65,9 +67,14 @@ Note that using the `color` prop with danger as value gets the same result:
 ### Decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the input.
+
 It's usually more common to see input components using decorators at the top and bottom.
 
 {{"demo": "InputDecorators.js"}}
+
+## Common examples
+
+### TBD
 
 ## Accessibility
 
@@ -88,4 +95,14 @@ Alternatively, you can do it manually by targeting the input slot:
     }
   }}
 />
+```
+
+## Anatomy
+
+The Input component is composed of a root `<div>` with an input `<input>` nested inside.
+
+```html
+<div class="JoyInput-root">
+  <input class="JoyInput-input" />
+</div>
 ```
