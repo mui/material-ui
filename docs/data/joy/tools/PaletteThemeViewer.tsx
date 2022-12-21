@@ -110,17 +110,21 @@ export default function PaletteThemeViewer() {
                   <Typography
                     level="body2"
                     endDecorator={
-                      light[token].match(/[0-9]+\s[0-9]+\s[0-9]+/) ? (
+                      light[token].match(/^[0-9]+\s[0-9]+\s[0-9]+$/) ? (
                         <Tooltip
                           size="sm"
                           arrow
                           title={
                             <Typography>
-                              To create a translucent color: <br />
-                              <code>
+                              Translucent color usage: <br />
+                              <Typography
+                                fontFamily="code"
+                                component="code"
+                                sx={{ py: 1, display: 'block' }}
+                              >
                                 rgba(var(--joy-palette-{token.replace('.', '-')}) /
                                 0.6)
-                              </code>
+                              </Typography>
                             </Typography>
                           }
                           sx={{ pointerEvents: 'none' }}

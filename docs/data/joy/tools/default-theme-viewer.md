@@ -10,6 +10,8 @@ The tokens can be accessed from `theme.vars.palette.{token}`. Each token has bot
 
 ## Radius
 
+{{"demo": "RadiusThemeViewer.js"}}
+
 ## Typography
 
 {{"demo": "TypographyThemeViewer.js"}}
