@@ -14,7 +14,7 @@
     },
     "labelDisplayedRows": {
       "type": { "name": "func" },
-      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+      "default": "function defaultLabelDisplayedRows({ from, to, count, direction }) {\n  if (direction === 'rtl') {\n    return (\n      <React.Fragment>\n        {from}–{to} <span dir=\"rtl\">of </span>\n        {count !== -1 ? (\n          count\n        ) : (\n          <React.Fragment>\n            <span dir=\"rtl\">more </span>\n            <span dir=\"rtl\">than </span>\n            {to}\n          </React.Fragment>\n        )}\n      </React.Fragment>\n    );\n  }\n\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
     },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
     "nextIconButtonProps": { "type": { "name": "object" } },

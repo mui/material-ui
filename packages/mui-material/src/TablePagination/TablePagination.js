@@ -330,7 +330,24 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * object.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @default function defaultLabelDisplayedRows({ from, to, count }) {
+   * @default function defaultLabelDisplayedRows({ from, to, count, direction }) {
+   *   if (direction === 'rtl') {
+   *     return (
+   *       <React.Fragment>
+   *         {from}–{to} <span dir="rtl">of </span>
+   *         {count !== -1 ? (
+   *           count
+   *         ) : (
+   *           <React.Fragment>
+   *             <span dir="rtl">more </span>
+   *             <span dir="rtl">than </span>
+   *             {to}
+   *           </React.Fragment>
+   *         )}
+   *       </React.Fragment>
+   *     );
+   *   }
+   *
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
    */
