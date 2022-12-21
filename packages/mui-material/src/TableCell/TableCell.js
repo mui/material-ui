@@ -140,7 +140,6 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   }
 
   let scope = scopeProp;
-  // https://github.com/mui/material-ui/issues/35031#issuecomment-1359346668
   // scope is not a valid attribute for <td/> elements.
   // source: https://html.spec.whatwg.org/multipage/tables.html#the-td-element
   if (component === 'td') {

@@ -96,7 +96,7 @@ describe('<TableCell />', () => {
     const { container } = renderInTable(<TableCell component="th" scope="row" />);
     expect(container.querySelector('th')).not.to.have.attribute('role');
   });
-  it('scope should be undefined in table cell when component is td even when table cell is rendered with in table head', () => {
+  it('should not set scope attribute when TableCell is rendered as <td> within table head', () => {
     const { container } = render(
       <Table>
         <TableHead>
