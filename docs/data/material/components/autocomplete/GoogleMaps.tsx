@@ -150,22 +150,19 @@ export default function GoogleMaps() {
           <li {...props}>
             <Grid container alignItems="center">
               <Grid item xs={2}>
-                <Box
-                  component={LocationOnIcon}
-                  sx={{ color: 'text.secondary', mr: 2 }}
-                />
+                <LocationOnIcon sx={{ color: 'text.secondary', mr: 2 }} />
               </Grid>
               <Grid item xs={10}>
                 {parts.map((part, index) => (
-                  <span
+                  <Box
                     key={index}
-                    style={{
+                    sx={{
                       fontWeight: part.highlight ? 700 : 400,
                       wordWrap: 'break-word',
                     }}
                   >
                     {part.text}
-                  </span>
+                  </Box>
                 ))}
                 <Typography
                   variant="body2"
