@@ -3,10 +3,12 @@ import { extendTheme, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
+import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import Close from '@mui/icons-material/CloseOutlined';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 const defaultTheme = extendTheme();
 
@@ -14,6 +16,7 @@ const traverseObject = (palette) => {
   const result = {};
   const traverse = (object, parts = []) => {
     if (object && typeof object === 'object') {
+      // eslint-disable-next-line no-restricted-syntax
       for (const key of Object.keys(object)) {
         traverse(object[key], [...parts, key]);
       }
@@ -64,6 +67,7 @@ export default function PaletteThemeViewer() {
       }}
     />
   );
+
   return (
     <Box sx={{ width: '100%' }}>
       <Input
@@ -104,7 +108,31 @@ export default function PaletteThemeViewer() {
             .map((token) => (
               <tr key={token}>
                 <td>
-                  <Typography level="body2">{token}</Typography>
+                  <Typography
+                    level="body2"
+                    endDecorator={
+                      light[token].match(/[0-9]+\s[0-9]+\s[0-9]+/) ? (
+                        <Tooltip
+                          size="sm"
+                          arrow
+                          title={
+                            <Typography>
+                              To create a translucent color: <br />
+                              <code>
+                                rgba(var(--joy-palette-{token.replace('.', '-')}) /
+                                0.6)
+                              </code>
+                            </Typography>
+                          }
+                          sx={{ pointerEvents: 'none' }}
+                        >
+                          <InfoOutlined sx={{ cursor: 'initial' }} />
+                        </Tooltip>
+                      ) : null
+                    }
+                  >
+                    {token}
+                  </Typography>
                 </td>
                 <td>
                   <Typography

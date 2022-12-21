@@ -1,13 +1,5 @@
 import * as React from 'react';
-import {
-  extendTheme,
-  styled,
-  TypographySystem,
-  FontSize,
-  FontWeight,
-  LineHeight,
-  LetterSpacing,
-} from '@mui/joy/styles';
+import { extendTheme, styled, TypographySystem, FontSize } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
@@ -32,8 +24,8 @@ const Table = styled('table')({
   },
 });
 
-const extractFromVar = (value = '', field: string) =>
-  value.replace(`var(--joy-${field}-`, '').replace(')', '');
+const extractFromVar = (value: string, field: string) =>
+  (value || '').replace(`var(--joy-${field}-`, '').replace(')', '');
 
 export default function FontSizeThemeViewer() {
   const levels = Object.keys(defaultTheme.typography) as Array<
@@ -109,7 +101,6 @@ export default function FontSizeThemeViewer() {
                   size="sm"
                   arrow
                   variant="outlined"
-                  placement="bottom-start"
                   title={
                     <Box sx={{ display: 'flex', gap: 3 }}>
                       <Typography
@@ -158,71 +149,33 @@ export default function FontSizeThemeViewer() {
                   </Typography>
                 </Tooltip>
               </td>
-              <td>
-                <Tooltip
-                  size="sm"
-                  arrow
-                  title={
-                    defaultTheme.fontWeight[
-                      extractFromVar(
-                        defaultTheme.typography[level].fontWeight as string,
-                        'fontWeight',
-                      ) as keyof FontWeight
-                    ] || 'unset'
-                  }
-                  sx={{ pointerEvents: 'none' }}
-                >
-                  <Typography
-                    level="body2"
-                    textAlign="center"
-                    sx={{ cursor: 'zoom-in' }}
-                  >
-                    {defaultTheme.typography[level].fontWeight || '-'}
-                  </Typography>
-                </Tooltip>
-              </td>
-              <td>
-                <Tooltip
-                  size="sm"
-                  arrow
-                  title={
-                    defaultTheme.lineHeight[
-                      extractFromVar(
-                        defaultTheme.typography[level].lineHeight as string,
-                        'lineHeight',
-                      ) as keyof LineHeight
-                    ] || 'unset'
-                  }
-                  sx={{ pointerEvents: 'none' }}
-                >
-                  <Typography level="body2" sx={{ cursor: 'zoom-in' }}>
-                    {defaultTheme.typography[level].lineHeight || '-'}
-                  </Typography>
-                </Tooltip>
-              </td>
-              <td>
-                <Tooltip
-                  size="sm"
-                  arrow
-                  title={
-                    defaultTheme.letterSpacing[
-                      extractFromVar(
-                        defaultTheme.typography[level].letterSpacing as string,
-                        'letterSpacing',
-                      ) as keyof LetterSpacing
-                    ] || 'unset'
-                  }
-                  sx={{ pointerEvents: 'none' }}
-                >
-                  <Typography
-                    level="body2"
-                    textAlign="center"
-                    sx={{ cursor: 'zoom-in' }}
-                  >
-                    {defaultTheme.typography[level].letterSpacing || '-'}
-                  </Typography>
-                </Tooltip>
-              </td>
+              {(['fontWeight', 'lineHeight', 'letterSpacing'] as const).map(
+                (field) => (
+                  <td key={field}>
+                    <Tooltip
+                      size="sm"
+                      arrow
+                      title={
+                        (defaultTheme[field] as Record<string, any>)[
+                          extractFromVar(
+                            defaultTheme.typography[level][field] as string,
+                            field,
+                          )
+                        ] || 'unset'
+                      }
+                      sx={{ pointerEvents: 'none' }}
+                    >
+                      <Typography
+                        level="body2"
+                        textAlign="center"
+                        sx={{ cursor: 'zoom-in' }}
+                      >
+                        {defaultTheme.typography[level][field] || '-'}
+                      </Typography>
+                    </Tooltip>
+                  </td>
+                ),
+              )}
             </tr>
           ))}
         </tbody>

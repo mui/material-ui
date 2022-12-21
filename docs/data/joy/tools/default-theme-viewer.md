@@ -15,3 +15,5 @@ The tokens can be accessed from `theme.vars.palette.{token}`. Each token has bot
 {{"demo": "TypographyThemeViewer.js"}}
 
 ## Shadow
+
+{{"demo": "ShadowThemeViewer.js"}}
