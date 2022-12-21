@@ -167,7 +167,7 @@ describe('<SliderUnstyled />', () => {
       );
 
       if (container.firstChild !== null) {
-        // @ts-expect-error - container.firstChild doesn't have getBoundingClientRect method. hence typescript is throwing error.
+        // @ts-expect-error - container.firstChild doesn't have getBoundingClientRect method.
         stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
           width: 100,
           height: 10,
@@ -211,7 +211,7 @@ describe('<SliderUnstyled />', () => {
       const { getByRole, setProps, container } = render(<SliderUnstyled defaultValue={0} />);
 
       if (container.firstChild !== null) {
-        // @ts-expect-error - container.firstChild doesn't have getBoundingClientRect method. hence typescript is throwing error.
+        // @ts-expect-error - container.firstChild doesn't have getBoundingClientRect method.
         stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
           width: 100,
           height: 10,
@@ -252,7 +252,7 @@ describe('<SliderUnstyled />', () => {
       const { getByRole, container } = render(<SliderUnstyled disabled defaultValue={21} />);
       const thumb = getByRole('slider');
       if (container.firstChild) {
-        // @ts-expect-error - container.firstChild doesn't have getBoundingClientRect method. hence typescript is throwing error.
+        // @ts-expect-error - container.firstChild doesn't have getBoundingClientRect method.
         stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
           width: 100,
           height: 10,
