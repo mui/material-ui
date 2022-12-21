@@ -139,7 +139,13 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
     component = isHeadCell ? 'th' : 'td';
   }
 
-  const scope = scopeProp;
+  let scope = scopeProp;
+  // https://github.com/mui/material-ui/issues/35031#issuecomment-1359346668
+  if (component === 'td') {
+    scope = undefined;
+  } else if (!scope && isHeadCell) {
+    scope = 'col';
+  }
 
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 

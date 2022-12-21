@@ -93,16 +93,8 @@ describe('<TableCell />', () => {
     const { container } = renderInTable(<TableCell component="th" scope="row" />);
     expect(container.querySelector('th')).not.to.have.attribute('role');
   });
-  it('should allow scope to be undefined value even when table cell is within table head', () => {
-    const { container } = render(
-      <table>
-        <thead>
-          <tr>
-            <TableCell />
-          </tr>
-        </thead>
-      </table>,
-    );
+  it('scope should be undefined in table cell when component is td', () => {
+    const { container } = renderInTable(<TableCell component="td" />);
     expect(container.querySelector('td')).not.to.have.attribute('scope');
   });
 });

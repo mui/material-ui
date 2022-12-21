@@ -21,7 +21,7 @@ describe('<TableRow> integration', () => {
   }
 
   it('should render a th with the head class when in the context of a table head', () => {
-    const { getByTestId } = renderInTable(<TableCell data-testid="cell" scope="col" />, TableHead);
+    const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableHead);
     expect(getByTestId('cell')).to.have.tagName('th');
     expect(getByTestId('cell')).to.have.class(classes.root);
     expect(getByTestId('cell')).to.have.class(classes.head);
