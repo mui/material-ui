@@ -6,7 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
-import throttle from 'lodash/throttle';
+import { debounce } from '@mui/material/utils';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -46,9 +46,9 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle((request, callback) => {
+      debounce((request, callback) => {
         autocompleteService.current.getPlacePredictions(request, callback);
-      }, 200),
+      }, 400),
     [],
   );
 
