@@ -139,10 +139,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
     component = isHeadCell ? 'th' : 'td';
   }
 
-  let scope = scopeProp;
-  if (!scope && isHeadCell) {
-    scope = 'col';
-  }
+  const scope = scopeProp;
 
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 
