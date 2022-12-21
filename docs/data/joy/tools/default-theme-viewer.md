@@ -16,11 +16,15 @@ To customize the theme palette, see [theme tokens customization](/joy-ui/customi
 
 ## Radius
 
+The tokens can be accessed from `theme.vars.radius.{token}`.
+
 {{"demo": "RadiusThemeViewer.js"}}
 
 To customize the theme radius, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
 
 ## Shadow
+
+The tokens can be accessed from `theme.vars.shadow.{token}`.
 
 {{"demo": "ShadowThemeViewer.js"}}
 
@@ -28,7 +32,7 @@ To customize the theme shadow, see [theme tokens customization](/joy-ui/customiz
 
 ## Typography
 
-Joy UI provides 13 built-in typography levels. You can hover on each row to see the preview.
+Joy UI provides 13 built-in typography levels that can be accessed from `theme.typography.{level}`. You can hover on each row to see the preview.
 
 {{"demo": "TypographyThemeViewer.js"}}
 
