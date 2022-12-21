@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { extendTheme, Palette, styled } from '@mui/joy/styles';
+import { extendTheme, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
