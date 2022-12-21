@@ -4,7 +4,7 @@ import fse from 'fs-extra';
 import path from 'path';
 import yargs from 'yargs';
 import { fileURLToPath } from 'url';
-import { Queue, sleep, retry } from '@mui-internal/waterfall';
+import { Queue, sleep, retry } from '@mui/internal-waterfall';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
