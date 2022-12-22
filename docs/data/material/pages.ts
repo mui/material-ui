@@ -165,7 +165,7 @@ const pages: MuiPage[] = [
     icon: 'CreateIcon',
     children: [
       {
-        pathname: '/material-ui/customization',
+        pathname: '/material-ui/customization/theme',
         subheader: '/material-ui/customization/theme',
         children: [
           { pathname: '/material-ui/customization/theming' },
@@ -264,7 +264,7 @@ const pages: MuiPage[] = [
         title: 'Migrating to Grid v2',
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/v5',
         subheader: 'Upgrade to v5',
         children: [
           {
@@ -290,7 +290,7 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/earlier',
         subheader: 'Earlier versions',
         children: [
           { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },
