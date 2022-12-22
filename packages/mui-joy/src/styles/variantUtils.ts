@@ -80,7 +80,7 @@ export const createVariantStyle = (
           }
           if (variantVar.includes('Border')) {
             result['--variant-borderWidth'] = '1px';
-            result.border = 'var(--variant-borderWidth) solid';
+            result.border = 'var(--variant-borderWidth, 0px) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);

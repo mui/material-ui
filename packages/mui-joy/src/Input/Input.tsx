@@ -71,9 +71,9 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         }),
         // variables for controlling child components
         '--Input-decorator-childOffset':
-          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
+          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
         '--_Input-paddingBlock':
-          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
+          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
         '--Input-decorator-childRadius':
           'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
         '--Button-minHeight': 'var(--Input-decorator-childHeight)',
@@ -112,7 +112,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           bottom: 0,
           zIndex: 1,
           borderRadius: 'inherit',
-          margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+          margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
         },
       },
       {
