@@ -82,23 +82,6 @@
       "nodeName": "the thumb element",
       "conditions": "keyboard focused"
     },
-    "valueLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label element"
-    },
-    "valueLabelOpen": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb label element",
-      "conditions": "it's open"
-    },
-    "valueLabelCircle": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's circle element"
-    },
-    "valueLabelLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's label element"
-    },
     "mark": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the mark element"
