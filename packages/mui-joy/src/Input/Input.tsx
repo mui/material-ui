@@ -122,7 +122,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         [`&:hover:not(.${inputClasses.focused})`]: {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input
-          cursor: 'text',
         },
         [`&.${inputClasses.disabled}`]:
           theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
