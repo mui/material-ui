@@ -76,11 +76,14 @@ export const createVariantStyle = (
         } else {
           // initial state
           if (!result['--variant-borderWidth']) {
+            // important to prevent inheritance, otherwise the children will have the wrong styles e.g.
+            //   <Card variant="outlined">
+            //     <Typography variant="soft">
             result['--variant-borderWidth'] = '0px';
           }
           if (variantVar.includes('Border')) {
             result['--variant-borderWidth'] = '1px';
-            result.border = 'var(--variant-borderWidth, 0px) solid';
+            result.border = 'var(--variant-borderWidth) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);
