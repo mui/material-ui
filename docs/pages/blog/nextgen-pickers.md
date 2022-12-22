@@ -84,6 +84,7 @@ The Fields are still in alpha, and there are many improvements on the way. The f
   Support selecting a date by navigating days of the week with arrow keys, or text editing.
 
 We'd love to see more of your [feedback](https://github.com/mui/mui-x/issues/new/choose) to help us improve these components even further.
+
 ## Other Significant improvements
 
 Now that you've seen what's fundamentally different with the pickers, let us brief you on some other noteworthy refinements the components are getting.
