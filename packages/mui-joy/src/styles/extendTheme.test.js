@@ -49,6 +49,15 @@ describe('extendTheme', () => {
     expect(theme.typography.body1.fontSize).to.equal('var(--fontSize-md)');
   });
 
+  it('should have custom --variant-borderWidth', () => {
+    const theme = extendTheme({
+      variants: { outlined: { primary: { '--variant-borderWidth': '3px' } } },
+    });
+    expect(theme.variants.outlined.primary).to.contain({
+      '--variant-borderWidth': '3px',
+    });
+  });
+
   describe('theme.unstable_sx', () => {
     const { render } = createRenderer();
 

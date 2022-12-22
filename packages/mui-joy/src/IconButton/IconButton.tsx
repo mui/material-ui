@@ -66,6 +66,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       border: 'none',
       boxSizing: 'border-box',
       backgroundColor: 'transparent',
+      cursor: 'pointer',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',

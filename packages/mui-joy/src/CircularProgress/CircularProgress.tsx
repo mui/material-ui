@@ -90,7 +90,7 @@ const CircularProgressRoot = styled('span', {
     // internal variables
     '--_thickness-diff':
       'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
-    '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth))',
+    '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth, 0px))',
     '--_outlined-inset':
       'max(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
     width: 'var(--_root-size)',
@@ -137,8 +137,8 @@ const CircularProgressSvg = styled('svg', {
   display: 'inherit',
   boxSizing: 'inherit',
   position: 'absolute',
-  top: 'calc(-1 * var(--variant-borderWidth))', // centered align
-  left: 'calc(-1 * var(--variant-borderWidth))', // centered align
+  top: 'calc(-1 * var(--variant-borderWidth, 0px))', // centered align
+  left: 'calc(-1 * var(--variant-borderWidth, 0px))', // centered align
 });
 
 const CircularProgressTrack = styled('circle', {
