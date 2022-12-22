@@ -9,7 +9,7 @@ const defaultTheme = extendTheme();
 const Table = styled('table')({
   width: 'max-content',
   borderCollapse: 'separate',
-  borderSpacing: 12,
+  borderSpacing: '12px 0',
   thead: {
     height: 32,
   },
@@ -21,6 +21,10 @@ const Table = styled('table')({
   },
   td: {
     verticalAlign: 'top',
+    padding: 0,
+    '& > *': {
+      padding: '4px 0',
+    },
   },
 });
 

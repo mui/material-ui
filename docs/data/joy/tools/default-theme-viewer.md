@@ -8,27 +8,23 @@ This is a work in progress. We're still iterating on Joy UI's default theme.
 
 ## Explore
 
-Explore the default theme object:
+Explore the default theme:
 
 {{"demo": "JoyDefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-## Palette
+## Preview
 
-The tokens can be accessed from `theme.vars.palette.{token}`. Each token has both `light` and `dark` values.
+The tables below gives you a quick preview of the default theme properties that are involved in `light` and `dark` color schemes.
+
+### Palette
+
+The tokens are generated from `theme.colorSchemes.(light|dark).*` and attached to `theme.vars.*`.
 
 {{"demo": "PaletteThemeViewer.js"}}
 
 To customize the theme palette, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
 
-## Radius
-
-The tokens can be accessed from `theme.vars.radius.{token}`.
-
-{{"demo": "RadiusThemeViewer.js"}}
-
-To customize the theme radius, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
-
-## Shadow
+### Shadow
 
 The tokens can be accessed from `theme.vars.shadow.{token}`.
 
@@ -36,9 +32,11 @@ The tokens can be accessed from `theme.vars.shadow.{token}`.
 
 To customize the theme shadow, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
 
-## Typography
+### Typography
 
-Joy UI provides 13 built-in typography levels that can be accessed from `theme.typography.{level}`. You can hover on each row to see the preview.
+Joy UI provides 13 built-in typography levels that can be accessed from `theme.typography.{level}`.
+
+You can hover on each cell to see the value preview.
 
 {{"demo": "TypographyThemeViewer.js"}}
 

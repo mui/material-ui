@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { extendTheme, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
-import Input from '@mui/joy/Input';
-import IconButton from '@mui/joy/IconButton';
+
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
-import Close from '@mui/icons-material/CloseOutlined';
+
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 const defaultTheme = extendTheme();
@@ -35,6 +34,9 @@ const collator = new Intl.Collator(undefined, {
 });
 
 const Table = styled('table')({
+  borderCollapse: 'separate',
+  borderSpacing: '8px 0',
+  margin: '0 -8px',
   thead: {
     height: 32,
   },
@@ -47,7 +49,6 @@ const Table = styled('table')({
 });
 
 export default function PaletteThemeViewer() {
-  const [text, setText] = React.useState('');
   const light = traverseObject(defaultTheme.colorSchemes.light.palette);
   const dark = traverseObject(defaultTheme.colorSchemes.dark.palette);
   const paletteTokens = Array.from(
@@ -81,21 +82,7 @@ export default function PaletteThemeViewer() {
   );
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Input
-        placeholder="Search token"
-        size="sm"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        endDecorator={
-          text ? (
-            <IconButton variant="plain" color="neutral" onClick={() => setText('')}>
-              <Close />
-            </IconButton>
-          ) : null
-        }
-        sx={{ maxWidth: 300, mb: 2 }}
-      />
+    <Box sx={{ width: '100%', overflow: 'auto' }}>
       <Table>
         <thead>
           <tr>
@@ -117,7 +104,6 @@ export default function PaletteThemeViewer() {
         <tbody>
           {paletteTokens
             .filter((token) => token !== 'mode')
-            .filter((token) => (text ? token.toLowerCase().includes(text) : true))
             .map((token) => (
               <tr key={token}>
                 <td>

@@ -30,7 +30,6 @@ const blacklist = [
   'docs-joy-getting-started-templates/TemplateCollection.png',
   'docs-joy-core-features-automatic-adjustment/ListThemes.png',
   'docs-joy-tools/PaletteThemeViewer.png',
-  'docs-joy-tools/RadiusThemeViewer.png',
   'docs-joy-tools/ShadowThemeViewer.png',
   'docs-joy-tools/TypographyThemeViewer.png',
   'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
