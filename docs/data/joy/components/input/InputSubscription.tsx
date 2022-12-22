@@ -15,7 +15,6 @@ export default function InputSubscription() {
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log('a');
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
