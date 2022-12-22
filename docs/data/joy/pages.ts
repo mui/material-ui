@@ -101,7 +101,7 @@ const pages = [
   },
   {
     pathname: '/joy-ui/guides',
-    title: 'How to guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       {

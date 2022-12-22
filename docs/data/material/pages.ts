@@ -187,7 +187,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/guides',
-    title: 'How to guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },

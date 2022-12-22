@@ -80,7 +80,7 @@ const pages = [
   },
   {
     pathname: '/base/guides',
-    title: 'How to guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       {
