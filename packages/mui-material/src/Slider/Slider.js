@@ -2,7 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { isHostComponent, useSlotProps } from '@mui/base';
+import {
+  isHostComponent,
+  useSlotProps,
+  unstable_composeClasses as composeClasses,
+} from '@mui/base';
 import { useSlider, getSliderUtilityClass } from '@mui/base/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
@@ -447,29 +451,40 @@ SliderMarkLabel.propTypes /* remove-proptypes */ = {
 
 export { SliderMarkLabel };
 
-const extendUtilityClasses = (ownerState) => {
-  const { color, size, classes = {}, disabled } = ownerState;
+const useUtilityClasses = (ownerState) => {
+  const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
 
-  return {
-    ...classes,
-    root: clsx(
-      classes.root,
-      getSliderUtilityClass(`color${capitalize(color)}`),
-      classes[`color${capitalize(color)}`],
-      size && getSliderUtilityClass(`size${capitalize(size)}`),
-      size && classes[`size${capitalize(size)}`],
-    ),
-    thumb: clsx(
-      classes.thumb,
-      getSliderUtilityClass(`thumbColor${capitalize(color)}`),
-      classes[`thumbColor${capitalize(color)}`],
-      size && getSliderUtilityClass(`thumbSize${capitalize(size)}`),
-      size && classes[`thumbSize${capitalize(size)}`],
-      disabled && getSliderUtilityClass('disabled'),
-    ),
-    markLabel: getSliderUtilityClass('markLabel'),
-    mark: getSliderUtilityClass('mark'),
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      dragging && 'dragging',
+      marked && 'marked',
+      orientation === 'vertical' && 'vertical',
+      track === 'inverted' && 'trackInverted',
+      track === false && 'trackFalse',
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
+    rail: ['rail'],
+    track: ['track'],
+    mark: ['mark'],
+    markActive: ['markActive'],
+    markLabel: ['markLabel'],
+    markLabelActive: ['markLabelActive'],
+    valueLabel: ['valueLabel'],
+    thumb: [
+      'thumb',
+      disabled && 'disabled',
+      size && `thumbSize${capitalize(size)}`,
+      color && `thumbColor${capitalize(color)}`,
+    ],
+    active: ['active'],
+    disabled: ['disabled'],
+    focusVisible: ['focusVisible'],
   };
+
+  return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
 const Forward = ({ children }) => children;
@@ -500,7 +515,9 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     min = 0,
     onChange,
     onChangeCommitted,
+    orientation = 'horizontal',
     size = 'medium',
+    step = 1,
     scale = Identity,
     slotProps,
     slots,
@@ -510,9 +527,23 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     ...other
   } = props;
 
-  const ownerState = { ...props, isRtl, marks: marksProp, color, size };
-
-  const classes = extendUtilityClasses(ownerState);
+  const ownerState = {
+    ...props,
+    isRtl,
+    max,
+    min,
+    disabled,
+    disableSwap,
+    orientation,
+    marks: marksProp,
+    color,
+    size,
+    step,
+    scale,
+    track,
+    valueLabelDisplay,
+    valueLabelFormat,
+  };
 
   const {
     axisProps,
@@ -534,6 +565,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
   ownerState.focusedThumbIndex = focusedThumbIndex;
+
+  const classes = useUtilityClasses(ownerState);
 
   // support both `slots` and `components` for backward compatibility
   const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
