@@ -41,6 +41,7 @@ const AspectRatioRoot = styled('div', {
             maxHeight || '9999px'
           })`
         : `calc(100% / (${ownerState.ratio}))`,
+    borderRadius: 'var(--AspectRatio-radius)',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
   };
@@ -54,7 +55,7 @@ const AspectRatioContent = styled('div', {
   {
     flex: 1,
     position: 'relative',
-    borderRadius: 'var(--AspectRatio-radius)',
+    borderRadius: 'inherit',
     height: 0,
     paddingBottom: 'var(--AspectRatio-paddingBottom)',
     overflow: 'hidden',

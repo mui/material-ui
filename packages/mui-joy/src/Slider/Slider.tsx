@@ -11,7 +11,7 @@ import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-import { SliderProps, SliderTypeMap, SliderOwnerState } from './SliderProps';
+import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
 const valueToPercent = (value: number, min: number, max: number) =>
   ((value - min) * 100) / (max - min);
@@ -20,7 +20,7 @@ function Identity(x: any) {
   return x;
 }
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
-  const { disabled, dragging, marked, orientation, track, color, size } = ownerState;
+  const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -31,6 +31,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
+      variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
@@ -52,7 +53,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 };
 
 const sliderColorVariables =
-  ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SliderOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' | 'Active' } = {}) => {
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
@@ -156,7 +157,7 @@ const SliderRail = styled('span', {
         : 'var(--Slider-rail-background)',
     border:
       ownerState.track === 'inverted'
-        ? 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)'
+        ? 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)'
         : 'initial',
     borderRadius: 'var(--Slider-track-radius)',
     ...(ownerState.orientation === 'horizontal' && {
@@ -192,7 +193,7 @@ const SliderTrack = styled('span', {
       border:
         ownerState.track === 'inverted'
           ? 'initial'
-          : 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+          : 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
@@ -232,7 +233,7 @@ const SliderThumb = styled('span', {
   justifyContent: 'center',
   width: 'var(--Slider-thumb-width)',
   height: 'var(--Slider-thumb-size)',
-  border: 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+  border: 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
   borderRadius: 'var(--Slider-thumb-radius)',
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',
@@ -269,7 +270,7 @@ const SliderMark = styled('span', {
   name: 'JoySlider',
   slot: 'Mark',
   overridesResolver: (props, styles) => styles.mark,
-})<{ ownerState: SliderOwnerState & { percent: number } }>(({ ownerState }) => {
+})<{ ownerState: SliderOwnerState & { percent?: number } }>(({ ownerState }) => {
   return {
     position: 'absolute',
     width: 'var(--Slider-mark-size)',
@@ -335,7 +336,7 @@ const SliderValueLabel = styled('span', {
     'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(0)',
   position: 'absolute',
   backgroundColor: theme.vars.palette.background.tooltip,
-  boxShadow: theme.vars.shadow.sm,
+  boxShadow: theme.shadow.sm,
   borderRadius: theme.vars.radius.xs,
   color: '#fff',
   '&::before': {

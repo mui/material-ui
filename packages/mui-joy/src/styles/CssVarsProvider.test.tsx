@@ -332,6 +332,7 @@ describe('[Joy] CssVarsProvider', () => {
         JSON.stringify({
           body: 'var(--joy-palette-background-body)',
           surface: 'var(--joy-palette-background-surface)',
+          popup: 'var(--joy-palette-background-popup)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',

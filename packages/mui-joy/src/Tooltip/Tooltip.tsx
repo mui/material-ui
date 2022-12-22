@@ -70,7 +70,7 @@ const TooltipRoot = styled('div', {
     zIndex: 1500,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.shadow.sm,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
     lineHeight: theme.vars.lineHeight.sm,
@@ -147,7 +147,7 @@ const TooltipArrow = styled('span', {
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRadius: `0px 2px 0px 0px`,
-      boxShadow: `var(--variant-borderWidth) calc(-1 * var(--variant-borderWidth)) 0px 0px ${variantStyle.borderColor}`,
+      boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
       transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
     },
@@ -228,6 +228,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onClose,
     onOpen,
     open: openProp,
+    disablePortal,
+    direction,
+    keepMounted,
+    modifiers: modifiersProp,
     placement = 'bottom',
     title,
     color = 'neutral',
@@ -536,31 +540,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
-  const popperOptions = React.useMemo(() => {
-    const tooltipModifiers = [
-      {
-        name: 'arrow',
-        enabled: Boolean(arrowRef),
-        options: {
-          element: arrowRef,
-          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
-          // make the arrow looks nice with the Tooltip's border radius
-          padding: 6,
-        },
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 10],
-        },
-      },
-    ];
-
-    return {
-      modifiers: tooltipModifiers,
-    };
-  }, [arrowRef]);
-
   const ownerState = {
     ...props,
     arrow,
@@ -579,7 +558,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       id,
       popperRef,
       placement,
-      popperOptions,
       anchorEl: followCursor
         ? {
             getBoundingClientRect: () =>
@@ -594,6 +572,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           }
         : childNode,
       open: childNode ? open : false,
+      disablePortal,
+      keepMounted,
+      direction,
       ...interactiveWrapperListeners,
     },
     ref: null,
@@ -607,19 +588,40 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {
-    additionalProps: {
-      ref: setArrowRef,
-    },
+    ref: setArrowRef,
     className: classes.arrow,
     elementType: TooltipArrow,
     externalForwardedProps: other,
     ownerState,
   });
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+          // make the arrow looks nice with the Tooltip's border radius
+          padding: 6,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
+    [arrowRef, modifiersProp],
+  );
+
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <SlotRoot {...rootProps}>
+      <SlotRoot {...rootProps} modifiers={modifiers}>
         {title}
         {arrow ? <SlotArrow {...arrowProps} /> : null}
       </SlotRoot>
@@ -657,6 +659,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   describeChild: PropTypes.bool,
   /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
+  /**
    * Do not respond to focus-visible events.
    * @default false
    */
@@ -672,6 +679,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableInteractive: PropTypes.bool,
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: PropTypes.bool,
   /**
    * Do not respond to long press touch events.
    * @default false
@@ -704,6 +716,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
+  /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).
    * @default 0
@@ -714,6 +733,38 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 1500
    */
   leaveTouchDelay: PropTypes.number,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
   /**
    * Callback fired when the component requests to be closed.
    *

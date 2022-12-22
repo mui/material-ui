@@ -224,6 +224,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-common-white'),
         surface: getCssVar('palette-common-white'),
+        popup: getCssVar('palette-common-white'),
         level1: getCssVar('palette-neutral-50'),
         level2: getCssVar('palette-neutral-100'),
         level3: getCssVar('palette-neutral-200'),
@@ -311,6 +312,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: getCssVar('palette-neutral-900'),
         surface: getCssVar('palette-common-black'),
+        popup: getCssVar('palette-neutral-800'),
         level1: getCssVar('palette-neutral-800'),
         level2: getCssVar('palette-neutral-700'),
         level3: getCssVar('palette-neutral-600'),
@@ -544,16 +546,18 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
                 margin: 'var(--Icon-margin)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {
-                    fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
+                    fontSize: `var(--Icon-fontSize, ${
+                      themeProp.vars.fontSize[ownerState.fontSize]
+                    })`,
                   }),
                 ...(ownerState.color &&
                   ownerState.color !== 'inherit' &&
                   ownerState.color !== 'context' &&
                   themeProp.vars.palette[ownerState.color!] && {
-                    color: themeProp.vars.palette[ownerState.color].plainColor,
+                    color: `rgba(${themeProp.vars.palette[ownerState.color]?.mainChannel} / 1)`,
                   }),
                 ...(ownerState.color === 'context' && {
-                  color: theme.variants.plain?.context?.color,
+                  color: themeProp.vars.palette.text.secondary,
                 }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {

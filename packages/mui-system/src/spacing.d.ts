@@ -1,5 +1,6 @@
 import { SimpleStyleFunction, spacing, PropsFor } from './Box';
 
+export type SpacingValueType = string | number | null | undefined;
 export type SpacingProps = PropsFor<typeof spacing>;
 export function createUnarySpacing<Spacing>(theme: { spacing: Spacing }): Spacing extends number
   ? (abs: number | string) => number | number
@@ -16,7 +17,7 @@ export function createUnaryUnit<Spacing>(
   defaultValue: Spacing,
   propName: string,
 ): Spacing extends number
-  ? (abs: number | string) => number | number
+  ? (abs: SpacingValueType) => number | number
   : Spacing extends any[]
   ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
   : Spacing extends (...args: unknown[]) => unknown
@@ -72,7 +73,6 @@ export const padding: SimpleStyleFunction<
   | 'paddingBlockEnd'
 >;
 
-export type SpacingValueType = string | number | null | undefined;
 export function getValue(
   transformer: (prop: SpacingValueType) => SpacingValueType,
   propValue: SpacingValueType,

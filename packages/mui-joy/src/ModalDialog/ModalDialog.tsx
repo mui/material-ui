@@ -38,7 +38,7 @@ const ModalDialogRoot = styled(SheetRoot, {
   // Divider integration
   '--Divider-inset': 'calc(-1 * var(--ModalDialog-padding))',
   '--ModalClose-radius':
-    'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
+    'max((var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.size === 'sm' && {
     '--ModalDialog-padding': theme.spacing(1.25),
     '--ModalDialog-radius': theme.vars.radius.sm,
@@ -58,7 +58,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     fontSize: theme.vars.fontSize.md,
   }),
   boxSizing: 'border-box',
-  boxShadow: theme.vars.shadow.md,
+  boxShadow: theme.shadow.md,
   borderRadius: 'var(--ModalDialog-radius)',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: theme.vars.lineHeight.md,

@@ -52,7 +52,9 @@ export default function useSlot<
    * e.g. the `externalForwardedProps` are spread to `root` slot but not other slots.
    */
   name: T,
-  parameters: (T extends 'root' ? { ref: React.ForwardedRef<any> } : {}) & {
+  parameters: (T extends 'root' // root slot must pass a `ref` as a parameter
+    ? { ref: React.ForwardedRef<any> }
+    : { ref?: React.ForwardedRef<any> }) & {
     /**
      * The slot's className
      */
@@ -83,7 +85,8 @@ export default function useSlot<
      * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
      */
     getSlotOwnerState?: (
-      mergedProps: SlotProps &
+      mergedProps: AdditionalProps &
+        SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
           Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
@@ -128,11 +131,7 @@ export default function useSlot<
     externalSlotProps: resolvedComponentsProps,
   });
 
-  const ref = useForkRef(
-    internalRef,
-    // @ts-ignore `ref` is required for the 'root' slot
-    useForkRef(resolvedComponentsProps?.ref, name === 'root' ? parameters.ref : undefined),
-  ) as ((instance: any | null) => void) | null;
+  const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
   const finalOwnerState = getSlotOwnerState
     ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
@@ -147,10 +146,7 @@ export default function useSlot<
     {
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
-      ...(mergedProps as { className: string } & SlotProps &
-        ExternalSlotProps &
-        AdditionalProps &
-        (T extends 'root' ? ExternalForwardedProps : {})),
+      ...mergedProps,
       ...(LeafComponent && {
         as: LeafComponent,
       }),
@@ -159,5 +155,13 @@ export default function useSlot<
     finalOwnerState as OwnerState & SlotOwnerState,
   );
 
-  return [elementType, props] as [ElementType, typeof props];
+  return [elementType, props] as [
+    ElementType,
+    { className: string; ownerState: OwnerState & SlotOwnerState } & AdditionalProps &
+      SlotProps &
+      ExternalSlotProps &
+      ExtractComponentProps<
+        Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
+      >,
+  ];
 }
