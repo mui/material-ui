@@ -12,7 +12,6 @@ export default function InputSubscription() {
   });
 
   const handleSubmit = (event) => {
-    console.log('a');
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {

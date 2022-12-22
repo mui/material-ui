@@ -15,11 +15,11 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 interface DataItem {
   var: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   helperText?: string;
 }
 
-function formatSx(sx: { [k: string]: string }) {
+function formatSx(sx: { [k: string]: string | number }) {
   const lines = Object.keys(sx);
   if (!lines.length) {
     return '';
@@ -82,11 +82,11 @@ export default function JoyVariablesDemo(props: {
   componentName: string;
   childrenAccepted?: boolean;
   data: Array<DataItem | [string, Array<DataItem>, { defaultOpen?: boolean } | undefined]>;
-  renderDemo: (sx: { [k: string]: string }) => React.ReactElement;
+  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement;
   renderCode?: (formattedSx: string) => string;
 }) {
   const { componentName, data = [], childrenAccepted = false, renderCode } = props;
-  const [sx, setSx] = React.useState<{ [k: string]: string }>({});
+  const [sx, setSx] = React.useState<{ [k: string]: string | number }>({});
   return (
     <Box
       sx={{
@@ -174,7 +174,7 @@ export default function JoyVariablesDemo(props: {
                     size="sm"
                     variant="outlined"
                     helperText={item.helperText}
-                    value={Number(resolvedValue?.replace('px', '')) || ''}
+                    value={Number(`${resolvedValue}`?.replace('px', '')) || ''}
                     slotProps={{
                       input: {
                         onKeyDown: (event) => {
@@ -190,10 +190,12 @@ export default function JoyVariablesDemo(props: {
                     }}
                     endDecorator={
                       <React.Fragment>
-                        <Typography level="body3" mr={0.5}>
-                          px
-                        </Typography>
-                        {sx[item.var] && sx[item.var] !== item.defaultValue && (
+                        {typeof resolvedValue === 'string' ? (
+                          <Typography level="body3" mr={0.5}>
+                            px
+                          </Typography>
+                        ) : null}
+                        {sx[item.var] && sx[item.var] !== item.defaultValue ? (
                           <IconButton
                             tabIndex={-1}
                             variant="plain"
@@ -209,7 +211,7 @@ export default function JoyVariablesDemo(props: {
                           >
                             <ReplayRoundedIcon fontSize="sm" />
                           </IconButton>
-                        )}
+                        ) : null}
                       </React.Fragment>
                     }
                     type="number"
@@ -224,7 +226,8 @@ export default function JoyVariablesDemo(props: {
                         }
                         return {
                           ...prevSx,
-                          [item.var]: `${value}px`,
+                          [item.var]:
+                            typeof resolvedValue === 'string' ? `${value}px` : Number(value),
                         };
                       });
                     }}

@@ -78,6 +78,14 @@ It's usually more common to see input components using decorators at the top and
 
 {{"demo": "InputSubscription.js"}}
 
+## CSS variables
+
+Play around with all the CSS variables available in the input component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
+
+{{"demo": "InputVariables.js", "hideToolbar": true}}
+
 ## Accessibility
 
 In order for the input to be accessible, **it should be linked to a label**.
