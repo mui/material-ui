@@ -14,7 +14,9 @@ export default function InputSubscription() {
     status: 'initial',
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log('a');
+    event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
       // Replace timeout with real backend operation
@@ -27,46 +29,51 @@ export default function InputSubscription() {
   };
 
   return (
-    <FormControl>
-      <FormLabel
-        sx={(theme) => ({
-          '--FormLabel-color': theme.vars.palette.primary[400],
-        })}
-      >
-        MUI Newsletter
-      </FormLabel>
-      <Input
-        sx={{ pt: 0.5, pb: 0.5 }}
-        placeholder="mail@mui.com"
-        type="email"
-        value={form.email}
-        onChange={(event) =>
-          setForm({ email: event.target.value, status: 'initial' })
-        }
-        error={form.status === 'failure'}
-        endDecorator={
-          <Button
-            variant="solid"
-            color="primary"
-            sx={{ ml: 1, height: '45px' }}
-            disabled={form.email.length === 0 || form.status === 'failure'}
-            loading={form.status === 'loading'}
-            onClick={handleSubmit}
+    <form onSubmit={handleSubmit} id="demo">
+      <FormControl>
+        <FormLabel
+          sx={(theme) => ({
+            '--FormLabel-color': theme.vars.palette.primary[400],
+          })}
+        >
+          MUI Newsletter
+        </FormLabel>
+        <Input
+          sx={{ '--Input-decorator-childHeight': '45px' }}
+          placeholder="mail@mui.com"
+          type="email"
+          required
+          value={form.email}
+          onChange={(event) =>
+            setForm({ email: event.target.value, status: 'initial' })
+          }
+          error={form.status === 'failure'}
+          endDecorator={
+            <Button
+              variant="solid"
+              color="primary"
+              loading={form.status === 'loading'}
+              type="submit"
+            >
+              Subscribe
+            </Button>
+          }
+        />
+        {form.status === 'failure' && (
+          <FormHelperText
+            sx={(theme) => ({ color: theme.vars.palette.danger[400] })}
           >
-            Subscribe
-          </Button>
-        }
-      />
-      {form.status === 'failure' && (
-        <FormHelperText sx={(theme) => ({ color: theme.vars.palette.danger[400] })}>
-          Oops! something went wrong, please try again later.
-        </FormHelperText>
-      )}
-      {form.status === 'sent' && (
-        <FormHelperText sx={(theme) => ({ color: theme.vars.palette.primary[400] })}>
-          You are all set!
-        </FormHelperText>
-      )}
-    </FormControl>
+            Oops! something went wrong, please try again later.
+          </FormHelperText>
+        )}
+        {form.status === 'sent' && (
+          <FormHelperText
+            sx={(theme) => ({ color: theme.vars.palette.primary[400] })}
+          >
+            You are all set!
+          </FormHelperText>
+        )}
+      </FormControl>
+    </form>
   );
 }
