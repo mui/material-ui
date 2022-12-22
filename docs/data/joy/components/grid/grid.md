@@ -139,9 +139,12 @@ But as seen below, you can easily use [the system](/system/grid/) and CSS Grid t
 
 ## Common examples
 
-### Profile cards
+### Centering children
 
-{{"demo": "ProfileCards.js"}}
+To center a grid item's content, specify `display="flex"` directly on the item.
+Then use `justifyContent` and/or `alignItems` to adjust the position of the content, as shown below:
+
+{{"demo": "ChildrenCenteredGrid.js"}}
 
 ## Anatomy
 

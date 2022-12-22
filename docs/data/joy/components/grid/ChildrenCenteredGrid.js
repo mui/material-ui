@@ -4,7 +4,7 @@ import Box from '@mui/joy/Box';
 import Grid from '@mui/joy/Grid';
 import Typography from '@mui/joy/Typography';
 
-export default function ProfileCards() {
+export default function ChildrenCenteredGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
@@ -15,12 +15,10 @@ export default function ProfileCards() {
           borderTop: 'var(--Grid-borderWidth) solid',
           borderLeft: 'var(--Grid-borderWidth) solid',
           borderColor: 'divider',
-          borderRadius: '15px',
           '& > div': {
             borderRight: 'var(--Grid-borderWidth) solid',
             borderBottom: 'var(--Grid-borderWidth) solid',
             borderColor: 'divider',
-            borderRadius: '15px',
           },
         }}
       >
