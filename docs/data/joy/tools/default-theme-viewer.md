@@ -6,6 +6,12 @@
 This is a work in progress. We're still iterating on Joy UI's default theme.
 :::
 
+## Explore
+
+Explore the default theme object:
+
+{{"demo": "JoyDefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
+
 ## Palette
 
 The tokens can be accessed from `theme.vars.palette.{token}`. Each token has both `light` and `dark` values.

@@ -24,15 +24,17 @@ const defaultTheme = extendTheme();
 export default function ShadowThemeViewer() {
   const tokens = Object.keys(defaultTheme.shadow) as Array<keyof Shadow>;
   const formatShadowLayers = (shadow: string) =>
-    shadow
-      .split(', ')
-      .reduce<Array<React.ReactNode>>(
-        (result, curr, index, array) =>
-          array.length - 1 !== index
-            ? [...result, `${curr},`, <br />]
-            : [...result, curr],
-        [],
-      );
+    React.Children.toArray(
+      shadow
+        .split(', ')
+        .reduce<Array<React.ReactNode>>(
+          (result, curr, index, array) =>
+            array.length - 1 !== index
+              ? [...result, `${curr},`, <br />]
+              : [...result, curr],
+          [],
+        ),
+    );
   return (
     <Table>
       <thead>
