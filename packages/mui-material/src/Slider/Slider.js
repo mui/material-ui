@@ -867,17 +867,7 @@ Slider.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
+    valueLabel: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -991,17 +981,7 @@ Slider.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
+    valueLabel: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
   }),
   /**
    * The components used for each slot inside the Slider.
