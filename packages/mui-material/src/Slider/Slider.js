@@ -603,6 +603,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       }),
     },
     ownerState: {
+      ...ownerState,
       ...rootSlotProps?.ownerState,
       color,
       size,
@@ -627,6 +628,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       },
     },
     ownerState: {
+      ...ownerState,
       ...trackSlotProps?.ownerState,
       color,
       size,
