@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
 import { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
+import { SliderValueLabelProps } from './SliderValueLabel.types';
 
 export const sliderClasses = {
   ...sliderUnstyledClasses,
@@ -22,9 +23,7 @@ export const sliderClasses = {
   ]),
 };
 
-const useValueLabelClasses = (props) => {
-  const { open } = props;
-
+const useValueLabelClasses = (open: SliderValueLabelProps['open']) => {
   const utilityClasses = {
     offset: clsx({
       [sliderClasses.valueLabelOpen]: open,
@@ -39,9 +38,13 @@ const useValueLabelClasses = (props) => {
 /**
  * @ignore - internal component.
  */
-export default function SliderValueLabelUnstyled(props) {
-  const { children, className, value } = props;
-  const classes = useValueLabelClasses(props);
+export default function SliderValueLabel(props: SliderValueLabelProps) {
+  const { children, className, value, open } = props;
+  const classes = useValueLabelClasses(open);
+
+  if (!children) {
+    return null;
+  }
 
   return React.cloneElement(
     children,
@@ -59,9 +62,8 @@ export default function SliderValueLabelUnstyled(props) {
   );
 }
 
-SliderValueLabelUnstyled.propTypes = {
+SliderValueLabel.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
-  theme: PropTypes.any,
   value: PropTypes.node,
 };
