@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
@@ -109,7 +110,7 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: #fff;
   }
 
-  & .${sliderUnstyledClasses.valueLabel} {
+  & .valueLabel {
     font-family: IBM Plex Sans;
     font-size: 14px;
     display: block;
@@ -120,6 +121,22 @@ const StyledSlider = styled(SliderUnstyled)(
   }
 `,
 );
+
+function SliderValueLabel({ children, value }) {
+  return React.cloneElement(
+    children,
+    undefined,
+    <React.Fragment>
+      {children.props.children}
+      <span className="valueLabel">{value}</span>
+    </React.Fragment>,
+  );
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
 function valuetext(value) {
   return `${value}°C`;
@@ -136,6 +153,7 @@ export default function DiscreteSlider() {
         marks
         min={10}
         max={110}
+        slots={{ valueLabel: SliderValueLabel }}
       />
     </Box>
   );

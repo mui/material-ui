@@ -109,16 +109,6 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: #fff;
   }
 
-  & .${sliderUnstyledClasses.valueLabel} {
-    font-family: IBM Plex Sans;
-    font-size: 14px;
-    display: block;
-    position: relative;
-    top: -1.6em;
-    text-align: center;
-    transform: translateX(-50%);
-  }
-
   & .${sliderUnstyledClasses.markLabel} {
     font-family: IBM Plex Sans;
     font-size: 12px;

@@ -6,4 +6,5 @@
   marks
   min={10}
   max={110}
+  slots={{ valueLabel: SliderValueLabel }}
 />
