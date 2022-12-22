@@ -86,6 +86,26 @@ For instance, the top-margin on the `Button` component below will be ignored.
 
 A [RFC](https://github.com/mui/material-ui/issues/33754) to address this issue is already open.
 
+### white-space: nowrap
+
+The initial setting on flex items is `min-width: auto`.
+This causes a positioning conflict when children use `white-space: nowrap;`.
+You can reproduce the issue with:
+
+```jsx
+<Stack direction="row">
+  <Typography noWrap>
+```
+
+In order for the item to stay within the container you need to set `min-width: 0`.
+
+```jsx
+<Stack direction="row" sx={{ minWidth: 0 }}>
+  <Typography noWrap>
+```
+
+{{"demo": "ZeroWidthStack.js", "bg": true}}
+
 ## Anatomy
 
 The Stack component is composed of a single root `<div>` element:
