@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import sliderUnstyledClasses from './sliderUnstyledClasses';
 import { SliderValueLabelUnstyledProps } from './SliderValueLabelUnstyled.types';
 
-const useValueLabelClasses = (open: boolean) => {
+const useValueLabelClasses = (open: SliderValueLabelUnstyledProps['open']) => {
   const utilityClasses = {
     offset: clsx({
       [sliderUnstyledClasses.valueLabelOpen]: open,
@@ -47,7 +47,5 @@ SliderValueLabelUnstyled.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   open: PropTypes.bool,
-  // eslint-disable-next-line react/no-unused-prop-types
-  theme: PropTypes.any,
   value: PropTypes.node,
 };
