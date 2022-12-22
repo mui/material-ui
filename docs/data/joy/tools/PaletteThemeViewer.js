@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { extendTheme, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
-
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
-
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 const defaultTheme = extendTheme();
