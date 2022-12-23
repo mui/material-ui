@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -90,15 +90,14 @@ const AvatarFallback = styled(Person, {
 });
 
 function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!src && !srcSet) {
       return undefined;
     }
 
     setLoaded(false);
-
     let active = true;
     const image = new Image();
     image.onload = () => {
