@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -55,12 +55,12 @@ const AvatarRoot = styled('div', {
     color: (theme.vars || theme).palette.background.default,
     ...(theme.vars
       ? {
-          backgroundColor: theme.vars.palette.Avatar.defaultBg,
-        }
+        backgroundColor: theme.vars.palette.Avatar.defaultBg,
+      }
       : {
-          backgroundColor:
-            theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-        }),
+        backgroundColor:
+          theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      }),
   }),
 }));
 
@@ -90,9 +90,9 @@ const AvatarFallback = styled(Person, {
 });
 
 function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
-  const [loaded, setLoaded] = React.useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!src && !srcSet) {
       return undefined;
     }
