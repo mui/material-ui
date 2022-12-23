@@ -6,7 +6,6 @@ import {
   AllSystemCSSProperties,
   ResponsiveStyleValue,
   OverwriteCSSProperties,
-  AliasesCSSProperties,
 } from '../styleFunctionSx';
 
 export type PropsFor<SomeStyleFunction> = SomeStyleFunction extends StyleFunction<infer Props>
@@ -141,7 +140,7 @@ export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFu
   ComposedOwnerState<T>
 > & { filterProps: string[] };
 
-export interface CustomSystemProps extends AliasesCSSProperties, OverwriteCSSProperties {}
+export interface CustomSystemProps extends OverwriteCSSProperties {}
 
 export type SimpleSystemKeys = keyof PropsFor<
   ComposedStyleFunction<
@@ -168,7 +167,7 @@ export type SystemProps<Theme extends object = {}> = {
   [K in StandardSystemKeys]?:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
-};
+} & CustomSystemProps;
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T extends object = Theme> {
   props: P &
