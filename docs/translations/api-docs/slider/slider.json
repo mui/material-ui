@@ -120,11 +120,6 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "sizeMedium": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"medium\"</code>"
-    },
     "thumbColorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
@@ -139,11 +134,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>size=\"small\"</code>"
-    },
-    "thumbSizeMedium": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb element",
-      "conditions": "<code>size=\"medium\"</code>"
     },
     "valueLabel": {
       "description": "Class name applied to {{nodeName}}.",

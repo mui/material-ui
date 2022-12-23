@@ -64,16 +64,12 @@ export type SliderTypeMap<
       colorSecondary?: string;
       /** Class name applied to the root element if `size="small"`. */
       sizeSmall?: string;
-      /** Class name applied to the root element if `size="medium"`. */
-      sizeMedium?: string;
       /** Class name applied to the thumb element if `color="primary"`. */
       thumbColorPrimary?: string;
       /** Class name applied to the thumb element if `color="secondary"`. */
       thumbColorSecondary?: string;
       /** Class name applied to the thumb element if `size="small"`. */
       thumbSizeSmall?: string;
-      /** Class name applied to the thumb element if `size="medium"`. */
-      thumbSizeMedium?: string;
       /** Class name applied to the thumb label element. */
       valueLabel: string;
       /** Class name applied to the thumb label element if it's open. */
