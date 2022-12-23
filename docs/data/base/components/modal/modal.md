@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 Unstyled Modal is a utility component that renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
-### Features
+**Features**:
 
 - 🥞 Manages modal stacking when more than one is needed
 - 🪟 Creates a backdrop to disable interaction with the rest of the app
@@ -125,6 +125,14 @@ React [doesn't support](https://github.com/facebook/react/issues/13097) the [`cr
 In order to display an Unstyled Modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
+
+## Position fixed elements
+
+The modal disables the page scrolling while open by setting the `overflow: hidden` CSS property on the relevant scroll container.
+This hides the scrollbar and hence impacts the page layout.
+To compensate for this offset (~15px under normal conditions) and avoid a layout shift, the modal also set a padding property on the scroll container.
+
+However, `position: fixed` elements are also impacted, the modal doesn't handle them automatically, you need to add the `.mui-fixed` class name on these elements to get the padding added when necessary to avoid layout shift.
 
 ## Limitations
 
