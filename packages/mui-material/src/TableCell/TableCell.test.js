@@ -2,6 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Table from '@mui/material/Table';
 
 describe('<TableCell />', () => {
   const { render } = createRenderer();
@@ -92,5 +95,17 @@ describe('<TableCell />', () => {
   it('should allow the default role (rowheader) to trigger', () => {
     const { container } = renderInTable(<TableCell component="th" scope="row" />);
     expect(container.querySelector('th')).not.to.have.attribute('role');
+  });
+  it('should not set scope attribute when TableCell is rendered as <td> within table head', () => {
+    const { container } = render(
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell component="td" />
+          </TableRow>
+        </TableHead>
+      </Table>,
+    );
+    expect(container.querySelector('td')).not.to.have.attribute('scope');
   });
 });
