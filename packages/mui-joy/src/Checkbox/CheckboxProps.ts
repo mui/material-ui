@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
@@ -105,7 +105,7 @@ export type CheckboxProps<
   },
 > = OverrideProps<CheckboxTypeMap<P, D>, D>;
 
-export interface CheckboxOwnerState extends CheckboxProps {
+export interface CheckboxOwnerState extends ApplyColorInversion<CheckboxProps> {
   /**
    * If `true`, the checkbox's focus is visible.
    */

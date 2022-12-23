@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -45,7 +46,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       }),
       ...(ownerState.disabled && {
         '--List-decorator-color':
-          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+          theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       }),
       WebkitTapHighlightColor: 'transparent',
       boxSizing: 'border-box',
@@ -120,10 +121,13 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color = selected ? 'primary' : 'neutral',
+    color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
     ...other
   } = props;
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

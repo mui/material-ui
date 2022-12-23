@@ -10,6 +10,7 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
@@ -94,9 +95,11 @@ const LinkRoot = styled('a', {
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
-      textDecorationColor: `rgba(${
-        theme.vars.palette[ownerState.color!]?.mainChannel
-      } / var(--Link-underlineOpacity, 0.72))`,
+      ...(ownerState.color !== 'context' && {
+        textDecorationColor: `rgba(${
+          theme.vars.palette[ownerState.color!]?.mainChannel
+        } / var(--Link-underlineOpacity, 0.72))`,
+      }),
       ...(ownerState.variant
         ? {
             paddingBlock: 'min(0.15em, 4px)',
@@ -106,10 +109,14 @@ const LinkRoot = styled('a', {
             }),
           }
         : {
-            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            ...(ownerState.color !== 'context' && {
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            }),
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              ...(ownerState.color !== 'context' && {
+                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              }),
             },
           }),
       userSelect: 'none',
@@ -153,14 +160,17 @@ const LinkRoot = styled('a', {
 
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
-    color = 'primary',
+    color: colorProp = 'primary',
     textColor,
+    variant,
     ...themeProps
   } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'JoyLink',
   });
 
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
   const nested = React.useContext(TypographyContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
@@ -173,7 +183,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     level: levelProp = 'body1',
     overlay = false,
     underline = 'hover',
-    variant,
     endDecorator,
     startDecorator,
     ...other

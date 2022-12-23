@@ -9,6 +9,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlider } from '@mui/base/SliderUnstyled';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
@@ -251,6 +252,7 @@ const SliderThumb = styled('span', {
   }),
   '&::before': {
     // use pseudo element to create thumb's ring
+    boxSizing: 'border-box',
     content: '""',
     display: 'block',
     position: 'absolute',
@@ -425,11 +427,13 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    color = 'primary',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'solid',
     ...other
   } = props;
+  const { getColor } = useColorInversion('solid');
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
