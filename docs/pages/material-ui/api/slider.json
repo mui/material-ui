@@ -32,7 +32,6 @@
     "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
-    "isRtl": { "type": { "name": "bool" } },
     "marks": {
       "type": {
         "name": "union",
