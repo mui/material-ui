@@ -20,11 +20,11 @@ const CardContentRoot = styled('div', {
   name: 'MuiCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(() => {
+})(({ theme }) => {
   return {
-    padding: styled.theme.spacing(2),
+    padding: theme.spacing(2),
     '&:last-child': {
-      paddingBottom: styled.theme.spacing(3),
+      paddingBottom: theme.spacing(3),
     },
   };
 });
