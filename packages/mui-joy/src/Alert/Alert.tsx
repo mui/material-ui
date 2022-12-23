@@ -35,7 +35,7 @@ const AlertRoot = styled('div', {
 })<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   '--Alert-radius': theme.vars.radius.sm,
   '--Alert-decorator-childRadius':
-    'max((var(--Alert-radius) - var(--variant-borderWidth)) - var(--Alert-padding), min(var(--Alert-padding) / 2, (var(--Alert-radius) - var(--variant-borderWidth)) / 2))',
+    'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) / 2, (var(--Alert-radius) - var(--variant-borderWidth, 0px)) / 2))',
   '--Button-minHeight': 'var(--Alert-decorator-childHeight)',
   '--IconButton-size': 'var(--Alert-decorator-childHeight)',
   '--Button-radius': 'var(--Alert-decorator-childRadius)',

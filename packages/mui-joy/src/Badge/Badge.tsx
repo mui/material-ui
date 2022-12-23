@@ -117,7 +117,7 @@ const BadgeBadge = styled('span', {
     fontWeight: theme.vars.fontWeight.md,
     lineHeight: 1,
     padding:
-      'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth)) calc(var(--Badge-paddingX) - var(--variant-borderWidth))',
+      'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth, 0px)) calc(var(--Badge-paddingX) - var(--variant-borderWidth, 0px))',
     minHeight: 'var(--Badge-minHeight)',
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',

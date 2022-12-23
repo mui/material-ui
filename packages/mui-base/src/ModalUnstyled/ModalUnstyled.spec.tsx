@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ModalUnstyled, {
-  ModalUnstyledRootSlotProps,
   ModalUnstyledBackdropSlotProps,
+  ModalUnstyledRootSlotProps,
 } from '@mui/base/ModalUnstyled';
 import { expectType } from '@mui/types';
 

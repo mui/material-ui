@@ -157,7 +157,7 @@ const SliderRail = styled('span', {
         : 'var(--Slider-rail-background)',
     border:
       ownerState.track === 'inverted'
-        ? 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)'
+        ? 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)'
         : 'initial',
     borderRadius: 'var(--Slider-track-radius)',
     ...(ownerState.orientation === 'horizontal' && {
@@ -193,7 +193,7 @@ const SliderTrack = styled('span', {
       border:
         ownerState.track === 'inverted'
           ? 'initial'
-          : 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+          : 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
@@ -233,7 +233,7 @@ const SliderThumb = styled('span', {
   justifyContent: 'center',
   width: 'var(--Slider-thumb-width)',
   height: 'var(--Slider-thumb-size)',
-  border: 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+  border: 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
   borderRadius: 'var(--Slider-thumb-radius)',
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',

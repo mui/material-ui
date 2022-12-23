@@ -39,11 +39,11 @@ const CardRoot = styled('div', {
   {
     // a context variable for any child component
     '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-borderWidth)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth)) / 2))',
+      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth))',
+    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // Link, Radio, Checkbox integration
     '--internal-action-radius': resolveSxValue(
       { theme, ownerState },
@@ -51,10 +51,10 @@ const CardRoot = styled('div', {
       'var(--Card-radius)',
     ),
     // CardCover integration
-    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
     // Divider integration
     '--Divider-inset': 'calc(-1 * var(--Card-padding))',
     ...(ownerState.size === 'sm' && {

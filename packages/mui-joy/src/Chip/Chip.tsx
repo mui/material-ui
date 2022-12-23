@@ -42,7 +42,7 @@ const ChipRoot = styled('div', {
     {
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
+        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--Chip-decorator-childRadius':
         'max(var(--_Chip-radius) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) / 2, var(--_Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
@@ -55,7 +55,7 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth))',
+          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
         '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
         fontSize: theme.vars.fontSize.xs,
@@ -78,7 +78,7 @@ const ChipRoot = styled('div', {
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
-        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
@@ -145,6 +145,7 @@ const ChipAction = styled('button', {
     bottom: 0,
     right: 0,
     border: 'none',
+    cursor: 'pointer',
     padding: 'initial',
     margin: 'initial',
     backgroundColor: 'initial',

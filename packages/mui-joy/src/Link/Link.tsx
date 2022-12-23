@@ -94,6 +94,7 @@ const LinkRoot = styled('a', {
       margin: 0, // Remove the margin in Safari
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
+      cursor: 'pointer',
       ...(ownerState.color !== 'context' && {
         textDecorationColor: `rgba(${
           theme.vars.palette[ownerState.color!]?.mainChannel
@@ -111,7 +112,6 @@ const LinkRoot = styled('a', {
             ...(ownerState.color !== 'context' && {
               color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             }),
-            cursor: 'pointer',
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
               ...(ownerState.color !== 'context' && {

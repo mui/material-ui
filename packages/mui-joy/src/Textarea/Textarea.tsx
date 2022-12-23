@@ -78,7 +78,7 @@ const TextareaRoot = styled('div', {
       }),
       // variables for controlling child components
       '--_Textarea-paddingBlock':
-        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
+        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
       '--Textarea-decorator-childRadius':
         'max(var(--Textarea-radius) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) / 2, var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
@@ -117,7 +117,7 @@ const TextareaRoot = styled('div', {
         bottom: 0,
         zIndex: 1,
         borderRadius: 'inherit',
-        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
     },
     {

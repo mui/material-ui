@@ -16,7 +16,7 @@ export interface FocusTrapProps {
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
    * This prop should be memoized.
    * It can be used to support multiple focus trap mounted at the same time.
-   * @default function defaultIsEnabled() {
+   * @default function defaultIsEnabled(): boolean {
    *   return true;
    * }
    */
@@ -24,7 +24,7 @@ export interface FocusTrapProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement;
   /**
    * If `true`, the focus trap will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
@@ -50,16 +50,3 @@ export interface FocusTrapProps {
    */
   disableRestoreFocus?: boolean;
 }
-
-/**
- * Utility component that locks focus inside the component.
- *
- * Demos:
- *
- * - [Focus Trap](https://mui.com/base/react-focus-trap/)
- *
- * API:
- *
- * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
- */
-export default function FocusTrap(props: FocusTrapProps): JSX.Element;

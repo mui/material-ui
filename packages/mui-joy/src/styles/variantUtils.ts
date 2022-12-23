@@ -64,9 +64,6 @@ export const createVariantStyle = (
     ([variantVar, value]) => {
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
-        if (variantVar.includes('Hover')) {
-          result.cursor = 'pointer';
-        }
         if (variantVar.includes('Disabled')) {
           result.pointerEvents = 'none';
           result.cursor = 'default';
@@ -76,6 +73,9 @@ export const createVariantStyle = (
         } else {
           // initial state
           if (!result['--variant-borderWidth']) {
+            // important to prevent inheritance, otherwise the children will have the wrong styles e.g.
+            //   <Card variant="outlined">
+            //     <Typography variant="soft">
             result['--variant-borderWidth'] = '0px';
           }
           if (variantVar.includes('Border')) {
