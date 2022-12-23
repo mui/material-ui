@@ -122,22 +122,16 @@ const StyledSlider = styled(SliderUnstyled)(
 `,
 );
 
-function SliderValueLabel({ children, value }) {
-  return React.cloneElement(
-    children,
-    undefined,
-    <React.Fragment>
-      {children.props.children}
-      <span className="label">
-        <div className="value">{value}</div>
-      </span>
-    </React.Fragment>,
+function SliderValueLabel({ children }) {
+  return (
+    <span className="label">
+      <span className="value">{children}</span>
+    </span>
   );
 }
 
 SliderValueLabel.propTypes = {
   children: PropTypes.element.isRequired,
-  value: PropTypes.number.isRequired,
 };
 
 export default function UnstyledSlider() {

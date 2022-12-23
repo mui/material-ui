@@ -39,8 +39,6 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
-const Forward = ({ children }) => children;
-
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
     'aria-label': ariaLabel,
@@ -242,51 +240,49 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
-        const ValueLabelComponent = ValueLabel ?? Forward;
-
         return (
-          <React.Fragment key={index}>
-            <ValueLabelComponent
-              {...(!isHostComponent(ValueLabelComponent) && {
-                valueLabelFormat,
-                value:
-                  typeof valueLabelFormat === 'function'
-                    ? valueLabelFormat(scale(value), index)
-                    : valueLabelFormat,
-                index,
-                disabled,
-              })}
-              {...valueLabelProps}
-              className={valueLabelProps.className}
-            >
-              <Thumb
-                data-index={index}
-                data-focusvisible={focusedThumbIndex === index}
-                {...thumbProps}
-                className={clsx(classes.thumb, thumbProps.className, {
-                  [classes.active]: active === index,
-                  [classes.focusVisible]: focusedThumbIndex === index,
+          <Thumb
+            key={index}
+            data-index={index}
+            data-focusvisible={focusedThumbIndex === index}
+            {...thumbProps}
+            className={clsx(classes.thumb, thumbProps.className, {
+              [classes.active]: active === index,
+              [classes.focusVisible]: focusedThumbIndex === index,
+            })}
+            style={{
+              ...style,
+              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...thumbProps.style,
+            }}
+          >
+            <Input
+              data-index={index}
+              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+              aria-valuenow={scale(value)}
+              aria-labelledby={ariaLabelledby}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
+              value={values[index]}
+              {...inputProps}
+            />
+            {ValueLabel ? (
+              <ValueLabel
+                {...(!isHostComponent(ValueLabel) && {
+                  valueLabelFormat,
+                  index,
+                  disabled,
                 })}
-                style={{
-                  ...style,
-                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
-                  ...thumbProps.style,
-                }}
+                {...valueLabelProps}
+                className={valueLabelProps.className}
               >
-                <Input
-                  data-index={index}
-                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                  aria-valuenow={scale(value)}
-                  aria-labelledby={ariaLabelledby}
-                  aria-valuetext={
-                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                  }
-                  value={values[index]}
-                  {...inputProps}
-                />
-              </Thumb>
-            </ValueLabelComponent>
-          </React.Fragment>
+                {typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat}
+              </ValueLabel>
+            ) : null}
+          </Thumb>
         );
       })}
     </Root>

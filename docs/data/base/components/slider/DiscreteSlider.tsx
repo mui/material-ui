@@ -123,18 +123,10 @@ const StyledSlider = styled(SliderUnstyled)(
 
 interface SliderValueLabelProps {
   children: React.ReactElement;
-  value: number;
 }
 
-function SliderValueLabel({ children, value }: SliderValueLabelProps) {
-  return React.cloneElement(
-    children,
-    undefined,
-    <React.Fragment>
-      {children.props.children}
-      <span className="valueLabel">{value}</span>
-    </React.Fragment>,
-  );
+function SliderValueLabel({ children }: SliderValueLabelProps) {
+  return <span className="valueLabel">{children}</span>;
 }
 
 function valuetext(value: number) {
