@@ -128,7 +128,7 @@ interface SliderValueLabelProps {
 function SliderValueLabel({ children }: SliderValueLabelProps) {
   return (
     <span className="label">
-      <span className="value">{children}</span>
+      <div className="value">{children}</div>
     </span>
   );
 }

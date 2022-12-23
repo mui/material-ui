@@ -125,7 +125,7 @@ const StyledSlider = styled(SliderUnstyled)(
 function SliderValueLabel({ children }) {
   return (
     <span className="label">
-      <span className="value">{children}</span>
+      <div className="value">{children}</div>
     </span>
   );
 }
