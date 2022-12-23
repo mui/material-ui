@@ -59,8 +59,8 @@ const pages = [
         subheader: 'feedback',
         children: [
           { pathname: '/joy-ui/react-alert' },
-          { pathname: '/joy-ui/react-circular-progress' },
-          { pathname: '/joy-ui/react-linear-progress' },
+          { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
+          { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
         ],
       },
@@ -111,7 +111,7 @@ const pages = [
   },
   {
     pathname: '/joy-ui/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       {

@@ -56,6 +56,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       textAlign: 'initial',
       textDecoration: 'initial', // reset native anchor tag
       backgroundColor: 'initial', // reset button background
+      cursor: 'pointer',
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
       marginInline: 'var(--List-itemButton-marginInline)',
       marginBlock: 'var(--List-itemButton-marginBlock)',
@@ -64,7 +65,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
         marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
       }),
       // account for the border width, so that all of the ListItemButtons content aligned horizontally
-      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth, 0px))',
       // account for the border width, so that all of the ListItemButtons content aligned vertically
       paddingInlineStart:
         'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List

@@ -34,6 +34,7 @@ const ChipDeleteRoot = styled('button', {
   {
     '--Icon-margin': 'initial', // prevent overrides from parent
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
+    cursor: 'pointer',
     width: 'var(--Chip-delete-size, 2rem)',
     height: 'var(--Chip-delete-size, 2rem)',
     borderRadius: 'var(--Chip-delete-radius, 50%)',

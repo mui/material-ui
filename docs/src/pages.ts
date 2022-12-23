@@ -256,7 +256,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API design approach' },
