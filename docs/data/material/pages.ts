@@ -21,12 +21,6 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/react-',
-    scopePathnames: [
-      '/material-ui/icons',
-      '/material-ui/material-icons',
-      '/material-ui/about-the-lab',
-      '/material-ui/transitions',
-    ],
     title: 'Components',
     icon: 'ToggleOnIcon',
     children: [
