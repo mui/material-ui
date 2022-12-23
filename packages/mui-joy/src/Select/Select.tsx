@@ -108,9 +108,9 @@ const SelectRoot = styled('div', {
       }),
       // variables for controlling child components
       '--Select-decorator-childOffset':
-        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
+        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
       '--_Select-paddingBlock':
-        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
+        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2, 0px)',
       '--Select-decorator-childRadius':
         'max(var(--Select-radius) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) / 2, var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decorator-childHeight)',
@@ -124,6 +124,7 @@ const SelectRoot = styled('div', {
       display: 'flex',
       alignItems: 'center',
       borderRadius: 'var(--Select-radius)',
+      cursor: 'pointer',
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
@@ -151,7 +152,7 @@ const SelectRoot = styled('div', {
         bottom: 0,
         zIndex: 1,
         borderRadius: 'inherit',
-        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
       [`&.${selectClasses.focusVisible}`]: {
         '--Select-indicator-color': 'var(--Select-focusedHighlight)',

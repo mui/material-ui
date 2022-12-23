@@ -99,7 +99,7 @@ const LinearProgressRoot = styled('div', {
     position: 'relative',
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     '--_LinearProgress-padding':
-      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth) - var(--LinearProgress-progressThickness)) / 2, 0px)',
+      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth, 0px) - var(--LinearProgress-progressThickness)) / 2, 0px)',
     '&::before': {
       content: '""',
       display: 'block',

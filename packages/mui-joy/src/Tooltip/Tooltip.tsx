@@ -147,7 +147,7 @@ const TooltipArrow = styled('span', {
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRadius: `0px 2px 0px 0px`,
-      boxShadow: `var(--variant-borderWidth) calc(-1 * var(--variant-borderWidth)) 0px 0px ${variantStyle.borderColor}`,
+      boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
       transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
     },
