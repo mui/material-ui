@@ -168,7 +168,7 @@ export type SystemProps<Theme extends object = {}> = {
   [K in StandardSystemKeys]?:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
-};
+} & CustomSystemProps;
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T extends object = Theme> {
   props: P &
