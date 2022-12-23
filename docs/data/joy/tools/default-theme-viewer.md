@@ -31,13 +31,3 @@ The tokens can be accessed from `theme.vars.shadow.{token}`.
 {{"demo": "ShadowThemeViewer.js"}}
 
 To customize the theme shadow, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
-
-### Typography
-
-Joy UI provides 13 built-in typography levels that can be accessed from `theme.typography.{level}`.
-
-You can hover on each cell to see the value preview.
-
-{{"demo": "TypographyThemeViewer.js"}}
-
-To customize the theme typography, see [theme typography customization](/joy-ui/customization/theme-typography/) page.
