@@ -393,8 +393,16 @@ const Root = styled('div')(
         backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.7),
         borderColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
-          opacity: 1,
+          display: 'block',
+          // Approximate no hover capabilities with no keyboard
+          // https://github.com/w3c/csswg-drafts/issues/3871
+          '@media (any-hover: none)': {
+            display: 'none',
+          },
         },
+      },
+      '& .MuiCode-copyKeypress': {
+        display: 'none',
       },
       '&[data-copied]': {
         // style of the button when it is in copied state.
@@ -411,7 +419,6 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      opacity: 0,
       position: 'absolute',
       left: '50%',
       top: '100%',
