@@ -28,7 +28,8 @@ export default function NavTabs() {
 
   React.useEffect(() => {
     const trackMetaKey = (event) => {
-      if (event.key === 'Control' || event.key === 'Meta') {
+      console.log(event.key);
+      if (['Control', 'Meta', 'Alt'].includes(event.key)) {
         if (event.type === 'keyup') {
           setCtrlPressed(false);
         }
