@@ -55,9 +55,21 @@ export default function NavTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-        <LinkTab modifierKeyPressed={modifierKeyPressed} label="Page One" href="/drafts" />
-        <LinkTab modifierKeyPressed={modifierKeyPressed} label="Page Two" href="/trash" />
-        <LinkTab modifierKeyPressed={modifierKeyPressed} label="Page Three" href="/spam" />
+        <LinkTab
+          modifierKeyPressed={modifierKeyPressed}
+          label="Page One"
+          href="/drafts"
+        />
+        <LinkTab
+          modifierKeyPressed={modifierKeyPressed}
+          label="Page Two"
+          href="/trash"
+        />
+        <LinkTab
+          modifierKeyPressed={modifierKeyPressed}
+          label="Page Three"
+          href="/spam"
+        />
       </Tabs>
     </Box>
   );
