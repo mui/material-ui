@@ -1132,9 +1132,7 @@ export const faIR: Localization = {
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} از ${
-            count !== -1 ? count : `بیشتر از ${to}`
-          }`,
+          `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
       },
     },
     MuiRating: {
