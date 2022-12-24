@@ -1,5 +1,5 @@
 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-  <LinkTab label="Page One" href="/drafts" />
-  <LinkTab label="Page Two" href="/trash" />
-  <LinkTab label="Page Three" href="/spam" />
+  <LinkTab metaKeyPressed={metaKeyPressed} label="Page One" href="/drafts" />
+  <LinkTab metaKeyPressed={metaKeyPressed} label="Page Two" href="/trash" />
+  <LinkTab metaKeyPressed={metaKeyPressed} label="Page Three" href="/spam" />
 </Tabs>
