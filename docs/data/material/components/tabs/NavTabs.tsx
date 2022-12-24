@@ -6,15 +6,15 @@ import Tab from '@mui/material/Tab';
 interface LinkTabProps {
   label?: string;
   href?: string;
-  ctrlPressed?: boolean;
+  modifierKeyPressed?: boolean;
 }
 
-function LinkTab({ ctrlPressed, ...props }: LinkTabProps) {
+function LinkTab({ modifierKeyPressed, ...props }: LinkTabProps) {
   return (
     <Tab
       component="a"
       onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        if (!ctrlPressed) {
+        if (!modifierKeyPressed) {
           event.preventDefault();
         }
       }}
@@ -25,16 +25,16 @@ function LinkTab({ ctrlPressed, ...props }: LinkTabProps) {
 
 export default function NavTabs() {
   const [value, setValue] = React.useState(0);
-  const [ctrlPressed, setCtrlPressed] = React.useState(false);
+  const [modifierKeyPressed, setModifierKeyPressed] = React.useState(false);
 
   React.useEffect(() => {
     const trackMetaKey = (event: KeyboardEvent) => {
       if (['Control', 'Meta', 'Alt'].includes(event.key)) {
         if (event.type === 'keyup') {
-          setCtrlPressed(false);
+          setModifierKeyPressed(false);
         }
         if (event.type === 'keydown') {
-          setCtrlPressed(true);
+          setModifierKeyPressed(true);
         }
       }
     };
@@ -55,9 +55,9 @@ export default function NavTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-        <LinkTab ctrlPressed={ctrlPressed} label="Page One" href="/drafts" />
-        <LinkTab ctrlPressed={ctrlPressed} label="Page Two" href="/trash" />
-        <LinkTab ctrlPressed={ctrlPressed} label="Page Three" href="/spam" />
+        <LinkTab modifierKeyPressed={modifierKeyPressed} label="Page One" href="/drafts" />
+        <LinkTab modifierKeyPressed={modifierKeyPressed} label="Page Two" href="/trash" />
+        <LinkTab modifierKeyPressed={modifierKeyPressed} label="Page Three" href="/spam" />
       </Tabs>
     </Box>
   );
