@@ -206,7 +206,7 @@ const SelectButton = styled('button', {
 })<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
-  outline: 'none',
+  outline: 0,
   background: 'none',
   padding: 0,
   fontSize: 'inherit',
@@ -241,7 +241,7 @@ const SelectListbox = styled(StyledList, {
       theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
-    outline: 'none',
+    outline: 0,
     boxShadow: theme.shadow.md,
     zIndex: 1000,
     ...(!variantStyle?.backgroundColor && {
