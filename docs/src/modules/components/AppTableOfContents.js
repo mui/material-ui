@@ -12,10 +12,7 @@ import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBan
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
-  order: 1,
-  width: 'var(--MuiDocs-toc-width)',
   paddingLeft: 2, // Fix truncated focus outline style
-  flexShrink: 0,
   position: 'sticky',
   height: '100vh',
   overflowY: 'auto',
@@ -23,7 +20,7 @@ const Nav = styled('nav')(({ theme }) => ({
   paddingBottom: theme.spacing(4),
   paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up('md')]: {
     display: 'block',
   },
 }));
