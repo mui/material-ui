@@ -108,25 +108,28 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
+      paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
         // Remove scroll on small screens.
         wordBreak: 'break-all',
       },
-      '& .anchor-link-style': {
+      '& .anchor-link': {
         // To prevent the link to get the focus.
         display: 'none',
       },
-      '& a:not(.anchor-link-style):hover': {
+      '& a:not(.anchor-link):hover': {
         color: 'currentColor',
         borderBottom: '1px solid currentColor',
         textDecoration: 'none',
       },
-      '&:hover .anchor-link-style, & .comment-link-style': {
+      '&:hover .anchor-link, & .comment-link': {
         lineHeight: '21.5px',
+        position: 'absolute',
         textAlign: 'center',
         marginLeft: 10,
+        marginTop: 5,
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
@@ -146,10 +149,9 @@ const Root = styled('div')(
           pointerEvents: 'none',
         },
       },
-      '& .comment-link-style': {
-        display: 'none',
-        position: 'absolute',
-        top: `calc(50% - ${26 / 2}px)`,
+      '& .comment-link': {
+        display: 'none', // So we can have the comment button opt-in.
+        top: 0,
         right: 0,
         opacity: 0.5,
         transition: theme.transitions.create('opacity', {
@@ -462,7 +464,7 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-link-style, & .comment-link-style': {
+        '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
           backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.3),
           borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
