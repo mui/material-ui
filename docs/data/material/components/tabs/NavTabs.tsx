@@ -30,11 +30,11 @@ export default function NavTabs() {
   React.useEffect(() => {
     const trackMetaKey = (event: KeyboardEvent, keyDirection: 'up' | 'down') => {
       if (event.ctrlKey || event.metaKey) {
-        if (keyDirection === 'down') {
-          setMetaKeyPressed(true);
-        }
         if (keyDirection === 'up') {
           setMetaKeyPressed(false);
+        }
+        if (keyDirection === 'down') {
+          setMetaKeyPressed(true);
         }
       }
     };
