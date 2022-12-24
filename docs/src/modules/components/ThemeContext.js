@@ -13,6 +13,7 @@ import {
   getThemedComponents,
   getMetaThemeColor,
 } from 'docs/src/modules/brandingTheme';
+import PageContext from './PageContext';
 
 const languageMap = {
   en: enUS,
@@ -115,7 +116,10 @@ if (process.env.NODE_ENV !== 'production') {
 export function ThemeProvider(props) {
   const { children } = props;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const pageContextValue = React.useContext(PageContext);
+  // `activePage` does not exist for playground pages
+  // forcing light mode in playground avoids the need for a wrapping theme in playground pages
+  const preferredMode = pageContextValue.activePage && prefersDarkMode ? 'dark' : 'light';
 
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {

@@ -4,6 +4,7 @@ import {
   ColorPaletteProp,
   SxProps,
   SystemProps,
+  ApplyColorInversion,
   TypographySystem,
   VariantProp,
 } from '../styles/types';
@@ -91,7 +92,7 @@ export type LinkProps<
   },
 > = OverrideProps<LinkTypeMap<P, D>, D>;
 
-export interface LinkOwnerState extends LinkProps {
+export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
   /**
    * If `true`, the element's focus is visible.
    */

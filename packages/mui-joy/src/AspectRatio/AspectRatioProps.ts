@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AspectRatioSlot = 'root' | 'content';
@@ -65,4 +65,4 @@ export type AspectRatioProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AspectRatioTypeMap<P, D>, D>;
 
-export interface AspectRatioOwnerState extends AspectRatioProps {}
+export interface AspectRatioOwnerState extends ApplyColorInversion<AspectRatioProps> {}

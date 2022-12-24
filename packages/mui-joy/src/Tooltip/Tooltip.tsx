@@ -14,6 +14,7 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -234,11 +235,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<HTMLElement>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -613,18 +616,27 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           offset: [0, 10],
         },
       },
-      ...(modifiersProp || []),
+      ...(rootProps.modifiers || []),
     ],
-    [arrowRef, modifiersProp],
+    [arrowRef, rootProps.modifiers],
+  );
+
+  const result = (
+    <SlotRoot {...rootProps} modifiers={modifiers}>
+      {title}
+      {arrow ? <SlotArrow {...arrowProps} /> : null}
+    </SlotRoot>
   );
 
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <SlotRoot {...rootProps} modifiers={modifiers}>
-        {title}
-        {arrow ? <SlotArrow {...arrowProps} /> : null}
-      </SlotRoot>
+      {disablePortal ? (
+        result
+      ) : (
+        // For portal popup, the children should not inherit color inversion from the upper parent.
+        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
+      )}
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;

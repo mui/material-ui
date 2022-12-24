@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  describeConformance,
+  describeJoyColorInversion,
+} from 'test/utils';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -39,6 +45,8 @@ describe('<Link />', () => {
       skip: ['classesRoot', 'componentsProp'],
     }),
   );
+
+  describeJoyColorInversion(<Link href="/" variant="soft" />, { muiName: 'JoyLink', classes });
 
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
