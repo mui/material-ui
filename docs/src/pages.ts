@@ -277,7 +277,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/guides/flow' },
     ],
   },
   {

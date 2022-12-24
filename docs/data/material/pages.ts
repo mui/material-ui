@@ -208,7 +208,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/material-ui/guides/flow' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
     ],
   },
