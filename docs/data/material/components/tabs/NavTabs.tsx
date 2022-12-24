@@ -6,15 +6,15 @@ import Tab from '@mui/material/Tab';
 interface LinkTabProps {
   label?: string;
   href?: string;
-  metaKeyPressed?: boolean;
+  ctrlPressed?: boolean;
 }
 
-function LinkTab({ metaKeyPressed, ...props }: LinkTabProps) {
+function LinkTab({ ctrlPressed, ...props }: LinkTabProps) {
   return (
     <Tab
       component="a"
       onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        if (!metaKeyPressed) {
+        if (!ctrlPressed) {
           event.preventDefault();
         }
       }}
@@ -25,28 +25,26 @@ function LinkTab({ metaKeyPressed, ...props }: LinkTabProps) {
 
 export default function NavTabs() {
   const [value, setValue] = React.useState(0);
-  const [metaKeyPressed, setMetaKeyPressed] = React.useState(false);
+  const [ctrlPressed, setCtrlPressed] = React.useState(false);
 
   React.useEffect(() => {
-    const trackMetaKey = (event: KeyboardEvent, keyDirection: 'up' | 'down') => {
-      if (event.ctrlKey || event.metaKey) {
-        if (keyDirection === 'up') {
-          setMetaKeyPressed(false);
+    const trackMetaKey = (event: KeyboardEvent) => {
+      if (event.key === 'Control' || event.key === 'Meta') {
+        if (event.type === 'keyup') {
+          setCtrlPressed(false);
         }
-        if (keyDirection === 'down') {
-          setMetaKeyPressed(true);
+        if (event.type === 'keydown') {
+          setCtrlPressed(true);
         }
       }
     };
 
-    document.addEventListener('keydown', (event) => trackMetaKey(event, 'down'));
-    document.addEventListener('keyup', (event) => trackMetaKey(event, 'up'));
+    document.addEventListener('keydown', trackMetaKey);
+    document.addEventListener('keyup', trackMetaKey);
 
     return () => {
-      document.removeEventListener('keydown', (event) =>
-        trackMetaKey(event, 'down'),
-      );
-      document.removeEventListener('keyup', (event) => trackMetaKey(event, 'up'));
+      document.removeEventListener('keydown', trackMetaKey);
+      document.removeEventListener('keyup', trackMetaKey);
     };
   }, []);
 
@@ -57,9 +55,9 @@ export default function NavTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-        <LinkTab metaKeyPressed={metaKeyPressed} label="Page One" href="/drafts" />
-        <LinkTab metaKeyPressed={metaKeyPressed} label="Page Two" href="/trash" />
-        <LinkTab metaKeyPressed={metaKeyPressed} label="Page Three" href="/spam" />
+        <LinkTab ctrlPressed={ctrlPressed} label="Page One" href="/drafts" />
+        <LinkTab ctrlPressed={ctrlPressed} label="Page Two" href="/trash" />
+        <LinkTab ctrlPressed={ctrlPressed} label="Page Three" href="/spam" />
       </Tabs>
     </Box>
   );
