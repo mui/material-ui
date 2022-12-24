@@ -27,7 +27,7 @@ export default function NavTabs() {
   const [modifierKeyPressed, setModifierKeyPressed] = React.useState(false);
 
   React.useEffect(() => {
-    const trackMetaKey = (event) => {
+    const trackModifierKey = (event) => {
       if (['Control', 'Meta', 'Alt'].includes(event.key)) {
         if (event.type === 'keyup') {
           setModifierKeyPressed(false);
@@ -38,12 +38,12 @@ export default function NavTabs() {
       }
     };
 
-    document.addEventListener('keydown', trackMetaKey);
-    document.addEventListener('keyup', trackMetaKey);
+    document.addEventListener('keydown', trackModifierKey);
+    document.addEventListener('keyup', trackModifierKey);
 
     return () => {
-      document.removeEventListener('keydown', trackMetaKey);
-      document.removeEventListener('keyup', trackMetaKey);
+      document.removeEventListener('keydown', trackModifierKey);
+      document.removeEventListener('keyup', trackModifierKey);
     };
   }, []);
 
