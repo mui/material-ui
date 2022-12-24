@@ -149,7 +149,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-tree-view' },
+          { pathname: '/material-ui/react-tree-view', title: 'Tree View' },
         ],
       },
     ],
@@ -187,7 +187,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },

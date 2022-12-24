@@ -19,6 +19,8 @@ export interface TabsClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Classname applied to the root element if `variant="outlined"`. */
@@ -51,6 +53,7 @@ const tabListClasses: TabsClasses = generateUtilityClasses('JoyTabs', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

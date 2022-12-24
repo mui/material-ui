@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
@@ -80,12 +81,12 @@ const RadioRoot = styled('span', {
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
       color: theme.vars.palette.text.primary,
       [`&.${radioClasses.disabled}`]: {
-        color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+        color: theme.variants.plainDisabled?.[ownerState.color!]?.color,
       },
       ...(ownerState.disableIcon && {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+        color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
         [`&.${radioClasses.disabled}`]: {
-          color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+          color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
         },
       }),
       ...(ownerState['data-parent'] === 'RadioGroup' &&
@@ -204,8 +205,8 @@ const RadioIcon = styled('span', {
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: RadioOwnerState }>(({ ownerState }) => ({
-  width: '50%',
-  height: '50%',
+  width: 'calc(var(--Radio-size) / 2)',
+  height: 'calc(var(--Radio-size) / 2)',
   borderRadius: 'inherit',
   color: 'inherit',
   backgroundColor: 'currentColor',
@@ -236,13 +237,14 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onFocusVisible,
     readOnly,
     required,
-    color,
+    color: colorProp,
     variant = 'outlined',
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
 
   const formControl = React.useContext(FormControlContext);
 
@@ -262,10 +264,10 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? color ?? 'primary';
+    : inProps.color ?? formControl?.color ?? colorProp ?? 'primary';
   const inactiveColor = formControl?.error
     ? 'danger'
-    : inProps.color ?? formControl?.color ?? color ?? 'neutral';
+    : inProps.color ?? formControl?.color ?? colorProp ?? 'neutral';
   const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
@@ -287,12 +289,14 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(useRadioProps);
 
+  const color = getColor(inProps.color, checked ? activeColor : inactiveColor);
+
   const ownerState = {
     ...props,
     checked,
     disabled,
     focusVisible,
-    color: checked ? activeColor : inactiveColor,
+    color,
     variant,
     size,
     disableIcon,

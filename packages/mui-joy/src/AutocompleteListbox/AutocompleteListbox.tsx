@@ -14,6 +14,7 @@ import {
 import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
+import { useColorInversion } from '../styles/ColorInversion';
 
 const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -93,11 +94,13 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     children,
     className,
     component,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     size = 'md',
     ...otherProps
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
