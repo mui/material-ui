@@ -113,9 +113,11 @@ Note that you can restore the scrollbar with `visibleScrollbar`.
 
 ## Nav tabs
 
-By default, tabs use a `button` element, but you can provide your custom tag or component. Here's an example of implementing tabbed navigation:
+By default, tabs use a `button` element, but you can provide your custom component with the `component` prop:
 
-{{"demo": "NavTabs.js"}}
+{{"demo": "NavTabs.js", "defaultCodeOpen": false}}
+
+See [the demo with react-router](/material-ui/guides/routing/#tabs) for how to use this concept in practice.
 
 ## Icon tabs
 

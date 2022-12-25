@@ -1,0 +1,5 @@
+<Tabs value={tabValues[value]} aria-label="nav tabs example">
+  <LinkTab label="Page One" href={redirectUrl('drafts')} />
+  <LinkTab label="Page Two" href={redirectUrl('trash')} />
+  <LinkTab label="Page Three" href={redirectUrl('spam')} />
+</Tabs>

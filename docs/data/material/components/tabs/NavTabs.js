@@ -1,74 +1,43 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-function LinkTab({ modifierKeyPressed, ...props }) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        if (!modifierKeyPressed) {
-          event.preventDefault();
-        }
-      }}
-      {...props}
-    />
-  );
+function LinkTab(props) {
+  return <Tab component="a" {...props} />;
 }
 
-LinkTab.propTypes = {
-  modifierKeyPressed: PropTypes.bool,
-};
-
 export default function NavTabs() {
-  const [value, setValue] = React.useState(0);
-  const [modifierKeyPressed, setModifierKeyPressed] = React.useState(false);
+  const tabValues = {
+    drafts: 0,
+    trash: 1,
+    spam: 2,
+  };
+
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    const trackModifierKey = (event) => {
-      if (['Control', 'Meta', 'Alt'].includes(event.key)) {
-        if (event.type === 'keyup') {
-          setModifierKeyPressed(false);
-        }
-        if (event.type === 'keydown') {
-          setModifierKeyPressed(true);
-        }
-      }
-    };
-
-    document.addEventListener('keydown', trackModifierKey);
-    document.addEventListener('keyup', trackModifierKey);
-
-    return () => {
-      document.removeEventListener('keydown', trackModifierKey);
-      document.removeEventListener('keyup', trackModifierKey);
-    };
+    setMounted(true);
   }, []);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  if (!mounted) {
+    return null;
+  }
+
+  const value = new URLSearchParams(window.location.search).get('tab') || 'drafts';
+
+  const redirectUrl = (tab) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('tab', tab);
+    return window.location.pathname + `?${searchParams}` + window.location.hash;
   };
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-        <LinkTab
-          modifierKeyPressed={modifierKeyPressed}
-          label="Page One"
-          href="/drafts"
-        />
-        <LinkTab
-          modifierKeyPressed={modifierKeyPressed}
-          label="Page Two"
-          href="/trash"
-        />
-        <LinkTab
-          modifierKeyPressed={modifierKeyPressed}
-          label="Page Three"
-          href="/spam"
-        />
+      <Tabs value={tabValues[value]} aria-label="nav tabs example">
+        <LinkTab label="Page One" href={redirectUrl('drafts')} />
+        <LinkTab label="Page Two" href={redirectUrl('trash')} />
+        <LinkTab label="Page Three" href={redirectUrl('spam')} />
       </Tabs>
     </Box>
   );
