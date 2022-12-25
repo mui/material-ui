@@ -29,7 +29,7 @@ export default function NavTabs() {
   const redirectUrl = (tab) => {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set('tab', tab);
-    return window.location.pathname + `?${searchParams}` + window.location.hash;
+    return `${window.location.pathname}?${searchParams}${window.location.hash}`;
   };
 
   return (
