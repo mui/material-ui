@@ -5,6 +5,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useControlled as useControlled,
   unstable_useId as useId,
+  unstable_useUndoAndRedo as useUndoAndRedo,
 } from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
@@ -118,6 +119,7 @@ export default function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
+  const { storeValue, undo, redo } = useUndoAndRedo(defaultValue);
 
   let getOptionLabel = getOptionLabelProp;
 
@@ -608,6 +610,7 @@ export default function useAutocomplete(props) {
     }
 
     setValueState(newValue);
+    storeValue(newValue);
   };
 
   const isTouch = React.useRef(false);
@@ -925,6 +928,15 @@ export default function useAutocomplete(props) {
     }
   };
 
+  const handleInputKeyDown = (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {
+      const newValue = event.shiftKey ? redo() : undo();
+      if (newValue !== undefined) {
+        setValueState(newValue);
+      }
+    }
+  };
+
   const handleOptionMouseOver = (event) => {
     setHighlightedIndex({
       event,
@@ -1049,6 +1061,7 @@ export default function useAutocomplete(props) {
       onFocus: handleFocus,
       onChange: handleInputChange,
       onMouseDown: handleInputMouseDown,
+      onKeyDown: handleInputKeyDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
