@@ -44,7 +44,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 35 -->[docs][autocomplete] Fix GoogleMaps demo (#35545) @hbjORbj
+- &#8203;<!-- 35 -->[Autocomplete][docs] Fix GoogleMaps demo (#35545) @hbjORbj
 - &#8203;<!-- 25 -->[docs] Remove flow, its legacy (#35624) @oliviertassinari
 - &#8203;<!-- 24 -->[docs] Add a guide on using icon libraries with Joy UI (#35377) @siriwatknp
 - &#8203;<!-- 23 -->[docs] Clarify comment about `sortStability()` use case (#35570) @frontendlane
