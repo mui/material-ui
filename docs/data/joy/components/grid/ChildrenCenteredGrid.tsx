@@ -24,7 +24,7 @@ export default function ChildrenCenteredGrid() {
       >
         {['Jimmy', 'Michal', 'Jun', 'Marija'].map((name, index) => (
           <Grid
-            key={index}
+            key={name}
             xs={12}
             sm={6}
             md={3}
