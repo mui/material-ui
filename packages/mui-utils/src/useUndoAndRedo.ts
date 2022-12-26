@@ -12,7 +12,7 @@ const useUndoAndRedo = <T>(initialValue?: T) => {
       return;
     }
 
-    setValues((prev) => [...prev, value]);
+    setValues((prev) => [...prev.slice(0, index + 1), value]);
     setIndex((prev) => prev + 1);
   };
 
