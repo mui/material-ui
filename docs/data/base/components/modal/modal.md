@@ -126,15 +126,19 @@ In order to display an Unstyled Modal rendered on the server, you need to disabl
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
 
-## Position fixed elements
-
-The modal disables the page scrolling while open by setting the `overflow: hidden` CSS property on the relevant scroll container.
-This hides the scrollbar and hence impacts the page layout.
-To compensate for this offset (~15px under normal conditions) and avoid a layout shift, the modal also set a padding property on the scroll container.
-
-However, `position: fixed` elements are also impacted, the modal doesn't handle them automatically, you need to add the `.mui-fixed` class name on these elements to get the padding added when necessary to avoid layout shift.
-
 ## Limitations
+
+### Overflow layout shift
+
+The modal disables the page scrolling while open by setting `overflow: hidden` as inline-style on the relevant scroll container, this hides the scrollbar and hence impacts the page layout.
+To compensate for this offset and avoid a layout shift, the modal also set a padding property on the scroll container (~15px under normal conditions).
+
+This can create a layout shift with `position: fixed` and `position: sticky` elements.
+You need to add the `.mui-fixed` class name on these elements so the modal can add a CSS padding property when the scroll is disabled.
+
+```jsx
+<Box sx={{ position: 'sticky', right: 0, top: 0, left: 0 }} className="mui-fixed">
+```
 
 ### Focus trap
 
