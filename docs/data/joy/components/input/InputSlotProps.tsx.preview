@@ -1,0 +1,14 @@
+<Input
+  type="number"
+  slotProps={{
+    input: {
+      min: 1,
+      max: 5,
+    },
+  }}
+  sx={{ width: 300 }}
+  value={value}
+  onChange={(event) => {
+    setValue(event.target.value);
+  }}
+/>

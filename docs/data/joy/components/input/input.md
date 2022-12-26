@@ -22,8 +22,6 @@ The Input component replaces the native HTML `<input>` tag, and offers expanded 
 import Input from '@mui/joy/Input';
 ```
 
-The Input component, unlike the [Textarea](/joy-ui/react-textarea/), does not wrap the text data by default, as shown below:
-
 {{"demo": "BasicInput.js"}}
 
 ## Customization
@@ -71,6 +69,12 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 It's usually more common to see input components using decorators at the top and bottom.
 
 {{"demo": "InputDecorators.js"}}
+
+## Inner HTML input
+
+To pass any props to the inner HTML `<input>`, use `slotProps={{ input: { ...props } }}`.
+
+{{"demo": "InputSlotProps.js"}}
 
 ## Common examples
 
