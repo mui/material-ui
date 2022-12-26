@@ -81,6 +81,11 @@ const pages = [
         ],
       },
       {
+        pathname: '/joy-ui/components/layout',
+        subheader: 'layout',
+        children: [{ pathname: '/joy-ui/react-stack' }],
+      },
+      {
         pathname: '/joy-ui/components/utils',
         subheader: 'utils',
         children: [{ pathname: '/joy-ui/react-css-baseline', title: 'CSS Baseline' }],
