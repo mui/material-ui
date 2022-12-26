@@ -28,12 +28,8 @@ export default function ZeroWidthStack() {
         }}
       >
         <Stack spacing={2} direction="row" alignItems="center">
-          <Stack>
-            <Avatar>W</Avatar>
-          </Stack>
-          <Stack>
-            <Typography noWrap>{message}</Typography>
-          </Stack>
+          <Avatar>W</Avatar>
+          <Typography noWrap>{message}</Typography>
         </Stack>
       </Item>
       <Item
