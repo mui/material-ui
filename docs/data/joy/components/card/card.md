@@ -13,7 +13,7 @@ githubLabel: 'component: card'
 Cards are most frequently used for easy to scan, relevant, and actionable information.
 Joy UI provides four Card-related components:
 
-- [`Card`](#basic): a container to control the content direction.
+- [`Card`](#basic-usage): a container to control the content direction.
 - [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill all edges of the card.
 - [`CardCover`](#back-cover): a container for displaying background images within the card, also used to create gradient layers.
 - [`CardContent`](#back-cover): a wrapper that brings content to the front when used with `CardCover`.
@@ -105,7 +105,7 @@ Learn more about best accessibility practices with cards in the [Inclusive Compo
 
 ## CSS variables
 
-Play around with all the CSS variables available in the slider component to see how the design changes.
+Play around with all the CSS variables available in the component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
