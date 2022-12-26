@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import sliderUnstyledClasses from './sliderUnstyledClasses';
 import { SliderValueLabelUnstyledProps } from './SliderValueLabelUnstyled.types';
 
-const useValueLabelClasses = (open: SliderValueLabelUnstyledProps['open']) => {
+const useValueLabelClasses = (props: SliderValueLabelUnstyledProps) => {
+  const { open } = props;
   const utilityClasses = {
     offset: clsx({
       [sliderUnstyledClasses.valueLabelOpen]: open,
@@ -20,8 +21,8 @@ const useValueLabelClasses = (open: SliderValueLabelUnstyledProps['open']) => {
  * @ignore - internal component.
  */
 export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyledProps) {
-  const { children, className, value, open } = props;
-  const classes = useValueLabelClasses(open);
+  const { children, className, value } = props;
+  const classes = useValueLabelClasses(props);
 
   if (!children) {
     return null;
