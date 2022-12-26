@@ -137,7 +137,7 @@ const SelectRoot = styled('div', {
       '--_Select-paddingBlock':
         'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2, 0px)',
       '--Select-decorator-childRadius':
-        'max(var(--Select-radius) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) / 2, var(--Select-radius) / 2))',
+        'max(var(--Select-radius) - var(--variant-borderWidth, 0px) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) + var(--variant-borderWidth, 0px), var(--Select-radius) / 2))',
       '--Button-minHeight': 'var(--Select-decorator-childHeight)',
       '--IconButton-size': 'var(--Select-decorator-childHeight)',
       '--Button-radius': 'var(--Select-decorator-childRadius)',
