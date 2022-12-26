@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 Unstyled Modal is a utility component that renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
-**Features**:
+### Features
 
 - 🥞 Manages modal stacking when more than one is needed
 - 🪟 Creates a backdrop to disable interaction with the rest of the app
