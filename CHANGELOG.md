@@ -54,6 +54,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - &#8203;<!-- 19 -->[docs] Fix typo in `Progress` docs (#35553) @jasonsturges
 - &#8203;<!-- 18 -->[docs] Remove empty tags on the TransferList demos (#33127) @ekusiadadus
 - &#8203;<!-- 17 -->[docs][joy] Add documentation for `Stack` component (#35373) @hbjORbj
+- &#8203;<!-- 35 -->[docs][joy] Add documentation for `Grid` component (#35374) @hbjORbj
 - &#8203;<!-- 01 -->[website] Update sponsor grid (#35452) @danilo-leal
 
 ### Core
