@@ -8,7 +8,7 @@ _Dec 26, 2022_
 
 A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
-- ⚙️ several MUI Base components were converted to TypeScript by @trizotti, @leventdeniz and @danhuynhdev (#35005, #34793, #34771)
+- ⚙️ Several MUI Base components were converted to TypeScript by @trizotti, @leventdeniz and @danhuynhdev (#35005, #34793, #34771)
 - Many other 🐛 bug fixes abd 📚 documentation improvements.
 
 ### `@mui/material@5.11.2`
@@ -25,9 +25,9 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-alpha.112`
 
-- &#8203;<!-- 16 -->[FocusTrap] Convert focus trap to typescript (#35005) @trizotti
-- &#8203;<!-- 08 -->[Modal] Convert code to typescript (#34793) @leventdeniz
-- &#8203;<!-- 07 -->[Popper] Convert code to typescript (#34771) @danhuynhdev
+- &#8203;<!-- 16 -->[FocusTrap][Base] Convert code to TypeScript (#35005) @trizotti
+- &#8203;<!-- 08 -->[Modal][Base] Convert code to TypeScript (#34793) @leventdeniz
+- &#8203;<!-- 07 -->[Popper][Base] Convert code to TypeScript (#34771) @danhuynhdev
 - &#8203;<!-- 04 -->[Slider] Exclude `isRtl` from Material UI's Slider props (#35564) @michaldudak
 
 ### `@mui/joy@5.0.0-alpha.60`
@@ -44,7 +44,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 35 -->[docs][autocomplete] Fix GoogleMaps demo (#35545) @hbjORbj
+- &#8203;<!-- 35 -->[docs][Autocomplete] Fix GoogleMaps demo (#35545) @hbjORbj
 - &#8203;<!-- 25 -->[docs] Remove flow, its legacy (#35624) @oliviertassinari
 - &#8203;<!-- 24 -->[docs] Add a guide on using icon libraries with Joy UI (#35377) @siriwatknp
 - &#8203;<!-- 23 -->[docs] Clarify comment about `sortStability()` use case (#35570) @frontendlane
