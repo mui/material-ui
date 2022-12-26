@@ -101,7 +101,7 @@
     "@types/lodash": "^4.14.191",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.9",
-    "@types/prettier": "^2.7.1",
+    "@types/prettier": "^2.7.2",
     "@types/react": "^18.0.26",
     "@types/react-is": "^17.0.3",
     "@types/react-test-renderer": "^18.0.0",
