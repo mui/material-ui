@@ -200,17 +200,6 @@ const openRolesData = [
     ],
   },
   {
-    title: 'People',
-    roles: [
-      {
-        title: 'People Operations Manager',
-        description:
-          'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/careers/people-operations-manager/',
-      },
-    ],
-  },
-  {
     title: 'Developer Experience',
     roles: [
       {

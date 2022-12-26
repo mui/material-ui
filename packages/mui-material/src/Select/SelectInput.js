@@ -158,6 +158,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }, []);
 
+  const anchorElement = displayNode?.parentNode;
+
   React.useImperativeHandle(
     handleRef,
     () => ({
@@ -173,7 +175,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
     if (defaultOpen && openState && displayNode && !isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -215,7 +217,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       setOpenState(open);
     }
   };
@@ -479,7 +481,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let menuMinWidth = menuMinWidthState;
 
   if (!autoWidth && isOpenControlled && displayNode) {
-    menuMinWidth = displayNode.clientWidth;
+    menuMinWidth = anchorElement.clientWidth;
   }
 
   let tabIndex;
@@ -546,7 +548,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu
         id={`menu-${name || ''}`}
-        anchorEl={displayNode}
+        anchorEl={anchorElement}
         open={open}
         onClose={handleClose}
         anchorOrigin={{

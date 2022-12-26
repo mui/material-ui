@@ -7,6 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
@@ -99,7 +100,7 @@ const LinearProgressRoot = styled('div', {
     position: 'relative',
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     '--_LinearProgress-padding':
-      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth) - var(--LinearProgress-progressThickness)) / 2, 0px)',
+      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth, 0px) - var(--LinearProgress-progressThickness)) / 2, 0px)',
     '&::before': {
       content: '""',
       display: 'block',
@@ -146,7 +147,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     children,
     className,
     component,
-    color = 'primary',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -155,6 +156,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     style,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
+import { useColorInversion } from '../styles/ColorInversion';
+import { ApplyColorInversion } from '../styles/types';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -32,14 +34,12 @@ export default function useSlot<
   ElementType extends React.ElementType,
   SlotProps,
   OwnerState extends {},
-  ExternalSlotProps extends { component?: React.ElementType },
+  ExternalSlotProps extends { component?: React.ElementType; ref?: React.Ref<any> },
   ExternalForwardedProps extends {
     component?: React.ElementType;
     slots?: { [k in T]?: React.ElementType };
     slotProps?: {
-      [k in T]?:
-        | WithCommonProps<ExternalSlotProps>
-        | ((ownerState: OwnerState) => WithCommonProps<ExternalSlotProps>);
+      [k in T]?: ExternalSlotProps | ((ownerState: OwnerState) => ExternalSlotProps);
     };
   },
   AdditionalProps,
@@ -133,9 +133,19 @@ export default function useSlot<
 
   const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
-  const finalOwnerState = getSlotOwnerState
-    ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
-    : ownerState;
+  // @ts-ignore internal logic
+  const { disableColorInversion = false, ...slotOwnerState } = getSlotOwnerState
+    ? getSlotOwnerState(mergedProps as any)
+    : {};
+  const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
+
+  const { getColor } = useColorInversion(finalOwnerState.variant);
+  if (name === 'root') {
+    // for the root slot, color inversion is calculated before the `useSlot` and pass through `ownerState`.
+    finalOwnerState.color = (mergedProps as any).color ?? (ownerState as any).color;
+  } else if (!disableColorInversion) {
+    finalOwnerState.color = getColor((mergedProps as any).color, finalOwnerState.color);
+  }
 
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
@@ -152,12 +162,19 @@ export default function useSlot<
       }),
       ref,
     },
-    finalOwnerState as OwnerState & SlotOwnerState,
+    finalOwnerState,
   );
+
+  Object.keys(slotOwnerState).forEach((propName) => {
+    delete props[propName];
+  });
 
   return [elementType, props] as [
     ElementType,
-    { className: string; ownerState: OwnerState & SlotOwnerState } & AdditionalProps &
+    {
+      className: string;
+      ownerState: ApplyColorInversion<OwnerState & SlotOwnerState>;
+    } & AdditionalProps &
       SlotProps &
       ExternalSlotProps &
       ExtractComponentProps<

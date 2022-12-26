@@ -5,22 +5,26 @@ import { act, createRenderer, screen } from 'test/utils';
 import FocusTrap from '@mui/base/FocusTrap';
 import Portal from '@mui/base/Portal';
 
+interface GenericProps {
+  [index: string]: any;
+}
+
 describe('<FocusTrap />', () => {
   const { clock, render } = createRenderer();
 
-  let initialFocus = null;
+  let initialFocus: HTMLElement | null = null;
 
   beforeEach(() => {
     initialFocus = document.createElement('button');
     initialFocus.tabIndex = 0;
     document.body.appendChild(initialFocus);
     act(() => {
-      initialFocus.focus();
+      initialFocus!.focus();
     });
   });
 
   afterEach(() => {
-    document.body.removeChild(initialFocus);
+    document.body.removeChild(initialFocus!);
   });
 
   it('should return focus to the root', () => {
@@ -37,7 +41,7 @@ describe('<FocusTrap />', () => {
     expect(getByTestId('auto-focus')).toHaveFocus();
 
     act(() => {
-      initialFocus.focus();
+      initialFocus!.focus();
     });
     expect(getByTestId('root')).toHaveFocus();
   });
@@ -56,7 +60,7 @@ describe('<FocusTrap />', () => {
     expect(getByTestId('auto-focus')).toHaveFocus();
 
     act(() => {
-      initialFocus.focus();
+      initialFocus!.focus();
     });
 
     expect(initialFocus).toHaveFocus();
@@ -77,7 +81,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('should warn if the root content is not focusable', () => {
-    const UnfocusableDialog = React.forwardRef((_, ref) => <div ref={ref} />);
+    const UnfocusableDialog = React.forwardRef<HTMLDivElement>((_, ref) => <div ref={ref} />);
 
     expect(() => {
       render(
@@ -110,7 +114,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('does not steal focus from a portaled element if any prop but open changes', () => {
-    function Test(props) {
+    function Test(props: GenericProps) {
       return (
         <FocusTrap disableAutoFocus open {...props}>
           <div data-testid="focus-root" tabIndex={-1}>
@@ -147,8 +151,11 @@ describe('<FocusTrap />', () => {
   });
 
   it('undesired: lazy root does not get autofocus', () => {
-    let mountDeferredComponent;
-    const DeferredComponent = React.forwardRef(function DeferredComponent(props, ref) {
+    let mountDeferredComponent: React.DispatchWithoutAction;
+    const DeferredComponent = React.forwardRef<HTMLDivElement>(function DeferredComponent(
+      props,
+      ref,
+    ) {
       const [mounted, setMounted] = React.useReducer(() => true, false);
 
       mountDeferredComponent = setMounted;
@@ -177,8 +184,8 @@ describe('<FocusTrap />', () => {
   });
 
   it('does not bounce focus around due to sync focus-restore + focus-contain', () => {
-    const eventLog = [];
-    function Test(props) {
+    const eventLog: string[] = [];
+    function Test(props: GenericProps) {
       return (
         <div onBlur={() => eventLog.push('blur')}>
           <FocusTrap open {...props}>
@@ -203,7 +210,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('does not focus if isEnabled returns false', () => {
-    function Test(props) {
+    function Test(props: GenericProps) {
       return (
         <div>
           <input />
@@ -230,7 +237,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('restores focus when closed', () => {
-    function Test(props) {
+    function Test(props: GenericProps) {
       return (
         <FocusTrap open {...props}>
           <div data-testid="focus-root" tabIndex={-1}>
@@ -247,7 +254,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('undesired: enabling restore-focus logic when closing has no effect', () => {
-    function Test(props) {
+    function Test(props: GenericProps) {
       return (
         <FocusTrap open disableRestoreFocus {...props}>
           <div data-testid="root" tabIndex={-1}>
@@ -265,7 +272,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('undesired: setting `disableRestoreFocus` to false before closing has no effect', () => {
-    function Test(props) {
+    function Test(props: GenericProps) {
       return (
         <FocusTrap open disableRestoreFocus {...props}>
           <div data-testid="root" tabIndex={-1}>
@@ -341,7 +348,7 @@ describe('<FocusTrap />', () => {
             <input data-testid="outside-input" />
             <FocusTrap open disableAutoFocus>
               <div tabIndex={-1} data-testid="root">
-                <button type="buton" data-testid="focus-input" />
+                <button type="button" data-testid="focus-input" />
               </div>
             </FocusTrap>
           </div>,
@@ -368,7 +375,7 @@ describe('<FocusTrap />', () => {
       });
 
       it('should restore the focus', () => {
-        function Test(props) {
+        function Test(props: GenericProps) {
           return (
             <div>
               <input data-testid="outside-input" />
