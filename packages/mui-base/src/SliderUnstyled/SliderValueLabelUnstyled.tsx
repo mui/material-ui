@@ -47,7 +47,5 @@ export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyled
 SliderValueLabelUnstyled.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
-  // eslint-disable-next-line react/no-unused-prop-types
-  open: PropTypes.bool,
   value: PropTypes.node,
 };
