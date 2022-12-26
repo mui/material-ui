@@ -24,6 +24,11 @@ export default function InputVariables() {
         {
           var: '--Input-placeholderOpacity',
           defaultValue: 0.5,
+          inputAttributes: {
+            min: 0.1,
+            max: 1,
+            step: 0.1,
+          },
         },
         {
           var: '--Input-focusedThickness',
