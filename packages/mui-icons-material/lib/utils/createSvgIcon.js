@@ -9,4 +9,4 @@ Object.defineProperty(exports, "default", {
     return _utils.createSvgIcon;
   }
 });
-var _utils = require("@mui/material/utils");
+var _utils = require("@mui/system/utils");

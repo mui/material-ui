@@ -71,3 +71,8 @@ export * from './Unstable_Grid';
 
 export { default as Stack } from './Stack/Stack';
 export * from './Stack';
+
+export { default as SvgIcon } from './SvgIcon';
+export * from './SvgIcon';
+
+export * from './utils';
