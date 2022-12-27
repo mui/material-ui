@@ -32,11 +32,19 @@ The input component supports the four global variants: solid (default), soft, ou
 
 {{"demo": "InputVariants.js"}}
 
+:::info
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
+
 ### Sizes
 
 The input component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "InputSizes.js"}}
+
+:::info
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Colors
 
@@ -94,7 +102,7 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 In order for the input to be accessible, **it should be linked to a label**.
 
-The `FormControl` automatically generates a unique id that links the input with the `FormLabel` component:
+The `FormControl` automatically generates a unique id that links the input with the `FormLabel` and `FormHelperText` components:
 
 {{"demo": "InputField.js"}}
 

@@ -6,21 +6,21 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 
 export default function InputSubscription() {
-  const [form, setForm] = React.useState({
+  const [data, setData] = React.useState({
     email: '',
     status: 'initial',
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setForm((current) => ({ ...current, status: 'loading' }));
+    setData((current) => ({ ...current, status: 'loading' }));
     try {
       // Replace timeout with real backend operation
       setTimeout(() => {
-        setForm({ email: '', status: 'sent' });
+        setData({ email: '', status: 'sent' });
       }, 1500);
     } catch (error) {
-      setForm((current) => ({ ...current, status: 'failure' }));
+      setData((current) => ({ ...current, status: 'failure' }));
     }
   };
 
@@ -29,7 +29,7 @@ export default function InputSubscription() {
       <FormControl>
         <FormLabel
           sx={(theme) => ({
-            '--FormLabel-color': theme.vars.palette.primary[400],
+            '--FormLabel-color': theme.vars.palette.primary.plainColor,
           })}
         >
           MUI Newsletter
@@ -39,23 +39,24 @@ export default function InputSubscription() {
           placeholder="mail@mui.com"
           type="email"
           required
-          value={form.email}
+          value={data.email}
           onChange={(event) =>
-            setForm({ email: event.target.value, status: 'initial' })
+            setData({ email: event.target.value, status: 'initial' })
           }
-          error={form.status === 'failure'}
+          error={data.status === 'failure'}
           endDecorator={
             <Button
               variant="solid"
               color="primary"
-              loading={form.status === 'loading'}
+              loading={data.status === 'loading'}
               type="submit"
+              sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
             >
               Subscribe
             </Button>
           }
         />
-        {form.status === 'failure' && (
+        {data.status === 'failure' && (
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.danger[400] })}
           >
@@ -63,7 +64,7 @@ export default function InputSubscription() {
           </FormHelperText>
         )}
 
-        {form.status === 'sent' && (
+        {data.status === 'sent' && (
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.primary[400] })}
           >

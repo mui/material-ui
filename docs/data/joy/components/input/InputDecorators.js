@@ -1,36 +1,31 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
-import IconButton from '@mui/joy/IconButton';
+import Divider from '@mui/joy/Divider';
 import Input from '@mui/joy/Input';
-import Typography from '@mui/joy/Typography';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 export default function InputDecorators() {
-  const [text, setText] = React.useState('');
-  const addEmoji = (emoji) => () => setText(`${text}${emoji}`);
+  const [currency, setCurrency] = React.useState('dollar');
   return (
     <Input
-      placeholder="Type in here…"
-      value={text}
-      onChange={(event) => setText(event.target.value)}
-      startDecorator={
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <IconButton variant="outlined" color="neutral" onClick={addEmoji('👍')}>
-            👍
-          </IconButton>
-          <IconButton variant="outlined" color="neutral" onClick={addEmoji('🏖')}>
-            🏖
-          </IconButton>
-          <IconButton variant="outlined" color="neutral" onClick={addEmoji('😍')}>
-            😍
-          </IconButton>
-        </Box>
-      }
+      placeholder="Amount"
+      startDecorator={{ dollar: '$', baht: '฿', yen: '¥' }[currency]}
       endDecorator={
-        <Typography level="body3" sx={{ ml: 'auto' }}>
-          {text.length} character(s)
-        </Typography>
+        <React.Fragment>
+          <Divider orientation="vertical" />
+          <Select
+            variant="plain"
+            value={currency}
+            onChange={(_, value) => setCurrency(value)}
+            sx={{ mr: -1.5, '&:hover': { bgcolor: 'transparent' } }}
+          >
+            <Option value="dollar">US dollar</Option>
+            <Option value="baht">Thai baht</Option>
+            <Option value="yen">Japanese yen</Option>
+          </Select>
+        </React.Fragment>
       }
-      sx={{ minWidth: 300 }}
+      sx={{ width: 300 }}
     />
   );
 }
