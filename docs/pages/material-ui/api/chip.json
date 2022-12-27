@@ -24,6 +24,7 @@
       },
       "default": "'medium'"
     },
+    "skipFocusWhenDisabled": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",

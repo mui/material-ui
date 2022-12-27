@@ -9,6 +9,7 @@ import {
   act,
   fireEvent,
   strictModeDoubleLoggingSupressed,
+  describeJoyColorInversion,
 } from 'test/utils';
 import Autocomplete, {
   autocompleteClasses as classes,
@@ -47,6 +48,12 @@ describe('Joy <Autocomplete />', () => {
     testVariantProps: { size: 'lg' },
     skip: ['componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<Autocomplete options={[]} open />, {
+    muiName: 'JoyAutocomplete',
+    classes,
+    portalSlot: 'listbox',
+  });
 
   it('should be customizable in the theme', () => {
     render(
@@ -547,17 +554,19 @@ describe('Joy <Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const Test = (props: any) => (
-      <div
-        onKeyDown={(event) => {
-          if (!event.defaultPrevented && event.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      >
-        <Autocomplete autoFocus options={['one', 'two']} {...props} />
-      </div>
-    );
+    function Test(props: any) {
+      return (
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete autoFocus options={['one', 'two']} {...props} />
+        </div>
+      );
+    }
     const { setProps } = render(<Test />);
     let textbox = screen.getByRole('combobox');
 
@@ -2031,26 +2040,28 @@ describe('Joy <Autocomplete />', () => {
   it('should prevent the default event handlers', () => {
     const handleChange = spy();
     const handleSubmit = spy();
-    const Test = () => (
-      <div
-        onKeyDown={(event) => {
-          if (!event.defaultPrevented && event.key === 'Enter') {
-            handleSubmit();
-          }
-        }}
-      >
-        <Autocomplete
-          autoFocus
-          options={['one', 'two']}
-          onChange={handleChange}
+    function Test() {
+      return (
+        <div
           onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.defaultMuiPrevented = true;
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
             }
           }}
-        />
-      </div>
-    );
+        >
+          <Autocomplete
+            autoFocus
+            options={['one', 'two']}
+            onChange={handleChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.defaultMuiPrevented = true;
+              }
+            }}
+          />
+        </div>
+      );
+    }
     render(<Test />);
     const textbox = screen.getByRole('combobox');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -2060,14 +2071,14 @@ describe('Joy <Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(1);
   });
 
-  describe('prop: componentsProps', () => {
+  describe('prop: slotProps', () => {
     it('should apply the props on the AutocompleteClearIndicator component', () => {
       render(
         <Autocomplete
           open
           options={['one', 'two']}
           value="one"
-          componentsProps={{
+          slotProps={{
             clearIndicator: {
               // @ts-ignore
               'data-testid': 'clearIndicator',
@@ -2086,7 +2097,7 @@ describe('Joy <Autocomplete />', () => {
         <Autocomplete
           open
           options={['one', 'two']}
-          componentsProps={{
+          slotProps={{
             popupIndicator: {
               // @ts-ignore
               'data-testid': 'popupIndicator',
@@ -2105,7 +2116,7 @@ describe('Joy <Autocomplete />', () => {
       render(
         <Autocomplete
           options={['one', 'two']}
-          componentsProps={{
+          slotProps={{
             listbox: {
               // @ts-ignore
               'data-testid': 'popperRoot',

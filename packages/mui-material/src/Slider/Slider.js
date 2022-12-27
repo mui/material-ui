@@ -380,7 +380,11 @@ const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
-  overridesResolver: (props, styles) => styles.mark,
+  overridesResolver: (props, styles) => {
+    const { markActive } = props;
+
+    return [styles.mark, markActive && styles.markActive];
+  },
 })(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,
@@ -702,11 +706,6 @@ Slider.propTypes /* remove-proptypes */ = {
    * @returns {string}
    */
   getAriaValueText: PropTypes.func,
-  /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
-   * @default false
-   */
-  isRtl: PropTypes.bool,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * If `true` the marks are spaced according the value of the `step` prop.

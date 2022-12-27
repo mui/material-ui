@@ -7,13 +7,17 @@ import FormLabel, { formLabelClasses as classes } from '@mui/joy/FormLabel';
 describe('Joy <FormLabel />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<FormLabel />, () => ({
+  describeConformance(<FormLabel required />, () => ({
     classes,
     inheritComponent: 'label',
     render,
     ThemeProvider,
     muiName: 'JoyFormLabel',
     refInstanceof: window.HTMLLabelElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+      asterisk: { expectedClassName: classes.asterisk },
+    },
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

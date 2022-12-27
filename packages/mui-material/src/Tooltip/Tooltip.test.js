@@ -42,6 +42,7 @@ describe('<Tooltip />', () => {
       refInstanceof: window.HTMLButtonElement,
       testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
+      testLegacyComponentsProp: true,
       slots: {
         popper: {
           expectedClassName: classes.popper,
@@ -58,6 +59,7 @@ describe('<Tooltip />', () => {
         'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
+        'slotPropsCallback', // not supported yet
       ],
     }),
   );
@@ -472,15 +474,17 @@ describe('<Tooltip />', () => {
 
     it('should handle autoFocus + onFocus forwarding', () => {
       const handleFocus = spy();
-      const AutoFocus = (props) => (
-        <div>
-          {props.open ? (
-            <Tooltip enterDelay={100} title="Title">
-              <input autoFocus onFocus={handleFocus} />
-            </Tooltip>
-          ) : null}
-        </div>
-      );
+      function AutoFocus(props) {
+        return (
+          <div>
+            {props.open ? (
+              <Tooltip enterDelay={100} title="Title">
+                <input autoFocus onFocus={handleFocus} />
+              </Tooltip>
+            ) : null}
+          </div>
+        );
+      }
 
       const { setProps } = render(
         <AutoFocus />,
@@ -1014,7 +1018,9 @@ describe('<Tooltip />', () => {
 
   describe('prop: PopperComponent', () => {
     it('can render a different component', () => {
-      const CustomPopper = () => <div data-testid="CustomPopper" />;
+      function CustomPopper() {
+        return <div data-testid="CustomPopper" />;
+      }
       render(
         <Tooltip title="Hello World" open PopperComponent={CustomPopper}>
           <button id="testChild" type="submit">
@@ -1077,7 +1083,9 @@ describe('<Tooltip />', () => {
 
   describe('prop: components', () => {
     it('can render a different Popper component', () => {
-      const CustomPopper = () => <div data-testid="CustomPopper" />;
+      function CustomPopper() {
+        return <div data-testid="CustomPopper" />;
+      }
       render(
         <Tooltip title="Hello World" open components={{ Popper: CustomPopper }}>
           <button id="testChild" type="submit">

@@ -1,14 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, screen, act } from 'test/utils';
+import {
+  describeConformance,
+  describeJoyColorInversion,
+  createRenderer,
+  screen,
+  act,
+} from 'test/utils';
 import Textarea, { textareaClasses as classes } from '@mui/joy/Textarea';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('Joy <Textarea />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Textarea />, () => ({
+  describeConformance(<Textarea startDecorator="1" endDecorator="2" />, () => ({
     render,
     classes,
     ThemeProvider,
@@ -17,8 +23,16 @@ describe('Joy <Textarea />', () => {
     testDeepOverrides: { slotName: 'textarea', slotClassName: classes.textarea },
     testCustomVariant: true,
     testVariantProps: { variant: 'solid' },
+    slots: {
+      root: { expectedClassName: classes.root },
+      textarea: { expectedClassName: classes.textarea },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<Textarea />, { muiName: 'JoyTextarea', classes });
 
   it('should have error classes', () => {
     const { container } = render(<Textarea error />);
@@ -38,7 +52,7 @@ describe('Joy <Textarea />', () => {
   it('should pass props to Textarea', () => {
     const { container } = render(
       <Textarea
-        componentsProps={{
+        slotProps={{
           textarea: {
             maxLength: 5,
           },

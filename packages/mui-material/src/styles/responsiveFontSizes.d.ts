@@ -1,12 +1,12 @@
 import { Breakpoint } from '@mui/system';
+import { Typography } from './createTypography';
 import { Theme } from './createTheme';
-import { Variant } from './createTypography';
 
 export interface ResponsiveFontSizesOptions {
   breakpoints?: Breakpoint[];
   disableAlign?: boolean;
   factor?: number;
-  variants?: Variant[];
+  variants?: Array<keyof Typography>;
 }
 
 export default function responsiveFontSizes(
