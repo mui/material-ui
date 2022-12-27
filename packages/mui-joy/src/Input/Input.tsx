@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -71,11 +72,11 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         }),
         // variables for controlling child components
         '--Input-decorator-childOffset':
-          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
+          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
         '--_Input-paddingBlock':
-          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
+          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
         '--Input-decorator-childRadius':
-          'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
+          'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
         '--Button-minHeight': 'var(--Input-decorator-childHeight)',
         '--IconButton-size': 'var(--Input-decorator-childHeight)',
         '--Button-radius': 'var(--Input-decorator-childRadius)',
@@ -112,7 +113,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           bottom: 0,
           zIndex: 1,
           borderRadius: 'inherit',
-          margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+          margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
         },
       },
       {
@@ -122,7 +123,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         [`&:hover:not(.${inputClasses.focused})`]: {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input
-          cursor: 'text',
         },
         [`&.${inputClasses.disabled}`]:
           theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
@@ -136,45 +136,58 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
   },
 );
 
-export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>({
-  border: 'none', // remove the native input width
-  minWidth: 0, // remove the native input width
-  outline: 0, // remove the native input outline
-  padding: 0, // remove the native input padding
-  flex: 1,
-  alignSelf: 'stretch',
-  color: 'inherit',
-  backgroundColor: 'transparent',
-  fontFamily: 'inherit',
-  fontSize: 'inherit',
-  fontStyle: 'inherit',
-  fontWeight: 'inherit',
-  lineHeight: 'inherit',
-  textOverflow: 'ellipsis',
-  '&:-webkit-autofill': {
-    WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: 'currentColor',
-  },
-  '&::-webkit-input-placeholder': {
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-  '&::-moz-placeholder': {
-    // Firefox 19+
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-  '&:-ms-input-placeholder': {
-    // IE11
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-  '&::-ms-input-placeholder': {
-    // Edge
-    color: 'var(--Input-placeholderColor)',
-    opacity: 'var(--Input-placeholderOpacity)',
-  },
-});
+export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
+  ({ ownerState }) => ({
+    border: 'none', // remove the native input width
+    minWidth: 0, // remove the native input width
+    outline: 0, // remove the native input outline
+    padding: 0, // remove the native input padding
+    flex: 1,
+    alignSelf: 'stretch',
+    color: 'inherit',
+    backgroundColor: 'transparent',
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    fontStyle: 'inherit',
+    fontWeight: 'inherit',
+    lineHeight: 'inherit',
+    textOverflow: 'ellipsis',
+    '&:-webkit-autofill': {
+      paddingInline: 'var(--Input-paddingInline)',
+      ...(!ownerState.startDecorator && {
+        marginInlineStart: 'calc(-1 * var(--Input-paddingInline))',
+        paddingInlineStart: 'var(--Input-paddingInline)',
+        borderTopLeftRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+        borderBottomLeftRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+      }),
+      ...(!ownerState.endDecorator && {
+        marginInlineEnd: 'calc(-1 * var(--Input-paddingInline))',
+        paddingInlineEnd: 'var(--Input-paddingInline)',
+        borderTopRightRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+        borderBottomRightRadius: 'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+      }),
+    },
+    '&::-webkit-input-placeholder': {
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+    '&::-moz-placeholder': {
+      // Firefox 19+
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+    '&:-ms-input-placeholder': {
+      // IE11
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+    '&::-ms-input-placeholder': {
+      // Edge
+      color: 'var(--Input-placeholderColor)',
+      opacity: 'var(--Input-placeholderOpacity)',
+    },
+  }),
+);
 
 export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
@@ -277,7 +290,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
     ...props,

@@ -1,5 +1,132 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.2
+
+<!-- generated comparing v5.11.1..master -->
+
+_Dec 26, 2022_
+
+A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚙️ Several MUI Base components were converted to TypeScript by @trizotti, @leventdeniz and @danhuynhdev (#35005, #34793, #34771)
+- Many other 🐛 bug fixes abd 📚 documentation improvements.
+
+### `@mui/material@5.11.2`
+
+- &#8203;<!-- 10 -->[l10n] Add displayed rows label to `faIR` locale (#35587) @hootan-rocky
+- &#8203;<!-- 09 -->[l10n] Add Kurdish (Kurmanji) locale (#32508) @JagarYousef
+- &#8203;<!-- 06 -->[Select] Accept non-component children (#33530) @boutahlilsoufiane
+- &#8203;<!-- 05 -->[SelectInput] Update menu to use select wrapper as anchor (#34229) @EduardoSCosta
+- &#8203;<!-- 03 -->[TableCell] Fix `scope` prop to be not set when a data cell is rendered within a table head (#35559) @sai6855
+
+### `@mui/utils@5.11.2`
+
+- &#8203;<!-- 02 -->[utils] `mergedeep` deeply clones source key if it's an object (#35364) @sldk-yuri
+
+### `@mui/base@5.0.0-alpha.112`
+
+- &#8203;<!-- 16 -->[FocusTrap][base] Convert code to TypeScript (#35005) @trizotti
+- &#8203;<!-- 08 -->[Modal][base] Convert code to TypeScript (#34793) @leventdeniz
+- &#8203;<!-- 07 -->[Popper][base] Convert code to TypeScript (#34771) @danhuynhdev
+- &#8203;<!-- 04 -->[Slider] Exclude `isRtl` from Material UI's Slider props (#35564) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.60`
+
+- &#8203;<!-- 15 -->[Joy] Fix radius adjustment (#35629) @siriwatknp
+- &#8203;<!-- 14 -->[Joy] Apply color inversion to components (#34602) @siriwatknp
+- &#8203;<!-- 13 -->[Joy] Improve cursor pointer and add fallback for outlined variant (#35573) @siriwatknp
+- &#8203;<!-- 12 -->[Joy] Miscellaneous fixes (#35552) @siriwatknp
+- &#8203;<!-- 11 -->[Radio][joy] Use precise dimensions for radio icon (#35548) @hbjORbj
+
+### `@mui/material-next@6.0.0-alpha.68`
+
+- &#8203;<!-- 36 -->[Material You] Update Button test & add active class name (#35497) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 35 -->[docs] Fix GoogleMaps demo (#35545) @hbjORbj
+- &#8203;<!-- 25 -->[docs] Remove flow, its legacy (#35624) @oliviertassinari
+- &#8203;<!-- 24 -->[docs] Add a guide on using icon libraries with Joy UI (#35377) @siriwatknp
+- &#8203;<!-- 23 -->[docs] Clarify comment about `sortStability()` use case (#35570) @frontendlane
+- &#8203;<!-- 22 -->[docs] Improve the experimental API demos on the button page (#35560) @mnajdova
+- &#8203;<!-- 21 -->[docs] Force `light` theme mode when `activePage` is null (#35575) @LukasTy
+- &#8203;<!-- 20 -->[docs] Fix ListItem button deprecated use (#33970) @MickaelAustoni
+- &#8203;<!-- 19 -->[docs] Fix typo in `Progress` docs (#35553) @jasonsturges
+- &#8203;<!-- 18 -->[docs] Remove empty tags on the TransferList demos (#33127) @ekusiadadus
+- &#8203;<!-- 17 -->[docs][joy] Add documentation for `Stack` component (#35373) @hbjORbj
+- &#8203;<!-- 35 -->[docs][joy] Add documentation for `Grid` component (#35374) @hbjORbj
+- &#8203;<!-- 01 -->[website] Update sponsor grid (#35452) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 34 -->[core] Shorthand notation to remove outline (#35623) @oliviertassinari
+- &#8203;<!-- 33 -->[core] Fix header link layout shift and clash (#35626) @oliviertassinari
+- &#8203;<!-- 32 -->[core] Hide keyboard shortcut if no hover feature (#35625) @oliviertassinari
+- &#8203;<!-- 31 -->[core] Fix confusing duplicated name in the log @oliviertassinari
+- &#8203;<!-- 30 -->[core] Fix API demos callout spacing (#35579) @oliviertassinari
+- &#8203;<!-- 29 -->[core] Fix a few title case (#35547) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Cleanup mention of test-utils (#35577) @oliviertassinari
+- &#8203;<!-- 27 -->[core] Remove oudated pickers prop-type logic (#35571) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Exclude documentation of Base props not used in styled libraries (#35562) @michaldudak
+
+All contributors of this release in alphabetical order: @boutahlilsoufiane, @danhuynhdev, @danilo-leal, @EduardoSCosta, @ekusiadadus, @frontendlane, @hbjORbj, @hootan-rocky, @JagarYousef, @jasonsturges, @leventdeniz, @LukasTy, @michaldudak, @MickaelAustoni, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @sldk-yuri, @trizotti
+
+## 5.11.1
+
+<!-- generated comparing v5.11.0..master -->
+
+_Dec 20, 2022_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 @mnajdova added motion and shape design tokens to Material You package (#35384 and #35393).
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
+
+### `@mui/material@5.11.1`
+
+- [Chip] Fix hover and focus style with CSS Variables (#35502) @DimaAbr
+- [InputLabel] Enable `size` prop overrides via TypeScript module augmentation (#35460) @MickaelAustoni
+- [l10n] Change Kazakh locale name to match ISO-639-1 codes (#34664) @talgautb
+- [TextField] Fix error focus style (#35167) @42tte
+- [core] Bring `experimental_sx` back with error code (#35528) @siriwatknp
+
+### `@mui/utils@5.11.1`
+
+- [Theme] Merge components and slots props (#35477) @siriwatknp
+
+### `@mui/material-next@6.0.0-alpha.67`
+
+- [Material You] Add motion design tokens (#35384) @mnajdova
+- [Material You] Add shape design tokens (#35393) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.59`
+
+- [Tooltip] Fix arrow does not appear (#35473) @siriwatknp
+- [Input] Fix autofill styles (#35056) @siriwatknp
+- [ChipDelete] Add onDelete prop to ChipDelete (#35412) @sai6855
+
+### `@mui/base@5.0.0-alpha.111`
+
+- [Button][base] Set active class when a subcomponent is clicked (#35410) @michaldudak
+- [Popper][base] Fix Tooltip Anchor Element Setter (#35469) @sydneyjodon-wk
+
+### Docs
+
+- [docs] Fixed the `Select` component `onChange` event type in the migration guide (#35509) @tzynwang
+- [docs] Add missing comma to `Providing the colors directly` section (#35507) @cassidoo
+- [docs] Add `CardMedia` example without `component="img"` prop (#35470) @lucasmfredmark
+- [docs] Fix `unstable_sxConfig` typo (#35478) @siriwatknp
+- [docs] List component introduction example default code is missing ListItemContent component (#35492) @Miigaarino
+- [website] Close our first people role @oliviertassinari
+- [website] Update product icons (#35413) @danilo-leal
+
+### Core
+
+- [test] Terminate BrowserStack after 5 minutes (#35454) @oliviertassinari
+- [test] Fix broken master branch (#35446) @oliviertassinari
+
+All contributors of this release in alphabetical order: @42tte, @cassidoo, @danilo-leal, @DimaAbr, @lucasmfredmark, @michaldudak, @MickaelAustoni, @Miigaarino, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @sydneyjodon-wk, @talgautb, @tzynwang
+
 ## 5.11.0
 
 <!-- generated comparing v5.10.17..master -->

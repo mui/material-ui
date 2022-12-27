@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 
@@ -89,9 +90,10 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
-  ...(ownerState.color && {
-    color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
-  }),
+  ...(ownerState.color &&
+    ownerState.color !== 'context' && {
+      color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+    }),
   ...(ownerState.variant && {
     borderRadius: theme.vars.radius.xs,
     paddingBlock: 'min(0.15em, 4px)',
@@ -121,9 +123,11 @@ const defaultVariantMapping: Record<string, string> = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const { color, textColor, ...themeProps } = useThemeProps<
-    typeof inProps & { component?: React.ElementType }
-  >({
+  const {
+    color: colorProp,
+    textColor,
+    ...themeProps
+  } = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyTypography',
   });
@@ -144,6 +148,10 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     variant,
     ...other
   } = props;
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
+
   const level = nesting ? inProps.level || 'inherit' : levelProp;
 
   const component =
@@ -156,7 +164,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...props,
     level,
     component,
-    color: variant ? color ?? 'neutral' : color,
+    color,
     gutterBottom,
     noWrap,
     nesting,

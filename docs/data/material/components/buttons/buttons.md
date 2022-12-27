@@ -125,16 +125,6 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
-## Loading button
-
-The loading buttons can show loading state and disable interactions.
-
-{{"demo": "LoadingButtons.js"}}
-
-Toggle the loading switch to see the transition between the different states.
-
-{{"demo": "LoadingButtonsTransition.js"}}
-
 ## Complex button
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
@@ -182,10 +172,22 @@ However:
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
 
-## Material You version
+## Experimental API
+
+### Loading button
+
+[`@mui/lab`](/material-ui/about-the-lab/) offers loading buttons that can show loading state and disable interactions.
+
+{{"demo": "LoadingButtons.js"}}
+
+Toggle the loading switch to see the transition between the different states.
+
+{{"demo": "LoadingButtonsTransition.js"}}
+
+### Material You version
 
 The default Button component follows the Material Design 2 specs.
-For the MD3 ([Material You](https://m3.material.io/)) version, install and import from the experimental `@mui/material-next` package:
+For the Material Design 3 ([Material You](https://m3.material.io/)) version, you can use the new experimental `@mui/material-next` package:
 
 ```js
 import Button from '@mui/material-next/Button';

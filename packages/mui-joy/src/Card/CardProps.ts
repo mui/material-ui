@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type CardSlot = 'root';
 
@@ -20,6 +20,11 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, CardPropsColorOverrides>;
+    /**
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+     * @default false
+     */
+    invertedColors?: boolean;
     /**
      * If `true`, flex direction is set to 'row'.
      * @default false
@@ -49,4 +54,4 @@ export type CardProps<
   P = { component?: React.ElementType },
 > = OverrideProps<CardTypeMap<P, D>, D>;
 
-export interface CardOwnerState extends CardProps {}
+export interface CardOwnerState extends ApplyColorInversion<CardProps> {}

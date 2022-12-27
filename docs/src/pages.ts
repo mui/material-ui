@@ -256,7 +256,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API design approach' },
@@ -277,7 +277,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/guides/flow' },
     ],
   },
   {
