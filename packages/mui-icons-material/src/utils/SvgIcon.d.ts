@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps, Theme } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverridableComponent, OverrideProps } from '@mui/types';
 import { SvgIconClasses } from './svgIconClasses';
 
 export interface SvgIconPropsSizeOverrides {}
