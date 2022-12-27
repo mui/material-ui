@@ -64,7 +64,8 @@ const SvgIconRoot = styled('svg', {
     large: theme.typography?.pxToRem?.(35) || '2.1875rem',
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
-  color: (theme.vars || theme).palette?.[ownerState.color]?.main ??
+  color:
+    (theme.vars || theme).palette?.[ownerState.color]?.main ??
     {
       action: (theme.vars || theme).palette?.action?.active,
       disabled: (theme.vars || theme).palette?.action?.disabled,
