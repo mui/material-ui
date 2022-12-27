@@ -929,7 +929,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputKeyDown = (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
       const newValue = event.shiftKey ? redo() : undo();
       if (newValue !== undefined) {
         setValueState(newValue);

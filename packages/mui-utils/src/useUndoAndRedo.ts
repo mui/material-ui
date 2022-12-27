@@ -1,4 +1,3 @@
-import isEqual from 'lodash/isEqual';
 import { useState } from 'react';
 
 const useUndoAndRedo = <T>(initialValue?: T) => {
@@ -8,7 +7,7 @@ const useUndoAndRedo = <T>(initialValue?: T) => {
   const currentValue = values[index];
 
   const setValue = (value: T) => {
-    if (isEqual(currentValue, value)) {
+    if (currentValue === value) {
       return;
     }
 
