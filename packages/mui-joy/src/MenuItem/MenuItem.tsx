@@ -4,18 +4,14 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import {
-  MenuItemProps,
-  MenuItemOwnerState,
-  ExtendMenuItem,
-  MenuItemTypeMap,
-} from './MenuItemProps';
+import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible?: boolean }) => {
+const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
   const { focusVisible, disabled, selected, color, variant } = ownerState;
   const slots = {
     root: [
@@ -33,7 +29,7 @@ const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible?: boolean 
   return composedClasses;
 };
 
-const MenuItemRoot = styled(ListItemButtonRoot, {
+const MenuItemRoot = styled(StyledListItemButton, {
   name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -52,10 +48,12 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled: disabledProp = false,
     component = 'li',
     selected = false,
-    color = selected ? 'primary' : 'neutral',
+    color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,

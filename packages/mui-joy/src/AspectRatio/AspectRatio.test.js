@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AspectRatio, { aspectRatioClasses as classes } from '@mui/joy/AspectRatio';
@@ -8,7 +8,7 @@ import AspectRatio, { aspectRatioClasses as classes } from '@mui/joy/AspectRatio
 describe('<AspectRatio />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<AspectRatio />, () => ({
+  describeConformance(<AspectRatio>16/9</AspectRatio>, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -18,8 +18,17 @@ describe('<AspectRatio />', () => {
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      content: { expectedClassName: classes.content },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(
+    <AspectRatio slotProps={{ content: { 'data-testid': 'test-element' } }} />,
+    { muiName: 'JoyAlert', classes },
+  );
 
   describe('prop: variant', () => {
     it('plain by default', () => {
@@ -76,7 +85,7 @@ describe('<AspectRatio />', () => {
 
   it('able to pass the props to content slot', () => {
     const { getByTestId } = render(
-      <AspectRatio componentsProps={{ content: { 'data-testid': 'content' } }} />,
+      <AspectRatio slotProps={{ content: { 'data-testid': 'content' } }} />,
     );
     expect(getByTestId('content')).toBeVisible();
   });

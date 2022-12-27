@@ -1,17 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes } from '@mui/joy/Tooltip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import Button from '../Button';
 
 describe('<Tooltip />', () => {
   const { render } = createRenderer();
 
+  function TestPopper(props) {
+    const { children, className, 'data-testid': testId } = props;
+    return (
+      <div className={className} data-testid={testId ?? 'custom'}>
+        {typeof children === 'function' ? children({}) : children}
+      </div>
+    );
+  }
+
   describeConformance(
-    <Tooltip title="Hello World" open>
-      <Button>button</Button>
+    <Tooltip title="Hello World" open arrow>
+      <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
       classes,
@@ -20,10 +28,18 @@ describe('<Tooltip />', () => {
       ThemeProvider,
       muiName: 'JoyTooltip',
       refInstanceof: window.HTMLButtonElement,
-      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
       testComponentPropWith: 'span',
+      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
       testVariantProps: { variant: 'solid' },
       testCustomVariant: true,
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: TestPopper,
+          testWithElement: null,
+        },
+        arrow: { expectedClassName: classes.arrow },
+      },
       skip: [
         'rootClass',
         'componentProp',
@@ -35,11 +51,23 @@ describe('<Tooltip />', () => {
     }),
   );
 
+  describeJoyColorInversion(
+    <Tooltip
+      title="Hello world"
+      open
+      disablePortal
+      slotProps={{ root: { 'data-testid': 'test-element' } }}
+    >
+      <button>Hello World</button>
+    </Tooltip>,
+    { muiName: 'JoyTooltip', classes, portalSlot: 'root' },
+  );
+
   describe('prop: variant', () => {
     it('solid by default', () => {
       const { getByRole } = render(
         <Tooltip title="Add" open>
-          <Button>button</Button>
+          <button>button</button>
         </Tooltip>,
       );
       expect(getByRole('tooltip')).to.have.class(classes.variantSolid);
@@ -49,7 +77,7 @@ describe('<Tooltip />', () => {
       it(`should render ${variant}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" variant={variant} open>
-            <Button>button</Button>
+            <button>button</button>
           </Tooltip>,
         );
         expect(getByRole('tooltip')).to.have.class(classes[`variant${capitalize(variant)}`]);
@@ -61,7 +89,7 @@ describe('<Tooltip />', () => {
     it('adds a neutral class by default', () => {
       const { getByRole } = render(
         <Tooltip title="Add" open>
-          <Button>button</Button>
+          <button>button</button>
         </Tooltip>,
       );
 
@@ -72,7 +100,7 @@ describe('<Tooltip />', () => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" color={color} open>
-            <Button>button</Button>
+            <button>button</button>
           </Tooltip>,
         );
 
@@ -85,7 +113,7 @@ describe('<Tooltip />', () => {
     it('md by default', () => {
       const { getByRole } = render(
         <Tooltip title="Add" open>
-          <Button>button</Button>
+          <button>button</button>
         </Tooltip>,
       );
 
@@ -96,7 +124,7 @@ describe('<Tooltip />', () => {
       it(`should render ${size}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" size={size} open>
-            <Button>button</Button>
+            <button>button</button>
           </Tooltip>,
         );
 

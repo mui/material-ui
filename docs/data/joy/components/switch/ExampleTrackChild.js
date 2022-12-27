@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 export default function ExampleTrackChild() {
   return (
     <Switch
-      componentsProps={{
+      slotProps={{
         track: {
           children: (
             <React.Fragment>

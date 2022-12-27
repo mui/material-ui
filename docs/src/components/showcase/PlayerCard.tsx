@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeProvider, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
@@ -12,9 +11,9 @@ import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import PauseRounded from '@mui/icons-material/PauseRounded';
 
-export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) {
+export default function PlayerCard({ disableTheming }: { disableTheming?: boolean }) {
   const [paused, setPaused] = React.useState(true);
-  const ui = (
+  return (
     <Fade in timeout={700}>
       <Card
         variant="outlined"
@@ -23,18 +22,21 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
             p: 1,
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
-            [`& .${iconButtonClasses.root}`]: {
-              border: '1px solid',
-              borderColor: 'grey.200',
-            },
-          },
-          (theme) =>
-            theme.applyDarkStyles({
-              bgcolor: 'primaryDark.800',
+            ...(!disableTheming && {
               [`& .${iconButtonClasses.root}`]: {
-                borderColor: 'primaryDark.500',
+                border: '1px solid',
+                borderColor: 'grey.200',
               },
             }),
+          },
+          !disableTheming &&
+            ((theme) =>
+              theme.applyDarkStyles({
+                bgcolor: 'primaryDark.800',
+                [`& .${iconButtonClasses.root}`]: {
+                  borderColor: 'primaryDark.500',
+                },
+              })),
         ]}
       >
         <CardMedia
@@ -90,8 +92,4 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
       </Card>
     </Fade>
   );
-  if (!externalTheme) {
-    return ui;
-  }
-  return <ThemeProvider theme={externalTheme}>{ui}</ThemeProvider>;
 }

@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
@@ -31,11 +32,7 @@ const useUtilityClasses = (ownerState: ListOwnerState) => {
   return composeClasses(slots, getListUtilityClass, {});
 };
 
-export const ListRoot = styled('ul', {
-  name: 'JoyList',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
@@ -140,6 +137,12 @@ export const ListRoot = styled('ul', {
   ];
 });
 
+const ListRoot = styled(StyledList, {
+  name: 'JoyList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
+
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
   const menuContext = React.useContext(MenuUnstyledContext);
@@ -158,10 +161,12 @@ const List = React.forwardRef(function List(inProps, ref) {
     row = false,
     wrap = false,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     role: roleProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   let role;
   if (menuContext || selectContext) {

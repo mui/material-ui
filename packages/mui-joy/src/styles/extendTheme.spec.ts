@@ -1,5 +1,8 @@
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
+import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
+import { AutocompleteListboxOwnerState } from '@mui/joy/AutocompleteListbox';
+import { AutocompleteOptionOwnerState } from '@mui/joy/AutocompleteOption';
 import { AvatarOwnerState } from '@mui/joy/Avatar';
 import { AvatarGroupOwnerState } from '@mui/joy/AvatarGroup';
 import { BadgeOwnerState } from '@mui/joy/Badge';
@@ -57,6 +60,16 @@ import { TypographyOwnerState } from '@mui/joy/Typography';
 import { expectType } from '@mui/types';
 
 extendTheme({
+  colorInversion: (theme) => ({
+    soft: {
+      primary: {
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        [theme.getColorSchemeSelector('dark')]: {
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+        },
+      },
+    },
+  }),
   components: {
     JoyAlert: {
       defaultProps: {
@@ -92,6 +105,125 @@ extendTheme({
         },
         content: ({ ownerState }) => {
           expectType<AspectRatioOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAutocomplete: {
+      defaultProps: {
+        freeSolo: true,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        wrapper: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        input: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        startDecorator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        clearIndicator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        popupIndicator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        listbox: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        option: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        loading: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        noOptions: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        limitTag: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyAutocompleteListbox: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AutocompleteListboxOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAutocompleteOption: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AutocompleteOptionOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};

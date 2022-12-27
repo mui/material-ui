@@ -10,7 +10,7 @@ import { formHelperTextClasses } from '@mui/joy/FormHelperText';
 describe('Joy <TextField />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<TextField />, () => ({
+  describeConformance(<TextField helperText="1" label="1" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -126,7 +126,7 @@ describe('Joy <TextField />', () => {
     const handleKeyDown = spy();
     const { getByRole } = render(
       <TextField
-        componentsProps={{
+        slotProps={{
           input: {
             onKeyUp: handleKeyUp,
             onKeyDown: handleKeyDown,

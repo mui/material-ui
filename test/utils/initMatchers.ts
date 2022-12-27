@@ -103,7 +103,7 @@ declare global {
        * @example expect(() => render()).toWarnDev('single message')
        * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
        */
-      toWarnDev(messages?: string | readonly string[]): void;
+      toWarnDev(messages?: string | readonly (string | boolean)[]): void;
       /**
        * Matches calls to `console.error` in the asserted callback.
        *
@@ -111,7 +111,7 @@ declare global {
        * @example expect(() => render()).toErrorDev('single message')
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
-      toErrorDev(messages?: string | readonly string[]): void;
+      toErrorDev(messages?: string | readonly (string | boolean)[]): void;
       /**
        * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
        * In production it expects a minified error.
