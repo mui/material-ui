@@ -181,7 +181,6 @@ const AutocompleteRoot = styled('div', {
   [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 0,
     paddingBottom: 0,
-
     [`& .${autocompleteClasses.input}`]: {
       paddingTop: 16,
       paddingBottom: 17,
