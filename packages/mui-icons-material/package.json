@@ -47,6 +47,8 @@
   },
   "peerDependencies": {
     "@mui/system": "^5.11.2",
+    "@mui/types": "^7.2.3",
+    "@mui/utils": "^5.11.2",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
