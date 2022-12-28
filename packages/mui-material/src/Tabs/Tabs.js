@@ -358,8 +358,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             process.env.NODE_ENV !== 'test' &&
             !warnedOnceTabPresent &&
             tabMeta &&
-            ((tabMeta.width === 0 && tabMeta.height === 0 && tabsMeta.clientWidth !== 0) ||
-              tab.style.display === 'none')
+            tabMeta.width === 0 &&
+            tabMeta.height === 0 &&
+            // if the tab list element is hidden, don't warn
+            tabsMeta.clientWidth !== 0
           ) {
             tabsMeta = null;
             console.error(
