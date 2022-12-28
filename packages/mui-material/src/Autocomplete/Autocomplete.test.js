@@ -2733,27 +2733,37 @@ describe('<Autocomplete />', () => {
   });
 
   describe('List virtualization', () => {
-    const samples = [...Array(200).keys()];
 
-    it('should use virtualization for large lists', () => {
-      render(
-        <Autocomplete
-          multiple
-          options={samples}
-          disableCloseOnSelect
-          getOptionLabel={(option) => option.title}
-          renderOption={(props, option, { selected }) => {
-            return (
-              <li {...props}>
-                {option} {selected}
-              </li>
-            );
-          }}
-          style={{ width: 500 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Checkboxes" placeholder="Favorites" />
-          )}
-        />,
+    // eslint-disable-next-line mocha/no-exclusive-tests
+    it.only('should use virtual list for large lists', () => {
+      const options = [...Array(201)].map(() => {
+        const randomStr = 'abcdefghijklmnopqrstuvwxyz'
+          .split('')
+          .sort(() => 0.5 - Math.random())
+          .join('');
+        return randomStr.slice(0, Math.random() * 26 + 2);
+      });
+      const { debug, queryAllByTestId } = render(
+        <div style={{ backgroundColor: 'steelblue', minHeight: '500' }}>
+          <Autocomplete
+            multiple
+            options={options}
+            disableCloseOnSelect
+            getOptionLabel={(option) => option}
+            renderOption={(props, option, { selected }) => {
+              return (
+                <li {...props}>
+                  {option} - {selected}
+                </li>
+              );
+            }}
+            autoFocus
+            freeSolo
+            autoHighlight
+            open
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </div>,
       );
     });
   });
