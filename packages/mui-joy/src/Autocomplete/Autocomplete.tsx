@@ -528,6 +528,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disabled,
       'aria-label': popupOpen ? closeText : openText,
       title: popupOpen ? closeText : openText,
+      type: 'button',
     },
   });
 
