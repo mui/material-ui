@@ -217,6 +217,7 @@ function createWebpackConfig(entry, environment) {
         '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
         '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
         '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
+        '@mui/md-theme': path.join(workspaceRoot, 'packages/mui-md-theme/build'),
         '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
         '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
         '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
