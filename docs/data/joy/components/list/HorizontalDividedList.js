@@ -11,7 +11,9 @@ export default function HorizontalDividedList() {
       row
       variant="outlined"
       sx={{
+        bgcolor: 'background.body',
         borderRadius: 'sm',
+        boxShadow: 'sm',
         flexGrow: 0,
         mx: 'auto',
         '--List-decorator-size': '48px',

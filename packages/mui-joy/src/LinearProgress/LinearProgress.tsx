@@ -1,13 +1,13 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
-import { css, keyframes } from '@mui/system';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 import {
   LinearProgressOwnerState,
@@ -53,7 +53,6 @@ const useUtilityClasses = (ownerState: LinearProgressOwnerState) => {
       variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,
     ],
-    progress: ['progress'],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, {});
@@ -101,7 +100,7 @@ const LinearProgressRoot = styled('div', {
     position: 'relative',
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
     '--_LinearProgress-padding':
-      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth) - var(--LinearProgress-progressThickness)) / 2, 0px)',
+      'max((var(--LinearProgress-thickness) - 2 * var(--variant-borderWidth, 0px) - var(--LinearProgress-progressThickness)) / 2, 0px)',
     '&::before': {
       content: '""',
       display: 'block',
@@ -145,20 +144,24 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   });
 
   const {
-    component = 'div',
     children,
     className,
-    color = 'primary',
+    component,
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
     determinate = false,
     value = determinate ? 0 : 25, // `25` is the 1/4 of the bar.
+    style,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
+    component,
     color,
     size,
     variant,
@@ -170,30 +173,29 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: LinearProgressRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-      as: component,
-      role: 'progressbar',
-      style: {
+  return (
+    <LinearProgressRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      role="progressbar"
+      style={{
         // Setting this CSS varaible via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
-        '--LinearProgress-percent': value,
-      },
-    },
-    className: clsx(classes.root, className),
-    ...(typeof value === 'number' &&
-      determinate && {
-        'aria-valuenow': Math.round(value),
-      }),
-  });
-
-  return <LinearProgressRoot {...rootProps}>{children}</LinearProgressRoot>;
+        ...({ '--LinearProgress-percent': value } as React.CSSProperties),
+        ...style,
+      }}
+      ownerState={ownerState}
+      {...(typeof value === 'number' &&
+        determinate && {
+          'aria-valuenow': Math.round(value),
+        })}
+      {...other}
+    >
+      {children}
+    </LinearProgressRoot>
+  );
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {
@@ -237,6 +239,10 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

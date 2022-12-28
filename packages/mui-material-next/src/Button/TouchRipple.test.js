@@ -46,7 +46,7 @@ describe('<TouchRipple />', () => {
     inheritComponent: 'span',
     render,
     refInstanceof: Object,
-    muiName: 'MuiTouchRipple',
+    muiName: 'PrivateTouchRipple',
     skip: [
       'componentProp',
       'componentsProp',
