@@ -2733,9 +2733,8 @@ describe('<Autocomplete />', () => {
   });
 
   describe('List virtualization', () => {
-
     // eslint-disable-next-line mocha/no-exclusive-tests
-    it.only('should use virtual list for large lists', () => {
+    it.only('should render only necessary rows', () => {
       const options = [...Array(201)].map(() => {
         const randomStr = 'abcdefghijklmnopqrstuvwxyz'
           .split('')
@@ -2743,9 +2742,10 @@ describe('<Autocomplete />', () => {
           .join('');
         return randomStr.slice(0, Math.random() * 26 + 2);
       });
-      const { debug, queryAllByTestId } = render(
+      const { debug } = render(
         <div style={{ backgroundColor: 'steelblue', minHeight: '500' }}>
           <Autocomplete
+            virtualize={{ minContainerHeight: '400px' }}
             multiple
             options={options}
             disableCloseOnSelect
@@ -2765,6 +2765,7 @@ describe('<Autocomplete />', () => {
           />
         </div>,
       );
+      debug();
     });
   });
 });
