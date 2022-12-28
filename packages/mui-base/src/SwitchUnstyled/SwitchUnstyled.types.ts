@@ -9,6 +9,7 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
    * Class name applied to the root element.
    */
   className?: string;
+  provideOwnerStateToSlots?: boolean;
   /**
    * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
@@ -20,7 +21,6 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
     input?: React.ElementType;
     track?: React.ElementType | null;
   };
-
   /**
    * The props used for each slot inside the Switch.
    * @default {}

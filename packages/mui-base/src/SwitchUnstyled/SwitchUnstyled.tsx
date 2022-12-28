@@ -57,6 +57,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     onChange,
     onFocus,
     onFocusVisible,
+    provideOwnerStateToSlots = false,
     readOnly: readOnlyProp,
     required,
     slotProps = {},
@@ -123,6 +124,13 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     ownerState,
     className: classes.track,
   });
+
+  if (!provideOwnerStateToSlots) {
+    delete rootProps.ownerState;
+    delete thumbProps.ownerState;
+    delete inputProps.ownerState;
+    delete trackProps.ownerState;
+  }
 
   return (
     <Root {...rootProps}>
