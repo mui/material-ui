@@ -9,10 +9,26 @@ const backdropProps: ModalProps['BackdropProps'] = {
   <div />
 </Modal>;
 
+// componentsProps and slotProps slots as object
 <Modal
   open
-  slotProps={{ backdrop: { invisible: true } }}
-  componentsProps={{ backdrop: { transitionDuration: 300 } }}
+  slotProps={{ backdrop: { invisible: true }, root: { id: 'modal' } }}
+  componentsProps={{
+    backdrop: { transitionDuration: 300 },
+    root: { onClick: () => 'Modal clicked' },
+  }}
+>
+  <div />
+</Modal>;
+
+// componentsProps and slotProps slots as function
+<Modal
+  open
+  slotProps={{
+    root: ({ disableAutoFocus }) => ({ className: disableAutoFocus ? '' : 'focused' }),
+    backdrop: ({ exited }) => ({ className: exited ? 'hidden' : '' }),
+  }}
+  componentsProps={{ root: () => ({}), backdrop: () => ({}) }}
 >
   <div />
 </Modal>;
