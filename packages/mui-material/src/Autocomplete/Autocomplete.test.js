@@ -2734,7 +2734,7 @@ describe('<Autocomplete />', () => {
 
   describe('List virtualization', () => {
     // eslint-disable-next-line mocha/no-exclusive-tests
-    it.only('should render only necessary rows', () => {
+    it('should render only necessary rows', () => {
       const options = [...Array(201)].map(() => {
         const randomStr = 'abcdefghijklmnopqrstuvwxyz'
           .split('')
@@ -2742,8 +2742,8 @@ describe('<Autocomplete />', () => {
           .join('');
         return randomStr.slice(0, Math.random() * 26 + 2);
       });
-      const { debug } = render(
-        <div style={{ backgroundColor: 'steelblue', minHeight: '500' }}>
+      render(
+        <div style={{ minHeight: '500' }}>
           <Autocomplete
             virtualize={{ minContainerHeight: '400px' }}
             multiple
@@ -2765,7 +2765,6 @@ describe('<Autocomplete />', () => {
           />
         </div>,
       );
-      debug();
     });
   });
 });
