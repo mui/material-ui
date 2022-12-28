@@ -187,6 +187,10 @@ export interface AutocompleteProps<
    */
   noOptionsText?: React.ReactNode;
   /**
+   * Callback fired when scroll reaches bottom of container
+   */
+  onScrollToBottom?: (event: React.UIEvent<HTMLDivElement, UIEvent>) => void;
+  /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).

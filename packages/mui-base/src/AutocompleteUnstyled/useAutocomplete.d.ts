@@ -221,6 +221,11 @@ export interface UseAutocompleteProps<
     details?: AutocompleteChangeDetails<T>,
   ) => void;
   /**
+   * Callback fired when scroll reaches bottom of container
+   * @param {React.UIEvent<HTMLDivElement, UIEvent>} event The event source of the scroll event.
+   */
+  onScrollToBottom?: (event: React.UIEvent<HTMLDivElement, UIEvent>) => void;
+  /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
    *
@@ -334,7 +339,9 @@ export default function useAutocomplete<
   getClearProps: () => React.HTMLAttributes<HTMLButtonElement>;
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   getTagProps: AutocompleteGetTagProps;
-  getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
+  getListboxProps: (listboxProps?: {
+    onScroll?: React.UIEventHandler<HTMLUListElement>;
+  }) => React.HTMLAttributes<HTMLUListElement>;
   getOptionProps: ({
     option,
     index,

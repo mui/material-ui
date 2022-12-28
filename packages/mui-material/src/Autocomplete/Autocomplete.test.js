@@ -2635,6 +2635,36 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: onScrollToBottom', () => {
+    it('should call onScrollToBottom when scroll reaches bottom', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      checkHighlightIs(getByRole('listbox'), 'five');
+      console.log('callCount', onScrollToBottom.callCount);
+      expect(onScrollToBottom.callCount).to.equal(1);
+    });
+  });
+
   describe('prop: readOnly', () => {
     it('should make the input readonly', () => {
       render(

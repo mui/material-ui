@@ -115,6 +115,7 @@ export default function useAutocomplete(props) {
     readOnly = false,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
+    onScrollToBottom,
   } = props;
 
   const id = useId(idProp);
@@ -380,6 +381,14 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+        if (index === options.length - 1) {
+          listboxNode.scrollTop += Number(
+            window
+              .getComputedStyle(listboxNode)
+              .getPropertyValue('padding-bottom')
+              .replace('px', ''),
+          );
+        }
       } else if (
         element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
         listboxNode.scrollTop
@@ -1077,11 +1086,26 @@ export default function useAutocomplete(props) {
       tabIndex: -1,
       ...(!readOnly && { onDelete: handleTagDelete(index) }),
     }),
-    getListboxProps: () => ({
+    getListboxProps: ({ onScroll } = {}) => ({
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
       ref: handleListboxRef,
+      onScroll: (event) => {
+        const lisboxNode = listboxRef.current;
+        const lisboxHeight = lisboxNode.offsetHeight;
+        const contentHeight = lisboxNode.scrollHeight;
+        const scrollPosition = lisboxNode.scrollTop;
+        const distanceFromBottom = contentHeight - (scrollPosition + lisboxHeight);
+        //   In general, it's best to use a small threshold value when checking for the scroll position, since the scrollTop, offsetHeight, and scrollHeight values are often not perfectly accurate. For example, some browsers might round these values to the nearest integer, which can cause small discrepancies.
+        if (distanceFromBottom <= 1) {
+          // The scrollbar is at the bottom of the listbox element
+          onScrollToBottom(event);
+        }
+        if (onScroll) {
+          onScroll(event);
+        }
+      },
       onMouseDown: (event) => {
         // Prevent blur
         event.preventDefault();

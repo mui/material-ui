@@ -427,6 +427,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     size = 'medium',
     slotProps = {},
     value: valueProp,
+    onScrollToBottom,
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -538,6 +539,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const popperSlotProps = slotProps.popper ?? componentsProps.popper;
   const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
+  const { onScroll: listBoxOnScroll, ...restOfListboxProps } = ListboxProps ?? {
+    onScroll: undefined,
+  };
+
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -640,8 +645,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 as={ListboxComponent}
                 className={classes.listbox}
                 ownerState={ownerState}
-                {...getListboxProps()}
-                {...ListboxProps}
+                {...getListboxProps({ onScroll: listBoxOnScroll })}
+                {...restOfListboxProps}
               >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
@@ -969,6 +974,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onOpen: PropTypes.func,
+  /**
+   * Callback fired when scroll reaches bottom of container
+   */
+  onScrollToBottom: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */
