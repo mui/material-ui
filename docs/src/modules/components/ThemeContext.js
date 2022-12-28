@@ -13,6 +13,7 @@ import {
   getThemedComponents,
   getMetaThemeColor,
 } from 'docs/src/modules/brandingTheme';
+import PageContext from './PageContext';
 
 const languageMap = {
   en: enUS,
@@ -115,7 +116,10 @@ if (process.env.NODE_ENV !== 'production') {
 export function ThemeProvider(props) {
   const { children } = props;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const pageContextValue = React.useContext(PageContext);
+  // `activePage` does not exist for playground pages
+  // forcing light mode in playground avoids the need for a wrapping theme in playground pages
+  const preferredMode = pageContextValue.activePage && prefersDarkMode ? 'dark' : 'light';
 
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
@@ -175,7 +179,10 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteMode = getCookie('paletteMode') || preferredMode;
+      let nextPaletteMode = localStorage.getItem('mui-mode') || preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+      if (nextPaletteMode === 'system') {
+        nextPaletteMode = preferredMode;
+      }
 
       dispatch({
         type: 'CHANGE',
@@ -244,6 +251,7 @@ export function ThemeProvider(props) {
   }, [theme]);
 
   useEnhancedEffect(() => {
+    // To support light and dark mode images in the docs
     if (theme.palette.mode === 'dark') {
       document.body.classList.remove('mode-light');
       document.body.classList.add('mode-dark');

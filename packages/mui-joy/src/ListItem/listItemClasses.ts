@@ -25,6 +25,8 @@ export interface ListItemClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** State class applied to the root element if `variant="soft"`. */
@@ -54,6 +56,7 @@ const listItemClasses: ListItemClasses = generateUtilityClasses('JoyListItem', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantSoft',
   'variantOutlined',

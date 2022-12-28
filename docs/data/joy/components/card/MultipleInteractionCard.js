@@ -10,11 +10,13 @@ import Favorite from '@mui/icons-material/Favorite';
 
 export default function MultipleInteractionCard() {
   return (
-    <Card variant="outlined" sx={{ minWidth: 320 }}>
+    <Card variant="outlined" sx={{ width: 320 }}>
       <CardOverflow>
         <AspectRatio ratio="2">
           <img
-            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?crop=entropy&auto=format&fit=crop&w=3270"
+            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
+            srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
+            loading="lazy"
             alt=""
           />
         </AspectRatio>

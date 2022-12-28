@@ -4,6 +4,8 @@ import {
   Spacing,
   SxProps as SystemSxProps,
   SystemProps as SystemSystemProps,
+  CSSObject,
+  SxConfig,
 } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
@@ -18,7 +20,7 @@ import {
   LetterSpacing,
   TypographySystem,
 } from './typography';
-import { Variants } from './variants';
+import { Variants, ColorInversion, ColorInversionConfig } from './variants';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -43,7 +45,6 @@ type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
 export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
   palette: ColorSystem['palette'] & {
-    mode: 'light' | 'dark';
     colorScheme: DefaultColorScheme | ExtendedColorScheme;
   };
 }
@@ -59,7 +60,10 @@ export interface ThemeScales {
   letterSpacing: LetterSpacing;
 }
 
-export interface ThemeVars extends ThemeScales, ColorSystem {}
+interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
+  palette: Omit<ColorSystem['palette'], 'mode'>;
+}
+export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 
 export interface ThemeCssVarOverrides {}
 
@@ -70,12 +74,16 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
+  colorInversion: ColorInversion;
+  colorInversionConfig: ColorInversionConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
   cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SxProps) => CSSObject;
 }
 
 export type SxProps = SystemSxProps<Theme>;

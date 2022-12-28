@@ -59,5 +59,5 @@ const Input = styled('input')`
 `;
 
 export default function StylingSlots() {
-  return <SwitchUnstyled components={{ Root, Thumb, Input }} />;
+  return <SwitchUnstyled slots={{ root: Root, thumb: Thumb, input: Input }} />;
 }

@@ -15,7 +15,6 @@ describe('createCssVarsProvider', () => {
     addListener: () => {},
     removeListener: () => {},
   });
-  let shouldSupportColorScheme;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
@@ -34,11 +33,6 @@ describe('createCssVarsProvider', () => {
     // clear the localstorage
     storage = {};
     window.matchMedia = createMatchMedia(false);
-
-    // Currently supported Firefox does not support `color-scheme`.
-    // Instead of skipping relevant tests entirely we assert that they work differently in Firefox.
-    // This ensures that we're automatically notified once we remove older Firefox versions from the support matrix.
-    shouldSupportColorScheme = !/Firefox/.test(navigator.userAgent);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -61,10 +55,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Consumer = () => {
+      function Consumer() {
         const { colorScheme } = useColorScheme();
         return <div data-testid="current-color-scheme">{colorScheme}</div>;
-      };
+      }
       render(
         <CssVarsProvider>
           <Consumer />
@@ -81,10 +75,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div data-testid={`text`}>{theme.getColorSchemeSelector('light')}</div>;
-      };
+      }
       render(
         <CssVarsProvider attribute="data-custom-color-scheme">
           <Text />
@@ -106,10 +100,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Consumer = () => {
+      function Consumer() {
         const { allColorSchemes } = useColorScheme();
         return <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>;
-      };
+      }
       const { rerender } = render(
         <CssVarsProvider>
           <Consumer />
@@ -138,7 +132,7 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Consumer = () => {
+      function Consumer() {
         const { colorScheme, setColorScheme } = useColorScheme();
         return (
           <div>
@@ -146,7 +140,7 @@ describe('createCssVarsProvider', () => {
             <button onClick={() => setColorScheme('dark')}>change to dark</button>
           </div>
         );
-      };
+      }
       render(
         <CssVarsProvider>
           <Consumer />
@@ -166,10 +160,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Consumer = () => {
+      function Consumer() {
         const { setColorScheme } = useColorScheme();
         return <button onClick={() => setColorScheme('foo')}>change to dark</button>;
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -200,10 +194,10 @@ describe('createCssVarsProvider', () => {
         defaultColorScheme: 'light',
         shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
       });
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         return <div data-testid="h1">{theme.vars.typography.h1 || ''}</div>;
-      };
+      }
       expect(() =>
         render(
           <CssVarsProvider>
@@ -231,7 +225,7 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         return (
           <div>
@@ -239,7 +233,7 @@ describe('createCssVarsProvider', () => {
             <div>{theme.vars.palette.grey || ''}</div>
           </div>
         );
-      };
+      }
       render(
         <CssVarsProvider>
           <Consumer />
@@ -247,109 +241,6 @@ describe('createCssVarsProvider', () => {
       );
       expect(screen.getByText('var(--palette-primary)')).not.to.equal(null);
       expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
-    });
-
-    describe('[option]: `enableColorScheme`', () => {
-      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
-        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: true,
-        });
-        const Consumer = () => {
-          const { setMode } = useColorScheme();
-          return <button onClick={() => setMode('dark')}>change to dark</button>;
-        };
-        render(
-          <CssVarsProvider>
-            <Consumer />
-          </CssVarsProvider>,
-        );
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'light' : '',
-        });
-
-        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
-
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'dark' : '',
-        });
-      });
-
-      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
-        window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
-
-        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: true,
-        });
-        const Consumer = () => {
-          const { setMode } = useColorScheme();
-          return <button onClick={() => setMode('system')}>change to system</button>;
-        };
-        render(
-          <CssVarsProvider>
-            <Consumer />
-          </CssVarsProvider>,
-        );
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'light' : '',
-        });
-
-        fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
-
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? 'dark' : '',
-        });
-      });
-
-      it('does not set `color-scheme` property on <html> with correct mode, given`enableColorScheme` is false', () => {
-        const currentColorScheme = window
-          .getComputedStyle(document.documentElement)
-          .getPropertyValue('color-scheme');
-        const { CssVarsProvider } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: false,
-        });
-        const Consumer = () => <div />;
-
-        render(
-          <CssVarsProvider>
-            <Consumer />
-          </CssVarsProvider>,
-        );
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? currentColorScheme : '',
-        });
-      });
-
-      it('cleans up `color-scheme` property on <html>, given`enableColorScheme` is true', () => {
-        const previousColorScheme = window
-          .getComputedStyle(document.documentElement)
-          .getPropertyValue('color-scheme');
-        const { CssVarsProvider } = createCssVarsProvider({
-          theme: {
-            colorSchemes: { light: {}, dark: {} },
-          },
-          defaultColorScheme: 'light',
-          enableColorScheme: true,
-        });
-        const { unmount } = render(<CssVarsProvider />);
-
-        unmount();
-
-        expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: previousColorScheme,
-        });
-      });
     });
 
     describe('[option]: `disableTransitionOnChange`', () => {
@@ -365,7 +256,7 @@ describe('createCssVarsProvider', () => {
           },
           disableTransitionOnChange: true,
         });
-        const Consumer = () => {
+        function Consumer() {
           const { mode, setMode } = useColorScheme();
           return (
             <div>
@@ -373,7 +264,7 @@ describe('createCssVarsProvider', () => {
               <button onClick={() => setMode('dark')}>change to dark</button>;
             </div>
           );
-        };
+        }
         render(
           <CssVarsProvider>
             <Consumer />
@@ -406,7 +297,7 @@ describe('createCssVarsProvider', () => {
           },
           disableTransitionOnChange: true,
         });
-        const Consumer = () => {
+        function Consumer() {
           const { colorScheme, setColorScheme } = useColorScheme();
           return (
             <div>
@@ -414,7 +305,7 @@ describe('createCssVarsProvider', () => {
               <button onClick={() => setColorScheme('dark')}>change to dark</button>;
             </div>
           );
-        };
+        }
         render(
           <CssVarsProvider>
             <Consumer />
@@ -444,7 +335,7 @@ describe('createCssVarsProvider', () => {
           defaultColorScheme: 'light',
           disableTransitionOnChange: false,
         });
-        const Consumer = () => {
+        function Consumer() {
           const { mode, setMode } = useColorScheme();
           return (
             <div>
@@ -452,7 +343,7 @@ describe('createCssVarsProvider', () => {
               <button onClick={() => setMode('dark')}>change to dark</button>;
             </div>
           );
-        };
+        }
         render(
           <CssVarsProvider>
             <Consumer />
@@ -477,7 +368,7 @@ describe('createCssVarsProvider', () => {
           defaultColorScheme: 'light',
           disableTransitionOnChange: false,
         });
-        const Consumer = () => {
+        function Consumer() {
           const { colorScheme, setColorScheme } = useColorScheme();
           return (
             <div>
@@ -485,7 +376,7 @@ describe('createCssVarsProvider', () => {
               <button onClick={() => setColorScheme('dark')}>change to dark</button>;
             </div>
           );
-        };
+        }
         render(
           <CssVarsProvider>
             <Consumer />
@@ -561,7 +452,7 @@ describe('createCssVarsProvider', () => {
       },
       defaultColorScheme: 'light',
     });
-    const Consumer = () => {
+    function Consumer() {
       const { mode, setMode } = useColorScheme();
       return (
         <div>
@@ -569,7 +460,7 @@ describe('createCssVarsProvider', () => {
           <button onClick={() => setMode('dark')}>change to dark</button>
         </div>
       );
-    };
+    }
     it('should save mode to localStorage', () => {
       render(
         <CssVarsProvider>
@@ -654,10 +545,10 @@ describe('createCssVarsProvider', () => {
       },
       defaultColorScheme: 'light',
     });
-    const Color = () => {
+    function Color() {
       const theme = useTheme();
       return <div data-testid="color">{theme.vars.color}</div>;
-    };
+    }
     it('use default color scheme if the storage value does not exist', () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'unknown';
 
@@ -682,10 +573,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = ({ scale = 'md' }) => {
+      function Text({ scale = 'md' }) {
         const theme = useTheme();
         return <div data-testid={`text-${scale}`}>{theme.vars.fontSize[scale]}</div>;
-      };
+      }
       render(
         <CssVarsProvider theme={{ fontSize: { sm: '0.75rem' } }}>
           <Text scale="md" />
@@ -710,7 +601,7 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Swatch = () => {
+      function Swatch() {
         const theme = useTheme();
         return (
           <div>
@@ -718,7 +609,7 @@ describe('createCssVarsProvider', () => {
             <div data-testid="swatch-color-value">{theme.palette.color}</div>
           </div>
         );
-      };
+      }
       const comfortColor = '#007FFF';
       render(
         <CssVarsProvider
@@ -754,7 +645,7 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Swatch = () => {
+      function Swatch() {
         const theme = useTheme();
         return (
           <div>
@@ -762,7 +653,7 @@ describe('createCssVarsProvider', () => {
             <div data-testid="swatch-bgcolor">{theme.vars.palette.bgcolor}</div>
           </div>
         );
-      };
+      }
       render(
         <CssVarsProvider
           theme={{ colorSchemes: { light: { palette: { color: '#000000', bgcolor: '#ffffff' } } } }}
@@ -789,10 +680,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         return <div>{Object.keys(theme.colorSchemes).join(', ')}</div>;
-      };
+      }
       const { container } = render(
         <CssVarsProvider theme={{ colorSchemes: { light: {}, dark: {}, dim: {} } }}>
           <Consumer />
@@ -809,10 +700,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
-      };
+      }
       render(
         <CssVarsProvider
           theme={{
@@ -835,11 +726,11 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
 
         return <div data-testid={`text`}>{theme.vars.components}</div>;
-      };
+      }
       render(
         <CssVarsProvider>
           <Text />
@@ -856,10 +747,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = () => {
+      function Text() {
         const { mode } = useColorScheme();
         return <div>{mode}</div>;
-      };
+      }
       const { container } = render(
         <CssVarsProvider defaultMode="dark">
           <Text />
@@ -875,10 +766,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = () => {
+      function Text() {
         const { colorScheme } = useColorScheme();
         return <div>{colorScheme}</div>;
-      };
+      }
       const { container } = render(
         <CssVarsProvider theme={{ colorSchemes: { paper: {} } }} defaultColorScheme="paper">
           <Text />
@@ -894,10 +785,10 @@ describe('createCssVarsProvider', () => {
         },
         defaultColorScheme: 'light',
       });
-      const Text = () => {
+      function Text() {
         const { colorScheme } = useColorScheme();
         return <div>{colorScheme}</div>;
-      };
+      }
       const { container } = render(
         <CssVarsProvider
           theme={{ colorSchemes: { paper: {} } }}
@@ -907,6 +798,45 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
       expect(container.firstChild.textContent).to.equal('paper');
+    });
+  });
+
+  describe('Nested providers', () => {
+    it('independent context', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {
+              color: 'light',
+            },
+            dark: {
+              color: 'dark',
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      function Toggle(props) {
+        const { mode, setMode } = useColorScheme();
+        return (
+          <button onClick={() => setMode('dark')} {...props}>
+            {mode}
+          </button>
+        );
+      }
+      const { getByTestId } = render(
+        <CssVarsProvider>
+          <Toggle data-testid="outer" />
+          <CssVarsProvider disableNestedContext>
+            <Toggle data-testid="inner" />
+          </CssVarsProvider>
+        </CssVarsProvider>,
+      );
+      fireEvent.click(getByTestId('inner'));
+
+      // state changes in nested provider should not affect the upper context
+      // if `disableNestedContext` is true.
+      expect(getByTestId('outer')).to.have.text('light');
     });
   });
 });

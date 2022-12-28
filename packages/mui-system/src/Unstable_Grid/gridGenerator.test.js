@@ -12,6 +12,8 @@ import {
   generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
+  generateDirectionClasses,
+  filterBreakpointKeys,
 } from './gridGenerator';
 
 const spacing = createSpacing();
@@ -98,6 +100,12 @@ describe('grid generator', () => {
           margin: 3,
         },
       });
+    });
+
+    it('filters out breakpoints keys based on responsize keys', () => {
+      const styles = { sm: 6, md: 3, xl: 2, xs: 1 };
+      const filteredKeys = filterBreakpointKeys(breakpoints.keys, Object.keys(styles));
+      expect(filteredKeys).to.deep.equal(['xs', 'sm', 'md', 'xl']);
     });
 
     describe('custom breakpoints', () => {
@@ -567,6 +575,21 @@ describe('grid generator', () => {
           tablet: 4,
         }),
       ).to.deep.equal(['spacing-mobile-3', 'spacing-tablet-4']);
+    });
+  });
+
+  describe('generateDirectionClasses', () => {
+    it('should generate correct direction class names', () => {
+      expect(generateDirectionClasses()).to.deep.equal([]);
+      expect(generateDirectionClasses('row')).to.deep.equal(['direction-xs-row']);
+      expect(generateDirectionClasses('column')).to.deep.equal(['direction-xs-column']);
+      expect(
+        generateDirectionClasses({
+          xs: 'row',
+          sm: 'column',
+          md: 'row',
+        }),
+      ).to.deep.equal(['direction-xs-row', 'direction-sm-column', 'direction-md-row']);
     });
   });
 });

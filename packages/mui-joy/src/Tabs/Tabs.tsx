@@ -7,6 +7,7 @@ import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -31,7 +32,7 @@ const TabsRoot = styled(SheetRoot, {
   name: 'JoyTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     '--Tabs-gap': '3px',
   }),
@@ -41,7 +42,6 @@ const TabsRoot = styled(SheetRoot, {
   ...(ownerState.size === 'lg' && {
     '--Tabs-gap': '0.5rem',
   }),
-  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   display: 'flex',
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
@@ -65,10 +65,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     onChange,
     selectionFollowsFocus,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { tabsContextValue } = useTabs({ ...props, orientation });
 

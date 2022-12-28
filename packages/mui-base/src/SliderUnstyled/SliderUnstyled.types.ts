@@ -1,5 +1,5 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
@@ -52,68 +52,6 @@ export interface SliderUnstyledOwnProps {
    */
   classes?: Partial<SliderUnstyledClasses>;
   /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Track?: React.ElementType;
-    Rail?: React.ElementType;
-    Thumb?: React.ElementType;
-    Mark?: React.ElementType;
-    MarkLabel?: React.ElementType;
-    ValueLabel?: React.ElementType;
-    Input?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Slider.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    track?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    rail?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    thumb?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    mark?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    markLabel?: SlotComponentProps<
-      'span',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-
-    input?: SlotComponentProps<
-      'input',
-      SliderUnstyledComponentsPropsOverrides,
-      SliderUnstyledOwnerState
-    >;
-  };
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: number | number[];
@@ -143,7 +81,7 @@ export interface SliderUnstyledOwnProps {
    */
   getAriaValueText?: (value: number, index: number) => string;
   /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * If `true` the Slider will be rendered right-to-left (with the lowest value on the right-hand side).
    * @default false
    */
   isRtl?: boolean;
@@ -197,6 +135,68 @@ export interface SliderUnstyledOwnProps {
    * @default (x) => x
    */
   scale?: (value: number) => number;
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    track?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    rail?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    thumb?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    mark?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    markLabel?: SlotComponentProps<
+      'span',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    valueLabel?: SlotComponentProps<
+      typeof SliderValueLabelUnstyled,
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+
+    input?: SlotComponentProps<
+      'input',
+      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    track?: React.ElementType;
+    rail?: React.ElementType;
+    thumb?: React.ElementType;
+    mark?: React.ElementType;
+    markLabel?: React.ElementType;
+    valueLabel?: React.ElementType;
+    input?: React.ElementType;
+  };
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -254,7 +254,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
  * Utility to create component types that inherit props from SliderUnstyled.
  */
 export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & SliderUnstyledTypeMap['props'];
+  props: M['props'] & Omit<SliderUnstyledTypeMap['props'], 'isRtl'>;
   defaultComponent: M['defaultComponent'];
 }
 

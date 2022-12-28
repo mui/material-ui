@@ -52,7 +52,7 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Unstyled table pagination](https://mui.com/base/react-table-pagination/)
+ * - [Unstyled Table Pagination](https://mui.com/base/react-table-pagination/)
  *
  * API:
  *
@@ -62,8 +62,6 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
   function TablePaginationUnstyled(props, ref) {
     const {
       component,
-      components = {},
-      componentsProps = {},
       colSpan: colSpanProp,
       count,
       getItemAriaLabel = defaultGetAriaLabel,
@@ -76,6 +74,8 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       rowsPerPage,
       rowsPerPageOptions = [10, 25, 50, 100],
       selectId: selectIdProp,
+      slotProps = {},
+      slots = {},
       ...other
     } = props;
 
@@ -97,10 +97,10 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
     const selectId = useId(selectIdProp);
     const labelId = useId(labelIdProp);
 
-    const Root = component ?? components.Root ?? 'td';
+    const Root = component ?? slots.root ?? 'td';
     const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> = useSlotProps({
       elementType: Root,
-      externalSlotProps: componentsProps.root,
+      externalSlotProps: slotProps.root,
       externalForwardedProps: other,
       additionalProps: {
         colSpan,
@@ -110,11 +110,11 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       className: classes.root,
     });
 
-    const Select = components.Select ?? 'select';
+    const Select = slots.select ?? 'select';
     const selectProps: WithOptionalOwnerState<TablePaginationUnstyledSelectSlotProps> =
       useSlotProps({
         elementType: Select,
-        externalSlotProps: componentsProps.select,
+        externalSlotProps: slotProps.select,
         additionalProps: {
           value: rowsPerPage,
           id: selectId,
@@ -127,11 +127,11 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.select,
       });
 
-    const Actions = components.Actions ?? TablePaginationActionsUnstyled;
+    const Actions = slots.actions ?? TablePaginationActionsUnstyled;
     const actionsProps: WithOptionalOwnerState<TablePaginationUnstyledActionsSlotProps> =
       useSlotProps({
         elementType: Actions,
-        externalSlotProps: componentsProps.actions,
+        externalSlotProps: slotProps.actions,
         additionalProps: {
           page,
           rowsPerPage,
@@ -143,11 +143,11 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.actions,
       });
 
-    const MenuItem = components.MenuItem ?? 'option';
+    const MenuItem = slots.menuItem ?? 'option';
     const menuItemProps: WithOptionalOwnerState<TablePaginationUnstyledMenuItemSlotProps> =
       useSlotProps({
         elementType: MenuItem,
-        externalSlotProps: componentsProps.menuItem,
+        externalSlotProps: slotProps.menuItem,
         additionalProps: {
           value: undefined,
         },
@@ -155,11 +155,11 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.menuItem,
       });
 
-    const SelectLabel = components.SelectLabel ?? 'p';
+    const SelectLabel = slots.selectLabel ?? 'p';
     const selectLabelProps: WithOptionalOwnerState<TablePaginationUnstyledSelectLabelSlotProps> =
       useSlotProps({
         elementType: SelectLabel,
-        externalSlotProps: componentsProps.selectLabel,
+        externalSlotProps: slotProps.selectLabel,
         additionalProps: {
           id: labelId,
         },
@@ -167,29 +167,29 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.selectLabel,
       });
 
-    const DisplayedRows = components.DisplayedRows ?? 'p';
+    const DisplayedRows = slots.displayedRows ?? 'p';
     const displayedRowsProps: WithOptionalOwnerState<TablePaginationUnstyledDisplayedRowsSlotProps> =
       useSlotProps({
         elementType: DisplayedRows,
-        externalSlotProps: componentsProps.displayedRows,
+        externalSlotProps: slotProps.displayedRows,
         ownerState,
         className: classes.displayedRows,
       });
 
-    const Toolbar = components.Toolbar ?? 'div';
+    const Toolbar = slots.toolbar ?? 'div';
     const toolbarProps: WithOptionalOwnerState<TablePaginationUnstyledToolbarSlotProps> =
       useSlotProps({
         elementType: Toolbar,
-        externalSlotProps: componentsProps.toolbar,
+        externalSlotProps: slotProps.toolbar,
         ownerState,
         className: classes.toolbar,
       });
 
-    const Spacer = components.Spacer ?? 'div';
+    const Spacer = slots.spacer ?? 'div';
     const spacerProps: WithOptionalOwnerState<TablePaginationUnstyledSpacerSlotProps> =
       useSlotProps({
         elementType: Spacer,
-        externalSlotProps: componentsProps.spacer,
+        externalSlotProps: slotProps.spacer,
         ownerState,
         className: classes.spacer,
       });
@@ -261,35 +261,6 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the TablePagination.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Actions: PropTypes.elementType,
-    DisplayedRows: PropTypes.elementType,
-    MenuItem: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Select: PropTypes.elementType,
-    SelectLabel: PropTypes.elementType,
-    Spacer: PropTypes.elementType,
-    Toolbar: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the TablePagination.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    selectLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    spacer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    toolbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The total number of rows.
    *
@@ -386,6 +357,35 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * Id of the select element within the pagination.
    */
   selectId: PropTypes.string,
+  /**
+   * The props used for each slot inside the TablePagination.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    selectLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    spacer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    toolbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the TablePagination.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    actions: PropTypes.elementType,
+    displayedRows: PropTypes.elementType,
+    menuItem: PropTypes.elementType,
+    root: PropTypes.elementType,
+    select: PropTypes.elementType,
+    selectLabel: PropTypes.elementType,
+    spacer: PropTypes.elementType,
+    toolbar: PropTypes.elementType,
+  }),
 } as any;
 
 export default TablePaginationUnstyled;

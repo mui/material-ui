@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
@@ -47,8 +48,11 @@ const ListSubheaderRoot = styled('div', {
     zIndex: 1,
     background: 'var(--List-item-stickyBackground)',
   }),
+  color:
+    ownerState.color && ownerState.color !== 'context'
+      ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+      : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  color: theme.vars.palette[ownerState.color!]?.[500], // make the subheader less contrast
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
@@ -63,10 +67,12 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     children,
     id: idOverride,
     sticky = false,
-    variant = 'plain',
-    color = 'neutral',
+    variant,
+    color: colorProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
   const id = useId(idOverride);
   const setSubheaderId = React.useContext(ListSubheaderDispatch);
 
@@ -81,7 +87,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id,
     sticky,
     variant,
-    color,
+    color: variant ? color ?? 'neutral' : color,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -115,7 +121,6 @@ ListSubheader.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -145,7 +150,6 @@ ListSubheader.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

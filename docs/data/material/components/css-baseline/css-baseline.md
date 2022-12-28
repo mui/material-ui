@@ -6,7 +6,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">The CssBaseline component helps to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -71,7 +71,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 ### Scrollbars
 
 :::error
-This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+This API is deprecated.
+Consider using [color-scheme](#color-scheme) instead.
 :::
 
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).

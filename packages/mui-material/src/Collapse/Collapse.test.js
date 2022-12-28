@@ -145,13 +145,15 @@ describe('<Collapse />', () => {
       });
 
       const next1 = spy();
-      const Test = (props) => (
-        <ThemeProvider theme={theme}>
-          <Collapse timeout="auto" onEntered={next1} {...props}>
-            <div />
-          </Collapse>
-        </ThemeProvider>
-      );
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Collapse timeout="auto" onEntered={next1} {...props}>
+              <div />
+            </Collapse>
+          </ThemeProvider>
+        );
+      }
       const renderProps1 = render(<Test />);
       const collapse = renderProps1.container.firstChild;
       // Gets wrapper

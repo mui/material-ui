@@ -5,7 +5,7 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
 ## Code of Conduct
 
 MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
-Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Please read [the full text](https://github.com/mui/.github/blob/master/CODE_OF_CONDUCT.md) to understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
 
@@ -19,15 +19,15 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
 
-We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
+We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has already been some discussion about the solution, and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 You can also work on any other issue you choose to.
 The "good first" and "good to take" issues are just issues where we have a clear picture about scope and timeline.
 Pull requests working on other issues or completely new problems may take a bit longer to review when they don't fit into our current development cycle.
 
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don't accidentally duplicate your effort.
+If you decide to fix an issue, please make sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it, so other people don't accidentally duplicate your effort.
 
-If somebody claims an issue but doesn't follow up for more than a week, it's fine to take it over but you should still leave a comment.
+If somebody claims an issue but doesn't follow up for more than a week, it's fine to take it over, but you should still leave a comment.
 If there has been no activity on the issue for 7 to 14 days, it is safe to assume that nobody is working on it.
 
 ## Sending a Pull Request
@@ -80,7 +80,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 ### Trying changes on the documentation site
 
 The documentation site is built with MUI and contains examples of all the components.
-This is a great place to experiment with your changes.
+This is the best place to experiment with your changes.
 It's the local development environment used by the maintainers.
 
 To get started:
@@ -89,20 +89,40 @@ To get started:
 yarn start
 ```
 
-You can now access the documentation site [locally](http://localhost:3000).
+You can now access the documentation site locally: http://localhost:3000.
 Changes to the docs will hot reload the site.
+
+### Trying changes on the playground
+
+While we recommend trying your changes on the documentation site—it's not always ideal.
+You might face the following problems:
+
+- updating the existing demos prevent you to work in isolation on a single instance of the component
+- emptying an existing page to try your changes in isolation lead to a noisy `git diff`
+- static linters will report issues that you might not care about.
+
+To solve these problems—you can use the playground:
+
+```sh
+yarn docs:create-playground && yarn start
+```
+
+You can now access it locally: http://localhost:3000/playground/.
+
+You can create as many playgrounds as you want by going to the `/docs/pages/playground/` folder and duplicating the index.tsx file with a different name: `<file_name>.tsx`.
+The new playground will be accessible under: `http://localhost:3000/playground/<file_name>`.
 
 ### How to increase the chance of being accepted?
 
-Continuous Integration (CI) runs a series of checks automatically when a Pull Request is opened. If you're not
-sure if your changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
-the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
+Continuous Integration (CI) runs a series of checks automatically when a Pull Request is opened. If you're
+unsure if your changes will pass, you can always open a Pull Request, and the GitHub UI will display a summary
+of the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
 <!-- #default-branch-switch -->
 
-- The branch is targeted at `master` for ongoing development. We do our best to keep `master` in good shape, with all tests passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+- The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
@@ -120,11 +140,11 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 - The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
-If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits and the maintainers of the project can assist.
+If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits, and the maintainers of the project can assist.
 
 If your pull request addresses an open issue, make sure to link the PR to that issue.
 Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
-This makes it easier to understand where the PR is coming from and also speeds things up as the issue gets closed when the PR is merged.
+This makes it easier to understand where the PR is coming from, and also speeds things up as the issue gets closed when the PR is merged.
 
 #### Checks and how to fix them
 

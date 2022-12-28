@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
   unstable_useForkRef as useForkRef,
+  unstable_useId as useId,
 } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
@@ -32,7 +33,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     buttonRef: buttonRefProp,
     defaultValue,
     disabled = false,
-    listboxId,
+    listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false,
     onChange,
@@ -47,6 +48,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
+  const listboxId = useId(listboxIdProp);
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -72,12 +74,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     }
   }, [listboxFocusRequested]);
 
-  const updateListboxRef = (listboxElement: HTMLUListElement | null) => {
-    listboxRef.current = listboxElement;
-    focusListboxIfRequested();
-  };
-
-  const handleListboxRef = useForkRef(useForkRef(listboxRefProp, listboxRef), updateListboxRef);
+  const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -267,8 +264,10 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         onMouseDown: createHandleMouseDown(otherHandlers),
         onKeyDown: createHandleButtonKeyDown(otherHandlers),
       }),
+      role: 'combobox' as const,
       'aria-expanded': open,
       'aria-haspopup': 'listbox' as const,
+      'aria-controls': listboxId,
     };
   };
 

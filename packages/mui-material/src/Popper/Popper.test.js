@@ -23,7 +23,12 @@ describe('<Popper />', () => {
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
+    render,
     refInstanceof: window.HTMLDivElement,
+    testLegacyComponentsProp: true,
+    slots: {
+      root: {},
+    },
     skip: [
       'componentProp',
       'componentsProp',
@@ -32,6 +37,7 @@ describe('<Popper />', () => {
       'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

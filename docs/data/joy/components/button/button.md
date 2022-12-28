@@ -14,7 +14,7 @@ unstyled: /base/react-button/
 
 Buttons communicate actions that users can take.
 
-{{"demo": "ButtonUsage.js", "hideToolbar": true}}
+{{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -37,7 +37,7 @@ Which variant you should choose depends on the relative importance of the button
 
 {{"demo": "ButtonVariants.js"}}
 
-:::success
+:::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
 
@@ -54,7 +54,7 @@ The button components comes with three sizes out of the box: `sm`, `md` (the def
 
 {{"demo": "ButtonSizes.js"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -70,6 +70,24 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting decorator
 
 {{"demo": "ButtonIcons.js"}}
 
+### Loading
+
+Enable `loading` prop to show button's loading state. The button will be `disabled` when it is in the loading state.
+
+The default loading indicator uses the [`CircularProgress`](/joy-ui/react-circular-progress/) component which can be customized using the `loadingIndicator` prop.
+
+{{"demo": "ButtonLoading.js"}}
+
+### Loading position
+
+The `loadingPosition` prop supports 3 values:
+
+- `center` (default): The loading indicator element is wrapped inside the button's `loadingIndicatorCenter` slot to create a proper style.
+- `start`: The loading indicator replaces the **start** decorator's content when the button is in loading state.
+- `end`: The loading indicator replaces the **end** decorator's content when the button is in loading state.
+
+{{"demo": "ButtonLoadingPosition.js"}}
+
 ### Icon button
 
 Use the `IconButton` component if you want width and height to be the same while not having a label.
@@ -81,8 +99,8 @@ import IconButton from '@mui/joy/IconButton';
 
 {{"demo": "IconButtons.js"}}
 
-:::info
-**♿️ Accessibility tip**: Make sure to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button.
+:::warning
+Make sure to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button.
 It helps screen readers to properly identify the component.
 
 ```js

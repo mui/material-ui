@@ -12,11 +12,6 @@ export { default as ClickAwayListener } from './ClickAwayListener';
 
 export { default as unstable_composeClasses } from './composeClasses';
 
-export { default as generateUtilityClass } from './generateUtilityClass';
-export * from './generateUtilityClass';
-
-export { default as generateUtilityClasses } from './generateUtilityClasses';
-
 export { default as FocusTrap } from './FocusTrap';
 
 export { default as FormControlUnstyled } from './FormControlUnstyled';
@@ -56,6 +51,9 @@ export * from './SelectUnstyled';
 
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
+
+export { default as SnackbarUnstyled } from './SnackbarUnstyled';
+export * from './SnackbarUnstyled';
 
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';

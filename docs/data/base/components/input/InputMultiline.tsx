@@ -82,7 +82,7 @@ const CustomInput = React.forwardRef(function CustomInput(
 ) {
   return (
     <InputUnstyled
-      components={{ Input: StyledInputElement, Textarea: StyledTextareaElement }}
+      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
       {...props}
       ref={ref}
     />

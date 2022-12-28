@@ -15,6 +15,8 @@ export interface CardClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -47,6 +49,7 @@ const cardClasses: CardClasses = generateUtilityClasses('JoyCard', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

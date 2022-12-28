@@ -111,7 +111,10 @@ const RatingRoot = styled('span', {
 const RatingLabel = styled('label', {
   name: 'MuiRating',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
+  overridesResolver: ({ ownerState }, styles) => [
+    styles.label,
+    ownerState.emptyValueFocused && styles.labelEmptyValueActive,
+  ],
 })(({ ownerState }) => ({
   cursor: 'inherit',
   ...(ownerState.emptyValueFocused && {
@@ -354,8 +357,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
-  const handleRef = useForkRef(handleFocusRef, ref);
+  const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
