@@ -13,7 +13,7 @@ export interface ModalOwnerState extends ModalProps {
   exited: boolean;
 }
 
-export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = {
+export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
   props: P & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
@@ -82,7 +82,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = {
     sx?: SxProps<Theme>;
   };
   defaultComponent: D;
-};
+}
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
 
