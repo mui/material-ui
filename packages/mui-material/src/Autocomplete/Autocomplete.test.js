@@ -2659,8 +2659,9 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
+      
       checkHighlightIs(getByRole('listbox'), 'five');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
