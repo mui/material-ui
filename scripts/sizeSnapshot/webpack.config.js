@@ -141,6 +141,10 @@ async function getWebpackEntries() {
       id: '@material-ui/utils',
       path: 'packages/mui-utils/build/esm/index.js',
     },
+    {
+      id: '@material-ui/md-theme',
+      path: 'packages/mui-md-theme/build/esm/index.js',
+    },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
     // {

@@ -5,8 +5,18 @@ import {
   unstable_capitalize as capitalize,
   unstable_composeClasses as composeClasses,
 } from '@mui/utils';
-import { styled, useThemeProps } from '@mui/system';
+import { createStyled, shouldForwardProp, useThemeProps as systemUseThemeProps } from '@mui/system';
+import { defaultTheme } from '@mui/md-theme';
 import { getSvgIconUtilityClass } from './svgIconClasses';
+
+const styled = createStyled({
+  defaultTheme,
+  rootShouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'classes',
+});
+
+function useThemeProps({ props, name }) {
+  return systemUseThemeProps({ props, name, defaultTheme });
+}
 
 const useUtilityClasses = (ownerState) => {
   const { color, fontSize, classes } = ownerState;
@@ -20,18 +30,6 @@ const useUtilityClasses = (ownerState) => {
   };
 
   return composeClasses(slots, getSvgIconUtilityClass, classes);
-};
-
-const defaultMaterialDesignColors = {
-  inherit: undefined,
-  action: 'rgba(0, 0, 0, 0.54)',
-  disabled: 'rgba(0, 0, 0, 0.26)',
-  primary: '#1976d2',
-  secondary: '#9c27b0',
-  error: '#d32f2f',
-  info: '#0288d1',
-  success: '#2e7d32',
-  warning: '#ed6c02',
 };
 
 const SvgIconRoot = styled('svg', {
@@ -70,8 +68,7 @@ const SvgIconRoot = styled('svg', {
       action: (theme.vars || theme).palette?.action?.active,
       disabled: (theme.vars || theme).palette?.action?.disabled,
       inherit: undefined,
-    }[ownerState.color] ??
-    defaultMaterialDesignColors[ownerState.color],
+    }[ownerState.color],
 }));
 
 /**

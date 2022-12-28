@@ -12,11 +12,26 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 var _clsx = _interopRequireDefault(require("clsx"));
 var _utils = require("@mui/utils");
 var _system = require("@mui/system");
+var _mdTheme = require("@mui/md-theme");
 var _svgIconClasses = require("./svgIconClasses");
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox", "classes"];
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const styled = (0, _system.createStyled)({
+  defaultTheme: _mdTheme.defaultTheme,
+  rootShouldForwardProp: prop => (0, _system.shouldForwardProp)(prop) && prop !== 'classes'
+});
+function useThemeProps({
+  props,
+  name
+}) {
+  return (0, _system.useThemeProps)({
+    props,
+    name,
+    defaultTheme: _mdTheme.defaultTheme
+  });
+}
 const useUtilityClasses = ownerState => {
   const {
     color,
@@ -28,18 +43,7 @@ const useUtilityClasses = ownerState => {
   };
   return (0, _utils.unstable_composeClasses)(slots, _svgIconClasses.getSvgIconUtilityClass, classes);
 };
-const defaultMaterialDesignColors = {
-  inherit: undefined,
-  action: 'rgba(0, 0, 0, 0.54)',
-  disabled: 'rgba(0, 0, 0, 0.26)',
-  primary: '#1976d2',
-  secondary: '#9c27b0',
-  error: '#d32f2f',
-  info: '#0288d1',
-  success: '#2e7d32',
-  warning: '#ed6c02'
-};
-const SvgIconRoot = (0, _system.styled)('svg', {
+const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -52,7 +56,7 @@ const SvgIconRoot = (0, _system.styled)('svg', {
   theme,
   ownerState
 }) => {
-  var _theme$transitions$cr, _theme$transitions, _theme$transitions$cr2, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _ref, _palette$ownerState$c, _palette, _palette$ownerState$c2, _palette2, _palette2$action, _palette3, _palette3$action;
+  var _theme$transitions$cr, _theme$transitions, _theme$transitions$cr2, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _palette$ownerState$c, _palette, _palette$ownerState$c2, _palette2, _palette2$action, _palette3, _palette3$action;
   return {
     userSelect: 'none',
     width: '1em',
@@ -70,11 +74,11 @@ const SvgIconRoot = (0, _system.styled)('svg', {
       large: ((_theme$typography3 = theme.typography) == null ? void 0 : (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || '2.1875rem'
     }[ownerState.fontSize],
     // TODO v5 deprecate, v6 remove for sx
-    color: (_ref = (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null ? void 0 : (_palette$ownerState$c2 = _palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
+    color: (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null ? void 0 : (_palette$ownerState$c2 = _palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
       action: (_palette2 = (theme.vars || theme).palette) == null ? void 0 : (_palette2$action = _palette2.action) == null ? void 0 : _palette2$action.active,
       disabled: (_palette3 = (theme.vars || theme).palette) == null ? void 0 : (_palette3$action = _palette3.action) == null ? void 0 : _palette3$action.disabled,
       inherit: undefined
-    }[ownerState.color]) != null ? _ref : defaultMaterialDesignColors[ownerState.color]
+    }[ownerState.color]
   };
 });
 
@@ -90,7 +94,7 @@ const SvgIconRoot = (0, _system.styled)('svg', {
  * - [SvgIcon API](https://mui.com/material-ui/api/svg-icon/)
  */
 const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
-  const props = (0, _system.useThemeProps)({
+  const props = useThemeProps({
     props: inProps,
     name: 'MuiSvgIcon'
   });

@@ -1,6 +1,3 @@
-const common = {
-  black: '#000',
-  white: '#fff',
-};
+import { common } from '@mui/md-theme';
 
 export default common;

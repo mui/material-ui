@@ -48,6 +48,13 @@ baseUnitContext.keys().forEach(baseUnitContext);
 const utilsContext = require.context('../packages/mui-utils/src/', true, /\.test\.(js|ts|tsx)$/);
 utilsContext.keys().forEach(utilsContext);
 
+const mdThemeContext = require.context(
+  '../packages/mui-md-theme/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+mdThemeContext.keys().forEach(mdThemeContext);
+
 const materialNextContext = require.context(
   '../packages/mui-material-next/src/',
   true,

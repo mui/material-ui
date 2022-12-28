@@ -160,6 +160,7 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',
                         '@mui/base': './packages/mui-base/src',
+                        '@mui/md-theme': './packages/mui-md-theme/src',
                         '@mui/material-next': './packages/mui-material-next/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },

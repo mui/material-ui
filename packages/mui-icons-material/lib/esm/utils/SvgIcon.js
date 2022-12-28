@@ -5,10 +5,25 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_composeClasses as composeClasses } from '@mui/utils';
-import { styled, useThemeProps } from '@mui/system';
+import { createStyled, shouldForwardProp, useThemeProps as systemUseThemeProps } from '@mui/system';
+import { defaultTheme } from '@mui/md-theme';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { jsxs as _jsxs } from "react/jsx-runtime";
+const styled = createStyled({
+  defaultTheme,
+  rootShouldForwardProp: prop => shouldForwardProp(prop) && prop !== 'classes'
+});
+function useThemeProps({
+  props,
+  name
+}) {
+  return systemUseThemeProps({
+    props,
+    name,
+    defaultTheme
+  });
+}
 const useUtilityClasses = ownerState => {
   const {
     color,
@@ -19,17 +34,6 @@ const useUtilityClasses = ownerState => {
     root: ['root', color !== 'inherit' && `color${capitalize(color)}`, `fontSize${capitalize(fontSize)}`]
   };
   return composeClasses(slots, getSvgIconUtilityClass, classes);
-};
-const defaultMaterialDesignColors = {
-  inherit: undefined,
-  action: 'rgba(0, 0, 0, 0.54)',
-  disabled: 'rgba(0, 0, 0, 0.26)',
-  primary: '#1976d2',
-  secondary: '#9c27b0',
-  error: '#d32f2f',
-  info: '#0288d1',
-  success: '#2e7d32',
-  warning: '#ed6c02'
 };
 const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
@@ -44,7 +48,7 @@ const SvgIconRoot = styled('svg', {
   theme,
   ownerState
 }) => {
-  var _theme$transitions$cr, _theme$transitions, _theme$transitions$cr2, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _ref, _palette$ownerState$c, _palette, _palette$ownerState$c2, _palette2, _palette2$action, _palette3, _palette3$action;
+  var _theme$transitions$cr, _theme$transitions, _theme$transitions$cr2, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _palette$ownerState$c, _palette, _palette$ownerState$c2, _palette2, _palette2$action, _palette3, _palette3$action;
   return {
     userSelect: 'none',
     width: '1em',
@@ -62,11 +66,11 @@ const SvgIconRoot = styled('svg', {
       large: ((_theme$typography3 = theme.typography) == null ? void 0 : (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || '2.1875rem'
     }[ownerState.fontSize],
     // TODO v5 deprecate, v6 remove for sx
-    color: (_ref = (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null ? void 0 : (_palette$ownerState$c2 = _palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
+    color: (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null ? void 0 : (_palette$ownerState$c2 = _palette[ownerState.color]) == null ? void 0 : _palette$ownerState$c2.main) != null ? _palette$ownerState$c : {
       action: (_palette2 = (theme.vars || theme).palette) == null ? void 0 : (_palette2$action = _palette2.action) == null ? void 0 : _palette2$action.active,
       disabled: (_palette3 = (theme.vars || theme).palette) == null ? void 0 : (_palette3$action = _palette3.action) == null ? void 0 : _palette3$action.disabled,
       inherit: undefined
-    }[ownerState.color]) != null ? _ref : defaultMaterialDesignColors[ownerState.color]
+    }[ownerState.color]
   };
 });
 

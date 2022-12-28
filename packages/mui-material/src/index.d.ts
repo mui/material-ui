@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DistributiveOmit } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
+export { PaletteMode, Color } from '@mui/md-theme';
 export { StyledComponentProps };
 
 /**
@@ -41,27 +42,9 @@ export type InternalStandardProps<C, Removals extends keyof C = never> = Distrib
     style?: React.CSSProperties;
   };
 
-export type PaletteMode = 'light' | 'dark';
-export interface Color {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-  A100: string;
-  A200: string;
-  A400: string;
-  A700: string;
-}
-
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-shadow, @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 

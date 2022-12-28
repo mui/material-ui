@@ -13,6 +13,7 @@
     "packages/mui-types",
     "packages/mui-utils",
     "packages/mui-base",
+    "packages/mui-md-theme",
     "packages/mui-styled-engine",
     "packages/mui-styled-engine-sc",
     "packages/mui-material-next",
@@ -31,6 +32,7 @@
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
     "@mui/base": "packages/mui-base/build",
+    "@mui/md-theme": "packages/mui-md-theme/build",
     "@mui/material-next": "packages/mui-material-next/build",
     "@mui/joy": "packages/mui-joy/build"
   },

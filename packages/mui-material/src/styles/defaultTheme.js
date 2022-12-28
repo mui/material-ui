@@ -1,5 +1,1 @@
-import createTheme from './createTheme';
-
-const defaultTheme = createTheme();
-
-export default defaultTheme;
+export { defaultTheme as default } from '@mui/md-theme';
