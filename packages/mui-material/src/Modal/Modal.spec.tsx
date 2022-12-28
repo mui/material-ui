@@ -28,7 +28,10 @@ const backdropProps: ModalProps['BackdropProps'] = {
     root: ({ disableAutoFocus }) => ({ className: disableAutoFocus ? '' : 'focused' }),
     backdrop: ({ exited }) => ({ className: exited ? 'hidden' : '' }),
   }}
-  componentsProps={{ root: () => ({}), backdrop: () => ({}) }}
+  componentsProps={{
+    root: ({ exited }) => ({ className: exited ? 'hidden' : '' }),
+    backdrop: ({ disableAutoFocus }) => ({ className: disableAutoFocus ? '' : 'modal-focused' }),
+  }}
 >
   <div />
 </Modal>;
