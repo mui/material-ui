@@ -222,9 +222,9 @@ export interface UseAutocompleteProps<
   ) => void;
   /**
    * Callback fired when scroll reaches bottom of container
-   * @param {React.UIEvent<HTMLDivElement, UIEvent>} event The event source of the scroll event.
+   * @param {React.UIEvent<HTMLUListElement, UIEvent>} event The event source of the scroll event.
    */
-  onScrollToBottom?: (event: React.UIEvent<HTMLDivElement, UIEvent>) => void;
+  onScrollToBottom?: (event: React.UIEvent<HTMLUListElement, UIEvent>) => void;
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).

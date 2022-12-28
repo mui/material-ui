@@ -189,7 +189,7 @@ export interface AutocompleteProps<
   /**
    * Callback fired when scroll reaches bottom of container
    */
-  onScrollToBottom?: (event: React.UIEvent<HTMLDivElement, UIEvent>) => void;
+  onScrollToBottom?: (event: React.UIEvent<HTMLUListElement, UIEvent>) => void;
   /**
    * Override the default text for the *open popup* icon button.
    *

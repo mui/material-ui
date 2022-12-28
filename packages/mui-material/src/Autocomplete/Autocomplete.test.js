@@ -2645,6 +2645,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
+          ListboxProps={{ style: { height: '100px' } }}
           renderInput={(params) => <TextField {...params} />}
           onScrollToBottom={onScrollToBottom}
         />,
@@ -2660,7 +2661,6 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       checkHighlightIs(getByRole('listbox'), 'five');
-      console.log('callCount', onScrollToBottom.callCount);
       expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
