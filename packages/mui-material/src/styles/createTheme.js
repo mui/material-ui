@@ -1,3 +1,1 @@
-import { createTheme } from '@mui/md-theme';
-
-export default createTheme;
+export { createTheme as default, createMuiTheme } from '@mui/md-theme';
