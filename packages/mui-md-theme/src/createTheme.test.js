@@ -1,11 +1,7 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
 import { createTheme, deepOrange, green } from '@mui/md-theme';
 
 describe('createTheme', () => {
-  const { render } = createRenderer();
-
   it('should have a palette', () => {
     const theme = createTheme();
     expect(typeof createTheme).to.equal('function');
