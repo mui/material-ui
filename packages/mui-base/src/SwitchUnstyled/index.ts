@@ -1,4 +1,4 @@
-export { default } from './SwitchUnstyled';
+export { default, useSwitchUnstyledOwnerState } from './SwitchUnstyled';
 export * from './SwitchUnstyled.types';
 
 export { default as useSwitch } from './useSwitch';

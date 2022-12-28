@@ -15,6 +15,19 @@ import {
 } from './SwitchUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
+const SwitchUnstyledOwnerStateContext = React.createContext<SwitchUnstyledOwnerState | null>(null);
+
+export function useSwitchUnstyledOwnerState(): SwitchUnstyledOwnerState {
+  const context = React.useContext(SwitchUnstyledOwnerStateContext);
+  if (context === null) {
+    throw new Error(
+      'useSwitchUnstyledOwnerState() can only be called in a slot component of SwitchUnstyled',
+    );
+  }
+
+  return context;
+}
+
 const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
   const { checked, disabled, focusVisible, readOnly } = ownerState;
 
@@ -77,13 +90,15 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
 
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
 
-  const ownerState: SwitchUnstyledOwnerState = {
-    ...props,
-    checked,
-    disabled,
-    focusVisible,
-    readOnly,
-  };
+  const ownerState: SwitchUnstyledOwnerState = React.useMemo(
+    () => ({
+      checked,
+      disabled,
+      focusVisible,
+      readOnly,
+    }),
+    [checked, disabled, focusVisible, readOnly],
+  );
 
   const classes = useUtilityClasses(ownerState);
 
@@ -95,41 +110,53 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     additionalProps: {
       ref,
     },
-    ownerState,
+    // @ts-ignore
+    ownerState: undefined,
     className: classes.root,
   });
+
+  delete rootProps.ownerState;
 
   const Thumb: React.ElementType = slots.thumb ?? 'span';
   const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = useSlotProps({
     elementType: Thumb,
     externalSlotProps: slotProps.thumb,
-    ownerState,
+    // @ts-ignore
+    ownerState: undefined,
     className: classes.thumb,
   });
+
+  delete thumbProps.ownerState;
 
   const Input: React.ElementType = slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: getInputProps,
     externalSlotProps: slotProps.input,
-    ownerState,
+    // @ts-ignore
+    ownerState: undefined,
     className: classes.input,
   });
+
+  delete rootProps.ownerState;
 
   const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
   const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = useSlotProps({
     elementType: Track,
     externalSlotProps: slotProps.track,
-    ownerState,
+    // @ts-ignore
+    ownerState: undefined,
     className: classes.track,
   });
 
   return (
-    <Root {...rootProps}>
-      <Track {...trackProps} />
-      <Thumb {...thumbProps} />
-      <Input {...inputProps} />
-    </Root>
+    <SwitchUnstyledOwnerStateContext.Provider value={ownerState}>
+      <Root {...rootProps}>
+        <Track {...trackProps} />
+        <Thumb {...thumbProps} />
+        <Input {...inputProps} />
+      </Root>
+    </SwitchUnstyledOwnerStateContext.Provider>
   );
 }) as OverridableComponent<SwitchUnstyledTypeMap>;
 
