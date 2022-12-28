@@ -1,4 +1,4 @@
-import { ThemeOptions as MDThemeOptions, BaseTheme, Theme as MDTheme } from '@mui/md-theme';
+import { ThemeOptions as MDThemeOptions, BaseTheme } from '@mui/md-theme';
 import { SxProps, CSSObject, SxConfig } from '@mui/system';
 import { Components } from './components';
 

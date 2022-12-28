@@ -1,4 +1,4 @@
-import { deepmerge, generateUtilityClass } from '@mui/utils';
+import { deepmerge, unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import {
   createTheme as systemCreateTheme,
   unstable_defaultSxConfig as defaultSxConfig,
