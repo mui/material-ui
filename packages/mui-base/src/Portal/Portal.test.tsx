@@ -152,6 +152,7 @@ describe('<Portal />', () => {
     }
 
     const { setProps } = render(<ContainerTest />);
+    
     expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
