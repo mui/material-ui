@@ -1,4 +1,3 @@
-export * from './createTheme';
 export { default as createTheme } from './createTheme';
 export { default as shadows } from './shadows';
 export { default as zIndex } from './zIndex';
