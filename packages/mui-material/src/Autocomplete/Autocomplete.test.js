@@ -2654,14 +2654,17 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      
-      checkHighlightIs(getByRole('listbox'), 'five');
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const listbox = getByRole('listbox');
+      const option = screen.getAllByRole('option')[0];
+      const { height: optionHeight } = option.getBoundingClientRect();
+
+      const listboxPaddingBottom = Number(
+        window.getComputedStyle(listbox).getPropertyPriority('padding-bottom').replace('px', ''),
+      );
+
+      fireEvent.scroll(listbox, {
+        target: { scrollTop: optionHeight * 2 + listboxPaddingBottom },
+      });
       expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
