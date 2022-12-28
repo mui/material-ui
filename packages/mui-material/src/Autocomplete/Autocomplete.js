@@ -420,7 +420,6 @@ AutocompleteVirtualList.propTypes = {
 export { createFilterOptions };
 
 const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
-  const maxRowsBeforeVirtualize = 200;
   const props = useThemeProps({ props: inProps, name: 'MuiAutocomplete' });
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
@@ -485,6 +484,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     size = 'medium',
     slotProps = {},
     value: valueProp,
+    virtualize,
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -700,9 +700,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 ownerState={ownerState}
                 {...getListboxProps()}
                 {...ListboxProps}
-                sx={{ minHeight: groupedOptions.length > maxRowsBeforeVirtualize ? '40vh' : '' }}
+                sx={{ minHeight: virtualize ? virtualize.minContainerHeight : '' }}
               >
-                {groupedOptions.length <= maxRowsBeforeVirtualize &&
+                {!virtualize &&
                   groupedOptions.map((option, index) => {
                     if (groupBy) {
                       return renderGroup({
@@ -715,7 +715,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                     }
                     return renderListOption(option, index);
                   })}
-                {groupedOptions.length > maxRowsBeforeVirtualize && (
+                {virtualize && (
                   <AutocompleteVirtualList
                     groupBy={groupBy}
                     renderGroup={renderGroup}
@@ -1157,6 +1157,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
       );
     }
     return null;
+  }),
+  /**
+   * Options for virtualizing the Autocomplete list.
+   */
+  virtualize: PropTypes.shape({
+    minContainerHeight: PropTypes.string.isRequired,
   }),
 };
 

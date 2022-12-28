@@ -272,6 +272,10 @@ export interface AutocompleteProps<
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+  /**
+   * Options for virtualizing the Autocomplete list.
+   */
+  virtualize?: { minContainerHeight: string };
 }
 
 /**
