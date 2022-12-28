@@ -63,6 +63,7 @@
     "@babel/runtime": "^7.20.7",
     "@mui/base": "5.0.0-alpha.112",
     "@mui/core-downloads-tracker": "^5.11.2",
+    "@mui/md-theme": "^5.11.2",
     "@mui/system": "^5.11.2",
     "@mui/types": "^7.2.3",
     "@mui/utils": "^5.11.2",

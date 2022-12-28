@@ -1,6 +1,4 @@
-import { Color } from '@mui/material';
-import { blue, common } from '@mui/material/colors';
-import { createTheme, Theme } from '@mui/material/styles';
+import { Color, blue, common, createTheme, Theme } from '@mui/md-theme';
 
 {
   const palette = createTheme().palette;

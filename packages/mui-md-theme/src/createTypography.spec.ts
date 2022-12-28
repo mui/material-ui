@@ -1,4 +1,4 @@
-import { styled, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/md-theme';
 import { expectType } from '@mui/types';
 
 {
@@ -26,10 +26,4 @@ import { expectType } from '@mui/types';
     | undefined,
     typeof maybeFontStyle
   >(maybeFontStyle);
-}
-
-{
-  const StyledComponents = styled('span')(({ theme }) => ({
-    ...theme.typography.body1,
-  }));
 }

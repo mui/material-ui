@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@mui/md-theme';
 
 const theme = createTheme();
 
@@ -12,22 +12,6 @@ const theme = createTheme();
             color: 'white',
           },
         },
-      },
-    },
-  });
-}
-
-// MuiCssBaseline styleOverrides key as a callback
-{
-  createTheme({
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: (themeParam) => `
-          span {
-            background-color: ${themeParam.palette.success.main};
-            color: ${themeParam.palette.error.main};
-          }
-        `,
       },
     },
   });
@@ -140,44 +124,6 @@ const theme = createTheme();
             color: '#FFD700',
           },
         },
-      },
-    },
-  });
-}
-
-{
-  createTheme(theme, {
-    components: {
-      MuiButton: {
-        variants: [
-          {
-            props: {}, // match any props combination
-            style: ({ theme: t }) => {
-              return {
-                fontFamily: t.typography.fontFamily,
-              };
-            },
-          },
-        ],
-      },
-    },
-  } as ThemeOptions);
-}
-
-{
-  createTheme({
-    components: {
-      MuiButton: {
-        variants: [
-          {
-            props: {}, // match any props combination
-            style: ({ theme: t }) => {
-              return {
-                fontFamily: t.typography.fontFamily,
-              };
-            },
-          },
-        ],
       },
     },
   });
