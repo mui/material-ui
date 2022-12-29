@@ -57,9 +57,9 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     onChange,
     onFocus,
     onFocusVisible,
-    provideOwnerStateToSlots = false,
     readOnly: readOnlyProp,
     required,
+    slotConfig = {},
     slotProps = {},
     slots = {},
     ...other
@@ -100,6 +100,10 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.root,
   });
 
+  if (!slotConfig.root?.provideOwnerState) {
+    delete rootProps.ownerState;
+  }
+
   const Thumb: React.ElementType = slots.thumb ?? 'span';
   const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = useSlotProps({
     elementType: Thumb,
@@ -107,6 +111,10 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     ownerState,
     className: classes.thumb,
   });
+
+  if (!slotConfig.thumb?.provideOwnerState) {
+    delete thumbProps.ownerState;
+  }
 
   const Input: React.ElementType = slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = useSlotProps({
@@ -117,6 +125,10 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.input,
   });
 
+  if (!slotConfig.input?.provideOwnerState) {
+    delete inputProps.ownerState;
+  }
+
   const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
   const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = useSlotProps({
     elementType: Track,
@@ -125,10 +137,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.track,
   });
 
-  if (!provideOwnerStateToSlots) {
-    delete rootProps.ownerState;
-    delete thumbProps.ownerState;
-    delete inputProps.ownerState;
+  if (!slotConfig.track?.provideOwnerState) {
     delete trackProps.ownerState;
   }
 

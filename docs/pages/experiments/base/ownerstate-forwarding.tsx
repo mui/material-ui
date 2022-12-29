@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import SwitchUnstyled, {
   switchUnstyledClasses,
+  SwitchUnstyledProps,
   SwitchUnstyledThumbSlotProps,
 } from '@mui/base/SwitchUnstyled';
 
@@ -98,10 +99,13 @@ const Thumb = styled(
 export default function UnstyledSwitches() {
   const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
   const slots = { root: Root, thumb: Thumb };
+  const slotConfig: SwitchUnstyledProps['slotConfig'] = {
+    thumb: { provideOwnerState: true },
+  };
 
   return (
     <div>
-      <SwitchUnstyled slots={slots} provideOwnerStateToSlots {...label} defaultChecked />
+      <SwitchUnstyled slots={slots} slotConfig={slotConfig} {...label} defaultChecked />
     </div>
   );
 }
