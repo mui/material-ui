@@ -2637,9 +2637,9 @@ describe('<Autocomplete />', () => {
 
   describe('prop: onScrollToBottom', () => {
     it('should call onScrollToBottom when scroll bar reaches bottom by mouse', function test() {
-      // if (/jsdom/.test(window.navigator.userAgent)) {
-      //   this.skip();
-      // }
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       const onScrollToBottom = spy();
       const { getByRole } = render(
         <Autocomplete
@@ -2664,15 +2664,23 @@ describe('<Autocomplete />', () => {
       fireEvent.scroll(listbox, {
         target: { scrollTop: option.clientHeight * 2 + listboxPaddingBottom },
       });
+
+      const lisboxHeight = listbox.offsetHeight;
+      const contentHeight = listbox.scrollHeight;
+      const scrollPosition = listbox.scrollTop;
+      const distanceFromBottom = contentHeight - (scrollPosition + lisboxHeight);
+
+      console.log(lisboxHeight, contentHeight, scrollPosition, distanceFromBottom);
+
       expect(onScrollToBottom.callCount).to.equal(1);
     });
 
     it('should call onScrollToBottom when scroll bar reaches bottom by keyboard', function test() {
-      // if (/jsdom/.test(window.navigator.userAgent)) {
-      //   this.skip();
-      // }
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       const onScrollToBottom = spy();
-      let onScrollCalledCount = 0;
+
       const { getByRole } = render(
         <Autocomplete
           open
@@ -2680,10 +2688,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
           onScrollToBottom={onScrollToBottom}
           ListboxProps={{
-            style: { height: '100px', padding: 0 },
-            onScroll: () => {
-              onScrollCalledCount++;
-            },
+            style: { height: '100px' },
           }}
         />,
       );
@@ -2691,15 +2696,21 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      // const listbox = getByRole('listbox');
+      const listbox = getByRole('listbox');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.scroll(listbox);
       checkHighlightIs(getByRole('listbox'), 'five');
-      expect(onScrollCalledCount).to.equal(0);
-      // expect(onScrollToBottom.callCount).to.equal(1);
+      const lisboxHeight = listbox.offsetHeight;
+      const contentHeight = listbox.scrollHeight;
+      const scrollPosition = listbox.scrollTop;
+      const distanceFromBottom = contentHeight - (scrollPosition + lisboxHeight);
+
+      console.log(lisboxHeight, contentHeight, scrollPosition, distanceFromBottom);
+      expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
 
