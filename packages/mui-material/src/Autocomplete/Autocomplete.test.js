@@ -2730,6 +2730,7 @@ describe('<Autocomplete />', () => {
       userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
       userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
       userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
+      console.log(document.activeElement);
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollToBottom.callCount).to.equal(0);
     });
