@@ -6,6 +6,7 @@ import {
   act,
   createRenderer,
   fireEvent,
+  userEvent,
   screen,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
@@ -2665,7 +2666,7 @@ describe('<Autocomplete />', () => {
         target: { scrollTop: option.clientHeight * 2 + listboxPaddingBottom },
       });
       expect(onScrollToBottom.callCount).to.equal(1);
-      // scroll again to top
+      // scroll to top
       fireEvent.scroll(listbox, {
         target: { scrollTop: 0 },
       });
@@ -2697,13 +2698,11 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      const listbox = getByRole('listbox');
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.scroll(listbox);
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollToBottom.callCount).to.equal(1);
     });
@@ -2726,13 +2725,11 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      const listbox = getByRole('listbox');
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.scroll(listbox);
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      userEvent.keyPress(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollToBottom.callCount).to.equal(0);
     });
