@@ -2681,6 +2681,9 @@ describe('<Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
           ListboxProps={{
             style: { height: '100px', padding: 0 },
+            onScroll: () => {
+              onScrollCalledCount++;
+            },
           }}
         />,
       );
@@ -2688,10 +2691,7 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      const listbox = getByRole('listbox');
-      listbox.addEventListener('scroll', () => {
-        onScrollCalledCount++;
-      });
+      // const listbox = getByRole('listbox');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -2700,6 +2700,39 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollCalledCount).to.equal(0);
       // expect(onScrollToBottom.callCount).to.equal(1);
+    });
+
+    it('ignore test', () => {
+      const onScroll = spy();
+      render(
+        <div onScroll={onScroll} role="listbox" style={{ height: '100px', overflowY: 'scroll' }}>
+          <div>
+            <a href="/">s</a>
+          </div>
+          <div>
+            <a href="/">s</a>
+          </div>
+          <div>
+            <a href="/">s</a>
+          </div>
+          <div>
+            <a href="/">s</a>
+          </div>
+          <div>
+            <a href="/">s</a>
+          </div>
+          <div>
+            <a href="/">s</a>
+          </div>
+        </div>,
+      );
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+      expect(onScroll.callCount).to.equal(1);
     });
   });
 
