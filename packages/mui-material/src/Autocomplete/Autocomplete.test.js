@@ -2694,15 +2694,15 @@ describe('<Autocomplete />', () => {
           }}
         />,
       );
-      const textbox = getByRole('combobox');
-      act(() => {
-        textbox.focus();
-      });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      fireEvent.focus(document.body);
+
+      userEvent.keyPress(document.body, { key: 'Tab' });
+      userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
+      userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
+      userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
+      userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
+      userEvent.keyPress(document.activeElement, { key: 'ArrowDown' });
+      console.log(document.activeElement);
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollToBottom.callCount).to.equal(1);
     });
