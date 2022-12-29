@@ -2636,10 +2636,10 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onScrollToBottom', () => {
-    it('should call onScrollToBottom when scroll reaches bottom', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it('should call onScrollToBottom when scroll bar reaches bottom by mouse', function test() {
+      // if (/jsdom/.test(window.navigator.userAgent)) {
+      //   this.skip();
+      // }
       const onScrollToBottom = spy();
       const { getByRole } = render(
         <Autocomplete
@@ -2656,15 +2656,42 @@ describe('<Autocomplete />', () => {
       });
       const listbox = getByRole('listbox');
       const option = screen.getAllByRole('option')[0];
-      const { height: optionHeight } = option.getBoundingClientRect();
 
       const listboxPaddingBottom = Number(
         window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
       );
-      expect(listboxPaddingBottom).to.equal(8); // just for testing will be removed in final version
+
       fireEvent.scroll(listbox, {
-        target: { scrollTop: optionHeight * 2 + listboxPaddingBottom },
+        target: { scrollTop: option.clientHeight * 2 + listboxPaddingBottom },
       });
+      expect(onScrollToBottom.callCount).to.equal(1);
+    });
+
+    it('should call onScrollToBottom when scroll bar reaches bottom by keyboard', function test() {
+      // if (/jsdom/.test(window.navigator.userAgent)) {
+      //   this.skip();
+      // }
+      const onScrollToBottom = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          ListboxProps={{ style: { height: '100px', padding: 0 } }}
+          renderInput={(params) => <TextField {...params} />}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+      const textbox = getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      const listbox = getByRole('listbox');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
