@@ -360,7 +360,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             tabMeta &&
             tabMeta.width === 0 &&
             tabMeta.height === 0 &&
-            // if the tab list element is hidden, don't warn
+            // if the whole Tabs component is hidden, don't warn
             tabsMeta.clientWidth !== 0
           ) {
             tabsMeta = null;
