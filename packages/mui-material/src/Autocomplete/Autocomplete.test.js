@@ -2701,54 +2701,6 @@ describe('<Autocomplete />', () => {
       expect(onScrollCalledCount).to.equal(0);
       // expect(onScrollToBottom.callCount).to.equal(1);
     });
-
-    it('ignore test', () => {
-      const onScroll = spy();
-      const a1 = React.createRef();
-      const { getByRole } = render(
-        <div onScroll={onScroll} role="listbox" style={{ height: '100px', overflowY: 'scroll' }}>
-          <div>
-            <a role="listitem" ref={a1} href="/0">
-              s
-            </a>
-          </div>
-          <div>
-            <a role="listitem" href="/1">
-              s
-            </a>
-          </div>
-          <div>
-            <a role="listitem" href="/2">
-              s
-            </a>
-          </div>
-          <div>
-            <a role="listitem" href="/3">
-              s
-            </a>
-          </div>
-          <div>
-            <a role="listitem" href="/4">
-              s
-            </a>
-          </div>
-          <div>
-            <a role="listitem" id="6" href="/5">
-              s
-            </a>
-          </div>
-        </div>,
-      );
-      // const listbox = getByRole('listbox');
-
-      // Press the tab button 6 times to focus on the 6th element
-      for (let i = 0; i < 6; i++) {
-        fireEvent.keyDown(document.activeElement, { key: 'Tab' });
-      }
-      console.log(document.activeElement);
-      // Assert that the focus is on the 6th element
-      expect(document.getElementById('6')).toHaveFocus();
-    });
   });
 
   describe('prop: readOnly', () => {
