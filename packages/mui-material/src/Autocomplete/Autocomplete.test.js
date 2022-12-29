@@ -2659,9 +2659,9 @@ describe('<Autocomplete />', () => {
       const { height: optionHeight } = option.getBoundingClientRect();
 
       const listboxPaddingBottom = Number(
-        window.getComputedStyle(listbox).getPropertyPriority('padding-bottom').replace('px', ''),
+        window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
       );
-
+      expect(listboxPaddingBottom).to.equal(8); // just for testing will be removed in final version
       fireEvent.scroll(listbox, {
         target: { scrollTop: optionHeight * 2 + listboxPaddingBottom },
       });
