@@ -2685,7 +2685,6 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      const listbox = getByRole('listbox');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
