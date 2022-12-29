@@ -2681,15 +2681,16 @@ describe('<Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
           ListboxProps={{
             style: { height: '100px', padding: 0 },
-            onScroll: () => {
-              onScrollCalledCount++;
-            },
           }}
         />,
       );
       const textbox = getByRole('combobox');
       act(() => {
         textbox.focus();
+      });
+      const listbox = getByRole('listbox');
+      listbox.addEventListener('scroll', () => {
+        onScrollCalledCount++;
       });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -2698,7 +2699,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollCalledCount).to.equal(0);
-     // expect(onScrollToBottom.callCount).to.equal(1);
+      // expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
 
