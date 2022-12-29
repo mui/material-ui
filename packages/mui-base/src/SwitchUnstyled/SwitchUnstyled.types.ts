@@ -1,8 +1,10 @@
+import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
 
-export interface SwitchUnstyledComponentsPropsOverrides {}
+export interface SwitchUnstyledSlotPropsOverrides
+  extends Partial<Record<'root' | 'thumb' | 'input' | 'track', undefined>> {}
 
 export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   /**
@@ -28,22 +30,22 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   slotProps?: {
     root?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledSlotPropsOverrides['root'],
       SwitchUnstyledOwnerState
     >;
     thumb?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledSlotPropsOverrides['thumb'],
       SwitchUnstyledOwnerState
     >;
     input?: SlotComponentProps<
       'input',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledSlotPropsOverrides['input'],
       SwitchUnstyledOwnerState
     >;
     track?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledSlotPropsOverrides['track'],
       SwitchUnstyledOwnerState
     >;
   };
