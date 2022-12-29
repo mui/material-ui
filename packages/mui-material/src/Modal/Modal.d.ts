@@ -95,8 +95,6 @@ export interface ExtendModalTypeMap<M extends OverridableTypeMap> {
   defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendModal<M extends OverridableTypeMap> = OverridableComponent<ExtendModalTypeMap<M>>;
-
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
@@ -118,7 +116,7 @@ export type ExtendModal<M extends OverridableTypeMap> = OverridableComponent<Ext
  *
  * - [Modal API](https://mui.com/material-ui/api/modal/)
  */
-declare const Modal: ExtendModal<ModalTypeMap>;
+declare const Modal: OverridableComponent<ExtendModalTypeMap<ModalTypeMap>>;
 
 export type ModalClasses = Record<ModalClassKey, string>;
 
