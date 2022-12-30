@@ -133,6 +133,23 @@ function InitCodeCopy() {
   return null;
 }
 
+function hasNativeSelection(element: HTMLTextAreaElement) {
+  if (window.getSelection()?.toString() !== '') {
+    return true;
+  }
+
+  if (!element) {
+    return false;
+  }
+
+  // window.getSelection() does not work for Firefox browser when user is highlighting a text. It always returns empty string. See: https://bugzilla.mozilla.org/show_bug.cgi?id=85686. So we need to use selectionStart and selectionEnd.
+  if ((element.selectionEnd || 0) - (element.selectionStart || 0) > 0) {
+    return true;
+  }
+
+  return false;
+}
+
 interface CodeCopyProviderProps {
   children: React.ReactNode;
 }
@@ -145,7 +162,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
-      if (document.getSelection()?.toString()) {
+      if (hasNativeSelection(event.target as HTMLTextAreaElement)) {
         // Skip if user is highlighting a text.
         return;
       }
