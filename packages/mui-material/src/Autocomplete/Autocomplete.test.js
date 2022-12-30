@@ -2746,7 +2746,7 @@ describe('<Autocomplete />', () => {
       expect(onScrollToBottom.callCount).to.equal(0);
     });
     it('should call onScrollToBottom for different varaints of padding applied to listbox', function test() {
-      // we are testing for different variants of padding as listbox padding is used to calculate whether scroll bar is reached bottom or not
+      // different variants of padding being tested as listbox padding is used to calculate whether scroll bar is reached bottom or not
       const onScrollToBottom = spy();
       const { getByRole, setProps, forceUpdate } = render(
         <Autocomplete
@@ -2795,7 +2795,7 @@ describe('<Autocomplete />', () => {
         if (listbox.scrollTop > 0) {
           fireEvent.scroll(listbox);
         }
-        console.log(styleVariant);
+        console.log(styleVariant,listbox.scrollHeight);
         expect(listbox.scrollTop).to.greaterThan(0);
         checkHighlightIs(listbox, 'five');
         expect(onScrollToBottom.callCount).to.equal(1);
