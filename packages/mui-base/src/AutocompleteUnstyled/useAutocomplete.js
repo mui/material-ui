@@ -381,14 +381,6 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-        if (index === options.length - 1) {
-          listboxNode.scrollTop += Number(
-            window
-              .getComputedStyle(listboxNode)
-              .getPropertyValue('padding-bottom')
-              .replace('px', ''),
-          );
-        }
       } else if (
         element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
         listboxNode.scrollTop
@@ -1092,13 +1084,28 @@ export default function useAutocomplete(props) {
       'aria-labelledby': `${id}-label`,
       ref: handleListboxRef,
       onScroll: (event) => {
-        const lisboxNode = listboxRef.current;
-        const lisboxHeight = lisboxNode.offsetHeight;
-        const contentHeight = lisboxNode.scrollHeight;
-        const scrollPosition = lisboxNode.scrollTop;
-        const distanceFromBottom = contentHeight - (scrollPosition + lisboxHeight);
+        const listboxNode = listboxRef.current;
+        const lisboxHeight = listboxNode.offsetHeight;
+        const contentHeight = listboxNode.scrollHeight;
+        const scrollPosition = listboxNode.scrollTop;
+
+        const focusedOption = listboxNode.querySelector(
+          `[role="option"].${unstable_classNamePrefix}-focused`,
+        );
+
+        const listboxPaddingBottom = Number(
+          window.getComputedStyle(listboxNode).getPropertyValue('padding-bottom').replace('px', ''),
+        );
+        let isLastOptionFocused = false;
+        if (focusedOption) {
+          isLastOptionFocused =
+            Number(focusedOption.getAttribute('data-option-index')) === options.length - 1;
+        }
+
+        const distanceFromBottom =
+          contentHeight - (scrollPosition + lisboxHeight + listboxPaddingBottom);
         //   In general, it's best to use a small threshold value when checking for the scroll position, since the scrollTop, offsetHeight, and scrollHeight values are often not perfectly accurate. For example, some browsers might round these values to the nearest integer, which can cause small discrepancies.
-        if (distanceFromBottom <= 1) {
+        if (distanceFromBottom <= 1 && isLastOptionFocused) {
           // The scrollbar is at the bottom of the listbox element
           onScrollToBottom(event);
         }

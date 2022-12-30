@@ -2700,15 +2700,16 @@ describe('<Autocomplete />', () => {
         textbox.focus();
       });
 
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       if (listbox.scrollTop > 0) {
         fireEvent.scroll(listbox);
       }
+      expect(listbox.scrollTop).to.greaterThan(0);
       checkHighlightIs(listbox, 'five');
       expect(onScrollToBottom.callCount).to.equal(1);
     });
@@ -2732,15 +2733,16 @@ describe('<Autocomplete />', () => {
       act(() => {
         textbox.focus();
       });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       if (listbox.scrollTop > 0) {
         fireEvent.scroll(listbox);
       }
+      expect(listbox.scrollTop).to.equal(0);
       checkHighlightIs(listbox, 'five');
       expect(onScrollToBottom.callCount).to.equal(0);
     });
