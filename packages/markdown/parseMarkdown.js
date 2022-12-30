@@ -151,12 +151,17 @@ function renderInline(markdown) {
   return marked.parseInline(markdown);
 }
 
+// Help rank mui.com on component searches first.
 const noSEOadvantage = [
   'https://m2.material.io/',
   'https://getbootstrap.com/',
+  'https://icons.getbootstrap.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
   'https://tailwindcss.com/',
+  'https://heroicons.com/',
+  'https://react-icons.github.io/',
+  'https://fontawesome.com/',
 ];
 
 /**

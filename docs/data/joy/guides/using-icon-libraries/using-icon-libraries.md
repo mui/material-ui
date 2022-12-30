@@ -2,7 +2,7 @@
 
 <p class="description">Learn how to use your favorite icon library with Joy UI.</p>
 
-## MUI Material Icons
+## Material UI Icons
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
 includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [SVG Icon](/material-ui/api/svg-icon/) components.
@@ -56,7 +56,7 @@ Here is an example of how you can do it, if you use [`webpack`](https://webpack.
    //...
 +  resolve: {
 +    alias: {
-+      '@mui/material': '@mui/joy'
++      '@mui/material': '@mui/joy',
 +    },
 +  },
  };
@@ -72,7 +72,7 @@ If you use TypeScript, you will need to update the TSConfig.
 +    "paths": {
 +      "@mui/material": ["./node_modules/@mui/joy"]
 +    }
-   },
+   }
  }
 ```
 
@@ -125,10 +125,9 @@ Joy UI components can control those variables based on their size and variant to
 
 Here is a collection of well-known icon libraries that you can use with Joy UI.
 
-### React Icons
+### react-icons
 
-- [Browse icons](https://react-icons.github.io/react-icons/search)
-- [Installation](https://react-icons.github.io/react-icons)
+- [Installation](https://react-icons.github.io/react-icons/)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-react-icons-n6jljq?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
