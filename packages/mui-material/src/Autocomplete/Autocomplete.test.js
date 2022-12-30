@@ -2705,7 +2705,6 @@ describe('<Autocomplete />', () => {
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
       console.log(document.activeElement);
       checkHighlightIs(getByRole('listbox'), 'five');
       expect(onScrollToBottom.callCount).to.equal(1);
@@ -2729,7 +2728,6 @@ describe('<Autocomplete />', () => {
        act(() => {
         textbox.focus();
       });
-      userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
