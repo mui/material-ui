@@ -1089,23 +1089,14 @@ export default function useAutocomplete(props) {
         const contentHeight = listboxNode.scrollHeight;
         const scrollPosition = listboxNode.scrollTop;
 
-        const focusedOption = listboxNode.querySelector(
-          `[role="option"].${unstable_classNamePrefix}-focused`,
-        );
-
         const listboxPaddingBottom = Number(
           window.getComputedStyle(listboxNode).getPropertyValue('padding-bottom').replace('px', ''),
         );
-        let isLastOptionFocused = false;
-        if (focusedOption) {
-          isLastOptionFocused =
-            Number(focusedOption.getAttribute('data-option-index')) === options.length - 1;
-        }
 
         const distanceFromBottom =
           contentHeight - (scrollPosition + lisboxHeight + listboxPaddingBottom);
         //   In general, it's best to use a small threshold value when checking for the scroll position, since the scrollTop, offsetHeight, and scrollHeight values are often not perfectly accurate. For example, some browsers might round these values to the nearest integer, which can cause small discrepancies.
-        if (distanceFromBottom <= 1 && isLastOptionFocused) {
+        if (distanceFromBottom <= 1) {
           // The scrollbar is at the bottom of the listbox element
           onScrollToBottom(event);
         }
