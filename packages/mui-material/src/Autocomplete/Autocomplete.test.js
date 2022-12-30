@@ -2795,6 +2795,7 @@ describe('<Autocomplete />', () => {
         if (listbox.scrollTop > 0) {
           fireEvent.scroll(listbox);
         }
+        console.log(styleVariant);
         expect(listbox.scrollTop).to.greaterThan(0);
         checkHighlightIs(listbox, 'five');
         expect(onScrollToBottom.callCount).to.equal(1);
