@@ -2748,70 +2748,45 @@ describe('<Autocomplete />', () => {
     it('should call onScrollToBottom for different varaints of padding applied to listbox', function test() {
       // different variants of padding being tested as listbox padding is used to calculate whether scroll bar is reached bottom or not
       const onScrollToBottom = spy();
-      const { getByRole, setProps, forceUpdate } = render(
+      const { getByRole } = render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
           renderInput={(params) => <TextField {...params} />}
           onScrollToBottom={onScrollToBottom}
+          ListboxProps={{ style: { height: '100px', padding: '2rem' } }}
         />,
       );
 
-      [
-        { padding: '2rem' },
-        { padding: 10 },
-        { padding: '2em' },
-        { padding: '2rem 3rem 1rem 2.5rem' },
-        { padding: '2rem !important' },
-      ].forEach((styleVariant) => {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
+      const textbox = getByRole('combobox');
+      const listbox = getByRole('listbox');
 
-        setProps({
-          ListboxProps: {
-            style: {
-              ...styleVariant,
-              height: '100px',
-            },
-          },
-        });
-
-        forceUpdate();
-
-        const textbox = getByRole('combobox');
-        const listbox = getByRole('listbox');
-
-        act(() => {
-          textbox.focus();
-        });
-
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
-        if (listbox.scrollTop > 0) {
-          fireEvent.scroll(listbox);
-        }
-
-        console.log(
-          styleVariant,
-          listbox.scrollHeight,
-          listbox.scrollTop,
-          listbox.offsetHeight,
-          Number(
-            window
-              .getComputedStyle(listbox)
-              .getPropertyValue('padding-bottom')
-              .replace('px', ''),
-          ),
-        );
-        expect(listbox.scrollTop).to.greaterThan(0);
-        checkHighlightIs(listbox, 'five');
-        expect(onScrollToBottom.callCount).to.equal(1);
+      act(() => {
+        textbox.focus();
       });
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      if (listbox.scrollTop > 0) {
+        fireEvent.scroll(listbox);
+      }
+
+      console.log(
+        styleVariant,
+        listbox.scrollHeight,
+        listbox.scrollTop,
+        listbox.offsetHeight,
+        Number(
+          window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
+        ),
+      );
+      expect(listbox.scrollTop).to.greaterThan(0);
+      checkHighlightIs(listbox, 'five');
+      expect(onScrollToBottom.callCount).to.equal(1);
     });
   });
 
