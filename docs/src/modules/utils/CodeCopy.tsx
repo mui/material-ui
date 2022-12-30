@@ -138,12 +138,10 @@ function hasNativeSelection(element: HTMLTextAreaElement) {
     return true;
   }
 
-  if (!element) {
-    return false;
-  }
-
-  // window.getSelection() does not work for Firefox browser when user is highlighting a text. It always returns empty string. See: https://bugzilla.mozilla.org/show_bug.cgi?id=85686. So we need to use selectionStart and selectionEnd.
-  if ((element.selectionEnd || 0) - (element.selectionStart || 0) > 0) {
+  // window.getSelection() returns an empty string in Firefox for selections inside a form element.
+  // See: https://bugzilla.mozilla.org/show_bug.cgi?id=85686.
+  // Instead, we can use element.selectionStart that is only defined on form elements.
+  if (element && (element.selectionEnd || 0) - (element.selectionStart || 0) > 0) {
     return true;
   }
 
