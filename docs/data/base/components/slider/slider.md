@@ -181,7 +181,7 @@ The value label can be rendered around the thumb by using the optional `slots` p
 - always 
 - only when hovering over the thumb - using CSS
 
-The following demo shows how to render the value label when the mouse is hovered on the thumb:
+The following demo shows how to render the value label when the mouse is hovering over the thumb:
 
 {{"demo": "UnstyledSliderValueLabel.js"}}
 
