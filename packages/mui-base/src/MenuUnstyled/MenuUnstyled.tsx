@@ -14,6 +14,7 @@ import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
+import { MenuButtonContext } from './MenuButtonUnstyled';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -45,11 +46,18 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     keepMounted = false,
     listboxId,
     onClose,
-    open = false,
+    open: openProp = false,
     slotProps = {},
     slots = {},
     ...other
   } = props;
+
+  let open = openProp;
+
+  const menuButtonContext = React.useContext(MenuButtonContext);
+  if (menuButtonContext) {
+    open = menuButtonContext.open;
+  }
 
   const {
     registerItem,
