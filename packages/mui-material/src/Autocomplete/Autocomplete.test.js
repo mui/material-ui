@@ -6,7 +6,6 @@ import {
   act,
   createRenderer,
   fireEvent,
-  userEvent,
   screen,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
@@ -2748,6 +2747,16 @@ describe('<Autocomplete />', () => {
     });
     it('should call onScrollToBottom for different varaints of padding applied to listbox', function test() {
       // we are testing for different variants of padding as listbox padding is used to calculate whether scroll bar is reached bottom or not
+      const onScrollToBottom = spy();
+      const { getByRole, setProps, forceUpdate } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+
       [
         { padding: '2rem' },
         { padding: 10 },
@@ -2758,21 +2767,21 @@ describe('<Autocomplete />', () => {
         if (/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
-        const onScrollToBottom = spy();
 
-        const { getByRole } = render(
-          <Autocomplete
-            open
-            options={['one', 'two', 'three', 'four', 'five']}
-            renderInput={(params) => <TextField {...params} />}
-            onScrollToBottom={onScrollToBottom}
-            ListboxProps={{
-              style: { ...styleVariant, height: '100px' },
-            }}
-          />,
-        );
+        setProps({
+          ListboxProps: {
+            style: {
+              ...styleVariant,
+              height: '100px',
+            },
+          },
+        });
+
+        forceUpdate();
+
         const textbox = getByRole('combobox');
         const listbox = getByRole('listbox');
+
         act(() => {
           textbox.focus();
         });
