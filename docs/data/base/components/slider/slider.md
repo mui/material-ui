@@ -178,8 +178,8 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 The value label can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. There are typically two use-cases of when the value label is shown:
 
-- Always shown by providing the `slots.valueLabel`.
-- Show only when it's hovered over the thumb (using CSS).
+- always 
+- only when hovering over the thumb - using CSS
 
 The following demo shows how to render the value label when the mouse is hovered on the thumb:
 
