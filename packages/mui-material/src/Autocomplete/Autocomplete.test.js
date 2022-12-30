@@ -2803,7 +2803,7 @@ describe('<Autocomplete />', () => {
           listbox.offsetHeight,
           Number(
             window
-              .getComputedStyle(listboxNode)
+              .getComputedStyle(listbox)
               .getPropertyValue('padding-bottom')
               .replace('px', ''),
           ),
