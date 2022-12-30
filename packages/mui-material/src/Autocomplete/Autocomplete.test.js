@@ -2695,7 +2695,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = getByRole('combobox');
-
+      const listbox = getByRole('listbox');
       act(() => {
         textbox.focus();
       });
@@ -2705,8 +2705,11 @@ describe('<Autocomplete />', () => {
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      console.log(document.activeElement);
-      checkHighlightIs(getByRole('listbox'), 'five');
+
+      if (listbox.scrollTop > 0) {
+        fireEvent.scroll(listbox);
+      }
+      checkHighlightIs(listbox, 'five');
       expect(onScrollToBottom.callCount).to.equal(1);
     });
 
@@ -2724,8 +2727,9 @@ describe('<Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
         />,
       );
-       const textbox = getByRole('combobox');
-       act(() => {
+      const textbox = getByRole('combobox');
+      const listbox = getByRole('listbox');
+      act(() => {
         textbox.focus();
       });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
@@ -2733,8 +2737,11 @@ describe('<Autocomplete />', () => {
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
       userEvent.keyPress(textbox, { key: 'ArrowDown' });
-      console.log(document.activeElement);
-      checkHighlightIs(getByRole('listbox'), 'five');
+
+      if (listbox.scrollTop > 0) {
+        fireEvent.scroll(listbox);
+      }
+      checkHighlightIs(listbox, 'five');
       expect(onScrollToBottom.callCount).to.equal(0);
     });
   });
