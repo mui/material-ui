@@ -2795,7 +2795,19 @@ describe('<Autocomplete />', () => {
         if (listbox.scrollTop > 0) {
           fireEvent.scroll(listbox);
         }
-        console.log(styleVariant,listbox.scrollHeight);
+
+        console.log(
+          styleVariant,
+          listbox.scrollHeight,
+          listbox.scrollTop,
+          listbox.offsetHeight,
+          Number(
+            window
+              .getComputedStyle(listboxNode)
+              .getPropertyValue('padding-bottom')
+              .replace('px', ''),
+          ),
+        );
         expect(listbox.scrollTop).to.greaterThan(0);
         checkHighlightIs(listbox, 'five');
         expect(onScrollToBottom.callCount).to.equal(1);
