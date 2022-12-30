@@ -2776,7 +2776,6 @@ describe('<Autocomplete />', () => {
       }
 
       console.log(
-        styleVariant,
         listbox.scrollHeight,
         listbox.scrollTop,
         listbox.offsetHeight,
