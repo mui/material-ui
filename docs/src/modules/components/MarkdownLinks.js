@@ -16,13 +16,6 @@ export function shoudHandleLinkClick(event) {
   return false;
 }
 
-export function handleEvent(event, as) {
-  event.preventDefault();
-
-  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
-  Router.push(canonicalPathname, as);
-}
-
 /**
  * @param {MouseEvent} event
  */
@@ -48,7 +41,10 @@ function handleClick(event) {
     return;
   }
 
-  handleEvent(event, activeElement.getAttribute('href'));
+  event.preventDefault();
+  const as = activeElement.getAttribute('href');
+  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+  Router.push(canonicalPathname, as);
 }
 
 export default function MarkdownLinks() {
