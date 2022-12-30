@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
+import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => ({
@@ -177,7 +177,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (openLinkInNewTab(event)) {
+    if (shoudHandleLinkClick(event)) {
       return;
     }
 
