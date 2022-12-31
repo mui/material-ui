@@ -49,7 +49,7 @@ export default function DiamondSponsors() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxSizing: 'border-box',
+            boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
