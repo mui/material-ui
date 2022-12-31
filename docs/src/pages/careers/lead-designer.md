@@ -1,6 +1,6 @@
 # Lead Designer
 
-<p class="description">You will own most of MUI's design work and manage a small team of designers.</p>
+<p class="description">You will be accountable for MUI's design execution and manage a small team of designers.</p>
 
 ## Details of the Role
 
@@ -48,35 +48,36 @@ It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achievin
 
 Depending on the day, you'll:
 
-- Make the product experience more delightful, e.g. visually more appealing
-- Pay attention to all the smallest interface interactions so they yield an outstanding UX
-- Develop the brand
-- Refresh and expand the marketing pages, e.g. with a showcase & case study section
-- Design the next features across the different product
-- Shape the direction of the design kit products
-- **Solve organization issues**
-  - You will improve how the design responsibilities are covered.
-  - You will ensure the consistency of design and product direction throughout all the products and all customer-facing artifacts.
-- **Exercise team leadership**
-  - You will overseas the overall design quality
-  - You will manage designer's career
-  - You will hire and maintain a great team
+- Ensure high-quality UI and UX across teams, libraries, components, and product strategy
+- Collaborate with product management and engineering to ensure that design work is aligned with business goals and user needs
+- Create design concepts, prototypes, and high-fidelity mockups for projects on the X, Core, and Toolpad teams
+- Update and implement new components on the Core, X, and Toolpad teams
+- Develop and maintain MUI's design system and style guide
+- Oversee the design kits, ensuring they're aligned with engineering implementation
+
+As a team leader, you will:
+
+- Manage the design process, including user research, user flows, and user testing
+- Review design work and provide feedback to ensure overall design quality and consistency, with consideration to both UI and UX.
+- Set goals, priorities, and distribute tasks for the design team
+- Provide mentorship and support to the design team members
+- Hire and retain a great team
 
 ## About you
 
-We're looking for someone with an expert eye for visual and UX design. You have enough development skills (CSS-in-JS, JSX) to implement the designed interfaces. Details matter to you.
+We're looking for someone with an expert eye for visual and UX design. You have enough development skills (C, JSX) to implement the designed interfaces. Details matter to you.
 
 ### Skills you should have
 
-- **Expert-level knowledge of visual design**. You can create great-looking UIs. You spot small kerning issues without even paying attention which makes you care about the details more than most people.
+- **Expert-level knowledge of graphic design**. You can create great-looking UIs. You spot small kerning issues without even paying attention which makes you care about the details more than most people.
 - **Expert-level knowledge of UX design**. You can build intuitive UIs, both at the scope of an application and of a component micro-interaction.
-- **Enough development skills to implement the designed interfaces**. Our React engineers are often busy implementing complex components. We are looking for somebody with enough CSS-in-JS and JSX skills to not depend on them to implement the design.
+- **Enough development skills to implement the designed interfaces**. Our React engineers are often busy implementing complex components. We are looking for somebody with enough CSS and JavaScript skills to make small changes in autonomy and better understand the product.
 - **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
+- **Management of a design team**. Whether formally or informally, you have shown that you are a design leader and can provide guidance and support to other designers.
 
 ### What would be nice if you had, but isn't required
 
 - **You've contributed to a design system before**. You have worked on a library of components in the past, maybe for internal usage in your company.
-- **You have other complementary skills**. We are a tiny team of 6 people. We could use any hidden skills that you might have. Maybe you are great at creating animations or creating illustrations.
 
 ## Benefits & Compensation
 
