@@ -49,6 +49,7 @@ export default function DiamondSponsors() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxSizing: 'border-box',
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
