@@ -75,13 +75,9 @@ const InputRoot = styled(InputBaseRoot, {
         // See https://github.com/mui/material-ui/issues/31766
         transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${inputClasses.error}`]: {
-        '&:before, &:after': {
-          borderBottomColor: (theme.vars || theme).palette.error.main,
-        },
-        '&:focus-within:after': {
-          transform: 'scaleX(1)', // error is always underlined in red
-        },
+      [`&.${inputClasses.error}:after`]: {
+        borderBottomColor: (theme.vars || theme).palette.error.main,
+        transform: 'scaleX(1)', // error is always underlined in red
       },
       '&:before': {
         borderBottom: `1px solid ${bottomLineColor}`,
@@ -96,8 +92,8 @@ const InputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
-        borderBottom: `1px solid ${(theme.vars || theme).palette.text.primary}`,
+      [`&:hover:not(.${inputClasses.disabled}):before`]: {
+        borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,
