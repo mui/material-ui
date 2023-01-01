@@ -115,7 +115,7 @@ A simple example with spanning rows & columns.
 
 ## Virtualized table
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component.
+In the following example, we demonstrate how to use [react-virtuoso](https://github.com/petyosi/react-virtuoso) with the `Table` component.
 It renders 200 rows and can easily handle more.
 Virtualization helps with performance issues.
 
