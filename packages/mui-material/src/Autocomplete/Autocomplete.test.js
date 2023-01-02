@@ -36,29 +36,72 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
-function testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount }) {
+function testOnScrollToBottom({
+  reason,
+  onScrollToBottomCallCount,
+  getByRole,
+  onScrollToBottom,
+  getAllByRole,
+}) {
   const textbox = getByRole('combobox');
-  const listbox = getByRole('listbox');
   act(() => {
     textbox.focus();
   });
+  const listbox = getByRole('listbox');
+  const options = getAllByRole('option');
+  const option = options[0];
 
-  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+  if (reason === 'mouse') {
+    const listboxPaddingBottom = Number(
+      window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
+    );
 
-  if (listbox.scrollTop > 0) {
-    fireEvent.scroll(listbox);
+    const listboxHeight = listbox.offsetHeight;
+    const optionHeight = option.clientHeight;
+
+    // when scroll bar is at bottom, lisboxHeight = (num of visible options)*option height + listboxPaddingBottom
+
+    const numberOfVisibleOptions = (listboxHeight - listboxPaddingBottom) / optionHeight; // this value could be fractional
+
+    fireEvent.scroll(listbox, {
+      target: {
+        scrollTop: optionHeight * (options.length - numberOfVisibleOptions) + listboxPaddingBottom,
+      },
+    });
+    if (onScrollToBottomCallCount > 0) {
+      expect(listbox.scrollTop).to.greaterThan(0);
+    } else {
+      expect(listbox.scrollTop).to.equal(0);
+    }
+
+    // const lisboxHeight = listbox.offsetHeight;
+    // const contentHeight = listbox.scrollHeight;
+    // const scrollPosition = listbox.scrollTop;
+
+    // const distanceFromBottom =
+    //   contentHeight - (scrollPosition + lisboxHeight + listboxPaddingBottom);
+
+    // console.log(lisboxHeight, contentHeight, scrollPosition, distanceFromBottom);
+
+    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+  } else if (reason === 'keyboard') {
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+    if (listbox.scrollTop > 0) {
+      fireEvent.scroll(listbox);
+    }
+    if (onScrollToBottomCallCount > 0) {
+      expect(listbox.scrollTop).to.greaterThan(0);
+    } else {
+      expect(listbox.scrollTop).to.equal(0);
+    }
+    checkHighlightIs(listbox, 'five');
+    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
   }
-  if (onScrollToBottomCallCount > 0) {
-    expect(listbox.scrollTop).to.greaterThan(0);
-  } else {
-    expect(listbox.scrollTop).to.equal(0);
-  }
-  checkHighlightIs(listbox, 'five');
-  expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
 }
 
 describe('<Autocomplete />', () => {
@@ -2718,7 +2761,12 @@ describe('<Autocomplete />', () => {
           }}
         />,
       );
-      testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount: 1 });
+      testOnScrollToBottom({
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
     });
 
     it("should not call onScrollToBottom when listbox doesn't have scroll bar", function test() {
@@ -2735,25 +2783,12 @@ describe('<Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
         />,
       );
-      testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount: 0 });
-    });
-    it('should call onScrollToBottom for different varaints of padding applied to listbox', function test() {
-      // different variants of padding being tested as listbox padding is used to calculate whether scroll bar is reached bottom or not
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const onScrollToBottom = spy();
-      const { getByRole } = render(
-        <Autocomplete
-          open
-          options={['one', 'two', 'three', 'four', 'five']}
-          renderInput={(params) => <TextField {...params} />}
-          onScrollToBottom={onScrollToBottom}
-          ListboxProps={{ style: { height: '100px', padding: '2rem' } }}
-        />,
-      );
-
-      testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount: 1 });
+      testOnScrollToBottom({
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 0,
+      });
     });
   });
 
