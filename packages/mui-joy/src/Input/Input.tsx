@@ -76,7 +76,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--_Input-paddingBlock':
           'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
         '--Input-decorator-childRadius':
-          'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
+          'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
         '--Button-minHeight': 'var(--Input-decorator-childHeight)',
         '--IconButton-size': 'var(--Input-decorator-childHeight)',
         '--Button-radius': 'var(--Input-decorator-childRadius)',

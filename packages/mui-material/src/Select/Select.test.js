@@ -79,6 +79,17 @@ describe('<Select />', () => {
     );
   });
 
+  ['', 0, false, undefined, NaN].forEach((value) =>
+    it(`should support conditional rendering with "${value}"`, () => {
+      render(
+        <Select open value={2}>
+          {value && <MenuItem value={1}>One</MenuItem>}
+          <MenuItem value={2}>Two</MenuItem>
+        </Select>,
+      );
+    }),
+  );
+
   it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">

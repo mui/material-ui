@@ -1,7 +1,6 @@
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
-    scopePathnames: ['/joy-ui/main-features'],
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
@@ -32,13 +31,14 @@ const pages = [
         children: [
           { pathname: '/joy-ui/react-autocomplete' },
           { pathname: '/joy-ui/react-button' },
-          { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
-          { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-checkbox' },
+          { pathname: '/joy-ui/react-input' },
           { pathname: '/joy-ui/react-radio-button', title: 'Radio Group' },
           { pathname: '/joy-ui/react-select' },
           { pathname: '/joy-ui/react-slider' },
           { pathname: '/joy-ui/react-switch' },
+          { pathname: '/joy-ui/react-textarea' },
+          { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
         ],
       },
       {
@@ -81,6 +81,11 @@ const pages = [
         ],
       },
       {
+        pathname: '/joy-ui/components/layout',
+        subheader: 'layout',
+        children: [{ pathname: '/joy-ui/react-grid' }, { pathname: '/joy-ui/react-stack' }],
+      },
+      {
         pathname: '/joy-ui/components/utils',
         subheader: 'utils',
         children: [{ pathname: '/joy-ui/react-css-baseline', title: 'CSS Baseline' }],
@@ -108,6 +113,10 @@ const pages = [
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',
+      },
+      {
+        pathname: '/joy-ui/guides/using-icon-libraries',
+        title: 'Using icon libraries',
       },
     ],
   },

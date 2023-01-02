@@ -1131,8 +1131,8 @@ export const faIR: Localization = {
           return 'رفتن به صفحه‌ی قبلی';
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
       },
     },
     MuiRating: {
