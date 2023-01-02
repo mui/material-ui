@@ -46,19 +46,27 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@mui/system": "^5.11.2",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@mui/types": "^7.2.3",
-    "@mui/utils": "^5.11.2",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
       "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.20.7"
+    "@babel/runtime": "^7.20.7",
+    "@mui/system": "^5.11.2",
+    "@mui/utils": "^5.11.2"
   },
   "devDependencies": {
     "fs-extra": "^10.1.0",
