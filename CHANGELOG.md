@@ -6,7 +6,7 @@
 
 _Jan 2, 2023_
 
-A big thanks to the 11 contributors who made this release possible.
+A big thanks to the 6 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.3`
