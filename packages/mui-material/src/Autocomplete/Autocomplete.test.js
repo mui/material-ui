@@ -55,17 +55,9 @@ function testOnScrollToBottom({
     const listboxPaddingBottom = Number(
       window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
     );
-
-    const listboxHeight = listbox.offsetHeight;
-    const optionHeight = option.clientHeight;
-
-    // when scroll bar is at bottom, lisboxHeight = (num of visible options)*option height + listboxPaddingBottom
-
-    const numberOfVisibleOptions = (listboxHeight - listboxPaddingBottom) / optionHeight; // this value could be fractional
-
     fireEvent.scroll(listbox, {
       target: {
-        scrollTop: optionHeight * (options.length - numberOfVisibleOptions) + listboxPaddingBottom,
+        scrollTop: listbox.scrollHeight - listbox.contentHeight,
       },
     });
     if (onScrollToBottomCallCount > 0) {
@@ -2709,7 +2701,7 @@ describe('<Autocomplete />', () => {
         this.skip();
       }
       const onScrollToBottom = spy();
-      const { getByRole } = render(
+      const { getByRole, getAllByRole } = render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2718,30 +2710,13 @@ describe('<Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
         />,
       );
-      const textbox = getByRole('combobox');
-      act(() => {
-        textbox.focus();
+      testOnScrollToBottom({
+        getAllByRole,
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
       });
-      const listbox = getByRole('listbox');
-      const option = screen.getAllByRole('option')[0];
-
-      const listboxPaddingBottom = Number(
-        window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
-      );
-
-      fireEvent.scroll(listbox, {
-        target: { scrollTop: option.clientHeight * 2 + listboxPaddingBottom },
-      });
-      expect(onScrollToBottom.callCount).to.equal(1);
-      // scroll to top
-      fireEvent.scroll(listbox, {
-        target: { scrollTop: 0 },
-      });
-      // scroll again to bottom
-      fireEvent.scroll(listbox, {
-        target: { scrollTop: option.clientHeight * 2 + listboxPaddingBottom },
-      });
-      expect(onScrollToBottom.callCount).to.equal(2);
     });
 
     it('should call onScrollToBottom when scroll bar reaches bottom by keyboard', function test() {
