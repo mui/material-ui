@@ -2750,7 +2750,7 @@ describe('<Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      const { getByRole, getAllByRole } = render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2762,6 +2762,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
+        getAllByRole,
         reason: 'keyboard',
         getByRole,
         onScrollToBottom,
@@ -2775,7 +2776,7 @@ describe('<Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      const { getByRole, getAllByRole } = render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2784,6 +2785,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
+        getAllByRole,
         reason: 'keyboard',
         getByRole,
         onScrollToBottom,
