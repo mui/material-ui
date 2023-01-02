@@ -372,7 +372,7 @@ describe('<Tabs />', () => {
           expect(() => {
             render(
               <Tabs value="demo" sx={{ display: 'none' }}>
-                <Tab value="demo" />
+                <Tab value="demo" style={{ display: 'none' }} />
               </Tabs>,
             );
           }).not.toErrorDev();
