@@ -36,6 +36,31 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
+function testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount }) {
+  const textbox = getByRole('combobox');
+  const listbox = getByRole('listbox');
+  act(() => {
+    textbox.focus();
+  });
+
+  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+  if (listbox.scrollTop > 0) {
+    fireEvent.scroll(listbox);
+  }
+  if (onScrollToBottomCallCount > 0) {
+    expect(listbox.scrollTop).to.greaterThan(0);
+  } else {
+    expect(listbox.scrollTop).to.equal(0);
+  }
+  checkHighlightIs(listbox, 'five');
+  expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+}
+
 describe('<Autocomplete />', () => {
   const { render } = createRenderer();
 
@@ -2693,24 +2718,7 @@ describe('<Autocomplete />', () => {
           }}
         />,
       );
-      const textbox = getByRole('combobox');
-      const listbox = getByRole('listbox');
-      act(() => {
-        textbox.focus();
-      });
-
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
-      if (listbox.scrollTop > 0) {
-        fireEvent.scroll(listbox);
-      }
-      expect(listbox.scrollTop).to.greaterThan(0);
-      checkHighlightIs(listbox, 'five');
-      expect(onScrollToBottom.callCount).to.equal(1);
+      testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount: 1 });
     });
 
     it("should not call onScrollToBottom when listbox doesn't have scroll bar", function test() {
@@ -2727,23 +2735,7 @@ describe('<Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
         />,
       );
-      const textbox = getByRole('combobox');
-      const listbox = getByRole('listbox');
-      act(() => {
-        textbox.focus();
-      });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
-      if (listbox.scrollTop > 0) {
-        fireEvent.scroll(listbox);
-      }
-      expect(listbox.scrollTop).to.equal(0);
-      checkHighlightIs(listbox, 'five');
-      expect(onScrollToBottom.callCount).to.equal(0);
+      testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount: 0 });
     });
     it('should call onScrollToBottom for different varaints of padding applied to listbox', function test() {
       // different variants of padding being tested as listbox padding is used to calculate whether scroll bar is reached bottom or not
@@ -2761,26 +2753,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      const textbox = getByRole('combobox');
-      const listbox = getByRole('listbox');
-
-      act(() => {
-        textbox.focus();
-      });
-
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
-      if (listbox.scrollTop > 0) {
-        fireEvent.scroll(listbox);
-      }
-
-      expect(listbox.scrollTop).to.greaterThan(0);
-      checkHighlightIs(listbox, 'five');
-      expect(onScrollToBottom.callCount).to.equal(1);
+      testOnScrollToBottom({ getByRole, onScrollToBottom, onScrollToBottomCallCount: 1 });
     });
   });
 
