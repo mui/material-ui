@@ -2746,6 +2746,13 @@ describe('<Autocomplete />', () => {
         onScrollToBottom,
         onScrollToBottomCallCount: 0,
       });
+      testOnScrollToBottom({
+        getAllByRole,
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 0,
+      });
     });
   });
 
