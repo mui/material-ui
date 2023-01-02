@@ -36,28 +36,17 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
-function testOnScrollToBottom({
-  reason,
-  onScrollToBottomCallCount,
-  getByRole,
-  onScrollToBottom,
-  getAllByRole,
-}) {
+function testOnScrollToBottom({ reason, onScrollToBottomCallCount, getByRole, onScrollToBottom }) {
   const textbox = getByRole('combobox');
   act(() => {
     textbox.focus();
   });
   const listbox = getByRole('listbox');
-  const options = getAllByRole('option');
-  const option = options[0];
 
   if (reason === 'mouse') {
-    const listboxPaddingBottom = Number(
-      window.getComputedStyle(listbox).getPropertyValue('padding-bottom').replace('px', ''),
-    );
     fireEvent.scroll(listbox, {
       target: {
-        scrollTop: listbox.scrollHeight - listbox.contentHeight,
+        scrollTop: listbox.scrollHeight - listbox.offsetHeight,
       },
     });
     if (onScrollToBottomCallCount > 0) {
@@ -65,15 +54,6 @@ function testOnScrollToBottom({
     } else {
       expect(listbox.scrollTop).to.equal(0);
     }
-
-    // const lisboxHeight = listbox.offsetHeight;
-    // const contentHeight = listbox.scrollHeight;
-    // const scrollPosition = listbox.scrollTop;
-
-    // const distanceFromBottom =
-    //   contentHeight - (scrollPosition + lisboxHeight + listboxPaddingBottom);
-
-    // console.log(lisboxHeight, contentHeight, scrollPosition, distanceFromBottom);
 
     expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
   } else if (reason === 'keyboard') {
