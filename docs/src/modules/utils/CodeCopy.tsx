@@ -134,7 +134,7 @@ function InitCodeCopy() {
 }
 
 function hasNativeSelection(element: HTMLTextAreaElement) {
-  if (window.getSelection()?.toString() !== '') {
+  if (window.getSelection()?.toString()) {
     return true;
   }
 
