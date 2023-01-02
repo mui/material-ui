@@ -2747,6 +2747,9 @@ describe('<Autocomplete />', () => {
     });
     it('should call onScrollToBottom for different varaints of padding applied to listbox', function test() {
       // different variants of padding being tested as listbox padding is used to calculate whether scroll bar is reached bottom or not
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       const onScrollToBottom = spy();
       const { getByRole } = render(
         <Autocomplete
