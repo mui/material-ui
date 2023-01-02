@@ -58,7 +58,7 @@ Depending on the day, you'll:
 As a team leader, you will:
 
 - Manage the design process, including user research, user flows, and user testing
-- Review design work and provide feedback to ensure overall design quality and consistency, with consideration to both UI and UX.
+- Review design work and provide feedback to ensure overall design quality and consistency, with consideration to both UI and UX
 - Set goals, priorities, and distribute tasks for the design team
 - Provide mentorship and support to the design team members
 - Hire and retain a great team
