@@ -371,7 +371,7 @@ describe('<Tabs />', () => {
           }
           expect(() => {
             render(
-              <Tabs value="demo" sx={{ display: 'none' }}>
+              <Tabs value="demo" style={{ display: 'none' }}>
                 <Tab value="demo" style={{ display: 'none' }} />
               </Tabs>,
             );
