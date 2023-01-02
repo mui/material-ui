@@ -16,7 +16,6 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### `@mui/joy@5.0.0-alpha.61`
 
 - &#8203;<!-- 14 -->[Autocomplete][joy] Export component (#35647) @mbranch
-- &#8203;<!-- 04 -->[Joy][docs] Add documentation for `Input` component (#35482) @hbjORbj
 
 ### Docs
 
@@ -26,6 +25,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 07 -->[docs] Fix switch name to reflect the color (#35052) @rjhcnf
 - &#8203;<!-- 06 -->[docs] Fix anchor link in the card's docs and fix a typo (#35634) @ZeeshanTamboli
 - &#8203;<!-- 05 -->[docs] Fix layout shift with modal (#35591) @oliviertassinari
+- &#8203;<!-- 04 -->[Joy][docs] Add documentation for `Input` component (#35482) @hbjORbj
 - &#8203;<!-- 03 -->[docs][joy] Improved readability on theme tokens page (#35639) @badalsaibo
 
 ### Core
