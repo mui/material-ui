@@ -50,10 +50,10 @@ export interface TooltipClasses {
 export type TooltipClassKey = keyof TooltipClasses;
 
 export function getTooltipUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTooltip', slot);
+  return generateUtilityClass('MuiTooltip', slot);
 }
 
-const tooltipClasses: TooltipClasses = generateUtilityClasses('JoyTooltip', [
+const tooltipClasses: TooltipClasses = generateUtilityClasses('MuiTooltip', [
   'root',
   'tooltipArrow',
   'arrow',

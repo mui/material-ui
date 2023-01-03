@@ -32,10 +32,10 @@ export interface ListSubheaderClasses {
 export type ListSubheaderClassKey = keyof ListSubheaderClasses;
 
 export function getListSubheaderUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyListSubheader', slot);
+  return generateUtilityClass('MuiListSubheader', slot);
 }
 
-const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('JoyListSubheader', [
+const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('MuiListSubheader', [
   'root',
   'sticky',
   'colorPrimary',

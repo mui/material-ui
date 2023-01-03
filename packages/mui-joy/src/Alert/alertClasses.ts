@@ -40,10 +40,10 @@ export interface AlertClasses {
 export type AlertClassKey = keyof AlertClasses;
 
 export function getAlertUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAlert', slot);
+  return generateUtilityClass('MuiAlert', slot);
 }
 
-const alertClasses: AlertClasses = generateUtilityClasses('JoyAlert', [
+const alertClasses: AlertClasses = generateUtilityClasses('MuiAlert', [
   'root',
   'startDecorator',
   'endDecorator',

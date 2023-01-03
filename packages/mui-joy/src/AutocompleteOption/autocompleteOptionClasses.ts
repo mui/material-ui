@@ -34,7 +34,7 @@ export interface AutocompleteOptionClasses {
 export type AutocompleteOptionClassKey = keyof AutocompleteOptionClasses;
 
 export function getAutocompleteOptionUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAutocompleteOption', slot);
+  return generateUtilityClass('MuiAutocompleteOption', slot);
 }
 
 const autocompleteOptionClasses: AutocompleteOptionClasses = generateUtilityClasses(

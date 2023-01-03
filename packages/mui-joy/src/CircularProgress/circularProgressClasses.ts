@@ -44,7 +44,7 @@ export interface CircularProgressClasses {
 export type CircularProgressClassKey = keyof CircularProgressClasses;
 
 export function getCircularProgressUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCircularProgress', slot);
+  return generateUtilityClass('MuiCircularProgress', slot);
 }
 
 const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(

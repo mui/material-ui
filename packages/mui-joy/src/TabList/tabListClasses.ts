@@ -36,10 +36,10 @@ export interface TabListClasses {
 export type TabListClassKey = keyof TabListClasses;
 
 export function getTabListUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTabList', slot);
+  return generateUtilityClass('MuiTabList', slot);
 }
 
-const tabListClasses: TabListClasses = generateUtilityClasses('JoyTabList', [
+const tabListClasses: TabListClasses = generateUtilityClasses('MuiTabList', [
   'root',
   'colorPrimary',
   'colorNeutral',
