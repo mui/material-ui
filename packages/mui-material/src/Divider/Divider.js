@@ -95,7 +95,7 @@ const DividerRoot = styled('div', {
       height: 'auto',
     }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     ...(ownerState.children && {
       display: 'flex',
       whiteSpace: 'nowrap',
@@ -103,9 +103,6 @@ const DividerRoot = styled('div', {
       border: 0,
       '&::before, &::after': {
         position: 'relative',
-        width: '100%',
-        borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
-        top: '50%',
         content: '""',
         alignSelf: 'center',
       },
@@ -113,15 +110,20 @@ const DividerRoot = styled('div', {
   }),
   ({ theme, ownerState }) => ({
     ...(ownerState.children &&
+      ownerState.orientation !== 'vertical' && {
+        '&::before, &::after': {
+          width: '100%',
+          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+        },
+      }),
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children &&
       ownerState.orientation === 'vertical' && {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          top: '0%',
-          left: '50%',
-          borderTop: 0,
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
-          transform: 'translateX(0%)',
         },
       }),
   }),
