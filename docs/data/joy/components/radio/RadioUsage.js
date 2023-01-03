@@ -1,7 +1,5 @@
 import * as React from 'react';
-import JoyUsageDemo, {
-  prependLinesSpace,
-} from 'docs/src/modules/components/JoyUsageDemo';
+import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
@@ -36,14 +34,11 @@ export default function RadioUsage() {
           codeBlockDisplay: false,
         },
       ]}
-      getCodeBlock={(code, props) => `<RadioGroup${props.row ? ` row` : ''}>
-${prependLinesSpace(code, 2)}
-</RadioGroup>`}
-      renderDemo={({ row, ...props }) => (
+      renderDemo={({ orientation, ...props }) => (
         <FormControl>
           <FormLabel>Pizza crust</FormLabel>
           <RadioGroup
-            row={row}
+            orientation={orientation}
             defaultValue="1"
             name="radio-button-usage"
             sx={{ mt: 1 }}
