@@ -2830,10 +2830,6 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('prop: showLoadingWithOptions', () => {
-    it('should display loading text with options', () => {});
-  });
-
   describe('prop: readOnly', () => {
     it('should make the input readonly', () => {
       render(
