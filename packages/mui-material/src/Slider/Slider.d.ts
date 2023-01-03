@@ -101,6 +101,8 @@ export type SliderTypeMap<
   defaultComponent: D;
 }>;
 
+export { SliderValueLabelProps };
+
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
 type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['markLabel'];
