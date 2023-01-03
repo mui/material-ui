@@ -118,6 +118,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: TextFieldRoot,
+    // @ts-ignore internal logic
     externalForwardedProps: { ...other, component, slots, slotProps },
     ownerState,
   });
@@ -125,6 +126,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const Input = slots.input || JoyInput;
 
   return (
+    // @ts-ignore neglect 'context' color
     <SlotRoot {...rootProps}>
       {label && (
         <FormLabel

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -28,6 +28,8 @@ describe('Joy <Button />', () => {
       skip: ['propsSpread', 'componentsProp', 'classesRoot'],
     }),
   );
+
+  describeJoyColorInversion(<Button>Button</Button>, { muiName: 'JoyButton', classes });
 
   it('by default, should render with the root, variantSolid, sizeMd and colorPrimary classes', () => {
     const { getByRole } = render(<Button>Hello World</Button>);

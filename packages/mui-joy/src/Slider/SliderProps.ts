@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SliderSlot =
@@ -65,7 +65,7 @@ export type SliderProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export interface SliderOwnerState extends SliderProps {
+export interface SliderOwnerState extends ApplyColorInversion<SliderProps> {
   /**
    * If `true`, the thumb is in dragging state.
    */

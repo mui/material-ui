@@ -1,11 +1,8 @@
 import { deepmerge } from '@mui/utils';
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  unstable_styleFunctionSx as styleFunctionSx,
-} from '@mui/system';
-import extendTheme from './extendTheme';
+import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import extendTheme, { CssVarsThemeOptions } from './extendTheme';
 import { createSoftInversion, createSolidInversion } from './variantUtils';
-import type { Theme, DefaultColorScheme, ExtendedColorScheme, SxProps } from './types';
+import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
@@ -24,20 +21,17 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   resolveTheme: (mergedTheme: Theme) => {
-    // `colorInversion` need to be generated after the theme's palette has been calculated.
+    const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
     mergedTheme.colorInversion = deepmerge(
       {
         soft: createSoftInversion(mergedTheme),
         solid: createSolidInversion(mergedTheme),
       },
-      mergedTheme.colorInversion,
+      typeof colorInversionInput === 'function'
+        ? colorInversionInput(mergedTheme)
+        : colorInversionInput,
       { clone: false },
     );
-
-    // TOOD remove this intermediary function call.
-    mergedTheme.unstable_sx = function sx(props: SxProps) {
-      return styleFunctionSx({ sx: props, theme: this });
-    };
     return mergedTheme;
   },
   shouldSkipGeneratingVar,

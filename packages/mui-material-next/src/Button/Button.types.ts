@@ -139,6 +139,10 @@ export interface ButtonOwnerState extends ButtonProps {
    * If `true`, the button's focus is visible.
    */
   focusVisible?: boolean;
+  /**
+   * If `true`, the button is active.
+   */
+  active?: boolean;
 }
 
 /**
