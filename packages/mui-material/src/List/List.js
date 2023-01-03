@@ -120,7 +120,7 @@ List.propTypes /* remove-proptypes */ = {
    */
   disablePadding: PropTypes.bool,
   /**
-   * Add an element between each child.
+   * Custom component to add separator between childs.
    */
   divider: PropTypes.node,
   /**
