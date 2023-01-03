@@ -15,7 +15,7 @@ import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
-import { Variants, VariantOverrides, ColorInversionConfig } from './types/variants';
+import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
 import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
@@ -57,7 +57,9 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
-  colorInversion?: Partial2Level<VariantOverrides>;
+  colorInversion?:
+    | Partial2Level<ColorInversion>
+    | ((theme: Theme) => Partial2Level<ColorInversion>);
   colorInversionConfig?: ColorInversionConfig;
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;

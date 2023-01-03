@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps, Theme } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
@@ -37,18 +38,15 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
 const switchColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SwitchOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const variant = ownerState.variant;
-    const color = ownerState.color;
+    const styles =
+      theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Switch-track-color': theme.vars.palette[color!]?.[`${variant!}Color`],
+      '--Switch-track-background': styles.backgroundColor,
+      '--Switch-track-color': styles.color,
       '--Switch-track-borderColor':
-        variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
-          : 'currentColor',
-      '--Switch-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}Bg`],
+        ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
+      '--Switch-thumb-background': styles.color,
+      '--Switch-thumb-color': styles.backgroundColor,
     };
   };
 
@@ -256,7 +254,11 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   const useSwitchProps = {
     checked: checkedProp,

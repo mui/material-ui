@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -75,7 +76,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--_Input-paddingBlock':
           'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
         '--Input-decorator-childRadius':
-          'max(var(--Input-radius) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) / 2, var(--Input-radius) / 2))',
+          'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
         '--Button-minHeight': 'var(--Input-decorator-childHeight)',
         '--IconButton-size': 'var(--Input-decorator-childHeight)',
         '--Button-radius': 'var(--Input-decorator-childRadius)',
@@ -289,7 +290,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
     ...props,
