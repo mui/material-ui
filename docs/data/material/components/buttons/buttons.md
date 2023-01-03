@@ -194,6 +194,7 @@ To prevent it, ensure that the contents of the Loading Button is inside any HTML
   <span>Submit</span>
 </LoadingButton>
 ```
+
 :::
 
 ### Material You version
