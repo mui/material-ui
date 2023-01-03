@@ -16,7 +16,7 @@ describe('<RadioGroup />', () => {
     ThemeProvider,
     muiName: 'JoyRadioGroup',
     refInstanceof: window.HTMLDivElement,
-    testVariantProps: { row: true },
+    testVariantProps: { orientation: 'horizontal' },
     testCustomVariant: true,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
