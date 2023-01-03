@@ -188,6 +188,7 @@ export interface AutocompleteProps<
   noOptionsText?: React.ReactNode;
   /**
    * Callback fires when scroll bar reaches bottom of listbox
+   * @default false
    */
   onScrollToBottom?: (event: React.SyntheticEvent) => void;
   /**
