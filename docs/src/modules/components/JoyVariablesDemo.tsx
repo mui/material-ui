@@ -181,7 +181,10 @@ export default function JoyVariablesDemo(props: {
                       slotProps={{
                         input: {
                           onKeyDown: (event) => {
-                            if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+                            if (
+                              (event.ctrlKey || event.metaKey) &&
+                              event.key.toLowerCase() === 'z'
+                            ) {
                               setSx((prevSx) => {
                                 const newSx = { ...prevSx };
                                 delete newSx[item.var];
