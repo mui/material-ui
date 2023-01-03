@@ -2776,7 +2776,6 @@ describe('<Autocomplete />', () => {
           options={['one', 'two', 'three', 'four', 'five']}
           renderInput={(params) => <TextField {...params} />}
           onScrollToBottom={onScrollToBottom}
-          ListboxComponent="div"
           ListboxProps={{
             style: { height: '100px' },
             onScroll,
