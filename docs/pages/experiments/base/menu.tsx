@@ -140,20 +140,22 @@ export default function UnstyledMenuIntroduction() {
     <Page>
       <MenuButtonUnstyled
         slots={{ root: MenuButton }}
-        label="My account"
         open={isOpen}
         onOpenChange={handleOpenChange}
+        popup={
+          <MenuUnstyled
+            slots={{ root: Popper, listbox: StyledListbox }}
+            slotProps={{ root: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
+          >
+            <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
+            <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+              Language settings
+            </StyledMenuItem>
+            <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
+          </MenuUnstyled>
+        }
       >
-        <MenuUnstyled
-          slots={{ root: Popper, listbox: StyledListbox }}
-          slotProps={{ root: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
-        >
-          <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-            Language settings
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
-        </MenuUnstyled>
+        My account
       </MenuButtonUnstyled>
     </Page>
   );

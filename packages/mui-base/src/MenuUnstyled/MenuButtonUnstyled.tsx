@@ -7,7 +7,6 @@ import { useSlotProps } from '../utils';
 
 export interface MenuButtonProps {
   className?: string;
-  label?: string;
   open?: boolean;
   onOpenChange?: (
     event: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>,
@@ -15,6 +14,7 @@ export interface MenuButtonProps {
   ) => void;
   defaultOpen?: boolean;
   children?: React.ReactNode;
+  popup?: React.ReactNode;
   slots?: {
     root?: React.ElementType;
   };
@@ -36,10 +36,10 @@ const MenuButton = React.forwardRef(function MenuButton(
 ) {
   const {
     children,
-    label,
     open: openProp,
     defaultOpen,
     onOpenChange,
+    popup,
     slots = {},
     slotProps = {},
     ...other
@@ -102,8 +102,8 @@ const MenuButton = React.forwardRef(function MenuButton(
 
   return (
     <MenuTriggerContext.Provider value={contextValue}>
-      <Root {...rootProps}>{label}</Root>
-      {children}
+      <Root {...rootProps}>{children}</Root>
+      {popup}
     </MenuTriggerContext.Provider>
   );
 });
