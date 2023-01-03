@@ -6,6 +6,17 @@ export default function InfiniteScolling() {
   const [films, setFilms] = React.useState(allFilms.slice(0, 10));
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const handleOnScrollToBottom = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setFilms((previousFilms) => [
+        ...previousFilms,
+        ...allFilms.slice(previousFilms.length, previousFilms.length + 10),
+      ]);
+    }, 2000);
+  };
+
   return (
     <Autocomplete
       id="infinite-scrolling-demo"
@@ -15,16 +26,7 @@ export default function InfiniteScolling() {
       loading={isLoading}
       showLoadingWithOptions
       renderInput={(params) => <TextField {...params} label="Movie" />}
-      onScrollToBottom={() => {
-        setIsLoading(true);
-        setTimeout(() => {
-          setIsLoading(false);
-          setFilms((previousFilms) => [
-            ...previousFilms,
-            ...allFilms.slice(previousFilms.length, previousFilms.length + 10),
-          ]);
-        }, 2000);
-      }}
+      onScrollToBottom={handleOnScrollToBottom}
     />
   );
 }
