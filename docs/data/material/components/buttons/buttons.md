@@ -184,6 +184,18 @@ Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "LoadingButtonsTransition.js"}}
 
+:::warning
+There is a [known issue](https://github.com/mui/material-ui/issues/27853) with translating the page with Chrome tools when Loading Buttons are present.
+After the page is translated, the application crashes when the loading state of a Button changes.
+To prevent it, ensure that the contents of the Loading Button is inside any HTML element (a `span` will suffice):
+
+```jsx
+<LoadingButton loading variant="outlined">
+  <span>Submit</span>
+</LoadingButton>
+```
+:::
+
 ### Material You version
 
 The default Button component follows the Material Design 2 specs.
