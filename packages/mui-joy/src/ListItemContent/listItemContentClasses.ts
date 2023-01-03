@@ -12,7 +12,7 @@ export function getListItemContentUtilityClass(slot: string): string {
 }
 
 const listItemContentClasses: ListItemContentClasses = generateUtilityClasses(
-  'JoyListItemContent',
+  'MuiListItemContent',
   ['root'],
 );
 

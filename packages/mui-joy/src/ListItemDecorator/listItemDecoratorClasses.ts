@@ -12,7 +12,7 @@ export function getListItemDecoratorUtilityClass(slot: string): string {
 }
 
 const listItemDecoratorClasses: ListItemDecoratorClasses = generateUtilityClasses(
-  'JoyListItemDecorator',
+  'MuiListItemDecorator',
   ['root'],
 );
 

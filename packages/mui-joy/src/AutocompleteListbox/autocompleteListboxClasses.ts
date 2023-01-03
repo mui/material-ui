@@ -40,7 +40,7 @@ export function getAutocompleteListboxUtilityClass(slot: string): string {
 }
 
 const autocompleteListboxClasses: AutocompleteListboxClasses = generateUtilityClasses(
-  'JoyAutocompleteListbox',
+  'MuiAutocompleteListbox',
   [
     'root',
     'sizeSm',

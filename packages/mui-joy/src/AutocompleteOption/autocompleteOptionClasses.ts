@@ -38,7 +38,7 @@ export function getAutocompleteOptionUtilityClass(slot: string): string {
 }
 
 const autocompleteOptionClasses: AutocompleteOptionClasses = generateUtilityClasses(
-  'JoyAutocompleteOption',
+  'MuiAutocompleteOption',
   [
     'root',
     'focused',

@@ -48,7 +48,7 @@ export function getCircularProgressUtilityClass(slot: string): string {
 }
 
 const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
-  'JoyCircularProgress',
+  'MuiCircularProgress',
   [
     'root',
     'determinate',
