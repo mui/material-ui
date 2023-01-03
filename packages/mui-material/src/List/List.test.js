@@ -4,6 +4,7 @@ import { describeConformance, createRenderer } from 'test/utils';
 import ListSubheader, { listSubheaderClasses } from '@mui/material/ListSubheader';
 import ListItem, { listItemClasses } from '@mui/material/ListItem';
 import List, { listClasses as classes } from '@mui/material/List';
+import Divider from '@mui/material/Divider';
 
 describe('<List />', () => {
   const { render } = createRenderer();
@@ -28,6 +29,18 @@ describe('<List />', () => {
     const { container } = render(<List disablePadding />);
 
     expect(container.firstChild).not.to.have.class(classes.padding);
+  });
+
+  it('should render with custom divider', () => {
+    const { container, getByTestId } = render(
+      <List divider={<Divider data-testid="divider" />}>
+        <ListItem>Inbox</ListItem>
+        <ListItem>Drafts</ListItem>
+      </List>,
+    );
+
+    expect(container.firstChild.childElementCount).to.equal(3);
+    expect(getByTestId('divider').tagName.toLowerCase()).to.equal('hr');
   });
 
   describe('prop: subheader', () => {

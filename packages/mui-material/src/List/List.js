@@ -6,6 +6,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
+import { addSeparators } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disablePadding, dense, subheader } = ownerState;
@@ -52,6 +53,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component = 'ul',
     dense = false,
     disablePadding = false,
+    divider,
     subheader,
     ...other
   } = props;
@@ -77,7 +79,7 @@ const List = React.forwardRef(function List(inProps, ref) {
         {...other}
       >
         {subheader}
-        {children}
+        {divider ? addSeparators(children, divider) : children}
       </ListRoot>
     </ListContext.Provider>
   );
@@ -117,6 +119,10 @@ List.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disablePadding: PropTypes.bool,
+  /**
+   * Add an element between each child.
+   */
+  divider: PropTypes.node,
   /**
    * The content of the subheader, normally `ListSubheader`.
    */

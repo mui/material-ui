@@ -27,6 +27,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     disablePadding?: boolean;
     /**
+     * Custom component to add separator between childs.
+     */
+    divider?: React.ReactNode;
+    /**
      * The content of the subheader, normally `ListSubheader`.
      */
     subheader?: React.ReactNode;
