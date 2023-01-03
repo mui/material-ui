@@ -57,9 +57,9 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     onChange,
     onFocus,
     onFocusVisible,
+    provideOwnerState = [],
     readOnly: readOnlyProp,
     required,
-    slotConfig = {},
     slotProps = {},
     slots = {},
     ...other
@@ -100,7 +100,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.root,
   });
 
-  if (!slotConfig.root?.provideOwnerState) {
+  if (!provideOwnerState.includes('root')) {
     delete rootProps.ownerState;
   }
 
@@ -112,7 +112,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.thumb,
   });
 
-  if (!slotConfig.thumb?.provideOwnerState) {
+  if (!provideOwnerState.includes('thumb')) {
     delete thumbProps.ownerState;
   }
 
@@ -125,7 +125,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.input,
   });
 
-  if (!slotConfig.input?.provideOwnerState) {
+  if (!provideOwnerState.includes('input')) {
     delete inputProps.ownerState;
   }
 
@@ -137,7 +137,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.track,
   });
 
-  if (!slotConfig.track?.provideOwnerState) {
+  if (!provideOwnerState.includes('track')) {
     delete trackProps.ownerState;
   }
 

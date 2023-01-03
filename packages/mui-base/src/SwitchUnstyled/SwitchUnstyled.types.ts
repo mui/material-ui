@@ -4,21 +4,12 @@ import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types'
 
 export interface SwitchUnstyledComponentsPropsOverrides {}
 
-export interface SlotConfig {
-  provideOwnerState?: boolean;
-}
-
 export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   /**
    * Class name applied to the root element.
    */
   className?: string;
-  slotConfig?: {
-    root?: SlotConfig;
-    thumb?: SlotConfig;
-    input?: SlotConfig;
-    track?: SlotConfig;
-  };
+  provideOwnerState?: (keyof Required<SwitchUnstyledOwnProps>['slots'])[];
   /**
    * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
