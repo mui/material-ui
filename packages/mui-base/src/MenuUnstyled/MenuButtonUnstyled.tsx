@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  // unstable_useForkRef as useForkRef,
+  unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
 import { useSlotProps } from '../utils';
@@ -23,11 +23,12 @@ export interface MenuButtonProps {
   };
 }
 
-interface MenuButtonContextState {
+interface MenuTriggerContextValue {
   open: boolean;
+  buttonRef: React.RefObject<HTMLButtonElement>;
 }
 
-export const MenuButtonContext = React.createContext<MenuButtonContextState | null>(null);
+export const MenuTriggerContext = React.createContext<MenuTriggerContextValue | null>(null);
 
 const MenuButton = React.forwardRef(function MenuButton(
   props: MenuButtonProps,
@@ -43,7 +44,6 @@ const MenuButton = React.forwardRef(function MenuButton(
     slotProps = {},
     ...other
   } = props;
-  const focusableElement = React.useRef<HTMLElement | null>(null);
 
   const [isOpen, setOpen] = useControlled({
     controlled: openProp,
@@ -51,7 +51,13 @@ const MenuButton = React.forwardRef(function MenuButton(
     name: 'MenuButton',
   });
 
-  const contextValue = React.useMemo(() => ({ open: isOpen }), [isOpen]);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const handleRef = useForkRef(buttonRef, ref);
+
+  const contextValue: MenuTriggerContextValue = React.useMemo(
+    () => ({ open: isOpen, buttonRef }),
+    [isOpen, buttonRef],
+  );
 
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -76,8 +82,8 @@ const MenuButton = React.forwardRef(function MenuButton(
   );
 
   React.useEffect(() => {
-    if (isOpen) {
-      focusableElement.current?.focus();
+    if (!isOpen) {
+      buttonRef.current?.focus();
     }
   }, [isOpen]);
 
@@ -87,7 +93,7 @@ const MenuButton = React.forwardRef(function MenuButton(
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      ref,
+      ref: handleRef,
       onClick: handleClick,
       onKeyDown: handleKeyDown,
     },
@@ -95,10 +101,10 @@ const MenuButton = React.forwardRef(function MenuButton(
   });
 
   return (
-    <MenuButtonContext.Provider value={contextValue}>
+    <MenuTriggerContext.Provider value={contextValue}>
       <Root {...rootProps}>{label}</Root>
       {children}
-    </MenuButtonContext.Provider>
+    </MenuTriggerContext.Provider>
   );
 });
 

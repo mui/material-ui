@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
+import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, { menuItemUnstyledClasses } from '@mui/base/MenuItemUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
@@ -118,22 +118,14 @@ const Page = styled('div')(`
 `);
 
 export default function UnstyledMenuIntroduction() {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
-  const isOpen = Boolean(anchorEl);
+  const [isOpen, setOpen] = React.useState(false);
 
   const close = () => {
-    setAnchorEl(null);
-    buttonRef.current!.focus();
+    setOpen(false);
   };
 
   const handleOpenChange = (event: React.SyntheticEvent<HTMLButtonElement>, open: boolean) => {
-    if (open) {
-      setAnchorEl(event.currentTarget);
-    } else {
-      close();
-    }
+    setOpen(open);
   };
 
   const createHandleMenuClick = (menuItem: string) => {
@@ -151,11 +143,8 @@ export default function UnstyledMenuIntroduction() {
         label="My account"
         open={isOpen}
         onOpenChange={handleOpenChange}
-        ref={buttonRef}
       >
         <MenuUnstyled
-          actions={menuActions}
-          anchorEl={anchorEl}
           slots={{ root: Popper, listbox: StyledListbox }}
           slotProps={{ root: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
         >

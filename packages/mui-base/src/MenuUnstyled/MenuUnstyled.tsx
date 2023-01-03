@@ -14,7 +14,7 @@ import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
-import { MenuButtonContext } from './MenuButtonUnstyled';
+import { MenuTriggerContext } from './MenuButtonUnstyled';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -40,7 +40,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
 >(props: MenuUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
   const {
     actions,
-    anchorEl,
+    anchorEl: anchorElProp,
     children,
     component,
     keepMounted = false,
@@ -53,10 +53,12 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   } = props;
 
   let open = openProp;
+  let anchorEl = anchorElProp;
 
-  const menuButtonContext = React.useContext(MenuButtonContext);
-  if (menuButtonContext) {
-    open = menuButtonContext.open;
+  const triggerContext = React.useContext(MenuTriggerContext);
+  if (triggerContext) {
+    open = triggerContext.open;
+    anchorEl = triggerContext.buttonRef.current;
   }
 
   const {
