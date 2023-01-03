@@ -5,6 +5,7 @@
     "component": { "type": { "name": "elementType" } },
     "dense": { "type": { "name": "bool" } },
     "disablePadding": { "type": { "name": "bool" } },
+    "divider": { "type": { "name": "node" } },
     "subheader": { "type": { "name": "node" } },
     "sx": {
       "type": {
