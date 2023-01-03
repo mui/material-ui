@@ -21,10 +21,10 @@ describe('<RadioGroup />', () => {
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 
-  it('should have row class if `row` is true', () => {
-    const { getByRole } = render(<RadioGroup value="" row />);
+  it('should have `orientation` class', () => {
+    const { getByRole } = render(<RadioGroup value="" orientation="horizontal" />);
 
-    expect(getByRole('radiogroup')).to.have.class(classes.row);
+    expect(getByRole('radiogroup')).to.have.class(classes.horizontal);
   });
 
   it('the root component has the radiogroup role', () => {
