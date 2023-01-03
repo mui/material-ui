@@ -187,9 +187,9 @@ export interface AutocompleteProps<
    */
   noOptionsText?: React.ReactNode;
   /**
-   * Callback fired when scroll reaches bottom of container
+   * Callback fires when scroll bar reaches bottom of listbox
    */
-  onScrollToBottom?: (event: React.UIEvent<HTMLUListElement, UIEvent>) => void;
+  onScrollToBottom?: (event: React.SyntheticEvent) => void;
   /**
    * Override the default text for the *open popup* icon button.
    *
@@ -257,6 +257,11 @@ export interface AutocompleteProps<
     getTagProps: AutocompleteRenderGetTagProps,
     ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
+  /**
+   * If `true` loading indicator gets displayed along with options
+   * @default 'false'
+   */
+  showLoadingWithOptions?: boolean;
   /**
    * The size of the component.
    * @default 'medium'

@@ -221,10 +221,10 @@ export interface UseAutocompleteProps<
     details?: AutocompleteChangeDetails<T>,
   ) => void;
   /**
-   * Callback fired when scroll reaches bottom of container
-   * @param {React.UIEvent<HTMLUListElement, UIEvent>} event The event source of the scroll event.
+   * Callback fires when scroll bar reaches bottom of listbox
+   * @param {React.SyntheticEvent}
    */
-  onScrollToBottom?: (event: React.UIEvent<HTMLUListElement, UIEvent>) => void;
+  onScrollToBottom?: (event: React.SyntheticEvent) => void;
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).

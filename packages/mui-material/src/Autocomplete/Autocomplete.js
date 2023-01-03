@@ -428,6 +428,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     slotProps = {},
     value: valueProp,
     onScrollToBottom,
+    showLoadingWithOptions = false,
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -622,11 +623,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             {...paperSlotProps}
             className={clsx(classes.paper, paperSlotProps?.className)}
           >
-            {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
-            ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
               <AutocompleteNoOptions
                 className={classes.noOptions}
@@ -661,6 +657,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                   return renderListOption(option, index);
                 })}
               </AutocompleteListbox>
+            ) : null}
+            {loading &&
+            (showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)) ? (
+              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                {loadingText}
+              </AutocompleteLoading>
             ) : null}
           </AutocompletePaper>
         </AutocompletePopper>
@@ -975,7 +977,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
-   * Callback fired when scroll reaches bottom of container
+   * Callback fires when scroll bar reaches bottom of listbox
    */
   onScrollToBottom: PropTypes.func,
   /**
@@ -1056,6 +1058,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default !props.freeSolo
    */
   selectOnFocus: PropTypes.bool,
+  /**
+   * If `true` loading indicator gets displayed along with options
+   * @default false
+   */
+  showLoadingWithOptions: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'medium'

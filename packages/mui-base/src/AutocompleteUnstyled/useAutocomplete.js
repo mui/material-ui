@@ -148,7 +148,7 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
-
+  console.log(highlightedIndexRef);
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -350,11 +350,6 @@ export default function useAutocomplete(props) {
 
     // "No results"
     if (!listboxNode) {
-      return;
-    }
-
-    if (index === -1) {
-      listboxNode.scrollTop = 0;
       return;
     }
 
@@ -1085,7 +1080,7 @@ export default function useAutocomplete(props) {
       ref: handleListboxRef,
       onScroll: (event) => {
         const listboxNode = listboxRef.current;
-        const lisboxHeight = listboxNode.offsetHeight;
+        const listboxHeight = listboxNode.offsetHeight;
         const contentHeight = listboxNode.scrollHeight;
         const scrollPosition = listboxNode.scrollTop;
 
@@ -1094,9 +1089,9 @@ export default function useAutocomplete(props) {
         );
 
         const distanceFromBottom =
-          contentHeight - (scrollPosition + lisboxHeight + listboxPaddingBottom);
+          contentHeight - (scrollPosition + listboxHeight + listboxPaddingBottom);
         //   In general, it's best to use a small threshold value when checking for the scroll position, since the scrollTop, offsetHeight, and scrollHeight values are often not perfectly accurate. For example, some browsers might round these values to the nearest integer, which can cause small discrepancies.
-        if (distanceFromBottom <= 1 && lisboxHeight !== contentHeight) {
+        if (distanceFromBottom <= 1 && listboxHeight !== contentHeight && onScrollToBottom) {
           // The scrollbar is at the bottom of the listbox element
           onScrollToBottom(event);
         }

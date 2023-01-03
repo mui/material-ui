@@ -207,6 +207,10 @@ In the event that you need to lock certain tags so that they can't be removed, y
 
 {{"demo": "CheckboxesTags.js"}}
 
+### Infinite scrolling
+
+{{"demo": "InfiniteScrolling.js"}}
+
 ### Limit tags
 
 You can use the `limitTags` prop to limit the number of displayed options when not focused.

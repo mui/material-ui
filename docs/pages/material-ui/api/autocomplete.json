@@ -80,6 +80,7 @@
     "renderOption": { "type": { "name": "func" } },
     "renderTags": { "type": { "name": "func" } },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
+    "showLoadingWithOptions": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "union",
