@@ -14,7 +14,7 @@ import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
-import SliderValueLabel, { sliderClasses } from './SliderValueLabel';
+import SliderValueLabelComponent, { sliderClasses } from './SliderValueLabel';
 
 const valueToPercent = (value, min, max) => ((value - min) * 100) / (max - min);
 
@@ -295,7 +295,7 @@ SliderThumb.propTypes /* remove-proptypes */ = {
 
 export { SliderThumb };
 
-const StyledSliderValueLabel = styled(SliderValueLabel, {
+const StyledSliderValueLabel = styled(SliderValueLabelComponent, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -365,7 +365,7 @@ StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
 };
 
-export { StyledSliderValueLabel };
+export { StyledSliderValueLabel as SliderValueLabel };
 
 const SliderMark = styled('span', {
   name: 'MuiSlider',
