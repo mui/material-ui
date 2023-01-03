@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   OverridableComponent,
   OverridableStringUnion,
@@ -10,9 +10,7 @@ import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 export type IconButtonSlot = 'root';
 
 export interface IconButtonPropsVariantOverrides {}
-
 export interface IconButtonPropsColorOverrides {}
-
 export interface IconButtonPropsSizeOverrides {}
 
 export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {

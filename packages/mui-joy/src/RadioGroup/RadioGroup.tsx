@@ -90,14 +90,6 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValueState(event.target.value);
-
-    if (onChange) {
-      onChange(event);
-    }
-  };
-
   const name = useId(nameProp);
 
   const formControl = React.useContext(FormControlContext);
@@ -114,18 +106,27 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     }, [registerEffect]);
   }
 
+  const contextValue = React.useMemo(
+    () => ({
+      disableIcon,
+      overlay,
+      row,
+      size,
+      name,
+      value,
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValueState(event.target.value);
+
+        if (onChange) {
+          onChange(event);
+        }
+      },
+    }),
+    [disableIcon, name, onChange, overlay, row, setValueState, size, value],
+  );
+
   return (
-    <RadioGroupContext.Provider
-      value={{
-        disableIcon,
-        overlay,
-        row,
-        size,
-        name,
-        value,
-        onChange: handleChange,
-      }}
-    >
+    <RadioGroupContext.Provider value={contextValue}>
       <RadioGroupRoot
         ref={ref}
         role={role}

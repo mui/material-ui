@@ -90,6 +90,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     labelPlacement = 'end',
     name,
     onChange,
+    slotProps = {},
     value,
     ...other
   } = props;
@@ -129,10 +130,16 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
+  const typographySlotProps = slotProps.typography ?? componentsProps.typography;
+
   let label = labelProp;
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
-      <Typography component="span" className={classes.label} {...componentsProps.typography}>
+      <Typography
+        component="span"
+        {...typographySlotProps}
+        className={clsx(classes.label, typographySlotProps?.className)}
+      >
         {label}
       </Typography>
     );
@@ -211,6 +218,13 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    typography: PropTypes.object,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

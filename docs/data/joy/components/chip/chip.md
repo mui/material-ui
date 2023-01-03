@@ -14,7 +14,7 @@ Chips are most frequently used in two main use cases: as pills of informative co
 
 The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
 
-{{"demo": "ChipUsage.js", "hideToolbar": true}}
+{{"demo": "ChipUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
@@ -68,7 +68,7 @@ Doing so will automatically change the rendered HTML tag from `<div>` to `<a>`.
 
 ### Clickable
 
-To make chips clikcable, pass a function to the `onClick` prop.
+To make chips clickable, pass a function to the `onClick` prop.
 
 {{"demo": "ClickableChip.js"}}
 

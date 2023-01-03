@@ -15,7 +15,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
-import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
@@ -26,6 +26,7 @@ const SearchButton = styled('button')(({ theme }) => {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
+    margin: 0, // Reset for Safari
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
@@ -85,7 +86,7 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
-const NewStartScreen = () => {
+function NewStartScreen() {
   const startScreenOptions = [
     {
       category: {
@@ -141,18 +142,16 @@ const NewStartScreen = () => {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
-              <a href={href} className="DocSearch-NewStartScreenItem">
-                {name}
-                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-              </a>
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {name}
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
       ))}
     </div>
   );
-};
+}
 
 function DocSearcHit(props) {
   const { children, hit } = props;

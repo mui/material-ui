@@ -52,37 +52,6 @@ export interface SelectUnstyledCommonProps {
 
 export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Listbox?: React.ElementType;
-    Popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
-  };
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'button',
-      SelectUnstyledComponentsPropsOverrides,
-      SelectUnstyledOwnerState<TValue>
-    >;
-    listbox?: SlotComponentProps<
-      'button',
-      SelectUnstyledComponentsPropsOverrides,
-      SelectUnstyledOwnerState<TValue>
-    >;
-    popper?: SlotComponentProps<
-      typeof PopperUnstyled,
-      SelectUnstyledComponentsPropsOverrides,
-      SelectUnstyledOwnerState<TValue>
-    >;
-  };
-  /**
    * The default selected value. Use when the component is not controlled.
    */
   defaultValue?: TValue | null;
@@ -113,6 +82,37 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
    * Function that customizes the rendering of the selected value.
    */
   renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'button',
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+    listbox?: SlotComponentProps<
+      'button',
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+    popper?: SlotComponentProps<
+      typeof PopperUnstyled,
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+  };
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    listbox?: React.ElementType;
+    popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
+  };
   /**
    * The selected value.
    * Set to `null` to deselect all options.

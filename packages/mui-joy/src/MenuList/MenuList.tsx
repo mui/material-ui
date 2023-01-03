@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
@@ -25,8 +25,8 @@ const useUtilityClasses = (ownerState: MenuListProps) => {
   return composeClasses(slots, getMenuListUtilityClass, {});
 };
 
-const MenuListRoot = styled(ListRoot, {
-  name: 'MuiMenuList',
+const MenuListRoot = styled(StyledList, {
+  name: 'JoyMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
@@ -50,7 +50,7 @@ const MenuListRoot = styled(ListRoot, {
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiMenuList',
+    name: 'JoyMenuList',
   });
 
   const {
@@ -109,14 +109,18 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const contextValue = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    getListboxProps,
-    open: true,
-  } as MenuUnstyledContextType;
+  const contextValue = React.useMemo(
+    () =>
+      ({
+        registerItem,
+        unregisterItem,
+        getItemState,
+        getItemProps,
+        getListboxProps,
+        open: true,
+      } as MenuUnstyledContextType),
+    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+  );
 
   return (
     <MenuListRoot {...listboxProps}>

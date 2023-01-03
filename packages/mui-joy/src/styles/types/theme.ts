@@ -18,7 +18,7 @@ import {
   LetterSpacing,
   TypographySystem,
 } from './typography';
-import { Variants } from './variants';
+import { Variants, VariantOverrides, ColorInversionConfig } from './variants';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -43,7 +43,6 @@ type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
 export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
   palette: ColorSystem['palette'] & {
-    mode: 'light' | 'dark';
     colorScheme: DefaultColorScheme | ExtendedColorScheme;
   };
 }
@@ -59,7 +58,10 @@ export interface ThemeScales {
   letterSpacing: LetterSpacing;
 }
 
-export interface ThemeVars extends ThemeScales, ColorSystem {}
+interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
+  palette: Omit<ColorSystem['palette'], 'mode'>;
+}
+export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 
 export interface ThemeCssVarOverrides {}
 
@@ -70,6 +72,8 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
+  colorInversion: VariantOverrides;
+  colorInversionConfig: ColorInversionConfig;
   spacing: Spacing;
   breakpoints: Breakpoints;
   cssVarPrefix: string;

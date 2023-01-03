@@ -514,8 +514,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-slot$`);
-      const regExpSC = new RegExp(`MuiComponent-slot-.*`);
+      const regExp = /.*-MuiComponent-slot$/;
+      const regExpSC = /MuiComponent-slot-.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {
@@ -539,8 +539,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-root$`);
-      const regExpSC = new RegExp(`MuiComponent-root.*`);
+      const regExp = /.*-MuiComponent-root$/;
+      const regExpSC = /MuiComponent-root.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {
@@ -620,7 +620,7 @@ describe('styled', () => {
     });
 
     it('classes props should be correctly applied to root and slot elements', () => {
-      const Child = (props) => {
+      function Child(props) {
         const { classes = {}, className, ...other } = props;
 
         return (
@@ -630,12 +630,12 @@ describe('styled', () => {
             {...other}
           />
         );
-      };
+      }
 
       const ParentRoot = styled('div', { name: 'MuiParent', slot: 'Root' })``;
       const ParentSlot = styled(Child, { name: 'MuiChild', slot: 'Slot' })``;
 
-      const Parent = (props) => {
+      function Parent(props) {
         const { classes = {}, className, ...other } = props;
 
         return (
@@ -648,7 +648,7 @@ describe('styled', () => {
             <ParentSlot classes={{ root: classes.slot }} />
           </ParentRoot>
         );
-      };
+      }
 
       const { container } = render(<Parent classes={{ root: 'root', slot: 'slot' }} />);
 

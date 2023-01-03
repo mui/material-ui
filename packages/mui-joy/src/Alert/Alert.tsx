@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertTypeMap } from './AlertProps';
 
@@ -103,7 +104,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    component = 'div',
     color = 'primary',
     role = 'alert',
     variant = 'soft',
@@ -122,28 +122,40 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AlertRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      role,
+    },
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: AlertStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: AlertEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
   return (
-    <AlertRoot
-      as={component}
-      role={role}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {startDecorator && (
-        <AlertStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </AlertStartDecorator>
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {children}
-      {endDecorator && (
-        <AlertEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </AlertEndDecorator>
-      )}
-    </AlertRoot>
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </SlotRoot>
   );
 }) as OverridableComponent<AlertTypeMap>;
 
@@ -169,11 +181,6 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * Element placed after the children.
    */
   endDecorator: PropTypes.node,
@@ -186,7 +193,10 @@ Alert.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Element placed before the children.
    */

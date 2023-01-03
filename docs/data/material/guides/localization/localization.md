@@ -40,6 +40,7 @@ const theme = createTheme(
 | :---------------------- | :------------------ | :---------- |
 | Amharic                 | am-ET               | `amET`      |
 | Arabic (Egypt)          | ar-EG               | `arEG`      |
+| Arabic (Saudi Arabia)   | ar-SA               | `arSA`      |
 | Arabic (Sudan)          | ar-SD               | `arSD`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
@@ -85,6 +86,7 @@ const theme = createTheme(
 | Thai                    | th-TH               | `thTH`      |
 | Turkish                 | tr-TR               | `trTR`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
+| Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
 <!-- #default-branch-switch -->

@@ -17,8 +17,24 @@ describe('<CircularProgress />', () => {
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { determinate: true },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      svg: { expectedClassName: classes.svg, testWithElement: 'svg' },
+      track: {
+        expectedClassName: classes.track,
+      },
+      progress: { expectedClassName: classes.progress },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describe('prop: determinate', () => {
+    it('should render a determinate circular progress', () => {
+      const { getByRole } = render(<CircularProgress determinate />);
+
+      expect(getByRole('progressbar')).to.have.class(classes.determinate);
+    });
+  });
 
   describe('prop: variant', () => {
     it('soft by default', () => {

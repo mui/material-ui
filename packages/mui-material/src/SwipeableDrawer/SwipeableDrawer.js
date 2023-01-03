@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { flushSync } from 'react-dom';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@mui/utils';
 import { useThemeProps } from '@mui/system';
 import { NoSsr } from '@mui/base';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
+import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
@@ -165,6 +167,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
 
+  const handleRef = useForkRef(PaperProps.ref, paperRef);
+
   const touchDetected = React.useRef(false);
 
   // Ref for transition duration based on / to match swipe speed
@@ -232,7 +236,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
     claimedSwipeInstance = null;
     touchDetected.current = false;
-    setMaybeSwiping(false);
+    flushSync(() => {
+      setMaybeSwiping(false);
+    });
 
     // The swipe wasn't started.
     if (!swipeInstance.current.isSwiping) {
@@ -486,7 +492,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;
 
-    setMaybeSwiping(true);
+    flushSync(() => {
+      setMaybeSwiping(true);
+    });
+
     if (!open && paperRef.current) {
       // The ref may be null when a parent component updates while swiping.
       setPosition(
@@ -552,6 +561,11 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
             ...BackdropProps,
             ref: backdropRef,
           },
+          // Ensures that paperRef.current will be defined inside the touch start event handler
+          // See https://github.com/mui/material-ui/issues/30414 for more information
+          ...(variant === 'temporary' && {
+            keepMounted: true,
+          }),
           ...ModalPropsProp,
         }}
         hideBackdrop={hideBackdrop}
@@ -561,7 +575,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
             pointerEvents: variant === 'temporary' && !open ? 'none' : '',
             ...PaperProps.style,
           },
-          ref: paperRef,
+          ref: handleRef,
         }}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
