@@ -25,6 +25,10 @@ export interface FormControlClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type FormControlClassKey = keyof FormControlClasses;
@@ -46,6 +50,8 @@ const formControlClasses: FormControlClasses = generateUtilityClasses('JoyFormCo
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'horizontal',
+  'vertical',
 ]);
 
 export default formControlClasses;
