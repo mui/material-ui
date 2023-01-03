@@ -3,12 +3,12 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-  SliderValueLabelProps,
 } from '@mui/base/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import { OverrideProps } from '../OverridableComponent';
+import { SliderValueLabelProps } from './SliderValueLabel.types';
 
 export interface SliderPropsColorOverrides {}
 
@@ -100,8 +100,6 @@ export type SliderTypeMap<
   };
   defaultComponent: D;
 }>;
-
-export { SliderValueLabelProps } from '@mui/base/SliderUnstyled';
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];

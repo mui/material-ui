@@ -23,13 +23,6 @@ export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 };
 
-export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
-  index: number;
-  open: boolean;
-  value: number;
-}
-
 export interface SliderUnstyledComponentsPropsOverrides {}
 
 export interface SliderUnstyledOwnProps {
