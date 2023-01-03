@@ -6,6 +6,7 @@ import { ThemeProvider as MDThemeProvider, createTheme } from '@mui/material/sty
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
+import createDescribe from './createDescribe';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 import { MuiRenderResult } from './createRenderer';
 
@@ -914,46 +915,46 @@ const fullSuite = {
  * Tests various aspects of a component that should be equal across MUI
  * components.
  */
-export default function describeConformance(
+function describeConformance(
   minimalElement: React.ReactElement,
   getOptions: () => InputConformanceOptions,
 ) {
-  describe('MUI component API', () => {
-    const {
-      after: runAfterHook = () => {},
-      only = Object.keys(fullSuite),
-      slots,
-      skip = [],
-      wrapMount,
-    } = getOptions();
+  const {
+    after: runAfterHook = () => {},
+    only = Object.keys(fullSuite),
+    slots,
+    skip = [],
+    wrapMount,
+  } = getOptions();
 
-    let filteredTests = Object.keys(fullSuite).filter(
-      (testKey) =>
-        only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
-    ) as (keyof typeof fullSuite)[];
+  let filteredTests = Object.keys(fullSuite).filter(
+    (testKey) =>
+      only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
+  ) as (keyof typeof fullSuite)[];
 
-    const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
+  const slotBasedTests = ['slotsProp', 'slotPropsProp', 'slotPropsCallback'];
 
-    if (!slots) {
-      // if `slots` are not defined, do not run tests that depend on them
-      filteredTests = filteredTests.filter((testKey) => !slotBasedTests.includes(testKey));
-    }
+  if (!slots) {
+    // if `slots` are not defined, do not run tests that depend on them
+    filteredTests = filteredTests.filter((testKey) => !slotBasedTests.includes(testKey));
+  }
 
-    const baseMount = createMount();
-    const mount = wrapMount !== undefined ? wrapMount(baseMount) : baseMount;
+  const baseMount = createMount();
+  const mount = wrapMount !== undefined ? wrapMount(baseMount) : baseMount;
 
-    after(runAfterHook);
+  after(runAfterHook);
 
-    function getTestOptions(): ConformanceOptions {
-      return {
-        ...getOptions(),
-        mount,
-      };
-    }
+  function getTestOptions(): ConformanceOptions {
+    return {
+      ...getOptions(),
+      mount,
+    };
+  }
 
-    filteredTests.forEach((testKey) => {
-      const test = fullSuite[testKey];
-      test(minimalElement, getTestOptions);
-    });
+  filteredTests.forEach((testKey) => {
+    const test = fullSuite[testKey];
+    test(minimalElement, getTestOptions);
   });
 }
+
+export default createDescribe('MUI component API', describeConformance);

@@ -482,6 +482,47 @@ describe('styled', () => {
       });
     });
 
+    it('should resolve the theme.unstable_sx when used in an array styles', () => {
+      const TestComponent = styled('div')(
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mt: 2,
+          }),
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mb: 2,
+          }),
+      );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent>Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
+        marginBottom: '16px',
+      });
+    });
+
+    it('should resolve the theme.unstable_sx when used in an pseudo object', () => {
+      const TestComponent = styled('div')(({ theme: userTheme }) => ({
+        '&.test-classname': userTheme.unstable_sx({
+          mt: 2,
+        }),
+      }));
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent className="test-classname">Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
+      });
+    });
+
     it('should respect the skipSx option', () => {
       const testOverridesResolver = (props, styles) => ({
         ...styles.root,

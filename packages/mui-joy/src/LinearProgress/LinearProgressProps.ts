@@ -8,7 +8,7 @@ export interface LinearProgressPropsColorOverrides {}
 export interface LinearProgressPropsSizeOverrides {}
 export interface LinearProgressPropsVariantOverrides {}
 
-export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
+export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.

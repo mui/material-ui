@@ -60,7 +60,7 @@ The Badge component supports Joy UI's four [global variants](/joy-ui/main-featur
 
 {{"demo": "BadgeVariants.js"}}
 
-:::success
+:::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 Note that you lose the global variants when you add custom variants.
 :::
@@ -71,7 +71,7 @@ The Badge component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "BadgeSizes.js"}}
 
-:::success
+:::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 

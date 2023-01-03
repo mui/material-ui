@@ -1,4 +1,4 @@
-import { SxProps as SystemSxProps } from '@mui/system';
+import { SxProps as SystemSxProps, SxConfig, CSSObject } from '@mui/system';
 import {
   CssVarsTheme as MD2Theme,
   SupportedColorScheme,
@@ -143,6 +143,7 @@ export interface MD3CssVarsThemeOptions extends Omit<MD2CssVarsThemeOptions, 'co
   sys?: {
     typescale?: Partial<MD3Typescale>;
     state?: Partial<MD3States>;
+    elevation?: string[];
   };
 }
 
@@ -152,6 +153,7 @@ export interface ColorSystemOptions extends MD2ColorSystemOptions {
   };
   sys?: {
     color?: Partial<MD3ColorSchemeTokens>;
+    elevation?: string[];
   };
 }
 
@@ -172,6 +174,7 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
     color: MD3ColorSchemeTokens;
     typescale: MD3Typescale;
     state: MD3States;
+    elevation: string[];
   };
   md3: {
     shape: Shapes;
@@ -187,11 +190,14 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       color: MD3ColorSchemeTokens;
       typescale: MD3Typescale;
       state: MD3States;
+      elevation: string[];
     };
     md3: {
       shape: Shapes;
     };
   };
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SystemSxProps<Theme>) => CSSObject;
 }
 
 export type SxProps = SystemSxProps<Theme>;

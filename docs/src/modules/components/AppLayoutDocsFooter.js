@@ -157,7 +157,9 @@ async function postFeedbackOnSlack(data) {
     `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
     `>${comment.split('\n').join('\n>')}`,
     `sent from ${window.location.href}${
-      commentedSection.text ? ` (from section ${commentedSection.text})` : ''
+      commentedSection.text
+        ? ` (from section <${window.location.origin}${window.location.pathname}#${commentedSection.hash}|${commentedSection.text})>`
+        : ''
     }`,
   ].join('\n\n');
 
