@@ -11,27 +11,7 @@ import {
 import { deepmerge } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-
-/**
- * Return an array with the separator React element interspersed between
- * each React node of the input children.
- *
- * > joinChildren([1,2,3], 0)
- * [1,0,2,0,3]
- */
-function joinChildren(children, separator) {
-  const childrenArray = React.Children.toArray(children).filter(Boolean);
-
-  return childrenArray.reduce((output, child, index) => {
-    output.push(child);
-
-    if (index < childrenArray.length - 1) {
-      output.push(React.cloneElement(separator, { key: `separator-${index}` }));
-    }
-
-    return output;
-  }, []);
-}
+import { addSeparators } from '../utils';
 
 const getSideFromDirection = (direction) => {
   return {
@@ -136,7 +116,7 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
 
   return (
     <StackRoot as={component} ownerState={ownerState} ref={ref} {...other}>
-      {divider ? joinChildren(children, divider) : children}
+      {divider ? addSeparators(children, divider) : children}
     </StackRoot>
   );
 });
