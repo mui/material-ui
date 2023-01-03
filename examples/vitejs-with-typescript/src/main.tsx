@@ -8,8 +8,8 @@ import App from './App';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
+      <CssBaseline />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
-)
+);
