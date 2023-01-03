@@ -36,6 +36,10 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
+/**
+ * @param {{reason:"mouse"|"keyboard",getByRole:(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => HTMLElement,onScrollToBottomCallCount:number,onScrollToBottom:Function}}
+ */
+
 function testOnScrollToBottom({ reason, onScrollToBottomCallCount, getByRole, onScrollToBottom }) {
   const textbox = getByRole('combobox');
   act(() => {
@@ -2722,6 +2726,39 @@ describe('<Autocomplete />', () => {
         getByRole,
         onScrollToBottom,
         onScrollToBottomCallCount: 1,
+      });
+
+    it('should call onScrollToBottom when scroll custom ListboxComponent is used', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+
+      const { getByRole, getAllByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          onScrollToBottom={onScrollToBottom}
+          ListboxComponent='div'
+          ListboxProps={{
+            style: { height: '100px' },
+          }}
+        />,
+      );
+      testOnScrollToBottom({
+        getAllByRole,
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
+      testOnScrollToBottom({
+        getAllByRole,
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 2,
       });
     });
 
