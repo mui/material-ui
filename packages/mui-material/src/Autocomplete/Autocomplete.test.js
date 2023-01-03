@@ -2763,6 +2763,43 @@ describe('<Autocomplete />', () => {
       });
     });
 
+    it('should call onScrollToBottom and custom Listbox onScroll when possible', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+      const onScroll = spy();
+
+      const { getByRole, getAllByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          onScrollToBottom={onScrollToBottom}
+          ListboxComponent="div"
+          ListboxProps={{
+            style: { height: '100px' },
+            onScroll,
+          }}
+        />,
+      );
+      testOnScrollToBottom({
+        getAllByRole,
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
+      testOnScrollToBottom({
+        getAllByRole,
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 2,
+      });
+      expect(onScroll.callCount).to.equal(2);
+    });
+
     it("should not call onScrollToBottom when listbox doesn't have scroll bar", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
