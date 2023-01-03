@@ -12,10 +12,10 @@ import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
-  const { hidden, size } = ownerState;
+  const { hidden, size, orientation } = ownerState;
 
   const slots = {
-    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`],
+    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`, orientation],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, {});
