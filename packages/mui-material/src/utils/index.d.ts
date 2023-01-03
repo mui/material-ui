@@ -7,7 +7,7 @@ export { default as isMuiElement } from './isMuiElement';
 export { default as ownerDocument } from './ownerDocument';
 export { default as ownerWindow } from './ownerWindow';
 export { default as requirePropFactory } from './requirePropFactory';
-export { default as addSeparators } from './separators';
+export { default as insertSeparator } from './insertSeparator';
 export { default as setRef } from './setRef';
 export { default as unstable_useEnhancedEffect } from './useEnhancedEffect';
 export { default as unstable_useId } from './useId';

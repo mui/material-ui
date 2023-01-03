@@ -6,7 +6,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
-import { addSeparators } from '../utils';
+import { insertSeparator } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disablePadding, dense, subheader } = ownerState;
@@ -79,7 +79,7 @@ const List = React.forwardRef(function List(inProps, ref) {
         {...other}
       >
         {subheader}
-        {divider ? addSeparators(children, divider) : children}
+        {divider ? insertSeparator(children, divider) : children}
       </ListRoot>
     </ListContext.Provider>
   );

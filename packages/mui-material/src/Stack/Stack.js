@@ -11,7 +11,7 @@ import {
 import { deepmerge } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { addSeparators } from '../utils';
+import { insertSeparator } from '../utils';
 
 const getSideFromDirection = (direction) => {
   return {
@@ -116,7 +116,7 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
 
   return (
     <StackRoot as={component} ownerState={ownerState} ref={ref} {...other}>
-      {divider ? addSeparators(children, divider) : children}
+      {divider ? insertSeparator(children, divider) : children}
     </StackRoot>
   );
 });

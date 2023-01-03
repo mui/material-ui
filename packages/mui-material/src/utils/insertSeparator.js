@@ -6,7 +6,7 @@ import * as React from 'react';
  * @param children - The children to add separators to.
  * @param separator - The separator component to be used.
  */
-export default function addSeparators(children, separator) {
+export default function insertSeparator(children, separator) {
   const childrens = React.Children.toArray(children).filter(Boolean);
 
   return childrens.reduce((output, child, index) => {
