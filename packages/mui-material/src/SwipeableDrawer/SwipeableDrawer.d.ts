@@ -3,9 +3,10 @@ import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
   /**
-   * Callback to determine what children of the drawer the user can use to drag open the drawer.
-   * Can be a custom function to control the behavior.
-   * Set or return true / false to allow / disallow the swipe event.
+   * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
+   * This can be useful in scenarios where the drawer is partially visible.
+   * You can customize it further with a callback that determines which children the user can drag over to open the drawer
+   * (for example, to ignore other elements that handle touch move events, like sliders).
    *
    * @param {TouchEvent} event The 'touchstart' event
    * @param {HTMLDivElement} swipeArea The swipe area element
