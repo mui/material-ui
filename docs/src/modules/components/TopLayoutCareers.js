@@ -22,7 +22,7 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
   },
 }));
 
-function TopLayoutCareers(props) {
+export default function TopLayoutCareers(props) {
   const { docs } = props;
   const { description, rendered, title } = docs.en;
 
@@ -57,5 +57,3 @@ function TopLayoutCareers(props) {
 TopLayoutCareers.propTypes = {
   docs: PropTypes.object.isRequired,
 };
-
-export default TopLayoutCareers;

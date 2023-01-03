@@ -189,7 +189,8 @@ const openRolesData = [
     roles: [
       {
         title: 'Lead Designer',
-        description: "You will own most of MUI's design work and manage a small team of designers.",
+        description:
+          "You will be accountable for MUI's design execution and manage a small team of designers.",
         url: '/careers/lead-designer/',
       },
       {
