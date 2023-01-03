@@ -5,7 +5,7 @@ import { SlotComponentProps } from '@mui/base';
 import { ModalUnstyledTypeMap } from '@mui/base/ModalUnstyled';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
-import { OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { OverridableComponent } from '../OverridableComponent';
 
 export interface ModalComponentsPropsOverrides {}
 
@@ -80,7 +80,7 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-  };
+  } & Omit<ModalUnstyledTypeMap['props'], 'slotProps'>;
   defaultComponent: D;
 }
 
@@ -89,11 +89,6 @@ type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
 export declare const ModalRoot: React.FC<ModalRootProps>;
 
 export type ModalClassKey = keyof NonNullable<ModalProps['classes']>;
-
-export interface ExtendModalTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Omit<ModalUnstyledTypeMap['props'], 'slotProps'>;
-  defaultComponent: M['defaultComponent'];
-}
 
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
@@ -116,7 +111,7 @@ export interface ExtendModalTypeMap<M extends OverridableTypeMap> {
  *
  * - [Modal API](https://mui.com/material-ui/api/modal/)
  */
-declare const Modal: OverridableComponent<ExtendModalTypeMap<ModalTypeMap>>;
+declare const Modal: OverridableComponent<ModalTypeMap>;
 
 export type ModalClasses = Record<ModalClassKey, string>;
 
@@ -125,6 +120,6 @@ export declare const modalClasses: ModalClasses;
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<ExtendModalTypeMap<ModalTypeMap<D, P>>, D>;
+> = OverrideProps<ModalTypeMap<D, P>, D>;
 
 export default Modal;
