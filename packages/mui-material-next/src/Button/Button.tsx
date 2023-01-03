@@ -23,6 +23,7 @@ const useUtilityClasses = (styleProps: ButtonOwnerState) => {
     classes,
     color,
     disabled,
+    active,
     disableElevation,
     focusVisible,
     focusVisibleClassName,
@@ -36,6 +37,7 @@ const useUtilityClasses = (styleProps: ButtonOwnerState) => {
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
+      active && 'active',
       variant,
       `color${capitalize(color ?? '')}`,
       `size${capitalize(size ?? '')}`,
@@ -268,7 +270,7 @@ export const ButtonRoot = styled('button', {
     theme.sys.typescale.label.large.tracking / theme.sys.typescale.label.large.size
   }rem`;
 
-  const borderRadiusValue: string | number = tokens.md3.shape.borderRadius;
+  const borderRadiusValue: string | number = tokens.sys.shape.corner.full;
   const borderRadius = Number.isNaN(Number(borderRadiusValue))
     ? borderRadiusValue
     : `${borderRadiusValue}px`;
@@ -306,11 +308,10 @@ export const ButtonRoot = styled('button', {
     padding: '10px 24px',
     minWidth: 64,
     letterSpacing,
-    // Taken from MD2, haven't really found a spec on transitions
-    transition: theme.transitions.create(
+    transition: theme.sys.motion.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
       {
-        duration: theme.transitions.duration.short,
+        duration: tokens.sys.motion.duration.short3,
       },
     ),
     fontFamily: tokens.sys.typescale.label.large.family,
@@ -349,7 +350,7 @@ export const ButtonRoot = styled('button', {
       backgroundColor: hoveredContainerColor[ownerState.variant ?? 'text'],
       boxShadow: hoveredContainerElevation[ownerState.variant ?? 'text'],
     },
-    '&:active': {
+    [`&.${buttonClasses.active}`]: {
       '--md-comp-button-icon-color': 'var(--md-comp-button-pressed-icon-color)',
       ...((ownerState.disableRipple || ownerState.disableTouchRipple) && {
         backgroundColor: pressedContainerColor[ownerState.variant ?? 'text'],
@@ -417,6 +418,7 @@ const Button = React.forwardRef(function Button<
     centerRipple = false,
     children,
     className,
+    classes: classesProp,
     color = 'primary',
     component = 'button',
     disabled = false,
@@ -461,7 +463,7 @@ const Button = React.forwardRef(function Button<
     ComponentProp = LinkComponent;
   }
 
-  const { focusVisible, setFocusVisible, getRootProps } = useButton({
+  const { focusVisible, active, setFocusVisible, getRootProps } = useButton({
     disabled,
     focusableWhenDisabled,
     href: props.href,
@@ -507,10 +509,12 @@ const Button = React.forwardRef(function Button<
 
   const ownerState = {
     ...props,
+    classes: classesProp,
     color,
     component,
     disabled,
     disableElevation,
+    active,
     focusVisible,
     fullWidth,
     size,
@@ -572,6 +576,10 @@ Button.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * @ignore
    */

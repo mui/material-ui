@@ -1,4 +1,11 @@
-import { getPath, handleBreakpoints, SxConfig, unstable_defaultSxConfig } from '@mui/system';
+import {
+  getPath,
+  handleBreakpoints,
+  SxConfig,
+  unstable_defaultSxConfig,
+  createUnaryUnit,
+  getValue,
+} from '@mui/system';
 
 interface PaletteStyleOptions {
   prop: string;
@@ -33,6 +40,23 @@ function createPaletteStyle(options: PaletteStyleOptions = { prop: 'color' }) {
   return fn;
 }
 
+// eslint-disable-next-line no-restricted-globals
+const isNumber = (value: string | number) => typeof value === 'number' || !isNaN(parseFloat(value));
+
+const createBorderRadiusStyle = (props: Record<string, any>) => {
+  if (props.borderRadius !== undefined && props.borderRadius !== null) {
+    const numberTransformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
+    const styleFromPropValue = (propValue: string | number) => ({
+      borderRadius: isNumber(propValue)
+        ? getValue(numberTransformer, propValue)
+        : getPath(props.theme, `sys.shape.corner.${propValue}`, true),
+    });
+    return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
+  }
+
+  return null;
+};
+
 const sxConfig: SxConfig = {
   ...unstable_defaultSxConfig,
   color: {
@@ -58,6 +82,9 @@ const sxConfig: SxConfig = {
   },
   borderRightColor: {
     style: createPaletteStyle({ prop: 'borderRightColor' }),
+  },
+  borderRadius: {
+    style: createBorderRadiusStyle,
   },
 };
 

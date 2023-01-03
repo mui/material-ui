@@ -12,7 +12,6 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { getUnstyledFilename } from '@mui-internal/docs-utilities';
 import * as ttp from 'typescript-to-proptypes';
 import { LANGUAGES } from 'docs/config';
 
@@ -574,43 +573,6 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   } else {
     reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
   }
-
-  // === Handle unstyled component ===
-  const unstyledFileName = getUnstyledFilename(filename);
-  let unstyledSrc;
-
-  // Try to get data for the unstyled component
-  try {
-    unstyledSrc = readFileSync(unstyledFileName, 'utf8');
-  } catch (err) {
-    // Unstyled component does not exist
-  }
-
-  if (unstyledSrc) {
-    const unstyledReactAPI = docgenParse(
-      unstyledSrc,
-      null,
-      defaultHandlers.concat(muiDefaultPropsHandler),
-      {
-        filename: unstyledFileName,
-      },
-    );
-
-    Object.keys(unstyledReactAPI.props).forEach((prop) => {
-      if (
-        unstyledReactAPI.props[prop].defaultValue &&
-        reactApi.props &&
-        (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
-      ) {
-        if (reactApi.props[prop]) {
-          reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
-          reactApi.props[prop].jsdocDefaultValue = unstyledReactAPI.props[prop].jsdocDefaultValue;
-        } else {
-          reactApi.props[prop] = unstyledReactAPI.props[prop];
-        }
-      }
-    });
-  } // ================================
 
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);

@@ -198,5 +198,31 @@ describe('styled', () => {
         borderRightColor: 'rgb(242, 184, 181)',
       });
     });
+
+    it('should apply borderRadius from sys.shape.corner', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const Div = styled('div')``;
+
+      render(<Div sx={{ borderRadius: 'small' }} data-testid="target" />);
+
+      expect(screen.getByTestId('target')).toHaveComputedStyle({
+        borderTopLeftRadius: '8px',
+      });
+    });
+
+    it('should multiple borderRadius with theme.shape.borderRadius if provided as number', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const Div = styled('div')``;
+
+      render(<Div sx={{ borderRadius: 4 }} data-testid="target" />);
+
+      expect(screen.getByTestId('target')).toHaveComputedStyle({
+        borderTopLeftRadius: '16px',
+      });
+    });
   });
 });

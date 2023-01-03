@@ -14,6 +14,7 @@ const pages = [
         subheader: 'main-features',
         children: [
           { pathname: '/joy-ui/main-features/global-variants' },
+          { pathname: '/joy-ui/main-features/color-inversion' },
           { pathname: '/joy-ui/main-features/automatic-adjustment' },
           { pathname: '/joy-ui/main-features/dark-mode-optimization' },
         ],
@@ -59,8 +60,8 @@ const pages = [
         subheader: 'feedback',
         children: [
           { pathname: '/joy-ui/react-alert' },
-          { pathname: '/joy-ui/react-circular-progress' },
-          { pathname: '/joy-ui/react-linear-progress' },
+          { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
+          { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
         ],
       },
@@ -78,6 +79,11 @@ const pages = [
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
         ],
+      },
+      {
+        pathname: '/joy-ui/components/layout',
+        subheader: 'layout',
+        children: [{ pathname: '/joy-ui/react-grid' }, { pathname: '/joy-ui/react-stack' }],
       },
       {
         pathname: '/joy-ui/components/utils',
@@ -101,12 +107,16 @@ const pages = [
   },
   {
     pathname: '/joy-ui/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',
+      },
+      {
+        pathname: '/joy-ui/guides/using-icon-libraries',
+        title: 'Using icon libraries',
       },
     ],
   },

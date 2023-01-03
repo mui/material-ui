@@ -1,7 +1,7 @@
+import * as React from 'react';
 import { PopperUnstyledProps } from '@mui/base';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TooltipSlot = 'root' | 'arrow';
@@ -164,6 +164,6 @@ export type TooltipProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TooltipTypeMap<P, D>, D>;
 
-export interface TooltipOwnerState extends TooltipProps {
+export interface TooltipOwnerState extends ApplyColorInversion<TooltipProps> {
   touch: boolean;
 }

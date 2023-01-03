@@ -28,7 +28,7 @@ const Main = styled('main', {
   [theme.breakpoints.up('lg')]: {
     width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
-  '& .markdown-body .comment-link-style': {
+  '& .markdown-body .comment-link': {
     display: 'inline-block',
   },
 }));

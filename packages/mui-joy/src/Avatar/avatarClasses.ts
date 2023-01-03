@@ -15,6 +15,8 @@ export interface AvatarClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the fallback icon. */
   fallback: string;
   /** Styles applied to the root element if `size="sm"`. */
@@ -47,6 +49,7 @@ const avatarClasses: AvatarClasses = generateUtilityClasses('JoyAvatar', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'fallback',
   'sizeSm',
   'sizeMd',

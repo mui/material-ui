@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type LinearProgressSlot = 'root';
 
@@ -56,7 +56,7 @@ export type LinearProgressProps<
   P = { component?: React.ElementType },
 > = OverrideProps<LinearProgressTypeMap<P, D>, D>;
 
-export interface LinearProgressOwnerState extends LinearProgressProps {
+export interface LinearProgressOwnerState extends ApplyColorInversion<LinearProgressProps> {
   /**
    * @internal the explicit size on the instance: <LinearProgress size="..." />
    */
