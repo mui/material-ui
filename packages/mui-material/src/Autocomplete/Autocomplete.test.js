@@ -2727,6 +2727,7 @@ describe('<Autocomplete />', () => {
         onScrollToBottom,
         onScrollToBottomCallCount: 1,
       });
+    });
 
     it('should call onScrollToBottom when scroll custom ListboxComponent is used', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -2740,7 +2741,7 @@ describe('<Autocomplete />', () => {
           options={['one', 'two', 'three', 'four', 'five']}
           renderInput={(params) => <TextField {...params} />}
           onScrollToBottom={onScrollToBottom}
-          ListboxComponent='div'
+          ListboxComponent="div"
           ListboxProps={{
             style: { height: '100px' },
           }}
