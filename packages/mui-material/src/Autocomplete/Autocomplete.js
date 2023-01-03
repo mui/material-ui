@@ -1060,7 +1060,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   selectOnFocus: PropTypes.bool,
   /**
    * If `true` loading indicator gets displayed along with options
-   * @default false
+   * @default 'false'
    */
   showLoadingWithOptions: PropTypes.bool,
   /**

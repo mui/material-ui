@@ -148,7 +148,7 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
-  console.log(highlightedIndexRef);
+
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
