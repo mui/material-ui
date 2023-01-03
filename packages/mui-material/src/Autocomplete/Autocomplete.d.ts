@@ -260,7 +260,7 @@ export interface AutocompleteProps<
   ) => React.ReactNode;
   /**
    * If `true` loading indicator gets displayed along with options
-   * @default 'false'
+   * @default false
    */
   showLoadingWithOptions?: boolean;
   /**
