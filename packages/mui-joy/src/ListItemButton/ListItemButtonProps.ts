@@ -61,7 +61,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     orientation?: 'horizontal' | 'vertical';
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;

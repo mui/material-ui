@@ -41,6 +41,9 @@ const StyledAppContainer = styled(AppContainer, {
 })(({ disableAd, theme }) => {
   return {
     position: 'relative',
+    // By default, a grid item cannot be smaller than the size of its content.
+    // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+    minWidth: 0,
     ...(!disableAd && {
       '&& .description': {
         marginBottom: 198,
