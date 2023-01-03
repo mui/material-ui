@@ -303,7 +303,7 @@ export default function ExampleNavigationMenu() {
     <Box sx={{ minHeight: 190 }}>
       <List
         role="menubar"
-        row
+        orientation="horizontal"
         sx={{
           '--List-radius': '8px',
           '--List-padding': '4px',
