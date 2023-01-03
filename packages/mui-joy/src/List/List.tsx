@@ -16,16 +16,16 @@ import ListProvider from './ListProvider';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
-  const { variant, color, size, nesting, row, instanceSize } = ownerState;
+  const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       !instanceSize && !nesting && size && `size${capitalize(size)}`,
       instanceSize && `size${capitalize(instanceSize)}`,
       nesting && 'nesting',
-      row && 'row',
     ],
   };
 
@@ -41,7 +41,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--List-item-paddingY': '0.25rem',
         '--List-item-paddingX': '0.5rem',
         '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-decorator-size': ownerState.row ? '1.5rem' : '2rem',
+        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
         '--Icon-fontSize': '1.125rem',
       };
     }
@@ -52,7 +52,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--List-item-paddingY': '0.375rem',
         '--List-item-paddingX': '0.75rem',
         '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.row ? '1.75rem' : '2.5rem',
+        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
         '--Icon-fontSize': '1.25rem',
       };
     }
@@ -63,7 +63,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--List-item-paddingY': '0.5rem',
         '--List-item-paddingX': '1rem',
         '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.row ? '2.25rem' : '3rem',
+        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
         '--Icon-fontSize': '1.5rem',
       };
     }
@@ -103,7 +103,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
       margin: 'initial',
       // --List-padding is not declared to let list uses --List-divider-gap by default.
-      ...(ownerState.row
+      ...(ownerState.orientation === 'horizontal'
         ? {
             ...(ownerState.wrap
               ? {
@@ -126,7 +126,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
-      flexDirection: ownerState.row ? 'row' : 'column',
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
       ...(ownerState.wrap && {
         flexWrap: 'wrap',
       }),
@@ -158,7 +158,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     className,
     children,
     size = inProps.size ?? 'md',
-    row = false,
+    orientation = 'vertical',
     wrap = false,
     variant = 'plain',
     color: colorProp = 'neutral',
@@ -184,7 +184,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     instanceSize: inProps.size,
     size,
     nesting,
-    row,
+    orientation,
     wrap,
     variant,
     color,
@@ -206,7 +206,7 @@ const List = React.forwardRef(function List(inProps, ref) {
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
-        <ListProvider row={row} wrap={wrap}>
+        <ListProvider row={orientation === 'horizontal'} wrap={wrap}>
           {children}
         </ListProvider>
       </ComponentListContext.Provider>
@@ -241,14 +241,14 @@ List.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, display the list in horizontal direction.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components).
    * @default 'md'
