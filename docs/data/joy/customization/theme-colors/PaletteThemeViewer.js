@@ -31,7 +31,10 @@ const collator = new Intl.Collator(undefined, {
   sensitivity: 'base',
 });
 
-const Table = styled('table')({
+const Table = styled('table')(({ theme }) => ({
+  border: '1px solid',
+  borderColor: theme.vars.palette.divider,
+  borderRadius: theme.vars.radius.xs,
   borderCollapse: 'separate',
   borderSpacing: '8px 0',
   margin: '0 -8px',
@@ -44,7 +47,7 @@ const Table = styled('table')({
   td: {
     verticalAlign: 'top',
   },
-});
+}));
 
 export default function PaletteThemeViewer() {
   const light = traverseObject(defaultTheme.colorSchemes.light.palette);

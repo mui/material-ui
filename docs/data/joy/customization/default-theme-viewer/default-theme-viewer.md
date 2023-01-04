@@ -12,14 +12,4 @@ Explore the default theme:
 
 {{"demo": "JoyDefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-## Preview
-
-The tables below gives you a quick preview of the default theme properties that are involved in `light` and `dark` color schemes.
-
-### Palette
-
-The tokens are generated from `theme.colorSchemes.(light|dark).*` and attached to `theme.vars.*`.
-
-{{"demo": "PaletteThemeViewer.js", "bg": true}}
-
-To customize the theme palette, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
+To create your own theme, starts with customizing the [theme colors](/joy-ui/customization/theme-colors/).

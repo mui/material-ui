@@ -4,10 +4,16 @@
 
 ## Default tokens
 
-### Palette
+{{"demo": "PaletteThemeViewer.js", "bg": "inline"}}
+
+### Customizing the default palette
 
 <!-- color tokens are grouped in `palette` node -->
 
-### Global variant tokens
+### Customizing global variant tokens
 
-## Customization
+### Removing the default palette
+
+## Adding more colors
+
+## Adding more palettes

@@ -31,20 +31,36 @@ const collator = new Intl.Collator(undefined, {
   sensitivity: 'base',
 });
 
-const Table = styled('table')({
+const Table = styled('table')(({ theme }) => ({
+  border: '1px solid',
+  borderColor: theme.vars.palette.divider,
+  borderRadius: theme.vars.radius.xs,
   borderCollapse: 'separate',
-  borderSpacing: '8px 0',
-  margin: '0 -8px',
-  thead: {
-    height: 32,
-  },
+  borderSpacing: 0,
+  display: 'block',
+  height: 500,
+  overflowY: 'scroll',
   th: {
     textAlign: 'left',
+    padding: '8px 6px',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    ...theme.variants.soft.neutral,
   },
   td: {
     verticalAlign: 'top',
+    padding: '3px 6px',
   },
-});
+  tr: {
+    '&:hover': {
+      backgroundColor: theme.vars.palette.background.level1,
+    },
+    '&:first-of-type': {
+      '& td': { paddingTop: 6 },
+    },
+  },
+}));
 
 export default function PaletteThemeViewer() {
   const light = traverseObject(defaultTheme.colorSchemes.light.palette);
@@ -84,15 +100,25 @@ export default function PaletteThemeViewer() {
         <thead>
           <tr>
             <th>
-              <Typography fontSize="sm">Token</Typography>
+              <Typography fontSize="sm" textColor="inherit">
+                Token
+              </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" startDecorator={<LightMode />}>
+              <Typography
+                fontSize="sm"
+                startDecorator={<LightMode />}
+                textColor="inherit"
+              >
                 Light
               </Typography>
             </th>
             <th>
-              <Typography fontSize="sm" startDecorator={<DarkMode />}>
+              <Typography
+                fontSize="sm"
+                startDecorator={<DarkMode />}
+                textColor="inherit"
+              >
                 Dark
               </Typography>
             </th>
