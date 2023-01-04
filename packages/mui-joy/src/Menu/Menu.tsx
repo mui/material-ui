@@ -9,10 +9,11 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
-import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
+import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
-const useUtilityClasses = (ownerState: MenuProps) => {
+const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;
   const slots = {
     root: [
@@ -62,7 +63,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     anchorEl,
     children,
     component,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     disablePortal = false,
     keepMounted = false,
     id,
@@ -73,6 +74,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const {
     registerItem,
@@ -128,17 +131,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ownerState,
   });
 
-  const contextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      registerItem,
-      unregisterItem,
-      getItemState,
-      getItemProps,
-      open,
-    }),
-    [getItemProps, getItemState, open, registerItem, unregisterItem],
-  );
-
   const modifiers = React.useMemo(
     () => [
       {
@@ -152,12 +144,37 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
-  return (
+  const contextValue: MenuUnstyledContextType = React.useMemo(
+    () => ({
+      registerItem,
+      unregisterItem,
+      getItemState,
+      getItemProps,
+      open,
+    }),
+    [getItemProps, getItemState, open, registerItem, unregisterItem],
+  );
+
+  const result = (
     <PopperUnstyled {...rootProps} modifiers={modifiers}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider nested>{children}</ListProvider>
+        <ListProvider nested>
+          {disablePortal ? (
+            children
+          ) : (
+            // For portal popup, the children should not inherit color inversion from the upper parent.
+            <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
+          )}
+        </ListProvider>
       </MenuUnstyledContext.Provider>
     </PopperUnstyled>
+  );
+
+  return disablePortal ? (
+    result
+  ) : (
+    // For portal popup, the children should not inherit color inversion from the upper parent.
+    <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
   );
 }) as OverridableComponent<MenuTypeMap>;
 

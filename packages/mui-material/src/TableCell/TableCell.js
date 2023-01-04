@@ -140,7 +140,11 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   }
 
   let scope = scopeProp;
-  if (!scope && isHeadCell) {
+  // scope is not a valid attribute for <td/> elements.
+  // source: https://html.spec.whatwg.org/multipage/tables.html#the-td-element
+  if (component === 'td') {
+    scope = undefined;
+  } else if (!scope && isHeadCell) {
     scope = 'col';
   }
 

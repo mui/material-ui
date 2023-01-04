@@ -189,24 +189,14 @@ const openRolesData = [
     roles: [
       {
         title: 'Lead Designer',
-        description: "You will own most of MUI's design work and manage a small team of designers.",
+        description:
+          "You will be accountable for MUI's design execution and manage a small team of designers.",
         url: '/careers/lead-designer/',
       },
       {
         title: 'Design Engineer',
         description: 'You will focus on design to implement great product experiences.',
         url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'People',
-    roles: [
-      {
-        title: 'People Operations Manager',
-        description:
-          'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/careers/people-operations-manager/',
       },
     ],
   },

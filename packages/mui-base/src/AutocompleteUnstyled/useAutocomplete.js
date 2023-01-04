@@ -625,7 +625,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              `MUI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
+              `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
