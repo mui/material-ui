@@ -114,7 +114,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the component is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**
