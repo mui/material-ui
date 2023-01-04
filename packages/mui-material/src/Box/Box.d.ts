@@ -1,6 +1,6 @@
 import { createBox, BoxTypeMap } from '@mui/system';
 import { OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
+import { Theme as MaterialTheme } from '../styles';
 
 /**
  *
@@ -12,11 +12,11 @@ import { Theme } from '../styles';
  *
  * - [Box API](https://mui.com/material-ui/api/box/)
  */
-declare const Box: ReturnType<typeof createBox<Theme>>;
+declare const Box: ReturnType<typeof createBox<MaterialTheme>>;
 
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<BoxTypeMap<P, D, Theme>, D>;
+> = OverrideProps<BoxTypeMap<P, D, MaterialTheme>, D>;
 
 export default Box;
