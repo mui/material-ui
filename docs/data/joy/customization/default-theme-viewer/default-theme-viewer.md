@@ -20,14 +20,6 @@ The tables below gives you a quick preview of the default theme properties that 
 
 The tokens are generated from `theme.colorSchemes.(light|dark).*` and attached to `theme.vars.*`.
 
-{{"demo": "PaletteThemeViewer.js"}}
+{{"demo": "PaletteThemeViewer.js", "bg": true}}
 
 To customize the theme palette, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.
-
-### Shadow
-
-The tokens can be accessed from `theme.vars.shadow.{token}`.
-
-{{"demo": "ShadowThemeViewer.js"}}
-
-To customize the theme shadow, see [theme tokens customization](/joy-ui/customization/theme-tokens/) page.

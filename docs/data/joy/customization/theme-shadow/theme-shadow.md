@@ -8,7 +8,7 @@ Joy UI uses T-shirt scale for defining shadows which are used by components such
 
 These tokens are grouped inside `theme.shadow` node:
 
-{{"demo": "ShadowThemeViewer.js"}}
+{{"demo": "ShadowThemeViewer.js", "bg": "inline"}}
 
 ## Customization
 

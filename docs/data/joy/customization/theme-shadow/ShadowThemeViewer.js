@@ -5,7 +5,10 @@ import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 
-const Table = styled('table')({
+const Table = styled('table')(({ theme }) => ({
+  border: '1px solid',
+  borderColor: theme.vars.palette.divider,
+  borderRadius: theme.vars.radius.xs,
   width: '100%',
   borderCollapse: 'separate',
   borderSpacing: 20,
@@ -18,7 +21,7 @@ const Table = styled('table')({
   td: {
     verticalAlign: 'top',
   },
-});
+}));
 const defaultTheme = extendTheme();
 
 export default function ShadowThemeViewer() {
