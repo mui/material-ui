@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { createBox } from '@mui/system';
-import MaterialUIBox from '@mui/material/Box';
-import { expectType } from '@mui/types';
-import { createTheme, Theme } from '@mui/material/styles';
 
 const Box = createBox();
 
@@ -57,11 +54,3 @@ function ThemeCallbackTest() {
   <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box maxWidth={(theme) => theme.breakpoints.values.sm} />;
 }
-
-// Compatibility with Material UI's Box
-const defaultTheme = createTheme({});
-const CustomBox = createBox({ defaultTheme });
-expectType<typeof MaterialUIBox, typeof CustomBox>(CustomBox);
-
-// @ts-expect-error System's Box has different type than Material UI's Box
-expectType<typeof Box, typeof CustomBox>(CustomBox);
