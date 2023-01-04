@@ -3,7 +3,10 @@
 <p class="description">Learn about the two categories of tokens within Joy UI's default theme and how to customize them.</p>
 
 The [W3C Community Group](https://github.com/design-tokens/community-group) defines design tokens as: _"...indivisible pieces of a design system such as colors, spacing, typography scale."_
-Joy UI builds up on this concept to develop its theme, consisting of two categories: low-level and global variant tokens.
+Joy UI builds up on this concept to develop its theme, consisting of two categories:
+
+1. [Low-level tokens](#low-level-tokens)
+2. [Global variant tokens](#global-variant-tokens)
 
 ## Low-level tokens
 
