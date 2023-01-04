@@ -87,7 +87,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
             pr: 3,
             '&:hover, &:focus': {
               backgroundColor: (theme.vars || theme).palette.grey[50],
-              outline: 'none',
+              outline: 0,
               '@media (hover: none)': {
                 backgroundColor: 'initial',
                 outline: 'initial',

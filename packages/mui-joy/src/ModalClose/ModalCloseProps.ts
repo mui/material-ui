@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type ModalCloseSlot = 'root';
 
@@ -38,4 +38,6 @@ export type ModalCloseProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalCloseTypeMap<P, D>, D>;
 
-export interface ModalCloseOwnerState extends ModalCloseProps {}
+export interface ModalCloseOwnerState extends ApplyColorInversion<ModalCloseProps> {
+  focusVisible?: boolean;
+}

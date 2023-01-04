@@ -31,7 +31,7 @@ const theme = createTheme(
 {{"demo": "Locales.js"}}
 
 :::warning
-⚠️ For [`DataGrid` and `DataGridPro`](/x/react-data-grid/) components, they have their own [localization](/x/react-data-grid/localization/).
+The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own [localization](/x/react-data-grid/localization/).
 :::
 
 ### Supported locales
@@ -68,7 +68,7 @@ const theme = createTheme(
 | Italian                 | it-IT               | `itIT`      |
 | Japanese                | ja-JP               | `jaJP`      |
 | Khmer                   | kh-KH               | `khKH`      |
-| Kazakh                  | kz-KZ               | `kzKZ`      |
+| Kazakh                  | kk-KZ               | `kkKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
 | Macedonian              | mk-MK               | `mkMK`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes } from '@mui/joy/Tooltip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -49,6 +49,18 @@ describe('<Tooltip />', () => {
         'reactTestRenderer',
       ],
     }),
+  );
+
+  describeJoyColorInversion(
+    <Tooltip
+      title="Hello world"
+      open
+      disablePortal
+      slotProps={{ root: { 'data-testid': 'test-element' } }}
+    >
+      <button>Hello World</button>
+    </Tooltip>,
+    { muiName: 'JoyTooltip', classes, portalSlot: 'root' },
   );
 
   describe('prop: variant', () => {

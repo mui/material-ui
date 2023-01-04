@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import AutocompleteOption, {
   autocompleteOptionClasses as classes,
@@ -20,6 +20,8 @@ describe('Joy <AutocompleteOption />', () => {
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<AutocompleteOption />, { muiName: 'JoyAutocompleteOption', classes });
 
   it('should have li tag', () => {
     const { getByRole } = render(<AutocompleteOption />);

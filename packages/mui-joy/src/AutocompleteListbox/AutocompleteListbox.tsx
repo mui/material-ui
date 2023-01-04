@@ -14,6 +14,7 @@ import {
 import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
+import { useColorInversion } from '../styles/ColorInversion';
 
 const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -52,12 +53,12 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface,
+      theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
     ...scopedVariables,
-    boxShadow: theme.vars.shadow.md,
+    boxShadow: theme.shadow.md,
     ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+      backgroundColor: theme.vars.palette.background.popup,
     }),
     zIndex: 1200,
     overflow: 'auto',
@@ -93,11 +94,13 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     children,
     className,
     component,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     size = 'md',
     ...otherProps
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps, Theme } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
@@ -37,18 +38,15 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
 const switchColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SwitchOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const variant = ownerState.variant;
-    const color = ownerState.color;
+    const styles =
+      theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Switch-track-color': theme.vars.palette[color!]?.[`${variant!}Color`],
+      '--Switch-track-background': styles.backgroundColor,
+      '--Switch-track-color': styles.color,
       '--Switch-track-borderColor':
-        variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
-          : 'currentColor',
-      '--Switch-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}Bg`],
+        ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
+      '--Switch-thumb-background': styles.color,
+      '--Switch-thumb-color': styles.backgroundColor,
     };
   };
 
@@ -84,7 +82,7 @@ const SwitchRoot = styled('div', {
       '--Switch-thumb-size': '24px',
       '--Switch-gap': '12px',
     }),
-    '--internal-paddingBlock': `max((var(--Switch-track-height) - 2 * var(--variant-borderWidth) - var(--Switch-thumb-size)) / 2, 0px)`,
+    '--internal-paddingBlock': `max((var(--Switch-track-height) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumb-size)) / 2, 0px)`,
     '--Switch-thumb-radius': `max(var(--Switch-track-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Switch-track-radius) / 2))`,
     '--Switch-thumb-width': 'var(--Switch-thumb-size)',
     '--Switch-thumb-offset': `max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)`,
@@ -156,7 +154,7 @@ const SwitchTrack = styled('span', {
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
-  border: 'var(--variant-borderWidth) solid',
+  border: 'var(--variant-borderWidth, 0px) solid',
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
@@ -256,7 +254,11 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   const useSwitchProps = {
     checked: checkedProp,

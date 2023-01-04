@@ -9,7 +9,7 @@ import {
 } from '@mui/base/AutocompleteUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { OverridableStringUnion } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AutocompleteSlot =
@@ -91,7 +91,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'>,
+      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
       AutocompleteOwnerState<any, any, any, any>
     >;
     option: SlotProps<
@@ -102,7 +102,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
       },
       AutocompleteOwnerState<any, any, any, any>
     >;
-    loading: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
+    loading: SlotProps<'li', {}, AutocompleteOwnerState<any, any, any, any>>;
     noOptions: SlotProps<'li', {}, AutocompleteOwnerState<any, any, any, any>>;
     limitTag: SlotProps<'span', {}, AutocompleteOwnerState<any, any, any, any>>;
   }
@@ -305,7 +305,7 @@ export interface AutocompleteOwnerState<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo> {
+> extends ApplyColorInversion<AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>> {
   focused?: boolean;
   hasClearIcon?: boolean;
   hasPopupIcon?: boolean;

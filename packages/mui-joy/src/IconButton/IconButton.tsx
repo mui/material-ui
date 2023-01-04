@@ -4,6 +4,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
@@ -66,6 +67,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       border: 'none',
       boxSizing: 'border-box',
       backgroundColor: 'transparent',
+      cursor: 'pointer',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -101,11 +103,13 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     children,
     action,
     component = 'button',
-    color = 'primary',
+    color: colorProp = 'primary',
     variant = 'soft',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

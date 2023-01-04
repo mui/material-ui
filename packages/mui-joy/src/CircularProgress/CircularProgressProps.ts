@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type CircularProgressSlot = 'root' | 'svg' | 'track' | 'progress';
@@ -68,7 +68,7 @@ export type CircularProgressProps<
   P = { component?: React.ElementType },
 > = OverrideProps<CircularProgressTypeMap<P, D>, D>;
 
-export interface CircularProgressOwnerState extends CircularProgressProps {
+export interface CircularProgressOwnerState extends ApplyColorInversion<CircularProgressProps> {
   /**
    * @internal the explicit size on the instance: <CircularProgress size="..." />
    */

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
+import { useColorInversion } from '../styles/ColorInversion';
+import { ApplyColorInversion } from '../styles/types';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -32,14 +34,12 @@ export default function useSlot<
   ElementType extends React.ElementType,
   SlotProps,
   OwnerState extends {},
-  ExternalSlotProps extends { component?: React.ElementType },
+  ExternalSlotProps extends { component?: React.ElementType; ref?: React.Ref<any> },
   ExternalForwardedProps extends {
     component?: React.ElementType;
     slots?: { [k in T]?: React.ElementType };
     slotProps?: {
-      [k in T]?:
-        | WithCommonProps<ExternalSlotProps>
-        | ((ownerState: OwnerState) => WithCommonProps<ExternalSlotProps>);
+      [k in T]?: ExternalSlotProps | ((ownerState: OwnerState) => ExternalSlotProps);
     };
   },
   AdditionalProps,
@@ -52,7 +52,9 @@ export default function useSlot<
    * e.g. the `externalForwardedProps` are spread to `root` slot but not other slots.
    */
   name: T,
-  parameters: (T extends 'root' ? { ref: React.ForwardedRef<any> } : {}) & {
+  parameters: (T extends 'root' // root slot must pass a `ref` as a parameter
+    ? { ref: React.ForwardedRef<any> }
+    : { ref?: React.ForwardedRef<any> }) & {
     /**
      * The slot's className
      */
@@ -83,7 +85,8 @@ export default function useSlot<
      * It is a function because `slotProps.{slot}` can be a function which has to be resolved first.
      */
     getSlotOwnerState?: (
-      mergedProps: SlotProps &
+      mergedProps: AdditionalProps &
+        SlotProps &
         ExternalSlotProps &
         ExtractComponentProps<
           Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
@@ -128,15 +131,21 @@ export default function useSlot<
     externalSlotProps: resolvedComponentsProps,
   });
 
-  const ref = useForkRef(
-    internalRef,
-    // @ts-ignore `ref` is required for the 'root' slot
-    useForkRef(resolvedComponentsProps?.ref, name === 'root' ? parameters.ref : undefined),
-  ) as ((instance: any | null) => void) | null;
+  const ref = useForkRef(internalRef, resolvedComponentsProps?.ref, parameters.ref);
 
-  const finalOwnerState = getSlotOwnerState
-    ? { ...ownerState, ...getSlotOwnerState(mergedProps as any) }
-    : ownerState;
+  // @ts-ignore internal logic
+  const { disableColorInversion = false, ...slotOwnerState } = getSlotOwnerState
+    ? getSlotOwnerState(mergedProps as any)
+    : {};
+  const finalOwnerState = { ...ownerState, ...slotOwnerState } as any;
+
+  const { getColor } = useColorInversion(finalOwnerState.variant);
+  if (name === 'root') {
+    // for the root slot, color inversion is calculated before the `useSlot` and pass through `ownerState`.
+    finalOwnerState.color = (mergedProps as any).color ?? (ownerState as any).color;
+  } else if (!disableColorInversion) {
+    finalOwnerState.color = getColor((mergedProps as any).color, finalOwnerState.color);
+  }
 
   const LeafComponent = (name === 'root' ? slotComponent || rootComponent : slotComponent) as
     | React.ElementType
@@ -147,17 +156,29 @@ export default function useSlot<
     {
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
-      ...(mergedProps as { className: string } & SlotProps &
-        ExternalSlotProps &
-        AdditionalProps &
-        (T extends 'root' ? ExternalForwardedProps : {})),
+      ...mergedProps,
       ...(LeafComponent && {
         as: LeafComponent,
       }),
       ref,
     },
-    finalOwnerState as OwnerState & SlotOwnerState,
+    finalOwnerState,
   );
 
-  return [elementType, props] as [ElementType, typeof props];
+  Object.keys(slotOwnerState).forEach((propName) => {
+    delete props[propName];
+  });
+
+  return [elementType, props] as [
+    ElementType,
+    {
+      className: string;
+      ownerState: ApplyColorInversion<OwnerState & SlotOwnerState>;
+    } & AdditionalProps &
+      SlotProps &
+      ExternalSlotProps &
+      ExtractComponentProps<
+        Exclude<Exclude<ExternalForwardedProps['slotProps'], undefined>[T], undefined>
+      >,
+  ];
 }

@@ -6,6 +6,7 @@ import {
   SystemProps,
   TypographySystem,
   VariantProp,
+  ApplyColorInversion,
 } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -103,7 +104,7 @@ export type TypographyProps<
   },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
-export interface TypographyOwnerState extends TypographyProps {
+export interface TypographyOwnerState extends ApplyColorInversion<TypographyProps> {
   /**
    * If `true`, the element is rendered in a Typography.
    */
