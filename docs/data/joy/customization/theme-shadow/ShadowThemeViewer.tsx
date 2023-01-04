@@ -40,7 +40,7 @@ export default function ShadowThemeViewer() {
       <thead>
         <tr>
           <th>
-            <Typography fontSize="sm">Key</Typography>
+            <Typography fontSize="sm">Token</Typography>
           </th>
           <th>
             <Typography fontSize="sm">Value</Typography>
