@@ -276,12 +276,12 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          ':hover': (t) => ({ background: t.palette.primary.main }),
+          '&:hover': (t) => ({ background: t.palette.primary.main }),
         },
       });
 
       // Test the order
-      expect(result).to.deep.equal({ ':hover': { background: 'rgb(0, 0, 255)' } });
+      expect(result).to.deep.equal({ '&:hover': { background: 'rgb(0, 0, 255)' } });
     });
 
     it('works on nested selectors', () => {
