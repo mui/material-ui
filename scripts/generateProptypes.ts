@@ -111,7 +111,7 @@ const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   ListItem: ['focusVisibleClassName'],
   InputBase: ['aria-describedby'],
   Menu: ['PaperProps'],
-  MenuItem: ['button', 'disabled', 'selected'],
+  MenuItem: ['disabled'],
   Slide: transitionCallbacks,
   SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
   TextField: ['hiddenLabel'],
