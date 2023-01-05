@@ -7,20 +7,38 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  root.find(j.ImportDeclaration).forEach(({ node }) => {
-    const sourceVal = node.source.value;
-    if (sourceVal.startsWith('@mui/joy')) {
+  root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) => {
+      const sourceVal = node.source.value;
       if (sourceVal === '@mui/joy/TextField') {
         node.source.value = '@mui/joy/Input';
-      } else {
-        node.specifiers.forEach((elementNode) => {
-          if (elementNode.imported?.name === 'TextField') {
-            elementNode.imported.name = 'Input';
-          }
-        });
       }
-    }
-  });
+
+      // Process only Joy UI components
+      return sourceVal.startsWith('@mui/joy');
+    })
+    .forEach((path) => {
+      path.node.specifiers.forEach((elementNode) => {
+        if (elementNode.imported?.name === 'TextField') {
+          elementNode.imported.name = 'Input';
+        }
+
+        let newElementName;
+        root.findJSXElements(elementNode.local.name).forEach((elementPath) => {
+          if (elementPath.node.type !== 'JSXElement') {
+            return;
+          }
+          newElementName = elementPath.node.openingElement.name.name.replaceAll(
+            'TextField',
+            'Input',
+          );
+          elementPath.node.openingElement.name.name = newElementName;
+        });
+
+        elementNode.local.name = newElementName;
+      });
+    });
 
   const transformed = root.findJSXElements();
 
