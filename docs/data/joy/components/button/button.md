@@ -112,7 +112,15 @@ They've been omitted from the demo above for the sake of brevity, but an appropr
 
 :::
 
-## CSS Variables
+## Link Button
+
+Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag may be preferable over a button.
+
+If you need the style of a button with the functionality of a link, you can use the `component` prop to replace the default `<button>` with an `<a>` tag, as shown below:
+
+{{"demo": "ButtonLink.js"}}
+
+## CSS variables
 
 {{"demo": "ButtonVariables.js", "hideToolbar": true}}
 
@@ -120,9 +128,10 @@ They've been omitted from the demo above for the sake of brevity, but an appropr
 
 ## Anatomy
 
-You can also use the button component as a link by assigning a value of `a` to the `component` prop.
-Since links are the most appropriate component for navigating through pages, that's useful when you want the same button design for a link.
+The Button component is composed of a single root `<button>` element:
 
-Doing so will automatically change the rendered HTML tag from `<button>` to `<a>`.
-
-{{"demo": "ButtonLink.js"}}
+```html
+<button>
+  <!-- Button contents -->
+</button>
+```
