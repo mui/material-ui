@@ -1,8 +1,10 @@
+import { Input as JoyInput } from "@mui/joy";
+import JoyInput2 from "@mui/joy/Input";
 // the codemod should transform only Joy TextField
-import { Input as JoyTextField } from "@mui/joy";
-import JoyTextField2 from "@mui/joy/Input";
+import TextField from "@mui/material/TextField"
 
 <div>
-  <JoyTextField />
-  <JoyTextField2 />
+  <JoyInput />
+  <JoyInput2 />
+  <TextField />
 </div>;
