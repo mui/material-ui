@@ -148,8 +148,13 @@ export default function BasicDatePicker() {
         language: 'en',
         raw: xTestCase,
       });
-      expect(result.files['demo.tsx'].content).to.include("import { DemoContainer } from '@mui/x-monorepo/docs/src/modules/components/DemoContainer'")
-      expect(result.dependencies).to.have.property('@mui/x-monorepo', 'https://github.com/mui/mui-x.git#master');
+      expect(result.files['demo.tsx'].content).to.include(
+        "import { DemoContainer } from '@mui/x-monorepo/docs/src/modules/components/DemoContainer'",
+      );
+      expect(result.dependencies).to.have.property(
+        '@mui/x-monorepo',
+        'https://github.com/mui/mui-x.git#master',
+      );
     });
-  })
+  });
 });

@@ -36,9 +36,11 @@ const createReactApp = (demo: {
 
   const { dependencies, devDependencies } = SandboxDependencies(demo, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-    xMonorepoPath: includeXMonorepo ? `https://github.com/mui/mui-x.git#${
-      process.env.PULL_REQUEST_ID ?? process.env.DEFAULT_BRANCH ?? 'master'
-    }` : '',
+    xMonorepoPath: includeXMonorepo
+      ? `https://github.com/mui/mui-x.git#${
+          process.env.PULL_REQUEST_ID ?? process.env.DEFAULT_BRANCH ?? 'master'
+        }`
+      : '',
   });
 
   files['package.json'] = {

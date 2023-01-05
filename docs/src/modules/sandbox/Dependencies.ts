@@ -13,7 +13,7 @@ export default function SandboxDependencies(
     product?: 'joy-ui' | 'base';
     codeVariant: keyof typeof CODE_VARIANTS;
   },
-  options?: { commitRef?: string, xMonorepoPath?: string },
+  options?: { commitRef?: string; xMonorepoPath?: string },
 ) {
   const { commitRef, xMonorepoPath } = options || {};
 
