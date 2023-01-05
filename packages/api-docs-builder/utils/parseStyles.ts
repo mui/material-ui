@@ -1,4 +1,6 @@
-import * as ttp from 'typescript-to-proptypes';
+import * as ts from 'typescript';
+import { TypeScriptProject } from './createTypeScriptProject';
+import getPropsFromComponentSymbol from './getPropsFromComponentSymbol';
 
 export interface Styles {
   classes: string[];
@@ -7,87 +9,66 @@ export interface Styles {
   descriptions: Record<string, string>;
 }
 
-export default async function parseStyles(
-  api: { props?: any; filename: string; name: string },
-  program: ttp.ts.Program,
-): Promise<Styles> {
-  // component has no classes or no props
-  // or they're inherited from an external component and we don't want them documented on this component.
-  if (api.props?.classes === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-  }
+const EMPTY_STYLES: Styles = {
+  classes: [],
+  descriptions: {},
+  globalClasses: {},
+  name: null,
+};
 
-  const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
-  const proptypes = ttp.parseFromProgram(typesFilename, program, {
-    shouldResolveObject: ({ name }) => {
-      return name === 'classes';
-    },
-    checkDeclarations: true,
-  });
-
-  const component = proptypes.body.find((internalComponent) => {
-    return internalComponent.name === api.name;
-  });
-  if (component === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-    // TODO: should we throw?
-    // throw new TypeError(
-    //   `Unable to find declaration of ${api.name} in one of the ${
-    //     proptypes.body.length
-    //   } components: ${proptypes.body.map(({ name }) => name)}`,
-    // );
-  }
-
-  const classes = component.types.find((propType) => {
-    const isClassesProp = propType.name === 'classes';
-
-    return isClassesProp;
-  });
-
-  let classesPropType: ttp.InterfaceType | undefined;
-  if (classes?.propType.type === 'InterfaceNode') {
-    // classes: {}
-    classesPropType = classes.propType;
-  } else if (classes?.propType.type === 'UnionNode') {
-    // classes?: {}
-    classesPropType = classes.propType.types.find((propType): propType is ttp.InterfaceType => {
-      return propType.type === 'InterfaceNode';
+function removeUndefinedFromType(type: ts.Type) {
+  // eslint-disable-next-line no-bitwise
+  if (type.flags & ts.TypeFlags.Union) {
+    return (type as ts.UnionType).types.find((subType) => {
+      return subType.flags !== ts.TypeFlags.Undefined;
     });
   }
-  if (classesPropType === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
+
+  return type;
+}
+
+const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
+  symbol
+    .getDocumentationComment(project.checker)
+    .flatMap((comment) => comment.text.split('\n'))
+    .filter((line) => !line.startsWith('TODO'))
+    .join('\n');
+
+export default function parseStyles({
+  project,
+  componentName,
+}: {
+  project: TypeScriptProject;
+  componentName: string;
+}): Styles {
+  const exportedSymbol =
+    project.exports[componentName] ?? project.exports[`Unstable_${componentName}`];
+  if (!exportedSymbol) {
+    throw new Error(`No exported component for the componentName "${componentName}"`);
   }
 
-  return {
-    classes: classesPropType.types.map((unionMember) => {
-      const [className] = unionMember;
-      return className;
-    }),
-    descriptions: Object.fromEntries(
-      classesPropType.types
-        .map((unionMember) => {
-          const [className, { jsDoc }] = unionMember;
+  const classesProp = getPropsFromComponentSymbol({
+    symbol: exportedSymbol,
+    project,
+    shouldInclude: ({ name }) => name === 'classes',
+  })?.classes;
+  if (classesProp == null) {
+    return EMPTY_STYLES;
+  }
 
-          return [className, jsDoc];
-        })
-        .filter((descriptionEntry) => {
-          return descriptionEntry[1] !== undefined;
-        }),
+  const classes: Record<string, string> = {};
+  classesProp.types.forEach((propType) => {
+    removeUndefinedFromType(propType)
+      ?.getProperties()
+      .forEach((property) => {
+        classes[property.escapedName.toString()] = getSymbolDescription(property, project);
+      });
+  });
+
+  return {
+    classes: Object.keys(classes),
+    descriptions: Object.fromEntries(
+      Object.entries(classes).filter((descriptionEntry) => !!descriptionEntry[1]),
     ),
     globalClasses: {},
     name: null,
