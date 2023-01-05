@@ -27,7 +27,7 @@ const theme = extendTheme({
   },
 });
 
-// Then, pass it to <CssVarsProvider theme={theme}>
+// Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
 :::info
@@ -48,7 +48,7 @@ const theme = extendTheme({
   },
 });
 
-// Then, pass it to <CssVarsProvider theme={theme}>
+// Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
 For **TypeScript**, you need to augment the theme's `Shadow` interface with the new keys:
@@ -82,7 +82,7 @@ const theme = extendTheme({
   },
 });
 
-// Then, pass it to <CssVarsProvider theme={theme}>
+// Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
 :::warning
@@ -109,7 +109,7 @@ const theme = extendTheme({
   },
 });
 
-// Then, pass it to <CssVarsProvider theme={theme}>
+// Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
 :::warning
