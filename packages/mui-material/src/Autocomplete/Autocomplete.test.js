@@ -1591,7 +1591,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should keep focus on selected option and not reset to top option when new options added', () => {
+    it('should keep focus on selected option and not reset to top option when new options are added', () => {
       const { setProps } = render(
         <Autocomplete
           open
