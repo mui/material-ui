@@ -7,6 +7,7 @@ export default function CustomShadowOnElement() {
       size="lg"
       sx={(theme) => ({
         boxShadow: theme.shadow.md,
+        transition: '0.2s',
         '--joy-shadowChannel': theme.vars.palette.primary.mainChannel,
         '--joy-shadowRing': 'inset 0 -3px 0 rgba(0 0 0 / 0.24)',
         '&:hover': {
@@ -14,12 +15,13 @@ export default function CustomShadowOnElement() {
           transform: 'translateY(-3px)',
         },
         '&:active': {
+          boxShadow: theme.shadow.md,
           transform: 'translateY(0px)',
           '--joy-shadowRing': '0 0 #000',
         },
       })}
     >
-      Button
+      Buy
     </Button>
   );
 }

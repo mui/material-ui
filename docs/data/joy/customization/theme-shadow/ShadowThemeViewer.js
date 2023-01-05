@@ -9,17 +9,29 @@ const Table = styled('table')(({ theme }) => ({
   border: '1px solid',
   borderColor: theme.vars.palette.divider,
   borderRadius: theme.vars.radius.xs,
-  width: '100%',
   borderCollapse: 'separate',
-  borderSpacing: 20,
-  thead: {
-    height: 32,
-  },
+  borderSpacing: 0,
+  width: '100%',
+  overflowY: 'scroll',
   th: {
     textAlign: 'left',
+    padding: 12,
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    ...theme.variants.soft.neutral,
   },
   td: {
     verticalAlign: 'top',
+    padding: '8px 12px',
+  },
+  tr: {
+    '&:hover': {
+      backgroundColor: theme.vars.palette.background.level1,
+    },
+    '&:first-of-type': {
+      '& td': { paddingTop: 6 },
+    },
   },
 }));
 const defaultTheme = extendTheme();

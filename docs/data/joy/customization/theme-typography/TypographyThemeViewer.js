@@ -6,27 +6,40 @@ import Typography from '@mui/joy/Typography';
 
 const defaultTheme = extendTheme();
 
-const Table = styled('table')({
-  width: 'max-content',
+const Table = styled('table')(({ theme }) => ({
+  border: '1px solid',
+  borderColor: theme.vars.palette.divider,
+  borderRadius: theme.vars.radius.xs,
   borderCollapse: 'separate',
-  borderSpacing: '12px 0',
-  thead: {
-    height: 32,
-  },
+  borderSpacing: 0,
+  display: 'block',
+  width: 'max-content',
+  overflowX: 'scroll',
   th: {
     textAlign: 'left',
-    '&:first-child': {
-      width: 100,
-    },
+    padding: 12,
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    ...theme.variants.soft.neutral,
   },
   td: {
     verticalAlign: 'top',
-    padding: 0,
+    padding: '8px 12px',
     '& > *': {
-      padding: '4px 0',
+      padding: '8px 12px',
+      margin: '-8px -12px',
     },
   },
-});
+  tr: {
+    '&:hover': {
+      backgroundColor: theme.vars.palette.background.level1,
+    },
+    '&:first-of-type': {
+      '& td': { paddingTop: 6 },
+    },
+  },
+}));
 
 const extractFromVar = (value, field) =>
   (value || '').replace(`var(--joy-${field}-`, '').replace(')', '');

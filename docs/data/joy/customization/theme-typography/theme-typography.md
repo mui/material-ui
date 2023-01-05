@@ -17,7 +17,7 @@ The default system consists of 13 built-in levels:
 🔍 You can hover on each cell in the table below to see the preview value.
 :::
 
-{{"demo": "TypographyThemeViewer.js"}}
+{{"demo": "TypographyThemeViewer.js", "bg": "inline"}}
 
 :::info
 [CSS Baseline](/joy-ui/react-css-baseline/), [Scoped CSS Baseline](/joy-ui/react-css-baseline/#scoping-on-children), and [Typography](/joy-ui/react-typography/) are the only components that consume the theme typography directly.
