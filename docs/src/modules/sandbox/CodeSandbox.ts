@@ -12,6 +12,10 @@ const createReactApp = (demo: {
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
+  const includeXMonorepo = demo.raw.includes("from 'docsx/");
+  if (includeXMonorepo) {
+    demo.raw = demo.raw.replace(/from 'docsx/, "from '@mui/x-monorepo/docs");
+  }
 
   const files: Record<string, object> = {
     'public/index.html': {
@@ -32,6 +36,9 @@ const createReactApp = (demo: {
 
   const { dependencies, devDependencies } = SandboxDependencies(demo, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    xMonorepoPath: includeXMonorepo ? `https://github.com/mui/mui-x.git#${
+      process.env.PULL_REQUEST_ID ?? process.env.DEFAULT_BRANCH ?? 'master'
+    }` : '',
   });
 
   files['package.json'] = {

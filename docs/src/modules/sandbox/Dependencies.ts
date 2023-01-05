@@ -13,9 +13,9 @@ export default function SandboxDependencies(
     product?: 'joy-ui' | 'base';
     codeVariant: keyof typeof CODE_VARIANTS;
   },
-  options?: { commitRef?: string },
+  options?: { commitRef?: string, xMonorepoPath?: string },
 ) {
-  const { commitRef } = options || {};
+  const { commitRef, xMonorepoPath } = options || {};
 
   /**
    * WARNING: Always uses `latest` typings.
@@ -172,6 +172,10 @@ export default function SandboxDependencies(
       [name]: getMuiPackageVersion('material'),
     };
     dependencies[name] = versions[name] ? versions[name] : 'latest';
+  }
+
+  if (xMonorepoPath) {
+    dependencies['@mui/x-monorepo'] = xMonorepoPath;
   }
 
   const devDependencies = {
