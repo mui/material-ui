@@ -8,37 +8,44 @@ unstyled: /base/react-button/
 
 # Button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
 ## Introduction
 
 Buttons communicate actions that users can take.
+The Jopy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Button from '@mui/joy/Button';
-
-export default function MyApp() {
-  return <Button>My button</Button>;
-}
 ```
+
+## Customization
 
 ### Variants
 
-The button component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
-Which variant you should choose depends on the relative importance of the button's action—see [Global variants—Hierarchy of importance](/joy-ui/main-features/global-variants/#hierarchy-of-importance) for details.
+The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 
 :::info
-To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Sizes
+
+The button components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
+
+{{"demo": "ButtonSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
 ### Colors
@@ -48,70 +55,70 @@ Play around combining different colors with different variants.
 
 {{"demo": "ButtonColors.js"}}
 
-### Sizes
+### Decorators
 
-The button components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
-
-{{"demo": "ButtonSizes.js"}}
-
-:::info
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
-:::
-
-### Disabled
-
-Use the `disabled` prop to disable interaction and focus.
-
-{{"demo": "ButtonDisabled.js"}}
-
-### With decorators
-
-Use the `startDecorator` and/or `endDecorator` props to add supporting decorators to the button.
+Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
 
 {{"demo": "ButtonIcons.js"}}
 
+### Disabled
+
+Use the `disabled` prop to disable interaction and focus:
+
+{{"demo": "ButtonDisabled.js"}}
+
 ### Loading
 
-Enable `loading` prop to show button's loading state. The button will be `disabled` when it is in the loading state.
+Add the `loading` prop to show the Button's loading state.
+The Button is [disabled]](#disabled) as long as it's loading.
 
-The default loading indicator uses the [`CircularProgress`](/joy-ui/react-circular-progress/) component which can be customized using the `loadingIndicator` prop.
+#### Loading indicator
+
+The default loading indicator uses the [Circular Progress](/joy-ui/react-circular-progress/) component.
+Use the `loadingIndicator` prop to replace it with a custom indicator, as shown below:
 
 {{"demo": "ButtonLoading.js"}}
 
-### Loading position
+#### Loading position
 
-The `loadingPosition` prop supports 3 values:
+The `loadingPosition` prop sets the position of the Button's loading indicator.
+It supports three values:
 
-- `center` (default): The loading indicator element is wrapped inside the button's `loadingIndicatorCenter` slot to create a proper style.
-- `start`: The loading indicator replaces the **start** decorator's content when the button is in loading state.
-- `end`: The loading indicator replaces the **end** decorator's content when the button is in loading state.
+- `center` (default): The loading indicator is nested inside the `loadingIndicatorCenter` slot and replaces the Button's contents when in the loading state.
+- `start`: The loading indicator replaces the [starting decorator](#decorators) when the Button is in the loading state.
+- `end`: The loading indicator replaces the [ending decorator](#decorators) when the Button is in the loading state.
 
 {{"demo": "ButtonLoadingPosition.js"}}
 
-### Icon button
-
-Use the `IconButton` component if you want width and height to be the same while not having a label.
-Every prop previously covered are available for this component as well.
+## Icon Button
 
 ```jsx
 import IconButton from '@mui/joy/IconButton';
 ```
 
+Use the Icon Button component for a square button to house an icon with no text contents.
+
 {{"demo": "IconButtons.js"}}
 
 :::warning
-Make sure to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button.
-It helps screen readers to properly identify the component.
+Icon Buttons must have a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) so their purpose can be understood by users who require assistive technology.
+They've been omitted from the demo above for the sake of brevity, but an appropriate label would look like this:
 
 ```js
-<IconButton aria-label="Add to favorite">
+<IconButton aria-label="Add to favorites">
   <FavoriteBorder />
 </IconButton>
 ```
 
 :::
 
-### As a link
+## CSS Variables
+
+{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+
+{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+
+## Anatomy
 
 You can also use the button component as a link by assigning a value of `a` to the `component` prop.
 Since links are the most appropriate component for navigating through pages, that's useful when you want the same button design for a link.
@@ -119,9 +126,3 @@ Since links are the most appropriate component for navigating through pages, tha
 Doing so will automatically change the rendered HTML tag from `<button>` to `<a>`.
 
 {{"demo": "ButtonLink.js"}}
-
-## CSS Variables
-
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
-
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
