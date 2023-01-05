@@ -5,6 +5,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useControlled as useControlled,
   unstable_useId as useId,
+  usePreviousProps,
 } from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
@@ -461,6 +462,8 @@ export default function useAutocomplete(props) {
     },
   );
 
+  const previousProps = usePreviousProps({ filteredOptions });
+
   const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
       return;
@@ -468,8 +471,19 @@ export default function useAutocomplete(props) {
 
     const valueItem = multiple ? value[0] : value;
 
+    let newOptionsAdded = false;
+
+    if (
+      previousProps.filteredOptions?.length > 0 &&
+      filteredOptions.length > previousProps.filteredOptions.length
+    ) {
+      newOptionsAdded = previousProps.filteredOptions.every(
+        (prevOption, prevOptionIndex) => prevOption === filteredOptions[prevOptionIndex],
+      );
+    }
+
     // The popup is empty, reset
-    if (filteredOptions.length === 0 || valueItem == null) {
+    if (filteredOptions.length === 0 || (valueItem == null && !newOptionsAdded)) {
       changeHighlightedIndex({ diff: 'reset' });
       return;
     }
@@ -509,7 +523,7 @@ export default function useAutocomplete(props) {
     }
 
     // Restore the focus to the previous index.
-    setHighlightedIndex({ index: highlightedIndexRef.current });
+    setHighlightedIndex({ index: highlightedIndexRef.current, reason: 'keyboard' });
     // Ignore filteredOptions (and options, isOptionEqualToValue, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

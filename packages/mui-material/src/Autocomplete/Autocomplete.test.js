@@ -1591,7 +1591,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should keep focus on selected option and not reset to top option when options updated', () => {
+    it('should keep focus on selected option and not reset to top option when new options added', () => {
       const { setProps } = render(
         <Autocomplete
           open
@@ -1607,8 +1607,29 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, reset the highlight
+      // three option is added and autocomplete re-renders, restore the highlight
       setProps({ options: ['one', 'two', 'three'] });
+      checkHighlightIs(listbox, 'two');
+    });
+
+    it('should reset the highlight when options are updated', () => {
+      const { setProps } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'two'
+
+      checkHighlightIs(listbox, 'two');
+
+      // options are updated and autocomplete re-renders, rest the highlight
+      setProps({ options: ['two', 'three', 'four'] });
       checkHighlightIs(listbox, null);
     });
 
