@@ -13,7 +13,7 @@ unstyled: /base/react-button/
 ## Introduction
 
 Buttons communicate actions that users can take.
-The Jopy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
+The Joy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
