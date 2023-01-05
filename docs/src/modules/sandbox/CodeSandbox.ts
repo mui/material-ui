@@ -40,7 +40,10 @@ const createReactApp = (demo: {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     xMonorepoPath: includeXMonorepo
       ? `https://github.com/mui/mui-x.git#${
-          process.env.PULL_REQUEST_ID ? process.env.BRANCH : process.env.DEFAULT_BRANCH ?? 'master'
+          process.env.PULL_REQUEST_ID
+            ? // use branch name when on a PR
+              process.env.VERCEL_GIT_COMMIT_REF
+            : process.env.DEFAULT_BRANCH ?? 'master'
         }`
       : '',
   });
