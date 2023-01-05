@@ -6,53 +6,51 @@ githubLabel: 'component: card'
 
 # Card
 
-<p class="description">Cards contain content and actions about a single subject.</p>
+<p class="description">A card is a generic container for grouping related UI elements and content.</p>
 
 ## Introduction
 
-Cards are most frequently used for easy to scan, relevant, and actionable information.
-Joy UI provides four Card-related components:
+The Joy UI Card component comes with several complementary utility components to handle various use cases:
 
-- [`Card`](#basic-usage): a container to control the content direction.
-- [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill all edges of the card.
-- [`CardCover`](#back-cover): a container for displaying background images within the card, also used to create gradient layers.
-- [`CardContent`](#back-cover): a wrapper that brings content to the front when used with `CardCover`.
+- [Card](#basics): a surface-level container for grouping related components.
+- [Card Overflow](#overflow): a supplemental wrapper that stretches a Card's contents to fill all edges.
+- [Card Cover](#card-cover): an optional container for displaying background images and gradient layers behind the Card Content.
+- [Card Content](#card-cover): an optional wrapper that brings content to the front when used with the Card Cover.
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Card from '@mui/joy/Card';
-import Typography from '@mui/joy/Typography';
-
-export default function MyApp() {
-  return (
-    <Card>
-      <Typography>Hello world!</Typography>
-    </Card>
-  );
-}
 ```
 
-### Basic usage
-
-`Card` is a surface-level component that can house multiple others.
-The most common components you'd use with it are `Typography`, `AspectRatio`, and `Button`.
+Card is a surface-level component for grouping related components.
+The demo below shows a typical Card that groups together Typography, Aspect Ratio, and Button components, among others:
 
 {{"demo": "BasicCard.js" }}
 
-### Overflow
+### Card Overflow
 
-To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component.
-It automatically takes care of the top and bottom edges if rendered as the first or last child of the parent card.
+```jsx
+import CardOverflow from '@mui/joy/CardOverflow';
+```
+
+By default, the Card component adds padding around the outer edges of its contents.
+To eliminate this white space so the content expands to fill the edges, add the Card Overflow component inside the Card as a wrapper around the content.
+
+Note that Card Overflow only works when it's the first and/or last child of the parent Card.
+In the demo below, the top and bottom sections stretch to fill the edges, while the middle section does not:
 
 {{"demo": "OverflowCard.js" }}
 
-### Back cover
+### Card Cover and Content
 
-The `CardCover` component is responsible for housing the content that covers the whole card.
-Think of card covers as a background layer that stay behind the `CardContent`.
+```jsx
+import CardCover from '@mui/joy/CardCover';
+import CardContent from '@mui/joy/CardContent';
+```
+
+The Card Cover component is responsible for housing the content that covers the whole card.
+Think of card covers as a background layer that stay behind the Card Content.
 
 {{"demo": "CardCovers.js" }}
 
