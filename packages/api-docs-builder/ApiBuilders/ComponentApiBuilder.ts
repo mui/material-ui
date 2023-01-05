@@ -12,7 +12,6 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { getUnstyledFilename } from '@mui-internal/docs-utilities';
 import { LANGUAGES } from 'docs/config';
 
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
