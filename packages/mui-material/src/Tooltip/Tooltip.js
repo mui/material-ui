@@ -703,7 +703,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
             {...transitionProps}
-            data-foo="bar"
           >
             <TooltipComponent {...tooltipProps}>
               {title}
