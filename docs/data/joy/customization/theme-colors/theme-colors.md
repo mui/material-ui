@@ -40,58 +40,7 @@ For example:
 - `solidBg` refers to the solid variant's background color at initial state.
 - `outlinedHoverBorder` refers to the outlined variant's border color on hover state.
 
-Each palette contains the global variant tokens:
-
-```js
-// theme
-{
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          plainColor: 'valid CSS color',
-          plainHoverBg: 'valid CSS color',
-          plainActiveBg: 'valid CSS color',
-          // ...other variant tokens
-        },
-        neutral: {
-          plainColor: 'valid CSS color',
-          plainHoverBg: 'valid CSS color',
-          plainActiveBg: 'valid CSS color',
-          // ...other variant tokens
-        },
-        danger: {
-          plainColor: 'valid CSS color',
-          plainHoverBg: 'valid CSS color',
-          plainActiveBg: 'valid CSS color',
-          // ...other variant tokens
-        },
-        info: {
-          plainColor: 'valid CSS color',
-          plainHoverBg: 'valid CSS color',
-          plainActiveBg: 'valid CSS color',
-          // ...other variant tokens
-        },
-        success: {
-          plainColor: 'valid CSS color',
-          plainHoverBg: 'valid CSS color',
-          plainActiveBg: 'valid CSS color',
-          // ...other variant tokens
-        },
-        warning: {
-          plainColor: 'valid CSS color',
-          plainHoverBg: 'valid CSS color',
-          plainActiveBg: 'valid CSS color',
-          // ...other variant tokens
-        },
-      }
-    },
-    dark: {
-      // ...same structure with different values
-    }
-  }
-}
-```
+There are 6 palettes (`primary`, `neutral`, `danger`, `info`, `success`, and `warning`) that contain the global variant tokens as listed in the [table above](#default-tokens).
 
 ## Customizing the default palette
 
@@ -224,7 +173,7 @@ If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/cust
 Adding a new palette lets you use it in all Joy UI components that support `color` prop.
 
 :::info
-Keep in mind that adding a new palette will increase the HTML bundle size because it contains a wide range of CSS variables.
+Adding a new palette increases the HTML bundle size. The more tokens, the bigger the bundle size.
 :::
 
 The snippet below adds the `secondary` palette to the theme.
