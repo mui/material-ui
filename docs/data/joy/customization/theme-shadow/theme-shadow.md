@@ -10,9 +10,9 @@ These tokens are grouped inside `theme.shadow` node:
 
 {{"demo": "ShadowThemeViewer.js", "bg": "inline"}}
 
-## Customization
+## Customizing the default shadow
 
-Provide a key-values to the `shadow` node to create a custom theme:
+Provide a key-values to the `shadow` node to override the default shadows:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -34,7 +34,7 @@ const theme = extendTheme({
 We recommend that the shadow value uses `var(--joy-shadowRing)` and `var(--joy-shadowChannel)` similar to the above [default token value](#default-tokens).
 :::
 
-### Adding new shadows
+## Adding new shadows
 
 You can add any custom keys to the `shadow` node:
 
@@ -51,7 +51,9 @@ const theme = extendTheme({
 // Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
-For **TypeScript**, you need to augment the theme's `Shadow` interface with the new keys:
+### TypeScript
+
+You need to augment the theme's `Shadow` interface with the new keys:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -63,9 +65,9 @@ declare module '@mui/joy/styles' {
 }
 ```
 
-### Shadow ring
+## Shadow ring
 
-To create a shadow ring, provide a value to `shadowRing` property:
+The shadow ring can be configured for both light and dark color schemes. To create a shadow ring, provide a valid CSS box-shadow to the `shadowRing` node:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -91,7 +93,7 @@ Customizing the theme's shadow ring will affect all Joy UI components that consu
 If you want to create a shadow ring to a specific element, see [Customizing shadow on an element](#customizing-shadow-on-an-element).
 :::
 
-### Shadow colors
+## Shadow colors
 
 The color of the shadow comes from the theme's token named `var(--joy-shadowChannel)`. You can customize the value for both light and dark color schemes:
 
@@ -116,15 +118,16 @@ const theme = extendTheme({
 The `shadowChannel` value must be rgb channels, e.g. `187 187 187`.
 :::
 
-### Customizing shadow on an element
+## Customizing shadow on an element
 
-To customize a shadow color or shadow ring on a specific instance, only use the raw value from the theme.
+To customize a shadow color or shadow ring on a specific instance, use the raw value from the `theme.shadow.*`.
 
 :::info
-**Don't** use shadows from `theme.vars` or from the shorthand syntax `shadow: '{key}'`.
+**Don't** use shadows from `theme.vars` or the shorthand syntax `{ shadow: '{key}' }`.
 :::
 
 ```js
+// ✅
 <Button
   sx={(theme) => ({
     boxShadow: theme.shadow.md,
@@ -132,8 +135,22 @@ To customize a shadow color or shadow ring on a specific instance, only use the 
     '--joy-shadowRing': 'inset 0 -3px 0 rgba(0 0 0 / 0.24)',
   })}
 >
-  Buy
-</Button>
+
+// ❌ Both of these do not work
+<Button
+  sx={(theme) => ({
+    boxShadow: 'md',
+    '--joy-shadowChannel': theme.vars.palette.primary.mainChannel,
+    '--joy-shadowRing': 'inset 0 -3px 0 rgba(0 0 0 / 0.24)',
+  })}
+>
+<Button
+  sx={(theme) => ({
+    boxShadow: theme.vars.shadow.md,
+    '--joy-shadowChannel': theme.vars.palette.primary.mainChannel,
+    '--joy-shadowRing': 'inset 0 -3px 0 rgba(0 0 0 / 0.24)',
+  })}
+>
 ```
 
 {{"demo": "CustomShadowOnElement.js"}}
