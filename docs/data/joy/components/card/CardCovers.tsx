@@ -6,49 +6,37 @@ import Typography from '@mui/joy/Typography';
 
 export default function CardCovers() {
   return (
-    <Card sx={{ minWidth: 320 }}>
-      <CardCover sx={{ bgcolor: 'rgba(0,0,0,0.4)' }}>
+    <Card sx={{ minWidth: 300 }}>
+      <CardCover sx={{ bgcolor: 'rgba(0,0,0,0.5)' }}>
         <div>
           <Typography
-            fontSize="50px"
             fontWeight="lg"
             textColor="#fff"
             ml={2}
             flexGrow={1}
           >
-            3
+            Bottom
           </Typography>
         </div>
       </CardCover>
-      <CardCover sx={{ bgcolor: 'rgba(0,0,0,0.4)' }}>
+      <CardCover sx={{ bgcolor: 'rgba(0,0,0,0.5)' }}>
         <div>
           <Typography
-            fontSize="50px"
             fontWeight="lg"
             textColor="#fff"
-            ml={6}
+            ml={12}
             flexGrow={1}
           >
-            2
+            Middle
           </Typography>
         </div>
       </CardCover>
-      <CardCover sx={{ bgcolor: 'rgba(0,0,0,0.4)' }}>
-        <div>
-          <Typography
-            fontSize="50px"
-            fontWeight="lg"
-            textColor="#fff"
-            ml={10}
-            flexGrow={1}
-          >
-            1
-          </Typography>
-        </div>
-      </CardCover>
-      <CardContent sx={{ bgcolor: 'rgba(0,0,0,0.5)' }}>
-        <Typography level="h2" ml={12} mr={2} textColor="#fff">
-          Content
+      <CardContent sx={{ bgcolor: 'rgba(0,0,0,0.5)'}}>
+        <Typography
+          ml={20}
+          textColor="#fff"
+        >
+          Top
         </Typography>
       </CardContent>
     </Card>

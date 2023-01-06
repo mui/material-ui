@@ -10,12 +10,12 @@ githubLabel: 'component: card'
 
 ## Introduction
 
-The Joy UI Card component comes with several complementary utility components to handle various use cases:
+The Joy UI Card component includes several complementary utility components to handle various use cases:
 
 - [Card](#basics): a surface-level container for grouping related components.
-- [Card Overflow](#overflow): a supplemental wrapper that stretches a Card's contents to fill all edges.
-- [Card Cover](#card-cover): an optional container for displaying background images and gradient layers behind the Card Content.
-- [Card Content](#card-cover): an optional wrapper that brings content to the front when used with the Card Cover.
+- [Card Overflow](#overflow): a supplemental wrapper that expands a Card's contents to fill all edges.
+- [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
+- [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
 
 ## Basics
 
@@ -23,62 +23,67 @@ The Joy UI Card component comes with several complementary utility components to
 import Card from '@mui/joy/Card';
 ```
 
-Card is a surface-level component for grouping related components.
+Card is a surface-level container for grouping related components.
 The demo below shows a typical Card that groups together Typography, Aspect Ratio, and Button components, among others:
 
 {{"demo": "BasicCard.js" }}
 
-### Card Overflow
+## Customization
+
+### Expand to fill
 
 ```jsx
 import CardOverflow from '@mui/joy/CardOverflow';
 ```
 
 By default, the Card component adds padding around the outer edges of its contents.
-To eliminate this white space so the content expands to fill the edges, add the Card Overflow component inside the Card as a wrapper around the content.
+To eliminate this white space, add the Card Overflow component inside the Card as a wrapper around the content to be expanded.
 
 Note that Card Overflow only works when it's the first and/or last child of the parent Card.
-In the demo below, the top and bottom sections stretch to fill the edges, while the middle section does not:
+In the demo below, the top and bottom sections are expanded to fill the edges:
 
 {{"demo": "OverflowCard.js" }}
 
-### Card Cover and Content
+### Card layers
 
 ```jsx
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 ```
 
-The Card Cover component is responsible for housing the content that covers the whole card.
-Think of card covers as a background layer that stay behind the Card Content.
+The default Card provides a single flat surface for other components to sit on top of.
+Use the Card Cover and Card Content components to expose multiple layers between a Card and the UI elements on its surface.
 
-{{"demo": "CardCovers.js" }}
+Card Cover makes it possible to add images, videos, and color and gradient overlays underneath the Card Content.
 
-### Media
+#### Images and videos
 
-Use a plain image or a video element inside the `CardCover` to display media.
-It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) on the image as a default value.
+Use an image or a video element inside the Card Cover to display media.
+The component uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) to fill the whole Card by default.
 
 {{"demo": "MediaCover.js" }}
 
-### Gradient overlay
+#### Gradient overlay
 
-To create a gradient overlay, frequently seen when a colorful image is used as background, insert an additional `CardCover` component.
-
-:::warning
-Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content.
-:::
+To create a gradient overlay—frequently seen when a bright image is used as a background—insert an additional Card Cover component between the image layer and the content layer.
+You can add any number of Card Covers to create more sophisticated stacked layers this way.
 
 {{"demo": "GradientCover.js" }}
 
-### Row
+### Horizontal alignment
 
-To show a horizontal card, use the `row` prop.
-The `CardOverflow` will adapt based on its position.
+Card contents are stacked in a column by default.
+For horizontal alignment, add the `row` prop to the Card.
+If present, the [Card Overflow](#expand-to-fill) component will adapt accordingly.
 
 {{"demo": "RowCard.js" }}
 
 ### Actions
+
+Cards often include actions that users can take, such as clicking a link or a button to proceed to a new section of the app.
+There may be individual actions possible _within_ a given Card, or _the entire Card itself_ may trigger an action when clicked or tapped.
+
+The following sections explain how to approach both of these scenarios.
 
 #### Multiple actions
 
@@ -101,7 +106,7 @@ Learn more about best accessibility practices with cards in the [Inclusive Compo
 
 {{"demo": "InteractiveCard.js" }}
 
-## CSS variables
+## CSS variable playground
 
 Play around with all the CSS variables available in the component to see how the design changes.
 
