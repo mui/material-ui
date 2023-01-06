@@ -83,7 +83,7 @@ If present, the [Card Overflow](#expand-to-fill) component will adapt accordingl
 Cards often include actions that users can take, like proceeding to a new page or section of the app.
 There may be individual (discrete) actions _within_ a given card, or _the entire card itself_ may trigger an action when clicked or tapped.
 
-The following sections explain how to approach both scenarios.
+The following sections explain how to approach each of these scenarios.
 
 #### Discrete actions
 
