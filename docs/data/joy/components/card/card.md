@@ -136,3 +136,25 @@ This demo uses a technique similar to Heydon Pickering's [Flexbox Holy Albatross
 Try resizing it by clicking and dragging the bottom-right corner to see how it behaves.
 
 {{"demo": "ContainerResponsive.js" }}
+
+## Anatomy
+
+The Card component and all of its complementary components are composed of a single root `<div>`:
+
+```html
+<div class="JoyCard-root">
+  <div class="JoyCardCover-root">
+    <!-- optional Card Cover layer -->
+  </div>
+  <div class="JoyCardContent-root">
+    <!-- optional Card Content layer -->
+  </div>
+  <div class="JoyCardOverflow-root">
+    <!-- optional Card Overflow utility -->
+  </div>  
+</div>
+```
+
+:::info
+Keep in mind that [Card Overflow](#expand-to-fill) must be the first or last child of the Card in order to function—accordingly, it will have a `data-first-child` or `data-last-child` attribute appended to its `<div>`.
+:::
