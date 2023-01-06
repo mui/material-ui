@@ -151,7 +151,7 @@ The Card component and all of its supplementary components are composed of a sin
   </div>
   <div class="JoyCardOverflow-root">
     <!-- optional Card Overflow utility -->
-  </div>  
+  </div>
 </div>
 ```
 
