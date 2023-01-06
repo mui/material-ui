@@ -110,11 +110,11 @@ Learn more about this and other best practices for accessible cards in the [Incl
 
 ## CSS variable playground
 
-Play around with the CSS variables available to the Card components to see how the design changes.
-You can use these to customize the components with both the `sx` prop and the theme.
+Play around with the CSS variables available to the Card component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
 
 :::success
-If you need to adjust a card's padding or border radius, it's preferable to do so using these variables rather than plain CSS properties.
+If you need to adjust a Card's padding or border radius, it's preferable to do so using these variables rather than plain CSS properties.
 This is because the variables are also used to calculate a proper radius for the Card's children, to prevent a mismatch between their relative proportions.
 :::
 
