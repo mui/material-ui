@@ -475,9 +475,9 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
-      Array.isArray(previousProps.value)
+      (Array.isArray(previousProps.value)
         ? previousProps.value.every((val, i) => value[i] === val)
-        : previousProps.value === value
+        : previousProps.value === value)
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
