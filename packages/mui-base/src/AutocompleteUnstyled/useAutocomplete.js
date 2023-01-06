@@ -471,14 +471,20 @@ export default function useAutocomplete(props) {
     if (!popupOpen) {
       return;
     }
+
     if (
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
-      previousProps.filteredOptions.length !== filteredOptions.length &&
-      (Array.isArray(previousProps.value)
-        ? previousProps.value.every((val, i) => value[i] === val)
-        : previousProps.value === value)
+      previousProps.filteredOptions.length !== filteredOptions.length
     ) {
+      const hasValueChanged = Array.isArray(previousProps.value)
+        ? previousProps.value.every((val, i) => value[i] === val)
+        : previousProps.value === value;
+
+      if (hasValueChanged) {
+        return;
+      }
+
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
