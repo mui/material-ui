@@ -4,7 +4,11 @@ import JoyInput2 from "@mui/joy/Input";
 import TextField from "@mui/material/TextField"
 
 <div>
-  <JoyInput />
+  <FormControl size="sm">
+    <FormLabel>Label</FormLabel>
+    <JoyInput placeholder="Placeholder" />
+    <FormHelperText>Help!</FormHelperText>
+  </FormControl>
   <JoyInput2 />
   <TextField />
 </div>;

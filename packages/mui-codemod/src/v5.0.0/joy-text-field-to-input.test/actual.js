@@ -4,7 +4,7 @@ import JoyTextField2 from "@mui/joy/TextField";
 import TextField from "@mui/material/TextField"
 
 <div>
-  <JoyTextField />
+  <JoyTextField label="Label" placeholder="Placeholder" size="sm" helperText="Help!" />
   <JoyTextField2 />
   <TextField />
 </div>;
