@@ -75,7 +75,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     readOnly: readOnlyProp,
   };
 
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+  const { getInputProps, checked, disabled, focusVisible, readOnly, setCheckedState, setFocusVisible, inputRef } = useSwitch(useSwitchProps);
 
   const ownerState: SwitchUnstyledOwnerState = {
     ...props,
@@ -124,9 +124,47 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.track,
   });
 
+  const focusTimeout = React.useRef<number>();
+
+  const clearFocusTimeout = () => {
+    if (focusTimeout.current) {
+      clearTimeout(focusTimeout.current);
+      focusTimeout.current = undefined;
+    }
+  };
+
+  const handleOnClick = () => {
+    clearFocusTimeout();
+    setCheckedState(!checked);
+    setFocusVisible(false);
+    if (inputRef.current) {
+      console.log(inputRef.current);
+    }
+  };
+
+  const handleOnKeyPress = (e: React.KeyboardEvent) => {
+    if (e.code === 'Space' && inputRef.current) {
+      clearFocusTimeout();
+      setCheckedState(!checked);
+    }
+  };
+
+  const handleOnFocus = () => {
+    clearFocusTimeout();
+    focusTimeout.current = window.setTimeout(() => {
+      setFocusVisible(true);
+    }, 50);
+  };
+
   return (
-    <Root {...rootProps}>
-      <Track {...trackProps} />
+    <Root {...rootProps} 
+    onClick={handleOnClick}
+    onKeyPress={handleOnKeyPress} 
+    tabIndex="0" 
+    onFocus={handleOnFocus}  
+    onBlur={() => setFocusVisible(false)} 
+    sx={{outline: 'none'}}>
+      <Track {...trackProps}  />
       <Thumb {...thumbProps} />
       <Input {...inputProps} />
     </Root>
