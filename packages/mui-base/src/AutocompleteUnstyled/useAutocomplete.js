@@ -477,11 +477,11 @@ export default function useAutocomplete(props) {
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length
     ) {
-      const hasValueChanged = Array.isArray(previousProps.value)
+      const hasValueUnChanged = Array.isArray(previousProps.value)
         ? previousProps.value.every((val, i) => value[i] === val)
         : previousProps.value === value;
 
-      if (hasValueChanged) {
+      if (!hasValueUnChanged) {
         return;
       }
 
