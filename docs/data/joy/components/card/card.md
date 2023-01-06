@@ -30,19 +30,6 @@ The demo below shows a typical Card that groups together Typography, Aspect Rati
 
 ## Customization
 
-### Variants
-
-The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
-
-:::info
-To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
-Note that you lose the global variants when you add custom variants.
-:::
-
-### Colors
-
-Every palette included in the theme is available via the `color` prop.
-
 ### Expand to fill
 
 ```jsx
