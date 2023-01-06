@@ -8,18 +8,31 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
 } from '@mui/utils';
+import { PortalProps } from './Portal.types';
 
-function getContainer(container) {
+function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;
 }
 
 /**
  * Portals provide a first-class way to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
+ *
+ * Demos:
+ *
+ * - [Portal](https://mui.com/base/react-portal/)
+ *
+ * API:
+ *
+ * - [Portal API](https://mui.com/base/api/portal/)
  */
-const Portal = React.forwardRef(function Portal(props, ref) {
+const Portal = React.forwardRef(function Portal(
+  props: PortalProps,
+  ref: React.ForwardedRef<Element>,
+) {
   const { children, container, disablePortal = false } = props;
-  const [mountNode, setMountNode] = React.useState(null);
+  const [mountNode, setMountNode] = React.useState<ReturnType<typeof getContainer>>(null);
+  // @ts-expect-error TODO upstream fix
   const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
 
   useEnhancedEffect(() => {
@@ -41,11 +54,12 @@ const Portal = React.forwardRef(function Portal(props, ref) {
 
   if (disablePortal) {
     if (React.isValidElement(children)) {
-      return React.cloneElement(children, {
+      const newProps = {
         ref: handleRef,
-      });
+      };
+      return React.cloneElement(children, newProps);
     }
-    return children;
+    return <React.Fragment>{children}</React.Fragment>;
   }
 
   return (
@@ -58,7 +72,7 @@ const Portal = React.forwardRef(function Portal(props, ref) {
 Portal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The children to render into the `container`.
@@ -80,11 +94,11 @@ Portal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disablePortal: PropTypes.bool,
-};
+} as any;
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  Portal['propTypes' + ''] = exactProp(Portal.propTypes);
+  (Portal as any)['propTypes' + ''] = exactProp((Portal as any).propTypes);
 }
 
 export default Portal;

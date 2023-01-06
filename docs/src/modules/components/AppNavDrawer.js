@@ -208,7 +208,7 @@ function renderNavItems(options) {
  * @param {import('docs/src/pages').MuiPage} context.page
  */
 function reduceChildRoutes(context) {
-  const { onClose, activePage, items, depth, t } = context;
+  const { onClose, activePageParents, items, depth, t } = context;
   let { page } = context;
   if (page.inSideNav === false) {
     return items;
@@ -217,10 +217,9 @@ function reduceChildRoutes(context) {
   const title = pageToTitleI18n(page, t);
 
   if (page.children && page.children.length >= 1) {
-    const topLevel = activePage
-      ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
-        page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
-      : false;
+    const topLevel =
+      activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
+
     let firstChild = page.children[0];
 
     if (firstChild.subheader && firstChild.children) {
@@ -247,7 +246,7 @@ function reduceChildRoutes(context) {
         {renderNavItems({
           onClose,
           pages: page.children,
-          activePage,
+          activePageParents,
           depth: subheader ? depth : depth + 1,
           t,
         })}
@@ -283,7 +282,7 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 
 export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
-  const { activePage, pages } = React.useContext(PageContext);
+  const { activePageParents, pages } = React.useContext(PageContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const userLanguage = useUserLanguage();
@@ -294,7 +293,7 @@ export default function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const { canonicalAs } = pathnameToLanguage(router.asPath);
 
-    const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
+    const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
     const renderVersionSelector = (versions, sx) => {
       if (!versions?.length) {
@@ -528,7 +527,7 @@ export default function AppNavDrawer(props) {
         {navItems}
       </React.Fragment>
     );
-  }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
+  }, [activePageParents, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>

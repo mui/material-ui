@@ -111,6 +111,10 @@
     {
       "groupName": "GitHub Actions",
       "matchManagers": ["github-actions"]
+    },
+    {
+      "groupName": "@definitelytyped tools",
+      "matchPackagePatterns": ["@definitelytyped/*"]
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],
