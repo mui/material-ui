@@ -88,7 +88,7 @@ The following sections explain how to approach each of these scenarios.
 #### Discrete actions
 
 By default, action elements like links and buttons sit above the surface-level interactive area of the Card.
-In some cases, you might have to adjust the z-index to bring these elements to the top—for instance, the Favorite Icon Button in the demo below needs a higher z-index in order to sit above its Aspect Ratio sibling:
+In some cases, you might have to adjust the z-index to bring these elements to the front—for instance, the Favorite Icon Button in the demo below needs a higher z-index in order to sit on top of its Aspect Ratio sibling:
 
 {{"demo": "MultipleInteractionCard.js" }}
 
