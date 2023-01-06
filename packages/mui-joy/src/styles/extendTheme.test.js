@@ -25,6 +25,8 @@ describe('extendTheme', () => {
         'colorInversionConfig',
         'variants',
         'cssVarPrefix',
+        'palette',
+        'vars',
         'unstable_sxConfig',
         'unstable_sx',
       ]).to.includes(field);
@@ -56,6 +58,21 @@ describe('extendTheme', () => {
     expect(theme.variants.outlined.primary).to.contain({
       '--variant-borderWidth': '3px',
     });
+  });
+
+  it('the generated palette has correct colorChannel', () => {
+    const result = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            primary: {
+              mainChannel: '12 12 12',
+            },
+          },
+        },
+      },
+    });
+    expect(result.palette.primary.mainChannel).to.equal('12 12 12');
   });
 
   describe('theme.unstable_sx', () => {

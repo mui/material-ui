@@ -16,7 +16,7 @@ import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
+import { Theme, ThemeCssVar, ThemeScales, SxProps, RuntimeColorSystem } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createVariant } from './variantUtils';
@@ -642,6 +642,21 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       sx: props,
       theme: this,
     });
+  };
+
+  theme.palette = { ...theme.colorSchemes['light'].palette as RuntimeColorSystem['palette'], colorScheme: 'light' };
+  theme.vars = {
+    focus: theme.focus,
+    fontFamily: theme.fontFamily,
+    fontSize: theme.fontSize,
+    fontWeight: theme.fontWeight,
+    letterSpacing: theme.letterSpacing,
+    lineHeight: theme.lineHeight,
+    radius: theme.radius,
+    shadow: theme.shadow,
+    palette: theme.palette,
+    shadowRing: theme.shadowRing,
+    shadowChannel: theme.shadowChannel,
   };
 
   return theme;
