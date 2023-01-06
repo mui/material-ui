@@ -462,28 +462,31 @@ export default function useAutocomplete(props) {
     },
   );
 
-  const previousProps = usePreviousProps({ filteredOptions });
+  const previousProps = usePreviousProps({
+    filteredOptions,
+  });
 
   const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
       return;
     }
+    if (highlightedIndexRef.current !== -1) {
+      const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
+      if (previousHighlightedOption) {
+        const previousHighlightedOptionExists = filteredOptions.some((option) => {
+          return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
+        });
+
+        if (previousHighlightedOptionExists) {
+          return;
+        }
+      }
+    }
     const valueItem = multiple ? value[0] : value;
 
-    let newOptionsAdded = false;
-
-    if (
-      previousProps.filteredOptions?.length > 0 &&
-      filteredOptions.length > previousProps.filteredOptions.length
-    ) {
-      newOptionsAdded = previousProps.filteredOptions.every(
-        (prevOption, prevOptionIndex) => prevOption === filteredOptions[prevOptionIndex],
-      );
-    }
-
     // The popup is empty, reset
-    if (filteredOptions.length === 0 || (valueItem == null && !newOptionsAdded)) {
+    if (filteredOptions.length === 0 || valueItem == null) {
       changeHighlightedIndex({ diff: 'reset' });
       return;
     }
@@ -523,7 +526,7 @@ export default function useAutocomplete(props) {
     }
 
     // Restore the focus to the previous index.
-    setHighlightedIndex({ index: highlightedIndexRef.current, reason: 'keyboard' });
+    setHighlightedIndex({ index: highlightedIndexRef.current });
     // Ignore filteredOptions (and options, isOptionEqualToValue, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

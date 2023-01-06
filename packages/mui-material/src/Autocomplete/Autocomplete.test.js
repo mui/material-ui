@@ -1591,7 +1591,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should keep focus on selected option and not reset to top option when new options are added', () => {
+    it('should keep focus on selected option and not reset to top option when previously highlighted option exists in new options', () => {
       const { setProps } = render(
         <Autocomplete
           open
@@ -1612,7 +1612,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
     });
 
-    it('should reset the highlight when options are updated', () => {
+    it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {
       const { setProps } = render(
         <Autocomplete
           open
@@ -1628,8 +1628,8 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // options are updated and autocomplete re-renders, rest the highlight
-      setProps({ options: ['two', 'three', 'four'] });
+      // options are updated and autocomplete re-renders, reset the highlight as two doesn't exists in new options
+      setProps({ options: ['one', 'three', 'four'] });
       checkHighlightIs(listbox, null);
     });
 
