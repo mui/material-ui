@@ -293,6 +293,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   tabIndex: PropTypes.number,
+  /**
+   * The menu item value.
+   */
+  value: PropTypes.any,
 };
 
 export default MenuItem;

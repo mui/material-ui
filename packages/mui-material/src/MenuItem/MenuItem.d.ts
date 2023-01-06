@@ -46,6 +46,10 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     * The menu item value.
+     */
+    value?: any;
   };
   defaultComponent: D;
 }>;
