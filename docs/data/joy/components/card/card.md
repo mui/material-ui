@@ -72,7 +72,7 @@ You can add any number of Card Covers to create more sophisticated stacked layer
 
 ### Horizontal alignment
 
-Card contents are stacked in a column by default.
+Card contents are arranged in a column by default.
 For horizontal alignment, add the `row` prop to the Card.
 If present, the [Card Overflow](#expand-to-fill) component will adapt accordingly.
 
