@@ -19,7 +19,7 @@ import { Variants, ColorInversion, ColorInversionConfig } from './types/variants
 import { Theme, ThemeCssVar, ThemeScales, SxProps, RuntimeColorSystem } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createVariant } from './variantUtils';
+import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -78,6 +78,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     spacing,
     components: componentsInput,
     variants: variantsInput,
+    colorInversion: colorInversionInput,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -644,7 +645,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
 
-  theme.palette = { ...theme.colorSchemes['light'].palette as RuntimeColorSystem['palette'], colorScheme: 'light' };
+  theme.palette = {
+    ...(theme.colorSchemes.light.palette as RuntimeColorSystem['palette']),
+    colorScheme: 'light',
+  };
   theme.vars = {
     focus: theme.focus,
     fontFamily: theme.fontFamily,
@@ -658,6 +662,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shadowRing: theme.shadowRing,
     shadowChannel: theme.shadowChannel,
   };
+  theme.getColorSchemeSelector = () => '&';
+  theme.colorInversion = deepmerge(
+    {
+      soft: createSoftInversion(theme),
+      solid: createSolidInversion(theme),
+    },
+    colorInversionInput,
+  );
 
   return theme;
 }
