@@ -103,6 +103,7 @@ const pages = [
       { pathname: '/joy-ui/customization/theme-typography' },
       { pathname: '/joy-ui/customization/themed-components' },
       { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
+      { pathname: '/joy-ui/customization/theme-builder' },
     ],
   },
   {
