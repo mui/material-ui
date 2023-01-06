@@ -30,6 +30,19 @@ The demo below shows a typical Card that groups together Typography, Aspect Rati
 
 ## Customization
 
+### Variants
+
+The Card component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft` , `outlined`, and `plain`.
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Colors
+
+Every palette included in the theme is available via the `color` prop.
+
 ### Expand to fill
 
 ```jsx
@@ -132,14 +145,14 @@ This is because the variables are also used to calculate a proper radius for the
 
 ### Resizable container
 
-This demo uses a technique similar to Heydon Pickering's [Flexbox Holy Albatross](https://heydonworks.com/article/the-flexbox-holy-albatross/) to create a stretchable Card that switches between vertical and horizontal alignment when its width passes a specified threshold.
+This demo uses a technique similar to Heydon Pickering's [Flexbox Holy Albatross](https://heydonworks.com/article/the-flexbox-holy-albatross/) to create a stretchable Card that switches between vertical and horizontal alignment when its width passes a specified threshold—without using media queries to define breakpoints.
 Try resizing it by clicking and dragging the bottom-right corner to see how it behaves.
 
 {{"demo": "ContainerResponsive.js" }}
 
 ## Anatomy
 
-The Card component and all of its complementary components are composed of a single root `<div>`:
+The Card component and all of its supplementary components are composed of a single root `<div>`:
 
 ```html
 <div class="JoyCard-root">
@@ -156,5 +169,5 @@ The Card component and all of its complementary components are composed of a sin
 ```
 
 :::info
-Keep in mind that [Card Overflow](#expand-to-fill) must be the first or last child of the Card in order to function—accordingly, it will have a `data-first-child` or `data-last-child` attribute appended to its `<div>`.
+Keep in mind that [Card Overflow](#expand-to-fill) must be the first or last child of a Card in order to function—accordingly, it will have a `data-first-child` or `data-last-child` attribute appended to its `<div>`.
 :::
