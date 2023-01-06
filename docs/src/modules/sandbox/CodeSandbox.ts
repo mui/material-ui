@@ -39,12 +39,12 @@ const createReactApp = (demo: {
   const { dependencies, devDependencies } = SandboxDependencies(internalDemo, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     ...(includeXMonorepo && {
-      xMonorepoPath: `https://github.com/mui/mui-x.git#${
-        // use branch name when on a PR
-        (process.env.PULL_REQUEST_ID && process.env.BRANCH) ??
-        process.env.DEFAULT_BRANCH ??
-        'master'
-      }`,
+      xMonorepoPath:
+        // use PR authors repo and branch name (HEAD for netlify) when on a PR
+        // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
+        process.env.PULL_REQUEST_ID && process.env.HEAD && process.env.REPOSITORY_URL
+          ? `${process.env.REPOSITORY_URL}#${process.env.BRANCH}`
+          : `https://github.com/mui/mui-x.git#${process.env.DEFAULT_BRANCH ?? 'master'}`,
     }),
   });
 
