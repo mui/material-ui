@@ -11,6 +11,12 @@ import TextField from "@mui/material/TextField"
       input: { ['aria-hidden']: false },
       helperText: { ['aria-hidden']: false },
     }}
+    slots={{
+      root: 'span',
+      label: 'span',
+      input: 'span',
+      helperText: 'span',
+    }}
     id="Id"
     label="Label"
     placeholder="Placeholder"

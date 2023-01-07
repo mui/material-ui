@@ -4,10 +4,19 @@ import JoyInput2 from "@mui/joy/Input";
 import TextField from "@mui/material/TextField"
 
 <div>
-  <FormControl aria-hidden={false} id="Id" required={true} size="sm" color="primary">
-    <FormLabel aria-hidden={false} id="Id-label">Label</FormLabel>
+  <FormControl
+    aria-hidden={false}
+    component={'span'}
+    id="Id"
+    required={true}
+    size="sm"
+    color="primary">
+    <FormLabel aria-hidden={false} component={'span'} id="Id-label">
+      Label
+    </FormLabel>
     <JoyInput
       aria-hidden={false}
+      component={'span'}
       placeholder="Placeholder"
       name="Name"
       type="button"
@@ -17,7 +26,9 @@ import TextField from "@mui/material/TextField"
       fullWidth={true}
       defaultValue="DefaultValue"
       variant="outlined" />
-    <FormHelperText aria-hidden={false} id="Id-helper-text">Help!</FormHelperText>
+    <FormHelperText aria-hidden={false} component={'span'} id="Id-helper-text">
+      Help!
+    </FormHelperText>
   </FormControl>
   <JoyInput2 />
   <TextField />

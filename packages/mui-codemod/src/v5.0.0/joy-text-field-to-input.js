@@ -68,10 +68,10 @@ export default function transformer(file, api, options) {
                       }
                       propNode.value.properties.forEach((prop) => {
                         const key = prop.key.value;
-                        const value = prop.value.value;
+                        // const value = prop.value.value;
                         const newAttributeNode = j.jsxAttribute(
                           j.jsxIdentifier(key),
-                          j.jsxExpressionContainer(j.booleanLiteral(value)),
+                          j.jsxExpressionContainer(prop.value),
                         );
                         switch (propNode.key.name) {
                           case 'root':
@@ -89,6 +89,32 @@ export default function transformer(file, api, options) {
                           default:
                         }
                       });
+                    });
+                  }
+                  break;
+
+                case 'slots':
+                  if (attributeNode.value.expression?.type === 'ObjectExpression') {
+                    attributeNode.value.expression.properties.forEach((propNode) => {
+                      const newAttributeNode = j.jsxAttribute(
+                        j.jsxIdentifier('component'),
+                        j.jsxExpressionContainer(propNode.value),
+                      );
+                      switch (propNode.key.name) {
+                        case 'root':
+                          formControlAttributeNodes.push(newAttributeNode);
+                          break;
+                        case 'label':
+                          formLabelAttributeNodes.push(newAttributeNode);
+                          break;
+                        case 'input':
+                          inputAttributeNodes.push(newAttributeNode);
+                          break;
+                        case 'helperText':
+                          formHelperTextAttributeNodes.push(newAttributeNode);
+                          break;
+                        default:
+                      }
                     });
                   }
                   break;
@@ -124,6 +150,7 @@ export default function transformer(file, api, options) {
                   'size',
                   'color',
                   'slotProps',
+                  'slots',
                   'label',
                   'helperText',
                   'id',
@@ -145,7 +172,7 @@ export default function transformer(file, api, options) {
                 const formLabelElement = j.jsxElement(
                   j.jsxOpeningElement(formLabelIdentifier, formLabelAttributeNodes),
                   j.jsxClosingElement(formLabelIdentifier),
-                  [j.jsxText(formLabelValue)],
+                  [j.jsxText('\n'), j.jsxText(formLabelValue), j.jsxText('\n')],
                 );
                 childrenOfFormControl.push(formLabelElement, j.jsxText('\n'));
               }
@@ -157,7 +184,7 @@ export default function transformer(file, api, options) {
                 const formHelperTextElement = j.jsxElement(
                   j.jsxOpeningElement(formHelperTextIdentifier, formHelperTextAttributeNodes),
                   j.jsxClosingElement(formHelperTextIdentifier),
-                  [j.jsxText(formHelperTextValue)],
+                  [j.jsxText('\n'), j.jsxText(formHelperTextValue), j.jsxText('\n')],
                 );
                 childrenOfFormControl.push(formHelperTextElement);
               }
