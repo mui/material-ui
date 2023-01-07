@@ -35,8 +35,8 @@ export default function transformer(file, api, options) {
             if (elementPath.node.type !== 'JSXElement') {
               return;
             }
-            newElementName = elementPath.node.openingElement.name.name.replaceAll(
-              'TextField',
+            newElementName = elementPath.node.openingElement.name.name.replace(
+              /TextField/gm,
               'Input',
             );
             elementPath.node.openingElement.name.name = newElementName;
