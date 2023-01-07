@@ -55,8 +55,8 @@ export default function transformer(file, api, options) {
               const attributeName = attributeNode.name.name;
               switch (attributeName) {
                 case 'size':
-                case 'variant':
                 case 'color':
+                case 'required':
                   formControlAttributeNodes.push(attributeNode);
                   break;
 
@@ -102,14 +102,11 @@ export default function transformer(file, api, options) {
                   break;
 
                 case 'id':
+                  formControlAttributeNodes.push(attributeNode);
                   formLabelAttributeNodes.push(
                     j.jsxAttribute(
                       j.jsxIdentifier('id'),
                       j.literal(`${attributeNode.value.value}-label`),
-                    ),
-                    j.jsxAttribute(
-                      j.jsxIdentifier('htmlFor'),
-                      j.literal(attributeNode.value.value),
                     ),
                   );
                   formHelperTextAttributeNodes.push(
@@ -120,16 +117,18 @@ export default function transformer(file, api, options) {
                   );
                   break;
 
-                case 'required':
-                  formLabelAttributeNodes.push(attributeNode);
-                  break;
-
                 default:
               }
               if (
-                !['size', 'variant', 'color', 'slotProps', 'label', 'helperText'].includes(
-                  attributeName,
-                )
+                ![
+                  'size',
+                  'color',
+                  'slotProps',
+                  'label',
+                  'helperText',
+                  'id',
+                  'required',
+                ].includes(attributeName)
               ) {
                 inputAttributeNodes.push(attributeNode);
               }
