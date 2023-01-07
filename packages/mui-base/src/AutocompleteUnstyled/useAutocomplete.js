@@ -353,6 +353,11 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    if (index === -1) {
+      listboxNode.scrollTop = 0;
+      return;
+    }
+
     const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
 
     if (!option) {
