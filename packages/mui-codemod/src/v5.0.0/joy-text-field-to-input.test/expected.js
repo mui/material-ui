@@ -4,10 +4,21 @@ import JoyInput2 from "@mui/joy/Input";
 import TextField from "@mui/material/TextField"
 
 <div>
-  <FormControl size="sm">
-    <FormLabel>Label</FormLabel>
-    <JoyInput placeholder="Placeholder" />
-    <FormHelperText>Help!</FormHelperText>
+  <FormControl aria-hidden={false} size="sm" color="primary" variant="outlined">
+    <FormLabel aria-hidden={false} id="Id-label" htmlFor="Id" required={true}>Label</FormLabel>
+    <JoyInput
+      aria-hidden={false}
+      id="Id"
+      placeholder="Placeholder"
+      name="Name"
+      type="button"
+      autoComplete="on"
+      autoFocus={true}
+      error={true}
+      required={true}
+      fullWidth={true}
+      defaultValue="DefaultValue" />
+    <FormHelperText aria-hidden={false} id="Id-helper-text">Help!</FormHelperText>
   </FormControl>
   <JoyInput2 />
   <TextField />

@@ -4,7 +4,29 @@ import JoyTextField2 from "@mui/joy/TextField";
 import TextField from "@mui/material/TextField"
 
 <div>
-  <JoyTextField label="Label" placeholder="Placeholder" size="sm" helperText="Help!" />
+  <JoyTextField
+    slotProps={{
+      root: { ['aria-hidden']: false },
+      label: { ['aria-hidden']: false },
+      input: { ['aria-hidden']: false },
+      helperText: { ['aria-hidden']: false },
+    }}
+    id="Id"
+    label="Label"
+    placeholder="Placeholder"
+    helperText="Help!"
+    name="Name"
+    type="button"
+    autoComplete="on"
+    autoFocus={true}
+    error={true}
+    required={true}
+    fullWidth={true}
+    defaultValue="DefaultValue"
+    size="sm"
+    color="primary"
+    variant="outlined"
+  />
   <JoyTextField2 />
   <TextField />
 </div>;
