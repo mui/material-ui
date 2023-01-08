@@ -446,17 +446,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
+    valueLabel: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
   }),
   /**
    * The components used for each slot inside the Slider.
@@ -500,15 +490,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * For ranged sliders, provide an array with two values.
    */
   value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-  /**
-   * Controls when the value label is displayed:
-   *
-   * - `auto` the value label will display when the thumb is hovered or focused.
-   * - `on` will display persistently.
-   * - `off` will never display.
-   * @default 'off'
-   */
-  valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
   /**
    * The format function the value label's value.
    *
