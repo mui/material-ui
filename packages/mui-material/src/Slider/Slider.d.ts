@@ -3,7 +3,6 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-  SliderValueLabelProps,
 } from '@mui/base/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
@@ -70,6 +69,14 @@ export type SliderTypeMap<
       thumbColorSecondary?: string;
       /** Class name applied to the thumb element if `size="small"`. */
       thumbSizeSmall?: string;
+      /** Class name applied to the thumb label element. */
+      valueLabel: string;
+      /** Class name applied to the thumb label element if it's open. */
+      valueLabelOpen: string;
+      /** Class name applied to the thumb label's circle element. */
+      valueLabelCircle: string;
+      /** Class name applied to the thumb label's label element. */
+      valueLabelLabel: string;
     };
     /**
      * The size of the slider.
@@ -80,11 +87,18 @@ export type SliderTypeMap<
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     * Controls when the value label is displayed:
+     *
+     * - `auto` the value label will display when the thumb is hovered or focused.
+     * - `on` will display persistently.
+     * - `off` will never display.
+     * @default 'off'
+     */
+    valueLabelDisplay?: 'on' | 'auto' | 'off';
   };
   defaultComponent: D;
 }>;
-
-export { SliderValueLabelProps } from '@mui/base/SliderUnstyled';
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
@@ -99,7 +113,7 @@ export declare const SliderMarkLabel: React.FC<SliderMarkLabelProps>;
 export declare const SliderRail: React.FC<SliderRailProps>;
 export declare const SliderTrack: React.FC<SliderTrackProps>;
 export declare const SliderThumb: React.FC<SliderThumbProps>;
-export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
+// export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 /**
  *

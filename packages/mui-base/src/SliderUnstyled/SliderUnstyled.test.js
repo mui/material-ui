@@ -128,12 +128,10 @@ describe('<SliderUnstyled />', () => {
     });
   });
 
-  describe('prop: valueLabelDisplay', () => {
-    it('renders a slider', () => {
-      render(<SliderUnstyled value={30} valueLabelDisplay="auto" />);
+  it('renders a slider', () => {
+    render(<SliderUnstyled value={30} />);
 
-      expect(screen.getByRole('slider')).to.have.attribute('aria-valuenow', '30');
-    });
+    expect(screen.getByRole('slider')).to.have.attribute('aria-valuenow', '30');
   });
 
   [
@@ -288,7 +286,6 @@ describe('<SliderUnstyled />', () => {
       const { getByRole, container } = render(
         <SliderUnstyled
           value={50}
-          valueLabelDisplay="auto"
           marks={[
             {
               value: 0,
