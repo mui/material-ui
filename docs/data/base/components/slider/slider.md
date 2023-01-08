@@ -174,6 +174,17 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 {{"demo": "RangeSlider.js"}}
 
+### Value label
+
+The value label can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. There are typically two use-cases of when the value label is shown:
+
+- always
+- only when hovering over the thumb - using CSS
+
+The following demo shows how to render the value label when the mouse is hovering over the thumb:
+
+{{"demo": "UnstyledSliderValueLabel.js"}}
+
 ## Accessibility
 
 See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/) for complete details on accessibility best practices.

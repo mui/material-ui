@@ -109,7 +109,7 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: #fff;
   }
 
-  & .${sliderUnstyledClasses.valueLabel} {
+  & .valueLabel {
     font-family: IBM Plex Sans;
     font-size: 14px;
     display: block;
@@ -120,6 +120,14 @@ const StyledSlider = styled(SliderUnstyled)(
   }
 `,
 );
+
+interface SliderValueLabelProps {
+  children: React.ReactElement;
+}
+
+function SliderValueLabel({ children }: SliderValueLabelProps) {
+  return <span className="valueLabel">{children}</span>;
+}
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -132,11 +140,11 @@ export default function DiscreteSlider() {
         aria-label="Temperature"
         defaultValue={30}
         getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
         step={10}
         marks
         min={10}
         max={110}
+        slots={{ valueLabel: SliderValueLabel }}
       />
     </Box>
   );
