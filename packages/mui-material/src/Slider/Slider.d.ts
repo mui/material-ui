@@ -110,7 +110,6 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  * API:
  *
  * - [Slider API](https://mui.com/material-ui/api/slider/)
- * - inherits [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
  */
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 
