@@ -1,22 +1,25 @@
 import * as React from 'react';
-import {
-  ExtendSliderUnstyledTypeMap,
-  ExtendSliderUnstyled,
-  SliderUnstyledTypeMap,
-} from '@mui/base/SliderUnstyled';
+import { SlotComponentProps } from '@mui/base';
+import { SliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import { OverrideProps } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { SliderValueLabelProps } from './SliderValueLabel.types';
 
 export interface SliderPropsColorOverrides {}
 
 export interface SliderPropsSizeOverrides {}
 
-export type SliderTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendSliderUnstyledTypeMap<{
+export interface SliderComponentsPropsOverrides {}
+
+export interface SliderOwnerState extends SliderProps {
+  dragging: boolean;
+  marked: boolean;
+  focusedThumbIndex: number;
+}
+
+export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
   props: P & {
     /**
      * The color of the component.
@@ -52,7 +55,20 @@ export type SliderTypeMap<
      *
      * @default {}
      */
-    componentsProps?: SliderUnstyledTypeMap['props']['slotProps'];
+    componentsProps?: {
+      root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      valueLabel?: SlotComponentProps<
+        typeof SliderValueLabel,
+        SliderComponentsPropsOverrides,
+        SliderOwnerState
+      >;
+      input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
+    };
     /**
      * Override or extend the styles applied to the component.
      */
@@ -84,6 +100,24 @@ export type SliderTypeMap<
      */
     size?: OverridableStringUnion<'small' | 'medium', SliderPropsSizeOverrides>;
     /**
+     * The props used for each slot inside the Slider.
+     * @default {}
+     */
+    slotProps?: {
+      root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
+      valueLabel?: SlotComponentProps<
+        typeof SliderValueLabel,
+        SliderComponentsPropsOverrides,
+        SliderOwnerState
+      >;
+      input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
+    };
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
@@ -96,9 +130,11 @@ export type SliderTypeMap<
      * @default 'off'
      */
     valueLabelDisplay?: 'on' | 'auto' | 'off';
-  };
+  } & Omit<SliderUnstyledTypeMap['props'], 'slotProps'>;
   defaultComponent: D;
-}>;
+};
+
+export { SliderValueLabelProps };
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
@@ -113,7 +149,7 @@ export declare const SliderMarkLabel: React.FC<SliderMarkLabelProps>;
 export declare const SliderRail: React.FC<SliderRailProps>;
 export declare const SliderTrack: React.FC<SliderTrackProps>;
 export declare const SliderThumb: React.FC<SliderThumbProps>;
-// export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
+export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
 
 /**
  *
@@ -124,9 +160,8 @@ export declare const SliderThumb: React.FC<SliderThumbProps>;
  * API:
  *
  * - [Slider API](https://mui.com/material-ui/api/slider/)
- * - inherits [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
  */
-declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
+declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export type SliderClassKey = keyof NonNullable<SliderTypeMap['props']['classes']>;
 
