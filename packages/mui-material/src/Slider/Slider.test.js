@@ -29,7 +29,7 @@ describe('<Slider />', () => {
 
   const { render } = createRenderer();
 
-  describeConformance.only(
+  describeConformance(
     <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
     () => ({
       classes,
