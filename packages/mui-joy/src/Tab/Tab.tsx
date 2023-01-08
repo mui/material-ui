@@ -38,6 +38,8 @@ const TabRoot = styled(StyledListItemButton, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const variantHoverStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+
   return {
     justifyContent: 'center',
     flexGrow: 1,
@@ -46,9 +48,11 @@ const TabRoot = styled(StyledListItemButton, {
       fontWeight: 'initial',
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
-        '&:hover': {
-          backgroundColor: theme.vars.palette.background.surface,
-        },
+        ...(!variantHoverStyle?.backgroundColor && {
+          '&:hover': {
+            backgroundColor: theme.vars.palette.background.surface,
+          },
+        }),
       }),
     }),
   };
