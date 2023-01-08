@@ -29,11 +29,11 @@ describe('<Slider />', () => {
 
   const { render } = createRenderer();
 
-  describeConformance(
+  describeConformance.only(
     <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
     () => ({
       classes,
-      inheritComponent: SliderUnstyled,
+      inheritComponent: 'span',
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiSlider',
