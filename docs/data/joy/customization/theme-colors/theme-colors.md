@@ -134,7 +134,8 @@ extendTheme({
     light: {
       palette: {
         // Example of new color tokens.
-        // We recommend to limit them to 3 levels deep－in this case `palette.gradient.primary`.
+        // We recommend to limit them to 3 levels deep－in this case:
+        // `palette.gradient.primary`.
         gradient: {
           primary: 'linear-gradient(to top, var(--joy-palette-primary-main), #000)',
         },
