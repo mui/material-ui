@@ -130,7 +130,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
      * @default 'off'
      */
     valueLabelDisplay?: 'on' | 'auto' | 'off';
-  } & Omit<SliderUnstyledTypeMap['props'], 'slotProps'>;
+  } & Omit<SliderUnstyledTypeMap['props'], 'slotProps' | 'isRtl'>;
   defaultComponent: D;
 };
 
