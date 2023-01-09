@@ -56,6 +56,10 @@ To target the initially selected tab, specify the `value` prop to the `TabPanel`
 
 Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
 
+:::info
+A selected `Tab` does not apply `:hover` and `:active` global variant styles.
+:::
+
 {{"demo": "TabsVariants.js"}}
 
 :::info
