@@ -144,7 +144,12 @@ export default function FontSizeThemeViewer() {
                   }
                   sx={{ pointerEvents: 'none' }}
                 >
-                  <Typography level="body2" sx={{ cursor: 'zoom-in' }}>
+                  <Typography
+                    fontSize="xs"
+                    fontFamily="code"
+                    letterSpacing="sm"
+                    sx={{ cursor: 'zoom-in' }}
+                  >
                     {defaultTheme.typography[level].color || '-'}
                   </Typography>
                 </Tooltip>
@@ -163,7 +168,12 @@ export default function FontSizeThemeViewer() {
                   }
                   sx={{ pointerEvents: 'none' }}
                 >
-                  <Typography level="body2" sx={{ cursor: 'zoom-in' }}>
+                  <Typography
+                    fontSize="xs"
+                    fontFamily="code"
+                    letterSpacing="sm"
+                    sx={{ cursor: 'zoom-in' }}
+                  >
                     {defaultTheme.typography[level].fontSize || '-'}
                   </Typography>
                 </Tooltip>
@@ -180,12 +190,14 @@ export default function FontSizeThemeViewer() {
                             defaultTheme.typography[level][field] as string,
                             field,
                           )
-                        ] || 'unset'
+                        ] || ''
                       }
                       sx={{ pointerEvents: 'none' }}
                     >
                       <Typography
-                        level="body2"
+                        fontSize="xs"
+                        fontFamily="code"
+                        letterSpacing="sm"
                         textAlign="center"
                         sx={{ cursor: 'zoom-in' }}
                       >

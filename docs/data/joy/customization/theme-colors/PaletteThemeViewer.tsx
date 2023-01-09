@@ -162,8 +162,10 @@ export default function PaletteThemeViewer() {
                 </td>
                 <td>
                   <Typography
-                    level="body2"
+                    fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
+                    fontFamily="code"
+                    letterSpacing="sm"
                     sx={{ alignItems: 'flex-start' }}
                   >
                     {light[token]}
@@ -171,8 +173,10 @@ export default function PaletteThemeViewer() {
                 </td>
                 <td>
                   <Typography
-                    level="body2"
+                    fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
+                    fontFamily="code"
+                    letterSpacing="sm"
                     sx={{ alignItems: 'flex-start' }}
                   >
                     {dark[token]}

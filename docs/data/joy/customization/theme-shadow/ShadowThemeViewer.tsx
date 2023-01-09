@@ -79,7 +79,7 @@ export default function ShadowThemeViewer() {
               <Typography fontSize="sm">{token}</Typography>
             </td>
             <td>
-              <Typography level="body2">
+              <Typography fontSize="xs" fontFamily="code" letterSpacing="sm">
                 {formatShadowLayers(defaultTheme.shadow[token])}
               </Typography>
             </td>
