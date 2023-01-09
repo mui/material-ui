@@ -7,6 +7,7 @@ import {
   ApplyColorInversion,
   TypographySystem,
   VariantProp,
+  TextColor,
 } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -61,7 +62,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        * The system color.
        */
-      textColor?: SystemProps['color'];
+      textColor?: TextColor;
       /**
        * Element placed before the children.
        */
