@@ -735,7 +735,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
         return (
           <React.Fragment key={index}>
-            {/* TODO v6: Change component structure. It will help in avoiding complicated React.cloneElement in SlderValueLabel. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure.  */}
+            {/* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure.  */}
             <ValueLabelComponent
               {...(!isHostComponent(ValueLabelComponent) && {
                 valueLabelFormat,
