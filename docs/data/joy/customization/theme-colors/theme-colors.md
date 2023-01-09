@@ -170,10 +170,10 @@ If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/cust
 
 ## Adding more palettes
 
-Adding a new palette lets you use it in all Joy UI components that support `color` prop.
+Adding a new palette lets you use it on Joy UI components that support `color` prop.
 
 :::info
-Adding a new palette increases the HTML bundle size. The more tokens, the bigger the bundle size.
+Adding a new palette increases the HTML bundle size. The more tokens you added to the palette, the bigger the bundle size.
 :::
 
 The snippet below adds the `secondary` palette to the theme.
@@ -247,12 +247,21 @@ const theme = extendTheme({
 // Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
+Then, you will be able to use `secondary` color on Joy UI components:
+
+```js
+<Button color="secondary">
+<IconButton variant="outlined" color="secondary">
+<Chip variant="soft" color="secondary">
+```
+
 ### TypeScript
 
 You need to augment the theme's interfaces to include the new palette.
 
 ```ts
 // You can put this to any file that's included in your tsconfig
+import type { PaletteRange } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface ColorPalettePropOverrides {
