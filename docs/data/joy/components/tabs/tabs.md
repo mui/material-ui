@@ -120,6 +120,10 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
+### Underline tabs
+
+{{"demo": "TabsUnderlineExample.js"}}
+
 ### Pricing tabs
 
 {{"demo": "TabsPricingExample.js"}}
