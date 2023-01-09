@@ -1,5 +1,14 @@
 /**
- * Add keys, values of `defaultProps` that does not exist in `props`
+ * Check if a variable is an object.
+ * @param {unknown} value 
+ * @returns {boolean}
+ */
+const isObject = (value: unknown): value is Record<string, unknown> => {
+  return typeof value === 'object' && !Array.isArray(value);
+}
+
+/**
+ * Add keys, values of `defaultProps` that does not exist in `props`  
  * @param {object} defaultProps
  * @param {object} props
  * @returns {object} resolved props
@@ -15,6 +24,10 @@ export default function resolveProps<
   const output = { ...props };
 
   (Object.keys(defaultProps) as Array<keyof T>).forEach((propName) => {
+    const defaultValue = defaultProps[propName];
+    const currentValue = output[propName];
+    const mergePropsWhiteList = [ 'TransitionProps' ];
+
     if (propName.toString().match(/^(components|slots)$/)) {
       output[propName] = {
         ...(defaultProps[propName] as any),
@@ -42,6 +55,8 @@ export default function resolveProps<
       }
     } else if (output[propName] === undefined) {
       output[propName] = defaultProps[propName];
+    } else if (isObject(defaultValue) && isObject(currentValue) && mergePropsWhiteList.includes(String(propName))){
+      output[propName] = { ...defaultValue, ...currentValue };
     }
   });
 
