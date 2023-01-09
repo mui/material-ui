@@ -91,4 +91,23 @@ describe('resolveProps', () => {
       notTheSlotProps: { className: 'input' },
     });
   });
+
+  it('should merge prop objects if passing a whitelist', () => {
+    const defaultProps = { a: { b: 1, c: 3 } };
+    const props = { a: { b: 0 } };
+    expect(resolveProps(defaultProps, props, ['a'])).to.deep.equal({
+      a: {
+        b: 0,
+        c: 3,
+      },
+    });
+  });
+
+  it('should not merge prop objects if not passing a whitelist', () => {
+    const defaultProps = { a: { b: 1, c: 3 } };
+    const props = { a: { b: 0 } };
+    expect(resolveProps(defaultProps, props)).to.deep.equal({
+      a: { b: 0 },
+    });
+  });
 });

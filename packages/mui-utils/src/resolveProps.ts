@@ -1,14 +1,14 @@
 /**
  * Check if a variable is an object.
- * @param {unknown} value 
+ * @param {unknown} value
  * @returns {boolean}
  */
 const isObject = (value: unknown): value is Record<string, unknown> => {
   return typeof value === 'object' && !Array.isArray(value);
-}
+};
 
 /**
- * Add keys, values of `defaultProps` that does not exist in `props`  
+ * Add keys, values of `defaultProps` that does not exist in `props`
  * @param {object} defaultProps
  * @param {object} props
  * @returns {object} resolved props
@@ -20,13 +20,13 @@ export default function resolveProps<
     slots?: Record<string, unknown>;
     slotProps?: Record<string, unknown>;
   } & Record<string, unknown>,
->(defaultProps: T, props: T) {
+>(defaultProps: T, props: T, mergePropsWhiteList?: Array<string>) {
   const output = { ...props };
 
   (Object.keys(defaultProps) as Array<keyof T>).forEach((propName) => {
+    const isMergeable = !!mergePropsWhiteList?.includes(String(propName));
     const defaultValue = defaultProps[propName];
     const currentValue = output[propName];
-    const mergePropsWhiteList = [ 'TransitionProps' ];
 
     if (propName.toString().match(/^(components|slots)$/)) {
       output[propName] = {
@@ -55,7 +55,7 @@ export default function resolveProps<
       }
     } else if (output[propName] === undefined) {
       output[propName] = defaultProps[propName];
-    } else if (isObject(defaultValue) && isObject(currentValue) && mergePropsWhiteList.includes(String(propName))){
+    } else if (isObject(defaultValue) && isObject(currentValue) && isMergeable) {
       output[propName] = { ...defaultValue, ...currentValue };
     }
   });

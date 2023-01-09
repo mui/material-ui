@@ -115,7 +115,11 @@ const AccordionRoot = styled(Paper, {
 );
 
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAccordion' });
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiAccordion',
+    mergePropsWhiteList: ['TransitionProps'],
+  });
   const {
     children: childrenProp,
     className,

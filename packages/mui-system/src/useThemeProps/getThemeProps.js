@@ -1,7 +1,7 @@
 import { internal_resolveProps as resolveProps } from '@mui/utils';
 
 export default function getThemeProps(params) {
-  const { theme, name, props } = params;
+  const { theme, name, props, mergePropsWhiteList } = params;
 
   if (
     !theme ||
@@ -12,5 +12,5 @@ export default function getThemeProps(params) {
     return props;
   }
 
-  return resolveProps(theme.components[name].defaultProps, props);
+  return resolveProps(theme.components[name].defaultProps, props, mergePropsWhiteList);
 }
