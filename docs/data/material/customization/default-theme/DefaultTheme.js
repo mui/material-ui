@@ -22,9 +22,6 @@ function DefaultTheme() {
         const [name, value] = param.split('=');
         if (name === 'expand-path') {
           expandPath = value;
-        } else if (name === 'expend-path' && !expandPath) {
-          // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-          expandPath = value;
         }
       });
 
