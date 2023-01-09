@@ -8,7 +8,7 @@ import ThemeViewer, {
 
 const defaultTheme = extendTheme();
 
-function JoyDefaultTheme() {
+export default function JoyDefaultTheme() {
   React.useEffect(() => {
     let expandPath;
     decodeURI(document.location.search.slice(1))
@@ -36,5 +36,3 @@ function JoyDefaultTheme() {
     </Box>
   );
 }
-
-export default JoyDefaultTheme;
