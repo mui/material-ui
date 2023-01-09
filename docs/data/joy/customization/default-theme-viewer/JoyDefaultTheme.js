@@ -9,6 +9,8 @@ import ThemeViewer, {
 const defaultTheme = extendTheme();
 
 export default function JoyDefaultTheme() {
+  const [expandPaths, setExpandPaths] = React.useState(null);
+
   React.useEffect(() => {
     let expandPath;
     decodeURI(document.location.search.slice(1))
@@ -17,11 +19,23 @@ export default function JoyDefaultTheme() {
         const [name, value] = param.split('=');
         if (name === 'expand-path') {
           expandPath = value;
-        } else if (name === 'expend-path' && !expandPath) {
-          // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-          expandPath = value;
         }
       });
+
+    if (!expandPath) {
+      return;
+    }
+
+    setExpandPaths(
+      expandPath
+        .replace('$.', '')
+        .split('.')
+        .reduce((acc, path) => {
+          const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
+          acc.push(last + path);
+          return acc;
+        }, []),
+    );
   }, []);
 
   const data = defaultTheme;
@@ -31,7 +45,7 @@ export default function JoyDefaultTheme() {
   return (
     <Box sx={{ width: '100%' }}>
       <ThemeProvider theme={() => createTheme()}>
-        <ThemeViewer data={data} />
+        <ThemeViewer data={data} expandPaths={expandPaths} />
       </ThemeProvider>
     </Box>
   );

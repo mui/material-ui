@@ -169,7 +169,7 @@ export function useNodeIdsLazy(object: Record<string, any>) {
 
 const keyPrefix = '$ROOT';
 
-function ThemeViewer({
+export default function ThemeViewer({
   data,
   expandPaths = [],
   ...other
@@ -210,5 +210,3 @@ function ThemeViewer({
     </TreeView>
   );
 }
-
-export default ThemeViewer;
