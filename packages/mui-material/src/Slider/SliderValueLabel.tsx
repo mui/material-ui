@@ -1,23 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 import { SliderValueLabelProps } from './SliderValueLabel.types';
+import sliderClasses from './sliderClasses';
 
-export const sliderClasses = {
-  ...sliderUnstyledClasses,
-  ...generateUtilityClasses('MuiSlider', [
-    'colorPrimary',
-    'colorSecondary',
-    'thumbColorPrimary',
-    'thumbColorSecondary',
-    'sizeSmall',
-    'thumbSizeSmall',
-  ]),
-};
+const useValueLabelClasses = (props: SliderValueLabelProps) => {
+  const { open } = props;
 
-const useValueLabelClasses = (open: SliderValueLabelProps['open']) => {
   const utilityClasses = {
     offset: clsx({
       [sliderClasses.valueLabelOpen]: open,
@@ -33,8 +22,8 @@ const useValueLabelClasses = (open: SliderValueLabelProps['open']) => {
  * @ignore - internal component.
  */
 export default function SliderValueLabel(props: SliderValueLabelProps) {
-  const { children, className, value, open } = props;
-  const classes = useValueLabelClasses(open);
+  const { children, className, value } = props;
+  const classes = useValueLabelClasses(props);
 
   if (!children) {
     return null;
