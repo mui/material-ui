@@ -436,3 +436,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
+
+### MUI Design kits
+/figma/getting-started/ https://mui-org.notion.site/MUI-for-Figma-docs-4eb22360388047a9a31fc19d300a285e 302
