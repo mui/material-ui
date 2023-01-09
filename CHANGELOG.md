@@ -41,6 +41,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 ### Core
 
 - [core] Close 2022 developer survey @oliviertassinari
+- [core] Fix the product license reference name (#35703) @oliviertassinari
 - [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
 - [test] Always use & for nesting styles (#35702) @oliviertassinari
 - [website] Improve Lead Designer role description (#35684) @oliviertassinari
