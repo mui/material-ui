@@ -17,7 +17,7 @@ function ValueLabelComponent(props) {
 }
 
 ValueLabelComponent.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
