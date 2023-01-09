@@ -14,7 +14,8 @@ import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
-import SliderValueLabelComponent, { sliderClasses } from './SliderValueLabel';
+import SliderValueLabelComponent from './SliderValueLabel';
+import sliderClasses from './sliderClasses';
 
 const valueToPercent = (value, min, max) => ((value - min) * 100) / (max - min);
 
@@ -605,8 +606,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     ownerState: {
       ...ownerState,
       ...rootSlotProps?.ownerState,
-      color,
-      size,
     },
     className: [classes.root, className],
   });
@@ -630,8 +629,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     ownerState: {
       ...ownerState,
       ...trackSlotProps?.ownerState,
-      color,
-      size,
     },
     className: classes.track,
   });
@@ -640,13 +637,19 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     elementType: ThumbSlot,
     getSlotProps: getThumbProps,
     externalSlotProps: thumbSlotProps,
-    ownerState,
+    ownerState: {
+      ...ownerState,
+      ...thumbSlotProps?.ownerState,
+    },
   });
 
   const valueLabelProps = useSlotProps({
     elementType: ValueLabelSlot,
     externalSlotProps: valueLabelSlotProps,
-    ownerState,
+    ownerState: {
+      ...ownerState,
+      ...valueLabelSlotProps?.ownerState,
+    },
     className: classes.valueLabel,
   });
 
@@ -735,7 +738,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
         return (
           <React.Fragment key={index}>
-            {/* TODO v6: Change component structure. It will help in avoiding complicated React.cloneElement in SlderValueLabel. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure.  */}
+            {/* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure.  */}
             <ValueLabelComponent
               {...(!isHostComponent(ValueLabelComponent) && {
                 valueLabelFormat,
