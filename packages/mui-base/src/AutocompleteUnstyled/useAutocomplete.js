@@ -625,7 +625,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              `MUI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
+              `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
@@ -852,6 +852,16 @@ export default function useAutocomplete(props) {
         case 'Backspace':
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
+            const newValue = value.slice();
+            newValue.splice(index, 1);
+            handleValue(event, newValue, 'removeOption', {
+              option: value[index],
+            });
+          }
+          break;
+        case 'Delete':
+          if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
+            const index = focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
             handleValue(event, newValue, 'removeOption', {

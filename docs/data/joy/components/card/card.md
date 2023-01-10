@@ -13,7 +13,7 @@ githubLabel: 'component: card'
 Cards are most frequently used for easy to scan, relevant, and actionable information.
 Joy UI provides four Card-related components:
 
-- [`Card`](#basic): a container to control the content direction.
+- [`Card`](#basic-usage): a container to control the content direction.
 - [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill all edges of the card.
 - [`CardCover`](#back-cover): a container for displaying background images within the card, also used to create gradient layers.
 - [`CardContent`](#back-cover): a wrapper that brings content to the front when used with `CardCover`.
@@ -67,8 +67,8 @@ It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/o
 
 To create a gradient overlay, frequently seen when a colorful image is used as background, insert an additional `CardCover` component.
 
-:::info
-💡 **Tip:** Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content.
+:::warning
+Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content.
 :::
 
 {{"demo": "GradientCover.js" }}
@@ -87,8 +87,8 @@ The `CardOverflow` will adapt based on its position.
 By default, whenever you have additional action elements such as links and buttons, they stay on top of the whole interactive area.
 In some cases, you might have to manually control each element's `z-index`.
 
-:::info
-💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused.
+:::success
+Use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children are focused.
 :::
 
 {{"demo": "MultipleInteractionCard.js" }}
@@ -105,12 +105,12 @@ Learn more about best accessibility practices with cards in the [Inclusive Compo
 
 ## CSS variables
 
-Play around with all the CSS variables available in the slider component to see how the design changes.
+Play around with all the CSS variables available in the component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-:::info
-💡 **Tip**: If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using CSS properties directly.
+:::success
+If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using CSS properties directly.
 That's because the variables will also be used to calculate a proper radius for the card's children.
 :::
 

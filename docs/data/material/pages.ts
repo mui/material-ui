@@ -21,12 +21,6 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/react-',
-    scopePathnames: [
-      '/material-ui/icons',
-      '/material-ui/material-icons',
-      '/material-ui/about-the-lab',
-      '/material-ui/transitions',
-    ],
     title: 'Components',
     icon: 'ToggleOnIcon',
     children: [
@@ -149,7 +143,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-tree-view' },
+          { pathname: '/material-ui/react-tree-view', title: 'Tree View' },
         ],
       },
     ],
@@ -165,7 +159,7 @@ const pages: MuiPage[] = [
     icon: 'CreateIcon',
     children: [
       {
-        pathname: '/material-ui/customization',
+        pathname: '/material-ui/customization/theme',
         subheader: '/material-ui/customization/theme',
         children: [
           { pathname: '/material-ui/customization/theming' },
@@ -187,7 +181,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
@@ -208,7 +202,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/material-ui/guides/flow' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
     ],
   },
@@ -230,7 +223,11 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS theme variables',
+            title: 'Migrating to CSS variables',
+          },
+          {
+            pathname: '/material-ui/experimental-api/css-variables',
+            title: 'TODO merge with other pages',
           },
         ],
       },
@@ -260,7 +257,7 @@ const pages: MuiPage[] = [
         title: 'Migrating to Grid v2',
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/v5',
         subheader: 'Upgrade to v5',
         children: [
           {
@@ -286,7 +283,7 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/earlier',
         subheader: 'Earlier versions',
         children: [
           { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },

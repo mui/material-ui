@@ -280,6 +280,7 @@ const AutocompleteListbox = styled('div', {
   padding: '8px 0',
   maxHeight: '40vh',
   overflow: 'auto',
+  position: 'relative',
   [`& .${autocompleteClasses.option}`]: {
     minHeight: 48,
     display: 'flex',
@@ -528,6 +529,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
     return renderOption({ ...optionProps, className: classes.option }, option, {
       selected: optionProps['aria-selected'],
+      index,
       inputValue,
     });
   };

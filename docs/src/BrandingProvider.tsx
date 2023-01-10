@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { brandingDarkTheme, brandingLightTheme } from 'docs/src/modules/brandingTheme';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import SkipLink from 'docs/src/modules/components/SkipLink';
+import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 
 interface BrandingProviderProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export default function BrandingProvider(props: BrandingProviderProps) {
       {modeProp ? null : <NextNProgressBar />}
       {modeProp ? null : <CssBaseline />}
       {modeProp ? null : <SkipLink />}
+      {modeProp ? null : <MarkdownLinks />}
       {children}
     </ThemeProvider>
   );

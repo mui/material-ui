@@ -16,14 +16,14 @@ export default function RadioButtons() {
         onChange={handleChange}
         value="a"
         name="radio-buttons"
-        componentsProps={{ input: { 'aria-label': 'A' } }}
+        slotProps={{ input: { 'aria-label': 'A' } }}
       />
       <Radio
         checked={selectedValue === 'b'}
         onChange={handleChange}
         value="b"
         name="radio-buttons"
-        componentsProps={{ input: { 'aria-label': 'B' } }}
+        slotProps={{ input: { 'aria-label': 'B' } }}
       />
     </Box>
   );
