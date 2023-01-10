@@ -151,12 +151,17 @@ function renderInline(markdown) {
   return marked.parseInline(markdown);
 }
 
+// Help rank mui.com on component searches first.
 const noSEOadvantage = [
   'https://m2.material.io/',
   'https://getbootstrap.com/',
+  'https://icons.getbootstrap.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
   'https://tailwindcss.com/',
+  'https://heroicons.com/',
+  'https://react-icons.github.io/',
+  'https://fontawesome.com/',
 ];
 
 /**
@@ -246,10 +251,10 @@ function createRender(context) {
       return [
         `<h${level} id="${hash}">`,
         headingHtml,
-        `<a aria-labelledby="${hash}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
+        `<a aria-labelledby="${hash}" class="anchor-link" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
-        `<button title="Post a comment" class="comment-link-style" data-feedback-hash="${hash}">`,
+        `<button title="Post a comment" class="comment-link" data-feedback-hash="${hash}">`,
         '<svg><use xlink:href="#comment-link-icon" /></svg>',
         `</button>`,
         `</h${level}>`,

@@ -9,6 +9,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlider } from '@mui/base/SliderUnstyled';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
@@ -156,7 +157,7 @@ const SliderRail = styled('span', {
         : 'var(--Slider-rail-background)',
     border:
       ownerState.track === 'inverted'
-        ? 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)'
+        ? 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)'
         : 'initial',
     borderRadius: 'var(--Slider-track-radius)',
     ...(ownerState.orientation === 'horizontal' && {
@@ -192,7 +193,7 @@ const SliderTrack = styled('span', {
       border:
         ownerState.track === 'inverted'
           ? 'initial'
-          : 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+          : 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
@@ -232,7 +233,7 @@ const SliderThumb = styled('span', {
   justifyContent: 'center',
   width: 'var(--Slider-thumb-width)',
   height: 'var(--Slider-thumb-size)',
-  border: 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+  border: 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
   borderRadius: 'var(--Slider-thumb-radius)',
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',
@@ -251,6 +252,7 @@ const SliderThumb = styled('span', {
   }),
   '&::before': {
     // use pseudo element to create thumb's ring
+    boxSizing: 'border-box',
     content: '""',
     display: 'block',
     position: 'absolute',
@@ -425,11 +427,13 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    color = 'primary',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'solid',
     ...other
   } = props;
+  const { getColor } = useColorInversion('solid');
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -708,7 +712,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   getAriaValueText: PropTypes.func,
   /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * If `true` the Slider will be rendered right-to-left (with the lowest value on the right-hand side).
    * @default false
    */
   isRtl: PropTypes.bool,

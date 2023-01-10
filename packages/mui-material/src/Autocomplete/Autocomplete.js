@@ -529,6 +529,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
     return renderOption({ ...optionProps, className: classes.option }, option, {
       selected: optionProps['aria-selected'],
+      index,
       inputValue,
     });
   };

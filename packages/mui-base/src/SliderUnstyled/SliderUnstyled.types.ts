@@ -81,7 +81,7 @@ export interface SliderUnstyledOwnProps {
    */
   getAriaValueText?: (value: number, index: number) => string;
   /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * If `true` the Slider will be rendered right-to-left (with the lowest value on the right-hand side).
    * @default false
    */
   isRtl?: boolean;
@@ -254,7 +254,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
  * Utility to create component types that inherit props from SliderUnstyled.
  */
 export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & SliderUnstyledTypeMap['props'];
+  props: M['props'] & Omit<SliderUnstyledTypeMap['props'], 'isRtl'>;
   defaultComponent: M['defaultComponent'];
 }
 

@@ -14,6 +14,7 @@ import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
@@ -147,7 +148,7 @@ const TooltipArrow = styled('span', {
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRadius: `0px 2px 0px 0px`,
-      boxShadow: `var(--variant-borderWidth) calc(-1 * var(--variant-borderWidth)) 0px 0px ${variantStyle.borderColor}`,
+      boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
       transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
     },
@@ -234,11 +235,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<HTMLElement>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -588,9 +591,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {
-    additionalProps: {
-      ref: setArrowRef,
-    },
+    ref: setArrowRef,
     className: classes.arrow,
     elementType: TooltipArrow,
     externalForwardedProps: other,
@@ -615,18 +616,27 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           offset: [0, 10],
         },
       },
-      ...(modifiersProp || []),
+      ...(rootProps.modifiers || []),
     ],
-    [arrowRef, modifiersProp],
+    [arrowRef, rootProps.modifiers],
+  );
+
+  const result = (
+    <SlotRoot {...rootProps} modifiers={modifiers}>
+      {title}
+      {arrow ? <SlotArrow {...arrowProps} /> : null}
+    </SlotRoot>
   );
 
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <SlotRoot {...rootProps} modifiers={modifiers}>
-        {title}
-        {arrow ? <SlotArrow {...arrowProps} /> : null}
-      </SlotRoot>
+      {disablePortal ? (
+        result
+      ) : (
+        // For portal popup, the children should not inherit color inversion from the upper parent.
+        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
+      )}
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;

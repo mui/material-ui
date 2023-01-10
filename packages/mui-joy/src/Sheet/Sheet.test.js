@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Sheet, { sheetClasses as classes } from '@mui/joy/Sheet';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -20,6 +20,8 @@ describe('<Sheet />', () => {
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<Sheet />, { muiName: 'JoySheet', classes });
 
   describe('prop: variant', () => {
     it('plain by default', () => {
