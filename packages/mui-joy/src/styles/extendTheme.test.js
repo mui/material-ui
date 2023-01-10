@@ -28,6 +28,7 @@ describe('extendTheme', () => {
         'palette',
         'vars',
         'getColorSchemeSelector',
+        'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
       ]).to.includes(field);

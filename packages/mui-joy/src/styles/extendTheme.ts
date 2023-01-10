@@ -664,13 +664,19 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shadowChannel: theme.shadowChannel,
   };
   theme.getColorSchemeSelector = () => '&';
-  theme.colorInversion = deepmerge(
-    {
-      soft: createSoftInversion(theme),
-      solid: createSolidInversion(theme),
-    },
-    colorInversionInput,
-  );
+
+  // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
+  theme.colorInversion =
+    typeof colorInversionInput === 'function'
+      ? colorInversionInput
+      : deepmerge(
+          {
+            soft: createSoftInversion(theme),
+            solid: createSolidInversion(theme),
+          },
+          colorInversionInput || {},
+          { clone: false },
+        );
 
   return theme;
 }
