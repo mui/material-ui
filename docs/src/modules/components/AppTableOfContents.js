@@ -127,7 +127,7 @@ const shouldShowJobAd = () => {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const showSurveyBanner = true;
+  const showSurveyBanner = false;
   const showAddJob = shouldShowJobAd() && !showSurveyBanner;
 
   const items = React.useMemo(() => flatten(toc), [toc]);
