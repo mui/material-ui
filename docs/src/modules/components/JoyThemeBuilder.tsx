@@ -1,6 +1,6 @@
 import * as React from 'react';
 // @ts-ignore
-import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@mui/docs';
+import { TypeScript as TypeScriptIcon } from '@mui/docs';
 // @ts-ignore
 import LZString from 'lz-string';
 import * as mdColors from '@mui/material/colors';
@@ -327,7 +327,10 @@ const tailwindColors = {
 
 const defaultTheme = extendTheme();
 
-const augmentPalette = (palette: any = {}, prop: keyof Palette) => {
+const augmentPalette = (palette: any, prop: keyof Palette) => {
+  if (!palette) {
+    return '';
+  }
   const result: string[] = [];
   Object.keys(palette[prop] || []).forEach((k) => {
     if (
@@ -410,7 +413,7 @@ const theme = extendTheme(${JSON.stringify(
   
 export default theme;`;
 
-const CodeBlockResult = ({ data, onClose }: { data: any; onClose: () => void }) => {
+function CodeBlockResult({ data, onClose }: { data: any; onClose: () => void }) {
   const [lang, setLang] = React.useState('js');
   return (
     <Sheet
@@ -495,9 +498,9 @@ const CodeBlockResult = ({ data, onClose }: { data: any; onClose: () => void }) 
       </BrandingProvider>
     </Sheet>
   );
-};
+}
 
-const ColorInput = ({
+function ColorInput({
   value = '',
   onValidColor,
   onEmptyColor,
@@ -506,7 +509,7 @@ const ColorInput = ({
   onValidColor: (color: string) => void;
   onEmptyColor: () => void;
   value: string;
-}) => {
+}) {
   const [internalValue, setInternalValue] = React.useState(value);
   const [isError, setIsError] = React.useState(false);
   const focused = React.useRef(false);
@@ -561,9 +564,9 @@ const ColorInput = ({
       }}
     />
   );
-};
+}
 
-const PaletteImport = ({ onSelect }: { onSelect: (palette: Record<string, string>) => void }) => {
+function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string>) => void }) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   return (
     <React.Fragment>
@@ -640,9 +643,9 @@ const PaletteImport = ({ onSelect }: { onSelect: (palette: Record<string, string
       </Menu>
     </React.Fragment>
   );
-};
+}
 
-const ColorTokenCreator = ({ onChange }: { onChange: (name: string, value: string) => void }) => {
+function ColorTokenCreator({ onChange }: { onChange: (name: string, value: string) => void }) {
   const [open, setOpen] = React.useState(false);
   const nameRef = React.useRef<HTMLInputElement | null>(null);
   const [name, setName] = React.useState('');
@@ -703,9 +706,9 @@ const ColorTokenCreator = ({ onChange }: { onChange: (name: string, value: strin
       </IconButton>
     </Sheet>
   );
-};
+}
 
-const ColorPaletteForm = ({
+function ColorPaletteForm({
   themeDefaultValue = {},
   value = {},
   onChange,
@@ -713,7 +716,7 @@ const ColorPaletteForm = ({
   themeDefaultValue: any;
   value: any;
   onChange: (newValue: any) => void;
-}) => {
+}) {
   const mergedValue = { ...themeDefaultValue, ...value };
   const primitives = Object.keys(mergedValue)
     .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
@@ -883,14 +886,14 @@ const ColorPaletteForm = ({
       </Button> */}
     </Box>
   );
-};
+}
 
 export default function JoyThemeBuilder() {
   const [showCode, setShowCode] = React.useState(false);
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const [lightPalette, setLightPalette] = React.useState<Record<string, any>>({});
   const [darkPalette, setDarkPalette] = React.useState<Record<string, any>>({});
-  const [selectedPalette, setSelectedPalette] = React.useState('primary');
+  const [colorProp, setColorProp] = React.useState<keyof Palette>('primary');
   const theme = React.useMemo(
     () =>
       extendTheme({
@@ -934,6 +937,7 @@ export default function JoyThemeBuilder() {
             size="sm"
             value={colorMode}
             onChange={(event, newValue) => setColorMode(newValue as 'light' | 'dark')}
+            sx={{ bgcolor: 'transparent' }}
           >
             <TabList>
               <Tab value="light">
@@ -1128,16 +1132,16 @@ export default function App() {
           >
             <ListSubheader sx={{ minHeight: 40 }}>Palette</ListSubheader>
             {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
-              (colorProp) => (
-                <React.Fragment key={colorProp}>
+              (color) => (
+                <React.Fragment key={color}>
                   <ListItem>
                     <ListItemButton
-                      {...(colorProp === selectedPalette && {
+                      {...(color === colorProp && {
                         variant: 'soft',
                         selected: true,
-                        color: colorProp,
+                        color,
                       })}
-                      onClick={() => setSelectedPalette(colorProp)}
+                      onClick={() => setColorProp(color)}
                     >
                       <ListItemDecorator>
                         <Box
@@ -1145,11 +1149,11 @@ export default function App() {
                             width: 24,
                             height: 24,
                             borderRadius: '50%',
-                            bgcolor: `${colorProp}.500`,
+                            bgcolor: `${color}.500`,
                           }}
                         />
                       </ListItemDecorator>
-                      <ListItemContent>{colorProp}</ListItemContent>
+                      <ListItemContent>{color}</ListItemContent>
                       <KeyboardArrowRight />
                     </ListItemButton>
                   </ListItem>
@@ -1175,11 +1179,11 @@ export default function App() {
           </List>
           <Divider orientation="vertical" />
           <ColorPaletteForm
-            themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette.primary}
-            value={{ light: lightPalette, dark: darkPalette }[colorMode][selectedPalette]}
+            themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
+            value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
             onChange={(newValue) => {
               const setter = { light: setLightPalette, dark: setDarkPalette }[colorMode];
-              setter((prev) => ({ ...prev, [selectedPalette]: newValue }));
+              setter((prev) => ({ ...prev, [colorProp]: newValue }));
             }}
           />
         </Sheet>
