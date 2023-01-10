@@ -23,8 +23,10 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
+import generateRssFeed from 'docs/scripts/generateRSSFeed';
 
 export const getStaticProps = () => {
+  generateRssFeed();
   const data = getAllBlogPosts();
   return {
     props: data,
