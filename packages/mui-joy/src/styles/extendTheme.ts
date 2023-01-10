@@ -646,7 +646,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   // @ts-ignore palette could be defined in the ThemeProvider's theme
-  theme.palette = deepmerge(themeOptions?.palette, {
+  theme.palette = deepmerge(themeOptions?.palette || {}, {
     ...(theme.colorSchemes.light.palette as RuntimeColorSystem['palette']),
     colorScheme: 'light',
   });
