@@ -1,18 +1,18 @@
 # Theme shadow
 
-<p class="description">Learn about the theme's default shadow and how to customize them.</p>
+<p class="description">Learn about the theme's default shadow and how to customize it.</p>
 
 ## Default tokens
 
-Joy UI uses T-shirt scale for defining shadows which are used by components such as [`Card`](/joy-ui/react-card/), [`Menu`](/joy-ui/react-menu/), etc.
+Joy UI uses a T-shirt scale (sm, md, lg, etc.) for defining shadows used by components such as [Card](/joy-ui/react-card/), [Menu](/joy-ui/react-menu/), and more.
 
-These tokens are grouped inside `theme.shadow` node:
+These tokens are grouped inside the `theme.shadow` node:
 
 {{"demo": "ShadowThemeViewer.js", "bg": "inline"}}
 
 ## Customizing the default shadow
 
-Provide a key-values to the `shadow` node to override the default shadows:
+Provide key-values to the `shadow` node to override the default shadows:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -30,8 +30,8 @@ const theme = extendTheme({
 // Then, pass it to `<CssVarsProvider theme={theme}>`.
 ```
 
-:::info
-We recommend that the shadow value uses `var(--joy-shadowRing)` and `var(--joy-shadowChannel)` similar to the above [default token value](#default-tokens).
+:::success
+We recommend using `var(--joy-shadowRing)` and `var(--joy-shadowChannel)` for shadow values, similar to the [default token value](#default-tokens).
 :::
 
 ## Adding new shadows
@@ -53,7 +53,7 @@ const theme = extendTheme({
 
 ### TypeScript
 
-You need to augment the theme's `Shadow` interface with the new keys:
+When working in TypeScript, you need to augment the theme's `Shadow` interface with the new keys:
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -67,7 +67,8 @@ declare module '@mui/joy/styles' {
 
 ## Shadow ring
 
-The shadow ring can be configured for both light and dark color schemes. To create a shadow ring, provide a valid CSS box-shadow to the `shadowRing` node:
+The shadow ring can be configured for both light and dark color schemes. 
+To create a shadow ring, provide a valid CSS box-shadow value to the `shadowRing` node:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -90,12 +91,13 @@ const theme = extendTheme({
 :::warning
 Customizing the theme's shadow ring will affect all Joy UI components that consume the theme's shadows.
 
-If you want to create a shadow ring to a specific element, see [Customizing shadow on an element](#customizing-shadow-on-an-element).
+If you want to create a shadow ring for a specific element, see [Customizing shadows on an element](#customizing-shadows-on-an-element).
 :::
 
 ## Shadow colors
 
-The color of the shadow comes from the theme's token named `var(--joy-shadowChannel)`. You can customize the value for both light and dark color schemes:
+The color of the shadow comes from the theme token named `var(--joy-shadowChannel)`. 
+You can customize the value for both light and dark color schemes:
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -118,11 +120,11 @@ const theme = extendTheme({
 The `shadowChannel` value must be rgb channels, e.g. `187 187 187`.
 :::
 
-## Customizing shadow on an element
+## Customizing shadows on an element
 
 To customize a shadow color or shadow ring on a specific instance, use the raw value from the `theme.shadow.*`.
 
-:::info
+:::warning
 **Don't** use shadows from `theme.vars` or the shorthand syntax `{ shadow: '{key}' }`.
 :::
 

@@ -4,13 +4,14 @@
 
 ## Default tokens
 
-The table below lists all the default tokens and their values in light and dark color schemes. Some tokens reuse other token's value using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) syntax.
+The table below lists all the default tokens and their values in light and dark color schemes. 
+Some tokens reuse values from other tokens using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) syntax.
 
 {{"demo": "PaletteThemeViewer.js", "bg": "inline"}}
 
 ### Channel tokens
 
-The default tokens ended with `Channel` are automatically generated for each palette.
+The default tokens ending with `Channel` are automatically generated for each palette.
 These tokens are useful for creating translucent colors (`rgba`).
 
 - `lightChannel`: is generated from the palette's `200` token.
@@ -37,10 +38,10 @@ The global variant token is composed of three parts, in the format of **variant 
 
 For example:
 
-- `solidBg` refers to the solid variant's background color at initial state.
-- `outlinedHoverBorder` refers to the outlined variant's border color on hover state.
+- `solidBg` refers to the solid variant's background color in its initial state.
+- `outlinedHoverBorder` refers to the outlined variant's border color in its hover state.
 
-There are 6 palettes (`primary`, `neutral`, `danger`, `info`, `success`, and `warning`) that contain the global variant tokens as listed in the [table above](#default-tokens).
+There are six palettes (`primary`, `neutral`, `danger`, `info`, `success`, and `warning`) that contain the global variant tokens as listed in the [table above](#default-tokens).
 
 ## Customizing the default palette
 
@@ -77,25 +78,26 @@ const theme = extendTheme({
 
 ## Customizing global variant tokens
 
-To customize the global variants, we recommend to start from the Button component as it tends to have the larger amount of interactive variants when compared to other components.
+We recommend using the [Button](/joy-ui/react-button/) component as a jumping-off point when customizing the global variants, because it gives you access to more of the interactive variants available than some other components.
 
-As an example, let's customize Joy UI's [`Button`](/joy-ui/react-button/) so they look like the ones from [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
+As an example, let's customize Joy UI's Button so to match the style of [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
 
 - Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
 - Bootstrap's `secondary` variant uses a grey color, similar to Joy UI's `neutral`.
 - Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
-- Joy UI doesn't have anything similar, out-of-the-box, to Bootstrap's `btn-dark`.
-  - We could achieve that using one of the tree main customization approaches.
+- Joy UI's defaults don't include anything similar to Bootstrap's `btn-dark`.
+  - We can recreate it using one of the three main customization approaches.
 
 {{"demo": "BootstrapVariantTokens.js"}}
 
 :::info
-Customizing the global variant tokens affects all Joy UI components that support `variant` prop.
+Customizing the global variant tokens affects all Joy UI components that support the `variant` prop.
 :::
 
 ## Removing the default tokens
 
-To remove any default token, use `undefined` as a value. It will be removed from the `theme` object and the CSS variable will not be generated.
+To remove any default token, use `undefined` as a value. 
+This removes it from the `theme` object and prevents the corresponding CSS variable from being generated.
 
 For example, all default global variant tokens comes with styles for the `:active` pseudo class.
 Here's how you'd remove it from the solid variant.
@@ -126,7 +128,7 @@ const theme = extendTheme({
 
 ## Adding more colors
 
-You can add any custom tokens to the theme and still be able to use them in APIs like `styled` and `sx` prop.
+Any custom tokens that you add to theme are available for use with both the `styled` and `sx` APIs.
 
 ```js
 extendTheme({
@@ -150,7 +152,7 @@ extendTheme({
 
 ### TypeScript
 
-You need to augment the theme's `Palette` interface to include the new tokens.
+When working in TypeScript, you must augment the theme's `Palette` interface to include the new tokens.
 
 ```ts
 // You can put this to any file that's included in your tsconfig
@@ -164,20 +166,21 @@ declare module '@mui/joy/styles' {
 ```
 
 :::success
-Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
+Adding custom tokens increases your stylesheet's bundle size, and adds an extra set of maintenance costs to your app.
+These tradeoffs mean that adding new tokens is usually only worthwhile when you know that they'll be used by many components.
 
-If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
+As an alternative, consider using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
 :::
 
 ## Adding more palettes
 
-Adding a new palette lets you use it on Joy UI components that support `color` prop.
+You can add your own palettes to your app's theme to pass custom color schemes to any components that accept the `color` prop.
 
-:::info
+:::warning
 Adding a new palette increases the HTML bundle size. The more tokens you added to the palette, the bigger the bundle size.
 :::
 
-The snippet below adds the `secondary` palette to the theme.
+The snippet below adds a custom `secondary` palette to the theme.
 
 ```js
 import { extendTheme } from '@mui/joy/styles';
@@ -258,7 +261,7 @@ Then, you will be able to use `secondary` color on Joy UI components:
 
 ### TypeScript
 
-You need to augment the theme's interfaces to include the new palette.
+When working in TypeScript, you must augment the theme's interfaces to include the new palette.
 
 ```ts
 // You can put this to any file that's included in your tsconfig
