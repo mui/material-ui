@@ -1,9 +1,8 @@
 import * as React from 'react';
-import MenuUnstyled from '@mui/base/MenuUnstyled';
+import MenuUnstyled, { MenuButtonUnstyled, MenuProvider } from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, { menuItemUnstyledClasses } from '@mui/base/MenuItemUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
-import MenuButtonUnstyled from '@mui/base/MenuUnstyled/MenuButtonUnstyled';
 
 const blue = {
   100: '#DAECFF',
@@ -74,7 +73,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   `,
 );
 
-const MenuButton = styled('button')(
+const MenuButton = styled(MenuButtonUnstyled)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -138,12 +137,8 @@ export default function UnstyledMenuIntroduction() {
 
   return (
     <Page>
-      <MenuButtonUnstyled
-        slots={{ root: MenuButton }}
-        label="My account"
-        open={isOpen}
-        onOpenChange={handleOpenChange}
-      >
+      <MenuProvider open={isOpen} onOpenChange={handleOpenChange}>
+        <MenuButton>My account</MenuButton>
         <MenuUnstyled
           slots={{ root: Popper, listbox: StyledListbox }}
           slotProps={{ root: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
@@ -154,7 +149,7 @@ export default function UnstyledMenuIntroduction() {
           </StyledMenuItem>
           <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
         </MenuUnstyled>
-      </MenuButtonUnstyled>
+      </MenuProvider>
     </Page>
   );
 }

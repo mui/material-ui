@@ -11,3 +11,9 @@ export * from './MenuUnstyled.types';
 export { default as useMenu } from './useMenu';
 
 export * from './useMenu.types';
+
+export { default as MenuButtonUnstyled } from './MenuButtonUnstyled';
+export * from './MenuButtonUnstyled';
+
+export { default as MenuProvider } from './MenuProvider';
+export * from './MenuProvider';

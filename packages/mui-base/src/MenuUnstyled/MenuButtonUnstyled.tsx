@@ -1,9 +1,7 @@
 import * as React from 'react';
-import {
-  unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
-} from '@mui/utils';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useSlotProps } from '../utils';
+import { MenuContext } from './MenuProvider';
 
 export interface MenuButtonProps {
   className?: string;
@@ -23,13 +21,6 @@ export interface MenuButtonProps {
   };
 }
 
-interface MenuTriggerContextValue {
-  open: boolean;
-  buttonRef: React.RefObject<HTMLButtonElement>;
-}
-
-export const MenuTriggerContext = React.createContext<MenuTriggerContextValue | null>(null);
-
 const MenuButton = React.forwardRef(function MenuButton(
   props: MenuButtonProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
@@ -45,47 +36,36 @@ const MenuButton = React.forwardRef(function MenuButton(
     ...other
   } = props;
 
-  const [isOpen, setOpen] = useControlled({
-    controlled: openProp,
-    default: defaultOpen,
-    name: 'MenuButton',
-  });
+  const menuContext = React.useContext(MenuContext);
+  if (!menuContext) {
+    throw new Error('MenuButtonUnstyled must be placed within a MenuProvider');
+  }
 
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const handleRef = useForkRef(buttonRef, ref);
+  const { open: isOpen, setOpen } = menuContext;
 
-  const contextValue: MenuTriggerContextValue = React.useMemo(
-    () => ({ open: isOpen, buttonRef }),
-    [isOpen, buttonRef],
+  const updateButtonRef = React.useCallback(
+    (element: HTMLButtonElement | null) => {
+      menuContext.setButtonElement(element);
+    },
+    [menuContext],
   );
 
-  const handleClick = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      setOpen((open) => {
-        return !open;
-      });
+  const handleRef = useForkRef(updateButtonRef, ref);
 
-      onOpenChange?.(event, !isOpen);
-    },
-    [isOpen, setOpen, onOpenChange],
+  const handleClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => setOpen(event, !isOpen),
+    [isOpen, setOpen],
   );
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLButtonElement>) => {
       if (event.key === 'ArrowDown') {
         event.preventDefault();
-        setOpen(true);
-        onOpenChange?.(event, true);
+        setOpen(event, true);
       }
     },
-    [setOpen, onOpenChange],
+    [setOpen],
   );
-
-  React.useEffect(() => {
-    if (!isOpen) {
-      buttonRef.current?.focus();
-    }
-  }, [isOpen]);
 
   const Root = slots.root || 'button';
   const rootProps = useSlotProps({
@@ -100,12 +80,7 @@ const MenuButton = React.forwardRef(function MenuButton(
     ownerState: { ...props, open: isOpen },
   });
 
-  return (
-    <MenuTriggerContext.Provider value={contextValue}>
-      <Root {...rootProps}>{label}</Root>
-      {children}
-    </MenuTriggerContext.Provider>
-  );
+  return <Root {...rootProps}>{children}</Root>;
 });
 
 export default MenuButton;

@@ -14,7 +14,7 @@ import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
-import { MenuTriggerContext } from './MenuButtonUnstyled';
+import { MenuContext } from './MenuProvider';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -40,26 +40,21 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
 >(props: MenuUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
   const {
     actions,
-    anchorEl: anchorElProp,
     children,
     component,
     keepMounted = false,
     listboxId,
-    onClose,
-    open: openProp = false,
     slotProps = {},
     slots = {},
     ...other
   } = props;
 
-  let open = openProp;
-  let anchorEl = anchorElProp;
-
-  const triggerContext = React.useContext(MenuTriggerContext);
-  if (triggerContext) {
-    open = triggerContext.open;
-    anchorEl = triggerContext.buttonRef.current;
+  const menuContext = React.useContext(MenuContext);
+  if (!menuContext) {
+    throw new Error('MenuUnstyled must be placed within a MenuProvider');
   }
+
+  const { open, setOpen, buttonRef } = menuContext;
 
   const {
     registerItem,
@@ -71,7 +66,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     highlightLastItem,
   } = useMenu({
     open,
-    onClose,
+    onClose: () => setOpen(null as any, false),
     listboxId,
   });
 
@@ -97,7 +92,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      anchorEl,
+      anchorEl: buttonRef.current,
       open,
       keepMounted,
       role: undefined,
