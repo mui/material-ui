@@ -39,6 +39,7 @@ export default function MarkdownDocs(props) {
   const {
     disableAd = false,
     disableToc = false,
+    disableCssVarsProvider = false,
     demos = {},
     docs,
     demoComponents,
@@ -51,7 +52,7 @@ export default function MarkdownDocs(props) {
   const localizedDoc = docs[userLanguage] || docs.en;
   const { description, location, rendered, title, toc } = localizedDoc;
 
-  const isJoy = canonicalAs.startsWith('/joy-ui/');
+  const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
@@ -157,6 +158,7 @@ MarkdownDocs.propTypes = {
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
+  disableCssVarsProvider: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
   srcComponents: PropTypes.object,
