@@ -4,7 +4,7 @@
 
 ## Default tokens
 
-The table below lists all the default tokens and their values in light and dark color schemes. 
+The table below lists all the default tokens and their values in light and dark color schemes.
 Some tokens reuse values from other tokens using the [`var(--*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) syntax.
 
 {{"demo": "PaletteThemeViewer.js", "bg": "inline"}}
@@ -96,7 +96,7 @@ Customizing the global variant tokens affects all Joy UI components that support
 
 ## Removing the default tokens
 
-To remove any default token, use `undefined` as a value. 
+To remove any default token, use `undefined` as a value.
 This removes it from the `theme` object and prevents the corresponding CSS variable from being generated.
 
 For example, all default global variant tokens comes with styles for the `:active` pseudo class.
