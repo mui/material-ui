@@ -5,6 +5,7 @@ import { TypeScript as TypeScriptIcon } from '@mui/docs';
 // @ts-ignore
 import LZString from 'lz-string';
 import * as mdColors from '@mui/material/colors';
+import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
 import {
   CssVarsProvider,
@@ -423,6 +424,19 @@ const theme = extendTheme(${JSON.stringify(
   
 export default theme;`;
 
+function getPaletteFormProps(colorSchemes: any, colorMode: string, node: string) {
+  // @ts-ignore
+  const themeDefaultValue = defaultTheme.colorSchemes[colorMode].palette[node];
+  const value = colorSchemes[colorMode][node];
+  const mergedValue = { ...themeDefaultValue, ...value };
+  return {
+    themeDefaultValue,
+    value,
+    mergedValue,
+    tokens: Object.keys(mergedValue).filter((k) => mergedValue[k] !== undefined),
+  };
+}
+
 function CodeBlockResult({ data, onClose }: { data: any; onClose: () => void }) {
   const [lang, setLang] = React.useState('js');
   return (
@@ -558,6 +572,9 @@ function ColorInput({
         setInternalValue(inputValue);
         if (inputValue === '') {
           onEmptyColor();
+          setIsError(false);
+        } else if (inputValue.match(/^var\(--.*\)$/)) {
+          onValidColor(inputValue);
           setIsError(false);
         } else {
           try {
@@ -741,6 +758,7 @@ function ColorAutocomplete({
       options={options}
       value={value}
       blurOnSelect
+      openOnFocus
       {...props}
       startDecorator={
         <Sheet
@@ -906,7 +924,7 @@ function GlobalVariantForm({
   const primitiveTokens = primitives.map((primitive) => `var(--joy-palette-${color}-${primitive})`);
   return (
     <React.Fragment>
-      <Typography component="div" fontWeight="lg">
+      <Typography component="div" fontWeight="lg" mb={0.5}>
         Global variant tokens
       </Typography>
 
@@ -1029,27 +1047,22 @@ function GlobalVariantForm({
 }
 
 function ColorPaletteForm({
+  tokens = [],
+  availableTokens = [],
   themeDefaultValue = {},
   value = {},
   onChange,
   onRemove,
 }: {
+  availableTokens?: string[];
+  tokens: string[];
   themeDefaultValue: any;
   value: any;
   onChange: (newValue: any) => void;
   onRemove: (token: string) => void;
 }) {
-  const mergedValue = { ...themeDefaultValue, ...value };
-  const primitives = Object.keys(mergedValue)
-    .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
-    .filter((k) => mergedValue[k] !== undefined);
   return (
     <React.Fragment>
-      <PaletteImport
-        onSelect={(tokens) => {
-          onChange(tokens);
-        }}
-      />
       <Box
         sx={{
           mt: 1.5,
@@ -1064,7 +1077,7 @@ function ColorPaletteForm({
           },
         }}
       >
-        {primitives.map((item) => (
+        {tokens.map((item) => (
           <FormControl key={item} size="sm">
             <IconButton
               tabIndex={-1}
@@ -1074,29 +1087,43 @@ function ColorPaletteForm({
               sx={{ borderRadius: '50%', '--IconButton-size': '24px' }}
               onClick={() => {
                 if (themeDefaultValue[item]) {
-                  onRemove(item);
-                } else {
                   onChange({ [item]: undefined });
+                } else {
+                  onRemove(item);
                 }
               }}
             >
               <Remove />
             </IconButton>
             <FormLabel>{item}:</FormLabel>
-            <ColorInput
-              value={value[item] ?? ''}
-              placeholder={themeDefaultValue[item]}
-              onEmptyColor={() => {
-                if (themeDefaultValue[item]) {
+            {availableTokens.length > 0 ? (
+              <ColorAutocomplete
+                value={value[item] ?? ''}
+                placeholder={themeDefaultValue[item]}
+                options={availableTokens}
+                onValidColor={(newValue) => {
+                  onChange({ [item]: newValue });
+                }}
+                onEmptyColor={() => {
                   onRemove(item);
-                } else {
-                  onChange({ [item]: '' });
-                }
-              }}
-              onValidColor={(color) => {
-                onChange({ [item]: color });
-              }}
-            />
+                }}
+              />
+            ) : (
+              <ColorInput
+                value={value[item] ?? ''}
+                placeholder={themeDefaultValue[item]}
+                onEmptyColor={() => {
+                  if (themeDefaultValue[item]) {
+                    onChange({ [item]: '' });
+                  } else {
+                    onRemove(item);
+                  }
+                }}
+                onValidColor={(color) => {
+                  onChange({ [item]: color });
+                }}
+              />
+            )}
           </FormControl>
         ))}
       </Box>
@@ -1109,12 +1136,37 @@ function ColorPaletteForm({
   );
 }
 
+function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
+  const palette = deepmerge(
+    defaultTheme.colorSchemes[colorMode].palette,
+    colorSchemes[colorMode].palette,
+  );
+  const tokens: string[] = [];
+  function iterateObject(object: any, keys: string[] = []) {
+    Object.keys(object).forEach((k) => {
+      if (object[k] && !k.match(/^(mode|colorScheme)$/)) {
+        if (typeof object[k] === 'object') {
+          iterateObject(object[k], [...keys, k]);
+        } else {
+          tokens.push(`var(--joy-palette-${[...keys, k].join('-')})`);
+        }
+      }
+    });
+  }
+  iterateObject(palette);
+  return tokens;
+}
+
 export default function JoyThemeBuilder() {
   const [showCode, setShowCode] = React.useState(false);
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const [lightPalette, setLightPalette] = React.useState<Record<string, any>>({});
   const [darkPalette, setDarkPalette] = React.useState<Record<string, any>>({});
-  const [colorProp, setColorProp] = React.useState<ColorPaletteProp>('primary');
+  const [colorProp, setColorProp] = React.useState<ColorPaletteProp | 'etc'>('primary');
+  const availableTokens = React.useMemo(
+    () => getAvailableTokens({ light: lightPalette, dark: darkPalette }, colorMode),
+    [lightPalette, darkPalette, colorMode],
+  );
   const setter = { light: setLightPalette, dark: setDarkPalette }[colorMode];
   const theme = React.useMemo(
     () =>
@@ -1358,7 +1410,7 @@ export default function App() {
                 <React.Fragment key={color}>
                   <ListItem>
                     <ListItemButton
-                      {...(color === colorProp && {
+                      {...(colorProp === color && {
                         variant: 'soft',
                         selected: true,
                         color,
@@ -1383,95 +1435,197 @@ export default function App() {
                 </React.Fragment>
               ),
             )}
-            {/* <ListDivider />
             <ListItem>
-              <ListItemButton>
+              <ListItemButton
+                {...(colorProp === 'etc' && {
+                  variant: 'soft',
+                  color: 'neutral',
+                  selected: true,
+                })}
+                onClick={() => setColorProp('etc')}
+              >
                 <ListItemContent>text, background, etc.</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListDivider />
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator sx={{ minWidth: 28 }}>
-                  <Add />
-                </ListItemDecorator>
-                <ListItemContent>New palette</ListItemContent>
-              </ListItemButton>
-            </ListItem> */}
           </List>
           <Divider orientation="vertical" />
-          <Tabs
-            size="sm"
-            defaultValue={0}
-            sx={{ flex: 1, [`& .${tabPanelClasses.root}`]: { p: 3 } }}
-          >
-            <TabList
-              variant="plain"
-              sx={{
-                px: 1.5,
-                '--List-padding': '0px',
-                '--List-item-minHeight': '48px',
-                '& > button': {
-                  bgcolor: 'transparent',
-                  boxShadow: 'none',
-                  flex: 'none',
-                  color: 'text.tertiary',
-                  fontWeight: 'md',
-                  '&:hover': { bgcolor: 'transparent' },
-                  '&[aria-selected="true"]': {
-                    color: 'text.primary',
-                    '&::before': {
-                      content: '""',
-                      display: 'block',
-                      position: 'absolute',
-                      height: 2,
-                      left: 'var(--List-item-paddingLeft)',
-                      right: 'var(--List-item-paddingRight)',
-                      bottom: -1,
-                      bgcolor: `${colorProp}.solidBg`,
+          {(() => {
+            if (colorProp === 'etc') {
+              return (
+                <Box sx={{ p: 3, flex: 1 }}>
+                  <Typography fontSize="sm" fontWeight="lg">
+                    background
+                  </Typography>
+                  <ColorPaletteForm
+                    availableTokens={availableTokens}
+                    {...getPaletteFormProps(
+                      { light: lightPalette, dark: darkPalette },
+                      colorMode,
+                      'background',
+                    )}
+                    onChange={(newValue) => {
+                      setter((prev) => ({
+                        ...prev,
+                        background: { ...prev.background, ...newValue },
+                      }));
+                    }}
+                    onRemove={(token) => {
+                      setter((prev) => {
+                        const newPalette = prev.background;
+                        delete newPalette[token];
+                        return { ...prev, background: newPalette };
+                      });
+                    }}
+                  />
+                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
+                    common
+                  </Typography>
+                  <ColorPaletteForm
+                    availableTokens={availableTokens}
+                    {...getPaletteFormProps(
+                      { light: lightPalette, dark: darkPalette },
+                      colorMode,
+                      'common',
+                    )}
+                    onChange={(newValue) => {
+                      setter((prev) => ({
+                        ...prev,
+                        common: { ...prev.common, ...newValue },
+                      }));
+                    }}
+                    onRemove={(token) => {
+                      setter((prev) => {
+                        const newPalette = prev.common;
+                        delete newPalette[token];
+                        return { ...prev, common: newPalette };
+                      });
+                    }}
+                  />
+                  <Typography fontSize="sm" fontWeight="lg" mt={2}>
+                    text
+                  </Typography>
+                  <ColorPaletteForm
+                    availableTokens={availableTokens}
+                    {...getPaletteFormProps(
+                      { light: lightPalette, dark: darkPalette },
+                      colorMode,
+                      'text',
+                    )}
+                    onChange={(newValue) => {
+                      setter((prev) => ({
+                        ...prev,
+                        text: { ...prev.text, ...newValue },
+                      }));
+                    }}
+                    onRemove={(token) => {
+                      setter((prev) => {
+                        const newPalette = prev.text;
+                        delete newPalette[token];
+                        return { ...prev, text: newPalette };
+                      });
+                    }}
+                  />
+                </Box>
+              );
+            }
+            const { mergedValue, ...formProps } = getPaletteFormProps(
+              { light: lightPalette, dark: darkPalette },
+              colorMode,
+              colorProp,
+            );
+            const primitives = Object.keys(mergedValue)
+              .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
+              .filter((k) => mergedValue[k] !== undefined);
+            return (
+              <Tabs
+                size="sm"
+                defaultValue={0}
+                sx={{ flex: 1, [`& .${tabPanelClasses.root}`]: { p: 3 } }}
+              >
+                <TabList
+                  variant="plain"
+                  sx={{
+                    px: 1.5,
+                    '--List-padding': '0px',
+                    '--List-item-minHeight': '48px',
+                    '& > button': {
+                      bgcolor: 'transparent',
+                      boxShadow: 'none',
+                      flex: 'none',
+                      color: 'text.tertiary',
+                      fontWeight: 'md',
+                      '&:hover': { bgcolor: 'transparent' },
+                      '&[aria-selected="true"]': {
+                        color: 'text.primary',
+                        '&::before': {
+                          content: '""',
+                          display: 'block',
+                          position: 'absolute',
+                          height: 2,
+                          left: 'var(--List-item-paddingLeft)',
+                          right: 'var(--List-item-paddingRight)',
+                          bottom: -1,
+                          bgcolor: `${colorProp}.solidBg`,
+                        },
+                      },
                     },
-                  },
-                },
-              }}
-            >
-              <Tab>Primitive</Tab>
-              <Tab>Global variant</Tab>
-            </TabList>
-            <Divider />
-            <TabPanel value={0}>
-              <ColorPaletteForm
-                themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
-                value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
-                onChange={(newValue) => {
-                  setter((prev) => ({ ...prev, [colorProp]: { ...prev[colorProp], ...newValue } }));
-                }}
-                onRemove={(token) => {
-                  setter((prev) => {
-                    const newPalette = prev[colorProp];
-                    delete newPalette[token];
-                    return { ...prev, [colorProp]: newPalette };
-                  });
-                }}
-              />
-            </TabPanel>
-            <TabPanel value={1}>
-              <GlobalVariantForm
-                color={colorProp}
-                themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
-                value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
-                onChange={(newValue) => {
-                  setter((prev) => ({ ...prev, [colorProp]: { ...prev[colorProp], ...newValue } }));
-                }}
-                onRemove={(token) => {
-                  setter((prev) => {
-                    const newPalette = prev[colorProp];
-                    delete newPalette[token];
-                    return { ...prev, [colorProp]: newPalette };
-                  });
-                }}
-              />
-            </TabPanel>
-          </Tabs>
+                  }}
+                >
+                  <Tab>Primitive</Tab>
+                  <Tab>Global variant</Tab>
+                </TabList>
+                <Divider />
+                <TabPanel value={0}>
+                  <PaletteImport
+                    onSelect={(newTokens) => {
+                      setter((prev) => ({
+                        ...prev,
+                        [colorProp]: { ...prev[colorProp], ...newTokens },
+                      }));
+                    }}
+                  />
+                  <ColorPaletteForm
+                    {...formProps}
+                    tokens={primitives}
+                    onChange={(newValue) => {
+                      setter((prev) => ({
+                        ...prev,
+                        [colorProp]: { ...prev[colorProp], ...newValue },
+                      }));
+                    }}
+                    onRemove={(token) => {
+                      setter((prev) => {
+                        const newPalette = prev[colorProp];
+                        delete newPalette[token];
+                        return { ...prev, [colorProp]: newPalette };
+                      });
+                    }}
+                  />
+                </TabPanel>
+                <TabPanel value={1}>
+                  <GlobalVariantForm
+                    color={colorProp}
+                    themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
+                    value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
+                    onChange={(newValue) => {
+                      setter((prev) => ({
+                        ...prev,
+                        [colorProp]: { ...prev[colorProp], ...newValue },
+                      }));
+                    }}
+                    onRemove={(token) => {
+                      setter((prev) => {
+                        const newPalette = prev[colorProp];
+                        delete newPalette[token];
+                        return { ...prev, [colorProp]: newPalette };
+                      });
+                    }}
+                  />
+                </TabPanel>
+              </Tabs>
+            );
+          })()}
         </Sheet>
       )}
     </CssVarsProvider>
