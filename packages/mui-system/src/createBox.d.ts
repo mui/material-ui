@@ -4,7 +4,7 @@ import { Theme as SystemTheme } from './createTheme';
 
 export default function createBox<
   T extends object = SystemTheme,
-  AdditionalProps extends {} = {},
+  AdditionalProps extends Record<string, unknown> = {},
 >(options?: {
   defaultTheme: T;
   defaultClassName?: string;
