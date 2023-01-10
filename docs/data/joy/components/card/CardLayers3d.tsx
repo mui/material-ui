@@ -23,11 +23,11 @@ export default function GradientCover() {
               borderColor: '#777',
             },
             '& > div:nth-child(3)': {
-              transform: 'translate3d(70px, -100px, 200px)',
+              transform: 'scaleY(0.65) translate3d(70px, -100px, 200px)',
               border: '1px solid',
               borderColor: '#000',
               borderRadius: '10px',
-              backgroundColor: '#999',
+              backgroundColor: '#aaa',
             },
           },
         },
