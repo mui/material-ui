@@ -40,10 +40,11 @@ const createReactApp = (demo: {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     ...(includeXMonorepo && {
       xMonorepoPath:
-        // use PR authors repo and branch name (HEAD for netlify) when on a PR
+        // use PR authors repo and commit hash when on a PR
         // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
-        process.env.PULL_REQUEST_ID && process.env.HEAD && process.env.REPOSITORY_URL
-          ? `${process.env.REPOSITORY_URL}#${process.env.BRANCH}`
+        // Correct REPOSITORY_URL is necessary for building a valid url
+        process.env.PULL_REQUEST_ID && process.env.COMMIT_REF && process.env.REPOSITORY_URL
+          ? `${process.env.REPOSITORY_URL}#${process.env.COMMIT_REF}`
           : `https://github.com/mui/mui-x.git#${process.env.DEFAULT_BRANCH ?? 'master'}`,
     }),
   });
