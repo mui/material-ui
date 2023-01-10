@@ -43,7 +43,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     children,
     component,
     keepMounted = false,
-    label,
+    button,
     listboxId,
     onClose,
     open: openProp = false,
@@ -122,8 +122,6 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ownerState,
   }) as MenuUnstyledRootSlotProps;
 
-  const Button = slots.button ?? 'button';
-
   const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({
     elementType: Listbox,
@@ -144,11 +142,14 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     [getItemProps, getItemState, open, registerItem, unregisterItem],
   );
 
+  const Button =
+    button != null
+      ? React.cloneElement(button, { ref: updateButtonRef, onClick: handleButtonClick })
+      : null;
+
   return (
     <React.Fragment>
-      <Button ref={updateButtonRef} onClick={handleButtonClick}>
-        {label}
-      </Button>
+      {Button}
       <Popper {...popperProps}>
         <Listbox {...listboxProps}>
           <MenuUnstyledContext.Provider value={contextValue}>

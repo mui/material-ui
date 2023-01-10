@@ -32,7 +32,7 @@ export interface MenuUnstyledOwnProps {
    * @default false
    */
   keepMounted?: boolean;
-  label?: string;
+  button?: JSX.Element;
   listboxId?: string;
   /**
    * Triggered when focus leaves the menu and the menu should close.

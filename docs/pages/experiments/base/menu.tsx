@@ -138,9 +138,9 @@ export default function UnstyledMenuIntroduction() {
   return (
     <Page>
       <MenuUnstyled
-        slots={{ popper: Popper, button: MenuButton, listbox: StyledListbox }}
+        slots={{ popper: Popper, listbox: StyledListbox }}
         slotProps={{ popper: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
-        label="My account"
+        button={<MenuButton>My account</MenuButton>}
         open={isOpen}
         onOpenChange={handleOpenChange}
       >
