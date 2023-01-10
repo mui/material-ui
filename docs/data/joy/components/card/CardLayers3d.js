@@ -18,28 +18,25 @@ export default function GradientCover() {
           '& > div': {
             transform: 'rotateY(30deg)',
             '& > div:nth-child(2)': {
-              transform: 'scaleY(0.9) translate3d(30px, 50px, 40px)',
+              transform: 'scaleY(0.9) translate3d(20px, 30px, 40px)',
               border: '1px solid',
               borderColor: '#777',
             },
             '& > div:nth-child(3)': {
-              transform: 'scaleY(0.65) translate3d(70px, -100px, 200px)',
+              transform: 'translate3d(45px, 50px, 40px)',
               border: '1px solid',
               borderColor: '#000',
-              borderRadius: '10px',
-              backgroundColor: '#aaa',
             },
           },
         },
       }}
     >
       <Card
-        variant="outlined"
         sx={{
           minHeight: '280px',
           width: 320,
           backgroundColor: '#fff',
-          borderColor: '#000',
+          border: '1px solid #000',
         }}
       >
         <Typography level="h2" fontSize="lg" textColor="#000">
@@ -59,6 +56,7 @@ export default function GradientCover() {
           sx={{
             alignItems: 'self-end',
             justifyContent: 'flex-end',
+            background: 'linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.3))',
           }}
         >
           <Typography level="h2" fontSize="lg" textColor="#fff" m={3}>
