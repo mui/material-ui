@@ -5,7 +5,7 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 
-export default function GradientCover() {
+export default function CardLayers() {
   return (
     <Box
       sx={{
