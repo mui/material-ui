@@ -20,7 +20,7 @@ export default function resolveProps<
     slots?: Record<string, unknown>;
     slotProps?: Record<string, unknown>;
   } & Record<string, unknown>,
->(defaultProps: T, props: T, mergePropsWhiteList?: Array<string>) {
+>(defaultProps: T, props: T, shallowMergePropNames?: Array<string> = []) {
   const output = { ...props };
 
   (Object.keys(defaultProps) as Array<keyof T>).forEach((propName) => {
