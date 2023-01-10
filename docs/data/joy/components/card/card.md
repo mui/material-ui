@@ -55,6 +55,9 @@ The default Card provides a single flat surface for other components to sit on t
 Use the Card Cover and Card Content components to expose multiple layers between a Card and the UI elements on its surface.
 
 Card Cover makes it possible to add images, videos, and color and gradient overlays underneath the Card Content.
+Hover your mouse on the demo below to see how the layers are stacked:
+
+{{"demo": "CardLayers3d.js" }}
 
 #### Images and videos
 
