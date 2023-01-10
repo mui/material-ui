@@ -20,7 +20,7 @@ export default function resolveProps<
     slots?: Record<string, unknown>;
     slotProps?: Record<string, unknown>;
   } & Record<string, unknown>,
->(defaultProps: T, props: T, shallowMergePropNames?: Array<string> = []) {
+>(defaultProps: T, props: T, shallowMergePropNames: Array<string> = []) {
   const output = { ...props };
 
   (Object.keys(defaultProps) as Array<keyof T>).forEach((propName) => {
@@ -54,7 +54,11 @@ export default function resolveProps<
       }
     } else if (output[propName] === undefined) {
       output[propName] = defaultProps[propName];
-    } else if (shallowMergePropNames.includes(propName) && isObject(defaultValue) && isObject(currentValue)) {
+    } else if (
+      shallowMergePropNames.includes(String(propName)) &&
+      isObject(defaultValue) &&
+      isObject(currentValue)
+    ) {
       output[propName] = { ...defaultValue, ...currentValue };
     }
   });
