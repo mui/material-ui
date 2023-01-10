@@ -54,7 +54,7 @@ export default function resolveProps<
       }
     } else if (output[propName] === undefined) {
       output[propName] = defaultProps[propName];
-    } else if (isObject(defaultValue) && isObject(currentValue) && isMergeable) {
+    } else if (shallowMergePropNames.includes(propName) && isObject(defaultValue) && isObject(currentValue)) {
       output[propName] = { ...defaultValue, ...currentValue };
     }
   });
