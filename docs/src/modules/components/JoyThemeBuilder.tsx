@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 // @ts-ignore
 import { TypeScript as TypeScriptIcon } from '@mui/docs';
@@ -5,9 +6,18 @@ import { TypeScript as TypeScriptIcon } from '@mui/docs';
 import LZString from 'lz-string';
 import * as mdColors from '@mui/material/colors';
 import { decomposeColor } from '@mui/system';
-import { CssVarsProvider, Palette, extendTheme } from '@mui/joy/styles';
+import {
+  CssVarsProvider,
+  Palette,
+  extendTheme,
+  ColorPaletteProp,
+  VariantProp,
+  PaletteVariant,
+} from '@mui/joy/styles';
+import Autocomplete, { AutocompleteProps } from '@mui/joy/Autocomplete';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -24,6 +34,8 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import Sheet from '@mui/joy/Sheet';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
@@ -523,19 +535,17 @@ function ColorInput({
       {...props}
       size="sm"
       error={isError}
-      endDecorator={
-        !isError ? (
-          <Sheet
-            variant="outlined"
-            sx={{
-              width: 20,
-              height: 20,
-              borderRadius: '50%',
-              mr: -0.5,
-              bgcolor: internalValue || props.placeholder,
-            }}
-          />
-        ) : null
+      startDecorator={
+        <Sheet
+          variant="outlined"
+          sx={{
+            width: 20,
+            height: 20,
+            borderRadius: '50%',
+            mr: -0.5,
+            bgcolor: internalValue || props.placeholder,
+          }}
+        />
       }
       value={internalValue}
       onFocus={(event) => {
@@ -557,7 +567,6 @@ function ColorInput({
             onValidColor(inputValue);
             setIsError(false);
           } catch (error) {
-            console.log('error', error);
             setIsError(true);
           }
         }
@@ -708,11 +717,217 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
   );
 }
 
+function ColorAutocomplete({
+  value,
+  onValidColor,
+  onEmptyColor,
+  options,
+  ...props
+}: AutocompleteProps<string, false, false, true> & {
+  onValidColor: (color: string) => void;
+  onEmptyColor: () => void;
+  value: string;
+  options: string[];
+}) {
+  const [showEnter, setShowEnter] = React.useState(false);
+  return (
+    <Autocomplete
+      freeSolo
+      options={options}
+      value={value}
+      blurOnSelect
+      {...props}
+      startDecorator={
+        <Sheet
+          variant="outlined"
+          sx={{
+            width: 20,
+            height: 20,
+            borderRadius: '50%',
+            mr: -0.5,
+            bgcolor: value || props.placeholder,
+          }}
+        />
+      }
+      endDecorator={showEnter ? '⏎' : ''}
+      onChange={(event, newValue) => {
+        setShowEnter(false);
+        if (!newValue) {
+          onEmptyColor();
+        } else {
+          onValidColor(newValue as string);
+        }
+      }}
+      onInputChange={(event, newValue) => {
+        setShowEnter(newValue !== value);
+      }}
+    />
+  );
+}
+
+function filterGlobalVariantTokens(palette: Partial<PaletteVariant>, variant: VariantProp) {
+  const tokens: Partial<PaletteVariant> = {};
+  (Object.entries(palette) as Array<[keyof PaletteVariant, string]>).forEach(([key, value]) => {
+    if (key.match(/^(plain|outlined|soft|solid)/) && key.startsWith(variant)) {
+      tokens[key] = value;
+    }
+  });
+  return tokens;
+}
+
+type StateReducer<T> = (state: T, action: Partial<T>) => T;
+
+function GlobalVariantForm({
+  color,
+  themeDefaultValue: themeDefaultValueProp = {},
+  value: valueProp = {},
+  onChange,
+}: {
+  color: ColorPaletteProp;
+  themeDefaultValue: any;
+  value: any;
+  onChange: (newValue: any) => void;
+}) {
+  const [selectedVariant, setSelectedVariant] = React.useState<VariantProp>('solid');
+  const [states, setStates] = React.useReducer<
+    StateReducer<{ hover: boolean; active: boolean; disabled: boolean }>
+  >((prevState, action) => ({ ...prevState, ...action }), {
+    hover: false,
+    active: false,
+    disabled: false,
+  });
+  const themeDefaultValue = filterGlobalVariantTokens(themeDefaultValueProp, selectedVariant);
+  const value = filterGlobalVariantTokens(valueProp, selectedVariant);
+  const mergedValue = { ...themeDefaultValue, ...value };
+  const tokens = (Object.keys(mergedValue) as Array<keyof PaletteVariant>).filter(
+    (k) => mergedValue[k] !== undefined,
+  );
+  return (
+    <React.Fragment>
+      <Typography component="div" fontWeight="lg">
+        Global variant tokens
+      </Typography>
+
+      <Sheet
+        sx={{
+          bgcolor: 'background.level1',
+          p: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Select
+          variant={selectedVariant}
+          color={color}
+          value={selectedVariant}
+          onChange={(event, newValue) => setSelectedVariant(newValue as VariantProp)}
+          sx={(theme) => ({
+            minWidth: 120,
+            ...(states.hover && theme.variants[`${selectedVariant}Hover`][color]),
+            ...(states.active && theme.variants[`${selectedVariant}Active`][color]),
+            ...(states.disabled && theme.variants[`${selectedVariant}Disabled`][color]),
+          })}
+        >
+          <Option value="solid">solid</Option>
+          <Option value="soft">soft</Option>
+          <Option value="outlined">outlined</Option>
+          <Option value="plain">plain</Option>
+        </Select>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            [`& .${checkboxClasses.root}:not(${checkboxClasses.checked})`]: {
+              bgcolor: 'background.surface',
+            },
+          }}
+        >
+          <Checkbox
+            size="sm"
+            label=":hover"
+            checked={states.hover}
+            onChange={(event) => setStates({ hover: event.target.checked })}
+          />
+          <Checkbox
+            size="sm"
+            label=":active"
+            checked={states.active}
+            onChange={(event) => setStates({ active: event.target.checked })}
+          />
+          <Checkbox
+            size="sm"
+            label=":disabled"
+            checked={states.disabled}
+            onChange={(event) => setStates({ disabled: event.target.checked })}
+          />
+        </Box>
+      </Sheet>
+      <Box
+        sx={{
+          my: 1,
+          display: 'grid',
+          gridTemplateColumns: 'min-content min-content 1fr',
+          alignItems: 'center',
+          gap: '6px 12px',
+          '& > div': {
+            display: 'contents',
+            '--FormLabel-alignSelf': 'center',
+            '--FormLabel-margin': '0px',
+          },
+        }}
+      >
+        {tokens.map((item) => (
+          <FormControl key={item} size="sm">
+            <IconButton
+              tabIndex={-1}
+              variant="outlined"
+              color="danger"
+              size="sm"
+              sx={{ borderRadius: '50%', '--IconButton-size': '24px' }}
+              onClick={() => {
+                onChange({ ...value, [item]: undefined });
+              }}
+            >
+              <Remove />
+            </IconButton>
+            <FormLabel>{item}:</FormLabel>
+            <ColorAutocomplete
+              value={value[item] ?? ''}
+              placeholder={themeDefaultValue[item]}
+              options={[
+                `var(--joy-palette-${color}-50)`,
+                `var(--joy-palette-${color}-100)`,
+                `var(--joy-palette-${color}-200)`,
+              ]}
+              onValidColor={(newValue) => {
+                onChange({ ...value, [item]: newValue });
+              }}
+              onEmptyColor={() => {
+                const newValue = { ...value };
+                delete newValue[item];
+                onChange(newValue);
+              }}
+            />
+          </FormControl>
+        ))}
+      </Box>
+      <Button size="sm" variant="soft" color="neutral" startDecorator={<Add />} sx={{ my: 1 }}>
+        Add token
+      </Button>
+    </React.Fragment>
+  );
+}
+
 function ColorPaletteForm({
+  color: colorProp,
   themeDefaultValue = {},
   value = {},
   onChange,
 }: {
+  color: ColorPaletteProp;
   themeDefaultValue: any;
   value: any;
   onChange: (newValue: any) => void;
@@ -722,7 +937,7 @@ function ColorPaletteForm({
     .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
     .filter((k) => mergedValue[k] !== undefined);
   return (
-    <Box sx={{ flex: 1, px: 3, py: 2, maxWidth: 343 }}>
+    <Box sx={{ flex: 1, px: 3, py: 2 }}>
       <Typography
         fontWeight="lg"
         mb={1}
@@ -785,105 +1000,12 @@ function ColorPaletteForm({
           onChange({ ...value, [name]: color });
         }}
       />
-
-      {/* <Typography fontWeight="lg" mb={1} mt={5}>
-        Global variant tokens
-      </Typography>
-
-      <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-        Solid variant
-      </Typography>
-      <Sheet
-        sx={{
-          bgcolor: 'background.level1',
-          p: 1.5,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 2,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Button variant="solid" color="primary" sx={{ minWidth: 120 }}>
-          solid
-        </Button>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Checkbox
-            size="sm"
-            label=":hover"
-            slotProps={{
-              checkbox: (ownerState) => ({
-                sx: { bgcolor: !ownerState.checked ? 'background.surface' : null },
-              }),
-            }}
-          />
-          <Checkbox
-            size="sm"
-            label=":active"
-            slotProps={{
-              checkbox: (ownerState) => ({
-                sx: { bgcolor: !ownerState.checked ? 'background.surface' : null },
-              }),
-            }}
-          />
-          <Checkbox
-            size="sm"
-            label=":focus-visible"
-            slotProps={{
-              checkbox: (ownerState) => ({
-                sx: { bgcolor: !ownerState.checked ? 'background.surface' : null },
-              }),
-            }}
-          />
-        </Box>
-      </Sheet>
-      <Box
-        sx={{
-          my: 1,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, max-content)',
-          alignItems: 'center',
-          gap: '6px 12px',
-          '& > div': {
-            display: 'contents',
-            '--FormLabel-alignSelf': 'center',
-            '--FormLabel-margin': '0px',
-          },
-        }}
-      >
-        {['solidBg', 'outlinedActiveBorder'].map((item) => (
-          <FormControl key={item} size="sm">
-            <IconButton
-              tabIndex={-1}
-              variant="outlined"
-              color="danger"
-              size="sm"
-              sx={{ borderRadius: '50%', '--IconButton-size': '24px' }}
-            >
-              <Remove />
-            </IconButton>
-            <FormLabel>{item}:</FormLabel>
-            <Input
-              placeholder="#F4FAFF"
-              endDecorator={
-                <Box
-                  sx={{
-                    width: 20,
-                    height: 20,
-                    borderRadius: '50%',
-                    bgcolor: `primary.${item}`,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                  }}
-                />
-              }
-            />
-          </FormControl>
-        ))}
-      </Box>
-      <Button size="sm" variant="soft" color="neutral" startDecorator={<Add />} sx={{ my: 1 }}>
-        Add token
-      </Button> */}
+      <GlobalVariantForm
+        color={colorProp}
+        themeDefaultValue={themeDefaultValue}
+        value={value}
+        onChange={(tokens) => onChange({ ...value, ...tokens })}
+      />
     </Box>
   );
 }
@@ -893,7 +1015,7 @@ export default function JoyThemeBuilder() {
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const [lightPalette, setLightPalette] = React.useState<Record<string, any>>({});
   const [darkPalette, setDarkPalette] = React.useState<Record<string, any>>({});
-  const [colorProp, setColorProp] = React.useState<keyof Palette>('primary');
+  const [colorProp, setColorProp] = React.useState<ColorPaletteProp>('primary');
   const theme = React.useMemo(
     () =>
       extendTheme({
@@ -1179,6 +1301,7 @@ export default function App() {
           </List>
           <Divider orientation="vertical" />
           <ColorPaletteForm
+            color={colorProp}
             themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
             value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
             onChange={(newValue) => {
