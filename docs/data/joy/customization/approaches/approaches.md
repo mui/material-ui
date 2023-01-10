@@ -81,7 +81,7 @@ const theme = extendTheme({
     // The component identifier always start with `Joy${ComponentName}`.
     JoyButton: {
       styleOverrides: {
-        root: ({theme}) => {
+        root: ({ theme }) => {
           // theme.vars.* return the CSS variables.
           fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
         },
