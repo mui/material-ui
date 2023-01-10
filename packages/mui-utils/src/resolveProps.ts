@@ -24,7 +24,6 @@ export default function resolveProps<
   const output = { ...props };
 
   (Object.keys(defaultProps) as Array<keyof T>).forEach((propName) => {
-    const isMergeable = !!mergePropsWhiteList?.includes(String(propName));
     const defaultValue = defaultProps[propName];
     const currentValue = output[propName];
 
