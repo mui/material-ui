@@ -190,7 +190,8 @@ const theme = extendTheme({
     light: {
       palette: {
         secondary: {
-          // Credit: https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
+          // Credit:
+          // https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
           50: '#fdf2f8',
           100: '#fce7f3',
           200: '#fbcfe8',
@@ -219,7 +220,8 @@ const theme = extendTheme({
     dark: {
       palette: {
         secondary: {
-          // Credit: https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
+          // Credit:
+          // https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
           50: '#fdf2f8',
           100: '#fce7f3',
           200: '#fbcfe8',
