@@ -3,7 +3,6 @@ import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, { menuItemUnstyledClasses } from '@mui/base/MenuItemUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
-import MenuButtonUnstyled from '@mui/base/MenuUnstyled/MenuButtonUnstyled';
 
 const blue = {
   100: '#DAECFF',
@@ -138,23 +137,19 @@ export default function UnstyledMenuIntroduction() {
 
   return (
     <Page>
-      <MenuButtonUnstyled
-        slots={{ root: MenuButton }}
+      <MenuUnstyled
+        slots={{ popper: Popper, button: MenuButton, listbox: StyledListbox }}
+        slotProps={{ popper: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
         label="My account"
         open={isOpen}
         onOpenChange={handleOpenChange}
       >
-        <MenuUnstyled
-          slots={{ root: Popper, listbox: StyledListbox }}
-          slotProps={{ root: { placement: 'bottom-start' }, listbox: { id: 'simple-menu' } }}
-        >
-          <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-            Language settings
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
-        </MenuUnstyled>
-      </MenuButtonUnstyled>
+        <StyledMenuItem onClick={createHandleMenuClick('Profile')}>Profile</StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+          Language settings
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Log out')}>Log out</StyledMenuItem>
+      </MenuUnstyled>
     </Page>
   );
 }

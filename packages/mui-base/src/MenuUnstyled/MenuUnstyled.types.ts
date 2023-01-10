@@ -32,11 +32,13 @@ export interface MenuUnstyledOwnProps {
    * @default false
    */
   keepMounted?: boolean;
+  label?: string;
   listboxId?: string;
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose?: () => void;
+  onOpenChange?: (event: React.SyntheticEvent<HTMLButtonElement>, open: boolean) => void;
   /**
    * Controls whether the menu is displayed.
    * @default false
@@ -47,7 +49,12 @@ export interface MenuUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
+    button?: SlotComponentProps<
+      'button',
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+    popper?: SlotComponentProps<
       typeof PopperUnstyled,
       MenuUnstyledComponentsPropsOverrides,
       MenuUnstyledOwnerState
@@ -64,7 +71,8 @@ export interface MenuUnstyledOwnProps {
    * @default {}
    */
   slots?: {
-    root?: React.ElementType;
+    popper?: React.ElementType;
+    button?: React.ElementType;
     listbox?: React.ElementType;
   };
 }

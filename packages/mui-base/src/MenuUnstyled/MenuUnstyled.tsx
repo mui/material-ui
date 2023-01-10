@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType, refType } from '@mui/utils';
+import { HTMLElementType, refType, unstable_useControlled as useControlled } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
@@ -14,7 +14,6 @@ import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
-import { MenuTriggerContext } from './MenuButtonUnstyled';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -44,22 +43,21 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     children,
     component,
     keepMounted = false,
+    label,
     listboxId,
     onClose,
     open: openProp = false,
+    onOpenChange,
     slotProps = {},
     slots = {},
     ...other
   } = props;
 
-  let open = openProp;
-  let anchorEl = anchorElProp;
-
-  const triggerContext = React.useContext(MenuTriggerContext);
-  if (triggerContext) {
-    open = triggerContext.open;
-    anchorEl = triggerContext.buttonRef.current;
-  }
+  const [open, setOpen] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'MenuUnstyled',
+  });
 
   const {
     registerItem,
@@ -84,20 +82,37 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     [highlightFirstItem, highlightLastItem],
   );
 
+  const [buttonElement, setButtonElement] = React.useState<null | HTMLElement>(null);
+
+  const updateButtonRef = React.useCallback((element: HTMLElement | null) => {
+    setButtonElement(element);
+  }, []);
+
   const ownerState: MenuUnstyledOwnerState = {
     ...props,
     open,
   };
 
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen((o) => !o);
+    onOpenChange?.(event, !open);
+  };
+
+  React.useEffect(() => {
+    if (!open) {
+      buttonElement?.focus();
+    }
+  }, [open, buttonElement]);
+
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? PopperUnstyled;
-  const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
-    elementType: Root,
+  const Popper = component ?? slots.popper ?? PopperUnstyled;
+  const popperProps: MenuUnstyledRootSlotProps = useSlotProps({
+    elementType: Popper,
     externalForwardedProps: other,
-    externalSlotProps: slotProps.root,
+    externalSlotProps: slotProps.popper,
     additionalProps: {
-      anchorEl,
+      anchorEl: buttonElement,
       open,
       keepMounted,
       role: undefined,
@@ -106,6 +121,8 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     className: classes.root,
     ownerState,
   }) as MenuUnstyledRootSlotProps;
+
+  const Button = slots.button ?? 'button';
 
   const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({
@@ -128,11 +145,18 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   );
 
   return (
-    <Root {...rootProps}>
-      <Listbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-      </Listbox>
-    </Root>
+    <React.Fragment>
+      <Button ref={updateButtonRef} onClick={handleButtonClick}>
+        {label}
+      </Button>
+      <Popper {...popperProps}>
+        <Listbox {...listboxProps}>
+          <MenuUnstyledContext.Provider value={contextValue}>
+            {children}
+          </MenuUnstyledContext.Provider>
+        </Listbox>
+      </Popper>
+    </React.Fragment>
   );
 }) as OverridableComponent<MenuUnstyledTypeMap>;
 
