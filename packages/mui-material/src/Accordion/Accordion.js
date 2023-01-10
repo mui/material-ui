@@ -118,7 +118,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiAccordion',
-    mergePropsWhiteList: ['TransitionProps'],
+    shallowMergePropNames: ['TransitionProps'],
   });
   const {
     children: childrenProp,
