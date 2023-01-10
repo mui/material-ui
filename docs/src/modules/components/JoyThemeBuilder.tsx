@@ -17,7 +17,7 @@ import {
 import Autocomplete, { AutocompleteProps } from '@mui/joy/Autocomplete';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
+import Checkbox from '@mui/joy/Checkbox';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -38,6 +38,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
+import TabPanel, { tabPanelClasses } from '@mui/joy/TabPanel';
 import Tab, { tabClasses } from '@mui/joy/Tab';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
@@ -347,10 +348,7 @@ const augmentPalette = (palette: any, prop: keyof Palette) => {
   Object.keys(palette[prop] || []).forEach((k) => {
     if (
       !Object.keys(defaultTheme.colorSchemes.light.palette[prop]).includes(k) &&
-      !k.startsWith('plain') &&
-      !k.startsWith('outlined') &&
-      !k.startsWith('soft') &&
-      !k.startsWith('solid')
+      !k.match(/^(plain|outlined|soft|solid)/)
     ) {
       result.push(`${k}: string;`);
     }
@@ -432,7 +430,7 @@ function CodeBlockResult({ data, onClose }: { data: any; onClose: () => void }) 
       variant="outlined"
       sx={{
         borderRadius: '16px 16px 0 0',
-        '& pre': { maxHeight: 'initial', minHeight: 450, borderRadius: 0, margin: 0 },
+        '&& pre': { maxHeight: 'initial', minHeight: 450, borderRadius: 0, margin: 0 },
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -585,11 +583,10 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
           setAnchorEl(event.currentTarget);
         }}
-        variant="soft"
         color="neutral"
         startDecorator={<Search />}
       >
-        Browse
+        Browse palette
       </Link>
       <Menu
         size="sm"
@@ -683,12 +680,13 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
       sx={{ borderRadius: 'sm', my: 1, p: 1, display: 'flex', gap: 1, alignItems: 'center' }}
     >
       <Input
+        autoFocus
         size="sm"
         placeholder="token"
         slotProps={{
           input: { ref: nameRef },
         }}
-        sx={{ width: 64 }}
+        sx={{ flex: 1 }}
         onChange={(event) => setName(event.target.value)}
       />{' '}
       <b>:</b>{' '}
@@ -697,6 +695,13 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
         placeholder="Type a valid CSS color"
         value={color}
         onChange={(event) => setColor(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' && name && color) {
+            onChange(name, color);
+            setOpen(false);
+          }
+        }}
+        sx={{ flex: 2 }}
       />
       <IconButton
         variant="solid"
@@ -765,6 +770,82 @@ function ColorAutocomplete({
   );
 }
 
+function GlobalVariantTokenCreator({
+  primitiveTokens = [],
+  availableTokens = [],
+  onChange,
+}: {
+  primitiveTokens: Array<string>;
+  availableTokens: Array<string>;
+  onChange: (name: string, value: string) => void;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const [name, setName] = React.useState('');
+  const [color, setColor] = React.useState('');
+  if (!open) {
+    return (
+      <Button
+        size="sm"
+        variant="soft"
+        color="neutral"
+        startDecorator={<Add />}
+        sx={{ my: 1 }}
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Add token
+      </Button>
+    );
+  }
+  return (
+    <Sheet
+      variant="soft"
+      color="neutral"
+      sx={{ borderRadius: 'sm', my: 1, p: 1, display: 'flex', gap: 1, alignItems: 'center' }}
+    >
+      <Select
+        defaultListboxOpen
+        placeholder="Select a token"
+        size="sm"
+        onChange={(event, newValue) => {
+          setName(newValue as string);
+        }}
+        slotProps={{ listbox: { sx: { minWidth: 'min-content' } } }}
+      >
+        {availableTokens.map((item) => (
+          <Option key={item} value={item}>
+            {item}
+          </Option>
+        ))}
+      </Select>{' '}
+      <b>:</b>{' '}
+      <Autocomplete
+        options={primitiveTokens}
+        size="sm"
+        freeSolo
+        blurOnSelect
+        onChange={(event, newValue) => setColor(newValue || '')}
+        onInputChange={(event, newValue) => setColor(newValue)}
+        sx={{ flex: 1 }}
+      />
+      <IconButton
+        variant="solid"
+        color="neutral"
+        size="sm"
+        onClick={() => {
+          if (name) {
+            onChange(name, color);
+            setOpen(false);
+          }
+        }}
+      >
+        <Check />
+      </IconButton>
+    </Sheet>
+  );
+}
+
 function filterGlobalVariantTokens(palette: Partial<PaletteVariant>, variant: VariantProp) {
   const tokens: Partial<PaletteVariant> = {};
   (Object.entries(palette) as Array<[keyof PaletteVariant, string]>).forEach(([key, value]) => {
@@ -782,11 +863,13 @@ function GlobalVariantForm({
   themeDefaultValue: themeDefaultValueProp = {},
   value: valueProp = {},
   onChange,
+  onRemove,
 }: {
   color: ColorPaletteProp;
   themeDefaultValue: any;
   value: any;
   onChange: (newValue: any) => void;
+  onRemove: (token: string) => void;
 }) {
   const [selectedVariant, setSelectedVariant] = React.useState<VariantProp>('solid');
   const [states, setStates] = React.useReducer<
@@ -802,6 +885,25 @@ function GlobalVariantForm({
   const tokens = (Object.keys(mergedValue) as Array<keyof PaletteVariant>).filter(
     (k) => mergedValue[k] !== undefined,
   );
+  const allTokens = [
+    `${selectedVariant}Color`,
+    `${selectedVariant}HoverColor`,
+    `${selectedVariant}ActiveColor`,
+    `${selectedVariant}DisabledColor`,
+    `${selectedVariant}Bg`,
+    `${selectedVariant}HoverBg`,
+    `${selectedVariant}ActiveBg`,
+    `${selectedVariant}DisabledBg`,
+    `${selectedVariant}Border`,
+    `${selectedVariant}HoverBorder`,
+    `${selectedVariant}ActiveBorder`,
+    `${selectedVariant}DisabledBorder`,
+  ].filter((item) => !(tokens as string[]).includes(item));
+  const mergedValueProp = { ...themeDefaultValueProp, ...valueProp };
+  const primitives = Object.keys(mergedValueProp)
+    .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
+    .filter((k) => mergedValueProp[k] !== undefined);
+  const primitiveTokens = primitives.map((primitive) => `var(--joy-palette-${color}-${primitive})`);
   return (
     <React.Fragment>
       <Typography component="div" fontWeight="lg">
@@ -840,9 +942,6 @@ function GlobalVariantForm({
           sx={{
             display: 'flex',
             gap: 1,
-            [`& .${checkboxClasses.root}:not(${checkboxClasses.checked})`]: {
-              bgcolor: 'background.surface',
-            },
           }}
         >
           <Checkbox
@@ -888,7 +987,7 @@ function GlobalVariantForm({
               size="sm"
               sx={{ borderRadius: '50%', '--IconButton-size': '24px' }}
               onClick={() => {
-                onChange({ ...value, [item]: undefined });
+                onChange({ [item]: undefined });
               }}
             >
               <Remove />
@@ -897,65 +996,65 @@ function GlobalVariantForm({
             <ColorAutocomplete
               value={value[item] ?? ''}
               placeholder={themeDefaultValue[item]}
-              options={[
-                `var(--joy-palette-${color}-50)`,
-                `var(--joy-palette-${color}-100)`,
-                `var(--joy-palette-${color}-200)`,
-              ]}
+              options={primitiveTokens}
               onValidColor={(newValue) => {
-                onChange({ ...value, [item]: newValue });
+                onChange({ [item]: newValue });
               }}
               onEmptyColor={() => {
-                const newValue = { ...value };
-                delete newValue[item];
-                onChange(newValue);
+                onRemove(item);
               }}
+              onFocus={() => {
+                if (item.includes('Hover')) {
+                  setStates({ hover: true, active: false, disabled: false });
+                } else if (item.includes('Active')) {
+                  setStates({ hover: false, active: true, disabled: false });
+                } else if (item.includes('Disabled')) {
+                  setStates({ hover: false, active: false, disabled: true });
+                } else {
+                  setStates({ hover: false, active: false, disabled: false });
+                }
+              }}
+              onBlur={() => setStates({ hover: false, active: false, disabled: false })}
             />
           </FormControl>
         ))}
       </Box>
-      <Button size="sm" variant="soft" color="neutral" startDecorator={<Add />} sx={{ my: 1 }}>
-        Add token
-      </Button>
+      <GlobalVariantTokenCreator
+        primitiveTokens={primitiveTokens}
+        availableTokens={allTokens}
+        onChange={(token, newValue) => onChange({ [token]: newValue })}
+      />
     </React.Fragment>
   );
 }
 
 function ColorPaletteForm({
-  color: colorProp,
   themeDefaultValue = {},
   value = {},
   onChange,
+  onRemove,
 }: {
-  color: ColorPaletteProp;
   themeDefaultValue: any;
   value: any;
   onChange: (newValue: any) => void;
+  onRemove: (token: string) => void;
 }) {
   const mergedValue = { ...themeDefaultValue, ...value };
   const primitives = Object.keys(mergedValue)
     .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
     .filter((k) => mergedValue[k] !== undefined);
   return (
-    <Box sx={{ flex: 1, px: 3, py: 2 }}>
-      <Typography
-        fontWeight="lg"
-        mb={1}
-        endDecorator={
-          <PaletteImport
-            onSelect={(tokens) => {
-              onChange({ ...value, ...tokens });
-            }}
-          />
-        }
-        sx={{ justifyContent: 'space-between' }}
-      >
-        Primitive tokens
-      </Typography>
+    <React.Fragment>
+      <PaletteImport
+        onSelect={(tokens) => {
+          onChange(tokens);
+        }}
+      />
       <Box
         sx={{
+          mt: 1.5,
           display: 'grid',
-          gridTemplateColumns: 'min-content min-content 1fr',
+          gridTemplateColumns: 'min-content minmax(min-content, 64px) 1fr',
           alignItems: 'center',
           gap: '6px 12px',
           '& > div': {
@@ -974,7 +1073,11 @@ function ColorPaletteForm({
               size="sm"
               sx={{ borderRadius: '50%', '--IconButton-size': '24px' }}
               onClick={() => {
-                onChange({ ...value, [item]: undefined });
+                if (themeDefaultValue[item]) {
+                  onRemove(item);
+                } else {
+                  onChange({ [item]: undefined });
+                }
               }}
             >
               <Remove />
@@ -984,12 +1087,14 @@ function ColorPaletteForm({
               value={value[item] ?? ''}
               placeholder={themeDefaultValue[item]}
               onEmptyColor={() => {
-                const newValue = { ...value };
-                delete newValue[item];
-                onChange(newValue);
+                if (themeDefaultValue[item]) {
+                  onRemove(item);
+                } else {
+                  onChange({ [item]: '' });
+                }
               }}
               onValidColor={(color) => {
-                onChange({ ...value, [item]: color });
+                onChange({ [item]: color });
               }}
             />
           </FormControl>
@@ -997,16 +1102,10 @@ function ColorPaletteForm({
       </Box>
       <ColorTokenCreator
         onChange={(name, color) => {
-          onChange({ ...value, [name]: color });
+          onChange({ [name]: color });
         }}
       />
-      <GlobalVariantForm
-        color={colorProp}
-        themeDefaultValue={themeDefaultValue}
-        value={value}
-        onChange={(tokens) => onChange({ ...value, ...tokens })}
-      />
-    </Box>
+    </React.Fragment>
   );
 }
 
@@ -1016,6 +1115,7 @@ export default function JoyThemeBuilder() {
   const [lightPalette, setLightPalette] = React.useState<Record<string, any>>({});
   const [darkPalette, setDarkPalette] = React.useState<Record<string, any>>({});
   const [colorProp, setColorProp] = React.useState<ColorPaletteProp>('primary');
+  const setter = { light: setLightPalette, dark: setDarkPalette }[colorMode];
   const theme = React.useMemo(
     () =>
       extendTheme({
@@ -1300,15 +1400,78 @@ export default function App() {
             </ListItem> */}
           </List>
           <Divider orientation="vertical" />
-          <ColorPaletteForm
-            color={colorProp}
-            themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
-            value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
-            onChange={(newValue) => {
-              const setter = { light: setLightPalette, dark: setDarkPalette }[colorMode];
-              setter((prev) => ({ ...prev, [colorProp]: newValue }));
-            }}
-          />
+          <Tabs
+            size="sm"
+            defaultValue={0}
+            sx={{ flex: 1, [`& .${tabPanelClasses.root}`]: { p: 3 } }}
+          >
+            <TabList
+              variant="plain"
+              sx={{
+                px: 1.5,
+                '--List-padding': '0px',
+                '--List-item-minHeight': '48px',
+                '& > button': {
+                  bgcolor: 'transparent',
+                  boxShadow: 'none',
+                  flex: 'none',
+                  color: 'text.tertiary',
+                  fontWeight: 'md',
+                  '&:hover': { bgcolor: 'transparent' },
+                  '&[aria-selected="true"]': {
+                    color: 'text.primary',
+                    '&::before': {
+                      content: '""',
+                      display: 'block',
+                      position: 'absolute',
+                      height: 2,
+                      left: 'var(--List-item-paddingLeft)',
+                      right: 'var(--List-item-paddingRight)',
+                      bottom: -1,
+                      bgcolor: `${colorProp}.solidBg`,
+                    },
+                  },
+                },
+              }}
+            >
+              <Tab>Primitive</Tab>
+              <Tab>Global variant</Tab>
+            </TabList>
+            <Divider />
+            <TabPanel value={0}>
+              <ColorPaletteForm
+                themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
+                value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
+                onChange={(newValue) => {
+                  setter((prev) => ({ ...prev, [colorProp]: { ...prev[colorProp], ...newValue } }));
+                }}
+                onRemove={(token) => {
+                  setter((prev) => {
+                    const newPalette = prev[colorProp];
+                    delete newPalette[token];
+                    return { ...prev, [colorProp]: newPalette };
+                  });
+                }}
+              />
+            </TabPanel>
+            <TabPanel value={1}>
+              <GlobalVariantForm
+                color={colorProp}
+                themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
+                value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
+                onChange={(newValue) => {
+                  setter((prev) => ({ ...prev, [colorProp]: { ...prev[colorProp], ...newValue } }));
+                }}
+                onRemove={(token) => {
+                  setter((prev) => {
+                    const newPalette = prev[colorProp];
+                    delete newPalette[token];
+                    return { ...prev, [colorProp]: newPalette };
+                  });
+                }}
+              />
+            </TabPanel>
+          </Tabs>
         </Sheet>
       )}
     </CssVarsProvider>
