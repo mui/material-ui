@@ -194,7 +194,7 @@ Modify your `package.json` commands:
   }
 ```
 
-If you are using Next.js >= v12.1.1, you can make use of their [Modularize Imports](https://nextjs.org/docs/advanced-features/compiler#modularize-imports) feature.
+If you are using Next.js >= v13.1, you can make use of their [Modularize Imports](https://nextjs.org/docs/advanced-features/compiler#modularize-imports) feature.
 This does not require adding Babel configuration, so you can still use [SWC](https://nextjs.org/docs/advanced-features/compiler#why-swc) if you prefer.
 
 Create a `next.config.js` file in the root directory:
@@ -204,14 +204,9 @@ Create a `next.config.js` file in the root directory:
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   ...
-  experimental: {
-    modularizeImports: {
-      '@mui/material': {
-        transform: '@mui/material/{{member}}'
-      },
-      '@mui/icons-material': {
-        transform: '@mui/icons-material/{{member}}'
-      }
+  modularizeImports: {
+    '@mui/icons-material': {
+      transform: '@mui/icons-material/{{member}}'
     }
   }
 }
