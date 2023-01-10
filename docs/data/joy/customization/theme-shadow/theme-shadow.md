@@ -67,7 +67,7 @@ declare module '@mui/joy/styles' {
 
 ## Shadow ring
 
-The shadow ring can be configured for both light and dark color schemes. 
+The shadow ring can be configured for both light and dark color schemes.
 To create a shadow ring, provide a valid CSS box-shadow value to the `shadowRing` node:
 
 ```js
@@ -96,7 +96,7 @@ If you want to create a shadow ring for a specific element, see [Customizing sha
 
 ## Shadow colors
 
-The color of the shadow comes from the theme token named `var(--joy-shadowChannel)`. 
+The color of the shadow comes from the theme token named `var(--joy-shadowChannel)`.
 You can customize the value for both light and dark color schemes:
 
 ```js
@@ -125,7 +125,7 @@ The `shadowChannel` value must be rgb channels, e.g. `187 187 187`.
 To customize a shadow color or shadow ring on a specific instance, use the raw value from the `theme.shadow.*`.
 
 :::warning
-**Don't** use shadows from `theme.vars` or the shorthand syntax `{ shadow: '{key}' }`.
+**Don't** use shadows from `theme.vars` or the shorthand syntax `{ shadow: '{key}' }` because the value points to the global CSS variable which does not work with the custom `shadowChannel` and `shadowRing` on the instance.
 :::
 
 ```js
