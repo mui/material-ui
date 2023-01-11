@@ -1,8 +1,9 @@
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+import fetchFileFromPath from './fetchFileFromPath';
 
-const createReactApp = (demo: {
+const createReactApp = async (demo: {
   title: string;
   language: string;
   raw: string;
@@ -15,8 +16,13 @@ const createReactApp = (demo: {
   const includeXMonorepo = demo.raw.includes("from 'docsx/");
   // cloning to avoid the documentation demo `raw` content change
   const internalDemo = { ...demo };
+  let xMonorepoImportPath;
   if (includeXMonorepo) {
-    internalDemo.raw = internalDemo.raw.replace(/from 'docsx/, "from '@mui/x-monorepo/docs");
+    const importPathMatch = internalDemo.raw.match(/from 'docsx\/([\w*/*]+)/);
+    if (importPathMatch) {
+      xMonorepoImportPath = importPathMatch[1];
+    }
+    internalDemo.raw = internalDemo.raw.replace(/from 'docsx\/(.*)\//, "from './");
   }
 
   const files: Record<string, object> = {
@@ -38,15 +44,6 @@ const createReactApp = (demo: {
 
   const { dependencies, devDependencies } = SandboxDependencies(internalDemo, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-    ...(includeXMonorepo && {
-      xMonorepoPath:
-        // use PR authors repo and commit hash when on a PR
-        // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
-        // Correct REPOSITORY_URL is necessary for building a valid url
-        process.env.PULL_REQUEST_ID && process.env.COMMIT_REF && process.env.REPOSITORY_URL
-          ? `${process.env.REPOSITORY_URL}#${process.env.COMMIT_REF}`
-          : `https://github.com/mui/mui-x.git#${process.env.DEFAULT_BRANCH ?? 'master'}`,
-    }),
   });
 
   files['package.json'] = {
@@ -62,6 +59,19 @@ const createReactApp = (demo: {
       }),
     },
   };
+
+  if (xMonorepoImportPath) {
+    try {
+      const fileResponse = await fetchFileFromPath(xMonorepoImportPath);
+      if (fileResponse?.content) {
+        files[fileResponse.name] = {
+          content: decodeURIComponent(Buffer.from(fileResponse.content, 'base64').toString()),
+        };
+      }
+    } catch (err) {
+      console.error(`Failed to include file: ${xMonorepoImportPath}`, err);
+    }
+  }
 
   return { title, description, files, dependencies, devDependencies };
 };
