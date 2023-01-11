@@ -213,7 +213,7 @@ describe('<Accordion />', () => {
     );
   });
 
-  it('should merge the TransitionsProps with TransitionProps from theme default props', () => {
+  it('should merge the TransitionsProps with default theme TransitionProps props', () => {
     function MockTransition(props) {
       return (
         <div>
