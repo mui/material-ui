@@ -4,8 +4,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 
 function NoTransition(props) {
   const { children, in: inProp } = props;
@@ -209,5 +211,46 @@ describe('<Accordion />', () => {
     expect(() => setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
+  });
+
+  it('should merge the TransitionsProps with TransitionProps from theme default props', () => {
+    function MockTransition(props) {
+      return (
+        <div>
+          <div>{props.onEnter()}</div>
+          <div>{props.onExit()}</div>
+        </div>
+      );
+    }
+
+    const onEnter = () => 'ON ENTER OK';
+    const onExit = () => 'ON EXIT NOT OK';
+
+    const theme = createTheme({
+      components: {
+        MuiAccordion: {
+          defaultProps: {
+            TransitionProps: {
+              onExit,
+            },
+          },
+        },
+      },
+    });
+
+    const { getByText } = render(
+      <ThemeProvider theme={theme}>
+        <Accordion
+          TransitionComponent={MockTransition}
+          TransitionProps={{ onEnter, onExit: () => 'ON EXIT OK' }}
+        >
+          <AccordionSummary>Accordion</AccordionSummary>
+          <AccordionDetails>Text</AccordionDetails>
+        </Accordion>
+      </ThemeProvider>,
+    );
+
+    expect(getByText('ON ENTER OK')).toBeVisible();
+    expect(getByText('ON EXIT OK')).toBeVisible();
   });
 });
