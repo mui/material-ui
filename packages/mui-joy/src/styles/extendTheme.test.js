@@ -35,6 +35,27 @@ describe('extendTheme', () => {
     });
   });
 
+  it('should have the vars object', () => {
+    const theme = extendTheme();
+    const keys = [
+      'radius',
+      'shadow',
+      'focus',
+      'fontFamily',
+      'fontSize',
+      'fontWeight',
+      'lineHeight',
+      'letterSpacing',
+      'palette',
+      'shadowRing',
+      'shadowChannel',
+    ];
+
+    Object.keys(keys).forEach((key) => {
+      expect(theme[key]).to.deep.equal(theme.vars[key]);
+    });
+  });
+
   it('should have joy default css var prefix', () => {
     const theme = extendTheme();
     expect(theme.cssVarPrefix).to.equal('joy');
