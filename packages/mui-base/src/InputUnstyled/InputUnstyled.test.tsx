@@ -43,6 +43,13 @@ describe('<InputUnstyled />', () => {
       expect(getByRole('textbox')).not.to.have.attribute('maxRows');
     });
 
+    it('should be able to attach ref passed through props', () => {
+      const inputRef = React.createRef<HTMLInputElement>();
+      render(<InputUnstyled inputRef={inputRef} />);
+
+      expect(inputRef.current).not.to.equal(undefined);
+    });
+
     it('should pass the minRows or maxRows prop to the underlying textarea slot if a custom component is used', () => {
       const CustomTextarea = React.forwardRef(
         ({ minRows, maxRows, ownerState, ...other }: any, ref) => {
