@@ -159,7 +159,7 @@ export interface AutocompleteProps<
   /**
    * Props applied to the Listbox element.
    */
-  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete<any>>['getListboxProps']>;
+  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']>;
   /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
@@ -286,7 +286,7 @@ export interface AutocompleteProps<
  */
 export default function Autocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;
