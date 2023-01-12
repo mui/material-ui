@@ -47,7 +47,7 @@ describe('<InputUnstyled />', () => {
       const inputRef = React.createRef<HTMLInputElement>();
       render(<InputUnstyled inputRef={inputRef} />);
 
-      expect(inputRef.current).not.to.equal(undefined);
+      expect(inputRef.current).not.to.equal(null);
     });
 
     it('should pass the minRows or maxRows prop to the underlying textarea slot if a custom component is used', () => {
