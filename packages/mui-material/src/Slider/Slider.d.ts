@@ -5,6 +5,8 @@ import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import SliderValueLabelComponent from './SliderValueLabel';
+import { SliderValueLabelProps } from './SliderValueLabel.types';
 
 export interface SliderPropsColorOverrides {}
 
@@ -62,7 +64,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
       mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
       markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
       valueLabel?: SlotComponentProps<
-        typeof SliderValueLabel,
+        typeof SliderValueLabelComponent,
         SliderComponentsPropsOverrides,
         SliderOwnerState
       >;
@@ -110,7 +112,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
       mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
       markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
       valueLabel?: SlotComponentProps<
-        typeof SliderValueLabel,
+        typeof SliderValueLabelComponent,
         SliderComponentsPropsOverrides,
         SliderOwnerState
       >;
@@ -133,12 +135,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
   defaultComponent: D;
 };
 
-export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
-  index: number;
-  open: boolean;
-  value: number;
-}
+export { SliderValueLabelProps };
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
