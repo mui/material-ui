@@ -84,7 +84,7 @@ export type SliderTypeMap<
   defaultComponent: D;
 }>;
 
-export { SliderValueLabelProps } from '@mui/base/SliderUnstyled';
+export { SliderValueLabelProps };
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
@@ -110,7 +110,6 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  * API:
  *
  * - [Slider API](https://mui.com/material-ui/api/slider/)
- * - inherits [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
  */
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 
