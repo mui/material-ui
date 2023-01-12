@@ -5,7 +5,7 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 
-export default function CardLayers() {
+export default function CardLayers3d() {
   return (
     <Box
       sx={{
@@ -28,11 +28,12 @@ export default function CardLayers() {
       }}
     >
       <Card
+        variant="outlined"
         sx={{
           minHeight: '280px',
           width: 320,
           backgroundColor: '#fff',
-          border: '1px solid #000',
+          borderColor: '#000',
         }}
       >
         <Typography level="h2" fontSize="lg" textColor="#000">
