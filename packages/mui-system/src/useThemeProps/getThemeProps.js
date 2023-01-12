@@ -1,7 +1,7 @@
 import { internal_resolveProps as resolveProps } from '@mui/utils';
 
 export default function getThemeProps(params) {
-  const { theme, name, props, shallowMergePropNames } = params;
+  const { theme, name, props, shallowMergePropNames = [] } = params;
 
   if (
     !theme ||

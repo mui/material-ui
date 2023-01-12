@@ -16,5 +16,5 @@ export default function useThemeProps<
   props: Props;
   name: Name;
   defaultTheme?: Theme;
-  shallowMergePropNames: string[];
+  shallowMergePropNames?: string[];
 }): Props & ThemedProps<Theme, Name>;

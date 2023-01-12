@@ -14,5 +14,5 @@ export default function getThemeProps<Theme, Props, Name extends keyof any>(para
   props: Props;
   name: Name;
   theme?: Theme;
-  shallowMergePropNames: string[];
+  shallowMergePropNames?: string[];
 }): Props & ThemedProps<Theme, Name>;
