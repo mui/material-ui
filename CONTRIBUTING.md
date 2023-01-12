@@ -90,7 +90,7 @@ yarn start
 ```
 
 You can now access the documentation site locally: http://localhost:3000.
-Changes to the docs will hot reload the site.
+Changes to the docs will not reload the site.
 
 ### Trying changes on the playground
 
