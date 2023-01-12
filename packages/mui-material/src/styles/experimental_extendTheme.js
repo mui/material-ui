@@ -35,7 +35,7 @@ function setColor(obj, key, defaultValue) {
 }
 
 function setColorChannel(obj, key) {
-  if (!Object.hasOwn(obj, `${key}Channel`)) {
+  if (!(`${key}Channel` in obj)) {
     // custom channel token is not provided, generate one.
     // if channel token can't be generated, show a warning.
     obj[`${key}Channel`] = safeColorChannel(
