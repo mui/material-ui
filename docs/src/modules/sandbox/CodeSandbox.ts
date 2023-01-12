@@ -1,9 +1,8 @@
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
-import fetchFileFromPath from './fetchFileFromPath';
 
-const createReactApp = async (demo: {
+const createReactApp = (demo: {
   title: string;
   language: string;
   raw: string;
@@ -13,17 +12,6 @@ const createReactApp = async (demo: {
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
-  const includeXMonorepo = demo.raw.includes("from 'docsx/");
-  // cloning to avoid the documentation demo `raw` content change
-  const internalDemo = { ...demo };
-  let xMonorepoImportPath;
-  if (includeXMonorepo) {
-    const importPathMatch = internalDemo.raw.match(/from 'docsx\/([\w*/*]+)/);
-    if (importPathMatch) {
-      xMonorepoImportPath = importPathMatch[1];
-    }
-    internalDemo.raw = internalDemo.raw.replace(/from 'docsx\/(.*)\//, "from './");
-  }
 
   const files: Record<string, object> = {
     'public/index.html': {
@@ -33,7 +21,7 @@ const createReactApp = async (demo: {
       content: CRA.getRootIndex(demo.product),
     },
     [`demo.${ext}`]: {
-      content: internalDemo.raw,
+      content: demo.raw,
     },
     ...(demo.codeVariant === 'TS' && {
       'tsconfig.json': {
@@ -42,7 +30,7 @@ const createReactApp = async (demo: {
     }),
   };
 
-  const { dependencies, devDependencies } = SandboxDependencies(internalDemo, {
+  const { dependencies, devDependencies } = SandboxDependencies(demo, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
 
@@ -59,19 +47,6 @@ const createReactApp = async (demo: {
       }),
     },
   };
-
-  if (xMonorepoImportPath) {
-    try {
-      const fileResponse = await fetchFileFromPath(xMonorepoImportPath);
-      if (fileResponse?.content) {
-        files[fileResponse.name] = {
-          content: decodeURIComponent(Buffer.from(fileResponse.content, 'base64').toString()),
-        };
-      }
-    } catch (err) {
-      console.error(`Failed to include file: ${xMonorepoImportPath}`, err);
-    }
-  }
 
   return { title, description, files, dependencies, devDependencies };
 };

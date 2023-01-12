@@ -264,8 +264,8 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const handleCodeSandboxClick = async () => {
-    const { files } = await codeSandbox.createReactApp(demoData);
+  const handleCodeSandboxClick = () => {
+    const { files } = codeSandbox.createReactApp(demoData);
     const parameters = compress({ files });
 
     // ref: https://codesandbox.io/docs/api/#define-api
@@ -284,8 +284,8 @@ export default function DemoToolbar(props) {
     document.body.removeChild(form);
   };
 
-  const handleStackBlitzClick = async () => {
-    const demoConfig = await stackBlitz.createReactApp(demoData);
+  const handleStackBlitzClick = () => {
+    const demoConfig = stackBlitz.createReactApp(demoData);
 
     // ref: https://developer.stackblitz.com/docs/platform/post-api/
     const form = document.createElement('form');

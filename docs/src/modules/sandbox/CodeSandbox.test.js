@@ -122,39 +122,4 @@ describe('CodeSandbox', () => {
       'react-scripts': 'latest',
     });
   });
-
-  describe('Handle MUI X Demo Container', () => {
-    const xTestCase = `import * as React from 'react';
-import { DemoContainer } from 'docsx/src/modules/components/DemoContainer';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
-export default function BasicDatePicker() {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer>
-        <DatePicker label="Basic date picker" />
-      </DemoContainer>
-    </LocalizationProvider>
-  );
-}`;
-    it('should replace import and add monorepo dependency', () => {
-      const result = CodeSandbox.createReactApp({
-        title: 'Basic Date Picker usage',
-        githubLocation:
-          'https://github.com/mui/mui-x/blob/v6.0.0-alpha.13/docs/data/date-pickers/date-picker/DatePickerValue.tsx',
-        codeVariant: 'TS',
-        language: 'en',
-        raw: xTestCase,
-      });
-      expect(result.files['demo.tsx'].content).to.include(
-        "import { DemoContainer } from '@mui/x-monorepo/docs/src/modules/components/DemoContainer'",
-      );
-      expect(result.dependencies).to.have.property(
-        '@mui/x-monorepo',
-        'https://github.com/mui/mui-x.git#master',
-      );
-    });
-  });
 });
