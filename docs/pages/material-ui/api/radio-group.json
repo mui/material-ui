@@ -7,7 +7,11 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "RadioGroup",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": ["root", "row", "error"],
+    "globalClasses": { "error": "Mui-error" },
+    "name": "MuiRadioGroup"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/RadioGroup/RadioGroup.js",

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SwitchSlot =
@@ -23,7 +23,7 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
     root: SlotProps<'div', {}, SwitchOwnerState>;
     thumb: SlotProps<'span', {}, SwitchOwnerState>;
     action: SlotProps<'div', {}, SwitchOwnerState>;
-    input: SlotProps<'button', {}, SwitchOwnerState>;
+    input: SlotProps<'input', {}, SwitchOwnerState>;
     track: SlotProps<'span', {}, SwitchOwnerState>;
     startDecorator: SlotProps<'span', {}, SwitchOwnerState>;
     endDecorator: SlotProps<'span', {}, SwitchOwnerState>;
@@ -70,7 +70,7 @@ export type SwitchProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SwitchTypeMap<P, D>, D>;
 
-export interface SwitchOwnerState extends SwitchProps {
+export interface SwitchOwnerState extends ApplyColorInversion<SwitchProps> {
   /**
    * If `true`, the switch's focus is visible.
    */

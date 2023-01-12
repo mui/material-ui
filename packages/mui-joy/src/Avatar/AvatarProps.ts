@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AvatarSlot = 'root' | 'img' | 'fallback';
@@ -76,7 +76,7 @@ export type AvatarProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AvatarTypeMap<P, D>, D>;
 
-export interface AvatarOwnerState extends AvatarProps {
+export interface AvatarOwnerState extends ApplyColorInversion<AvatarProps> {
   /**
    * The avatar is wrapped by AvatarGroup component.
    */

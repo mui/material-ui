@@ -95,7 +95,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     ownerState,
     additionalProps: {
       color: htmlColor,
-      focusable: 'false',
+      focusable: false,
       ...(titleAccess && { role: 'img' }),
       ...(!titleAccess && { 'aria-hidden': true }),
       ...(!inheritViewBox && { viewBox }),

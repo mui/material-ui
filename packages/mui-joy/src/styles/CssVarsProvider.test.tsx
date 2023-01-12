@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -332,6 +332,7 @@ describe('[Joy] CssVarsProvider', () => {
         JSON.stringify({
           body: 'var(--joy-palette-background-body)',
           surface: 'var(--joy-palette-background-surface)',
+          popup: 'var(--joy-palette-background-popup)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
@@ -462,6 +463,68 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('shadow-ring').textContent).to.equal('var(--joy-shadowRing)');
       expect(screen.getByTestId('shadow-channel').textContent).to.equal('var(--joy-shadowChannel)');
+    });
+  });
+
+  describe('Color Inversion', () => {
+    it('should be customizable', () => {
+      function Text() {
+        const theme = useTheme();
+        return <div>{theme.colorInversion.solid.primary['--variant-plain'] as string}</div>;
+      }
+
+      const { container } = render(
+        <CssVarsProvider
+          theme={extendTheme({
+            colorInversion: {
+              solid: {
+                primary: {
+                  '--variant-plain': 'black',
+                },
+              },
+            },
+          })}
+        >
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('black');
+    });
+
+    it('should be customizable with a callback', () => {
+      function Text() {
+        const theme = useTheme();
+        return (
+          <div>
+            {
+              (theme.colorInversion.soft.primary['[data-joy-color-scheme="dark"] &'] as any)[
+                '--variant-plain'
+              ]
+            }
+          </div>
+        );
+      }
+
+      const { container } = render(
+        <CssVarsProvider
+          theme={extendTheme({
+            colorInversion: (theme) => ({
+              soft: {
+                primary: {
+                  [theme.getColorSchemeSelector('dark')]: {
+                    '--variant-plain': 'red',
+                  },
+                },
+              },
+            }),
+          })}
+        >
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('red');
     });
   });
 

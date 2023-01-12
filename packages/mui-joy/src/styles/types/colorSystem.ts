@@ -104,6 +104,7 @@ export interface PaletteText {
 export interface PaletteBackground {
   body: string;
   surface: string;
+  popup: string;
   level1: string;
   level2: string;
   level3: string;

@@ -194,7 +194,7 @@ function Heading(props) {
   return (
     <Level id={hash}>
       {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={hash} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
+      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
@@ -306,15 +306,13 @@ export default function ApiPage(props) {
           {disableAd ? null : <Ad />}
         </Typography>
         <Heading hash="demos" />
-        <div className="MuiCallout-root MuiCallout-info">
-          <p
-            dangerouslySetInnerHTML={{
-              __html:
-                'For examples and details on the usage of this React component, visit the component demo pages:',
-            }}
-          />
-          <span dangerouslySetInnerHTML={{ __html: demos }} />
-        </div>
+        <div
+          className="MuiCallout-root MuiCallout-info"
+          dangerouslySetInnerHTML={{
+            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+              ${demos}`,
+          }}
+        />
         <Heading hash="import" />
         <HighlightedCode
           code={`
