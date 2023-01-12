@@ -20,7 +20,7 @@ export interface SliderOwnerState extends SliderProps {
   focusedThumbIndex: number;
 }
 
-export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
+export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
   props: P & {
     /**
      * The color of the component.
@@ -133,7 +133,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
     valueLabelDisplay?: 'on' | 'auto' | 'off';
   } & Omit<SliderUnstyledTypeMap['props'], 'slotProps' | 'isRtl'>;
   defaultComponent: D;
-};
+}
 
 export { SliderValueLabelProps };
 
