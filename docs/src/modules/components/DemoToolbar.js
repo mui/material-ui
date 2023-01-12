@@ -302,7 +302,6 @@ export default function DemoToolbar(props) {
       `# ${demoConfig.title}\n${demoConfig.description}`,
     );
     addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
-    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
     Object.keys(demoConfig.files).forEach((key) => {
       const value = demoConfig.files[key];
       addHiddenInput(form, `project[files][${key}]`, value);
