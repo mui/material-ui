@@ -3,7 +3,6 @@ import * as fse from 'fs-extra';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
-import * as ttp from 'typescript-to-proptypes';
 import findComponents from './utils/findComponents';
 import {
   ComponentInfo,
@@ -16,6 +15,7 @@ import generateComponentApi, {
   writePrettifiedFile,
   ReactApi,
 } from './ApiBuilders/ComponentApiBuilder';
+import { createTypeScriptProject, TypeScriptProject } from './utils/createTypeScriptProject';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -99,53 +99,65 @@ function findApiPages(relativeFolder: string) {
 }
 
 interface Settings {
-  input: {
-    /**
-     * Component directories to be used to generate API
-     */
-    libDirectory: string[];
-  };
   output: {
     /**
      * The output path of `pagesApi` generated from `input.pageDirectory`
      */
     apiManifestPath: string;
   };
+  /**
+   * Component directories to be used to generate API
+   */
+  getProjects: () => TypeScriptProject[];
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
 }
 
 const SETTINGS: Settings[] = [
   {
-    input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
-    },
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'material',
+        rootPath: path.join(process.cwd(), 'packages/mui-material'),
+        entryPointPath: 'src/index.d.ts',
+      }),
+      createTypeScriptProject({
+        name: 'lab',
+        rootPath: path.join(process.cwd(), 'packages/mui-lab'),
+        entryPointPath: 'src/index.d.ts',
+      }),
+    ],
     getApiPages: () => findApiPages('docs/pages/material-ui/api'),
     getComponentInfo: getMaterialComponentInfo,
   },
   {
-    input: {
-      libDirectory: [path.join(process.cwd(), 'packages/mui-base/src')],
-    },
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
     },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'base',
+        rootPath: path.join(process.cwd(), 'packages/mui-base'),
+        entryPointPath: 'src/index.d.ts',
+      }),
+    ],
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
   },
   {
-    input: {
-      libDirectory: [path.join(process.cwd(), 'packages/mui-system/src')],
-    },
     output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
     },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'system',
+        rootPath: path.join(process.cwd(), 'packages/mui-system'),
+        entryPointPath: 'src/index.d.ts',
+      }),
+    ],
     getApiPages: () => findApiPages('docs/pages/system/api'),
     getComponentInfo: getSystemComponentInfo,
   },
@@ -158,11 +170,10 @@ async function run(argv: CommandOptions) {
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
     await resolvedPromise;
-    const workspaceRoot = path.resolve(__dirname, '../../');
     /**
      * @type {string[]}
      */
-    const componentDirectories = setting.input.libDirectory;
+    const projects = setting.getProjects();
     const apiPagesManifestPath = setting.output.apiManifestPath;
 
     const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
@@ -170,57 +181,36 @@ async function run(argv: CommandOptions) {
       mkdirSync(manifestDir, { recursive: true });
     }
 
-    /**
-     * components: Array<{ filename: string }>
-     * e.g.
-     * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
-     */
-    const components = componentDirectories
-      .reduce((directories, componentDirectory) => {
-        return directories.concat(findComponents(componentDirectory));
-      }, [] as ReadonlyArray<{ filename: string }>)
-      .filter((component) => {
-        if (
-          component.filename.includes('ThemeProvider') ||
-          (component.filename.includes('mui-material') &&
-            component.filename.includes('CssVarsProvider'))
-        ) {
-          return false;
+    const componentBuilds = projects.flatMap((project) => {
+      const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
+        (component) => {
+          if (
+            component.filename.includes('ThemeProvider') ||
+            (component.filename.includes('mui-material') &&
+              component.filename.includes('CssVarsProvider'))
+          ) {
+            return false;
+          }
+          if (grep === null) {
+            return true;
+          }
+          return grep.test(component.filename);
+        },
+      );
+
+      return projectComponents.map(async (component) => {
+        try {
+          const { filename } = component;
+          const componentInfo = setting.getComponentInfo(filename);
+
+          mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+
+          return generateComponentApi(componentInfo, project);
+        } catch (error: any) {
+          error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+          throw error;
         }
-        if (grep === null) {
-          return true;
-        }
-        return grep.test(component.filename);
       });
-
-    const tsconfig = ttp.loadConfig(path.resolve(workspaceRoot, './tsconfig.json'));
-    const program = ttp.createTSProgram(
-      components.map((component) => {
-        if (component.filename.endsWith('.tsx')) {
-          return component.filename;
-        }
-        if (component.filename.endsWith('.js')) {
-          return component.filename.replace(/\.js$/, '.d.ts');
-        }
-        throw new TypeError(
-          `Unexpected component filename '${component.filename}'. Expected either a .tsx or .js file.`,
-        );
-      }),
-      tsconfig,
-    );
-
-    const componentBuilds = components.map(async (component) => {
-      try {
-        const { filename } = component;
-        const componentInfo = setting.getComponentInfo(filename);
-
-        mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
-
-        return generateComponentApi(componentInfo, program);
-      } catch (error: any) {
-        error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
-        throw error;
-      }
     });
 
     const builds = await Promise.allSettled(componentBuilds);

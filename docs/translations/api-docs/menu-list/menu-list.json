@@ -8,5 +8,22 @@
     "disableListWrap": "If <code>true</code>, the menu items will not wrap focus.",
     "variant": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element."
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "padding": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disablePadding={true}</code>"
+    },
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "dense"
+    },
+    "subheader": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "a <code>subheader</code> is provided"
+    }
+  }
 }

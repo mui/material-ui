@@ -16,7 +16,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 - [CDN](https://github.com/mui/material-ui/tree/master/examples/cdn)
 - [Plain server-side](https://github.com/mui/material-ui/tree/master/examples/ssr)
 - [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css)
-- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs)
+- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/vitejs-with-typescript))
 - [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 - [Next.js + @mui/styles (v4 migration helper)](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
 
