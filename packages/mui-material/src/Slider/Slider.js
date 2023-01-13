@@ -7,7 +7,7 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import { useSlider, getSliderUtilityClass } from '@mui/base/SliderUnstyled';
+import { useSlider } from '@mui/base/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
@@ -15,7 +15,7 @@ import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import SliderValueLabelComponent from './SliderValueLabel';
-import sliderClasses from './sliderClasses';
+import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
 const valueToPercent = (value, min, max) => ((value - min) * 100) / (max - min);
 

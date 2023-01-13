@@ -101,6 +101,8 @@
   "styles": {
     "classes": [
       "root",
+      "colorPrimary",
+      "colorSecondary",
       "marked",
       "vertical",
       "disabled",
@@ -116,8 +118,6 @@
       "markActive",
       "markLabel",
       "markLabelActive",
-      "colorPrimary",
-      "colorSecondary",
       "sizeSmall",
       "thumbColorPrimary",
       "thumbColorSecondary",
