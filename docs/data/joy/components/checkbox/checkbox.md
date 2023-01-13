@@ -7,12 +7,21 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 
 # Checkbox
 
-<p class="description">Checkboxes allow the user to select one or more items from a set.</p>
+<p class="description">Checkboxes give users binary choices when presented with multiple options in a series.</p>
 
 ## Introduction
 
-The `Checkbox` component is the one to be used when you want to allow users to select multiple options.
-For toggling between on and off or single option selection, consider using a switch or radio button, respectively.
+Checkboxes provide users with a graphical representation of a binary choice (yes or no, on or off).
+They are most commonly presented in a series, giving the user multiple choices to make.
+
+The Joy UI Checkbox component replaces the native HTML `<input type="checkbox">` element, and offers expanded options for styling and accessibility.
+
+:::success
+When should you use checkboxes rather than switches or radio buttons?
+
+- Use a switch to provide the user with **a single binary choice**—checkboxes are preferable when you need to give the user multiple binary choices.
+- Use radio buttons to give the user **mutually exclusive options**—checkboxes are preferable when you need to let the user select one, some, all, or none from a series of options.
+:::
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
