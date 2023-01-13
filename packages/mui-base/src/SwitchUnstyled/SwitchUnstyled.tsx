@@ -59,6 +59,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
+    slotClasses = {},
     slotProps = {},
     slots = {},
     ...other
@@ -97,6 +98,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     },
     ownerState,
     className: classes.root,
+    slotClasses,
+    slotName: 'root',
   });
 
   const Thumb: React.ElementType = slots.thumb ?? 'span';
@@ -105,6 +108,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     externalSlotProps: slotProps.thumb,
     ownerState,
     className: classes.thumb,
+    slotClasses,
+    slotName: 'thumb',
   });
 
   const Input: React.ElementType = slots.input ?? 'input';
@@ -114,6 +119,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     externalSlotProps: slotProps.input,
     ownerState,
     className: classes.input,
+    slotClasses,
+    slotName: 'input',
   });
 
   const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
@@ -122,6 +129,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     externalSlotProps: slotProps.track,
     ownerState,
     className: classes.track,
+    slotClasses,
+    slotName: 'track',
   });
 
   return (

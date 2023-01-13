@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import clsx from 'clsx';
 import appendOwnerState, { AppendOwnerStateReturnType } from './appendOwnerState';
 import mergeSlotProps, {
   MergeSlotPropsParameters,
@@ -7,6 +8,7 @@ import mergeSlotProps, {
   WithCommonProps,
 } from './mergeSlotProps';
 import resolveComponentProps from './resolveComponentProps';
+import { SlotClasses } from '../SwitchUnstyled';
 
 export type UseSlotPropsParameters<
   ElementType extends React.ElementType,
@@ -15,10 +17,12 @@ export type UseSlotPropsParameters<
   ExternalSlotProps,
   AdditionalProps,
   OwnerState,
+  SlotName extends string,
 > = Omit<
   MergeSlotPropsParameters<SlotProps, ExternalForwardedProps, ExternalSlotProps, AdditionalProps>,
   'externalSlotProps'
 > & {
+  slotName: SlotName;
   /**
    * The type of the component used in the slot.
    */
@@ -34,6 +38,7 @@ export type UseSlotPropsParameters<
    * The ownerState of the unstyled component.
    */
   ownerState: OwnerState;
+  slotClasses?: SlotClasses<SlotName, OwnerState>;
 };
 
 export type UseSlotPropsResult<
@@ -61,6 +66,7 @@ export default function useSlotProps<
   SlotProps,
   AdditionalProps,
   OwnerState,
+  SlotName extends string,
 >(
   parameters: UseSlotPropsParameters<
     ElementType,
@@ -68,10 +74,11 @@ export default function useSlotProps<
     object,
     WithCommonProps<Record<string, any>>,
     AdditionalProps,
-    OwnerState
+    OwnerState,
+    SlotName
   >,
 ) {
-  const { elementType, externalSlotProps, ownerState, ...rest } = parameters;
+  const { elementType, externalSlotProps, ownerState, slotClasses, slotName, ...rest } = parameters;
   const resolvedComponentsProps = resolveComponentProps(externalSlotProps, ownerState);
   const { props: mergedProps, internalRef } = mergeSlotProps({
     ...rest,
@@ -84,11 +91,19 @@ export default function useSlotProps<
     parameters.additionalProps?.ref,
   ) as ((instance: any | null) => void) | null;
 
+  let resolvedSlotClasses: { [key in SlotName]?: string | undefined } = {};
+  if (slotClasses && typeof slotClasses === 'function') {
+    resolvedSlotClasses = slotClasses(ownerState);
+  } else if (slotClasses) {
+    resolvedSlotClasses = slotClasses;
+  }
+
   const props: UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState> =
     appendOwnerState(
       elementType,
       {
         ...mergedProps,
+        className: clsx(mergedProps.className, resolvedSlotClasses[slotName]),
         ref,
       },
       ownerState,
