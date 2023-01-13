@@ -87,13 +87,13 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
       /** Class name applied to the thumb element if `size="small"`. */
       thumbSizeSmall?: string;
       /** Class name applied to the thumb label element. */
-      valueLabel: string;
+      valueLabel?: string;
       /** Class name applied to the thumb label element if it's open. */
-      valueLabelOpen: string;
+      valueLabelOpen?: string;
       /** Class name applied to the thumb label's circle element. */
-      valueLabelCircle: string;
+      valueLabelCircle?: string;
       /** Class name applied to the thumb label's label element. */
-      valueLabelLabel: string;
+      valueLabelLabel?: string;
     };
     /**
      * The size of the slider.
