@@ -59,10 +59,6 @@ const sliderUnstyledClasses: SliderUnstyledClasses = generateUtilityClasses('Mui
   'markLabel',
   'markLabelActive',
   'thumb',
-  'valueLabel',
-  'valueLabelOpen',
-  'valueLabelCircle',
-  'valueLabelLabel',
 ]);
 
 export default sliderUnstyledClasses;
