@@ -413,6 +413,7 @@ const teamMembers: Array<Profile> = [
     title: 'Business Administrator',
     location: 'London, UK',
     locationCountry: 'gb',
+    about: 'Empathic art-lover, incurable optimist keen on biking, gardening',
   },
   {
     src: '/static/branding/about/lukas.png',
