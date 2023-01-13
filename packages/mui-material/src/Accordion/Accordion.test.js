@@ -224,7 +224,7 @@ describe('<Accordion />', () => {
     }
 
     const onEnter = () => 'ON ENTER OK';
-    const onExit = () => 'ON EXIT NOT OK';
+    const onExit = () => 'ON EXIT OK';
 
     const theme = createTheme({
       components: {
@@ -240,10 +240,7 @@ describe('<Accordion />', () => {
 
     const { getByText } = render(
       <ThemeProvider theme={theme}>
-        <Accordion
-          TransitionComponent={MockTransition}
-          TransitionProps={{ onEnter, onExit: () => 'ON EXIT OK' }}
-        >
+        <Accordion TransitionComponent={MockTransition} TransitionProps={{ onEnter }}>
           <AccordionSummary>Accordion</AccordionSummary>
           <AccordionDetails>Text</AccordionDetails>
         </Accordion>
