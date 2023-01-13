@@ -4,19 +4,21 @@ import {
   SpacingOptions,
   createBreakpoints,
   createSpacing,
-  unstable_createGetCssVar as systemCreateGetCssVar,
   colorChannel,
+  unstable_cssVarsParser as cssVarsParser,
+  unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
-import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
+import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales, SxProps, RuntimeColorSystem } from './types';
+import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
@@ -66,6 +68,14 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   components?: Components<Theme>;
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
   unstable_sxConfig?: SxConfig;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
@@ -79,6 +89,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     components: componentsInput,
     variants: variantsInput,
     colorInversion: colorInversionInput,
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     ...scalesInput
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
@@ -603,6 +614,28 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
+  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
+  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  });
+  theme.vars = rootVars as unknown as Theme['vars'];
+  const colorSchemesCss: Record<string, any> = {};
+  Object.keys(colorSchemes).forEach((key) => {
+    const { css, vars } = cssVarsParser(theme, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
+    theme.vars = deepmerge(theme.vars, vars);
+    colorSchemesCss[key] = css;
+  });
+  theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
+    if (!colorScheme) {
+      return rootCss;
+    }
+    return colorSchemesCss[colorScheme];
+  };
+
   /**
    * Color channels generation
    */
@@ -643,25 +676,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       sx: props,
       theme: this,
     });
-  };
-
-  // @ts-ignore palette could be defined in the ThemeProvider's theme
-  theme.palette = deepmerge(themeOptions?.palette || {}, {
-    ...(theme.colorSchemes.light.palette as RuntimeColorSystem['palette']),
-    colorScheme: 'light',
-  });
-  theme.vars = {
-    focus: theme.focus,
-    fontFamily: theme.fontFamily,
-    fontSize: theme.fontSize,
-    fontWeight: theme.fontWeight,
-    letterSpacing: theme.letterSpacing,
-    lineHeight: theme.lineHeight,
-    radius: theme.radius,
-    shadow: theme.shadow,
-    palette: theme.palette,
-    shadowRing: theme.shadowRing,
-    shadowChannel: theme.shadowChannel,
   };
   theme.getColorSchemeSelector = () => '&';
 

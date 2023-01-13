@@ -4,11 +4,6 @@ import extendTheme, { CssVarsThemeOptions } from './extendTheme';
 import { createSoftInversion, createSolidInversion } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
-const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
-  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
-  (keys[0] === 'focus' && keys[1] !== 'thickness');
-
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme
 >({
@@ -34,7 +29,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     );
     return mergedTheme;
   },
-  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
