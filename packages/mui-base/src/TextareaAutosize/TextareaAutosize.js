@@ -4,7 +4,6 @@ import { flushSync } from 'react-dom';
 import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 
@@ -182,7 +181,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     };
   });
 
-  useEnhancedEffect(() => {
+  React.useEffect(() => {
     syncHeight();
   });
 
