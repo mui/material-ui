@@ -31,7 +31,7 @@ describe('<InputUnstyled />', () => {
     expect(screen.getByRole('textbox')).to.have.tagName('textarea');
   });
 
-  it('should be able to attach ref passed through props', () => {
+  it('should be able to attach input ref passed through props', () => {
     const inputRef = React.createRef<HTMLInputElement>();
     render(<InputUnstyled inputRef={inputRef} />);
     expect(inputRef.current).not.to.equal(null);
