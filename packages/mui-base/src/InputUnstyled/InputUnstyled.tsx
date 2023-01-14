@@ -40,6 +40,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     endAdornment,
     error,
     id,
+    inputRef,
     multiline = false,
     name,
     onClick,
@@ -59,7 +60,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     slots = {},
     minRows,
     maxRows,
-    inputRef,
     ...other
   } = props;
 
@@ -74,13 +74,13 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     disabled,
     defaultValue,
     error,
+    inputRef,
     onBlur,
     onClick,
     onChange,
     onFocus,
     required,
     value,
-    inputRef,
   });
 
   const type = !multiline ? typeProp ?? 'text' : undefined;
