@@ -108,7 +108,7 @@ export function PlanPrice(props: PlanPriceProps) {
           Billed annually at $180/dev.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          Licenses beyond 10 devs are at $0.
+          No additional fee beyond 10 devs.
         </Typography>
       </div>
     );
