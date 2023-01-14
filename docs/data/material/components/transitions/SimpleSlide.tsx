@@ -26,7 +26,7 @@ export default function SimpleSlide() {
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
-    setChecked((prev) => !prev);
+    setChecked((checked) => !checked);
   };
 
   return (
