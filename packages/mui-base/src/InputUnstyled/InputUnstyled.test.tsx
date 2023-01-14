@@ -31,6 +31,12 @@ describe('<InputUnstyled />', () => {
     expect(screen.getByRole('textbox')).to.have.tagName('textarea');
   });
 
+  it('should be able to attach ref passed through props', () => {
+    const inputRef = React.createRef<HTMLInputElement>();
+    render(<InputUnstyled inputRef={inputRef} />);
+    expect(inputRef.current).not.to.equal(null);
+  });
+
   describe('prop: multiline', () => {
     it('should pass the rows prop to the underlying textarea when multiline=true', () => {
       const { getByRole } = render(<InputUnstyled multiline rows={5} />);
@@ -41,12 +47,6 @@ describe('<InputUnstyled />', () => {
       const { getByRole } = render(<InputUnstyled multiline minRows={5} maxRows={10} />);
       expect(getByRole('textbox')).not.to.have.attribute('minRows');
       expect(getByRole('textbox')).not.to.have.attribute('maxRows');
-    });
-
-    it('should be able to attach ref passed through props', () => {
-      const inputRef = React.createRef<HTMLInputElement>();
-      render(<InputUnstyled inputRef={inputRef} />);
-      expect(inputRef.current).not.to.equal(null);
     });
 
     it('should pass the minRows or maxRows prop to the underlying textarea slot if a custom component is used', () => {

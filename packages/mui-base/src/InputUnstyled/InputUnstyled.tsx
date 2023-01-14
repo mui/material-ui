@@ -240,7 +240,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * @ignore
+   * Pass a ref to the `input` element.
    */
   inputRef: PropTypes.oneOfType([
     PropTypes.func,
