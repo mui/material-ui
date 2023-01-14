@@ -465,6 +465,7 @@ export default function useAutocomplete(props) {
   const previousProps = usePreviousProps({
     filteredOptions,
     value,
+    multiple,
   });
 
   const syncHighlightedIndex = React.useCallback(() => {
@@ -476,7 +477,7 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
-      (Array.isArray(previousProps.value)
+      (previousProps.multiple
         ? previousProps.value.every((val, i) => value[i] === val)
         : previousProps.value === value)
     ) {

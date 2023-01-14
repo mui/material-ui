@@ -1257,7 +1257,7 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should keep focus on selected option and not reset to top option when previously highlighted option exists in new options', () => {
+    it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
       const listbox = screen.getByRole('listbox');
@@ -1269,6 +1269,46 @@ describe('Joy <Autocomplete />', () => {
 
       // three option is added and autocomplete re-renders, restore the highlight
       setProps({ options: ['one', 'two', 'three'] });
+      checkHighlightIs(listbox, 'two');
+    });
+
+    it('should keep focus on selected options and not reset to top option when options updated and when mutiple options are selected', () => {
+      const { setProps } = render(
+        <Autocomplete
+          open
+          multiple
+          defaultValue={['one', 'two']}
+          options={['one', 'two', 'three']}
+          autoFocus
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      checkHighlightIs(listbox, 'three');
+
+      // fourth option is added and autocomplete re-renders, restore the highlight
+      setProps({ options: ['one', 'two', 'three', 'four'] });
+      checkHighlightIs(listbox, 'three');
+    });
+
+    it('should keep focus on selected option when options updates and provided as objects', () => {
+      const { setProps } = render(
+        <Autocomplete open options={[{ label: 'one' }, { label: 'two' }]} autoFocus />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'two'
+
+      checkHighlightIs(listbox, 'two');
+
+      // three option is added and autocomplete re-renders, restore the highlight
+      setProps({ options: [{ label: 'one' }, { label: 'two' }, { label: 'three' }] });
       checkHighlightIs(listbox, 'two');
     });
 
