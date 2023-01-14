@@ -35,7 +35,7 @@ export function pageToTitle(page: Page): string | null {
 
   // TODO support more than React component API (PascalCase)
   if (path.indexOf('/api/') !== -1) {
-    return pascalCase(name);
+    return name.startsWith('use') ? camelCase(name) : pascalCase(name);
   }
 
   return titleize(name);

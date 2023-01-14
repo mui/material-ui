@@ -278,7 +278,7 @@ function extractClassConditions(descriptions: any) {
  * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
  * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGitHubPath(filepath: string): string {
+export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 

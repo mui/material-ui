@@ -32,7 +32,7 @@ export interface UseTabsParameters {
   selectionFollowsFocus?: boolean;
 }
 
-const useTabs = (parameters: UseTabsParameters) => {
+function useTabs(parameters: UseTabsParameters) {
   const {
     value: valueProp,
     defaultValue,
@@ -68,6 +68,6 @@ const useTabs = (parameters: UseTabsParameters) => {
   return {
     tabsContextValue,
   };
-};
+}
 
 export default useTabs;

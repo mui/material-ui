@@ -3,7 +3,7 @@ import { useButton } from '../ButtonUnstyled';
 import { UseTabParameters, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
 
-const useTab = (parameters: UseTabParameters) => {
+function useTab(parameters: UseTabParameters) {
   const { value: valueProp, onChange, onClick, onFocus } = parameters;
 
   const { getRootProps: getRootPropsButton, ...otherButtonProps } = useButton(parameters);
@@ -84,6 +84,6 @@ const useTab = (parameters: UseTabParameters) => {
     ...otherButtonProps,
     selected,
   };
-};
+}
 
 export default useTab;

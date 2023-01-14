@@ -1,0 +1,19 @@
+{
+  "inputParams": {
+    "elementType": {
+      "type": { "description": "The type of the component used in the slot." },
+      "required": true
+    },
+    "externalSlotProps": {
+      "type": { "description": "The `slotProps.*` of the unstyled component." },
+      "required": true
+    },
+    "ownerState": {
+      "type": { "description": "The ownerState of the unstyled component." },
+      "required": true
+    }
+  },
+  "name": "useSlotProps",
+  "filename": "/packages/mui-base/src/utils/useSlotProps.ts",
+  "demos": "<ul></ul>"
+}

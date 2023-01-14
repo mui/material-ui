@@ -1,7 +1,7 @@
 import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
 import { UseTabPanelParameters } from './useTabPanel.types';
 
-const useTabPanel = (parameters: UseTabPanelParameters) => {
+function useTabPanel(parameters: UseTabPanelParameters) {
   const { value } = parameters;
 
   const context = useTabContext();
@@ -25,6 +25,6 @@ const useTabPanel = (parameters: UseTabPanelParameters) => {
     hidden,
     getRootProps,
   };
-};
+}
 
 export default useTabPanel;

@@ -68,7 +68,7 @@ const moveFocus = (
   }
 };
 
-const useTabsList = (parameters: UseTabsListParameters) => {
+function useTabsList(parameters: UseTabsListParameters) {
   const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
 
   const tabsListRef = React.createRef<any>();
@@ -198,6 +198,6 @@ const useTabsList = (parameters: UseTabsListParameters) => {
     processChildren,
     getRootProps,
   };
-};
+}
 
 export default useTabsList;

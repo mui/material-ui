@@ -1,0 +1,6 @@
+{
+  "inputParams": {},
+  "name": "useButton",
+  "filename": "/packages/mui-base/src/ButtonUnstyled/useButton.ts",
+  "demos": "<ul><li><a href=\"/base/react-button/\">Unstyled Button</a></li></ul>"
+}
