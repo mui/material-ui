@@ -478,8 +478,8 @@ export default function useAutocomplete(props) {
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
       (previousProps.multiple
-        ? previousProps.value.every((val, i) => value[i] === val)
-        : previousProps.value === value)
+        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
