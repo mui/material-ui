@@ -1272,7 +1272,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
     });
 
-    it('should keep focus when multiple is true and not reset to top option when options updated', () => {
+    it('should keep focus when multiple options are selected and not reset to top option when options updated', () => {
       const { setProps } = render(
         <Autocomplete
           open
@@ -1295,7 +1295,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(listbox, 'three');
     });
 
-    it('should keep focus when mutiple is true and not reset to top option when options updated and when options are provided as objects', () => {
+    it('should keep focus when multiple options are selected and not reset to top option when options updated and when options are provided as objects', () => {
       const value = [{ label: 'one' }];
       const options = [{ label: 'one' }, { label: 'two' }, { label: 'three' }];
       const { setProps } = render(
