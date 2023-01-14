@@ -1303,7 +1303,7 @@ describe('Joy <Autocomplete />', () => {
           multiple
           options={options}
           value={value}
-          isOptionEqualToValue={(option, value) => option.label === value.label}
+          isOptionEqualToValue={(option, val) => option.label === val.label}
           autoFocus
           open
         />,
