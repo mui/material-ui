@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Button from '@mui/joy/Button';
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
@@ -54,8 +56,14 @@ export default function BasicModalDialog() {
             }}
           >
             <Stack spacing={2}>
-              <TextField label="Name" autoFocus required />
-              <TextField label="Description" required />
+              <FormControl>
+                <FormLabel>Name</FormLabel>
+                <Input autoFocus required />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Description</FormLabel>
+                <Input required />
+              </FormControl>
               <Button type="submit">Submit</Button>
             </Stack>
           </form>
