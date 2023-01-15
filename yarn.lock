@@ -1241,6 +1241,11 @@
   dependencies:
     "@chakra-ui/react-use-safe-layout-effect" "2.0.4"
 
+"@chakra-ui/object-utils@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/object-utils/-/object-utils-2.0.7.tgz#0d17b7a528d712428e482709c9df9fcd92db9f2b"
+  integrity sha512-dw5KXK9Vlr5ndf9/iSiEuvpfhZQasYdDdGXDtSBL2rF6Llg2OQ5MRSoLhTt9oL1L9crv9uPCJRm5S9VJZ3i5Vw==
+
 "@chakra-ui/react-use-safe-layout-effect@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-safe-layout-effect/-/react-use-safe-layout-effect-2.0.4.tgz#5924c94dbaa3765a5f80931a6cf2cf3af094cc39"
@@ -1267,12 +1272,13 @@
     csstype "^3.0.11"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/system@^2.3.7":
-  version "2.3.7"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.7.tgz#31e8aade0ff43288c7dfe63dfce6be72cc049779"
-  integrity sha512-sUmLyo+zjv+Im56slRaQA5fw04y7JuVGKgGW8xcQan+jVtMI2gGBvnecOUeNNiEWglpW/pZ/AE9rgJX9dKkrkA==
+"@chakra-ui/system@^2.3.8":
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.8.tgz#7bf5b21e713ee0f62e5c65f337b702cc6beecbe1"
+  integrity sha512-ZCC54MahWIt5nCw9LQDFK4hZRefF6QTxVnPS9Sr3lRlYNzE15/YyzCq+Yb97/ApmQSUmIsnT3uxr1G+OwmuHAA==
   dependencies:
     "@chakra-ui/color-mode" "2.1.11"
+    "@chakra-ui/object-utils" "2.0.7"
     "@chakra-ui/react-utils" "2.0.11"
     "@chakra-ui/styled-system" "2.5.1"
     "@chakra-ui/theme-utils" "2.0.8"
