@@ -163,7 +163,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeInset: badgeInsetProp,
     color: colorProp,
     variant: variantProp,
-  }) as BadgeProps;
+  });
 
   let invisible = invisibleProp;
 
