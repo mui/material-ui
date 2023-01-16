@@ -2346,6 +2346,39 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onHighlightChange', () => {
+    it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const handleHighlightChange = spy();
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          ListboxProps={{ style: { maxHeight: '100px' } }}
+          onHighlightChange={handleHighlightChange}
+        />,
+      );
+      const firstOption = getAllByRole('option')[0];
+      const textbox = getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      // move mouse to center of first option
+      const { width, height, top, left } = firstOption.getBoundingClientRect();
+      const x = left + width / 2;
+      const y = top + height / 2;
+      fireEvent.mouseMove(firstOption, { clientX: x, clientY: y });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
+      fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
+      expect(handleHighlightChange.callCount).to.equal(
+        // FIXME: highlighted index implementation should be implemented using React not the DOM.
+        React.version.startsWith('18') ? 3 : 2,
+      );
+    });
+
     it('should trigger event when default value is passed', () => {
       const handleHighlightChange = spy();
       const options = ['one', 'two', 'three'];
