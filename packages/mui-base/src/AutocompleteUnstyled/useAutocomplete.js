@@ -927,13 +927,12 @@ export default function useAutocomplete(props) {
 
   const handleOptionMouseOver = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    if (highlightedIndexRef.current !== index) {
-      setHighlightedIndex({
-        event,
-        index,
-        reason: 'mouse',
-      });
-    }
+
+    setHighlightedIndex({
+      event,
+      index,
+      reason: 'mouse',
+    });
   };
 
   const handleOptionTouchStart = () => {
