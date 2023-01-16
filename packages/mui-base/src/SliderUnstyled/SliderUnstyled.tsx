@@ -15,7 +15,8 @@ import {
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
 
-function Identity(x: any) {
+// @ts-ignore
+function Identity(x) {
   return x;
 }
 
@@ -471,7 +472,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * A transformation function, to change the scale of the slider.
    * @param {any} x
    * @returns {any}
-   * @default function Identity(x: any) {
+   * @default function Identity(x) {
    *   return x;
    * }
    */
@@ -560,7 +561,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * - {number} index The value label's index to format
    * @param {any} x
    * @returns {any}
-   * @default function Identity(x: any) {
+   * @default function Identity(x) {
    *   return x;
    * }
    */

@@ -48,10 +48,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": {
-      "type": { "name": "func" },
-      "default": "function Identity(x: any) {\n  return x;\n}"
-    },
+    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
     "size": {
       "type": {
         "name": "union",
@@ -97,7 +94,7 @@
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "function Identity(x: any) {\n  return x;\n}"
+      "default": "function Identity(x) {\n  return x;\n}"
     }
   },
   "name": "Slider",
