@@ -15,6 +15,12 @@ import { EventHandlers } from '../utils/types';
 
 const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
 
+function useNotifyChanged(prop, propName) {
+  React.useEffect(() => {
+    console.log(`${propName} changed (new value: ${prop}))`);
+  }, [prop, propName]);
+}
+
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
 const defaultOptionStringifier = <TOption>(option: TOption) =>
@@ -37,14 +43,38 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const id = useId(idProp);
 
-  function defaultIdGenerator(_: TOption, index: number) {
-    return `${id}-option-${index}`;
-  }
+  const defaultIdGenerator = React.useCallback(
+    (_: TOption, index: number) => `${id}-option-${index}`,
+    [id],
+  );
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: UseListboxPropsWithDefaults<TOption> = {
-    ...props,
+  const propsWithDefaults: React.MutableRefObject<UseListboxPropsWithDefaults<TOption>> =
+    React.useRef({
+      ...props,
+      disabledItemsFocusable,
+      disableListWrap,
+      focusManagement,
+      isOptionDisabled,
+      multiple,
+      optionComparer,
+      optionStringifier,
+    });
+
+  React.useEffect(() => {
+    propsWithDefaults.current = {
+      ...props,
+      disabledItemsFocusable,
+      disableListWrap,
+      focusManagement,
+      isOptionDisabled,
+      multiple,
+      optionComparer,
+      optionStringifier,
+    };
+  }, [
+    props,
     disabledItemsFocusable,
     disableListWrap,
     focusManagement,
@@ -52,7 +82,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     multiple,
     optionComparer,
     optionStringifier,
-  };
+  ]);
 
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
@@ -68,8 +98,20 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
-    propsWithDefaults,
+    propsWithDefaults.current,
   );
+
+  const highlightedIndexRef = React.useRef<number>(-1);
+
+  React.useEffect(() => {
+    if (highlightedValue == null) {
+      highlightedIndexRef.current = -1;
+    } else {
+      highlightedIndexRef.current = options.findIndex((option) =>
+        optionComparer(option, highlightedValue),
+      );
+    }
+  }, [highlightedValue, options, optionComparer]);
 
   const highlightedIndex = React.useMemo(() => {
     return highlightedValue == null
@@ -89,7 +131,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       event: null,
       options,
       previousOptions: previousOptions.current,
-      props: propsWithDefaults,
+      props: propsWithDefaults.current,
     });
 
     previousOptions.current = options;
@@ -120,39 +162,45 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     [dispatch],
   );
 
-  const createHandleOptionClick =
+  const createHandleOptionClick = React.useCallback(
     (option: TOption, other: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent) => {
-      other.onClick?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
+      (event: React.MouseEvent) => {
+        other.onClick?.(event);
+        if (event.defaultPrevented) {
+          return;
+        }
 
-      event.preventDefault();
+        event.preventDefault();
 
-      dispatch({
-        type: ActionTypes.optionClick,
-        option,
-        event,
-        props: propsWithDefaults,
-      });
-    };
+        dispatch({
+          type: ActionTypes.optionClick,
+          option,
+          event,
+          props: propsWithDefaults.current,
+        });
+      },
+    [dispatch],
+  );
 
-  const createHandleOptionPointerOver =
+  useNotifyChanged(dispatch, 'dispatch');
+
+  const createHandleOptionPointerOver = React.useCallback(
     (option: TOption, other: Record<string, React.EventHandler<any>>) =>
-    (event: React.PointerEvent) => {
-      other.onMouseOver?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
+      (event: React.PointerEvent) => {
+        other.onMouseOver?.(event);
+        if (event.defaultPrevented) {
+          return;
+        }
 
-      dispatch({
-        type: ActionTypes.optionHover,
-        option,
-        event,
-        props: propsWithDefaults,
-      });
-    };
+        dispatch({
+          type: ActionTypes.optionHover,
+          option,
+          event,
+          props: propsWithDefaults.current,
+        });
+      },
+    [dispatch],
+  );
 
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
@@ -180,7 +228,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       dispatch({
         type: ActionTypes.keyDown,
         event,
-        props: propsWithDefaults,
+        props: propsWithDefaults.current,
       });
 
       // Handle text navigation
@@ -208,7 +256,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
           type: ActionTypes.textNavigation,
           event,
           searchString: textCriteria.searchString,
-          props: propsWithDefaults,
+          props: propsWithDefaults.current,
         });
       }
     };
@@ -229,7 +277,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       dispatch({
         type: ActionTypes.blur,
         event,
-        props: propsWithDefaults,
+        props: propsWithDefaults.current,
       });
     };
 
@@ -251,60 +299,85 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     };
   };
 
-  const getOptionState = (option: TOption): OptionState => {
-    let selected: boolean;
-    const index = options.findIndex((opt) => optionComparer(opt, option));
-    if (multiple) {
-      selected = ((selectedValue as TOption[]) ?? []).some(
-        (value) => value != null && optionComparer(option, value),
-      );
-    } else {
-      selected = optionComparer(option, selectedValue as TOption);
-    }
+  const getOptionState = React.useCallback(
+    (option: TOption): OptionState => {
+      let selected: boolean;
+      const index = options.findIndex((opt) => optionComparer(opt, option));
+      if (multiple) {
+        selected = ((selectedValue as TOption[]) ?? []).some(
+          (value) => value != null && optionComparer(option, value),
+        );
+      } else {
+        selected = optionComparer(option, selectedValue as TOption);
+      }
 
-    const disabled = isOptionDisabled(option, index);
+      const disabled = isOptionDisabled(option, index);
 
-    return {
-      selected,
-      disabled,
-      highlighted: highlightedIndex === index,
-    };
-  };
+      return {
+        selected,
+        disabled,
+        highlighted: highlightedIndexRef.current === index,
+      };
+    },
+    [options, selectedValue, multiple, isOptionDisabled, optionComparer],
+  );
 
-  const getOptionTabIndex = (optionState: OptionState) => {
-    if (focusManagement === 'activeDescendant') {
-      return undefined;
-    }
+  const getOptionTabIndex = React.useCallback(
+    (optionState: OptionState) => {
+      if (focusManagement === 'activeDescendant') {
+        return undefined;
+      }
 
-    if (!optionState.highlighted) {
-      return -1;
-    }
+      if (!optionState.highlighted) {
+        return -1;
+      }
 
-    if (optionState.disabled && !disabledItemsFocusable) {
-      return -1;
-    }
+      if (optionState.disabled && !disabledItemsFocusable) {
+        return -1;
+      }
 
-    return 0;
-  };
+      return 0;
+    },
+    [focusManagement, disabledItemsFocusable],
+  );
 
-  const getOptionProps = <TOther extends EventHandlers = {}>(
-    option: TOption,
-    otherHandlers: TOther = {} as TOther,
-  ): UseListboxOptionSlotProps<TOther> => {
-    const optionState = getOptionState(option);
-    const index = options.findIndex((opt) => optionComparer(opt, option));
+  useNotifyChanged(optionIdGenerator, 'optionIdGenerator');
+  useNotifyChanged(createHandleOptionClick, 'createHandleOptionClick');
+  useNotifyChanged(createHandleOptionPointerOver, 'createHandleOptionPointerOver');
+  useNotifyChanged(getOptionTabIndex, 'getOptionTabIndex');
+  useNotifyChanged(getOptionState, 'getOptionState');
+  useNotifyChanged(optionComparer, 'optionComparer');
+  useNotifyChanged(options, 'options');
 
-    return {
-      ...otherHandlers,
-      'aria-disabled': optionState.disabled || undefined,
-      'aria-selected': optionState.selected,
-      id: optionIdGenerator(option, index),
-      onClick: createHandleOptionClick(option, otherHandlers),
-      onPointerOver: createHandleOptionPointerOver(option, otherHandlers),
-      role: 'option',
-      tabIndex: getOptionTabIndex(optionState),
-    };
-  };
+  const getOptionProps = React.useCallback(
+    <TOther extends EventHandlers = {}>(
+      option: TOption,
+      otherHandlers: TOther = {} as TOther,
+    ): UseListboxOptionSlotProps<TOther> => {
+      const optionState = getOptionState(option);
+      const index = options.findIndex((opt) => optionComparer(opt, option));
+
+      return {
+        ...otherHandlers,
+        'aria-disabled': optionState.disabled || undefined,
+        'aria-selected': optionState.selected,
+        id: optionIdGenerator(option, index),
+        onClick: createHandleOptionClick(option, otherHandlers),
+        onPointerOver: createHandleOptionPointerOver(option, otherHandlers),
+        role: 'option',
+        tabIndex: getOptionTabIndex(optionState),
+      };
+    },
+    [
+      optionIdGenerator,
+      createHandleOptionClick,
+      createHandleOptionPointerOver,
+      getOptionTabIndex,
+      getOptionState,
+      optionComparer,
+      options,
+    ],
+  );
 
   React.useDebugValue({
     highlightedOption: options[highlightedIndex],

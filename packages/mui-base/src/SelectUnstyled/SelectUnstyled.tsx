@@ -127,10 +127,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+    },
+    [setListboxOpen, onListboxOpenChange],
+  );
 
   const {
     buttonActive,
@@ -216,6 +219,14 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     }),
     [getOptionProps, getOptionState],
   );
+
+  React.useEffect(() => {
+    console.log('getOptionProps changed');
+  }, [getOptionProps]);
+
+  React.useEffect(() => {
+    console.log('getOptionState changed');
+  }, [getOptionState]);
 
   return (
     <React.Fragment>

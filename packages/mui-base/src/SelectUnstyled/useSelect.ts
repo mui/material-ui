@@ -26,6 +26,20 @@ import {
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
 
+function useNotifyChanged(prop, propName) {
+  React.useEffect(() => {
+    console.log(`${propName} changed (new value: ${prop}))`);
+  }, [prop, propName]);
+}
+
+function defaultOptionComparer<TValue>(o: SelectOption<TValue>, v: SelectOption<TValue>) {
+  return o?.value === v?.value;
+}
+
+function defaultIsOptionDisabled<TValue>(o: SelectOption<TValue>) {
+  return o?.disabled ?? false;
+}
+
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
@@ -136,7 +150,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       ignoreEnterKeyUp.current = false;
     };
 
-  const createHandleListboxItemClick =
+  const createHandleListboxItemClick = React.useCallback(
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
       otherHandlers?.onClick?.(event);
       if (event.defaultPrevented) {
@@ -146,7 +160,9 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       if (!multiple) {
         onOpenChange?.(false);
       }
-    };
+    },
+    [multiple, onOpenChange],
+  );
 
   const createHandleListboxBlur =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
@@ -211,8 +227,8 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     ) => void;
     useListboxParameters = {
       id: listboxId,
-      isOptionDisabled: (o) => o?.disabled ?? false,
-      optionComparer: (o, v) => o?.value === v?.value,
+      isOptionDisabled: defaultIsOptionDisabled,
+      optionComparer: defaultOptionComparer,
       listboxRef: handleListboxRef,
       multiple: true,
       onChange: (e, newOptions) => {
@@ -231,8 +247,8 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     ) => void;
     useListboxParameters = {
       id: listboxId,
-      isOptionDisabled: (o) => o?.disabled ?? false,
-      optionComparer: (o, v) => o?.value === v?.value,
+      isOptionDisabled: defaultIsOptionDisabled,
+      optionComparer: defaultOptionComparer,
       listboxRef: handleListboxRef,
       multiple: false,
       onChange: (e, option: SelectOption<TValue> | null) => {
@@ -280,15 +296,21 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onKeyUp: createHandleListboxKeyUp(otherHandlers),
     });
 
-  const getOptionProps = <TOther extends EventHandlers>(
-    option: SelectOption<TValue>,
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectOptionSlotProps<TOther> => {
-    return getListboxOptionProps(option, {
-      ...otherHandlers,
-      onClick: createHandleListboxItemClick(otherHandlers),
-    });
-  };
+  useNotifyChanged(getListboxOptionProps, 'getListboxOptionProps');
+  useNotifyChanged(createHandleListboxItemClick, 'createHandleListboxItemClick');
+
+  const getOptionProps = React.useCallback(
+    <TOther extends EventHandlers>(
+      option: SelectOption<TValue>,
+      otherHandlers: TOther = {} as TOther,
+    ): UseSelectOptionSlotProps<TOther> => {
+      return getListboxOptionProps(option, {
+        ...otherHandlers,
+        onClick: createHandleListboxItemClick(otherHandlers),
+      });
+    },
+    [getListboxOptionProps, createHandleListboxItemClick],
+  );
 
   React.useDebugValue({
     selectedOption: listboxSelectedOption,

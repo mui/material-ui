@@ -19,11 +19,7 @@ function stateReducer(
   state: ListboxState<string>,
   action: ListboxAction<string>,
 ): ListboxState<string> {
-  if (
-    action.type === ActionTypes.blur ||
-    action.type === ActionTypes.optionHover ||
-    action.type === ActionTypes.setValue
-  ) {
+  if (action.type === ActionTypes.blur || action.type === ActionTypes.setValue) {
     return state;
   }
 

@@ -40,6 +40,8 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     ...other
   } = props;
 
+  console.log('rendering OptionUnstyled');
+
   const selectContext = React.useContext(SelectUnstyledContext);
   if (!selectContext) {
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
