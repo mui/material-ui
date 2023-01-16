@@ -2356,7 +2356,35 @@ describe('<Autocomplete />', () => {
           open
           options={['one', 'two', 'three', 'four', 'five']}
           renderInput={(params) => <TextField {...params} />}
-          ListboxProps={{ style: { maxHeight: '100px' } }}
+          ListboxProps={{ style: { height: '100px' } }}
+          onHighlightChange={handleHighlightChange}
+        />,
+      );
+      const firstOption = getAllByRole('option')[0];
+      const textbox = getByRole('combobox');
+      fireEvent.click(textbox);
+      // move mouse to center of first option
+      const { width, height, top, left } = firstOption.getBoundingClientRect();
+      const x = left + width / 2;
+      const y = top + height / 2;
+
+      fireEvent.mouseOver(firstOption, { clientX: x, clientY: y });
+      checkHighlightIs(getByRole('listbox'), 'one');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'three');
+    });
+    it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const handleHighlightChange = spy();
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          renderInput={(params) => <TextField {...params} />}
+          ListboxProps={{ style: { height: '100px' } }}
           onHighlightChange={handleHighlightChange}
         />,
       );
