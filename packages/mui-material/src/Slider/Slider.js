@@ -19,7 +19,9 @@ import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
 const valueToPercent = (value, min, max) => ((value - min) * 100) / (max - min);
 
-const Identity = (x) => x;
+function Identity(x) {
+  return x;
+}
 
 const SliderRoot = styled('span', {
   name: 'MuiSlider',
@@ -973,7 +975,11 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -1074,7 +1080,11 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

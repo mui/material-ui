@@ -9,19 +9,20 @@ import {
   Mark,
 } from './useSlider.types';
 
-export type SliderUnstyledOwnerState = SliderUnstyledProps & {
+export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;
   focusedThumbIndex: number;
   isRtl: boolean;
-  mark: boolean | Mark[];
   max: number;
   min: number;
+  dragging: boolean;
+  marked: boolean;
   orientation: 'horizontal' | 'vertical';
   scale: (value: number) => number;
   step: number | null;
   track: 'normal' | false | 'inverted';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
-};
+}
 
 export interface SliderUnstyledComponentsPropsOverrides {}
 
@@ -123,7 +124,11 @@ export interface SliderUnstyledOwnProps {
   orientation?: 'horizontal' | 'vertical';
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale?: (value: number) => number;
   /**
@@ -222,7 +227,11 @@ export interface SliderUnstyledOwnProps {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }

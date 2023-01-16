@@ -27,7 +27,7 @@ export default function MyApp() {
 
 ### System props
 
-As a CSS utility component, `Typography` supports every [`system`](/system/properties/) properties.
+As a CSS utility component, `Typography` supports every [`system`](/system/properties/) property.
 
 ```jsx
 <Typography textColor="neutral.500" fontSize="sm" fontWeight="lg">

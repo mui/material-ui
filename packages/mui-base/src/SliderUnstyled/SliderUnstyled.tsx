@@ -2,15 +2,24 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
+import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
+import {
+  SliderUnstyledOwnerState,
+  SliderUnstyledProps,
+  SliderUnstyledTypeMap,
+} from './SliderUnstyled.types';
 
-const Identity = (x) => x;
+// @ts-ignore
+function Identity(x) {
+  return x;
+}
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
   const slots = {
@@ -39,7 +48,19 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
-const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Slider](https://mui.com/base/react-slider/)
+ *
+ * API:
+ *
+ * - [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
+ */
+const SliderUnstyled = React.forwardRef(function SliderUnstyled<
+  BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
+>(props: SliderUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
@@ -65,6 +86,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     value: valueProp,
     valueLabelFormat = Identity,
     isRtl = false,
+    defaultValue,
     slotProps = {},
     slots = {},
     ...other
@@ -72,12 +94,16 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the variants
-  const ownerState = {
+  const partialOwnerState: Omit<
+    SliderUnstyledOwnerState,
+    'focusedThumbIndex' | 'marked' | 'dragging'
+  > = {
     ...props,
     marks: marksProp,
     classes: classesProp,
     disabled,
     isRtl,
+    defaultValue,
     max,
     min,
     orientation,
@@ -101,11 +127,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+  } = useSlider({ ...partialOwnerState, ref });
 
-  ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
-  ownerState.dragging = dragging;
-  ownerState.focusedThumbIndex = focusedThumbIndex;
+  const ownerState: SliderUnstyledOwnerState = {
+    ...partialOwnerState,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
+    dragging,
+    focusedThumbIndex,
+  };
 
   const classes = useUtilityClasses(ownerState);
 
@@ -286,12 +315,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       })}
     </Root>
   );
-});
+}) as OverridableComponent<SliderUnstyledTypeMap>;
 
 SliderUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The label of the slider.
@@ -431,7 +460,11 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -497,9 +530,13 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-};
+} as any;
 
 export default SliderUnstyled;

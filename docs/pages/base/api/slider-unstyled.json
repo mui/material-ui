@@ -29,7 +29,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -58,7 +58,7 @@
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "(x) => x"
+      "default": "function Identity(x) {\n  return x;\n}"
     }
   },
   "name": "SliderUnstyled",
@@ -103,7 +103,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.js",
+  "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-slider/\">Unstyled Slider</a></li></ul>",
   "cssComponent": false
