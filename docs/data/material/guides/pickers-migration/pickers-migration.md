@@ -8,7 +8,7 @@
 The components are available in alpha version in the lab between `v5.0.0-alpha.30` and `v5.0.0-alpha.89` inclusively.
 They won't receive any new feature of bug fixes and won't be compatible with future major releases of MUI packages.
 
-If you want to use the **stable version** of those components, please have a look at the new   [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+If you want to use the **stable version** of those components, please have a look at the new [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
 To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/react-date-pickers/migration-lab/).
 :::
