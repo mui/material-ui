@@ -1,4 +1,7 @@
-import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/base/SliderUnstyled';
+import SliderUnstyled, {
+  sliderUnstyledClasses as classes,
+  SliderUnstyledRootSlotProps,
+} from '@mui/base/SliderUnstyled';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
@@ -10,7 +13,9 @@ import {
   screen,
 } from 'test/utils';
 
-function createTouches(touches) {
+type Touches = Array<Pick<Touch, 'identifier' | 'clientX' | 'clientY'>>;
+
+function createTouches(touches: Touches) {
   return {
     changedTouches: touches.map(
       (touch) =>
@@ -61,10 +66,19 @@ describe('<SliderUnstyled />', () => {
     let theme = null;
 
     const Root = React.forwardRef(
-      ({ ownerState: ownerStateProp, theme: themeProp, ...other }, ref) => {
+      (
+        {
+          ownerState: ownerStateProp,
+          theme: themeProp,
+          ...other
+        }: SliderUnstyledRootSlotProps & {
+          theme: any;
+        },
+        ref: React.ForwardedRef<HTMLSpanElement>,
+      ) => {
         ownerState = ownerStateProp;
         theme = themeProp;
-        return <span ref={ref} {...other} />;
+        return <span {...other} ref={ref} />;
       },
     );
 
@@ -75,7 +89,7 @@ describe('<SliderUnstyled />', () => {
   });
 
   it('does not forward style props as DOM attributes if component slot is primitive', () => {
-    const elementRef = React.createRef();
+    const elementRef = React.createRef<HTMLSpanElement>();
     render(
       <SliderUnstyled
         slots={{
@@ -86,8 +100,10 @@ describe('<SliderUnstyled />', () => {
     );
 
     const { current: element } = elementRef;
-    expect(element.getAttribute('ownerState')).to.equal(null);
-    expect(element.getAttribute('theme')).to.equal(null);
+    if (element !== null) {
+      expect(element.getAttribute('ownerState')).to.equal(null);
+      expect(element.getAttribute('theme')).to.equal(null);
+    }
   });
 
   describe('prop: marks', () => {
@@ -136,20 +152,38 @@ describe('<SliderUnstyled />', () => {
     });
   });
 
-  [
+  type Values = Array<[string, number[]]>;
+
+  const values = [
     ['readonly range', Object.freeze([2, 1])],
     ['range', [2, 1]],
-  ].forEach(([valueLabel, value]) => {
+  ] as Values;
+  values.forEach(([valueLabel, value]) => {
     it(`calls onChange even if the ${valueLabel} did not change`, () => {
       const handleChange = spy();
-      const { container } = render(
-        <SliderUnstyled min={0} max={5} onChange={handleChange} value={value} />,
+
+      render(
+        <SliderUnstyled
+          min={0}
+          max={5}
+          onChange={handleChange}
+          value={value}
+          data-testid="slider-root"
+        />,
       );
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+
+      const sliderRoot = screen.getByTestId('slider-root');
+
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        right: 0,
+        top: 0,
+        toJSON() {},
       }));
 
       // pixel:  0   20  40  60  80  100
@@ -157,7 +191,8 @@ describe('<SliderUnstyled />', () => {
       // values: 0   1   2   3   4   5
       // value:      ↑   ↑
       // mouse:           ↑
-      fireEvent.mouseDown(container.firstChild, {
+
+      fireEvent.mouseDown(sliderRoot, {
         buttons: 1,
         clientX: 41,
       });
@@ -181,19 +216,24 @@ describe('<SliderUnstyled />', () => {
         this.skip();
       }
 
-      const { getByRole, setProps, container } = render(<SliderUnstyled defaultValue={0} />);
+      const { getByRole, setProps, getByTestId } = render(
+        <SliderUnstyled defaultValue={0} data-testid="slider-root" />,
+      );
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const sliderRoot = getByTestId('slider-root');
+
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        top: 0,
+        right: 0,
+        toJSON() {},
       }));
-
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]));
 
       const thumb = getByRole('slider');
 
@@ -204,10 +244,7 @@ describe('<SliderUnstyled />', () => {
       expect(thumb).not.toHaveFocus();
       expect(thumb).not.to.have.class(classes.active);
 
-      fireEvent.touchMove(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
-      );
+      fireEvent.touchMove(sliderRoot, createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]));
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
     });
@@ -218,20 +255,26 @@ describe('<SliderUnstyled />', () => {
         this.skip();
       }
 
-      const { getByRole, container } = render(<SliderUnstyled disabled defaultValue={21} />);
-      const thumb = getByRole('slider');
+      const { getByRole, getByTestId } = render(
+        <SliderUnstyled disabled defaultValue={21} data-testid="slider-root" />,
+      );
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      const thumb = getByRole('slider');
+      const sliderRoot = getByTestId('slider-root');
+
+      stub(sliderRoot, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
         bottom: 10,
         left: 0,
+        x: 0,
+        y: 0,
+        top: 0,
+        right: 0,
+        toJSON() {},
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchStart(sliderRoot, createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]));
 
       fireEvent.touchMove(
         document.body,

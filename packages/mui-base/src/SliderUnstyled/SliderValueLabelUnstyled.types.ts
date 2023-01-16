@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export interface SliderValueLabelUnstyledProps {
   children?: React.ReactElement;
   className?: string;
@@ -23,5 +21,3 @@ export interface SliderValueLabelUnstyledProps {
    */
   valueLabelDisplay?: 'on' | 'auto' | 'off';
 }
-
-export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyledProps): JSX.Element;
