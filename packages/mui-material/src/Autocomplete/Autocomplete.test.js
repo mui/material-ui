@@ -2346,11 +2346,9 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onHighlightChange', () => {
-    it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    it('should highlights correct option when initial navigation through options starts from mouse over', function test() {
       const handleHighlightChange = spy();
+      const handleonMouseMove = spy();
       const { getAllByRole, getByRole } = render(
         <Autocomplete
           open
@@ -2358,6 +2356,19 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
           ListboxProps={{ style: { height: '100px' } }}
           onHighlightChange={handleHighlightChange}
+          renderOption={(p, { label }) => {
+            return (
+              <li
+                {...p}
+                onMouseOver={(e) => {
+                  p.onMouseOver(e);
+                  handleonMouseMove();
+                }}
+              >
+                <span>{label}</span>
+              </li>
+            );
+          }}
         />,
       );
       const firstOption = getAllByRole('option')[0];
@@ -2375,7 +2386,9 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(8);
+      expect(handleonMouseMove.callCount).to.equal(8);
     });
+    
     it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
