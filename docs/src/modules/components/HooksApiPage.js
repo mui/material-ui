@@ -61,8 +61,7 @@ function InputParamsTable(params) {
           {Object.entries(inputParams).map(([propName, propData]) => {
             let typeName = propData.type.name;
             const typeDescription = propData.type.description;
-            typeName = typeName.replace('<', '&lt;', '>', '&lt');
-            console.log(typeName);
+            typeName = typeName.replace('<', '&lt;').replace('>', '&gt');
             const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (
