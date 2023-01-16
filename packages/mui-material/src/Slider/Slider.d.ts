@@ -163,7 +163,11 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
     orientation?: 'horizontal' | 'vertical';
     /**
      * A transformation function, to change the scale of the slider.
-     * @default (x) => x
+     * @param {any} x
+     * @returns {any}
+     * @default function Identity(x) {
+     *   return x;
+     * }
      */
     scale?: (value: number) => number;
     /**
@@ -251,7 +255,11 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      *
      * - {number} value The value label's value to format
      * - {number} index The value label's index to format
-     * @default (x) => x
+     * @param {any} x
+     * @returns {any}
+     * @default function Identity(x) {
+     *   return x;
+     * }
      */
     valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
   };

@@ -5,5 +5,5 @@ export { default as useSlider } from './useSlider';
 export * from './useSlider';
 export * from './useSlider.types';
 
-export { default as sliderClasses } from './sliderUnstyledClasses';
+export { default as sliderUnstyledClasses } from './sliderUnstyledClasses';
 export * from './sliderUnstyledClasses';
