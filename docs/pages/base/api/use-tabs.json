@@ -1,26 +1,35 @@
 {
   "inputParams": {
     "defaultValue": {
-      "type": { "description": "The default value. Use when the component is not controlled." }
+      "type": {
+        "name": "string | number | false",
+        "description": "The default value. Use when the component is not controlled."
+      }
     },
     "direction": {
-      "type": { "description": "The direction of the text.\n@default 'ltr'" },
-      "default": "'ltr'"
+      "type": { "name": "'ltr' | 'rtl'", "description": "The direction of the text." }
     },
-    "onChange": { "type": { "description": "Callback invoked when new value is being set." } },
+    "onChange": {
+      "type": {
+        "name": "(event: React.SyntheticEvent, value: number | string | boolean) => void",
+        "description": "Callback invoked when new value is being set."
+      }
+    },
     "orientation": {
       "type": {
-        "description": "The component orientation (layout flow direction).\n@default 'horizontal'"
-      },
-      "default": "'horizontal'"
+        "name": "'horizontal' | 'vertical'",
+        "description": "The component orientation (layout flow direction)."
+      }
     },
     "selectionFollowsFocus": {
       "type": {
+        "name": "boolean",
         "description": "If `true` the selected tab changes on focus. Otherwise it only\nchanges on activation."
       }
     },
     "value": {
       "type": {
+        "name": "string | number | false",
         "description": "The value of the currently selected `Tab`.\nIf you don't want any selected `Tab`, you can set this prop to `false`."
       }
     }

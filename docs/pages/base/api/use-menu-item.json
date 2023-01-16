@@ -1,5 +1,10 @@
 {
-  "inputParams": {},
+  "inputParams": {
+    "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
+    "disabled": { "type": { "name": "boolean", "description": "" } },
+    "label": { "type": { "name": "string", "description": "" } },
+    "onClick": { "type": { "name": "React.MouseEventHandler<any>", "description": "" } }
+  },
   "name": "useMenuItem",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/useMenuItem.ts",
   "demos": "<ul></ul>"

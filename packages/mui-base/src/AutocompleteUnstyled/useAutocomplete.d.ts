@@ -292,6 +292,8 @@ export interface UseAutocompleteProps<
   value?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
 }
 
+export interface UseAutocompleteParameters extends UseAutocompleteProps {}
+
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =

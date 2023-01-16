@@ -1,5 +1,10 @@
 {
-  "inputParams": {},
+  "inputParams": {
+    "listboxId": { "type": { "name": "string", "description": "" } },
+    "listboxRef": { "type": { "name": "React.Ref<any>", "description": "" } },
+    "onClose": { "type": { "name": "() => void", "description": "" } },
+    "open": { "type": { "name": "boolean", "description": "" } }
+  },
   "name": "useMenu",
   "filename": "/packages/mui-base/src/MenuUnstyled/useMenu.ts",
   "demos": "<ul></ul>"

@@ -59,7 +59,8 @@ function InputParamsTable(params) {
         </thead>
         <tbody>
           {Object.entries(inputParams).map(([propName, propData]) => {
-            const typeDescription = propData.type.description || propData.type.name;
+            console.log(propData);
+            const typeDescription = propData.type.name;
             const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (
@@ -99,7 +100,8 @@ function InputParamsTable(params) {
                     )}
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: propDescriptions[propName] || '',
+                        __html: propData.type.description || '',
+                        // __html: propDescriptions[propName] || '',
                       }}
                     />
                   </td>
@@ -123,7 +125,7 @@ function getTranslatedHeader(t, header) {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
     'component-name': t('api-docs.hookName'),
-    props: t('api-docs.props'),
+    inputParams: t('api-docs.inputParams'),
     inheritance: t('api-docs.inheritance'),
     css: 'CSS',
   };
@@ -210,7 +212,7 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    createTocEntry('props'),
+    createTocEntry('inputParams'),
   ].filter(Boolean);
 
   return (
@@ -260,9 +262,10 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
             />
           </React.Fragment>
         ) : null}
-        <Heading hash="props" />
+        <Heading hash="inputParams" />
         <InputParamsTable inputParams={inputParams} propDescriptions={propDescriptions} />
         <br />
+        {/* TODO: Add section for the hook output type */}
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">

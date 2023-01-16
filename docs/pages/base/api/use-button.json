@@ -1,5 +1,28 @@
 {
-  "inputParams": {},
+  "inputParams": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "If `true`, the component is disabled." }
+    },
+    "focusableWhenDisabled": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, allows a disabled button to receive focus."
+      }
+    },
+    "href": { "type": { "name": "string", "description": "" } },
+    "onFocusVisible": { "type": { "name": "React.FocusEventHandler", "description": "" } },
+    "ref": { "type": { "name": "React.Ref<any>", "description": "" } },
+    "tabIndex": {
+      "type": { "name": "NonNullable<React.HTMLAttributes<any>['tabIndex']>", "description": "" }
+    },
+    "to": { "type": { "name": "string", "description": "" } },
+    "type": {
+      "type": {
+        "name": "React.ButtonHTMLAttributes<HTMLButtonElement>['type']",
+        "description": "Type attribute applied when the `component` is `button`."
+      }
+    }
+  },
   "name": "useButton",
   "filename": "/packages/mui-base/src/ButtonUnstyled/useButton.ts",
   "demos": "<ul><li><a href=\"/base/react-button/\">Unstyled Button</a></li></ul>"
