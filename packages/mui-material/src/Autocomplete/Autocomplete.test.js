@@ -2374,6 +2374,10 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
       fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
+      fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
+      fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
+      fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
+      fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
         React.version.startsWith('18') ? 3 : 2,
