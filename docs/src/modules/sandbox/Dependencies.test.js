@@ -338,7 +338,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 
 // Icons import
@@ -435,7 +435,7 @@ export default function EmailExample() {
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}

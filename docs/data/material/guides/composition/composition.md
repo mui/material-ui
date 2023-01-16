@@ -151,7 +151,7 @@ You can find a code example with the Button and react-router-dom in [these demos
 
 #### Generic
 
-It's also is possible to have a generic `CustomComponent` which will accept any React component, and HTML elements.
+It's also possible to have a generic `CustomComponent` which will accept any React component, and HTML elements.
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(

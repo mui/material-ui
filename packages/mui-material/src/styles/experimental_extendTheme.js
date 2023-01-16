@@ -34,6 +34,19 @@ function setColor(obj, key, defaultValue) {
   }
 }
 
+function setColorChannel(obj, key) {
+  if (!(`${key}Channel` in obj)) {
+    // custom channel token is not provided, generate one.
+    // if channel token can't be generated, show a warning.
+    obj[`${key}Channel`] = safeColorChannel(
+      obj[key],
+      `MUI: Can't create \`palette.${key}Channel\` because \`palette.${key}\` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` +
+        '\n' +
+        `To suppress this warning, you need to explicitly provide the \`palette.${key}Channel\` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.`,
+    );
+  }
+}
+
 const silent = (fn) => {
   try {
     return fn();
@@ -288,40 +301,13 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', safeAlpha(palette.grey[700], 0.92));
     }
 
-    setColor(
-      palette.background,
-      'defaultChannel',
-      safeColorChannel(
-        palette.background.default,
-        'MUI: The value of `palette.background.default` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    ); // MUI X - DataGrid needs this token.
+    // MUI X - DataGrid needs this token.
+    setColorChannel(palette.background, 'default');
 
-    setColor(
-      palette.common,
-      'backgroundChannel',
-      safeColorChannel(
-        palette.common.background,
-        'MUI: The value of `palette.common.background` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    );
-    setColor(
-      palette.common,
-      'onBackgroundChannel',
-      safeColorChannel(
-        palette.common.onBackground,
-        'MUI: The value of `palette.common.onBackground` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    );
+    setColorChannel(palette.common, 'background');
+    setColorChannel(palette.common, 'onBackground');
 
-    setColor(
-      palette,
-      'dividerChannel',
-      safeColorChannel(
-        palette.divider,
-        'MUI: The value of `palette.divider` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      ),
-    );
+    setColorChannel(palette, 'divider');
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
@@ -345,45 +331,17 @@ export default function extendTheme(options = {}, ...args) {
 
         if (color === 'text') {
           // Text colors: text.primary, text.secondary
-          setColor(
-            palette[color],
-            'primaryChannel',
-            safeColorChannel(
-              colors.primary,
-              'MUI: The value of `palette.text.primary` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-            ),
-          );
-          setColor(
-            palette[color],
-            'secondaryChannel',
-            safeColorChannel(
-              colors.secondary,
-              'MUI: The value of `palette.text.secondary` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-            ),
-          );
+          setColorChannel(palette[color], 'primary');
+          setColorChannel(palette[color], 'secondary');
         }
 
         if (color === 'action') {
           // Action colors: action.active, action.selected
           if (colors.active) {
-            setColor(
-              palette[color],
-              'activeChannel',
-              safeColorChannel(
-                colors.active,
-                'MUI: The value of `palette.action.active` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-              ),
-            );
+            setColorChannel(palette[color], 'active');
           }
           if (colors.selected) {
-            setColor(
-              palette[color],
-              'selectedChannel',
-              safeColorChannel(
-                colors.selected,
-                'MUI: The value of `palette.action.selected` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-              ),
-            );
+            setColorChannel(palette[color], 'selected');
           }
         }
       }
