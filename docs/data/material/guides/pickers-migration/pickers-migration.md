@@ -3,8 +3,13 @@
 <p class="description"><code>@material-ui/pickers</code> was moved to the <code>@mui/lab</code>.</p>
 
 :::success
-**Stable package available**: After evolving in the lab, pickers are no longer available in `@mui/lab` after `v5.0.0-alpha.89`.
-They have been moved from `@mui/lab` to the [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+**Only use this migration guide if you need to use Date and Time pickers from `@mui/lab`.**
+
+The components are available in alpha version in the lab between `v5.0.0-alpha.30` and `v5.0.0-alpha.89` inclusively.
+They won't receive any new feature of bug fixes and won't be compatible with future major releases of MUI packages.
+
+If you want to use the **stable version** of those components, please have a look at the new   [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
+
 To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/react-date-pickers/migration-lab/).
 :::
 
@@ -130,8 +135,8 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 
 ```diff
  <DatePicker
--  format="DD-MMM-YYYY"
-+  inputFormat="DD-MMM-YYYY"
+-  format="DD-MM-YYYY"
++  inputFormat="DD-MM-YYYY"
 ```
 
 There are many changes, be careful, make sure your tests, and build passes.
