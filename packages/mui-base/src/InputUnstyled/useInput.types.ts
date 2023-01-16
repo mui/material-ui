@@ -19,9 +19,6 @@ export interface UseInputParameters {
   onClick?: React.MouseEventHandler;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
-  /**
-   * Pass a ref to the `input` element.
-   */
   inputRef?: React.Ref<HTMLInputElement>;
   /**
    * If `true`, the `input` element is required.
