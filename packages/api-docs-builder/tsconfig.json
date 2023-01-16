@@ -3,7 +3,7 @@
     "allowJs": true,
     "isolatedModules": true,
     "noEmit": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

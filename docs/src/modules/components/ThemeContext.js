@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
+import { enUS, zhCN, ptBR } from '@mui/material/locale';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
@@ -18,13 +18,7 @@ import PageContext from './PageContext';
 const languageMap = {
   en: enUS,
   zh: zhCN,
-  fa: faIR,
-  ru: ruRU,
   pt: ptBR,
-  es: esES,
-  fr: frFR,
-  de: deDE,
-  ja: jaJP,
 };
 
 const themeInitialOptions = {

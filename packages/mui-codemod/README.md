@@ -62,6 +62,64 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `joy-text-field-to-input`
+
+Replace `<TextField>` with composition of `Input`
+
+This change only affects Joy UI components.
+
+```diff
+-import TextField from '@mui/joy/TextField';
++import FormControl from '@mui/joy/FormControl';
++import FormLabel from '@mui/joy/FormLabel';
++import FormHelperText from '@mui/joy/FormHelperText';
++import Input from '@mui/joy/Input';
+
+-<TextField
+-  id="Id"
+-  label="Label"
+-  placeholder="Placeholder"
+-  helperText="Help!"
+-  name="Name"
+-  type="tel"
+-  autoComplete="on"
+-  autoFocus
+-  error
+-  required
+-  fullWidth
+-  defaultValue="DefaultValue"
+-  size="sm"
+-  color="primary"
+-  variant="outlined"
+-/>
++<FormControl
++  id="Id"
++  required
++  size="sm"
++  color="primary">
++  <FormLabel>
++    Label
++  </FormLabel>
++  <JoyInput
++    placeholder="Placeholder"
++    name="Name"
++    type="tel"
++    autoComplete="on"
++    autoFocus
++    error
++    fullWidth
++    defaultValue="DefaultValue"
++    variant="outlined" />
++  <FormHelperText id="Id-helper-text">
++    Help!
++  </FormHelperText>
++</FormControl>
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
+```
+
 #### `joy-rename-components-to-slots`
 
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.

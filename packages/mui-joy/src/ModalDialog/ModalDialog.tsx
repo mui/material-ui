@@ -65,7 +65,7 @@ const ModalDialogRoot = styled(SheetRoot, {
   lineHeight: theme.vars.lineHeight.md,
   padding: 'var(--ModalDialog-padding)',
   minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
-  outline: 'none',
+  outline: 0,
   position: 'absolute',
   ...(ownerState.layout === 'fullscreen' && {
     top: 0,
