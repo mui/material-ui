@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 type AddUndefined<T> = {
-  [Property in keyof T]: T[Property] | undefined;
+  [Property in keyof T]?: T[Property];
 };
 
 const usePreviousProps = <T>(value: T) => {
