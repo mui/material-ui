@@ -2372,7 +2372,9 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs(getByRole('listbox'), 'three');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(handleHighlightChange.callCount).to.equal(8);
     });
     it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
