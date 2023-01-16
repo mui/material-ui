@@ -2369,6 +2369,7 @@ describe('<Autocomplete />', () => {
       const { width, height, top, left } = firstOption.getBoundingClientRect();
       const x = left + width / 2;
       const y = top + height / 2;
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.mouseMove(firstOption, { clientX: x, clientY: y });
       checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
