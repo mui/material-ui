@@ -33,7 +33,7 @@ describe('<InputUnstyled />', () => {
 
   it('should be able to attach input ref passed through props', () => {
     const inputRef = React.createRef<HTMLInputElement>();
-    render(<InputUnstyled inputRef={inputRef} />);
+    render(<InputUnstyled slotProps={{ input: { ref: inputRef } }} />);
     expect(inputRef.current).not.to.equal(null);
   });
 

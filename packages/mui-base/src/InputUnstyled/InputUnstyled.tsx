@@ -40,7 +40,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     endAdornment,
     error,
     id,
-    inputRef,
     multiline = false,
     name,
     onClick,
@@ -74,7 +73,10 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     disabled,
     defaultValue,
     error,
-    inputRef,
+    inputRef:
+      typeof slotProps.input === 'object' && typeof slotProps.input.ref !== 'undefined'
+        ? slotProps.input.ref
+        : undefined,
     onBlur,
     onClick,
     onChange,
@@ -137,7 +139,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
     className: [classes.root, rootStateClasses, className],
   });
-
   const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
@@ -239,15 +240,6 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.object,
-    }),
-  ]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */

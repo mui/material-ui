@@ -9,9 +9,6 @@
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
-    "inputRef": {
-      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
-    },
     "maxRows": { "type": { "name": "number" } },
     "minRows": { "type": { "name": "number" } },
     "multiline": { "type": { "name": "bool" } },
