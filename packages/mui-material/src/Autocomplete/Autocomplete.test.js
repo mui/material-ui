@@ -2370,17 +2370,17 @@ describe('<Autocomplete />', () => {
       const x = left + width / 2;
       const y = top + height / 2;
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.mouseMove(firstOption, { clientX: x, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x, clientY: y });
       checkHighlightIs(getByRole('listbox'), 'one');
-      fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
-      fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
-      fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
-      fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
-      fireEvent.mouseMove(firstOption, { clientX: x - 10, clientY: y });
-      fireEvent.mouseMove(firstOption, { clientX: x + 10, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x - 10, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x + 10, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x - 10, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x + 10, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x - 10, clientY: y });
+      fireEvent.mouseOver(firstOption, { clientX: x + 10, clientY: y });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        React.version.startsWith('18') ? 3 : 2,
+        React.version.startsWith('18') ? 4 : 3,
       );
     });
 
