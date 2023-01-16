@@ -20,6 +20,8 @@ export interface ButtonClasses {
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root element if the element is active. */
+  active: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
@@ -65,6 +67,7 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'disableElevation',
   'focusVisible',
   'disabled',
+  'active',
   'colorInherit',
   'sizeSmall',
   'sizeMedium',

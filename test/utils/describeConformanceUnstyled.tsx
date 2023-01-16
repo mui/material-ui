@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
+import createDescribe from './createDescribe';
 import {
   ConformanceOptions,
   SlotTestingOptions,
@@ -329,7 +330,7 @@ const fullSuite = {
   ownerStatePropagation: testOwnerStatePropagation,
 };
 
-export default function describeConformanceUnstyled(
+function describeConformanceUnstyled(
   minimalElement: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
@@ -340,12 +341,12 @@ export default function describeConformanceUnstyled(
       only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
   ) as (keyof typeof fullSuite)[];
 
-  describe('MUI unstyled component API', () => {
-    after(runAfterHook);
+  after(runAfterHook);
 
-    filteredTests.forEach((testKey) => {
-      const test = fullSuite[testKey];
-      test(minimalElement, getOptions as any);
-    });
+  filteredTests.forEach((testKey) => {
+    const test = fullSuite[testKey];
+    test(minimalElement, getOptions as any);
   });
 }
+
+export default createDescribe('MUI unstyled component API', describeConformanceUnstyled);

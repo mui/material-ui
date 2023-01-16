@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  describeJoyColorInversion,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -12,16 +19,29 @@ import ListDivider from '@mui/joy/ListDivider';
 describe('Joy <Select />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
-  describeConformance(<Select value="" />, () => ({
+  describeConformance(<Select startDecorator="1" endDecorator="1" />, () => ({
     render,
+    inheritComponent: 'div',
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
     muiName: 'JoySelect',
     testDeepOverrides: { slotName: 'button', slotClassName: classes.button },
     testVariantProps: { variant: 'soft' },
+    slots: {
+      root: { expectedClassName: classes.root },
+      button: { expectedClassName: classes.button },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
     skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<Select listboxOpen />, {
+    muiName: 'JoySelect',
+    classes,
+    portalSlot: 'listbox',
+  });
 
   it('should be able to mount the component', () => {
     render(
@@ -62,7 +82,7 @@ describe('Joy <Select />', () => {
     const { getByRole } = render(
       <Select
         name="blur-testing"
-        componentsProps={{
+        slotProps={{
           button: {
             onBlur: handleBlur,
           },
@@ -337,11 +357,7 @@ describe('Joy <Select />', () => {
     describe('Grouped options', () => {
       it('first selectable option is focused to use the arrow', () => {
         const { getByRole, getAllByRole } = render(
-          <Select
-            defaultValue=""
-            defaultListboxOpen
-            componentsProps={{ listbox: { component: 'div' } }}
-          >
+          <Select defaultValue="" defaultListboxOpen slotProps={{ listbox: { component: 'div' } }}>
             <List role="group">
               <ListItem role="presentation">Category 1</ListItem>
               <Option value={1}>Option 1</Option>

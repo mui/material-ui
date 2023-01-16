@@ -32,7 +32,6 @@
     "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
-    "isRtl": { "type": { "name": "bool" } },
     "marks": {
       "type": {
         "name": "union",
@@ -138,7 +137,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Slider/Slider.js",
-  "inheritance": { "component": "SliderUnstyled", "pathname": "/base/api/slider-unstyled/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-slider/\">Slider</a></li></ul>",
   "cssComponent": false
 }

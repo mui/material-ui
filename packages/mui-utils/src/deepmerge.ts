@@ -6,6 +6,20 @@ export interface DeepmergeOptions {
   clone?: boolean;
 }
 
+function deepClone<T>(source: T): T | Record<keyof any, unknown> {
+  if (!isPlainObject(source)) {
+    return source;
+  }
+
+  const output: Record<keyof any, unknown> = {};
+
+  Object.keys(source).forEach((key) => {
+    output[key] = deepClone(source[key]);
+  });
+
+  return output;
+}
+
 export default function deepmerge<T>(
   target: T,
   source: unknown,
@@ -23,6 +37,10 @@ export default function deepmerge<T>(
       if (isPlainObject(source[key]) && key in target && isPlainObject(target[key])) {
         // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
         (output as Record<keyof any, unknown>)[key] = deepmerge(target[key], source[key], options);
+      } else if (options.clone) {
+        (output as Record<keyof any, unknown>)[key] = isPlainObject(source[key])
+          ? deepClone(source[key])
+          : source[key];
       } else {
         (output as Record<keyof any, unknown>)[key] = source[key];
       }

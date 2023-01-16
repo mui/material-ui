@@ -368,12 +368,12 @@ export default function StyledComponentsDeep2() {
 ### Theme
 
 By using the MUI theme provider, the theme will be available in the theme context
-of the styled engine too (emotion or styled-components, depending on your configuration).
+of the styled engine too (Emotion or styled-components, depending on your configuration).
 
 :::warning
-⚠️ If you are **already** using a custom theme with styled-components or emotion,
+If you are already using a custom theme with styled-components or Emotion,
 it might not be compatible with MUI's theme specification. If it's not
-compatible, you need to render MUI's ThemeProvider <b>first</b>. This will
+compatible, you need to render MUI's ThemeProvider first. This will
 ensure the theme structures are isolated. This is ideal for the progressive adoption
 of MUI's components in the codebase.
 :::
@@ -880,6 +880,6 @@ There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes)
 :::
 
 :::warning
-⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
+**Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
 it's a peer dependency of `@mui/material`.
 :::

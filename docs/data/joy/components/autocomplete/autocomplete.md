@@ -74,7 +74,7 @@ The autocomplete component supports the four global variants: `outlined` (defaul
 
 {{"demo": "InputAppearance.js"}}
 
-:::success
+:::info
 To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
 
@@ -98,7 +98,7 @@ The component has two states that can be controlled:
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
 :::warning
-⚠️ These two states are isolated, they should be controlled independently.
+These two states are isolated, and should be controlled independently.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -130,7 +130,7 @@ Use `freeSolo` to create a **search input** with suggestions experience, e.g. Go
 {{"demo": "FreeSolo.js"}}
 
 :::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
@@ -186,7 +186,7 @@ The autocomplete component comes with three sizes out of the box: `sm`, `md` (th
 
 {{"demo": "Sizes.js"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -301,7 +301,7 @@ In the event you want the avoid autofill, you can try the following:
 
   ```jsx
   <Autocomplete
-    componentsProps={{
+    slotProps={{
       input: {
         autoComplete: 'new-password',
       },
@@ -318,7 +318,7 @@ You can work around the issue with the `disablePortal` prop.
 
 ```jsx
 <Autocomplete
-  componentsProps={{
+  slotProps={{
     listbox: {
       disablePortal: true,
     },

@@ -199,7 +199,7 @@ export default function AppFrame(props) {
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.3}>
+          <Stack direction="row" spacing="10px">
             <AppFrameBanner />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>

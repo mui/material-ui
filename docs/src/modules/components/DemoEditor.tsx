@@ -49,7 +49,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   float: 'left',
   minWidth: '100%',
   '& textarea': {
-    outline: 'none',
+    outline: 0,
   },
   '& > textarea, & > pre': {
     // Override inline-style
@@ -57,7 +57,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   },
 }));
 
-interface DemoEditorProps {
+interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   copyButtonProps: {};
   id: string;
@@ -67,7 +67,7 @@ interface DemoEditorProps {
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language, value, onChange, copyButtonProps, children, id } = props;
+  const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
   const wrapperRef = React.useRef<HTMLElement | null>(null);
@@ -100,6 +100,7 @@ export default function DemoEditor(props: DemoEditorProps) {
           }
         }
       }}
+      {...other}
     >
       <div className="MuiCode-root" {...handlers}>
         <div className="scrollContainer">
@@ -121,7 +122,7 @@ export default function DemoEditor(props: DemoEditorProps) {
             position: 'absolute',
             top: theme.spacing(1),
             padding: theme.spacing(0.5, 1),
-            outline: 'none',
+            outline: 0,
             left: '50%',
             border: '1px solid',
             borderColor: blue[400],

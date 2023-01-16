@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type CardOverflowSlot = 'root';
 
@@ -37,4 +37,4 @@ export type CardOverflowProps<
   P = { component?: React.ElementType },
 > = OverrideProps<CardOverflowTypeMap<P, D>, D>;
 
-export interface CardOverflowOwnerState extends CardOverflowProps {}
+export interface CardOverflowOwnerState extends ApplyColorInversion<CardOverflowProps> {}

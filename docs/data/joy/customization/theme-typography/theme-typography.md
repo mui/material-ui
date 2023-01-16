@@ -157,6 +157,6 @@ Here is a collection of well-known typography systems that you can use with Joy 
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-:::success
-Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system ❤️.
+:::info
+Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system. ❤️
 :::

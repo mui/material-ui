@@ -80,7 +80,7 @@ return (
 );
 ```
 
-Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previously defined `@font-face` declarations won't be replaced.
 
 ## Font size
 
@@ -159,7 +159,7 @@ To be done: [#15251](https://github.com/mui/material-ui/issues/15251).
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
 :::warning
-⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+Changing the font size can harm accessibility ♿️. Most browsers agree on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could set their browser's default font size to something larger.
 :::
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
