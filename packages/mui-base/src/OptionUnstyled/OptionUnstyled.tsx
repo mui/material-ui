@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -42,10 +43,45 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   console.log('rendering OptionUnstyled');
 
+  const [selected, setSelected] = React.useState(false);
+  const [highlighted, setHighlighted] = React.useState(false);
+
   const selectContext = React.useContext(SelectUnstyledContext);
   if (!selectContext) {
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
+
+  React.useEffect(() => {
+    function updateSelectedState(e: unknown, newValue: TValue | null) {
+      // TODO: use option comparer
+      if (newValue === value && !selected) {
+        setSelected(true);
+      } else if (newValue !== value && selected) {
+        setSelected(false);
+      }
+    }
+
+    selectContext.registerSelectionChangeHandler(updateSelectedState);
+    return () => {
+      selectContext.unregisterSelectionChangeHandler(updateSelectedState);
+    };
+  }, [selectContext, selected, value]);
+
+  React.useEffect(() => {
+    function updateHighlightedState(e: unknown, newValue: TValue | null) {
+      // TODO: use option comparer
+      if (newValue === value && !highlighted) {
+        setHighlighted(true);
+      } else if (newValue !== value && highlighted) {
+        setHighlighted(false);
+      }
+    }
+
+    selectContext.registerHighlightChangeHandler(updateHighlightedState);
+    return () => {
+      selectContext.unregisterHighlightChangeHandler(updateHighlightedState);
+    };
+  }, [selectContext, highlighted, value]);
 
   const Root = component || slots.root || 'li';
 

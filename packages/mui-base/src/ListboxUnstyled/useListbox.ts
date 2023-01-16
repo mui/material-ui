@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
@@ -15,7 +16,7 @@ import { EventHandlers } from '../utils/types';
 
 const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
 
-function useNotifyChanged(prop, propName) {
+function useNotifyChanged(prop: unknown, propName: string) {
   React.useEffect(() => {
     console.log(`${propName} changed (new value: ${prop}))`);
   }, [prop, propName]);
@@ -102,6 +103,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   );
 
   const highlightedIndexRef = React.useRef<number>(-1);
+  const selectedValueRef = React.useRef<TOption | TOption[] | null>(null);
 
   React.useEffect(() => {
     if (highlightedValue == null) {
@@ -112,6 +114,10 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       );
     }
   }, [highlightedValue, options, optionComparer]);
+
+  React.useEffect(() => {
+    selectedValueRef.current = selectedValue;
+  }, [selectedValue]);
 
   const highlightedIndex = React.useMemo(() => {
     return highlightedValue == null
@@ -304,11 +310,11 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       let selected: boolean;
       const index = options.findIndex((opt) => optionComparer(opt, option));
       if (multiple) {
-        selected = ((selectedValue as TOption[]) ?? []).some(
+        selected = ((selectedValueRef.current as TOption[]) ?? []).some(
           (value) => value != null && optionComparer(option, value),
         );
       } else {
-        selected = optionComparer(option, selectedValue as TOption);
+        selected = optionComparer(option, selectedValueRef.current as TOption);
       }
 
       const disabled = isOptionDisabled(option, index);
@@ -319,7 +325,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         highlighted: highlightedIndexRef.current === index,
       };
     },
-    [options, selectedValue, multiple, isOptionDisabled, optionComparer],
+    [options, multiple, isOptionDisabled, optionComparer],
   );
 
   const getOptionTabIndex = React.useCallback(

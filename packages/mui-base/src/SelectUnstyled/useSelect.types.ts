@@ -33,6 +33,14 @@ interface UseSelectCommonProps<TValue> {
   listboxId?: string;
   listboxRef?: React.Ref<Element>;
   onOpenChange?: (open: boolean) => void;
+  onHighlightChange?: (
+    e:
+      | React.MouseEvent<Element, MouseEvent>
+      | React.KeyboardEvent<Element>
+      | React.FocusEvent<Element, Element>
+      | null,
+    highlighted: TValue | null,
+  ) => void;
   open?: boolean;
   options: SelectOption<TValue>[];
   optionStringifier?: (option: SelectOption<TValue>) => string;

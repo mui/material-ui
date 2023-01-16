@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
@@ -26,7 +27,7 @@ import {
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
 
-function useNotifyChanged(prop, propName) {
+function useNotifyChanged(prop: unknown, propName: string) {
   React.useEffect(() => {
     console.log(`${propName} changed (new value: ${prop}))`);
   }, [prop, propName]);
@@ -51,6 +52,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     listboxRef: listboxRefProp,
     multiple = false,
     onChange,
+    onHighlightChange,
     onOpenChange,
     open = false,
     options,
@@ -236,6 +238,10 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         setValue(newValues);
         onChangeMultiple?.(e, newValues);
       },
+      onHighlightChange: (e, newOption) => {
+        console.log('onHighlightChange', newOption);
+        onHighlightChange?.(e, newOption?.value ?? null);
+      },
       options,
       optionStringifier,
       value: selectedOption as SelectOption<TValue>[],
@@ -254,6 +260,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onChange: (e, option: SelectOption<TValue> | null) => {
         setValue(option?.value ?? null);
         onChangeSingle?.(e, option?.value ?? null);
+      },
+      onHighlightChange: (e, newOption) => {
+        console.log('onHighlightChange', newOption);
+
+        onHighlightChange?.(e, newOption?.value ?? null);
       },
       options,
       optionStringifier,

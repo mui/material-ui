@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -55,6 +56,12 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
 
   return composeClasses(slots, getSelectUnstyledUtilityClass, {});
 }
+
+type ChangeEventType =
+  | React.MouseEvent<Element, MouseEvent>
+  | React.KeyboardEvent<Element>
+  | React.FocusEvent<Element, Element>
+  | null;
 
 /**
  * The foundation for building custom-styled select components.
@@ -135,6 +142,26 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     [setListboxOpen, onListboxOpenChange],
   );
 
+  const selectionChangeEventHandlers = React.useRef<
+    Set<(e: ChangeEventType, newValue: TValue | null) => void>
+  >(new Set());
+
+  const highlightChangeEventHandlers = React.useRef<
+    Set<(e: ChangeEventType, newValue: TValue | null) => void>
+  >(new Set());
+
+  const handleChange = React.useCallback(
+    (e: ChangeEventType, newValue: TValue | null) => {
+      onChange?.(e, newValue);
+      selectionChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+    },
+    [onChange],
+  );
+
+  const handleHighlightChange = React.useCallback((e: ChangeEventType, newValue: TValue | null) => {
+    highlightChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+  }, []);
+
   const {
     buttonActive,
     buttonFocusVisible,
@@ -150,7 +177,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     disabled: disabledProp,
     listboxId,
     multiple: false,
-    onChange,
+    onChange: handleChange,
+    onHighlightChange: handleHighlightChange,
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
@@ -206,18 +234,58 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
       open: listboxOpen,
       placement: 'bottom-start' as const,
       role: undefined,
+      keepMounted: true,
     },
     ownerState,
     className: classes.popper,
   });
+
+  const registerSelectionChangeHandler = React.useCallback(
+    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
+      selectionChangeEventHandlers.current.add(handler);
+    },
+    [],
+  );
+
+  const unregisterSelectionChangeHandler = React.useCallback(
+    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
+      selectionChangeEventHandlers.current.delete(handler);
+    },
+    [],
+  );
+
+  const registerHighlightChangeHandler = React.useCallback(
+    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
+      highlightChangeEventHandlers.current.add(handler);
+    },
+    [],
+  );
+
+  const unregisterHighlightChangeHandler = React.useCallback(
+    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
+      highlightChangeEventHandlers.current.delete(handler);
+    },
+    [],
+  );
 
   const context: SelectUnstyledContextType = React.useMemo(
     () => ({
       getOptionProps,
       getOptionState,
       listboxRef,
+      registerSelectionChangeHandler,
+      unregisterSelectionChangeHandler,
+      registerHighlightChangeHandler,
+      unregisterHighlightChangeHandler,
     }),
-    [getOptionProps, getOptionState],
+    [
+      getOptionProps,
+      getOptionState,
+      registerSelectionChangeHandler,
+      unregisterSelectionChangeHandler,
+      registerHighlightChangeHandler,
+      unregisterHighlightChangeHandler,
+    ],
   );
 
   React.useEffect(() => {
