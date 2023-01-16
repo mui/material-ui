@@ -184,7 +184,6 @@ const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
       let defaultValue: string | undefined;
       // Set default value from tags
       if (propDescriptor.typeStr !== 'bool' || propDescriptor.tags['@default']) {
-        console.log(propDescriptor.tags);
         // defaultValue = propDescriptor.tags['@default'].text;
       }
       const requiredProp = prop.required;
@@ -241,7 +240,8 @@ const attachTranslations = (reactApi: ReactApi) => {
       // }
       if (type) {
         // let description = generatePropDescription(prop, propName);
-        const description = renderMarkdownInline(type.description);
+        // const description = renderMarkdownInline(type.description);
+        const description = type.description;
 
         translations.inputParamsDescriptions[propName] = description.replace(/\n@default.*$/, '');
       }

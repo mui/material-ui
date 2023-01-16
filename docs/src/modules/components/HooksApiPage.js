@@ -59,8 +59,10 @@ function InputParamsTable(params) {
         </thead>
         <tbody>
           {Object.entries(inputParams).map(([propName, propData]) => {
-            console.log(propData);
-            const typeDescription = propData.type.name;
+            let typeName = propData.type.name;
+            const typeDescription = propData.type.description;
+            typeName = typeName.replace('<', '&lt;', '>', '&lt');
+            console.log(typeName);
             const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (
@@ -76,10 +78,7 @@ function InputParamsTable(params) {
                     </span>
                   </td>
                   <td align="left">
-                    <span
-                      className="prop-type"
-                      dangerouslySetInnerHTML={{ __html: typeDescription }}
-                    />
+                    <span className="prop-type" dangerouslySetInnerHTML={{ __html: typeName }} />
                   </td>
                   <td align="left">
                     {propDefault && <span className="prop-default">{propDefault}</span>}
@@ -100,7 +99,7 @@ function InputParamsTable(params) {
                     )}
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: propData.type.description || '',
+                        __html: typeDescription || '',
                         // __html: propDescriptions[propName] || '',
                       }}
                     />
