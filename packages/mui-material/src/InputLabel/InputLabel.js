@@ -196,7 +196,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
    */
   disableAnimation: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in a disabled state.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -204,7 +204,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input of this label is focused (used by `FormGroup` components).
+   * If `true`, the `input` of this label is focused.
    */
   focused: PropTypes.bool,
   /**
@@ -213,7 +213,7 @@ InputLabel.propTypes /* remove-proptypes */ = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
-   * If `true`, the label will indicate that the `input` is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
   /**
