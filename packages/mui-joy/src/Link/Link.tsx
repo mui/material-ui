@@ -40,19 +40,29 @@ const StartDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.375em), 0.75rem)',
-});
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const EndDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)', // for end decorator, 0.25em looks better.
-});
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const LinkRoot = styled('a', {
   name: 'JoyLink',

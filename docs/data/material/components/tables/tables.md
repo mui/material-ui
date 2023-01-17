@@ -129,7 +129,7 @@ Virtualization helps with performance issues.
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
-{{"demo": "AcccessibleTable.js", "bg": true}}
+{{"demo": "AccessibleTable.js", "bg": true}}
 
 ## Unstyled
 

@@ -9,7 +9,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 describe('<ClickAwayListener />', () => {
   const { render: clientRender, clock } = createRenderer({ clock: 'fake' });
   /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
    *
    * @remarks
    * This is for all intents and purposes the same as our client render method.

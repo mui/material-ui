@@ -26,12 +26,12 @@ type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
   : never;
 
-type ConcatDeep<T> = T extends Record<string | number, infer V>
+type ConcatDeep<T, D extends string = '-'> = T extends Record<string | number, infer V>
   ? keyof T extends string | number
     ? V extends string | number
       ? keyof T
       : keyof V extends string | number
-      ? `${keyof T}-${ConcatDeep<Split<V>>}`
+      ? `${keyof T}${D}${ConcatDeep<Split<V>, D>}`
       : never
     : never
   : never;
@@ -41,7 +41,7 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
  * - { borderRadius: string | number } // the value can't be a union
  * - { shadows: [string, string, ..., string] } // the value can't be an array
  */
-type NormalizeVars<T> = ConcatDeep<Split<T>>;
+type NormalizeVars<T, D extends string = '-'> = ConcatDeep<Split<T>, D>;
 
 export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
   palette: ColorSystem['palette'] & {
@@ -66,6 +66,13 @@ interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
 export interface ThemeVars extends ThemeScales, ColorSystemVars {}
 
 export interface ThemeCssVarOverrides {}
+
+/**
+ * For providing `sx` autocomplete, e.g. `color`, `bgcolor`, `borderColor`.
+ */
+export type TextColor =
+  | NormalizeVars<Omit<ColorSystem['palette'], 'mode'>, '.'>
+  | (string & Record<never, never>);
 
 export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 

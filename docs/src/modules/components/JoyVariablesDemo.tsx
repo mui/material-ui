@@ -4,11 +4,11 @@ import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import IconButton from '@mui/joy/IconButton';
+import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Input, { inputClasses } from '@mui/joy/Input';
@@ -181,7 +181,10 @@ export default function JoyVariablesDemo(props: {
                       slotProps={{
                         input: {
                           onKeyDown: (event) => {
-                            if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {
+                            if (
+                              (event.ctrlKey || event.metaKey) &&
+                              event.key.toLowerCase() === 'z'
+                            ) {
                               setSx((prevSx) => {
                                 const newSx = { ...prevSx };
                                 delete newSx[item.var];

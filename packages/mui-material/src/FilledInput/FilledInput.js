@@ -95,9 +95,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
         '&:before, &:after': {
           borderBottomColor: (theme.vars || theme).palette.error.main,
         },
-        '&:focus-within:after': {
-          transform: 'scaleX(1)', // error is always underlined in red
-        },
       },
       '&:before': {
         borderBottom: `1px solid ${
