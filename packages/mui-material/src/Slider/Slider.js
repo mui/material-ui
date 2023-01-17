@@ -882,7 +882,7 @@ Slider.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element.isRequired,
+        children: PropTypes.element,
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
@@ -1005,7 +1005,7 @@ Slider.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element.isRequired,
+        children: PropTypes.element,
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
