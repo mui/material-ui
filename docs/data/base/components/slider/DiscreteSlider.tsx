@@ -116,7 +116,7 @@ const StyledSlider = styled(SliderUnstyled)(
     position: relative;
     top: -1.6em;
     text-align: center;
-    transform: translateX(-50%);
+    transform: translateX(-35%);
   }
 `,
 );
