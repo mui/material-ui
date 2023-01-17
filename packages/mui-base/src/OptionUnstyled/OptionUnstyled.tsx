@@ -40,13 +40,22 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     ...other
   } = props;
 
-  const [selected, setSelected] = React.useState(false);
-  const [highlighted, setHighlighted] = React.useState(false);
-
   const selectContext = React.useContext(SelectUnstyledContext);
   if (!selectContext) {
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
+
+  const selectOption = {
+    value,
+    label: label || children,
+    disabled,
+  };
+
+  const optionState = selectContext.getOptionState(selectOption);
+  const optionProps = selectContext.getOptionProps(selectOption);
+
+  const [selected, setSelected] = React.useState(optionState.selected);
+  const [highlighted, setHighlighted] = React.useState(optionState.highlighted);
 
   React.useEffect(() => {
     function updateSelectedState(e: unknown, newValue: TValue | null) {
@@ -59,6 +68,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     }
 
     selectContext.registerSelectionChangeHandler(updateSelectedState);
+
     return () => {
       selectContext.unregisterSelectionChangeHandler(updateSelectedState);
     };
@@ -82,19 +92,13 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const Root = component || slots.root || 'li';
 
-  const selectOption = {
-    value,
-    label: label || children,
-    disabled,
-  };
-
-  const optionState = selectContext.getOptionState(selectOption);
-  const optionProps = selectContext.getOptionProps(selectOption);
   const listboxRef = selectContext.listboxRef;
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
-    ...optionState,
+    selected,
+    highlighted,
+    disabled: disabled ?? false,
   };
 
   const optionRef = React.useRef<HTMLLIElement>(null);
@@ -102,7 +106,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   React.useEffect(() => {
     // Scroll to the currently highlighted option
-    if (optionState.highlighted) {
+    if (highlighted) {
       if (!listboxRef.current || !optionRef.current) {
         return;
       }
@@ -115,7 +119,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
         listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
       }
     }
-  }, [optionState.highlighted, listboxRef]);
+  }, [highlighted, listboxRef]);
 
   const classes = useUtilityClasses(ownerState);
 

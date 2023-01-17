@@ -116,6 +116,7 @@ interface UseSelectCommonResult<TValue> {
   ) => UseSelectOptionSlotProps<TOther>;
   getOptionState: (option: SelectOption<TValue>) => OptionState;
   open: boolean;
+  highlightedOption: TValue | null;
 }
 
 export interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {

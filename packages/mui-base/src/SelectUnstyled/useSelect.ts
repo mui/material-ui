@@ -326,6 +326,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionState,
     open,
     value,
+    highlightedOption,
   };
 }
 
