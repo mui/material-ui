@@ -459,11 +459,7 @@ ${headers.hooks
   .map((hook) => {
     const componentPkgMap = componentPackageMapping[headers.product];
     const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(
-      headers.product,
-      componentPkg,
-      hook,
-    )})`;
+    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
   })
   .join('\n')}
   `);

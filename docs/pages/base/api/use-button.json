@@ -1,13 +1,15 @@
 {
   "inputParams": {
     "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the component is disabled." }
+      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
+      "default": "false"
     },
     "focusableWhenDisabled": {
       "type": {
         "name": "boolean",
         "description": "If `true`, allows a disabled button to receive focus."
-      }
+      },
+      "default": "false"
     },
     "href": { "type": { "name": "string", "description": "" } },
     "onFocusVisible": { "type": { "name": "React.FocusEventHandler", "description": "" } },
@@ -20,7 +22,8 @@
       "type": {
         "name": "React.ButtonHTMLAttributes<HTMLButtonElement>['type']",
         "description": "Type attribute applied when the `component` is `button`."
-      }
+      },
+      "default": "'button'"
     }
   },
   "name": "useButton",

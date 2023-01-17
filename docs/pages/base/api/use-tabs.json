@@ -7,7 +7,8 @@
       }
     },
     "direction": {
-      "type": { "name": "'ltr' | 'rtl'", "description": "The direction of the text." }
+      "type": { "name": "'ltr' | 'rtl'", "description": "The direction of the text." },
+      "default": "'ltr'"
     },
     "onChange": {
       "type": {
@@ -19,7 +20,8 @@
       "type": {
         "name": "'horizontal' | 'vertical'",
         "description": "The component orientation (layout flow direction)."
-      }
+      },
+      "default": "'horizontal'"
     },
     "selectionFollowsFocus": {
       "type": {

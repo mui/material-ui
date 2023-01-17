@@ -182,9 +182,10 @@ const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
-      // Set default value from tags
-      if (propDescriptor.typeStr !== 'bool' || propDescriptor.tags['@default']) {
-        // defaultValue = propDescriptor.tags['@default'].text;
+      const defaultTag = propDescriptor.tags?.['default'];
+      const defaultValueText = defaultTag?.text?.[0]?.text;
+      if (propDescriptor.typeStr !== 'bool' || defaultValueText !== 'false') {
+        defaultValue = defaultValueText;
       }
       const requiredProp = prop.required;
 
