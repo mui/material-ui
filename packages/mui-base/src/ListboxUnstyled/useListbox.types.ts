@@ -35,32 +35,27 @@ interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionHoverAction<TOption> {
   type: ActionTypes.optionHover;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
-interface FocusAction<TOption> {
+interface FocusAction {
   type: ActionTypes.focus;
   event: React.FocusEvent;
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
-interface BlurAction<TOption> {
+interface BlurAction {
   type: ActionTypes.blur;
   event: React.FocusEvent;
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
-interface KeyDownAction<TOption> {
+interface KeyDownAction {
   type: ActionTypes.keyDown;
   event: React.KeyboardEvent;
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface SetValueAction<TOption> {
@@ -75,11 +70,10 @@ interface SetHighlightAction<TOption> {
   highlight: TOption | null;
 }
 
-interface TextNavigationAction<TOption> {
+interface TextNavigationAction {
   type: ActionTypes.textNavigation;
   event: React.KeyboardEvent;
   searchString: string;
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionsChangeAction<TOption> {
@@ -87,17 +81,16 @@ interface OptionsChangeAction<TOption> {
   event: null;
   options: TOption[];
   previousOptions: TOption[];
-  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 export type ListboxAction<TOption> =
   | OptionClickAction<TOption>
   | OptionHoverAction<TOption>
-  | FocusAction<TOption>
-  | BlurAction<TOption>
-  | KeyDownAction<TOption>
+  | FocusAction
+  | BlurAction
+  | KeyDownAction
   | SetHighlightAction<TOption>
-  | TextNavigationAction<TOption>
+  | TextNavigationAction
   | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
@@ -106,9 +99,9 @@ export interface ListboxState<TOption> {
   selectedValue: TOption | TOption[] | null;
 }
 
-export type ListboxReducer<TOption> = (
+export type ListboxReducer<TOption, Props> = (
   state: ListboxState<TOption>,
-  action: ListboxAction<TOption>,
+  action: ListboxAction<TOption> & { props: Props },
 ) => ListboxState<TOption>;
 
 interface UseListboxCommonProps<TOption> {
@@ -165,7 +158,7 @@ interface UseListboxCommonProps<TOption> {
    * Custom state reducer function. It calculates the new state (highlighted and selected options)
    * based on the previous one and the performed action.
    */
-  stateReducer?: ListboxReducer<TOption>;
+  stateReducer?: ListboxReducer<TOption, UseListboxPropsWithDefaults<TOption>>;
 }
 
 interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {

@@ -338,7 +338,7 @@ function handleOptionsChange<TOption>(
 
 export default function defaultListboxReducer<TOption>(
   state: Readonly<ListboxState<TOption>>,
-  action: ListboxAction<TOption>,
+  action: ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> },
 ): Readonly<ListboxState<TOption>> {
   const { type } = action;
 

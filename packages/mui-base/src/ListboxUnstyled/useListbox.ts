@@ -44,7 +44,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: React.Ref<UseListboxPropsWithDefaults<TOption>> = useLatest(
+  const propsWithDefaults: React.RefObject<UseListboxPropsWithDefaults<TOption>> = useLatest(
     {
       ...props,
       disabledItemsFocusable,
@@ -55,23 +55,16 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       optionComparer,
       optionStringifier,
     },
-    [
-      props,
-      disabledItemsFocusable,
-      disableListWrap,
-      focusManagement,
-      isOptionDisabled,
-      optionComparer,
-      optionStringifier,
-    ],
+    [props],
   );
+
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
 
   const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
-    propsWithDefaults.current,
+    propsWithDefaults.current!,
   );
 
   const handleTextNavigation = useTextNavigation((searchString, event) =>
@@ -79,7 +72,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       type: ActionTypes.textNavigation,
       event,
       searchString,
-      props: propsWithDefaults.current,
     }),
   );
 
@@ -118,7 +110,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       event: null,
       options,
       previousOptions: previousOptions.current,
-      props: propsWithDefaults.current,
     });
 
     previousOptions.current = options;
@@ -163,7 +154,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
           type: ActionTypes.optionClick,
           option,
           event,
-          props: propsWithDefaults.current,
         });
       },
     [dispatch],
@@ -181,7 +171,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
           type: ActionTypes.optionHover,
           option,
           event,
-          props: propsWithDefaults.current,
         });
       },
     [dispatch],
@@ -213,7 +202,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       dispatch({
         type: ActionTypes.keyDown,
         event,
-        props: propsWithDefaults.current,
       });
 
       handleTextNavigation(event);
@@ -235,7 +223,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       dispatch({
         type: ActionTypes.blur,
         event,
-        props: propsWithDefaults.current,
       });
     };
 

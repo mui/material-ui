@@ -39,7 +39,12 @@ function areOptionsEqual<TOption>(
 }
 
 /**
- * Triggers change event handlers when reducer returns changed state.
+ * Triggers change event handlers (onChange and onHighlightChange) when reducer returns changed state.
+ *
+ * @param nextState The next state returned by the reducer.
+ * @param internalPreviousState The previous state. If the component is controlled, this is merged with the props to determine the final state.
+ * @param propsRef The props with defaults applied.
+ * @param lastActionRef The last action that was dispatched.
  */
 function useStateChangeDetection<TOption>(
   nextState: ListboxState<TOption>,
@@ -108,9 +113,9 @@ function useStateChangeDetection<TOption>(
   ]);
 }
 
-export default function useControllableReducer<TOption>(
-  internalReducer: ListboxReducer<TOption>,
-  externalReducer: ListboxReducer<TOption> | undefined,
+export default function useControllableReducer<TOption, Props>(
+  internalReducer: ListboxReducer<TOption, Props>,
+  externalReducer: ListboxReducer<TOption, Props> | undefined,
   props: UseListboxPropsWithDefaults<TOption>,
 ): [ListboxState<TOption>, (action: ListboxAction<TOption>) => void] {
   const { value, defaultValue } = props;
@@ -129,7 +134,7 @@ export default function useControllableReducer<TOption>(
   };
 
   const combinedReducer = React.useCallback(
-    (state: ListboxState<TOption>, action: ListboxAction<TOption>) => {
+    (state: ListboxState<TOption>, action: ListboxAction<TOption> & { props: Props }) => {
       actionRef.current = action;
 
       if (externalReducer) {
@@ -143,11 +148,20 @@ export default function useControllableReducer<TOption>(
 
   const [nextState, dispatch] = React.useReducer(combinedReducer, initialState);
 
+  const dispatchWithProps = React.useCallback(
+    (action: ListboxAction<TOption>) =>
+      dispatch({
+        props: propsRef.current,
+        ...action,
+      } as ListboxAction<TOption> & { props: Props }),
+    [dispatch, propsRef],
+  );
+
   const previousState = React.useRef<ListboxState<TOption>>(initialState);
   React.useEffect(() => {
     previousState.current = nextState;
   }, [previousState, nextState]);
 
   useStateChangeDetection<TOption>(nextState, previousState.current, propsRef, actionRef);
-  return [getControlledState(nextState, propsRef.current), dispatch];
+  return [getControlledState(nextState, propsRef.current), dispatchWithProps];
 }
