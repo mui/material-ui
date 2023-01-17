@@ -75,7 +75,10 @@ function fixedHeaderContent() {
           key={column.dataKey}
           variant="head"
           align={column.numeric || false ? 'right' : 'left'}
-          style={{ width: column.width, background: 'white' }}
+          style={{ width: column.width }}
+          sx={{
+            backgroundColor: 'background.paper',
+          }}
         >
           {column.label}
         </TableCell>
