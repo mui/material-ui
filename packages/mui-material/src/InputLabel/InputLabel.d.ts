@@ -1,4 +1,4 @@
-import { OverridableComponent, OverrideProps } from './../../../mui-types/index.d';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
