@@ -330,6 +330,20 @@ export default function Demo(props) {
     }
   }
 
+  if (!demoOptions.demo.endsWith('.js') && demoOptions.hideToolbar !== true) {
+    throw new Error(
+      [
+        `The following demos use TS directly: ${demoOptions.demo}.`,
+        '',
+        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
+        `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
+        '',
+        "Otherwise, if it's not a code demo hide the toolbar:",
+        `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
+      ].join('\n'),
+    );
+  }
+
   const t = useTranslate();
   const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
