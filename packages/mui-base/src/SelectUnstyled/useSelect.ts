@@ -22,7 +22,6 @@ import {
   defaultListboxReducer,
   ActionTypes,
   UseListboxParameters,
-  UseListboxPropsWithDefaults,
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
@@ -168,10 +167,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       }
     };
 
-  const listboxReducer: ListboxReducer<
-    SelectOption<TValue>,
-    UseListboxPropsWithDefaults<SelectOption<TValue>>
-  > = (state, action) => {
+  const listboxReducer: ListboxReducer<SelectOption<TValue>> = (state, action) => {
     const newState = defaultListboxReducer(state, action);
 
     // change selection when listbox is closed

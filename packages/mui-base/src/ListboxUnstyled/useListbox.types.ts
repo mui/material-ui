@@ -99,9 +99,9 @@ export interface ListboxState<TOption> {
   selectedValue: TOption | TOption[] | null;
 }
 
-export type ListboxReducer<TOption, Props> = (
+export type ListboxReducer<TOption> = (
   state: ListboxState<TOption>,
-  action: ListboxAction<TOption> & { props: Props },
+  action: ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> },
 ) => ListboxState<TOption>;
 
 interface UseListboxCommonProps<TOption> {
@@ -158,7 +158,7 @@ interface UseListboxCommonProps<TOption> {
    * Custom state reducer function. It calculates the new state (highlighted and selected options)
    * based on the previous one and the performed action.
    */
-  stateReducer?: ListboxReducer<TOption, UseListboxPropsWithDefaults<TOption>>;
+  stateReducer?: ListboxReducer<TOption>;
 }
 
 interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
