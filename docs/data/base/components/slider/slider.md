@@ -180,6 +180,7 @@ A label for the value can be rendered around the thumb by using the optional `sl
 
 - always
 - only when hovering over the thumb - using CSS
+- while interacting with the thumb (hovering or dragging)
 
 The following demo shows how to render the value label when the mouse is hovering over the thumb:
 
