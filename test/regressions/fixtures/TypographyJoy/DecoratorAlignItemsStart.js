@@ -22,10 +22,11 @@ export default function DecoratorAlignItemsStart() {
       >
         Hello World, this is a very long sentence.
       </Typography>
-      <Link startDecorator="✅" sx={{ width: 160, alignItems: 'flex-start' }}>
+      <Link href="/" startDecorator="✅" sx={{ width: 160, alignItems: 'flex-start' }}>
         Hello World, this is a very long sentence.
       </Link>
       <Link
+        href="/"
         startDecorator={
           <Box
             component="span"
