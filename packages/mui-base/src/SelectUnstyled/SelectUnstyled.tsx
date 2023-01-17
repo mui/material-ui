@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -287,14 +286,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
       unregisterHighlightChangeHandler,
     ],
   );
-
-  React.useEffect(() => {
-    console.log('getOptionProps changed');
-  }, [getOptionProps]);
-
-  React.useEffect(() => {
-    console.log('getOptionState changed');
-  }, [getOptionState]);
 
   return (
     <React.Fragment>

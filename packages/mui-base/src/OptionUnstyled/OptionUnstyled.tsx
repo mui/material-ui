@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -40,8 +39,6 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     value,
     ...other
   } = props;
-
-  console.log('rendering OptionUnstyled');
 
   const [selected, setSelected] = React.useState(false);
   const [highlighted, setHighlighted] = React.useState(false);

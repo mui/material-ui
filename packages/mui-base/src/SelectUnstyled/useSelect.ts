@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
@@ -26,12 +25,6 @@ import {
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
-
-function useNotifyChanged(prop: unknown, propName: string) {
-  React.useEffect(() => {
-    console.log(`${propName} changed (new value: ${prop}))`);
-  }, [prop, propName]);
-}
 
 function defaultOptionComparer<TValue>(o: SelectOption<TValue>, v: SelectOption<TValue>) {
   return o?.value === v?.value;
@@ -239,7 +232,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         onChangeMultiple?.(e, newValues);
       },
       onHighlightChange: (e, newOption) => {
-        console.log('onHighlightChange', newOption);
         onHighlightChange?.(e, newOption?.value ?? null);
       },
       options,
@@ -262,8 +254,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         onChangeSingle?.(e, option?.value ?? null);
       },
       onHighlightChange: (e, newOption) => {
-        console.log('onHighlightChange', newOption);
-
         onHighlightChange?.(e, newOption?.value ?? null);
       },
       options,
@@ -306,9 +296,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onBlur: createHandleListboxBlur(otherHandlers),
       onKeyUp: createHandleListboxKeyUp(otherHandlers),
     });
-
-  useNotifyChanged(getListboxOptionProps, 'getListboxOptionProps');
-  useNotifyChanged(createHandleListboxItemClick, 'createHandleListboxItemClick');
 
   const getOptionProps = React.useCallback(
     <TOther extends EventHandlers>(
