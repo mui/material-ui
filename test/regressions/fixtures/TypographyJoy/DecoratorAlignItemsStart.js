@@ -10,9 +10,6 @@ export default function DecoratorAlignItemsStart() {
       <Typography startDecorator="✅" alignItems="flex-start" sx={{ width: 160 }}>
         Hello World, this is a very long sentence.
       </Typography>
-      <Typography startDecorator={<Person />} alignItems="flex-start" sx={{ width: 160 }}>
-        Hello World, this is a very long sentence.
-      </Typography>
       <Typography
         startDecorator={
           <Box
@@ -28,10 +25,7 @@ export default function DecoratorAlignItemsStart() {
       <Link startDecorator="✅" sx={{ width: 160, alignItems: 'flex-start' }}>
         Hello World, this is a very long sentence.
       </Link>
-      <Typography startDecorator={<Person />} sx={{ width: 160, alignItems: 'flex-start' }}>
-        Hello World, this is a very long sentence.
-      </Typography>
-      <Typography
+      <Link
         startDecorator={
           <Box
             component="span"
@@ -41,7 +35,7 @@ export default function DecoratorAlignItemsStart() {
         sx={{ width: 160, alignItems: 'flex-start' }}
       >
         Hello World, this is a very long sentence.
-      </Typography>
+      </Link>
     </CssVarsProvider>
   );
 }
