@@ -1,5 +1,59 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.5
+
+<!-- generated comparing v5.11.4..master -->
+
+_Jan 17, 2023_
+
+A big thanks to the 17 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.5`
+
+- [Material UI] Custom channel token should suppress the warning (#35804) @siriwatknp
+- [Autocomplete] Fix value type when `strictNullChecks` is `false` (#35367) @fenghan34
+- [Slider] Replace `SliderUnstyled` with `useSlider` hook (#35770) @ZeeshanTamboli
+- [l10n] Add Belarusian translation (#35742) @volhalink
+
+### `@mui/system@5.11.5`
+
+- [system] Improve the `createBox` types (#35532) @mnajdova
+
+### `@mui/base@5.0.0-alpha.114`
+
+- [base] Fix typos (#35802) @nnmax
+- [Slider] Convert code to TypeScript (#35445) @sai6855
+
+### `@mui/joy@5.0.0-alpha.63`
+
+- [Joy] Miscellaneous fixes (#35847) @siriwatknp
+- [Joy] Remove `TextField` component and replace its usage in docs with `FormControl`/`FormLabel`/`Input` (#35462) @hbjORbj
+- [Tabs][joy] Don't apply `:hover, :active` styles when `selected` (#35750) @sai6855
+- [Joy][textfield] Throw error with migration message (#35845) @siriwatknp
+
+### Docs
+
+- [docs] Improve pickers lab migration stressing `mui-x` usage (#35740) @LukasTy
+- [docs] Fix incorrectly named AccessibleTable demo component (#35832) @HeVictor
+- [docs] Clarify where to find docs for MUI Base components in Material UI (#35799) @samuelsycamore
+- [docs] Fix typos (#35814) @alexfauquette
+- [docs] Revise and expand the Joy UI Card page (#35745) @samuelsycamore
+- [docs] Fix navigation layout shift (#35679) @oliviertassinari
+- [docs] Fix typo in the Composition page (#35774) @msoyka
+- [docs][joy] Update Customization section code example to use the correct API (#35765) @pupudu
+- [docs][joy] Fix grammar in `Typography` docs (#35796) @atrefonas
+- [examples] Remove `next-env.d.ts` from Next.js examples (#35772) @Juneezee
+
+### Core
+
+- [website] Improve pricing page (#35767) @oliviertassinari
+- [website] Add Greg in about page (#35816) @oliviertassinari
+- [website] Update the Accessibility Engineer role (#35751) @oliviertassinari
+- [website] Add docs for MUI for Figma @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @atrefonas, @fenghan34, @hbjORbj, @HeVictor, @Juneezee, @LukasTy, @mnajdova, @msoyka, @nnmax, @oliviertassinari, @pupudu, @sai6855, @samuelsycamore, @siriwatknp, @volhalink, @ZeeshanTamboli
+
 ## 5.11.4
 
 <!-- generated comparing v5.11.3..master -->
