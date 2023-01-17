@@ -123,7 +123,7 @@ function SliderValueLabel({ children }: SliderValueLabelProps) {
   );
 }
 
-export default function UnstyledSlider() {
+export default function LabeledValuesSlider() {
   return (
     <Box sx={{ width: 300 }}>
       <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />

@@ -184,7 +184,7 @@ A label for the value can be rendered around the thumb by using the optional `sl
 
 The following demo shows how to render the value label when the mouse is hovering over the thumb:
 
-{{"demo": "UnstyledSliderValueLabel.js"}}
+{{"demo": "LabeledValuesSlider.js"}}
 
 ## Accessibility
 
