@@ -15,7 +15,10 @@ export default function DecoratorAlignItemsStart() {
       </Typography>
       <Typography
         startDecorator={
-          <Box sx={{ bgcolor: 'tomato', width: '1.25em', height: '1.25em', borderRadius: '50%' }} />
+          <Box
+            component="span"
+            sx={{ bgcolor: 'tomato', width: '1.25em', height: '1.25em', borderRadius: '50%' }}
+          />
         }
         alignItems="flex-start"
         sx={{ width: 160 }}
@@ -30,7 +33,10 @@ export default function DecoratorAlignItemsStart() {
       </Typography>
       <Typography
         startDecorator={
-          <Box sx={{ bgcolor: 'tomato', width: '1.25em', height: '1.25em', borderRadius: '50%' }} />
+          <Box
+            component="span"
+            sx={{ bgcolor: 'tomato', width: '1.25em', height: '1.25em', borderRadius: '50%' }}
+          />
         }
         sx={{ width: 160, alignItems: 'flex-start' }}
       >
