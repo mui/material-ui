@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
@@ -13,14 +12,8 @@ import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
-
-const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
-
-function useNotifyChanged(prop: unknown, propName: string) {
-  React.useEffect(() => {
-    console.log(`${propName} changed (new value: ${prop}))`);
-  }, [prop, propName]);
-}
+import useLatest from '../utils/useLatest';
+import useTextNavigation from './useTextNavigation';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
@@ -51,8 +44,8 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: React.MutableRefObject<UseListboxPropsWithDefaults<TOption>> =
-    React.useRef({
+  const propsWithDefaults: React.Ref<UseListboxPropsWithDefaults<TOption>> = useLatest(
+    {
       ...props,
       disabledItemsFocusable,
       disableListWrap,
@@ -61,46 +54,27 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       multiple,
       optionComparer,
       optionStringifier,
-    });
-
-  React.useEffect(() => {
-    propsWithDefaults.current = {
-      ...props,
+    },
+    [
+      props,
       disabledItemsFocusable,
       disableListWrap,
       focusManagement,
       isOptionDisabled,
-      multiple,
       optionComparer,
       optionStringifier,
-    };
-  }, [
-    props,
-    disabledItemsFocusable,
-    disableListWrap,
-    focusManagement,
-    isOptionDisabled,
-    multiple,
-    optionComparer,
-    optionStringifier,
-  ]);
-
+    ],
+  );
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
-
-  const textCriteriaRef = React.useRef<{
-    searchString: string;
-    lastTime: number | null;
-  }>({
-    searchString: '',
-    lastTime: null,
-  });
 
   const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
     propsWithDefaults.current,
   );
+
+  const handleTextNavigation = useTextNavigation(dispatch, propsWithDefaults);
 
   const highlightedIndexRef = React.useRef<number>(-1);
   const selectedValueRef = React.useRef<TOption | TOption[] | null>(null);
@@ -188,8 +162,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     [dispatch],
   );
 
-  useNotifyChanged(dispatch, 'dispatch');
-
   const createHandleOptionPointerOver = React.useCallback(
     (option: TOption, other: Record<string, React.EventHandler<any>>) =>
       (event: React.PointerEvent) => {
@@ -237,34 +209,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         props: propsWithDefaults.current,
       });
 
-      // Handle text navigation
-      if (event.key.length === 1 && event.key !== ' ') {
-        const textCriteria = textCriteriaRef.current;
-        const lowerKey = event.key.toLowerCase();
-        const currentTime = performance.now();
-        if (
-          textCriteria.searchString.length > 0 &&
-          textCriteria.lastTime &&
-          currentTime - textCriteria.lastTime > TEXT_NAVIGATION_RESET_TIMEOUT
-        ) {
-          textCriteria.searchString = lowerKey;
-        } else if (
-          textCriteria.searchString.length !== 1 ||
-          lowerKey !== textCriteria.searchString
-        ) {
-          // If there is just one character in the buffer and the key is the same, do not append
-          textCriteria.searchString += lowerKey;
-        }
-
-        textCriteria.lastTime = currentTime;
-
-        dispatch({
-          type: ActionTypes.textNavigation,
-          event,
-          searchString: textCriteria.searchString,
-          props: propsWithDefaults.current,
-        });
-      }
+      handleTextNavigation(event);
     };
 
   const createHandleBlur =
@@ -346,14 +291,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     },
     [focusManagement, disabledItemsFocusable],
   );
-
-  useNotifyChanged(optionIdGenerator, 'optionIdGenerator');
-  useNotifyChanged(createHandleOptionClick, 'createHandleOptionClick');
-  useNotifyChanged(createHandleOptionPointerOver, 'createHandleOptionPointerOver');
-  useNotifyChanged(getOptionTabIndex, 'getOptionTabIndex');
-  useNotifyChanged(getOptionState, 'getOptionState');
-  useNotifyChanged(optionComparer, 'optionComparer');
-  useNotifyChanged(options, 'options');
 
   const getOptionProps = React.useCallback(
     <TOther extends EventHandlers = {}>(
