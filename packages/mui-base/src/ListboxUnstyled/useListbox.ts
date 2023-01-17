@@ -13,7 +13,7 @@ import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 import useLatest from '../utils/useLatest';
-import useTextNavigation from './useTextNavigation';
+import useTextNavigation from '../utils/useTextNavigation';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
@@ -74,7 +74,14 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     propsWithDefaults.current,
   );
 
-  const handleTextNavigation = useTextNavigation(dispatch, propsWithDefaults);
+  const handleTextNavigation = useTextNavigation((searchString, event) =>
+    dispatch({
+      type: ActionTypes.textNavigation,
+      event,
+      searchString,
+      props: propsWithDefaults.current,
+    }),
+  );
 
   const highlightedIndexRef = React.useRef<number>(-1);
   const selectedValueRef = React.useRef<TOption | TOption[] | null>(null);
@@ -121,7 +128,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   }, [options, optionComparer, dispatch]);
 
   const setSelectedValue = React.useCallback(
-    (option: TOption | TOption[] | null) => {
+    (option: TOption[]) => {
       dispatch({
         type: ActionTypes.setValue,
         event: null,
