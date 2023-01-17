@@ -1,73 +1,18 @@
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import * as ts from 'typescript';
 import * as prettier from 'prettier';
-import { access, mkdirSync } from 'fs';
+import { mkdirSync } from 'fs';
 import * as astTypes from 'ast-types';
 import path from 'path';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
+import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import generatePropDescription from '../utils/generatePropDescription';
 import { toGitHubPath, writePrettifiedFile } from './ComponentApiBuilder';
 import { HookInfo } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import createDescribeableProp, {
-  DescribeablePropDescriptor,
-} from '../utils/createDescribeableProp';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
-import upperFirst from 'lodash/upperFirst';
-
-// Took from MUI X
-export interface Project {
-  name: string;
-  exports: Record<string, ts.Symbol>;
-  program: ts.Program;
-  checker: ts.TypeChecker;
-  workspaceRoot: string;
-  rootPath: string;
-  prettierConfigPath: string;
-  /**
-   * @param {Project} project The project to generate the prop-types from.
-   * @returns {string[]} Path to the component files from which we want to generate the prop-types.
-   */
-  getComponentsWithPropTypes?: (project: Project) => string[];
-  /**
-   * @param {Project} project The project to generate the components api from.
-   * @returns {string[]} Path to the component files from which we want to generate the api doc.
-   */
-  getComponentsWithApiDoc?: (project: Project) => string[];
-  /**
-   * Name of the folder inside the documentation.
-   */
-  documentationFolderName: string;
-}
-
-/**
- * Took from MUI X.
- * Goes to the root symbol of ExportSpecifier
- * That corresponds to one of the following patterns
- * - `export { XXX}`
- * - `export { XXX } from './modules'`
- *
- * Do not go to the root definition for TypeAlias (ie: `export type XXX = YYY`)
- * Because we usually want to keep the description and tags of the aliased symbol.
- */
-export const resolveExportSpecifier = (symbol: ts.Symbol, project: TypeScriptProject) => {
-  let resolvedSymbol = symbol;
-
-  while (resolvedSymbol.declarations && ts.isExportSpecifier(resolvedSymbol.declarations[0])) {
-    const newResolvedSymbol = project.checker.getImmediateAliasedSymbol(resolvedSymbol);
-
-    if (!newResolvedSymbol) {
-      throw new Error('Impossible to resolve export specifier');
-    }
-
-    resolvedSymbol = newResolvedSymbol;
-  }
-
-  return resolvedSymbol;
-};
 
 interface ParsedProperty {
   name: string;
@@ -128,7 +73,7 @@ const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): P
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
   tags: getSymbolJSDocTags(propertySymbol),
-  required: !!!propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
+  required: !propertySymbol.declarations?.find(ts.isPropertySignature)?.questionToken,
   typeStr: stringifySymbol(propertySymbol, project),
 });
 
@@ -168,8 +113,6 @@ const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
       try {
-        // TODO: Validate if everything is fine here
-        // prop = createDescribeableProp(propDescriptor, propName);
         prop = propDescriptor;
       } catch (error) {
         propErrors.push([propName, error as Error]);
@@ -182,7 +125,7 @@ const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
-      const defaultTag = propDescriptor.tags?.['default'];
+      const defaultTag = propDescriptor.tags?.default;
       const defaultValueText = defaultTag?.text?.[0]?.text;
       if (propDescriptor.typeStr !== 'bool' || defaultValueText !== 'false') {
         defaultValue = defaultValueText;
@@ -195,7 +138,6 @@ const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
         [propName]: {
           type: {
             name: propDescriptor.typeStr,
-            // TODO: Check if this should be changed
             description: propDescriptor.description ?? undefined,
           },
           default: defaultValue,
@@ -230,24 +172,11 @@ const attachTranslations = (reactApi: ReactApi) => {
     inputParamsDescriptions: {},
   };
 
-  Object.entries(reactApi.props! ?? reactApi.inputParams ?? {}).forEach(
-    // @ts-ignore
-    ({ name: propName, type }) => {
-      // let prop: DescribeablePropDescriptor | null;
-      // try {
-      //   prop = createDescribeableProp(propDescriptor, propName);
-      // } catch (error) {
-      //   prop = null;
-      // }
-      if (type) {
-        // let description = generatePropDescription(prop, propName);
-        // const description = renderMarkdownInline(type.description);
-        const description = type.description;
-
-        translations.inputParamsDescriptions[propName] = description.replace(/\n@default.*$/, '');
-      }
-    },
-  );
+  (reactApi.inputParams ?? []).forEach(({ name: propName, description }) => {
+    if (description) {
+      translations.inputParamsDescriptions[propName] = description.replace(/\n@default.*$/, '');
+    }
+  });
 
   reactApi.translations = translations;
 };
@@ -355,9 +284,7 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     return null;
   }
 
-  let reactApi: ReactApi;
-
-  reactApi = docgenParse(
+  const reactApi: ReactApi = docgenParse(
     src,
     (ast) => {
       let node;
@@ -379,14 +306,10 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
   const interfaceName = `${upperFirst(name)}Parameters`;
 
   try {
-    const declaration = project.exports[interfaceName]?.declarations?.[0];
-
     const exportedSymbol = project.exports[interfaceName];
     const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
     // @ts-ignore
     const typeDeclaration = type?.symbol?.declarations?.[0];
-    const symbol = resolveExportSpecifier(exportedSymbol, project);
-
     if (!typeDeclaration || !ts.isInterfaceDeclaration(typeDeclaration)) {
       return null;
     }
@@ -404,7 +327,7 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
       .filter((property) => !property.tags.ignore)
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch (e) {
-    console.log(`No declaration for ${interfaceName}`);
+    console.error(`No declaration for ${interfaceName}`);
   }
 
   // Ignore what we might have generated in `annotateComponentDefinition`

@@ -1,1 +1,4 @@
-{ "hookDescription": "", "inputParamsDescriptions": {} }
+{
+  "hookDescription": "",
+  "inputParamsDescriptions": { "children": "The content of the component." }
+}

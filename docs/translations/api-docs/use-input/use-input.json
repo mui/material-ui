@@ -1,1 +1,9 @@
-{ "hookDescription": "", "inputParamsDescriptions": {} }
+{
+  "hookDescription": "",
+  "inputParamsDescriptions": {
+    "defaultValue": "The default value. Use when the component is not controlled.",
+    "disabled": "If `true`, the component is disabled.\nThe prop defaults to the value (`false`) inherited from the parent FormControl component.",
+    "error": "If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.\nThe prop defaults to the value (`false`) inherited from the parent FormControl component.",
+    "required": "If `true`, the `input` element is required.\nThe prop defaults to the value (`false`) inherited from the parent FormControl component."
+  }
+}

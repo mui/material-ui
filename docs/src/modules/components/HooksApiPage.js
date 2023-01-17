@@ -43,7 +43,7 @@ const Table = styled('table')(({ theme }) => {
 });
 
 function InputParamsTable(params) {
-  const { inputParams, propDescriptions } = params;
+  const { inputParams, inputParamsDescriptions } = params;
   const t = useTranslate();
 
   return (
@@ -98,8 +98,7 @@ function InputParamsTable(params) {
                     )}
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: typeDescription || '',
-                        // __html: propDescriptions[propName] || '',
+                        __html: inputParamsDescriptions[propName] || '',
                       }}
                     />
                   </td>
@@ -115,17 +114,15 @@ function InputParamsTable(params) {
 
 InputParamsTable.propTypes = {
   inputParams: PropTypes.object.isRequired,
-  propDescriptions: PropTypes.object.isRequired,
+  inputParamsDescriptions: PropTypes.object.isRequired,
 };
 
 function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
-    'component-name': t('api-docs.hookName'),
+    'hook-name': t('api-docs.hookName'),
     inputParams: t('api-docs.inputParams'),
-    inheritance: t('api-docs.inheritance'),
-    css: 'CSS',
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -166,23 +163,12 @@ export default function ApiPage(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
-  const {
-    cssComponent,
-    demos,
-    filename,
-    forwardsRefTo,
-    inheritance,
-    name: hookName,
-    inputParams,
-    spread,
-    styles: componentStyles,
-  } = pageContent;
+  const { demos, filename, inheritance, name: hookName, inputParams } = pageContent;
 
   const {
-    componentDescription,
-    componentDescriptionToc = [],
-    classDescriptions,
-    propDescriptions,
+    hookDescription,
+    hookDescriptionToc = [],
+    inputParamsDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.hooksPageDescription').replace(/{{name}}/, hookName);
 
@@ -209,7 +195,7 @@ export default function ApiPage(props) {
   const toc = [
     createTocEntry('demos'),
     createTocEntry('import'),
-    ...componentDescriptionToc,
+    ...hookDescriptionToc,
     createTocEntry('inputParams'),
   ].filter(Boolean);
 
@@ -249,19 +235,22 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
         />
         {/* TODO: Add this once the hooks are in dedicated folders */}
         {/* <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} /> */}
-        {componentDescription ? (
+        {hookDescription ? (
           <React.Fragment>
             <br />
             <br />
             <span
               dangerouslySetInnerHTML={{
-                __html: componentDescription,
+                __html: hookDescription,
               }}
             />
           </React.Fragment>
         ) : null}
         <Heading hash="inputParams" />
-        <InputParamsTable inputParams={inputParams} propDescriptions={propDescriptions} />
+        <InputParamsTable
+          inputParams={inputParams}
+          inputParamsDescriptions={inputParamsDescriptions}
+        />
         <br />
         {/* TODO: Add section for the hook output type */}
       </MarkdownElement>
