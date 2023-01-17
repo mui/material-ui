@@ -3331,8 +3331,8 @@ export const trTR: Localization = {
           return 'Önceki sayfaya git';
         },
         labelRowsPerPage: 'Sayfa başına satır:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`,
       },
     },
     MuiRating: {
