@@ -1,5 +1,90 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.4
+
+<!-- generated comparing v5.11.3..master -->
+
+_Jan 9, 2023_
+
+A big thanks to the 14 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.4`
+
+- [Autocomplete] Add index to renderOption's AutocompleteRenderOptionState (#35578) @CowDotDev
+- [Autocomplete] Fix grammar in console.error in `useAutocomplete` (#35723) @hamirmahal
+- [Modal] Fix can't override Backdrop Props using new Slots API (#35140) @ZeeshanTamboli
+- [Select] Revert "Update `renderValue` prop's TypeScript type (#34177)" (#35733) @michaldudak
+- [Tabs] Throw error only if individual `Tab` is hidden, not the whole `Tabs` (#34026) @Ryczko
+- [TextField] Improve WCAG 2.4.7 with error={true} (#35687) @oliviertassinari
+- [Tooltip] Remove `data-foo` attribute (#35736) @koolskateguy89
+
+### `@mui/joy@5.0.0-alpha.62`
+
+- [Autocomplete][joy] Specify `type` attribute for popup indicator (#35648) @hbjORbj
+- [Joy] Miscellaneous improvements (#35769) @siriwatknp
+- [Joy] Improve `onKeyDown` event handler for demo (#35642) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.113`
+
+- [Portal][base] Convert code to TypeScript (#35657) @sai6855
+
+### Docs
+
+- [docs] Revise and expand Joy UI Button doc (#35737) @samuelsycamore
+- [docs] Document the workaround for crashing a translated page (#35720) @michaldudak
+- [docs] Fix API page for `MenuItem` to list all valid props (#35561) @mnajdova
+- [docs] Fix ad exception in Joy UI (#35685) @oliviertassinari
+- [docs] Fix content wider than screen regression @oliviertassinari
+- [examples] Add `Vite.js with TypeScript` example (#35683) @miha53cevic
+
+### Core
+
+- [core] Close 2022 developer survey @oliviertassinari
+- [core] Fix the product license reference name (#35703) @oliviertassinari
+- [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
+- [test] Always use & for nesting styles (#35702) @oliviertassinari
+- [website] Improve Lead Designer role description (#35684) @oliviertassinari
+
+All contributors of this release in alphabetical order: @CowDotDev, @flaviendelangle, @hamirmahal, @hbjORbj, @koolskateguy89, @michaldudak, @miha53cevic, @mnajdova, @oliviertassinari, @Ryczko, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 5.11.3
+
+<!-- generated comparing v5.11.2..master -->
+
+_Jan 2, 2023_
+
+A big thanks to the 6 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.3`
+
+- &#8203;<!-- 02 -->[Select] Update `renderValue` prop's TypeScript type (#34177) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.61`
+
+- &#8203;<!-- 14 -->[Autocomplete][joy] Export component (#35647) @mbranch
+
+### Docs
+
+- &#8203;<!-- 13 -->[blog] Fix handling of markdown links (#35628) @oliviertassinari
+- &#8203;<!-- 09 -->[docs] Fix demo code selection through copy shortcut key on Firefox browser (#35670) @ZeeshanTamboli
+- &#8203;<!-- 08 -->[docs] Fix layout shift when streaming the page (#35627) @oliviertassinari
+- &#8203;<!-- 07 -->[docs] Fix switch name to reflect the color (#35052) @rjhcnf
+- &#8203;<!-- 06 -->[docs] Fix anchor link in the card's docs and fix a typo (#35634) @ZeeshanTamboli
+- &#8203;<!-- 05 -->[docs] Fix layout shift with modal (#35591) @oliviertassinari
+- &#8203;<!-- 04 -->[Joy][docs] Add documentation for `Input` component (#35482) @hbjORbj
+- &#8203;<!-- 03 -->[docs][joy] Improved readability on theme tokens page (#35639) @badalsaibo
+
+### Core
+
+- &#8203;<!-- 12 -->[core] Disable prefetch of footer links @oliviertassinari
+- &#8203;<!-- 11 -->[core] A few SEO fixes (#35672) @oliviertassinari
+- &#8203;<!-- 10 -->[core] Remove need for scopePathnames (#35584) @oliviertassinari
+- &#8203;<!-- 01 -->[test] Fix Algolia noisy lvl1 anchor (#35686) @oliviertassinari
+
+All contributors of this release in alphabetical order: @badalsaibo, @hbjORbj, @mbranch, @oliviertassinari, @rjhcnf, @ZeeshanTamboli
+
 ## 5.11.2
 
 <!-- generated comparing v5.11.1..master -->

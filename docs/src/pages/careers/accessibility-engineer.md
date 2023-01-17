@@ -62,14 +62,13 @@ Depending on the day, you'll:
 
 ### Skills you should have
 
+- **Strong grasp of accessibility techniques in web development** applying HTML5, CSS, ARIA, and JavaScript. You should have held a Front-end Engineer (or closely related) role in the past.
 - **A track record of accessibility experience with both consumer/enterprise products and assistive technologies, such as screen readers, eye control, and other accessibility technologies**.
   If you've been the accessibility champ in a previous company, pushing towards making sure the user interfaces can be used by disabled people, we want you in our team!
 - **Hands-on knowledge of accessibility guidelines and standards** (such as Section 508, WCAG, and EN 301 549) as well as technologies (such as UI Automation, IAccessible, ARIA, and related accessibility APIs)
   You would be the one who the team can go to with any a11y topics/questions.
 - **An advocate of continuous learning;** able to absorb and share new ideas, approaches, and techniques for achieving accessibility.
   Continuous learning is one of the most important parts of this field.
-- **Strong grasp of accessibility techniques in web development** applying HTML5, CSS, ARIA, and JavaScript.
-  We are creating products used on the web.
 - **Experience with assistive technologies across multiple platforms**, including screen readers, magnification, and read-aloud tools.
 
 ### What would be nice if you had, but isn't required

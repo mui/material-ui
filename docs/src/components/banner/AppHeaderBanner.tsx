@@ -4,8 +4,9 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-const getSurveyMessage = () => (
-  <React.Fragment>
+function getSurveyMessage() {
+  return (
+    <React.Fragment>
     🚀&nbsp;Influence the future of MUI!&nbsp;&nbsp;Please take a few minutes for the&nbsp;
     <Link
       href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
@@ -21,30 +22,33 @@ const getSurveyMessage = () => (
       MUI Developer survey 2022 →
     </Link>
   </React.Fragment>
-);
+  );
+}
 
-const getDefaultHiringMessage = () => (
-  <React.Fragment>
-    🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
-    more!&nbsp;&#160;
-    <Link
-      href={ROUTES.careers} // Fix me!
-      target="_blank"
-      color="inherit"
-      underline="always"
-      sx={{
-        '&:hover': {
-          opacity: 0.9,
-        },
-      }}
-    >
-      Check the careers page →
-    </Link>
-  </React.Fragment>
-);
+function getDefaultHiringMessage() {
+  return (
+    <React.Fragment>
+      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+      more!&nbsp;&#160;
+      <Link
+        href={ROUTES.careers} // Fix me!
+        target="_blank"
+        color="inherit"
+        underline="always"
+        sx={{
+          '&:hover': {
+            opacity: 0.9,
+          },
+        }}
+      >
+        Check the careers page →
+      </Link>
+    </React.Fragment>
+  );
+}
 
 export default function AppHeaderBanner() {
-  const showSurveyMessage = true;
+  const showSurveyMessage = false;
   const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (
