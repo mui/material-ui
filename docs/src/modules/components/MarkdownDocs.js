@@ -129,6 +129,13 @@ export default function MarkdownDocs(props) {
           const splitLocationBySlash = location.split('/');
           splitLocationBySlash.pop();
           const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
+          if (demo.module.endsWith('.ts') || demo.module.endsWith('.tsx')) {
+            if (!renderedMarkdownOrDemo.hideToolbar) {
+              throw new Error(
+                `Please use a plain JS demo instead of ${name}, or pass "hideToolbar": true`,
+              );
+            }
+          }
 
           return (
             <Demo
