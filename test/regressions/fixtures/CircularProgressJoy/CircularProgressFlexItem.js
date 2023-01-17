@@ -4,7 +4,7 @@ import Box from '@mui/joy/Box';
 import CircularProgress from '@mui/joy/CircularProgress';
 import Typography from '@mui/joy/Typography';
 
-export default function VariantColorJoy() {
+export default function CircularProgressFlexItem() {
   return (
     <CssVarsProvider>
       <Box sx={{ display: 'flex', width: 200, gap: 2 }}>
