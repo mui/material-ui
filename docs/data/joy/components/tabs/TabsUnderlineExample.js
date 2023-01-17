@@ -15,7 +15,6 @@ export default function TabsUnderlineExample() {
           [`& .${tabClasses.root}`]: {
             boxShadow: 'none',
             fontWeight: 'md',
-            bgcolor: 'background.body',
             [`&.${tabClasses.selected}::before`]: {
               content: '""',
               display: 'block',
@@ -29,7 +28,7 @@ export default function TabsUnderlineExample() {
           },
         }}
       >
-        <Tab sx={{ py: 1.5 }}>Feature</Tab>
+        <Tab>Feature</Tab>
         <Tab>Specifications</Tab>
         <Tab>Review</Tab>
         <Tab>Support</Tab>
