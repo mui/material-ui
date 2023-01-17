@@ -68,15 +68,6 @@ export interface InputLabelTypeMap<P = {}, D extends React.ElementType = 'label'
   defaultComponent: D;
 }
 
-declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
-
-export type InputLabelProps<
-  D extends React.ElementType = InputLabelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<InputLabelTypeMap<P, D>, D>;
-
-export default InputLabel;
-
 /**
  *
  * Demos:
@@ -88,3 +79,11 @@ export default InputLabel;
  * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
  * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
+declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
+
+export type InputLabelProps<
+  D extends React.ElementType = InputLabelTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<InputLabelTypeMap<P, D>, D>;
+
+export default InputLabel;
