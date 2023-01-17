@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Slider component and hook
 components: SliderUnstyled
+hooks: useSlider
 githubLabel: 'component: slider'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 ---

@@ -31,5 +31,5 @@
   },
   "name": "useSnackbar",
   "filename": "/packages/mui-base/src/SnackbarUnstyled/useSnackbar.ts",
-  "demos": "<ul></ul>"
+  "demos": "<ul><li><a href=\"/base/react-snackbar/\">Unstyled Snackbar</a></li></ul>"
 }

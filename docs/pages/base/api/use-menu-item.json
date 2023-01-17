@@ -7,5 +7,5 @@
   },
   "name": "useMenuItem",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/useMenuItem.ts",
-  "demos": "<ul></ul>"
+  "demos": "<ul><li><a href=\"/base/react-menu/\">Unstyled Menu</a></li></ul>"
 }

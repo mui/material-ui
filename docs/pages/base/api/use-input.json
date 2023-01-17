@@ -35,5 +35,5 @@
   },
   "name": "useInput",
   "filename": "/packages/mui-base/src/InputUnstyled/useInput.ts",
-  "demos": "<ul></ul>"
+  "demos": "<ul><li><a href=\"/base/react-input/\">Unstyled Input</a></li></ul>"
 }

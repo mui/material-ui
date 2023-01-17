@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Tabs components
 components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
+hooks: useTab, useTabPanel, useTabs, useTabsList
 githubLabel: 'component: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 ---
