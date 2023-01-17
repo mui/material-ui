@@ -36,30 +36,7 @@
     }
   },
   "name": "InputLabel",
-  "styles": {
-    "classes": [
-      "root",
-      "focused",
-      "disabled",
-      "error",
-      "required",
-      "asterisk",
-      "formControl",
-      "sizeSmall",
-      "shrink",
-      "animated",
-      "filled",
-      "outlined",
-      "standard"
-    ],
-    "globalClasses": {
-      "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "error": "Mui-error",
-      "required": "Mui-required"
-    },
-    "name": "MuiInputLabel"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/InputLabel/InputLabel.js",
