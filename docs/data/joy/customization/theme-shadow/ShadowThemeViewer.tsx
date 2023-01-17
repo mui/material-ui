@@ -1,9 +1,13 @@
 import * as React from 'react';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { styled, extendTheme, Shadow } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
+import Check from '@mui/icons-material/CheckCircle';
 
 const Table = styled('table')(({ theme }) => ({
   border: '1px solid',
@@ -37,6 +41,7 @@ const Table = styled('table')(({ theme }) => ({
 const defaultTheme = extendTheme();
 
 export default function ShadowThemeViewer() {
+  const { copy, isCopied } = useClipboardCopy();
   const tokens = Object.keys(defaultTheme.shadow) as Array<keyof Shadow>;
   const formatShadowLayers = (shadow: string) =>
     React.Children.toArray(
@@ -51,64 +56,97 @@ export default function ShadowThemeViewer() {
         ),
     );
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>
-            <Typography fontSize="sm">Token</Typography>
-          </th>
-          <th>
-            <Typography fontSize="sm">Value</Typography>
-          </th>
-          <th>
-            <Typography fontSize="sm" startDecorator={<LightMode />}>
-              Light
-            </Typography>
-          </th>
-          <th>
-            <Typography fontSize="sm" startDecorator={<DarkMode />}>
-              Dark
-            </Typography>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {tokens.map((token) => (
-          <tr key={token}>
-            <td>
-              <Typography fontSize="sm">{token}</Typography>
-            </td>
-            <td>
-              <Typography fontSize="xs" fontFamily="code" letterSpacing="sm">
-                {formatShadowLayers(defaultTheme.shadow[token])}
+    <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
+      <Sheet
+        variant="solid"
+        color="success"
+        sx={{
+          position: 'absolute',
+          left: '50%',
+          bottom: 0,
+          transform: `translateX(-50%) translateY(${
+            isCopied ? '-0.5rem' : 'calc(100% + 0.5rem)'
+          })`,
+          transition: '0.3s',
+          p: 0.5,
+          px: 0.75,
+          borderRadius: 'xs',
+          boxShadow: 'sm',
+          zIndex: 1,
+        }}
+      >
+        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+          Copied
+        </Typography>
+      </Sheet>
+      <Table>
+        <thead>
+          <tr>
+            <th>
+              <Typography fontSize="sm">Token</Typography>
+            </th>
+            <th>
+              <Typography fontSize="sm">Value</Typography>
+            </th>
+            <th>
+              <Typography fontSize="sm" startDecorator={<LightMode />}>
+                Light
               </Typography>
-            </td>
-            <td data-joy-color-scheme="light">
-              <Sheet
-                variant="outlined"
-                sx={{
-                  width: 64,
-                  height: 64,
-                  boxShadow: (theme) => theme.shadow[token],
-                  borderRadius: 'xs',
-                  mr: 2,
-                }}
-              />
-            </td>
-            <td data-joy-color-scheme="dark">
-              <Sheet
-                variant="outlined"
-                sx={{
-                  width: 64,
-                  height: 64,
-                  boxShadow: (theme) => theme.shadow[token],
-                  borderRadius: 'xs',
-                }}
-              />
-            </td>
+            </th>
+            <th>
+              <Typography fontSize="sm" startDecorator={<DarkMode />}>
+                Dark
+              </Typography>
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {tokens.map((token) => (
+            <tr key={token}>
+              <td>
+                <Typography fontSize="sm">{token}</Typography>
+              </td>
+              <td>
+                <Link
+                  component="button"
+                  color="neutral"
+                  textColor="inherit"
+                  textAlign="left"
+                  fontSize="xs"
+                  fontFamily="code"
+                  letterSpacing="sm"
+                  onClick={() => copy(token)}
+                >
+                  {formatShadowLayers(defaultTheme.shadow[token])}
+                </Link>
+              </td>
+              <td data-joy-color-scheme="light">
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    width: 64,
+                    height: 64,
+                    boxShadow: (theme) => theme.shadow[token],
+                    borderRadius: 'xs',
+                    mr: 2,
+                  }}
+                />
+              </td>
+              <td data-joy-color-scheme="dark">
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    width: 64,
+                    height: 64,
+                    boxShadow: (theme) => theme.shadow[token],
+                    borderRadius: 'xs',
+                  }}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Box>
   );
 }

@@ -1,11 +1,15 @@
 import * as React from 'react';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { extendTheme, Palette, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
+import Link from '@mui/joy/Link';
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import LightMode from '@mui/icons-material/LightModeOutlined';
 import DarkMode from '@mui/icons-material/DarkModeOutlined';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import Check from '@mui/icons-material/Check';
 
 const defaultTheme = extendTheme();
 
@@ -63,6 +67,7 @@ const Table = styled('table')(({ theme }) => ({
 }));
 
 export default function PaletteThemeViewer() {
+  const { copy, isCopied } = useClipboardCopy();
   const light = traverseObject(defaultTheme.colorSchemes.light.palette);
   const dark = traverseObject(defaultTheme.colorSchemes.dark.palette);
   const paletteTokens = Array.from(
@@ -95,7 +100,29 @@ export default function PaletteThemeViewer() {
     />
   );
   return (
-    <Box sx={{ width: '100%', overflow: 'auto' }}>
+    <Box sx={{ width: '100%', overflow: 'auto', position: 'relative' }}>
+      <Sheet
+        variant="solid"
+        color="success"
+        sx={{
+          position: 'absolute',
+          left: '50%',
+          bottom: 0,
+          transform: `translateX(-50%) translateY(${
+            isCopied ? '-0.5rem' : 'calc(100% + 0.5rem)'
+          })`,
+          transition: '0.3s',
+          p: 0.5,
+          px: 0.75,
+          borderRadius: 'xs',
+          boxShadow: 'sm',
+          zIndex: 1,
+        }}
+      >
+        <Typography level="body3" textColor="inherit" startDecorator={<Check />}>
+          Copied
+        </Typography>
+      </Sheet>
       <Table>
         <thead>
           <tr>
@@ -130,8 +157,13 @@ export default function PaletteThemeViewer() {
             .map((token) => (
               <tr key={token}>
                 <td>
-                  <Typography
+                  <Link
+                    component="button"
+                    color="neutral"
+                    textColor="inherit"
                     fontSize="sm"
+                    textAlign="left"
+                    onClick={() => copy(token)}
                     endDecorator={
                       light[token].match(/^[0-9]+\s[0-9]+\s[0-9]+$/) ? (
                         <Tooltip
@@ -156,31 +188,42 @@ export default function PaletteThemeViewer() {
                         </Tooltip>
                       ) : null
                     }
+                    sx={{ cursor: 'copy' }}
                   >
                     {token}
-                  </Typography>
+                  </Link>
                 </td>
                 <td>
-                  <Typography
+                  <Link
+                    component="button"
+                    color="neutral"
+                    textColor="inherit"
                     fontSize="xs"
                     startDecorator={renderSwatch('light', token)}
                     fontFamily="code"
                     letterSpacing="sm"
-                    sx={{ alignItems: 'flex-start' }}
+                    textAlign="left"
+                    sx={{ alignItems: 'flex-start', cursor: 'copy' }}
+                    onClick={() => copy(light[token])}
                   >
                     {light[token]}
-                  </Typography>
+                  </Link>
                 </td>
                 <td>
-                  <Typography
+                  <Link
+                    component="button"
+                    color="neutral"
+                    textColor="inherit"
                     fontSize="xs"
                     startDecorator={renderSwatch('dark', token)}
                     fontFamily="code"
                     letterSpacing="sm"
-                    sx={{ alignItems: 'flex-start' }}
+                    textAlign="left"
+                    sx={{ alignItems: 'flex-start', cursor: 'copy' }}
+                    onClick={() => copy(dark[token])}
                   >
                     {dark[token]}
-                  </Typography>
+                  </Link>
                 </td>
               </tr>
             ))}

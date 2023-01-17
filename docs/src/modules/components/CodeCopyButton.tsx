@@ -1,5 +1,5 @@
 import * as React from 'react';
-import copy from 'clipboard-copy';
+import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
 interface CodeCopyButtonProps {
   code: string;
@@ -7,22 +7,10 @@ interface CodeCopyButtonProps {
 
 export default function CodeCopyButton(props: CodeCopyButtonProps) {
   const { code, ...other } = props;
-  const [copied, setCopied] = React.useState(false);
+  const { copy, isCopied } = useClipboardCopy();
   // This component is designed to be wrapped in NoSsr
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
   const key = macOS ? '⌘' : 'Ctrl + ';
-
-  React.useEffect(() => {
-    if (copied) {
-      const timeout = setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-    return undefined;
-  }, [copied]);
 
   return (
     <button
@@ -32,12 +20,11 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
       className="MuiCode-copy"
       onClick={async (event) => {
         event.stopPropagation();
-        setCopied(true);
         await copy(code);
       }}
     >
       {/* material-ui/no-hardcoded-labels */}
-      {copied ? 'Copied' : 'Copy'}&nbsp;
+      {isCopied ? 'Copied' : 'Copy'}&nbsp;
       <span className="MuiCode-copyKeypress">
         <span>(or</span> {key}C<span>)</span>
       </span>
