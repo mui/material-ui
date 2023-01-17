@@ -30,7 +30,7 @@ As you increase the month, the component automatically watches for valid values 
 The Fields are a perfect match to the calendar view, but they are available as stand-alone components, and you can import them from the latest v6 package.
 
 ```jsx
-import { Unstable_DateField as DateField } from '@mui/x-date-pickers/DateField';
+import { DateField } from '@mui/x-date-pickers/DateField';
 
 <DateField label="My first field" />;
 ```
@@ -38,9 +38,9 @@ import { Unstable_DateField as DateField } from '@mui/x-date-pickers/DateField';
 They're also included by default with the new Pickers.
 
 ```jsx
-import { Unstable_NextDatePicker as NextDatePicker } from '@mui/x-date-pickers/NextDatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-<NextDatePicker label="My first v6 picker" />;
+<DatePicker label="My first v6 picker" />;
 ```
 
 ## Enhanced keyboard usability
