@@ -26,8 +26,8 @@ import Link from 'docs/src/modules/components/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
 
 export const getStaticProps = () => {
-  generateRssFeed();
   const data = getAllBlogPosts();
+  generateRssFeed(data.allBlogPosts);
   return {
     props: data,
   };
