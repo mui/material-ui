@@ -325,7 +325,12 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-
+/**
+ *
+ * API:
+ *
+ * - [useAutocomplete API](https://mui.com/base/api/use-autocomplete/)
+ */
 export default function useAutocomplete<
   T,
   Multiple extends boolean | undefined = undefined,

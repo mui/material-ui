@@ -91,7 +91,10 @@ export function writePrettifiedFile(
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
-async function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
+export async function computeApiDescription(
+  api: { description: ReactApi['description'] },
+  options: { host: string },
+): Promise<string> {
   const { host } = options;
   const file = await remark()
     .use(function docsLinksAttacher() {

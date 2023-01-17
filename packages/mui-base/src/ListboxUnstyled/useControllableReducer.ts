@@ -107,7 +107,12 @@ function useStateChangeDetection<TOption>(
     lastActionRef,
   ]);
 }
-
+/**
+ *
+ * API:
+ *
+ * - [useControllableReducer API](https://mui.com/base/api/use-controllable-reducer/)
+ */
 export default function useControllableReducer<TOption>(
   internalReducer: ListboxReducer<TOption>,
   externalReducer: ListboxReducer<TOption> | undefined,

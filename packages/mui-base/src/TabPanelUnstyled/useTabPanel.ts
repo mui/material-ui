@@ -1,6 +1,15 @@
 import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
 import { UseTabPanelParameters } from './useTabPanel.types';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
+ *
+ * API:
+ *
+ * - [useTabPanel API](https://mui.com/base/api/use-tab-panel/)
+ */
 function useTabPanel(parameters: UseTabPanelParameters) {
   const { value } = parameters;
 

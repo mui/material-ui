@@ -2,7 +2,16 @@ import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import { useButton } from '../ButtonUnstyled';
 import { UseTabParameters, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
+ *
+ * API:
+ *
+ * - [useTab API](https://mui.com/base/api/use-tab/)
+ */
 function useTab(parameters: UseTabParameters) {
   const { value: valueProp, onChange, onClick, onFocus } = parameters;
 

@@ -1,5 +1,5 @@
 {
-  "hookDescription": "The basic building block for creating custom switches.\n\nDemos:\n\n- [Switches](https://mui.com/components/switches/)",
+  "hookDescription": "The basic building block for creating custom switches.",
   "inputParamsDescriptions": {
     "checked": "If `true`, the component is checked.",
     "defaultChecked": "The default checked state. Use when the component is not controlled.",

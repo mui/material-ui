@@ -67,7 +67,16 @@ const moveFocus = (
     }
   }
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
+ *
+ * API:
+ *
+ * - [useTabsList API](https://mui.com/base/api/use-tabs-list/)
+ */
 function useTabsList(parameters: UseTabsListParameters) {
   const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
 

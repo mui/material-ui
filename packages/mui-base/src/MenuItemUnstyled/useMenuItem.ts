@@ -3,7 +3,16 @@ import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import { useButton } from '../ButtonUnstyled';
 import { UseMenuItemParameters } from './useMenuItem.types';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Menu](https://mui.com/base/react-menu/)
+ *
+ * API:
+ *
+ * - [useMenuItem API](https://mui.com/base/api/use-menu-item/)
+ */
 export default function useMenuItem(props: UseMenuItemParameters) {
   const { disabled = false, ref, label } = props;
 

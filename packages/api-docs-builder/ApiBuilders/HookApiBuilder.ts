@@ -1,15 +1,17 @@
-import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import * as ts from 'typescript';
 import * as prettier from 'prettier';
-import { mkdirSync } from 'fs';
 import * as astTypes from 'ast-types';
-import path from 'path';
 import * as _ from 'lodash';
+import * as babel from '@babel/core';
+import traverse from '@babel/traverse';
+import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, writePrettifiedFile } from './ComponentApiBuilder';
+import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
 import { HookInfo } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
@@ -104,6 +106,128 @@ export interface ReactApi extends ReactDocgenApi {
     hookDescription: string;
     inputParamsDescriptions: { [key: string]: string | undefined };
   };
+}
+
+/**
+ * Add demos & API comment block to type definitions, e.g.:
+ * /**
+ * * Demos:
+ * *
+ * * - [Unstyled Button](https://mui.com/base/react-button/)
+ * *
+ * * API:
+ * *
+ * * - [useButton API](https://mui.com/base/api/use-button/)
+ */
+async function annotateHookDefinition(api: ReactApi) {
+  const HOST = 'https://mui.com';
+
+  const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+  const typesAST = await babel.parseAsync(typesSource, {
+    configFile: false,
+    filename: typesFilename,
+    presets: [require.resolve('@babel/preset-typescript')],
+  });
+  if (typesAST === null) {
+    throw new Error('No AST returned from babel.');
+  }
+
+  let start = 0;
+  let end = null;
+  traverse(typesAST, {
+    ExportDefaultDeclaration(babelPath) {
+      /**
+       * export default function Menu() {}
+       */
+      let node: babel.Node = babelPath.node;
+      if (node.declaration.type === 'Identifier') {
+        // declare const Menu: {};
+        // export default Menu;
+        if (babel.types.isIdentifier(babelPath.node.declaration)) {
+          const bindingId = babelPath.node.declaration.name;
+          const binding = babelPath.scope.bindings[bindingId];
+
+          // The JSDoc MUST be located at the declaration
+          if (babel.types.isFunctionDeclaration(binding.path.node)) {
+            // For function declarations the binding is equal to the declaration
+            // /**
+            //  */
+            // function Component() {}
+            node = binding.path.node;
+          } else {
+            // For variable declarations the binding points to the declarator.
+            // /**
+            //  */
+            // const Component = () => {}
+            node = binding.path.parentPath!.node;
+          }
+        }
+      }
+
+      const { leadingComments } = node;
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
+      }
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
+        start = jsdocBlock.start;
+        end = jsdocBlock.end;
+      } else if (node.start != null) {
+        start = node.start - 1;
+        end = start;
+      }
+    },
+  });
+
+  if (end === null || start === 0) {
+    throw new TypeError(
+      "Don't know where to insert the jsdoc block. Probably no `default export` found",
+    );
+  }
+
+  const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
+  // Ensure a newline between manual and generated description.
+  if (markdownLines[markdownLines.length - 1] !== '') {
+    markdownLines.push('');
+  }
+
+  if (api.demos && api.demos.length > 0) {
+    markdownLines.push(
+      'Demos:',
+      '',
+      ...api.demos.map((item) => {
+        return `- [${item.name}](${
+          item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+        })`;
+      }),
+      '',
+    );
+  }
+
+  markdownLines.push(
+    'API:',
+    '',
+    `- [${api.name} API](${
+      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+    })`,
+  );
+
+  const jsdoc = `/**\n${markdownLines
+    .map((line) => (line.length > 0 ? ` * ${line}` : ` *`))
+    .join('\n')}\n */`;
+  const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
+  writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
 const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
@@ -330,11 +454,11 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     console.error(`No declaration for ${interfaceName}`);
   }
 
-  // Ignore what we might have generated in `annotateComponentDefinition`
-  // const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
-  // if (annotatedDescriptionMatch !== null) {
-  //   reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
-  // }
+  // Ignore what we might have generated in `annotateHookDefinition`
+  const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
+  if (annotatedDescriptionMatch !== null) {
+    reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
+  }
   reactApi.filename = filename;
   reactApi.name = name;
   reactApi.apiPathname = apiPathname;
@@ -358,13 +482,11 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    // TODO: Add translations
     generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
     generateApiPage(apiPagesDirectory, reactApi);
 
-    // TODO: Add annotation
-    // Add comment about demo & api links (including inherited component) to the component file
-    // await annotateComponentDefinition(reactApi);
+    // Add comment about demo & api links to the component hook file
+    await annotateHookDefinition(reactApi);
   }
 
   return reactApi;

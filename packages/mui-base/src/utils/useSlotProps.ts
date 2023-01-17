@@ -55,6 +55,10 @@ export type UseSlotPropsResult<
  * If the slot component is not a host component, it also merges in the `ownerState`.
  *
  * @param parameters.getSlotProps - A function that returns the props to be passed to the slot component.
+ *
+ * API:
+ *
+ * - [useSlotProps API](https://mui.com/base/api/use-slot-props/)
  */
 export default function useSlotProps<
   ElementType extends React.ElementType,

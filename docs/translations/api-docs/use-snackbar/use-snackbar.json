@@ -1,5 +1,5 @@
 {
-  "hookDescription": "The basic building block for creating custom snackbar.\n\nDemos:\n\n- [Snackbar](https://mui.com/base/react-snackbar/)",
+  "hookDescription": "The basic building block for creating custom snackbar.",
   "inputParamsDescriptions": {
     "autoHideDuration": "The number of milliseconds to wait before automatically calling the\n`onClose` function. `onClose` should then set the state of the `open`\nprop to hide the Snackbar. This behavior is disabled by default with\nthe `null` value.",
     "disableWindowBlurListener": "If `true`, the `autoHideDuration` timer will expire even if the window is not focused.",

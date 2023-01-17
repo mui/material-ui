@@ -31,7 +31,16 @@ export interface UseTabsParameters {
    */
   selectionFollowsFocus?: boolean;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
+ *
+ * API:
+ *
+ * - [useTabs API](https://mui.com/base/api/use-tabs/)
+ */
 function useTabs(parameters: UseTabsParameters) {
   const {
     value: valueProp,
