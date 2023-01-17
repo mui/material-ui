@@ -20,6 +20,10 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - [system] Improve the `createBox` types (#35532) @mnajdova
 
+### `@mui/codemod@5.11.5`
+
+- Add `joy-text-field-to-input` codemod (#35462) @hbjORbj
+
 ### `@mui/base@5.0.0-alpha.114`
 
 - [base] Fix typos (#35802) @nnmax
@@ -27,10 +31,10 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/joy@5.0.0-alpha.63`
 
-- [Joy] Miscellaneous fixes (#35847) @siriwatknp
-- [Joy] Remove `TextField` component and replace its usage in docs with `FormControl`/`FormLabel`/`Input` (#35462) @hbjORbj
 - [Tabs][joy] Don't apply `:hover, :active` styles when `selected` (#35750) @sai6855
-- [Joy][textfield] Throw error with migration message (#35845) @siriwatknp
+- Remove `TextField` component and replace its usage in docs with `FormControl`/`FormLabel`/`Input` (#35462) @hbjORbj
+- [TextField] Throw error with migration message (#35845) @siriwatknp
+- Miscellaneous fixes (#35847) @siriwatknp
 
 ### Docs
 
