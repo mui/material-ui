@@ -28,13 +28,19 @@ describe('<TextareaAutosize />', () => {
       'ownerStatePropagation',
       'propsSpread',
       'refForwarding',
-      'rootClass',
       'slotsProp',
     ],
   }));
 
+  type GetComputedStyle = {
+    'box-sizing'?: 'content-box' | 'border-box';
+    'border-bottom-width'?: string;
+    'padding-top'?: string;
+    width?: string;
+  };
+
   describe('layout', () => {
-    const getComputedStyleStub = {};
+    const getComputedStyleStub = new Map<HTMLTextAreaElement | Element, GetComputedStyle>();
     function setLayout(
       input: HTMLTextAreaElement,
       shadow: Element,
@@ -43,19 +49,14 @@ describe('<TextareaAutosize />', () => {
         scrollHeight,
         lineHeight: lineHeightArg,
       }: {
-        getComputedStyle: {
-          'box-sizing'?: 'content-box' | 'border-box';
-          'border-bottom-width'?: string;
-          'padding-top'?: string;
-          width?: string;
-        };
+        getComputedStyle: GetComputedStyle;
         scrollHeight?: number;
         lineHeight?: number | (() => number);
       },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
 
-      getComputedStyleStub[input] = getComputedStyle;
+      getComputedStyleStub.set(input, getComputedStyle);
 
       let index = 0;
       stub(shadow, 'scrollHeight').get(() => {
@@ -70,7 +71,9 @@ describe('<TextareaAutosize />', () => {
         this.skip();
       }
 
-      stub(window, 'getComputedStyle').value((node: Element) => getComputedStyleStub[node] || {});
+      stub(window, 'getComputedStyle').value(
+        (node: Element) => getComputedStyleStub.get(node) || {},
+      );
     });
 
     after(() => {
