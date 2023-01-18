@@ -13,10 +13,9 @@ We kept the best aspects of the previous versions, and we're fleshing out the pa
 
 ## The new date and time fields
 
-This new input type we're talking about is a set of components shortly named [Fields](https://next.mui.com/x/react-date-pickers/fields/).
-They are the base for the new pickers and a revolution in terms of keyboard usability.
+These new input components are called [Fields](https://next.mui.com/x/react-date-pickers/fields/), and they provide massive improvements to the user experience of editing the value with a keyboard.
 
-In contrast with the masked inputs that only display simple text behind a formatting mask, and were often cumbersome, especially when editing dates, the new fields are smart and specialized in editing date and time numbers.
+In contrast with the previous generation of pickers, whose input editing was based on a [mask approach](https://www.npmjs.com/package/rifm) and were often cumbersome, the new fields are smart and specialized in editing date and time values.
 They're "smart" in the sense that they can recognize when a user is inputting any given piece of time data—a month, a day, a year—and respond accordingly.
 
 For example, watch what happens when you edit the month using the arrow keys:
@@ -27,7 +26,7 @@ For example, watch what happens when you edit the month using the arrow keys:
 
 As you increase the month, the component automatically watches for valid values throughout each piece of your date input, like you're navigating in a calendar.
 
-The Fields are a perfect match to the calendar view, but they are available as stand-alone components, and you can import them from the latest v6 package.
+The Fields are a perfect match to the calendar view, but they're available as standalone components, and you can import them from the latest v6 package.
 
 ```jsx
 import { DateField } from '@mui/x-date-pickers/DateField';
@@ -58,7 +57,7 @@ For a quick comparison, let's check out how the two different approaches behave 
   <source src="/static/blog/nextgen-pickers/fields-common-usecases.mp4" type="video/mp4" />
 </video>
 
-Try out the live demo of the `DateField` below.
+Try out the live demo of the Date Field component below:
 
 <iframe
   src="https://codesandbox.io/embed/date-field-demo-pb87v0?fontsize=12&hidenavigation=1&module=%2F"
@@ -81,7 +80,7 @@ The Fields are still in alpha, and there are many improvements on the way. The f
 
 - **Support days of the week**
 
-  Support selecting a date by navigating days of the week with arrow keys, or text editing.
+  Users will be able to select a day in the week just like the can select a month.
 
 We'd love to hear your [feedback](https://github.com/mui/mui-x/issues/new/choose) to help us improve these components even further.
 
