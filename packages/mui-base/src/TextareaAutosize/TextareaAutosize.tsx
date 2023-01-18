@@ -6,6 +6,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
+  KebabKeys,
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
@@ -19,17 +20,11 @@ type State =
       overflow: boolean | undefined;
     };
 
-type Kebab<T extends string, A extends string = ''> = T extends `${infer F}${infer R}`
-  ? Kebab<R, `${A}${F extends Lowercase<F> ? '' : '-'}${Lowercase<F>}`>
-  : A;
-
-type KebabKeys<T> = { [K in keyof T as K extends string ? Kebab<K> : K]: T[K] };
-
 function getStyleValue(
-  computedStyle: CSSStyleDeclaration,
+  computedStyle: KebabKeys<CSSStyleDeclaration>,
   property: keyof KebabKeys<CSSStyleDeclaration>,
 ) {
-  return parseInt(computedStyle[property], 10) || 0;
+  return parseInt(`${computedStyle[property]}`, 10) || 0;
 }
 
 const styles: {
@@ -84,7 +79,9 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       return {};
     }
     const containerWindow = ownerWindow(input);
-    const computedStyle = containerWindow.getComputedStyle(input);
+    const computedStyle = containerWindow.getComputedStyle(
+      input,
+    ) as unknown as KebabKeys<CSSStyleDeclaration>;
 
     // If input's width is shrunk and it's not visible, don't sync height.
     if (computedStyle.width === '0px') {
@@ -104,8 +101,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       inputShallow.value += ' ';
     }
 
-    const boxSizing = computedStyle['box-sizing' as any];
-    console.log({ boxSizing });
+    const boxSizing = computedStyle['box-sizing'];
     const padding =
       getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');
     const border =
