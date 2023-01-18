@@ -6,7 +6,6 @@ import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
-import { SliderValueLabelProps } from './SliderValueLabel.types';
 import { SliderClasses } from './sliderClasses';
 
 export interface SliderPropsColorOverrides {}
@@ -266,7 +265,12 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
   defaultComponent: D;
 }
 
-export { SliderValueLabelProps };
+export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+  children: React.ReactElement;
+  index: number;
+  open: boolean;
+  value: number;
+}
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];

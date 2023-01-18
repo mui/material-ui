@@ -10,7 +10,7 @@ function ValueLabelComponent(props: SliderValueLabelProps) {
 
   return (
     <Tooltip enterTouchDelay={0} placement="top" title={value}>
-      {children!}
+      {children}
     </Tooltip>
   );
 }
