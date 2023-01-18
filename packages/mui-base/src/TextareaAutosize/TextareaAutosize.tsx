@@ -16,7 +16,7 @@ type State =
     }
   | {
       outerHeightStyle: number;
-      overflow: boolean;
+      overflow: boolean | undefined;
     };
 
 function getStyleValue(computedStyle: CSSStyleDeclaration, property: keyof CSSStyleDeclaration) {
@@ -43,6 +43,17 @@ function isEmpty(obj: State) {
   return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea Autosize](https://mui.com/base/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
+ *
+ * API:
+ *
+ * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
+ */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
   ref: React.ForwardedRef<Element>,
@@ -184,21 +195,23 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         syncHeightWithFlushSycn();
       }
     });
-    if (!inputRef.current) {
-      return;
-    }
-    const containerWindow = ownerWindow(inputRef.current);
-    containerWindow.addEventListener('resize', handleResize);
     let resizeObserver: ResizeObserver;
+    let containerWindow: Window;
+    if (inputRef.current) {
+      containerWindow = ownerWindow(inputRef.current);
+      containerWindow.addEventListener('resize', handleResize);
 
-    if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(handleResize);
-      resizeObserver.observe(inputRef.current);
+      if (typeof ResizeObserver !== 'undefined') {
+        resizeObserver = new ResizeObserver(handleResize);
+        resizeObserver.observe(inputRef.current);
+      }
     }
 
     return () => {
       handleResize.clear();
-      containerWindow.removeEventListener('resize', handleResize);
+      if (containerWindow) {
+        containerWindow.removeEventListener('resize', handleResize);
+      }
       if (resizeObserver) {
         resizeObserver.disconnect();
       }

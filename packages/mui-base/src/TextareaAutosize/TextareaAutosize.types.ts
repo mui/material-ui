@@ -13,16 +13,3 @@ export interface TextareaAutosizeProps
    */
   minRows?: string | number;
 }
-
-/**
- *
- * Demos:
- *
- * - [Textarea Autosize](https://mui.com/base/react-textarea-autosize/)
- * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
- *
- * API:
- *
- * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
- */
-export default function TextareaAutosize(props: TextareaAutosizeProps): JSX.Element;
