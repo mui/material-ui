@@ -19,11 +19,22 @@ type State =
       overflow: boolean | undefined;
     };
 
-function getStyleValue(computedStyle: CSSStyleDeclaration, property: keyof CSSStyleDeclaration) {
+type Kebab<T extends string, A extends string = ''> = T extends `${infer F}${infer R}`
+  ? Kebab<R, `${A}${F extends Lowercase<F> ? '' : '-'}${Lowercase<F>}`>
+  : A;
+
+type KebabKeys<T> = { [K in keyof T as K extends string ? Kebab<K> : K]: T[K] };
+
+function getStyleValue(
+  computedStyle: CSSStyleDeclaration,
+  property: keyof KebabKeys<CSSStyleDeclaration>,
+) {
   return parseInt(computedStyle[property], 10) || 0;
 }
 
-const styles = {
+const styles: {
+  shadow: React.CSSProperties;
+} = {
   shadow: {
     // Visibility needed to hide the extra text area on iPads
     visibility: 'hidden',
@@ -93,7 +104,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       inputShallow.value += ' ';
     }
 
-    const boxSizing = computedStyle['box-sizing'];
+    const boxSizing = computedStyle['box-sizing' as any];
+    console.log({ boxSizing });
     const padding =
       getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');
     const border =
