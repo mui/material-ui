@@ -6,9 +6,14 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
-  KebabKeys,
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
+
+type Kebab<T extends string, A extends string = ''> = T extends `${infer F}${infer R}`
+  ? Kebab<R, `${A}${F extends Lowercase<F> ? '' : '-'}${Lowercase<F>}`>
+  : A;
+
+type KebabKeys<T> = { [K in keyof T as K extends string ? Kebab<K> : K]: T[K] };
 
 type State =
   | {
@@ -282,7 +287,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
