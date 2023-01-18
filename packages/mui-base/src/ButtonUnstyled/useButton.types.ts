@@ -48,7 +48,7 @@ export interface UseButtonReturnValue {
    * @returns props that should be spread on the root slot
    */
   getRootProps: <TOther extends EventHandlers = {}>(
-    otherHandlers: TOther,
+    otherHandlers?: TOther,
   ) => UseButtonRootSlotProps<TOther>;
   /**
    * If `true`, the component is being focused using keyboard.

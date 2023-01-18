@@ -74,7 +74,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     return {
       getRootProps: (other?: EventHandlers) => ({
         ...other,
-        ...getButtonProps(other ?? {}),
+        ...getButtonProps(other),
         role: 'menuitem',
       }),
       disabled: false,
@@ -88,7 +88,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
       return {
         ...other,
-        ...getButtonProps(other ?? {}),
+        ...getButtonProps(other),
         tabIndex: optionProps.tabIndex,
         id: optionProps.id,
         role: 'menuitem',
