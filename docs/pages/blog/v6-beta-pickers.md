@@ -123,7 +123,6 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
 
 <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
 
-
 ## Should we retire the masked inputs?
 
 We believe that after using the date fields, you'll have no reason to come back to the masked input approach.
