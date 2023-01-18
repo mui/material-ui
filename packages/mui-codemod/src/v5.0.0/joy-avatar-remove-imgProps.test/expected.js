@@ -4,12 +4,13 @@ import Avatar from '@mui/joy/Avatar';
 import MaterialAvatar from '@mui/material/Avatar';
 
 <div>
-  <JoyAvatar slotProps={{ img: { ['aria-hidden']: true } }} />
+  <JoyAvatar slotProps={{
+    img: { ['aria-hidden']: true }
+  }} />
   <Avatar
-    slotProps={{
-      root: { ['aria-hidden']: false },
-      img: { ['aria-label']: 'imgSlot', ['aria-hidden']: true },
-    }}
-  />
+    slotProps={{ root: { ['aria-hidden']: false }, img: {
+      ['aria-label']: 'imgSlot',
+      ['aria-hidden']: true
+    } }} />
   <MaterialAvatar imgProps={{ ['aria-hidden']: true }} />
 </div>;
