@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { EventHandlers } from '../utils/types';
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import { useButton } from '../ButtonUnstyled';
 import { UseMenuItemParameters } from './useMenuItem.types';
+
 /**
  *
  * Demos:
@@ -70,9 +72,9 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
   if (id === undefined) {
     return {
-      getRootProps: (other?: Record<string, any>) => ({
+      getRootProps: (other?: EventHandlers) => ({
         ...other,
-        ...getButtonProps(other),
+        ...getButtonProps(other ?? {}),
         role: 'menuitem',
       }),
       disabled: false,
@@ -81,12 +83,12 @@ export default function useMenuItem(props: UseMenuItemParameters) {
   }
 
   return {
-    getRootProps: (other?: Record<string, any>) => {
+    getRootProps: (other?: EventHandlers) => {
       const optionProps = menuContext.getItemProps(id, other);
 
       return {
         ...other,
-        ...getButtonProps(other),
+        ...getButtonProps(other ?? {}),
         tabIndex: optionProps.tabIndex,
         id: optionProps.id,
         role: 'menuitem',
