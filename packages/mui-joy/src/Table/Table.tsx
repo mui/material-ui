@@ -28,21 +28,45 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
   return composeClasses(slots, getTableUtilityClass, {});
 };
 
-export const tableSelector = {
+const tableSelector = {
   getColumn(col: number | string) {
-    return `& th:nth-of-type(${col}), & td:nth-of-type(${col})`;
+    return `& tr *:nth-child(${col})`;
   },
-  getColumnBeforeLast() {
-    return '& tr > *:not(:last-of-type)';
+  /**
+   * Except last column
+   */
+  getColumnExceptLast() {
+    return '& tr > *:not(:last-child)';
   },
+  /**
+   * Every cell in the table
+   */
   getCell() {
     return '& th, & td';
   },
+  /**
+   * `th` cell of the table (could exist in the body)
+   */
   getHeadCell() {
     return '& th';
   },
+  /**
+   * Only the cell of `thead`
+   */
+  getHeaderCell() {
+    return '& thead th, & tr:first-of-type th';
+  },
+  /**
+   * The body cell that contains data
+   */
   getDataCell() {
     return '& td';
+  },
+  /**
+   * The body cell either `td` or `th`
+   */
+  getBodyCell() {
+    return `${this.getDataCell()}, & th[scope="row"]`;
   },
   getBodyRow(row?: number | string) {
     if (row === undefined) {
@@ -90,9 +114,6 @@ const TableRoot = styled('table', {
     [tableSelector.getDataCell()]: {
       padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
       height: 'var(--TableCell-height)',
-      ...((ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
-        borderBottom: '1px solid',
-      }),
       borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
     },
     [tableSelector.getHeadCell()]: {
@@ -102,14 +123,21 @@ const TableRoot = styled('table', {
       verticalAlign: 'bottom',
       height: 'var(--TableCell-height)',
       fontWeight: theme.vars.fontWeight.lg,
-      ...((ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
-        borderBottom: '2px solid',
-      }),
       borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
     },
   },
+  (ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
+    [tableSelector.getHeaderCell()]: {
+      borderBottomWidth: 2,
+      borderBottomStyle: 'solid',
+    },
+    [tableSelector.getBodyCell()]: {
+      borderBottomWidth: 1,
+      borderBottomStyle: 'solid',
+    },
+  },
   (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
-    [tableSelector.getColumnBeforeLast()]: {
+    [tableSelector.getColumnExceptLast()]: {
       borderRightWidth: 1,
       borderRightStyle: 'solid',
     },
