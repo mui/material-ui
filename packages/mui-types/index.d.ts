@@ -43,8 +43,8 @@ export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K
  * @internal
  */
 type Kebab<T extends string, A extends string = ''> = T extends `${infer F}${infer R}`
-? Kebab<R, `${A}${F extends Lowercase<F> ? '' : '-'}${Lowercase<F>}`>
-: A;
+  ? Kebab<R, `${A}${F extends Lowercase<F> ? '' : '-'}${Lowercase<F>}`>
+  : A;
 /**
  * Converts Object keys from CamelCase to KebabCase
  * @internal
