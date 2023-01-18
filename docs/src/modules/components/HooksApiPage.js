@@ -42,8 +42,8 @@ const Table = styled('table')(({ theme }) => {
   };
 });
 
-function InputParamsTable(params) {
-  const { inputParams, inputParamsDescriptions } = params;
+function InputParamsTable(props) {
+  const { inputParams, inputParamsDescriptions } = props;
   const t = useTranslate();
 
   return (
@@ -60,8 +60,12 @@ function InputParamsTable(params) {
         <tbody>
           {Object.entries(inputParams).map(([propName, propData]) => {
             let typeName = propData.type.name;
-            const typeDescription = propData.type.description;
-            typeName = typeName.replace('<', '&lt;').replace('>', '&gt');
+            typeName = typeName
+              .replace('&', '&amp;')
+              .replace('<', '&lt;')
+              .replace('>', '&gt')
+              .replace('"', '&quot;')
+              .replace("'", '&#39;');
             const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (

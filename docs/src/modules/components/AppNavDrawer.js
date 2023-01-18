@@ -217,9 +217,6 @@ function reduceChildRoutes(context) {
   }
 
   const title = pageToTitleI18n(page, t);
-  if (title === 'UseButton') {
-    console.log(page);
-  }
   if (page.children && page.children.length >= 1) {
     const topLevel =
       activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
