@@ -194,24 +194,6 @@ export default function useAutocomplete(props) {
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
   );
 
-  const prevValue = React.useRef();
-
-  React.useEffect(() => {
-    const valueChange = value !== prevValue.current;
-    prevValue.current = value;
-
-    if (focused && !valueChange) {
-      return;
-    }
-
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
-      return;
-    }
-
-    resetInputValue(null, value);
-  }, [value, resetInputValue, focused, prevValue, freeSolo]);
-
   const [open, setOpenState] = useControlled({
     controlled: openProp,
     default: false,
@@ -247,6 +229,26 @@ export default function useAutocomplete(props) {
         },
       )
     : [];
+
+  const previousProps = usePreviousProps({
+    filteredOptions,
+    value,
+  });
+
+  React.useEffect(() => {
+    const valueChange = value !== previousProps.value;
+
+    if (focused && !valueChange) {
+      return;
+    }
+
+    // Only reset the input's value when freeSolo if the component's value changes.
+    if (freeSolo && !valueChange) {
+      return;
+    }
+
+    resetInputValue(null, value);
+  }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
@@ -462,10 +464,6 @@ export default function useAutocomplete(props) {
     },
   );
 
-  const previousProps = usePreviousProps({
-    filteredOptions,
-  });
-
   const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
       return;
@@ -476,8 +474,8 @@ export default function useAutocomplete(props) {
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
       (multiple
-        ? prevValue.current.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
-        : getOptionLabel(prevValue.current ?? '') === getOptionLabel(value ?? ''))
+        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
