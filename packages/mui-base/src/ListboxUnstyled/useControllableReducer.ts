@@ -113,20 +113,17 @@ function useStateChangeDetection<TOption>(
   ]);
 }
 
-export default function useControllableReducer<TOption, Props>(
-  internalReducer: ListboxReducer<TOption, Props>,
-  externalReducer: ListboxReducer<TOption, Props> | undefined,
-  props: UseListboxPropsWithDefaults<TOption>,
+export default function useControllableReducer<TOption>(
+  internalReducer: ListboxReducer<TOption>,
+  externalReducer: ListboxReducer<TOption> | undefined,
+  props: React.RefObject<UseListboxPropsWithDefaults<TOption>>,
 ): [ListboxState<TOption>, (action: ListboxAction<TOption>) => void] {
-  const { value, defaultValue } = props;
-
-  const propsRef = React.useRef(props);
-  propsRef.current = props;
+  const { value, defaultValue, multiple } = props.current!;
 
   const actionRef = React.useRef<ListboxAction<TOption> | null>(null);
 
   const initialSelectedValue =
-    (value === undefined ? defaultValue : value) ?? (props.multiple ? [] : null);
+    (value === undefined ? defaultValue : value) ?? (multiple ? [] : null);
 
   const initialState = {
     highlightedValue: null,
@@ -134,16 +131,19 @@ export default function useControllableReducer<TOption, Props>(
   };
 
   const combinedReducer = React.useCallback(
-    (state: ListboxState<TOption>, action: ListboxAction<TOption> & { props: Props }) => {
+    (
+      state: ListboxState<TOption>,
+      action: ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> },
+    ) => {
       actionRef.current = action;
 
       if (externalReducer) {
-        return externalReducer(getControlledState(state, propsRef.current), action);
+        return externalReducer(getControlledState(state, action.props), action);
       }
 
-      return internalReducer(getControlledState(state, propsRef.current), action);
+      return internalReducer(getControlledState(state, action.props), action);
     },
-    [externalReducer, internalReducer, propsRef],
+    [externalReducer, internalReducer],
   );
 
   const [nextState, dispatch] = React.useReducer(combinedReducer, initialState);
@@ -151,10 +151,10 @@ export default function useControllableReducer<TOption, Props>(
   const dispatchWithProps = React.useCallback(
     (action: ListboxAction<TOption>) =>
       dispatch({
-        props: propsRef.current,
+        props: props.current,
         ...action,
-      } as ListboxAction<TOption> & { props: Props }),
-    [dispatch, propsRef],
+      } as ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> }),
+    [dispatch, props],
   );
 
   const previousState = React.useRef<ListboxState<TOption>>(initialState);
@@ -162,6 +162,6 @@ export default function useControllableReducer<TOption, Props>(
     previousState.current = nextState;
   }, [previousState, nextState]);
 
-  useStateChangeDetection<TOption>(nextState, previousState.current, propsRef, actionRef);
-  return [getControlledState(nextState, propsRef.current), dispatchWithProps];
+  useStateChangeDetection<TOption>(nextState, previousState.current, props, actionRef);
+  return [getControlledState(nextState, props.current!), dispatchWithProps];
 }

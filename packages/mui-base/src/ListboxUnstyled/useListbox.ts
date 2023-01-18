@@ -64,7 +64,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
-    propsWithDefaults.current!,
+    propsWithDefaults,
   );
 
   const handleTextNavigation = useTextNavigation((searchString, event) =>

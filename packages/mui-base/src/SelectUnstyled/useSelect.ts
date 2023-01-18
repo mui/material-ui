@@ -167,34 +167,37 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       }
     };
 
-  const listboxReducer: ListboxReducer<SelectOption<TValue>> = (state, action) => {
-    const newState = defaultListboxReducer(state, action);
+  const listboxReducer: ListboxReducer<SelectOption<TValue>> = React.useCallback(
+    (state, action) => {
+      const newState = defaultListboxReducer(state, action);
 
-    // change selection when listbox is closed
-    if (
-      action.type === ActionTypes.keyDown &&
-      !open &&
-      (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
-    ) {
-      return {
-        ...newState,
-        selectedValue: newState.highlightedValue,
-      };
-    }
+      // change selection when listbox is closed
+      if (
+        action.type === ActionTypes.keyDown &&
+        !open &&
+        (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
+      ) {
+        return {
+          ...newState,
+          selectedValue: newState.highlightedValue,
+        };
+      }
 
-    if (
-      action.type === ActionTypes.blur ||
-      action.type === ActionTypes.setValue ||
-      action.type === ActionTypes.optionsChange
-    ) {
-      return {
-        ...newState,
-        highlightedValue: newState.selectedValue as SelectOption<TValue>,
-      };
-    }
+      if (
+        action.type === ActionTypes.blur ||
+        action.type === ActionTypes.setValue ||
+        action.type === ActionTypes.optionsChange
+      ) {
+        return {
+          ...newState,
+          highlightedValue: newState.selectedValue as SelectOption<TValue>,
+        };
+      }
 
-    return newState;
-  };
+      return newState;
+    },
+    [open],
+  );
 
   const {
     getRootProps: getButtonRootProps,
