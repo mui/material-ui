@@ -9,6 +9,16 @@ import {
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
+type State =
+  | {
+      outerHeightStyle?: undefined;
+      overflow?: undefined;
+    }
+  | {
+      outerHeightStyle: number;
+      overflow: boolean;
+    };
+
 function getStyleValue(computedStyle: CSSStyleDeclaration, property: keyof CSSStyleDeclaration) {
   return parseInt(computedStyle[property], 10) || 0;
 }
@@ -29,7 +39,7 @@ const styles = {
   },
 };
 
-function isEmpty(obj) {
+function isEmpty(obj: State) {
   return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }
 
@@ -44,7 +54,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const handleRef = useForkRef(ref, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
-  const [state, setState] = React.useState({});
+  const [state, setState] = React.useState<State>({});
 
   const getUpdatedState = React.useCallback(() => {
     const input = inputRef.current;
@@ -104,8 +114,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     return { outerHeightStyle, overflow };
   }, [maxRows, minRows, props.placeholder]);
 
-  const updateState = (prevState, newState) => {
-    const { outerHeightStyle, overflow } = newState;
+  const updateState = (prevState: State, newState: State) => {
+    const { outerHeightStyle = 0, overflow } = newState;
     // Need a large enough difference to update the height.
     // This prevents infinite rendering loop.
     if (
@@ -222,12 +232,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={minRows}
+        rows={Number(minRows)}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
-          overflow: state.overflow ? 'hidden' : null,
+          overflow: state.overflow ? 'hidden' : undefined,
           ...style,
         }}
         {...other}
