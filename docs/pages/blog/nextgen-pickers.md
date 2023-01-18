@@ -32,8 +32,7 @@ They recognize the values on the input (day, month, year, etc.) and respond acco
   <source src="/static/blog/nextgen-pickers/basic-date-field.mp4" type="video/mp4" />
 </video>
 
-
-The Fields are included in the pickers, but they're available as standalone components too. 
+The Fields are included in the pickers, but they're available as standalone components too.
 You can import them from the latest v6 package.
 
 ```jsx
