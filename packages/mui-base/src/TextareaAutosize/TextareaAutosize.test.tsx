@@ -13,7 +13,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
-  const mount = createMount;
+  const mount = createMount();
 
   describeConformanceUnstyled(<TextareaAutosize />, () => ({
     render,
@@ -40,7 +40,7 @@ describe('<TextareaAutosize />', () => {
   };
 
   describe('layout', () => {
-    const getComputedStyleStub = new Map<HTMLTextAreaElement | Element, GetComputedStyle>();
+    const getComputedStyleStub = {};
     function setLayout(
       input: HTMLTextAreaElement,
       shadow: Element,
@@ -55,8 +55,8 @@ describe('<TextareaAutosize />', () => {
       },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
-
-      getComputedStyleStub.set(input, getComputedStyle);
+      // @ts-expect-error
+      getComputedStyleStub[input] = getComputedStyle;
 
       let index = 0;
       stub(shadow, 'scrollHeight').get(() => {
@@ -71,9 +71,8 @@ describe('<TextareaAutosize />', () => {
         this.skip();
       }
 
-      stub(window, 'getComputedStyle').value(
-        (node: Element) => getComputedStyleStub.get(node) || {},
-      );
+      // @ts-expect-error
+      stub(window, 'getComputedStyle').value((node: Element) => getComputedStyleStub[node] || {});
     });
 
     after(() => {
