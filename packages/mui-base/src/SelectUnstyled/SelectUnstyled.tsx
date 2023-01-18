@@ -14,7 +14,7 @@ import {
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
 import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelect.types';
+import { SelectChangeEventType, SelectChild, SelectOption } from './useSelect.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
@@ -55,12 +55,6 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
 
   return composeClasses(slots, getSelectUnstyledUtilityClass, {});
 }
-
-type ChangeEventType =
-  | React.MouseEvent<Element, MouseEvent>
-  | React.KeyboardEvent<Element>
-  | React.FocusEvent<Element, Element>
-  | null;
 
 /**
  * The foundation for building custom-styled select components.
@@ -141,25 +135,12 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     [setListboxOpen, onListboxOpenChange],
   );
 
-  const selectionChangeEventHandlers = React.useRef<
-    Set<(e: ChangeEventType, newValue: TValue | null) => void>
-  >(new Set());
-
-  const highlightChangeEventHandlers = React.useRef<
-    Set<(e: ChangeEventType, newValue: TValue | null) => void>
-  >(new Set());
-
   const handleChange = React.useCallback(
-    (e: ChangeEventType, newValue: TValue | null) => {
-      onChange?.(e, newValue);
-      selectionChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+    (event: SelectChangeEventType, newValue: TValue | null) => {
+      onChange?.(event, newValue);
     },
     [onChange],
   );
-
-  const handleHighlightChange = React.useCallback((e: ChangeEventType, newValue: TValue | null) => {
-    highlightChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
-  }, []);
 
   const {
     buttonActive,
@@ -169,6 +150,10 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     getListboxProps,
     getOptionProps,
     getOptionState,
+    registerHighlightChangeHandler,
+    unregisterHighlightChangeHandler,
+    registerSelectionChangeHandler,
+    unregisterSelectionChangeHandler,
     value,
   } = useSelect({
     buttonRef: handleButtonRef,
@@ -176,10 +161,9 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     disabled: disabledProp,
     listboxId,
     multiple: false,
-    onChange: handleChange,
-    onHighlightChange: handleHighlightChange,
-    onOpenChange: handleOpenChange,
     open: listboxOpen,
+    onChange: handleChange,
+    onOpenChange: handleOpenChange,
     options,
     optionStringifier,
     value: valueProp,
@@ -237,34 +221,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     ownerState,
     className: classes.popper,
   });
-
-  const registerSelectionChangeHandler = React.useCallback(
-    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
-      selectionChangeEventHandlers.current.add(handler);
-    },
-    [],
-  );
-
-  const unregisterSelectionChangeHandler = React.useCallback(
-    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
-      selectionChangeEventHandlers.current.delete(handler);
-    },
-    [],
-  );
-
-  const registerHighlightChangeHandler = React.useCallback(
-    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
-      highlightChangeEventHandlers.current.add(handler);
-    },
-    [],
-  );
-
-  const unregisterHighlightChangeHandler = React.useCallback(
-    (handler: (e: ChangeEventType, newValue: TValue | null) => void) => {
-      highlightChangeEventHandlers.current.delete(handler);
-    },
-    [],
-  );
 
   const context: SelectUnstyledContextType = React.useMemo(
     () => ({

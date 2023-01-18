@@ -68,8 +68,44 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const optionProps = selectContext.getOptionProps(selectOption);
   const listboxRef = selectContext.listboxRef;
 
+  const [selected, setSelected] = React.useState(optionState.selected);
+  const [highlighted, setHighlighted] = React.useState(optionState.highlighted);
+
+  React.useEffect(() => {
+    function updateHighlightedState(event: unknown, newValue: any | null) {
+      // TODO: use option comparer
+      if (newValue === value && !highlighted) {
+        setHighlighted(true);
+      } else if (newValue !== value && highlighted) {
+        setHighlighted(false);
+      }
+    }
+
+    selectContext.registerHighlightChangeHandler(updateHighlightedState);
+    return () => {
+      selectContext.unregisterHighlightChangeHandler(updateHighlightedState);
+    };
+  }, [selectContext, highlighted, value]);
+
+  React.useEffect(() => {
+    function updateSelectedState(event: unknown, newValue: any | any[] | null) {
+      // TODO: use option comparer
+      if (newValue === value && !selected) {
+        setSelected(true);
+      } else if (newValue !== value && selected) {
+        setSelected(false);
+      }
+    }
+
+    selectContext.registerSelectionChangeHandler(updateSelectedState);
+
+    return () => {
+      selectContext.unregisterSelectionChangeHandler(updateSelectedState);
+    };
+  }, [selectContext, selected, value]);
+
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, optionState.selected ? 'primary' : colorProp);
+  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
   const ownerState = {
     ...props,
@@ -85,7 +121,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
 
   React.useEffect(() => {
     // Scroll to the currently highlighted option
-    if (optionState.highlighted) {
+    if (highlighted) {
       if (!listboxRef.current || !optionRef.current) {
         return;
       }
@@ -98,7 +134,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
         listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
       }
     }
-  }, [optionState.highlighted, listboxRef]);
+  }, [highlighted, listboxRef]);
 
   const classes = useUtilityClasses(ownerState);
 

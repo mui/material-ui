@@ -27,6 +27,12 @@ export function isOptionGroup<TValue>(
   return !!(child as SelectOptionGroup<TValue>).options;
 }
 
+export type SelectChangeEventType =
+  | React.MouseEvent<Element, MouseEvent>
+  | React.KeyboardEvent<Element>
+  | React.FocusEvent<Element, Element>
+  | null;
+
 interface UseSelectCommonProps<TValue> {
   buttonRef?: React.Ref<Element>;
   disabled?: boolean;
@@ -117,6 +123,34 @@ interface UseSelectCommonResult<TValue> {
   getOptionState: (option: SelectOption<TValue>) => OptionState;
   open: boolean;
   highlightedOption: TValue | null;
+  /**
+   * Registers a handler for when the highlighted option changes.
+   * @param handler A function that will be called with the new highlighted option.
+   */
+  registerHighlightChangeHandler: (
+    handler: (event: SelectChangeEventType, newValue: TValue | null) => void,
+  ) => void;
+  /**
+   * Registers a handler for when the selection changes.
+   * @param handler A function that will be called with the new selected items.
+   */
+  registerSelectionChangeHandler: (
+    handler: (event: SelectChangeEventType, newValue: TValue | TValue[] | null) => void,
+  ) => void;
+  /**
+   * Unregisters a handler for when the highlighted option changes.
+   * @param handler The handler to unregister.
+   */
+  unregisterHighlightChangeHandler: (
+    handler: (event: SelectChangeEventType, newValue: TValue | null) => void,
+  ) => void;
+  /**
+   * Unregisters a handler for when the selection changes.
+   * @param handler The handler to unregister.
+   */
+  unregisterSelectionChangeHandler: (
+    handler: (event: SelectChangeEventType, newValue: TValue | TValue[] | null) => void,
+  ) => void;
 }
 
 export interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {

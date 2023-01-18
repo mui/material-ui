@@ -6,6 +6,7 @@ import {
 } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
+  SelectChangeEventType,
   SelectOption,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -84,6 +85,56 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   }, [listboxFocusRequested]);
 
   const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
+
+  const selectionChangeEventHandlers = React.useRef<
+    Set<(e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void>
+  >(new Set());
+
+  const highlightChangeEventHandlers = React.useRef<
+    Set<(e: SelectChangeEventType, newValue: TValue | null) => void>
+  >(new Set());
+
+  const handleSelectionChange = React.useCallback(
+    (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => {
+      selectionChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+    },
+    [],
+  );
+
+  const handleHighlightChange = React.useCallback(
+    (e: SelectChangeEventType, newValue: TValue | null) => {
+      highlightChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+    },
+    [],
+  );
+
+  const registerSelectionChangeHandler = React.useCallback(
+    (handler: (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void) => {
+      selectionChangeEventHandlers.current.add(handler);
+    },
+    [],
+  );
+
+  const unregisterSelectionChangeHandler = React.useCallback(
+    (handler: (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void) => {
+      selectionChangeEventHandlers.current.delete(handler);
+    },
+    [],
+  );
+
+  const registerHighlightChangeHandler = React.useCallback(
+    (handler: (e: SelectChangeEventType, newValue: TValue | null) => void) => {
+      highlightChangeEventHandlers.current.add(handler);
+    },
+    [],
+  );
+
+  const unregisterHighlightChangeHandler = React.useCallback(
+    (handler: (e: SelectChangeEventType, newValue: TValue | null) => void) => {
+      highlightChangeEventHandlers.current.delete(handler);
+    },
+    [],
+  );
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -233,9 +284,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
         const newValues = newOptions.map((o) => o.value);
         setValue(newValues);
         onChangeMultiple?.(e, newValues);
+        handleSelectionChange(e, newValues);
       },
       onHighlightChange: (e, newOption) => {
         onHighlightChange?.(e, newOption?.value ?? null);
+        handleHighlightChange(e, newOption?.value ?? null);
       },
       options,
       optionStringifier,
@@ -255,9 +308,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onChange: (e, option: SelectOption<TValue> | null) => {
         setValue(option?.value ?? null);
         onChangeSingle?.(e, option?.value ?? null);
+        handleSelectionChange(e, option?.value ?? null);
       },
       onHighlightChange: (e, newOption) => {
         onHighlightChange?.(e, newOption?.value ?? null);
+        handleHighlightChange(e, newOption?.value ?? null);
       },
       options,
       optionStringifier,
@@ -328,6 +383,10 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps,
     getOptionState,
     open,
+    registerHighlightChangeHandler,
+    registerSelectionChangeHandler,
+    unregisterHighlightChangeHandler,
+    unregisterSelectionChangeHandler,
     value,
     highlightedOption,
   };
