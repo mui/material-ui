@@ -124,6 +124,7 @@ const TableRoot = styled('table', {
       height: 'var(--TableCell-height)',
       fontWeight: theme.vars.fontWeight.lg,
       borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
+      color: theme.vars.palette.text.secondary,
     },
   },
   (ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
