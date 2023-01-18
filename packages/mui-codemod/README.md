@@ -72,7 +72,7 @@ This change only affects Joy UI Avatar component.
 <Avatar
 -  imgProps={{ ['data-id']: 'imageId' }}
 -  slotProps={{ root: { ['data-id']: 'rootId' }}}
-+  slotProps={{ root: { ['data-id']: 'rootId', img: { ['data-id']: 'imageId' } }}
++  slotProps={{ root: { ['data-id']: 'rootId' }, img: { ['data-id']: 'imageId' } }}
 />
 ```
 
