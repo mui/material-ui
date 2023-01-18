@@ -41,7 +41,7 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 <DateField label="My first field" />;
 ```
 
-They're also by default with the Pickers (you don't need to declare a text field anymore).
+They're by default used in the new Pickers (you don't need to declare a text field anymore).
 
 ```jsx
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
