@@ -47,7 +47,7 @@
     },
     "getRootProps": {
       "type": {
-        "name": "<TOther extends EventHandlers = {}>(otherHandlers: TOther) => UseButtonRootSlotProps<TOther>",
+        "name": "<TOther extends EventHandlers = {}>(otherHandlers?: TOther) => UseButtonRootSlotProps<TOther>",
         "description": "Resolver for the root slot's props."
       },
       "required": true
