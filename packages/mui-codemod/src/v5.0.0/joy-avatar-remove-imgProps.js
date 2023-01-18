@@ -31,24 +31,56 @@ export default function transformer(file, api, options) {
 
             const slotPropsAttributeNode = elementPath.node.openingElement.attributes.find(
               (attributeNode) =>
-                attributeNode.type === 'JSXAttribute' && attributeNode.name.name === 'slotProps',
+                attributeNode.type === 'JSXAttribute' &&
+                attributeNode.name.name === 'slotProps' &&
+                attributeNode.value.expression?.type === 'ObjectExpression',
             );
+            const newAttributeNodes = [];
             elementPath.node.openingElement.attributes.forEach((attributeNode) => {
               if (attributeNode.type !== 'JSXAttribute') {
                 return;
               }
-              if (attributeNode.name.name === 'imgProps') {
-                const val = attributeNode.value;
-                if (!val?.expression) return;
-                // attributeNode.name.name = 'orientation';
-                // attributeNode.value = j.jsxExpressionContainer(j.literal('horizontal'));
-                if (slotPropsAttributeNode) {
-                  console.log(slotPropsAttributeNode);
+
+              if (attributeNode.name.name !== 'imgProps') {
+                newAttributeNodes.push(attributeNode);
+                return;
+              }
+
+              const val = attributeNode.value;
+              if (!val?.expression) {
+                return;
+              }
+
+              if (slotPropsAttributeNode) {
+                const imgObjInSlotProps = slotPropsAttributeNode.value.expression.properties.find(
+                  (propNode) =>
+                    propNode.key.name === 'img' && propNode.value.type === 'ObjectExpression',
+                );
+                if (imgObjInSlotProps) {
+                  const newProperties = [
+                    ...imgObjInSlotProps.value.properties,
+                    ...attributeNode.value.expression.properties,
+                  ];
+                  imgObjInSlotProps.value.properties = newProperties;
                 } else {
-                  console.log(attributeNode);
+                  slotPropsAttributeNode.value.expression.properties.push(
+                    j.objectProperty(j.identifier('img'), attributeNode.value),
+                  );
                 }
+              } else {
+                newAttributeNodes.push(
+                  j.jsxAttribute(
+                    j.jsxIdentifier('slotProps'),
+                    j.jsxExpressionContainer(
+                      j.objectExpression([
+                        j.objectProperty(j.identifier('img'), attributeNode.value.expression),
+                      ]),
+                    ),
+                  ),
+                );
               }
             });
+            elementPath.node.openingElement.attributes = newAttributeNodes;
           });
         }
       });
