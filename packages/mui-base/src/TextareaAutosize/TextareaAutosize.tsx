@@ -7,8 +7,9 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
+import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
-function getStyleValue(computedStyle, property) {
+function getStyleValue(computedStyle: CSSStyleDeclaration, property: keyof CSSStyleDeclaration) {
   return parseInt(computedStyle[property], 10) || 0;
 }
 
@@ -32,18 +33,24 @@ function isEmpty(obj) {
   return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }
 
-const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
+const TextareaAutosize = React.forwardRef(function TextareaAutosize(
+  props: TextareaAutosizeProps,
+  ref: React.ForwardedRef<Element>,
+) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const inputRef = React.useRef(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const handleRef = useForkRef(ref, inputRef);
-  const shadowRef = React.useRef(null);
+  const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
   const [state, setState] = React.useState({});
 
   const getUpdatedState = React.useCallback(() => {
     const input = inputRef.current;
+    if (!input) {
+      return {};
+    }
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
 
@@ -53,6 +60,9 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     }
 
     const inputShallow = shadowRef.current;
+    if (!inputShallow) {
+      return {};
+    }
     inputShallow.style.width = computedStyle.width;
     inputShallow.value = input.value || props.placeholder || 'x';
     if (inputShallow.value.slice(-1) === '\n') {
@@ -164,9 +174,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         syncHeightWithFlushSycn();
       }
     });
+    if (!inputRef.current) {
+      return;
+    }
     const containerWindow = ownerWindow(inputRef.current);
     containerWindow.addEventListener('resize', handleResize);
-    let resizeObserver;
+    let resizeObserver: ResizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(handleResize);
@@ -190,7 +203,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     renders.current = 0;
   }, [value]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     renders.current = 0;
 
     if (!isControlled) {
@@ -273,6 +286,6 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default TextareaAutosize;
