@@ -26,6 +26,40 @@
       "default": "'button'"
     }
   },
+  "returnValue": {
+    "active": {
+      "type": { "name": "boolean", "description": "If `true`, the component is active (pressed)." },
+      "default": "false",
+      "required": true
+    },
+    "disabled": {
+      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
+      "default": "false",
+      "required": true
+    },
+    "focusVisible": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, the component is being focused using keyboard."
+      },
+      "default": "false",
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "<TOther extends EventHandlers = {}>(otherHandlers: TOther) => UseButtonRootSlotProps<TOther>",
+        "description": "Resolver for the root slot's props."
+      },
+      "required": true
+    },
+    "setFocusVisible": {
+      "type": {
+        "name": "React.Dispatch<React.SetStateAction<boolean>>",
+        "description": "Callback for setting the `focusVisible` param."
+      },
+      "required": true
+    }
+  },
   "name": "useButton",
   "filename": "/packages/mui-base/src/ButtonUnstyled/useButton.ts",
   "demos": "<ul><li><a href=\"/base/react-button/\">Unstyled Button</a></li></ul>"

@@ -7,5 +7,6 @@
     "orientation": "The component orientation (layout flow direction).",
     "selectionFollowsFocus": "If `true` the selected tab changes on focus. Otherwise it only\nchanges on activation.",
     "value": "The value of the currently selected `Tab`.\nIf you don't want any selected `Tab`, you can set this prop to `false`."
-  }
+  },
+  "returnValueDescriptions": {}
 }

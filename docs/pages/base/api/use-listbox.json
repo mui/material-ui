@@ -1,0 +1,7 @@
+{
+  "inputParams": {},
+  "returnValue": {},
+  "name": "useListbox",
+  "filename": "/packages/mui-base/src/ListboxUnstyled/useListbox.ts",
+  "demos": "<ul></ul>"
+}

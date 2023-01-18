@@ -1,7 +1,7 @@
 import * as React from 'react';
 import HookApiPage from 'docs/src/modules/components/HookApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './use-slot-props.json';
+import jsonPageContent from './use-listbox.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -10,9 +10,9 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/use-slot-props',
+    'docs/translations/api-docs/use-listbox',
     false,
-    /use-slot-props.*.json$/,
+    /use-listbox.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

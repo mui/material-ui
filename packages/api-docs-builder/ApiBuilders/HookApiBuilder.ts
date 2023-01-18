@@ -70,7 +70,6 @@ export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) =
   return formatType(rawType);
 };
 
-// Took from MUI X
 const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
   name: propertySymbol.name,
   description: getSymbolDescription(propertySymbol, project),
@@ -85,6 +84,7 @@ export interface ReactApi extends ReactDocgenApi {
   filename: string;
   apiPathname: string;
   inputParams?: ParsedProperty[];
+  returnValue?: ParsedProperty[];
   /**
    * hook name
    * @example 'useButton'
@@ -102,9 +102,17 @@ export interface ReactApi extends ReactDocgenApi {
     deprecated: true | undefined;
     deprecationInfo: string | undefined;
   }>;
+  returnValueTable: _.Dictionary<{
+    default: string | undefined;
+    required: boolean | undefined;
+    type: { name: string | undefined; description: string | undefined };
+    deprecated: true | undefined;
+    deprecationInfo: string | undefined;
+  }>;
   translations: {
     hookDescription: string;
     inputParamsDescriptions: { [key: string]: string | undefined };
+    returnValueDescriptions: { [key: string]: string | undefined };
   };
 }
 
@@ -230,9 +238,13 @@ async function annotateHookDefinition(api: ReactApi) {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
+const attachTable = (
+  reactApi: ReactApi,
+  params: ParsedProperty[],
+  tableName: 'inputParamsTable' | 'returnValueTable',
+) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
-  const inputParams: ReactApi['inputParamsTable'] = params
+  const inputParams: ReactApi[typeof tableName] = params
     .map((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
@@ -287,18 +299,25 @@ const attachParamsTable = (reactApi: ReactApi, params: ParsedProperty[]) => {
   // created by returning the `[]` entry
   delete inputParams.undefined;
 
-  reactApi.inputParamsTable = inputParams;
+  reactApi[tableName] = inputParams;
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
   const translations: ReactApi['translations'] = {
     hookDescription: reactApi.description,
     inputParamsDescriptions: {},
+    returnValueDescriptions: {},
   };
 
   (reactApi.inputParams ?? []).forEach(({ name: propName, description }) => {
     if (description) {
       translations.inputParamsDescriptions[propName] = description.replace(/\n@default.*$/, '');
+    }
+  });
+
+  (reactApi.returnValue ?? []).forEach(({ name: propName, description }) => {
+    if (description) {
+      translations.returnValueDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
   });
 
@@ -313,6 +332,17 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     // Sorted by required DESC, name ASC
     inputParams: _.fromPairs(
       Object.entries(reactApi.inputParamsTable).sort(([aName, aData], [bName, bData]) => {
+        if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
+          return aName.localeCompare(bName);
+        }
+        if (aData.required) {
+          return -1;
+        }
+        return 1;
+      }),
+    ),
+    returnValue: _.fromPairs(
+      Object.entries(reactApi.returnValueTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
         }
@@ -337,13 +367,13 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
   writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
-import HooksApiPage from 'docs/src/modules/components/HooksApiPage';
+import HookApiPage from 'docs/src/modules/components/HookApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <HooksApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
@@ -398,6 +428,41 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
+const extractInfoFromInterface = (
+  interfaceName: string,
+  project: TypeScriptProject,
+): ParsedProperty[] => {
+  // Generate the params
+  let result: ParsedProperty[] = [];
+
+  try {
+    const exportedSymbol = project.exports[interfaceName];
+    const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
+    // @ts-ignore
+    const typeDeclaration = type?.symbol?.declarations?.[0];
+    if (!typeDeclaration || !ts.isInterfaceDeclaration(typeDeclaration)) {
+      return [];
+    }
+
+    const properties: Record<string, ParsedProperty> = {};
+    // @ts-ignore
+    const propertiesOnProject = type.getProperties();
+
+    // @ts-ignore
+    propertiesOnProject.forEach((propertySymbol) => {
+      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
+    });
+
+    result = Object.values(properties)
+      .filter((property) => !property.tags.ignore)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  } catch (e) {
+    console.error(`No declaration for ${interfaceName}`);
+  }
+
+  return result;
+};
+
 const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) => {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
@@ -426,33 +491,8 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     { filename },
   );
 
-  let inputParams: ParsedProperty[] = [];
-  const interfaceName = `${upperFirst(name)}Parameters`;
-
-  try {
-    const exportedSymbol = project.exports[interfaceName];
-    const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
-    // @ts-ignore
-    const typeDeclaration = type?.symbol?.declarations?.[0];
-    if (!typeDeclaration || !ts.isInterfaceDeclaration(typeDeclaration)) {
-      return null;
-    }
-
-    const properties: Record<string, ParsedProperty> = {};
-    // @ts-ignore
-    const propertiesOnProject = type.getProperties();
-
-    // @ts-ignore
-    propertiesOnProject.forEach((propertySymbol) => {
-      properties[propertySymbol.name] = parseProperty(propertySymbol, project);
-    });
-
-    inputParams = Object.values(properties)
-      .filter((property) => !property.tags.ignore)
-      .sort((a, b) => a.name.localeCompare(b.name));
-  } catch (e) {
-    console.error(`No declaration for ${interfaceName}`);
-  }
+  const inputParams = extractInfoFromInterface(`${upperFirst(name)}Parameters`, project);
+  const returnValue = extractInfoFromInterface(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
@@ -473,8 +513,12 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     // );
   }
 
-  attachParamsTable(reactApi, inputParams);
+  attachTable(reactApi, inputParams, 'inputParamsTable');
   reactApi.inputParams = inputParams;
+
+  attachTable(reactApi, returnValue, 'returnValueTable');
+  reactApi.returnValue = returnValue;
+
   attachTranslations(reactApi);
 
   // eslint-disable-next-line no-console

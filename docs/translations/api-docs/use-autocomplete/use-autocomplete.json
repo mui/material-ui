@@ -37,5 +37,6 @@
     "readOnly": "If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.",
     "selectOnFocus": "If `true`, the input's text is selected on focus.\nIt helps the user clear the selected value.",
     "value": "The value of the autocomplete.\n\nThe value must have reference equality with the option in order to be selected.\nYou can customize the equality behavior with the `isOptionEqualToValue` prop."
-  }
+  },
+  "returnValueDescriptions": {}
 }

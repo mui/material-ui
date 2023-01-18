@@ -19,7 +19,12 @@ const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => o
 const defaultIsOptionDisabled = () => false;
 const defaultOptionStringifier = <TOption>(option: TOption) =>
   typeof option === 'string' ? option : String(option);
-
+/**
+ *
+ * API:
+ *
+ * - [useListbox API](https://mui.com/base/api/use-listbox/)
+ */
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
     disabledItemsFocusable = false,

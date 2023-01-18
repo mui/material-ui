@@ -1,5 +1,6 @@
 {
   "inputParams": {},
+  "returnValue": {},
   "name": "useSlotProps",
   "filename": "/packages/mui-base/src/utils/useSlotProps.ts",
   "demos": "<ul></ul>"

@@ -42,8 +42,8 @@ const Table = styled('table')(({ theme }) => {
   };
 });
 
-function InputParamsTable(props) {
-  const { inputParams, inputParamsDescriptions } = props;
+function PropertiesTable(props) {
+  const { properties, propertiesDescriptions } = props;
   const t = useTranslate();
 
   return (
@@ -58,14 +58,14 @@ function InputParamsTable(props) {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(inputParams).map(([propName, propData]) => {
+          {Object.entries(properties).map(([propName, propData]) => {
             let typeName = propData.type.name;
             typeName = typeName
-              .replace('&', '&amp;')
-              .replace('<', '&lt;')
-              .replace('>', '&gt')
-              .replace('"', '&quot;')
-              .replace("'", '&#39;');
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#39;');
             const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (
@@ -102,7 +102,7 @@ function InputParamsTable(props) {
                     )}
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: inputParamsDescriptions[propName] || '',
+                        __html: propertiesDescriptions[propName] || '',
                       }}
                     />
                   </td>
@@ -116,9 +116,9 @@ function InputParamsTable(props) {
   );
 }
 
-InputParamsTable.propTypes = {
-  inputParams: PropTypes.object.isRequired,
-  inputParamsDescriptions: PropTypes.object.isRequired,
+PropertiesTable.propTypes = {
+  properties: PropTypes.object.isRequired,
+  propertiesDescriptions: PropTypes.object.isRequired,
 };
 
 function getTranslatedHeader(t, header) {
@@ -127,6 +127,7 @@ function getTranslatedHeader(t, header) {
     import: t('api-docs.import'),
     'hook-name': t('api-docs.hookName'),
     inputParams: t('api-docs.inputParams'),
+    returnValue: t('api-docs.returnValue'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -167,12 +168,13 @@ export default function ApiPage(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
-  const { demos, filename, inheritance, name: hookName, inputParams } = pageContent;
+  const { demos, filename, inheritance, name: hookName, inputParams, returnValue } = pageContent;
 
   const {
     hookDescription,
     hookDescriptionToc = [],
     inputParamsDescriptions,
+    returnValueDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.hooksPageDescription').replace(/{{name}}/, hookName);
 
@@ -201,6 +203,7 @@ export default function ApiPage(props) {
     createTocEntry('import'),
     ...hookDescriptionToc,
     createTocEntry('inputParams'),
+    createTocEntry('returnValue'),
   ].filter(Boolean);
 
   return (
@@ -251,9 +254,14 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
           </React.Fragment>
         ) : null}
         <Heading hash="inputParams" />
-        <InputParamsTable
-          inputParams={inputParams}
-          inputParamsDescriptions={inputParamsDescriptions}
+        <PropertiesTable
+          properties={inputParams}
+          propertiesDescriptions={inputParamsDescriptions}
+        />
+        <Heading hash="returnValue" />
+        <PropertiesTable
+          properties={returnValue}
+          propertiesDescriptions={returnValueDescriptions}
         />
         <br />
         {/* TODO: Add section for the hook output type */}

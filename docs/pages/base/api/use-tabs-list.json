@@ -7,6 +7,7 @@
       "type": { "name": "React.ReactNode", "description": "The content of the component." }
     }
   },
+  "returnValue": {},
   "name": "useTabsList",
   "filename": "/packages/mui-base/src/TabsListUnstyled/useTabsList.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/\">Unstyled Tabs</a></li></ul>"

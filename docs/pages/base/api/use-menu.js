@@ -1,11 +1,11 @@
 import * as React from 'react';
-import HooksApiPage from 'docs/src/modules/components/HooksApiPage';
+import HookApiPage from 'docs/src/modules/components/HookApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import jsonPageContent from './use-menu.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <HooksApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {

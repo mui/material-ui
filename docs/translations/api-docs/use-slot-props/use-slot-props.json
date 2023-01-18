@@ -1,4 +1,5 @@
 {
   "hookDescription": "Builds the props to be passed into the slot of an unstyled component.\nIt merges the internal props of the component with the ones supplied by the user, allowing to customize the behavior.\nIf the slot component is not a host component, it also merges in the `ownerState`.\n\n@param parameters.getSlotProps - A function that returns the props to be passed to the slot component.",
-  "inputParamsDescriptions": {}
+  "inputParamsDescriptions": {},
+  "returnValueDescriptions": {}
 }

@@ -28,6 +28,7 @@
       "type": { "name": "boolean", "description": "If `true`, the `input` element is required." }
     }
   },
+  "returnValue": {},
   "name": "useSwitch",
   "filename": "/packages/mui-base/src/SwitchUnstyled/useSwitch.ts",
   "demos": "<ul><li><a href=\"/base/react-switch/\">Unstyled Switch</a></li></ul>"

@@ -28,6 +28,7 @@
     "tabIndex": { "type": { "name": "number", "description": "" } },
     "value": { "type": { "name": "number | number[]", "description": "" } }
   },
+  "returnValue": {},
   "name": "useSlider",
   "filename": "/packages/mui-base/src/SliderUnstyled/useSlider.ts",
   "demos": "<ul><li><a href=\"/base/react-slider/\">Unstyled Slider</a></li></ul>"

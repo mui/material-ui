@@ -1,5 +1,6 @@
 {
   "inputParams": {},
+  "returnValue": {},
   "name": "useControllableReducer",
   "filename": "/packages/mui-base/src/ListboxUnstyled/useControllableReducer.ts",
   "demos": "<ul></ul>"
