@@ -1635,7 +1635,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'three');
     });
 
-    it('should keep focus when multiple options are selected and not reset to top option when options updated and when options are provided as objects', () => {
+    it('should keep focus when multiple options are selected by not resetting to the top option when options are updated and when options are provided as objects', () => {
       const { setProps } = render(
         <Autocomplete
           open
@@ -1698,7 +1698,7 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // options are updated and autocomplete re-renders, reset the highlight as two doesn't exists in new options
+      // Options are updated and autocomplete re-renders; reset the highlight since two doesn't exist in the new options.
       setProps({ options: ['one', 'three', 'four'] });
       checkHighlightIs(listbox, null);
     });

@@ -464,8 +464,6 @@ export default function useAutocomplete(props) {
 
   const previousProps = usePreviousProps({
     filteredOptions,
-    value,
-    multiple,
   });
 
   const syncHighlightedIndex = React.useCallback(() => {
@@ -477,9 +475,9 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
-      (previousProps.multiple
-        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
-        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
+      (multiple
+        ? prevValue.current.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+        : getOptionLabel(prevValue.current ?? '') === getOptionLabel(value ?? ''))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
