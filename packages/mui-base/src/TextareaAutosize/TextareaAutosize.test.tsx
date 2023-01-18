@@ -10,6 +10,7 @@ import {
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { KebabKeys } from '@mui/types';
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
@@ -32,13 +33,6 @@ describe('<TextareaAutosize />', () => {
     ],
   }));
 
-  type GetComputedStyle = {
-    'box-sizing'?: 'content-box' | 'border-box';
-    'border-bottom-width'?: string;
-    'padding-top'?: string;
-    width?: string;
-  };
-
   describe('layout', () => {
     const getComputedStyleStub = {};
     function setLayout(
@@ -49,7 +43,7 @@ describe('<TextareaAutosize />', () => {
         scrollHeight,
         lineHeight: lineHeightArg,
       }: {
-        getComputedStyle: GetComputedStyle;
+        getComputedStyle: Partial<KebabKeys<CSSStyleDeclaration>>;
         scrollHeight?: number;
         lineHeight?: number | (() => number);
       },
