@@ -15,18 +15,26 @@ We kept the best aspects of the previous versions, and we're fleshing out the pa
 
 These new input components are called [Fields](https://next.mui.com/x/react-date-pickers/fields/), and they provide massive improvements to the user experience of editing the value with a keyboard.
 
-In contrast with the previous generation of pickers, whose input editing was based on a [mask approach](https://www.npmjs.com/package/rifm) and were often cumbersome, the new fields are smart and specialized in editing date and time values.
-They're "smart" in the sense that they can recognize when a user is inputting any given piece of time data—a month, a day, a year—and respond accordingly.
+The previous generation of pickers, whose input editing was based on a [mask approach](https://www.npmjs.com/package/rifm), are often cumbersome, particularly when modifying dates.
 
-For example, watch what happens when you edit the month using the arrow keys:
+For example, watch what happens when the month is edited on this masked input:
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
-  <source src="/static/blog/nextgen-pickers/intelligent-field.mp4" type="video/mp4" />
+<video style="max-width:608px " autoplay muted loop playsinline >
+  <source src="/static/blog/nextgen-pickers/masked-input-bad-ux.mp4" type="video/mp4" />
 </video>
 
-As you increase the month, the component automatically watches for valid values throughout each piece of your date input, like you're navigating in a calendar.
+As you can notice, the day and year leak to the previous sections of the date, presenting a serious challenge to usability.
 
-The Fields are a perfect match to the calendar view, but they're available as standalone components, and you can import them from the latest v6 package.
+In contrast, the new fields are specialized in editing date and time values.
+They recognize the values on the input (day, month, year, etc.) and respond accordingly.
+
+<video style="max-width:608px " autoplay muted loop playsinline >
+  <source src="/static/blog/nextgen-pickers/basic-date-field.mp4" type="video/mp4" />
+</video>
+
+
+The Fields are included in the pickers, but they're available as standalone components too. 
+You can import them from the latest v6 package.
 
 ```jsx
 import { DateField } from '@mui/x-date-pickers/DateField';
@@ -44,20 +52,25 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 ## Enhanced keyboard usability
 
-With the new Fields, not only can you type the date as text, but you can also use your arrow keys to quickly navigate through each date and time value.
-You can edit them atomically—for instance, without leaking the year into the month, which is a common occurrence with masked inputs.
+With the new Fields, the keyboard interaction is a first-class experience. Not only can you type the date as text, but you can also use your arrow keys to navigate and edit date and time values.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
-  <source src="/static/blog/nextgen-pickers/keyboard-nav.mp4" type="video/mp4" />
+<video style="margin-bottom:5px; max-width:608px" autoplay muted loop playsinline >
+  <source src="/static/blog/nextgen-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
-For a quick comparison, let's check out how the two different approaches behave in some typical scenarios.
+Moreover, notice on the following example that as we increase the month, the component automatically watches for valid values throughout each piece of your date input, like you're navigating in a calendar.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
-  <source src="/static/blog/nextgen-pickers/fields-common-usecases.mp4" type="video/mp4" />
+<video style="margin-bottom:5px; max-width:608px" autoplay muted loop playsinline >
+  <source src="/static/blog/nextgen-pickers/smart-field.mp4" type="video/mp4" />
 </video>
 
-Try out the live demo of the Date Field component below:
+For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
+
+<video style="margin-bottom:24px" autoplay muted loop playsinline >
+  <source src="/static/blog/nextgen-pickers/quick-comparison-fields.mp4" type="video/mp4" />
+</video>
+
+Please, try it out for yourself in the live demo below:
 
 <iframe
   src="https://codesandbox.io/embed/date-field-demo-pb87v0?fontsize=12&hidenavigation=1&module=%2F"
@@ -69,10 +82,6 @@ Try out the live demo of the Date Field component below:
 ### Fields roadmap
 
 The Fields are still in alpha, and there are many improvements on the way. The following list describes some of the most notable features planned.
-
-- **Auto section switching**
-
-  So users don't need to manually navigate to the next section of the date after fulfilling the current one.
 
 - **Smart pasting**
 
@@ -105,7 +114,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
 
   Editing a date range is even easier now with the new drag-and-drop interface. Change `start` and `end` dates at will.
 
-<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+<video style="margin-bottom: 24px;" autoplay muted loop playsinline >
   <source src="/static/blog/nextgen-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
 
