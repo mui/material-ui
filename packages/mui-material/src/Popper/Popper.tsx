@@ -1,49 +1,242 @@
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import { HTMLElementType, refType } from '@mui/utils';
-import PropTypes from 'prop-types';
 import * as React from 'react';
-import { styled, Theme, useThemeProps } from '../styles';
+import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
+import {
+  useSlotProps,
+  WithOptionalOwnerState,
+  unstable_composeClasses as composeClasses,
+} from '@mui/base';
+import { Direction, useThemeWithoutDefault as useTheme } from '@mui/system';
+import { useThemeProps } from '../styles';
+import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import {
+  PopperChildrenProps,
+  PopperPlacementType,
+  PopperProps,
+  PopperTooltipProps,
+  PopperTooltipTypeMap,
+  PopperRootSlotProps,
+  PopperTypeMap,
+  PopperTransitionProps,
+} from './Popper.types';
+import { getPopperUtilityClass } from './popperClasses';
+import {
+  HTMLElementType,
+  refType,
+  unstable_ownerDocument as ownerDocument,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_useForkRef as useForkRef,
+} from '@mui/utils';
+import Portal from '@mui/base/Portal';
 
-export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
-  /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
+function flipPlacement(placement?: PopperPlacementType, direction?: Direction) {
+  if (direction === 'ltr') {
+    return placement;
+  }
+
+  switch (placement) {
+    case 'bottom-end':
+      return 'bottom-start';
+    case 'bottom-start':
+      return 'bottom-end';
+    case 'top-end':
+      return 'top-start';
+    case 'top-start':
+      return 'top-end';
+    default:
+      return placement;
+  }
+}
+
+function resolveAnchorEl(
+  anchorEl:
+    | VirtualElement
+    | (() => VirtualElement)
+    | HTMLElement
+    | (() => HTMLElement)
+    | null
+    | undefined,
+): HTMLElement | VirtualElement | null | undefined {
+  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+}
+
+function isHTMLElement(element: HTMLElement | VirtualElement): element is HTMLElement {
+  return (element as HTMLElement).nodeType !== undefined;
+}
+
+const useUtilityClasses = () => {
+  const slots = {
+    root: ['root'],
   };
 
-  /**
-   * The props used for each slot inside the Popper.
-   * @default {}
-   */
-  componentsProps?: PopperUnstyledProps['slotProps'];
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
+  return composeClasses(slots, getPopperUtilityClass, {});
 };
 
-const PopperRoot = styled(PopperUnstyled, {
-  name: 'MuiPopper',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})({});
+const defaultPopperOptions = {};
 
-/**
- *
- * Demos:
- *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
- * - [Popper](https://mui.com/material-ui/react-popper/)
- *
- * API:
- *
- * - [Popper API](https://mui.com/material-ui/api/popper/)
- */
+const PopperTooltip = React.forwardRef(function PopperTooltip(
+  props: PopperTooltipProps,
+  ref: React.ForwardedRef<HTMLElement>,
+) {
+  const {
+    anchorEl,
+    children,
+    component,
+    direction,
+    disablePortal,
+    modifiers,
+    open,
+    ownerState,
+    placement: initialPlacement,
+    popperOptions,
+    popperRef: popperRefProp,
+    slotProps = {},
+    slots = {},
+    TransitionProps,
+    ...other
+  } = props;
+
+  const tooltipRef = React.useRef<HTMLElement | null>(null);
+  const ownRef = useForkRef(tooltipRef, ref);
+
+  const popperRef = React.useRef<Instance | null>(null);
+  const handlePopperRef = useForkRef(popperRef, popperRefProp);
+  const handlePopperRefRef = React.useRef(handlePopperRef);
+  useEnhancedEffect(() => {
+    handlePopperRefRef.current = handlePopperRef;
+  }, [handlePopperRef]);
+  React.useImperativeHandle(popperRefProp, () => popperRef.current!, []);
+
+  const rtlPlacement = flipPlacement(initialPlacement, direction);
+  /**
+   * placement initialized from prop but can change during lifetime if modifiers.flip.
+   * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
+   */
+  const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
+  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState<
+    HTMLElement | VirtualElement | null | undefined
+  >(resolveAnchorEl(anchorEl));
+
+  React.useEffect(() => {
+    if (popperRef.current) {
+      popperRef.current.forceUpdate();
+    }
+  });
+
+  React.useEffect(() => {
+    if (anchorEl) {
+      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
+    }
+  }, [anchorEl]);
+
+  useEnhancedEffect(() => {
+    if (!resolvedAnchorElement || !open) {
+      return undefined;
+    }
+
+    const handlePopperUpdate = (data: State) => {
+      setPlacement(data.placement);
+    };
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (
+        resolvedAnchorElement &&
+        isHTMLElement(resolvedAnchorElement) &&
+        resolvedAnchorElement.nodeType === 1
+      ) {
+        const box = resolvedAnchorElement.getBoundingClientRect();
+
+        if (
+          process.env.NODE_ENV !== 'test' &&
+          box.top === 0 &&
+          box.left === 0 &&
+          box.right === 0 &&
+          box.bottom === 0
+        ) {
+          console.warn(
+            [
+              'MUI: The `anchorEl` prop provided to the component is invalid.',
+              'The anchor element should be part of the document layout.',
+              "Make sure the element is present in the document or that it's not display none.",
+            ].join('\n'),
+          );
+        }
+      }
+    }
+
+    let popperModifiers: Partial<Modifier<any, any>>[] = [
+      {
+        name: 'preventOverflow',
+        options: {
+          altBoundary: disablePortal,
+        },
+      },
+      {
+        name: 'flip',
+        options: {
+          altBoundary: disablePortal,
+        },
+      },
+      {
+        name: 'onUpdate',
+        enabled: true,
+        phase: 'afterWrite',
+        fn: ({ state }) => {
+          handlePopperUpdate(state);
+        },
+      },
+    ];
+
+    if (modifiers != null) {
+      popperModifiers = popperModifiers.concat(modifiers);
+    }
+    if (popperOptions && popperOptions.modifiers != null) {
+      popperModifiers = popperModifiers.concat(popperOptions.modifiers);
+    }
+
+    const popper = createPopper(resolvedAnchorElement, tooltipRef.current!, {
+      placement: rtlPlacement,
+      ...popperOptions,
+      modifiers: popperModifiers,
+    });
+
+    handlePopperRefRef.current!(popper);
+
+    return () => {
+      popper.destroy();
+      handlePopperRefRef.current!(null);
+    };
+  }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+
+  const childProps: PopperChildrenProps = { placement: placement! };
+
+  if (TransitionProps !== null) {
+    childProps.TransitionProps = TransitionProps;
+  }
+
+  const classes = useUtilityClasses();
+  const Root = component ?? slots.root ?? 'div';
+  const rootProps: WithOptionalOwnerState<PopperRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      role: 'tooltip',
+      ref: ownRef,
+    },
+    ownerState: {
+      // shallow merge ownerState from external component, e.g. Joy Menu.
+      ...props,
+      ...ownerState,
+    },
+    className: classes.root,
+  });
+
+  return (
+    <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
+  );
+}) as OverridableComponent<PopperTooltipTypeMap>;
+
 const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -54,20 +247,95 @@ const Popper = React.forwardRef(function Popper(
     name: 'MuiPopper',
   });
 
-  const { components, componentsProps, slots, slotProps, ...other } = props;
+  const {
+    anchorEl,
+    children,
+    container: containerProp,
+    components = {},
+    componentsProps = {},
+    disablePortal = false,
+    keepMounted = false,
+    modifiers,
+    open,
+    placement = 'bottom',
+    popperOptions = defaultPopperOptions,
+    popperRef,
+    style,
+    transition = false,
+    slotProps = {},
+    slots = {},
+    ...other
+  } = props;
 
   const RootComponent = slots?.root ?? components?.Root;
 
+  const [exited, setExited] = React.useState(true);
+
+  const handleEnter = () => {
+    setExited(false);
+  };
+
+  const handleExited = () => {
+    setExited(true);
+  };
+
+  if (!keepMounted && !open && (!transition || exited)) {
+    return null;
+  }
+
+  // If the container prop is provided, use that
+  // If the anchorEl prop is provided, use its parent body element as the container
+  // If neither are provided let the Modal take care of choosing the container
+  let container;
+  if (containerProp) {
+    container = containerProp;
+  } else if (anchorEl) {
+    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
+    container =
+      resolvedAnchorEl && isHTMLElement(resolvedAnchorEl)
+        ? ownerDocument(resolvedAnchorEl).body
+        : ownerDocument(null).body;
+  }
+  const display = !open && keepMounted && (!transition || exited) ? 'none' : undefined;
+  const transitionProps: PopperTransitionProps | undefined = transition
+    ? {
+        in: open,
+        onEnter: handleEnter,
+        onExited: handleExited,
+      }
+    : undefined;
+
   return (
-    <PopperRoot
-      direction={theme?.direction}
-      slots={{ root: RootComponent }}
-      slotProps={slotProps ?? componentsProps}
-      {...other}
-      ref={ref}
-    />
+    <Portal disablePortal={disablePortal} container={container}>
+      <PopperTooltip
+        anchorEl={anchorEl}
+        disablePortal={disablePortal}
+        modifiers={modifiers}
+        ref={ref}
+        open={transition ? !exited : open}
+        placement={placement}
+        popperOptions={popperOptions}
+        popperRef={popperRef}
+        direction={theme?.direction}
+        slots={{ root: RootComponent }}
+        slotProps={slotProps ?? componentsProps}
+        {...other}
+        style={{
+          // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
+          position: 'fixed',
+          // Fix Popper.js display issue
+          top: 0,
+          left: 0,
+          display,
+          ...style,
+        }}
+        TransitionProps={transitionProps}
+      >
+        {children}
+      </PopperTooltip>
+    </Portal>
   );
-});
+}) as OverridableComponent<PopperTypeMap>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -170,10 +438,6 @@ Popper.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
-  /**
-   * @ignore
-   */
-  ownerState: PropTypes.any,
   /**
    * Popper placement.
    * @default 'bottom'
