@@ -143,10 +143,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     externalSlotProps: slotProps.input,
     additionalProps: {
       rows: multiline ? rows : undefined,
-      inputRef:
-        typeof slotProps.input === 'object' && typeof slotProps.input.ref !== 'undefined'
-          ? slotProps.input.ref
-          : undefined,
       ...(multiline &&
         !isHostComponent(Input) && {
           minRows: rows || minRows,
