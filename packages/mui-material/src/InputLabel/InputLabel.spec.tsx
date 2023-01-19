@@ -7,8 +7,9 @@ const InputLabelTest = () => {
   };
   return (
     <div>
-      <InputLabel component='legend' />
- 
+      <InputLabel />
+      <InputLabel component="legend" />
+
       {/* @ts-expect-error */}
       <InputLabel component="a" incorrectAttribute="url" />
       {/* @ts-expect-error */}
