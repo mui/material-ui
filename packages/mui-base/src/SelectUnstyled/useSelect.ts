@@ -259,14 +259,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     ref: handleButtonRef,
   });
 
-  const selectedOption = React.useMemo(
-    () =>
-      props.multiple
-        ? props.options.filter((o) => (value as TValue[]).includes(o.value))
-        : props.options.find((o) => o.value === value) ?? null,
-    [props.multiple, props.options, value],
-  );
-
   const optionValues = React.useMemo(() => options.map((o) => o.value), [options]);
 
   let useListboxParameters: UseListboxParameters<TValue>;
