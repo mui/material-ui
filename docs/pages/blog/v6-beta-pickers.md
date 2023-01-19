@@ -130,6 +130,6 @@ It has a few irreparable usability issues, and it sets some hard limits on what 
 
 Our plan is to replace them entirely, but you can help us steer our roadmap.
 
-If you want to voice your opinions or get involved, please consider scheduling a [user interview](https://forms.gle/vsBv6CLPz9h57xg8A) with us.
+If you want to voice your opinions or get involved, please consider scheduling a [user interview](https://forms.gle/7uq8PzE26FgwkPs46) with us.
 
 As always, you can get in touch by opening new bug reports or feature requests in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
