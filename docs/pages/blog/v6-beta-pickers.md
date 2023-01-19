@@ -82,11 +82,11 @@ Please, try it out for yourself in the live demo below.
 
 The Fields are still in beta, and there are many improvements on the way. The following list describes some of the most notable features planned.
 
-- **Smart pasting**
+- **[Smart pasting](https://github.com/mui/mui-x/issues/7253)**
 
   Date strings pasted in Fields will be parsed and matched with the sections of the date.
 
-- **Support days of the week**
+- **[Support days of the week](https://github.com/mui/mui-x/issues/7254)**
 
   Users will be able to select a day in the week just like the can select a month.
 
@@ -96,7 +96,7 @@ We'd love to hear your [feedback](https://github.com/mui/mui-x/issues/new/choose
 
 Now that you've seen what's fundamentally changed with the Pickers, let's briefly review some other noteworthy improvements.
 
-- **Customization of layout and internal components**
+- **[Customization of layout and internal components](https://next.mui.com/x/react-date-pickers/custom-layout/)**
 
   Combining the concept of slots with the grid layout, you now can rearrange, extend, and customize most of the components used internally by the Pickers' views.
 
