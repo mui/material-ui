@@ -67,7 +67,6 @@ const Option = React.forwardRef(function Option(inProps, ref) {
 
   React.useEffect(() => {
     function updateHighlightedState(event: unknown, newValue: any | null) {
-      // TODO: use option comparer
       if (newValue === value && !highlighted) {
         setHighlighted(true);
       } else if (newValue !== value && highlighted) {
@@ -83,7 +82,6 @@ const Option = React.forwardRef(function Option(inProps, ref) {
 
   React.useEffect(() => {
     function updateSelectedState(event: unknown, newValue: any | any[] | null) {
-      // TODO: use option comparer
       if (newValue === value && !selected) {
         setSelected(true);
       } else if (newValue !== value && selected) {
