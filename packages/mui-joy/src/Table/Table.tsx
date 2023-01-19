@@ -30,13 +30,16 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
 
 const tableSelector = {
   getColumn(col: number | string) {
-    return `& tr *:nth-child(${col})`;
+    if (typeof col === 'number' && col < 0) {
+      return `& tr > *:nth-last-child(${Math.abs(col)})`;
+    }
+    return `& tr > *:nth-child(${col})`;
   },
   /**
-   * Except last column
+   * Except first column
    */
-  getColumnExceptLast() {
-    return '& tr > *:not(:last-child)';
+  getColumnExceptFirst() {
+    return '& tr > *:not(:first-child)';
   },
   /**
    * Every cell in the table
@@ -54,7 +57,16 @@ const tableSelector = {
    * Only the cell of `thead`
    */
   getHeaderCell() {
-    return '& thead th, & tr:first-of-type th';
+    return '& thead th';
+  },
+  getHeaderCellOfRow(row: number | string) {
+    return `& thead tr:nth-child(${row}) th`;
+  },
+  getBottomHeaderCell() {
+    return '& thead th:not([colspan]), & tr:first-of-type th:not([scope="row"]):not([colspan])';
+  },
+  getHeaderNestedFirstColumn() {
+    return '& thead tr:not(:first-of-type) th:not([colspan]):first-child';
   },
   /**
    * The body cell that contains data
@@ -62,11 +74,22 @@ const tableSelector = {
   getDataCell() {
     return '& td';
   },
+  getDataCellExceptLastRow() {
+    return '& tr:not(:last-child) td';
+  },
   /**
    * The body cell either `td` or `th`
    */
-  getBodyCell() {
-    return `${this.getDataCell()}, & th[scope="row"]`;
+  getBodyCellExceptLastRow() {
+    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-child) th[scope="row"]`;
+  },
+  getBodyCellOfRow(row: number | string) {
+    if (typeof row === 'number' && row < 0) {
+      return `& tbody tr:nth-last-child(${Math.abs(row)}) td, & tbody tr:nth-last-child(${Math.abs(
+        row,
+      )}) th[scope="row"]`;
+    }
+    return `& tbody tr:nth-child(${row}) td, & tbody tr:nth-child(${row}) th[scope="row"]`;
   },
   getBodyRow(row?: number | string) {
     if (row === undefined) {
@@ -127,18 +150,46 @@ const TableRoot = styled('table', {
       color: theme.vars.palette.text.secondary,
     },
   },
-  (ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
+  (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
+    // insert border between rows
     [tableSelector.getHeaderCell()]: {
+      borderBottomWidth: 1,
+      borderBottomStyle: 'solid',
+    },
+    [tableSelector.getBottomHeaderCell()]: {
       borderBottomWidth: 2,
       borderBottomStyle: 'solid',
     },
-    [tableSelector.getBodyCell()]: {
+    [tableSelector.getBodyCellExceptLastRow()]: {
+      borderBottomWidth: 1,
+      borderBottomStyle: 'solid',
+    },
+  },
+  (ownerState.borderAxis?.startsWith('y') || ownerState.borderAxis?.startsWith('both')) && {
+    // insert border between columns
+    [`${tableSelector.getColumnExceptFirst()}, ${tableSelector.getHeaderNestedFirstColumn()}`]: {
+      borderLeftWidth: 1,
+      borderLeftStyle: 'solid',
+    },
+  },
+  (ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
+    // insert border at the top of header and bottom of body
+    [tableSelector.getHeaderCellOfRow(1)]: {
+      borderTopWidth: 1,
+      borderTopStyle: 'solid',
+    },
+    [tableSelector.getBodyCellOfRow(-1)]: {
       borderBottomWidth: 1,
       borderBottomStyle: 'solid',
     },
   },
   (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
-    [tableSelector.getColumnExceptLast()]: {
+    // insert border on the left of first column and right of the last column
+    [tableSelector.getColumn(1)]: {
+      borderLeftWidth: 1,
+      borderLeftStyle: 'solid',
+    },
+    [tableSelector.getColumn(-1)]: {
       borderRightWidth: 1,
       borderRightStyle: 'solid',
     },
@@ -156,9 +207,17 @@ const TableRoot = styled('table', {
     },
   },
   ownerState.stickyHeader && {
+    // The column header
     [tableSelector.getHeadCell()]: {
       position: 'sticky',
       top: 0,
+    },
+    [tableSelector.getHeaderCell()]: {
+      zIndex: 1,
+    },
+    [tableSelector.getHeaderCellOfRow(2)]: {
+      // support upto 2 rows for the sticky header
+      top: 'var(--TableCell-height)',
     },
   },
   {
@@ -182,6 +241,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     component,
     children,
     borderAxis = 'x',
+    hover = false,
     size = 'md',
     variant = 'plain',
     color: colorProp,
@@ -195,6 +255,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   const ownerState = {
     ...props,
     borderAxis,
+    hover,
     component,
     size,
     color,

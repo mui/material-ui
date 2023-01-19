@@ -13,7 +13,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     /**
      * The axis to display a border on the table cell.
      */
-    borderAxis?: 'none' | 'x' | 'y' | 'both';
+    borderAxis?: 'none' | 'x' | 'xBetween' | 'y' | 'yBetween' | 'both' | 'bothBetween';
     /**
      * Children of the table
      */

@@ -37,10 +37,16 @@ export interface TableClasses {
   borderAxisNone: string;
   /** Styles applied to the root element if `borderAxis="x"`. */
   borderAxisX: string;
-  /** Styles applied to the root element if `borderAxis="Y"`. */
+  /** Styles applied to the root element if `borderAxis="xBetween"`. */
+  borderAxisXBetween: string;
+  /** Styles applied to the root element if `borderAxis="y"`. */
   borderAxisY: string;
+  /** Styles applied to the root element if `borderAxis="yBetween"`. */
+  borderAxisYBetween: string;
   /** Styles applied to the root element if `borderAxis="both"`. */
   borderAxisBoth: string;
+  /** Styles applied to the root element if `borderAxis="bothBetween"`. */
+  borderAxisBothBetween: string;
 }
 
 export type TableClassKey = keyof TableClasses;
@@ -68,8 +74,11 @@ const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
   'stickyHeader',
   'borderAxisNone',
   'borderAxisX',
+  'borderAxisXBetween',
   'borderAxisY',
+  'borderAxisYBetween',
   'borderAxisBoth',
+  'borderAxisBothBetween',
 ]);
 
 export default tableClasses;
