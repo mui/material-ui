@@ -14,6 +14,7 @@ export default function useInput(parameters: UseInputParameters) {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
     error: errorProp = false,
+    inputRef: inputRefProp,
     onBlur,
     onChange,
     onFocus,
@@ -76,7 +77,7 @@ export default function useInput(parameters: UseInputParameters) {
   }, []);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleInputRef = useForkRef(inputRef, handleInputRefWarning);
+  const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
 
   const [focused, setFocused] = React.useState(false);
 
