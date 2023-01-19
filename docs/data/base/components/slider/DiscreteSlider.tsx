@@ -77,6 +77,8 @@ const StyledSlider = styled(SliderUnstyled)(
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
+    display: flex;
+    flex-direction: column-reverse;
 
     :hover,
     &.${sliderUnstyledClasses.focusVisible} {
@@ -112,11 +114,10 @@ const StyledSlider = styled(SliderUnstyled)(
   & .valueLabel {
     font-family: IBM Plex Sans;
     font-size: 14px;
-    display: block;
     position: relative;
-    top: -1.6em;
+    top: -1em;
     text-align: center;
-    transform: translateX(-35%);
+    align-self: center;
   }
 `,
 );
