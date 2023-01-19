@@ -6,7 +6,7 @@ import { EventHandlers } from '../utils';
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hook)
  *
  * API:
  *

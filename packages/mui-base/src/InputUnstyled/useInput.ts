@@ -12,7 +12,7 @@ import {
  *
  * Demos:
  *
- * - [Unstyled Input](https://mui.com/base/react-input/)
+ * - [Unstyled Input](https://mui.com/base/react-input/#hook)
  *
  * API:
  *

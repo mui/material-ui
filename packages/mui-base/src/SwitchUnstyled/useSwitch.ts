@@ -11,7 +11,7 @@ import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types'
  *
  * Demos:
  *
- * - [Unstyled Switch](https://mui.com/base/react-switch/)
+ * - [Unstyled Switch](https://mui.com/base/react-switch/#hook)
  *
  * API:
  *

@@ -229,7 +229,7 @@ function findBaseHooksDemos(
       name: page.title,
       demoPathname: page.pathname.match(/material\//)
         ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-        : `${page.pathname.replace('/components/', '/react-')}/`,
+        : `${page.pathname.replace('/components/', '/react-')}/#hook`,
     }));
 }
 

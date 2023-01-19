@@ -11,7 +11,7 @@ export interface UseBadgeParameters {
  *
  * Demos:
  *
- * - [Unstyled badge](https://mui.com/base/react-badge/)
+ * - [Unstyled badge](https://mui.com/base/react-badge/#hook)
  *
  * API:
  *

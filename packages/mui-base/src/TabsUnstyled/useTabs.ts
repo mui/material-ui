@@ -35,7 +35,7 @@ export interface UseTabsParameters {
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hook)
  *
  * API:
  *

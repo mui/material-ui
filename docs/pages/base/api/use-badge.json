@@ -8,5 +8,5 @@
   "returnValue": {},
   "name": "useBadge",
   "filename": "/packages/mui-base/src/BadgeUnstyled/useBadge.ts",
-  "demos": "<ul><li><a href=\"/base/react-badge/\">Unstyled badge</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-badge/#hook\">Unstyled badge</a></li></ul>"
 }
