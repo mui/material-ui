@@ -240,7 +240,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     className,
     component,
     children,
-    borderAxis = 'x',
+    borderAxis = 'xBetween',
     hover = false,
     size = 'md',
     variant = 'plain',

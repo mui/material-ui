@@ -5,7 +5,7 @@ githubLabel: 'component: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 ---
 
-# Tooltip
+# Table
 
 <p class="description">Tables display sets of data. They can be fully customized.</p>
 
@@ -19,10 +19,26 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 import Table from '@mui/joy/Table';
 ```
 
-<!-- {{"demo": "BasicTable.js"}} -->
+{{"demo": "BasicTable.js"}}
 
 ## Customization
 
 ### Variants
 
----
+{{"demo": "TableVariants.js"}}
+
+### Sizes
+
+{{"demo": "TableSizes.js"}}
+
+### Striped
+
+{{"demo": "StripedTable.js"}}
+
+### Border
+
+{{"demo": "TableBorder.js"}}
+
+### Sticky header
+
+{{"demo": "TableStickyHeader.js"}}
