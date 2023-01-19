@@ -28,9 +28,9 @@ describe('useInput', () => {
       const outerInputRef = React.createRef<HTMLInputElement>();
       const innerInputRef = React.createRef<HTMLInputElement>();
 
-      const Wrapper = ({ children }: React.PropsWithChildren) => {
+      function Wrapper({ children }: React.PropsWithChildren) {
         return React.cloneElement(children as React.ReactElement, { ref: outerInputRef });
-      };
+      }
 
       const Input = React.forwardRef(function Input(
         props: React.InputHTMLAttributes<HTMLInputElement>,
