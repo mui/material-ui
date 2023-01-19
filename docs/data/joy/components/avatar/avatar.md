@@ -8,33 +8,6 @@ githubLabel: 'component: avatar'
 
 <p class="description">An avatar is a graphical representation of a user's identity.</p>
 
-:::warning
-**imgProps** prop has been removed in [`@mui/joy@5.0.0-alpha.64`](https://github.com/mui/material-ui/releases/tag/v5.11.6).
-
-## Migration
-
-### Codemod
-
-Run this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-text-field-to-input) in your project's terminal:
-
-```sh
-npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
-```
-
-It will go through all files under `<path>` and replace `<TextField />` with the `<Input />` composition.
-
-### Manual
-
-Remove `imgProps` prop by transferring its value into `slotProps.img`:
-
-```diff
-<Avatar
--  imgProps={{ ['data-id']: 'imageId' }}
--  slotProps={{ root: { ['data-id']: 'rootId' }}}
-+  slotProps={{ root: { ['data-id']: 'rootId' }, img: { ['data-id']: 'imageId' } }}
-/>
-```
-
 ## Introduction
 
 The Avatar component can be used to display graphical information about a user in places such as menus, tables, and chats.
