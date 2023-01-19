@@ -69,11 +69,11 @@ Remove `imgProps` prop by transferring its value into `slotProps.img`
 This change only affects Joy UI Avatar component.
 
 ```diff
-<Avatar
+ <Avatar
 -  imgProps={{ ['data-id']: 'imageId' }}
 -  slotProps={{ root: { ['data-id']: 'rootId' }}}
 +  slotProps={{ root: { ['data-id']: 'rootId' }, img: { ['data-id']: 'imageId' } }}
-/>
+ />;
 ```
 
 ```sh
