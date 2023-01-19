@@ -25,52 +25,49 @@ When should you use checkboxes rather than switches or radio buttons?
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::info
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
-import Box from '@mui/joy/Box';
 import Checkbox from '@mui/joy/Checkbox';
-
-export default function MyApp() {
-  return (
-    <Box>
-      <Checkbox label="Hello world!" />
-    </Box>
-  );
-}
 ```
 
-### Checked
-
-When unchecked, the checkbox component uses the `outlined` variant.
-When checked, the variant changes to `solid`.
+The basic Checkbox component is a single input set to the unchecked state.
+Use the `label` prop to provide text, and add `defaultChecked` when the input should be checked by default.
 
 {{"demo": "BasicCheckbox.js"}}
 
-### Icon
+## Customization
 
-`Checkbox`, by default, comes without an unchecked component.
-To add an icon to both uncheck and checked states, use the `uncheckedIcon` and `checkedIcon` props.
+### Variants
+
+When unchecked, the checkbox component uses the `outlined` variant.
+When checked, the variant changes to `solid`. See [Variants](#variants) for more details.
+
+### Sizes
+
+### Colors
+
+### Icons
+
+By default, the Checkbox component is empty when unchecked.
+Use the `uncheckedIcon` prop to add a custom icon for the unchecked state.
+You can also use `checkedIcon` to customize the checked state.
 
 {{"demo": "IconsCheckbox.js"}}
 
 #### Appear on hover
 
-Target the icon by using the `svg` selector and then use `opacity` to show the unchecked icon when hovering the checkbox.
+Target the icon by using the `svg` selector and then use `opacity` to show the unchecked icon when hovering over the Checkbox.
 
 {{"demo": "HoverCheckbox.js"}}
 
-#### Without an icon
+#### No icons
 
-To rely only on variants to communicate the checkbox state change, use the `disableIcon` prop to remove the icon.
+Use the `disableIcon` prop to remove the icon entirely.
+In this case, the state of the Checkbox is communicated through the type of variant applied to the label.
+Try clicking on the Checkbox labels in the demo below to see how this works:
 
 {{"demo": "IconlessCheckbox.js"}}
 
