@@ -32,7 +32,7 @@ describe('useControllableReducer', () => {
           optionStringifier: (option) => option,
           multiple: false,
         };
-        const [, dispatch] = useControllableReducer(reducer, undefined, props);
+        const [, dispatch] = useControllableReducer(reducer, undefined, { current: props });
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
@@ -64,7 +64,9 @@ describe('useControllableReducer', () => {
           optionStringifier: (option) => option,
           multiple: false,
         };
-        const [, dispatch] = useControllableReducer(internalReducer, externalReducer, props);
+        const [, dispatch] = useControllableReducer(internalReducer, externalReducer, {
+          current: props,
+        });
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
@@ -99,7 +101,7 @@ describe('useControllableReducer', () => {
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
         };
-        const [, dispatch] = useControllableReducer(reducer, undefined, props);
+        const [, dispatch] = useControllableReducer(reducer, undefined, { current: props });
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
@@ -138,7 +140,7 @@ describe('useControllableReducer', () => {
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
         };
-        const [, dispatch] = useControllableReducer(reducer, undefined, props);
+        const [, dispatch] = useControllableReducer(reducer, undefined, { current: props });
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }

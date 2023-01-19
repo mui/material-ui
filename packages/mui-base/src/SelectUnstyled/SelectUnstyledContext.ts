@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { OptionState } from '../ListboxUnstyled';
-import { SelectOption, UseSelectOptionSlotProps } from './useSelect.types';
+import { UseSelectOptionSlotProps } from './useSelect.types';
 
 export interface SelectUnstyledContextType {
-  getOptionState: (value: SelectOption<any>) => OptionState;
-  getOptionProps: (option: SelectOption<any>) => UseSelectOptionSlotProps;
+  getOptionState: (value: any) => OptionState;
+  getOptionProps: (value: any) => UseSelectOptionSlotProps;
   listboxRef: React.RefObject<HTMLElement>;
   registerSelectionChangeHandler: (
     handler: (

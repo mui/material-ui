@@ -32,6 +32,10 @@ describe('OptionUnstyled', () => {
             getOptionState: dummyGetOptionState,
             getOptionProps: dummyGetOptionProps,
             listboxRef: React.createRef(),
+            registerHighlightChangeHandler: () => {},
+            registerSelectionChangeHandler: () => {},
+            unregisterHighlightChangeHandler: () => {},
+            unregisterSelectionChangeHandler: () => {},
           }}
         >
           {node}
@@ -45,6 +49,10 @@ describe('OptionUnstyled', () => {
             getOptionState: dummyGetOptionState,
             getOptionProps: dummyGetOptionProps,
             listboxRef: React.createRef(),
+            registerHighlightChangeHandler: () => {},
+            registerSelectionChangeHandler: () => {},
+            unregisterHighlightChangeHandler: () => {},
+            unregisterSelectionChangeHandler: () => {},
           }}
         >
           {node}

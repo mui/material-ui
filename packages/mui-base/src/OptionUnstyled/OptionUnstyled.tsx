@@ -45,14 +45,8 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
-  const selectOption = {
-    value,
-    label: label || children,
-    disabled,
-  };
-
-  const optionState = selectContext.getOptionState(selectOption);
-  const optionProps = selectContext.getOptionProps(selectOption);
+  const optionState = selectContext.getOptionState(value);
+  const optionProps = selectContext.getOptionProps(value);
 
   const [selected, setSelected] = React.useState(optionState.selected);
   const [highlighted, setHighlighted] = React.useState(optionState.highlighted);

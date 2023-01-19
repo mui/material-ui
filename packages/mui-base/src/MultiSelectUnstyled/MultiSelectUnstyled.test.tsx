@@ -15,7 +15,7 @@ import {
   screen,
 } from 'test/utils';
 
-describe.skip('MultiSelectUnstyled', () => {
+describe('MultiSelectUnstyled', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
