@@ -21,7 +21,7 @@ When should you use checkboxes rather than switches or radio buttons?
 
 - Use a switch to provide the user with **a single binary choice**—checkboxes are preferable when you need to give the user multiple binary choices.
 - Use radio buttons to give the user **mutually exclusive options**—checkboxes are preferable when you need to let the user select one, some, all, or none from a series of options.
-:::
+  :::
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
