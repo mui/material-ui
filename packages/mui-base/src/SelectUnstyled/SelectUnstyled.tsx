@@ -14,7 +14,7 @@ import {
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
 import useSelect from './useSelect';
-import { SelectChangeEventType, SelectChild, SelectOption } from './useSelect.types';
+import { SelectChild, SelectOption } from './useSelect.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
@@ -135,13 +135,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     [setListboxOpen, onListboxOpenChange],
   );
 
-  const handleChange = React.useCallback(
-    (event: SelectChangeEventType, newValue: TValue | null) => {
-      onChange?.(event, newValue);
-    },
-    [onChange],
-  );
-
   const {
     buttonActive,
     buttonFocusVisible,
@@ -162,7 +155,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     listboxId,
     multiple: false,
     open: listboxOpen,
-    onChange: handleChange,
+    onChange,
     onOpenChange: handleOpenChange,
     options,
     optionStringifier,

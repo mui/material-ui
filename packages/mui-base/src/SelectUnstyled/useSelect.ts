@@ -312,7 +312,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       },
       options: optionValues,
       optionStringifier: stringifyOption,
-      value: selectedOption as TValue[],
+      value: value as TValue[],
     };
   } else {
     const onChangeSingle = onChange as (
