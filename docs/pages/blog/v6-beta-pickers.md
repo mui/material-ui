@@ -15,7 +15,7 @@ We kept the best aspects of the previous versions, and we're fleshing out the pa
 
 These new input components are called [Fields](https://next.mui.com/x/react-date-pickers/fields/), and they provide massive improvements to the experience of editing the value with a keyboard.
 
-The previous generation of pickers, whose input editing was based on a [mask approach](https://www.npmjs.com/package/rifm), are often cumbersome, particularly when modifying dates.
+The previous generation of pickers, whose text input is based on a [mask approach](https://www.npmjs.com/package/rifm), are often cumbersome and fall flat on edge cases as well simple cases like modifying dates.
 
 For example, watch what happens when we edit the month on this masked input:
 
