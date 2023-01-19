@@ -13,5 +13,5 @@ export type {
   PopperTooltipTypeMap,
   PopperOwnerState,
   PopperChildrenProps,
-  PopperRootSlotProps
+  PopperRootSlotProps,
 } from './Popper.types';
