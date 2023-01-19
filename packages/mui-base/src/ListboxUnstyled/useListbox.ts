@@ -113,9 +113,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     });
 
     previousOptions.current = options;
-
-    // No need to re-run this effect if props change
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, optionComparer, dispatch]);
 
   const setSelectedValue = React.useCallback(
