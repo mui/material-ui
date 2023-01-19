@@ -171,6 +171,8 @@ export * from './Tabs';
 export { default as Textarea } from './Textarea';
 export * from './Textarea';
 
+export { default as TextField } from './TextField';
+
 export { default as Tooltip } from './Tooltip';
 export * from './Tooltip';
 

@@ -23,7 +23,7 @@ const rows = [
   createData('Eclair', 262, 16.0, 24, 6.0),
 ];
 
-export default function AcccessibleTable() {
+export default function AccessibleTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
