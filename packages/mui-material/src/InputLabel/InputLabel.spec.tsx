@@ -14,7 +14,7 @@ const InputLabelTest = () => {
       <InputLabel
         component="legend"
         onClick={(event) => {
-          expectType<React.MouseEvent<HTMLLabelElement, MouseEvent>, typeof event>(event);
+          expectType<React.MouseEvent<HTMLLegendElement, MouseEvent>, typeof event>(event);
         }}
       />
 
