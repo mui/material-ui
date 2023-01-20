@@ -94,7 +94,7 @@ The default Checkbox is _dual-state:_ the user can toggle between checked and un
 There is, however, the option for a _tri-state_ or indeterminate Checkbox that supports a state known as "partially checked."
 
 This indeterminate state is often used to communicate the fact that only some out of a set of Checkboxes are checked.
-As such, it's usually reserved for parent Checkboxes that can control the the state of their children.
+As such, it's usually reserved for parent Checkboxes that can control the states of their children.
 
 The demo below shows how to implement the `indeterminate` prop on a parent Checkbox that watches for the checked state in its children.
 If only one child is checked, the parent will display the indeterminate state.
