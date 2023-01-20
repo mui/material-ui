@@ -57,4 +57,11 @@ describe('<InputUnstyled />', () => {
       );
     });
   });
+
+  it('should initialize ref passed through slot prop', () => {
+    const inputRef = React.createRef<HTMLInputElement>();
+    render(<InputUnstyled multiline slotProps={{ input: { ref: inputRef } }} />);
+
+    expect(screen.getByRole('textbox')).deep.equal(inputRef.current);
+  });
 });
