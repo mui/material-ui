@@ -82,22 +82,27 @@ To set the focus outline so that it only wraps the input, target the `checkboxCl
 
 ### Indeterminate
 
-Technically, the checkbox component only has two states: checked or unchecked.
-However, visually, there is a third state called _indeterminate_.
+Technically, the Checkbox component has only two states: checked or unchecked.
+Visually, however, there is an alternate checked state possible called _indeterminate_, which you might think of as an "in-between" state.
 
-It's common to find it in tables where you have one checkbox that selects every table row.
-Use the `indeterminate` prop to circle around these states.
+The indeterminate state is often used to communicate the fact that only some out of a set of Checkboxes are checked.
+
+The demo below shows how to implement the `indeterminate` prop on a parent Checkbox that watches for the checked state in its children.
+If only one child is checked, the parent will display the indeterminate state.
+Clicking on the parent Checkbox toggles selecting and deselecting all children.
 
 :::warning
 When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values.
 It has no accessibility or UX implications.
 :::
 
+
 {{"demo": "IndeterminateCheckbox.js"}}
 
 ### Helper text
 
-To add a description to the checkbox, use `FormControl` and `FormHelperText`. The checkbox will be linked to the helper text via `aria-describedby` attribute.
+Use the Form Control and Form Helper Text components add a description to the Checkbox. 
+The Checkbox will be linked to the helper text via the `aria-describedby` attribute.
 
 {{"demo": "HelperTextCheckbox.js"}}
 
