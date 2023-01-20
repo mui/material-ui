@@ -1,5 +1,6 @@
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
+import { expectType } from '@mui/types';
 
 const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
   return <div />;
@@ -10,7 +11,12 @@ const InputLabelTest = () => {
     <div>
       <InputLabel />
       <InputLabel component="legend" />
-      <InputLabel component="legend" onClick={(event) => {}} />
+      <InputLabel
+        component="legend"
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLLabelElement, MouseEvent>, typeof event>(event);
+        }}
+      />
 
       {/* @ts-expect-error */}
       <InputLabel component="a" incorrectAttribute="url" />
