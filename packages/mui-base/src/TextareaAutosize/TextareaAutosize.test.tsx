@@ -34,7 +34,7 @@ describe('<TextareaAutosize />', () => {
   }));
 
   describe('layout', () => {
-    const getComputedStyleStub = {};
+    const getComputedStyleStub = new Map<Element, Partial<KebabKeys<CSSStyleDeclaration>>>();
     function setLayout(
       input: HTMLTextAreaElement,
       shadow: Element,
@@ -49,8 +49,8 @@ describe('<TextareaAutosize />', () => {
       },
     ) {
       const lineHeight = typeof lineHeightArg === 'function' ? lineHeightArg : () => lineHeightArg;
-      // @ts-expect-error
-      getComputedStyleStub[input] = getComputedStyle;
+
+      getComputedStyleStub.set(input, getComputedStyle);
 
       let index = 0;
       stub(shadow, 'scrollHeight').get(() => {
@@ -65,8 +65,9 @@ describe('<TextareaAutosize />', () => {
         this.skip();
       }
 
-      // @ts-expect-error
-      stub(window, 'getComputedStyle').value((node: Element) => getComputedStyleStub[node] || {});
+      stub(window, 'getComputedStyle').value(
+        (node: Element) => getComputedStyleStub.get(node) || {},
+      );
     });
 
     after(() => {
@@ -80,8 +81,9 @@ describe('<TextareaAutosize />', () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
         const shadow = container.querySelector('textarea[aria-hidden=true]')!;
-        expect(input.style).to.have.property('height', '');
-        expect(input.style).to.have.property('overflow', '');
+
+        expect(input.style).to.have.property('height', '0px');
+        expect(input.style).to.have.property('overflow', 'hidden');
 
         setLayout(input, shadow, {
           getComputedStyle: {
