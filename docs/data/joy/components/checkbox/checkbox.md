@@ -59,7 +59,9 @@ You can also use `checkedIcon` to customize the checked state.
 
 #### Appear on hover
 
-Target the icon by using the `svg` selector and then use `opacity` to show the unchecked icon when hovering over the Checkbox.
+You can use the `uncheckedIcon` as a "preview" of the checked state by making it appear when the user hovers over the empty Checkbox.
+
+The demo below shows how to target the icon by using the `svg` selector and apply `opacity` for a smooth effect:
 
 {{"demo": "HoverCheckbox.js"}}
 
