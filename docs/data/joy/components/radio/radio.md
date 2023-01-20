@@ -7,13 +7,20 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 # Radio Group
 
-<p class="description">Radio buttons let users select one option from a set.</p>
+<p class="description">Radio buttons let users make one selection from a set.</p>
 
 ## Introduction
 
-The `Radio` component is the one to be used when you want to allow users to select only one option at a time.
-To allow multiple selection, use the `Checkbox` instead.
-For more in-depth about when to use each, visit [the NNg's documentation](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/).
+Radio buttons present users with a mututally exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
+
+To provide the user with multiple selection options, use `Checkbox` instead.
+
+:::success
+When should you use radio buttons rather than checkboxes or switches?
+
+- Use checkboxes to give the user **multiple binary choices**-radio buttons are preferable when you need to restrict user selection to one mutually exclusive option from a series.
+- Use a switch to provide the user with **a single binary choice**-radio buttons are preferable when you need to give the user multiple binary choices.
+:::
 
 {{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
