@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InputLabel } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
 
 const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
   return <div />;
