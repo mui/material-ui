@@ -179,7 +179,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     >
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
-      <Input {...inputProps} />
+      <Input {...inputProps} tabIndex="-1" />
     </Root>
   );
 }) as OverridableComponent<SwitchUnstyledTypeMap>;
