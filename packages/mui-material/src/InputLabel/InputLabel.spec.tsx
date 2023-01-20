@@ -10,6 +10,7 @@ const InputLabelTest = () => {
     <div>
       <InputLabel />
       <InputLabel component="legend" />
+      <InputLabel component="legend" onClick={(event) => {}} />
 
       {/* @ts-expect-error */}
       <InputLabel component="a" incorrectAttribute="url" />
