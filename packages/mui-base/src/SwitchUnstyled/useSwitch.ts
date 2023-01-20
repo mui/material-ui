@@ -82,8 +82,6 @@ export default function useSwitch(props: UseSwitchParameters) {
       otherProps.onFocus?.(event);
     };
 
-  
-
   const createHandleBlur =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.FocusEvent<HTMLInputElement>) => {
@@ -121,8 +119,8 @@ export default function useSwitch(props: UseSwitchParameters) {
     focusVisible,
     getInputProps,
     readOnly: Boolean(readOnly),
-    setCheckedState, // essa
+    setCheckedState,
     setFocusVisible,
-    inputRef
+    inputRef,
   };
 }

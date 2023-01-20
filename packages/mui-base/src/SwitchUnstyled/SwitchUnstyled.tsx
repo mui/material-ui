@@ -75,7 +75,16 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     readOnly: readOnlyProp,
   };
 
-  const { getInputProps, checked, disabled, focusVisible, readOnly, setCheckedState, setFocusVisible, inputRef } = useSwitch(useSwitchProps);
+  const {
+    getInputProps,
+    checked,
+    disabled,
+    focusVisible,
+    readOnly,
+    setCheckedState,
+    setFocusVisible,
+    inputRef,
+  } = useSwitch(useSwitchProps);
 
   const ownerState: SwitchUnstyledOwnerState = {
     ...props,
@@ -133,13 +142,15 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     }
   };
 
-  const handleOnClick = () => {
+  const handleOnClick = (event: React.BaseSyntheticEvent) => {
     clearFocusTimeout();
     setCheckedState(!checked);
     setFocusVisible(false);
-    if (inputRef.current) {
-      console.log(inputRef.current);
-    }
+    const nativeEvent = event.nativeEvent || event;
+    // @ts-ignore
+    const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+    Object.defineProperty(clonedEvent, 'target', inputRef.current);
+    onChange?.(clonedEvent);
   };
 
   const handleOnKeyPress = (e: React.KeyboardEvent) => {
@@ -157,14 +168,16 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   };
 
   return (
-    <Root {...rootProps} 
-    onClick={handleOnClick}
-    onKeyPress={handleOnKeyPress} 
-    tabIndex="0" 
-    onFocus={handleOnFocus}  
-    onBlur={() => setFocusVisible(false)} 
-    sx={{outline: 'none'}}>
-      <Track {...trackProps}  />
+    <Root
+      {...rootProps}
+      onClick={handleOnClick}
+      onKeyPress={handleOnKeyPress}
+      tabIndex="0"
+      onFocus={handleOnFocus}
+      onBlur={() => setFocusVisible(false)}
+      sx={{ outline: 'none' }}
+    >
+      <Track {...trackProps} />
       <Thumb {...thumbProps} />
       <Input {...inputProps} />
     </Root>
