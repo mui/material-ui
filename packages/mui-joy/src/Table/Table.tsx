@@ -13,11 +13,12 @@ import typographyClasses from '../Typography/typographyClasses';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
-  const { size, variant, color, borderAxis, stickyHeader } = ownerState;
+  const { size, variant, color, borderAxis, stickyHeader, noWrap } = ownerState;
   const slots = {
     root: [
       'root',
       stickyHeader && 'stickyHeader',
+      noWrap && 'noWrap',
       borderAxis && `borderAxis${capitalize(borderAxis)}`,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
@@ -103,132 +104,149 @@ const TableRoot = styled('table', {
   name: 'JoyTable',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TableOwnerState }>(({ theme, ownerState }) => [
-  {
-    '--TableCell-borderColor': theme.vars.palette.divider,
-    '--TableCell-headBackground': `var(--Sheet-background, ${theme.vars.palette.background.surface})`,
-    ...(ownerState.size === 'sm' && {
-      '--TableCell-height': '32px',
-      '--TableCell-paddingX': '0.25rem',
-      '--TableCell-paddingY': '0.25rem',
-      fontSize: theme.vars.fontSize.xs,
-    }),
-    ...(ownerState.size === 'md' && {
-      '--TableCell-height': '40px',
-      '--TableCell-paddingX': '0.5rem',
-      '--TableCell-paddingY': '0.375rem',
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--TableCell-height': '48px',
-      '--TableCell-paddingX': '0.75rem',
-      '--TableCell-paddingY': '0.5rem',
-      fontSize: theme.vars.fontSize.md,
-    }),
-    tableLayout: 'fixed',
-    width: '100%',
-    borderSpacing: '0px',
-    borderCollapse: 'separate',
-    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-    '& caption': {
-      color: theme.vars.palette.text.tertiary,
-      padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
-    },
-    [tableSelector.getDataCell()]: {
-      padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
-      height: 'var(--TableCell-height)',
-      borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
-    },
-    [tableSelector.getHeadCell()]: {
-      textAlign: 'left',
-      padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
-      backgroundColor: 'var(--TableCell-headBackground)',
-      verticalAlign: 'bottom',
-      height: 'var(--TableCell-height)',
-      fontWeight: theme.vars.fontWeight.lg,
-      borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
-      color: theme.vars.palette.text.secondary,
-    },
-  },
-  (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
-    // insert border between rows
-    [tableSelector.getHeaderCell()]: {
-      borderBottomWidth: 1,
-      borderBottomStyle: 'solid',
-    },
-    [tableSelector.getBottomHeaderCell()]: {
-      borderBottomWidth: 2,
-      borderBottomStyle: 'solid',
-    },
-    [tableSelector.getBodyCellExceptLastRow()]: {
-      borderBottomWidth: 1,
-      borderBottomStyle: 'solid',
-    },
-  },
-  (ownerState.borderAxis?.startsWith('y') || ownerState.borderAxis?.startsWith('both')) && {
-    // insert border between columns
-    [`${tableSelector.getColumnExceptFirst()}, ${tableSelector.getHeaderNestedFirstColumn()}`]: {
-      borderLeftWidth: 1,
-      borderLeftStyle: 'solid',
-    },
-  },
-  (ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
-    // insert border at the top of header and bottom of body
-    [tableSelector.getHeaderCellOfRow(1)]: {
-      borderTopWidth: 1,
-      borderTopStyle: 'solid',
-    },
-    [tableSelector.getBodyCellOfRow(-1)]: {
-      borderBottomWidth: 1,
-      borderBottomStyle: 'solid',
-    },
-  },
-  (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
-    // insert border on the left of first column and right of the last column
-    [tableSelector.getColumn(1)]: {
-      borderLeftWidth: 1,
-      borderLeftStyle: 'solid',
-    },
-    [tableSelector.getColumn(-1)]: {
-      borderRightWidth: 1,
-      borderRightStyle: 'solid',
-    },
-  },
-  ownerState.striped && {
-    [tableSelector.getBodyRow(ownerState.striped)]: {
-      backgroundColor: theme.vars.palette.background.level1,
-    },
-  },
-  ownerState.hover && {
-    [tableSelector.getBodyRow()]: {
-      '&:hover': {
-        backgroundColor: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
+})<{ ownerState: TableOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return [
+    {
+      '--Table-headerUnderlineThickness': '2px',
+      '--TableCell-borderColor': variantStyle?.borderColor ?? theme.vars.palette.divider,
+      '--TableCell-headBackground': `var(--Sheet-background, ${theme.vars.palette.background.surface})`,
+      ...(ownerState.size === 'sm' && {
+        '--private_TableCell-height': 'var(--TableCell-height, 32px)',
+        '--TableCell-paddingX': '0.25rem',
+        '--TableCell-paddingY': '0.25rem',
+        fontSize: theme.vars.fontSize.xs,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--private_TableCell-height': 'var(--TableCell-height, 40px)',
+        '--TableCell-paddingX': '0.5rem',
+        '--TableCell-paddingY': '0.375rem',
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--private_TableCell-height': 'var(--TableCell-height, 48px)',
+        '--TableCell-paddingX': '0.75rem',
+        '--TableCell-paddingY': '0.5rem',
+        fontSize: theme.vars.fontSize.md,
+      }),
+      tableLayout: 'fixed',
+      width: '100%',
+      borderSpacing: '0px',
+      borderCollapse: 'separate',
+      color: theme.vars.palette.text.primary,
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      '& caption': {
+        color: theme.vars.palette.text.tertiary,
+        padding: 'calc(2 * var(--TableCell-paddingY)) var(--TableCell-paddingX)',
+      },
+      [tableSelector.getDataCell()]: {
+        padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
+        height: 'var(--private_TableCell-height)',
+        borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
+        ...(ownerState.noWrap && {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+        }),
+      },
+      [tableSelector.getHeadCell()]: {
+        textAlign: 'left',
+        padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
+        backgroundColor: 'var(--TableCell-headBackground)',
+        verticalAlign: 'bottom',
+        height: 'var(--private_TableCell-height)',
+        fontWeight: theme.vars.fontWeight.lg,
+        borderColor: 'var(--TableCell-borderColor)',
+        color: theme.vars.palette.text.secondary,
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
       },
     },
-  },
-  ownerState.stickyHeader && {
-    // The column header
-    [tableSelector.getHeadCell()]: {
-      position: 'sticky',
-      top: 0,
-    },
-    [tableSelector.getHeaderCell()]: {
-      zIndex: 1,
-    },
-    [tableSelector.getHeaderCellOfRow(2)]: {
-      // support upto 2 rows for the sticky header
-      top: 'var(--TableCell-height)',
-    },
-  },
-  {
-    // Typography integration
-    [tableSelector.getCell()]: {
-      [`& .${typographyClasses.noWrap}`]: {
-        display: 'block',
+    (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
+      // insert border between rows
+      [tableSelector.getHeaderCell()]: {
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+      },
+      [tableSelector.getBottomHeaderCell()]: {
+        borderBottomWidth: 'var(--Table-headerUnderlineThickness)',
+        borderBottomStyle: 'solid',
+      },
+      [tableSelector.getBodyCellExceptLastRow()]: {
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
       },
     },
-  },
-]);
+    (ownerState.borderAxis?.startsWith('y') || ownerState.borderAxis?.startsWith('both')) && {
+      // insert border between columns
+      [`${tableSelector.getColumnExceptFirst()}, ${tableSelector.getHeaderNestedFirstColumn()}`]: {
+        borderLeftWidth: 1,
+        borderLeftStyle: 'solid',
+      },
+    },
+    (ownerState.borderAxis === 'x' || ownerState.borderAxis === 'both') && {
+      // insert border at the top of header and bottom of body
+      [tableSelector.getHeaderCellOfRow(1)]: {
+        borderTopWidth: 1,
+        borderTopStyle: 'solid',
+      },
+      [tableSelector.getBodyCellOfRow(-1)]: {
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+      },
+    },
+    (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
+      // insert border on the left of first column and right of the last column
+      [tableSelector.getColumn(1)]: {
+        borderLeftWidth: 1,
+        borderLeftStyle: 'solid',
+      },
+      [tableSelector.getColumn(-1)]: {
+        borderRightWidth: 1,
+        borderRightStyle: 'solid',
+      },
+    },
+    ownerState.stripe && {
+      [tableSelector.getBodyRow(ownerState.stripe)]: {
+        // For customization, a table cell can look for this variable with a fallback value.
+        '--TableRow-stripeBackground': theme.vars.palette.background.level1,
+        backgroundColor: 'var(--TableRow-stripeBackground)',
+        color: theme.vars.palette.text.primary,
+      },
+    },
+    ownerState.hover && {
+      [tableSelector.getBodyRow()]: {
+        '&:hover': {
+          '--TableRow-hoverBackground': theme.vars.palette.background.level2,
+          backgroundColor: `var(--TableRow-hoverBackground)`,
+        },
+      },
+    },
+    ownerState.stickyHeader && {
+      // The column header
+      [tableSelector.getHeadCell()]: {
+        position: 'sticky',
+        top: 0,
+      },
+      [tableSelector.getHeaderCell()]: {
+        zIndex: 1,
+      },
+      [tableSelector.getHeaderCellOfRow(2)]: {
+        // support upto 2 rows for the sticky header
+        top: 'var(--private_TableCell-height)',
+      },
+    },
+    {
+      // Typography integration
+      [tableSelector.getCell()]: {
+        [`& .${typographyClasses.noWrap}`]: {
+          display: 'block',
+        },
+      },
+    },
+  ];
+});
 
 const Table = React.forwardRef(function Table(inProps, ref) {
   const props = useThemeProps<typeof inProps & TableProps>({
@@ -242,10 +260,11 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     children,
     borderAxis = 'xBetween',
     hover = false,
+    noWrap = false,
     size = 'md',
     variant = 'plain',
     color: colorProp,
-    striped,
+    stripe,
     stickyHeader = false,
     ...other
   } = props;
@@ -256,11 +275,12 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     ...props,
     borderAxis,
     hover,
+    noWrap,
     component,
     size,
     color,
     variant,
-    striped,
+    stripe,
     stickyHeader,
   };
 

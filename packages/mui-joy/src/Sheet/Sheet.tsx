@@ -35,11 +35,15 @@ export const SheetRoot = styled('div', {
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
   const bgcolor = resolveSxValue({ theme, ownerState }, 'bgcolor');
   const backgroundColor = resolveSxValue({ theme, ownerState }, 'backgroundColor');
+  const background = resolveSxValue({ theme, ownerState }, 'background');
   const resolvedBg =
+    (getPath(theme, `palette.${bgcolor}`) as string) ||
+    bgcolor ||
+    (getPath(theme, `palette.${backgroundColor}`) as string) ||
+    backgroundColor ||
+    background ||
     variantStyle?.backgroundColor ||
     variantStyle?.background ||
-    (getPath(theme, `palette.${bgcolor}`) as string) ||
-    (getPath(theme, `palette.${backgroundColor}`) as string) ||
     theme.vars.palette.background.surface;
   return [
     {

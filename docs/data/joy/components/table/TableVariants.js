@@ -1,6 +1,9 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Table from '@mui/joy/Table';
@@ -19,22 +22,49 @@ const rows = [
 
 export default function TableVariants() {
   const [variant, setVariant] = React.useState('plain');
+  const [color, setColor] = React.useState('neutral');
   return (
     <div>
-      <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
-        <FormLabel>Variant:</FormLabel>
-        <RadioGroup
-          row
-          value={variant}
-          onChange={(event) => setVariant(event.target.value)}
-        >
-          <Radio label="plain" value="plain" />
-          <Radio label="outlined" value="outlined" />
-          <Radio label="soft" value="soft" />
-          <Radio label="solid" value="solid" />
-        </RadioGroup>
-      </FormControl>
-      <Table aria-label="simple table" variant={variant}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mb: 2,
+          ml: 1,
+        }}
+      >
+        <FormControl orientation="horizontal">
+          <FormLabel>Variant:</FormLabel>
+          <RadioGroup
+            row
+            value={variant}
+            onChange={(event) => setVariant(event.target.value)}
+          >
+            <Radio label="plain" value="plain" />
+            <Radio label="outlined" value="outlined" />
+            <Radio label="soft" value="soft" />
+            <Radio label="solid" value="solid" />
+          </RadioGroup>
+        </FormControl>
+        <FormControl orientation="horizontal">
+          <FormLabel>Color: </FormLabel>
+          <Select
+            size="sm"
+            value={color}
+            onChange={(event, newValue) => setColor(newValue)}
+          >
+            {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
+              (item) => (
+                <Option key={item} value={item}>
+                  {item}
+                </Option>
+              ),
+            )}
+          </Select>
+        </FormControl>
+      </Box>
+      <Table aria-label="simple table" variant={variant} color={color}>
         <thead>
           <tr>
             <th style={{ width: '40%' }}>Dessert (100g serving)</th>
@@ -47,7 +77,7 @@ export default function TableVariants() {
         <tbody>
           {rows.map((row) => (
             <tr key={row.name}>
-              <th scope="row">{row.name}</th>
+              <td>{row.name}</td>
               <td>{row.calories}</td>
               <td>{row.fat}</td>
               <td>{row.carbs}</td>

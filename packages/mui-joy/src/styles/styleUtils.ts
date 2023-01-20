@@ -38,6 +38,9 @@ export const resolveSxValue = (
         parsedValue = value;
       }
     }
+    if (typeof value === 'function') {
+      parsedValue = value(theme);
+    }
   }
   return parsedValue || defaultValue;
 };

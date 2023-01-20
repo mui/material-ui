@@ -1,18 +1,6 @@
 import * as React from 'react';
 import Table from '@mui/joy/Table';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 export default function BasicTable() {
   return (
     <Table aria-label="outlined table">
@@ -26,15 +14,41 @@ export default function BasicTable() {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <tr key={row.name}>
-            <th scope="row">{row.name}</th>
-            <td>{row.calories}</td>
-            <td>{row.fat}</td>
-            <td>{row.carbs}</td>
-            <td>{row.protein}</td>
-          </tr>
-        ))}
+        <tr>
+          <td>Frozen yoghurt</td>
+          <td>159</td>
+          <td>6</td>
+          <td>24</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>Ice cream sandwich</td>
+          <td>237</td>
+          <td>9</td>
+          <td>37</td>
+          <td>4.3</td>
+        </tr>
+        <tr>
+          <td>Eclair</td>
+          <td>262</td>
+          <td>16</td>
+          <td>24</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>Cupcake</td>
+          <td>305</td>
+          <td>3.7</td>
+          <td>67</td>
+          <td>4.3</td>
+        </tr>
+        <tr>
+          <td>Gingerbread</td>
+          <td>356</td>
+          <td>16</td>
+          <td>49</td>
+          <td>3.9</td>
+        </tr>
       </tbody>
     </Table>
   );

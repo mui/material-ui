@@ -1,9 +1,6 @@
 import * as React from 'react';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import RadioGroup from '@mui/joy/RadioGroup';
-import Radio from '@mui/joy/Radio';
 import Table from '@mui/joy/Table';
+import Sheet from '@mui/joy/Sheet';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -17,26 +14,18 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableSizes() {
-  const [size, setSize] = React.useState('md');
+export default function TableSheet() {
   return (
-    <div>
-      <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
-        <FormLabel>Size:</FormLabel>
-        <RadioGroup
-          row
-          value={size}
-          onChange={(event) => setSize(event.target.value)}
-        >
-          <Radio label="sm" value="sm" />
-          <Radio label="md" value="md" />
-          <Radio label="lg" value="lg" />
-        </RadioGroup>
-      </FormControl>
-      <Table aria-label="simple table" size={size}>
+    <Sheet variant="soft" sx={{ py: 5, borderRadius: 'sm' }}>
+      <Table
+        stripe="odd"
+        hover
+        sx={{ captionSide: 'bottom', bgcolor: 'background.surface' }}
+      >
+        <caption>Nutrition of your favorite menus.</caption>
         <thead>
           <tr>
-            <th style={{ width: '40%' }}>Dessert (100g serving)</th>
+            <th style={{ width: '40%' }}>Column width (40%)</th>
             <th>Calories</th>
             <th>Fat&nbsp;(g)</th>
             <th>Carbs&nbsp;(g)</th>
@@ -55,6 +44,6 @@ export default function TableSizes() {
           ))}
         </tbody>
       </Table>
-    </div>
+    </Sheet>
   );
 }

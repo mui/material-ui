@@ -1,9 +1,10 @@
 import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Radio from '@mui/joy/Radio';
 import Table from '@mui/joy/Table';
+import Sheet from '@mui/joy/Sheet';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -17,27 +18,22 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableBorder() {
-  const [borderAxis, setBorderAxis] = React.useState('xBetween');
+export default function TableStripe() {
+  const [stripe, setStripe] = React.useState('odd');
   return (
-    <div>
+    <Sheet>
       <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
-        <FormLabel>Border axis:</FormLabel>
-        <Select
-          size="sm"
-          value={borderAxis}
-          onChange={(event, newValue) => setBorderAxis(newValue)}
+        <FormLabel>Stripe:</FormLabel>
+        <RadioGroup
+          row
+          value={stripe}
+          onChange={(event) => setStripe(event.target.value)}
         >
-          {['xBetween', 'x', 'yBetween', 'y', 'bothBetween', 'both', 'none'].map(
-            (axis) => (
-              <Option key={axis} value={axis}>
-                {axis}
-              </Option>
-            ),
-          )}
-        </Select>
+          <Radio label="odd" value="odd" />
+          <Radio label="even" value="even" />
+        </RadioGroup>
       </FormControl>
-      <Table aria-label="simple table" borderAxis={borderAxis}>
+      <Table aria-label="simple table" stripe={stripe}>
         <thead>
           <tr>
             <th style={{ width: '40%' }}>Dessert (100g serving)</th>
@@ -50,7 +46,7 @@ export default function TableBorder() {
         <tbody>
           {rows.map((row) => (
             <tr key={row.name}>
-              <th scope="row">{row.name}</th>
+              <td>{row.name}</td>
               <td>{row.calories}</td>
               <td>{row.fat}</td>
               <td>{row.carbs}</td>
@@ -59,6 +55,6 @@ export default function TableBorder() {
           ))}
         </tbody>
       </Table>
-    </div>
+    </Sheet>
   );
 }

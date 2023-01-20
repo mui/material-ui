@@ -1,9 +1,6 @@
 import * as React from 'react';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
 import Table from '@mui/joy/Table';
+import Sheet from '@mui/joy/Sheet';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -17,30 +14,13 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableBorder() {
-  const [borderAxis, setBorderAxis] = React.useState('xBetween');
+export default function TableAlignment() {
   return (
-    <div>
-      <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
-        <FormLabel>Border axis:</FormLabel>
-        <Select
-          size="sm"
-          value={borderAxis}
-          onChange={(event, newValue) => setBorderAxis(newValue)}
-        >
-          {['xBetween', 'x', 'yBetween', 'y', 'bothBetween', 'both', 'none'].map(
-            (axis) => (
-              <Option key={axis} value={axis}>
-                {axis}
-              </Option>
-            ),
-          )}
-        </Select>
-      </FormControl>
-      <Table aria-label="simple table" borderAxis={borderAxis}>
+    <Sheet variant="outlined">
+      <Table variant="soft" borderAxis="bothBetween">
         <thead>
           <tr>
-            <th style={{ width: '40%' }}>Dessert (100g serving)</th>
+            <th style={{ width: '40%' }}>Column width (40%)</th>
             <th>Calories</th>
             <th>Fat&nbsp;(g)</th>
             <th>Carbs&nbsp;(g)</th>
@@ -59,6 +39,6 @@ export default function TableBorder() {
           ))}
         </tbody>
       </Table>
-    </div>
+    </Sheet>
   );
 }

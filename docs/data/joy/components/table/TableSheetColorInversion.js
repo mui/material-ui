@@ -1,8 +1,4 @@
 import * as React from 'react';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import RadioGroup from '@mui/joy/RadioGroup';
-import Radio from '@mui/joy/Radio';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 
@@ -18,25 +14,24 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function StripedTable() {
-  const [striped, setStriped] = React.useState('odd');
+export default function TableSheetColorInversion() {
   return (
-    <Sheet>
-      <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
-        <FormLabel>Striped:</FormLabel>
-        <RadioGroup
-          row
-          value={striped}
-          onChange={(event) => setStriped(event.target.value)}
-        >
-          <Radio label="odd" value="odd" />
-          <Radio label="even" value="even" />
-        </RadioGroup>
-      </FormControl>
-      <Table aria-label="simple table" striped={striped}>
+    <Sheet
+      variant="solid"
+      color="primary"
+      invertedColors
+      sx={{
+        py: 5,
+        borderRadius: 'sm',
+        background: (theme) =>
+          `linear-gradient(45deg, ${theme.vars.palette.primary[700]}, ${theme.vars.palette.primary[400]})`,
+      }}
+    >
+      <Table stripe="odd" hover>
+        <caption>Nutrition of your favorite menus.</caption>
         <thead>
           <tr>
-            <th style={{ width: '40%' }}>Dessert (100g serving)</th>
+            <th style={{ width: '40%' }}>Column width (40%)</th>
             <th>Calories</th>
             <th>Fat&nbsp;(g)</th>
             <th>Carbs&nbsp;(g)</th>
@@ -46,7 +41,7 @@ export default function StripedTable() {
         <tbody>
           {rows.map((row) => (
             <tr key={row.name}>
-              <th scope="row">{row.name}</th>
+              <td>{row.name}</td>
               <td>{row.calories}</td>
               <td>{row.fat}</td>
               <td>{row.carbs}</td>

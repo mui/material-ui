@@ -7,6 +7,7 @@ export type TableSlot = 'root';
 export interface TablePropsSizeOverrides {}
 export interface TablePropsColorOverrides {}
 export interface TablePropsVariantOverrides {}
+export interface TablePropsBorderAxisOverrides {}
 
 export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
   props: P & {
@@ -14,7 +15,10 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      * The axis to display a border on the table cell.
      * @default 'xBetween'
      */
-    borderAxis?: 'none' | 'x' | 'xBetween' | 'y' | 'yBetween' | 'both' | 'bothBetween';
+    borderAxis?: OverridableStringUnion<
+      'none' | 'x' | 'xBetween' | 'y' | 'yBetween' | 'both' | 'bothBetween',
+      TablePropsBorderAxisOverrides
+    >;
     /**
      * Children of the table
      */
@@ -29,6 +33,11 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      * @default false
      */
     hover?: boolean;
+    /**
+     * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+     * @default false
+     */
+    noWrap?: boolean;
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
@@ -45,7 +54,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     /**
      * The odd or even row of the table body will have subtle background color.
      */
-    striped?: 'odd' | 'even' | (string & Record<never, never>);
+    stripe?: 'odd' | 'even' | (string & Record<never, never>);
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
