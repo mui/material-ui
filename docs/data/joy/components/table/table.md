@@ -219,6 +219,10 @@ To truncate the text, set `noWrap` to true.
 The header cells always truncate the text to keep the header's height predictable.
 :::
 
+## CSS Variables
+
+{{"demo": "TableVariables.js"}}
+
 ## Usage with Sheet
 
 When Table becomes a child of [Sheet](/joy-ui/react-sheet/) component, the table header background inherits from the sheet.
