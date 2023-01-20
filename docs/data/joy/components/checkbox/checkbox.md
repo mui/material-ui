@@ -80,12 +80,21 @@ To set the focus outline so that it only wraps the input, target the `checkboxCl
 
 {{"demo": "FocusCheckbox.js"}}
 
+### Clickable container
+
+Use the `overlay` prop to shift the focus outline from the Checkbox to its container, making the entire container clickable to toggle the state of the Checkbox.
+This works with any wrapper element—the demo below uses [Sheet](/joy-ui/react-sheet/):
+
+{{"demo": "OverlayCheckbox.js"}}
+
 ### Indeterminate
 
-Technically, the Checkbox component has only two states: checked or unchecked.
-Visually, however, there is an alternate checked state possible called _indeterminate_, which you might think of as an "in-between" state.
+The default Checkbox is _dual-state:_ the user can toggle between checked and unchecked.
 
-The indeterminate state is often used to communicate the fact that only some out of a set of Checkboxes are checked.
+There is, however, the option for a _tri-state_ or indeterminate Checkbox that supports a state known as "partially checked."
+
+This indeterminate state is often used to communicate the fact that only some out of a set of Checkboxes are checked.
+As such, it's usually reserved for parent Checkboxes that can control the the state of their children.
 
 The demo below shows how to implement the `indeterminate` prop on a parent Checkbox that watches for the checked state in its children.
 If only one child is checked, the parent will display the indeterminate state.
@@ -96,7 +105,6 @@ When the indeterminate state is set, the value of the `checked` prop only impact
 It has no accessibility or UX implications.
 :::
 
-
 {{"demo": "IndeterminateCheckbox.js"}}
 
 ### Helper text
@@ -106,7 +114,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
 ```
 
-Use the Form Control and Form Helper Text components add a description to the Checkbox. 
+Use the Form Control and Form Helper Text components add a description to the Checkbox.
 The Checkbox will be linked to the helper text via the `aria-describedby` attribute.
 
 {{"demo": "HelperTextCheckbox.js"}}
@@ -119,12 +127,6 @@ Combine with the [List](/joy-ui/react-list/) component to ensure consistent spac
 Learn more about accessible design patterns for checkboxes [in the W3C documentation](https://www.w3.org/WAI/ARIA/apg/example-index/checkbox/checkbox.html).
 
 {{"demo": "GroupCheckboxes.js"}}
-
-### Overlay
-
-Use the `overlay` prop to make the entire surface of the wrapper container the checkbox is in clickable.
-
-{{"demo": "OverlayCheckbox.js"}}
 
 ## Common examples
 
