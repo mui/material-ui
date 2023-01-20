@@ -34,7 +34,7 @@ describe('<InputUnstyled />', () => {
   it('should be able to attach input ref passed through props', () => {
     const inputRef = React.createRef<HTMLInputElement>();
     const { getByRole } = render(<InputUnstyled slotProps={{ input: { ref: inputRef } }} />);
-    expect(getByRole('textbox')).to.deep.equal(inputRef.current);
+    expect(inputRef.current).to.deep.equal(getByRole('textbox'));
   });
 
   describe('prop: multiline', () => {

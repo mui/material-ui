@@ -17,7 +17,7 @@ describe('useInput', () => {
       }
       const { getByRole } = render(<Input />);
 
-      expect(getByRole('textbox')).to.deep.equal(inputRef.current);
+      expect(inputRef.current).to.deep.equal(getByRole('textbox'));
     });
   });
 });
