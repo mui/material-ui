@@ -40,6 +40,8 @@ Note that the `color` prop is an exception, it refers to the palette instead of 
 ### Levels
 
 The `level` prop gives access to a pre-defined scale of typographic values defined in the theme.
+These values include various heading levels (h1, h2, h3, etc.) as well as body text levels (body1, body2, etc) and can be used to apply consistent typography throughout your application.
+Additionally, you can also use the level prop to control the font size, weight, line height, and other typographic properties.
 
 :::warning
 Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body1" renders as a `<p>`, etc.)
@@ -49,7 +51,9 @@ Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as a
 
 ### Semantic elements
 
-To customize the semantic element used, you can use the `component` prop in specific situations.
+To customize the semantic element used, you can use the `component` prop.
+This can be useful in situations where you want to use a different semantic element than the one that was assigned by the `level` prop.
+The content will be rendered as the desired semantic element, which can improve accessibility, SEO, consistency, readability and reusability of the webpage.
 
 ```jsx
 {
@@ -88,9 +92,9 @@ const theme = extendTheme({
 });
 ```
 
-### Nested typography
+### Nested Typography
 
-Nested Typography components will be rendered as a `<span>` element by default, unless a custom semantic element is specified using the `component` prop in each component
+Nested Typography components will be rendered as a `<span>` element by default, unless a custom semantic element is specified using the `component` prop in each component.
 
 ```js
 <Typography>
@@ -157,7 +161,7 @@ declare module '@mui/joy/styles' {
 
 ### Removing the scale
 
-To create a custom typographic scale, you can clear the built-in values by assigning `undefined` to them in the theme.
+In order to establish a customized scale, you can clear the built-in values by assigning `undefined` to them in the theme.
 
 ```js
 extendTheme({
@@ -210,7 +214,7 @@ Here are some factors to ensure that your Typography components are accessible:
 
 ## Common examples
 
-Examples showcasing how to compose designs with the `Typography` component and others as decorators.
+Examples showcasing how to compose designs with the Typography component and others as decorators.
 
 {{"demo": "DecoratorExamples.js"}}
 
@@ -218,8 +222,20 @@ Examples showcasing how to compose designs with the `Typography` component and o
 
 The Typography component is composed of a semantic element, as defined by the `level` prop, which serves as the root element and wraps around the content:
 
-```js
-<h1 class="JoyTopography-root JoyTopography-h1"><--- Text ---></h1>
+```html
+<h1 class="JoyTypography-root JoyTypography-h1"><--- Text ---></h1>
 <p class="JoyTopography-root JoyTopography-body1"><--- Text ---></p>
 <span class="JoyTopography-root JoyTopography-body3"><--- Text ---></span>
+```
+
+:::info
+By default, Typography components are rendered as `<p>` element. However, if a [nested element](#nested-typography) is used, it will be rendered as a `<span>`.
+:::
+
+```js
+<Typography>Hello world.</Typography>
+```
+
+```html
+<p>Hello world.</p>
 ```
