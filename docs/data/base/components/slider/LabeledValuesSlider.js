@@ -92,6 +92,9 @@ const StyledSlider = styled(SliderUnstyled)(
         position: absolute;
         transform: translate(-35%, -140%) rotate(-45deg) scale(0);
         transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     :hover .label {
         visibility: visible;
@@ -100,7 +103,6 @@ const StyledSlider = styled(SliderUnstyled)(
     :hover .value {
         transform: rotate(45deg);
         text-align: center;
-        line-height: 1.8
     }
     &.${sliderUnstyledClasses.active} {
       box-shadow: 0 0 0 0.25rem ${alpha(
