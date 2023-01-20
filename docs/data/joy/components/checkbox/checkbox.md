@@ -101,6 +101,11 @@ It has no accessibility or UX implications.
 
 ### Helper text
 
+```jsx
+import FormControl from '@mui/joy/FormControl';
+import FormHelperText from '@mui/joy/FormHelperText';
+```
+
 Use the Form Control and Form Helper Text components add a description to the Checkbox. 
 The Checkbox will be linked to the helper text via the `aria-describedby` attribute.
 
