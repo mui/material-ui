@@ -6,13 +6,13 @@ export default function FocusCheckbox() {
   return (
     <Box sx={{ display: 'flex', gap: 3 }}>
       <Checkbox
-        label="Label"
+        label="Fully wrapped"
         defaultChecked
         // to demonstrate the focus outline
         slotProps={{ action: { className: checkboxClasses.focusVisible } }}
       />
       <Checkbox
-        label="Label"
+        label="Input wrapped"
         defaultChecked
         sx={{ [`& > .${checkboxClasses.checkbox}`]: { position: 'relative' } }}
         // to demonstrate the focus outline

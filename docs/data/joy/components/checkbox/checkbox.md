@@ -75,8 +75,8 @@ Try clicking on the Checkbox labels in the demo below to see how this works:
 
 ### Focus outline
 
-The focus outline, by default, wraps both the checkbox itself and its label.
-To change that, target the `checkboxClasses.checkbox` class and add `position: 'relative'`.
+By default, the focus outline wraps both the Checkbox input and its label.
+To set the focus outline so that it only wraps the input, target the `checkboxClasses.checkbox` class and add `position: 'relative'`, as shown in the demo below:
 
 {{"demo": "FocusCheckbox.js"}}
 
