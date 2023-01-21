@@ -117,7 +117,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
   <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
 
-- **Range shortcuts**
+- **Range shortcuts** (available from v6.0.0-beta.1)
 
   Add quick and customizable shortcuts for your users. Choose to display them on the left, right, bottom or top.
 
