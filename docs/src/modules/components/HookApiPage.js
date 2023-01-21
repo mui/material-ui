@@ -230,7 +230,7 @@ export default function ApiPage(props) {
         <div
           className="MuiCallout-root MuiCallout-info"
           dangerouslySetInnerHTML={{
-            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+            __html: `<p>For examples and details on the usage of this React hook, visit the demo pages:</p>
               ${demos}`,
           }}
         />

@@ -50,15 +50,12 @@ export type UseSlotPropsResult<
 >;
 
 /**
+ * @ignore - do not document.
  * Builds the props to be passed into the slot of an unstyled component.
  * It merges the internal props of the component with the ones supplied by the user, allowing to customize the behavior.
  * If the slot component is not a host component, it also merges in the `ownerState`.
  *
  * @param parameters.getSlotProps - A function that returns the props to be passed to the slot component.
- *
- * API:
- *
- * - [useSlotProps API](https://mui.com/base/api/use-slot-props/)
  */
 export default function useSlotProps<
   ElementType extends React.ElementType,
