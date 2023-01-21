@@ -8,6 +8,8 @@ import {
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import SkipLink from 'docs/src/modules/components/SkipLink';
+import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -49,11 +51,14 @@ const theme = extendTheme({
   ...getThemedComponents(),
 });
 
-export default function BrandingCssVarsProvider({ children }: { children: React.ReactNode }) {
+export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
+  const { children } = props;
   return (
-    <CssVarsProvider theme={theme} disableTransitionOnChange>
+    <CssVarsProvider theme={theme} defaultMode="system" disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
+      <SkipLink />
+      <MarkdownLinks />
       {children}
     </CssVarsProvider>
   );

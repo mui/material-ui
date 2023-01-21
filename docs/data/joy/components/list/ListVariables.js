@@ -30,7 +30,13 @@ export default function ListVariables() {
       ]}
       renderDemo={(sx) => (
         <List
-          sx={(theme) => ({ ...sx, width: 300, ...theme.variants.outlined.neutral })}
+          sx={(theme) => ({
+            ...sx,
+            width: 300,
+            ...theme.variants.outlined.neutral,
+            bgcolor: 'background.body',
+            borderRadius: 'sm',
+          })}
         >
           <ListItem>
             <ListItemButton>

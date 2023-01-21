@@ -3,7 +3,10 @@
 <p class="description">Learn about the two categories of tokens within Joy UI's default theme and how to customize them.</p>
 
 The [W3C Community Group](https://github.com/design-tokens/community-group) defines design tokens as: _"...indivisible pieces of a design system such as colors, spacing, typography scale."_
-Joy UI builds up on this concept to develop its theme, consisting of two categories: low-level and global variant tokens.
+Joy UI builds up on this concept to develop its theme, consisting of two categories:
+
+1. [Low-level tokens](#low-level-tokens)
+2. [Global variant tokens](#global-variant-tokens)
 
 ## Low-level tokens
 
@@ -133,7 +136,7 @@ function App() {
 ```
 
 :::info
-**Note**: Joy UI will add the prefix (default as `joy`) to all CSS variables.
+Joy UI will add the prefix (default as `joy`) to all CSS variables.
 To change it, use `<CssVarsProvider theme={extendTheme({ cssVarPrefix: 'myproduct' })}>`. and the generated CSS variables will then be:
 
 ```diff
@@ -191,8 +194,8 @@ const Text = styled('p')(({ theme }) => ({
 }));
 ```
 
-:::warning
-**Note:** Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
+:::success
+Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
 
 If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
 :::
@@ -277,7 +280,7 @@ As an example, let's customize Joy UI's [`Button`](/joy-ui/react-button/) so the
 {{"demo": "BootstrapVariantTokens.js"}}
 
 :::warning
-**⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
+Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
 
 ```js
 extendTheme({
@@ -360,5 +363,5 @@ const theme = extendTheme({
 {{"demo": "CustomVariantStyle.js"}}
 
 :::warning
-**Keep in mind:** changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
+Changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
 :::

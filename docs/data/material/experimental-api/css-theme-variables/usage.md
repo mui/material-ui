@@ -1,4 +1,4 @@
-# Usage
+# CSS theme variables - Usage
 
 <p class="description">Learn how to use the experimental APIs to adopt CSS theme variables.</p>
 
@@ -29,7 +29,7 @@ The variables are flattened and prefixed with `--mui` by default:
 ```
 
 :::info
-💡 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
+The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
 :::
 
 ## Toggle between light and dark mode
@@ -110,8 +110,8 @@ function App() {
   }
   ```
 
-  :::info
-  💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+  :::warning
+  If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
   :::
 
 ## Server-side rendering

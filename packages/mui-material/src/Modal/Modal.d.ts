@@ -1,15 +1,19 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
-import {
-  ExtendModalUnstyledTypeMap,
-  ExtendModalUnstyled,
-  ModalUnstyledTypeMap,
-} from '@mui/base/ModalUnstyled';
+import { SlotComponentProps } from '@mui/base';
+import { ModalUnstyledTypeMap } from '@mui/base/ModalUnstyled';
 import { Theme } from '../styles';
-import { BackdropProps } from '../Backdrop';
+import Backdrop, { BackdropProps } from '../Backdrop';
+import { OverridableComponent } from '../OverridableComponent';
 
-export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendModalUnstyledTypeMap<{
+export interface ModalComponentsPropsOverrides {}
+
+export interface ModalOwnerState extends ModalProps {
+  exited: boolean;
+}
+
+export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
   props: P & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
@@ -32,8 +36,11 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
      */
     BackdropProps?: Partial<BackdropProps>;
     /**
-     * The components used for each slot inside the Modal.
-     * Either a string to use a HTML element or a component.
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `slots` prop.
+     * It's recommended to use the `slots` prop instead.
+     *
      * @default {}
      */
     components?: {
@@ -41,23 +48,47 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
       Backdrop?: React.ElementType;
     };
     /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     *
+     * This prop is an alias for the `slotProps` prop.
+     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+     *
+     * @default {}
+     */
+    componentsProps?: {
+      root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
+      backdrop?: SlotComponentProps<
+        typeof Backdrop,
+        ModalComponentsPropsOverrides,
+        ModalOwnerState
+      >;
+    };
+    /**
      * The props used for each slot inside the Modal.
      * @default {}
      */
-    componentsProps?: ModalUnstyledTypeMap['props']['slotProps'];
+    slotProps?: {
+      root?: SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>;
+      backdrop?: SlotComponentProps<
+        typeof Backdrop,
+        ModalComponentsPropsOverrides,
+        ModalOwnerState
+      >;
+    };
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-  };
+  } & Omit<ModalUnstyledTypeMap['props'], 'slotProps'>;
   defaultComponent: D;
-}>;
+}
 
 type ModalRootProps = NonNullable<ModalTypeMap['props']['slotProps']>['root'];
 
 export declare const ModalRoot: React.FC<ModalRootProps>;
 
-export type ModalClassKey = keyof NonNullable<ModalTypeMap['props']['classes']>;
+export type ModalClassKey = keyof NonNullable<ModalProps['classes']>;
 
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
@@ -80,7 +111,7 @@ export type ModalClassKey = keyof NonNullable<ModalTypeMap['props']['classes']>;
  *
  * - [Modal API](https://mui.com/material-ui/api/modal/)
  */
-declare const Modal: ExtendModalUnstyled<ModalTypeMap>;
+declare const Modal: OverridableComponent<ModalTypeMap>;
 
 export type ModalClasses = Record<ModalClassKey, string>;
 

@@ -8,8 +8,10 @@ describe('<AvatarGroup />', () => {
   const { render } = createRenderer();
 
   describeConformance(
-    <AvatarGroup>
-      <div />
+    <AvatarGroup max={2}>
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
     </AvatarGroup>,
     () => ({
       classes,
@@ -18,7 +20,15 @@ describe('<AvatarGroup />', () => {
       muiName: 'MuiAvatarGroup',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
-      skip: ['componentsProp'],
+      testLegacyComponentsProp: true,
+      slots: {
+        additionalAvatar: { expectedClassName: classes.avatar },
+      },
+      skip: [
+        'componentsProp',
+        'slotsProp',
+        'slotPropsCallback', // not supported yet
+      ],
     }),
   );
 

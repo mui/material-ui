@@ -1,16 +1,12 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
 var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
 var _jsxRuntime = require("react/jsx-runtime");
-
 var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M14.04 7.17h-.08l-1.31 3.72h2.69z",
   opacity: ".3"
@@ -24,5 +20,4 @@ var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("p
 }, "3"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12.19 12.2h3.63l.8 2.3h1.56l-3.38-9h-1.6l-3.38 9h1.56l.81-2.3zm1.77-5.03h.08l1.31 3.72h-2.69l1.3-3.72z"
 }, "4")], 'TypeSpecimenTwoTone');
-
 exports.default = _default;

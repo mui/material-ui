@@ -10,7 +10,7 @@ import { svgIconClasses } from '@mui/material/SvgIcon';
 describe('<Alert />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Alert />, () => ({
+  describeConformance(<Alert onClose={() => {}} />, () => ({
     classes,
     inheritComponent: Paper,
     render,
@@ -18,7 +18,15 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
-    skip: ['componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      closeButton: {},
+      closeIcon: {},
+    },
+    skip: [
+      'componentsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('prop: square', () => {
@@ -69,7 +77,9 @@ describe('<Alert />', () => {
 
   describe('prop: components', () => {
     it('should override the default icon used in the close action', () => {
-      const MyCloseIcon = () => <div data-testid="closeIcon">X</div>;
+      function MyCloseIcon() {
+        return <div data-testid="closeIcon">X</div>;
+      }
 
       render(
         <Alert onClose={() => {}} components={{ CloseIcon: MyCloseIcon }}>
@@ -81,7 +91,9 @@ describe('<Alert />', () => {
     });
 
     it('should override the default button used in the close action', () => {
-      const MyCloseButton = () => <button data-testid="closeButton">X</button>;
+      function MyCloseButton() {
+        return <button data-testid="closeButton">X</button>;
+      }
 
       render(
         <Alert onClose={() => {}} components={{ CloseButton: MyCloseButton }}>

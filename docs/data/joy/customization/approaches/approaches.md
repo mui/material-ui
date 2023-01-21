@@ -80,10 +80,12 @@ const theme = extendTheme({
   components: {
     // The component identifier always start with `Joy${ComponentName}`.
     JoyButton: {
-      styleOverrides: ({ theme }) => ({
-        // theme.vars.* return the CSS variables.
-        fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
-      }),
+      styleOverrides: {
+        root: ({ theme }) => {
+          // theme.vars.* return the CSS variables.
+          fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
+        },
+      },
     },
   },
 });

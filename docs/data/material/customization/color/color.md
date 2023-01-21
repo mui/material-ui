@@ -65,7 +65,7 @@ const theme = createTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/material-ui/customization/palette/) section.
+Only the `main` shades need to be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/material-ui/customization/palette/) section.
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createTheme()` will use the appropriate shades from the material color for main, light and dark.
 
@@ -109,3 +109,11 @@ const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb
 const accent = purple.A200; // #e040fb (alternative method)
 ```
+
+### Accessibility
+
+[WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
+that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
+Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.1 AA compliance,
+you can increase your minimum contrast ratio as described in the
+[Theme customization](/material-ui/customization/palette/#accessibility) section.

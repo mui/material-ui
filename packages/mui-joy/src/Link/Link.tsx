@@ -7,10 +7,11 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
@@ -39,19 +40,29 @@ const StartDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
-});
+  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.375em), 0.75rem)',
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const EndDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: LinkOwnerState }>({
+})<{ ownerState: LinkOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
-});
+  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)', // for end decorator, 0.25em looks better.
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
+}));
 
 const LinkRoot = styled('a', {
   name: 'JoyLink',
@@ -93,22 +104,29 @@ const LinkRoot = styled('a', {
       margin: 0, // Remove the margin in Safari
       borderRadius: theme.vars.radius.xs,
       padding: 0, // Remove the padding in Firefox
-      textDecorationColor: `rgba(${
-        theme.vars.palette[ownerState.color!]?.mainChannel
-      } / var(--Link-underlineOpacity, 0.72))`,
+      cursor: 'pointer',
+      ...(ownerState.color !== 'context' && {
+        textDecorationColor: `rgba(${
+          theme.vars.palette[ownerState.color!]?.mainChannel
+        } / var(--Link-underlineOpacity, 0.72))`,
+      }),
       ...(ownerState.variant
         ? {
-            paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+            paddingBlock: 'min(0.15em, 4px)',
+            paddingInline: '0.375em', // better than left, right because it also works with writing mode.
             ...(!ownerState.nested && {
-              marginInline: '-0.25em',
+              marginInline: '-0.375em',
             }),
           }
         : {
-            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
-            cursor: 'pointer',
+            ...(ownerState.color !== 'context' && {
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
+            }),
             [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              ...(ownerState.color !== 'context' && {
+                color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
+              }),
             },
           }),
       userSelect: 'none',
@@ -152,21 +170,22 @@ const LinkRoot = styled('a', {
 
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
-    color = 'primary',
+    color: colorProp = 'primary',
     textColor,
+    variant,
     ...themeProps
   } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'JoyLink',
   });
 
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
   const nested = React.useContext(TypographyContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
-    component = 'a',
-    componentsProps = {},
     children,
     disabled = false,
     onBlur,
@@ -174,7 +193,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     level: levelProp = 'body1',
     overlay = false,
     underline = 'hover',
-    variant,
     endDecorator,
     startDecorator,
     ...other
@@ -212,7 +230,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     disabled,
     focusVisible,
     underline,
@@ -224,41 +241,43 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: LinkRoot,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
+  const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
-      ref: handleRef,
-      as: component,
       onBlur: handleBlur,
       onFocus: handleFocus,
     },
-    ownerState,
+    ref: handleRef,
     className: classes.root,
+    elementType: LinkRoot,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: StartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: EndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: EndDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <LinkRoot {...rootProps}>
-      {startDecorator && <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>}
+    <TypographyContext.Provider value>
+      <SlotRoot {...rootProps}>
+        {startDecorator && (
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
+        )}
 
-      {children}
-      {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
-    </LinkRoot>
+        {children}
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
+    </TypographyContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
@@ -279,20 +298,6 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false

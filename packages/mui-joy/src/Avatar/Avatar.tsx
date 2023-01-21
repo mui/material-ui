@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarOwnerState, AvatarTypeMap } from './AvatarProps';
@@ -84,7 +85,7 @@ const AvatarImg = styled('img', {
   textIndent: 10000,
 });
 
-const AvatarFallback = styled(Person, {
+const AvatarFallback = styled(Person as unknown as 'svg', {
   name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
@@ -147,8 +148,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const {
     alt,
     color: colorProp = 'neutral',
-    component = 'div',
-    componentsProps = {},
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
     imgProps,
@@ -157,8 +156,9 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children: childrenProp,
     ...other
   } = props;
-  const color = inProps.color || groupContext?.color || colorProp;
   const variant = inProps.variant || groupContext?.variant || variantProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color || groupContext?.color, colorProp);
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -166,31 +166,22 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     size,
     variant,
     grouped: !!groupContext,
   };
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({
-    ...imgProps,
-    ...(typeof componentsProps.img === 'function'
-      ? componentsProps.img(ownerState)
-      : componentsProps.img),
-    src,
-    srcSet,
-  });
-
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && loaded !== 'error';
-
   const classes = useUtilityClasses(ownerState);
 
-  const imageProps = useSlotProps({
-    elementType: AvatarImg,
-    externalSlotProps: componentsProps.img,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: AvatarRoot,
+    externalForwardedProps: other,
     ownerState,
+  });
+
+  const [SlotImg, imageProps] = useSlot('img', {
     additionalProps: {
       alt,
       src,
@@ -198,38 +189,40 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       ...imgProps,
     },
     className: classes.img,
+    elementType: AvatarImg,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const fallbackProps = useSlotProps({
-    elementType: AvatarFallback,
-    externalSlotProps: componentsProps.fallback,
-    ownerState,
+  const [SlotFallback, fallbackProps] = useSlot('fallback', {
     className: classes.fallback,
+    elementType: AvatarFallback,
+    externalForwardedProps: other,
+    ownerState,
   });
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded({
+    ...imgProps,
+    ...imageProps,
+    src,
+    srcSet,
+  });
+
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
 
   if (hasImgNotFailing) {
-    children = <AvatarImg {...imageProps} />;
+    children = <SlotImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback {...fallbackProps} />;
+    children = <SlotFallback {...fallbackProps} />;
   }
 
-  const rootProps = useSlotProps({
-    elementType: AvatarRoot,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    className: classes.root,
-  });
-
-  return <AvatarRoot {...rootProps}>{children}</AvatarRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AvatarTypeMap>;
 
 Avatar.propTypes /* remove-proptypes */ = {
@@ -255,20 +248,6 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { ResponsiveStyleValue } from '@mui/system';
-import { SxProps } from '../styles/types';
+import { SxProps, SystemProps } from '../styles/types';
 
 export type StackSlot = 'root';
 
@@ -30,7 +30,7 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The system prop, which allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & SystemProps;
   defaultComponent: D;
 }
 

@@ -20,7 +20,7 @@ Joy UI provides four list-related components:
 - [`ListDivider`](#divider): A separator between list items.
 - [`ListSubheader`](#nested-list): A label for a nested list.
 
-{{"demo": "ListUsage.js", "hideToolbar": true}}
+{{"demo": "ListUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -53,7 +53,7 @@ Use the `size` prop to control font-size and general list density.
 
 {{"demo": "SizesList.js"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -106,7 +106,7 @@ The nested list inherits the list `size` and a few other CSS variables, such as 
 {{"demo": "NestedList.js"}}
 
 :::info
-**Note:** By default, nested lists stick to the left of the root list.
+By default, nested lists stick to the left of the root list.
 To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${value}`:
 
 ```js
@@ -120,7 +120,7 @@ To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${
 To show a list in a horizontal direction, use the `row` prop on the `List` component.
 
 :::warning
-**Note:** Nested lists don't work in the horizontal direction.
+Nested lists don't work in the horizontal direction.
 To do that, create a custom pop-up component instead (see the [Navigation menu](#navigation-menu) example).
 :::
 
@@ -169,6 +169,10 @@ The `ListItemButton` and the secondary action render as siblings, that way, the 
 
 Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
 It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
+
+:::info
+A selected `ListItemButton` does not apply `:hover` and `:active` global variant styles.
+:::
 
 {{"demo": "SelectedList.js"}}
 

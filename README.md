@@ -28,7 +28,6 @@
 [![Follow on Twitter](https://img.shields.io/twitter/follow/MUI_hq.svg?label=follow+MUI)](https://twitter.com/MUI_hq)
 [![Renovate status](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/mui/material-ui/issues/27062)
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui/material-ui.svg)](https://isitmaintained.com/project/mui/material-ui 'Average time to resolve an issue')
-[![Crowdin](https://badges.crowdin.net/material-ui-docs/localized.svg)](https://translate.mui.com/project/material-ui-docs)
 [![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/mui)](https://opencollective.com/mui)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 
@@ -119,9 +118,9 @@ Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engi
 
 ### Diamond 💎
 
-<p align="center">
+<p>
   <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
-  <a href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars.githubusercontent.com/u/8424863?s=256" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
   <a href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
 
@@ -131,7 +130,7 @@ Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 
 via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
-<p align="center">
+<p>
   <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-rig ht: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/24789812?s=192" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=192" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
@@ -140,6 +139,8 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/192.png" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
   <a href="https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/icons8/7fa1641/logo/192.png" alt="Icons8" title="We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps." loading="lazy"></a>
+  <a href="https://ipinfo.ai?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ipinfoai/04f41d5/logo/192.png" alt="ipinfo.ai" title="We offer various IP data API services, including IP Geolocation Data, ASN Data, Company Data, IP Ranges Data, Abuse Contacts Data, Anonymous Browsing Detection, etc." loading="lazy"></a>
+  <a href="https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/ridi-corporation/175dcf3/logo/192.png" alt="RIDI" title="RIDI is a South Korean digital content platform that offers webcomics, webnovels, animations, eBooks, and more." loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
@@ -230,14 +231,6 @@ These great services sponsor MUI's core infrastructure:
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/crowdin-darkmode.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/crowdin-lightmode.svg">
-  <img alt="Crowdin logo" src="/docs/public/static/readme/crowdin-darkmode.svg">
-</picture>
-
-[Crowdin](https://crowdin.com/) lets us translate the documentation.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">

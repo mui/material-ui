@@ -1,5 +1,5 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
@@ -10,20 +10,21 @@ import {
   Mark,
 } from './useSlider.types';
 
-export type SliderUnstyledOwnerState = SliderUnstyledProps & {
+export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;
   focusedThumbIndex: number;
   isRtl: boolean;
-  mark: boolean | Mark[];
   max: number;
   min: number;
+  dragging: boolean;
+  marked: boolean;
   orientation: 'horizontal' | 'vertical';
   scale: (value: number) => number;
   step: number | null;
   track: 'normal' | false | 'inverted';
   valueLabelDisplay: 'on' | 'auto' | 'off';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
-};
+}
 
 export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement;
@@ -81,7 +82,7 @@ export interface SliderUnstyledOwnProps {
    */
   getAriaValueText?: (value: number, index: number) => string;
   /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * If `true` the Slider will be rendered right-to-left (with the lowest value on the right-hand side).
    * @default false
    */
   isRtl?: boolean;
@@ -132,7 +133,11 @@ export interface SliderUnstyledOwnProps {
   orientation?: 'horizontal' | 'vertical';
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale?: (value: number) => number;
   /**
@@ -240,7 +245,11 @@ export interface SliderUnstyledOwnProps {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
@@ -254,7 +263,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
  * Utility to create component types that inherit props from SliderUnstyled.
  */
 export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & SliderUnstyledTypeMap['props'];
+  props: M['props'] & Omit<SliderUnstyledTypeMap['props'], 'isRtl'>;
   defaultComponent: M['defaultComponent'];
 }
 

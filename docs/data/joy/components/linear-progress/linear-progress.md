@@ -17,7 +17,7 @@ To actually have it represent how long an operation will take, use the [determin
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
-{{"demo": "LinearProgressUsage.js", "hideToolbar": true}}
+{{"demo": "LinearProgressUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -52,7 +52,7 @@ The linear progress component comes with three sizes out of the box: `sm`, `md` 
 
 {{"demo": "LinearProgressSizes.js"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 

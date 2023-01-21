@@ -19,6 +19,7 @@ export default function useInput(parameters: UseInputParameters) {
     onFocus,
     required: requiredProp = false,
     value: valueProp,
+    inputRef: inputRefProp,
   } = parameters;
 
   const formControlContext: FormControlUnstyledState | undefined = useFormControlUnstyledContext();
@@ -76,7 +77,7 @@ export default function useInput(parameters: UseInputParameters) {
   }, []);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleInputRef = useForkRef(inputRef, handleInputRefWarning);
+  const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
 
   const [focused, setFocused] = React.useState(false);
 
