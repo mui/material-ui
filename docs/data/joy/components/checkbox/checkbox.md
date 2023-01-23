@@ -67,7 +67,6 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
-Play around combining different colors with different variants.
 
 {{"demo": "CheckboxColors.js"}}
 

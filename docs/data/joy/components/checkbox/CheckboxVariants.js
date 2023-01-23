@@ -5,10 +5,10 @@ import Checkbox from '@mui/joy/Checkbox';
 export default function CheckboxVariants() {
   return (
     <Box sx={{ display: 'flex', gap: 3 }}>
-      <Checkbox label="Solid" variant="solid" />
-      <Checkbox label="Soft" variant="soft" />
-      <Checkbox label="Outlined" variant="outlined" />
-      <Checkbox label="Plain" variant="plain" />
+      <Checkbox label="Solid" variant="solid" defaultChecked />
+      <Checkbox label="Soft" variant="soft" defaultChecked />
+      <Checkbox label="Outlined" variant="outlined" defaultChecked />
+      <Checkbox label="Plain" variant="plain" defaultChecked />
     </Box>
   );
 }
