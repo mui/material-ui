@@ -1,10 +1,10 @@
+import { ComputePositionConfig, Middleware, ReferenceElement, VirtualElement } from '@floating-ui/dom';
 import { OverrideProps } from '@mui/types';
-import { Instance, Options, OptionsGeneric, VirtualElement } from '@popperjs/core';
 import * as React from 'react';
 import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
 
-export type PopperPlacementType = Options['placement'];
+export type PopperPlacementType = ComputePositionConfig['placement'];
 
 interface PopperUnstyledComponentsPropsOverrides {}
 
@@ -65,7 +65,7 @@ export interface PopperUnstyledOwnProps {
    * For this reason, modifiers should be very performant to avoid bottlenecks.
    * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers?: Options['modifiers'];
+  middleware?: Middleware[];
   /**
    * If `true`, the component is shown.
    */
@@ -79,11 +79,11 @@ export interface PopperUnstyledOwnProps {
    * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
-  popperOptions?: Partial<OptionsGeneric<any>>;
+  popperOptions?: Partial<ComputePositionConfig>;
   /**
    * A ref that points to the used popper instance.
    */
-  popperRef?: React.Ref<Instance>;
+  popperRef?: React.Ref<ReferenceElement>;
   /**
    * The props used for each slot inside the Popper.
    * @default {}
