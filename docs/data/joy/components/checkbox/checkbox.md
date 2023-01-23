@@ -42,9 +42,10 @@ Use the `label` prop to provide text, and add `defaultChecked` when the input sh
 
 ### Variants
 
-The Checkbox component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`.
-When unchecked, the Checkbox is set to `outlined`.
-When checked, the variant changes to `solid`. 
+The Checkbox component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`. By default, when unchecked, the Checkbox is set to `outlined`;
+when checked, the variant changes to `solid`.
+
+Adding the `variant` prop to your Checkbox overrides this default behavior. Try checking and unchecking the Checkboxes in the demo below to see the differences:
 
 {{"demo": "CheckboxVariants.js"}}
 
