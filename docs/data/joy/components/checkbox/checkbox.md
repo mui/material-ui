@@ -173,3 +173,21 @@ You can use Checkbox to recreate a kind of [Chip](/material-ui/react-chip/) comp
 ### Viewport checklist
 
 {{"demo": "ExampleButtonCheckbox.js"}}
+
+## Anatomy
+
+The Checkbox component is composed of a root `<span>` that wraps the input and `<label>` (if present).
+Note that the actual `<input type="checkbox">` is doubly nested within `<span>` elements that represent the `checkbox` and `action` slots, respectively.
+
+```html
+<span class="JoyCheckbox-root">
+  <span class="JoyCheckbox-checkbox">
+    <span class="JoyCheckbox-action">
+      <input type="checkbox" class="JoyCheckbox-input" value />
+    </span>
+  </span>
+  <label class="JoyCheckbox-label">
+    <!-- label text -->
+  </label>
+</span>
+```

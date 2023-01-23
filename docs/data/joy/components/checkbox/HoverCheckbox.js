@@ -11,11 +11,11 @@ export default function HoverCheckbox() {
         root: ({ checked, focusVisible }) => ({
           sx: !checked
             ? {
-              '& svg': { opacity: focusVisible ? 0.32 : 0 },
-              '&:hover svg': {
-                opacity: 0.32,
-              },
-            }
+                '& svg': { opacity: focusVisible ? 0.32 : 0 },
+                '&:hover svg': {
+                  opacity: 0.32,
+                },
+              }
             : {},
         }),
       }}
