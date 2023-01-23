@@ -3,14 +3,14 @@ import { SxProps } from '@mui/system';
 import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { PropTypes, Theme } from '..';
-import { PaperProps } from '../Paper';
+import { PaperBaseProps } from '../Paper';
 import { AppBarClasses } from './appBarClasses';
 
 export interface AppBarPropsColorOverrides {}
 
 export interface AppBarTypeMap<P = {}, D extends React.ElementType = 'header'> {
   props: P &
-    DistributiveOmit<PaperProps, 'position' | 'color' | 'classes'> & {
+    DistributiveOmit<PaperBaseProps, 'position' | 'color' | 'classes'> & {
       /**
        * Override or extend the styles applied to the component.
        */

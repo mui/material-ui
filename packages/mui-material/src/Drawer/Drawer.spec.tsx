@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dialog, PaperProps } from '@mui/material';
+import { Drawer, PaperProps } from '@mui/material';
 import { expectType } from '@mui/types';
 
 const paperProps: PaperProps<'span'> = {
@@ -11,8 +11,8 @@ const paperProps: PaperProps<'span'> = {
 function Test() {
   return (
     <>
-      <Dialog open />;
-      <Dialog open PaperProps={paperProps} />;
+      <Drawer open />;
+      <Drawer open PaperProps={paperProps} />;
     </>
   );
 }

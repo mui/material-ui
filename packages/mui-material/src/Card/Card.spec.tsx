@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import Card from '@mui/material/Card';
 import { expectType } from '@mui/types';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
@@ -7,27 +7,27 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
     return <div />;
   };
 
-function AppBarTest() {
+function CardTest() {
   return (
     <div>
-      <AppBar />
-      <AppBar elevation={4} />
-
-      <AppBar
+      <Card />
+      <Card elevation={4} />
+      <Card
         onClick={(event) => {
-          expectType<React.MouseEvent<HTMLElement, MouseEvent>, typeof event>(event);
+          expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof event>(event);
         }}
       />
-      <AppBar
+      <Card
         component="a"
         href="test"
         onClick={(event) => {
           expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
         }}
       />
-      <AppBar component={CustomComponent} stringProp="test" numberProp={0} />
+
+      <Card component={CustomComponent} stringProp="test" numberProp={0} />
       {/* @ts-expect-error missing stringProp and numberProp */}
-      <AppBar component={CustomComponent} />
+      <Card component={CustomComponent} />
     </div>
   );
 }

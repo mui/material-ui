@@ -90,7 +90,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
