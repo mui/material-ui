@@ -1,6 +1,6 @@
 {
   "hookDescription": "The basic building block for creating custom switches.",
-  "inputParamsDescriptions": {
+  "parametersDescriptions": {
     "checked": "If `true`, the component is checked.",
     "defaultChecked": "The default checked state. Use when the component is not controlled.",
     "disabled": "If `true`, the component is disabled.",

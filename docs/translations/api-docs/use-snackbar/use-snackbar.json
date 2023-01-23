@@ -1,6 +1,6 @@
 {
   "hookDescription": "The basic building block for creating custom snackbar.",
-  "inputParamsDescriptions": {
+  "parametersDescriptions": {
     "autoHideDuration": "The number of milliseconds to wait before automatically calling the\n`onClose` function. `onClose` should then set the state of the `open`\nprop to hide the Snackbar. This behavior is disabled by default with\nthe `null` value.",
     "disableWindowBlurListener": "If `true`, the `autoHideDuration` timer will expire even if the window is not focused.",
     "onClose": "Callback fired when the component requests to be closed.\nTypically `onClose` is used to set state in the parent component,\nwhich is used to control the `Snackbar` `open` prop.\nThe `reason` parameter can optionally be used to control the response to `onClose`,\nfor example ignoring `clickaway`.",

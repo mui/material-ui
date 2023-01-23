@@ -21,7 +21,7 @@
     "overrideStylesStyledComponent": "<ul>\n<li>With a <a href=\"/material-ui/guides/interoperability/#global-css\">global class name</a>.</li>\n<li>With a rule name as part of the component's <a href=\"/material-ui/customization/theme-components/#global-style-overrides\"><code>styleOverrides</code> property</a> in a custom theme.</li>\n</ul>",
     "pageDescription": "API reference docs for the React {{name}} component. Learn about the props, CSS, and other APIs of this exported module.",
     "props": "Props",
-    "inputParams": "Parameters",
+    "parameters": "Parameters",
     "returnValue": "Return value",
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",

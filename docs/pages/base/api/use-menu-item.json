@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
     "disabled": { "type": { "name": "boolean", "description": "" } },
     "label": { "type": { "name": "string", "description": "" } },

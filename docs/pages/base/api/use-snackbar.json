@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "autoHideDuration": {
       "type": {
         "name": "number | null",

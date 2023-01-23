@@ -83,7 +83,7 @@ export interface ReactApi extends ReactDocgenApi {
   EOL: string;
   filename: string;
   apiPathname: string;
-  inputParams?: ParsedProperty[];
+  parameters?: ParsedProperty[];
   returnValue?: ParsedProperty[];
   /**
    * hook name
@@ -95,7 +95,7 @@ export interface ReactApi extends ReactDocgenApi {
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
-  inputParamsTable: _.Dictionary<{
+  parametersTable: _.Dictionary<{
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
@@ -111,7 +111,7 @@ export interface ReactApi extends ReactDocgenApi {
   }>;
   translations: {
     hookDescription: string;
-    inputParamsDescriptions: { [key: string]: string | undefined };
+    parametersDescriptions: { [key: string]: string | undefined };
     returnValueDescriptions: { [key: string]: string | undefined };
   };
 }
@@ -241,10 +241,10 @@ async function annotateHookDefinition(api: ReactApi) {
 const attachTable = (
   reactApi: ReactApi,
   params: ParsedProperty[],
-  tableName: 'inputParamsTable' | 'returnValueTable',
+  tableName: 'parametersTable' | 'returnValueTable',
 ) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
-  const inputParams: ReactApi[typeof tableName] = params
+  const parameters: ReactApi[typeof tableName] = params
     .map((p) => {
       const { name: propName, ...propDescriptor } = p;
       let prop: Omit<ParsedProperty, 'name'> | null;
@@ -285,7 +285,7 @@ const attachTable = (
         },
       };
     })
-    .reduce((acc, curr) => ({ ...acc, ...curr }), {}) as unknown as ReactApi['inputParamsTable'];
+    .reduce((acc, curr) => ({ ...acc, ...curr }), {}) as unknown as ReactApi['parametersTable'];
   if (propErrors.length > 0) {
     throw new Error(
       `There were errors creating prop descriptions:\n${propErrors
@@ -297,21 +297,21 @@ const attachTable = (
   }
 
   // created by returning the `[]` entry
-  delete inputParams.undefined;
+  delete parameters.undefined;
 
-  reactApi[tableName] = inputParams;
+  reactApi[tableName] = parameters;
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
   const translations: ReactApi['translations'] = {
     hookDescription: reactApi.description,
-    inputParamsDescriptions: {},
+    parametersDescriptions: {},
     returnValueDescriptions: {},
   };
 
-  (reactApi.inputParams ?? []).forEach(({ name: propName, description }) => {
+  (reactApi.parameters ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-      translations.inputParamsDescriptions[propName] = description.replace(/\n@default.*$/, '');
+      translations.parametersDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
   });
 
@@ -330,8 +330,8 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
    */
   const pageContent = {
     // Sorted by required DESC, name ASC
-    inputParams: _.fromPairs(
-      Object.entries(reactApi.inputParamsTable).sort(([aName, aData], [bName, bData]) => {
+    parameters: _.fromPairs(
+      Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
         }
@@ -491,7 +491,7 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     { filename },
   );
 
-  const inputParams = extractInfoFromInterface(`${upperFirst(name)}Parameters`, project);
+  const parameters = extractInfoFromInterface(`${upperFirst(name)}Parameters`, project);
   const returnValue = extractInfoFromInterface(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
@@ -513,8 +513,8 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
     // );
   }
 
-  attachTable(reactApi, inputParams, 'inputParamsTable');
-  reactApi.inputParams = inputParams;
+  attachTable(reactApi, parameters, 'parametersTable');
+  reactApi.parameters = parameters;
 
   attachTable(reactApi, returnValue, 'returnValueTable');
   reactApi.returnValue = returnValue;

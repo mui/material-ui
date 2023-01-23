@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "options": {
       "type": { "name": "ReadonlyArray<T>", "description": "Array of options." },
       "required": true

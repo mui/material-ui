@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "badgeContent": { "type": { "name": "React.ReactNode", "description": "" } },
     "invisible": { "type": { "name": "boolean", "description": "" } },
     "max": { "type": { "name": "number", "description": "" } },

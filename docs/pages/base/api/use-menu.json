@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "listboxId": { "type": { "name": "string", "description": "" } },
     "listboxRef": { "type": { "name": "React.Ref<any>", "description": "" } },
     "onClose": { "type": { "name": "() => void", "description": "" } },

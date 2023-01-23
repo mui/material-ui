@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
     "aria-labelledby": { "type": { "name": "string", "description": "" } },
     "defaultValue": { "type": { "name": "number | number[]", "description": "" } },

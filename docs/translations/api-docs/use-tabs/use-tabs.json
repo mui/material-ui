@@ -1,6 +1,6 @@
 {
   "hookDescription": "",
-  "inputParamsDescriptions": {
+  "parametersDescriptions": {
     "defaultValue": "The default value. Use when the component is not controlled.",
     "direction": "The direction of the text.",
     "onChange": "Callback invoked when new value is being set.",

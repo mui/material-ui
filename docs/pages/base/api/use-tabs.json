@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "defaultValue": {
       "type": {
         "name": "string | number | false",

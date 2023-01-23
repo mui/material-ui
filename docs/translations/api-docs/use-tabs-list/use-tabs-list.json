@@ -1,5 +1,5 @@
 {
   "hookDescription": "",
-  "inputParamsDescriptions": { "children": "The content of the component." },
+  "parametersDescriptions": { "children": "The content of the component." },
   "returnValueDescriptions": {}
 }

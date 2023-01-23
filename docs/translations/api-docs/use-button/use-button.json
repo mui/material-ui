@@ -1,6 +1,6 @@
 {
   "hookDescription": "",
-  "inputParamsDescriptions": {
+  "parametersDescriptions": {
     "disabled": "If `true`, the component is disabled.",
     "focusableWhenDisabled": "If `true`, allows a disabled button to receive focus.",
     "type": "Type attribute applied when the `component` is `button`."

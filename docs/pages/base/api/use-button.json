@@ -1,5 +1,5 @@
 {
-  "inputParams": {
+  "parameters": {
     "disabled": {
       "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
       "default": "false"

@@ -126,8 +126,8 @@ function getTranslatedHeader(t, header) {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
     'hook-name': t('api-docs.hookName'),
-    inputParams: t('api-docs.inputParams'),
-    returnValue: t('api-docs.returnValue'),
+    parameters: t('api-docs.parameters'),
+    'return-value': t('api-docs.returnValue'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -168,12 +168,12 @@ export default function ApiPage(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
-  const { demos, filename, inheritance, name: hookName, inputParams, returnValue } = pageContent;
+  const { demos, filename, inheritance, name: hookName, parameters, returnValue } = pageContent;
 
   const {
     hookDescription,
     hookDescriptionToc = [],
-    inputParamsDescriptions,
+    parametersDescriptions,
     returnValueDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.hooksPageDescription').replace(/{{name}}/, hookName);
@@ -202,8 +202,8 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...hookDescriptionToc,
-    createTocEntry('inputParams'),
-    createTocEntry('returnValue'),
+    createTocEntry('parameters'),
+    createTocEntry('return-value'),
   ].filter(Boolean);
 
   return (
@@ -253,12 +253,9 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
             />
           </React.Fragment>
         ) : null}
-        <Heading hash="inputParams" />
-        <PropertiesTable
-          properties={inputParams}
-          propertiesDescriptions={inputParamsDescriptions}
-        />
-        <Heading hash="returnValue" />
+        <Heading hash="parameters" />
+        <PropertiesTable properties={parameters} propertiesDescriptions={parametersDescriptions} />
+        <Heading hash="return-value" />
         <PropertiesTable
           properties={returnValue}
           propertiesDescriptions={returnValueDescriptions}
