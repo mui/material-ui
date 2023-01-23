@@ -167,7 +167,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     if (middleware != null) {
       popperMiddleware = popperMiddleware.concat(middleware);
     }
-    // setPlacement(data.placement);
     const popperUnsubscribe = autoUpdate(resolvedAnchorElement, tooltipRef.current!, async () => {
       const state = await computePosition(resolvedAnchorElement, tooltipRef.current!, {
         placement: rtlPlacement,
