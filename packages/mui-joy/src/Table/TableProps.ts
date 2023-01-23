@@ -32,7 +32,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      * If `true`, the table row will shade on hover.
      * @default false
      */
-    hover?: boolean;
+    hoverRow?: boolean;
     /**
      * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
      * @default false

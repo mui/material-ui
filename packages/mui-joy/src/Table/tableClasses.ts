@@ -35,6 +35,8 @@ export interface TableClasses {
   stickyHeader: string;
   /** Styles applied to the root element if `noWrap` is true. */
   noWrap: string;
+  /** Styles applied to the root element if `hoverRow` is true. */
+  hoverRow: string;
   /** Styles applied to the root element if `borderAxis="none"`. */
   borderAxisNone: string;
   /** Styles applied to the root element if `borderAxis="x"`. */
@@ -75,6 +77,7 @@ const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
   'sizeLg',
   'stickyHeader',
   'noWrap',
+  'hoverRow',
   'borderAxisNone',
   'borderAxisX',
   'borderAxisXBetween',

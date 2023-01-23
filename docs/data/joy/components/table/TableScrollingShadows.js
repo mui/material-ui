@@ -29,6 +29,8 @@ export default function TableStickyHeader() {
       <Sheet
         sx={{
           '--TableCell-height': '40px',
+          // the number is the amount of the header rows.
+          '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
           height: 200,
           overflow: 'auto',
           background: (
@@ -50,7 +52,7 @@ export default function TableStickyHeader() {
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'local, local, scroll, scroll',
           backgroundPosition:
-            '0 var(--TableCell-height), 0 100%, 0 var(--TableCell-height), 0 100%',
+            '0 var(--TableHeader-height), 0 100%, 0 var(--TableHeader-height), 0 100%',
           backgroundColor: 'background.surface',
         }}
       >

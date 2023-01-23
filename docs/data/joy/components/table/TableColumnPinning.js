@@ -22,18 +22,52 @@ export default function TableColumnPinning() {
       <Typography level="body2" textAlign="center" sx={{ pb: 2 }}>
         ← Scroll direction →
       </Typography>
-      <Sheet variant="outlined" sx={{ overflow: 'auto' }}>
+      <Sheet
+        variant="outlined"
+        sx={{
+          '--TableCell-height': '40px',
+          // the number is the amount of the header rows.
+          '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
+          '--Table-firstColumnWidth': '80px',
+          '--Table-lastColumnWidth': '144px',
+          // background needs to have transparency to show the scrolling shadows
+          '--TableRow-stripeBackground': 'rgba(0 0 0 / 0.04)',
+          '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
+          overflow: 'auto',
+          background: (
+            theme,
+          ) => `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
+            linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
+            radial-gradient(
+              farthest-side at 0 50%,
+              rgba(0, 0, 0, 0.12),
+              rgba(0, 0, 0, 0)
+            ),
+            radial-gradient(
+                farthest-side at 100% 50%,
+                rgba(0, 0, 0, 0.12),
+                rgba(0, 0, 0, 0)
+              )
+              0 100%`,
+          backgroundSize:
+            '40px calc(100% - var(--TableCell-height)), 40px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height))',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'local, local, scroll, scroll',
+          backgroundPosition:
+            'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
+          backgroundColor: 'background.surface',
+        }}
+      >
         <Table
           borderAxis="bothBetween"
           stripe="odd"
-          hover
+          hoverRow
           sx={{
             '& tr > *:first-child': {
               position: 'sticky',
               left: 0,
               boxShadow: '1px 0 var(--TableCell-borderColor)',
-              bgcolor:
-                'var(--TableRow-hoverBackground, var(--TableRow-stripeBackground, var(--TableCell-headBackground)))',
+              bgcolor: 'background.surface',
             },
             '& tr > *:last-child': {
               position: 'sticky',
@@ -44,12 +78,15 @@ export default function TableColumnPinning() {
         >
           <thead>
             <tr>
-              <th style={{ width: 80 }}>Row</th>
+              <th style={{ width: 'var(--Table-firstColumnWidth)' }}>Row</th>
               <th style={{ width: 200 }}>Calories</th>
               <th style={{ width: 200 }}>Fat&nbsp;(g)</th>
               <th style={{ width: 200 }}>Carbs&nbsp;(g)</th>
               <th style={{ width: 200 }}>Protein&nbsp;(g)</th>
-              <th aria-label="last" style={{ width: 144 }} />
+              <th
+                aria-label="last"
+                style={{ width: 'var(--Table-lastColumnWidth)' }}
+              />
             </tr>
           </thead>
           <tbody>

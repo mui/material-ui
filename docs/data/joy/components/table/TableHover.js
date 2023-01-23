@@ -15,7 +15,7 @@ const rows = [
 
 export default function TableHover() {
   return (
-    <Table aria-label="outlined table" hover>
+    <Table aria-label="outlined table" hoverRow>
       <thead>
         <tr>
           <th style={{ width: '40%' }}>Column width (40%)</th>

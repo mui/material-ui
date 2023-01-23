@@ -13,12 +13,13 @@ import typographyClasses from '../Typography/typographyClasses';
 import { TypographyContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
-  const { size, variant, color, borderAxis, stickyHeader, noWrap } = ownerState;
+  const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
   const slots = {
     root: [
       'root',
       stickyHeader && 'stickyHeader',
       noWrap && 'noWrap',
+      hoverRow && 'hoverRow',
       borderAxis && `borderAxis${capitalize(borderAxis)}`,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
@@ -210,16 +211,14 @@ const TableRoot = styled('table', {
     ownerState.stripe && {
       [tableSelector.getBodyRow(ownerState.stripe)]: {
         // For customization, a table cell can look for this variable with a fallback value.
-        '--TableRow-stripeBackground': theme.vars.palette.background.level1,
-        backgroundColor: 'var(--TableRow-stripeBackground)',
+        backgroundColor: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
         color: theme.vars.palette.text.primary,
       },
     },
-    ownerState.hover && {
+    ownerState.hoverRow && {
       [tableSelector.getBodyRow()]: {
         '&:hover': {
-          '--TableRow-hoverBackground': theme.vars.palette.background.level2,
-          backgroundColor: `var(--TableRow-hoverBackground)`,
+          backgroundColor: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
         },
       },
     },
@@ -259,7 +258,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     component,
     children,
     borderAxis = 'xBetween',
-    hover = false,
+    hoverRow = false,
     noWrap = false,
     size = 'md',
     variant = 'plain',
@@ -274,7 +273,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   const ownerState = {
     ...props,
     borderAxis,
-    hover,
+    hoverRow,
     noWrap,
     component,
     size,

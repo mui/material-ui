@@ -33,7 +33,7 @@ By default, **header** cells (`<th>`) contain `surface` background color whereas
 
 ### Column width
 
-Use inline style on the `th` element to control the width of each column:
+Use [inline style](https://reactjs.org/docs/dom-elements.html#style) on the `th` element to control the width of each column:
 
 ```js
 <thead>
@@ -54,7 +54,7 @@ To learn more why we take this approach, check out this [great article](https://
 
 ### Alignment
 
-Use `sx` prop to target columns with appropriate CSS selector and apply the text align value.
+Use `sx` prop to target columns with appropriate CSS selector and apply the [text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align).
 
 ```js
 // target cells that are not the first of its row.
@@ -65,7 +65,7 @@ Use `sx` prop to target columns with appropriate CSS selector and apply the text
 
 ### Variants
 
-The component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
+Table supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `plain` (default), `outlined`, `soft`, and `solid`.
 
 {{"demo": "TableVariants.js"}}
 
@@ -92,7 +92,7 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 The prop also supports complex argument of [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#syntax) CSS selector.
 
-For example, you can use `3n` as a value to create stripes on row three, six, nine, and so on:
+For example, you can use `3n` as a value to create stripes on row number three, six, nine, and so on:
 
 ```js
 <Table stripe="3n">
@@ -102,7 +102,7 @@ For example, you can use `3n` as a value to create stripes on row three, six, ni
 
 ### Hover
 
-To highlight a row on hover, set `hover` prop to true.
+To highlight a row of the table body when hover on it, set `hoverAxis` prop to true.
 
 {{"demo": "TableHover.js"}}
 
@@ -154,7 +154,9 @@ declare module '@mui/joy/Table' {
 
 ### Sticky header
 
-You have to wrap the table with a fixed height element (we recommend using Sheet component) with overflow `auto`, then set `stickyHeader` prop to true.
+Set `stickyHeader` prop to true. The table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
+
+Using [Sheet](/joy-ui/react-sheet/) component is recommended for wrapping a table. See [usage with Sheet](#usage-with-sheet) to learn more.
 
 {{"demo": "TableStickyHeader.js"}}
 
