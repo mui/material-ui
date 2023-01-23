@@ -5,7 +5,7 @@
     "defaultExpanded": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
-    "expanded": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" }, "default": "undefined" },
     "onChange": { "type": { "name": "func" } },
     "square": { "type": { "name": "bool" } },
     "sx": {

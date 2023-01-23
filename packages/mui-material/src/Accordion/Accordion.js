@@ -236,6 +236,7 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, expands the accordion, otherwise collapse it.
    * Setting this prop enables control over the accordion.
+   * @default undefined
    */
   expanded: PropTypes.bool,
   /**

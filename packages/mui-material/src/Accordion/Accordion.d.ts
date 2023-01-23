@@ -32,6 +32,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
    * If `true`, expands the accordion, otherwise collapse it.
    * Setting this prop enables control over the accordion.
+   * @default undefined
    */
   expanded?: boolean;
   /**
