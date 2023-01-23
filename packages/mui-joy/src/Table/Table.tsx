@@ -168,9 +168,7 @@ const TableRoot = styled('table', {
       },
       [tableSelector.getHeaderCell()]: {
         verticalAlign: 'bottom',
-      },
-      // Automatic radius adjustment with Sheet
-      '& thead th': {
+        // Automatic radius adjustment with Sheet
         '&:first-child': {
           borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
         },
