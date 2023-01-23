@@ -94,10 +94,12 @@ async function main(argv) {
     commitsItems.push(...compareCommits.commits.filter(filterCommit));
   }
 
+  const getAuthor = (commit) => commit.author?.login ?? commit.committer?.login;
+
   const authors = Array.from(
     new Set(
       commitsItems.map((commitsItem) => {
-        return commitsItem.author.login;
+        return getAuthor(commitsItem);
       }),
     ),
   );
@@ -128,7 +130,7 @@ async function main(argv) {
       // i.e. we can sort the lines alphanumerically
       .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
+    return `- ${dateSortMarker}${shortMessage} @${getAuthor(commitsItem)}`;
   });
   const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',
