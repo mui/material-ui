@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
@@ -36,18 +37,15 @@ const StyledSlider = styled(SliderUnstyled)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-
   &:hover {
     opacity: 1;
   }
-
   &.${sliderUnstyledClasses.disabled} { 
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
     opacity: 0.5;
   }
-
   & .${sliderUnstyledClasses.rail} {
     display: block;
     position: absolute;
@@ -57,7 +55,6 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: currentColor;
     opacity: 0.4;
   }
-
   & .${sliderUnstyledClasses.track} {
     display: block;
     position: absolute;
@@ -65,7 +62,6 @@ const StyledSlider = styled(SliderUnstyled)(
     border-radius: 2px;
     background-color: currentColor;
   }
-
   & .${sliderUnstyledClasses.thumb} {
     position: absolute;
     width: 16px;
@@ -77,7 +73,6 @@ const StyledSlider = styled(SliderUnstyled)(
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
-
     :hover,
     &.${sliderUnstyledClasses.focusVisible} {
       box-shadow: 0 0 0 0.25rem ${alpha(
@@ -85,7 +80,30 @@ const StyledSlider = styled(SliderUnstyled)(
         0.15,
       )};
     }
-
+    & .label {
+        background: unset;
+        background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+        width: 32px;
+        height: 32px;
+        padding: 0px;
+        visibility: hidden;
+        color: #fff;
+        border-radius: 50% 50% 50% 0;
+        position: absolute;
+        transform: translate(-35%, -140%) rotate(-45deg) scale(0);
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    :hover .label {
+        visibility: visible;
+        transform: translate(-35%, -140%) rotate(-45deg) scale(1);
+    }
+    :hover .value {
+        transform: rotate(45deg);
+        text-align: center;
+    }
     &.${sliderUnstyledClasses.active} {
       box-shadow: 0 0 0 0.25rem ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
@@ -93,66 +111,25 @@ const StyledSlider = styled(SliderUnstyled)(
       )};
     }
   }
-
-  & .${sliderUnstyledClasses.mark} {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
-    background-color: currentColor;
-    top: 50%;
-    opacity: 0.7;
-    transform: translateX(-50%);
-  }
-
-  & .${sliderUnstyledClasses.markActive} {
-    background-color: #fff;
-  }
-
-  & .${sliderUnstyledClasses.markLabel} {
-    font-family: IBM Plex Sans;
-    font-size: 12px;
-    position: absolute;
-    top: 20px;
-    transform: translateX(-50%);
-    margin-top: 8px;
-  }
 `,
 );
 
-const marks = [
-  {
-    value: 0,
-    label: '0°C',
-  },
-  {
-    value: 20,
-    label: '20°C',
-  },
-  {
-    value: 37,
-    label: '37°C',
-  },
-  {
-    value: 100,
-    label: '100°C',
-  },
-];
-
-function valuetext(value) {
-  return `${value}°C`;
+function SliderValueLabel({ children }) {
+  return (
+    <span className="label">
+      <div className="value">{children}</div>
+    </span>
+  );
 }
 
-export default function DiscreteSliderValues() {
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default function LabeledValuesSlider() {
   return (
     <Box sx={{ width: 300 }}>
-      <StyledSlider
-        aria-label="Temperature"
-        defaultValue={37}
-        getAriaValueText={valuetext}
-        step={null}
-        marks={marks}
-      />
+      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
     </Box>
   );
 }

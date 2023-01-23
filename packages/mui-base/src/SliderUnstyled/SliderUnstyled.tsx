@@ -6,7 +6,6 @@ import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
-import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
 import {
@@ -49,7 +48,6 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
-const Forward = ({ children }: { children: React.ReactElement }) => children;
 /**
  *
  * Demos:
@@ -86,7 +84,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     tabIndex,
     track = 'normal',
     value: valueProp,
-    valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
     defaultValue,
@@ -113,7 +110,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     scale,
     step,
     track,
-    valueLabelDisplay,
     valueLabelFormat,
   };
 
@@ -122,7 +118,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     getRootProps,
     getHiddenInputProps,
     getThumbProps,
-    open,
     active,
     axis,
     range,
@@ -183,7 +178,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     ownerState,
   });
 
-  const ValueLabel = slots.valueLabel ?? SliderValueLabelUnstyled;
+  const ValueLabel = slots.valueLabel;
   const valueLabelProps = useSlotProps({
     elementType: ValueLabel,
     externalSlotProps: slotProps.valueLabel,
@@ -274,53 +269,48 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
-        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
-
         return (
-          <React.Fragment key={index}>
-            <ValueLabelComponent
-              {...(!isHostComponent(ValueLabelComponent) && {
-                valueLabelFormat,
-                valueLabelDisplay,
-                value:
-                  typeof valueLabelFormat === 'function'
-                    ? valueLabelFormat(scale(value), index)
-                    : valueLabelFormat,
-                index,
-                open: open === index || active === index || valueLabelDisplay === 'on',
-                disabled,
-              })}
-              {...valueLabelProps}
-              className={clsx(classes.valueLabel, valueLabelProps.className)}
-            >
-              <Thumb
-                data-index={index}
-                data-focusvisible={focusedThumbIndex === index}
-                {...thumbProps}
-                className={clsx(classes.thumb, thumbProps.className, {
-                  [classes.active]: active === index,
-                  [classes.focusVisible]: focusedThumbIndex === index,
+          <Thumb
+            key={index}
+            data-index={index}
+            data-focusvisible={focusedThumbIndex === index}
+            {...thumbProps}
+            className={clsx(classes.thumb, thumbProps.className, {
+              [classes.active]: active === index,
+              [classes.focusVisible]: focusedThumbIndex === index,
+            })}
+            style={{
+              ...style,
+              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...thumbProps.style,
+            }}
+          >
+            <Input
+              data-index={index}
+              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+              aria-valuenow={scale(value)}
+              aria-labelledby={ariaLabelledby}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
+              value={values[index]}
+              {...inputProps}
+            />
+            {ValueLabel ? (
+              <ValueLabel
+                {...(!isHostComponent(ValueLabel) && {
+                  valueLabelFormat,
+                  index,
+                  disabled,
                 })}
-                style={{
-                  ...style,
-                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
-                  ...thumbProps.style,
-                }}
+                {...valueLabelProps}
               >
-                <Input
-                  data-index={index}
-                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                  aria-valuenow={scale(value)}
-                  aria-labelledby={ariaLabelledby}
-                  aria-valuetext={
-                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                  }
-                  value={values[index]}
-                  {...inputProps}
-                />
-              </Thumb>
-            </ValueLabelComponent>
-          </React.Fragment>
+                {typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat}
+              </ValueLabel>
+            ) : null}
+          </Thumb>
         );
       })}
     </Root>
@@ -489,17 +479,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element,
-        className: PropTypes.string,
-        open: PropTypes.bool,
-        style: PropTypes.object,
-        value: PropTypes.number,
-        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-      }),
-    ]),
+    valueLabel: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
   }),
   /**
    * The components used for each slot inside the Slider.
@@ -543,15 +523,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * For ranged sliders, provide an array with two values.
    */
   value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-  /**
-   * Controls when the value label is displayed:
-   *
-   * - `auto` the value label will display when the thumb is hovered or focused.
-   * - `on` will display persistently.
-   * - `off` will never display.
-   * @default 'off'
-   */
-  valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
   /**
    * The format function the value label's value.
    *

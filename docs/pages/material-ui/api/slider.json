@@ -101,6 +101,8 @@
   "styles": {
     "classes": [
       "root",
+      "colorPrimary",
+      "colorSecondary",
       "marked",
       "vertical",
       "disabled",
@@ -112,20 +114,18 @@
       "thumb",
       "active",
       "focusVisible",
-      "valueLabel",
-      "valueLabelOpen",
-      "valueLabelCircle",
-      "valueLabelLabel",
       "mark",
       "markActive",
       "markLabel",
       "markLabelActive",
-      "colorPrimary",
-      "colorSecondary",
       "sizeSmall",
       "thumbColorPrimary",
       "thumbColorSecondary",
-      "thumbSizeSmall"
+      "thumbSizeSmall",
+      "valueLabel",
+      "valueLabelOpen",
+      "valueLabelCircle",
+      "valueLabelLabel"
     ],
     "globalClasses": {
       "disabled": "Mui-disabled",

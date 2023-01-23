@@ -1,6 +1,7 @@
 import SliderUnstyled, {
   sliderUnstyledClasses as classes,
   SliderUnstyledRootSlotProps,
+  SliderUnstyledValueLabelSlotProps,
 } from '@mui/base/SliderUnstyled';
 import { expect } from 'chai';
 import * as React from 'react';
@@ -144,12 +145,10 @@ describe('<SliderUnstyled />', () => {
     });
   });
 
-  describe('prop: valueLabelDisplay', () => {
-    it('renders a slider', () => {
-      render(<SliderUnstyled value={30} valueLabelDisplay="auto" />);
+  it('renders a slider', () => {
+    render(<SliderUnstyled value={30} />);
 
-      expect(screen.getByRole('slider')).to.have.attribute('aria-valuenow', '30');
-    });
+    expect(screen.getByRole('slider')).to.have.attribute('aria-valuenow', '30');
   });
 
   type Values = Array<[string, number[]]>;
@@ -331,7 +330,6 @@ describe('<SliderUnstyled />', () => {
       const { getByRole, container } = render(
         <SliderUnstyled
           value={50}
-          valueLabelDisplay="auto"
           marks={[
             {
               value: 0,
@@ -366,6 +364,18 @@ describe('<SliderUnstyled />', () => {
       expect(input).to.have.attribute('aria-labelledby', 'a slider label');
       expect(input).to.have.attribute('aria-label', 'a slider');
       expect(input).to.have.attribute('aria-valuenow', '50');
+    });
+  });
+
+  describe('slots', () => {
+    it('should show the value label passed through custom value label slot', () => {
+      function ValueLabel({ children }: SliderUnstyledValueLabelSlotProps) {
+        return <span data-testid="value-label">{children}</span>;
+      }
+
+      render(<SliderUnstyled defaultValue={20} slots={{ valueLabel: ValueLabel }} />);
+
+      expect(screen.getByTestId('value-label')).to.have.text('20');
     });
   });
 });
