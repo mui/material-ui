@@ -15,6 +15,8 @@ Radio buttons allow users to make a mututally exclusive choice (e.g., this or th
 
 To provide the user with multiple selection options, use `Checkbox` instead.
 
+If available options can be collapsed, consider using a `Select` component to conserve space.
+
 :::success
 When should you use radio buttons rather than checkboxes or switches?
 
