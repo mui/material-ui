@@ -117,7 +117,6 @@ async function main(argv) {
       }),
     ),
   );
-
   const contributorHandles = authors
     .sort((a, b) => a.localeCompare(b))
     .map((author) => `@${author}`)
