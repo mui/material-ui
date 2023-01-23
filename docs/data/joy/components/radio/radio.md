@@ -17,6 +17,8 @@ To provide the user with multiple selection options, use `Checkbox` instead.
 
 If available options can be collapsed, consider using a `Select` component to conserve space.
 
+Radio buttons should have the most commonly used option selected by default.
+
 :::success
 When should you use radio buttons rather than checkboxes or switches?
 
