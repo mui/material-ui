@@ -177,6 +177,10 @@ To display caption at the bottom of the table, set [caption side](https://develo
 
 ### Footer
 
+Use [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) to show the table footer.
+
+{{"demo": "TableFooter.js"}}
+
 ### Row head
 
 Set `scope="row"` to `th` elements inside `tbody` to apply the same style as column headers.
@@ -254,3 +258,7 @@ Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-
 Use `theme.variants.*` to apply global variant styles to the table.
 
 {{"demo": "TableGlobalVariant.js"}}
+
+### Sort and Selection
+
+{{"demo": "TableSortAndSelection.js"}}

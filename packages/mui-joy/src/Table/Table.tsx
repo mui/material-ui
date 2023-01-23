@@ -65,7 +65,7 @@ const tableSelector = {
     return `& thead tr:nth-child(${row}) th`;
   },
   getBottomHeaderCell() {
-    return '& thead th:not([colspan]), & tr:first-of-type th:not([scope="row"]):not([colspan])';
+    return '& thead th:not([colspan])';
   },
   getHeaderNestedFirstColumn() {
     return '& thead tr:not(:first-of-type) th:not([colspan]):first-child';
@@ -98,6 +98,9 @@ const tableSelector = {
       return `& tbody tr`;
     }
     return `& tbody tr:nth-child(${row})`;
+  },
+  getFooterCell() {
+    return '& tfoot th, & tfoot td';
   },
 };
 
@@ -144,6 +147,7 @@ const TableRoot = styled('table', {
         padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
         height: 'var(--private_TableCell-height)',
         borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
+        background: 'var(--TableCell-dataBackground)',
         ...(ownerState.noWrap && {
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -153,8 +157,7 @@ const TableRoot = styled('table', {
       [tableSelector.getHeadCell()]: {
         textAlign: 'left',
         padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
-        backgroundColor: 'var(--TableCell-headBackground)',
-        verticalAlign: 'bottom',
+        background: 'var(--TableCell-headBackground)',
         height: 'var(--private_TableCell-height)',
         fontWeight: theme.vars.fontWeight.lg,
         borderColor: 'var(--TableCell-borderColor)',
@@ -162,6 +165,20 @@ const TableRoot = styled('table', {
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
+      },
+      [tableSelector.getHeaderCell()]: {
+        verticalAlign: 'bottom',
+      },
+      '& tfoot': {
+        '& tr > *': {
+          backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
+          '&:first-child': {
+            borderBottomLeftRadius: 'var(--internal-action-radius)',
+          },
+          '&:last-child': {
+            borderBottomRightRadius: 'var(--internal-action-radius)',
+          },
+        },
       },
     },
     (ownerState.borderAxis?.startsWith('x') || ownerState.borderAxis?.startsWith('both')) && {
@@ -177,6 +194,10 @@ const TableRoot = styled('table', {
       [tableSelector.getBodyCellExceptLastRow()]: {
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
+      },
+      [tableSelector.getFooterCell()]: {
+        borderTopWidth: 1,
+        borderTopStyle: 'solid',
       },
     },
     (ownerState.borderAxis?.startsWith('y') || ownerState.borderAxis?.startsWith('both')) && {
@@ -196,6 +217,10 @@ const TableRoot = styled('table', {
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
       },
+      [tableSelector.getFooterCell()]: {
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+      },
     },
     (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
       // insert border on the left of first column and right of the last column
@@ -211,14 +236,14 @@ const TableRoot = styled('table', {
     ownerState.stripe && {
       [tableSelector.getBodyRow(ownerState.stripe)]: {
         // For customization, a table cell can look for this variable with a fallback value.
-        backgroundColor: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
+        background: `var(--TableRow-stripeBackground, ${theme.vars.palette.background.level1})`,
         color: theme.vars.palette.text.primary,
       },
     },
     ownerState.hoverRow && {
       [tableSelector.getBodyRow()]: {
         '&:hover': {
-          backgroundColor: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
+          background: `var(--TableRow-hoverBackground, ${theme.vars.palette.background.level2})`,
         },
       },
     },
