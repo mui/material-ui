@@ -7,7 +7,7 @@
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - **Level**: [4 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
-- We're a **remote** company, we prefer asynchronous communication over meetings.
+- We're a **remote** company, operating mostly asynchronously.
 
 ## About the company
 
@@ -42,6 +42,7 @@ More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
 It's why we've been expanding our offering with Joy UI, MUI Base, and MUI Toolpad.
+
 Design is foundational to achieving this goal.
 
 ## About the role
@@ -69,10 +70,9 @@ As a **team leader**, you will:
 
 We're looking for someone with an expert eye for both UI and UX design. Details matter to you.
 
-You're a leader who can support and guide a small but growing design team.
+You're a manager that can support and guide the team.
 
-It's also important that you have enough development skills – CSS, JSX, Git, etc. – to be accountable for the quality of the design experience implemented.
-You will collaborate with engineers, product managers, and other designers, to ensure that the implementation truly reflects the feature/project's vision.
+And, it's also important that you have enough development skills – CSS, JSX, Git, etc. – to communicate effectively with engineers, product managers, and other designers, ensuring that the implementation truly reflects the feature/project's vision.
 
 ### Skills you should have
 
@@ -85,13 +85,24 @@ You will collaborate with engineers, product managers, and other designers, to e
 
 ### What would be nice if you had, but isn't required
 
-- **Experience with open-source projects**. You have seen the particular product dynamics when in an OSS environment and are knowledgable of the challenges.
+- **Experience with open-source products**. You have seen the particular product dynamics when in an OSS environment and are knowledgable of the challenges.
 
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
+
+## Interview steps
+
+Here's a brief overview of how this role's process will be carried through:
+
+- **Introduction call** (20 to 25 min ⎯ with a designer): A short call to quickly introduce each other.
+- **Career deep dive** (40 to 60 min ⎯ with a designer): We'll go through your career a bit more in-depth and will be interested in understanding your trajectory up to the point where you've applied to this role.
+- **Comparable experience review** (40 to 60 min ⎯ with a designer, product manager or tech lead): You'll present one to three (up to you) of your prior experiences that showcase how capable you're of taking this role.
+- **Conversation with the CEO** (30 min): A quick call so you get to know each other, and talk about vision, future, history, etc.
+
+We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well. It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you, making for a great match!
 
 ## How to apply?
 
