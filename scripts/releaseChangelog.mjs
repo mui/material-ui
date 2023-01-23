@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import { Octokit } from '@octokit/rest';
+import chalk from 'chalk';
 import childProcess from 'child_process';
 import { promisify } from 'util';
 import yargs from 'yargs';
@@ -104,7 +105,7 @@ async function main(argv) {
         );
       }
       warnedOnce = true;
-      return 'TODO add the author username';
+      return chalk.red('TODO INSERT AUTHOR\'S USERNAME');
     }
 
     return commit.author?.login;
