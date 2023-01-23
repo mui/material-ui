@@ -34,7 +34,10 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     hoverRow?: boolean;
     /**
-     * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+     * If `true`, the body cells will not wrap, but instead will truncate with a text overflow ellipsis.
+     *
+     * Note: Header cells are always truncated with overflow ellipsis.
+     *
      * @default false
      */
     noWrap?: boolean;

@@ -293,13 +293,13 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     noWrap = false,
     size = 'md',
     variant = 'plain',
-    color: colorProp,
+    color: colorProp = 'neutral',
     stripe,
     stickyHeader = false,
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(colorProp, 'neutral');
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

@@ -513,6 +513,9 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     profiler = new UsedProfiler(test);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
+    // To disable SSR warnings when using CSS pseudo selectors, e.g. :first-child
+    // https://github.com/emotion-js/emotion/issues/1105#issuecomment-1058225197
+    emotionCache.compat = true;
 
     serverContainer = document.createElement('div');
     document.body.appendChild(serverContainer);
