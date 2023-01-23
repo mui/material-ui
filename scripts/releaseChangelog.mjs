@@ -105,7 +105,7 @@ async function main(argv) {
         );
       }
       warnedOnce = true;
-      return chalk.red('TODO INSERT AUTHOR\'S USERNAME');
+      return chalk.red("TODO INSERT AUTHOR'S USERNAME");
     }
 
     return commit.author?.login;
