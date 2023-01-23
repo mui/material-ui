@@ -8,7 +8,16 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import {
+  autoUpdate,
+  computePosition,
+  flip,
+  Middleware,
+  Placement,
+  ReferenceElement,
+  shift,
+  VirtualElement,
+} from '@floating-ui/dom';
 import PropTypes from 'prop-types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
@@ -84,7 +93,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     component,
     direction,
     disablePortal,
-    modifiers,
+    middleware,
     open,
     ownerState,
     placement: initialPlacement,
@@ -99,12 +108,8 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   const tooltipRef = React.useRef<HTMLElement | null>(null);
   const ownRef = useForkRef(tooltipRef, ref);
 
-  const popperRef = React.useRef<Instance | null>(null);
-  const handlePopperRef = useForkRef(popperRef, popperRefProp);
-  const handlePopperRefRef = React.useRef(handlePopperRef);
-  useEnhancedEffect(() => {
-    handlePopperRefRef.current = handlePopperRef;
-  }, [handlePopperRef]);
+  const popperRef = React.useRef<ReferenceElement | null>(null);
+
   React.useImperativeHandle(popperRefProp, () => popperRef.current!, []);
 
   const rtlPlacement = flipPlacement(initialPlacement, direction);
@@ -118,12 +123,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   >(resolveAnchorEl(anchorEl));
 
   React.useEffect(() => {
-    if (popperRef.current) {
-      popperRef.current.forceUpdate();
-    }
-  });
-
-  React.useEffect(() => {
     if (anchorEl) {
       setResolvedAnchorElement(resolveAnchorEl(anchorEl));
     }
@@ -133,10 +132,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     if (!resolvedAnchorElement || !open) {
       return undefined;
     }
-
-    const handlePopperUpdate = (data: State) => {
-      setPlacement(data.placement);
-    };
 
     if (process.env.NODE_ENV !== 'production') {
       if (
@@ -164,49 +159,28 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       }
     }
 
-    let popperModifiers: Partial<Modifier<any, any>>[] = [
-      {
-        name: 'preventOverflow',
-        options: {
-          altBoundary: disablePortal,
-        },
-      },
-      {
-        name: 'flip',
-        options: {
-          altBoundary: disablePortal,
-        },
-      },
-      {
-        name: 'onUpdate',
-        enabled: true,
-        phase: 'afterWrite',
-        fn: ({ state }) => {
-          handlePopperUpdate(state);
-        },
-      },
+    let popperMiddleware: Middleware[] = [
+      shift({ altBoundary: disablePortal }),
+      flip({ altBoundary: disablePortal }),
     ];
 
-    if (modifiers != null) {
-      popperModifiers = popperModifiers.concat(modifiers);
+    if (middleware != null) {
+      popperMiddleware = popperMiddleware.concat(middleware);
     }
-    if (popperOptions && popperOptions.modifiers != null) {
-      popperModifiers = popperModifiers.concat(popperOptions.modifiers);
-    }
-
-    const popper = createPopper(resolvedAnchorElement, tooltipRef.current!, {
-      placement: rtlPlacement,
-      ...popperOptions,
-      modifiers: popperModifiers,
+    // setPlacement(data.placement);
+    const popperUnsubscribe = autoUpdate(resolvedAnchorElement, tooltipRef.current!, async () => {
+      const state = await computePosition(resolvedAnchorElement, tooltipRef.current!, {
+        placement: rtlPlacement,
+        ...popperOptions,
+        middleware: popperMiddleware,
+      });
+      setPlacement(state.placement);
     });
 
-    handlePopperRefRef.current!(popper);
-
     return () => {
-      popper.destroy();
-      handlePopperRefRef.current!(null);
+      popperUnsubscribe();
     };
-  }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+  }, [resolvedAnchorElement, disablePortal, middleware, open, popperOptions, rtlPlacement]);
 
   const childProps: PopperUnstyledChildrenProps = { placement: placement! };
 
@@ -259,7 +233,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
     direction = 'ltr',
     disablePortal = false,
     keepMounted = false,
-    modifiers,
+    middleware,
     open,
     placement = 'bottom',
     popperOptions = defaultPopperOptions,
@@ -313,7 +287,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
         anchorEl={anchorEl}
         direction={direction}
         disablePortal={disablePortal}
-        modifiers={modifiers}
+        middleware={middleware}
         ref={ref}
         open={transition ? !exited : open}
         placement={placement}
@@ -442,27 +416,11 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
    * For this reason, modifiers should be very performant to avoid bottlenecks.
    * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers: PropTypes.arrayOf(
+  middleware: PropTypes.arrayOf(
     PropTypes.shape({
-      data: PropTypes.object,
-      effect: PropTypes.func,
-      enabled: PropTypes.bool,
-      fn: PropTypes.func,
-      name: PropTypes.any,
-      options: PropTypes.object,
-      phase: PropTypes.oneOf([
-        'afterMain',
-        'afterRead',
-        'afterWrite',
-        'beforeMain',
-        'beforeRead',
-        'beforeWrite',
-        'main',
-        'read',
-        'write',
-      ]),
-      requires: PropTypes.arrayOf(PropTypes.string),
-      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+      fn: PropTypes.func.isRequired,
+      name: PropTypes.string.isRequired,
+      options: PropTypes.any,
     }),
   ),
   /**
@@ -474,9 +432,6 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
    * @default 'bottom'
    */
   placement: PropTypes.oneOf([
-    'auto-end',
-    'auto-start',
-    'auto',
     'bottom-end',
     'bottom-start',
     'bottom',
@@ -495,12 +450,17 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   popperOptions: PropTypes.shape({
-    modifiers: PropTypes.array,
-    onFirstUpdate: PropTypes.func,
+    middleware: PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.oneOf([false]),
+        PropTypes.shape({
+          fn: PropTypes.func.isRequired,
+          name: PropTypes.string.isRequired,
+          options: PropTypes.any,
+        }),
+      ]),
+    ),
     placement: PropTypes.oneOf([
-      'auto-end',
-      'auto-start',
-      'auto',
       'bottom-end',
       'bottom-start',
       'bottom',
@@ -514,6 +474,18 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
       'top-start',
       'top',
     ]),
+    platform: PropTypes.shape({
+      convertOffsetParentRelativeRectToViewportRelativeRect: PropTypes.func,
+      getClientRects: PropTypes.func,
+      getClippingRect: PropTypes.func.isRequired,
+      getDimensions: PropTypes.func.isRequired,
+      getDocumentElement: PropTypes.func,
+      getElementRects: PropTypes.func.isRequired,
+      getOffsetParent: PropTypes.func,
+      getScale: PropTypes.func,
+      isElement: PropTypes.func,
+      isRTL: PropTypes.func,
+    }),
     strategy: PropTypes.oneOf(['absolute', 'fixed']),
   }),
   /**
