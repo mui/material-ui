@@ -60,7 +60,10 @@ function PropsTable(props) {
         <tbody>
           {Object.entries(componentProps).map(([propName, propData]) => {
             const typeDescription = propData.type.description || propData.type.name;
-            const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
+            const propDefault =
+              propData.default === 'undefined'
+                ? undefined
+                : propData.default || (propData.type.name === 'bool' && 'false');
             return (
               propData.description !== '@ignore' && (
                 <tr key={propName}>
