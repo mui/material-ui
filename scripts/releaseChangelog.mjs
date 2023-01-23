@@ -116,7 +116,7 @@ async function main(argv) {
         return getAuthor(commitsItem);
       }),
     ),
-  ).filter((author) => author != null);
+  );
 
   const contributorHandles = authors
     .sort((a, b) => a.localeCompare(b))
