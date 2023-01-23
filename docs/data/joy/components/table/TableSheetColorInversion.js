@@ -23,8 +23,15 @@ export default function TableSheetColorInversion() {
       sx={{
         py: 5,
         borderRadius: 'sm',
+        transition: '0.3s',
         background: (theme) =>
-          `linear-gradient(45deg, ${theme.vars.palette.primary[700]}, ${theme.vars.palette.primary[400]})`,
+          `linear-gradient(45deg, ${theme.vars.palette.primary[800]}, ${theme.vars.palette.primary[400]})`,
+        backgroundSize: '120% 120%',
+        backgroundPosition: 'bottom 0 left 0',
+        '&:hover': {
+          backgroundSize: '100% 100%',
+          backgroundPosition: '0 0',
+        },
       }}
     >
       <Table stripe="odd" hover>
