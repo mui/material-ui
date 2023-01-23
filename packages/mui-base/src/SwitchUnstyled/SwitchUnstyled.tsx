@@ -133,17 +133,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.track,
   });
 
-  const focusTimeout = React.useRef<number>();
-
-  const clearFocusTimeout = () => {
-    if (focusTimeout.current) {
-      clearTimeout(focusTimeout.current);
-      focusTimeout.current = undefined;
-    }
-  };
-
   const handleOnClick = (event: React.BaseSyntheticEvent) => {
-    clearFocusTimeout();
     setCheckedState(!checked);
     setFocusVisible(false);
     const nativeEvent = event.nativeEvent || event;
@@ -155,16 +145,12 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
 
   const handleOnKeyPress = (e: React.KeyboardEvent) => {
     if (e.code === 'Space' && inputRef.current) {
-      clearFocusTimeout();
       setCheckedState(!checked);
     }
   };
 
   const handleOnFocus = () => {
-    clearFocusTimeout();
-    focusTimeout.current = window.setTimeout(() => {
-      setFocusVisible(true);
-    }, 50);
+    setFocusVisible(true);
   };
 
   return (
@@ -179,7 +165,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     >
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
-      <Input {...inputProps} tabIndex="-1" />
+      <Input {...inputProps} tabIndex="-1" sx={{ display: 'none' }} />
     </Root>
   );
 }) as OverridableComponent<SwitchUnstyledTypeMap>;
