@@ -169,15 +169,23 @@ const TableRoot = styled('table', {
       [tableSelector.getHeaderCell()]: {
         verticalAlign: 'bottom',
       },
-      '& tfoot': {
-        '& tr > *': {
-          backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
-          '&:first-child': {
-            borderBottomLeftRadius: 'var(--internal-action-radius)',
-          },
-          '&:last-child': {
-            borderBottomRightRadius: 'var(--internal-action-radius)',
-          },
+      // Automatic radius adjustment with Sheet
+      '& thead th': {
+        '&:first-child': {
+          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+        },
+        '&:last-child': {
+          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+        },
+      },
+      '& tfoot tr > *': {
+        backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
+        // Automatic radius adjustment with Sheet
+        '&:first-child': {
+          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+        },
+        '&:last-child': {
+          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
         },
       },
     },
