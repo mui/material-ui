@@ -9,7 +9,7 @@ export default function GroupCheckboxes() {
   return (
     <Box>
       <Typography id="sandwich-group" level="body2" fontWeight="lg" mb={1}>
-        Sandwich Condiments
+        Sandwich Dressings
       </Typography>
       <Box role="group" aria-labelledby="sandwich-group">
         <List size="sm">

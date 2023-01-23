@@ -91,17 +91,17 @@ This works with any wrapper element—the demo below uses [Sheet](/joy-ui/react-
 
 The default Checkbox is _dual-state:_ the user can toggle between checked and unchecked.
 
-There is, however, the option for a _tri-state_ or indeterminate Checkbox that supports a state known as "partially checked."
+There is also the option for a _tri-state_ or indeterminate Checkbox that supports a state known as "partially checked."
 
 This indeterminate state is often used to communicate the fact that only some out of a set of Checkboxes are checked.
 As such, it's usually reserved for parent Checkboxes that can control the states of their children.
 
 The demo below shows how to implement the `indeterminate` prop on a parent Checkbox that watches for the checked state in its children.
-If only one child is checked, the parent will display the indeterminate state.
+If only one child is checked, then the parent displays the indeterminate state.
 Clicking on the parent Checkbox toggles selecting and deselecting all children.
 
 :::warning
-When the indeterminate state is set, the value of the `checked` prop only impacts the form submitted values.
+When the indeterminate state is set, the value of the `checked` prop only impacts form-submitted values.
 It has no accessibility or UX implications.
 :::
 
@@ -132,21 +132,20 @@ Learn more about accessible design patterns for checkboxes [in the W3C documenta
 
 ### Filtering status
 
-In this example, we're using variants _and_ colors, within the `ListItem` and `Checkbox` component, to communicate state changes
+This example uses variants and colors available to the List Item and Checkbox components to communicate state changes.
 
 {{"demo": "ExampleFilterStatusCheckbox.js"}}
 
 ### Filtering members
 
-Note that in this example, we're using the CSS `flexDirection: 'rowReverse'` property to properly position the label and icon.
-
-Don't forget to use the `label` prop to ensure proper checkbox accessibility.
+This example uses the CSS `flexDirection: 'rowReverse'` property to position the label and icon.
+Don't forget to use the `label` prop to ensure proper Checkbox accessibility.
 
 {{"demo": "ExampleFilterMemberCheckbox.js"}}
 
 ### Choice chips
 
-You can use checkboxes to create a chip alike design, most often used to filter between different options.
+You can use Checkbox to recreate a kind of [Chip](/material-ui/react-chip/) component, which is commonly implemented in the form of a group of filtering options.
 
 {{"demo": "ExampleChoiceChipCheckbox.js"}}
 
