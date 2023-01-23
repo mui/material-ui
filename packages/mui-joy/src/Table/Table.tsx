@@ -147,7 +147,7 @@ const TableRoot = styled('table', {
         padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
         height: 'var(--private_TableCell-height)',
         borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
-        background: 'var(--TableCell-dataBackground)',
+        backgroundColor: 'var(--TableCell-dataBackground)', // use `background-color` in case the Sheet has gradient background
         ...(ownerState.noWrap && {
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -157,7 +157,7 @@ const TableRoot = styled('table', {
       [tableSelector.getHeadCell()]: {
         textAlign: 'left',
         padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
-        background: 'var(--TableCell-headBackground)',
+        backgroundColor: 'var(--TableCell-headBackground)', // use `background-color` in case the Sheet has gradient background
         height: 'var(--private_TableCell-height)',
         fontWeight: theme.vars.fontWeight.lg,
         borderColor: 'var(--TableCell-borderColor)',
