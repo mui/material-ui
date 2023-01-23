@@ -3,9 +3,15 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import Table from '@mui/joy/Table';
+import Table, { TableProps } from '@mui/joy/Table';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -18,7 +24,8 @@ const rows = [
 ];
 
 export default function TableBorder() {
-  const [borderAxis, setBorderAxis] = React.useState('xBetween');
+  const [borderAxis, setBorderAxis] =
+    React.useState<TableProps['borderAxis']>('xBetween');
   return (
     <div>
       <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
@@ -26,7 +33,7 @@ export default function TableBorder() {
         <Select
           size="sm"
           value={borderAxis}
-          onChange={(event, newValue) => setBorderAxis(newValue)}
+          onChange={(event, newValue) => setBorderAxis(newValue!)}
         >
           {['xBetween', 'x', 'yBetween', 'y', 'bothBetween', 'both', 'none'].map(
             (axis) => (

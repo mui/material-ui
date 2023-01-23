@@ -33,7 +33,7 @@ export default function TableStripe() {
           <Radio label="even" value="even" />
         </RadioGroup>
       </FormControl>
-      <Table aria-label="simple table" stripe={stripe}>
+      <Table aria-label="striped table" stripe={stripe}>
         <thead>
           <tr>
             <th style={{ width: '40%' }}>Dessert (100g serving)</th>

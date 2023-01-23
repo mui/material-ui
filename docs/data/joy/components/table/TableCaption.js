@@ -13,7 +13,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableStickyHeader() {
+export default function TableCaption() {
   return (
     <Table>
       <caption>A caption should be a summary of the table.</caption>

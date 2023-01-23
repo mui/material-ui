@@ -2,7 +2,13 @@ import * as React from 'react';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -14,27 +20,14 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableSheetColorInversion() {
+export default function TableSheet() {
   return (
-    <Sheet
-      variant="solid"
-      color="primary"
-      invertedColors
-      sx={{
-        py: 5,
-        borderRadius: 'sm',
-        transition: '0.3s',
-        background: (theme) =>
-          `linear-gradient(45deg, ${theme.vars.palette.primary[800]}, ${theme.vars.palette.primary[400]})`,
-        backgroundSize: '120% 120%',
-        backgroundPosition: 'bottom 0 left 0',
-        '&:hover': {
-          backgroundSize: '100% 100%',
-          backgroundPosition: '0 0',
-        },
-      }}
-    >
-      <Table stripe="odd" hoverRow>
+    <Sheet variant="soft" sx={{ py: 5, borderRadius: 'sm' }}>
+      <Table
+        stripe="odd"
+        hoverRow
+        sx={{ captionSide: 'bottom', bgcolor: 'background.surface' }}
+      >
         <caption>Nutrition of your favorite menus.</caption>
         <thead>
           <tr>

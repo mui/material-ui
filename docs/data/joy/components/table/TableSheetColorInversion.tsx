@@ -2,7 +2,13 @@ import * as React from 'react';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 

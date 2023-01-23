@@ -13,9 +13,9 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function BasicTable() {
+export default function TableColumnWidth() {
   return (
-    <Table aria-label="outlined table">
+    <Table>
       <thead>
         <tr>
           <th style={{ width: '40%' }}>Column width (40%)</th>

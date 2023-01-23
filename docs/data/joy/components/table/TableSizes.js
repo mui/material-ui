@@ -33,7 +33,7 @@ export default function TableSizes() {
           <Radio label="lg" value="lg" />
         </RadioGroup>
       </FormControl>
-      <Table aria-label="simple table" size={size}>
+      <Table aria-label="table sizes" size={size}>
         <thead>
           <tr>
             <th style={{ width: '40%' }}>Dessert (100g serving)</th>

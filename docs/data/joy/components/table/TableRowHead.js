@@ -14,7 +14,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableAlignment() {
+export default function TableRowHead() {
   return (
     <Sheet variant="outlined">
       <Table variant="soft" borderAxis="bothBetween">

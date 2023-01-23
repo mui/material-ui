@@ -5,7 +5,13 @@ import Table from '@mui/joy/Table';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -34,8 +40,9 @@ export default function TableColumnPinning() {
           '--TableRow-stripeBackground': 'rgba(0 0 0 / 0.04)',
           '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
           overflow: 'auto',
-          background: (theme) =>
-            `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
+          background: (
+            theme,
+          ) => `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
             linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
             radial-gradient(
               farthest-side at 0 50%,

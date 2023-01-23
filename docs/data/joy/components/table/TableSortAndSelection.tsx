@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';
 import Typography from '@mui/joy/Typography';
@@ -19,7 +18,21 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(name, calories, fat, carbs, protein) {
+interface Data {
+  calories: number;
+  carbs: number;
+  fat: number;
+  name: string;
+  protein: number;
+}
+
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+): Data {
   return {
     name,
     calories,
@@ -45,11 +58,19 @@ const rows = [
   createData('Oreo', 437, 18.0, 63, 4.0),
 ];
 
-function labelDisplayedRows({ from, to, count }) {
+function labelDisplayedRows({
+  from,
+  to,
+  count,
+}: {
+  from: number;
+  to: number;
+  count: number;
+}) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
 }
 
-function descendingComparator(a, b, orderBy) {
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -59,7 +80,15 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-function getComparator(order, orderBy) {
+type Order = 'asc' | 'desc';
+
+function getComparator<Key extends keyof any>(
+  order: Order,
+  orderBy: Key,
+): (
+  a: { [key in Key]: number | string },
+  b: { [key in Key]: number | string },
+) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -69,8 +98,8 @@ function getComparator(order, orderBy) {
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
 // with exampleArray.slice().sort(exampleComparator)
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
+function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
@@ -81,7 +110,14 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
+interface HeadCell {
+  disablePadding: boolean;
+  id: keyof Data;
+  label: string;
+  numeric: boolean;
+}
+
+const headCells: readonly HeadCell[] = [
   {
     id: 'name',
     numeric: false,
@@ -114,12 +150,22 @@ const headCells = [
   },
 ];
 
-function EnhancedTableHead(props) {
+interface EnhancedTableProps {
+  numSelected: number;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  order: Order;
+  orderBy: string;
+  rowCount: number;
+}
+
+function EnhancedTableHead(props: EnhancedTableProps) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
+  const createSortHandler =
+    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+      onRequestSort(event, property);
+    };
 
   return (
     <thead>
@@ -143,7 +189,9 @@ function EnhancedTableHead(props) {
             <th
               key={headCell.id}
               aria-sort={
-                active ? { asc: 'ascending', desc: 'descending' }[order] : undefined
+                active
+                  ? ({ asc: 'ascending', desc: 'descending' } as const)[order]
+                  : undefined
               }
             >
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -188,16 +236,11 @@ function EnhancedTableHead(props) {
   );
 }
 
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-};
+interface EnhancedTableToolbarProps {
+  numSelected: number;
+}
 
-function EnhancedTableToolbar(props) {
+function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const { numSelected } = props;
 
   return (
@@ -247,24 +290,23 @@ function EnhancedTableToolbar(props) {
   );
 }
 
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
-
 export default function TableSortAndSelection() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
+  const [order, setOrder] = React.useState<Order>('asc');
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
+  const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const handleRequestSort = (event, property) => {
+  const handleRequestSort = (
+    event: React.MouseEvent<unknown>,
+    property: keyof Data,
+  ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.name);
       setSelected(newSelected);
@@ -273,9 +315,9 @@ export default function TableSortAndSelection() {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
+  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
+    let newSelected: readonly string[] = [];
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
@@ -293,12 +335,12 @@ export default function TableSortAndSelection() {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event, newValue) => {
-    setRowsPerPage(parseInt(newValue.toString(), 10));
+  const handleChangeRowsPerPage = (event: any, newValue: number | null) => {
+    setRowsPerPage(parseInt(newValue!.toString(), 10));
     setPage(0);
   };
 
@@ -311,7 +353,7 @@ export default function TableSortAndSelection() {
       : Math.min(rows.length, (page + 1) * rowsPerPage);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -364,12 +406,12 @@ export default function TableSortAndSelection() {
                   // selected={isItemSelected}
                   style={
                     isItemSelected
-                      ? {
+                      ? ({
                           '--TableCell-dataBackground':
                             'var(--TableCell-selectedBackground)',
                           '--TableCell-headBackground':
                             'var(--TableCell-selectedBackground)',
-                        }
+                        } as React.CSSProperties)
                       : {}
                   }
                 >
@@ -396,10 +438,12 @@ export default function TableSortAndSelection() {
             })}
           {emptyRows > 0 && (
             <tr
-              style={{
-                height: `calc(${emptyRows} * 40px)`,
-                '--TableRow-hoverBackground': 'transparent',
-              }}
+              style={
+                {
+                  height: `calc(${emptyRows} * 40px)`,
+                  '--TableRow-hoverBackground': 'transparent',
+                } as React.CSSProperties
+              }
             >
               <td colSpan={6} />
             </tr>

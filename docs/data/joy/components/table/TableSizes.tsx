@@ -1,11 +1,17 @@
 import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Table from '@mui/joy/Table';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Radio from '@mui/joy/Radio';
+import Table, { TableProps } from '@mui/joy/Table';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -17,27 +23,23 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableBorder() {
-  const [borderAxis, setBorderAxis] = React.useState('xBetween');
+export default function TableSizes() {
+  const [size, setSize] = React.useState<TableProps['size']>('md');
   return (
     <div>
       <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
-        <FormLabel>Border axis:</FormLabel>
-        <Select
-          size="sm"
-          value={borderAxis}
-          onChange={(event, newValue) => setBorderAxis(newValue)}
+        <FormLabel>Size:</FormLabel>
+        <RadioGroup
+          row
+          value={size}
+          onChange={(event) => setSize(event.target.value as typeof size)}
         >
-          {['xBetween', 'x', 'yBetween', 'y', 'bothBetween', 'both', 'none'].map(
-            (axis) => (
-              <Option key={axis} value={axis}>
-                {axis}
-              </Option>
-            ),
-          )}
-        </Select>
+          <Radio label="sm" value="sm" />
+          <Radio label="md" value="md" />
+          <Radio label="lg" value="lg" />
+        </RadioGroup>
       </FormControl>
-      <Table borderAxis={borderAxis}>
+      <Table aria-label="table sizes" size={size}>
         <thead>
           <tr>
             <th style={{ width: '40%' }}>Dessert (100g serving)</th>
@@ -50,7 +52,7 @@ export default function TableBorder() {
         <tbody>
           {rows.map((row) => (
             <tr key={row.name}>
-              <th scope="row">{row.name}</th>
+              <td>{row.name}</td>
               <td>{row.calories}</td>
               <td>{row.fat}</td>
               <td>{row.carbs}</td>

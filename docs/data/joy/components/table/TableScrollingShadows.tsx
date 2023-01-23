@@ -3,7 +3,13 @@ import Table from '@mui/joy/Table';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -33,8 +39,9 @@ export default function TableScrollingShadows() {
           '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
           height: 200,
           overflow: 'auto',
-          background: (theme) =>
-            `linear-gradient(${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
+          background: (
+            theme,
+          ) => `linear-gradient(${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
             linear-gradient(rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
             radial-gradient(
               farthest-side at 50% 0,

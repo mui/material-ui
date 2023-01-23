@@ -1,7 +1,13 @@
 import * as React from 'react';
 import Table from '@mui/joy/Table';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -13,12 +19,13 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function TableHover() {
+export default function TableCaption() {
   return (
-    <Table hoverRow>
+    <Table>
+      <caption>A caption should be a summary of the table.</caption>
       <thead>
         <tr>
-          <th style={{ width: '40%' }}>Column width (40%)</th>
+          <th style={{ width: '40%' }}>Menu</th>
           <th>Calories</th>
           <th>Fat&nbsp;(g)</th>
           <th>Carbs&nbsp;(g)</th>

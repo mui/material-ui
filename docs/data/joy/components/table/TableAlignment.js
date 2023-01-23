@@ -15,10 +15,7 @@ const rows = [
 
 export default function TableAlignment() {
   return (
-    <Table
-      aria-label="outlined table"
-      sx={{ '& tr > *:not(:first-child)': { textAlign: 'right' } }}
-    >
+    <Table sx={{ '& tr > *:not(:first-child)': { textAlign: 'right' } }}>
       <thead>
         <tr>
           <th style={{ width: '40%' }}>Column width (40%)</th>

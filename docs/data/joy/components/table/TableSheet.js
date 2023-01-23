@@ -19,7 +19,7 @@ export default function TableSheet() {
     <Sheet variant="soft" sx={{ py: 5, borderRadius: 'sm' }}>
       <Table
         stripe="odd"
-        hover
+        hoverRow
         sx={{ captionSide: 'bottom', bgcolor: 'background.surface' }}
       >
         <caption>Nutrition of your favorite menus.</caption>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -9,7 +9,13 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Table from '@mui/joy/Table';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -22,8 +28,8 @@ const rows = [
 ];
 
 export default function TableVariants() {
-  const [variant, setVariant] = React.useState('plain');
-  const [color, setColor] = React.useState('neutral');
+  const [variant, setVariant] = React.useState<VariantProp>('plain');
+  const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
   return (
     <div>
       <Box
@@ -40,7 +46,7 @@ export default function TableVariants() {
           <RadioGroup
             row
             value={variant}
-            onChange={(event) => setVariant(event.target.value)}
+            onChange={(event) => setVariant(event.target.value as typeof variant)}
           >
             <Radio label="plain" value="plain" />
             <Radio label="outlined" value="outlined" />
@@ -53,7 +59,7 @@ export default function TableVariants() {
           <Select
             size="sm"
             value={color}
-            onChange={(event, newValue) => setColor(newValue)}
+            onChange={(event, newValue) => setColor(newValue as typeof color)}
           >
             {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
               (item) => (
