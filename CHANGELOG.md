@@ -74,7 +74,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @HeVictor, @hbjORbj, @joserodolfofreitas, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rosita-dmello, @sai6855, @SaidMarar, @tech-meppem, @ZeeshanTamboli
 
-
 ## 5.11.5
 
 <!-- generated comparing v5.11.4..master -->
