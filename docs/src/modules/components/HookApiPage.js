@@ -43,7 +43,7 @@ const Table = styled('table')(({ theme }) => {
 });
 
 function PropertiesTable(props) {
-  const { properties, propertiesDescriptions } = props;
+  const { properties, propertiesDescriptions, showOptionalAbbr = false } = props;
   const t = useTranslate();
 
   return (
@@ -71,11 +71,21 @@ function PropertiesTable(props) {
               propData.description !== '@ignore' && (
                 <tr key={propName}>
                   <td align="left">
-                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
+                    <span
+                      className={clsx('prop-name', {
+                        required: propData.required && !showOptionalAbbr,
+                        optional: !propData.required && showOptionalAbbr,
+                      })}
+                    >
                       {propName}
-                      {propData.required && (
+                      {propData.required && !showOptionalAbbr && (
                         <sup>
                           <Asterisk title="required">*</Asterisk>
+                        </sup>
+                      )}
+                      {!propData.required && showOptionalAbbr && (
+                        <sup>
+                          <abbr title="optional">?</abbr>
                         </sup>
                       )}
                     </span>
@@ -119,6 +129,7 @@ function PropertiesTable(props) {
 PropertiesTable.propTypes = {
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
+  showOptionalAbbr: PropTypes.bool,
 };
 
 function getTranslatedHeader(t, header) {
@@ -257,6 +268,7 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
         <PropertiesTable properties={parameters} propertiesDescriptions={parametersDescriptions} />
         <Heading hash="return-value" />
         <PropertiesTable
+          showOptionalAbbr
           properties={returnValue}
           propertiesDescriptions={returnValueDescriptions}
         />
