@@ -9,7 +9,7 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
 
 const TestComponent = () => {
   return (
-    <>
+    <React.Fragment>
       <MenuItem />
       <MenuItem component={'a'} href="/test" />
 
@@ -29,6 +29,6 @@ const TestComponent = () => {
           expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
-    </>
+    </React.Fragment>
   );
 };

@@ -10,9 +10,9 @@ const paperProps: PaperProps<'span'> = {
 };
 function Test() {
   return (
-    <>
+    <React.Fragment>
       <Dialog open />;
       <Dialog open PaperProps={paperProps} />;
-    </>
+    </React.Fragment>
   );
 }

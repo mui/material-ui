@@ -10,9 +10,9 @@ const paperProps: PaperProps<'span'> = {
 };
 function Test() {
   return (
-    <>
+    <React.Fragment>
       <Drawer open />;
       <Drawer open PaperProps={paperProps} />;
-    </>
+    </React.Fragment>
   );
 }

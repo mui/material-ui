@@ -27,7 +27,7 @@ const props3: FormHelperTextProps<'span'> = {
 
 const TestComponent = () => {
   return (
-    <>
+    <React.Fragment>
       <FormHelperText />
       <FormHelperText component={'a'} href="/test" />
 
@@ -42,6 +42,6 @@ const TestComponent = () => {
           expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
-    </>
+    </React.Fragment>
   );
 };
