@@ -340,7 +340,10 @@ Table.propTypes /* remove-proptypes */ = {
    * The axis to display a border on the table cell.
    * @default 'xBetween'
    */
-  borderAxis: PropTypes.oneOf(['both', 'bothBetween', 'none', 'x', 'xBetween', 'y', 'yBetween']),
+  borderAxis: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['both', 'bothBetween', 'none', 'x', 'xBetween', 'y', 'yBetween']),
+    PropTypes.string,
+  ]),
   /**
    * Children of the table
    */
@@ -353,7 +356,10 @@ Table.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -377,7 +383,10 @@ Table.propTypes /* remove-proptypes */ = {
    * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * Set the header sticky.
    *
@@ -388,59 +397,9 @@ Table.propTypes /* remove-proptypes */ = {
   /**
    * The odd or even row of the table body will have subtle background color.
    */
-  stripe: PropTypes.oneOfType([
-    PropTypes.oneOf(['even', 'odd']),
-    PropTypes.shape({
-      '__@iterator@94': PropTypes.func.isRequired,
-      anchor: PropTypes.func.isRequired,
-      at: PropTypes.func.isRequired,
-      big: PropTypes.func.isRequired,
-      blink: PropTypes.func.isRequired,
-      bold: PropTypes.func.isRequired,
-      charAt: PropTypes.func.isRequired,
-      charCodeAt: PropTypes.func.isRequired,
-      codePointAt: PropTypes.func.isRequired,
-      concat: PropTypes.func.isRequired,
-      endsWith: PropTypes.func.isRequired,
-      fixed: PropTypes.func.isRequired,
-      fontcolor: PropTypes.func.isRequired,
-      fontsize: PropTypes.func.isRequired,
-      includes: PropTypes.func.isRequired,
-      indexOf: PropTypes.func.isRequired,
-      italics: PropTypes.func.isRequired,
-      lastIndexOf: PropTypes.func.isRequired,
-      length: PropTypes.number.isRequired,
-      link: PropTypes.func.isRequired,
-      localeCompare: PropTypes.func.isRequired,
-      match: PropTypes.func.isRequired,
-      matchAll: PropTypes.func.isRequired,
-      normalize: PropTypes.func.isRequired,
-      padEnd: PropTypes.func.isRequired,
-      padStart: PropTypes.func.isRequired,
-      repeat: PropTypes.func.isRequired,
-      replace: PropTypes.func.isRequired,
-      search: PropTypes.func.isRequired,
-      slice: PropTypes.func.isRequired,
-      small: PropTypes.func.isRequired,
-      split: PropTypes.func.isRequired,
-      startsWith: PropTypes.func.isRequired,
-      strike: PropTypes.func.isRequired,
-      sub: PropTypes.func.isRequired,
-      substr: PropTypes.func.isRequired,
-      substring: PropTypes.func.isRequired,
-      sup: PropTypes.func.isRequired,
-      toLocaleLowerCase: PropTypes.func.isRequired,
-      toLocaleUpperCase: PropTypes.func.isRequired,
-      toLowerCase: PropTypes.func.isRequired,
-      toString: PropTypes.func.isRequired,
-      toUpperCase: PropTypes.func.isRequired,
-      trim: PropTypes.func.isRequired,
-      trimEnd: PropTypes.func.isRequired,
-      trimLeft: PropTypes.func.isRequired,
-      trimRight: PropTypes.func.isRequired,
-      trimStart: PropTypes.func.isRequired,
-      valueOf: PropTypes.func.isRequired,
-    }),
+  stripe: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['odd', 'even']),
+    PropTypes.string,
   ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -454,7 +413,10 @@ Table.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Table;
