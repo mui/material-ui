@@ -142,7 +142,7 @@ The Checkbox will be linked to the helper text via the `aria-describedby` attrib
 
 ### Group
 
-To group multiple Checkboxes, wrap them in a container component like [Box](/joy-ui/react-box/) with `role="group"`.
+To group multiple Checkboxes, wrap them in a container component like Box with `role="group"`.
 
 Combine with the [List](/joy-ui/react-list/) component to ensure consistent spacing and enable screen readers to interpret the Checkbox group as a list.
 Learn more about accessible design patterns for checkboxes [in the W3C documentation](https://www.w3.org/WAI/ARIA/apg/example-index/checkbox/checkbox.html).
