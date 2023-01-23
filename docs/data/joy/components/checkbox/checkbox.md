@@ -166,7 +166,7 @@ Don't forget to use the `label` prop to ensure proper Checkbox accessibility.
 
 ### Choice chips
 
-You can use Checkbox to recreate a kind of [Chip](/material-ui/react-chip/) component, which is commonly implemented in the form of a group of filtering options.
+You can use Checkbox to recreate a kind of [Chip](/joy-ui/react-chip/) component, which is commonly implemented in the form of a group of filtering options.
 
 {{"demo": "ExampleChoiceChipCheckbox.js"}}
 
