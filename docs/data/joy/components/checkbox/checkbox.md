@@ -42,12 +42,33 @@ Use the `label` prop to provide text, and add `defaultChecked` when the input sh
 
 ### Variants
 
-When unchecked, the checkbox component uses the `outlined` variant.
-When checked, the variant changes to `solid`. See [Variants](#variants) for more details.
+The Checkbox component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`.
+When unchecked, the Checkbox is set to `outlined`.
+When checked, the variant changes to `solid`. 
+
+{{"demo": "CheckboxVariants.js"}}
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
 
 ### Sizes
 
+The Checkbox component comes in three sizes: `sm`, `md` (default), and `lg`.
+
+{{"demo": "CheckboxSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
 ### Colors
+
+Every palette included in the theme is available via the `color` prop.
+Play around combining different colors with different variants.
+
+{{"demo": "CheckboxColors.js"}}
 
 ### Icons
 
