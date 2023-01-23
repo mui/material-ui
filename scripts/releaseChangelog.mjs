@@ -94,12 +94,17 @@ async function main(argv) {
     commitsItems.push(...compareCommits.commits.filter(filterCommit));
   }
 
+  let warnedOnce = false;
+
   const getAuthor = (commit) => {
     if (!commit.author) {
-      console.warn(
-        `The author of the commit: ${commit.commit.tree.url} cannot be retrieved. Please add the github username manually.`,
-      );
-      return null;
+      if (!warnedOnce) {
+        console.warn(
+          `The author of the commit: ${commit.commit.tree.url} cannot be retrieved. Please add the github username manually.`,
+        );
+      }
+      warnedOnce = true;
+      return 'TODO add the author username';
     }
 
     return commit.author?.login;
@@ -140,7 +145,7 @@ async function main(argv) {
       // i.e. we can sort the lines alphanumerically
       .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker}${shortMessage} @${commitsItem.author?.login}`;
+    return `- ${dateSortMarker}${shortMessage} @${getAuthor(commitsItem)}`;
   });
   const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',
