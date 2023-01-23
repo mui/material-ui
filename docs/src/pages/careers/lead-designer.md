@@ -77,10 +77,10 @@ And, it's also important that you have enough development skills – CSS, JSX, G
 
 - **Expert-level UI knowledge**. You can craft great-looking designs, spotting tiny details most people wouldn't pay attention to.
 - **Expert-level UX knowledge**. You can build intuitive solutions, both high and low-level ones. You care about the entire user journey as well as an interaction with a specific component.
-- **Sharp written and verbal communication skills**. Communicating clearly is fundamental to create and manage both a high-quality product and team. You'll interface with our team, community memembers, enterprise custommers and also contribute to user documentation.
-- **Managerial abilities**. You have either managed a team before or is feeling ready to start now. You've shown that you're a design leader and can provide the needed guidance and support to other designers.
-- **Comfortable around design systems**. You've worked on a component library before and have experienced the challenges around managing one.
-- **Enough development autonomy**. Our product is inherently code. Knowing how to navigate through code is essential to really understand our products, improve the collaboration with engineers, and guarantee the attention to detail that's key for our success. You had experience before with CSS (mainly CSS-in-JS), JSX, and Git.
+- **Sharp written and verbal communication skills**. Communicating clearly is fundamental to create and manage high-quality products and teams. You'll interface with our team, community members, enterprise customers and also contribute to user documentation.
+- **Managerial abilities**. You have either managed a team before or are feeling ready to start now. You've shown that you're a design leader and can provide the needed guidance and support to other designers.
+- **Comfortable around design systems**. You've worked on one before and have experienced the challenges of developing it.
+- **Enough development autonomy**. Our products are essentially code. Knowing how to navigate through code is essential to really understand them, improve the collaboration with engineers, and guarantee the attention to detail that's key for their success. You know how to work with CSS (mainly CSS-in-JS), JSX, and Git.
 
 ### What would be nice if you had, but isn't required
 
