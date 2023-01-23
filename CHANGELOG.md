@@ -74,7 +74,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @HeVictor, @hbjORbj, @joserodolfofreitas, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rosita-dmello, @sai6855, @SaidMarar, @tech-meppem, @ZeeshanTamboli
 
-Done in 2.16s.
 
 ## 5.11.5
 
