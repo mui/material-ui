@@ -68,10 +68,10 @@ As a **team leader**, you will:
 
 ## About you
 
-We're looking for someone with an expert eye for Both UI and UX design.
-Additionally, you're a manager that can assist, support, and guide the team,
-It's also important that you have enough development skills – CSS, JSX, Git, etc. – to assist the implementation of the designs (or implemenet them yourself).
-Details matter to you.
+We're looking for someone with an expert eye for both UI and UX design. Details matter to you.
+
+You're a manager that can support, and guide the team.
+And, it's also important that you have enough development skills – CSS, JSX, Git, etc. – to assist the implementation of the designs (or implemenet them yourself).
 
 ### Skills you should have
 
