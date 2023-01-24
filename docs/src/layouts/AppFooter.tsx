@@ -183,7 +183,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.youtube.com/channel/UCUdh2wVTrd7hErLo9Rh0HsQ"
+              href="https://www.youtube.com/@MUI_hq"
               aria-label="YouTube"
               title="YouTube"
               size="small"
