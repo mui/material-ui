@@ -32,7 +32,7 @@ function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMu
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const {
     buttonRef: buttonRefProp,
-    defaultValue,
+    defaultValue: defaultValueProp,
     disabled = false,
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
@@ -51,6 +51,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const listboxId = useId(listboxIdProp);
+
+  let defaultValue = defaultValueProp;
+  if (valueProp === undefined && defaultValueProp === undefined) {
+    defaultValue = multiple ? [] : null;
+  }
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -249,11 +254,9 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onChange: (e, newValues) => {
         setValue(newValues);
         onChangeMultiple?.(e, newValues);
-        notifySelectionChanged(e, newValues);
       },
       onHighlightChange: (e, newValue) => {
         onHighlightChange?.(e, newValue ?? null);
-        notifyHighlightChanged(e, newValue ?? null);
       },
       options: optionValues,
       optionStringifier: stringifyOption,
@@ -272,11 +275,9 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onChange: (e, newValue: TValue | null) => {
         setValue(newValue);
         onChangeSingle?.(e, newValue);
-        notifySelectionChanged(e, newValue);
       },
       onHighlightChange: (e, newValue) => {
         onHighlightChange?.(e, newValue);
-        notifyHighlightChanged(e, newValue);
       },
       options: optionValues,
       optionStringifier: stringifyOption,
@@ -292,6 +293,14 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     highlightedOption,
     selectedOption: listboxSelectedOption,
   } = useListbox(useListboxParameters);
+
+  React.useEffect(() => {
+    notifySelectionChanged(null, listboxSelectedOption);
+  }, [listboxSelectedOption, notifySelectionChanged]);
+
+  React.useEffect(() => {
+    notifyHighlightChanged(null, highlightedOption);
+  }, [highlightedOption, notifyHighlightChanged]);
 
   const getButtonProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,

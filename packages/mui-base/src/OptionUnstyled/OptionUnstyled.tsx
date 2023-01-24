@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
 import {
@@ -11,6 +10,7 @@ import {
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
+import useOption from './useOption';
 
 function useUtilityClasses(ownerState: OptionState) {
   const { disabled, highlighted, selected } = ownerState;
@@ -32,7 +32,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const {
     children,
     component,
-    disabled,
+    disabled = false,
     label,
     slotProps = {},
     slots = {},
@@ -45,86 +45,28 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
-  const optionState = selectContext.getOptionState(value);
-  const optionProps = selectContext.getOptionProps(value);
-
-  const [selected, setSelected] = React.useState(optionState.selected);
-  const [highlighted, setHighlighted] = React.useState(optionState.highlighted);
-
-  React.useEffect(() => {
-    function updateSelectedState(e: unknown, newValue: TValue | null) {
-      // TODO: use option comparer
-      if (newValue === value && !selected) {
-        setSelected(true);
-      } else if (newValue !== value && selected) {
-        setSelected(false);
-      }
-    }
-
-    selectContext.registerSelectionChangeHandler(updateSelectedState);
-
-    return () => {
-      selectContext.unregisterSelectionChangeHandler(updateSelectedState);
-    };
-  }, [selectContext, selected, value]);
-
-  React.useEffect(() => {
-    function updateHighlightedState(e: unknown, newValue: TValue | null) {
-      // TODO: use option comparer
-      if (newValue === value && !highlighted) {
-        setHighlighted(true);
-      } else if (newValue !== value && highlighted) {
-        setHighlighted(false);
-      }
-    }
-
-    selectContext.registerHighlightChangeHandler(updateHighlightedState);
-    return () => {
-      selectContext.unregisterHighlightChangeHandler(updateHighlightedState);
-    };
-  }, [selectContext, highlighted, value]);
-
   const Root = component || slots.root || 'li';
 
-  const listboxRef = selectContext.listboxRef;
+  const { getRootProps, selected, highlighted } = useOption({
+    disabled,
+    value,
+    optionRef: ref,
+  });
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
+    disabled,
     selected,
     highlighted,
-    disabled: disabled ?? false,
   };
-
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const handleRef = useForkRef(ref, optionRef);
-
-  React.useEffect(() => {
-    // Scroll to the currently highlighted option
-    if (highlighted) {
-      if (!listboxRef.current || !optionRef.current) {
-        return;
-      }
-      const listboxClientRect = listboxRef.current.getBoundingClientRect();
-      const optionClientRect = optionRef.current.getBoundingClientRect();
-
-      if (optionClientRect.top < listboxClientRect.top) {
-        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
-      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
-        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
-      }
-    }
-  }, [highlighted, listboxRef]);
 
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
+    getSlotProps: getRootProps,
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
-    additionalProps: {
-      ...optionProps,
-      ref: handleRef,
-    },
     className: classes.root,
     ownerState,
   });

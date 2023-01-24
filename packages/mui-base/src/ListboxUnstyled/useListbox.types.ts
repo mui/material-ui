@@ -174,7 +174,7 @@ interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProp
   /**
    * The selected value. Use when the component is controlled.
    */
-  value?: TOption | null;
+  value: TOption | null;
   /**
    * Callback fired when the value changes.
    */
@@ -197,7 +197,7 @@ interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps
   /**
    * The selected value. Use when the component is controlled.
    */
-  value?: TOption[];
+  value: TOption[];
   /**
    * Callback fired when the value changes.
    */
