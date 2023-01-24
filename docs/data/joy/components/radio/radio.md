@@ -87,7 +87,7 @@ To control what the radio button is selecting, use the `value` and `onChange` pr
 
 ### Focus outline
 
-The focus outline, by default, wraps both the radio itself and its label.
+The focus outline, by default, wraps both the radio and its label.
 To change that, target the `radioClasses.radio` class and add `position: 'relative'`.
 
 {{"demo": "RadioFocus.js"}}
