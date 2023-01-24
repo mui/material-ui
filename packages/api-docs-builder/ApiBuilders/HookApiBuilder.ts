@@ -396,7 +396,9 @@ Page.getInitialProps = () => {
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const hookName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
-  function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
+  function resolveApiDocsTranslationsComponentLanguagePath(
+    language: (typeof LANGUAGES)[0],
+  ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
     return path.join(apiDocsTranslationPath, `${kebabCase(hookName)}${languageSuffix}.json`);
