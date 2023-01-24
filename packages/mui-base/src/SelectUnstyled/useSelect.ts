@@ -6,7 +6,6 @@ import {
 } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
-  SelectChangeEventType,
   SelectOption,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -26,6 +25,7 @@ import {
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
+import useSelectChangeNotifiers from './useSelectChangeNotifiers';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
@@ -86,55 +86,8 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
 
   const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
-  const selectionChangeEventHandlers = React.useRef<
-    Set<(e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void>
-  >(new Set());
-
-  const highlightChangeEventHandlers = React.useRef<
-    Set<(e: SelectChangeEventType, newValue: TValue | null) => void>
-  >(new Set());
-
-  const handleSelectionChange = React.useCallback(
-    (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => {
-      selectionChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
-    },
-    [],
-  );
-
-  const handleHighlightChange = React.useCallback(
-    (e: SelectChangeEventType, newValue: TValue | null) => {
-      highlightChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
-    },
-    [],
-  );
-
-  const registerSelectionChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void) => {
-      selectionChangeEventHandlers.current.add(handler);
-    },
-    [],
-  );
-
-  const unregisterSelectionChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void) => {
-      selectionChangeEventHandlers.current.delete(handler);
-    },
-    [],
-  );
-
-  const registerHighlightChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | null) => void) => {
-      highlightChangeEventHandlers.current.add(handler);
-    },
-    [],
-  );
-
-  const unregisterHighlightChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | null) => void) => {
-      highlightChangeEventHandlers.current.delete(handler);
-    },
-    [],
-  );
+  const { notifySelectionChanged, notifyHighlightChanged, registrationFunctions } =
+    useSelectChangeNotifiers<TValue>();
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -296,11 +249,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onChange: (e, newValues) => {
         setValue(newValues);
         onChangeMultiple?.(e, newValues);
-        handleSelectionChange(e, newValues);
+        notifySelectionChanged(e, newValues);
       },
       onHighlightChange: (e, newValue) => {
         onHighlightChange?.(e, newValue ?? null);
-        handleHighlightChange(e, newValue ?? null);
+        notifyHighlightChanged(e, newValue ?? null);
       },
       options: optionValues,
       optionStringifier: stringifyOption,
@@ -319,11 +272,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onChange: (e, newValue: TValue | null) => {
         setValue(newValue);
         onChangeSingle?.(e, newValue);
-        handleSelectionChange(e, newValue);
+        notifySelectionChanged(e, newValue);
       },
       onHighlightChange: (e, newValue) => {
         onHighlightChange?.(e, newValue);
-        handleHighlightChange(e, newValue);
+        notifyHighlightChanged(e, newValue);
       },
       options: optionValues,
       optionStringifier: stringifyOption,
@@ -394,10 +347,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps,
     getOptionState,
     open,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-    unregisterHighlightChangeHandler,
-    unregisterSelectionChangeHandler,
+    ...registrationFunctions,
     value,
     highlightedOption,
   };
