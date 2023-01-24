@@ -111,10 +111,7 @@ This setup uses the `CssVarsProvider` component from Joy UI and configures the M
 import { deepmerge } from '@mui/utils';
 import { experimental_extendTheme as extendMuiTheme } from '@mui/material/styles';
 import colors from '@mui/joy/colors';
-import {
-  extendTheme as extendJoyTheme,
-  CssVarsProvider,
-} from '@mui/joy/styles';
+import { extendTheme as extendJoyTheme, CssVarsProvider } from '@mui/joy/styles';
 
 const muiTheme = extendMuiTheme({
   // This is required to point to `var(--joy-*)` because we are using
@@ -233,7 +230,7 @@ const joyTheme = {
         root: { color: 'red', marginTop: 10, textAlign: 'center' },
       },
     },
-  }
+  },
 };
 
 // You can use your own `deepmerge` function.
