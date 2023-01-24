@@ -154,8 +154,7 @@ export default function AppTableOfContents(props) {
 
       if (process.env.NODE_ENV !== 'production') {
         if (!node) {
-          // TODO: Ignore this for now
-          // console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
+          console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
         }
       }
 

@@ -57,7 +57,7 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-export function getTranslatedHeader(t, header) {
+function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
@@ -133,27 +133,6 @@ export default function ApiPage(props) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
-  function createTocEntry(sectionName) {
-    return {
-      text: getTranslatedHeader(t, sectionName),
-      hash: sectionName,
-      children: [
-        ...(sectionName === 'props' && inheritance
-          ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-          : []),
-      ],
-    };
-  }
-
-  const toc = [
-    createTocEntry('demos'),
-    createTocEntry('import'),
-    ...componentDescriptionToc,
-    componentStyles.name && createTocEntry('component-name'),
-    createTocEntry('props'),
-    componentStyles.classes.length > 0 && createTocEntry('css'),
-  ].filter(Boolean);
-
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
   if (forwardsRefTo == null) {
@@ -178,33 +157,8 @@ export default function ApiPage(props) {
   }
 
   return (
-    <AppLayoutDocs
-      description={description}
-      disableAd={disableAd}
-      disableToc={false}
-      location={apiSourceLocation}
-      title={`${componentName} API`}
-      toc={toc}
-    >
+    <>
       <MarkdownElement>
-        <h1>{componentName} API</h1>
-        <Typography
-          variant="h5"
-          component="p"
-          className={`description${disableAd ? '' : ' ad'}`}
-          gutterBottom
-        >
-          {description}
-          {disableAd ? null : <Ad />}
-        </Typography>
-        <Heading hash="demos" />
-        <div
-          className="MuiCallout-root MuiCallout-info"
-          dangerouslySetInnerHTML={{
-            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
-              ${demos}`,
-          }}
-        />
         <Heading hash="import" />
         <HighlightedCode
           code={`
@@ -214,17 +168,6 @@ import { ${componentName} } from '${source}';`}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-        {componentDescription ? (
-          <React.Fragment>
-            <br />
-            <br />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: componentDescription,
-              }}
-            />
-          </React.Fragment>
-        ) : null}
         {componentStyles.name && (
           <React.Fragment>
             <Heading hash="component-name" />
@@ -285,7 +228,7 @@ import { ${componentName} } from '${source}';`}
           <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
         </symbol>
       </svg>
-    </AppLayoutDocs>
+    </>
   );
 }
 

@@ -5,6 +5,10 @@ import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import ComponentApiContent from 'docs/src/modules/components/ComponentApiContent';
+import HookApiContent from 'docs/src/modules/components/HookApiContent';
+import { getTranslatedHeader as getHookTranslatedHeader } from 'docs/src/modules/components/HookApiPage';
+import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
@@ -44,13 +48,67 @@ export default function MarkdownDocs(props) {
     docs,
     demoComponents,
     srcComponents,
+    componentApiDescriptions,
+    componentApiPageContent,
+    hookApiDescriptions,
+    hookApiPageContent,
   } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
   const localizedDoc = docs[userLanguage] || docs.en;
-  const { description, location, rendered, title, toc } = localizedDoc;
+  // Generate the TOC based on the tab
+  const { description, location, rendered, title, toc: demosToc } = localizedDoc;
+
+  const {
+    hookDescription,
+    hookDescriptionToc = [],
+    parametersDescriptions,
+    returnValueDescriptions,
+  } = hookApiDescriptions[userLanguage];
+
+  function createHookTocEntry(sectionName) {
+    return {
+      text: getHookTranslatedHeader(t, sectionName),
+      hash: sectionName,
+      children: [],
+    };
+  }
+
+  const hooksToc = [
+    createHookTocEntry('import'),
+    ...hookDescriptionToc,
+    createHookTocEntry('parameters'),
+    createHookTocEntry('return-value'),
+  ].filter(Boolean);
+
+  function createComponentTocEntry(sectionName) {
+    return {
+      text: getComponentTranslatedHeader(t, sectionName),
+      hash: sectionName,
+      children: [
+        ...(sectionName === 'props' && componentApiPageContent.inheritance
+          ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+          : []),
+      ],
+    };
+  }
+
+  const {
+    componentDescription,
+    componentDescriptionToc = [],
+    classDescriptions,
+    propDescriptions,
+  } = componentApiDescriptions[userLanguage];
+
+  const componentApiToc = [
+    createComponentTocEntry('import'),
+    ...componentDescriptionToc,
+    componentApiPageContent.styles.name && createComponentTocEntry('component-name'),
+    createComponentTocEntry('props'),
+    componentApiPageContent.styles.classes.length > 0 && createComponentTocEntry('css'),
+  ].filter(Boolean);
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
@@ -98,7 +156,13 @@ export default function MarkdownDocs(props) {
       disableToc={disableToc}
       location={location}
       title={title}
-      toc={toc}
+      toc={
+        activeTab === 'hook-api'
+          ? hooksToc
+          : activeTab === 'component-api'
+          ? componentApiToc
+          : demosToc
+      }
     >
       <Provider>
         {disableAd ? null : (
@@ -130,6 +194,15 @@ export default function MarkdownDocs(props) {
                 disableAd={disableAd}
               />
             ))}
+        {activeTab === 'component-api' && (
+          <ComponentApiContent
+            descriptions={componentApiDescriptions}
+            pageContent={componentApiPageContent}
+          />
+        )}
+        {activeTab === 'hook-api' && (
+          <HookApiContent descriptions={hookApiDescriptions} pageContent={hookApiPageContent} />
+        )}
       </Provider>
     </AppLayoutDocs>
   );
