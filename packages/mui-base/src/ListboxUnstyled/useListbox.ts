@@ -79,7 +79,8 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const highlightedIndexRef = React.useRef<number>(-1);
 
   React.useEffect(() => {
-    if (valueParam !== selectedValue) {
+    // if a controlled value changes, we need to update the state to keep things in sync
+    if (valueParam !== undefined && valueParam !== selectedValue) {
       dispatch({
         type: ActionTypes.setValue,
         event: null,

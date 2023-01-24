@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  unstable_useControlled as useControlled,
-  unstable_useForkRef as useForkRef,
-  unstable_useId as useId,
-} from '@mui/utils';
+import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
   SelectOption,
@@ -57,12 +53,12 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     defaultValue = multiple ? [] : null;
   }
 
-  const [value, setValue] = useControlled({
+  /* const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
     name: 'SelectUnstyled',
     state: 'value',
-  });
+  }); */
 
   const optionsMap = React.useMemo(() => {
     const map = new Map<TValue, SelectOption<TValue>>();
@@ -247,12 +243,12 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       value: TValue[],
     ) => void;
     useListboxParameters = {
+      defaultValue: defaultValue as TValue[],
       id: listboxId,
       isOptionDisabled,
       listboxRef: handleListboxRef,
       multiple: true,
       onChange: (e, newValues) => {
-        setValue(newValues);
         onChangeMultiple?.(e, newValues);
       },
       onHighlightChange: (e, newValue) => {
@@ -260,7 +256,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       },
       options: optionValues,
       optionStringifier: stringifyOption,
-      value: value as TValue[],
+      value: valueProp as TValue[],
     };
   } else {
     const onChangeSingle = onChange as (
@@ -268,12 +264,12 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       value: TValue | null,
     ) => void;
     useListboxParameters = {
+      defaultValue: defaultValue as TValue | null,
       id: listboxId,
       isOptionDisabled,
       listboxRef: handleListboxRef,
       multiple: false,
       onChange: (e, newValue: TValue | null) => {
-        setValue(newValue);
         onChangeSingle?.(e, newValue);
       },
       onHighlightChange: (e, newValue) => {
@@ -282,7 +278,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       options: optionValues,
       optionStringifier: stringifyOption,
       stateReducer: listboxReducer,
-      value: value as TValue | null,
+      value: valueProp as TValue | null,
     };
   }
 
@@ -291,12 +287,12 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps: getListboxOptionProps,
     getOptionState,
     highlightedOption,
-    selectedOption: listboxSelectedOption,
+    selectedOption,
   } = useListbox(useListboxParameters);
 
   React.useEffect(() => {
-    notifySelectionChanged(null, listboxSelectedOption);
-  }, [listboxSelectedOption, notifySelectionChanged]);
+    notifySelectionChanged(null, selectedOption);
+  }, [selectedOption, notifySelectionChanged]);
 
   React.useEffect(() => {
     notifyHighlightChanged(null, highlightedOption);
@@ -342,7 +338,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   );
 
   React.useDebugValue({
-    selectedOption: listboxSelectedOption,
+    selectedOption,
     highlightedOption,
     open,
   });
@@ -357,7 +353,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionState,
     open,
     ...registrationFunctions,
-    value,
+    value: selectedOption,
     highlightedOption,
   };
 }

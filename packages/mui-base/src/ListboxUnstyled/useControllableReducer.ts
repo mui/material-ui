@@ -149,11 +149,12 @@ export default function useControllableReducer<TOption>(
   const [nextState, dispatch] = React.useReducer(combinedReducer, initialState);
 
   const dispatchWithProps = React.useCallback(
-    (action: ListboxAction<TOption>) =>
+    (action: ListboxAction<TOption>) => {
       dispatch({
         props: props.current,
         ...action,
-      } as ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> }),
+      } as ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> });
+    },
     [dispatch, props],
   );
 
