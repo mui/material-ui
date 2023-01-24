@@ -26,14 +26,6 @@ export interface SliderUnstyledClasses {
   active: string;
   /** State class applied to the thumb element if keyboard focused. */
   focusVisible: string;
-  /** Class name applied to the thumb label element. */
-  valueLabel: string;
-  /** Class name applied to the thumb label element if it's open. */
-  valueLabelOpen: string;
-  /** Class name applied to the thumb label's circle element. */
-  valueLabelCircle: string;
-  /** Class name applied to the thumb label's label element. */
-  valueLabelLabel: string;
   /** Class name applied to the mark element. */
   mark: string;
   /** Class name applied to the mark element if active (depending on the value). */
@@ -67,10 +59,6 @@ const sliderUnstyledClasses: SliderUnstyledClasses = generateUtilityClasses('Mui
   'markLabel',
   'markLabelActive',
   'thumb',
-  'valueLabel',
-  'valueLabelOpen',
-  'valueLabelCircle',
-  'valueLabelLabel',
 ]);
 
 export default sliderUnstyledClasses;
