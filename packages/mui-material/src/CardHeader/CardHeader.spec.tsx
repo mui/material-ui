@@ -12,18 +12,23 @@ interface ComponentProp {
   component?: React.ElementType;
 }
 
+<CardHeader component={CustomComponent} stringProp="s" numberProp={2} />;
+
 function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader);
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: 'div',
   });
   // ExpectError: type system should be demanding the required props of "CustomComponent"
-  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
-    component: CustomComponent,
-  });
   // @ts-expect-error
-  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
-    // This test shouldn't fail but does; stringProp & numberProp are required props of CustomComponent
+  React.createElement<CardHeaderProps<typeof CustomComponent>>(CardHeader, {
+    component: CustomComponent,
+    stringProp: '2',
+    numberProp: 3,
+    incorrectProp: 3,
+  });
+
+  React.createElement<CardHeaderProps<typeof CustomComponent>>(CardHeader, {
     component: CustomComponent,
     stringProp: '',
     numberProp: 0,

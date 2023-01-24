@@ -25,6 +25,25 @@ const props3: FormHelperTextProps<'span'> = {
   component: 'div',
 };
 
+const props4: FormHelperTextProps<typeof CustomComponent> = {
+  component: CustomComponent,
+  stringProp: '2',
+  numberProp: 2,
+};
+
+const props5: FormHelperTextProps<typeof CustomComponent> = {
+  component: CustomComponent,
+  stringProp: '2',
+  numberProp: 2,
+  // @ts-expect-error
+  inCorrectProp: 3,
+};
+
+// @ts-expect-error
+const props6: FormHelperTextProps<typeof CustomComponent> = {
+  component: CustomComponent,
+};
+
 const TestComponent = () => {
   return (
     <React.Fragment>
