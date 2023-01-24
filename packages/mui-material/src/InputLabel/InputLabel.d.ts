@@ -1,10 +1,10 @@
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { FormLabelProps, ExtendFormLabelTypeMap } from '../FormLabel';
 import { Theme } from '../styles';
 import { InputLabelClasses } from './inputLabelClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface InputLabelPropsSizeOverrides {}
 

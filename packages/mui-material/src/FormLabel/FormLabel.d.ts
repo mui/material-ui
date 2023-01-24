@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion, OverridableTypeMap } from '@mui/types';
+import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides {}
@@ -73,7 +73,7 @@ declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Pick<FormLabelOwnProps, 'filled'>;
+  props: M['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
   defaultComponent: M['defaultComponent'];
 }
 
