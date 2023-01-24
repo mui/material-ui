@@ -94,9 +94,9 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 ### Overlay
 
-To make the whole container in which the radio button is in clickable, use the `overlay` prop.
+To make the radio button's container clickable, use the `overlay` prop.
 
-You can also use it directly in the `RadioGroup` component as it will automatically be forwarded to every individual radio button inside of it.
+Applying `overlay` to the parent `RadioGroup` component will pass the prop to each child radio button inside the `RadioGroup`.
 
 {{"demo": "OverlayRadio.js"}}
 
