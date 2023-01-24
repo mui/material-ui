@@ -172,3 +172,27 @@ The focus outline is customized to be smaller, and the color changes based on th
 The check icon's color inherits the radio button's `solid` variant, so that we don't need to handpick a color that has enough contrast with the background.
 
 {{"demo": "ExampleProductAttributes.js"}}
+
+## Anatomy
+
+The `Radio Group` component is composed of a root `<div>` element that can wrap multiple `Radio` components.
+
+```
+<div class="JoyRadioGroup-root">
+  <!-- radio components here -->
+</div>
+```
+
+The `Radio` component is composed of a root `<span>`, with further nested `<span>` for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
+
+```
+  <span class="JoyRadio-root">
+    <span class="JoyRadio-radio">
+      <span class="JoyRadio-icon"></span>
+      <span class="JoyRadio-action">
+        <input class="JoyRadio-input">
+      </span>
+    </span>
+    <label class="JoyRadio-label">
+  </span>
+```
