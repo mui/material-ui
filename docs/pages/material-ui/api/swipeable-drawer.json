@@ -2,6 +2,10 @@
   "props": {
     "onClose": { "type": { "name": "func" }, "required": true },
     "onOpen": { "type": { "name": "func" }, "required": true },
+    "allowSwipeInChildren": {
+      "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
+      "default": "false"
+    },
     "children": { "type": { "name": "node" } },
     "disableBackdropTransition": { "type": { "name": "bool" } },
     "disableDiscovery": { "type": { "name": "bool" } },

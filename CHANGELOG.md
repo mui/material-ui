@@ -1,5 +1,79 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.6
+
+<!-- generated comparing v5.11.5..master -->
+
+_Jan 23, 2023_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- @ZeeshanTamboli improved the logic for handling the value label in the `SliderUnstyled` (#35805)
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.11.6`
+
+- &#8203;<!-- 15 -->[Box] Fix usage of not supported features in TypeScript 3.5 (#35877) @mnajdova
+- &#8203;<!-- 14 -->[Button] Fix border color for secondary disabled button (#35866) @SaidMarar
+- &#8203;<!-- 03 -->[SwipeableDrawer] Add callback to customise touchstart ignore for swipeable drawer (#30759) @tech-meppem
+
+### `@mui/base@5.0.0-alpha.115`
+
+#### Breaking changes
+
+- &#8203;<!-- 04 -->[SliderUnstyled] Improved logic for displaying the value label (#35805) @ZeeshanTamboli
+
+  - The `valueLabelDisplay` prop is removed from `SliderUnstyled`. The prop was not working as intended in `SliderUnstyled` (See #35398). You can instead provide a `valueLabel` slot with the `slots` prop API to show the value label:
+
+  ```diff
+  - <SliderUnstyled valueLabelDisplay="on" />
+  + <SliderUnstyled slots={{ valueLabel: SliderValueLabel }} />
+  ```
+
+  The following demo shows how to show a value label when it is hovered over with the thumb: https://mui.com/base/react-slider/#value-label
+
+  - The following classes are removed from `sliderUnstyledClasses` since they are not needed for the value label:
+
+  ```diff
+  - valueLabel
+  - valueLabelOpen
+  - valueLabelCircle
+  - valueLabelLabel
+  ```
+
+  In the custom value label component, you can define your own classNames and target them with CSS.
+
+  - The `SliderValueLabelUnstyled` component is removed from SliderUnstyled. You should provide your own custom component for the value label.
+
+  - To avoid using `React.cloneElement` API in value label, the component hierarchy structure of the value label is changed. The value label is now inside the Thumb slot - `Thumb` -> `Input`, `ValueLabel`.
+
+#### Changes
+
+- &#8203;<!-- 05 -->[InputUnstyled] Fix externally provided `inputRef` is ignored (#35807) @sai6855
+
+### `@mui/joy@5.0.0-alpha.64`
+
+- &#8203;<!-- 17 -->[Avatar][joy] Remove `imgProps` prop and add Codemod script for migration (#35859) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 16 -->[blog] Date and time pickers revamped (#35486) @joserodolfofreitas
+- &#8203;<!-- 10 -->[docs] Fix incorrect breakpoint use (#34948) @rosita-dmello
+- &#8203;<!-- 09 -->[docs] Replace react-virtualized with react-virtuoso in Table (#35700) @petyosi
+- &#8203;<!-- 08 -->[docs] Fix account menu demo not closing with keyboard. (#35870) @mj12albert
+- &#8203;<!-- 07 -->[docs] Fix typos in the docs of Joy UI (#35876) @HeVictor
+- &#8203;<!-- 06 -->[docs] Fix wording in `Color` page (#35873) @oliv37
+
+### Core
+
+- &#8203;<!-- 13 -->[core] Fix release changelog to handle commits with empty author field (#35921) @mnajdova
+- &#8203;<!-- 12 -->[core] Revert `docs-utilities` migration to TypeScript and fix type (#35881) @ZeeshanTamboli
+- &#8203;<!-- 11 -->[core] Migrate internal `docs-utilities` package to TypeScript (#35846) @ZeeshanTamboli
+- &#8203;<!-- 02 -->[website] Designer don't spend their time writing code @oliviertassinari
+- &#8203;<!-- 01 -->[website] Emphasis the technical background need for this role @oliviertassinari
+
+All contributors of this release in alphabetical order: @HeVictor, @hbjORbj, @joserodolfofreitas, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rosita-dmello, @sai6855, @SaidMarar, @tech-meppem, @ZeeshanTamboli
+
 ## 5.11.5
 
 <!-- generated comparing v5.11.4..master -->
