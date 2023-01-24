@@ -55,7 +55,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     checkedIcon,
     className,
     defaultChecked,
-    disabled: disabledProp = false,
+    disabled: disabledProp,
     disableFocusRipple = false,
     edge = false,
     icon,

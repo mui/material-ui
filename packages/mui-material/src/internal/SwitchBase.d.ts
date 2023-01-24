@@ -21,7 +21,6 @@ export interface SwitchBaseProps
   defaultChecked?: boolean;
   /**
    * If `true`, the component is disabled.
-   * @default false
    */
   disabled?: boolean;
   /**
