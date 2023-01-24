@@ -12,6 +12,7 @@ import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 const defaultTheme = experimental_extendTheme();
