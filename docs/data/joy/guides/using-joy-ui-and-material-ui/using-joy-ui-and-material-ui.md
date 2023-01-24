@@ -25,7 +25,6 @@ For this case, the Material UI theme should override the Joy UI's.
 ```js
 import { deepmerge } from '@mui/utils';
 import {
-  useColorScheme,
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendMuiTheme,
 } from '@mui/material/styles';
@@ -115,7 +114,6 @@ import colors from '@mui/joy/colors';
 import {
   extendTheme as extendJoyTheme,
   CssVarsProvider,
-  useColorScheme,
 } from '@mui/joy/styles';
 
 const muiTheme = extendMuiTheme({
