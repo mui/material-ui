@@ -46,9 +46,6 @@ const TabRoot = styled(StyledListItemButton, {
       fontWeight: 'initial',
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
-        '&:hover': {
-          backgroundColor: theme.vars.palette.background.surface,
-        },
       }),
     }),
   };

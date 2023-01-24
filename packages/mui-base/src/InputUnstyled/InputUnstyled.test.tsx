@@ -31,6 +31,13 @@ describe('<InputUnstyled />', () => {
     expect(screen.getByRole('textbox')).to.have.tagName('textarea');
   });
 
+  it('should be able to attach input ref passed through props', () => {
+    const inputRef = React.createRef<HTMLInputElement>();
+    const { getByRole } = render(<InputUnstyled slotProps={{ input: { ref: inputRef } }} />);
+
+    expect(inputRef.current).to.deep.equal(getByRole('textbox'));
+  });
+
   describe('prop: multiline', () => {
     it('should pass the rows prop to the underlying textarea when multiline=true', () => {
       const { getByRole } = render(<InputUnstyled multiline rows={5} />);

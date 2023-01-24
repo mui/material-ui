@@ -29,25 +29,25 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 interface Profile {
-  /**
-   * image url
-   */
-  src: string;
   name: string;
   /**
-   * Role, what are you workin on?
+   * Role, what are you working on?
    */
   title: string;
   /**
-   * Country wher you live in, ISO 3166-1.
+   * Country where you live in, ISO 3166-1.
    */
   locationCountry: string; // https://flagpedia.net/download/api
   /**
-   * Lives in
+   * Image URL.
+   */
+  src?: string;
+  /**
+   * Lives in.
    */
   location?: string;
   /**
-   * Short summary about you
+   * Short summary about you.
    */
   about?: string;
   github?: string;
@@ -91,7 +91,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
               }}
               src={props.src}
               alt={props.name}
-              {...(props.src.startsWith('https://avatars.githubusercontent.com') && {
+              {...(props.src?.startsWith('https://avatars.githubusercontent.com') && {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
@@ -400,6 +400,22 @@ const teamMembers: Array<Profile> = [
     github: 'bytasv',
   },
   {
+    src: '/static/branding/about/greg.png',
+    name: 'Greg Abaoag',
+    title: 'Executive Assistant',
+    location: 'Philippines',
+    locationCountry: 'ph',
+    about: 'Loves DIY, singing and learning',
+    github: 'gzrae',
+  },
+  {
+    name: 'Tina Deinekhovska',
+    title: 'Business Administrator',
+    location: 'London, UK',
+    locationCountry: 'gb',
+    about: 'Empathic art-lover, incurable optimist keen on biking, gardening',
+  },
+  {
     src: '/static/branding/about/lukas.png',
     name: 'Lukas Tyla',
     title: 'MUI X Engineer',
@@ -665,6 +681,7 @@ function AboutContent() {
           color="primary"
           fontWeight="extraBold"
           sx={{ mb: 1 }}
+          id="company"
         >
           Company
         </Typography>

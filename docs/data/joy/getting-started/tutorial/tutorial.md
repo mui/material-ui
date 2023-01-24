@@ -118,33 +118,38 @@ Try changing the values for the `level` and `component` props to see how they af
 (Note that while `level` only accepts the 13 values listed above, you can pass any HTML tag to `component`, as well as custom React components.)
 :::
 
-## Add Text Field for user inputs
+## Add text field for user inputs
 
-The [Text Field](/joy-ui/react-text-field/) component bundles together the Form Control, Form Label, Input, and Form Helper Text components to provide you with a sophisticated field for user input.
+The Form Control, Form Label, and Input components can be used together to provide you with a sophisticated field for user input.
 
-Add an import for Text Field with the rest of your imports:
+Add imports for Form Control, Form Label, and Input with the rest of your imports:
 
 ```jsx
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 ```
 
-Insert these two Text Fields below the `<div>` from the previous step, inside the Sheet:
+Insert these two text fields below the `<div>` from the previous step, inside the Sheet:
 
 ```jsx
-<TextField
-  // html input attribute
-  name="email"
-  type="email"
-  placeholder="johndoe@email.com"
-  // pass down to FormLabel as children
-  label="Email"
-/>
-<TextField
-  name="password"
-  type="password"
-  placeholder="password"
-  label="Password"
-/>
+<FormControl>
+  <FormLabel>Email</FormLabel>
+  <Input
+    // html input attribute
+    name="email"
+    type="email"
+    placeholder="johndoe@email.com"
+  />
+</FormControl>
+<FormControl>
+  <FormLabel>Password</FormLabel>
+  <Input
+    name="password"
+    type="password"
+    placeholder="password"
+  />
+</FormControl>
 ```
 
 ## Import Button and Link for user actions
@@ -158,7 +163,7 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 ```
 
-Add the following Button, Typography, and Link components after the Text Fields from the previous step, still nested inside the Sheet.
+Add the following Button, Typography, and Link components after the text fields from the previous step, still nested inside the Sheet.
 Notice that the Link is appended to the Typography inside of [the `endDecorator` prop](/joy-ui/react-typography/#decorators):
 
 ```jsx
@@ -238,7 +243,6 @@ Here's a recap of the components used:
 - [Typography](/joy-ui/react-typography/)
 - [Button](/joy-ui/react-button/)
 - [Link](/joy-ui/react-link/)
-- [Text Field](/joy-ui/react-text-field/)
 
 Here are some of the major features introduced:
 

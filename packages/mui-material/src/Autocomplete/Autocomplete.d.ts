@@ -287,7 +287,7 @@ export interface AutocompleteProps<
  */
 export default function Autocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;
