@@ -7,7 +7,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 # Radio Group
 
-<p class="description">Radio buttons let users make one selection from a set of options.</p>
+<p class="description">The Radio Group allows the user to select one option from a set.</p>
 
 ## Introduction
 
