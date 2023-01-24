@@ -203,6 +203,61 @@ Visit the following CodeSandbox to preview this use case setup.
 
 [![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-k86j2j?file=/demo.tsx)
 
+## Case C: Using the custom themes of Joy UI and Material UI together
+
+```js
+import { deepmerge } from '@mui/utils';
+import { createTheme as createMuiTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/joy/styles';
+import MaterialTypography from '@mui/material/Typography';
+import JoyTypography from '@mui/joy/Typography';
+import Stack from '@mui/material/Stack';
+
+const muiTheme = createMuiTheme({
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: { color: 'blue', textAlign: 'center' },
+      },
+    },
+  },
+});
+
+const joyTheme = {
+  components: {
+    JoyTypography: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+      styleOverrides: {
+        root: { color: 'red', marginTop: 10, textAlign: 'center' },
+      },
+    },
+  }
+};
+
+// You can use your own `deepmerge` function.
+// joyTheme will deeply merge to muiTheme.
+const theme = deepmerge(muiTheme, joyTheme);
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Stack>
+        <MaterialTypography>Material Typography</MaterialTypography>
+        <JoyTypography>Joy Typography</JoyTypography>
+      </Stack>
+    </ThemeProvider>
+  );
+}
+```
+
+### CodeSandbox
+
+Visit the following CodeSandbox to preview this use case setup.
+
+[![Edit Using the custom themes of Joy UI and Material UI together](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/using-the-custom-themes-of-joy-ui-and-material-ui-txbdb4?file=/demo.tsx)
+
 ## TypeScript setup
 
 The snippet can be used with both of the above use cases. Here, we augment the Material UI and Joy UI theme to have the same tokens so that you have the same experience when customizing components via APIs like `styled` or `sx`.
