@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { Feed } from 'feed';
 import { BlogPost } from 'docs/lib/sourcing';
+import ROUTES from 'docs/src/route';
 
 export default function generateRssFeed(allBlogPosts: Array<BlogPost>) {
   if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +20,7 @@ export default function generateRssFeed(allBlogPosts: Array<BlogPost>) {
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `Copyright © ${new Date().getFullYear()} Material UI SAS.`,
     feedLinks: {
-      rss2: `${siteUrl}/static/blog/feed/rss.xml`,
+      rss2: `${siteUrl}/public${ROUTES.rssFeed}`,
     },
   });
 
@@ -41,6 +42,6 @@ export default function generateRssFeed(allBlogPosts: Array<BlogPost>) {
     });
   });
 
-  fs.mkdirSync('public/static/blog/feed', { recursive: true });
-  fs.writeFileSync('public/static/blog/feed/rss.xml', feed.rss2());
+  fs.mkdirSync(`public${ROUTES.rssFeed.replace('rss.xml', '')}`, { recursive: true });
+  fs.writeFileSync(`public${ROUTES.rssFeed}`, feed.rss2());
 }

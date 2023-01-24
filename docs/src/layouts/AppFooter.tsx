@@ -9,6 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import RssFeedIcon from '@mui/icons-material/RssFeed';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
@@ -149,6 +150,16 @@ export default function AppFooter() {
               size="small"
             >
               <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href={ROUTES.rssFeed}
+              aria-label="RSS Feed"
+              title="RSS Feed"
+              size="small"
+            >
+              <RssFeedIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
