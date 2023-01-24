@@ -11,8 +11,8 @@
       "default": "'primary'"
     },
     "defaultChecked": { "type": { "name": "bool" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" }, "default": "<CheckBoxOutlineBlankIcon />" },
     "id": { "type": { "name": "string" } },
     "indeterminate": { "type": { "name": "bool" }, "default": "false" },
@@ -20,7 +20,7 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "onChange": { "type": { "name": "func" } },
-    "required": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
