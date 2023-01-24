@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { styled, extendTheme } from '@mui/joy/styles';
