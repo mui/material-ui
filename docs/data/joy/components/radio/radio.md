@@ -63,7 +63,7 @@ Use `label` prop to label the radio buttons.
 
 {{"demo": "RadioButtonLabel.js"}}
 
-For complex layout, compose a radio button with `FormControl`, `FormLabel`, and `FormHelperText` (optional).
+For more complex layouts, compose a radio button with `FormControl`, `FormLabel`, and `FormHelperText` (optional).
 
 {{"demo": "RadioButtonControl.js"}}
 
