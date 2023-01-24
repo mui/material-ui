@@ -401,6 +401,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/experimental-api/classname-generator/ /:lang/material-ui/experimental-api/classname-generator/ 301
 /experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
 /:lang/experimental-api/css-variables/ /:lang/material-ui/experimental-api/css-theme-variables/overview/ 301
+/joy-ui/customization/default-theme/ /joy-ui/tools/default-theme-viewer/ 301
+/:lang/joy-ui/customization/default-theme/ /:lang/joy-ui/tools/default-theme-viewer/ 301
 /pt/material-ui/* /material-ui/:splat 301
 /zh/material-ui/* /material-ui/:splat 301
 /pt/joy-ui/* /joy-ui/:splat 301

@@ -172,7 +172,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
           { pathname: '/material-ui/customization/theme-components', title: 'Components' },
-          { pathname: '/material-ui/customization/default-theme' },
+          { pathname: '/material-ui/customization/default-theme', title: 'Default theme viewer' },
         ],
       },
       { pathname: '/material-ui/customization/how-to-customize' },
