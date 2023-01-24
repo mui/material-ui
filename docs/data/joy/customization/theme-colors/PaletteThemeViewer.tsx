@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 import { extendTheme, Palette, styled } from '@mui/joy/styles';
@@ -100,7 +101,7 @@ export default function PaletteThemeViewer() {
     />
   );
   return (
-    <Box sx={{ width: '100%', overflow: 'auto', position: 'relative' }}>
+    <Box sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
       <Sheet
         variant="solid"
         color="success"

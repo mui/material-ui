@@ -14,7 +14,6 @@ const Table = styled('table')(({ theme }) => ({
   borderSpacing: 0,
   display: 'block',
   width: 'max-content',
-  overflowX: 'scroll',
   th: {
     textAlign: 'left',
     padding: 12,
@@ -64,7 +63,7 @@ export default function FontSizeThemeViewer() {
       />
     ) : null;
   return (
-    <Box sx={{ maxWidth: '100%', overflow: 'auto' }}>
+    <Box sx={{ maxWidth: '100%', overflowX: 'scroll' }}>
       <Table>
         <thead>
           <tr>
