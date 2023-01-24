@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 ## Introduction
 
-Joy UI Table is a CSS only component that lets you use plain HTML structure and turn it into a nice looking table. It has robust configuration that covers all of the basic needs for any projects.
+Joy UI Table lets you use plain HTML structure and turn it into a nice looking table. It has robust configuration that covers all of the basic needs for any projects.
 
 {{"demo": "TableUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -243,6 +243,12 @@ When [color inversion](/joy-ui/main-features/color-inversion/) is enabled, the t
 
 ## Common examples
 
+### Sort and Selection
+
+Use form components such as [`Button`](/joy-ui/react-button/), [`Select`](/joy-ui/react-select/) and [`Switch`](/joy-ui/react-switch/) to create sort and selection features.
+
+{{"demo": "TableSortAndSelection.js"}}
+
 ### Scrolling shadows
 
 Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the table.
@@ -258,7 +264,3 @@ Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-
 Use `theme.variants.*` to apply global variant styles to the table.
 
 {{"demo": "TableGlobalVariant.js"}}
-
-### Sort and Selection
-
-{{"demo": "TableSortAndSelection.js"}}
