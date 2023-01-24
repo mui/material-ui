@@ -13,9 +13,9 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 Radio buttons allow users to make a mututally exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
 
-To provide the user with multiple selection options, use `Checkbox` instead.
+To provide the user with multiple selection options, use Checkbox instead.
 
-If available options can be collapsed, consider using a `Select` component to conserve space.
+If available options can be collapsed, consider using a Select component to conserve space.
 
 Radio buttons should have the most commonly used option selected by default.
 
@@ -53,7 +53,7 @@ export default function MyApp() {
 
 ### Basic usage
 
-The `Radio` component supports every Joy UI global variant and it comes with `outlined` set as the default one.
+The Radio component supports every Joy UI global variant and it comes with `outlined` set as the default one.
 
 {{"demo": "RadioButtons.js"}}
 
@@ -75,7 +75,7 @@ To swap the label and radio position, use the CSS property `flex-direction: row-
 
 ### Radio group
 
-The `RadioGroup` component is the ideal wrapper for multiple `Radio` components as it provides a tailored API for radio button grouping and proper keyboard navigation accessibility support.
+The RadioGroup component is the ideal wrapper for multiple Radio components as it provides a tailored API for radio button grouping and proper keyboard navigation accessibility support.
 
 {{"demo": "RadioButtonsGroup.js"}}
 
@@ -96,7 +96,7 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 To make the radio button's container clickable, use the `overlay` prop.
 
-Applying `overlay` to the parent `RadioGroup` component will pass the prop to each child radio button inside the `RadioGroup`.
+Applying `overlay` to the parent RadioGroup component will pass the prop to each child radio button inside the RadioGroup.
 
 {{"demo": "OverlayRadio.js"}}
 
@@ -106,7 +106,7 @@ Use the CSS variable `--Radio-action-radius` to control the border radius of the
 
 ### Icon
 
-`Radio`, by default, comes without an unchecked component.
+Radio, by default, comes without an unchecked component.
 To add an icon to both unchecked and checked states, use the `uncheckedIcon` and `checkedIcon` props.
 
 {{"demo": "IconsRadio.js"}}
@@ -154,7 +154,7 @@ A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-gro
 
 ### Alignment buttons
 
-Provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+Provide an icon as a label to the Radio to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
 
@@ -166,7 +166,7 @@ Mix radio buttons with the [`List`](/joy-ui/react-list/)-related components to c
 
 ### E-commerce product attributes
 
-This example demonstrates complex customization using the `Sheet` component as a container for the radios.
+This example demonstrates complex customization using the Sheet component as a container for the radios.
 The focus outline is customized to be smaller, and the color changes based on the value.
 
 The check icon's color inherits the radio button's `solid` variant, so that we don't need to handpick a color that has enough contrast with the background.
@@ -175,7 +175,7 @@ The check icon's color inherits the radio button's `solid` variant, so that we d
 
 ## Anatomy
 
-The `Radio Group` component is composed of a root `<div>` element that can wrap multiple `Radio` components.
+The Radio Group component is composed of a root `<div>` element that can wrap multiple Radio components.
 
 ```
 <div class="JoyRadioGroup-root">
@@ -183,7 +183,7 @@ The `Radio Group` component is composed of a root `<div>` element that can wrap 
 </div>
 ```
 
-The `Radio` component is composed of a root `<span>`, with further nested `<span>` for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
+The Radio component is composed of a root `<span>`, with further nested `<span>` for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
 
 ```
   <span class="JoyRadio-root">
