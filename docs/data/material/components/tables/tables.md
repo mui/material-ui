@@ -115,7 +115,7 @@ A simple example with spanning rows & columns.
 
 ## Virtualized table
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component.
+In the following example, we demonstrate how to use [react-virtuoso](https://github.com/petyosi/react-virtuoso) with the `Table` component.
 It renders 200 rows and can easily handle more.
 Virtualization helps with performance issues.
 
@@ -129,7 +129,7 @@ Virtualization helps with performance issues.
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
-{{"demo": "AcccessibleTable.js", "bg": true}}
+{{"demo": "AccessibleTable.js", "bg": true}}
 
 ## Unstyled
 

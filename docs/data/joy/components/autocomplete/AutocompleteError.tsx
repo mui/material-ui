@@ -9,7 +9,7 @@ export default function InputAppearance() {
     <FormControl error>
       <FormLabel>Invalid</FormLabel>
       <Autocomplete placeholder="Error" options={top100Films} sx={{ width: 300 }} />
-      <FormHelperText>Opps! something went wrong.</FormHelperText>
+      <FormHelperText>Oops! something went wrong.</FormHelperText>
     </FormControl>
   );
 }
