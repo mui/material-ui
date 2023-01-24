@@ -30,6 +30,7 @@ export interface TreeItemProps
   ContentProps?: React.HTMLAttributes<HTMLElement>;
   /**
    * If `true`, the node is disabled.
+   * @default false
    */
   disabled?: boolean;
   /**

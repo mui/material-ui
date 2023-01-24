@@ -368,6 +368,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
   ContentProps: PropTypes.object,
   /**
    * If `true`, the node is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
