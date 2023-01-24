@@ -255,12 +255,6 @@ Use form components such as [`Button`](/joy-ui/react-button/), [`Select`](/joy-u
 
 {{"demo": "TableSortAndSelection.js"}}
 
-### Scrolling shadows
-
-Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the table.
-
-{{"demo": "TableScrollingShadows.js"}}
-
 ### First and last column pinning
 
 {{"demo": "TableColumnPinning.js"}}
@@ -270,3 +264,9 @@ Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-
 Use `theme.variants.*` to apply global variant styles to the table.
 
 {{"demo": "TableGlobalVariant.js"}}
+
+### Scrolling shadows
+
+Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the table.
+
+{{"demo": "TableScrollingShadows.js"}}
