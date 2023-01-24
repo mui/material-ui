@@ -11,6 +11,10 @@ export interface TabPanelClasses {
   sizeMd: string;
   /** Classname applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type TabPanelClassKey = keyof TabPanelClasses;
@@ -25,6 +29,8 @@ const tabListClasses: TabPanelClasses = generateUtilityClasses('JoyTabPanel', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'horizontal',
+  'vertical',
 ]);
 
 export default tabListClasses;

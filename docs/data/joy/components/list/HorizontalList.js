@@ -10,7 +10,7 @@ import Person from '@mui/icons-material/Person';
 export default function HorizontalList() {
   return (
     <Box component="nav" aria-label="My site" sx={{ flexGrow: 1 }}>
-      <List role="menubar" row>
+      <List role="menubar" orientation="horizontal">
         <ListItem role="none">
           <ListItemButton
             role="menuitem"

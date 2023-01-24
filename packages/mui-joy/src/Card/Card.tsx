@@ -16,15 +16,15 @@ import { resolveSxValue } from '../styles/styleUtils';
 import { CardRowContext } from './CardContext';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
-  const { size, variant, color, row } = ownerState;
+  const { size, variant, color, orientation } = ownerState;
 
   const slots = {
     root: [
       'root',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      row && 'row',
     ],
   };
 
@@ -80,7 +80,7 @@ const CardRoot = styled('div', {
     transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: ownerState.row ? 'row' : 'column',
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   ownerState.color !== 'context' &&
@@ -102,7 +102,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     size = 'md',
     variant = 'plain',
     children,
-    row = false,
+    orientation = 'vertical',
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -112,7 +112,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ...props,
     color,
     component,
-    row,
+    orientation,
     size,
     variant,
   };
@@ -120,7 +120,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const result = (
-    <CardRowContext.Provider value={row}>
+    <CardRowContext.Provider value={orientation === 'horizontal'}>
       <CardRoot
         as={component}
         ownerState={ownerState}
@@ -136,9 +136,9 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           if (isMuiElement(child, ['Divider'])) {
             extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const orientation = row ? 'vertical' : 'horizontal';
+            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
             extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : orientation;
+              'orientation' in child.props ? child.props.orientation : dividerOrientation;
           }
           if (index === 0) {
             extraProps['data-first-child'] = '';
@@ -191,10 +191,10 @@ Card.propTypes /* remove-proptypes */ = {
    */
   invertedColors: PropTypes.bool,
   /**
-   * If `true`, flex direction is set to 'row'.
-   * @default false
+   * The component orientation.
+   * @default 'vertical'
    */
-  row: PropTypes.bool,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.

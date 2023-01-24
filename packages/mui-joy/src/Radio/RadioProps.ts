@@ -102,7 +102,7 @@ export interface RadioOwnerState extends ApplyColorInversion<RadioProps> {
    * @internal
    * The value from the RadioGroup component.
    */
-  row?: boolean;
+  orientation?: 'horizontal' | 'vertical';
   /**
    * @internal
    * The internal prop for controlling CSS margin of the element.

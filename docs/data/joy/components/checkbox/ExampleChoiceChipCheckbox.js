@@ -19,7 +19,7 @@ export default function ExampleChoiceChipCheckbox() {
       </Typography>
       <Box role="group" aria-labelledby="rank">
         <List
-          row
+          orientation="horizontal"
           wrap
           sx={{
             '--List-gap': '8px',

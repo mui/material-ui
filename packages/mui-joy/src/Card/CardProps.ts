@@ -26,10 +26,10 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     invertedColors?: boolean;
     /**
-     * If `true`, flex direction is set to 'row'.
-     * @default false
+     * The component orientation.
+     * @default 'vertical'
      */
-    row?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.

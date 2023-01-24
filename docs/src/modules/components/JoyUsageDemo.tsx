@@ -318,7 +318,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={resolvedValue}
                     onChange={(event) => {
@@ -371,7 +371,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={finalValue}
                     onChange={(event) => {
@@ -421,7 +421,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} sx={{ mb: 1 }} size="sm">
                   <FormLabel>Color</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>

@@ -9,6 +9,10 @@ export interface ListDividerClasses {
   insetStartDecorator: string;
   /** Styles applied to the root element if `inset="startContent"`. */
   insetStartContent: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type ListDividerClassKey = keyof ListDividerClasses;
@@ -22,6 +26,8 @@ const listDividerClasses: ListDividerClasses = generateUtilityClasses('JoyListDi
   'insetGutter',
   'insetStartDecorator',
   'insetStartContent',
+  'horizontal',
+  'vertical',
 ]);
 
 export default listDividerClasses;
