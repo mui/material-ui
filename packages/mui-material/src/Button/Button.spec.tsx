@@ -13,6 +13,39 @@ function FakeIcon() {
   return <div>Icon</div>;
 }
 
+const props1: ButtonProps<'div'> = {
+  component: 'div',
+  onChange: (event) => {
+    expectType<React.FormEvent<HTMLDivElement>, typeof event>(event);
+  },
+};
+
+const props2: ButtonProps = {
+  onChange: (event) => {
+    expectType<React.FormEvent<HTMLButtonElement>, typeof event>(event);
+  },
+};
+
+const props3: ButtonProps<'span'> = {
+  // @ts-expect-error
+  component: 'div',
+};
+
+const props4: ButtonProps<typeof TestOverride> = {
+  component: TestOverride,
+  x: 2,
+};
+
+const props5: ButtonProps<typeof TestOverride> = {
+  component: TestOverride,
+  // @ts-expect-error
+  inCorrectProp: 3,
+};
+
+const props6: ButtonProps<typeof TestOverride> = {
+  component: TestOverride,
+};
+
 const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
