@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-next",
-  "version": "6.0.0-alpha.69",
+  "version": "6.0.0-alpha.72",
   "private": false,
   "author": "MUI Team",
   "description": "v6-alpha: React components that implement Google's Material Design",
@@ -59,9 +59,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@mui/base": "5.0.0-alpha.112",
-    "@mui/material": "^5.11.3",
-    "@mui/system": "^5.11.2",
+    "@mui/base": "5.0.0-alpha.115",
+    "@mui/material": "^5.11.6",
+    "@mui/system": "^5.11.5",
     "@mui/types": "^7.2.3",
     "@mui/utils": "^5.11.2",
     "@popperjs/core": "^2.11.6",

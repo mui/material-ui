@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
@@ -77,6 +78,8 @@ const StyledSlider = styled(SliderUnstyled)(
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
+    display: flex;
+    flex-direction: column-reverse;
 
     :hover,
     &.${sliderUnstyledClasses.focusVisible} {
@@ -109,17 +112,24 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: #fff;
   }
 
-  & .${sliderUnstyledClasses.valueLabel} {
+  & .valueLabel {
     font-family: IBM Plex Sans;
     font-size: 14px;
-    display: block;
     position: relative;
-    top: -1.6em;
+    top: -1em;
     text-align: center;
-    transform: translateX(-50%);
+    align-self: center;
   }
 `,
 );
+
+function SliderValueLabel({ children }) {
+  return <span className="valueLabel">{children}</span>;
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 function valuetext(value) {
   return `${value}°C`;
@@ -132,11 +142,11 @@ export default function DiscreteSlider() {
         aria-label="Temperature"
         defaultValue={30}
         getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
         step={10}
         marks
         min={10}
         max={110}
+        slots={{ valueLabel: SliderValueLabel }}
       />
     </Box>
   );

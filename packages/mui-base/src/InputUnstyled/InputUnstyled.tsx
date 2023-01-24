@@ -135,7 +135,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
     className: [classes.root, rootStateClasses, className],
   });
-
   const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,

@@ -80,10 +80,12 @@ const theme = extendTheme({
   components: {
     // The component identifier always start with `Joy${ComponentName}`.
     JoyButton: {
-      styleOverrides: ({ theme }) => ({
-        // theme.vars.* return the CSS variables.
-        fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
-      }),
+      styleOverrides: {
+        root: ({ theme }) => {
+          // theme.vars.* return the CSS variables.
+          fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
+        },
+      },
     },
   },
 });
@@ -102,6 +104,6 @@ function MyApp() {
 Creating new and custom components is always an option when you don't find exactly what you're looking for.
 You can, however, ensure design consistency with other Joy UI components by pulling styles from the theme through the `styled` function.
 
-You also gain as beenfit the ability to use the `sx` prop, that also accept theme tokens, to customize this newly created component.
+You also gain the ability to use the `sx` prop, which also accepts theme tokens, to customize this newly created component.
 
 {{"demo": "StyledComponent.js"}}
