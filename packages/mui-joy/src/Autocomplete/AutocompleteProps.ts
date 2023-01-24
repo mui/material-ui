@@ -284,6 +284,15 @@ type AutocompleteOwnProps<
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
   };
 
+  /**  
+   * AutocompleteProps signature:
+   *   export interface AutocompleteProps<
+   *     T, // the option structure
+   *     Multiple extends boolean | undefined,
+   *     DisableClearable extends boolean | undefined,
+   *     FreeSolo extends boolean | undefined,
+   *   >
+   */   
 export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined,
