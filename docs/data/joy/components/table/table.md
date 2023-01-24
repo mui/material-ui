@@ -33,7 +33,21 @@ By default, **header** cells (`<th>`) contain `surface` background color whereas
 
 ### Column width
 
-Use [inline style](https://reactjs.org/docs/dom-elements.html#style) on the `th` element to control the width of each column:
+Use `sx` prop to target the header and provide the width as a number or percentage.
+
+The columns that don't have explicit width will spread equally to the rest of the area.
+
+{{"demo": "TableColumnWidth.js"}}
+
+:::info
+Table component uses [`fixed`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout) layout to let you control the width of each column.
+
+To learn more why we take this approach, check out this [great article](https://css-tricks.com/fixing-tables-long-strings/).
+:::
+
+#### Inline style
+
+An alternative way of controlling the column's width is to use [inline style](https://reactjs.org/docs/dom-elements.html#style) on the `th` element:
 
 ```js
 <thead>
@@ -44,17 +58,9 @@ Use [inline style](https://reactjs.org/docs/dom-elements.html#style) on the `th`
 </thead>
 ```
 
-{{"demo": "TableColumnWidth.js"}}
-
-:::info
-Table component uses [`fixed`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout) layout to let you control the width of each column.
-
-To learn more why we take this approach, check out this [great article](https://css-tricks.com/fixing-tables-long-strings/).
-:::
-
 ### Alignment
 
-Use `sx` prop to target columns with appropriate CSS selector and apply the [text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align).
+Use `sx` prop to target columns with appropriate CSS selector and apply the [text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) property.
 
 ```js
 // target cells that are not the first of its row.

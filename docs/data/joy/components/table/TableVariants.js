@@ -31,6 +31,8 @@ export default function TableVariants() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 1,
           mb: 2,
           ml: 1,
         }}

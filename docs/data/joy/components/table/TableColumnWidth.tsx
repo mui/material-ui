@@ -21,10 +21,10 @@ const rows = [
 
 export default function TableColumnWidth() {
   return (
-    <Table>
+    <Table sx={{ '& thead th:nth-child(1)': { width: '40%' } }}>
       <thead>
         <tr>
-          <th style={{ width: '40%' }}>Column width (40%)</th>
+          <th>Column width (40%)</th>
           <th>Calories</th>
           <th>Fat&nbsp;(g)</th>
           <th>Carbs&nbsp;(g)</th>

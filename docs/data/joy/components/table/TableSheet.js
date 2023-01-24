@@ -20,7 +20,7 @@ export default function TableSheet() {
       <Table
         stripe="odd"
         hoverRow
-        sx={{ captionSide: 'bottom', bgcolor: 'background.surface' }}
+        sx={{ captionSide: 'bottom', '& tbody': { bgcolor: 'background.surface' } }}
       >
         <caption>Nutrition of your favorite menus.</caption>
         <thead>
