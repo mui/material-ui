@@ -24,7 +24,7 @@ When should you use radio buttons rather than checkboxes or switches?
 
 - Use checkboxes to give the user **multiple binary choices**—radio buttons are preferable when you need to restrict user selection to one mutually exclusive option from a series.
 - Use a switch to provide the user with **a single binary choice**—radio buttons are preferable when you need to give the user multiple binary choices.
-:::
+  :::
 
 {{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -177,7 +177,7 @@ The check icon's color inherits the radio button's `solid` variant, so that we d
 
 The Radio Group component is composed of a root `<div>` element that can wrap multiple Radio components.
 
-```
+```html
 <div class="JoyRadioGroup-root">
   <!-- radio components here -->
 </div>
@@ -185,7 +185,7 @@ The Radio Group component is composed of a root `<div>` element that can wrap mu
 
 The Radio component is composed of a root `<span>`, with further nested `<span>` for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
 
-```
+```html
   <span class="JoyRadio-root">
     <span class="JoyRadio-radio">
       <span class="JoyRadio-icon"></span>
