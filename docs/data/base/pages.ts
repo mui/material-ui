@@ -73,7 +73,7 @@ const pages = [
     ],
   },
   {
-    title: 'API',
+    title: 'APIs',
     pathname: '/base/api',
     icon: 'CodeIcon',
     children: pagesApi,

@@ -154,8 +154,7 @@ function AppWrapper(props) {
       pages = systemPages;
     }
 
-    const { activePage, activePageParents } = findActivePage(pages, router.pathname);
-
+    const { activePage, activePageParents } = findActivePage(pages, router.pathname, router.query);
     return { activePage, activePageParents, pages };
   }, [product, router.pathname]);
 

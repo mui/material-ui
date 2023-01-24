@@ -12,6 +12,7 @@ function titleize(hyphenedString: string): string {
 
 export interface Page {
   pathname: string;
+  query?: object;
   subheader?: string;
   title?: string | false;
 }
@@ -45,7 +46,9 @@ export type Translate = (id: string, options?: Partial<{ ignoreWarning: boolean 
 
 export function pageToTitleI18n(page: Page, t: Translate): string | null {
   const path = page.subheader || page.pathname;
-  return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
+  return page.query
+    ? pageToTitle(page)
+    : t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 
 /**

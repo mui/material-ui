@@ -124,6 +124,7 @@ const shouldShowJobAd = () => {
   return true;
 };
 
+// TODO: Add custom table of contents for the pages containing multiple tabs
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
@@ -153,7 +154,8 @@ export default function AppTableOfContents(props) {
 
       if (process.env.NODE_ENV !== 'production') {
         if (!node) {
-          console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
+          // TODO: Ignore this for now
+          // console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
         }
       }
 

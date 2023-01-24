@@ -287,7 +287,7 @@ export default function AppNavDrawerItem(props) {
 AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   depth: PropTypes.number.isRequired,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.string,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,

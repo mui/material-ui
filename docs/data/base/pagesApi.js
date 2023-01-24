@@ -26,7 +26,11 @@ module.exports = [
   { pathname: '/base/api/textarea-autosize' },
   { pathname: '/base/api/use-autocomplete' },
   { pathname: '/base/api/use-badge' },
-  { pathname: '/base/api/use-button' },
+  {
+    pathname: '/base/react-button',
+    query: { docsTab: 'hook-api' },
+    title: 'useButton',
+  },
   { pathname: '/base/api/use-form-control-unstyled-context' },
   { pathname: '/base/api/use-input' },
   { pathname: '/base/api/use-menu' },

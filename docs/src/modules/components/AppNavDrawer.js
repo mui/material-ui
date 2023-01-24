@@ -212,13 +212,20 @@ function renderNavItems(options) {
 function reduceChildRoutes(context) {
   const { onClose, activePageParents, items, depth, t } = context;
   let { page } = context;
+  if (page.query) {
+    console.log(page.query);
+    console.log(page.title);
+  }
   if (page.inSideNav === false) {
     return items;
   }
 
   const title = pageToTitleI18n(page, t);
-
+  if (page.query) {
+    console.log(title);
+  }
   if (page.children && page.children.length >= 1) {
+    if (page.query) console.log(activePageParents);
     const topLevel =
       activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
 
@@ -263,7 +270,7 @@ function reduceChildRoutes(context) {
         depth={depth}
         key={title}
         title={title}
-        href={page.pathname}
+        href={{ pathname: page.pathname, ...(page.query && { query: page.query }) }}
         legacy={page.legacy}
         newFeature={page.newFeature}
         plan={page.plan}
