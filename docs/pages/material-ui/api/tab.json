@@ -2,9 +2,9 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
     "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
     "iconPosition": {
       "type": {
@@ -21,7 +21,7 @@
       }
     },
     "value": { "type": { "name": "any" } },
-    "wrapped": { "type": { "name": "bool" } }
+    "wrapped": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tab",
   "styles": {

@@ -9,7 +9,7 @@
       },
       "default": "'primary'"
     },
-    "enableColorOnDark": { "type": { "name": "bool" } },
+    "enableColorOnDark": { "type": { "name": "bool" }, "default": "false" },
     "position": {
       "type": {
         "name": "enum",

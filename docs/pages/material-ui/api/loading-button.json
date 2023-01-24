@@ -2,8 +2,8 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" } },
-    "loading": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingIndicator": {
       "type": { "name": "node" },
       "default": "<CircularProgress color=\"inherit\" size={16} />"

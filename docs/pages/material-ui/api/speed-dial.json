@@ -11,7 +11,7 @@
       "default": "'up'"
     },
     "FabProps": { "type": { "name": "object" }, "default": "{}" },
-    "hidden": { "type": { "name": "bool" } },
+    "hidden": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "onClose": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },

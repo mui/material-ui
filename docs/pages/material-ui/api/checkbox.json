@@ -15,7 +15,7 @@
     "disableRipple": { "type": { "name": "bool" } },
     "icon": { "type": { "name": "node" }, "default": "<CheckBoxOutlineBlankIcon />" },
     "id": { "type": { "name": "string" } },
-    "indeterminate": { "type": { "name": "bool" } },
+    "indeterminate": { "type": { "name": "bool" }, "default": "false" },
     "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },

@@ -5,7 +5,7 @@
     "autoFocus": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disableAutoFocusItem": { "type": { "name": "bool" } },
+    "disableAutoFocusItem": { "type": { "name": "bool" }, "default": "false" },
     "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
     "PopoverClasses": { "type": { "name": "object" } },

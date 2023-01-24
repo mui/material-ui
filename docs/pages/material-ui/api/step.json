@@ -6,7 +6,7 @@
     "completed": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
-    "expanded": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" }, "default": "false" },
     "index": { "type": { "name": "custom", "description": "integer" } },
     "last": { "type": { "name": "bool" } },
     "sx": {

@@ -4,16 +4,16 @@
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
       "default": "'center'"
     },
-    "autoFocus": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "dense": { "type": { "name": "bool" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableGutters": { "type": { "name": "bool" } },
-    "divider": { "type": { "name": "bool" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },
-    "selected": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

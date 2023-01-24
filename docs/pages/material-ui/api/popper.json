@@ -17,8 +17,8 @@
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disablePortal": { "type": { "name": "bool" } },
-    "keepMounted": { "type": { "name": "bool" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "modifiers": {
       "type": {
         "name": "arrayOf",
@@ -54,7 +54,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "transition": { "type": { "name": "bool" } }
+    "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popper",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

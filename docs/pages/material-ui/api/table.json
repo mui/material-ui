@@ -17,7 +17,7 @@
       },
       "default": "'medium'"
     },
-    "stickyHeader": { "type": { "name": "bool" } },
+    "stickyHeader": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

@@ -12,7 +12,7 @@
       "type": { "name": "shape", "description": "{ root?: object }" },
       "default": "{}"
     },
-    "invisible": { "type": { "name": "bool" } },
+    "invisible": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
       "default": "{}"
