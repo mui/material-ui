@@ -235,12 +235,6 @@ Visit the following CodeSandbox to preview this use case setup.
 
 [![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-k86j2j?file=/demo.tsx)
 
-### CodeSandbox
-
-Visit the following CodeSandbox to preview this use case setup.
-
-[![Edit Using the custom themes of Joy UI and Material UI together](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/using-the-custom-themes-of-joy-ui-and-material-ui-txbdb4?file=/demo.tsx)
-
 ## TypeScript setup
 
 The snippet can be used with both of the above use cases. Here, we augment the Material UI and Joy UI theme to have the same tokens so that you have the same experience when customizing components via APIs like `styled` or `sx`.
