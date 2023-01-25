@@ -739,50 +739,49 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelSlot;
 
         return (
-          <React.Fragment key={index}>
-            {/* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure.  */}
-            <ValueLabelComponent
-              {...(!isHostComponent(ValueLabelComponent) && {
-                valueLabelFormat,
-                valueLabelDisplay,
-                value:
-                  typeof valueLabelFormat === 'function'
-                    ? valueLabelFormat(scale(value), index)
-                    : valueLabelFormat,
-                index,
-                open: open === index || active === index || valueLabelDisplay === 'on',
-                disabled,
+          /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
+          <ValueLabelComponent
+            key={index}
+            {...(!isHostComponent(ValueLabelComponent) && {
+              valueLabelFormat,
+              valueLabelDisplay,
+              value:
+                typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat,
+              index,
+              open: open === index || active === index || valueLabelDisplay === 'on',
+              disabled,
+            })}
+            {...valueLabelProps}
+          >
+            <ThumbSlot
+              data-index={index}
+              data-focusvisible={focusedThumbIndex === index}
+              {...thumbProps}
+              className={clsx(classes.thumb, thumbProps.className, {
+                [classes.active]: active === index,
+                [classes.focusVisible]: focusedThumbIndex === index,
               })}
-              {...valueLabelProps}
+              style={{
+                ...style,
+                pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                ...thumbProps.style,
+              }}
             >
-              <ThumbSlot
+              <InputSlot
                 data-index={index}
-                data-focusvisible={focusedThumbIndex === index}
-                {...thumbProps}
-                className={clsx(classes.thumb, thumbProps.className, {
-                  [classes.active]: active === index,
-                  [classes.focusVisible]: focusedThumbIndex === index,
-                })}
-                style={{
-                  ...style,
-                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
-                  ...thumbProps.style,
-                }}
-              >
-                <InputSlot
-                  data-index={index}
-                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                  aria-valuenow={scale(value)}
-                  aria-labelledby={ariaLabelledby}
-                  aria-valuetext={
-                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                  }
-                  value={values[index]}
-                  {...inputSliderProps}
-                />
-              </ThumbSlot>
-            </ValueLabelComponent>
-          </React.Fragment>
+                aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                aria-valuenow={scale(value)}
+                aria-labelledby={ariaLabelledby}
+                aria-valuetext={
+                  getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                }
+                value={values[index]}
+                {...inputSliderProps}
+              />
+            </ThumbSlot>
+          </ValueLabelComponent>
         );
       })}
     </RootSlot>
