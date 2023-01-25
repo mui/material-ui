@@ -1,6 +1,10 @@
 module.exports = [
   { pathname: '/base/api/badge-unstyled' },
-  { pathname: '/base/react-button', query: { docsTab: 'component-api' }, title: 'ButtonUnstyled' },
+  {
+    pathname: '/base/react-button',
+    query: { docsTab: 'component-api' },
+    title: 'ButtonUnstyled',
+  },
   { pathname: '/base/api/click-away-listener' },
   { pathname: '/base/api/focus-trap' },
   { pathname: '/base/api/form-control-unstyled' },
