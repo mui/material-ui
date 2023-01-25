@@ -34,7 +34,7 @@ To learn how to add more variants or sizes to the component, check out the [Them
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+## Basics
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -51,11 +51,11 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
-
 The Radio component supports every Joy UI global variant and it comes with `outlined` set as the default one.
 
 {{"demo": "RadioButtons.js"}}
+
+## Customization
 
 ### Label
 
@@ -117,29 +117,6 @@ To communicate the checked and unchecked states with different artifacts, such a
 
 {{"demo": "IconlessRadio.js"}}
 
-## Accessibility
-
-Here are a few tips to make sure you have an accessible radio button component:
-
-- Every form control should have proper labels.
-  This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done by using the `FormControl` and `FormLabel` element.
-- When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
-  You can also use the `inputProps` prop to add them.
-
-```jsx
-<Radio
-  value="radioA"
-  slotProps={{
-    input: {
-      'aria-label': 'Radio A',
-    },
-  }}
-/>
-```
-
-Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
-
 ## Common examples
 
 ### Segmented controls
@@ -172,6 +149,29 @@ The focus outline is customized to be smaller, and the color changes based on th
 The check icon's color inherits the radio button's `solid` variant, so that we don't need to handpick a color that has enough contrast with the background.
 
 {{"demo": "ExampleProductAttributes.js"}}
+
+## Accessibility
+
+Here are a few tips to make sure you have an accessible radio button component:
+
+- Every form control should have proper labels.
+  This includes radio buttons, checkboxes, and switches.
+  In most cases, this is done by using the `FormControl` and `FormLabel` element.
+- When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
+  You can also use the `inputProps` prop to add them.
+
+```jsx
+<Radio
+  value="radioA"
+  slotProps={{
+    input: {
+      'aria-label': 'Radio A',
+    },
+  }}
+/>
+```
+
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
 
 ## Anatomy
 
