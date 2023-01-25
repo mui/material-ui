@@ -437,8 +437,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     value,
     registerHighlightChangeHandler,
     registerSelectionChangeHandler,
-    unregisterHighlightChangeHandler,
-    unregisterSelectionChangeHandler,
   } = useSelect({
     buttonRef,
     defaultValue,
@@ -567,8 +565,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       color,
       registerHighlightChangeHandler,
       registerSelectionChangeHandler,
-      unregisterHighlightChangeHandler,
-      unregisterSelectionChangeHandler,
     }),
     [
       color,
@@ -576,8 +572,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       getOptionState,
       registerHighlightChangeHandler,
       registerSelectionChangeHandler,
-      unregisterHighlightChangeHandler,
-      unregisterSelectionChangeHandler,
     ],
   );
 
