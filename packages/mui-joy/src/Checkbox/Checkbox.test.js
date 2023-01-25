@@ -162,6 +162,7 @@ describe('<Checkbox />', () => {
       const { queryByTestId } = render(
         <Checkbox disableIcon checked indeterminate uncheckedIcon={<CloseIcon />} />,
       );
+
       expect(queryByTestId('CheckIcon')).to.equal(null);
       expect(queryByTestId('CloseIcon')).to.equal(null);
       expect(queryByTestId('HorizontalRuleIcon')).to.equal(null);
