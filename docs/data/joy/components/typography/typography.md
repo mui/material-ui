@@ -195,6 +195,12 @@ declare module '@mui/joy/styles' {
 }
 ```
 
+## Common examples
+
+The demo below illustrates multiple uses of the Typography component with others as [decorators](#decorators).
+
+{{"demo": "DecoratorExamples.js"}}
+
 ## Accessibility
 
 Here are some factors to ensure that your Typography components are accessible:
@@ -203,12 +209,6 @@ Here are some factors to ensure that your Typography components are accessible:
 - Use [relative units](/material-ui/customization/typography/#font-size) such as rem for `fontSize` to accommodate the user's settings.
 - Use a consistent [heading hierarchy](https://www.w3.org/WAI/tutorials/page-structure/headings/), and avoid skipping levels.
 - Keep semantics and style separate by using the appropriate semantic elements(#semantic-elements).
-
-## Common examples
-
-Examples showcasing how to compose designs with the Typography component and others as decorators.
-
-{{"demo": "DecoratorExamples.js"}}
 
 ## Anatomy
 
