@@ -57,6 +57,10 @@ export default function MarkdownDocs(props) {
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
+  React.useEffect(() => {
+    setActiveTab(router.query.docsTab ?? '');
+  }, [router.query.docsTab]);
+
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
   const { description, location, rendered, title, toc: demosToc } = localizedDoc;
