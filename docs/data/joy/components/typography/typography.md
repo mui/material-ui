@@ -22,6 +22,13 @@ The Typography component wraps around its content, and displays text with specif
 
 {{"demo": "TypographyBasics.js"}}
 
+### Nested Typography
+
+The Typography component renders as a `<p>` by default.
+Nested Typography components are rendered as `<span>` elements (unless customized by [the `component` prop](#semantic-elements)).
+
+{{"demo": "NestedTypography.js"}}
+
 ## Customization
 
 ### System props
@@ -52,16 +59,15 @@ Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as a
 ### Semantic elements
 
 To customize the semantic element used, you can use the `component` prop.
-This can be useful in situations where you want to use a different semantic element than the one that was assigned by the `level` prop.
-The content will be rendered as the desired semantic element, which can improve accessibility, SEO, consistency, readability and reusability of the webpage.
+This can be useful in situations where you want to use a different semantic element than the one assigned by the `level` prop.
+The component will render as the HTML element defined by `component`, but with the styles assigned to its respective `level`.
 
 ```jsx
-{
-  /* There's already an h1 on the page so let's not add another one. */
-}
+// There's already an h1 on the page so let's not add another one.
+
 <Typography level="h1" component="h2">
-  h1. Heading
-</Typography>;
+  I render as an h2, but I have h1 styles
+</Typography>
 ```
 
 In a more efficient way, you can change the HTML mapping tags at the theme level.
@@ -92,23 +98,9 @@ const theme = extendTheme({
 });
 ```
 
-### Nested Typography
-
-Nested Typography components will be rendered as a `<span>` element by default, unless a custom semantic element is specified using the `component` prop in each component.
-
-```js
-<Typography>
-  Paragraph by default.
-  <Typography fontWeight="lg">I am a span</Typography> {/* render as <span> */}
-  <Typography component="strong">but strong</Typography> {/* render as <strong> */}
-</Typography>
-```
-
-{{"demo": "NestedTypography.js"}}
-
 ### Decorators
 
-Use the `startDecorator` and `endDecorator` props to add supporting icons or elements to the typography.
+Use the `startDecorator` and `endDecorator` props to add supporting icons or elements to the Typography.
 
 {{"demo": "TypographyDecorators.js"}}
 
@@ -122,7 +114,7 @@ extendTheme({
     subtitle: {
       fontSize: 'var(--joy-fontSize-lg)',
       fontWeight: 'var(--joy-fontWeight-md)',
-      // CSS selector is also supported!
+      // CSS selectors are also supported!
       '& + p': {
         marginTop: '4px',
       },
@@ -137,7 +129,7 @@ extendTheme({
 });
 ```
 
-You can also access the newly created levels from the `level` prop.
+You can also access the newly created levels from the `level` prop:
 
 ```js
 <Typography level="subtitle">
@@ -145,7 +137,7 @@ You can also access the newly created levels from the `level` prop.
 ```
 
 :::warning
-When using _TypeScript_, make sure to add module augmentation for the new theme values.
+When using TypeScript, make sure to add module augmentation for the new theme values.
 
 ```ts
 // in your theme or index file
@@ -161,7 +153,7 @@ declare module '@mui/joy/styles' {
 
 ### Removing the scale
 
-In order to establish a customized scale, you can clear the built-in values by assigning `undefined` to them in the theme.
+If you want to create a fully customized scale using your own key-value pairs, you can clear the built-in values by assigning `undefined` to them in the theme.
 
 ```js
 extendTheme({
@@ -220,22 +212,15 @@ Examples showcasing how to compose designs with the Typography component and oth
 
 ## Anatomy
 
-The Typography component is composed of a semantic element, as defined by the `level` prop, which serves as the root element and wraps around the content:
+The Typography component is composed of a single root `<p>` that's assigned the `body1` class, unless these defaults are overridden by the [`level`](#levels) and/or [`component`](#semantic-elements) props.
+
+When one Typography component is nested within another, the nested component renders as a `<span>` (unless customized as described above).
 
 ```html
-<h1 class="JoyTypography-root JoyTypography-h1"><--- Text ---></h1>
-<p class="JoyTopography-root JoyTopography-body1"><--- Text ---></p>
-<span class="JoyTopography-root JoyTopography-body3"><--- Text ---></span>
-```
-
-:::info
-By default, Typography components are rendered as `<p>` element. However, if a [nested element](#nested-typography) is used, it will be rendered as a `<span>`.
-:::
-
-```js
-<Typography>Hello world.</Typography>
-```
-
-```html
-<p>Hello world.</p>
+<p class="JoyTypography-root JoyTypography-body1">
+  <!-- Typography content -->
+  <span class="JoyTypography-root JoyTypography-inherit">
+    <!-- Nested Typography content -->
+  </span>
+</p>
 ```
