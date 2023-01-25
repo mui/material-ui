@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Badge from '@mui/joy/Badge';
+import Badge, { badgeClasses } from '@mui/joy/Badge';
 import Avatar from '@mui/joy/Avatar';
 
 export default function BadgeAvatars() {
@@ -11,7 +11,7 @@ export default function BadgeAvatars() {
         badgeInset="14%"
         color="success"
         sx={{
-          '& .JoyBadge-badge': {
+          [`& .${badgeClasses.badge}`]: {
             '&::after': {
               position: 'absolute',
               top: 0,
