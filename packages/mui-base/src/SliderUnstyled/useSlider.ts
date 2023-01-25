@@ -154,7 +154,9 @@ const axisProps = {
   },
 };
 
-export const Identity = (x: any) => x;
+export function Identity(x: any) {
+  return x;
+}
 
 // TODO: remove support for Safari < 13.
 // https://caniuse.com/#search=touch-action
