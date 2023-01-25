@@ -37,20 +37,27 @@ const Main = styled('main', {
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd',
-})(({ disableAd, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs',
+})(({ disableAd, hasTabs, theme }) => {
   return {
     position: 'relative',
     // By default, a grid item cannot be smaller than the size of its content.
     // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
     minWidth: 0,
     ...(!disableAd && {
-      '&& .description': {
-        marginBottom: 198,
-      },
-      '&& .description.ad': {
-        marginBottom: 40,
-      },
+      ...(!hasTabs && {
+        '&& .description': {
+          marginBottom: 198,
+        },
+        '&& .description.ad': {
+          marginBottom: 40,
+        },
+      }),
+      ...(hasTabs && {
+        '&& .component-tabs.ad': {
+          marginBottom: 40,
+        },
+      }),
     }),
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '60px',
@@ -78,6 +85,7 @@ function AppLayoutDocs(props) {
     location,
     title,
     toc,
+    hasTabs = false,
   } = props;
 
   if (description === undefined) {
@@ -109,7 +117,7 @@ function AppLayoutDocs(props) {
           },
         }}
       />
-      <AdManager>
+      <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
         <Head
           title={`${title} - ${productName}`}
           description={description}
@@ -121,7 +129,7 @@ function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd}>
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>

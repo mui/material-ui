@@ -64,7 +64,7 @@ export default function MarkdownDocs(props) {
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
   const { description, location, rendered, title, toc } = localizedDoc;
-  const demosToc = toc.filter(item => item.text !== 'API');
+  const demosToc = toc.filter((item) => item.text !== 'API');
 
   const {
     hookDescription,
@@ -168,16 +168,17 @@ export default function MarkdownDocs(props) {
           ? componentApiToc
           : demosToc
       }
+      hasTabs
     >
       <Provider>
+        {isJoy && <JoyModeObserver key="joy-provider" mode={theme.palette.mode} />}
         {disableAd ? null : (
           <Wrapper key="add">
-            <AdGuest>
+            <AdGuest classSelector=".component-tabs">
               <Ad />
             </AdGuest>
           </Wrapper>
         )}
-        {isJoy && <JoyModeObserver key="joy-provider" mode={theme.palette.mode} />}
         {commonElements}
         {activeTab === '' &&
           rendered
