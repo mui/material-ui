@@ -325,15 +325,23 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     ownerState,
   });
 
+  let icon = uncheckedIcon;
+
+  if (disableIcon) {
+    icon = null;
+  } else if (indeterminate) {
+    icon = indeterminateIcon;
+  } else if (checked) {
+    icon = checkedIcon;
+  }
+
   return (
     <SlotRoot {...rootProps}>
       <SlotCheckbox {...checkboxProps}>
         <SlotAction {...actionProps}>
           <SlotInput {...inputProps} />
         </SlotAction>
-        {indeterminate && !checked && !disableIcon && indeterminateIcon}
-        {checked && !disableIcon && checkedIcon}
-        {!checked && !disableIcon && !indeterminate && uncheckedIcon}
+        {icon}
       </SlotCheckbox>
       {label && (
         <TypographyContext.Provider value>
