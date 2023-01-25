@@ -2,11 +2,10 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   defaultListboxReducer,
-  ListboxAction,
   ListboxState,
   useListbox,
   ActionTypes,
-  UseListboxPropsWithDefaults,
+  ListboxReducerAction,
 } from '../ListboxUnstyled';
 import {
   MenuItemMetadata,
@@ -18,7 +17,7 @@ import { EventHandlers } from '../utils';
 
 function stateReducer(
   state: ListboxState<string>,
-  action: ListboxAction<string> & { props: UseListboxPropsWithDefaults<string> },
+  action: ListboxReducerAction<string>,
 ): ListboxState<string> {
   if (
     action.type === ActionTypes.blur ||

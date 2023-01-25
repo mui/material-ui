@@ -3,6 +3,7 @@ import {
   ActionTypes,
   ListboxAction,
   ListboxReducer,
+  ListboxReducerAction,
   ListboxState,
   UseListboxPropsWithDefaults,
 } from './useListbox.types';
@@ -140,10 +141,7 @@ export default function useControllableReducer<TOption>(
   };
 
   const combinedReducer = React.useCallback(
-    (
-      state: ListboxState<TOption>,
-      action: ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> },
-    ) => {
+    (state: ListboxState<TOption>, action: ListboxReducerAction<TOption>) => {
       actionRef.current = action;
 
       if (externalReducer) {
@@ -162,7 +160,7 @@ export default function useControllableReducer<TOption>(
       dispatch({
         props: props.current,
         ...action,
-      } as ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> });
+      } as ListboxReducerAction<TOption>);
     },
     [dispatch, props],
   );

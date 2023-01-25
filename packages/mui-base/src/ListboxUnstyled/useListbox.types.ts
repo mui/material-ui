@@ -94,6 +94,8 @@ export type ListboxAction<TOption> =
   | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
+export type ListboxReducerAction<T> = ListboxAction<T> & { props: UseListboxPropsWithDefaults<T> };
+
 export interface ListboxState<TOption> {
   highlightedValue: TOption | null;
   selectedValue: TOption | TOption[] | null;
@@ -101,7 +103,7 @@ export interface ListboxState<TOption> {
 
 export type ListboxReducer<TOption> = (
   state: ListboxState<TOption>,
-  action: ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> },
+  action: ListboxReducerAction<TOption>,
 ) => ListboxState<TOption>;
 
 interface UseListboxCommonProps<TOption> {

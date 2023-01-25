@@ -2,8 +2,8 @@ import * as React from 'react';
 import {
   ListboxState,
   UseListboxPropsWithDefaults,
-  ListboxAction,
   ActionTypes,
+  ListboxReducerAction,
 } from './useListbox.types';
 
 type OptionPredicate<TOption> = (option: TOption, index: number) => boolean;
@@ -338,7 +338,7 @@ function handleOptionsChange<TOption>(
 
 export default function defaultListboxReducer<TOption>(
   state: Readonly<ListboxState<TOption>>,
-  action: ListboxAction<TOption> & { props: UseListboxPropsWithDefaults<TOption> },
+  action: ListboxReducerAction<TOption>,
 ): Readonly<ListboxState<TOption>> {
   const { type } = action;
 
