@@ -36,10 +36,10 @@ export interface ModalCloseClasses {
 export type ModalCloseClassKey = keyof ModalCloseClasses;
 
 export function getModalCloseUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyModalClose', slot);
+  return generateUtilityClass('MuiModalClose', slot);
 }
 
-const modalCloseClasses: ModalCloseClasses = generateUtilityClasses('JoyModalClose', [
+const modalCloseClasses: ModalCloseClasses = generateUtilityClasses('MuiModalClose', [
   'root',
   'colorPrimary',
   'colorNeutral',

@@ -46,7 +46,7 @@ export default function SpacingGrid() {
                   aria-label="spacing"
                   value={spacing.toString()}
                   onChange={handleChange}
-                  row
+                  orientation="horizontal"
                   sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
                 >
                   {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (

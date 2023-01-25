@@ -36,10 +36,10 @@ export interface MenuListClasses {
 export type MenuListClassKey = keyof MenuListClasses;
 
 export function getMenuListUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenuList', slot);
+  return generateUtilityClass('MuiMenuList', slot);
 }
 
-const menuClasses: MenuListClasses = generateUtilityClasses('JoyMenuList', [
+const menuClasses: MenuListClasses = generateUtilityClasses('MuiMenuList', [
   'root',
   'nested',
   'sizeSm',

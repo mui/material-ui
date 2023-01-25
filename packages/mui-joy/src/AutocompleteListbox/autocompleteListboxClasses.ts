@@ -36,11 +36,11 @@ export interface AutocompleteListboxClasses {
 export type AutocompleteListboxClassKey = keyof AutocompleteListboxClasses;
 
 export function getAutocompleteListboxUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAutocompleteListbox', slot);
+  return generateUtilityClass('MuiAutocompleteListbox', slot);
 }
 
 const autocompleteListboxClasses: AutocompleteListboxClasses = generateUtilityClasses(
-  'JoyAutocompleteListbox',
+  'MuiAutocompleteListbox',
   [
     'root',
     'sizeSm',

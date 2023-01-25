@@ -32,10 +32,10 @@ export interface ChipDeleteClasses {
 }
 
 export function getChipDeleteUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyChipDelete', slot);
+  return generateUtilityClass('MuiChipDelete', slot);
 }
 
-const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('JoyChipDelete', [
+const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('MuiChipDelete', [
   'root',
   'disabled',
   'focusVisible',

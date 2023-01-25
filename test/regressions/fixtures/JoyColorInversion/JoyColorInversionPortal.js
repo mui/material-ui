@@ -30,7 +30,7 @@ export default function ColorInversionPopup() {
       <CssBaseline />
       <Stack spacing={2}>
         <Card
-          row
+          orientation="horizontal"
           variant="solid"
           color="primary"
           invertedColors
@@ -75,7 +75,7 @@ export default function ColorInversionPopup() {
           </Tooltip>
         </Card>
         <Card
-          row
+          orientation="horizontal"
           variant="solid"
           color="primary"
           invertedColors

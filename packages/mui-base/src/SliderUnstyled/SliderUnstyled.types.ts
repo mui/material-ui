@@ -2,7 +2,6 @@ import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/ty
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
-import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import {
   UseSliderHiddenInputProps,
   UseSliderRootSlotProps,
@@ -10,26 +9,19 @@ import {
   Mark,
 } from './useSlider.types';
 
-export type SliderUnstyledOwnerState = SliderUnstyledProps & {
+export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;
   focusedThumbIndex: number;
   isRtl: boolean;
-  mark: boolean | Mark[];
   max: number;
   min: number;
+  dragging: boolean;
+  marked: boolean;
   orientation: 'horizontal' | 'vertical';
   scale: (value: number) => number;
   step: number | null;
   track: 'normal' | false | 'inverted';
-  valueLabelDisplay: 'on' | 'auto' | 'off';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
-};
-
-export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
-  index: number;
-  open: boolean;
-  value: number;
 }
 
 export interface SliderUnstyledComponentsPropsOverrides {}
@@ -132,7 +124,11 @@ export interface SliderUnstyledOwnProps {
   orientation?: 'horizontal' | 'vertical';
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale?: (value: number) => number;
   /**
@@ -171,7 +167,7 @@ export interface SliderUnstyledOwnProps {
       SliderUnstyledOwnerState
     >;
     valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
+      React.ElementType,
       SliderUnstyledComponentsPropsOverrides,
       SliderUnstyledOwnerState
     >;
@@ -225,22 +221,17 @@ export interface SliderUnstyledOwnProps {
    */
   value?: number | number[];
   /**
-   * Controls when the value label is displayed:
-   *
-   * - `auto` the value label will display when the thumb is hovered or focused.
-   * - `on` will display persistently.
-   * - `off` will never display.
-   * @default 'off'
-   */
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
-  /**
    * The format function the value label's value.
    *
    * When a function is provided, it should have the following signature:
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 }
@@ -319,7 +310,6 @@ export type SliderUnstyledValueLabelSlotProps = {
   open?: boolean;
   ownerState: SliderUnstyledOwnerState;
   valueLabel?: string | React.ReactNode;
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 };
 

@@ -9,7 +9,7 @@ export default function InteractiveCard() {
   return (
     <Card
       variant="outlined"
-      row
+      orientation="horizontal"
       sx={{
         width: 320,
         gap: 2,
