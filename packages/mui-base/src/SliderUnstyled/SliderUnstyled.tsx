@@ -6,13 +6,18 @@ import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
-import useSlider, { valueToPercent, Identity } from './useSlider';
+import useSlider, { valueToPercent } from './useSlider';
 import useSlotProps from '../utils/useSlotProps';
 import {
   SliderUnstyledOwnerState,
   SliderUnstyledProps,
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
+
+// @ts-ignore
+function Identity(x) {
+  return x;
+}
 
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;

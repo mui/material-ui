@@ -7,7 +7,7 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import { useSlider, valueToPercent, Identity } from '@mui/base/SliderUnstyled';
+import { useSlider, valueToPercent } from '@mui/base/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
@@ -16,6 +16,10 @@ import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
+
+function Identity(x) {
+  return x;
+}
 
 const SliderRoot = styled('span', {
   name: 'MuiSlider',
