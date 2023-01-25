@@ -63,7 +63,8 @@ export default function MarkdownDocs(props) {
 
   const localizedDoc = docs[userLanguage] || docs.en;
   // Generate the TOC based on the tab
-  const { description, location, rendered, title, toc: demosToc } = localizedDoc;
+  const { description, location, rendered, title, toc } = localizedDoc;
+  const demosToc = toc.filter(item => item.text !== 'API');
 
   const {
     hookDescription,
