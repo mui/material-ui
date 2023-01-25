@@ -133,10 +133,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@argos-ci/core@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.7.2.tgz#6f37d639c35bbe1ae55c462ca2e321d2beb9e6b9"
-  integrity sha512-no7rzUUdegwg5vtYc7XDfYe/R5DW5PWPq+JTs1iItbLo4fVUyp5npI7nVaCyNNpFJHU4KZJ7ycFrFGNhAvZALA==
+"@argos-ci/core@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.7.3.tgz#999166771430bb7f7c33e0e34495cb9d144f346d"
+  integrity sha512-JOiV48M3NEXdeQZW0KPHidBPxqVjbJ4YpMhgHDyYrMB/FakvdDJWzHQrKzdGJbnFXCJepYgt7opvOtiJFUevhg==
   dependencies:
     axios "1.1.2"
     convict "^6.2.3"
@@ -6932,10 +6932,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dom-accessibility-api@^0.5.15, dom-accessibility-api@^0.5.9:
-  version "0.5.15"
-  resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.5.15.tgz#357e74338704f36fada8b2e01a4bfc11ef436ac9"
-  integrity sha512-8o+oVqLQZoruQPYy3uAAQtc6YbtSiRq5aPJBhJ82YTJRHvI6ofhYAkC81WmjFTnfUbqg6T3aCglIpU9p/5e7Cw==
+dom-accessibility-api@^0.5.16, dom-accessibility-api@^0.5.9:
+  version "0.5.16"
+  resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.5.16.tgz#5a7429e6066eb3664d911e33fb0e45de8eb08453"
+  integrity sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==
 
 dom-converter@^0.2.0:
   version "0.2.0"
@@ -11684,10 +11684,17 @@ node-environment-flags@^1.0.5:
     object.getownpropertydescriptors "^2.0.3"
     semver "^5.7.0"
 
-node-fetch@2.6.7, node-fetch@^2.6.1, node-fetch@^2.6.7:
+node-fetch@2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
+
+node-fetch@^2.6.1, node-fetch@^2.6.7, node-fetch@^2.6.8:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.8.tgz#a68d30b162bc1d8fd71a367e81b997e1f4d4937e"
+  integrity sha512-RZ6dBYuj8dRSfxpUSu+NsdF1dpPpluJxwOp+6IoDp/sH2QNDSvurYsAa+F1WxY2RjA1iP93xhcsUoYbF2XBqVg==
   dependencies:
     whatwg-url "^5.0.0"
 
