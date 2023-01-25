@@ -11,7 +11,7 @@ import {
 } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
-import Option, { optionClasses } from '@mui/joy/Option';
+import Option from '@mui/joy/Option';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
@@ -378,7 +378,7 @@ describe('Joy <Select />', () => {
         fireEvent.keyDown(listbox, { key: 'ArrowDown' });
         fireEvent.keyDown(listbox, { key: 'Enter' });
 
-        expect(options[1]).to.have.class(optionClasses.highlighted);
+        expect(options[1]).to.have.attribute('aria-selected', 'true');
       });
     });
 
