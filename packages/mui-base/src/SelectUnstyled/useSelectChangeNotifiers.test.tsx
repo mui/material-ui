@@ -9,13 +9,13 @@ describe('useSelectChangeNotifiers', () => {
     const handler = spy();
 
     function TestComponent() {
-      const { registrationFunctions, notifySelectionChanged } = useSelectChangeNotifiers();
-      registrationFunctions.registerSelectionChangeHandler(handler);
+      const { registerSelectionChangeHandler, notifySelectionChanged } = useSelectChangeNotifiers();
+      registerSelectionChangeHandler(handler);
       const [value, setValue] = React.useState(0);
 
-      const handleClick = (event: React.MouseEvent) => {
+      const handleClick = () => {
         setValue((v) => v + 1);
-        notifySelectionChanged(event, value + 1);
+        notifySelectionChanged(value + 1);
       };
 
       return <button onClick={handleClick}>Update selection</button>;
@@ -29,21 +29,20 @@ describe('useSelectChangeNotifiers', () => {
     });
 
     expect(handler.callCount).to.equal(1);
-    expect(handler.args[0][0]).to.have.property('type', 'click');
-    expect(handler.args[0][1]).to.equal(1);
+    expect(handler.args[0][0]).to.equal(1);
   });
 
   it('should call the registered handler when the highlight changes', () => {
     const handler = spy();
 
     function TestComponent() {
-      const { registrationFunctions, notifyHighlightChanged } = useSelectChangeNotifiers();
-      registrationFunctions.registerHighlightChangeHandler(handler);
+      const { registerHighlightChangeHandler, notifyHighlightChanged } = useSelectChangeNotifiers();
+      registerHighlightChangeHandler(handler);
       const [value, setValue] = React.useState(0);
 
-      const handleClick = (event: React.MouseEvent) => {
+      const handleClick = () => {
         setValue((v) => v + 1);
-        notifyHighlightChanged(event, value + 1);
+        notifyHighlightChanged(value + 1);
       };
 
       return <button onClick={handleClick}>Update highlight</button>;
@@ -57,8 +56,7 @@ describe('useSelectChangeNotifiers', () => {
     });
 
     expect(handler.callCount).to.equal(1);
-    expect(handler.args[0][0]).to.have.property('type', 'click');
-    expect(handler.args[0][1]).to.equal(1);
+    expect(handler.args[0][0]).to.equal(1);
   });
 
   it('should not call the handlers after they are unregistered', () => {
@@ -66,22 +64,28 @@ describe('useSelectChangeNotifiers', () => {
     const highlightChangeHandler = spy();
 
     function TestComponent() {
-      const { registrationFunctions, notifySelectionChanged, notifyHighlightChanged } =
-        useSelectChangeNotifiers();
-      registrationFunctions.registerSelectionChangeHandler(changeHandler);
-      registrationFunctions.registerHighlightChangeHandler(highlightChangeHandler);
+      const {
+        notifySelectionChanged,
+        notifyHighlightChanged,
+        registerSelectionChangeHandler,
+        registerHighlightChangeHandler,
+      } = useSelectChangeNotifiers();
+
+      const unregisterSelectionChangeHandler = registerSelectionChangeHandler(changeHandler);
+      const unregisterHighlightChangeHandler =
+        registerHighlightChangeHandler(highlightChangeHandler);
 
       const [value, setValue] = React.useState(0);
 
-      const updateValue = (event: React.MouseEvent) => {
+      const updateValue = () => {
         setValue((v) => v + 1);
-        notifySelectionChanged(event, value + 1);
-        notifyHighlightChanged(event, value + 1);
+        notifySelectionChanged(value + 1);
+        notifyHighlightChanged(value + 1);
       };
 
       const clearHandlers = () => {
-        registrationFunctions.unregisterSelectionChangeHandler(changeHandler);
-        registrationFunctions.unregisterHighlightChangeHandler(highlightChangeHandler);
+        unregisterSelectionChangeHandler();
+        unregisterHighlightChangeHandler();
       };
 
       return (

@@ -144,9 +144,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     getOptionProps,
     getOptionState,
     registerHighlightChangeHandler,
-    unregisterHighlightChangeHandler,
     registerSelectionChangeHandler,
-    unregisterSelectionChangeHandler,
     value,
   } = useSelect({
     buttonRef: handleButtonRef,
@@ -221,17 +219,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
       getOptionState,
       listboxRef,
       registerSelectionChangeHandler,
-      unregisterSelectionChangeHandler,
       registerHighlightChangeHandler,
-      unregisterHighlightChangeHandler,
     }),
     [
       getOptionProps,
       getOptionState,
       registerSelectionChangeHandler,
-      unregisterSelectionChangeHandler,
       registerHighlightChangeHandler,
-      unregisterHighlightChangeHandler,
     ],
   );
 

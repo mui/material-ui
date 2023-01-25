@@ -80,8 +80,12 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
 
   const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
-  const { notifySelectionChanged, notifyHighlightChanged, registrationFunctions } =
-    useSelectChangeNotifiers<TValue>();
+  const {
+    notifySelectionChanged,
+    notifyHighlightChanged,
+    registerHighlightChangeHandler,
+    registerSelectionChangeHandler,
+  } = useSelectChangeNotifiers<TValue>();
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -284,11 +288,11 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   } = useListbox(useListboxParameters);
 
   React.useEffect(() => {
-    notifySelectionChanged(null, selectedOption);
+    notifySelectionChanged(selectedOption);
   }, [selectedOption, notifySelectionChanged]);
 
   React.useEffect(() => {
-    notifyHighlightChanged(null, highlightedOption);
+    notifyHighlightChanged(highlightedOption);
   }, [highlightedOption, notifyHighlightChanged]);
 
   const getButtonProps = <TOther extends EventHandlers>(
@@ -345,7 +349,8 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps,
     getOptionState,
     open,
-    ...registrationFunctions,
+    registerHighlightChangeHandler,
+    registerSelectionChangeHandler,
     value: selectedOption,
     highlightedOption,
   };

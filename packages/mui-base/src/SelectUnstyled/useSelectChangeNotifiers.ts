@@ -1,41 +1,28 @@
 import * as React from 'react';
-import { SelectChangeEventType } from './useSelect.types';
+import useMessageBus from '../utils/messageBus/messageBus';
+
+const SELECTION_CHANGE_TOPIC = 'select:change-selection';
+const HIGHLIGHT_CHANGE_TOPIC = 'select:change-highlight';
 
 export interface SelectChangeNotifiers<TValue> {
   /**
    * Calls all the registered selection change handlers.
    *
-   * @param event - The event that triggered the selection change.
    * @param newValue - The newly selected value(s).
    */
-  notifySelectionChanged: (
-    event: SelectChangeEventType,
-    newValue: TValue | TValue[] | null,
-  ) => void;
+  notifySelectionChanged: (newValue: TValue | TValue[] | null) => void;
   /**
    * Calls all the registered highlight change handlers.
    *
-   * @param event - The event that triggered the highlight change.
    * @param newValue - The newly highlighted value.
    */
-  notifyHighlightChanged: (event: SelectChangeEventType, newValue: TValue | null) => void;
-  /**
-   * Functions to register and unregister selection and highlight change handlers.
-   */
-  registrationFunctions: {
-    registerSelectionChangeHandler: (
-      handler: (event: SelectChangeEventType, newValue: TValue | TValue[] | null) => void,
-    ) => void;
-    unregisterSelectionChangeHandler: (
-      handler: (event: SelectChangeEventType, newValue: TValue | TValue[] | null) => void,
-    ) => void;
-    registerHighlightChangeHandler: (
-      handler: (event: SelectChangeEventType, newValue: TValue | null) => void,
-    ) => void;
-    unregisterHighlightChangeHandler: (
-      handler: (event: SelectChangeEventType, newValue: TValue | null) => void,
-    ) => void;
-  };
+  notifyHighlightChanged: (newValue: TValue | null) => void;
+
+  registerSelectionChangeHandler: (
+    handler: (newValue: TValue | TValue[] | null) => void,
+  ) => () => void;
+
+  registerHighlightChangeHandler: (handler: (newValue: TValue | null) => void) => () => void;
 }
 
 /**
@@ -44,64 +31,40 @@ export interface SelectChangeNotifiers<TValue> {
  * This hook is used to notify any interested components about changes in the Select's selection and highlight.
  */
 export default function useSelectChangeNotifiers<TValue>(): SelectChangeNotifiers<TValue> {
-  const selectionChangeEventHandlers = React.useRef<
-    Set<(e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void>
-  >(new Set());
-
-  const highlightChangeEventHandlers = React.useRef<
-    Set<(e: SelectChangeEventType, newValue: TValue | null) => void>
-  >(new Set());
+  const messageBus = useMessageBus();
 
   const notifySelectionChanged = React.useCallback(
-    (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => {
-      selectionChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+    (newValue: TValue | TValue[] | null) => {
+      messageBus.publish(SELECTION_CHANGE_TOPIC, newValue);
     },
-    [],
+    [messageBus],
   );
 
   const notifyHighlightChanged = React.useCallback(
-    (e: SelectChangeEventType, newValue: TValue | null) => {
-      highlightChangeEventHandlers.current.forEach((handler) => handler(e, newValue));
+    (newValue: TValue | null) => {
+      messageBus.publish(HIGHLIGHT_CHANGE_TOPIC, newValue);
     },
-    [],
+    [messageBus],
   );
 
   const registerSelectionChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void) => {
-      selectionChangeEventHandlers.current.add(handler);
+    (handler: (newValue: TValue | TValue[] | null) => void) => {
+      return messageBus.subscribe(SELECTION_CHANGE_TOPIC, handler);
     },
-    [],
-  );
-
-  const unregisterSelectionChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | TValue[] | null) => void) => {
-      selectionChangeEventHandlers.current.delete(handler);
-    },
-    [],
+    [messageBus],
   );
 
   const registerHighlightChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | null) => void) => {
-      highlightChangeEventHandlers.current.add(handler);
+    (handler: (newValue: TValue | null) => void) => {
+      return messageBus.subscribe(HIGHLIGHT_CHANGE_TOPIC, handler);
     },
-    [],
-  );
-
-  const unregisterHighlightChangeHandler = React.useCallback(
-    (handler: (e: SelectChangeEventType, newValue: TValue | null) => void) => {
-      highlightChangeEventHandlers.current.delete(handler);
-    },
-    [],
+    [messageBus],
   );
 
   return {
     notifySelectionChanged,
     notifyHighlightChanged,
-    registrationFunctions: {
-      registerSelectionChangeHandler,
-      unregisterSelectionChangeHandler,
-      registerHighlightChangeHandler,
-      unregisterHighlightChangeHandler,
-    },
+    registerSelectionChangeHandler,
+    registerHighlightChangeHandler,
   };
 }

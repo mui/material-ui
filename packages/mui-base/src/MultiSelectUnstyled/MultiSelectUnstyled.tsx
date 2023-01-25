@@ -152,9 +152,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     getOptionProps,
     getOptionState,
     registerHighlightChangeHandler,
-    unregisterHighlightChangeHandler,
     registerSelectionChangeHandler,
-    unregisterSelectionChangeHandler,
     value,
   } = useSelect<TValue>({
     buttonRef: handleButtonRef,
@@ -232,17 +230,13 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
       getOptionState,
       listboxRef,
       registerSelectionChangeHandler,
-      unregisterSelectionChangeHandler,
       registerHighlightChangeHandler,
-      unregisterHighlightChangeHandler,
     }),
     [
       getOptionProps,
       getOptionState,
       registerHighlightChangeHandler,
-      unregisterHighlightChangeHandler,
       registerSelectionChangeHandler,
-      unregisterSelectionChangeHandler,
     ],
   );
 

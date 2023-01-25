@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { SelectUnstyledContext } from '../SelectUnstyled';
+import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { UseOptionParameters, UseOptionReturnValue } from './useOption.types';
 import { EventHandlers } from '../utils';
 import useForcedRerendering from '../utils/useForcedRerendering';
@@ -20,20 +20,17 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
     getOptionState,
     listboxRef,
     registerHighlightChangeHandler,
-    unregisterHighlightChangeHandler,
     registerSelectionChangeHandler,
-    unregisterSelectionChangeHandler,
   } = selectContext;
 
   const optionState = getOptionState(value);
-  const optionProps = getOptionProps(value);
 
   const { selected, highlighted } = optionState;
 
   const rerender = useForcedRerendering();
 
   React.useEffect(() => {
-    function updateSelectedState(_: unknown, selectedValues: Value | Value[] | null) {
+    function updateSelectedState(selectedValues: Value | Value[] | null) {
       if (!selected) {
         if (Array.isArray(selectedValues)) {
           if (selectedValues.includes(value)) {
@@ -51,15 +48,11 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
       }
     }
 
-    registerSelectionChangeHandler(updateSelectedState);
-
-    return () => {
-      unregisterSelectionChangeHandler(updateSelectedState);
-    };
-  }, [registerSelectionChangeHandler, unregisterSelectionChangeHandler, rerender, selected, value]);
+    return registerSelectionChangeHandler(updateSelectedState);
+  }, [registerSelectionChangeHandler, rerender, selected, value]);
 
   React.useEffect(() => {
-    function updateHighlightedState(_: unknown, highlightedValue: Value | null) {
+    function updateHighlightedState(highlightedValue: Value | null) {
       if (highlightedValue === value && !highlighted) {
         rerender();
       } else if (highlightedValue !== value && highlighted) {
@@ -67,17 +60,8 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
       }
     }
 
-    registerHighlightChangeHandler(updateHighlightedState);
-    return () => {
-      unregisterHighlightChangeHandler(updateHighlightedState);
-    };
-  }, [
-    registerHighlightChangeHandler,
-    unregisterHighlightChangeHandler,
-    rerender,
-    value,
-    highlighted,
-  ]);
+    return registerHighlightChangeHandler(updateHighlightedState);
+  }, [registerHighlightChangeHandler, rerender, value, highlighted]);
 
   const optionRef = React.useRef<HTMLLIElement>(null);
   const handleRef = useForkRef(optionRefParam, optionRef);
@@ -102,7 +86,7 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
   return {
     getRootProps: <Other extends EventHandlers = {}>(otherHandlers: Other = {} as Other) => ({
       ...otherHandlers,
-      ...optionProps,
+      ...getOptionProps(value, otherHandlers),
       ref: handleRef,
     }),
     selected,
