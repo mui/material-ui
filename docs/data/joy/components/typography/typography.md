@@ -104,7 +104,7 @@ Use the `startDecorator` and `endDecorator` props to add supporting icons or ele
 
 {{"demo": "TypographyDecorators.js"}}
 
-## Typography scale
+### Typography scale
 
 To create a custom typographic scale, you can define the keys and values in the `theme.typography` node at the theme level.
 
@@ -151,7 +151,7 @@ declare module '@mui/joy/styles' {
 
 :::
 
-### Removing the default scale
+#### Removing the default scale
 
 To remove any unused typographic levels (for example, if you're building your own fully custom scale), you can clear the built-in values by assigning `undefined` to them in the theme.
 
