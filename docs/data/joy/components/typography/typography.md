@@ -151,9 +151,9 @@ declare module '@mui/joy/styles' {
 
 :::
 
-### Removing the scale
+### Removing the default scale
 
-If you want to create a fully customized scale using your own key-value pairs, you can clear the built-in values by assigning `undefined` to them in the theme.
+To remove any unused typographic levels (for example, if you're building your own fully custom scale), you can clear the built-in values by assigning `undefined` to them in the theme.
 
 ```js
 extendTheme({
