@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  ActionTypes,
   ListboxAction,
   ListboxReducer,
   ListboxState,
@@ -55,6 +56,14 @@ function useStateChangeDetection<TOption>(
   React.useEffect(() => {
     if (!propsRef.current || lastActionRef.current === null) {
       // Detect changes only if an action has been dispatched.
+      return;
+    }
+
+    if (
+      lastActionRef.current.type === ActionTypes.setValue ||
+      lastActionRef.current.type === ActionTypes.setHighlight
+    ) {
+      // Don't fire change events when the value has been changed externally (e.g. by changing the controlled prop).
       return;
     }
 

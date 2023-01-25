@@ -126,7 +126,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   }, [options, optionComparer, dispatch]);
 
   const setSelectedValue = React.useCallback(
-    (option: TOption[]) => {
+    (option: TOption | TOption[] | null) => {
       dispatch({
         type: ActionTypes.setValue,
         event: null,

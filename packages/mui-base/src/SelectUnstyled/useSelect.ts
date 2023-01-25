@@ -53,13 +53,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     defaultValue = multiple ? [] : null;
   }
 
-  /* const [value, setValue] = useControlled({
-    controlled: valueProp,
-    default: defaultValue,
-    name: 'SelectUnstyled',
-    state: 'value',
-  }); */
-
   const optionsMap = React.useMemo(() => {
     const map = new Map<TValue, SelectOption<TValue>>();
     options.forEach((option) => {

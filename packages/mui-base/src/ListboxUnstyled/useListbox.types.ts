@@ -163,18 +163,18 @@ interface UseListboxCommonProps<TOption> {
 
 interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
   /**
-   * The default selected value. Use when the component is not controlled.
+   * The default selected value. Use when the listbox is not controlled.
    */
   defaultValue?: TOption | null;
   /**
-   * If `true`, the component will allow to select multiple options.
+   * If `true`, the listbox will allow to select multiple options.
    * @default false
    */
   multiple?: false;
   /**
-   * The selected value. Use when the component is controlled.
+   * The selected value. Use when the listbox is controlled.
    */
-  value: TOption | null;
+  value?: TOption | null;
   /**
    * Callback fired when the value changes.
    */
@@ -186,16 +186,16 @@ interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProp
 
 interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
   /**
-   * The default selected value. Use when the component is not controlled.
+   * The default selected value. Use when the listbox is not controlled.
    */
   defaultValue?: TOption[];
   /**
-   * If `true`, the component will allow to select multiple options.
+   * If `true`, the listbox will allow to select multiple options.
    * @default false
    */
   multiple: true;
   /**
-   * The selected value. Use when the component is controlled.
+   * The selected value. Use when the listbox is controlled.
    */
   value: TOption[];
   /**
