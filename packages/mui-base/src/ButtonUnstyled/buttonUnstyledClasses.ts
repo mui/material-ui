@@ -11,10 +11,10 @@ export interface ButtonUnstyledClasses {
 export type ButtonUnstyledClassKey = keyof ButtonUnstyledClasses;
 
 export function getButtonUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('ButtonUnstyled', slot);
+  return generateUtilityClass('MuiButton', slot);
 }
 
-const buttonUnstyledClasses: ButtonUnstyledClasses = generateUtilityClasses('ButtonUnstyled', [
+const buttonUnstyledClasses: ButtonUnstyledClasses = generateUtilityClasses('MuiButton', [
   'root',
   'active',
   'disabled',

@@ -12,10 +12,10 @@ import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
-  const { hidden, size } = ownerState;
+  const { hidden, size, orientation } = ownerState;
 
   const slots = {
-    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`],
+    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`, orientation],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, {});
@@ -104,7 +104,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -27,14 +27,14 @@ export default function MyApp() {
 
 ### System props
 
-As a CSS utility component, `Typography` supports every [`system`](/system/properties/) properties.
+As a CSS utility component, `Typography` supports every [`system`](/system/properties/) property.
 
 ```jsx
 <Typography textColor="neutral.500" fontSize="sm" fontWeight="lg">
 ```
 
-:::info
-💡 **Tip:** The `color` prop is an exception, though!
+:::warning
+The `color` prop is an exception, though!
 It actually refers to the palette being used and not specifically the text color.
 To override that instead, use the `textColor` prop.
 :::
@@ -85,8 +85,8 @@ const theme = extendTheme({
 The `Typography` component has access to the typographic level scale defined in the theme.
 Use the `level` prop to control the scale value.
 
-:::info
-**Keep in mind:** each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body1" renders as a `<p>`, etc.)
+:::warning
+Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body1" renders as a `<p>`, etc.)
 :::
 
 {{"demo": "TypographyScales.js"}}
@@ -143,8 +143,8 @@ You can also access the newly created levels from the `level` prop.
 <Typography level="label">
 ```
 
-:::info
-**Tip:** When using _TypeScript_, make sure to add module augmentation for the new theme values.
+:::warning
+When using _TypeScript_, make sure to add module augmentation for the new theme values.
 
 ```ts
 // in your theme or index file

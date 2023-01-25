@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
 import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
@@ -57,7 +57,7 @@ export interface MultiLineInputUnstyledProps {
 }
 
 export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInputUnstyledProps) &
-  UseInputParameters & {
+  Omit<UseInputParameters, 'error'> & {
     'aria-describedby'?: string;
     'aria-label'?: string;
     'aria-labelledby'?: string;
@@ -76,35 +76,14 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      */
     className?: string;
     /**
-     * The components used for each slot inside the InputBase.
-     * Either a string to use a HTML element or a component.
-     * @default {}
-     */
-    components?: {
-      Root?: React.ElementType;
-      Input?: React.ElementType;
-      Textarea?: React.ElementType;
-    };
-    /**
-     * The props used for each slot inside the Input.
-     * @default {}
-     */
-    componentsProps?: {
-      root?: SlotComponentProps<
-        'div',
-        InputUnstyledComponentsPropsOverrides,
-        InputUnstyledOwnerState
-      >;
-      input?: SlotComponentProps<
-        'input',
-        InputUnstyledComponentsPropsOverrides,
-        InputUnstyledOwnerState
-      >;
-    };
-    /**
      * Trailing adornment for this input.
      */
     endAdornment?: React.ReactNode;
+    /**
+     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+     * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+     */
+    error?: boolean;
     /**
      * The id of the `input` element.
      */
@@ -124,6 +103,32 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      * (not from interacting with the field).
      */
     readOnly?: boolean;
+    /**
+     * The props used for each slot inside the Input.
+     * @default {}
+     */
+    slotProps?: {
+      root?: SlotComponentProps<
+        'div',
+        InputUnstyledComponentsPropsOverrides,
+        InputUnstyledOwnerState
+      >;
+      input?: SlotComponentProps<
+        'input',
+        InputUnstyledComponentsPropsOverrides,
+        InputUnstyledOwnerState
+      >;
+    };
+    /**
+     * The components used for each slot inside the InputBase.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    slots?: {
+      root?: React.ElementType;
+      input?: React.ElementType;
+      textarea?: React.ElementType;
+    };
     /**
      * Leading adornment for this input.
      */
@@ -147,7 +152,7 @@ export type InputUnstyledProps<
 };
 
 export type InputUnstyledOwnerState = Simplify<
-  Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> & {
+  Omit<InputUnstyledProps, 'component' | 'slots' | 'slotProps'> & {
     formControlContext: FormControlUnstyledState | undefined;
     focused: boolean;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;

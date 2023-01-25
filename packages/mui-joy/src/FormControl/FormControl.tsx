@@ -11,10 +11,11 @@ import formControlClasses, { getFormControlUtilityClass } from './formControlCla
 import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
 
 const useUtilityClasses = (ownerState: FormControlOwnerState) => {
-  const { disabled, error, size, color } = ownerState;
+  const { disabled, error, size, color, orientation } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       disabled && 'disabled',
       error && 'error',
       color && `color${capitalize(color)}`,
@@ -32,7 +33,7 @@ export const FormControlRoot = styled('div', {
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin':
     ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.25rem 0',
-  '--FormLabel-alignSelf': 'flex-start',
+  '--FormLabel-alignSelf': ownerState.orientation === 'horizontal' ? 'align-items' : 'flex-start',
   '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
@@ -75,12 +76,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error = false,
     color,
     size = 'md',
+    orientation = 'vertical',
     ...other
   } = props;
 
   const id = useId(idOverride);
-  const labelId = `${id}-label`;
-  const helperTextId = `${id}-helper-text`;
   const [helperText, setHelperText] = React.useState<HTMLElement | null>(null);
 
   const ownerState = {
@@ -92,6 +92,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error,
     required,
     size,
+    orientation,
   };
 
   let registerEffect: undefined | (() => () => void);
@@ -117,21 +118,24 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const formControlContextValue = React.useMemo(
+    () => ({
+      disabled,
+      required,
+      error,
+      color,
+      size,
+      htmlFor: id,
+      labelId: `${id}-label`,
+      'aria-describedby': helperText ? `${id}-helper-text` : undefined,
+      setHelperText,
+      registerEffect: registerEffect!,
+    }),
+    [color, disabled, error, helperText, id, registerEffect, required, size],
+  );
+
   return (
-    <FormControlContext.Provider
-      value={{
-        disabled,
-        required,
-        error,
-        color,
-        size,
-        htmlFor: id,
-        labelId,
-        'aria-describedby': helperText ? helperTextId : undefined,
-        setHelperText,
-        registerEffect: registerEffect!,
-      }}
-    >
+    <FormControlContext.Provider value={formControlContextValue}>
       <FormControlRoot
         as={component}
         ownerState={ownerState}
@@ -197,7 +201,10 @@ FormControl.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

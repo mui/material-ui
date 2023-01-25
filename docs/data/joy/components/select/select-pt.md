@@ -53,6 +53,19 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 
 {{"demo": "SelectDecorators.js"}}
 
+If you have interactive elements as the select's decorators, call `stopPropagation()` from the mouse down event to prevent the popup from being opened.
+
+  ```jsx
+  <IconButton
+    onMouseDown={(event) => {
+      // don't open the popup when clicking on this button
+      event.stopPropagation();
+    }}
+    onClick={() => {
+      // click handler goes here
+    }
+  >...</IconButton>
+  ```
 ### Indicator
 
 To change the default indicator, use the `indicator` prop with either any React element (including string) or `null` as value (to remove the indicator completely).
@@ -109,7 +122,7 @@ To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/examp
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,

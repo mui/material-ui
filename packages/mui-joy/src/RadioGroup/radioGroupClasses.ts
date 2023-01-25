@@ -3,8 +3,6 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface RadioGroupClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element, if `row` is true. */
-  row: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -31,17 +29,20 @@ export interface RadioGroupClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type RadioGroupClassKey = keyof RadioGroupClasses;
 
 export function getRadioGroupUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyRadioGroup', slot);
+  return generateUtilityClass('MuiRadioGroup', slot);
 }
 
-const radioGroupClasses: RadioGroupClasses = generateUtilityClasses('JoyRadioGroup', [
+const radioGroupClasses: RadioGroupClasses = generateUtilityClasses('MuiRadioGroup', [
   'root',
-  'row',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
@@ -55,6 +56,8 @@ const radioGroupClasses: RadioGroupClasses = generateUtilityClasses('JoyRadioGro
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'horizontal',
+  'vertical',
 ]);
 
 export default radioGroupClasses;

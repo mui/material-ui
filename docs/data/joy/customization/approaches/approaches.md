@@ -25,7 +25,7 @@ Here are some examples that reproduce popular designs (only the light mode, thou
 
 ### Customizing theme tokens
 
-Theme tokens refer to both [_low-level_ and _global variant_ design tokens](/joy-ui/customization/theme-tokens/).
+Theme tokens refer to both _low-level_ and _global variant_ design tokens.
 
 For example, instead of assigning the same hex code every time you want to change a given component's background color, you assign a theme token instead.
 If, at any point, you want to change that, you'd change in one place only, ensuring you consistency across all the components that use that theme token.
@@ -80,10 +80,12 @@ const theme = extendTheme({
   components: {
     // The component identifier always start with `Joy${ComponentName}`.
     JoyButton: {
-      styleOverrides: ({ theme }) => ({
-        // theme.vars.* return the CSS variables.
-        fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
-      }),
+      styleOverrides: {
+        root: ({ theme }) => {
+          // theme.vars.* return the CSS variables.
+          fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
+        },
+      },
     },
   },
 });
@@ -102,6 +104,6 @@ function MyApp() {
 Creating new and custom components is always an option when you don't find exactly what you're looking for.
 You can, however, ensure design consistency with other Joy UI components by pulling styles from the theme through the `styled` function.
 
-You also gain as beenfit the ability to use the `sx` prop, that also accept theme tokens, to customize this newly created component.
+You also gain the ability to use the `sx` prop, which also accepts theme tokens, to customize this newly created component.
 
 {{"demo": "StyledComponent.js"}}

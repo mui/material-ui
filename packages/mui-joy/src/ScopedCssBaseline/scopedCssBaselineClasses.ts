@@ -8,9 +8,9 @@ export interface ScopedCssBaselineClasses {
 export type ScopedCssBaselineClassKey = keyof ScopedCssBaselineClasses;
 
 export function getScopedCssBaselineUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyScopedCssBaseline', slot);
+  return generateUtilityClass('MuiScopedCssBaseline', slot);
 }
 
-const scopedCssBaselineClasses = generateUtilityClasses('JoyScopedCssBaseline', ['root']);
+const scopedCssBaselineClasses = generateUtilityClasses('MuiScopedCssBaseline', ['root']);
 
 export default scopedCssBaselineClasses;

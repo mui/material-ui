@@ -7,7 +7,7 @@ declare module '@mui/base' {
   }
 }
 
-<SliderUnstyled componentsProps={{ root: { variant: 'one' } }} />;
+<SliderUnstyled slotProps={{ root: { variant: 'one' } }} />;
 
 // @ts-expect-error unknown color
-<SliderUnstyled componentsProps={{ root: { variant: 'three' } }} />;
+<SliderUnstyled slotProps={{ root: { variant: 'three' } }} />;

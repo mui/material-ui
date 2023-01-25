@@ -13,7 +13,7 @@ export default function SelectFieldDemo() {
       </FormLabel>
       <Select
         defaultValue="dog"
-        componentsProps={{
+        slotProps={{
           button: {
             id: 'select-field-demo-button',
             // TODO: Material UI set aria-labelledby correctly & automatically

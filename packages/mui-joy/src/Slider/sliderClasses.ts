@@ -11,6 +11,8 @@ export interface SliderClasses {
   disabled: string;
   /** State class applied to the root if a thumb is being dragged. */
   dragging: string;
+  /** State class applied to the thumb element if it has keyboard focused. */
+  focusVisible: string;
   /** Class name applied to the rail element. */
   rail: string;
   /** Class name applied to the track element. */
@@ -43,6 +45,16 @@ export interface SliderClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Styles applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -54,13 +66,14 @@ export interface SliderClasses {
 export type SliderClassKey = keyof SliderClasses;
 
 export function getSliderUtilityClass(slot: string): string {
-  return generateUtilityClass('JoySlider', slot);
+  return generateUtilityClass('MuiSlider', slot);
 }
 
-const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
+const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'root',
   'disabled',
   'dragging',
+  'focusVisible',
   'marked',
   'vertical',
   'trackInverted',
@@ -81,6 +94,11 @@ const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
+  'variantPlain',
+  'variantOutlined',
+  'variantSoft',
+  'variantSolid',
   'disabled',
   'sizeSm',
   'sizeMd',

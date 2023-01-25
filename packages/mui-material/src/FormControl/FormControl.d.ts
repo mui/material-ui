@@ -103,13 +103,13 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * </FormControl>
  * ```
  *
- * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
+ * ⚠️ Only one `InputBase` can be used within a FormControl because it creates visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  *
  * Demos:
  *
  * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Radio button](https://mui.com/material-ui/react-radio-button/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
  * - [Switch](https://mui.com/material-ui/react-switch/)
  * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *

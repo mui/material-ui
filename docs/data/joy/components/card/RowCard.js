@@ -8,7 +8,11 @@ import Typography from '@mui/joy/Typography';
 
 export default function RowCard() {
   return (
-    <Card row variant="outlined" sx={{ width: 260, bgcolor: 'background.body' }}>
+    <Card
+      orientation="horizontal"
+      variant="outlined"
+      sx={{ width: 260, bgcolor: 'background.body' }}
+    >
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img

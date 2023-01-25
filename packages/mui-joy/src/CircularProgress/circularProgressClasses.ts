@@ -23,6 +23,8 @@ export interface CircularProgressClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -42,11 +44,11 @@ export interface CircularProgressClasses {
 export type CircularProgressClassKey = keyof CircularProgressClasses;
 
 export function getCircularProgressUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCircularProgress', slot);
+  return generateUtilityClass('MuiCircularProgress', slot);
 }
 
 const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
-  'JoyCircularProgress',
+  'MuiCircularProgress',
   [
     'root',
     'determinate',
@@ -59,6 +61,7 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'colorInfo',
     'colorSuccess',
     'colorWarning',
+    'colorContext',
     'sizeSm',
     'sizeMd',
     'sizeLg',

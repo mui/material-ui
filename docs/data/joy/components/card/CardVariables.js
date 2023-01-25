@@ -7,10 +7,13 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Link from '@mui/joy/Link';
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
+import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 function formatSx(sx) {
   const lines = Object.keys(sx);
@@ -142,42 +145,49 @@ export default function CardVariables() {
             CSS variables
           </Typography>
           {vars.map((data) => (
-            <TextField
-              key={data.var}
-              label={data.var}
-              size="sm"
-              variant="outlined"
-              defaultValue={Number(data.defaultValue.replace('px', '')) || undefined}
-              endDecorator={<Typography level="body3">px</Typography>}
-              type={data.type}
-              helperText={
-                data.defaultValue ? `Default as ${data.defaultValue}` : undefined
-              }
-              onChange={(event) => {
-                const { value } = event.target;
-                setSx((prevSx) => {
-                  if (!value) {
-                    const newSx = { ...prevSx };
-                    // @ts-ignore
-                    delete newSx[data.var];
-                    return newSx;
-                  }
-                  return {
-                    ...prevSx,
-                    [data.var]: `${value}px`,
-                  };
-                });
-              }}
-              sx={{
-                maxWidth: 160,
-                '& .JoyInput-root': { '--Input-paddingInline': '0.5rem' },
-              }}
-            />
+            <FormControl key={data.var}>
+              <FormLabel sx={{ '--FormLabel-fontSize': 'var(--joy-fontSize-xs)' }}>
+                {data.var}
+              </FormLabel>
+              <Input
+                size="sm"
+                variant="outlined"
+                defaultValue={
+                  Number(data.defaultValue.replace('px', '')) || undefined
+                }
+                endDecorator={<Typography level="body3">px</Typography>}
+                type={data.type}
+                sx={{
+                  maxWidth: 160,
+                  '& .JoyInput-root': { '--Input-paddingInline': '0.5rem' },
+                }}
+                onChange={(event) => {
+                  const { value } = event.target;
+                  setSx((prevSx) => {
+                    if (!value) {
+                      const newSx = { ...prevSx };
+                      // @ts-ignore
+                      delete newSx[data.var];
+                      return newSx;
+                    }
+                    return {
+                      ...prevSx,
+                      [data.var]: `${value}px`,
+                    };
+                  });
+                }}
+              />
+              {data.defaultValue ? (
+                <FormHelperText
+                  sx={{ '--FormHelperText-fontSize': 'var(--joy-fontSize-xs)' }}
+                >{`Default as ${data.defaultValue}`}</FormHelperText>
+              ) : null}
+            </FormControl>
           ))}
         </Box>
       </Sheet>
       <BrandingProvider mode="dark">
-        <HighlighedCode
+        <HighlightedCode
           code={`<Card${formatSx(sx)}>`}
           language="jsx"
           sx={{ display: { xs: 'none', md: 'initial' } }}

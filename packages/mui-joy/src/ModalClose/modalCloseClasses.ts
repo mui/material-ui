@@ -15,6 +15,8 @@ export interface ModalCloseClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -34,10 +36,10 @@ export interface ModalCloseClasses {
 export type ModalCloseClassKey = keyof ModalCloseClasses;
 
 export function getModalCloseUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyModalClose', slot);
+  return generateUtilityClass('MuiModalClose', slot);
 }
 
-const modalCloseClasses: ModalCloseClasses = generateUtilityClasses('JoyModalClose', [
+const modalCloseClasses: ModalCloseClasses = generateUtilityClasses('MuiModalClose', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -45,6 +47,7 @@ const modalCloseClasses: ModalCloseClasses = generateUtilityClasses('JoyModalClo
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

@@ -15,6 +15,8 @@ export interface SheetClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -28,10 +30,10 @@ export interface SheetClasses {
 export type SheetClassKey = keyof SheetClasses;
 
 export function getSheetUtilityClass(slot: string): string {
-  return generateUtilityClass('JoySheet', slot);
+  return generateUtilityClass('MuiSheet', slot);
 }
 
-const sheetClasses: SheetClasses = generateUtilityClasses('JoySheet', [
+const sheetClasses: SheetClasses = generateUtilityClasses('MuiSheet', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -39,6 +41,7 @@ const sheetClasses: SheetClasses = generateUtilityClasses('JoySheet', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

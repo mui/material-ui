@@ -21,6 +21,8 @@ export interface MenuItemClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** State class applied to the root element if `variant="soft"`. */
@@ -34,10 +36,10 @@ export interface MenuItemClasses {
 export type MenuItemClassKey = keyof MenuItemClasses;
 
 export function getMenuItemUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenuItem', slot);
+  return generateUtilityClass('MuiMenuItem', slot);
 }
 
-const menuItemClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', [
+const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
   'root',
   'focusVisible',
   'disabled',
@@ -48,6 +50,7 @@ const menuItemClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantSoft',
   'variantOutlined',

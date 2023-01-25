@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 
 ## Introduction
 
-The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
+The Unstyled Slider component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
@@ -44,7 +44,7 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 ### Anatomy
 
-The `SliderUnstyled` component is composed of a root `<span>` that houses several interior `<span>` elements:
+The Unstyled Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
 
 - rail: the full length of the slider
 - track: the section of the slider that's active
@@ -108,26 +108,22 @@ Use the `component` prop to override the root slot with a custom element:
 <SliderUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SliderUnstyled components={{ Root: 'div', Thumb: 'div' }} />
+<SliderUnstyled slots={{ root: 'div', thumb: 'div' }} />
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
 :::
 
-Use the `componentsProps` prop to pass custom props to internal slots.
+Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-rail` to the rail slot:
 
 ```jsx
-<SliderUnstyled componentsProps={{ rail: { className: 'my-rail' } }} />
+<SliderUnstyled slotProps={{ rail: { className: 'my-rail' } }} />
 ```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 
@@ -135,7 +131,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 import { useSlider } from '@mui/base/SliderUnstyled';
 ```
 
-The `useSlider` hook lets you apply the functionality of `SliderUnstyled` to a fully custom component.
+The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -177,6 +173,18 @@ If the user should only be able to select from the values provided with the `mar
 To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
 
 {{"demo": "RangeSlider.js"}}
+
+### Value label
+
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
+
+- always
+- only when hovering over the thumb (using CSS)
+- while interacting with the thumb (hovering or dragging)
+
+The following demo shows how to render the value label when the mouse is hovering over the thumb:
+
+{{"demo": "LabeledValuesSlider.js"}}
 
 ## Accessibility
 

@@ -4,7 +4,7 @@ title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
-materialDesign: https://material.io/components/data-tables
+materialDesign: https://m2.material.io/components/data-tables
 ---
 
 # Table 表格
@@ -120,7 +120,7 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
-{{"demo": "AcccessibleTable.js", "bg": true}}
+{{"demo": "AccessibleTable.js", "bg": true}}
 
 ## Unstyled
 

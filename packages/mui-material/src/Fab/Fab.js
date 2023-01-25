@@ -76,11 +76,6 @@ const FabRoot = styled(ButtonBase, {
     [`&.${fabClasses.focusVisible}`]: {
       boxShadow: (theme.vars || theme).shadows[6],
     },
-    [`&.${fabClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-      boxShadow: (theme.vars || theme).shadows[0],
-      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
-    },
     ...(ownerState.size === 'small' && {
       width: 40,
       height: 40,
@@ -131,6 +126,13 @@ const FabRoot = styled(ButtonBase, {
           },
         },
       }),
+  }),
+  ({ theme }) => ({
+    [`&.${fabClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
+      boxShadow: (theme.vars || theme).shadows[0],
+      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+    },
   }),
 );
 

@@ -15,6 +15,8 @@ export interface CardOverflowClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -28,10 +30,10 @@ export interface CardOverflowClasses {
 export type CardOverflowClassKey = keyof CardOverflowClasses;
 
 export function getCardOverflowUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCardOverflow', slot);
+  return generateUtilityClass('MuiCardOverflow', slot);
 }
 
-const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('JoyCardOverflow', [
+const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('MuiCardOverflow', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -39,6 +41,7 @@ const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('JoyCardO
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

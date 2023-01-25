@@ -10,13 +10,16 @@ import Done from '@mui/icons-material/Done';
 export default function ExampleChoiceChipCheckbox() {
   const [value, setValue] = React.useState([]);
   return (
-    <Sheet variant="outlined" sx={{ width: 360, p: 2, borderRadius: 'sm' }}>
+    <Sheet
+      variant="outlined"
+      sx={{ width: 360, p: 2, borderRadius: 'sm', bgcolor: 'background.body' }}
+    >
       <Typography id="rank" level="body2" fontWeight="lg" sx={{ mb: 1.5 }}>
         Choose amenities
       </Typography>
       <Box role="group" aria-labelledby="rank">
         <List
-          row
+          orientation="horizontal"
           wrap
           sx={{
             '--List-gap': '8px',
@@ -49,7 +52,7 @@ export default function ExampleChoiceChipCheckbox() {
                       setValue((val) => val.filter((text) => text !== item));
                     }
                   }}
-                  componentsProps={{
+                  slotProps={{
                     action: ({ checked }) => ({
                       sx: checked
                         ? {

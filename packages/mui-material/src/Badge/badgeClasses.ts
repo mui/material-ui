@@ -1,5 +1,5 @@
-import generateUtilityClasses from '@mui/base/generateUtilityClasses';
-import generateUtilityClass from '@mui/base/generateUtilityClass';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface BadgeClasses {
   /** Class name applied to the root element. */

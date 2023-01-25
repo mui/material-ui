@@ -122,7 +122,7 @@ test.describe('Material docs', () => {
 
       const anchor = page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
-      await expect(anchor).toHaveAttribute('app-drawer-active', '');
+      await expect(anchor).toHaveClass(/app-drawer-active/);
       await expect(anchor).toHaveAttribute('href', '/material-ui/api/card/');
     });
 
@@ -178,7 +178,7 @@ test.describe('Material docs', () => {
 
       const anchor = page.locator('.DocSearch-Hits a:has-text("Card")');
 
-      await expect(anchor.first()).toHaveAttribute('href', '/material-ui/react-card/#main-content');
+      await expect(anchor.first()).toHaveAttribute('href', '/material-ui/react-card/');
     });
 
     test('should have correct link when searching API', async ({ page }) => {
@@ -192,7 +192,7 @@ test.describe('Material docs', () => {
 
       const anchor = page.locator('.DocSearch-Hits a:has-text("Card API")');
 
-      await expect(anchor.first()).toHaveAttribute('href', '/material-ui/api/card/#main-content');
+      await expect(anchor.first()).toHaveAttribute('href', '/material-ui/api/card/');
     });
   });
 });

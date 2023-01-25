@@ -22,9 +22,9 @@ export type UseSlotPropsParameters<
   /**
    * The type of the component used in the slot.
    */
-  elementType: ElementType;
+  elementType: ElementType | undefined;
   /**
-   * The `componentsProps.*` of the unstyled component.
+   * The `slotProps.*` of the unstyled component.
    */
   externalSlotProps:
     | ExternalSlotProps

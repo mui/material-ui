@@ -36,10 +36,10 @@ export interface OptionClasses {
 export type OptionClassKey = keyof OptionClasses;
 
 export function getOptionUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyOption', slot);
+  return generateUtilityClass('MuiOption', slot);
 }
 
-const optionClasses: OptionClasses = generateUtilityClasses('JoyOption', [
+const optionClasses: OptionClasses = generateUtilityClasses('MuiOption', [
   'root',
   'colorPrimary',
   'colorNeutral',

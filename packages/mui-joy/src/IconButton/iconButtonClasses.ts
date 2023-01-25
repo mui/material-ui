@@ -15,6 +15,8 @@ export interface IconButtonClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -38,10 +40,10 @@ export interface IconButtonClasses {
 export type IconButtonClassKey = keyof IconButtonClasses;
 
 export function getIconButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyIconButton', slot);
+  return generateUtilityClass('MuiIconButton', slot);
 }
 
-const iconButtonClasses: IconButtonClasses = generateUtilityClasses('JoyIconButton', [
+const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButton', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -49,6 +51,7 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('JoyIconButt
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',
