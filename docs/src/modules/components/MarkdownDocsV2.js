@@ -39,7 +39,14 @@ JoyModeObserver.propTypes = {
 export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
+  const [activeTab, setActiveTabState] = React.useState(router.query.docsTab ?? '');
+
+  const setActiveTab = (newValue) => {
+    const value = newValue ?? '';
+    setActiveTabState(newValue);
+    router.push(`${router.pathname}/${newValue !== '' ? `?docsTab=${newValue}` : ''}`, undefined, { shallow: true })
+  }
+
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
