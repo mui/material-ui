@@ -10,9 +10,9 @@ export interface ModalClasses {
 export type ModalClassKey = keyof ModalClasses;
 
 export function getModalUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyModal', slot);
+  return generateUtilityClass('MuiModal', slot);
 }
 
-const modalClasses: ModalClasses = generateUtilityClasses('JoyModal', ['root', 'backdrop']);
+const modalClasses: ModalClasses = generateUtilityClasses('MuiModal', ['root', 'backdrop']);
 
 export default modalClasses;

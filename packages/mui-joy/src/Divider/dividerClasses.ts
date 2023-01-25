@@ -16,10 +16,10 @@ export interface DividerClasses {
 export type DividerClassKey = keyof DividerClasses;
 
 export function getDividerUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyDivider', slot);
+  return generateUtilityClass('MuiDivider', slot);
 }
 
-const dividerClasses: DividerClasses = generateUtilityClasses('JoyDivider', [
+const dividerClasses: DividerClasses = generateUtilityClasses('MuiDivider', [
   'root',
   'horizontal',
   'vertical',

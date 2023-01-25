@@ -8,9 +8,9 @@ export interface AvatarGroupClasses {
 export type AvatarGroupClassKey = keyof AvatarGroupClasses;
 
 export function getAvatarGroupUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAvatarGroup', slot);
+  return generateUtilityClass('MuiAvatarGroup', slot);
 }
 
-const avatarGroupClasses: AvatarGroupClasses = generateUtilityClasses('JoyAvatarGroup', ['root']);
+const avatarGroupClasses: AvatarGroupClasses = generateUtilityClasses('MuiAvatarGroup', ['root']);
 
 export default avatarGroupClasses;

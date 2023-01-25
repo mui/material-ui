@@ -56,10 +56,10 @@ export interface TypographyClasses {
 export type TypographyClassKey = keyof TypographyClasses;
 
 export function getTypographyUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTypography', slot);
+  return generateUtilityClass('MuiTypography', slot);
 }
 
-const typographyClasses: TypographyClasses = generateUtilityClasses('JoyTypography', [
+const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypography', [
   'root',
   'h1',
   'h2',

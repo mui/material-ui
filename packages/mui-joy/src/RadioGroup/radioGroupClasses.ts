@@ -38,10 +38,10 @@ export interface RadioGroupClasses {
 export type RadioGroupClassKey = keyof RadioGroupClasses;
 
 export function getRadioGroupUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyRadioGroup', slot);
+  return generateUtilityClass('MuiRadioGroup', slot);
 }
 
-const radioGroupClasses: RadioGroupClasses = generateUtilityClasses('JoyRadioGroup', [
+const radioGroupClasses: RadioGroupClasses = generateUtilityClasses('MuiRadioGroup', [
   'root',
   'colorPrimary',
   'colorNeutral',

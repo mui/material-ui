@@ -32,10 +32,10 @@ export interface AspectRatioClasses {
 export type AspectRatioClassKey = keyof AspectRatioClasses;
 
 export function getAspectRatioUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAspectRatio', slot);
+  return generateUtilityClass('MuiAspectRatio', slot);
 }
 
-const aspectRatioClasses: AspectRatioClasses = generateUtilityClasses('JoyAspectRatio', [
+const aspectRatioClasses: AspectRatioClasses = generateUtilityClasses('MuiAspectRatio', [
   'root',
   'content',
   'colorPrimary',

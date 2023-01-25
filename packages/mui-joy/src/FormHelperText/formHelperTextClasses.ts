@@ -8,10 +8,10 @@ export interface FormHelperTextClasses {
 export type FormHelperTextClassKey = keyof FormHelperTextClasses;
 
 export function getFormHelperTextUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyFormHelperText', slot);
+  return generateUtilityClass('MuiFormHelperText', slot);
 }
 
-const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('JoyFormHelperText', [
+const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('MuiFormHelperText', [
   'root',
 ]);
 
