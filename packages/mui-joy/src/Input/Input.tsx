@@ -261,7 +261,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component = 'div',
     formControl,
     focused,
     error: errorProp = false,
@@ -304,14 +303,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: InputRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -325,21 +323,21 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     className: [classes.input, inputStateClasses],
     elementType: InputInput,
     getSlotProps: getInputProps,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: InputStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: InputEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
