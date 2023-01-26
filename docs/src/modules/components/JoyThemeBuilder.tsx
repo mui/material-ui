@@ -4,9 +4,10 @@ import * as React from 'react';
 import { TypeScript as TypeScriptIcon } from '@mui/docs';
 // @ts-ignore
 import LZString from 'lz-string';
-import * as mdColors from '@mui/material/colors';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
+import * as mdColors from '@mui/material/colors';
+import { useTheme as useMuiTheme } from '@mui/material/styles';
 import {
   CssVarsProvider,
   Palette,
@@ -16,6 +17,7 @@ import {
   PaletteVariant,
 } from '@mui/joy/styles';
 import Autocomplete, { AutocompleteProps } from '@mui/joy/Autocomplete';
+import Alert from '@mui/joy/Alert';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
@@ -24,7 +26,6 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
 import Input, { InputProps } from '@mui/joy/Input';
-import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListDivider from '@mui/joy/ListDivider';
@@ -32,6 +33,9 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
+import Modal from '@mui/joy/Modal';
+import ModalDialog from '@mui/joy/ModalDialog';
+import ModalClose from '@mui/joy/ModalClose';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import Sheet from '@mui/joy/Sheet';
@@ -44,6 +48,7 @@ import Tab, { tabClasses } from '@mui/joy/Tab';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import Close from '@mui/icons-material/Close';
@@ -437,11 +442,16 @@ function getPaletteFormProps(colorSchemes: any, colorMode: string, node: string)
   };
 }
 
-function CodeBlockResult({ data, onClose }: { data: any; onClose: () => void }) {
+function CodeBlockResult({
+  data,
+  onClose,
+  ...props
+}: { data: any; onClose: () => void } & SheetProps) {
   const [lang, setLang] = React.useState('js');
   return (
     <Sheet
       variant="outlined"
+      {...props}
       sx={{
         borderRadius: '16px 16px 0 0',
         '&& pre': { maxHeight: 'initial', minHeight: 450, borderRadius: 0, margin: 0 },
@@ -594,18 +604,151 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   return (
     <React.Fragment>
-      <Link
-        level="body2"
-        component="button"
+      <Button
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
           setAnchorEl(event.currentTarget);
         }}
         color="neutral"
+        variant="outlined"
+        size="sm"
         startDecorator={<Search />}
+        sx={{ width: '100%' }}
       >
         Browse palette
-      </Link>
-      <Menu
+      </Button>
+      <Modal open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+        <ModalDialog sx={{ '--ModalDialog-minWidth': '700px' }}>
+          <ModalClose />
+          <Typography component="h2" fontSize="lg" fontWeight="lg" sx={{ mt: -0.5, mb: 1 }}>
+            Palettes
+          </Typography>
+          <Alert
+            size="sm"
+            variant="outlined"
+            color="neutral"
+            startDecorator={<InfoOutlined />}
+            sx={{ bgcolor: 'neutral.softBg' }}
+          >
+            The selected palette will replace the current tokens.
+          </Alert>
+          <Tabs size="sm" defaultValue={0} sx={{ minHeight: 500 }}>
+            <TabList
+              variant="plain"
+              sx={{
+                '--List-padding': '0px',
+                '--List-item-minHeight': '48px',
+                '--List-gap': '1rem',
+                '--List-decorator-size': '2rem',
+                '& > button': {
+                  bgcolor: 'transparent',
+                  boxShadow: 'none',
+                  flex: 'none',
+                  color: 'text.tertiary',
+                  fontWeight: 'md',
+                  '&:hover': { bgcolor: 'transparent' },
+                  '&[aria-selected="true"]': {
+                    color: 'text.primary',
+                    '&::before': {
+                      content: '""',
+                      display: 'block',
+                      position: 'absolute',
+                      height: 2,
+                      left: 0,
+                      right: 0,
+                      bottom: -1,
+                      bgcolor: `neutral.solidBg`,
+                    },
+                  },
+                },
+              }}
+            >
+              <Tab>
+                <ListItemDecorator>
+                  <SvgIcon viewBox="0 0 53 31" fontSize="xl2">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
+                      fill="#38bdf8"
+                    />
+                  </SvgIcon>
+                </ListItemDecorator>{' '}
+                Tailwind CSS
+              </Tab>
+              <Tab>
+                <ListItemDecorator>
+                  <SvgIcon viewBox="0 0 24 24" fontSize="xl">
+                    <circle cx="12" cy="12" fill="#757575" r="12" />
+                    <path d="m3.6 3.6h16.8v16.8h-16.8z" fill="#bdbdbd" />
+                    <path d="m20.4 3.6-8.4 16.8-8.4-16.8z" fill="#fff" />
+                    <path d="m0 0h24v24h-24z" fill="none" />
+                  </SvgIcon>
+                </ListItemDecorator>{' '}
+                Material Design
+              </Tab>
+            </TabList>
+            <Divider inset="context" />
+            <TabPanel value={0}>
+              <List
+                size="sm"
+                sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 1 }}
+              >
+                {Object.entries(tailwindColors).map(([name, colors]) => (
+                  <ListItem key={name}>
+                    <ListItemButton
+                      aria-label={name}
+                      onClick={() => {
+                        setAnchorEl(null);
+                        onSelect(colors);
+                      }}
+                    >
+                      <Typography sx={{ mr: 'auto' }}>{name}</Typography>
+                      {Object.entries(colors).map(([key, value]) => (
+                        <Box key={key} sx={{ width: 20, height: 20, bgcolor: value }} />
+                      ))}
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </TabPanel>
+            <TabPanel value={1}>
+              <List
+                size="sm"
+                sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 1 }}
+              >
+                {Object.entries(mdColors).map(([name, colors]) => {
+                  if (name === 'common') {
+                    return <React.Fragment key={name} />;
+                  }
+                  const filteredColors: Record<string, string> = {};
+                  (Object.keys(colors) as Array<keyof typeof colors>).forEach((key) => {
+                    if (!Number.isNaN(Number(key))) {
+                      filteredColors[key] = colors[key];
+                    }
+                  });
+                  return (
+                    <ListItem key={name}>
+                      <ListItemButton
+                        aria-label={name}
+                        onClick={() => {
+                          setAnchorEl(null);
+                          onSelect(filteredColors);
+                        }}
+                      >
+                        <Typography sx={{ mr: 'auto' }}>{name}</Typography>
+                        {Object.entries(filteredColors).map(([key, value]) => (
+                          <Box key={key} sx={{ width: 20, height: 20, bgcolor: value }} />
+                        ))}
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </TabPanel>
+          </Tabs>
+        </ModalDialog>
+      </Modal>
+      {/* <Menu
         size="sm"
         component="div"
         anchorEl={anchorEl}
@@ -663,7 +806,7 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
             </MenuItem>
           ))}
         </List>
-      </Menu>
+      </Menu> */}
     </React.Fragment>
   );
 }
@@ -946,8 +1089,14 @@ function GlobalVariantForm({
           onChange={(event, newValue) => setSelectedVariant(newValue as VariantProp)}
           sx={(theme) => ({
             minWidth: 120,
-            ...(states.hover && theme.variants[`${selectedVariant}Hover`][color]),
-            ...(states.active && theme.variants[`${selectedVariant}Active`][color]),
+            ...(states.hover && {
+              ...theme.variants[`${selectedVariant}Hover`][color],
+              '&:hover, &:active': theme.variants[`${selectedVariant}Hover`][color],
+            }),
+            ...(states.active && {
+              ...theme.variants[`${selectedVariant}Active`][color],
+              '&:hover, &:active': theme.variants[`${selectedVariant}Active`][color],
+            }),
             ...(states.disabled && theme.variants[`${selectedVariant}Disabled`][color]),
           })}
         >
@@ -1032,7 +1181,6 @@ function GlobalVariantForm({
                   setStates({ hover: false, active: false, disabled: false });
                 }
               }}
-              onBlur={() => setStates({ hover: false, active: false, disabled: false })}
             />
           </FormControl>
         ))}
@@ -1158,6 +1306,7 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
 }
 
 export default function JoyThemeBuilder() {
+  const muiTheme = useMuiTheme();
   const [showCode, setShowCode] = React.useState(false);
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const [lightPalette, setLightPalette] = React.useState<Record<string, any>>({});
@@ -1194,9 +1343,16 @@ export default function JoyThemeBuilder() {
   };
   return (
     <CssVarsProvider theme={theme}>
-      {showCode && <CodeBlockResult data={data} onClose={() => setShowCode(false)} />}
+      {showCode && (
+        <CodeBlockResult
+          data-joy-color-scheme={muiTheme.palette.mode}
+          data={data}
+          onClose={() => setShowCode(false)}
+        />
+      )}
       {!showCode && (
         <Box
+          data-joy-color-scheme={muiTheme.palette.mode}
           sx={{
             p: 1,
             border: '1px solid',
@@ -1628,6 +1784,7 @@ export default function App() {
           })()}
         </Sheet>
       )}
+      <Box sx={{ height: 200 }} />
     </CssVarsProvider>
   );
 }
