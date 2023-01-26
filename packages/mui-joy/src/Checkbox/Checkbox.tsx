@@ -94,9 +94,6 @@ const CheckboxCheckbox = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       flexShrink: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
@@ -133,9 +130,6 @@ const CheckboxAction = styled('span', {
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon
