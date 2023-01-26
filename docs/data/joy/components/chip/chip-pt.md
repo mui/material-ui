@@ -12,8 +12,6 @@ githubLabel: 'component: chip'
 
 Chips are most frequently used in two main use cases: as pills of informative content or as filtering options.
 
-The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
-
 {{"demo": "ChipUsage.js", "hideToolbar": true}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
