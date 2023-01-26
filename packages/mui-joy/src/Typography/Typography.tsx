@@ -66,7 +66,8 @@ const TypographyRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyOwnerState }>(({ theme, ownerState }) => ({
   '--Icon-fontSize': '1.25em',
-  margin: 0,
+  marginInline: 'var(--Typgoraphy-marginInline, 0px)',
+  marginBlock: 'var(--Typgoraphy-marginBlock, 0px)',
   ...(ownerState.nesting
     ? {
         display: 'inline',

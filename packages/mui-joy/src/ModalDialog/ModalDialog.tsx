@@ -44,18 +44,21 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--ModalDialog-padding': theme.spacing(1.25),
     '--ModalDialog-radius': theme.vars.radius.sm,
     '--ModalClose-inset': theme.spacing(0.75),
+    '--ModalDialog-titleMarginBlock': theme.spacing(-0.25, 0.5),
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--ModalDialog-padding': theme.spacing(2),
     '--ModalDialog-radius': theme.vars.radius.md,
     '--ModalClose-inset': theme.spacing(1),
+    '--ModalDialog-titleMarginBlock': theme.spacing(-0.25, 1),
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalDialog-padding': theme.spacing(3),
     '--ModalDialog-radius': theme.vars.radius.md,
     '--ModalClose-inset': theme.spacing(1.5),
+    '--ModalDialog-titleMarginBlock': theme.spacing(-0.5, 1.5),
     fontSize: theme.vars.fontSize.md,
   }),
   boxSizing: 'border-box',
@@ -80,6 +83,13 @@ const ModalDialogRoot = styled(SheetRoot, {
     left: '50%',
     transform: 'translate(-50%, -50%)',
   }),
+  [`& [id="${ownerState['aria-labelledby']}"]`]: {
+    '--Typgoraphy-marginBlock': 'var(--ModalDialog-titleMarginBlock)',
+    fontSize: '1.125em',
+  },
+  [`& [id="${ownerState['aria-describedby']}"]`]: {
+    fontSize: 'inherit',
+  },
 }));
 
 const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
