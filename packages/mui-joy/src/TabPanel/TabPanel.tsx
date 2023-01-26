@@ -55,9 +55,9 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const { orientation } = useTabContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
 
-  const { children, value, component, size: sizeProp, ...other } = props;
+  const { children, value = 0, component, size: sizeProp, ...other } = props;
 
-  const { hidden, getRootProps } = useTabPanel(props);
+  const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
   const size = sizeProp ?? tabsSize;
 
