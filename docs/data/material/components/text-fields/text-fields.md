@@ -23,7 +23,7 @@ It comes with three variants: outlined (default), filled, and standard.
 {{"demo": "BasicTextFields.js"}}
 
 :::info
-The standard variant of the Text Field is no longer documented in the [Material Design guidelines](https://material.io/)
+The standard variant of the Text Field is no longer documented in the [Material Design guidelines](https://m2.material.io/)
 ([this article explains why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
 but Material UI will continue to support it.
 :::
