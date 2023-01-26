@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 <p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
 
 :::info
-This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+This component is not documented in the [Material Design guidelines](https://material.io/), but it is available in Material UI.
 :::
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}

@@ -16,7 +16,7 @@ An accordion is a lightweight container that may either be used standalone, or b
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 :::info
-Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them.
+Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them.
 :::
 
 ## Basic accordion
