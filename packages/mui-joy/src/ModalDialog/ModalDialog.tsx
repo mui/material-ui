@@ -43,23 +43,26 @@ const ModalDialogRoot = styled(SheetRoot, {
   ...(ownerState.size === 'sm' && {
     '--ModalDialog-padding': theme.spacing(1.25),
     '--ModalDialog-radius': theme.vars.radius.sm,
+    '--ModalDialog-gap': theme.spacing(0.75),
+    '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalClose-inset': theme.spacing(0.75),
-    '--ModalDialog-titleMarginBlock': theme.spacing(-0.25, 0.5),
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--ModalDialog-padding': theme.spacing(2),
     '--ModalDialog-radius': theme.vars.radius.md,
+    '--ModalDialog-gap': theme.spacing(1.5),
+    '--ModalDialog-titleOffset': theme.spacing(0.25),
     '--ModalClose-inset': theme.spacing(1),
-    '--ModalDialog-titleMarginBlock': theme.spacing(-0.25, 1),
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalDialog-padding': theme.spacing(3),
     '--ModalDialog-radius': theme.vars.radius.md,
+    '--ModalDialog-gap': theme.spacing(2),
+    '--ModalDialog-titleOffset': theme.spacing(0.75),
     '--ModalClose-inset': theme.spacing(1.5),
-    '--ModalDialog-titleMarginBlock': theme.spacing(-0.5, 1.5),
-    fontSize: theme.vars.fontSize.md,
+    fontSize: theme.vars.fontSize.lg,
   }),
   boxSizing: 'border-box',
   boxShadow: theme.shadow.md,
@@ -84,11 +87,17 @@ const ModalDialogRoot = styled(SheetRoot, {
     transform: 'translate(-50%, -50%)',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
-    '--Typgoraphy-marginBlock': 'var(--ModalDialog-titleMarginBlock)',
+    marginTop: 'calc(-1 * var(--ModalDialog-titleOffset))',
+    marginBottom: 'var(--ModalDialog-gap)',
     fontSize: '1.125em',
   },
   [`& [id="${ownerState['aria-describedby']}"]`]: {
     fontSize: 'inherit',
+    marginTop: 'var(--ModalDialog-gap)',
+    '& + *': {
+      // create spacing between description and the next element.
+      marginTop: 'var(--ModalDialog-gap)',
+    },
   },
 }));
 
