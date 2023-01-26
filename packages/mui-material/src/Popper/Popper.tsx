@@ -49,10 +49,12 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
-  const { components, componentsProps, slots, slotProps, ...other } = useThemeProps({
+  const props = useThemeProps({
     props: inProps,
     name: 'MuiPopper',
   });
+
+  const { components, componentsProps, slots, slotProps, ...other } = props;
 
   const RootComponent = slots?.root ?? components?.Root;
 
@@ -168,6 +170,10 @@ Popper.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  ownerState: PropTypes.any,
   /**
    * Popper placement.
    * @default 'bottom'

@@ -8,13 +8,13 @@
     "getTabbable": { "type": { "name": "func" } },
     "isEnabled": {
       "type": { "name": "func" },
-      "default": "function defaultIsEnabled() {\n  return true;\n}"
+      "default": "function defaultIsEnabled(): boolean {\n  return true;\n}"
     }
   },
   "name": "FocusTrap",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.js",
+  "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-focus-trap/\">Focus Trap</a></li></ul>",
   "cssComponent": false

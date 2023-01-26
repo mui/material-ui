@@ -22,7 +22,7 @@ export default function OverlayCheckbox() {
           label="Focus outline covers the parent!"
           overlay
           // Force the outline to appear in the demo. Usually, you don't need this in your project.
-          componentsProps={{ action: { className: checkboxClasses.focusVisible } }}
+          slotProps={{ action: { className: checkboxClasses.focusVisible } }}
         />
       </Sheet>
     </Box>

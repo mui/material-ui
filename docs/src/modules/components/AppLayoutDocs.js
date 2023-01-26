@@ -18,26 +18,32 @@ import BackToTop from 'docs/src/modules/components/BackToTop';
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => ({
-  display: 'flex',
+  display: 'grid',
   width: '100%',
-  ...(disableToc && {
-    [theme.breakpoints.up('lg')]: {
-      marginRight: '5%',
-    },
-  }),
-  [theme.breakpoints.up('lg')]: {
-    width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
-  },
-  '& .markdown-body .comment-link-style': {
+  ...(disableToc
+    ? {
+        [theme.breakpoints.up('lg')]: {
+          marginRight: '5%',
+        },
+      }
+    : {
+        [theme.breakpoints.up('md')]: {
+          gridTemplateColumns: '1fr 242px',
+        },
+      }),
+  '& .markdown-body .comment-link': {
     display: 'inline-block',
   },
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
-})(({ disableAd, disableToc, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd',
+})(({ disableAd, theme }) => {
   return {
     position: 'relative',
+    // By default, a grid item cannot be smaller than the size of its content.
+    // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+    minWidth: 0,
     ...(!disableAd && {
       '&& .description': {
         marginBottom: 198,
@@ -46,15 +52,10 @@ const StyledAppContainer = styled(AppContainer, {
         marginBottom: 40,
       },
     }),
-    ...(!disableToc && {
-      [theme.breakpoints.up('sm')]: {
-        width: 'calc(100% - var(--MuiDocs-toc-width))',
-      },
-      [theme.breakpoints.up('lg')]: {
-        paddingLeft: '60px',
-        paddingRight: '60px',
-      },
-    }),
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: '60px',
+      paddingRight: '60px',
+    },
   };
 });
 
@@ -105,7 +106,6 @@ function AppLayoutDocs(props) {
         styles={{
           ':root': {
             '--MuiDocs-navDrawer-width': '300px',
-            '--MuiDocs-toc-width': '240px',
           },
         }}
       />
@@ -121,14 +121,14 @@ function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
-          <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
+          <StyledAppContainer disableAd={disableAd}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>
               <AppLayoutDocsFooter tableOfContents={toc} />
             </NoSsr>
           </StyledAppContainer>
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
       <BackToTop />

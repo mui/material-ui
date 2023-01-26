@@ -27,6 +27,8 @@ export interface SelectClasses {
   colorSuccess: string;
   /** Styles applied to the root slot if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root slot if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root slot if `variant="outlined"`. */
@@ -69,6 +71,7 @@ const selectClasses: SelectClasses = generateUtilityClasses('JoySelect', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
-import { SxProps } from '../styles/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type AutocompleteOptionSlot = 'root';
+
+export interface AutocompleteOptionPropsColorOverrides {}
+export interface AutocompleteOptionPropsVariantOverrides {}
 
 export interface AutocompleteOptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
@@ -11,12 +13,12 @@ export interface AutocompleteOptionTypeMap<P = {}, D extends React.ElementType =
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: ListItemButtonProps['color'];
+    color?: OverridableStringUnion<ColorPaletteProp, AutocompleteOptionPropsColorOverrides>;
     /**
      * The variant to use.
      * @default 'plain'
      */
-    variant?: ListItemButtonProps['variant'];
+    variant?: OverridableStringUnion<VariantProp, AutocompleteOptionPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -32,4 +34,5 @@ export type AutocompleteOptionProps<
   },
 > = OverrideProps<AutocompleteOptionTypeMap<P, D>, D>;
 
-export interface AutocompleteOptionOwnerState extends AutocompleteOptionProps {}
+export interface AutocompleteOptionOwnerState
+  extends ApplyColorInversion<AutocompleteOptionProps> {}

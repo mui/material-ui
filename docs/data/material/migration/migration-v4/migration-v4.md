@@ -41,8 +41,8 @@ Additionally, v5 is the only version that fully supports React 18, so you will n
 
 To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
-:::info
-💡 Create small commits as you go to ensure a smooth migration.
+:::success
+Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
@@ -75,7 +75,7 @@ If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/
 
 The minimum supported version of React has been increased from v16.8.0 to v17.0.0.
 
-If you are using a React version below 17.0.0, update your packages to at least v14.11.2 for Material UI and v17.0.0 for React.
+If you are using a React version below 17.0.0, update your packages to at least v4.11.2 for Material UI and v17.0.0 for React.
 
 With npm:
 
@@ -314,7 +314,7 @@ If you want to run the transformers one by one, check out the [preset-safe codem
 This codemod transforms the `<TextField/>`, `<FormControl/>`, and `<Select/>` components by applying `variant="standard"` if no variant is defined—the default variant has changed from `"standard"` in v4 to `"outlined"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
 :::
 
 ```js
@@ -344,7 +344,7 @@ For more details, check out the [variant-prop codemod README](https://github.com
 This codemod transforms the `<Link />` component by applying `underline="hover"` if there is no `underline` prop defined—the default `underline` has changed from `"hover"` in v4 to `"always"` in v5.
 
 :::error
-❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
+You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
 :::
 
 ```js

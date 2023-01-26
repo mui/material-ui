@@ -33,7 +33,7 @@ describe('<Slider />', () => {
     <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
     () => ({
       classes,
-      inheritComponent: SliderUnstyled,
+      inheritComponent: 'span',
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiSlider',
@@ -1353,6 +1353,36 @@ describe('<Slider />', () => {
     expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
       marginTop: '40px',
       marginBottom: '0px',
+    });
+  });
+
+  it('active marks should be customizable in theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiSlider: {
+          styleOverrides: {
+            markActive: {
+              height: '10px',
+              width: '10px',
+            },
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider value={2} min={1} max={3} step={1} marks />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
+      height: '10px',
+      width: '10px',
     });
   });
 });

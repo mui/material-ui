@@ -8,10 +8,8 @@ Explore the default theme object:
 
 {{"demo": "DefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-:::info
-💡**Tip:**
-
-you can play with the documentation theme object in your browser console,
+:::success
+You can play with the documentation theme object in your browser console,
 as the `theme` variable is exposed on all the documentation pages.
 :::
 

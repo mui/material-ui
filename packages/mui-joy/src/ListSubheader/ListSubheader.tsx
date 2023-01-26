@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
@@ -47,9 +48,10 @@ const ListSubheaderRoot = styled('div', {
     zIndex: 1,
     background: 'var(--List-item-stickyBackground)',
   }),
-  color: ownerState.color
-    ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
-    : theme.vars.palette.text.tertiary,
+  color:
+    ownerState.color && ownerState.color !== 'context'
+      ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+      : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
@@ -66,9 +68,11 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id: idOverride,
     sticky = false,
     variant,
-    color,
+    color: colorProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
   const id = useId(idOverride);
   const setSubheaderId = React.useContext(ListSubheaderDispatch);
 

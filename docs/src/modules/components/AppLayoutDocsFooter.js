@@ -22,12 +22,6 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Footer = styled('footer')(({ theme }) => {
-  return {
-    marginTop: theme.spacing(12),
-  };
-});
-
 const PaginationDiv = styled('div')(({ theme }) => {
   return {
     margin: theme.spacing(3, 0, 4),
@@ -39,13 +33,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
   };
 });
 
-const PageLinkButton = styled(Button)(({ theme }) => {
-  return {
-    textTransform: 'none',
-    fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-  };
-});
+const PageLinkButton = styled(Button)(({ theme }) => ({
+  fontWeight: theme.typography.fontWeightMedium,
+}));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
   return {
@@ -157,7 +147,9 @@ async function postFeedbackOnSlack(data) {
     `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
     `>${comment.split('\n').join('\n>')}`,
     `sent from ${window.location.href}${
-      commentedSection.text ? ` (from section ${commentedSection.text})` : ''
+      commentedSection.text
+        ? ` (from section <${window.location.origin}${window.location.pathname}#${commentedSection.hash}|${commentedSection.text})>`
+        : ''
     }`,
   ].join('\n\n');
 
@@ -380,7 +372,7 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Footer>
+      <Box component="footer" sx={{ mt: 12 }}>
         {hidePagePagination ? null : (
           <React.Fragment>
             <Divider />
@@ -389,6 +381,7 @@ export default function AppLayoutDocsFooter(props) {
                 <PageLinkButton
                   component={Link}
                   noLinkStyle
+                  prefetch={false}
                   href={prevPage.pathname}
                   {...prevPage.linkProps}
                   size="medium"
@@ -432,6 +425,7 @@ export default function AppLayoutDocsFooter(props) {
                 <PageLinkButton
                   component={Link}
                   noLinkStyle
+                  prefetch={false}
                   href={nextPage.pathname}
                   {...nextPage.linkProps}
                   size="medium"
@@ -509,7 +503,7 @@ export default function AppLayoutDocsFooter(props) {
             </Box>
           </form>
         </Collapse>
-      </Footer>
+      </Box>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

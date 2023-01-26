@@ -143,7 +143,6 @@ const Root = styled('div')(
         marginBottom: theme.spacing(3),
       },
       '& .markdown-body': {
-        fontSize: theme.typography.pxToRem(16),
         lineHeight: 1.7,
       },
       '& img, & video': {

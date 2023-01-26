@@ -5,6 +5,7 @@ import {
   OverridableComponent,
   OverridableTypeMap,
 } from '@mui/types';
+import { TouchRippleProps } from './TouchRipple.types';
 import { SxProps } from '../styles/Theme.types';
 import { ButtonClasses } from './buttonClasses';
 
@@ -26,6 +27,12 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      */
     action?: React.Ref<ButtonActions>;
     /**
+     * If `true`, the ripples are centered.
+     * They won't start at the cursor interaction position.
+     * @default false
+     */
+    centerRipple?: boolean;
+    /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
      * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
@@ -39,15 +46,11 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      * @default 'a'
      */
     LinkComponent?: React.ElementType;
-    /**
+    /*
      * Callback fired when the component is focused with a keyboard.
      * We trigger a `onFocus` callback too.
      */
     onFocusVisible?: React.FocusEventHandler<any>;
-    /**
-     * @default 0
-     */
-    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The content of the component.
      */
@@ -74,10 +77,15 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      */
     disableElevation?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple is disabled.
+     * If `true`, the ripple effect is disabled.
      * @default false
      */
-    disableFocusRipple?: boolean;
+    disableRipple?: boolean;
+    /**
+     * If `true`, the touch ripple effect is disabled.
+     * @default false
+     */
+    disableTouchRipple?: boolean;
     /**
      * Element placed after the children.
      */
@@ -107,6 +115,14 @@ export type ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> = {
      */
     sx?: SxProps;
     /**
+     * @default 0
+     */
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
+    /**
+     * Props applied to the `TouchRipple` element.
+     */
+    TouchRippleProps?: Partial<TouchRippleProps>;
+    /**
      * The variant to use.
      * @default 'text'
      */
@@ -123,6 +139,10 @@ export interface ButtonOwnerState extends ButtonProps {
    * If `true`, the button's focus is visible.
    */
   focusVisible?: boolean;
+  /**
+   * If `true`, the button is active.
+   */
+  active?: boolean;
 }
 
 /**

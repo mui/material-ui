@@ -123,7 +123,7 @@ export default function useControllableReducer<TOption>(
   const initialSelectedValue =
     (value === undefined ? defaultValue : value) ?? (props.multiple ? [] : null);
 
-  const initalState = {
+  const initialState = {
     highlightedValue: null,
     selectedValue: initialSelectedValue,
   };
@@ -141,9 +141,9 @@ export default function useControllableReducer<TOption>(
     [externalReducer, internalReducer, propsRef],
   );
 
-  const [nextState, dispatch] = React.useReducer(combinedReducer, initalState);
+  const [nextState, dispatch] = React.useReducer(combinedReducer, initialState);
 
-  const previousState = React.useRef<ListboxState<TOption>>(initalState);
+  const previousState = React.useRef<ListboxState<TOption>>(initialState);
   React.useEffect(() => {
     previousState.current = nextState;
   }, [previousState, nextState]);

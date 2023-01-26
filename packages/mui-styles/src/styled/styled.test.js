@@ -63,6 +63,8 @@ describe('styled', () => {
   });
 
   it('should filter some props', () => {
+    // false positive
+    // eslint-disable-next-line react/function-component-definition
     const style = (props) => ({
       background: props.color,
       borderRadius: 3,

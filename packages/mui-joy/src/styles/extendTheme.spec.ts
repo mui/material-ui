@@ -60,6 +60,16 @@ import { TypographyOwnerState } from '@mui/joy/Typography';
 import { expectType } from '@mui/types';
 
 extendTheme({
+  colorInversion: (theme) => ({
+    soft: {
+      primary: {
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        [theme.getColorSchemeSelector('dark')]: {
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+        },
+      },
+    },
+  }),
   components: {
     JoyAlert: {
       defaultProps: {

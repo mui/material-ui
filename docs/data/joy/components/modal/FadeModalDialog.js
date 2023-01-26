@@ -18,7 +18,7 @@ export default function FadeModalDialog() {
             keepMounted
             open={!['exited', 'exiting'].includes(state)}
             onClose={() => setOpen(false)}
-            componentsProps={{
+            slotProps={{
               backdrop: {
                 sx: {
                   opacity: 0,

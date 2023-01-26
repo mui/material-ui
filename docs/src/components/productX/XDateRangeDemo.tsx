@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
@@ -10,7 +9,6 @@ import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePi
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -40,7 +38,7 @@ export default function XDateRangeDemo() {
               width: 28,
               height: 32,
             },
-            '& .PrivatePickersSlideTransition-root': {
+            '& .MuiPickersSlideTransition-root': {
               minWidth: 258,
               minHeight: 238,
             },
@@ -76,29 +74,27 @@ export default function XDateRangeDemo() {
           </LocalizationProvider>
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Frame.Info>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              lineHeight: 1,
-              mb: 0.5,
-            }}
-          >
-            <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-              Available now for your project.
-            </Typography>
-            <Chip
-              label="See docs"
-              size="small"
-              href="/x/react-date-pickers/date-range-picker/"
-              component="a"
-              sx={{ fontWeight: 500, cursor: 'pointer' }}
-            />
-          </Box>
-        </Frame.Info>
-      </ThemeProvider>
+      <Frame.Info data-mui-color-scheme="dark">
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            lineHeight: 1,
+            mb: 0.5,
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+            Available now for your project.
+          </Typography>
+          <Chip
+            label="See docs"
+            size="small"
+            href="/x/react-date-pickers/date-range-picker/"
+            component="a"
+            sx={{ fontWeight: 500, cursor: 'pointer' }}
+          />
+        </Box>
+      </Frame.Info>
     </Frame>
   );
 }

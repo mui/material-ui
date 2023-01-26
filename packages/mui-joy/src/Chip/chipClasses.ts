@@ -15,6 +15,8 @@ export interface ChipClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the endDecorator element if supplied. */
@@ -62,6 +64,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'disabled',
   'endDecorator',
   'focusVisible',

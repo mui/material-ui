@@ -7,7 +7,7 @@ githubLabel: 'component: Portal'
 
 # Portal
 
-<p class="description">The Portal component lets you render its children into a DOM node that exists outside of its own DOM hierarchy.</p>
+<p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
 ## Introduction
 
@@ -45,13 +45,13 @@ According to [the React docs](https://reactjs.org/docs/portals.html), portals ar
 
 The Portal component accepts a `container` prop that passes a `ref` to the DOM node where its children will be mounted.
 
-The following demo shows how a `<span>` nested within a Portal can be appended to a node outside of its own DOM hierarchy—click **Mount children** to see how it behaves:
+The following demo shows how a `<span>` nested within a Portal can be appended to a node outside of the Portal's DOM hierarchy—click **Mount children** to see how it behaves:
 
 {{"demo": "SimplePortal.js"}}
 
 ### Server-side
 
-:::warning
+:::error
 React doesn't support the [`createPortal()` API](https://reactjs.org/docs/portals.html) on the server.
 See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
 :::

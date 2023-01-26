@@ -29,6 +29,8 @@ export interface SwitchClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -41,6 +43,10 @@ export interface SwitchClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the startDecorator element. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element. */
+  endDecorator: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
@@ -64,12 +70,15 @@ const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default switchClasses;

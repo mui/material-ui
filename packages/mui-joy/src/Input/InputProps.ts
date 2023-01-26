@@ -1,25 +1,27 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
 export interface InputPropsVariantOverrides {}
-
 export interface InputPropsColorOverrides {}
-
 export interface InputPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, InputOwnerState>;
-  input?: SlotComponentProps<'input', { sx?: SxProps }, InputOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
-}
+export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  InputSlot,
+  {
+    root: SlotProps<'div', {}, InputOwnerState>;
+    input: SlotProps<'input', {}, InputOwnerState>;
+    startDecorator: SlotProps<'span', {}, InputOwnerState>;
+    endDecorator: SlotProps<'span', {}, InputOwnerState>;
+  }
+>;
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    InputSlotsAndSlotProps &
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'autoComplete'
@@ -49,11 +51,6 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */

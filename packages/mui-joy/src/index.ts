@@ -15,6 +15,9 @@ export * from './Avatar';
 export { default as AvatarGroup } from './AvatarGroup';
 export * from './AvatarGroup';
 
+export { default as Autocomplete } from './Autocomplete';
+export * from './Autocomplete';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 

@@ -100,7 +100,7 @@ Example transformation:
  }
 ```
 
-:::warning
+:::success
 You should run this codemod on a small chunk of files and then check the changes before continuing, because in some cases you might need to adjust the code after the transformation—this codemod won't cover all cases.
 :::
 
@@ -183,7 +183,7 @@ For example:
  }
 ```
 
-:::warning
+:::success
 [This jss-to-styled tool](https://siriwatk.dev/tool/jss-to-styled) helps convert JSS to multiple styled components without increasing CSS specificity.
 
 This tool is _not_ maintained by MUI.
@@ -307,7 +307,7 @@ the transformation would look like this:
  export default App;
 ```
 
-:::warning
+:::error
 When using JavaScript (rather than TypeScript), remove `<void, 'child' | 'small'>`.
 :::
 

@@ -17,6 +17,8 @@ export interface AspectRatioClasses {
   colorSuccess: string;
   /** Styles applied to the content element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the content element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the content element if `variant="outlined"`. */
@@ -42,6 +44,7 @@ const aspectRatioClasses: AspectRatioClasses = generateUtilityClasses('JoyAspect
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

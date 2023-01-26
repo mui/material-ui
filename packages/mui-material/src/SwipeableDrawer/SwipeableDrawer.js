@@ -151,7 +151,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
-    open,
+    open = false,
     PaperProps = {},
     SwipeAreaProps,
     swipeAreaWidth = 20,
@@ -669,6 +669,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func.isRequired,
   /**
    * If `true`, the component is shown.
+   * @default false
    */
   open: PropTypes.bool.isRequired,
   /**

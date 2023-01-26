@@ -64,9 +64,6 @@ export const createVariantStyle = (
     ([variantVar, value]) => {
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
-        if (variantVar.includes('Hover')) {
-          result.cursor = 'pointer';
-        }
         if (variantVar.includes('Disabled')) {
           result.pointerEvents = 'none';
           result.cursor = 'default';
@@ -76,6 +73,9 @@ export const createVariantStyle = (
         } else {
           // initial state
           if (!result['--variant-borderWidth']) {
+            // important to prevent inheritance, otherwise the children will have the wrong styles e.g.
+            //   <Card variant="outlined">
+            //     <Typography variant="soft">
             result['--variant-borderWidth'] = '0px';
           }
           if (variantVar.includes('Border')) {
@@ -173,6 +173,7 @@ export const createSoftInversion = (
     if (isVariantPalette(colorPalette)) {
       result[color] = {
         '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
+        [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
         [theme.getColorSchemeSelector('light')]: {
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
           [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
@@ -232,8 +233,8 @@ export const createSoftInversion = (
           '--variant-solidColor': getCssVar('palette-common-white'),
           '--variant-solidBg': getCssVar(`palette-${color}-600`),
           '--variant-solidHoverColor': getCssVar('palette-common-white'),
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-700`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-800`),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-500`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.6)`,
@@ -301,8 +302,8 @@ export const createSoftInversion = (
           '--variant-solidColor': '#fff',
           '--variant-solidBg': getCssVar(`palette-${color}-500`),
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-400`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-400`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.72)`,
@@ -327,6 +328,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
       if (color === 'warning') {
         result.warning = {
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
+          [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-700`),
           [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
             `palette-${color}-darkChannel`,
@@ -385,10 +387,10 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
 
           '--variant-solidColor': '#fff',
-          '--variant-solidBg': getCssVar(`palette-${color}-700`),
+          '--variant-solidBg': getCssVar(`palette-${color}-600`),
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-800`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-700`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-800`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.72)`,
@@ -396,7 +398,9 @@ export const createSolidInversion = (theme: ThemeFragment) => {
         };
       } else {
         result[color] = {
+          colorScheme: 'dark',
           '--Badge-ringColor': getCssVar(`palette-${color}-solidBg`),
+          [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-200`),
           [cssVarPrefixVar('--palette-background-body')]: 'rgba(0 0 0 / 0.1)',
           [cssVarPrefixVar('--palette-background-surface')]: 'rgba(0 0 0 / 0.06)',
@@ -448,10 +452,12 @@ export const createSolidInversion = (theme: ThemeFragment) => {
           )} / 0.72)`,
           '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.1)`,
 
-          '--variant-solidColor': getCssVar(`palette-${color}-700`),
+          '--variant-solidColor': getCssVar(
+            `palette-${color}-${color === 'neutral' ? '600' : '500'}`,
+          ),
           '--variant-solidBg': getCssVar(`palette-common-white`),
-          '--variant-solidHoverColor': getCssVar(`palette-${color}-900`),
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-100`),
+          '--variant-solidHoverColor': getCssVar(`palette-${color}-700`),
+          '--variant-solidHoverBg': getCssVar(`palette-common-white`),
           '--variant-solidActiveBg': getCssVar(`palette-${color}-200`),
           '--variant-solidDisabledColor': `rgba(${getCssVar(
             `palette-${color}-lightChannel`,

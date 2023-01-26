@@ -31,7 +31,7 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import TabUnstyled from '@mui/base/TabUnstyled';
-import TabsListUnstyled from '@mui/base/TabUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 

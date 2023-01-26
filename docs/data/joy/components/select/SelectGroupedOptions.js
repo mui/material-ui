@@ -25,7 +25,7 @@ export default function SelectGroupedOptions() {
   return (
     <Select
       placeholder="Choose your animal"
-      componentsProps={{
+      slotProps={{
         listbox: {
           component: 'div',
           sx: {

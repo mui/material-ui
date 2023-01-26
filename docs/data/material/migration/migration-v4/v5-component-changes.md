@@ -394,7 +394,7 @@ This was an exception to Material Design, and was removed from the specification
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-:::warning
+:::error
 If you had previously customized `determinate`, then your customizations are most likely no longer valid.
 Please remove them.
 :::
@@ -1290,11 +1290,13 @@ The `root` slot is no longer applied to the select, but to the root.
 
 ### Update event type (TypeScript)
 
-The `event` in `onChange` is now typed as a `React.SyntheticEvent` instead of a `React.ChangeEvent`.
+The `event` in `onChange` is now typed as a `SelectChangeEvent<T>` instead of a `React.ChangeEvent`.
 
 ```diff
++ import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 -<Select onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
-+<Select onChange={(event: Event, value: unknown) => {}} />
++<Select onChange={(event: SelectChangeEvent<T>, child: React.ReactNode) => {}} />
 ```
 
 This was necessary to prevent overriding the `event.target` of the events that caused the change.

@@ -89,7 +89,7 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         actions: menuActions,
         anchorEl: buttonRef.current,
         modifiers,
-        componentsProps: {
+        slotProps: {
           listbox: {
             id: `nav-example-menu-${label}`,
             'aria-label': label,

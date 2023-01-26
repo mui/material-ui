@@ -5,7 +5,7 @@
 ## Details of the Role
 
 - Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
@@ -13,21 +13,22 @@
 ## About the company
 
 MUI started with Material UI, the most successful React implementation of Google's Material Design.
-It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+It has gained a large following, not only due to its fidelity to Material Design, but also because of the number of components, its carefully designed component API, its obsession with details, and community engagement.
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
 
-We are a fully distributed team, spread across multiple timezones.
+We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
 For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY).
+Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 Our mission is to empower as many people as possible to build great UIs, faster.
@@ -63,7 +64,7 @@ Depending on the day, you'll:
 
 ## The best parts of this job
 
-- **You'll be at the cutting-edge of application development** — working on one of the fastest-growing UI libraries on the market.
+- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
 - **Your role will be key to making MUI Toolpad the go-to low code tool** for internal application building.
 

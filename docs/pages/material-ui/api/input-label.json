@@ -16,7 +16,10 @@
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
     "size": {
-      "type": { "name": "enum", "description": "'normal'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'normal'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'normal'"
     },
     "sx": {

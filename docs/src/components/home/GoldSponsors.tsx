@@ -68,13 +68,6 @@ const GOLDs = [
     href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/ipinfoai/04f41d5/logo/40.png',
-    srcSet: 'https://images.opencollective.com/ipinfoai/04f41d5/logo/80.png 2x',
-    name: 'IPinfo.AI',
-    description: 'IP data API services, including IP geolocation.',
-    href: 'https://ipinfo.ai?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/40.png',
     srcSet: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/80.png 2x',
     name: 'RIDI',

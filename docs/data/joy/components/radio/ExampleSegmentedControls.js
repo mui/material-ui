@@ -38,7 +38,7 @@ export default function ExampleSegmentedControls() {
               px: 2,
               alignItems: 'center',
             }}
-            componentsProps={{
+            slotProps={{
               action: ({ checked }) => ({
                 sx: {
                   ...(checked && {

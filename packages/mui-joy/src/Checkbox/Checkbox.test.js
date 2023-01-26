@@ -1,22 +1,38 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createRenderer,
+  fireEvent,
+  describeJoyColorInversion,
+} from 'test/utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/joy/Checkbox';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Checkbox />, () => ({
+  describeConformance(<Checkbox label="demo" />, () => ({
     classes,
+    inheritComponent: 'span',
     render,
     ThemeProvider,
     muiName: 'JoyCheckbox',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     refInstanceof: window.HTMLSpanElement,
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      checkbox: { expectedClassName: classes.checkbox },
+      input: { expectedClassName: classes.input },
+      action: { expectedClassName: classes.action },
+      label: { expectedClassName: classes.label },
+    },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],
   }));
+
+  describeJoyColorInversion(<Checkbox />, { muiName: 'JoyCheckbox', classes });
 
   it('should have the classes required for Checkbox', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);

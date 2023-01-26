@@ -291,7 +291,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       }))
                     }
                     endDecorator={resolvedValue ? 'True' : 'False'}
-                    componentsProps={{
+                    slotProps={{
                       endDecorator: {
                         sx: {
                           minWidth: 30,
@@ -504,7 +504,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Select
                     placeholder="Select a variant..."
-                    componentsProps={{
+                    slotProps={{
                       listbox: {
                         sx: {
                           '--List-decorator-size': '24px',
@@ -675,7 +675,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             value={placement}
                             overlay
                             disableIcon
-                            componentsProps={{
+                            slotProps={{
                               action: ({ checked }) => ({
                                 sx: (theme) => ({
                                   ...(checked && {

@@ -91,19 +91,18 @@ export default function useButton(parameters: UseButtonParameters) {
   };
 
   const createHandleMouseDown = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget && !disabled) {
+    if (!disabled) {
       setActive(true);
+      document.addEventListener(
+        'mouseup',
+        () => {
+          setActive(false);
+        },
+        { once: true },
+      );
     }
 
     otherHandlers.onMouseDown?.(event);
-  };
-
-  const createHandleMouseUp = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget) {
-      setActive(false);
-    }
-
-    otherHandlers.onMouseUp?.(event);
   };
 
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
@@ -213,7 +212,6 @@ export default function useButton(parameters: UseButtonParameters) {
       onKeyUp: createHandleKeyUp(externalEventHandlers),
       onMouseDown: createHandleMouseDown(externalEventHandlers),
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
-      onMouseUp: createHandleMouseUp(externalEventHandlers),
       ref: handleRef,
     };
   };

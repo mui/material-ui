@@ -119,7 +119,7 @@ PropsTable.propTypes = {
 };
 
 function ClassesTable(props) {
-  const { componentName, componentStyles, classDescriptions } = props;
+  const { componentStyles, classDescriptions } = props;
   const t = useTranslate();
 
   return (
@@ -139,7 +139,8 @@ function ClassesTable(props) {
             </td>
             <td align="left">
               <span className="prop-name">
-                .{componentStyles.globalClasses[className] || `Mui${componentName}-${className}`}
+                .
+                {componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`}
               </span>
             </td>
             <td
@@ -161,17 +162,16 @@ function ClassesTable(props) {
 
 ClassesTable.propTypes = {
   classDescriptions: PropTypes.object.isRequired,
-  componentName: PropTypes.string.isRequired,
   componentStyles: PropTypes.object.isRequired,
 };
 
 function getTranslatedHeader(t, header) {
   const translations = {
+    demos: t('api-docs.demos'),
     import: t('api-docs.import'),
     'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
-    demos: t('api-docs.demos'),
     css: 'CSS',
   };
 
@@ -194,7 +194,7 @@ function Heading(props) {
   return (
     <Level id={hash}>
       {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={hash} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
+      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
@@ -254,12 +254,12 @@ export default function ApiPage(props) {
   }
 
   const toc = [
+    createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
-    createTocEntry('demos'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -305,6 +305,14 @@ export default function ApiPage(props) {
           {description}
           {disableAd ? null : <Ad />}
         </Typography>
+        <Heading hash="demos" />
+        <div
+          className="MuiCallout-root MuiCallout-info"
+          dangerouslySetInnerHTML={{
+            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+              ${demos}`,
+          }}
+        />
         <Heading hash="import" />
         <HighlightedCode
           code={`
@@ -371,11 +379,7 @@ import { ${componentName} } from '${source}';`}
         {Object.keys(componentStyles.classes).length ? (
           <React.Fragment>
             <Heading hash="css" />
-            <ClassesTable
-              componentName={componentName}
-              componentStyles={componentStyles}
-              classDescriptions={classDescriptions}
-            />
+            <ClassesTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
             <br />
             <span dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
@@ -383,8 +387,6 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        <Heading hash="demos" />
-        <span dangerouslySetInnerHTML={{ __html: demos }} />
       </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">

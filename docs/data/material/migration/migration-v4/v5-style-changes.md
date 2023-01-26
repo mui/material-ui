@@ -208,7 +208,7 @@ To correct the injection order, add the `prepend` option to `createCache`, as sh
  }
 ```
 
-:::info
+:::warning
 If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
 
 To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.

@@ -9,14 +9,14 @@ export default function FocusCheckbox() {
         label="Label"
         defaultChecked
         // to demonstrate the focus outline
-        componentsProps={{ action: { className: checkboxClasses.focusVisible } }}
+        slotProps={{ action: { className: checkboxClasses.focusVisible } }}
       />
       <Checkbox
         label="Label"
         defaultChecked
         sx={{ [`& > .${checkboxClasses.checkbox}`]: { position: 'relative' } }}
         // to demonstrate the focus outline
-        componentsProps={{ action: { className: checkboxClasses.focusVisible } }}
+        slotProps={{ action: { className: checkboxClasses.focusVisible } }}
       />
     </Box>
   );

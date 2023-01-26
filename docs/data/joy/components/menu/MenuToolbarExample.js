@@ -51,7 +51,7 @@ const MenuButton = React.forwardRef(
           open,
           actions: menuActions,
           anchorEl: buttonRef.current,
-          componentsProps: {
+          slotProps: {
             listbox: {
               id: `toolbar-example-menu-${children}`,
               'aria-label': children,

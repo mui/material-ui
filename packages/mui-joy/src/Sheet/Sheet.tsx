@@ -11,7 +11,7 @@ import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 
-const useUtilityClasses = (ownerState: SheetProps) => {
+const useUtilityClasses = (ownerState: SheetOwnerState) => {
   const { variant, color } = ownerState;
 
   const slots = {
@@ -50,7 +50,9 @@ export const SheetRoot = styled('div', {
       position: 'relative',
     },
     variantStyle,
-    ownerState.invertedColors && theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 

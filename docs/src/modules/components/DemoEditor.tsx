@@ -49,7 +49,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   float: 'left',
   minWidth: '100%',
   '& textarea': {
-    outline: 'none',
+    outline: 0,
   },
   '& > textarea, & > pre': {
     // Override inline-style
@@ -122,7 +122,7 @@ export default function DemoEditor(props: DemoEditorProps) {
             position: 'absolute',
             top: theme.spacing(1),
             padding: theme.spacing(0.5, 1),
-            outline: 'none',
+            outline: 0,
             left: '50%',
             border: '1px solid',
             borderColor: blue[400],

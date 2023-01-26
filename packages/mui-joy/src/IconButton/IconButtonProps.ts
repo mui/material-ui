@@ -5,14 +5,12 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type IconButtonSlot = 'root';
 
 export interface IconButtonPropsVariantOverrides {}
-
 export interface IconButtonPropsColorOverrides {}
-
 export interface IconButtonPropsSizeOverrides {}
 
 export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -75,7 +73,7 @@ export type IconButtonProps<
   },
 > = OverrideProps<IconButtonTypeMap<P, D>, D>;
 
-export interface IconButtonOwnerState extends IconButtonProps {
+export interface IconButtonOwnerState extends ApplyColorInversion<IconButtonProps> {
   /**
    * If `true`, the element's focus is visible.
    */

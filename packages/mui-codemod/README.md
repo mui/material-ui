@@ -62,6 +62,27 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `joy-rename-components-to-slots`
+
+Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
+
+This change only affects Joy UI components.
+
+```diff
+ <Autocomplete
+-  components={{ listbox: CustomListbox }}
++  slots={{ listbox: CustomListbox }}
+-  componentsProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
++  slotProps={{ root: { className: 'root' }, listbox: { 'data-testid': 'listbox' } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-components-to-slots <path>
+```
+
+The associated breaking change was done in [#34997](https://github.com/mui/material-ui/pull/34997).
+
 #### `date-pickers-moved-to-x`
 
 Rename the imports of date and time pickers from `@mui/lab` to `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.

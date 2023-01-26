@@ -144,9 +144,11 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
 
 export type ModalUnstyledProps<
   D extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
-> = OverrideProps<ModalUnstyledTypeMap<{}, D>, D> & {
-  component?: D;
-};
+  P = {
+    component?: React.ElementType;
+    focusVisible?: boolean;
+  },
+> = OverrideProps<ModalUnstyledTypeMap<P, D>, D>;
 
 export type ModalUnstyledOwnerState = ModalUnstyledProps & {
   closeAfterTransition: boolean;
@@ -161,19 +163,18 @@ export type ModalUnstyledOwnerState = ModalUnstyledProps & {
   keepMounted: boolean;
 };
 
-export type ModalUnstyledRootSlotProps = {
+export interface ModalUnstyledRootSlotProps {
   children: React.ReactNode;
   className?: string;
   onKeyDown: React.KeyboardEventHandler;
   ownerState: ModalUnstyledOwnerState;
-  ref: React.Ref<any>;
   role: React.AriaRole;
-};
+}
 
-export type ModalUnstyledBackdropSlotProps = {
+export interface ModalUnstyledBackdropSlotProps {
   'aria-hidden': React.AriaAttributes['aria-hidden'];
   children?: React.ReactNode;
   onClick: React.MouseEventHandler;
   open: boolean;
   ownerState: ModalUnstyledOwnerState;
-};
+}

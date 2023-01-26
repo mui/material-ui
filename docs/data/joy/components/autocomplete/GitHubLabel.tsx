@@ -134,7 +134,7 @@ export default function GitHubLabel() {
               multiple
               size="sm"
               placeholder="Filter labels"
-              components={{ listbox: Listbox }}
+              slots={{ listbox: Listbox }}
               onClose={(event, reason) => {
                 if (reason === 'escape') {
                   handleClose();

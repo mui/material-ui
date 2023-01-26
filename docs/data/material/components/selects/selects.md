@@ -42,7 +42,7 @@ It shares the same styles and many of the same props. Refer to the respective co
 {{"demo": "SelectLabels.js"}}
 
 :::warning
-⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
 :::
 
 ### Auto width

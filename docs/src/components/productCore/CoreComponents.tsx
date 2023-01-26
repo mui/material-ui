@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, styled, Theme } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -28,7 +28,7 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import { buildTheme } from 'docs/src/components/home/MaterialDesignComponents';
+import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
@@ -167,28 +167,18 @@ export default function CoreComponents() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo sx={{ flexGrow: 1 }}>
-              <ThemeProvider
-                theme={(theme: Theme) =>
-                  createTheme(
-                    customized ? buildTheme(theme) : { palette: { mode: theme.palette.mode } },
-                  )
-                }
-              >
+            <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
+              <CssVarsProvider theme={customized ? customTheme : undefined}>
                 {demo === 'Button' && (
-                  <Stack
-                    spacing={2}
-                    direction={{ xs: 'column', sm: 'row' }}
+                  <Box
                     sx={{
                       height: '100%',
                       py: 5,
+                      gap: 2,
+                      display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      '& > button': {
-                        mt: 0,
-                        mx: 0.5,
-                      },
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>
@@ -200,7 +190,7 @@ export default function CoreComponents() {
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
                       Add to Cart
                     </Button>
-                  </Stack>
+                  </Box>
                 )}
                 {demo === 'Text field' && (
                   <Stack
@@ -211,7 +201,12 @@ export default function CoreComponents() {
                   >
                     <TextField variant="standard" label="Username" />
                     <TextField variant="outlined" label="Email" type="email" />
-                    <TextField variant="filled" label="Password" type="password" />
+                    <TextField
+                      variant="filled"
+                      label="Password"
+                      type="password"
+                      autoComplete="new-password" // prevent chrome auto-fill
+                    />
                   </Stack>
                 )}
                 {demo === 'Table' && (
@@ -257,10 +252,7 @@ export default function CoreComponents() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      '& > div': {
-                        mt: 1,
-                        mx: 0.5,
-                      },
+                      gap: 1,
                     }}
                   >
                     <Alert variant="standard" color="info">
@@ -281,24 +273,45 @@ export default function CoreComponents() {
                     spacing={1}
                     sx={{ minHeight: 100, py: 2 }}
                   >
-                    <Tooltip title="Appears on hover" arrow placement="top">
+                    <Tooltip
+                      title="Appears on hover"
+                      arrow
+                      placement="top"
+                      slotProps={{ popper: { disablePortal: true } }}
+                    >
                       <Typography color="text.secondary">Top</Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
-                      <Tooltip title="Always display" arrow placement="left" open>
+                      <Tooltip
+                        title="Always display"
+                        arrow
+                        placement="left"
+                        open
+                        slotProps={{ popper: { disablePortal: true } }}
+                      >
                         <Typography color="text.secondary">Left</Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
-                      <Tooltip title="Appears on hover" arrow placement="right">
+                      <Tooltip
+                        title="Appears on hover"
+                        arrow
+                        placement="right"
+                        slotProps={{ popper: { disablePortal: true } }}
+                      >
                         <Typography color="text.secondary">Right</Typography>
                       </Tooltip>
                     </Box>
-                    <Tooltip title="Appears on hover" arrow placement="bottom">
+                    <Tooltip
+                      title="Appears on hover"
+                      arrow
+                      placement="bottom"
+                      slotProps={{ popper: { disablePortal: true } }}
+                    >
                       <Typography color="text.secondary">Bottom</Typography>
                     </Tooltip>
                   </Stack>
                 )}
-              </ThemeProvider>
+              </CssVarsProvider>
             </Frame.Demo>
             <Frame.Info
               sx={{

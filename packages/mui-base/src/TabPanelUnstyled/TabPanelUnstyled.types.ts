@@ -23,7 +23,6 @@ export interface TabPanelUnstyledOwnProps {
   slots?: {
     root?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the TabPanel.
    * @default {}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ListSubheaderSlot = 'root';
 
@@ -42,4 +42,4 @@ export type ListSubheaderProps<
   },
 > = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
 
-export interface ListSubheaderOwnerState extends ListSubheaderProps {}
+export interface ListSubheaderOwnerState extends ApplyColorInversion<ListSubheaderProps> {}

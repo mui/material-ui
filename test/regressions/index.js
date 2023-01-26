@@ -119,6 +119,7 @@ const blacklist = [
   'docs-components-tree-view/IconExpansionTreeView.png', // Need interaction
   'docs-components-tree-view/MultiSelectTreeView.png', // Need interaction
   'docs-components-use-media-query', // Need to dynamically resize to test
+  'docs-components-buttons/ButtonMaterialYouPlayground.png', // playground
   'docs-customization-breakpoints', // Need to dynamically resize to test
   'docs-customization-color', // Escape viewport
   'docs-customization-default-theme', // Redux isolation

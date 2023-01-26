@@ -289,7 +289,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     },
                     '&:focus-within': {
                       '& a': {
-                        outline: 'none',
+                        outline: 0,
                       },
                     },
                   },

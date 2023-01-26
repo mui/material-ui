@@ -122,7 +122,7 @@ To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/examp
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,

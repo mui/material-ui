@@ -15,6 +15,8 @@ export interface LinkClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** State class applied to the root element if the link is keyboard focused. */
@@ -73,6 +75,7 @@ const linkClasses: LinkClasses = generateUtilityClasses('JoyLink', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'focusVisible',
   'variantPlain',
   'variantOutlined',

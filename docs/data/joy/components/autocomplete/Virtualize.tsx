@@ -121,7 +121,7 @@ export default function Virtualize() {
         sx={{ width: 300 }}
         disableListWrap
         placeholder="Type to search"
-        components={{
+        slots={{
           listbox: ListboxComponent,
         }}
         options={OPTIONS}

@@ -10,12 +10,14 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
+    lineHeight: 1.5625, // Increased compared to the 1.5 default to make the docs easier to read.
     color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     '& strong': {
       color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
     },
     wordBreak: 'break-word',
     '& pre': {
+      lineHeight: 1.5, // Developers likes when the code is dense.
       margin: theme.spacing(2, 'auto'),
       padding: theme.spacing(2),
       backgroundColor: `var(--muidocs-palette-primaryDark-800, ${lightTheme.palette.primaryDark[800]})`,
@@ -106,25 +108,28 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
+      paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
         // Remove scroll on small screens.
         wordBreak: 'break-all',
       },
-      '& .anchor-link-style': {
+      '& .anchor-link': {
         // To prevent the link to get the focus.
         display: 'none',
       },
-      '& a:not(.anchor-link-style):hover': {
+      '& a:not(.anchor-link):hover': {
         color: 'currentColor',
         borderBottom: '1px solid currentColor',
         textDecoration: 'none',
       },
-      '&:hover .anchor-link-style, & .comment-link-style': {
+      '&:hover .anchor-link, & .comment-link': {
         lineHeight: '21.5px',
+        position: 'absolute',
         textAlign: 'center',
         marginLeft: 10,
+        marginTop: 5,
         height: 26,
         width: 26,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
@@ -144,10 +149,9 @@ const Root = styled('div')(
           pointerEvents: 'none',
         },
       },
-      '& .comment-link-style': {
-        display: 'none',
-        position: 'absolute',
-        top: `calc(50% - ${26 / 2}px)`,
+      '& .comment-link': {
+        display: 'none', // So we can have the comment button opt-in.
+        top: 0,
         right: 0,
         opacity: 0.5,
         transition: theme.transitions.create('opacity', {
@@ -246,19 +250,18 @@ const Root = styled('div')(
       borderRadius: `var(--muidocs-shape-borderRadius, ${
         theme.shape?.borderRadius ?? lightTheme.shape.borderRadius
       }px)`,
-      '& > p': {
-        color: 'inherit',
+      '& > ul, & > p': {
         '&:last-child': {
           margin: 0,
         },
       },
-      '& ul, li': {
+      '& > p, & ul, li': {
         color: 'inherit',
       },
       '&.MuiCallout-error': {
         color: `var(--muidocs-palette-error-900, ${lightTheme.palette.error[900]})`,
         backgroundColor: `var(--muidocs-palette-error-50, ${lightTheme.palette.error[50]})`,
-        borderColor: `var(--muidocs-palette-error-200, ${lightTheme.palette.error[200]})`,
+        borderColor: `var(--muidocs-palette-error-100, ${lightTheme.palette.error[100]})`,
         '& strong': {
           color: `var(--muidocs-palette-error-800, ${lightTheme.palette.error[800]})`,
         },
@@ -272,8 +275,8 @@ const Root = styled('div')(
       },
       '&.MuiCallout-info': {
         color: `var(--muidocs-palette-primary-900, ${lightTheme.palette.primary[900]})`,
-        backgroundColor: alpha(lightTheme.palette.primary[50], 0.8),
-        borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+        backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
+        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
         '& strong': {
           color: `var(--muidocs-palette-primary-800, ${lightTheme.palette.primary[800]})`,
         },
@@ -295,8 +298,8 @@ const Root = styled('div')(
       },
       '&.MuiCallout-warning': {
         color: `var(--muidocs-palette-grey-900, ${lightTheme.palette.grey[900]})`,
-        backgroundColor: alpha(lightTheme.palette.warning[50], 0.6),
-        borderColor: `var(--muidocs-palette-warning-300, ${lightTheme.palette.warning[300]})`,
+        backgroundColor: alpha(lightTheme.palette.warning[50], 0.5),
+        borderColor: alpha(lightTheme.palette.warning[600], 0.3),
         '& strong': {
           color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
         },
@@ -392,8 +395,16 @@ const Root = styled('div')(
         backgroundColor: alpha(lightTheme.palette.primaryDark[600], 0.7),
         borderColor: lightTheme.palette.primaryDark[500],
         '& .MuiCode-copyKeypress': {
-          opacity: 1,
+          display: 'block',
+          // Approximate no hover capabilities with no keyboard
+          // https://github.com/w3c/csswg-drafts/issues/3871
+          '@media (any-hover: none)': {
+            display: 'none',
+          },
         },
+      },
+      '& .MuiCode-copyKeypress': {
+        display: 'none',
       },
       '&[data-copied]': {
         // style of the button when it is in copied state.
@@ -410,7 +421,6 @@ const Root = styled('div')(
     '& .MuiCode-copyKeypress': {
       pointerEvents: 'none',
       userSelect: 'none',
-      opacity: 0,
       position: 'absolute',
       left: '50%',
       top: '100%',
@@ -423,6 +433,7 @@ const Root = styled('div')(
       },
     },
     '& li': {
+      marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
       },
@@ -460,7 +471,7 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-grey-400, ${darkTheme.palette.grey[400]})`,
       },
       '& h1, & h2, & h3, & h4': {
-        '&:hover .anchor-link-style, & .comment-link-style': {
+        '&:hover .anchor-link, & .comment-link': {
           color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
           backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.3),
           borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
@@ -504,29 +515,29 @@ const Root = styled('div')(
       '& .MuiCallout-root': {
         '&.MuiCallout-error': {
           color: `var(--muidocs-palette-error-50, ${darkTheme.palette.error[50]})`,
-          backgroundColor: alpha(darkTheme.palette.error[900], 0.35),
-          borderColor: `var(--muidocs-palette-error-800, ${darkTheme.palette.error[800]})`,
+          backgroundColor: alpha(darkTheme.palette.error[700], 0.15),
+          borderColor: alpha(lightTheme.palette.error[600], 0.3),
           '& strong': {
             color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
           },
           '& a': {
-            color: `var(--muidocs-palette-error-100, ${darkTheme.palette.error[100]})`,
+            color: `var(--muidocs-palette-error-200, ${darkTheme.palette.error[200]})`,
           },
         },
         '&.MuiCallout-info': {
           color: `var(--muidocs-palette-primary-50, ${darkTheme.palette.primary[50]})`,
-          backgroundColor: alpha(darkTheme.palette.primary[900], 0.2),
-          borderColor: `var(--muidocs-palette-primary-800, ${darkTheme.palette.primary[800]})`,
+          backgroundColor: alpha(darkTheme.palette.grey[700], 0.2),
+          borderColor: `var(--muidocs-palette-primary-800, ${darkTheme.palette.grey[800]})`,
           '& strong': {
-            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
+            color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
         },
         '&.MuiCallout-success': {
           color: `var(--muidocs-palette-success-50, ${darkTheme.palette.success[50]})`,
-          backgroundColor: alpha(darkTheme.palette.success[900], 0.35),
-          borderColor: `var(--muidocs-palette-success-800, ${darkTheme.palette.success[800]})`,
+          backgroundColor: alpha(darkTheme.palette.success[700], 0.15),
+          borderColor: alpha(lightTheme.palette.success[600], 0.3),
           '& strong': {
-            color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
+            color: `var(--muidocs-palette-success-200, ${darkTheme.palette.success[200]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-success-100, ${darkTheme.palette.success[100]})`,
@@ -534,9 +545,10 @@ const Root = styled('div')(
         },
         '&.MuiCallout-warning': {
           color: `var(--muidocs-palette-warning-50, ${darkTheme.palette.warning[50]})`,
-          backgroundColor: alpha(darkTheme.palette.warning[900], 0.35),
+          backgroundColor: alpha(darkTheme.palette.warning[700], 0.15),
+          borderColor: alpha(darkTheme.palette.warning[600], 0.3),
           '& strong': {
-            color: `var(--muidocs-palette-warning-800, ${darkTheme.palette.warning[800]})`,
+            color: `var(--muidocs-palette-warning-200, ${darkTheme.palette.warning[200]})`,
           },
           '& a': {
             color: `var(--muidocs-palette-warning-100, ${darkTheme.palette.warning[100]})`,
