@@ -323,6 +323,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     className: [classes.input, inputStateClasses],
     elementType: InputInput,
     getSlotProps: getInputProps,
+    internalForwardedProps: propsToForward,
     externalForwardedProps: other,
     ownerState,
   });

@@ -283,6 +283,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     className: [classes.textarea, inputStateClasses],
     elementType: TextareaInput,
     internalForwardedProps: {
+      ...propsToForward,
       minRows,
       maxRows,
     },

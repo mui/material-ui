@@ -35,6 +35,11 @@ describe('Joy <Input />', () => {
 
   describeJoyColorInversion(<Input />, { muiName: 'JoyInput', classes });
 
+  it('should have placeholder', () => {
+    const { getByPlaceholderText } = render(<Input placeholder="Placeholder" />);
+    expect(getByPlaceholderText('Placeholder')).toBeVisible();
+  });
+
   it('should have error classes', () => {
     const { container } = render(<Input error />);
     expect(container.firstChild).to.have.class(classes.error);

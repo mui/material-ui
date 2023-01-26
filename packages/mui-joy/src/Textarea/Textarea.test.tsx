@@ -35,6 +35,11 @@ describe('Joy <Textarea />', () => {
 
   describeJoyColorInversion(<Textarea />, { muiName: 'JoyTextarea', classes });
 
+  it('should have placeholder', () => {
+    const { getByPlaceholderText } = render(<Textarea placeholder="Placeholder" />);
+    expect(getByPlaceholderText('Placeholder')).toBeVisible();
+  });
+
   it('should have error classes', () => {
     const { container } = render(<Textarea error />);
     expect(container.firstChild).to.have.class(classes.error);
