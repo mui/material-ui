@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -325,8 +324,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     }),
     className: [classes.input, inputStateClasses],
     elementType: InputInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
+    getSlotProps: getInputProps,
     externalForwardedProps,
     ownerState,
   });
