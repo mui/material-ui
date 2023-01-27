@@ -45,6 +45,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--ModalDialog-radius': theme.vars.radius.sm,
     '--ModalDialog-gap': theme.spacing(0.75),
     '--ModalDialog-titleOffset': theme.spacing(0.25),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.25),
     '--ModalClose-inset': theme.spacing(0.75),
     fontSize: theme.vars.fontSize.sm,
   }),
@@ -53,6 +54,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--ModalDialog-radius': theme.vars.radius.md,
     '--ModalDialog-gap': theme.spacing(1.5),
     '--ModalDialog-titleOffset': theme.spacing(0.25),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.5),
     '--ModalClose-inset': theme.spacing(1),
     fontSize: theme.vars.fontSize.md,
   }),
@@ -61,6 +63,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--ModalDialog-radius': theme.vars.radius.md,
     '--ModalDialog-gap': theme.spacing(2),
     '--ModalDialog-titleOffset': theme.spacing(0.75),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.75),
     '--ModalClose-inset': theme.spacing(1.5),
     fontSize: theme.vars.fontSize.lg,
   }),
@@ -87,16 +90,20 @@ const ModalDialogRoot = styled(SheetRoot, {
     transform: 'translate(-50%, -50%)',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
-    marginTop: 'calc(-1 * var(--ModalDialog-titleOffset))',
-    marginBottom: 'var(--ModalDialog-gap)',
+    '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
     fontSize: '1.125em',
+    [`& + [id="${ownerState['aria-describedby']}"]`]: {
+      '--private_ModalDialog-descriptionOffset': 'calc(-1 * var(--ModalDialog-descriptionOffset))',
+    },
   },
   [`& [id="${ownerState['aria-describedby']}"]`]: {
     fontSize: 'inherit',
-    marginTop: 'var(--ModalDialog-gap)',
-    '& + *': {
+    '--Typography-margin':
+      'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 0 0',
+    '&:not(:last-child)': {
       // create spacing between description and the next element.
-      marginTop: 'var(--ModalDialog-gap)',
+      '--Typography-margin':
+        'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 var(--ModalDialog-gap) 0',
     },
   },
 }));
