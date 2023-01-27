@@ -39,7 +39,7 @@ describe('ClassNameConfigurator', () => {
     expect(switchComponent.childNodes[2]).not.to.have.class(switchUnstyledClasses.input);
   });
 
-  it('should not remove custom classes when disableClasses is set', () => {
+  it('should not remove custom classes when disableDefaultClasses is set', () => {
     const { container } = render(
       <ClassNameConfigurator disableDefaultClasses>
         <SwitchUnstyled
