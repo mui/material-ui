@@ -41,10 +41,6 @@ describe('MenuUnstyled', () => {
   describe('after initialization', () => {
     const spyFocus = spy();
 
-    afterEach(() => {
-      spyFocus.resetHistory();
-    });
-
     const Test = () => {
       React.useEffect(() => {
         document.addEventListener('focus', spyFocus, true);
