@@ -91,13 +91,13 @@ const ModalDialogRoot = styled(SheetRoot, {
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
     '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
-    fontSize: '1.125em',
+    '--Typography-fontSize': '1.125em',
     [`& + [id="${ownerState['aria-describedby']}"]`]: {
       '--private_ModalDialog-descriptionOffset': 'calc(-1 * var(--ModalDialog-descriptionOffset))',
     },
   },
   [`& [id="${ownerState['aria-describedby']}"]`]: {
-    fontSize: 'inherit',
+    '--Typography-fontSize': '1em',
     '--Typography-margin':
       'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 0 0',
     '&:not(:last-child)': {

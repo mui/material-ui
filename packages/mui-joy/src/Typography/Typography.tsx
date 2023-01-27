@@ -86,6 +86,11 @@ const TypographyRoot = styled('span', {
     }),
   }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+  fontSize: `var(--Typography-fontSize, ${
+    ownerState.level && ownerState.level !== 'inherit'
+      ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+      : 'inherit'
+  })`,
   ...(ownerState.noWrap && {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
