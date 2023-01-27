@@ -41,7 +41,7 @@ describe('MenuUnstyled', () => {
   describe('after initialization', () => {
     const spyFocus = spy();
 
-    const Test = () => {
+    function Test() {
       React.useEffect(() => {
         document.addEventListener('focus', spyFocus, true);
         return () => {
@@ -56,7 +56,7 @@ describe('MenuUnstyled', () => {
           <MenuItemUnstyled data-testid="item-3">3</MenuItemUnstyled>
         </MenuUnstyled>
       );
-    };
+    }
 
     it('when menu is opened it highlights one item and it must be the first one', () => {
       const { getAllByTestId } = render(<Test />);
