@@ -29,7 +29,8 @@ export default function ExtendSxProp() {
       <Box
         sx={{
           size: 10,
-          border: '1px solid black',
+          borderColor: 'text.primary',
+          border: 1,
         }}
       />
     </ThemeProvider>
