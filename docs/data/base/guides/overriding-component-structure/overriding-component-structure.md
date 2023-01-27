@@ -103,11 +103,6 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ## Best practices
 
-If you are customizing a simpler component like the Unstyled Button that only has a root slot, you may prefer to use the more succinct `component` prop instead of `slots`.
-
-Overriding with `component` lets you apply the attributes of that element directly to the root.
-For instance, if you replace the Unstyled Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
-If you did the same with `slots.root`, you would need to place this attribute on the `slotProps.root` object in order to avoid a TypeScript error.
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
 You can easily break the rules of semantic and accessible HTML if you deviate too far from the default structure—for instance, by unintentionally nesting block-level elements inside of inline elements.
