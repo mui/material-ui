@@ -2,7 +2,6 @@
   <Box
     sx={{
       size: 10,
-      borderColor: 'text.primary',
       border: 1,
     }}
   />

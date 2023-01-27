@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider, Box, Stack } from '@mui/system';
+import { Box, Stack } from '@mui/system';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Retain type safety.
 declare module '@mui/system' {
@@ -29,15 +30,9 @@ export default function ChangeTheBehaviorSxProp() {
   return (
     <Stack direction="row" gap={1}>
       <ThemeProvider theme={theme}>
-        <Box
-          sx={{ borderRadius: 'sm', border: 1, borderColor: 'text.primary', p: 4 }}
-        />
-        <Box
-          sx={{ borderRadius: 'md', border: 1, borderColor: 'text.primary', p: 4 }}
-        />
-        <Box
-          sx={{ borderRadius: 'lg', border: 1, borderColor: 'text.primary', p: 4 }}
-        />
+        <Box sx={{ borderRadius: 'sm', border: 1, p: 4 }} />
+        <Box sx={{ borderRadius: 'md', border: 1, p: 4 }} />
+        <Box sx={{ borderRadius: 'lg', border: 1, p: 4 }} />
       </ThemeProvider>
     </Stack>
   );
