@@ -23,7 +23,7 @@ describe('ClassNameConfigurator', () => {
 
   it('should not generate any classes when configured as such', () => {
     const { container } = render(
-      <ClassNameConfigurator disableClasses>
+      <ClassNameConfigurator disableDefaultClasses>
         <SwitchUnstyled defaultChecked disabled />
       </ClassNameConfigurator>,
     );
@@ -41,7 +41,7 @@ describe('ClassNameConfigurator', () => {
 
   it('should not remove custom classes when disableClasses is set', () => {
     const { container } = render(
-      <ClassNameConfigurator disableClasses>
+      <ClassNameConfigurator disableDefaultClasses>
         <SwitchUnstyled
           className="custom-switch"
           slotProps={{

@@ -4,11 +4,11 @@ type ClassNameConfiguration = {
   /**
    * If `true`, the components within the context will not have built-in classes applied.
    */
-  disableClasses: boolean;
+  disableDefaultClasses: boolean;
 };
 
 const defaultContextValue: ClassNameConfiguration = {
-  disableClasses: false,
+  disableDefaultClasses: false,
 };
 
 const ClassNameConfiguratorContext =
@@ -26,7 +26,7 @@ export interface ClassNameConfiguratorProps extends Partial<ClassNameConfigurati
  * @returns Function to be called with the `generateUtilityClass` function to generate the classes.
  */
 export function useClassNameGenerator(disableClassesOverride?: boolean) {
-  const { disableClasses } = React.useContext(ClassNameConfiguratorContext);
+  const { disableDefaultClasses: disableClasses } = React.useContext(ClassNameConfiguratorContext);
 
   let disable = disableClasses;
   if (disableClassesOverride !== undefined) {
@@ -51,11 +51,11 @@ export function useClassNameGenerator(disableClassesOverride?: boolean) {
  * Allows to configure the components within to not apply any built-in classes.
  */
 export default function ClassNameConfigurator(props: ClassNameConfiguratorProps) {
-  const { disableClasses, children } = props;
+  const { disableDefaultClasses, children } = props;
 
   const contextValue = React.useMemo(
-    () => ({ disableClasses: disableClasses ?? false }),
-    [disableClasses],
+    () => ({ disableDefaultClasses: disableDefaultClasses ?? false }),
+    [disableDefaultClasses],
   );
 
   return (
