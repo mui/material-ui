@@ -17,6 +17,7 @@ import {
   PaletteVariant,
 } from '@mui/joy/styles';
 import Autocomplete, { AutocompleteProps } from '@mui/joy/Autocomplete';
+import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import Alert from '@mui/joy/Alert';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -36,9 +37,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import ModalClose from '@mui/joy/ModalClose';
-import Menu from '@mui/joy/Menu';
-import MenuItem from '@mui/joy/MenuItem';
-import Sheet from '@mui/joy/Sheet';
+import Sheet, { SheetProps } from '@mui/joy/Sheet';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Tabs from '@mui/joy/Tabs';
@@ -53,6 +52,7 @@ import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import Close from '@mui/icons-material/Close';
 import Check from '@mui/icons-material/Check';
+import Code from '@mui/icons-material/Code';
 import Search from '@mui/icons-material/Search';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DarkMode from '@mui/icons-material/DarkMode';
@@ -346,12 +346,13 @@ const tailwindColors = {
 
 const defaultTheme = extendTheme();
 
-const augmentPalette = (palette: any, prop: keyof Palette) => {
-  if (!palette) {
+const augmentPalette = (colorSchemes: any, prop: keyof Palette) => {
+  if (!colorSchemes) {
     return '';
   }
-  const result: string[] = [];
-  Object.keys(palette[prop] || []).forEach((k) => {
+  const result: Array<string> = [];
+  const palette = { ...colorSchemes.light?.palette?.[prop], ...colorSchemes.dark?.palette?.[prop] };
+  Object.keys(palette).forEach((k) => {
     if (
       !Object.keys(defaultTheme.colorSchemes.light.palette[prop]).includes(k) &&
       !k.match(/^(plain|outlined|soft|solid)/)
@@ -376,46 +377,40 @@ ${text}
   }`;
 };
 
-const generateThemeAugmentation = (data: any) => `
-declare module '@mui/joy/styles' {
-  ${[
+const generateThemeAugmentation = (data: any) => {
+  const result = [
     renderInterface(
       'PalettePrimary',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'primary'), 4),
+      prependSpace(augmentPalette(data?.colorSchemes, 'primary'), 4),
     ),
     renderInterface(
       `PaletteNeutral`,
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'neutral'), 4),
+      prependSpace(augmentPalette(data?.colorSchemes, 'neutral'), 4),
     ),
-    renderInterface(
-      'PaletteDanger',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'danger'), 4),
-    ),
-    renderInterface(
-      'PaletteInfo',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'info'), 4),
-    ),
+    renderInterface('PaletteDanger', prependSpace(augmentPalette(data?.colorSchemes, 'danger'), 4)),
+    renderInterface('PaletteInfo', prependSpace(augmentPalette(data?.colorSchemes, 'info'), 4)),
     renderInterface(
       'PaletteSuccess',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'success'), 4),
+      prependSpace(augmentPalette(data?.colorSchemes, 'success'), 4),
     ),
     renderInterface(
       'PaletteWarning',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'warning'), 4),
+      prependSpace(augmentPalette(data?.colorSchemes, 'warning'), 4),
     ),
-    renderInterface(
-      'PaletteText',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'text'), 4),
-    ),
+    renderInterface('PaletteText', prependSpace(augmentPalette(data?.colorSchemes, 'text'), 4)),
     renderInterface(
       'PaletteBackground',
-      prependSpace(augmentPalette(data?.colorSchemes?.light?.palette, 'background'), 4),
+      prependSpace(augmentPalette(data?.colorSchemes, 'background'), 4),
     ),
   ]
     .filter((text) => !!text)
-    .join('\n')}
+    .join('\n');
+  return `
+declare module '@mui/joy/styles' {
+  ${result === '' ? '// No custom tokens found, you can skip the theme augmentation.' : result}
 }
 `;
+};
 
 const generateThemeCode = (data: any) =>
   `
@@ -440,6 +435,30 @@ function getPaletteFormProps(colorSchemes: any, colorMode: string, node: string)
     mergedValue,
     tokens: Object.keys(mergedValue).filter((k) => mergedValue[k] !== undefined),
   };
+}
+
+function ColorBubblePreview({ sx, value, ...props }: SheetProps & { value: string | undefined }) {
+  return (
+    <Sheet
+      variant="outlined"
+      {...props}
+      sx={[
+        {
+          width: 20,
+          height: 20,
+          borderRadius: '50%',
+          ...(value?.includes('-gradient')
+            ? {
+                background: value,
+              }
+            : {
+                bgcolor: value,
+              }),
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    />
+  );
 }
 
 function CodeBlockResult({
@@ -558,14 +577,10 @@ function ColorInput({
       size="sm"
       error={isError}
       startDecorator={
-        <Sheet
-          variant="outlined"
+        <ColorBubblePreview
+          value={internalValue || props.placeholder}
           sx={{
-            width: 20,
-            height: 20,
-            borderRadius: '50%',
             mr: -0.5,
-            bgcolor: internalValue || props.placeholder,
           }}
         />
       }
@@ -872,6 +887,8 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
             nameRef.current?.focus();
           } else {
             onChange(name, color);
+            setColor('');
+            setName('');
             setOpen(false);
           }
         }}
@@ -892,29 +909,33 @@ function ColorAutocomplete({
   onValidColor: (color: string) => void;
   onEmptyColor: () => void;
   value: string;
-  options: string[];
+  options: Array<string>;
 }) {
   const [showEnter, setShowEnter] = React.useState(false);
   return (
     <Autocomplete
       freeSolo
       options={options}
-      value={value}
+      slotProps={{
+        listbox: {
+          placement: 'bottom-start',
+          sx: {
+            minWidth: 'max-content',
+            maxHeight: 160,
+          },
+        },
+      }}
+      renderOption={(optionProps, data) => (
+        <AutocompleteOption {...optionProps}>
+          <ColorBubblePreview value={data} sx={{ mr: 0.5 }} />
+          {data}
+        </AutocompleteOption>
+      )}
+      value={value || null}
       blurOnSelect
       openOnFocus
       {...props}
-      startDecorator={
-        <Sheet
-          variant="outlined"
-          sx={{
-            width: 20,
-            height: 20,
-            borderRadius: '50%',
-            mr: -0.5,
-            bgcolor: value || props.placeholder,
-          }}
-        />
-      }
+      startDecorator={<ColorBubblePreview value={value || props.placeholder} sx={{ mr: -0.5 }} />}
       endDecorator={showEnter ? '⏎' : ''}
       onChange={(event, newValue) => {
         setShowEnter(false);
@@ -986,6 +1007,20 @@ function GlobalVariantTokenCreator({
         size="sm"
         freeSolo
         blurOnSelect
+        slotProps={{
+          listbox: {
+            sx: {
+              minWidth: 'max-content',
+              maxHeight: 160,
+            },
+          },
+        }}
+        renderOption={(optionProps, data) => (
+          <AutocompleteOption {...optionProps}>
+            <ColorBubblePreview value={data} sx={{ mr: 0.5 }} />
+            {data}
+          </AutocompleteOption>
+        )}
         onChange={(event, newValue) => setColor(newValue || '')}
         onInputChange={(event, newValue) => setColor(newValue)}
         sx={{ flex: 1 }}
@@ -1023,9 +1058,11 @@ function GlobalVariantForm({
   color,
   themeDefaultValue: themeDefaultValueProp = {},
   value: valueProp = {},
+  availableTokens = [],
   onChange,
   onRemove,
 }: {
+  availableTokens?: Array<string>;
   color: ColorPaletteProp;
   themeDefaultValue: any;
   value: any;
@@ -1059,12 +1096,12 @@ function GlobalVariantForm({
     `${selectedVariant}HoverBorder`,
     `${selectedVariant}ActiveBorder`,
     `${selectedVariant}DisabledBorder`,
-  ].filter((item) => !(tokens as string[]).includes(item));
-  const mergedValueProp = { ...themeDefaultValueProp, ...valueProp };
-  const primitives = Object.keys(mergedValueProp)
-    .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
-    .filter((k) => mergedValueProp[k] !== undefined);
-  const primitiveTokens = primitives.map((primitive) => `var(--joy-palette-${color}-${primitive})`);
+  ].filter((item) => !(tokens as Array<string>).includes(item));
+  // const mergedValueProp = { ...themeDefaultValueProp, ...valueProp };
+  // const primitives = Object.keys(mergedValueProp)
+  //   .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
+  //   .filter((k) => mergedValueProp[k] !== undefined);
+  // const primitiveTokens = primitives.map((primitive) => `var(--joy-palette-${color}-${primitive})`);
   return (
     <React.Fragment>
       <Typography component="div" fontWeight="lg" mb={0.5}>
@@ -1163,7 +1200,7 @@ function GlobalVariantForm({
             <ColorAutocomplete
               value={value[item] ?? ''}
               placeholder={themeDefaultValue[item]}
-              options={primitiveTokens}
+              options={availableTokens}
               onValidColor={(newValue) => {
                 onChange({ [item]: newValue });
               }}
@@ -1186,7 +1223,7 @@ function GlobalVariantForm({
         ))}
       </Box>
       <GlobalVariantTokenCreator
-        primitiveTokens={primitiveTokens}
+        primitiveTokens={availableTokens}
         availableTokens={allTokens}
         onChange={(token, newValue) => onChange({ [token]: newValue })}
       />
@@ -1202,8 +1239,8 @@ function ColorPaletteForm({
   onChange,
   onRemove,
 }: {
-  availableTokens?: string[];
-  tokens: string[];
+  availableTokens?: Array<string>;
+  tokens: Array<string>;
   themeDefaultValue: any;
   value: any;
   onChange: (newValue: any) => void;
@@ -1289,8 +1326,8 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
     defaultTheme.colorSchemes[colorMode].palette,
     colorSchemes[colorMode].palette,
   );
-  const tokens: string[] = [];
-  function iterateObject(object: any, keys: string[] = []) {
+  const tokens: Array<string> = [];
+  function iterateObject(object: any, keys: Array<string> = []) {
     Object.keys(object).forEach((k) => {
       if (object[k] && !k.match(/^(mode|colorScheme)$/)) {
         if (typeof object[k] === 'object') {
@@ -1388,7 +1425,7 @@ export default function JoyThemeBuilder() {
             size="sm"
             variant="soft"
             color="neutral"
-            startDecorator="🚀"
+            startDecorator={<Code />}
             sx={{ ml: 'auto' }}
             onClick={() => setShowCode(true)}
           >
@@ -1762,6 +1799,7 @@ export default function App() {
                 <TabPanel value={1}>
                   <GlobalVariantForm
                     color={colorProp}
+                    availableTokens={availableTokens}
                     themeDefaultValue={defaultTheme.colorSchemes[colorMode].palette[colorProp]}
                     value={{ light: lightPalette, dark: darkPalette }[colorMode][colorProp]}
                     onChange={(newValue) => {
