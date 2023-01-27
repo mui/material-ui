@@ -4,7 +4,8 @@ import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener'
 import { UseSnackbarParameters } from './useSnackbar.types';
 import { SlotComponentProps } from '../utils';
 
-export interface SnackbarUnstyledComponentsPropsOverrides {}
+export interface SnackbarUnstyledRootSlotOverrides {}
+export interface SnackbarUnstyledClickAwayListenerSlotOverrides {}
 
 export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
   children?: React.ReactNode;
@@ -23,14 +24,10 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
   slotProps?: {
     clickAwayListener?: SlotComponentProps<
       typeof ClickAwayListener,
-      SnackbarUnstyledComponentsPropsOverrides,
+      SnackbarUnstyledClickAwayListenerSlotOverrides,
       SnackbarUnstyledOwnerState
     >;
-    root?: SlotComponentProps<
-      'div',
-      SnackbarUnstyledComponentsPropsOverrides,
-      SnackbarUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', SnackbarUnstyledRootSlotOverrides, SnackbarUnstyledOwnerState>;
   };
   /**
    * The prop used to handle exited transition and unmount the component.

@@ -8,7 +8,9 @@ import {
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
 
-export interface SelectUnstyledComponentsPropsOverrides {}
+export interface SelectUnstyledRootSlotOverrides {}
+export interface SelectUnstyledListboxSlotOverrides {}
+export interface SelectUnstyledPopperSlotOverrides {}
 
 export interface SelectUnstyledCommonProps {
   /**
@@ -89,17 +91,17 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
   slotProps?: {
     root?: SlotComponentProps<
       'button',
-      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledRootSlotOverrides,
       SelectUnstyledOwnerState<TValue>
     >;
     listbox?: SlotComponentProps<
       'button',
-      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledListboxSlotOverrides,
       SelectUnstyledOwnerState<TValue>
     >;
     popper?: SlotComponentProps<
       typeof PopperUnstyled,
-      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledPopperSlotOverrides,
       SelectUnstyledOwnerState<TValue>
     >;
   };

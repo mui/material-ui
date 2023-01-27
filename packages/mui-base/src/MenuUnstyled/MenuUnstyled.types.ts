@@ -4,7 +4,8 @@ import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from './useMenu.types';
 
-export interface MenuUnstyledComponentsPropsOverrides {}
+export interface MenuUnstyledRootSlotOverrides {}
+export interface MenuUnstyledListboxSlotOverrides {}
 
 export interface MenuUnstyledActions {
   highlightFirstItem: () => void;
@@ -49,12 +50,12 @@ export interface MenuUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       typeof PopperUnstyled,
-      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledRootSlotOverrides,
       MenuUnstyledOwnerState
     >;
     listbox?: SlotComponentProps<
       'ul',
-      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledListboxSlotOverrides,
       MenuUnstyledOwnerState
     >;
   };

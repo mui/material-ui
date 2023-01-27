@@ -2,7 +2,8 @@ import * as React from 'react';
 import { OverrideProps, OverridableTypeMap, OverridableComponent } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-export interface BadgeUnstyledComponentsPropsOverrides {}
+export interface BadgeUnstyledRootSlotOverrides {}
+export interface BadgeUnstyledBadgeSlotOverrides {}
 
 export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
   badgeContent: React.ReactNode;
@@ -37,12 +38,12 @@ export interface BadgeUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'span',
-      BadgeUnstyledComponentsPropsOverrides,
+      BadgeUnstyledRootSlotOverrides,
       BadgeUnstyledOwnerState
     >;
     badge?: SlotComponentProps<
       'span',
-      BadgeUnstyledComponentsPropsOverrides,
+      BadgeUnstyledBadgeSlotOverrides,
       BadgeUnstyledOwnerState
     >;
   };

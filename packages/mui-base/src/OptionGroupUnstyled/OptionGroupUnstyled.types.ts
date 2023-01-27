@@ -2,7 +2,9 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
-export interface OptionGroupUnstyledComponentsPropsOverrides {}
+export interface OptionGroupUnstyledRootSlotOverrides {}
+export interface OptionGroupUnstyledLabelSlotOverrides {}
+export interface OptionGroupUnstyledListSlotOverrides {}
 
 export interface OptionGroupUnstyledOwnProps {
   /**
@@ -33,17 +35,17 @@ export interface OptionGroupUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'li',
-      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledRootSlotOverrides,
       OptionGroupUnstyledOwnerState
     >;
     label?: SlotComponentProps<
       'span',
-      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledLabelSlotOverrides,
       OptionGroupUnstyledOwnerState
     >;
     list?: SlotComponentProps<
       'ul',
-      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledListSlotOverrides,
       OptionGroupUnstyledOwnerState
     >;
   };

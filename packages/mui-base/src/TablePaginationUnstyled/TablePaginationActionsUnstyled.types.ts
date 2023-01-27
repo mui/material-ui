@@ -2,7 +2,11 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
+export interface TablePaginationActionsUnstyledRootSlotOverrides {}
+export interface TablePaginationActionsUnstyledFirstButtonSlotOverrides {}
+export interface TablePaginationActionsUnstyledLastButtonSlotOverrides {}
+export interface TablePaginationActionsUnstyledNextButtonSlotOverrides {}
+export interface TablePaginationActionsUnstyledBackButtonSlotOverrides {}
 
 export interface TablePaginationActionsUnstyledOwnProps {
   /**
@@ -33,27 +37,27 @@ export interface TablePaginationActionsUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledRootSlotOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     firstButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledFirstButtonSlotOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     lastButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledLastButtonSlotOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     nextButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledNextButtonSlotOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     backButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledBackButtonSlotOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
   };

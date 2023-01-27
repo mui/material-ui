@@ -4,7 +4,8 @@ import { FormControlUnstyledState } from '../FormControlUnstyled';
 import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
 import { SlotComponentProps } from '../utils';
 
-export interface InputUnstyledComponentsPropsOverrides {}
+export interface InputUnstyledRootSlotOverrides {}
+export interface InputUnstyledInputSlotOverrides {}
 
 export interface SingleLineInputUnstyledProps {
   /**
@@ -110,12 +111,12 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
     slotProps?: {
       root?: SlotComponentProps<
         'div',
-        InputUnstyledComponentsPropsOverrides,
+        InputUnstyledRootSlotOverrides,
         InputUnstyledOwnerState
       >;
       input?: SlotComponentProps<
         'input',
-        InputUnstyledComponentsPropsOverrides,
+        InputUnstyledInputSlotOverrides,
         InputUnstyledOwnerState
       >;
     };

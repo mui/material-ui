@@ -4,7 +4,7 @@ import { OptionState } from '../ListboxUnstyled';
 import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
 import { SlotComponentProps } from '../utils';
 
-export interface OptionUnstyledComponentsPropsOverrides {}
+export interface OptionUnstyledRootSlotOverrides {}
 
 export interface OptionUnstyledOwnProps<TValue> {
   /**
@@ -25,7 +25,7 @@ export interface OptionUnstyledOwnProps<TValue> {
   slotProps?: {
     root?: SlotComponentProps<
       'li',
-      OptionUnstyledComponentsPropsOverrides,
+      OptionUnstyledRootSlotOverrides,
       OptionUnstyledOwnerState<TValue>
     >;
   };

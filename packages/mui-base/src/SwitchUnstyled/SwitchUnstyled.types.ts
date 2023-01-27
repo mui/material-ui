@@ -2,7 +2,10 @@ import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
 
-export interface SwitchUnstyledComponentsPropsOverrides {}
+export interface SwitchUnstyledRootSlotOverrides {}
+export interface SwitchUnstyledThumbSlotOverrides {}
+export interface SwitchUnstyledInputSlotOverrides {}
+export interface SwitchUnstyledTrackSlotOverrides {}
 
 export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   /**
@@ -26,26 +29,10 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'span',
-      SwitchUnstyledComponentsPropsOverrides,
-      SwitchUnstyledOwnerState
-    >;
-    thumb?: SlotComponentProps<
-      'span',
-      SwitchUnstyledComponentsPropsOverrides,
-      SwitchUnstyledOwnerState
-    >;
-    input?: SlotComponentProps<
-      'input',
-      SwitchUnstyledComponentsPropsOverrides,
-      SwitchUnstyledOwnerState
-    >;
-    track?: SlotComponentProps<
-      'span',
-      SwitchUnstyledComponentsPropsOverrides,
-      SwitchUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'span', SwitchUnstyledRootSlotOverrides, SwitchUnstyledOwnerState>;
+    thumb?: SlotComponentProps<'span', SwitchUnstyledThumbSlotOverrides, SwitchUnstyledOwnerState>;
+    input?: SlotComponentProps<'input', SwitchUnstyledInputSlotOverrides, SwitchUnstyledOwnerState>;
+    track?: SlotComponentProps<'span', SwitchUnstyledTrackSlotOverrides, SwitchUnstyledOwnerState>;
   };
 }
 
