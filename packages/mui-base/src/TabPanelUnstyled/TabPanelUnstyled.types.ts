@@ -28,11 +28,7 @@ export interface TabPanelUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      TabPanelUnstyledRootSlotOverrides,
-      TabPanelUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', TabPanelUnstyledRootSlotOverrides, TabPanelUnstyledOwnerState>;
   };
 }
 

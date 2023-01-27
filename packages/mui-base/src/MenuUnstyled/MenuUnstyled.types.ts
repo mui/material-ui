@@ -53,11 +53,7 @@ export interface MenuUnstyledOwnProps {
       MenuUnstyledRootSlotOverrides,
       MenuUnstyledOwnerState
     >;
-    listbox?: SlotComponentProps<
-      'ul',
-      MenuUnstyledListboxSlotOverrides,
-      MenuUnstyledOwnerState
-    >;
+    listbox?: SlotComponentProps<'ul', MenuUnstyledListboxSlotOverrides, MenuUnstyledOwnerState>;
   };
   /**
    * The components used for each slot inside the Menu.

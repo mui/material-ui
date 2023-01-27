@@ -16,11 +16,7 @@ export interface TabsListUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      TabsListUnstyledRootSlotOverrides,
-      TabsListUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', TabsListUnstyledRootSlotOverrides, TabsListUnstyledOwnerState>;
   };
   /**
    * The components used for each slot inside the TabsList.

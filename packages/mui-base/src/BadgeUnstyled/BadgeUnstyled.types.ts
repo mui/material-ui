@@ -36,16 +36,8 @@ export interface BadgeUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'span',
-      BadgeUnstyledRootSlotOverrides,
-      BadgeUnstyledOwnerState
-    >;
-    badge?: SlotComponentProps<
-      'span',
-      BadgeUnstyledBadgeSlotOverrides,
-      BadgeUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'span', BadgeUnstyledRootSlotOverrides, BadgeUnstyledOwnerState>;
+    badge?: SlotComponentProps<'span', BadgeUnstyledBadgeSlotOverrides, BadgeUnstyledOwnerState>;
   };
   /**
    * The components used for each slot inside the Badge.

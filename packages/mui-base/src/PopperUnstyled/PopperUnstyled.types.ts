@@ -89,11 +89,7 @@ export interface PopperUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      PopperUnstyledRootSlotOverrides,
-      PopperUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', PopperUnstyledRootSlotOverrides, PopperUnstyledOwnerState>;
   };
   /**
    * The components used for each slot inside the Popper.

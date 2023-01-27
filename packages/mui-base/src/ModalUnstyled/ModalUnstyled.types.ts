@@ -104,11 +104,7 @@ export interface ModalUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      ModalUnstyledRootSlotOverrides,
-      ModalUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', ModalUnstyledRootSlotOverrides, ModalUnstyledOwnerState>;
     backdrop?: SlotComponentProps<
       'div',
       ModalUnstyledBackdropSlotOverrides,

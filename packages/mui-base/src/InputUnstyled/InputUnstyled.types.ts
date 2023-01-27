@@ -109,16 +109,8 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      * @default {}
      */
     slotProps?: {
-      root?: SlotComponentProps<
-        'div',
-        InputUnstyledRootSlotOverrides,
-        InputUnstyledOwnerState
-      >;
-      input?: SlotComponentProps<
-        'input',
-        InputUnstyledInputSlotOverrides,
-        InputUnstyledOwnerState
-      >;
+      root?: SlotComponentProps<'div', InputUnstyledRootSlotOverrides, InputUnstyledOwnerState>;
+      input?: SlotComponentProps<'input', InputUnstyledInputSlotOverrides, InputUnstyledOwnerState>;
     };
     /**
      * The components used for each slot inside the InputBase.

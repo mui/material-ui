@@ -31,11 +31,7 @@ export interface MenuItemUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'li',
-      MenuItemUnstyledRootSlotOverrides,
-      MenuItemUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'li', MenuItemUnstyledRootSlotOverrides, MenuItemUnstyledOwnerState>;
   };
   /**
    * A text representation of the menu item's content.

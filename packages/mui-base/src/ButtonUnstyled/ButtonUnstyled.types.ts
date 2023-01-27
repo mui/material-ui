@@ -21,11 +21,7 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'button',
-      ButtonUnstyledRootSlotOverrides,
-      ButtonUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'button', ButtonUnstyledRootSlotOverrides, ButtonUnstyledOwnerState>;
   };
   /**
    * The components used for each slot inside the Button.
