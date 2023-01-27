@@ -1,7 +1,7 @@
 ---
 title: Date and Time Pickers revamped
 description: Check out the new features coming in v6 beta.
-date: 2022-12-20T00:00:00.000Z
+date: 2023-01-22T00:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'News']
 ---
