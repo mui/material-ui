@@ -431,7 +431,7 @@ export default function Demo(props) {
 
   return (
     <Root>
-      <AnchorLink id={`${demoName}`} />
+      <AnchorLink id={demoName} />
       <DemoRoot
         hiddenToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
