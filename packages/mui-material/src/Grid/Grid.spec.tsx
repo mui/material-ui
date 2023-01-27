@@ -56,7 +56,8 @@ function ResponsiveTest() {
         // @ts-expect-error
         <Grid item component={CustomComponent} />
       }
-      <Grid item
+      <Grid
+        item
         component="span"
         onChange={(event) => {
           expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
