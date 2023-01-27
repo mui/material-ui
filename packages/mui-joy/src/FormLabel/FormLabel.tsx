@@ -30,7 +30,7 @@ const FormLabelRoot = styled('label', {
   userSelect: 'none',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
-  fontWeight: theme.vars.fontWeight.lg,
+  fontWeight: theme.vars.fontWeight.md,
   lineHeight: theme.vars.lineHeight.md,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
   margin: 'var(--FormLabel-margin, 0px)',
