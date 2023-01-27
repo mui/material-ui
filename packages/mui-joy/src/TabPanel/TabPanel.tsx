@@ -44,6 +44,7 @@ const TabPanelRoot = styled('div', {
   }),
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
+  visibility: ownerState.keepMounted && ownerState.hidden ? 'hidden' : 'visible',
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
@@ -54,8 +55,16 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   const { orientation } = useTabContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
+  const [mounted, setMounted] = React.useState<boolean>(false);
 
-  const { children, value, component, size: sizeProp, ...other } = props;
+  const {
+    children,
+    value,
+    component,
+    keepMounted,
+    size: sizeProp,
+    ...other
+  } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
@@ -66,6 +75,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     orientation,
     hidden,
     size,
+    keepMounted,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -84,7 +94,11 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     className: classes.root,
   });
 
-  return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
+  if (hidden && !keepMounted) {
+    return null;
+  }
+
+  return <TabPanelRoot {...tabPanelRootProps}>{children}</TabPanelRoot>;
 }) as OverridableComponent<TabPanelTypeMap>;
 
 TabPanel.propTypes /* remove-proptypes */ = {
@@ -101,6 +115,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Whether or not to keep the panel mounted.
+   */
+  keepMounted: PropTypes.bool,
   /**
    * The size of the component.
    */
