@@ -49,7 +49,7 @@ For example, the [Unstyled Slider](/base/react-slider/) is composed of a root `<
 
 ### The slots prop
 
-Use the `slots` prop to override a component's interior slots.
+Use the `slots` prop to replace a component's interior slots.
 The example below shows how to override the listbox slot in the [Unstyled Select](/base/react-select/) component—a `<ul>` by default—with an `<ol>`:
 
 {{"demo": "OverridingInternalSlot.js"}}
