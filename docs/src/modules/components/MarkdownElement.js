@@ -71,6 +71,9 @@ const Root = styled('div')(
       fontWeight: 400,
       margin: '0 0 40px',
     },
+    '& .component-tabs': {
+      margin: '0 0 40px',
+    },
     '& h2': {
       ...lightTheme.typography.h5,
       fontFamily: lightTheme.typography.fontFamilySystem,

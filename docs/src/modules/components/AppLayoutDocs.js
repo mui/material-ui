@@ -54,8 +54,11 @@ const StyledAppContainer = styled(AppContainer, {
         },
       }),
       ...(hasTabs && {
-        '&& .component-tabs.ad': {
-          marginBottom: 40,
+        '&& .component-tabs .MuiTabs-root': {
+          marginBottom: 193,
+        },
+        '&& .component-tabs.ad .MuiTabs-root': {
+          marginBottom: 35,
         },
       }),
     }),
