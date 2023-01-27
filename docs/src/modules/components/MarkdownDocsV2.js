@@ -4,6 +4,7 @@ import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
+import Box from '@mui/material/Box';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import ComponentApiContent from 'docs/src/modules/components/ComponentApiContent';
 import HookApiContent from 'docs/src/modules/components/HookApiContent';
@@ -44,8 +45,10 @@ export default function MarkdownDocs(props) {
   const setActiveTab = (newValue) => {
     const value = newValue ?? '';
     setActiveTabState(newValue);
-    router.push(`${router.pathname}/${newValue !== '' ? `?docsTab=${newValue}` : ''}`, undefined, { shallow: true })
-  }
+    router.push(`${router.pathname}/${newValue !== '' ? `?docsTab=${newValue}` : ''}`, undefined, {
+      shallow: true,
+    });
+  };
 
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
@@ -187,35 +190,36 @@ export default function MarkdownDocs(props) {
           </Wrapper>
         )}
         {commonElements}
-        {activeTab === '' &&
-          rendered
-            .slice(i, rendered.length - 1)
-            .map((renderedMarkdownOrDemo, index) => (
-              <MarkdownElement
-                key={`demos-section-${index}`}
-                renderedMarkdownOrDemo={renderedMarkdownOrDemo}
-                WrapperComponent={Wrapper}
-                wrapperProps={wrapperProps}
-                srcComponents={srcComponents}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                localizedDoc={localizedDoc}
-                demos={demos}
-                location={location}
-                theme={theme}
-                demoComponents={demoComponents}
-                disableAd={disableAd}
-              />
-            ))}
-        {activeTab === 'component-api' && (
+        <Box {...(activeTab !== '' && { sx: { display: 'none' }, 'aria-hidden': true })}>
+          {rendered.slice(i, rendered.length - 1).map((renderedMarkdownOrDemo, index) => (
+            <MarkdownElement
+              key={`demos-section-${index}`}
+              renderedMarkdownOrDemo={renderedMarkdownOrDemo}
+              WrapperComponent={Wrapper}
+              wrapperProps={wrapperProps}
+              srcComponents={srcComponents}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              localizedDoc={localizedDoc}
+              demos={demos}
+              location={location}
+              theme={theme}
+              demoComponents={demoComponents}
+              disableAd={disableAd}
+            />
+          ))}
+        </Box>
+        <Box
+          {...(activeTab !== 'component-api' && { sx: { display: 'none' }, 'aria-hidden': true })}
+        >
           <ComponentApiContent
             descriptions={componentApiDescriptions}
             pageContent={componentApiPageContent}
           />
-        )}
-        {activeTab === 'hook-api' && (
+        </Box>
+        <Box {...(activeTab !== 'hook-api' && { sx: { display: 'none' }, 'aria-hidden': true })}>
           <HookApiContent descriptions={hookApiDescriptions} pageContent={hookApiPageContent} />
-        )}
+        </Box>
       </Provider>
     </AppLayoutDocs>
   );
