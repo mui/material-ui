@@ -17,16 +17,16 @@ export default function ComponentPageTabs(props) {
   return (
     <Box
       className="component-tabs"
-      sx={{
-        position: 'sticky',
-        top: 5,
-        zIndex: 9999,
-      }}
+      sx={{ display: 'inline' }}
     >
       <Tabs
         value={activeTab}
         onChange={(e, value) => setActiveTab(value)}
-        sx={{ fontSize: 'large' }}
+        sx={{
+          position: 'sticky',
+          top: 5,
+          zIndex: 9999,
+        }}
       >
         <Tab label="Demos" value="" />
         <Tab label="Component API" value="component-api" />
