@@ -1,10 +1,10 @@
 {
   "props": {
-    "autoFocus": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
-    "defaultListboxOpen": { "type": { "name": "bool" } },
+    "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "array" }, "default": "[]" },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "getSerializedValue": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
