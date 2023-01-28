@@ -13,7 +13,6 @@ import {
   getThemedComponents,
   getMetaThemeColor,
 } from 'docs/src/modules/brandingTheme';
-import PageContext from './PageContext';
 
 const languageMap = {
   en: enUS,
@@ -109,11 +108,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function ThemeProvider(props) {
   const { children } = props;
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const pageContextValue = React.useContext(PageContext);
-  // `activePage` does not exist for playground pages
-  // forcing light mode in playground avoids the need for a wrapping theme in playground pages
-  const preferredMode = pageContextValue.activePage && prefersDarkMode ? 'dark' : 'light';
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
@@ -162,7 +158,7 @@ export function ThemeProvider(props) {
           throw new Error(`Unrecognized type ${action.type}`);
       }
     },
-    { ...themeInitialOptions, paletteMode: preferredMode },
+    { ...themeInitialOptions, paletteMode: 'light' },
   );
 
   const userLanguage = useUserLanguage();
@@ -170,26 +166,33 @@ export function ThemeProvider(props) {
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      let nextPaletteMode = localStorage.getItem('mui-mode') || preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
-      if (nextPaletteMode === 'system') {
-        nextPaletteMode = preferredMode;
-      }
-
-      dispatch({
-        type: 'CHANGE',
-        payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
-      });
+  useEnhancedEffect(() => {
+    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+    let nextPaletteMode = localStorage.getItem('mui-mode') || preferredMode; // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    if (nextPaletteMode === 'system') {
+      nextPaletteMode = preferredMode;
     }
+
+    dispatch({
+      type: 'CHANGE',
+      payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
+    });
   }, [preferredMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;
   }, [direction]);
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
+    // To support light and dark mode images in the docs
+    if (paletteMode === 'dark') {
+      document.body.classList.remove('mode-light');
+      document.body.classList.add('mode-dark');
+    } else {
+      document.body.classList.remove('mode-dark');
+      document.body.classList.add('mode-light');
+    }
+
     const metas = document.querySelectorAll('meta[name="theme-color"]');
     metas.forEach((meta) => {
       meta.setAttribute('content', getMetaThemeColor(paletteMode));
@@ -238,22 +241,9 @@ export function ThemeProvider(props) {
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
-    if (typeof window !== 'undefined') {
-      window.theme = theme;
-      window.createTheme = createTheme;
-    }
+    window.theme = theme;
+    window.createTheme = createTheme;
   }, [theme]);
-
-  useEnhancedEffect(() => {
-    // To support light and dark mode images in the docs
-    if (theme.palette.mode === 'dark') {
-      document.body.classList.remove('mode-light');
-      document.body.classList.add('mode-dark');
-    } else {
-      document.body.classList.remove('mode-dark');
-      document.body.classList.add('mode-light');
-    }
-  }, [theme.palette.mode]);
 
   return (
     <MuiThemeProvider theme={theme}>
