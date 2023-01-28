@@ -56,7 +56,7 @@ const linkMapping = {
 };
 const brands = Object.keys(linkMapping) as Array<keyof typeof linkMapping>;
 
-type TemplateBrand = typeof brands[number];
+type TemplateBrand = (typeof brands)[number];
 
 const StoreTemplateLink = React.forwardRef<
   HTMLAnchorElement,
