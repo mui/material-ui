@@ -26,7 +26,6 @@
     "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
     "track": "The track presentation:<br>- <code>normal</code> the track will render a bar representing the slider value. - <code>inverted</code> the track will render a bar representing the remaining slider value. - <code>false</code> the track will render without a bar.",
     "value": "The value of the slider. For ranged sliders, provide an array with two values.",
-    "valueLabelDisplay": "Controls when the value label is displayed:<br>- <code>auto</code> the value label will display when the thumb is hovered or focused. - <code>on</code> will display persistently. - <code>off</code> will never display.",
     "valueLabelFormat": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"
   },
   "classDescriptions": {
@@ -82,23 +81,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "keyboard focused"
-    },
-    "valueLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label element"
-    },
-    "valueLabelOpen": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb label element",
-      "conditions": "it's open"
-    },
-    "valueLabelCircle": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's circle element"
-    },
-    "valueLabelLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's label element"
     },
     "mark": {
       "description": "Class name applied to {{nodeName}}.",

@@ -48,10 +48,10 @@ export interface TextareaClasses {
 export type TextareaClassKey = keyof TextareaClasses;
 
 export function getTextareaUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTextarea', slot);
+  return generateUtilityClass('MuiTextarea', slot);
 }
 
-const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
+const textareaClasses: TextareaClasses = generateUtilityClasses('MuiTextarea', [
   'root',
   'textarea',
   'startDecorator',

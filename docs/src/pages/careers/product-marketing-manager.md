@@ -62,19 +62,15 @@ Depending on the day, you'll:
 
 ### Skills you should have
 
-- 2+ years of B2B product marketing experience.
-- You're a passionate, self-starter with a can-do attitude. You're eager to jump in and get things done but don't get flustered in a fast-paced and often changing environment.
-- As the first role, you'll need to bring an entrepreneurial, iterative mindset and be comfortable driving for clarity in ambiguous situations. When this is a success, you'll have an opportunity to help build the team.
+- A technical background.
 - Experience marketing to software developers.
-- Always willing to roll up your sleeves and get scrappy.
-- You are a strong critical thinker who feels comfortable pouring over analytics to make data-driven decisions, and explaining those decisions to leadership with the data.
-- Proven ability to be self-directed and work with limited supervision
-- Empathy. For our customers, for the team, and for yourself.
-- Outstanding written English communications skills with the ability to explain and translate complex technical concepts into simple and intuitive communications.
-
-### What would be nice if you had, but isn't required
-
-- Experience at a developer technology company with an aptitude for understanding and ramping on new technologies.
+- 2+ years experience of B2B product marketing.
+- As the first role, you'll need to bring an entrepreneurial, iterative mindset and be comfortable driving for clarity in ambiguous situations. When this is a success, you'll have an opportunity to help build the team.
+- Proven ability to be self-directed and work with limited supervision.
+- Passionate, self-starter with a can-do attitude. You're eager to jump in and get things done but don't get flustered in a fast-paced and often changing environment. Always willing to roll up your sleeves and get scrappy.
+- Strong critical thinker who feels comfortable pouring over analytics to make data-driven decisions, and explaining those decisions to leadership with the data.
+- Empathy: for our customers, for the team, and for yourself.
+- Outstanding written English communication skills. An ability to explain and translate complex technical concepts into simple and intuitive communications.
 
 ## Benefits & Compensation
 

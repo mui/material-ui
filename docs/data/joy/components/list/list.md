@@ -117,7 +117,7 @@ To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${
 
 ### Horizontal list
 
-To show a list in a horizontal direction, use the `row` prop on the `List` component.
+To show a list in a horizontal direction, use the `orientation="horizontal"` prop on the `List` component.
 
 :::warning
 Nested lists don't work in the horizontal direction.

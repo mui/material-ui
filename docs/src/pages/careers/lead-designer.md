@@ -71,7 +71,7 @@ We're looking for someone with an expert eye for visual and UX design. You have 
 
 - **Expert-level knowledge of graphic design**. You can create great-looking UIs. You spot small kerning issues without even paying attention which makes you care about the details more than most people.
 - **Expert-level knowledge of UX design**. You can build intuitive UIs, both at the scope of an application and of a component micro-interaction.
-- **Enough development skills to implement the designed interfaces**. Our React engineers are often busy implementing complex components. We are looking for somebody with enough CSS and JavaScript skills to make small changes in autonomy and better understand the product.
+- **Enough development skills to implement the designed interfaces**. Our React engineers are often busy implementing complex components. We are looking for somebody with enough CSS-in-JS and JSX skills to be able to deeply understand what's the process like. The objective is to a. better understand the product, b. improve the collaboration with the engineers (the implementation is all that matters for end-users) and c. occasionally not depend on them to implement the design.
 - **Strong written and verbal communication skills**. As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Management of a design team**. Whether formally or informally, you have shown that you are a design leader and can provide guidance and support to other designers.
 

@@ -78,6 +78,8 @@ The possible values are:
 
 To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
 
+It will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
+
 {{"demo": "BasicModalDialog.js"}}
 
 #### Layout

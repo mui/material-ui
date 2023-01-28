@@ -2,7 +2,7 @@
 
 <p class="description">Joy UI components adapt to one another when composed together to ensure the best look and feel.</p>
 
-When composing a UI of multiple, especially nested, components, oftentime you get small inconsistencies between them. That's probably when you'll be adjusting pixels by a few nudges here and there to get them just right. Over time, these small and arbitrary changes build up to become a problem.
+When composing a UI of multiple, especially nested, components, oftentimes you get small inconsistencies between them. That's probably when you'll be adjusting pixels by a few nudges here and there to get them just right. Over time, these small and arbitrary changes build up to become a problem.
 
 That's why we've built Joy UI to heavily rely on CSS variables, assigning to them the heavy lifting for these small adjustments. It saves you time and ensures consistency. Let's look through a few examples:
 

@@ -15,7 +15,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mdx-js/react": "^2.2.1",
-    "@mui/material": "^5.11.5",
+    "@mui/material": "^5.11.6",
     "@mui/styles": "^5.11.2",
     "@mui/system": "^5.11.5",
     "@styled-system/css": "^5.1.5",

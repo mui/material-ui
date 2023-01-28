@@ -62,6 +62,39 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `joy-rename-row-prop`
+
+Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components.
+
+```diff
+ <Card
+-  row
++  orientation={"horizontal"}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-row-prop <path>
+```
+
+#### `joy-avatar-remove-imgProps`
+
+Remove `imgProps` prop by transferring its value into `slotProps.img`
+
+This change only affects Joy UI Avatar component.
+
+```diff
+ <Avatar
+-  imgProps={{ ['data-id']: 'imageId' }}
+-  slotProps={{ root: { ['data-id']: 'rootId' }}}
++  slotProps={{ root: { ['data-id']: 'rootId' }, img: { ['data-id']: 'imageId' } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-avatar-remove-imgProps <path>
+```
+
 #### `joy-text-field-to-input`
 
 Replace `<TextField>` with composition of `Input`
