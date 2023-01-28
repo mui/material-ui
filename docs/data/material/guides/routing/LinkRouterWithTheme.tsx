@@ -33,7 +33,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      } as LinkProps,
+      } as unknown as LinkProps,
     },
     MuiButtonBase: {
       defaultProps: {
