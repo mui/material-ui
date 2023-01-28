@@ -227,7 +227,12 @@
     "**/@types/react": "^18.0.26",
     "**/@types/react-is": "^17.0.3",
     "**/cross-fetch": "^3.1.5",
-    "**/react-is": "^18.2.0"
+    "**/react-is": "^18.2.0",
+    "react": "18.3.0-next-ee8509801-20230117",
+    "scheduler": "0.24.0-next-ee8509801-20230117",
+    "react-is": "18.3.0-next-ee8509801-20230117",
+    "react-test-renderer": "18.3.0-next-ee8509801-20230117",
+    "react-dom": "18.3.0-next-ee8509801-20230117"
   },
   "nyc": {
     "include": [
