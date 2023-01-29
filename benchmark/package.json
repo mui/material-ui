@@ -26,7 +26,7 @@
     "react-is": "^18.2.0",
     "react-jss": "^10.9.2",
     "react-redux": "^8.0.5",
-    "redux": "^4.2.0",
+    "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
     "styled-components": "^5.3.6",
     "theme-ui": "^0.15.4",
