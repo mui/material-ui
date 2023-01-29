@@ -519,18 +519,6 @@ chai.use((chaiAPI, utils) => {
         // TODO Remove type once MUI X enables noImplicitAny
         let caughtError: unknown | null = null;
 
-        this.assert(
-          expectedMessages.length > 0,
-          `Expected to call console.${methodName} but didn't provide messages. ` +
-            `If you don't expect any messages prefer \`expect().not.${matcherName}();\`.`,
-          `Expected no call to console.${methodName} while also expecting messages.` +
-            'Expected no call to console.error but provided messages. ' +
-            "If you want to make sure a certain message isn't logged prefer the positive. " +
-            'By expecting certain messages you automatically expect that no other messages are logged',
-          // Not interested in a diff but the typings require the 4th parameter.
-          undefined,
-        );
-
         // Ignore skipped messages in e.g. `[condition && 'foo']`
         const remainingMessages = expectedMessages.filter((messageOrFalse) => {
           return messageOrFalse !== false;

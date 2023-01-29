@@ -135,7 +135,15 @@ describe('withStyles', () => {
       const jssCallbackStub = stub().returns({});
       const styles = { root: jssCallbackStub };
       const StyledComponent = withStyles(styles)(MyComp);
-      render(<StyledComponent mySuppliedProp={222} />);
+      expect(() => {
+        render(<StyledComponent mySuppliedProp={222} />);
+      }).toErrorDev(
+        React.version.startsWith('18.3')
+          ? [
+              'Warning: MyComp: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.',
+            ]
+          : [],
+      );
 
       expect(jssCallbackStub.callCount).to.equal(1);
       expect(jssCallbackStub.args[0][0]).to.deep.equal({
@@ -179,20 +187,29 @@ describe('withStyles', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(MuiFoo);
 
-      const { container } = render(
-        <ThemeProvider
-          theme={createTheme({
-            components: {
-              MuiFoo: {
-                defaultProps: {
-                  foo: 'bar',
+      let container;
+      expect(() => {
+        container = render(
+          <ThemeProvider
+            theme={createTheme({
+              components: {
+                MuiFoo: {
+                  defaultProps: {
+                    foo: 'bar',
+                  },
                 },
               },
-            },
-          })}
-        >
-          <StyledComponent foo={undefined} />
-        </ThemeProvider>,
+            })}
+          >
+            <StyledComponent foo={undefined} />
+          </ThemeProvider>,
+        ).container;
+      }).toErrorDev(
+        React.version.startsWith('18.3')
+          ? [
+              'Warning: MuiFoo: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.',
+            ]
+          : [],
       );
 
       expect(container).to.have.text('bar');

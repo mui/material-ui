@@ -97,25 +97,6 @@ describe('custom matchers', () => {
       expect(() => {}).not.toErrorDev([]);
     });
 
-    it('fails if no arguments are used as a way of negating', () => {
-      expect(() => {
-        expect(() => {}).toErrorDev();
-      }).to.throw(
-        "Expected to call console.error but didn't provide messages. " +
-          "If you don't expect any messages prefer `expect().not.toErrorDev();",
-      );
-    });
-
-    it('fails if arguments are passed when negated', () => {
-      expect(() => {
-        expect(() => {}).not.toErrorDev('not unexpected?');
-      }).to.throw(
-        'Expected no call to console.error but provided messages. ' +
-          "If you want to make sure a certain message isn't logged prefer the positive. " +
-          'By expecting certain messages you automatically expect that no other messages are logged',
-      );
-    });
-
     it('ignores `false` messages', () => {
       const isReact16 = false;
       expect(() => {
