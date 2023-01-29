@@ -51,16 +51,16 @@ describe('MenuUnstyled', () => {
 
       return (
         <MenuUnstyled {...defaultProps}>
-          <MenuItemUnstyled data-testid="item-1">1</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-2">2</MenuItemUnstyled>
-          <MenuItemUnstyled data-testid="item-3">3</MenuItemUnstyled>
+          <MenuItemUnstyled>1</MenuItemUnstyled>
+          <MenuItemUnstyled>2</MenuItemUnstyled>
+          <MenuItemUnstyled>3</MenuItemUnstyled>
         </MenuUnstyled>
       );
     }
 
-    it('when menu is opened it highlights one item and it must be the first one', () => {
-      const { getAllByTestId } = render(<Test />);
-      const [firstItem, ...otherItems] = getAllByTestId(/^item-/);
+    it('highlights the first item when the menu is opened', () => {
+      const { getAllByRole } = render(<Test />);
+      const [firstItem, ...otherItems] = getAllByRole('menuitem');
 
       expect(firstItem.tabIndex).to.equal(0);
       otherItems.forEach((item) => {
