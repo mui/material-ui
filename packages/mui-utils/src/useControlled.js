@@ -25,10 +25,27 @@ export default function useControlled({ controlled, default: defaultProp, name, 
       }
     }, [state, name, controlled]);
 
-    const { current: defaultValue } = React.useRef(defaultProp);
+    const appearedRef = React.useRef(false);
+    const initialDefaultPropRef = React.useRef();
 
     React.useEffect(() => {
-      if (!isControlled && defaultValue !== defaultProp) {
+      // first appearence will contain ref value of the first render but defaultProp will be from the second render
+      // thus always failing for values that change identities e.g. `[]` or `{}`
+      if (!appearedRef.current) {
+        initialDefaultPropRef.current = defaultProp;
+      }
+    }, []);
+
+    React.useEffect(() => {
+      appearedRef.current = true;
+
+      return () => {
+        appearedRef.current = false;
+      };
+    }, []);
+
+    React.useEffect(() => {
+      if (!isControlled && initialDefaultPropRef.current !== defaultProp) {
         console.error(
           [
             `MUI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
