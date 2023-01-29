@@ -309,8 +309,12 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
+          !strictModeDoubleLoggingSuppressed &&
+            !React.version.startsWith('18.3') &&
+            'MUI: Too many re-renders.',
+          !strictModeDoubleLoggingSuppressed &&
+            !React.version.startsWith('18.3') &&
+            'MUI: Too many re-renders.',
         ]);
       });
     });
