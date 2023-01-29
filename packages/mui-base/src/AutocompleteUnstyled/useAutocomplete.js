@@ -464,11 +464,7 @@ export default function useAutocomplete(props) {
     },
   );
 
-  const syncHighlightedIndex = React.useCallback(() => {
-    if (!popupOpen) {
-      return;
-    }
-
+  const checkHighlightedOptionExists = () => {
     if (
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
@@ -485,10 +481,24 @@ export default function useAutocomplete(props) {
         });
 
         if (previousHighlightedOptionExists) {
-          return;
+          return true;
         }
       }
     }
+    return false;
+  };
+
+  const syncHighlightedIndex = React.useCallback(() => {
+    if (!popupOpen) {
+      return;
+    }
+
+    // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
+    // If it exists and the value hasn't changed, return, otherwise continue execution
+    if (checkHighlightedOptionExists()) {
+      return;
+    }
+
     const valueItem = multiple ? value[0] : value;
 
     // The popup is empty, reset
