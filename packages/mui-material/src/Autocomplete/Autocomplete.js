@@ -502,14 +502,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     if (renderTags) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
-      startAdornment = value.map((option, index) => (
-        <Chip
-          label={getOptionLabel(option)}
-          size={size}
-          {...getCustomizedTagProps({ index })}
-          {...ChipProps}
-        />
-      ));
+      startAdornment = value.map((option, index) => {
+        const { key, ...tagProps } = getCustomizedTagProps({ index });
+        return (
+          <Chip label={getOptionLabel(option)} size={size} key={key} {...tagProps} {...ChipProps} />
+        );
+      });
     }
   }
 
@@ -541,7 +539,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
-  const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
+  const defaultRenderOption = (props2, option) => {
+    const { key, ...listItemProps } = props2;
+    return (
+      <li key={key} {...listItemProps}>
+        {getOptionLabel(option)}
+      </li>
+    );
+  };
   const renderOption = renderOptionProp || defaultRenderOption;
 
   const renderListOption = (option, index) => {

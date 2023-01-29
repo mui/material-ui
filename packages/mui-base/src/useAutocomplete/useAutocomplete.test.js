@@ -31,7 +31,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...listItemProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...listItemProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}
@@ -257,7 +262,12 @@ describe('useAutocomplete', () => {
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
               {groupedOptions.map((option, index) => {
-                return <li {...getOptionProps({ option, index })}>{option}</li>;
+                const { key, ...listItemProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...listItemProps}>
+                    {option}
+                  </li>
+                );
               })}
             </ul>
           ) : null}

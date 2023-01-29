@@ -485,11 +485,14 @@ describe('Joy <Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => (
-                <Chip key={index} endDecorator={<ChipDelete {...getTagProps({ index })} />}>
-                  {option.title}
-                </Chip>
-              ))
+              .map((option, index) => {
+                const { key: tagKey, ...tagProps } = getTagProps({ index });
+                return (
+                  <Chip key={index} endDecorator={<ChipDelete key={tagKey} {...tagProps} />}>
+                    {option.title}
+                  </Chip>
+                );
+              })
           }
           onChange={handleChange}
           autoFocus

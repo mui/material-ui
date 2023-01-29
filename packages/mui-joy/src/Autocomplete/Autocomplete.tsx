@@ -423,13 +423,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       selectedOptions = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
       selectedOptions = (value as Array<unknown>).map((option, index) => {
+        const { key, ...endDecoratorProps } = getCustomizedTagProps({ index });
         return (
           <Chip
             key={index}
             size={size}
             variant="soft"
             color={color === 'context' ? undefined : 'neutral'}
-            endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
+            endDecorator={<ChipDelete key={key} {...endDecoratorProps} />}
           >
             {getOptionLabel(option)}
           </Chip>
@@ -643,8 +644,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const defaultRenderOption = (optionProps: any, option: unknown) => (
-    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
+  const defaultRenderOption = ({ key, ...optionProps }: any, option: unknown) => (
+    <SlotOption key={key} {...optionProps}>
+      {getOptionLabel(option)}
+    </SlotOption>
   );
 
   const renderOption = renderOptionProp || defaultRenderOption;

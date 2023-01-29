@@ -617,7 +617,10 @@ describe('<Autocomplete />', () => {
           renderTags={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
-              .map((option, index) => <Chip label={option.title} {...getTagProps({ index })} />)
+              .map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index });
+                return <Chip key={key} label={option.title} {...tagProps} />;
+              })
           }
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} autoFocus />}
