@@ -66,7 +66,7 @@ Use the `component` prop to override the root slot with a custom element:
 
 If you provide a non-interactive element such as a `<span>`, the Unstyled Button component will automatically add the necessary accessibility attributes.
 
-Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your brower's dev tools:
+Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
