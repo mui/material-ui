@@ -12,16 +12,14 @@ const Input = styled(MuiInput)`
 `;
 
 export default function InputSlider() {
-  const [value, setValue] = React.useState<number | string | Array<number | string>>(
-    30,
-  );
+  const [value, setValue] = React.useState(30);
 
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue);
+    setValue(newValue as number);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setValue(event.target.value === '' ? 0 : Number(event.target.value));
   };
 
   const handleBlur = () => {
@@ -43,7 +41,7 @@ export default function InputSlider() {
         </Grid>
         <Grid item xs>
           <Slider
-            value={typeof value === 'number' ? value : 0}
+            value={value}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
           />

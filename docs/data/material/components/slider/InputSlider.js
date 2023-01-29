@@ -19,7 +19,7 @@ export default function InputSlider() {
   };
 
   const handleInputChange = (event) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setValue(event.target.value === '' ? 0 : Number(event.target.value));
   };
 
   const handleBlur = () => {
@@ -41,7 +41,7 @@ export default function InputSlider() {
         </Grid>
         <Grid item xs>
           <Slider
-            value={typeof value === 'number' ? value : 0}
+            value={value}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
           />
