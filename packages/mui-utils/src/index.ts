@@ -24,6 +24,7 @@ export { default as unstable_unsupportedProp } from './unsupportedProp';
 export { default as unstable_useControlled } from './useControlled';
 export { default as unstable_useEventCallback } from './useEventCallback';
 export { default as unstable_useForkRef } from './useForkRef';
+export { default as unstable_useUndoAndRedo } from './useUndoAndRedo';
 export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 export { default as unstable_getScrollbarSize } from './getScrollbarSize';
 export {
