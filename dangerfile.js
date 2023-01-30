@@ -170,7 +170,7 @@ async function run() {
   // const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
   // message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
 
-  github.api.pullRequests.update({ ...github.thisPR, body: 'My new Text' });
+  github.api.pulls.update({ ...github.thisPR, body: 'My new Text' });
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
