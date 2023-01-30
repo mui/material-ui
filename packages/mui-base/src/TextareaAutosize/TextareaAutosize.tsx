@@ -10,15 +10,10 @@ import {
 import { KebabKeys } from '@mui/types';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
-type State =
-  | {
-      outerHeightStyle?: undefined;
-      overflow?: undefined;
-    }
-  | {
-      outerHeightStyle: number;
-      overflow: boolean | undefined;
-    };
+type State = {
+  outerHeightStyle: number;
+  overflow?: boolean | undefined;
+};
 
 function getStyleValue(
   computedStyle: KebabKeys<CSSStyleDeclaration>,
@@ -46,7 +41,12 @@ const styles: {
 };
 
 function isEmpty(obj: State) {
-  return obj === undefined || obj === null || Object.keys(obj).length === 0;
+  return (
+    obj === undefined ||
+    obj === null ||
+    Object.keys(obj).length === 0 ||
+    (obj.outerHeightStyle === 0 && !obj.overflow)
+  );
 }
 
 /**
@@ -71,13 +71,13 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const handleRef = useForkRef(ref, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
-  const [state, setState] = React.useState<State>({});
+  const [state, setState] = React.useState<State>({
+    outerHeightStyle: 0,
+  });
 
   const getUpdatedState = React.useCallback(() => {
-    const input = inputRef.current;
-    if (!input) {
-      return {};
-    }
+    const input = inputRef.current!;
+
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(
       input,
@@ -85,13 +85,13 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     // If input's width is shrunk and it's not visible, don't sync height.
     if (computedStyle.width === '0px') {
-      return {};
+      return {
+        outerHeightStyle: 0,
+      };
     }
 
-    const inputShallow = shadowRef.current;
-    if (!inputShallow) {
-      return {};
-    }
+    const inputShallow = shadowRef.current!;
+
     inputShallow.style.width = computedStyle.width;
     inputShallow.value = input.value || props.placeholder || 'x';
     if (inputShallow.value.slice(-1) === '\n') {
@@ -134,7 +134,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   }, [maxRows, minRows, props.placeholder]);
 
   const updateState = (prevState: State, newState: State) => {
-    const { outerHeightStyle = 0, overflow } = newState;
+    const { outerHeightStyle, overflow } = newState;
     // Need a large enough difference to update the height.
     // This prevents infinite rendering loop.
     if (
@@ -253,7 +253,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={Number(minRows)}
+        rows={minRows as any}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
