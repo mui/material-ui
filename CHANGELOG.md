@@ -29,7 +29,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
   +sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
   />
   ```
-  
+
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
 
 - &#8203;<!-- 04 -->[Joy] Replace `row` prop with `orientation` prop in all Joy UI components (#35721) @hbjORbj
@@ -53,7 +53,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Docs
 
-- &#8203;<!-- 28 -->[blog] Add RSS feed  (#35777) @gorjiali
+- &#8203;<!-- 28 -->[blog] Add RSS feed (#35777) @gorjiali
 - &#8203;<!-- 27 -->[blog] Prevent horizontal scroll on blog posts (#35948) @oliviertassinari
 - &#8203;<!-- 23 -->[docs] Add to codemod README about an added script (#35999) @hbjORbj
 - &#8203;<!-- 22 -->[docs] Add a warning about to clear the local storage when `defaultMode` changes (#35937) @ArthurPedroti
