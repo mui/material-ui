@@ -32,11 +32,13 @@ export default function TableSheetColorInversion() {
         transition: '0.3s',
         background: (theme) =>
           `linear-gradient(45deg, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[400]})`,
-        backgroundSize: '120% 120%',
-        backgroundPosition: 'bottom 0 left 0',
-        '&:hover': {
-          backgroundSize: '100% 100%',
-          backgroundPosition: '0 0',
+        '& tr:last-child': {
+          '& td:first-child': {
+            borderBottomLeftRadius: '8px',
+          },
+          '& td:last-child': {
+            borderBottomRightRadius: '8px',
+          },
         },
       }}
     >

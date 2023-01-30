@@ -16,11 +16,11 @@ const rows = [
 
 export default function TableSheet() {
   return (
-    <Sheet variant="soft" sx={{ py: 5, borderRadius: 'sm' }}>
+    <Sheet variant="soft" sx={{ pt: 1, borderRadius: 'sm' }}>
       <Table
         stripe="odd"
         hoverRow
-        sx={{ captionSide: 'bottom', '& tbody': { bgcolor: 'background.surface' } }}
+        sx={{ captionSide: 'top', '& tbody': { bgcolor: 'background.surface' } }}
       >
         <caption>Nutrition of your favorite menus.</caption>
         <thead>
