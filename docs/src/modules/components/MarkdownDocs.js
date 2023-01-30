@@ -142,6 +142,7 @@ export default function MarkdownDocs(props) {
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
                 tsx: demoComponents[demo.moduleTS] ?? null,
+                gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
               }}
               disableAd={disableAd}
               demoOptions={renderedMarkdownOrDemo}
