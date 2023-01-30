@@ -239,33 +239,45 @@ describe('grid generator', () => {
 
   describe('generateGridStyles', () => {
     it('root container', () => {
-      const result = generateGridStyles({ ownerState: { container: true, nested: false } });
+      const result = generateGridStyles({ ownerState: { container: true, nested: undefined } });
       expect(result).to.deep.equal({
         minWidth: 0,
         boxSizing: 'border-box',
         display: 'flex',
         flexWrap: 'wrap',
         margin: 'calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)',
-        '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
-        '--Grid-nested-columnSpacing': 'var(--Grid-columnSpacing)',
+        '--Grid-nested1-rowSpacing': 'var(--Grid-rowSpacing)',
+        '--Grid-nested1-columnSpacing': 'var(--Grid-columnSpacing)',
       });
     });
 
-    it('nested container', () => {
-      const result = generateGridStyles({ ownerState: { container: true, nested: true } });
+    it('nested container level 1', () => {
+      const result = generateGridStyles({ ownerState: { container: true, nested: 1 } });
       sinon.assert.match(result, {
         margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
-        padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
+        padding: `calc(var(--Grid-nested1-rowSpacing) / 2) calc(var(--Grid-nested1-columnSpacing) / 2)`,
+        '--Grid-nested2-rowSpacing': 'var(--Grid-rowSpacing)',
+        '--Grid-nested2-columnSpacing': 'var(--Grid-columnSpacing)',
+      });
+    });
+
+    it('nested container level 2', () => {
+      const result = generateGridStyles({ ownerState: { container: true, nested: 2 } });
+      sinon.assert.match(result, {
+        margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
+        padding: `calc(var(--Grid-nested2-rowSpacing) / 2) calc(var(--Grid-nested2-columnSpacing) / 2)`,
+        '--Grid-nested3-rowSpacing': 'var(--Grid-rowSpacing)',
+        '--Grid-nested3-columnSpacing': 'var(--Grid-columnSpacing)',
       });
     });
 
     it('root container with disableEqualOverflow', () => {
       const result = generateGridStyles({
-        ownerState: { container: true, nested: true, disableEqualOverflow: true },
+        ownerState: { container: true, nested: 1, disableEqualOverflow: true },
       });
       sinon.assert.match(result, {
         margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
-        padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+        padding: `calc(var(--Grid-nested1-rowSpacing)) 0px 0px calc(var(--Grid-nested1-columnSpacing))`,
       });
     });
 
@@ -273,14 +285,14 @@ describe('grid generator', () => {
       const result = generateGridStyles({
         ownerState: {
           container: true,
-          nested: true,
+          nested: 1,
           disableEqualOverflow: false,
           parentDisableEqualOverflow: true,
         },
       });
       sinon.assert.match(result, {
         margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
-        padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+        padding: `calc(var(--Grid-nested1-rowSpacing)) 0px 0px calc(var(--Grid-nested1-columnSpacing))`,
       });
     });
 
