@@ -101,7 +101,7 @@ export default function TableColumnPinning() {
                     <Button size="sm" variant="plain" color="neutral">
                       Edit
                     </Button>
-                    <Button size="sm" variant="solid" color="danger">
+                    <Button size="sm" variant="soft" color="danger">
                       Delete
                     </Button>
                   </Box>

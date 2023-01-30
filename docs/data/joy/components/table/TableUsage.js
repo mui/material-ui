@@ -1,6 +1,6 @@
 import * as React from 'react';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
-import Box from '@mui/system/Box';
+import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';

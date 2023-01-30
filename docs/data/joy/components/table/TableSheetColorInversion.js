@@ -21,11 +21,11 @@ export default function TableSheetColorInversion() {
       color="primary"
       invertedColors
       sx={{
-        py: 5,
+        pt: 1,
         borderRadius: 'sm',
         transition: '0.3s',
         background: (theme) =>
-          `linear-gradient(45deg, ${theme.vars.palette.primary[800]}, ${theme.vars.palette.primary[400]})`,
+          `linear-gradient(45deg, ${theme.vars.palette.primary[500]}, ${theme.vars.palette.primary[400]})`,
         backgroundSize: '120% 120%',
         backgroundPosition: 'bottom 0 left 0',
         '&:hover': {
