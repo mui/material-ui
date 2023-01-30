@@ -19,6 +19,8 @@ The Joy UI Table component lets you use plain HTML structure to assemble a table
 
 ## Basics
 
+Joy UI Table will apply the styles based on a table structure using `<thead>`, `<tbody>`, and `<tfoot>` elements.
+
 ```jsx
 import Table from '@mui/joy/Table';
 ```
@@ -92,6 +94,8 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 ### Stripe
 
+To create constast between rows, use the `stripe` prop with `odd` or `even` values.
+
 {{"demo": "TableStripe.js"}}
 
 :::success
@@ -118,8 +122,7 @@ Use the `borderAxis` prop to control the border appearance.
 
 {{"demo": "TableBorder.js"}}
 
-<details>
-<summary><b>Adding custom values</b></summary>
+#### Adding custom borders
 
 Customize the table theme based on `borderAxis` prop using the [`extendTheme()`](/joy-ui/customization/themed-components/#change-styles-based-on-props) function.
 
@@ -132,8 +135,9 @@ const theme = extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.borderAxis === 'header' && {
+            // this example applies borders between <thead> and <tbody>
             '& thead th:not([colspan])': {
-              border: '2px solid var(--TableCell-borderColor)',
+              borderBottom: '2px solid var(--TableCell-borderColor)',
             },
           }),
         });
@@ -156,15 +160,13 @@ declare module '@mui/joy/Table' {
 }
 ```
 
-</details>
-
 ### Sticky header
 
 Set the `stickyHeader` prop to true to make the header follow the user as they scroll down the page.
 
 :::success
 For `stickyHeader` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
-We recommend wrapping your Table with [Sheet](/joy-ui/react-sheet/) for this purpose. 
+We recommend wrapping your Table with [Sheet](/joy-ui/react-sheet/) for this purpose.
 See [usage with Sheet](#usage-with-sheet) to learn more.
 :::
 
@@ -212,7 +214,7 @@ There are two workarounds:
 1. Manually remove the right border for a specific cell:
 
    ```js
-   // In this example, we remove the border from 
+   // In this example, we remove the border from
    // the right side of the header cell to avoid duplication.
    <th style={{ borderRightWidth: 0 }}>Canceled</th>
    ```
@@ -239,13 +241,14 @@ The header cells always truncate the text to keep the header's height predictabl
 
 ## CSS variable playground
 
-Play around with the CSS variables available to the Table component to see how the design changes. 
+Play around with the CSS variables available to the Table component to see how the design changes.
 You can use these to customize the components with both the `sx` prop and the theme.
 
 {{"demo": "TableVariables.js"}}
 
 ## Usage with Sheet
-import Sheet from `@mui/joy/Sheet` 
+
+import Sheet from `@mui/joy/Sheet`
 When Table becomes a child of [Sheet](/joy-ui/react-sheet/) component, the table header background is inherited from the Sheet.
 
 {{"demo": "TableSheet.js"}}
