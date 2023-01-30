@@ -2,7 +2,7 @@
 
 <p class="description">A tool for generating Joy UI theme.</p>
 
-## Palette customizer
+## Palette
 
 <details>
   <summary>How to use</summary>
