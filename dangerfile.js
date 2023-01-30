@@ -166,18 +166,36 @@ async function reportBundleSize() {
   }
 }
 
+function formatFileToLink(path) {
+  return path
+    .replace('/docs/data/', '')
+    .replace('/material/', '/material-ui/')
+    .replace('/joy/', '/joy-ui/')
+    .replace('components/', 'react-')
+    .replace(/\/[^/]+\.md$/, '/');
+}
+
 async function run() {
   // const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
   // message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
 
   const files = [...danger.git.created_files, ...danger.git.modified_files];
   message(files[0]);
-  const docs = files.filter((file) => file.includes('docs/data') && file.endsWith('.md'));
-  const firstFiveLinks = docs.slice(0, 5);
+  // limit to the first 5 docs
+  const docs = files
+    .filter((file) => file.includes('docs/data') && file.endsWith('.md'))
+    .slice(0, 5);
   let body = danger.github.pr.body.replace(/<!--danger-start-->.*<!--danger-end-->/gs, '');
 
   body = `**Deploy preview**
-- https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/
+${docs
+  .map(
+    (path) =>
+      `- https://deploy-preview-${
+        process.env.CIRCLE_PR_NUMBER
+      }--material-ui.netlify.app/${formatFileToLink(path)}`,
+  )
+  .join('\n')}
 ${body}`;
 
   danger.github.api.pulls.update({
