@@ -28,10 +28,9 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
   -sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
   +sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
   />
-
-  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
-
   ```
+  
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
 
 - &#8203;<!-- 04 -->[Joy] Replace `row` prop with `orientation` prop in all Joy UI components (#35721) @hbjORbj
 
