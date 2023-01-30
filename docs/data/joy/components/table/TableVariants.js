@@ -40,7 +40,7 @@ export default function TableVariants() {
         <FormControl orientation="horizontal">
           <FormLabel>Variant:</FormLabel>
           <RadioGroup
-            row
+            orientation="horizontal"
             value={variant}
             onChange={(event) => setVariant(event.target.value)}
           >

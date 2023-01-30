@@ -24,7 +24,7 @@ export default function TableSizes() {
       <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
         <FormLabel>Size:</FormLabel>
         <RadioGroup
-          row
+          orientation="horizontal"
           value={size}
           onChange={(event) => setSize(event.target.value)}
         >

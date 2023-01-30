@@ -31,7 +31,7 @@ export default function TableStripe() {
       <FormControl orientation="horizontal" sx={{ mb: 2, ml: 1 }}>
         <FormLabel>Stripe:</FormLabel>
         <RadioGroup
-          row
+          orientation="horizontal"
           value={stripe}
           onChange={(event) => setStripe(event.target.value)}
         >
