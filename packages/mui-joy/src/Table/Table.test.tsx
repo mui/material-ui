@@ -6,7 +6,7 @@ import Table, { tableClasses as classes } from '@mui/joy/Table';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Table />', () => {
-  const { render } = createRenderer();
+  const { render } = createRenderer({ emotionCompat: true });
 
   describeConformance(<Table />, () => ({
     classes,
@@ -30,7 +30,7 @@ describe('<Table />', () => {
     ],
   }));
 
-  describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes });
+  describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes, emotionCompat: true });
 
   describe('prop: variant', () => {
     it('plain by default', () => {
