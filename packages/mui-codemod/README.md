@@ -62,6 +62,21 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `joy-rename-classname-prefix`
+
+Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
+
+```diff
+ <Button
+-  sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
++  sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-classname-prefix <path>
+```
+
 #### `joy-rename-row-prop`
 
 Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components.
