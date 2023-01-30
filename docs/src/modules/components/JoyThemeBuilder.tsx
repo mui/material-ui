@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 // @ts-ignore
 import { TypeScript as TypeScriptIcon } from '@mui/docs';
