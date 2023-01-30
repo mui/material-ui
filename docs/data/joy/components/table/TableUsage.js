@@ -1,7 +1,9 @@
 import * as React from 'react';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import Box from '@mui/system/Box';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
 
 export default function ButtonUsage() {
   return (
@@ -43,45 +45,62 @@ export default function ButtonUsage() {
         },
       ]}
       renderDemo={(props) => (
-        <Sheet sx={{ height: 200, overflow: 'auto', mx: -2, px: 2, py: 1 }}>
-          <Table {...props}>
-            <thead>
-              <tr>
-                <th style={{ width: 64 }}>ID</th>
-                <th>Job Title</th>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Doctor</td>
-                <td>Chris Johnson</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Electrician</td>
-                <td>Joseph Morris</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Operator</td>
-                <td>Aiden Moreno</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Baker</td>
-                <td>Mike Simmons</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Clerk</td>
-                <td>Enoch Addison</td>
-              </tr>
-            </tbody>
-            {<caption>The table is scrollable.</caption>}
-          </Table>
-        </Sheet>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography
+            level="body3"
+            justifyContent="center"
+            textAlign="center"
+            sx={{ mb: 2 }}
+          >
+            The table is scrollable.
+          </Typography>
+          <Sheet
+            variant="outlined"
+            sx={{
+              height: 200,
+              overflow: 'auto',
+              p: 2,
+              borderRadius: 'sm',
+            }}
+          >
+            <Table {...props}>
+              <thead>
+                <tr>
+                  <th style={{ width: 64 }}>ID</th>
+                  <th>Job Title</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Doctor</td>
+                  <td>Chris Johnson</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Electrician</td>
+                  <td>Joseph Morris</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Operator</td>
+                  <td>Aiden Moreno</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Baker</td>
+                  <td>Mike Simmons</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Clerk</td>
+                  <td>Enoch Addison</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Sheet>
+        </Box>
       )}
     />
   );
