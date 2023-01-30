@@ -18,7 +18,7 @@ yarn add @mui/icons-material @mui/material
 ```
 
 :::warning
-Because `@mui/material` is a required dependency of `@mui/icons-material`, you can add a workaround with yarn resolutions:
+Because `@mui/material` is a required dependency of `@mui/icons-material`, you have to add a workaround with yarn resolutions:
 
 ```json
 {
