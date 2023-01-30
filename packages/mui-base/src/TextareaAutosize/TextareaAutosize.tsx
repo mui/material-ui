@@ -253,7 +253,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={minRows as any}
+        rows={minRows as number}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
