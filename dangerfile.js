@@ -1,6 +1,6 @@
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
-const { danger, markdown, github } = require('danger');
+const { danger, markdown, github, git, message } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
@@ -170,7 +170,17 @@ async function run() {
   // const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
   // message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
 
-  github.api.pulls.update({ ...github.thisPR, body: 'My new Text' });
+  const files = [...git.created_files, ...git.modified_files];
+  message(files[0]);
+  const docs = files.filter((file) => file.includes('docs/data') && file.endsWith('.md'));
+  const firstFiveLinks = docs.slice(0, 5);
+  let body = github.thisPR.body.replace(/<!--danger-start-->.*<!--danger-end-->/gs, '');
+
+  body = `**Deploy preview**
+- https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/
+${body}`;
+
+  github.api.pulls.update({ ...github.thisPR, body });
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
