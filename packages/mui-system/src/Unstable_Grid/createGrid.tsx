@@ -58,7 +58,7 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const NestedContext = React.createContext(false);
+  const NestedContext = React.createContext<undefined | number>(undefined);
   const OverflowContext = React.createContext<boolean | undefined>(undefined);
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
@@ -153,18 +153,16 @@ export default function createGrid(
     const classes = useUtilityClasses(ownerState, theme);
 
     let result = (
-      <GridRoot
-        ref={ref}
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        {...other}
-      />
+      <NestedContext.Provider value={(nested ?? 0) + 1}>
+        <GridRoot
+          ref={ref}
+          as={component}
+          ownerState={ownerState}
+          className={clsx(classes.root, className)}
+          {...other}
+        />
+      </NestedContext.Provider>
     );
-
-    if (!nested) {
-      result = <NestedContext.Provider value>{result}</NestedContext.Provider>;
-    }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
       // There are 2 possibilities that should wrap with the OverflowContext to communicate with the nested grids:

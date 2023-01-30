@@ -202,17 +202,16 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
           ...(ownerState.disableEqualOverflow && {
             margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
           }),
-          ...(ownerState.nested
-            ? {
-                padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
-                ...((ownerState.disableEqualOverflow || ownerState.parentDisableEqualOverflow) && {
-                  padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
-                }),
-              }
-            : {
-                '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
-                '--Grid-nested-columnSpacing': 'var(--Grid-columnSpacing)',
-              }),
+          ...(ownerState.nested && {
+            padding: `calc(var(--Grid-nested${ownerState.nested}-rowSpacing) / 2) calc(var(--Grid-nested${ownerState.nested}-columnSpacing) / 2)`,
+            ...((ownerState.disableEqualOverflow || ownerState.parentDisableEqualOverflow) && {
+              padding: `calc(var(--Grid-nested${ownerState.nested}-rowSpacing)) 0px 0px calc(var(--Grid-nested${ownerState.nested}-columnSpacing))`,
+            }),
+          }),
+          // variables for the next level grid container
+          [`--Grid-nested${(ownerState.nested ?? 0) + 1}-rowSpacing`]: 'var(--Grid-rowSpacing)',
+          [`--Grid-nested${(ownerState.nested ?? 0) + 1}-columnSpacing`]:
+            'var(--Grid-columnSpacing)',
         }
       : {
           padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
