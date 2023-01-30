@@ -442,6 +442,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     classes: classesProp,
     disabled,
     defaultValue,
+    disableSwap,
     isRtl,
     max,
     min,
