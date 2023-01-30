@@ -180,30 +180,30 @@ async function run() {
   // message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
 
   const files = [...danger.git.created_files, ...danger.git.modified_files];
-  message(files[0]);
+  message(JSON.stringify(files, null, 2));
   // limit to the first 5 docs
-  const docs = files
-    .filter((file) => file.includes('docs/data') && file.endsWith('.md'))
-    .slice(0, 5);
-  let body = danger.github.pr.body.replace(/<!--danger-start-->.*<!--danger-end-->/gs, '');
+  //   const docs = files
+  //     .filter((file) => file.includes('docs/data') && file.endsWith('.md'))
+  //     .slice(0, 5);
+  //   let body = danger.github.pr.body.replace(/<!--danger-start-->.*<!--danger-end-->/gs, '');
 
-  body = `**Deploy preview**
-${docs
-  .map(
-    (path) =>
-      `- https://deploy-preview-${
-        process.env.CIRCLE_PR_NUMBER
-      }--material-ui.netlify.app/${formatFileToLink(path)}`,
-  )
-  .join('\n')}
-${body}`;
+  //   body = `**Deploy preview**
+  // ${docs
+  //   .map(
+  //     (path) =>
+  //       `- https://deploy-preview-${
+  //         process.env.CIRCLE_PR_NUMBER
+  //       }--material-ui.netlify.app/${formatFileToLink(path)}`,
+  //   )
+  //   .join('\n')}
+  // ${body}`;
 
-  danger.github.api.pulls.update({
-    owner: danger.github.thisPR.owner,
-    repo: danger.github.thisPR.repo,
-    pull_number: danger.github.thisPR.number,
-    body,
-  });
+  //   danger.github.api.pulls.update({
+  //     owner: danger.github.thisPR.owner,
+  //     repo: danger.github.thisPR.repo,
+  //     pull_number: danger.github.thisPR.number,
+  //     body,
+  //   });
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
