@@ -261,6 +261,12 @@ describe('grid generator', () => {
       });
     });
 
+    it('nested item level 1 should not create nested variables', () => {
+      const result = generateGridStyles({ ownerState: { container: false, nested: 1 } });
+      expect(result['--Grid-nested2-rowSpacing']).to.equal(undefined);
+      expect(result['--Grid-nested2-columnSpacing']).to.equal(undefined);
+    });
+
     it('nested container level 2', () => {
       const result = generateGridStyles({ ownerState: { container: true, nested: 2 } });
       sinon.assert.match(result, {

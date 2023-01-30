@@ -153,16 +153,18 @@ export default function createGrid(
     const classes = useUtilityClasses(ownerState, theme);
 
     let result = (
-      <NestedContext.Provider value={(nested ?? 0) + 1}>
-        <GridRoot
-          ref={ref}
-          as={component}
-          ownerState={ownerState}
-          className={clsx(classes.root, className)}
-          {...other}
-        />
-      </NestedContext.Provider>
+      <GridRoot
+        ref={ref}
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        {...other}
+      />
     );
+
+    if (container) {
+      result = <NestedContext.Provider value={(nested ?? 0) + 1}>{result}</NestedContext.Provider>;
+    }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
       // There are 2 possibilities that should wrap with the OverflowContext to communicate with the nested grids:
