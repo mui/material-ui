@@ -20,10 +20,10 @@ export interface TabPanelClasses {
 export type TabPanelClassKey = keyof TabPanelClasses;
 
 export function getTabPanelUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTabPanel', slot);
+  return generateUtilityClass('MuiTabPanel', slot);
 }
 
-const tabListClasses: TabPanelClasses = generateUtilityClasses('JoyTabPanel', [
+const tabListClasses: TabPanelClasses = generateUtilityClasses('MuiTabPanel', [
   'root',
   'hidden',
   'sizeSm',

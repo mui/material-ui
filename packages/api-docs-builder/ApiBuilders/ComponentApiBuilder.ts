@@ -285,7 +285,9 @@ function toGitHubPath(filepath: string): string {
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
+  function resolveApiDocsTranslationsComponentLanguagePath(
+    language: (typeof LANGUAGES)[0],
+  ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
     return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
@@ -445,14 +447,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
-      if (
-        propDescriptor.type.name !== 'bool' ||
-        propDescriptor.jsdocDefaultValue?.value !== 'false'
-      ) {
-        defaultValue = propDescriptor.jsdocDefaultValue?.value;
-      }
+      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);

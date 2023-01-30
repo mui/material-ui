@@ -44,10 +44,10 @@ export interface ListClasses {
 export type ListClassKey = keyof ListClasses;
 
 export function getListUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyList', slot);
+  return generateUtilityClass('MuiList', slot);
 }
 
-const listClasses: ListClasses = generateUtilityClasses('JoyList', [
+const listClasses: ListClasses = generateUtilityClasses('MuiList', [
   'root',
   'nesting',
   'scoped',

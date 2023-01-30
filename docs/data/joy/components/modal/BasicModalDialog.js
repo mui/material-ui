@@ -25,28 +25,12 @@ export default function BasicModalDialog() {
         <ModalDialog
           aria-labelledby="basic-modal-dialog-title"
           aria-describedby="basic-modal-dialog-description"
-          sx={{
-            maxWidth: 500,
-            borderRadius: 'md',
-            p: 3,
-            boxShadow: 'lg',
-          }}
+          sx={{ maxWidth: 500 }}
         >
-          <Typography
-            id="basic-modal-dialog-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
-          >
+          <Typography id="basic-modal-dialog-title" component="h2">
             Create new project
           </Typography>
-          <Typography
-            id="basic-modal-dialog-description"
-            mt={0.5}
-            mb={2}
-            textColor="text.tertiary"
-          >
+          <Typography id="basic-modal-dialog-description" textColor="text.tertiary">
             Fill in the information of the project.
           </Typography>
           <form

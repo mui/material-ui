@@ -6,8 +6,8 @@ import { useTheme } from '@mui/material/styles';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 export default function EditPage(props) {
-  const theme = useTheme();
   const { markdownLocation } = props;
+  const theme = useTheme();
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };

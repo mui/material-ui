@@ -21,7 +21,7 @@ export default function IconlessCheckbox() {
           }}
         >
           {[
-            'Perpperoni',
+            'Pepperoni',
             'Cheese',
             'Olives',
             'Tomatoes',

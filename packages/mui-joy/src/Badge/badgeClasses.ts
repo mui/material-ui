@@ -52,10 +52,10 @@ export interface BadgeClasses {
 export type BadgeClassKey = keyof BadgeClasses;
 
 export function getBadgeUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyBadge', slot);
+  return generateUtilityClass('MuiBadge', slot);
 }
 
-const badgeClasses: BadgeClasses = generateUtilityClasses('JoyBadge', [
+const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'root',
   'badge',
   'anchorOriginTopRight',
