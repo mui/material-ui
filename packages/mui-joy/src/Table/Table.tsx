@@ -77,13 +77,13 @@ const tableSelector = {
     return '& td';
   },
   getDataCellExceptLastRow() {
-    return '& tr:not(:last-child) td';
+    return '& tr:not(:last-child) > td';
   },
   /**
    * The body cell either `td` or `th`
    */
   getBodyCellExceptLastRow() {
-    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-child) th[scope="row"]`;
+    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-child) > th[scope="row"]`;
   },
   getBodyCellOfRow(row: number | string) {
     if (typeof row === 'number' && row < 0) {

@@ -271,6 +271,10 @@ Use form components such as [Button](/joy-ui/react-button/), [Select](/joy-ui/re
 
 {{"demo": "TableColumnPinning.js"}}
 
+### Collapsible row
+
+{{"demo": "TableCollapsibleRow.js"}}
+
 ### Applying global variants
 
 Use `theme.variants.*` to apply global variant styles to the Table.
