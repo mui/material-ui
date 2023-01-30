@@ -6,12 +6,14 @@
 
 _Jan 30, 2023_
 
-A big thanks to the 13 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.7`
 
-- &#8203;<!-- 19 -->[CssVarsProvider] Skip `unstable_sxConfig` variables (#35932) @siriwatknp
+- &#8203;<!-- 24 -->[CssVarsProvider] Skip `unstable_sxConfig` variables (#35932) @siriwatknp
+- &#8203;<!-- 10 -->[InputLabel] Add missing `component` type (#35852) @sai6855
+- &#8203;<!-- 05 -->[Tooltip] Fix tooltip position (#35909) @marktoman
 
 ### `@mui/joy@5.0.0-alpha.65`
 
@@ -46,35 +48,37 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 #### Changes
 
-- &#8203;<!-- 21 -->[Joy][Checkbox] Display correct icon in checkbox (#35943) @sai6855
-- &#8203;<!-- 06 -->[Joy] Miscellaneous fixes (#35953) @siriwatknp
+- &#8203;<!-- 26 -->[Joy][Checkbox] Display correct icon in checkbox (#35943) @sai6855
+- &#8203;<!-- 09 -->[Joy] Add `Table` component (#35872) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes (#35953) @siriwatknp
 
 ### Docs
 
-- &#8203;<!-- 24 -->[docs] Add to codemod README about an added script (#35999) @hbjORbj
-- &#8203;<!-- 23 -->[blog] Add RSS feed (#35777) @gorjiali
-- &#8203;<!-- 22 -->[blog] Prevent horizontal scroll on blog posts (#35948) @oliviertassinari
-- &#8203;<!-- 18 -->[docs] Add a warning about to clear the local storage when `defaultMode` changes (#35937) @ArthurPedroti
-- &#8203;<!-- 17 -->[docs] Fix Joy UI variables playground (#35950) @siriwatknp
-- &#8203;<!-- 16 -->[docs] Fix typos in base components docs (#35985) @HeVictor
-- &#8203;<!-- 15 -->[docs] Fix event's label reported to GA (#35930) @oliviertassinari
-- &#8203;<!-- 14 -->[docs] Standardize "no longer" / "not documented" callouts in Material UI docs (#35957) @samuelsycamore
-- &#8203;<!-- 13 -->[docs] Revise and expand Joy UI Checkbox doc (#35817) @samuelsycamore
-- &#8203;<!-- 12 -->[docs] Add docs notification to Date and Time Pickers revamped (#35935) @joserodolfofreitas
-- &#8203;<!-- 11 -->[docs] Update community theme builder to forked updated one (#35928) @idebeijer
-- &#8203;<!-- 10 -->[docs] Add Joy default theme viewer (#35554) @siriwatknp
-- &#8203;<!-- 09 -->[docs][joy] Fixed a typo in `Using icon libraries` page (#35989) @badalsaibo
-- &#8203;<!-- 08 -->[docs][joy] Removed Badge info from Chip docs (#35955) @Vivek-Prajapatii
-- &#8203;<!-- 07 -->[docs][system] Fix border color of Boxes in demos of `Configure the sx prop` page in dark mode (#35961) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[blog] Add RSS feed  (#35777) @gorjiali
+- &#8203;<!-- 27 -->[blog] Prevent horizontal scroll on blog posts (#35948) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Add to codemod README about an added script (#35999) @hbjORbj
+- &#8203;<!-- 22 -->[docs] Add a warning about to clear the local storage when `defaultMode` changes (#35937) @ArthurPedroti
+- &#8203;<!-- 21 -->[docs] Fix Joy UI variables playground (#35950) @siriwatknp
+- &#8203;<!-- 20 -->[docs] Fix typos in base components docs (#35985) @HeVictor
+- &#8203;<!-- 19 -->[docs] Fix event's label reported to GA (#35930) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Standardize "no longer" / "not documented" callouts in Material UI docs (#35957) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Revise and expand Joy UI Checkbox doc (#35817) @samuelsycamore
+- &#8203;<!-- 16 -->[docs] Add docs notification to Date and Time Pickers revamped (#35935) @joserodolfofreitas
+- &#8203;<!-- 15 -->[docs] Update community theme builder to forked updated one (#35928) @idebeijer
+- &#8203;<!-- 14 -->[docs] Add Joy default theme viewer (#35554) @siriwatknp
+- &#8203;<!-- 13 -->[docs][joy] Fixed a typo in `Using icon libraries` page (#35989) @badalsaibo
+- &#8203;<!-- 12 -->[docs][joy] Removed Badge info from Chip docs (#35955) @Vivek-Prajapatii
+- &#8203;<!-- 11 -->[docs][system] Fix border color of Boxes in demos of `Configure the sx prop` page in dark mode (#35961) @ZeeshanTamboli
 
 ### Core
 
-- &#8203;<!-- 20 -->[core] Boolean props always have a default value of `false` in API docs (#35913) @hbjORbj
+- &#8203;<!-- 25 -->[core] Boolean props always have a default value of `false` in API docs (#35913) @hbjORbj
+- &#8203;<!-- 04 -->[core] Improve types for usePreviousProps (#35833) @sai6855
 - &#8203;<!-- 03 -->[website] Fix 404 link to store (#35973) @oliviertassinari
 - &#8203;<!-- 02 -->[website] Fix 302 of diamond sponsor link @oliviertassinari
 - &#8203;<!-- 01 -->[website] Fix outdated YouTube link @oliviertassinari
 
-All contributors of this release in alphabetical order: @ArthurPedroti, @badalsaibo, @gorjiali, @hbjORbj, @HeVictor, @idebeijer, @joserodolfofreitas, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @ArthurPedroti, @badalsaibo, @gorjiali, @hbjORbj, @HeVictor, @idebeijer, @joserodolfofreitas, @marktoman, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
 
 ## 5.11.6
 
