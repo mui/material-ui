@@ -7,11 +7,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 # Table
 
-<p class="description">Tables display sets of data. They can be fully customized.</p>
+<p class="description">Tables display sets of data organized in rows and columns.</p>
 
 ## Introduction
 
-Joy UI Table lets you use plain HTML structure and turn it into a nice looking table. It has robust configuration that covers all of the basic needs for any projects.
+The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
 
 {{"demo": "TableUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -26,28 +26,28 @@ import Table from '@mui/joy/Table';
 {{"demo": "BasicTable.js"}}
 
 :::info
-By default, **header** cells (`<th>`) contain `surface` background color whereas **data** cells (`<td>`) does not have a background.
+By default, **header** cells (`<th>`) contain the `surface` background color, whereas **data** cells (`<td>`) have no background.
 :::
 
 ## Customization
 
 ### Column width
 
-Use `sx` prop to target the header and provide the width as a number or percentage.
+Use the `sx` prop to target the header and provide the width as a number or percentage.
 
-The columns that don't have explicit width will spread equally to the rest of the area.
+Columns that don't have an explicit width will spread equally to fill the rest of the area.
 
 {{"demo": "TableColumnWidth.js"}}
 
 :::info
-Table component uses [`fixed`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout) layout to let you control the width of each column.
+The Table component uses a [`fixed`](https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout) layout to let you control the width of each column.
 
-To learn more why we take this approach, check out this [great article](https://css-tricks.com/fixing-tables-long-strings/).
+To learn more about why we take this approach, check out this article from Chris Coyier on [Fixed Table Layouts](https://css-tricks.com/fixing-tables-long-strings/).
 :::
 
 #### Inline style
 
-An alternative way of controlling the column's width is to use [inline style](https://reactjs.org/docs/dom-elements.html#style) on the `th` element:
+An alternative way of controlling the column's width is to use [inline styles](https://reactjs.org/docs/dom-elements.html#style) on the `<th>` element:
 
 ```js
 <thead>
@@ -60,10 +60,10 @@ An alternative way of controlling the column's width is to use [inline style](ht
 
 ### Alignment
 
-Use `sx` prop to target columns with appropriate CSS selector and apply the [text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) property.
+Use the `sx` prop to target columns with the appropriate CSS selector and apply the [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) property.
 
 ```js
-// target cells that are not the first of its row.
+// target cells that are not the first in their respective rows.
 <Table sx={{ '& tr > *:not(:first-child)': { textAlign: 'right' } }}>
 ```
 
@@ -96,9 +96,9 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 :::success
 
-The prop also supports complex argument of [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#syntax) CSS selector.
+The `stripe` prop supports complex arguments with the [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#syntax) CSS selector.
 
-For example, you can use `3n` as a value to create stripes on row number three, six, nine, and so on:
+For example, you can use `3n` as a value to create stripes on row numbers three, six, nine, and so on:
 
 ```js
 <Table stripe="3n">
@@ -108,20 +108,20 @@ For example, you can use `3n` as a value to create stripes on row number three, 
 
 ### Hover
 
-To highlight a row of the table body when hover on it, set `hoverAxis` prop to true.
+To highlight a row of the table body when hovering over it, set the `hoverAxis` prop to true.
 
 {{"demo": "TableHover.js"}}
 
 ### Border
 
-Use `borderAxis` prop to control the border appearance.
+Use the `borderAxis` prop to control the border appearance.
 
 {{"demo": "TableBorder.js"}}
 
 <details>
 <summary><b>Adding custom values</b></summary>
 
-Customize the table theme based on `borderAxis` prop using [`extendTheme()`](/joy-ui/customization/themed-components/#change-styles-based-on-props) function.
+Customize the table theme based on `borderAxis` prop using the [`extendTheme()`](/joy-ui/customization/themed-components/#change-styles-based-on-props) function.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -145,7 +145,7 @@ const theme = extendTheme({
 <CssVarsProvider theme={theme}>â€¦</CssVarsProvider>
 ```
 
-For **TypeScript**, you have to add the new values via module augmentation:
+For TypeScript, you have to add the new values via module augmentation:
 
 ```ts
 // this could be any file that's included in your tsconfig.json
@@ -160,20 +160,24 @@ declare module '@mui/joy/Table' {
 
 ### Sticky header
 
-Set `stickyHeader` prop to true. The table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
+Set the `stickyHeader` prop to true to make the header follow the user as they scroll down the page.
 
-Using [Sheet](/joy-ui/react-sheet/) component is recommended for wrapping a table. See [usage with Sheet](#usage-with-sheet) to learn more.
+:::success
+For `stickyHeader` to work correctly, the Table must be a child of a fixed-height element with overflow `auto` (or `scroll`).
+We recommend wrapping your Table with [Sheet](/joy-ui/react-sheet/) for this purpose. 
+See [usage with Sheet](#usage-with-sheet) to learn more.
+:::
 
 {{"demo": "TableStickyHeader.js"}}
 
 ### Caption
 
-Place `<caption>` as the first child of the table.
+Add a caption to summarize the contents of a Table by inserting a `<caption>` element as the Table's first child.
 
 {{"demo": "TableCaption.js"}}
 
 :::success
-To display caption at the bottom of the table, set [caption side](https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side) to `bottom`:
+To display a caption at the bottom of the Table, set the [caption side](https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side) to `bottom`:
 
 ```js
 <Table sx={{ captionSide: 'bottom' }}>
@@ -183,40 +187,42 @@ To display caption at the bottom of the table, set [caption side](https://develo
 
 ### Footer
 
-Use [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) to show the table footer.
+Use [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) to add a footer to the Table.
 
 {{"demo": "TableFooter.js"}}
 
 ### Row head
 
-Set `scope="row"` to `th` elements inside `tbody` to apply the same style as column headers.
+Set `scope="row"` to `<th>` elements inside `<tbody>` to apply the same style as column headers.
+The demo below illustrates a common use case: setting the first column to match the header styles.
 
 {{"demo": "TableRowHead.js"}}
 
 ### Row and column span
 
-Use `rowSpan` and `columnSpan` to expand a cell to multiple rows or columns.
+Use `rowSpan` and `columnSpan` to expand a cell across multiple rows or columns.
 
 {{"demo": "TableRowColumnSpan.js"}}
 
-:::info
-**Limitation**: the CSS cannot figure out how apply borders on every corner without duplication.
+:::warning
+Note that the CSS cannot figure out how apply borders on every corner without duplicating some.
 
 There are two workarounds:
 
 1. Manually remove the right border for a specific cell:
 
    ```js
-   // In this example, `Canceled` header cell must not have a border on the right.
+   // In this example, we remove the border from 
+   // the right side of the header cell to avoid duplication.
    <th style={{ borderRightWidth: 0 }}>Canceled</th>
    ```
 
-2. Set Table's border collapse to `collapse`:
+2. Set Table's the border collapse to `collapse`:
 
    ```js
-   <Table sx={{ borderColapse: 'collapse' }}>
-   // However, this will change the behavior when `stickyHeader` is true.
-   // The border bottom of the sticky headers will no longer sticked.
+   <Table sx={{ borderCollapse: 'collapse' }}>
+   // Note that this will change the behavior when `stickyHeader` is true:
+   // the bottom border of the sticky header will not "stick".
    ```
 
 :::
@@ -231,27 +237,30 @@ To truncate the text, set `noWrap` to true.
 The header cells always truncate the text to keep the header's height predictable.
 :::
 
-## CSS Variables
+## CSS variable playground
+
+Play around with the CSS variables available to the Table component to see how the design changes. 
+You can use these to customize the components with both the `sx` prop and the theme.
 
 {{"demo": "TableVariables.js"}}
 
 ## Usage with Sheet
-
-When Table becomes a child of [Sheet](/joy-ui/react-sheet/) component, the table header background inherits from the sheet.
+import Sheet from `@mui/joy/Sheet` 
+When Table becomes a child of [Sheet](/joy-ui/react-sheet/) component, the table header background is inherited from the Sheet.
 
 {{"demo": "TableSheet.js"}}
 
 ### Color inversion
 
-When [color inversion](/joy-ui/main-features/color-inversion/) is enabled, the table styles will adapt based on its variant.
+When [color inversion](/joy-ui/main-features/color-inversion/) is enabled, the Table's styles will adapt based on its [variant](#variants).
 
 {{"demo": "TableSheetColorInversion.js"}}
 
 ## Common examples
 
-### Sort and Selection
+### Sort and selection
 
-Use form components such as [`Button`](/joy-ui/react-button/), [`Select`](/joy-ui/react-select/) and [`Switch`](/joy-ui/react-switch/) to create sort and selection features.
+Use form components such as [Button](/joy-ui/react-button/), [Select](/joy-ui/react-select/) and [Switch](/joy-ui/react-switch/) to create sort and selection features.
 
 {{"demo": "TableSortAndSelection.js"}}
 
@@ -261,12 +270,12 @@ Use form components such as [`Button`](/joy-ui/react-button/), [`Select`](/joy-u
 
 ### Applying global variants
 
-Use `theme.variants.*` to apply global variant styles to the table.
+Use `theme.variants.*` to apply global variant styles to the Table.
 
 {{"demo": "TableGlobalVariant.js"}}
 
 ### Scrolling shadows
 
-Inspired by this [blog post](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the table.
+Inspired by this article from Lea Verou on [CSS scrolling shadows](https://lea.verou.me/2012/04/background-attachment-local/), the shadows appear and hide when scrolling on the Table.
 
 {{"demo": "TableScrollingShadows.js"}}
