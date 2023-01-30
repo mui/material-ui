@@ -8,11 +8,11 @@
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "disabled": { "type": { "name": "bool" } },
-    "disableSwap": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
-    "isRtl": { "type": { "name": "bool" } },
+    "isRtl": { "type": { "name": "bool" }, "default": "false" },
     "marks": {
       "type": {
         "name": "union",

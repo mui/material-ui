@@ -8,7 +8,7 @@
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       }
     },
-    "disableAnimation": { "type": { "name": "bool" } },
+    "disableAnimation": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },

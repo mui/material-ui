@@ -2,9 +2,9 @@
   "props": {
     "open": { "type": { "name": "bool" }, "required": true },
     "children": { "type": { "name": "custom", "description": "element" } },
-    "disableAutoFocus": { "type": { "name": "bool" } },
-    "disableEnforceFocus": { "type": { "name": "bool" } },
-    "disableRestoreFocus": { "type": { "name": "bool" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
     "getTabbable": { "type": { "name": "func" } },
     "isEnabled": {
       "type": { "name": "func" },

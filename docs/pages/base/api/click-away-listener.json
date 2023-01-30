@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "onClickAway": { "type": { "name": "func" }, "required": true },
-    "disableReactTree": { "type": { "name": "bool" } },
+    "disableReactTree": { "type": { "name": "bool" }, "default": "false" },
     "mouseEvent": {
       "type": {
         "name": "enum",

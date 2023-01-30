@@ -64,7 +64,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
-  const row = orientation === 'horizontal';
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
@@ -74,7 +73,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
-    row,
     nesting: false,
   };
 
@@ -97,7 +95,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   return (
     // @ts-ignore conflicted ref types
     <TabListRoot {...tabsListRootProps}>
-      <ListProvider row={row} nested>
+      <ListProvider row={orientation === 'horizontal'} nested>
         {processedChildren}
       </ListProvider>
     </TabListRoot>

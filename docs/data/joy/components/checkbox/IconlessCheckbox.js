@@ -13,7 +13,7 @@ export default function IconlessCheckbox() {
       </Typography>
       <Box role="group" aria-labelledby="topping">
         <List
-          row
+          orientation="horizontal"
           wrap
           sx={{
             '--List-gap': '8px',
@@ -21,7 +21,7 @@ export default function IconlessCheckbox() {
           }}
         >
           {[
-            'Perpperoni',
+            'Pepperoni',
             'Cheese',
             'Olives',
             'Tomatoes',

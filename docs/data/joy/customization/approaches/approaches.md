@@ -25,7 +25,7 @@ Here are some examples that reproduce popular designs (only the light mode, thou
 
 ### Customizing theme tokens
 
-Theme tokens refer to both [_low-level_ and _global variant_ design tokens](/joy-ui/customization/theme-tokens/).
+Theme tokens refer to both _low-level_ and _global variant_ design tokens.
 
 For example, instead of assigning the same hex code every time you want to change a given component's background color, you assign a theme token instead.
 If, at any point, you want to change that, you'd change in one place only, ensuring you consistency across all the components that use that theme token.

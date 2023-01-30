@@ -11,10 +11,11 @@ import formControlClasses, { getFormControlUtilityClass } from './formControlCla
 import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
 
 const useUtilityClasses = (ownerState: FormControlOwnerState) => {
-  const { disabled, error, size, color } = ownerState;
+  const { disabled, error, size, color, orientation } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       disabled && 'disabled',
       error && 'error',
       color && `color${capitalize(color)}`,
@@ -30,8 +31,6 @@ export const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
-  '--FormLabel-margin':
-    ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.25rem 0',
   '--FormLabel-alignSelf': ownerState.orientation === 'horizontal' ? 'align-items' : 'flex-start',
   '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
@@ -39,14 +38,19 @@ export const FormControlRoot = styled('div', {
   ...(ownerState.size === 'sm' && {
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
+    '--FormLabel-margin':
+      ownerState.orientation === 'horizontal' ? '0 0.5rem 0 0' : '0 0 0.25rem 0',
   }),
   ...(ownerState.size === 'md' && {
     '--FormLabel-fontSize': theme.vars.fontSize.sm,
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
+    '--FormLabel-margin':
+      ownerState.orientation === 'horizontal' ? '0 0.75rem 0 0' : '0 0 0.25rem 0',
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
+    '--FormLabel-margin': ownerState.orientation === 'horizontal' ? '0 1rem 0 0' : '0 0 0.25rem 0',
   }),
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
@@ -75,6 +79,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error = false,
     color,
     size = 'md',
+    orientation = 'vertical',
     ...other
   } = props;
 
@@ -90,6 +95,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error,
     required,
     size,
+    orientation,
   };
 
   let registerEffect: undefined | (() => () => void);
