@@ -326,9 +326,9 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
 
 export default function useAutocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {

@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
@@ -107,7 +108,7 @@ export function PlanPrice(props: PlanPriceProps) {
           Billed annually at $180/dev.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          Price capped at 10 developers.
+          No additional fee beyond 10 devs.
         </Typography>
       </div>
     );
@@ -922,7 +923,15 @@ export default function PricingTable({
   columnHeaderHidden?: boolean;
   plans?: Array<'community' | 'pro' | 'premium'>;
 }) {
+  const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
+
+  React.useEffect(() => {
+    if (router.query['expand-path'] === 'all') {
+      setDataGridCollapsed(true);
+    }
+  }, [router.query]);
+
   const tableRef = React.useRef<HTMLDivElement | null>(null);
   const gridSx = {
     display: 'grid',
@@ -930,6 +939,14 @@ export default function PricingTable({
       columnHeaderHidden ? '0px' : '240px'
     }, 1fr))`,
   };
+
+  const unfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+    />
+  );
+
   function renderRow(key: string) {
     return (
       <Box
@@ -1042,26 +1059,21 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         MUI X (open-core)
       </RowHead>
-      <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
+      <Box
+        sx={{
+          position: 'relative',
+          minHeight: 58,
+          '& svg': { transition: '0.3s' },
+          '&:hover svg': { color: 'primary.main' },
+          ...gridSx,
+        }}
+      >
         <Cell />
-        <Cell sx={{ minHeight: 60 }}>
-          <UnfoldMoreRounded
-            fontSize="small"
-            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
-          />
-        </Cell>
+        <Cell sx={{ minHeight: 60 }}>{unfoldMore}</Cell>
         <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          <UnfoldMoreRounded
-            fontSize="small"
-            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
-          />
+          {unfoldMore}
         </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          <UnfoldMoreRounded
-            fontSize="small"
-            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
-          />
-        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{unfoldMore}</Cell>
         <Button
           fullWidth
           onClick={() => setDataGridCollapsed((bool) => !bool)}
@@ -1087,7 +1099,7 @@ export default function PricingTable({
               width: '100%',
               height: '100%',
               '&:hover': {
-                bgcolor: alpha(theme.palette.grey[50], 0.4),
+                bgcolor: alpha(theme.palette.primary.main, 0.06),
                 '@media (hover: none)': {
                   bgcolor: 'initial',
                 },
@@ -1096,7 +1108,7 @@ export default function PricingTable({
             (theme) =>
               theme.applyDarkStyles({
                 '&:hover': {
-                  bgcolor: alpha(theme.palette.primaryDark[900], 0.3),
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
                 },
               }),
           ]}

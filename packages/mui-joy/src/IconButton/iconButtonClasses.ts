@@ -40,10 +40,10 @@ export interface IconButtonClasses {
 export type IconButtonClassKey = keyof IconButtonClasses;
 
 export function getIconButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyIconButton', slot);
+  return generateUtilityClass('MuiIconButton', slot);
 }
 
-const iconButtonClasses: IconButtonClasses = generateUtilityClasses('JoyIconButton', [
+const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButton', [
   'root',
   'colorPrimary',
   'colorNeutral',

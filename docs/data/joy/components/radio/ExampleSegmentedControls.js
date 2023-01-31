@@ -12,7 +12,7 @@ export default function ExampleSegmentedControls() {
         Justify:
       </Typography>
       <RadioGroup
-        row
+        orientation="horizontal"
         aria-labelledby="segmented-controls-example"
         name="justify"
         value={justify}

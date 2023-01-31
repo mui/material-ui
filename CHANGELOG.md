@@ -1,5 +1,271 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.7
+
+<!-- generated comparing v5.11.6..master -->
+
+_Jan 31, 2023_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- @siriwatknp added `Table` component to Joy UI (#35872)
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.11.7`
+
+- &#8203;<!-- 30 -->[Autocomplete] Prevent reset scroll position when new options are added (#35735) @sai6855
+- &#8203;<!-- 24 -->[CssVarsProvider] Skip `unstable_sxConfig` variables (#35932) @siriwatknp
+- &#8203;<!-- 10 -->[InputLabel] Add missing `component` type (#35852) @sai6855
+- &#8203;<!-- 05 -->[Tooltip] Fix tooltip position (#35909) @marktoman
+
+### `@mui/base@5.0.0-alpha.116`
+
+- &#8203;<!-- 29 -->[ListboxUnstyled] Fix option state highlighted to prevent unnecessary focus (#35838) @SaidMarar
+
+### `@mui/joy@5.0.0-alpha.65`
+
+#### Breaking changes
+
+- &#8203;<!-- 05 -->[Joy] Replace `Joy[Component]` classname with `Mui[Component]` classname for all slots of components (#35718) @hbjORbj
+
+  - Renames the classname prefix of all Joy UI components from `'Joy'` to `'Mui'`.
+
+  ```diff
+   <Button
+  -sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
+  +sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
+   />
+  ```
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
+
+- &#8203;<!-- 04 -->[Joy] Replace `row` prop with `orientation` prop in all Joy UI components (#35721) @hbjORbj
+
+  - Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components in Joy UI.
+
+  ```diff
+   <Card
+  -row
+  +orientation={"horizontal"}
+   />
+  ```
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-row-prop) to help with the migration.
+
+#### Changes
+
+- &#8203;<!-- 26 -->[Joy][Checkbox] Display correct icon in checkbox (#35943) @sai6855
+- &#8203;<!-- 09 -->[Joy] Add `Table` component (#35872) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes (#35953) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 28 -->[blog] Add RSS feed (#35777) @gorjiali
+- &#8203;<!-- 27 -->[blog] Prevent horizontal scroll on blog posts (#35948) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Add to codemod README about an added script (#35999) @hbjORbj
+- &#8203;<!-- 22 -->[docs] Add a warning about to clear the local storage when `defaultMode` changes (#35937) @ArthurPedroti
+- &#8203;<!-- 21 -->[docs] Fix Joy UI variables playground (#35950) @siriwatknp
+- &#8203;<!-- 20 -->[docs] Fix typos in base components docs (#35985) @HeVictor
+- &#8203;<!-- 19 -->[docs] Fix event's label reported to GA (#35930) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Standardize "no longer" / "not documented" callouts in Material UI docs (#35957) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Revise and expand Joy UI Checkbox doc (#35817) @samuelsycamore
+- &#8203;<!-- 16 -->[docs] Add docs notification to Date and Time Pickers revamped (#35935) @joserodolfofreitas
+- &#8203;<!-- 15 -->[docs] Update community theme builder to forked updated one (#35928) @idebeijer
+- &#8203;<!-- 14 -->[docs] Add Joy default theme viewer (#35554) @siriwatknp
+- &#8203;<!-- 13 -->[docs][joy] Fixed a typo in `Using icon libraries` page (#35989) @badalsaibo
+- &#8203;<!-- 12 -->[docs][joy] Removed Badge info from Chip docs (#35955) @Vivek-Prajapatii
+- &#8203;<!-- 11 -->[docs][system] Fix border color of Boxes in demos of `Configure the sx prop` page in dark mode (#35961) @ZeeshanTamboli
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Boolean props always have a default value of `false` in API docs (#35913) @hbjORbj
+- &#8203;<!-- 04 -->[core] Improve types for usePreviousProps (#35833) @sai6855
+- &#8203;<!-- 03 -->[website] Fix 404 link to store (#35973) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix 302 of diamond sponsor link @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix outdated YouTube link @oliviertassinari
+
+All contributors of this release in alphabetical order: @ArthurPedroti, @badalsaibo, @gorjiali, @hbjORbj, @HeVictor, @idebeijer, @joserodolfofreitas, @marktoman, @oliviertassinari, @sai6855, @SaidMarar, @samuelsycamore, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
+
+## 5.11.6
+
+<!-- generated comparing v5.11.5..master -->
+
+_Jan 23, 2023_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- @ZeeshanTamboli improved the logic for handling the value label in the `SliderUnstyled` (#35805)
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.11.6`
+
+- &#8203;<!-- 15 -->[Box] Fix usage of not supported features in TypeScript 3.5 (#35877) @mnajdova
+- &#8203;<!-- 14 -->[Button] Fix border color for secondary disabled button (#35866) @SaidMarar
+- &#8203;<!-- 03 -->[SwipeableDrawer] Add callback to customise touchstart ignore for swipeable drawer (#30759) @tech-meppem
+
+### `@mui/base@5.0.0-alpha.115`
+
+#### Breaking changes
+
+- &#8203;<!-- 04 -->[SliderUnstyled] Improved logic for displaying the value label (#35805) @ZeeshanTamboli
+
+  - The `valueLabelDisplay` prop is removed from `SliderUnstyled`. The prop was not working as intended in `SliderUnstyled` (See #35398). You can instead provide a `valueLabel` slot with the `slots` prop API to show the value label:
+
+  ```diff
+  - <SliderUnstyled valueLabelDisplay="on" />
+  + <SliderUnstyled slots={{ valueLabel: SliderValueLabel }} />
+  ```
+
+  The following demo shows how to show a value label when it is hovered over with the thumb: https://mui.com/base/react-slider/#value-label
+
+  - The following classes are removed from `sliderUnstyledClasses` since they are not needed for the value label:
+
+  ```diff
+  - valueLabel
+  - valueLabelOpen
+  - valueLabelCircle
+  - valueLabelLabel
+  ```
+
+  In the custom value label component, you can define your own classNames and target them with CSS.
+
+  - The `SliderValueLabelUnstyled` component is removed from SliderUnstyled. You should provide your own custom component for the value label.
+
+  - To avoid using `React.cloneElement` API in value label, the component hierarchy structure of the value label is changed. The value label is now inside the Thumb slot - `Thumb` -> `Input`, `ValueLabel`.
+
+#### Changes
+
+- &#8203;<!-- 05 -->[InputUnstyled] Fix externally provided `inputRef` is ignored (#35807) @sai6855
+
+### `@mui/joy@5.0.0-alpha.64`
+
+- &#8203;<!-- 17 -->[Avatar][joy] Remove `imgProps` prop and add Codemod script for migration (#35859) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 16 -->[blog] Date and time pickers revamped (#35486) @joserodolfofreitas
+- &#8203;<!-- 10 -->[docs] Fix incorrect breakpoint use (#34948) @rosita-dmello
+- &#8203;<!-- 09 -->[docs] Replace react-virtualized with react-virtuoso in Table (#35700) @petyosi
+- &#8203;<!-- 08 -->[docs] Fix account menu demo not closing with keyboard. (#35870) @mj12albert
+- &#8203;<!-- 07 -->[docs] Fix typos in the docs of Joy UI (#35876) @HeVictor
+- &#8203;<!-- 06 -->[docs] Fix wording in `Color` page (#35873) @oliv37
+
+### Core
+
+- &#8203;<!-- 13 -->[core] Fix release changelog to handle commits with empty author field (#35921) @mnajdova
+- &#8203;<!-- 12 -->[core] Revert `docs-utilities` migration to TypeScript and fix type (#35881) @ZeeshanTamboli
+- &#8203;<!-- 11 -->[core] Migrate internal `docs-utilities` package to TypeScript (#35846) @ZeeshanTamboli
+- &#8203;<!-- 02 -->[website] Designer don't spend their time writing code @oliviertassinari
+- &#8203;<!-- 01 -->[website] Emphasis the technical background need for this role @oliviertassinari
+
+All contributors of this release in alphabetical order: @HeVictor, @hbjORbj, @joserodolfofreitas, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rosita-dmello, @sai6855, @SaidMarar, @tech-meppem, @ZeeshanTamboli
+
+## 5.11.5
+
+<!-- generated comparing v5.11.4..master -->
+
+_Jan 17, 2023_
+
+A big thanks to the 17 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.5`
+
+- [Material UI] Custom channel token should suppress the warning (#35804) @siriwatknp
+- [Autocomplete] Fix value type when `strictNullChecks` is `false` (#35367) @fenghan34
+- [Slider] Replace `SliderUnstyled` with `useSlider` hook (#35770) @ZeeshanTamboli
+- [l10n] Add Belarusian translation (#35742) @volhalink
+
+### `@mui/system@5.11.5`
+
+- [system] Improve the `createBox` types (#35532) @mnajdova
+
+### `@mui/codemod@5.11.5`
+
+- Add `joy-text-field-to-input` codemod (#35462) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.114`
+
+- [base] Fix typos (#35802) @nnmax
+- [Slider] Convert code to TypeScript (#35445) @sai6855
+
+### `@mui/joy@5.0.0-alpha.63`
+
+- [Tabs][joy] Don't apply `:hover, :active` styles when `selected` (#35750) @sai6855
+- Remove `TextField` component and replace its usage in docs with `FormControl`/`FormLabel`/`Input` (#35462) @hbjORbj
+- [TextField] Throw error with migration message (#35845) @siriwatknp
+- Miscellaneous fixes (#35847) @siriwatknp
+
+### Docs
+
+- [docs] Improve pickers lab migration stressing `mui-x` usage (#35740) @LukasTy
+- [docs] Fix incorrectly named AccessibleTable demo component (#35832) @HeVictor
+- [docs] Clarify where to find docs for MUI Base components in Material UI (#35799) @samuelsycamore
+- [docs] Fix typos (#35814) @alexfauquette
+- [docs] Revise and expand the Joy UI Card page (#35745) @samuelsycamore
+- [docs] Fix navigation layout shift (#35679) @oliviertassinari
+- [docs] Fix typo in the Composition page (#35774) @msoyka
+- [docs][joy] Update Customization section code example to use the correct API (#35765) @pupudu
+- [docs][joy] Fix grammar in `Typography` docs (#35796) @atrefonas
+- [examples] Remove `next-env.d.ts` from Next.js examples (#35772) @Juneezee
+
+### Core
+
+- [website] Improve pricing page (#35767) @oliviertassinari
+- [website] Add Greg in about page (#35816) @oliviertassinari
+- [website] Update the Accessibility Engineer role (#35751) @oliviertassinari
+- [website] Add docs for MUI for Figma @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @atrefonas, @fenghan34, @hbjORbj, @HeVictor, @Juneezee, @LukasTy, @mnajdova, @msoyka, @nnmax, @oliviertassinari, @pupudu, @sai6855, @samuelsycamore, @siriwatknp, @volhalink, @ZeeshanTamboli
+
+## 5.11.4
+
+<!-- generated comparing v5.11.3..master -->
+
+_Jan 9, 2023_
+
+A big thanks to the 14 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.4`
+
+- [Autocomplete] Add index to renderOption's AutocompleteRenderOptionState (#35578) @CowDotDev
+- [Autocomplete] Fix grammar in console.error in `useAutocomplete` (#35723) @hamirmahal
+- [Modal] Fix can't override Backdrop Props using new Slots API (#35140) @ZeeshanTamboli
+- [Select] Revert "Update `renderValue` prop's TypeScript type (#34177)" (#35733) @michaldudak
+- [Tabs] Throw error only if individual `Tab` is hidden, not the whole `Tabs` (#34026) @Ryczko
+- [TextField] Improve WCAG 2.4.7 with error={true} (#35687) @oliviertassinari
+- [Tooltip] Remove `data-foo` attribute (#35736) @koolskateguy89
+
+### `@mui/joy@5.0.0-alpha.62`
+
+- [Autocomplete][joy] Specify `type` attribute for popup indicator (#35648) @hbjORbj
+- [Joy] Miscellaneous improvements (#35769) @siriwatknp
+- [Joy] Improve `onKeyDown` event handler for demo (#35642) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.113`
+
+- [Portal][base] Convert code to TypeScript (#35657) @sai6855
+
+### Docs
+
+- [docs] Revise and expand Joy UI Button doc (#35737) @samuelsycamore
+- [docs] Document the workaround for crashing a translated page (#35720) @michaldudak
+- [docs] Fix API page for `MenuItem` to list all valid props (#35561) @mnajdova
+- [docs] Fix ad exception in Joy UI (#35685) @oliviertassinari
+- [docs] Fix content wider than screen regression @oliviertassinari
+- [examples] Add `Vite.js with TypeScript` example (#35683) @miha53cevic
+
+### Core
+
+- [core] Close 2022 developer survey @oliviertassinari
+- [core] Fix the product license reference name (#35703) @oliviertassinari
+- [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
+- [test] Always use & for nesting styles (#35702) @oliviertassinari
+- [website] Improve Lead Designer role description (#35684) @oliviertassinari
+
+All contributors of this release in alphabetical order: @CowDotDev, @flaviendelangle, @hamirmahal, @hbjORbj, @koolskateguy89, @michaldudak, @miha53cevic, @mnajdova, @oliviertassinari, @Ryczko, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.11.3
 
 <!-- generated comparing v5.11.2..master -->

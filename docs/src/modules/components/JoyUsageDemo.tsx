@@ -7,7 +7,7 @@ import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
-import { inputClasses } from '@mui/joy/Input';
+import Input, { inputClasses } from '@mui/joy/Input';
 import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
 import Option, { optionClasses } from '@mui/joy/Option';
 import Radio, { radioClasses } from '@mui/joy/Radio';
@@ -15,7 +15,6 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Select from '@mui/joy/Select';
 import Sheet from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
-import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -319,7 +318,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={resolvedValue}
                     onChange={(event) => {
@@ -372,7 +371,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={finalValue}
                     onChange={(event) => {
@@ -422,7 +421,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} sx={{ mb: 1 }} size="sm">
                   <FormLabel>Color</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>
@@ -544,53 +543,55 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'input') {
               return (
-                <TextField
-                  key={propName}
-                  label={propName}
-                  size="sm"
-                  value={props[propName] ?? ''}
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: event.target.value,
-                    }))
-                  }
-                  sx={{
-                    textTransform: 'capitalize',
-                    [`& .${inputClasses.root}`]: {
-                      bgcolor: 'background.body',
-                    },
-                  }}
-                />
+                <FormControl key={propName}>
+                  <FormLabel>{propName}</FormLabel>
+                  <Input
+                    size="sm"
+                    value={props[propName] ?? ''}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.value,
+                      }))
+                    }
+                    sx={{
+                      textTransform: 'capitalize',
+                      [`& .${inputClasses.root}`]: {
+                        bgcolor: 'background.body',
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'number') {
               return (
-                <TextField
-                  key={propName}
-                  label={propName}
-                  size="sm"
-                  type="number"
-                  value={
-                    typeof props[propName] === 'number'
-                      ? (props[propName] as number)
-                      : (defaultValue as string)
-                  }
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: Number.isNaN(event.target.valueAsNumber)
-                        ? undefined
-                        : event.target.valueAsNumber,
-                    }))
-                  }
-                  sx={{
-                    textTransform: 'capitalize',
-                    [`& .${inputClasses.root}`]: {
-                      bgcolor: 'background.body',
-                    },
-                  }}
-                />
+                <FormControl key={propName}>
+                  <FormLabel>{propName}</FormLabel>
+                  <Input
+                    size="sm"
+                    type="number"
+                    value={
+                      typeof props[propName] === 'number'
+                        ? (props[propName] as number)
+                        : (defaultValue as string)
+                    }
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: Number.isNaN(event.target.valueAsNumber)
+                          ? undefined
+                          : event.target.valueAsNumber,
+                      }))
+                    }
+                    sx={{
+                      textTransform: 'capitalize',
+                      [`& .${inputClasses.root}`]: {
+                        bgcolor: 'background.body',
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'placement') {

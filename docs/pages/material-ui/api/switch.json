@@ -12,7 +12,7 @@
     },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "edge": {
       "type": {
         "name": "enum",
@@ -25,7 +25,7 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "onChange": { "type": { "name": "func" } },
-    "required": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",

@@ -102,6 +102,7 @@ const CircularProgressRoot = styled('span', {
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexShrink: 0, // prevent from shrinking when CircularProgress is in a flex container.
     position: 'relative',
     color,
     ...(ownerState.children && {

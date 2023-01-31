@@ -290,7 +290,7 @@ function FocusTrap(props: FocusTrapProps) {
       }
 
       // Make sure the next tab starts from the right place.
-      // doc.activeElement referes to the origin.
+      // doc.activeElement refers to the origin.
       if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.

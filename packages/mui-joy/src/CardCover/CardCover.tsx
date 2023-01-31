@@ -25,8 +25,8 @@ const CardCoverRoot = styled('div', {
   zIndex: 0,
   top: 0,
   left: 0,
-  width: '100%',
-  height: '100%',
+  right: 0,
+  bottom: 0,
   borderRadius: 'var(--CardCover-radius)',
   // use data-attribute instead of :first-child to support zero config SSR (emotion)
   // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)

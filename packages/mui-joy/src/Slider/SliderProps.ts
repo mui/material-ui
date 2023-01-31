@@ -52,6 +52,15 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
        */
       sx?: SxProps;
       /**
+       * Controls when the value label is displayed:
+       *
+       * - `auto` the value label will display when the thumb is hovered or focused.
+       * - `on` will display persistently.
+       * - `off` will never display.
+       * @default 'off'
+       */
+      valueLabelDisplay?: 'on' | 'auto' | 'off';
+      /**
        * The variant to use.
        * @default 'solid'
        */
