@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Stack component
+components: Stack
 githubLabel: 'component: stack'
 ---
 

@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Autocomplete component
+components: Autocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
