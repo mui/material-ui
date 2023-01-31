@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "defer": { "type": { "name": "bool" } },
+    "defer": { "type": { "name": "bool" }, "default": "false" },
     "fallback": { "type": { "name": "node" }, "default": "null" }
   },
   "name": "NoSsr",

@@ -37,13 +37,6 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, AvatarPropsColorOverrides>;
       /**
-       * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-       * It can be used to listen for the loading error event.
-       */
-      imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
-        sx?: SxProps;
-      };
-      /**
        * The size of the component.
        * It accepts theme values between 'sm' and 'lg'.
        * @default 'md'

@@ -68,7 +68,7 @@ function findIndex(array, comp) {
 
 const defaultFilterOptions = createFilterOptions();
 
-// Number of options to jump in list box when pageup and pagedown keys are used.
+// Number of options to jump in list box when `Page Up` and `Page Down` keys are used.
 const pageSize = 5;
 
 const defaultIsActiveElementInListbox = (listboxRef) =>
@@ -589,7 +589,7 @@ export default function useAutocomplete(props) {
               `Instead, ${componentName} expects an input element.`,
               '',
               componentName === 'useAutocomplete'
-                ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+                ? 'Make sure you have bound getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
                 : 'Make sure you have customized the input component correctly.',
             ].join('\n'),
           );

@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
@@ -284,12 +283,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     className: [classes.textarea, inputStateClasses],
     elementType: TextareaInput,
     internalForwardedProps: {
+      ...propsToForward,
       minRows,
       maxRows,
     },
     externalForwardedProps: other,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
+    getSlotProps: getInputProps,
     ownerState,
   });
 

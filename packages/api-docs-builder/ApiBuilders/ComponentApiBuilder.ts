@@ -12,7 +12,6 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import * as ttp from 'typescript-to-proptypes';
 import { LANGUAGES } from 'docs/config';
 
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -24,6 +23,7 @@ import createDescribeableProp, {
 import generatePropDescription from '../utils/generatePropDescription';
 import parseStyles, { Styles } from '../utils/parseStyles';
 import { ComponentInfo } from '../buildApiUtils';
+import { TypeScriptProject } from '../utils/createTypeScriptProject';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
@@ -285,7 +285,9 @@ function toGitHubPath(filepath: string): string {
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
+  function resolveApiDocsTranslationsComponentLanguagePath(
+    language: (typeof LANGUAGES)[0],
+  ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
     return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
@@ -445,14 +447,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
-      if (
-        propDescriptor.type.name !== 'bool' ||
-        propDescriptor.jsdocDefaultValue?.value !== 'false'
-      ) {
-        defaultValue = propDescriptor.jsdocDefaultValue?.value;
-      }
+      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
@@ -505,7 +500,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.ts.Program) => {
+const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeScriptProject) => {
   const {
     filename,
     name,
@@ -598,7 +593,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.styles = await parseStyles(reactApi, program);
+  reactApi.styles = await parseStyles({ project, componentName: reactApi.name });
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = reactApi.muiName;

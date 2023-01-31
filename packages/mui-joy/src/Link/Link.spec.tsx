@@ -20,6 +20,7 @@ import { expectType } from '@mui/types';
 <Link color="neutral" />;
 
 <Link textColor="neutral.500" />;
+<Link textColor="#fff" />; // should support plain string
 
 // `level`
 <Link level="h2" />;

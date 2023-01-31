@@ -159,6 +159,7 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.45, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
+  boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
   flexGrow: 1,
   flexDirection: 'row',
@@ -179,6 +180,7 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
     paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',

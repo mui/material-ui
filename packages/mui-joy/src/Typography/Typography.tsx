@@ -39,9 +39,11 @@ const StartDecorator = styled('span', {
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
-  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
-    marginTop: '2px', // this makes the alignment perfect in most cases
-  }),
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
 }));
 
 const EndDecorator = styled('span', {
@@ -51,9 +53,11 @@ const EndDecorator = styled('span', {
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
   marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
-  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
-    marginTop: '2px', // this makes the alignment perfect in most cases
-  }),
+  ...(typeof ownerState.endDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
 }));
 
 const TypographyRoot = styled('span', {
@@ -62,7 +66,7 @@ const TypographyRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyOwnerState }>(({ theme, ownerState }) => ({
   '--Icon-fontSize': '1.25em',
-  margin: 0,
+  margin: 'var(--Typography-margin, 0px)',
   ...(ownerState.nesting
     ? {
         display: 'inline',
@@ -82,6 +86,11 @@ const TypographyRoot = styled('span', {
     }),
   }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+  fontSize: `var(--Typography-fontSize, ${
+    ownerState.level && ownerState.level !== 'inherit'
+      ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+      : 'inherit'
+  })`,
   ...(ownerState.noWrap && {
     overflow: 'hidden',
     textOverflow: 'ellipsis',

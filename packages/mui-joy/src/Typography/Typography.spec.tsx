@@ -26,6 +26,7 @@ function Link(props: JSX.IntrinsicElements['a']) {
 <Typography color="warning" />;
 
 <Typography textColor="neutral.500" />;
+<Typography textColor="#fff" />; // should support plain string
 
 <Typography
   slots={{
