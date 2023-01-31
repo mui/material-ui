@@ -2,6 +2,8 @@ module.exports = [
   { pathname: '/joy-ui/api/alert' },
   { pathname: '/joy-ui/api/aspect-ratio' },
   { pathname: '/joy-ui/api/autocomplete' },
+  { pathname: '/joy-ui/api/autocomplete-listbox' },
+  { pathname: '/joy-ui/api/autocomplete-option' },
   { pathname: '/joy-ui/api/avatar' },
   { pathname: '/joy-ui/api/avatar-group' },
   { pathname: '/joy-ui/api/badge' },
