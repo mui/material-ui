@@ -174,6 +174,9 @@ export * from './TabList';
 export { default as TabPanel } from './TabPanel';
 export * from './TabPanel';
 
+export { default as Table } from './Table';
+export * from './Table';
+
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
 
