@@ -13,6 +13,7 @@ import {
   getBaseHookInfo,
   getSystemComponentInfo,
   extractApiPage,
+  getJoyComponentInfo,
 } from './buildApiUtils';
 import generateComponentApi, {
   writePrettifiedFile,
@@ -152,6 +153,20 @@ const SETTINGS: Settings[] = [
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
     getHookInfo: getBaseHookInfo,
+  },
+  {
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
+    },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'joy',
+        rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+        entryPointPath: 'src/index.d.ts',
+      }),
+    ],
+    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
+    getComponentInfo: getJoyComponentInfo,
   },
   {
     output: {

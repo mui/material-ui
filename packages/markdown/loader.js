@@ -46,6 +46,10 @@ const packages = [
     product: 'base',
     paths: [path.join(__dirname, '../../packages/mui-base/src')],
   },
+  {
+    product: 'joy-ui',
+    paths: [path.join(__dirname, '../../packages/mui-joy/src')],
+  },
 ];
 
 packages.forEach((pkg) => {

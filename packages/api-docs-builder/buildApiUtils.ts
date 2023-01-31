@@ -361,6 +361,71 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
   return result;
 };
 
+function findJoyUIDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; components: readonly string[] }>,
+) {
+  // console.log(pagesMarkdown);
+  return pagesMarkdown
+    .filter(
+      (page) => page.pathname.indexOf('/joy/') === 0 && page.components.includes(componentName),
+    )
+    .map((page) => ({
+      name: page.title,
+      demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`),
+    }));
+}
+
+export const getJoyComponentInfo = (filename: string): ComponentInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the component name from: ${filename}`);
+  }
+  return {
+    filename,
+    name,
+    muiName: getMuiName(name),
+    apiPathname: `/joy-ui/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/joy-ui/api`),
+    isSystemComponent: systemComponents.includes(name),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+      if (!inheritedComponent) {
+        return null;
+      }
+      return {
+        name: inheritedComponent,
+        apiPathname:
+          inheritedComponent === 'Transition'
+            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
+            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
+                inheritedComponent,
+              )}/`,
+      };
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdownNew().map((markdown) => {
+        const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+        const markdownHeaders = getHeaders(markdownContent) as any;
+
+        return {
+          ...markdown,
+          title: getTitle(markdownContent),
+          components: markdownHeaders.components as string[],
+        };
+      });
+      return findJoyUIDemos(name, allMarkdowns).map((info) => ({
+        ...info,
+        demoPathname: info.demoPathname,
+      }));
+    },
+  };
+};
+
 export const getSystemComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
