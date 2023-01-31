@@ -6,8 +6,10 @@
 
 _Jan 30, 2023_
 
-A big thanks to the 14 contributors who made this release possible.
-This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- @siriwatknp added `Table` component to Joy UI (#35872)
+- many other 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.11.7`
 
