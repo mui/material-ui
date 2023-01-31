@@ -1,5 +1,91 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.7
+
+<!-- generated comparing v5.11.6..master -->
+
+_Jan 31, 2023_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- @siriwatknp added `Table` component to Joy UI (#35872)
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.11.7`
+
+- &#8203;<!-- 30 -->[Autocomplete] Prevent reset scroll position when new options are added (#35735) @sai6855
+- &#8203;<!-- 24 -->[CssVarsProvider] Skip `unstable_sxConfig` variables (#35932) @siriwatknp
+- &#8203;<!-- 10 -->[InputLabel] Add missing `component` type (#35852) @sai6855
+- &#8203;<!-- 05 -->[Tooltip] Fix tooltip position (#35909) @marktoman
+
+### `@mui/base@5.0.0-alpha.116`
+
+- &#8203;<!-- 29 -->[ListboxUnstyled] Fix option state highlighted to prevent unnecessary focus (#35838) @SaidMarar
+
+### `@mui/joy@5.0.0-alpha.65`
+
+#### Breaking changes
+
+- &#8203;<!-- 05 -->[Joy] Replace `Joy[Component]` classname with `Mui[Component]` classname for all slots of components (#35718) @hbjORbj
+
+  - Renames the classname prefix of all Joy UI components from `'Joy'` to `'Mui'`.
+
+  ```diff
+   <Button
+  -sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
+  +sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
+   />
+  ```
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
+
+- &#8203;<!-- 04 -->[Joy] Replace `row` prop with `orientation` prop in all Joy UI components (#35721) @hbjORbj
+
+  - Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components in Joy UI.
+
+  ```diff
+   <Card
+  -row
+  +orientation={"horizontal"}
+   />
+  ```
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-row-prop) to help with the migration.
+
+#### Changes
+
+- &#8203;<!-- 26 -->[Joy][Checkbox] Display correct icon in checkbox (#35943) @sai6855
+- &#8203;<!-- 09 -->[Joy] Add `Table` component (#35872) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes (#35953) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 28 -->[blog] Add RSS feed (#35777) @gorjiali
+- &#8203;<!-- 27 -->[blog] Prevent horizontal scroll on blog posts (#35948) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Add to codemod README about an added script (#35999) @hbjORbj
+- &#8203;<!-- 22 -->[docs] Add a warning about to clear the local storage when `defaultMode` changes (#35937) @ArthurPedroti
+- &#8203;<!-- 21 -->[docs] Fix Joy UI variables playground (#35950) @siriwatknp
+- &#8203;<!-- 20 -->[docs] Fix typos in base components docs (#35985) @HeVictor
+- &#8203;<!-- 19 -->[docs] Fix event's label reported to GA (#35930) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Standardize "no longer" / "not documented" callouts in Material UI docs (#35957) @samuelsycamore
+- &#8203;<!-- 17 -->[docs] Revise and expand Joy UI Checkbox doc (#35817) @samuelsycamore
+- &#8203;<!-- 16 -->[docs] Add docs notification to Date and Time Pickers revamped (#35935) @joserodolfofreitas
+- &#8203;<!-- 15 -->[docs] Update community theme builder to forked updated one (#35928) @idebeijer
+- &#8203;<!-- 14 -->[docs] Add Joy default theme viewer (#35554) @siriwatknp
+- &#8203;<!-- 13 -->[docs][joy] Fixed a typo in `Using icon libraries` page (#35989) @badalsaibo
+- &#8203;<!-- 12 -->[docs][joy] Removed Badge info from Chip docs (#35955) @Vivek-Prajapatii
+- &#8203;<!-- 11 -->[docs][system] Fix border color of Boxes in demos of `Configure the sx prop` page in dark mode (#35961) @ZeeshanTamboli
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Boolean props always have a default value of `false` in API docs (#35913) @hbjORbj
+- &#8203;<!-- 04 -->[core] Improve types for usePreviousProps (#35833) @sai6855
+- &#8203;<!-- 03 -->[website] Fix 404 link to store (#35973) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix 302 of diamond sponsor link @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix outdated YouTube link @oliviertassinari
+
+All contributors of this release in alphabetical order: @ArthurPedroti, @badalsaibo, @gorjiali, @hbjORbj, @HeVictor, @idebeijer, @joserodolfofreitas, @marktoman, @oliviertassinari, @sai6855, @SaidMarar, @samuelsycamore, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
+
 ## 5.11.6
 
 <!-- generated comparing v5.11.5..master -->
