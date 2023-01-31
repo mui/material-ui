@@ -34,17 +34,21 @@ export function createFilterOptions(config = {}) {
       input = stripDiacritics(input);
     }
 
-    const filteredOptions = options.filter((option) => {
-      let candidate = (stringify || getOptionLabel)(option);
-      if (ignoreCase) {
-        candidate = candidate.toLowerCase();
-      }
-      if (ignoreAccents) {
-        candidate = stripDiacritics(candidate);
-      }
+    const filteredOptions = !input
+      ? options
+      : options.filter((option) => {
+          let candidate = (stringify || getOptionLabel)(option);
+          if (ignoreCase) {
+            candidate = candidate.toLowerCase();
+          }
+          if (ignoreAccents) {
+            candidate = stripDiacritics(candidate);
+          }
 
-      return matchFrom === 'start' ? candidate.indexOf(input) === 0 : candidate.indexOf(input) > -1;
-    });
+          return matchFrom === 'start'
+            ? candidate.indexOf(input) === 0
+            : candidate.indexOf(input) > -1;
+        });
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
@@ -63,22 +67,29 @@ function findIndex(array, comp) {
 
 const defaultFilterOptions = createFilterOptions();
 
-// Number of options to jump in list box when pageup and pagedown keys are used.
+// Number of options to jump in list box when `Page Up` and `Page Down` keys are used.
 const pageSize = 5;
+
+const defaultIsActiveElementInListbox = (listboxRef) =>
+  listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
 export default function useAutocomplete(props) {
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    unstable_isActiveElementInListbox = defaultIsActiveElementInListbox,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    unstable_classNamePrefix = 'Mui',
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    disabled: disabledProp,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
+    disabled: disabledProp,
     disabledItemsFocusable = false,
     disableListWrap = false,
     filterOptions = defaultFilterOptions,
@@ -86,12 +97,12 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
-    isOptionEqualToValue = (option, value) => option === value,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    isOptionEqualToValue = (option, value) => option === value,
     multiple = false,
     onChange,
     onClose,
@@ -326,10 +337,12 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
+    const prev = listboxRef.current.querySelector(
+      `[role="option"].${unstable_classNamePrefix}-focused`,
+    );
     if (prev) {
-      prev.classList.remove('Mui-focused');
-      prev.classList.remove('Mui-focusVisible');
+      prev.classList.remove(`${unstable_classNamePrefix}-focused`);
+      prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -350,9 +363,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.classList.add('Mui-focused');
+    option.classList.add(`${unstable_classNamePrefix}-focused`);
     if (reason === 'keyboard') {
-      option.classList.add('Mui-focusVisible');
+      option.classList.add(`${unstable_classNamePrefix}-focusVisible`);
     }
 
     // Scroll active descendant into view.
@@ -543,7 +556,7 @@ export default function useAutocomplete(props) {
               `Instead, ${componentName} expects an input element.`,
               '',
               componentName === 'useAutocomplete'
-                ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+                ? 'Make sure you have bound getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
                 : 'Make sure you have customized the input component correctly.',
             ].join('\n'),
           );
@@ -612,7 +625,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              `MUI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
+              `MUI: The \`isOptionEqualToValue\` method of ${componentName} does not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
@@ -632,7 +645,7 @@ export default function useAutocomplete(props) {
     resetInputValue(event, newValue);
 
     handleValue(event, newValue, reason, { option });
-    if (!disableCloseOnSelect && !event.ctrlKey && !event.metaKey) {
+    if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
       handleClose(event, reason);
     }
 
@@ -846,6 +859,16 @@ export default function useAutocomplete(props) {
             });
           }
           break;
+        case 'Delete':
+          if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
+            const index = focusedTag;
+            const newValue = value.slice();
+            newValue.splice(index, 1);
+            handleValue(event, newValue, 'removeOption', {
+              option: value[index],
+            });
+          }
+          break;
         default:
       }
     }
@@ -861,10 +884,7 @@ export default function useAutocomplete(props) {
 
   const handleBlur = (event) => {
     // Ignore the event when using the scrollbar with IE11
-    if (
-      listboxRef.current !== null &&
-      listboxRef.current.parentElement.contains(document.activeElement)
-    ) {
+    if (unstable_isActiveElementInListbox(listboxRef)) {
       inputRef.current.focus();
       return;
     }

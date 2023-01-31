@@ -1,14 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled, Theme } from '../styles';
+import { styled, useThemeProps, Theme } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-import { SwitchProps } from './SwitchProps';
+import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
+import FormControlContext from '../FormControl/FormControlContext';
 
-const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: SwitchOwnerState) => {
   const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
 
   const slots = {
@@ -25,36 +28,33 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
     track: ['track', checked && 'checked'],
     action: ['action', focusVisible && 'focusVisible'],
     input: ['input'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getSwitchUtilityClass, {});
 };
 
 const switchColorVariables =
-  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const variant = ownerState.variant;
-    const color = ownerState.color;
+    const styles =
+      theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Switch-track-color':
-        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
+      '--Switch-track-background': styles.backgroundColor,
+      '--Switch-track-color': styles.color,
       '--Switch-track-borderColor':
-        variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
-          : 'currentColor',
-      '--Switch-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Switch-thumb-color':
-        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
+        ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
+      '--Switch-thumb-background': styles.color,
+      '--Switch-thumb-color': styles.backgroundColor,
     };
   };
 
-const SwitchRoot = styled('span', {
+const SwitchRoot = styled('div', {
   name: 'JoySwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
     '--variant-borderWidth':
@@ -82,10 +82,10 @@ const SwitchRoot = styled('span', {
       '--Switch-thumb-size': '24px',
       '--Switch-gap': '12px',
     }),
-    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+    '--internal-paddingBlock': `max((var(--Switch-track-height) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumb-size)) / 2, 0px)`,
+    '--Switch-thumb-radius': `max(var(--Switch-track-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Switch-track-radius) / 2))`,
     '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-    '--Switch-thumb-offset':
-      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
+    '--Switch-thumb-offset': `max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
       ...getColorVariables({ state: 'Hover' }),
@@ -117,7 +117,7 @@ const SwitchAction = styled('div', {
   name: 'JoySwitch',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: SwitchProps }>(({ theme }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ theme }) => ({
   borderRadius: 'var(--Switch-track-radius)',
   position: 'absolute',
   top: 0,
@@ -131,7 +131,7 @@ const SwitchInput = styled('input', {
   name: 'JoySwitch',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   margin: 0,
   height: '100%',
   width: '100%',
@@ -144,16 +144,17 @@ const SwitchTrack = styled('span', {
   name: 'JoySwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => ({
   position: 'relative',
   color: 'var(--Switch-track-color)',
   height: 'var(--Switch-track-height)',
   width: 'var(--Switch-track-width)',
   display: 'flex',
+  flexShrink: 0,
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
-  border: 'var(--variant-borderWidth) solid',
+  border: 'var(--variant-borderWidth, 0px) solid',
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
@@ -173,7 +174,7 @@ const SwitchThumb = styled('span', {
   name: 'JoySwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
   transition: 'left 0.2s',
   display: 'inline-flex',
@@ -198,7 +199,7 @@ const SwitchStartDecorator = styled('span', {
   name: 'JoySwitch',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
   marginInlineEnd: 'var(--Switch-gap)',
 });
@@ -207,20 +208,21 @@ const SwitchEndDecorator = styled('span', {
   name: 'JoySwitch',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
   marginInlineStart: 'var(--Switch-gap)',
 });
 
-const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(inProps, ref) {
-  const props = inProps;
+const Switch = React.forwardRef(function Switch(inProps, ref) {
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'JoySwitch',
+  });
+
   const {
     checked: checkedProp,
-    className,
-    component,
-    componentsProps = {},
     defaultChecked,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
     onBlur,
     onChange,
     onFocus,
@@ -228,13 +230,35 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     readOnly: readOnlyProp,
     required,
     id,
-    color,
+    color: colorProp,
     variant = 'solid',
-    size = 'md',
+    size: sizeProp = 'md',
     startDecorator,
     endDecorator,
-    ...otherProps
+    ...other
   } = props;
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   const useSwitchProps = {
     checked: checkedProp,
@@ -263,63 +287,91 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: SwitchRoot,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    additionalProps: {
+      'aria-hidden': true, // hide the decorator from assistive technology
+    },
+    className: classes.startDecorator,
+    elementType: SwitchStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    additionalProps: {
+      'aria-hidden': true, // hide the decorator from assistive technology
+    },
+    className: classes.endDecorator,
+    elementType: SwitchEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotTrack, trackProps] = useSlot('track', {
+    className: classes.track,
+    elementType: SwitchTrack,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotThumb, thumbProps] = useSlot('thumb', {
+    className: classes.thumb,
+    elementType: SwitchThumb,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotAction, actionProps] = useSlot('action', {
+    className: classes.action,
+    elementType: SwitchAction,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotInput, inputProps] = useSlot('input', {
+    additionalProps: {
+      id: id ?? formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
+    },
+    className: classes.input,
+    elementType: SwitchInput,
+    externalForwardedProps: other,
+    getSlotProps: getInputProps,
+    ownerState,
+  });
+
   return (
-    <SwitchRoot
-      ref={ref}
-      {...otherProps}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-    >
+    <SlotRoot {...rootProps}>
       {startDecorator && (
-        <SwitchStartDecorator
-          aria-hidden="true"
-          {...componentsProps.startDecorator}
-          ownerState={ownerState}
-          className={clsx(classes.input, componentsProps.startDecorator?.className)}
-        >
+        <SlotStartDecorator {...startDecoratorProps}>
           {typeof startDecorator === 'function' ? startDecorator(ownerState) : startDecorator}
-        </SwitchStartDecorator>
+        </SlotStartDecorator>
       )}
 
-      <SwitchTrack
-        {...componentsProps.track}
-        ownerState={ownerState}
-        className={clsx(classes.track, componentsProps.track?.className)}
-      >
-        {componentsProps.track?.children}
-        <SwitchThumb
-          {...componentsProps.thumb}
-          ownerState={ownerState}
-          className={clsx(classes.thumb, componentsProps.thumb?.className)}
-        />
-      </SwitchTrack>
-      <SwitchAction
-        {...componentsProps.action}
-        ownerState={ownerState}
-        className={clsx(classes.action, componentsProps.action?.className)}
-      >
-        <SwitchInput
-          id={id}
-          {...componentsProps.input}
-          ownerState={ownerState}
-          {...getInputProps()}
-          className={clsx(classes.input, componentsProps.input?.className)}
-        />
-      </SwitchAction>
+      <SlotTrack {...trackProps}>
+        {/* @ts-ignore */}
+        {trackProps?.children}
+        <SlotThumb {...thumbProps} />
+      </SlotTrack>
+      <SlotAction {...actionProps}>
+        <SlotInput {...inputProps} />
+      </SlotAction>
       {endDecorator && (
-        <SwitchEndDecorator
-          aria-hidden="false"
-          {...componentsProps.endDecorator}
-          ownerState={ownerState}
-          className={clsx(classes.input, componentsProps.endDecorator?.className)}
-        >
+        <SlotEndDecorator {...endDecoratorProps}>
           {typeof endDecorator === 'function' ? endDecorator(ownerState) : endDecorator}
-        </SwitchEndDecorator>
+        </SlotEndDecorator>
       )}
-    </SwitchRoot>
+    </SlotRoot>
   );
-});
+}) as OverridableComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -335,10 +387,6 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
@@ -346,23 +394,6 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the Switch.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    action: PropTypes.object,
-    endDecorator: PropTypes.object,
-    input: PropTypes.object,
-    startDecorator: PropTypes.object,
-    thumb: PropTypes.object,
-    track: PropTypes.object,
-  }),
   /**
    * The default checked state. Use when the component is not controlled.
    */

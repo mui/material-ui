@@ -103,7 +103,7 @@ export default function NestedModal() {
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
-        components={{ Backdrop }}
+        slots={{ backdrop: Backdrop }}
       >
         <Box sx={style}>
           <h2 id="parent-modal-title">Text in a modal</h2>

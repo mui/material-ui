@@ -1,16 +1,16 @@
 ---
 product: material-ui
-title: Componente React para Botões de Alternância
+title: Toggle button React component
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: toggle button'
-materialDesign: 'https://material.io/components/buttons#toggle-button'
+materialDesign: 'https://m2.material.io/components/buttons#toggle-button'
 ---
 
-# Botões de alternância
+# Toggle button
 
 <p class="description">Os botões de alternância podem ser usados para agrupar opções relacionadas.</p>
 
-Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um contêiner em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
+Para enfatizar grupos de [botões de alternância](https://m2.material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um contêiner em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "O conteúdo do componente.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "color": "The color of the button when it is in an active state.",
+    "color": "The color of the button when it is in an active state. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
@@ -12,7 +12,7 @@
     "onClick": "Callback fired when the button is clicked.<br><br><strong>Signature:</strong><br><code>function(event: React.MouseEvent&lt;HTMLElement&gt;, value: any) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> of the selected button.",
     "selected": "If <code>true</code>, the button is rendered in an active state.",
     "size": "The size of the button. The prop defaults to the value inherited from the parent ToggleButtonGroup component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value to associate with the button when selected in a ToggleButtonGroup."
   },
   "classDescriptions": {

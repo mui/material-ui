@@ -2,8 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import {
-  describeConformance,
+  describeConformanceUnstyled,
   act,
+  createMount,
   createRenderer,
   fireEvent,
   strictModeDoubleLoggingSupressed,
@@ -12,17 +13,23 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
+  const mount = createMount;
 
-  describeConformance(<TextareaAutosize />, () => ({
+  describeConformanceUnstyled(<TextareaAutosize />, () => ({
+    render,
+    mount,
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
+    slots: {},
     skip: [
-      'rootClass',
+      // doesn't have slots, so these tests are irrelevant:
       'componentProp',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
+      'mergeClassName',
+      'ownerStatePropagation',
+      'propsSpread',
+      'refForwarding',
+      'rootClass',
+      'slotsProp',
     ],
   }));
 

@@ -14,15 +14,15 @@ export default function OverlayCheckbox() {
         '& > div': { p: 2, boxShadow: 'sm', borderRadius: 'xs', display: 'flex' },
       }}
     >
-      <Sheet variant="outlined">
-        <Checkbox overlay label="It works with any parent" />
+      <Sheet variant="outlined" sx={{ bgcolor: 'background.body' }}>
+        <Checkbox overlay label="Focus on me" />
       </Sheet>
-      <Sheet variant="outlined">
+      <Sheet variant="outlined" sx={{ bgcolor: 'background.body' }}>
         <Checkbox
-          label="Focus outline covers the parent!"
+          label="My parent receives focus"
           overlay
           // Force the outline to appear in the demo. Usually, you don't need this in your project.
-          componentsProps={{ action: { className: checkboxClasses.focusVisible } }}
+          slotProps={{ action: { className: checkboxClasses.focusVisible } }}
         />
       </Sheet>
     </Box>

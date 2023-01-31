@@ -20,13 +20,16 @@ export default function TemplateHero() {
           <Typography
             fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
+            sx={(theme) => ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'start' },
               '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+              color: 'primary.600',
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
             <IconImage name="product-templates" /> Templates
           </Typography>

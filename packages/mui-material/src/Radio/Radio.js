@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
@@ -36,24 +37,26 @@ const RadioRoot = styled(SwitchBase, {
   },
 })(({ theme, ownerState }) => ({
   color: (theme.vars || theme).palette.text.secondary,
-  '&:hover': {
-    backgroundColor: theme.vars
-      ? `rgba(${
-          ownerState.color === 'default'
-            ? theme.vars.palette.action.activeChannel
-            : theme.vars.palette[ownerState.color].mainChannel
-        } / ${theme.vars.palette.action.hoverOpacity})`
-      : alpha(
-          ownerState.color === 'default'
-            ? theme.palette.action.active
-            : theme.palette[ownerState.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+  ...(!ownerState.disableRipple && {
+    '&:hover': {
+      backgroundColor: theme.vars
+        ? `rgba(${
+            ownerState.color === 'default'
+              ? theme.vars.palette.action.activeChannel
+              : theme.vars.palette[ownerState.color].mainChannel
+          } / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(
+            ownerState.color === 'default'
+              ? theme.palette.action.active
+              : theme.palette[ownerState.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
+  }),
   ...(ownerState.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
       color: (theme.vars || theme).palette[ownerState.color].main,
@@ -86,6 +89,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
+    className,
     ...other
   } = props;
   const ownerState = {
@@ -123,6 +127,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       checked={checked}
       onChange={onChange}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
     />
   );
@@ -147,6 +152,10 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
@@ -162,6 +171,7 @@ Radio.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -195,6 +205,7 @@ Radio.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**

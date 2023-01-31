@@ -5,7 +5,6 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiLink from '@mui/material/Link';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,6 +19,7 @@ import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
+import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
@@ -90,34 +90,6 @@ const RootDiv = styled('div')(({ theme }) => {
     display: 'flex',
     background: theme.palette.mode === 'dark' && theme.palette.primaryDark[900],
     // TODO: Should be handled by the main component
-    '& #main-content': {
-      outline: 0,
-    },
-  };
-});
-
-const SkipLink = styled(MuiLink)(({ theme }) => {
-  return {
-    position: 'fixed',
-    padding: theme.spacing(1),
-    background: theme.palette.background.paper,
-    transition: theme.transitions.create('top', {
-      easing: theme.transitions.easing.easeIn,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    left: theme.spacing(2),
-    top: theme.spacing(-10),
-    zIndex: theme.zIndex.tooltip + 1,
-    '&:focus': {
-      top: theme.spacing(2),
-      transition: theme.transitions.create('top', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    '@media print': {
-      display: 'none',
-    },
   };
 });
 
@@ -136,7 +108,7 @@ const StyledAppBar = styled(AppBar, {
       },
     }),
     boxShadow: 'none',
-    backdropFilter: 'blur(20px)',
+    backdropFilter: 'blur(8px)',
     borderStyle: 'solid',
     borderColor:
       theme.palette.mode === 'dark'
@@ -144,10 +116,10 @@ const StyledAppBar = styled(AppBar, {
         : theme.palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    background:
+    backgroundColor:
       theme.palette.mode === 'dark'
         ? alpha(theme.palette.primaryDark[900], 0.7)
-        : 'rgba(255,255,255,0.7)',
+        : 'rgba(255,255,255,0.8)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
   };
 });
@@ -181,7 +153,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   };
 });
 
-function AppFrame(props) {
+export default function AppFrame(props) {
   const { children, disableDrawer = false, className } = props;
   const t = useTranslate();
 
@@ -196,9 +168,7 @@ function AppFrame(props) {
     <RootDiv className={className}>
       <NextNProgressBar />
       <CssBaseline />
-      <SkipLink color="secondary" href="#main-content">
-        {t('appFrame.skipToContent')}
-      </SkipLink>
+      <SkipLink />
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
         <GlobalStyles
@@ -219,7 +189,7 @@ function AppFrame(props) {
           >
             <SvgHamburgerMenu />
           </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */>
+          <NextLink href="/" passHref /* onClick={onClose} */ legacyBehavior>
             <Box
               component="a"
               aria-label={t('goToHome')}
@@ -229,7 +199,7 @@ function AppFrame(props) {
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.3}>
+          <Stack direction="row" spacing="10px">
             <AppFrameBanner />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
@@ -269,5 +239,3 @@ AppFrame.propTypes = {
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,
 };
-
-export default AppFrame;

@@ -32,7 +32,7 @@ export function getInputUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInput', slot);
 }
 
-const inputBaseClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput', [
+const inputUnstyledClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput', [
   'root',
   'formControl',
   'focused',
@@ -46,4 +46,4 @@ const inputBaseClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput'
   'adornedEnd',
 ]);
 
-export default inputBaseClasses;
+export default inputUnstyledClasses;

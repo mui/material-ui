@@ -158,6 +158,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }, []);
 
+  const anchorElement = displayNode?.parentNode;
+
   React.useImperativeHandle(
     handleRef,
     () => ({
@@ -173,7 +175,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
     if (defaultOpen && openState && displayNode && !isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -215,7 +217,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       setOpenState(open);
     }
   };
@@ -401,7 +403,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         return selected;
       }
       const firstSelectableElement = arr.find(
-        (item) => item.props.value !== undefined && item.props.disabled !== true,
+        (item) => item?.props?.value !== undefined && item.props.disabled !== true,
       );
       if (child === firstSelectableElement) {
         return true;
@@ -426,7 +428,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       },
       role: 'option',
       selected:
-        arr[0].props.value === undefined || arr[0].props.disabled === true
+        arr[0]?.props?.value === undefined || arr[0]?.props?.disabled === true
           ? isFirstSelectableElement()
           : selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
@@ -479,7 +481,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let menuMinWidth = menuMinWidthState;
 
   if (!autoWidth && isOpenControlled && displayNode) {
-    menuMinWidth = displayNode.clientWidth;
+    menuMinWidth = anchorElement.clientWidth;
   }
 
   let tabIndex;
@@ -518,7 +520,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onFocus={onFocus}
         {...SelectDisplayProps}
         ownerState={ownerState}
-        className={clsx(classes.select, className, SelectDisplayProps.className)}
+        className={clsx(SelectDisplayProps.className, classes.select, className)}
         // The id is required for proper a11y
         id={buttonId}
       >
@@ -546,7 +548,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu
         id={`menu-${name || ''}`}
-        anchorEl={displayNode}
+        anchorEl={anchorElement}
         open={open}
         onClose={handleClose}
         anchorOrigin={{

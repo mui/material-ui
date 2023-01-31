@@ -7,10 +7,10 @@ describe('useId', () => {
   const { render, renderToString } = createRenderer();
 
   it('returns the provided ID', () => {
-    const TestComponent = ({ id: idProp }) => {
+    function TestComponent({ id: idProp }) {
       const id = useId(idProp);
       return <span data-testid="target" id={id} />;
-    };
+    }
     const { hydrate } = renderToString(<TestComponent id="some-id" />);
     const { setProps } = hydrate();
 
@@ -22,10 +22,10 @@ describe('useId', () => {
   });
 
   it("generates an ID if one isn't provided", () => {
-    const TestComponent = ({ id: idProp }) => {
+    function TestComponent({ id: idProp }) {
       const id = useId(idProp);
       return <span data-testid="target" id={id} />;
-    };
+    }
     const { hydrate } = renderToString(<TestComponent />);
     const { setProps } = hydrate();
 
@@ -86,10 +86,10 @@ describe('useId', () => {
     if (React.useId === undefined) {
       this.skip();
     }
-    const TestComponent = () => {
+    function TestComponent() {
       const id = useId();
       return <span data-testid="target" id={id} />;
-    };
+    }
     renderToString(<TestComponent />);
 
     expect(screen.getByTestId('target').id).not.to.equal('');

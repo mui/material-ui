@@ -10,10 +10,10 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "16" },
-    "hideBackdrop": { "type": { "name": "bool" } },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
     "ModalProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "SlideProps": { "type": { "name": "object" } },
     "sx": {
@@ -60,6 +60,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false
 }

@@ -43,6 +43,7 @@ import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
 import { GridProps } from '../Grid';
+import { Grid2Props } from '../Unstable_Grid2';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { ImageListProps } from '../ImageList';
@@ -167,6 +168,7 @@ export interface ComponentsPropsList {
   MuiFormHelperText: FormHelperTextProps;
   MuiFormLabel: FormLabelProps;
   MuiGrid: GridProps;
+  MuiGrid2: Grid2Props;
   MuiImageList: ImageListProps;
   MuiImageListItem: ImageListItemProps;
   MuiImageListItemBar: ImageListItemBarProps;

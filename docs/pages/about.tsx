@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,42 +20,41 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 interface Profile {
-  /**
-   * image url
-   */
-  src: string;
   name: string;
   /**
-   * Role, what are you workin on?
+   * Role, what are you working on?
    */
   title: string;
   /**
-   * Country wher you live in, ISO 3166-1.
+   * Country where you live in, ISO 3166-1.
    */
   locationCountry: string; // https://flagpedia.net/download/api
   /**
-   * Lives in
+   * Image URL.
+   */
+  src?: string;
+  /**
+   * Lives in.
    */
   location?: string;
   /**
-   * Short summary about you
+   * Short summary about you.
    */
   about?: string;
   github?: string;
   twitter?: string;
 }
 
-const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
+function Person(props: Profile & { sx?: PaperProps['sx'] }) {
   return (
     <Paper variant="outlined" sx={{ p: 2, height: '100%', ...props.sx }}>
       <Box
@@ -93,17 +91,19 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               }}
               src={props.src}
               alt={props.name}
-              {...(props.src.startsWith('https://avatars.githubusercontent.com') && {
+              {...(props.src?.startsWith('https://avatars.githubusercontent.com') && {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
-              sx={{
+              sx={(theme) => ({
                 width: 70,
                 height: 70,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primary.700' : 'primary.100',
                 borderRadius: 1,
-              }}
+                backgroundColor: 'primary.100',
+                ...theme.applyDarkStyles({
+                  backgroundColor: 'primary.700',
+                }),
+              })}
             />
             <Box
               sx={{
@@ -165,11 +165,13 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
       </Typography>
       {props.about && (
         <Divider
-          sx={{
+          sx={(theme) => ({
             my: 1,
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
-          }}
+            borderColor: 'grey.100',
+            ...theme.applyDarkStyles({
+              borderColor: 'primaryDark.400',
+            }),
+          })}
         />
       )}
       {props.about && (
@@ -179,9 +181,9 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
       )}
     </Paper>
   );
-};
+}
 
-const Widget = ({
+function Widget({
   children,
   title,
   icon,
@@ -189,7 +191,7 @@ const Widget = ({
   children: React.ReactNode;
   title: string;
   icon: React.ReactElement;
-}) => {
+}) {
   return (
     <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
@@ -201,7 +203,7 @@ const Widget = ({
       {children}
     </Paper>
   );
-};
+}
 
 const teamMembers: Array<Profile> = [
   {
@@ -227,7 +229,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'Skopje, North Macedonia',
     locationCountry: 'mk',
     about: 'I do karate 🥋 and read 📚. A lot!',
@@ -237,9 +239,9 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.png',
-    title: 'MUI X engineer',
-    location: 'Amsterdam, Netherlands',
-    locationCountry: 'nl',
+    title: 'MUI X Engineer',
+    location: 'Sofia, Bulgaria',
+    locationCountry: 'bg',
     about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
     twitter: 'danail_h',
     github: 'DanailH',
@@ -247,7 +249,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.png',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Esteio, Brazil',
     locationCountry: 'br',
     about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
@@ -256,7 +258,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'Silesia, Poland',
     locationCountry: 'pl',
     about: 'Motorcyclist, gamer, and coder (UI and more!)',
@@ -266,7 +268,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'Bangkok, Thailand',
     locationCountry: 'th',
     about: 'UI Lover and ⛷ skiing newbie.',
@@ -276,7 +278,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danilo Leal',
     src: '/static/branding/about/danilo.png',
-    title: 'Lead designer',
+    title: 'Lead Designer',
     location: 'São Paulo, Brazil',
     locationCountry: 'br',
     about: 'Music production, hiking, and traveling!',
@@ -286,7 +288,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Flavien Delangle',
     src: '/static/branding/about/flavien.png',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
     locationCountry: 'fr',
@@ -295,7 +297,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Benny Joo',
     src: '/static/branding/about/benny.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'London, UK',
     locationCountry: 'gb',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
@@ -304,7 +306,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Nancy, France',
     locationCountry: 'fr',
     about: 'Love hacking and cycling 🚴‍♂️',
@@ -314,7 +316,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'MUI Toolpad engineer',
+    title: 'MUI Toolpad Engineer',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -324,7 +326,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'MUI Toolpad engineer',
+    title: 'MUI Toolpad Engineer',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
     about: 'Always curious, I enjoy cinema and hiking',
@@ -353,7 +355,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/andrii.png',
     name: 'Andrii Cherniavskyi',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Wrocław, Poland',
     locationCountry: 'pl',
     about: 'Love playing music - electric and bass guitar 🎸',
@@ -373,7 +375,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/pedro.png',
     name: 'Pedro Ferreira',
-    title: 'MUI Toolpad engineer',
+    title: 'MUI Toolpad Engineer',
     location: 'Porto, Portugal',
     locationCountry: 'pt',
     about: 'Passionate about videogames and football',
@@ -387,6 +389,50 @@ const teamMembers: Array<Profile> = [
     locationCountry: 'us',
     about: '🎨 Art & design, traveling, and asking questions',
     github: 'gerdadesign',
+  },
+  {
+    src: '/static/branding/about/vytautas.png',
+    name: 'Vytautas Butkus',
+    title: 'MUI Toolpad Engineering Manager',
+    location: 'Vilnius, Lithuania',
+    locationCountry: 'lt',
+    about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
+    github: 'bytasv',
+  },
+  {
+    src: '/static/branding/about/greg.png',
+    name: 'Greg Abaoag',
+    title: 'Executive Assistant',
+    location: 'Philippines',
+    locationCountry: 'ph',
+    about: 'Loves DIY, singing and learning',
+    github: 'gzrae',
+  },
+  {
+    name: 'Tina Deinekhovska',
+    title: 'Business Administrator',
+    location: 'London, UK',
+    locationCountry: 'gb',
+    about: 'Empathic art-lover, incurable optimist keen on biking, gardening',
+  },
+  {
+    src: '/static/branding/about/lukas.png',
+    name: 'Lukas Tyla',
+    title: 'MUI X Engineer',
+    location: 'Vilnius, Lithuania',
+    locationCountry: 'lt',
+    about: 'Learning and experimenting 📚',
+    github: 'LukasTy',
+  },
+  {
+    src: '/static/branding/about/bilal.png',
+    name: 'Bilal Shafi',
+    title: 'MUI X Engineer',
+    location: 'Islamabad, Pakistan',
+    locationCountry: 'pk',
+    about: 'DIY 🛠️, Learning 📚 and 🏓',
+    twitter: 'MBilalShafi',
+    github: 'MBilalShafi',
   },
 ];
 
@@ -564,7 +610,12 @@ function AboutContent() {
         <References companies={CORE_CUSTOMERS} />
       </Container>
       <Box
-        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+        sx={(theme) => ({
+          bgcolor: 'grey.50',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+          }),
+        })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={4}>
@@ -630,6 +681,7 @@ function AboutContent() {
           color="primary"
           fontWeight="extraBold"
           sx={{ mb: 1 }}
+          id="company"
         >
           Company
         </Typography>
@@ -646,55 +698,53 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <MuiThemeProvider theme={brandingDarkTheme}>
-        <Box sx={{ bgcolor: 'primaryDark.700' }}>
-          <Container sx={{ py: { xs: 4, sm: 8 } }}>
-            <Typography
-              component="h3"
-              variant="h5"
-              color="primary.400"
-              fontWeight="extraBold"
-              sx={{ mb: 1 }}
-            >
-              Community contributors
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-              Some members of the community have so enriched it, that they deserve special mention.
-            </Typography>
-            <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
-              <Grid container spacing={2}>
-                {contributors.map((profile) => (
-                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-            <Typography
-              component="h3"
-              variant="h5"
-              color="warning.500"
-              fontWeight="extraBold"
-              sx={{ mb: 1 }}
-            >
-              Community emeriti
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
-              We honor some no-longer-active core team members who have made valuable contributions
-              in the past. They advise us from time to time.
-            </Typography>
-            <Box sx={{ pt: 2 }}>
-              <Grid container spacing={2}>
-                {emeriti.map((profile) => (
-                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
-                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          </Container>
-        </Box>
-      </MuiThemeProvider>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+        <Container sx={{ py: { xs: 4, sm: 8 } }}>
+          <Typography
+            component="h3"
+            variant="h5"
+            color="primary.400"
+            fontWeight="extraBold"
+            sx={{ mb: 1 }}
+          >
+            Community contributors
+          </Typography>
+          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+            Some members of the community have so enriched it, that they deserve special mention.
+          </Typography>
+          <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
+            <Grid container spacing={2}>
+              {contributors.map((profile) => (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+          <Typography
+            component="h3"
+            variant="h5"
+            color="warning.500"
+            fontWeight="extraBold"
+            sx={{ mb: 1 }}
+          >
+            Community emeriti
+          </Typography>
+          <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+            We honor some no-longer-active core team members who have made valuable contributions in
+            the past. They advise us from time to time.
+          </Typography>
+          <Box sx={{ pt: 2 }}>
+            <Grid container spacing={2}>
+              {emeriti.map((profile) => (
+                <Grid key={profile.name} item xs={12} sm={6} md={3}>
+                  <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
           How can you support us?
@@ -764,7 +814,7 @@ function AboutContent() {
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
+                  <Link href="https://stackoverflow.com/questions/tagged/mui">Stack Overflow</Link>.
                 </li>
               </Box>
               <Button
@@ -815,17 +865,17 @@ function AboutContent() {
 
 export default function About() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="About us - MUI"
-        description="MUI (formerly Material UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <AboutContent />
       </main>
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }

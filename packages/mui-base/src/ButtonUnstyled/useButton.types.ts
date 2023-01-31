@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface UseButtonRootSlotOwnProps {
+export interface UseButtonRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
   disabled?: boolean;
   tabIndex?: number;
@@ -12,12 +12,10 @@ interface UseButtonRootSlotOwnProps {
   onKeyUp: React.KeyboardEventHandler;
   onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  onMouseUp: React.MouseEventHandler;
   ref: React.Ref<any>;
 }
 
-export type UseButtonRootSlotProps<TOther = {}> = Omit<TOther, keyof UseButtonRootSlotOwnProps> &
-  UseButtonRootSlotOwnProps;
+export type UseButtonRootSlotProps<TOther = {}> = TOther & UseButtonRootSlotOwnProps;
 
 export interface UseButtonParameters {
   /**

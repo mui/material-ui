@@ -6,9 +6,9 @@ const Player = React.forwardRef(function Player(
   props: { className?: string },
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { className, ...other } = props;
+  const { className = '', ...other } = props;
   return (
-    <div className={`max-w-[600px] max-h-[240px] ${className}`} {...other} ref={ref}>
+    <div className={`max-w-[600px] max-h-[240px] m-auto ${className}`} {...other} ref={ref}>
       <div className="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 border-b rounded-t-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8">
         <div className="flex items-center space-x-4">
           <img

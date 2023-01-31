@@ -117,26 +117,23 @@ const Label = styled('span')({
 
 `sx` helps developers write less code and be more productive once they are familiar with the API. With the callback support in `styleOverrides`, it is now possible to use an `sx`-like syntax in global theme overrides.
 
-All you need is to use the [`experimental_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function. In the following example, I use `sx` to theme the `Chip` component:
+All you need is to use the [`unstable_sx`](/system/styled/#how-can-i-use-the-sx-syntax-with-the-styled-utility) function from the `theme`. In the following example, the `sx` is used to style the `Chip` component:
 
 ```jsx
-import {
-  ThemeProvider,
-  createTheme,
-  experimental_sx as sx,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 <ThemeProvider
   theme={createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
-          root: sx({
-            px: '12px', // shorthand for padding-left & right
-            py: '6px', // shorthand for padding-top & bottom
-            fontWeight: 500,
-            borderRadius: '8px',
-          }),
+          root: ({ theme }) =>
+            theme.unstable_sx({
+              px: '12px', // shorthand for padding-left & right
+              py: '6px', // shorthand for padding-top & bottom
+              fontWeight: 500,
+              borderRadius: '8px',
+            }),
           label: {
             padding: 0,
           },
@@ -159,19 +156,19 @@ An array can be used as a return type to make the code easier to add/remove cond
 ```js
 // The <ThemeProvider> is omitted for readability.
 {
-  root: ({ ownerState }) => [
-    sx({
+  root: ({ ownerState, theme }) => [
+    theme.unstable_sx({
       px: '12px',
       py: '6px',
       fontWeight: 500,
       borderRadius: '8px',
     }),
     ownerState.variant === 'outlined' && ownerState.color === 'default' &&
-      sx({
+      theme.unstable_sx({
         borderColor: 'text.secondary',
       }),
     ownerState.size === 'small' &&
-      sx({
+      theme.unstable_sx({
         fontSize: { xs: '0.875rem', sm: '0.75rem' },
       })
   ],
@@ -189,6 +186,6 @@ To get more updates like this in the future, **subscribe to our newsletter** at 
 ## Read more
 
 - [Component theming](/material-ui/customization/theme-components/)
-- [All supported shorthands in `sx`](/system/the-sx-prop/#theme-aware-properties)
-- [`sx` performance tradeoff](/system/basics/#performance-tradeoff)
+- [All supported shorthands in `sx`](/system/getting-started/the-sx-prop/#theme-aware-properties)
+- [`sx` performance tradeoff](/system/getting-started/usage/#performance-tradeoffs)
 - [`sx` with `styled`](/system/styled/#difference-with-the-sx-prop)

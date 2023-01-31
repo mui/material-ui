@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { useTheme, alpha } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
@@ -22,38 +22,40 @@ import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 
-const ActionArea = (props: ButtonBaseProps) => (
-  <ButtonBase
-    {...props}
-    sx={{
-      width: 100,
-      height: 100,
-      borderRadius: '50%',
-      transition: '0.2s',
-      '&.Mui-disabled': {
-        opacity: 0,
-      },
-      '& > svg': { transition: '0.2s' },
-      backdropFilter: 'blur(4px)',
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primary[500], 0.5)
-          : alpha(theme.palette.primaryDark[500], 0.5),
-      '&:hover, &:focus': {
-        '& > svg': { fontSize: 28 },
-      },
-      position: 'absolute',
-      top: 'calc(50% - 50px)',
-      color: '#fff',
-      p: 1.5,
-      ...props.sx,
-    }}
-  />
-);
+function ActionArea(props: ButtonBaseProps) {
+  return (
+    <ButtonBase
+      {...props}
+      sx={[
+        (theme) => ({
+          width: 100,
+          height: 100,
+          borderRadius: '50%',
+          transition: '0.2s',
+          '&.Mui-disabled': {
+            opacity: 0,
+          },
+          '& > svg': { transition: '0.2s' },
+          backdropFilter: 'blur(4px)',
+          bgcolor: alpha(theme.palette.primaryDark[500], 0.5),
+          '&:hover, &:focus': {
+            '& > svg': { fontSize: 28 },
+          },
+          position: 'absolute',
+          top: 'calc(50% - 50px)',
+          color: '#fff',
+          p: 1.5,
+          ...theme.applyDarkStyles({
+            bgcolor: alpha(theme.palette.primary[500], 0.5),
+          }),
+        }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    />
+  );
+}
 
 export default function TemplateDemo() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(0);
   const icons = {
@@ -61,50 +63,74 @@ export default function TemplateDemo() {
     [DEMOS[1]]: <Layers fontSize="small" />,
     [DEMOS[2]]: <ShoppingBag fontSize="small" />,
   };
+
   const TEMPLATES = {
     [DEMOS[0]]: [
       {
-        name: 'Flexy - React Material Dashboard (CRA + Next.js)',
-        src: `/static/branding/store-templates/template-${mode}4.jpeg`,
-        href: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+        name: 'Devias Kit Pro - Client & Admin Dashboard',
+        src: {
+          light: '/static/branding/store-templates/template-4light.jpg',
+          dark: '/static/branding/store-templates/template-4dark.jpg',
+        },
+        href: 'https://mui.com/store/items/devias-kit-pro/',
       },
       {
         name: 'Minimal - Client & Admin Dashboard',
-        src: `/static/branding/store-templates/template-${mode}1.jpeg`,
+        src: {
+          light: '/static/branding/store-templates/template-1light.jpg',
+          dark: '/static/branding/store-templates/template-1dark.jpg',
+        },
         href: 'https://mui.com/store/items/minimal-dashboard/',
       },
       {
         name: 'Berry - React Material Admin Dashboard Template',
-        src: `/static/branding/store-templates/template-${mode}5.jpeg`,
+        src: {
+          light: '/static/branding/store-templates/template-5light.jpg',
+          dark: '/static/branding/store-templates/template-5dark.jpg',
+        },
         href: 'https://mui.com/store/items/berry-react-material-admin/',
       },
       {
         name: 'Mira Pro - React Material Admin Dashboard',
-        src: `/static/branding/store-templates/template-${mode}3.jpeg`,
+        src: {
+          light: '/static/branding/store-templates/template-3light.jpg',
+          dark: '/static/branding/store-templates/template-3dark.jpg',
+        },
         href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
       },
     ],
     [DEMOS[1]]: [
       {
         name: 'theFront - Multipurpose Template + UI Kit',
-        src: `/static/branding/store-templates/template-${mode}2.jpeg`,
+        src: {
+          light: '/static/branding/store-templates/template-2light.jpg',
+          dark: '/static/branding/store-templates/template-2dark.jpg',
+        },
         href: 'https://mui.com/store/items/the-front-landing-page/',
       },
       {
         name: 'Webbee - Multipurpose landing page UI Kit',
-        src: `/static/branding/store-templates/template-${mode}6.jpeg`,
+        src: {
+          light: '/static/branding/store-templates/template-6light.jpg',
+          dark: '/static/branding/store-templates/template-6dark.jpg',
+        },
         href: 'https://mui.com/store/items/webbee-landing-page/',
       },
     ],
     [DEMOS[2]]: [
       {
         name: 'Bazar Pro - Multipurpose React Ecommerce Template',
-        src: `/static/branding/store-templates/template-bazar-${mode}.jpeg`,
+        src: {
+          light: '/static/branding/store-templates/template-bazar-light.jpg',
+          dark: '/static/branding/store-templates/template-bazar-dark.jpg',
+        },
         href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
       },
     ],
   };
+
   const templates = TEMPLATES[demo];
+
   return (
     <Section bg="comfort">
       <Grid container spacing={2} alignItems="center">
@@ -175,20 +201,21 @@ export default function TemplateDemo() {
                   {templates.map((item, index) => (
                     <Box
                       key={item.name}
-                      sx={{
+                      sx={(theme) => ({
                         borderRadius: 1,
                         height: { xs: 200, sm: 240 },
-                        background: `url(${item.src})`,
+                        backgroundImage: `url(${item.src.light})`,
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
-                        bgcolor: 'grey.400',
-                        boxShadow:
-                          mode === 'dark'
-                            ? '0px 4px 10px rgba(0, 0, 0, 0.6)'
-                            : '0px 4px 10px rgba(61, 71, 82, 0.25)',
+                        bgcolor: 'background.paper',
+                        boxShadow: '0px 4px 10px rgba(61, 71, 82, 0.25)',
                         transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
                         transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
-                      }}
+                        ...theme.applyDarkStyles({
+                          backgroundImage: `url(${item.src.dark})`,
+                          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.6)',
+                        }),
+                      })}
                     >
                       <Link
                         href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}

@@ -100,14 +100,14 @@ Example transformation:
  }
 ```
 
-:::warning
+:::success
 You should run this codemod on a small chunk of files and then check the changes before continuing, because in some cases you might need to adjust the code after the transformation—this codemod won't cover all cases.
 :::
 
 #### Manual
 
 We recommend `sx` API over `styled` for creating responsive styles or overriding minor CSS.
-[Read more about `sx` here](/system/the-sx-prop/).
+[Read more about `sx` here](/system/getting-started/the-sx-prop/).
 
 ```diff
  import Chip from '@mui/material/Chip';
@@ -183,7 +183,7 @@ For example:
  }
 ```
 
-:::warning
+:::success
 [This jss-to-styled tool](https://siriwatk.dev/tool/jss-to-styled) helps convert JSS to multiple styled components without increasing CSS specificity.
 
 This tool is _not_ maintained by MUI.
@@ -210,29 +210,6 @@ With yarn:
 
 ```sh
 yarn add tss-react
-```
-
-You will also need to edit your providers:
-
-```diff
- import { render } from 'react-dom';
--import { StylesProvider } from '@material-ui/core/styles';
-+import createCache from '@emotion/cache';
-+import { CacheProvider } from "@emotion/react";
-
-+export const muiCache = createCache({
-+  'key': 'mui',
-+  'prepend': true,
-+});
-
- render(
--  <StylesProvider injectFirst>
-+  <CacheProvider value={muiCache}>
-     <Root />
--  </StylesProvider>,
-+  </CacheProvider>,
-   document.getElementById('root')
- );
 ```
 
 #### Codemod
@@ -330,11 +307,11 @@ the transformation would look like this:
  export default App;
 ```
 
-:::warning
+:::error
 When using JavaScript (rather than TypeScript), remove `<void, 'child' | 'small'>`.
 :::
 
-The following is a comprehensive example using the `$` syntax, `useStyles()` parameters, merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)) and [an explicit name for the stylesheet](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+The following is a comprehensive example using the `$` syntax, `useStyles()` parameters, merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)) and [an explicit name for the stylesheet](https://docs.tss-react.dev/api/makestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 ```diff
 -import clsx from 'clsx';
@@ -388,11 +365,11 @@ The following is a comprehensive example using the `$` syntax, `useStyles()` par
          The Background take the primary theme color when the mouse hovers the parent.
          I am smaller than the other child.
        </div>
-    </div>
-  );
-}
+     </div>
+   );
+ }
 
-export default App;
+ export default App;
 ```
 
 After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that the codemod could not handle reliably.
@@ -412,7 +389,7 @@ may be necessary—see [this issue comment](https://github.com/mui/material-ui/p
 
 To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
 
-See [this tss-react doc](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides) for details.
+See [this tss-react doc](https://docs.tss-react.dev/api/makestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides) for details.
 
 You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more than one item.
 
@@ -420,7 +397,7 @@ Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com
 
 #### withStyles()
 
-`tss-react` also features a [type-safe implementation](https://docs.tss-react.dev/page-1/withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
+`tss-react` also features a [type-safe implementation](https://docs.tss-react.dev/api/withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
 
 :::info
 The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
@@ -458,7 +435,7 @@ The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
 
 [Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) are supported out of the box by TSS.
 
-Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes/#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles/#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes/#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/api/makestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 

@@ -1,6 +1,6 @@
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
-const { danger, markdown } = require('danger');
+const { danger, markdown, message } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
@@ -167,6 +167,9 @@ async function reportBundleSize() {
 }
 
 async function run() {
+  const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
+  message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
+
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
       prepareBundleSizeReport();

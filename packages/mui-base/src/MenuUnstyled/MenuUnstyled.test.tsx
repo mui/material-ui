@@ -34,7 +34,7 @@ describe('MenuUnstyled', () => {
         expectedClassName: menuUnstyledClasses.listbox,
       },
     },
-    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'componentsProp'],
+    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],
   }));
 
   describe('keyboard navigation', () => {

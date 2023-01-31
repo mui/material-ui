@@ -1,32 +1,32 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "children": "组件的内容",
+    "classes": "覆盖或扩展应用于组件的样式。请参阅下文<a href=\"#css\">CSS API</a> 了解更多详情。",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used for the list and list items. The prop is available to descendant components as the <code>dense</code> context.",
-    "disablePadding": "If <code>true</code>, vertical padding is removed from the list.",
-    "subheader": "The content of the subheader, normally <code>ListSubheader</code>.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
+    "dense": "如果 <code>true</code>，为键盘和鼠标输入设计的紧凑垂直填充将用于列表和列表项。 因为 <code>dense</code> 上下文，后代组件可以使用prop。",
+    "disablePadding": "如果 <code>true</code>, 垂直填充将从列表中删除。",
+    "subheader": "子标题的内容，通常是 <code>ListSubheader </code>。",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
-      "description": "Styles applied to the root element."
+      "description": "应用于根元素的样式。"
     },
     "padding": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the root element",
+      "nodeName": "根元素",
       "conditions": "<code>disablePadding={true}</code>"
     },
     "dense": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "dense"
+      "nodeName": "根元素",
+      "conditions": "密集度"
     },
     "subheader": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "a <code>subheader</code> is provided"
+      "nodeName": "根元素",
+      "conditions": "提供一个<code>subheader</code> "
     }
   }
 }

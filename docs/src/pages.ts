@@ -22,7 +22,7 @@ const pages: readonly MuiPage[] = [
     icon: 'ToggleOnIcon',
     children: [
       {
-        pathname: '/components',
+        pathname: '/components/inputs',
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/autocomplete' },
@@ -41,7 +41,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/data-display',
         subheader: '/components/data-display',
         children: [
           { pathname: '/components/avatars', title: 'Avatar' },
@@ -57,7 +57,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/feedback',
         subheader: '/components/feedback',
         children: [
           { pathname: '/components/alert' },
@@ -69,7 +69,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/surfaces',
         subheader: '/components/surfaces',
         children: [
           { pathname: '/components/accordion' },
@@ -79,7 +79,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/navigation',
         subheader: '/components/navigation',
         children: [
           { pathname: '/components/bottom-navigation' },
@@ -94,7 +94,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/layout',
         subheader: '/components/layout',
         children: [
           { pathname: '/components/box' },
@@ -106,7 +106,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/utils',
         subheader: '/components/utils',
         children: [
           { pathname: '/components/click-away-listener' },
@@ -122,7 +122,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/data-grid-root',
         subheader: '/components/data-grid',
         children: [
           {
@@ -151,7 +151,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/lab',
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
@@ -170,7 +170,7 @@ const pages: readonly MuiPage[] = [
     children: [
       ...pagesApi,
       {
-        pathname: '/api-docs/data-grid',
+        pathname: '/api-docs/data-grid-root',
         title: 'Data Grid',
         children: [
           { pathname: '/api-docs/data-grid', title: 'API Reference' },
@@ -230,7 +230,7 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: '/customization',
+    pathname: '/customization-root',
     icon: 'CreateIcon',
     children: [
       {
@@ -257,7 +257,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API design approach' },
@@ -278,16 +278,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/guides/flow' },
-    ],
-  },
-  {
-    pathname: '/experimental-api',
-    title: 'Experimental APIs',
-    icon: 'ExperimentIcon',
-    children: [
-      { pathname: '/experimental-api/classname-generator', title: 'ClassName generator' },
-      { pathname: '/experimental-api/css-variables', title: 'CSS variables' },
     ],
   },
   {

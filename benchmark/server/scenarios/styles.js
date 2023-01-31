@@ -84,8 +84,14 @@ function HookButton(props) {
   return <button type="button" className={classes.root} {...props} />;
 }
 
-const NakedButton = (props) => <button type="submit" {...props} />;
-const EmotionCssButton = (props) => <button type="submit" css={emotionCss} {...props} />;
+function NakedButton(props) {
+  return <button type="submit" {...props} />;
+}
+
+function EmotionCssButton(props) {
+  // eslint-disable-next-line react/no-unknown-property
+  return <button type="submit" css={emotionCss} {...props} />;
+}
 
 suite
   .add('StyledMuiButton', () => {

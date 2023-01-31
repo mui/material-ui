@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
-import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
@@ -11,6 +12,7 @@ import {
   userEvent,
   act,
   fireEvent,
+  screen,
 } from 'test/utils';
 
 describe('MultiSelectUnstyled', () => {
@@ -45,21 +47,20 @@ describe('MultiSelectUnstyled', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   describe('keyboard navigation', () => {
     ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<MultiSelectUnstyled components={{ Root: 'div' }} />);
-        const button = getByRole('button');
+        const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
+        const select = getByRole('combobox');
         act(() => {
-          button.focus();
+          select.focus();
         });
-        fireEvent.keyDown(button, { key });
+        fireEvent.keyDown(select, { key });
 
-        expect(button).to.have.attribute('aria-expanded', 'true');
+        expect(select).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
         expect(document.activeElement).to.equal(getByRole('listbox'));
       });
@@ -67,14 +68,14 @@ describe('MultiSelectUnstyled', () => {
 
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<MultiSelectUnstyled components={{ Root: 'div' }} />);
-      const button = getByRole('button');
+      const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
+      const select = getByRole('combobox');
       act(() => {
-        button.focus();
+        select.focus();
       });
-      fireEvent.keyUp(button, { key: ' ' });
+      fireEvent.keyUp(select, { key: ' ' });
 
-      expect(button).to.have.attribute('aria-expanded', 'true');
+      expect(select).to.have.attribute('aria-expanded', 'true');
       expect(getByRole('listbox')).not.to.equal(null);
       expect(document.activeElement).to.equal(getByRole('listbox'));
     });
@@ -89,9 +90,9 @@ describe('MultiSelectUnstyled', () => {
             </MultiSelectUnstyled>,
           );
 
-          const button = getByRole('button');
+          const select = getByRole('combobox');
           act(() => {
-            button.click();
+            select.click();
           });
 
           const listbox = getByRole('listbox');
@@ -100,7 +101,7 @@ describe('MultiSelectUnstyled', () => {
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
           userEvent.keyPress(listbox, { key });
 
-          expect(button).to.have.text('2');
+          expect(select).to.have.text('2');
         }),
       );
     });
@@ -113,20 +114,330 @@ describe('MultiSelectUnstyled', () => {
         </MultiSelectUnstyled>,
       );
 
-      const button = getByRole('button');
+      const select = getByRole('combobox');
 
       act(() => {
-        button.click();
+        select.click();
       });
 
       const listbox = getByRole('listbox');
       userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
       userEvent.keyPress(listbox, { key: 'Escape' });
 
-      expect(button).to.have.attribute('aria-expanded', 'false');
-      expect(button).to.have.text('1');
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('1');
       expect(queryByRole('listbox')).to.equal(null);
     });
+  });
+
+  describe('form submission', () => {
+    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2,3');
+      };
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled defaultValue={[2, 3]} name="test-select">
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+            <OptionUnstyled value={3}>3</OptionUnstyled>
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2; 3');
+      };
+
+      const customFormValueProvider = (options: SelectOption<number>[]) =>
+        options.map((o) => o.value).join('; ');
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled
+            defaultValue={[2, 3]}
+            name="test-select"
+            getSerializedValue={customFormValueProvider}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+            <OptionUnstyled value={3}>3</OptionUnstyled>
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+
+    it('formats the object values as JSON before posting', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('[{"firstName":"Olivia"}]');
+      };
+
+      const options = [
+        { value: { firstName: 'Alice' }, label: 'Alice' },
+        { value: { firstName: 'Olivia' }, label: 'Olivia' },
+      ];
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled defaultValue={[options[1].value]} name="test-select">
+            {options.map((o) => (
+              <OptionUnstyled key={o.value.firstName} value={o.value}>
+                {o.label}
+              </OptionUnstyled>
+            ))}
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('is called when the Select value changes', () => {
+      const handleChange = spy();
+
+      const { getByRole, getByText } = render(
+        <MultiSelectUnstyled defaultValue={[1]} onChange={handleChange}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      const optionTwo = getByText('Two');
+      act(() => {
+        optionTwo.click();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.haveOwnProperty('type', 'click');
+      expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
+      expect(handleChange.args[0][1]).to.deep.equal([1, 2]);
+    });
+
+    it('does not call onChange if `value` is modified externally', () => {
+      function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
+        const [value, setValue] = React.useState([1]);
+        const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
+          setValue(newValue);
+          onChange(newValue);
+        };
+
+        return (
+          <div>
+            <button onClick={() => setValue([1, 2])}>Update value</button>
+            <MultiSelectUnstyled value={value} onChange={handleChange}>
+              <OptionUnstyled value={1}>1</OptionUnstyled>
+              <OptionUnstyled value={2}>2</OptionUnstyled>
+            </MultiSelectUnstyled>
+          </div>
+        );
+      }
+
+      const onChange = spy();
+      const { getByText } = render(<TestComponent onChange={onChange} />);
+
+      const button = getByText('Update value');
+      act(() => button.click());
+      expect(onChange.notCalled).to.equal(true);
+    });
+  });
+
+  describe('prop: renderValue', () => {
+    it('renders the selected values using the renderValue prop', () => {
+      const { getByRole } = render(
+        <MultiSelectUnstyled
+          defaultValue={[1, 2]}
+          renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
+        >
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One (1), Two (2)');
+    });
+
+    it('renders the selected values as comma-separated list of labels if renderValue is not provided', () => {
+      const { getByRole } = render(
+        <MultiSelectUnstyled defaultValue={[1, 2]}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(getByRole('combobox')).to.have.text('One, Two');
+    });
+  });
+
+  // according to WAI-ARIA 1.2 (https://www.w3.org/TR/wai-aria-1.2/#combobox)
+  describe('a11y attributes', () => {
+    it('should have the `combobox` role', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(screen.queryByRole('combobox')).not.to.equal(null);
+    });
+
+    it('should have the aria-haspopup listbox', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
+    });
+
+    it('should have the aria-expanded attribute', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      expect(screen.getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
+    });
+
+    it('should have the aria-expanded attribute set to true when the listbox is open', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      expect(select).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should have the aria-controls attribute', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+
+      act(() => {
+        select.click();
+      });
+
+      const listbox = screen.getByRole('listbox');
+      const listboxId = listbox.getAttribute('id');
+      expect(listboxId).not.to.equal(null);
+
+      expect(select).to.have.attribute('aria-controls', listboxId!);
+    });
+
+    it('should have the aria-activedescendant attribute', () => {
+      render(
+        <MultiSelectUnstyled>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+        </MultiSelectUnstyled>,
+      );
+
+      const select = screen.getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      const listbox = screen.getByRole('listbox');
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+
+      const options = screen.getAllByRole('option');
+      expect(listbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
+    });
+  });
+
+  it('sets a value correctly when interacted by a user and external code', () => {
+    function TestComponent() {
+      const [value, setValue] = React.useState<number[]>([]);
+
+      return (
+        <div>
+          <button data-testid="update-externally" onClick={() => setValue([1])}>
+            Update value
+          </button>
+          <MultiSelectUnstyled
+            value={value}
+            onChange={(_, v) => setValue(v)}
+            slotProps={{
+              root: {
+                'data-testid': 'select',
+              } as any,
+            }}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </MultiSelectUnstyled>
+        </div>
+      );
+    }
+
+    const { getByTestId, getByText } = render(<TestComponent />);
+    const updateButton = getByTestId('update-externally');
+    const selectButton = getByTestId('select');
+
+    act(() => updateButton.click());
+    act(() => selectButton.click());
+
+    const option2 = getByText('2');
+    act(() => option2.click());
+
+    expect(selectButton).to.have.text('1, 2');
   });
 
   it('closes the listbox without selecting an option when focus is lost', () => {
@@ -142,10 +453,10 @@ describe('MultiSelectUnstyled', () => {
       </div>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
 
     act(() => {
-      button.click();
+      select.click();
     });
 
     const listbox = getByRole('listbox');
@@ -156,8 +467,8 @@ describe('MultiSelectUnstyled', () => {
       focusTarget.focus();
     });
 
-    expect(button).to.have.attribute('aria-expanded', 'false');
-    expect(button).to.have.text('1');
+    expect(select).to.have.attribute('aria-expanded', 'false');
+    expect(select).to.have.text('1');
   });
 
   it('focuses the listbox after it is opened', () => {
@@ -167,9 +478,9 @@ describe('MultiSelectUnstyled', () => {
       </MultiSelectUnstyled>,
     );
 
-    const button = getByRole('button');
+    const select = getByRole('combobox');
     act(() => {
-      button.click();
+      select.click();
     });
 
     expect(document.activeElement).to.equal(getByRole('listbox'));

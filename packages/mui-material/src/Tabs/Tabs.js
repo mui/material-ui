@@ -359,7 +359,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             !warnedOnceTabPresent &&
             tabMeta &&
             tabMeta.width === 0 &&
-            tabMeta.height === 0
+            tabMeta.height === 0 &&
+            // if the whole Tabs component is hidden, don't warn
+            tabsMeta.clientWidth !== 0
           ) {
             tabsMeta = null;
             console.error(
@@ -817,7 +819,10 @@ Tabs.propTypes /* remove-proptypes */ = {
    * Determines the color of the indicator.
    * @default 'primary'
    */
-  indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
+  indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * Callback fired when the value changes.
    *

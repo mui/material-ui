@@ -40,7 +40,7 @@ describe('mergeSlotProps', () => {
     expect(merged.props.prop4).to.equal('internal');
   });
 
-  it('joins all the class names', () => {
+  it('joins all the class names in order from internal to external', () => {
     const getSlotProps = () => ({
       className: 'internal',
     });
@@ -67,12 +67,9 @@ describe('mergeSlotProps', () => {
       className,
     });
 
-    expect(merged.props.className).to.contain('class1');
-    expect(merged.props.className).to.contain('class2');
-    expect(merged.props.className).to.contain('internal');
-    expect(merged.props.className).to.contain('additional');
-    expect(merged.props.className).to.contain('externalForwarded');
-    expect(merged.props.className).to.contain('externalSlot');
+    expect(merged.props.className).to.equal(
+      'internal additional class1 class2 externalForwarded externalSlot',
+    );
   });
 
   it('merges the style props', () => {

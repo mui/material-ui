@@ -12,7 +12,7 @@ export default function CustomIcons() {
         count={10}
         renderItem={(item) => (
           <PaginationItem
-            components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+            slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
             {...item}
           />
         )}

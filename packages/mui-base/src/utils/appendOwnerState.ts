@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { Simplify } from '@mui/types';
-import React from 'react';
 import isHostComponent from './isHostComponent';
 
 /**
@@ -29,7 +29,7 @@ export type AppendOwnerStateReturnType<
 /**
  * Appends the ownerState object to the props, merging with the existing one if necessary.
  *
- * @param elementType Type of the element that owns the `existingProps`. If the element is a DOM node, `ownerState` is not applied.
+ * @param elementType Type of the element that owns the `existingProps`. If the element is a DOM node or undefined, `ownerState` is not applied.
  * @param otherProps Props of the element.
  * @param ownerState
  */
@@ -38,11 +38,11 @@ export default function appendOwnerState<
   OtherProps extends Record<string, any>,
   OwnerState,
 >(
-  elementType: ElementType,
-  otherProps: OtherProps = {} as OtherProps,
+  elementType: ElementType | undefined,
+  otherProps: OtherProps,
   ownerState: OwnerState,
 ): AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState> {
-  if (isHostComponent(elementType)) {
+  if (elementType === undefined || isHostComponent(elementType)) {
     return otherProps as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
   }
 

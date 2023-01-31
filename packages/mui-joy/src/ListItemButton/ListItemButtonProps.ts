@@ -5,7 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
 export type ListItemButtonSlot = 'root';
@@ -56,11 +56,12 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     focusVisibleClassName?: string;
     /**
-     * The empty space on the side(s) of the separator.
+     * The content direction flow.
+     * @default 'horizontal'
      */
-    inset?: 'gutter' | 'leftGutter' | 'startAdornment';
+    orientation?: 'horizontal' | 'vertical';
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;
@@ -92,6 +93,23 @@ export type ListItemButtonProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemButtonTypeMap<P, D>, D>;
+
+export interface ListItemButtonOwnerState extends ApplyColorInversion<ListItemButtonProps> {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the element is rendered in a horizontal list.
+   * @internal
+   */
+  row?: boolean;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+}
 
 export type ExtendListItemButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendListItemButtonTypeMap<M>, 'a'>,

@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 interface TabsUnstyledComponentsPropsOverrides {}
 
@@ -33,21 +34,6 @@ export interface TabsUnstyledOwnProps {
   direction?: TabsUnstyledDirection;
   className?: string;
   /**
-   * The components used for each slot inside the Tabs.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Tabs.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TabsUnstyledComponentsPropsOverrides;
-  };
-  /**
    * Callback invoked when new value is being set.
    */
   onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
@@ -56,6 +42,21 @@ export interface TabsUnstyledOwnProps {
    * changes on activation.
    */
   selectionFollowsFocus?: boolean;
+  /**
+   * The props used for each slot inside the Tabs.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'div', TabsUnstyledComponentsPropsOverrides, TabsUnstyledOwnerState>;
+  };
+  /**
+   * The components used for each slot inside the Tabs.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+  };
 }
 
 export interface TabsUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -67,11 +68,6 @@ export type TabsUnstyledProps<
   D extends React.ElementType = TabsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabsUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

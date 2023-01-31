@@ -14,8 +14,10 @@
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@mui/material": "latest",
+    "@remix-run/node": "latest",
     "@remix-run/react": "latest",
     "@remix-run/serve": "latest",
+    "@remix-run/server-runtime": "latest",
     "react": "latest",
     "react-dom": "latest",
     "remix": "latest"

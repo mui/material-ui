@@ -7,10 +7,13 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Link from '@mui/joy/Link';
-import TextField from '@mui/joy/TextField';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
+import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 function formatSx(sx) {
   const lines = Object.keys(sx);
@@ -39,7 +42,7 @@ const vars = [
   },
 ];
 
-export default function GroupedAvatars() {
+export default function CardVariables() {
   const [sx, setSx] = React.useState({});
   return (
     <Box
@@ -71,16 +74,20 @@ export default function GroupedAvatars() {
           <CardOverflow>
             <AspectRatio>
               <img
+                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198"
+                srcSet="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198&dpr=2 2x"
+                loading="lazy"
                 alt=""
-                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&auto=format&fit=crop&w=2148"
               />
             </AspectRatio>
           </CardOverflow>
           <Box sx={{ mt: -3, width: 48 }}>
             <AspectRatio ratio="1">
               <img
+                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=48"
+                srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=48&dpr=2 2x"
+                loading="lazy"
                 alt=""
-                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&auto=format&fit=crop&w=3387"
               />
             </AspectRatio>
           </Box>
@@ -100,7 +107,9 @@ export default function GroupedAvatars() {
         >
           <CardCover>
             <img
-              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&auto=format&fit=crop&w=2148"
+              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198"
+              srcSet="https://images.unsplash.com/photo-1523404343994-489a5eefd760?auto=format&fit=crop&w=198&dpr=2 2x"
+              loading="lazy"
               alt=""
             />
           </CardCover>
@@ -136,42 +145,49 @@ export default function GroupedAvatars() {
             CSS variables
           </Typography>
           {vars.map((data) => (
-            <TextField
-              key={data.var}
-              label={data.var}
-              size="sm"
-              variant="outlined"
-              defaultValue={Number(data.defaultValue.replace('px', '')) || undefined}
-              endDecorator={<Typography level="body3">px</Typography>}
-              type={data.type}
-              helperText={
-                data.defaultValue ? `Default as ${data.defaultValue}` : undefined
-              }
-              onChange={(event) => {
-                const { value } = event.target;
-                setSx((prevSx) => {
-                  if (!value) {
-                    const newSx = { ...prevSx };
-                    // @ts-ignore
-                    delete newSx[data.var];
-                    return newSx;
-                  }
-                  return {
-                    ...prevSx,
-                    [data.var]: `${value}px`,
-                  };
-                });
-              }}
-              sx={{
-                maxWidth: 160,
-                '& .JoyInput-root': { '--Input-paddingInline': '0.5rem' },
-              }}
-            />
+            <FormControl key={data.var}>
+              <FormLabel sx={{ '--FormLabel-fontSize': 'var(--joy-fontSize-xs)' }}>
+                {data.var}
+              </FormLabel>
+              <Input
+                size="sm"
+                variant="outlined"
+                defaultValue={
+                  Number(data.defaultValue.replace('px', '')) || undefined
+                }
+                endDecorator={<Typography level="body3">px</Typography>}
+                type={data.type}
+                sx={{
+                  maxWidth: 160,
+                  '& .JoyInput-root': { '--Input-paddingInline': '0.5rem' },
+                }}
+                onChange={(event) => {
+                  const { value } = event.target;
+                  setSx((prevSx) => {
+                    if (!value) {
+                      const newSx = { ...prevSx };
+                      // @ts-ignore
+                      delete newSx[data.var];
+                      return newSx;
+                    }
+                    return {
+                      ...prevSx,
+                      [data.var]: `${value}px`,
+                    };
+                  });
+                }}
+              />
+              {data.defaultValue ? (
+                <FormHelperText
+                  sx={{ '--FormHelperText-fontSize': 'var(--joy-fontSize-xs)' }}
+                >{`Default as ${data.defaultValue}`}</FormHelperText>
+              ) : null}
+            </FormControl>
           ))}
         </Box>
       </Sheet>
       <BrandingProvider mode="dark">
-        <HighlighedCode
+        <HighlightedCode
           code={`<Card${formatSx(sx)}>`}
           language="jsx"
           sx={{ display: { xs: 'none', md: 'initial' } }}

@@ -6,7 +6,10 @@ export {
   Theme,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
+export { Shadows } from './shadows';
+export { ZIndex } from './zIndex';
 export {
+  CommonColors,
   Palette,
   PaletteColor,
   PaletteColorOptions,
@@ -61,8 +64,10 @@ export {
   ColorObject,
   StyledEngineProvider,
   SxProps,
-  experimental_sx,
 } from '@mui/system';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx(): any;
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
@@ -97,8 +102,11 @@ export { default as experimental_extendTheme } from './experimental_extendTheme'
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,
+  ColorSystem,
+  CssVarsPalette,
   Opacity,
   Overlays,
+  PaletteAlert,
   PaletteActionChannel,
   PaletteAppBar,
   PaletteAvatar,
@@ -107,8 +115,10 @@ export type {
   PaletteCommonChannel,
   PaletteFilledInput,
   PaletteLinearProgress,
+  PaletteSkeleton,
   PaletteSlider,
   PaletteSnackbarContent,
+  PaletteSpeedDialAction,
   PaletteStepConnector,
   PaletteStepContent,
   PaletteSwitch,
@@ -117,4 +127,13 @@ export type {
   PaletteTooltip,
   CssVarsThemeOptions,
   CssVarsTheme,
+  ThemeVars,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+  ColorSystemOptions,
 } from './experimental_extendTheme';
+export { default as getOverlayAlpha } from './getOverlayAlpha';
+
+// Private methods for creating parts of the theme
+export { default as private_createTypography } from './createTypography';
+export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';

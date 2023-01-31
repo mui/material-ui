@@ -3,7 +3,7 @@
 /benchmark/**/dist
 /coverage
 /docs/export
-/docs/pages/playground.tsx
+/docs/pages/playground/
 /examples/create-react-app*/src/serviceWorker.js
 /examples/gatsby/public/
 /examples/preact/config
@@ -28,3 +28,10 @@
 .next
 build
 node_modules
+.nyc_output
+
+# These come from crowdin.
+# If we would commit changes crowdin would immediately try to revert.
+# If we want to format these files we'd need to do it in crowdin
+docs/**/*-pt.md
+docs/**/*-zh.md

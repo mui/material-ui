@@ -6,112 +6,158 @@ githubLabel: 'component: card'
 
 # Card
 
-<p class="description">Cards contain content and actions about a single subject.</p>
+<p class="description">A card is a generic container for grouping related UI elements and content.</p>
 
-Cards are surfaces that display content and actions on a single topic.
+## Introduction
 
-They should be easy to scan for relevant and actionable information.
-Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+The Joy UI Card component includes several complementary utility components to handle various use cases:
 
-Joy provides 4 Card related components:
+- [Card](#basics): a surface-level container for grouping related components.
+- [Card Overflow](#overflow): a supplemental wrapper that expands a Card's contents to fill all edges.
+- [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
+- [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
 
-- [`Card`](#basic): used as a container to control the direction of the content. It comes with a border radius, padding, and shadow by default.
-- [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill on all edges of the card.
-- [`CardCover`](#back-cover): for displaying background image of the card and used to create layers of gradient.
-- [`CardContent`](#back-cover): usually used with `CardCover` to bring the content to the front.
+## Basics
 
-## Basic
+```jsx
+import Card from '@mui/joy/Card';
+```
 
-The `Card` is a surface-level component that can house multiple others to form a meaningful interface.
-For example, here are a few components you would use for common card designs:
-
-- `Typography` for creating titles, descriptions, and plain texts.
-- `AspectRatio` for controlling images and video sizes.
-- `Button` and/or `IconButton` for call to action elements.
+Card is a surface-level container for grouping related components.
+The demo below shows a typical Card that groups together Typography, Aspect Ratio, and Button components, among others:
 
 {{"demo": "BasicCard.js" }}
 
-## Overflow
+## Customization
 
-To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component.
-It will automatically take care of the top and bottom edges if rendered as the first or last child of the parent card.
+### Expand to fill
+
+```jsx
+import CardOverflow from '@mui/joy/CardOverflow';
+```
+
+By default, the Card component adds padding around the outer edges of its contents.
+To eliminate this white space, add the Card Overflow component inside the Card as a wrapper around the content to be expanded.
+
+Note that Card Overflow only works when it's the first and/or last child of the parent Card.
+In the demo below, the top and bottom sections are expanded to fill the edges:
 
 {{"demo": "OverflowCard.js" }}
 
-## Back cover
+### Card layers
 
-The `CardCover` component is responsible for creating the content that covers the whole card.
-You can think of card covers as a background layer that stay behind the `CardContent`.
+```jsx
+import CardCover from '@mui/joy/CardCover';
+import CardContent from '@mui/joy/CardContent';
+```
 
-{{"demo": "CardCovers.js" }}
+The default Card provides a single flat surface for other components to sit on top of.
+Use the Card Cover and Card Content components to expose multiple layers between a Card and the UI elements on its surface.
 
-### Media
+Card Cover makes it possible to add images, videos, and color and gradient overlays underneath the Card Content.
+Hover your mouse on the demo below to see how the layers are stacked:
 
-You can use a plain image or a video element inside the `CardCover`.
-It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) on the image as a default value.
+{{"demo": "CardLayers3d.js" }}
+
+#### Images and videos
+
+Use an image or a video element inside the Card Cover to display media.
+The component uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) to fill the whole Card by default.
 
 {{"demo": "MediaCover.js" }}
 
-### Gradient overlay
+#### Gradient overlay
 
-Insert an additional `CardCover` component to create gradient overlays between the cover and the content.
-
-:::info
-💡 Make sure to darken up the gradient overlay to have enough contrast between the background image and the content.
-:::
+To create a gradient overlay—frequently seen when a bright image is used as a background—insert an additional Card Cover component between the image layer and the content layer.
+You can add any number of Card Covers to create more sophisticated stacked layers this way.
 
 {{"demo": "GradientCover.js" }}
 
-## Row
+### Horizontal alignment
 
-To show a horizontal card, use `row` prop. The `CardOverflow` will adapt based on its position.
+Card contents are arranged in a column by default.
+For horizontal alignment, add the `row` prop to the Card.
+If present, the [Card Overflow](#expand-to-fill) component will adapt accordingly.
 
 {{"demo": "RowCard.js" }}
 
-## Actions
+### Actions
 
-### Whole card area
+Cards often include actions that users can take, like proceeding to a new page or section of the app.
+There may be individual (discrete) actions _within_ a given card, or _the entire card itself_ may trigger an action when clicked or tapped.
 
-To have the whole card area clickable, use the `Link` component to wrap the card's title and then pass the `overlay` prop to expand the interactive area to fill the whole card.
+The following sections explain how to approach each of these scenarios.
 
-Note that the keyboard focus appearance will also cover the entire card.
-For more details about cards accessibility, read [Inclusive Component's documentation](https://inclusive-components.design/cards/).
+#### Discrete actions
 
-{{"demo": "InteractiveCard.js" }}
-
-### Multiple actions
-
-By default, whenever you have additional action elements such as links and buttons, they'll stay on top of the whole interactive area.
-However, in some cases, you might have to manually control each element's `z-index`.
-
-:::success
-💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused.
-:::
+By default, action elements like links and buttons sit above the surface-level interactive area of the Card.
+In some cases, you might have to adjust the z-index to bring these elements to the front—for instance, the Favorite Icon Button in the demo below needs a higher z-index in order to sit on top of its Aspect Ratio sibling:
 
 {{"demo": "MultipleInteractionCard.js" }}
 
-## Component variables
+:::success
+You can use the CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to apply styles to the Card when any of its children receive focus.
+:::
 
-The `Card` component exposes two important CSS variables that communicate with other Joy components.
-If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using these properties directly.
-That's mainly because the variables will also be used to calculate a proper radius for the card's children.
+#### Whole Card actions
+
+To make the entire Card clickable, add a [Link](/joy-ui/react-link/) component to the title (or some other important text content) inside the Card.
+Then add the `overlay` prop to the Link to spread it across the Card as a whole.
+
+:::info
+This approach helps to ensure proper keyboard navigation support by applying `focus-visible` styles to the Card itself.
+Learn more about this and other best practices for accessible cards in the [Inclusive Components blog](https://inclusive-components.design/cards/).
+:::
+
+{{"demo": "InteractiveCard.js" }}
+
+## CSS variable playground
+
+Play around with the CSS variables available to the Card component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+:::success
+If you need to adjust a Card's padding or border radius, it's preferable to do so using these variables rather than plain CSS properties.
+This is because the variables are also used to calculate a proper radius for the Card's children, to prevent a mismatch between their relative proportions.
+:::
 
 {{"demo": "CardVariables.js" , "hideToolbar": true}}
 
 ## Common examples
 
-Here's how you could replicate a few real-world card designs using several Joy components together with it.
+### Instagram post
 
-### Container responsive
-
-This demo uses a similar technique to [the flexbox holy albatross](https://heydonworks.com/article/the-flexbox-holy-albatross/) to stack the elements when the container's width is below a specified number.
-
-{{"demo": "ContainerResponsive.js" }}
+{{"demo": "InstagramPost.js" }}
 
 ### Dribbble shot
 
 {{"demo": "DribbbleShot.js" }}
 
-### Instagram post
+### Resizable container
 
-{{"demo": "InstagramPost.js" }}
+This demo uses a technique similar to Heydon Pickering's [Flexbox Holy Albatross](https://heydonworks.com/article/the-flexbox-holy-albatross/) to create a stretchable Card that switches between vertical and horizontal alignment when its width passes a specified threshold—without using media queries to define breakpoints.
+Try resizing it by clicking and dragging the bottom-right corner to see how it behaves.
+
+{{"demo": "ContainerResponsive.js" }}
+
+## Anatomy
+
+The Card component and all of its supplementary components are composed of a single root `<div>`:
+
+```html
+<div class="JoyCard-root">
+  <div class="JoyCardCover-root">
+    <!-- optional Card Cover layer -->
+  </div>
+  <div class="JoyCardContent-root">
+    <!-- optional Card Content layer -->
+  </div>
+  <div class="JoyCardOverflow-root">
+    <!-- optional Card Overflow utility -->
+  </div>
+</div>
+```
+
+:::info
+Keep in mind that [Card Overflow](#expand-to-fill) must be the first or last child of a Card in order to function—accordingly, it will have a `data-first-child` or `data-last-child` attribute appended to its `<div>`.
+:::

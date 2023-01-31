@@ -8,7 +8,6 @@ export default function PositionedSnackbar() {
     vertical: 'top',
     horizontal: 'center',
   });
-
   const { vertical, horizontal, open } = state;
 
   const handleClick = (newState) => () => {

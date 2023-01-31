@@ -8,7 +8,7 @@
   command = "yarn docs:build && yarn docs:export"
 
 [build.environment]
-  NODE_VERSION = "12"
+  NODE_VERSION = "14"
   # Not using `playwright` when building docs.
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 

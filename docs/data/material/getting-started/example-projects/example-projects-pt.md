@@ -18,6 +18,7 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 - [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css)
 - [Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs)
 - [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
+- [Next.js + @mui/styles (v4 migration helper)](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
 
 Create React App é um projeto incrível para aprender React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
@@ -74,7 +75,7 @@ If you want to start with a more complete and real-world example, you could take
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - Crie o seu aplicativo completo com esta ferramenta online
-  - Escolha o seu framework e biblioteca (React & Material UI!)
+  - Escolha o seu framework e biblioteca (React & Material-UI!)
   - Escolha seu banco de dados (SQL, MongoDB ou Firestore)
   - Modele seu banco de dados e aplicativo com uma interface intuitiva
   - Gere sua aplicação, incluindo um scaffolded de backend completo
@@ -82,5 +83,5 @@ If you want to start with a more complete and real-world example, you could take
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your Material UI app in minutes.
-  - You'll get a nice template, authentication, database integration, subscription payments, and more.
+  - Create your Material-UI app in minutes.
+  - Você irá ter um oótimo modelo, autenticação, integração com banco de dados, incrições de pagamentos, e mais

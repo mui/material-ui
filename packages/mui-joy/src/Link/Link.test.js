@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  describeConformance,
+  describeJoyColorInversion,
+} from 'test/utils';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
+import Typography from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
@@ -17,23 +24,29 @@ function focusVisible(element) {
 describe('<Link />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Link href="/">Home</Link>, () => ({
-    classes,
-    inheritComponent: 'a',
-    render,
-    ThemeProvider,
-    muiName: 'JoyLink',
-    refInstanceof: window.HTMLAnchorElement,
-    testVariantProps: { color: 'primary', variant: 'plain' },
-    testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
-    skip: [
-      'classesRoot',
-      'componentsProp',
-      'themeDefaultProps',
-      'propsSpread',
-      'themeStyleOverrides',
-    ],
-  }));
+  describeConformance(
+    <Link href="/" startDecorator="1" endDecorator="1">
+      Home
+    </Link>,
+    () => ({
+      classes,
+      inheritComponent: 'a',
+      render,
+      ThemeProvider,
+      muiName: 'JoyLink',
+      refInstanceof: window.HTMLAnchorElement,
+      testVariantProps: { color: 'primary', variant: 'plain' },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        startDecorator: { expectedClassName: classes.startDecorator },
+        endDecorator: { expectedClassName: classes.endDecorator },
+      },
+      skip: ['classesRoot', 'componentsProp'],
+    }),
+  );
+
+  describeJoyColorInversion(<Link href="/" variant="soft" />, { muiName: 'JoyLink', classes });
 
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
@@ -180,6 +193,17 @@ describe('<Link />', () => {
 
         expect(getByTestId('root')).to.have.class(classes[`underline${capitalize(underline)}`]);
       });
+    });
+  });
+
+  describe('Typography', () => {
+    it('should be a span by default', () => {
+      const { container } = render(
+        <Link href="/">
+          hello <Typography>test</Typography>
+        </Link>,
+      );
+      expect(container.querySelector('span')).to.have.text('test');
     });
   });
 });

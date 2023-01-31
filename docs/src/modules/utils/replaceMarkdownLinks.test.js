@@ -4,7 +4,6 @@ import replaceMarkdownLinks, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceMarkdownLinks';
-import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceMarkdownLinks', () => {
   it('replace material related links', () => {
@@ -198,7 +197,7 @@ describe('replaceMarkdownLinks', () => {
       [ButtonUnstyled](/api/button-unstyled)
       [TabPanelUnstyled](/api/tab-panel-unstyled)
       [TabsListUnstyled](/api/tabs-list-unstyled)
-      [TrapFocus](/api/trap-focus)
+      [FocusTrap](/api/focus-trap)
       [ClickAwayListener](/api/click-away-listener)
       [IconButton](/api/icon-button)
       [LoadingButton](/api/loading-button)
@@ -217,7 +216,7 @@ describe('replaceMarkdownLinks', () => {
       [ButtonUnstyled](/base/api/button-unstyled)
       [TabPanelUnstyled](/base/api/tab-panel-unstyled)
       [TabsListUnstyled](/base/api/tabs-list-unstyled)
-      [TrapFocus](/base/api/trap-focus)
+      [FocusTrap](/base/api/focus-trap)
       [ClickAwayListener](/base/api/click-away-listener)
       [IconButton](/material-ui/api/icon-button)
       [LoadingButton](/material-ui/api/loading-button)
@@ -337,13 +336,9 @@ describe('replaceMarkdownLinks', () => {
         [DataGridPro](/x/api/data-grid/data-grid-pro)
         [System](/system/basics)
     `);
-    if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
-        `[Styles](/system/styles/api/)`,
-      );
-    } else {
-      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(`[Styles](/styles/api/)`);
-    }
+    expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
+      `[Styles](/system/styles/api/)`,
+    );
   });
 
   it('does not change after transformed', () => {
@@ -370,7 +365,7 @@ describe('replaceMarkdownLinks', () => {
 
   it('does not trasform material-ui', () => {
     expect(
-      replaceMarkdownLinks(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`),
-    ).to.equal(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`);
+      replaceMarkdownLinks(`[Focus Trap](https://mui.com/material-ui/react-trap-focus/)`),
+    ).to.equal(`[Focus Trap](https://mui.com/material-ui/react-trap-focus/)`);
   });
 });

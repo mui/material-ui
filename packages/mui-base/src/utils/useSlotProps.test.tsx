@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { EventHandlers } from '@mui/base';
@@ -11,7 +11,7 @@ function callUseSlotProps<
   ElementType extends React.ElementType,
   SlotProps,
   ExternalForwardedProps,
-  ExternalSlotProps,
+  ExternalSlotProps extends Record<string, unknown>,
   AdditionalProps,
   OwnerState,
 >(
@@ -27,16 +27,7 @@ function callUseSlotProps<
   const TestComponent = React.forwardRef(
     (
       _: unknown,
-      ref: React.Ref<
-        UseSlotPropsResult<
-          ElementType,
-          SlotProps,
-          ExternalForwardedProps,
-          ExternalSlotProps,
-          AdditionalProps,
-          OwnerState
-        >
-      >,
+      ref: React.Ref<UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState>>,
     ) => {
       const slotProps = useSlotProps(parameters);
       React.useImperativeHandle(ref, () => slotProps as any);
@@ -45,16 +36,7 @@ function callUseSlotProps<
   );
 
   const ref =
-    React.createRef<
-      UseSlotPropsResult<
-        ElementType,
-        SlotProps,
-        ExternalForwardedProps,
-        ExternalSlotProps,
-        AdditionalProps,
-        OwnerState
-      >
-    >();
+    React.createRef<UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState>>();
   render(<TestComponent ref={ref} />);
 
   return ref.current!;
@@ -125,7 +107,9 @@ describe('useSlotProps', () => {
       id: 'test',
     });
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -206,7 +190,7 @@ describe('useSlotProps', () => {
       onClick: externalForwardedClickHandler,
     };
 
-    // provided by the user via componentsProps.*:
+    // provided by the user via slotProps.*:
     const componentProps = (os: typeof ownerState) => ({
       'data-fromownerstate': os.test,
       'data-test': 'externalComponentsProps',
@@ -225,7 +209,9 @@ describe('useSlotProps', () => {
       ref: additionalRef,
     };
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -240,13 +226,13 @@ describe('useSlotProps', () => {
     // `id` from componentProps overrides the one from getSlotProps
     expect(result).to.haveOwnProperty('id', 'external');
 
-    // `componentsProps` is called with the ownerState
+    // `slotProps` is called with the ownerState
     expect(result).to.haveOwnProperty('data-fromownerstate', true);
 
     // class names are concatenated
     expect(result).to.haveOwnProperty(
       'className',
-      'externalForwarded externalComponentsProps another-class yet-another-class additional internal',
+      'internal additional another-class yet-another-class externalForwarded externalComponentsProps',
     );
 
     // `data-test` from componentProps overrides the one from forwardedProps
@@ -258,17 +244,17 @@ describe('useSlotProps', () => {
     expect(externalRef.current).to.equal('test');
     expect(additionalRef.current).to.equal('test');
 
-    // event handler provided in componentsProps is called
-    result.onClick({});
+    // event handler provided in slotProps is called
+    result.onClick({} as React.MouseEvent);
     expect(externalClickHandler.calledOnce).to.equal(true);
 
-    // event handler provided in forwardedProps is not called (was overridden by componentsProps)
+    // event handler provided in forwardedProps is not called (was overridden by slotProps)
     expect(externalForwardedClickHandler.notCalled).to.equal(true);
 
     // internal event handler is called
     expect(internalClickHandler.calledOnce).to.equal(true);
 
-    // internal ownerState is merged with the one provided by componentsProps
+    // internal ownerState is merged with the one provided by slotProps
     expect(result.ownerState).to.deep.equal({
       test: true,
       foo: 'bar',

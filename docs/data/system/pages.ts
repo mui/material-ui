@@ -2,12 +2,21 @@ import pagesApi from './pagesApi';
 
 const pages = [
   {
-    pathname: '/system',
+    pathname: '/system/getting-started',
+    icon: 'DescriptionIcon',
+    children: [
+      { pathname: '/system/getting-started/overview' },
+      { pathname: '/system/getting-started/installation' },
+      { pathname: '/system/getting-started/usage' },
+      { pathname: '/system/getting-started/the-sx-prop' },
+      { pathname: '/system/getting-started/custom-components' },
+    ],
+  },
+  {
+    pathname: '/style-utilities',
     icon: 'BuildIcon',
     children: [
-      { pathname: '/system/basics' },
       { pathname: '/system/properties' },
-      { pathname: '/system/the-sx-prop', title: 'The sx prop' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
@@ -19,7 +28,6 @@ const pages = [
       { pathname: '/system/spacing' },
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
-      { pathname: '/system/advanced' },
       { pathname: '/system/styled', title: 'styled' },
     ],
   },
@@ -30,6 +38,8 @@ const pages = [
     children: [
       { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
+      { pathname: '/system/react-grid', title: 'Grid' },
+      { pathname: '/system/react-stack', title: 'Stack' },
     ],
   },
   {
@@ -37,6 +47,17 @@ const pages = [
     pathname: '/system/api',
     icon: 'CodeIcon',
     children: pagesApi,
+  },
+  {
+    pathname: '/system/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      {
+        pathname: '/system/experimental-api/configure-the-sx-prop',
+        title: 'Configure the sx prop',
+      },
+    ],
   },
   {
     pathname: '/system/styles',

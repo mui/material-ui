@@ -37,7 +37,7 @@ Here are the most significant improvements since March 2021.
 
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
   The community provided invaluable assistance in completing this effort.
-  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/the-sx-prop/) for one-off customizations.
+  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/getting-started/the-sx-prop/) for one-off customizations.
   The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
@@ -116,7 +116,7 @@ The date picker is at the border between the core component and advanced compone
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
   We want our users to be able to adopt new features as fast as we build them.
-- 🔘 We have added support for a built-in [single select](/x/react-data-grid/columns/#column-types) column type:
+- 🔘 We have added support for a built-in [single select](/x/react-data-grid/column-definition/#column-types) column type:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 

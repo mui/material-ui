@@ -11,7 +11,7 @@ export interface UseInputParameters {
    */
   disabled?: boolean;
   /**
-   * If `true`, the `input` will indicate an error.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
@@ -28,7 +28,7 @@ export interface UseInputParameters {
   value?: unknown;
 }
 
-interface UseInputRootSlotOwnProps {
+export interface UseInputRootSlotOwnProps {
   onClick: React.MouseEventHandler | undefined;
 }
 
@@ -38,7 +38,7 @@ export type UseInputRootSlotProps<TOther = {}> = Omit<
 > &
   UseInputRootSlotOwnProps;
 
-interface UseInputInputSlotOwnProps {
+export interface UseInputInputSlotOwnProps {
   'aria-invalid': React.AriaAttributes['aria-invalid'];
   defaultValue: string | number | readonly string[] | undefined;
   ref: React.Ref<HTMLInputElement>;

@@ -18,7 +18,13 @@ import Podcasts from '@mui/icons-material/Podcasts';
 export default function ExampleIOSList() {
   return (
     <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
-      <Typography level="h3" fontSize="xl2" fontWeight="xl" id="ios-example-demo">
+      <Typography
+        level="h3"
+        fontSize="xl2"
+        fontWeight="xl"
+        id="ios-example-demo"
+        mb={1}
+      >
         Settings
       </Typography>
       <List
@@ -53,7 +59,7 @@ export default function ExampleIOSList() {
         })}
       >
         <ListItem nested>
-          <List aria-label="Personal info" sx={{ '--List-decorator-width': '72px' }}>
+          <List aria-label="Personal info" sx={{ '--List-decorator-size': '72px' }}>
             <ListItem>
               <ListItemDecorator>
                 <Avatar size="lg" sx={{ '--Avatar-size': '60px' }}>
@@ -121,24 +127,25 @@ export default function ExampleIOSList() {
                 size="lg"
                 color="success"
                 sx={(theme) => ({
-                  '--Switch-track-width': '48px',
-                  '--Switch-track-height': '28px',
-                  '--Switch-thumb-shadow': theme.vars.shadow.sm,
+                  '--Switch-thumb-shadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
+                  '--Switch-thumb-size': '27px',
+                  '--Switch-track-width': '51px',
+                  '--Switch-track-height': '31px',
                   '--Switch-track-background': theme.vars.palette.background.level3,
+                  [`& .${switchClasses.thumb}`]: {
+                    transition: 'width 0.2s, left 0.2s',
+                  },
                   '&:hover': {
                     '--Switch-track-background':
                       theme.vars.palette.background.level3,
                   },
                   '&:active': {
                     '--Switch-thumb-width': '32px',
-                    [`& .${switchClasses.thumb}`]: {
-                      transition: 'width 0.2s, left 0.2s',
-                    },
                   },
                   [`&.${switchClasses.checked}`]: {
-                    '--Switch-track-background': theme.vars.palette.success[500],
+                    '--Switch-track-background': 'rgb(48 209 88)',
                     '&:hover': {
-                      '--Switch-track-background': theme.vars.palette.success[500],
+                      '--Switch-track-background': 'rgb(48 209 88)',
                     },
                   },
                 })}

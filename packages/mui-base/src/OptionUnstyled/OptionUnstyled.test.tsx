@@ -14,6 +14,7 @@ const dummyGetOptionProps = () => ({
   'aria-selected': false,
   label: '',
   onClick: () => {},
+  onPointerOver: () => {},
   role: 'option',
   value: '',
 });
@@ -61,7 +62,6 @@ describe('OptionUnstyled', () => {
     },
     skip: [
       'reactTestRenderer', // Need to be wrapped in SelectUnstyledContext
-      'componentsPropsCallbacks', // not implemented yet
     ],
   }));
 });

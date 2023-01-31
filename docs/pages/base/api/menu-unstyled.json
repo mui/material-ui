@@ -7,9 +7,21 @@
         "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
       }
     },
-    "keepMounted": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } }
+    "open": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
+      "default": "{}"
+    }
   },
   "name": "MenuUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
@@ -17,6 +29,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-menu/\">Menu</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-menu/\">Unstyled Menu</a></li></ul>",
   "cssComponent": false
 }

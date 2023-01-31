@@ -2,7 +2,7 @@ import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
-import omitEventHandlers, { OmitEventHandlers } from './omitEventHandlers';
+import omitEventHandlers from './omitEventHandlers';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -23,7 +23,7 @@ export interface MergeSlotPropsParameters<
    */
   getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
   /**
-   * Props provided to the `componentsProps.*` of the unstyled component.
+   * Props provided to the `slotProps.*` of the unstyled component.
    */
   externalSlotProps?: WithCommonProps<ExternalSlotProps>;
   /**
@@ -49,8 +49,8 @@ export type MergeSlotPropsResult<
 > = {
   props: Simplify<
     SlotProps &
-      OmitEventHandlers<ExternalForwardedProps> &
-      OmitEventHandlers<ExternalSlotProps> &
+      ExternalForwardedProps &
+      ExternalSlotProps &
       AdditionalProps & { className?: string; style?: React.CSSProperties }
   >;
   internalRef: React.Ref<any> | undefined;
@@ -64,7 +64,7 @@ export type MergeSlotPropsResult<
  * 1. The internal props (specified as a getter function to work with get*Props hook result)
  * 2. Additional props (specified internally on an unstyled component)
  * 3. External props specified on the owner component. These should only be used on a root slot.
- * 4. External props specified in the `componentsProps.*` prop.
+ * 4. External props specified in the `slotProps.*` prop.
  * 5. The `className` prop - combined from all the above.
  * @param parameters
  * @returns
@@ -134,12 +134,17 @@ export default function mergeSlotProps<
   const otherPropsWithoutEventHandlers = omitEventHandlers(externalForwardedProps);
 
   const internalSlotProps = getSlotProps(eventHandlers);
+
+  // The order of classes is important here.
+  // Emotion (that we use in libraries consuming MUI Base) depends on this order
+  // to properly override style. It requires the most important classes to be last
+  // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
   const joinedClasses = clsx(
+    internalSlotProps?.className,
+    additionalProps?.className,
+    className,
     externalForwardedProps?.className,
     externalSlotProps?.className,
-    className,
-    additionalProps?.className,
-    internalSlotProps?.className,
   );
 
   const mergedStyle = {

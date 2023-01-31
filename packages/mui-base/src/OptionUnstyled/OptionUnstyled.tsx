@@ -1,13 +1,16 @@
-import React from 'react';
-import clsx from 'clsx';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
-import { OptionUnstyledProps, OptionUnstyledOwnerState } from './OptionUnstyled.types';
+import {
+  OptionUnstyledProps,
+  OptionUnstyledOwnerState,
+  OptionUnstyledType,
+} from './OptionUnstyled.types';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
-import appendOwnerState from '../utils/appendOwnerState';
+import { useSlotProps } from '../utils';
 
 function useUtilityClasses(ownerState: OptionState) {
   const { disabled, highlighted, selected } = ownerState;
@@ -28,13 +31,12 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 ) {
   const {
     children,
-    className,
     component,
-    components = {},
-    componentsProps = {},
     disabled,
-    value,
     label,
+    slotProps = {},
+    slots = {},
+    value,
     ...other
   } = props;
 
@@ -43,7 +45,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
-  const Root = component || components.Root || 'li';
+  const Root = component || slots.root || 'li';
 
   const selectOption = {
     value,
@@ -82,20 +84,20 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      ...other,
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
       ...optionProps,
-      ...componentsProps.root,
       ref: handleRef,
-      className: clsx(classes.root, className, componentsProps.root?.className),
     },
+    className: classes.root,
     ownerState,
-  );
+  });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OptionUnstyledType;
 
 OptionUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -107,31 +109,10 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the OptionUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.object,
-  }),
   /**
    * If `true`, the option will be disabled.
    * @default false
@@ -143,6 +124,21 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.string,
   /**
+   * The props used for each slot inside the OptionUnstyled.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the OptionUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The value of the option.
    */
   value: PropTypes.any.isRequired,
@@ -153,12 +149,10 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
  * - [OptionUnstyled API](https://mui.com/base/api/option-unstyled/)
  */
-export default React.memo(OptionUnstyled) as <TValue>(
-  props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default React.memo(OptionUnstyled) as OptionUnstyledType;

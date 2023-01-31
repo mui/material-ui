@@ -1,18 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { TypographyTypeMap, TypographyProps } from './TypographyProps';
+import composeClasses from '@mui/base/composeClasses';
+import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 
 export const TypographyContext = React.createContext(false);
 
-const useUtilityClasses = (ownerState: TypographyProps) => {
+const useUtilityClasses = (ownerState: TypographyOwnerState) => {
   const { gutterBottom, noWrap, level, color, variant } = ownerState;
 
   const slots = {
@@ -35,34 +36,38 @@ const StartDecorator = styled('span', {
   name: 'JoyTypography',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
+})<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
-  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
-    marginTop: '2px', // this makes the alignment perfect in most cases
-  }),
+  marginInlineEnd: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
+  ...(typeof ownerState.startDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
 }));
 
 const EndDecorator = styled('span', {
   name: 'JoyTypography',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
+})<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineStart: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
-  ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
-    marginTop: '2px', // this makes the alignment perfect in most cases
-  }),
+  marginInlineStart: 'clamp(4px, var(--Typography-gap, 0.375em), 0.75rem)',
+  ...(typeof ownerState.endDecorator !== 'string' &&
+    (ownerState.alignItems === 'flex-start' ||
+      (ownerState.sx as any)?.alignItems === 'flex-start') && {
+      marginTop: '2px', // this makes the alignment perfect in most cases
+    }),
 }));
 
 const TypographyRoot = styled('span', {
   name: 'JoyTypography',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TypographyProps & { nested: boolean } }>(({ theme, ownerState }) => ({
+})<{ ownerState: TypographyOwnerState }>(({ theme, ownerState }) => ({
   '--Icon-fontSize': '1.25em',
-  margin: 0,
-  ...(ownerState.nested
+  margin: 'var(--Typography-margin, 0px)',
+  ...(ownerState.nesting
     ? {
         display: 'inline',
       }
@@ -73,7 +78,7 @@ const TypographyRoot = styled('span', {
   ...((ownerState.startDecorator || ownerState.endDecorator) && {
     display: 'flex',
     alignItems: 'center',
-    ...(ownerState.nested && {
+    ...(ownerState.nesting && {
       display: 'inline-flex',
       ...(ownerState.startDecorator && {
         verticalAlign: 'bottom', // to make the text align with the parent's content
@@ -81,6 +86,11 @@ const TypographyRoot = styled('span', {
     }),
   }),
   ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+  fontSize: `var(--Typography-fontSize, ${
+    ownerState.level && ownerState.level !== 'inherit'
+      ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+      : 'inherit'
+  })`,
   ...(ownerState.noWrap && {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -89,9 +99,17 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
+  ...(ownerState.color &&
+    ownerState.color !== 'context' && {
+      color: `rgba(${theme.vars.palette[ownerState.color]?.mainChannel} / 1)`,
+    }),
   ...(ownerState.variant && {
-    paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-    marginInline: '-0.25em',
+    borderRadius: theme.vars.radius.xs,
+    paddingBlock: 'min(0.15em, 4px)',
+    paddingInline: '0.375em', // better than left, right because it also works with writing mode.
+    ...(!ownerState.nesting && {
+      marginInline: '-0.375em',
+    }),
     ...theme.variants[ownerState.variant]?.[ownerState.color!],
   }),
 }));
@@ -115,7 +133,7 @@ const defaultVariantMapping: Record<string, string> = {
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const {
-    color: colorThemeProp,
+    color: colorProp,
     textColor,
     ...themeProps
   } = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -123,13 +141,12 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     name: 'JoyTypography',
   });
 
-  const nested = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as TypographyProps;
 
   const {
-    className,
-    component,
+    component: componentProp,
     gutterBottom = false,
     noWrap = false,
     level: levelProp = 'body1',
@@ -137,53 +154,67 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     children,
     endDecorator,
     startDecorator,
-    variant = colorThemeProp ? 'plain' : undefined,
+    variant,
     ...other
   } = props;
 
-  const color = colorThemeProp || (variant ? 'neutral' : undefined);
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
 
-  const level = nested ? inProps.level || 'inherit' : levelProp;
+  const level = nesting ? inProps.level || 'inherit' : levelProp;
+
+  const component =
+    componentProp ||
+    ((nesting
+      ? 'span'
+      : levelMapping[level] || defaultVariantMapping[level] || 'span') as React.ElementType);
 
   const ownerState = {
     ...props,
     level,
-    className,
     component,
     color,
     gutterBottom,
     noWrap,
-    nested,
+    nesting,
     variant,
   };
 
-  const Component =
-    component || (nested ? 'span' : levelMapping[level] || defaultVariantMapping[level] || 'span');
-
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: TypographyRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: StartDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: EndDecorator,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <TypographyContext.Provider value>
-      <TypographyRoot
-        as={Component as React.ElementType}
-        ref={ref}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        {...other}
-      >
+      <SlotRoot {...rootProps}>
         {startDecorator && (
-          <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
-            {startDecorator}
-          </StartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
         {children}
-        {endDecorator && (
-          <EndDecorator ownerState={ownerState} className={classes.endDecorator}>
-            {endDecorator}
-          </EndDecorator>
-        )}
-      </TypographyRoot>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
     </TypographyContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
@@ -197,14 +228,6 @@ Typography.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
@@ -280,7 +303,10 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default Typography;

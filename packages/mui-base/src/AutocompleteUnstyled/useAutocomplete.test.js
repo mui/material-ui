@@ -2,12 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@mui/base/AutocompleteUnstyled';
+import { spy } from 'sinon';
 
 describe('useAutocomplete', () => {
   const { render } = createRenderer();
 
   it('should preserve DOM nodes of options when re-ordering', () => {
-    const Test = (props) => {
+    function Test(props) {
       const { options } = props;
       const {
         groupedOptions,
@@ -36,7 +37,7 @@ describe('useAutocomplete', () => {
           ) : null}
         </div>
       );
-    };
+    }
 
     const { rerender } = render(<Test options={['foo', 'bar']} />);
     const [fooOptionAsFirst, barOptionAsSecond] = screen.getAllByRole('option');
@@ -144,6 +145,16 @@ describe('useAutocomplete', () => {
         });
       });
 
+      describe('empty', () => {
+        it('does not call getOptionLabel if filter is empty', () => {
+          const getOptionLabelSpy = spy(getOptionLabel);
+          expect(
+            filterOptions(options, { inputValue: '', getOptionLabel: getOptionLabelSpy }),
+          ).to.deep.equal(options);
+          expect(getOptionLabelSpy.callCount).to.equal(0);
+        });
+      });
+
       describe('start', () => {
         it('show only results that start with search', () => {
           expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal(
@@ -224,7 +235,7 @@ describe('useAutocomplete', () => {
       this.skip();
     }
 
-    const Test = (props) => {
+    function Test(props) {
       const { options } = props;
       const {
         groupedOptions,
@@ -252,7 +263,7 @@ describe('useAutocomplete', () => {
           ) : null}
         </div>
       );
-    };
+    }
 
     const node16ErrorMessage =
       "Error: Uncaught [TypeError: Cannot read properties of null (reading 'removeAttribute')]";
@@ -288,12 +299,12 @@ describe('useAutocomplete', () => {
 
   describe('prop: freeSolo', () => {
     it('should not reset if the component value does not change on blur', () => {
-      const Test = (props) => {
+      function Test(props) {
         const { options } = props;
         const { getInputProps } = useAutocomplete({ options, open: true, freeSolo: true });
 
         return <input {...getInputProps()} />;
-      };
+      }
       render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
@@ -307,7 +318,7 @@ describe('useAutocomplete', () => {
   });
 
   it('should allow tuples or arrays as value when multiple=false', () => {
-    const Test = () => {
+    function Test() {
       const defaultValue = ['bar'];
 
       const { getClearProps, getInputProps } = useAutocomplete({
@@ -330,7 +341,7 @@ describe('useAutocomplete', () => {
           <button data-testid="button" {...getClearProps()} />;
         </div>
       );
-    };
+    }
 
     const { getByTestId } = render(<Test />);
 

@@ -1,4 +1,5 @@
 const path = require('path');
+const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
 const forbidTopLevelMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode',
@@ -19,10 +20,11 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'airbnb-typescript',
-    'prettier',
+    'plugin:eslint-plugin-import/recommended',
+    'plugin:eslint-plugin-import/typescript',
+    'eslint-config-airbnb',
+    'eslint-config-airbnb-typescript',
+    'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -69,7 +71,6 @@ module.exports = {
           // Allowing /icons as to reduce cold-start of dev builds significantly.
           // There's nothing to tree-shake when importing from /icons this way:
           // '@mui/icons-material/*/',
-          '@mui/system/*',
           '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away
@@ -160,12 +161,33 @@ module.exports = {
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
+
+    'no-restricted-syntax': [
+      // See https://github.com/eslint/eslint/issues/9192 for why it's needed
+      ...baseStyleRules['no-restricted-syntax'],
+      {
+        message:
+          "Do not import default from React. Use a namespace import (import * as React from 'react';) instead.",
+        selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+      },
+    ],
+
+    // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
+    'no-restricted-exports': 'off',
+    // Some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
+    'import/no-relative-packages': 'off',
+    // Avoid accidental auto-"fixes" https://github.com/jsx-eslint/eslint-plugin-react/issues/3458
+    'react/no-invalid-html-attribute': 'off',
+
+    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
   },
   overrides: [
     {
       files: [
         // matching the pattern of the test runner
+        '*.test.mjs',
         '*.test.js',
+        '*.test.mjs',
         '*.test.ts',
         '*.test.tsx',
       ],
@@ -220,6 +242,7 @@ module.exports = {
         // components that are defined in test are isolated enough
         // that they don't need type-checking
         'react/prop-types': 'off',
+        'react/no-unused-prop-types': 'off',
       },
     },
     {
@@ -227,7 +250,7 @@ module.exports = {
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
-          { allow: ['MUI', 'Twitter', 'GitHub', 'StackOverflow'] },
+          { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
         ],
       },
     },
@@ -276,7 +299,6 @@ module.exports = {
             ],
           },
         ],
-        'react/prop-types': 'off',
       },
     },
     // Files used for generating TypeScript declaration files (#ts-source-files)
@@ -343,6 +365,7 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
+        'react/function-component-definition': 'off',
       },
     },
     {
@@ -393,6 +416,12 @@ module.exports = {
       files: ['test/bundling/scripts/**/*.js'],
       rules: {
         // ES modules need extensions
+        'import/extensions': ['error', 'ignorePackages'],
+      },
+    },
+    {
+      files: ['scripts/**/*.mjs'],
+      rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },
     },

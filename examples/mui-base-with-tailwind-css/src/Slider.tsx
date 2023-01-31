@@ -8,7 +8,7 @@ const Thumb = React.forwardRef(function Thumb(
   props: SliderUnstyledThumbSlotProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
-  const { ownerState, className, children, ...other } = props;
+  const { ownerState, className = '', children, ...other } = props;
   return (
     <span
       className={`${className} ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute`}
@@ -29,10 +29,10 @@ const Slider = React.forwardRef(function Slider(
     <SliderUnstyled
       {...props}
       ref={ref}
-      components={{
+      slots={{
         Thumb,
       }}
-      componentsProps={{
+      slotProps={{
         root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
         rail: {
           className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute',

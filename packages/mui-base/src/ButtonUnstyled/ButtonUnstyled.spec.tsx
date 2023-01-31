@@ -4,6 +4,7 @@ import ButtonUnstyled, {
   ButtonUnstyledProps,
   ButtonUnstyledRootSlotProps,
 } from '@mui/base/ButtonUnstyled';
+import { expectType } from '@mui/types';
 
 const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(
   props: ButtonUnstyledRootSlotProps,
@@ -19,5 +20,40 @@ const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(
 });
 
 function ButtonWithCustomRoot(props: ButtonUnstyledProps) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
+  return <ButtonUnstyled {...props} slots={{ root: CustomButtonRoot }} />;
 }
+
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
+
+  return (
+    <div>
+      {/* @ts-expect-error */}
+      <ButtonUnstyled invalidProp={0} />
+
+      <ButtonUnstyled component="a" href="#" />
+
+      <ButtonUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      {/* @ts-expect-error */}
+      <ButtonUnstyled component={CustomComponent} />
+
+      <ButtonUnstyled
+        component="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+      />
+
+      <ButtonUnstyled<'div'>
+        component="div"
+        ref={(elem) => {
+          expectType<HTMLDivElement | null, typeof elem>(elem);
+        }}
+        onClick={(e) => {
+          expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
+        }}
+      />
+    </div>
+  );
+};

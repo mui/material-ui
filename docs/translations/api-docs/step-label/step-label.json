@@ -7,9 +7,10 @@
     "error": "If <code>true</code>, the step is marked as failed.",
     "icon": "Override the default label of the step icon.",
     "optional": "The optional node to display.",
+    "slotProps": "The props used for each slot inside.",
     "StepIconComponent": "The component to render in place of the <a href=\"/material-ui/api/step-icon/\"><code>StepIcon</code></a>.",
     "StepIconProps": "Props applied to the <a href=\"/material-ui/api/step-icon/\"><code>StepIcon</code></a> element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

@@ -1,7 +1,10 @@
 import * as React from 'react';
 import CardHeader, { CardHeaderProps, CardHeaderTypeMap } from '@mui/material/CardHeader';
 
-const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+  function CustomComponent() {
+    return <div />;
+  };
 
 type DefaultComponent = CardHeaderTypeMap['defaultComponent'];
 

@@ -22,6 +22,14 @@ const ScopedCssBaselineRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme, ownerState }) => {
+  const colorSchemeStyles = {};
+  if (ownerState.enableColorScheme && theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      colorSchemeStyles[`&${theme.getColorSchemeSelector(key).replace(/\s*&/, '')}`] = {
+        colorScheme: scheme.palette?.mode,
+      };
+    });
+  }
   return {
     ...html(theme, ownerState.enableColorScheme),
     ...body(theme),
@@ -31,6 +39,7 @@ const ScopedCssBaselineRoot = styled('div', {
     '& strong, & b': {
       fontWeight: theme.typography.fontWeightBold,
     },
+    ...colorSchemeStyles,
   };
 });
 
@@ -84,6 +93,14 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * For browser support, check out https://caniuse.com/?search=color-scheme
    */
   enableColorScheme: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default ScopedCssBaseline;

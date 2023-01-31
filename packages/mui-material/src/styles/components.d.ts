@@ -228,6 +228,11 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiGrid'];
     variants?: ComponentsVariants['MuiGrid'];
   };
+  MuiGrid2?: {
+    defaultProps?: ComponentsProps['MuiGrid2'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiGrid2'];
+    variants?: ComponentsVariants['MuiGrid2'];
+  };
   MuiImageList?: {
     defaultProps?: ComponentsProps['MuiImageList'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiImageList'];
@@ -474,6 +479,9 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiSvgIcon'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSvgIcon'];
     variants?: ComponentsVariants['MuiSvgIcon'];
+  };
+  MuiSwipeableDrawer?: {
+    defaultProps?: ComponentsProps['MuiSwipeableDrawer'];
   };
   MuiSwitch?: {
     defaultProps?: ComponentsProps['MuiSwitch'];

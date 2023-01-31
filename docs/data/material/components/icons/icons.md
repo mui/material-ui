@@ -3,7 +3,7 @@ product: material-ui
 title: React Icon Component
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
-materialDesign: https://material.io/design/iconography/system-icons.html
+materialDesign: https://m2.material.io/design/iconography/system-icons.html
 ---
 
 # Icons
@@ -18,7 +18,7 @@ MUI provides icons support in three ways:
 
 ## Material SVG icons
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below).
+Google has created over 2,100 official Material icons, each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/material-ui/material-icons/).
 
@@ -58,7 +58,7 @@ Import icons using one of these two options:
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
-Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
+Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
@@ -68,8 +68,8 @@ Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-
 - Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
 - Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
 
-:::info
-Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+:::warning
+The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 :::
 
 {{"demo": "SvgMaterialIcons.js"}}

@@ -10,7 +10,7 @@ export default function HeroPricing() {
     <Container>
       <Box
         sx={{
-          height: '40vh',
+          height: '32vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -20,7 +20,12 @@ export default function HeroPricing() {
         <Typography
           component="h1"
           variant="body2"
-          color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+          sx={(theme) => ({
+            color: 'primary.600',
+            ...theme.applyDarkStyles({
+              color: 'primary.400',
+            }),
+          })}
           fontWeight="bold"
         >
           Pricing
@@ -29,7 +34,7 @@ export default function HeroPricing() {
           Start using <GradientText>MUI</GradientText> for free!
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
-          Switch to a commercial plan to access advanced features & professional support.
+          Switch to a commercial plan to access advanced features & technical support.
         </Typography>
       </Box>
       <Divider />

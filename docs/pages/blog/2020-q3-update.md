@@ -19,7 +19,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-focus-trap/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
   <video style="max-height: 416px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
@@ -126,11 +126,11 @@ We are thrilled to welcome two new full-time developers to MUI:
 
 - [Marija Najdova](https://github.com/mnajdova). Marija joins us from the Fluent-UI React team at Microsoft. She's allowing the community team to move faster. You can learn more about her in the [introduction blog post](/blog/marija-najdova-joining/).
 
-  <img src="https://avatars3.githubusercontent.com/u/4512430?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/4512430?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Danail Hadjiatanasov](https://github.com/DanailH). Danail comes to us from the Fintech industry. He's allowing the enterprise team to move faster, he's helping Damien push the data grid further.
 
-  <img src="https://avatars3.githubusercontent.com/u/5858539?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img src="https://avatars.githubusercontent.com/u/5858539?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 ### Growth between Q2 2020 and Q3 2020
 

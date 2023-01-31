@@ -1,8 +1,8 @@
-import { SlotComponentProps } from '@mui/base';
-import { ExtendSliderUnstyledTypeMap, SliderValueLabelUnstyled } from '@mui/base/SliderUnstyled';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SliderSlot =
   | 'root'
@@ -14,63 +14,73 @@ export type SliderSlot =
   | 'valueLabel'
   | 'input';
 
-export interface SliderPropsColorOverrides {}
+export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SliderSlot,
+  {
+    root: SlotProps<'span', {}, SliderOwnerState>;
+    track: SlotProps<'span', {}, SliderOwnerState>;
+    rail: SlotProps<'span', {}, SliderOwnerState>;
+    thumb: SlotProps<'span', {}, SliderOwnerState>;
+    mark: SlotProps<'span', {}, SliderOwnerState & { percent?: number }>;
+    markLabel: SlotProps<'span', {}, SliderOwnerState>;
+    valueLabel: SlotProps<'span', {}, SliderOwnerState>;
+    input: SlotProps<'input', {}, SliderOwnerState>;
+  }
+>;
 
+export interface SliderPropsVariantOverrides {}
+export interface SliderPropsColorOverrides {}
 export interface SliderPropsSizeOverrides {}
 
-export interface SliderComponentsPropsOverrides {}
-
-interface SliderOwnProps {
-  /**
-   * The props used for each slot inside the Slider.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
-      SliderComponentsPropsOverrides,
-      SliderOwnerState
-    >;
-
-    input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
-  };
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  color?: OverridableStringUnion<ColorPaletteProp, SliderPropsColorOverrides>;
-  /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
-   */
-  size?: OverridableStringUnion<'sm' | 'md' | 'lg', SliderPropsSizeOverrides>;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps;
-}
-
-export type SliderTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendSliderUnstyledTypeMap<{
-  props: P & SliderOwnProps;
+export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
+  props: P &
+    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
+    SliderSlotsAndSlotProps & {
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'primary'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, SliderPropsColorOverrides>;
+      /**
+       * The size of the component.
+       * It accepts theme values between 'sm' and 'lg'.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', SliderPropsSizeOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+      /**
+       * Controls when the value label is displayed:
+       *
+       * - `auto` the value label will display when the thumb is hovered or focused.
+       * - `on` will display persistently.
+       * - `off` will never display.
+       * @default 'off'
+       */
+      valueLabelDisplay?: 'on' | 'auto' | 'off';
+      /**
+       * The variant to use.
+       * @default 'solid'
+       */
+      variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
+    };
   defaultComponent: D;
-}>;
+};
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export type SliderOwnerState = SliderProps & {
+export interface SliderOwnerState extends ApplyColorInversion<SliderProps> {
+  /**
+   * If `true`, the thumb is in dragging state.
+   */
   dragging: boolean;
+  /**
+   * If `true`, some of the marks has `label` property.
+   */
   marked: boolean;
-};
+}

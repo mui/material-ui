@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "onClickAway": { "type": { "name": "func" }, "required": true },
-    "disableReactTree": { "type": { "name": "bool" } },
+    "disableReactTree": { "type": { "name": "bool" }, "default": "false" },
     "mouseEvent": {
       "type": {
         "name": "enum",
@@ -23,6 +23,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click away listener</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click-Away Listener</a></li></ul>",
   "cssComponent": false
 }

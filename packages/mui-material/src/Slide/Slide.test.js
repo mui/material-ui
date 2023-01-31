@@ -156,20 +156,26 @@ describe('<Slide />', () => {
     });
 
     it('should render the default theme values by default', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
       const theme = createTheme();
-      const handleEntering = spy();
-      render(<Slide {...defaultProps} onEntering={handleEntering} />);
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
 
-      expect(handleEntering.args[0][0].style.transition).to.equal(
-        `transform ${theme.transitions.duration.enteringScreen}ms cubic-bezier(0.0, 0, 0.2, 1) 0ms`,
+      const { getByTestId } = render(
+        <Slide in appear>
+          <div data-testid="child">Foo</div>
+        </Slide>,
       );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
     });
 
     it('should render the custom theme values', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
       const theme = createTheme({
@@ -180,16 +186,16 @@ describe('<Slide />', () => {
         },
       });
 
-      const handleEntering = spy();
-      render(
+      const { getByTestId } = render(
         <ThemeProvider theme={theme}>
-          <Slide {...defaultProps} onEntering={handleEntering} />
+          <Slide in appear>
+            <div data-testid="child">Foo</div>
+          </Slide>
         </ThemeProvider>,
       );
 
-      expect(handleEntering.args[0][0].style.transition).to.equal(
-        `transform ${theme.transitions.duration.enteringScreen}ms cubic-bezier(0.0, 0, 0.2, 1) 0ms`,
-      );
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 
