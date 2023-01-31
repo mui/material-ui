@@ -9,12 +9,6 @@ export * from './Alert';
 export { default as AspectRatio } from './AspectRatio';
 export * from './AspectRatio';
 
-export { default as Avatar } from './Avatar';
-export * from './Avatar';
-
-export { default as AvatarGroup } from './AvatarGroup';
-export * from './AvatarGroup';
-
 export { default as Autocomplete } from './Autocomplete';
 export * from './Autocomplete';
 
@@ -23,6 +17,12 @@ export * from './AutocompleteListbox';
 
 export { default as AutocompleteOption } from './AutocompleteOption';
 export * from './AutocompleteOption';
+
+export { default as Avatar } from './Avatar';
+export * from './Avatar';
+
+export { default as AvatarGroup } from './AvatarGroup';
+export * from './AvatarGroup';
 
 export { default as Badge } from './Badge';
 export * from './Badge';
@@ -65,9 +65,6 @@ export * from './Container';
 
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
-
-export { default as ScopedCssBaseline } from './ScopedCssBaseline';
-export * from './ScopedCssBaseline';
 
 export { default as Divider } from './Divider';
 export * from './Divider';
@@ -144,6 +141,9 @@ export * from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export * from './RadioGroup';
 
+export { default as ScopedCssBaseline } from './ScopedCssBaseline';
+export * from './ScopedCssBaseline';
+
 export { default as Select } from './Select';
 export * from './Select';
 
@@ -174,11 +174,11 @@ export * from './TabList';
 export { default as TabPanel } from './TabPanel';
 export * from './TabPanel';
 
-export { default as Table } from './Table';
-export * from './Table';
-
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
+
+export { default as Table } from './Table';
+export * from './Table';
 
 export { default as Textarea } from './Textarea';
 export * from './Textarea';
