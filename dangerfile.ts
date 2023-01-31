@@ -1,8 +1,8 @@
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
-const { danger, markdown, message } = require('danger');
-const { exec } = require('child_process');
-const { loadComparison } = require('./scripts/sizeSnapshot');
+import { danger, markdown, message } from 'danger';
+import { exec } from 'child_process';
+import { loadComparison } from './scripts/sizeSnapshot';
 
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
@@ -91,8 +91,8 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]) {
  * @param {*} results
  */
 function sieveResults(results) {
-  const main = [];
-  const pages = [];
+  const main: any[] = [];
+  const pages: any[] = [];
 
   results.forEach((entry) => {
     const [bundleId] = entry;
@@ -166,9 +166,13 @@ async function reportBundleSize() {
   }
 }
 
-function formatFileToLink(path) {
+/**
+ * The incoming path from danger does not start with `/`
+ * e.g. ['docs/data/joy/components/button/button.md']
+ */
+function formatFileToLink(path: string) {
   return path
-    .replace('/docs/data/', '')
+    .replace('docs/data/', '')
     .replace('/material/', '/material-ui/')
     .replace('/joy/', '/joy-ui/')
     .replace('components/', 'react-')
@@ -176,34 +180,24 @@ function formatFileToLink(path) {
 }
 
 async function run() {
-  // const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
-  // message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
+  const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
 
   const files = [...danger.git.created_files, ...danger.git.modified_files];
-  message(JSON.stringify(files, null, 2));
+
   // limit to the first 5 docs
-  //   const docs = files
-  //     .filter((file) => file.includes('docs/data') && file.endsWith('.md'))
-  //     .slice(0, 5);
-  //   let body = danger.github.pr.body.replace(/<!--danger-start-->.*<!--danger-end-->/gs, '');
+  const docs = files
+    .filter((file) => file.startsWith('docs/data') && file.endsWith('.md'))
+    .slice(0, 5);
 
-  //   body = `**Deploy preview**
-  // ${docs
-  //   .map(
-  //     (path) =>
-  //       `- https://deploy-preview-${
-  //         process.env.CIRCLE_PR_NUMBER
-  //       }--material-ui.netlify.app/${formatFileToLink(path)}`,
-  //   )
-  //   .join('\n')}
-  // ${body}`;
-
-  //   danger.github.api.pulls.update({
-  //     owner: danger.github.thisPR.owner,
-  //     repo: danger.github.thisPR.repo,
-  //     pull_number: danger.github.thisPR.number,
-  //     body,
-  //   });
+  message(`<b>Netlify deploy preview</b>
+  <ul>
+  ${docs
+    .map((path) => {
+      const formattedUrl = formatFileToLink(path);
+      return `<li><a href="${netlifyPreview}/${formattedUrl}" target="_blank">${formattedUrl}</a></li>`;
+    })
+    .join('\n')}
+  </ul>`);
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
