@@ -19,7 +19,6 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
    * @default {}
    */
   componentsProps?: PopperUnstyledProps['slotProps'];
-  ref?: React.Ref<HTMLDivElement>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -67,7 +66,9 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-}) as ((props: PopperProps) => JSX.Element) & { propTypes?: any };
+}) as React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<PopperProps & React.RefAttributes<HTMLDivElement>>
+>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

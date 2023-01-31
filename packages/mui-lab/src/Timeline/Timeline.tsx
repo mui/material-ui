@@ -105,7 +105,9 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
       />
     </TimelineContext.Provider>
   );
-}) as ((props: TimelineProps) => JSX.Element) & { propTypes?: any };
+}) as React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<TimelineProps> & React.RefAttributes<HTMLUListElement>
+>;
 
 Timeline.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

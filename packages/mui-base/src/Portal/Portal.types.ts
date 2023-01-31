@@ -18,5 +18,4 @@ export interface PortalProps {
    * @default false
    */
   disablePortal?: boolean;
-  ref?: React.Ref<Element>;
 }
