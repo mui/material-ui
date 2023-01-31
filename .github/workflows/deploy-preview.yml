@@ -1,4 +1,4 @@
-name: CI
+name: Deploy preview
 
 on:
   push:
