@@ -415,6 +415,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     openOnFocus = false,
     openText = 'Open',
     options,
+    onScrollToBottom,
     PaperComponent = Paper,
     PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
@@ -427,7 +428,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     size = 'medium',
     slotProps = {},
     value: valueProp,
-    onScrollToBottom,
     showLoadingWithOptions = false,
     ...other
   } = props;
@@ -981,7 +981,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func,
   /**
    * Callback fires when scroll bar reaches bottom of listbox
-   * @default false
+   * @default undefined
    */
   onScrollToBottom: PropTypes.func,
   /**

@@ -315,6 +315,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     open,
     openText = 'Open',
     options,
+    onScrollToBottom,
     placeholder,
     popupIcon = <ArrowDropDownIcon />,
     readOnly = false,
@@ -328,6 +329,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     color: colorProp = 'neutral',
     variant = 'outlined',
     value: valueProp,
+    showLoadingWithOptions = false,
     ...otherProps
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
@@ -881,7 +883,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` and suggestions if `showLoadingWithOptions` is `true`.
+   * if `showLoadingWithOptions` is `false` only `loadingText` gets displayed
+   * in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
    * @default false
    */
   loading: PropTypes.bool,
@@ -953,6 +957,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
+   * Callback fires when scroll bar reaches bottom of listbox
+   * @param {React.SyntheticEvent}
+   */
+  onScrollToBottom: PropTypes.func,
+  /**
    * If `true`, the component is shown.
    */
   open: PropTypes.bool,
@@ -1011,6 +1020,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,
+  /**
+   * If `true` and if `loading` is true, loadingText gets displayed along with options
+   * @default false
+   */
+  showLoadingWithOptions: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'
