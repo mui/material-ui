@@ -6,7 +6,7 @@
 
 _Jan 31, 2023_
 
-A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - @siriwatknp added `Table` component to Joy UI (#35872)
 - many other 🐛 bug fixes and 📚 documentation improvements
