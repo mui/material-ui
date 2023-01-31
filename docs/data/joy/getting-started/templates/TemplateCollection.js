@@ -6,6 +6,7 @@ import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import Button from '@mui/joy/Button';
@@ -43,9 +44,30 @@ function addHiddenInput(form, name, value) {
  * - The name of the folder will be used as the url and title
  */
 
+/**
+ * @typedef {Object} Author
+ * @property {string} name name of the author
+ * @property {string} github github username
+ */
+
+/**
+ * @type {Object.<string, Author | undefined>}
+ */
+const AUTHORS = {
+  'sign-in': {
+    name: 'Siriwat K',
+    github: 'siriwatknp',
+  },
+};
+
 export default function TemplateCollection() {
+  const newTemplates = ['sign-in']; // Stay at the top of the page with `new` badge
   const templates = extractTemplates(cache);
   const theme = useTheme();
+  const names = [
+    ...newTemplates,
+    ...Object.keys(templates).filter((name) => !newTemplates.includes(name)),
+  ];
   return (
     <List
       sx={{
@@ -56,8 +78,9 @@ export default function TemplateCollection() {
         gridTemplateColumns: '1fr 1fr',
       }}
     >
-      {Object.keys(templates).map((name) => {
+      {names.map((name) => {
         const item = templates[name];
+        const author = AUTHORS[name];
         return (
           <Card
             component="li"
@@ -68,7 +91,39 @@ export default function TemplateCollection() {
               p: 0,
             }}
           >
-            <Typography component="h3" fontSize="xl" fontWeight="xl" sx={{ mb: 1 }}>
+            <Typography
+              component="h3"
+              fontSize="xl"
+              fontWeight="xl"
+              startDecorator={
+                newTemplates.includes(name) ? (
+                  <Chip
+                    size="sm"
+                    color="success"
+                    variant="outlined"
+                    sx={{ bgcolor: 'success.softBg', borderRadius: 'xs' }}
+                  >
+                    New
+                  </Chip>
+                ) : null
+              }
+              endDecorator={
+                author && (
+                  <Typography level="body2" fontWeight="md">
+                    by{' '}
+                    <Link
+                      href={`https://github.com/${author.github}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <b>{author.name}</b>
+                    </Link>
+                  </Typography>
+                )
+              }
+              slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
+              sx={{ mb: 1 }}
+            >
               {startCase(name)}
             </Typography>
 
