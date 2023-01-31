@@ -12,7 +12,12 @@ import {
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
+import {
+  ColorSystem,
+  ColorPaletteProp,
+  PaletteOptions,
+  DefaultPaletteRange,
+} from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
@@ -39,7 +44,8 @@ type Partial3Level<T> = {
   };
 };
 
-export interface ColorSystemOptions extends Partial3Level<ColorSystem> {}
+export interface ColorSystemOptions
+  extends Partial3Level<Omit<ColorSystem, 'palette'> & { palette: PaletteOptions }> {}
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
@@ -605,14 +611,16 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   /**
    * Color channels generation
    */
-  function attachColorChannels(palette: Record<ColorPaletteProp, PaletteRange>) {
+  function attachColorChannels(
+    palette: Record<ColorPaletteProp, Record<DefaultPaletteRange, string>>,
+  ) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
-        main: '500' as keyof PaletteRange,
-        light: '200' as keyof PaletteRange,
-        dark: '800' as keyof PaletteRange,
-      };
+        main: '500',
+        light: '200',
+        dark: '800',
+      } as const;
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);
       }
@@ -627,7 +635,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   (
     Object.entries(theme.colorSchemes) as Array<
-      [string, { palette: Record<ColorPaletteProp, PaletteRange> }]
+      [string, { palette: Record<ColorPaletteProp, Record<DefaultPaletteRange, string>> }]
     >
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);
