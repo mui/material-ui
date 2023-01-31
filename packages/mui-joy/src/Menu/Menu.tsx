@@ -276,7 +276,7 @@ Menu.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

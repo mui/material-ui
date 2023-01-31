@@ -34,7 +34,7 @@ export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'plain'
+     * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, MenuListPropsVariantOverrides>;
   };

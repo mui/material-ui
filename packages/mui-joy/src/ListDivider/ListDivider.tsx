@@ -151,7 +151,7 @@ ListDivider.propTypes /* remove-proptypes */ = {
    * The component orientation.
    * @default 'horizontal'
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  orientation: PropTypes /* @typescript-to-proptypes-ignore */.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */
