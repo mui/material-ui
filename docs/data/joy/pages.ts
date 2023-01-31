@@ -1,3 +1,5 @@
+import pagesApi from './pagesApi';
+
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
@@ -92,6 +94,12 @@ const pages = [
         children: [{ pathname: '/joy-ui/react-css-baseline', title: 'CSS Baseline' }],
       },
     ],
+  },
+  {
+    title: 'Component API',
+    pathname: '/joy-ui/api',
+    icon: 'CodeIcon',
+    children: pagesApi,
   },
   {
     pathname: '/joy-ui/customization',
