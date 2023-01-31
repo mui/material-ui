@@ -33,3 +33,5 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
       - name: Add deploy previews to PR's comment
         run: yarn danger ci -d dangerfile.deploy-preview.ts -i deploy-preview
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
