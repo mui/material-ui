@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0",
+  "version": "5.0.0-alpha.117",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@mui/base": "^5.0.0",
+    "@mui/base": "5.0.0-alpha.116",
     "@mui/system": "^5.11.7",
     "@mui/types": "^7.2.3",
     "@mui/utils": "^5.11.7",
