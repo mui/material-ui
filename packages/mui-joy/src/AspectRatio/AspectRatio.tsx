@@ -168,6 +168,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
   minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The CSS object-fit value of the first-child.
+   * @default 'cover'
    */
   objectFit: PropTypes.oneOf([
     '-moz-initial',

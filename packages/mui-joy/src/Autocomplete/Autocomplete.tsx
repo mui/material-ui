@@ -745,7 +745,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   autoFocus: PropTypes.bool,
   /**
    * The icon to display in place of the default clear icon.
-   * @default <ClearIcon fontSize="small" />
+   * @default <ClearIcon fontSize="md" />
    */
   clearIcon: PropTypes.node,
   /**
@@ -799,6 +799,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -822,9 +823,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *
-   * @param {number} more The number of truncated tags.
+   * @param {string | number} more The number of truncated tags.
    * @returns {ReactNode}
-   * @default (more) => `+${more}`
+   * @default (more: string | number) => `+${more}`
    */
   getLimitTagsText: PropTypes.func,
   /**

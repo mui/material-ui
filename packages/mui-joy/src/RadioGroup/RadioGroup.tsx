@@ -173,6 +173,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
@@ -189,6 +190,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   defaultValue: PropTypes.any,
   /**
    * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
+   * @default false
    */
   disableIcon: PropTypes.bool,
   /**
@@ -210,6 +212,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
@@ -238,6 +241,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
   /**
    * The variant to use.
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

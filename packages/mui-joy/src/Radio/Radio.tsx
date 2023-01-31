@@ -463,7 +463,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
    * This prop is useful for composing Radio with ListItem component.
-   * @default false;
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
