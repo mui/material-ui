@@ -83,7 +83,16 @@ const AutocompleteListboxRoot = styled(StyledAutocompleteListbox, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [AutocompleteListbox API](https://mui.com/joy-ui/api/autocomplete-listbox/)
+ */
 const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

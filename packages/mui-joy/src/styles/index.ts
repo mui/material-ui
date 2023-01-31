@@ -71,7 +71,11 @@ export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 export { default as useThemeProps } from './useThemeProps';
-export { ColorInversionProvider, useColorInversion } from './ColorInversion';
+export {
+  default as ColorInversion,
+  ColorInversionProvider,
+  useColorInversion,
+} from './ColorInversion';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
 export type { CssVarsThemeOptions } from './extendTheme';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

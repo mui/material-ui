@@ -4,11 +4,11 @@
     "children": "The content of the component.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "orientation": "The component orientation.",
-    "size": "The size of the component (affect other nested list* components).",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "label": "A text representation of the option&#39;s content. Used for keyboard text navigation matching.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use.",
-    "wrap": "Only for horizontal list. If <code>true</code>, the list sets the flex-wrap to &quot;wrap&quot; and adjust margin to have gap-like behavior (will move to <code>gap</code> in the future)."
+    "value": "The option value.",
+    "variant": "The variant to use."
   },
   "classDescriptions": {}
 }

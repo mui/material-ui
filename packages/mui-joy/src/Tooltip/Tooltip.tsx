@@ -204,7 +204,16 @@ function composeFocusEventHandler(
     handler(event);
   };
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
+ *
+ * API:
+ *
+ * - [Tooltip API](https://mui.com/joy-ui/api/tooltip/)
+ */
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps<typeof inProps & TooltipProps>({
     props: inProps,
@@ -661,7 +670,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
@@ -830,7 +839,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   title: PropTypes.node,
   /**
    * The variant to use.
-   * @default 'soft'
+   * @default 'solid'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;

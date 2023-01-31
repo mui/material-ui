@@ -63,7 +63,16 @@ const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
     }),
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListDivider API](https://mui.com/joy-ui/api/list-divider/)
+ */
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -79,7 +88,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     className,
     children,
     inset = 'context',
-    orientation = row ? 'vertical' : 'horizontal',
+    orientation: orientationProp,
     ...other
   } = props;
 
@@ -88,6 +97,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : 'li');
   const role = roleProp || (component === 'li' ? 'separator' : undefined);
 
+  const orientation = orientationProp || (row ? 'vertical' : 'horizontal');
   const ownerState = {
     ...props,
     inset,

@@ -50,8 +50,8 @@ type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 
 
 const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
-const defaultGetOptionLabel = <T extends unknown>(option: T) =>
-  (option as { label: string }).label ?? option;
+// @ts-ignore
+const defaultGetOptionLabel = (option) => option.label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
 const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   <ListItem key={params.key} nested>
@@ -268,7 +268,16 @@ const excludeUseAutocompleteParams = <
   selectOnFocus,
   ...other
 }: T) => other as T;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://mui.com/joy-ui/api/autocomplete/)
+ */
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,

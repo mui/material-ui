@@ -1,20 +1,17 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the table, normally <code>TableHead</code> and <code>TableBody</code>.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "borderAxis": "The axis to display a border on the table cell.",
+    "children": "Children of the table",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "padding": "Allows TableCells to inherit padding of the Table.",
-    "size": "Allows TableCells to inherit size of the Table.",
+    "hoverRow": "If <code>true</code>, the table row will shade on hover.",
+    "noWrap": "If <code>true</code>, the body cells will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note: Header cells are always truncated with overflow ellipsis.",
+    "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;.",
     "stickyHeader": "Set the header sticky.<br>⚠️ It doesn&#39;t work with IE11.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "stripe": "The odd or even row of the table body will have subtle background color.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The variant to use."
   },
-  "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "stickyHeader": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>stickyHeader={true}</code>"
-    }
-  }
+  "classDescriptions": {}
 }

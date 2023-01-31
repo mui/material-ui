@@ -268,7 +268,16 @@ const TableRoot = styled('table', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Table](https://mui.com/material-ui/react-table/)
+ *
+ * API:
+ *
+ * - [Table API](https://mui.com/joy-ui/api/table/)
+ */
 const Table = React.forwardRef(function Table(inProps, ref) {
   const props = useThemeProps<typeof inProps & TableProps>({
     props: inProps,

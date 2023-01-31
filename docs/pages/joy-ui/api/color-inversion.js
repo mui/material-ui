@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './box.json';
+import jsonPageContent from './color-inversion.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/translations/api-docs/box', false, /box.*.json$/);
+  const req = require.context(
+    'docs/translations/api-docs/color-inversion',
+    false,
+    /color-inversion.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

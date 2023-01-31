@@ -50,7 +50,16 @@ const TabsRoot = styled(SheetRoot, {
     alignItems: 'flex-start',
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tabs API](https://mui.com/joy-ui/api/tabs/)
+ */
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -60,7 +69,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const {
     children,
     value: valueProp,
-    defaultValue = valueProp === undefined ? 0 : undefined,
+    defaultValue: defaultValueProp,
     orientation = 'horizontal',
     direction = 'ltr',
     component,
@@ -73,7 +82,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
-
+  const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
   const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {

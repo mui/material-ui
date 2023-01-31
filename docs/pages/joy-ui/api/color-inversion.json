@@ -1,0 +1,10 @@
+{
+  "props": {},
+  "name": "ColorInversion",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/mui-joy/src/styles/ColorInversion.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/main-features/color-inversion/\">Color inversion</a></li></ul>",
+  "cssComponent": false
+}

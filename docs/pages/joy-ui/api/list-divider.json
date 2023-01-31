@@ -1,0 +1,43 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "inset": {
+      "type": {
+        "name": "union",
+        "description": "'gutter'<br>&#124;&nbsp;'startDecorator'<br>&#124;&nbsp;'startContent'<br>&#124;&nbsp;string"
+      },
+      "default": "'context'"
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "ListDivider",
+  "styles": {
+    "classes": [
+      "root",
+      "insetGutter",
+      "insetStartDecorator",
+      "insetStartContent",
+      "horizontal",
+      "vertical"
+    ],
+    "globalClasses": {},
+    "name": "MuiListDivider"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-joy/src/ListDivider/ListDivider.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}
