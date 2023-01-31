@@ -53,6 +53,7 @@ module.exports = [
   { pathname: '/joy-ui/api/tab' },
   { pathname: '/joy-ui/api/tab-list' },
   { pathname: '/joy-ui/api/tab-panel' },
+  { pathname: '/joy-ui/api/table' },
   { pathname: '/joy-ui/api/tabs' },
   { pathname: '/joy-ui/api/text-area' },
   { pathname: '/joy-ui/api/text-field' },
