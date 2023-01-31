@@ -39,6 +39,7 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
       maxHeight?: number | string;
       /**
        * The CSS object-fit value of the first-child.
+       * @default 'cover'
        */
       objectFit?: React.CSSProperties['objectFit'];
       /**
