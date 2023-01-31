@@ -1,19 +1,22 @@
 import { chromium } from 'playwright';
+import fs from 'fs/promises';
+import path from 'path';
 
 const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 const directory = 'docs/public/static/screenshots';
-
-const urls = [
-  '/joy-ui/getting-started/templates/email/',
-  '/joy-ui/getting-started/templates/files/',
-  '/joy-ui/getting-started/templates/team/',
-];
 
 (async () => {
   // eslint-disable-next-line no-console
   console.info('Host:', host);
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1600, height: 800 } });
+
+  const files = await fs.readdir(
+    path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
+  );
+  const urls = files
+    .filter((file) => !file.startsWith('index'))
+    .map((file) => `/joy-ui/getting-started/templates/${file.replace(/\.(js|tsx)$/, '/')}`);
 
   try {
     await Promise.resolve().then(() =>
