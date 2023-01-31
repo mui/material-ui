@@ -83,7 +83,16 @@ const AspectRatioContent = styled('div', {
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
-
+/**
+ *
+ * Demos:
+ *
+ * - [Aspect Ratio](https://mui.com/material-ui/react-aspect-ratio/)
+ *
+ * API:
+ *
+ * - [AspectRatio API](https://mui.com/joy-ui/api/aspect-ratio/)
+ */
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
     props: inProps,

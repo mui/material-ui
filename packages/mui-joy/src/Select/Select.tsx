@@ -304,7 +304,16 @@ const SelectIndicator = styled('span', {
     marginInlineStart: 'calc(var(--Select-gap) / 2)',
   },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/material-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Select API](https://mui.com/joy-ui/api/select/)
+ */
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,

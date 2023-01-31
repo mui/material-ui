@@ -211,7 +211,16 @@ const SwitchEndDecorator = styled('span', {
   display: 'inline-flex',
   marginInlineStart: 'var(--Switch-gap)',
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Switch](https://mui.com/material-ui/react-switch/)
+ *
+ * API:
+ *
+ * - [Switch API](https://mui.com/joy-ui/api/switch/)
+ */
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

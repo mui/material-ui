@@ -162,7 +162,7 @@ const SETTINGS: Settings[] = [
       createTypeScriptProject({
         name: 'joy',
         rootPath: path.join(process.cwd(), 'packages/mui-joy'),
-        entryPointPath: 'src/index.d.ts',
+        entryPointPath: 'src/index.ts',
       }),
     ],
     getApiPages: () => findApiPages('docs/pages/joy-ui/api'),

@@ -26,7 +26,16 @@ const CardContentRoot = styled('div', {
   flexGrow: 1,
   zIndex: 1,
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/material-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardContent API](https://mui.com/joy-ui/api/card-content/)
+ */
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardContentProps>({
     props: inProps,

@@ -1,0 +1,21 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "ListItemDecorator",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemDecorator" },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-joy/src/ListItemDecorator/ListItemDecorator.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}

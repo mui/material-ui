@@ -23,7 +23,16 @@ const ListItemContentRoot = styled('div', {
   flex: '1 1 auto',
   minWidth: 0,
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemContent API](https://mui.com/joy-ui/api/list-item-content/)
+ */
 const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

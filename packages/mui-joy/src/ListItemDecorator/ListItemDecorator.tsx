@@ -33,7 +33,16 @@ const ListItemDecoratorRoot = styled('span', {
         minBlockSize: 'var(--List-decorator-size)',
       }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemDecorator API](https://mui.com/joy-ui/api/list-item-decorator/)
+ */
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

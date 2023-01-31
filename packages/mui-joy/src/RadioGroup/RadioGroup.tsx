@@ -48,7 +48,16 @@ const RadioGroupRoot = styled('div', {
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio Group](https://mui.com/material-ui/react-radio/)
+ *
+ * API:
+ *
+ * - [RadioGroup API](https://mui.com/joy-ui/api/radio-group/)
+ */
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

@@ -144,7 +144,16 @@ const defaultVariantMapping: Record<string, string> = {
   body5: 'span',
   inherit: 'p',
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Typography](https://mui.com/material-ui/react-typography/)
+ *
+ * API:
+ *
+ * - [Typography API](https://mui.com/joy-ui/api/typography/)
+ */
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const {
     color: colorProp,

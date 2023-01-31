@@ -206,7 +206,16 @@ const TextareaEndDecorator = styled('div', {
   color: theme.vars.palette.text.tertiary,
   cursor: 'initial',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea](https://mui.com/material-ui/react-textarea/)
+ *
+ * API:
+ *
+ * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
+ */
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

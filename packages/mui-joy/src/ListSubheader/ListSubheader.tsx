@@ -54,7 +54,16 @@ const ListSubheaderRoot = styled('div', {
       : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListSubheader API](https://mui.com/joy-ui/api/list-subheader/)
+ */
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

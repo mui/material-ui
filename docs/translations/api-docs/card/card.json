@@ -1,10 +1,14 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "raised": "If <code>true</code>, the card will use raised styling.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "children": "Used to render icon or text elements inside the Card if <code>src</code> is not set. This can be an element, or just a string.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "invertedColors": "If <code>true</code>, the children with an implicit color prop invert their colors to match the component&#39;s variant and color.",
+    "orientation": "The component orientation.",
+    "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The variant to use."
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": {}
 }

@@ -245,7 +245,16 @@ const InputEndDecorator = styled(StyledInputEndDecorator, {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/material-ui/react-input/)
+ *
+ * API:
+ *
+ * - [Input API](https://mui.com/joy-ui/api/input/)
+ */
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

@@ -136,7 +136,16 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 
   return loaded;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [Avatar API](https://mui.com/joy-ui/api/avatar/)
+ */
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,

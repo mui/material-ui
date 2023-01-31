@@ -87,7 +87,16 @@ export const DividerRoot = styled('hr', {
         blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
       }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Divider](https://mui.com/material-ui/react-divider/)
+ *
+ * API:
+ *
+ * - [Divider API](https://mui.com/joy-ui/api/divider/)
+ */
 const Divider = React.forwardRef(function Divider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

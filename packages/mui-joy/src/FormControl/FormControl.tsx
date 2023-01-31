@@ -63,7 +63,16 @@ export const FormControlRoot = styled('div', {
   position: 'relative', // for keeping the control action area, e.g. Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/material-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormControl API](https://mui.com/joy-ui/api/form-control/)
+ */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const props = useThemeProps<typeof inProps & FormControlProps>({
     props: inProps,

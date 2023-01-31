@@ -84,7 +84,16 @@ const CardRoot = styled('div', {
     ownerState.invertedColors &&
     theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/material-ui/react-card/)
+ *
+ * API:
+ *
+ * - [Card API](https://mui.com/joy-ui/api/card/)
+ */
 const Card = React.forwardRef(function Card(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardProps>({
     props: inProps,

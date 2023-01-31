@@ -49,7 +49,16 @@ const CardCoverRoot = styled('div', {
     },
   },
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/material-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardCover API](https://mui.com/joy-ui/api/card-cover/)
+ */
 const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardCoverProps>({
     props: inProps,

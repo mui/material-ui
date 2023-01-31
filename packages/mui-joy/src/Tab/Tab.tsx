@@ -54,7 +54,16 @@ const TabRoot = styled(StyledListItemButton, {
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tab API](https://mui.com/joy-ui/api/tab/)
+ */
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

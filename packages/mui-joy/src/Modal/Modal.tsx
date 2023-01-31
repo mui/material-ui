@@ -78,7 +78,16 @@ const ModalBackdrop = styled('div', {
     backdropFilter: 'blur(8px)',
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/material-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [Modal API](https://mui.com/joy-ui/api/modal/)
+ */
 const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
