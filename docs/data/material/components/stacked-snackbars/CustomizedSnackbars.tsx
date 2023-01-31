@@ -1,5 +1,7 @@
 import * as React from 'react';
-import SnackbarsProvider from '@mui/lab/SnackbarsProvider';
+import SnackbarsProvider, {
+  SnackbarsContextProps,
+} from '@mui/lab/SnackbarsProvider';
 import useSnackbars from '@mui/lab/useSnackbars';
 import Button from '@mui/material/Button';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
@@ -12,6 +14,20 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+const SnackbarContent = (snackbars: SnackbarsContextProps) => {
+  return function Content(key: string) {
+    return (
+      <Alert
+        onClose={snackbars.close(key)}
+        severity="success"
+        sx={{ width: '100%' }}
+      >
+        This is a success message!
+      </Alert>
+    );
+  };
+};
+
 function MyApp() {
   const snackbars = useSnackbars();
 
@@ -21,15 +37,7 @@ function MyApp() {
         variant="outlined"
         onClick={() =>
           snackbars.show({
-            content: (key: string) => (
-              <Alert
-                onClose={snackbars.close(key)}
-                severity="success"
-                sx={{ width: '100%' }}
-              >
-                This is a success message!
-              </Alert>
-            ),
+            content: SnackbarContent(snackbars),
           })
         }
       >

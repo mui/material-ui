@@ -20,6 +20,30 @@ function MyApp() {
   );
 }
 
+const GlobalSnackbarAction = (snackbarRef: React.RefObject<CloseSnackbarRef>) => {
+  return function Action(key: string) {
+    return (
+      <React.Fragment>
+        <Button
+          color="secondary"
+          size="small"
+          onClick={snackbarRef.current!.close(key)}
+        >
+          UNDO
+        </Button>
+        <IconButton
+          size="small"
+          aria-label="close"
+          color="inherit"
+          onClick={snackbarRef.current!.close(key)}
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </React.Fragment>
+    );
+  };
+};
+
 export default function GlobalActionSnackbars() {
   const snackbarRef = React.useRef<CloseSnackbarRef>(null);
 
@@ -27,25 +51,7 @@ export default function GlobalActionSnackbars() {
     <SnackbarsProvider
       ref={snackbarRef}
       autoHideDuration={4000}
-      action={(key) => (
-        <React.Fragment>
-          <Button
-            color="secondary"
-            size="small"
-            onClick={snackbarRef.current!.close(key)}
-          >
-            UNDO
-          </Button>
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={snackbarRef.current!.close(key)}
-          >
-            <CloseIcon fontSize="small" />
-          </IconButton>
-        </React.Fragment>
-      )}
+      action={GlobalSnackbarAction(snackbarRef)}
     >
       <MyApp />
     </SnackbarsProvider>

@@ -1,0 +1,7 @@
+<SnackbarsProvider
+  ref={snackbarRef}
+  autoHideDuration={4000}
+  action={GlobalSnackbarAction(snackbarRef)}
+>
+  <MyApp />
+</SnackbarsProvider>

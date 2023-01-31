@@ -6,19 +6,19 @@ import useSnackbars from '@mui/lab/useSnackbars';
 import Button from '@mui/material/Button';
 import Slide from '@mui/material/Slide';
 import { snackbarClasses } from '@mui/material/Snackbar';
-import { ShowSnackbarProps } from './SnackbarsContext';
+import { ShowSnackbarProps, SnackbarsContextProps } from './SnackbarsContext';
 
 describe('StackedSnackbars', () => {
   const { render, clock } = createRenderer({ clock: 'fake' });
 
-  const MyApp = (snackbarOptions: ShowSnackbarProps) => {
+  function MyApp(snackbarOptions: ShowSnackbarProps) {
     const snackbars = useSnackbars();
     return (
       <Button onClick={() => snackbars.show({ message: 'Note Archived', ...snackbarOptions })}>
         Show Snackbar
       </Button>
     );
-  };
+  }
 
   const renderComponent = ({
     snackbarsProviderProps,
@@ -57,13 +57,13 @@ describe('StackedSnackbars', () => {
 
   it('individual snackbar properties should take precedence over SnackbarsProvider', () => {
     const childRef = React.createRef<HTMLDivElement>();
-    const SlideTransition = () => {
+    function SlideTransition() {
       return (
         <Slide>
           <div ref={childRef} />
         </Slide>
       );
-    };
+    }
     renderComponent({
       snackbarsProviderProps: {
         anchorOrigin: {
@@ -88,25 +88,30 @@ describe('StackedSnackbars', () => {
   });
 
   it('each snackbars can be closed correctly', () => {
-    const TestApp = () => {
+    function SnackbarAction(snackbars: SnackbarsContextProps) {
+      return function Action(key: string) {
+        return (
+          <Button color="secondary" size="small" onClick={snackbars.close(key)}>
+            Close
+          </Button>
+        );
+      };
+    }
+    function TestApp() {
       const snackbars = useSnackbars();
       return (
         <Button
           onClick={() =>
             snackbars.show({
               message: 'Note Archived',
-              action: (key: string) => (
-                <Button color="secondary" size="small" onClick={snackbars.close(key)}>
-                  Close
-                </Button>
-              ),
+              action: SnackbarAction(snackbars),
             })
           }
         >
           Show Snackbar
         </Button>
       );
-    };
+    }
     renderComponent({
       children: <TestApp />,
     });

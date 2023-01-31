@@ -26,6 +26,20 @@ function MyApp() {
   );
 }
 
+const GlobalContentSnackbar = (snackbarRef: React.RefObject<CloseSnackbarRef>) => {
+  return function Content(key: string) {
+    return (
+      <Alert
+        onClose={snackbarRef.current!.close(key)}
+        severity="warning"
+        sx={{ width: '100%' }}
+      >
+        This is a warning message!
+      </Alert>
+    );
+  };
+};
+
 export default function GlobalContentSnackbars() {
   const snackbarRef = React.useRef<CloseSnackbarRef>(null);
 
@@ -34,15 +48,7 @@ export default function GlobalContentSnackbars() {
       ref={snackbarRef}
       autoHideDuration={4000}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      content={(key) => (
-        <Alert
-          onClose={snackbarRef.current!.close(key)}
-          severity="warning"
-          sx={{ width: '100%' }}
-        >
-          This is a warning message!
-        </Alert>
-      )}
+      content={GlobalContentSnackbar(snackbarRef)}
     >
       <MyApp />
     </SnackbarsProvider>

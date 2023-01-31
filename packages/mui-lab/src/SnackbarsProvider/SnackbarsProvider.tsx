@@ -96,42 +96,63 @@ const SnackbarsProvider = React.forwardRef<
     ...others
   } = props;
 
-  const showSnackbar = (snackbar: ShowSnackbarProps) => {
-    setSnackbars((prevState) => {
-      const updatedSnackbars = [
-        ...prevState,
-        {
-          anchorOrigin: { vertical, horizontal },
-          autoHideDuration,
-          ClickAwayListenerProps,
-          ContentProps,
-          key: randomId(),
-          open: true,
-          TransitionComponent,
-          transitionDuration,
-          TransitionProps,
-          ...snackbar,
-        },
-      ];
+  const showSnackbar = React.useCallback(
+    (snackbar: ShowSnackbarProps) => {
+      setSnackbars((prevState) => {
+        const updatedSnackbars = [
+          ...prevState,
+          {
+            anchorOrigin: { vertical, horizontal },
+            autoHideDuration,
+            ClickAwayListenerProps,
+            ContentProps,
+            key: randomId(),
+            open: true,
+            TransitionComponent,
+            transitionDuration,
+            TransitionProps,
+            ...snackbar,
+          },
+        ];
 
-      return updatedSnackbars.slice(0, limit);
-    });
-  };
+        return updatedSnackbars.slice(0, limit);
+      });
+    },
+    [
+      ClickAwayListenerProps,
+      ContentProps,
+      TransitionComponent,
+      TransitionProps,
+      autoHideDuration,
+      horizontal,
+      limit,
+      transitionDuration,
+      vertical,
+    ],
+  );
 
-  const handleClose = (key: string) => () => {
-    setSnackbars((prevState) =>
-      [...prevState].map((snackbar) => {
-        if (snackbar.key !== key) {
-          return snackbar;
-        }
-        return { ...snackbar, open: false };
-      }),
-    );
-  };
+  const handleClose = React.useCallback(
+    (key: string) => () => {
+      setSnackbars((prevState) =>
+        [...prevState].map((snackbar) => {
+          if (snackbar.key !== key) {
+            return snackbar;
+          }
+          return { ...snackbar, open: false };
+        }),
+      );
+    },
+    [],
+  );
 
   React.useImperativeHandle(ref, () => ({
     close: (key: string) => handleClose(key),
   }));
+
+  const snackbarsContextValue = React.useMemo(
+    () => ({ show: showSnackbar, close: handleClose }),
+    [showSnackbar, handleClose],
+  );
 
   const handleExited = (key: string) => () => {
     setSnackbars([...snackbars.filter((snackbar) => snackbar.key !== key)]);
@@ -204,7 +225,7 @@ const SnackbarsProvider = React.forwardRef<
   });
 
   return (
-    <SnackbarsContext.Provider value={{ show: showSnackbar, close: handleClose }}>
+    <SnackbarsContext.Provider value={snackbarsContextValue}>
       {snackbarsContainer}
       {children}
     </SnackbarsContext.Provider>

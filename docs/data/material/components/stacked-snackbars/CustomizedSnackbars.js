@@ -9,6 +9,20 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+const SnackbarContent = (snackbars) => {
+  return function Content(key) {
+    return (
+      <Alert
+        onClose={snackbars.close(key)}
+        severity="success"
+        sx={{ width: '100%' }}
+      >
+        This is a success message!
+      </Alert>
+    );
+  };
+};
+
 function MyApp() {
   const snackbars = useSnackbars();
 
@@ -18,15 +32,7 @@ function MyApp() {
         variant="outlined"
         onClick={() =>
           snackbars.show({
-            content: (key) => (
-              <Alert
-                onClose={snackbars.close(key)}
-                severity="success"
-                sx={{ width: '100%' }}
-              >
-                This is a success message!
-              </Alert>
-            ),
+            content: SnackbarContent(snackbars),
           })
         }
       >
