@@ -10,6 +10,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
+import { TypographySystem } from '../styles/types';
 
 /**
  * @internal
@@ -164,7 +165,18 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     gutterBottom = false,
     noWrap = false,
     level: levelProp = 'body1',
-    levelMapping = {},
+    levelMapping = {
+      h1: 'h1',
+      h2: 'h2',
+      h3: 'h3',
+      h4: 'h4',
+      h5: 'h5',
+      h6: 'h6',
+      body1: 'p',
+      body2: 'p',
+      body3: 'p',
+      inherit: 'p',
+    } as Partial<Record<keyof TypographySystem | 'inherit', string>>,
     children,
     endDecorator,
     startDecorator,
