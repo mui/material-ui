@@ -31,10 +31,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   - Renames the classname prefix of all Joy UI components from `'Joy'` to `'Mui'`.
 
   ```diff
-  <Button
+   <Button
   -sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
   +sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
-  />
+   />
   ```
 
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
@@ -44,10 +44,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   - Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components in Joy UI.
 
   ```diff
-  <Card
+   <Card
   -row
   +orientation={"horizontal"}
-  />
+   />
   ```
 
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-row-prop) to help with the migration.
