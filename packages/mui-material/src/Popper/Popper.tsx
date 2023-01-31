@@ -67,7 +67,7 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-});
+}) as ((props: PopperProps) => JSX.Element) & { propTypes?: any };
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
