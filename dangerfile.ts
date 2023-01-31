@@ -1,6 +1,6 @@
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
-import { danger, markdown, message } from 'danger';
+import { danger, markdown } from 'danger';
 import { exec } from 'child_process';
 import { loadComparison } from './scripts/sizeSnapshot';
 
@@ -189,15 +189,16 @@ async function run() {
     .filter((file) => file.startsWith('docs/data') && file.endsWith('.md'))
     .slice(0, 5);
 
-  message(`<b>Netlify deploy preview</b>
-  <ul>
-  ${docs
-    .map((path) => {
-      const formattedUrl = formatFileToLink(path);
-      return `<li><a href="${netlifyPreview}/${formattedUrl}" target="_blank">${formattedUrl}</a></li>`;
-    })
-    .join('\n')}
-  </ul>`);
+  markdown(`
+## Netlify deploy preview
+
+${docs
+  .map((path) => {
+    const formattedUrl = formatFileToLink(path);
+    return `- [${formattedUrl}](${netlifyPreview}/${formattedUrl})`;
+  })
+  .join('\n')}
+`);
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
