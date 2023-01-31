@@ -1,6 +1,6 @@
 ---
 product: joy-ui
-components: CssBaseline
+components: CssBaseline, ScopedCssBaseline
 githubLabel: 'component: CssBaseline'
 ---
 

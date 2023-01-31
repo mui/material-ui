@@ -1,7 +1,7 @@
 ---
 product: joy-ui
 title: React Chip component
-components: Chip
+components: Chip, ChipDelete
 githubLabel: 'component: chip'
 ---
 

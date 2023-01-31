@@ -60,7 +60,16 @@ const ScopedCssBaselineRoot = styled('div', {
     ...colorSchemeStyles,
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [CSS Baseline](https://mui.com/material-ui/react-css-baseline/)
+ *
+ * API:
+ *
+ * - [ScopedCssBaseline API](https://mui.com/joy-ui/api/scoped-css-baseline/)
+ */
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps<typeof inProps & ScopedCssBaselineProps>({
     props: inProps,

@@ -83,6 +83,7 @@ const AspectRatioContent = styled('div', {
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
+
 /**
  *
  * Demos:

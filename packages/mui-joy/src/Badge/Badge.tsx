@@ -133,7 +133,16 @@ const BadgeBadge = styled('span', {
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Badge](https://mui.com/material-ui/react-badge/)
+ *
+ * API:
+ *
+ * - [Badge API](https://mui.com/joy-ui/api/badge/)
+ */
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'JoyBadge' });
   const {
@@ -231,6 +240,7 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The content rendered within the badge.
+   * @default ''
    */
   badgeContent: PropTypes.node,
   /**

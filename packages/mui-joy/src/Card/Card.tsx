@@ -84,6 +84,7 @@ const CardRoot = styled('div', {
     ownerState.invertedColors &&
     theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
+
 /**
  *
  * Demos:

@@ -25,6 +25,7 @@ export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     color?: OverridableStringUnion<ColorPaletteProp, MenuListPropsColorOverrides>;
     /**
      * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+     * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', MenuListPropsSizeOverrides>;
     /**

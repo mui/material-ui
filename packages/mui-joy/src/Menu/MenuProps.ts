@@ -36,6 +36,7 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
       open?: boolean;
       /**
        * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', MenuPropsSizeOverrides>;
       /**

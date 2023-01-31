@@ -260,6 +260,7 @@ Menu.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
