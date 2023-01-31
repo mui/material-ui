@@ -18,6 +18,12 @@ export * from './AvatarGroup';
 export { default as Autocomplete } from './Autocomplete';
 export * from './Autocomplete';
 
+export { default as AutocompleteListbox } from './AutocompleteListbox';
+export * from './AutocompleteListbox';
+
+export { default as AutocompleteOption } from './AutocompleteOption';
+export * from './AutocompleteOption';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 
