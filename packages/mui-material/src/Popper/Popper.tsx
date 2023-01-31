@@ -66,9 +66,7 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-}) as React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<PopperProps & React.RefAttributes<HTMLDivElement>>
->;
+}) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

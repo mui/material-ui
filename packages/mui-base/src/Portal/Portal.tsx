@@ -67,9 +67,7 @@ const Portal = React.forwardRef(function Portal(
       {mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode}
     </React.Fragment>
   );
-}) as React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<PortalProps> & React.RefAttributes<Element>
->;
+}) as React.ForwardRefExoticComponent<PortalProps & React.RefAttributes<Element>>;
 
 Portal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
