@@ -14,12 +14,12 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   components?: {
     Root?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the Popper.
    * @default {}
    */
   componentsProps?: PopperUnstyledProps['slotProps'];
+  ref?: React.Ref<HTMLDivElement>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
