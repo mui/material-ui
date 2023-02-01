@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -391,6 +391,21 @@ describe('<Select />', () => {
         ]);
       });
     });
+  });
+
+  it('should not have the selectable option selected when inital value provided is empty string on Select with ListSubHeader item', () => {
+    render(
+      <Select open value="">
+        <ListSubheader>Category 1</ListSubheader>
+        <MenuItem value={10}>Ten</MenuItem>
+        <ListSubheader>Category 2</ListSubheader>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>,
+    );
+
+    const options = screen.getAllByRole('option');
+    expect(options[1]).not.to.have.class(menuItemClasses.selected);
   });
 
   describe('SVG icon', () => {
