@@ -34,4 +34,4 @@ jobs:
       - name: Add deploy previews to PR's comment
         run: yarn danger ci -d dangerfile.deploy-preview.ts -i deploy-preview
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
