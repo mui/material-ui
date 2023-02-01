@@ -33,7 +33,7 @@ const directory = 'docs/public/static/screenshots';
         const toggle = await page.$('#toggle-mode');
         if (toggle) {
           await page.click('#toggle-mode');
-          await page.waitForLoadState('networkidle');
+          await page.reload({ waitUntil: 'networkidle' });
           await page.screenshot({ path: filePath.replace('.jpg', '-dark.jpg') });
 
           await page.click('#toggle-mode'); // switch back to light
