@@ -10,7 +10,8 @@ on:
     paths:
       - 'docs/**'
 
-permissions: {}
+permissions:
+  pull-requests: write
 
 jobs:
   main:
@@ -34,4 +35,4 @@ jobs:
       - name: Add deploy previews to PR's comment
         run: yarn danger ci -d dangerfile.deploy-preview.ts -i deploy-preview
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
