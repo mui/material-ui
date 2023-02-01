@@ -2384,41 +2384,6 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
-    it('should call onScrollToBottom when scroll custom listbox is used', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const onScrollToBottom = spy();
-
-      const { getByRole } = render(
-        <Autocomplete
-          open
-          options={['one', 'two', 'three', 'four', 'five']}
-          onScrollToBottom={onScrollToBottom}
-          slots={{ listbox: 'div' }}
-          slotProps={{
-            listbox: {
-              style: {
-                height: '100px',
-              },
-            },
-          }}
-        />,
-      );
-      testOnScrollToBottom({
-        reason: 'keyboard',
-        getByRole,
-        onScrollToBottom,
-        onScrollToBottomCallCount: 1,
-      });
-      testOnScrollToBottom({
-        reason: 'mouse',
-        getByRole,
-        onScrollToBottom,
-        onScrollToBottomCallCount: 2,
-      });
-    });
-
     it('should call onScrollToBottom and custom listbox onScroll when possible', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
