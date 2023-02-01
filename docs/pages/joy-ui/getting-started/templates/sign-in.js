@@ -14,6 +14,7 @@ export default function Team() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
+        <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js" />
       </Head>
       <NextNProgressBar />
       <SignInTemplate />

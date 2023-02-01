@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
@@ -7,44 +7,98 @@ import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import customTheme from './theme';
+
+function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return <IconButton size="sm" variant="outlined" color="primary" />;
+  }
+  return (
+    <IconButton
+      id="toggle-mode"
+      size="sm"
+      variant="plain"
+      color="neutral"
+      {...props}
+      onClick={(event) => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+        onClick?.(event);
+      }}
+    >
+      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+    </IconButton>
+  );
+}
 
 export default function JoySignInTemplate() {
   return (
-    <CssVarsProvider defaultMode="dark" theme={customTheme}>
+    <CssVarsProvider
+      defaultMode="dark"
+      disableTransitionOnChange
+      theme={customTheme}
+    >
       <CssBaseline />
       <GlobalStyles
         styles={{
           ':root': {
-            '--Collapsed-breakpoint': '768px',
+            '--Collapsed-breakpoint': '769px',
+            '--Cover-width': '40vw', // must be `vw` only
+            '--Form-maxWidth': '700px',
           },
         }}
       />
       <Box
-        sx={{
-          width: 'clamp(50vw, (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
+        sx={(theme) => ({
+          width:
+            'clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
           transition: '0.4s',
           transitionDelay: '0.1s',
           position: 'relative',
           zIndex: 1,
           display: 'flex',
           justifyContent: 'flex-end',
-        }}
+          backdropFilter: 'blur(4px)',
+          backgroundColor: 'rgba(255 255 255 / 0.6)',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundColor: 'rgba(19 19 24 / 0.4)',
+          },
+        })}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100dvh',
-            width: 'clamp(600px, (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
+            width:
+              'clamp(var(--Form-maxWidth), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
             maxWidth: '100%',
             px: 2,
           }}
         >
-          <Box component="header" sx={{ py: 3 }}>
+          <Box
+            component="header"
+            sx={{
+              py: 3,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
             <Typography
               fontWeight="lg"
               startDecorator={
@@ -65,6 +119,7 @@ export default function JoySignInTemplate() {
             >
               Logo
             </Typography>
+            <ColorSchemeToggle />
           </Box>
           <Box
             component="main"
@@ -72,7 +127,6 @@ export default function JoySignInTemplate() {
               my: 'auto',
               py: 2,
               pb: 5,
-              px: 3,
               display: 'flex',
               flexDirection: 'column',
               gap: 2,
@@ -80,15 +134,13 @@ export default function JoySignInTemplate() {
               maxWidth: '100%',
               mx: 'auto',
               borderRadius: 'sm',
-              backdropFilter: 'blur(4px)',
-              backgroundColor: 'rgba(255 255 255 / 0.32)',
             }}
           >
             <div>
               <Typography component="h2" fontSize="xl2" fontWeight="lg">
                 Welcome back
               </Typography>
-              <Typography level="body2" sx={{ my: 1 }}>
+              <Typography level="body2" sx={{ my: 1, mb: 3 }}>
                 Let&apos;s get started! Please enter your details.
               </Typography>
             </div>
@@ -108,7 +160,7 @@ export default function JoySignInTemplate() {
               }}
             >
               <Checkbox size="sm" label="Remember for 30 days" />
-              <Link fontSize="sm" href="#replace-with-a-link">
+              <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
                 Forgot password
               </Link>
             </Box>
@@ -156,26 +208,26 @@ export default function JoySignInTemplate() {
         </Box>
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           height: '100%',
           position: 'fixed',
           right: 0,
           top: 0,
           bottom: 0,
-          left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 50vw)',
+          left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))',
           transition: '0.4s',
           transitionDelay: '0.1s',
+          backgroundImage:
+            'url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8)',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '100%',
-          backgroundColor: '#99ddff',
-          backgroundImage: `radial-gradient(at 1% 76%, hsla(228,77%,78%,1) 0px, transparent 50%),
-radial-gradient(at 98% 42%, hsla(226,80%,69%,1) 0px, transparent 50%),
-radial-gradient(at 48% 26%, hsla(16,79%,74%,1) 0px, transparent 50%),
-radial-gradient(at 6% 32%, hsla(194,86%,61%,1) 0px, transparent 50%),
-radial-gradient(at 69% 36%, hsla(96,83%,75%,1) 0px, transparent 50%),
-radial-gradient(at 7% 63%, hsla(115,97%,79%,1) 0px, transparent 50%),
-radial-gradient(at 32% 69%, hsla(7,80%,64%,1) 0px, transparent 50%)`,
-        }}
+          backgroundColor: 'background.level1',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          [theme.getColorSchemeSelector('dark')]: {
+            backgroundImage:
+              'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831)',
+          },
+        })}
       />
     </CssVarsProvider>
   );
