@@ -15,6 +15,15 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import customTheme from './theme';
 
+interface FormElements extends HTMLFormControlsCollection {
+  email: HTMLInputElement;
+  password: HTMLInputElement;
+  persistent: HTMLInputElement;
+}
+interface SignInFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}
+
 function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -134,6 +143,11 @@ export default function JoySignInTemplate() {
               maxWidth: '100%',
               mx: 'auto',
               borderRadius: 'sm',
+              '& form': {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+              },
             }}
           >
             <div>
@@ -144,27 +158,46 @@ export default function JoySignInTemplate() {
                 Let&apos;s get started! Please enter your details.
               </Typography>
             </div>
-            <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input placeholder="Enter your email" type="email" name="email" />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Password</FormLabel>
-              <Input placeholder="•••••••" type="password" name="password" />
-            </FormControl>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
+            <form
+              onSubmit={(event: React.FormEvent<SignInFormElement>) => {
+                event.preventDefault();
+                const formElements = event.currentTarget.elements;
+                const data = {
+                  email: formElements.email.value,
+                  password: formElements.password.value,
+                  persistent: formElements.persistent.checked,
+                };
+                alert(JSON.stringify(data, null, 2));
               }}
             >
-              <Checkbox size="sm" label="Remember for 30 days" />
-              <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
-                Forgot password
-              </Link>
-            </Box>
-            <Button sx={{ width: '100%' }}>Sign in</Button>
+              <FormControl required>
+                <FormLabel slotProps={{ asterisk: { sx: { display: 'none' } } }}>
+                  Email
+                </FormLabel>
+                <Input placeholder="Enter your email" type="email" name="email" />
+              </FormControl>
+              <FormControl required>
+                <FormLabel slotProps={{ asterisk: { sx: { display: 'none' } } }}>
+                  Password
+                </FormLabel>
+                <Input placeholder="•••••••" type="password" name="password" />
+              </FormControl>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <Checkbox size="sm" label="Remember for 30 days" name="persistent" />
+                <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
+                  Forgot password
+                </Link>
+              </Box>
+              <Button type="submit" sx={{ width: '100%' }}>
+                Sign in
+              </Button>
+            </form>
             <Button
               variant="outlined"
               color="neutral"
