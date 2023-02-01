@@ -1,8 +1,8 @@
 <Autocomplete
   id="infinite-scrolling-demo"
-      options={films}
-      sx={{ width: 300 }}
-      loading
-
-      onScrollToBottom={handleOnScrollToBottom}
+  options={films}
+  sx={{ width: 300 }}
+  loading={isLoading}
+  showLoadingWithOptions
+  onScrollToBottom={handleOnScrollToBottom}
 />
