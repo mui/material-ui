@@ -2340,7 +2340,9 @@ describe('Joy <Autocomplete />', () => {
           options={['one', 'two', 'three', 'four', 'five']}
           slotProps={{
             listbox: {
-              height: '100px',
+              style: {
+                height: '100px',
+              },
             },
           }}
           onScrollToBottom={onScrollToBottom}
@@ -2367,7 +2369,9 @@ describe('Joy <Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
           slotProps={{
             listbox: {
-              height: '100px',
+              style: {
+                height: '100px',
+              },
             },
           }}
         />,
@@ -2380,7 +2384,7 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
-    it('should call onScrollToBottom when scroll custom ListboxComponent is used', function test() {
+    it('should call onScrollToBottom when scroll custom listbox is used', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -2394,7 +2398,9 @@ describe('Joy <Autocomplete />', () => {
           slots={{ listbox: 'div' }}
           slotProps={{
             listbox: {
-              height: '100px',
+              style: {
+                height: '100px',
+              },
             },
           }}
         />,
@@ -2413,7 +2419,7 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
-    it('should call onScrollToBottom and custom Listbox onScroll when possible', function test() {
+    it('should call onScrollToBottom and custom listbox onScroll when possible', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -2427,7 +2433,10 @@ describe('Joy <Autocomplete />', () => {
           onScrollToBottom={onScrollToBottom}
           slotProps={{
             listbox: {
-              height: '100px',
+              style: {
+                height: '100px',
+              },
+              onScroll,
             },
           }}
         />,
@@ -2480,13 +2489,13 @@ describe('Joy <Autocomplete />', () => {
       render(
         <Autocomplete loading showLoadingWithOptions open options={['one', 'two', 'three']} />,
       );
-      expect(document?.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
+      expect(document.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
       expect(screen.getAllByRole('option').length).to.equal(3);
     });
 
     it('should not display options with loading text when showLoadingWithOptions is false', () => {
       render(<Autocomplete loading showLoadingWithOptions={false} open options={[]} />);
-      expect(document?.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
+      expect(document.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
       expect(screen.queryByRole('option')).to.equal(null);
     });
   });
