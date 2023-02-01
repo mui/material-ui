@@ -237,6 +237,7 @@
     "/base-ui/react-button": "Button",
     "/base-ui/react-checkbox": "Checkbox",
     "/base-ui/react-input": "Input",
+    "/base-ui/react-number-input": "Number Input",
     "/base-ui/react-radio-button": "Radio Button",
     "/base-ui/react-rating": "Rating",
     "/base-ui/react-select": "Select",

@@ -1,0 +1,37 @@
+{
+  "parameters": {
+    "defaultValue": { "type": { "name": "unknown", "description": "unknown" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "error": { "type": { "name": "boolean", "description": "boolean" } },
+    "inputRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLInputElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement&gt;"
+      }
+    },
+    "max": { "type": { "name": "number", "description": "number" } },
+    "min": { "type": { "name": "number", "description": "number" } },
+    "onBlur": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "onChange": {
+      "type": {
+        "name": "UseNumberInputChangeHandler",
+        "description": "UseNumberInputChangeHandler"
+      }
+    },
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
+    "onFocus": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
+    "step": { "type": { "name": "number", "description": "number" } },
+    "value": { "type": { "name": "unknown", "description": "unknown" } }
+  },
+  "returnValue": {},
+  "name": "useNumberInput",
+  "filename": "/packages/mui-base/src/NumberInputUnstyled/useNumberInput.ts",
+  "demos": "<ul></ul>"
+}

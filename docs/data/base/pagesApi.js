@@ -24,6 +24,10 @@ module.exports = [
   { pathname: '/base-ui/react-menu/components-api/#menu-item', title: 'MenuItem' },
   { pathname: '/base-ui/react-modal/components-api/#modal', title: 'Modal' },
   { pathname: '/base-ui/react-no-ssr/components-api/#no-ssr', title: 'NoSsr' },
+  {
+    pathname: '/base-ui/react-number-input/components-api/#number-input-unstyled',
+    title: 'NumberInputUnstyled',
+  },
   { pathname: '/base-ui/react-select/components-api/#option', title: 'Option' },
   {
     pathname: '/base-ui/react-select/components-api/#option-group',

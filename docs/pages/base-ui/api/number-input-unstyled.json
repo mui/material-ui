@@ -1,0 +1,22 @@
+{
+  "props": {
+    "id": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ input?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "NumberInputUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiNumberInputUnstyled",
+  "filename": "/packages/mui-base/src/NumberInputUnstyled/NumberInputUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-number-input/\">hooks: useNumberInput</a></li></ul>",
+  "cssComponent": false
+}

@@ -127,6 +127,15 @@ const FormControl = React.forwardRef(function FormControl<
         setValue(event.target.value);
         onChange?.(event);
       },
+      // TODO: make it like this? to work with SelectUnstyled as well
+      // onChange: (event: React.ChangeEvent<NativeFormControlElement>, valueTwo?: unknown) => {
+      //   console.group('FormControlUnstyledContext onChange');
+      //   console.log(event);
+      //   console.log('valueTwo', valueTwo);
+      //   console.groupEnd();
+      //   setValue(valueTwo ?? event.target.value);
+      //   onChange?.(event, valueTwo);
+      // },
       onFocus: () => {
         setFocused(true);
       },
