@@ -60,7 +60,7 @@ export default function PropertiesTable(props) {
               .replace(/>/g, '&gt')
               .replace(/"/g, '&quot;')
               .replace(/'/g, '&#39;');
-            const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
+            const propDefault = propData.defaul;
             return (
               propData.description !== '@ignore' && (
                 <tr key={propName}>

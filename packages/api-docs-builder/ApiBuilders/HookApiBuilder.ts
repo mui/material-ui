@@ -259,13 +259,8 @@ const attachTable = (
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
       const defaultTag = propDescriptor.tags?.default;
-      const defaultValueText = defaultTag?.text?.[0]?.text;
-      if (propDescriptor.typeStr !== 'bool' || defaultValueText !== 'false') {
-        defaultValue = defaultValueText;
-      }
+      const defaultValue: string | undefined = defaultTag?.text?.[0]?.text;
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
