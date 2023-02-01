@@ -171,7 +171,7 @@ const SETTINGS: Settings[] = [
 
 type CommandOptions = { grep?: string };
 
-async function run(argv: CommandOptions) {
+async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
@@ -278,7 +278,7 @@ async function run(argv: CommandOptions) {
 }
 
 yargs
-  .command<CommandOptions>({
+  .command({
     command: '$0',
     describe: 'formats codebase',
     builder: (command) => {

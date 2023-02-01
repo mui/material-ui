@@ -107,7 +107,7 @@ The nested list inherits the list `size` and a few other CSS variables, such as 
 
 ### Horizontal list
 
-To show a list in a horizontal direction, use the `row` prop on the `List` component.
+To show a list in a horizontal direction, use the `orientation="horizontal"` prop on the `List` component.
 
 :::warning
 **Note:** Nested lists don't work in the horizontal direction. To do that, create a custom pop-up component instead (see the [Navigation menu](#navigation-menu) example).

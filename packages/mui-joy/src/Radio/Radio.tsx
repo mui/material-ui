@@ -91,8 +91,10 @@ const RadioRoot = styled('span', {
       }),
       ...(ownerState['data-parent'] === 'RadioGroup' &&
         ownerState['data-first-child'] === undefined && {
-          marginInlineStart: ownerState.row ? 'var(--RadioGroup-gap)' : undefined,
-          marginBlockStart: ownerState.row ? undefined : 'var(--RadioGroup-gap)',
+          marginInlineStart:
+            ownerState.orientation === 'horizontal' ? 'var(--RadioGroup-gap)' : undefined,
+          marginBlockStart:
+            ownerState.orientation === 'horizontal' ? undefined : 'var(--RadioGroup-gap)',
         }),
     },
   ];
@@ -307,7 +309,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
-    row: radioGroup?.row,
+    orientation: radioGroup?.orientation,
   };
 
   const classes = useUtilityClasses(ownerState);
