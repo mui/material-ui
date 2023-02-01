@@ -2935,7 +2935,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+      expect(document.querySelector(`.${classes.loading}`).textContent).to.equal('Loading…');
       expect(screen.queryByRole('option')).to.equal(null);
     });
   });
