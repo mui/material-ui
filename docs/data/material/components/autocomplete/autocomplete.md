@@ -191,6 +191,12 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 :::
 
+### Infinite scrolling
+
+This demo shows how to implement Infinite scrolling using `onScrollToBottom` prop
+
+{{"demo": "InfiniteScrolling.js"}}
+
 ## Multiple values
 
 Also known as tags, the user is allowed to enter more than one value.
@@ -206,10 +212,6 @@ In the event that you need to lock certain tags so that they can't be removed, y
 ### Checkboxes
 
 {{"demo": "CheckboxesTags.js"}}
-
-### Infinite scrolling
-
-{{"demo": "InfiniteScrolling.js"}}
 
 ### Limit tags
 

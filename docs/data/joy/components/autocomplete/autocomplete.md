@@ -160,6 +160,12 @@ To display invalid state, set the `error` prop on the `FormControl`.
 
 {{"demo": "AutocompleteError.js"}}
 
+### Infinite scrolling
+
+This demo shows how to implement Infinite scrolling using `onScrollToBottom` prop
+
+{{"demo": "InfiniteScrolling.js"}}
+
 ### Multiple selection
 
 By default, the autocomplete uses [`Chip`](/joy-ui/react-chip/) component to render the user's selected options.

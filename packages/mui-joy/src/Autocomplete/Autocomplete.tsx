@@ -670,11 +670,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             }
             return renderListOption(option, index);
           })}
-          {loading && groupedOptions.length === 0 ? (
-            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-          ) : null}
           {groupedOptions.length === 0 && !freeSolo && !loading ? (
             <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+          ) : null}
+
+          {loading &&
+          (showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)) ? (
+            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
           ) : null}
         </SlotListbox>
       </ListProvider>
@@ -685,7 +687,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
     }
   }
+  if(showLoadingWithOptions){
 
+    console.log((showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)));
+  }
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>
