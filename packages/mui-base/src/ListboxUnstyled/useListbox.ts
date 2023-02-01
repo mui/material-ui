@@ -267,7 +267,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     return {
       selected,
       disabled,
-      highlighted: highlightedIndex === index,
+      highlighted: highlightedIndex === index && index !== -1,
     };
   };
 
