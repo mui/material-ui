@@ -48,9 +48,6 @@ function testOnScrollToBottom({
   onScrollToBottom,
 }: TestOnScrollToBottom) {
   const textbox = getByRole('combobox');
-  act(() => {
-    textbox.focus();
-  });
   const listbox = getByRole('listbox');
 
   if (reason === 'mouse') {
@@ -2337,6 +2334,7 @@ describe('Joy <Autocomplete />', () => {
       const { getByRole } = render(
         <Autocomplete
           open
+          autoFocus
           options={['one', 'two', 'three', 'four', 'five']}
           slotProps={{
             listbox: {
@@ -2365,6 +2363,7 @@ describe('Joy <Autocomplete />', () => {
       const { getByRole } = render(
         <Autocomplete
           open
+          autoFocus
           options={['one', 'two', 'three', 'four', 'five']}
           onScrollToBottom={onScrollToBottom}
           slotProps={{
@@ -2396,6 +2395,7 @@ describe('Joy <Autocomplete />', () => {
           open
           options={['one', 'two', 'three', 'four', 'five']}
           onScrollToBottom={onScrollToBottom}
+          autoFocus
           slotProps={{
             listbox: {
               style: {
@@ -2429,6 +2429,7 @@ describe('Joy <Autocomplete />', () => {
 
       const { getByRole } = render(
         <Autocomplete
+          autoFocus
           open
           options={['one', 'two', 'three', 'four', 'five']}
           onScrollToBottom={onScrollToBottom}
