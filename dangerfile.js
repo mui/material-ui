@@ -109,7 +109,9 @@ function sieveResults(results) {
 
 function prepareBundleSizeReport() {
   markdown(
-    `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
+    `## Bundle size report
+
+Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
   );
 }
 
@@ -158,11 +160,15 @@ async function reportBundleSize() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](${detailedComparisonUrl})`;
+    const details = `## Bundle size report
+
+[Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
-    markdown(`[No bundle size changes](${detailedComparisonUrl})`);
+    markdown(`## Bundle size report
+
+[No bundle size changes](${detailedComparisonUrl})`);
   }
 }
 
