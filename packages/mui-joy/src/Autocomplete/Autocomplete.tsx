@@ -687,10 +687,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
     }
   }
-  if(showLoadingWithOptions){
 
-    console.log((showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)));
-  }
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>

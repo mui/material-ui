@@ -34,6 +34,58 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   }
 }
 
+type TestOnScrollToBottom = {
+  reason: 'mouse' | 'keyboard';
+  getByRole: (role: string) => HTMLElement;
+  onScrollToBottomCallCount: number;
+  onScrollToBottom: ReturnType<typeof spy>;
+};
+
+function testOnScrollToBottom({
+  reason,
+  onScrollToBottomCallCount,
+  getByRole,
+  onScrollToBottom,
+}: TestOnScrollToBottom) {
+  const textbox = getByRole('combobox');
+  act(() => {
+    textbox.focus();
+  });
+  const listbox = getByRole('listbox');
+
+  if (reason === 'mouse') {
+    fireEvent.scroll(listbox, {
+      target: {
+        scrollTop: listbox.scrollHeight - listbox.offsetHeight,
+      },
+    });
+    if (onScrollToBottomCallCount > 0) {
+      expect(listbox.scrollTop).to.greaterThan(0);
+    } else {
+      expect(listbox.scrollTop).to.equal(0);
+    }
+
+    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+  } else if (reason === 'keyboard') {
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+    if (listbox.scrollTop > 0) {
+      fireEvent.scroll(listbox);
+    }
+    if (onScrollToBottomCallCount > 0) {
+      expect(listbox.scrollTop).to.greaterThan(0);
+    } else {
+      expect(listbox.scrollTop).to.equal(0);
+    }
+    checkHighlightIs(listbox, 'five');
+    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+  }
+}
+
 describe('Joy <Autocomplete />', () => {
   const { render } = createRenderer();
 
@@ -2273,6 +2325,169 @@ describe('Joy <Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
       fireEvent.keyDown(textbox, { key: 'Backspace' });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+    });
+  });
+
+  describe('prop: onScrollToBottom', () => {
+    it('should call onScrollToBottom when scroll bar reaches bottom by mouse', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          slotProps={{
+            listbox: {
+              height: '100px',
+            },
+          }}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
+    });
+
+    it('should call onScrollToBottom when scroll bar reaches bottom by keyboard', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          onScrollToBottom={onScrollToBottom}
+          slotProps={{
+            listbox: {
+              height: '100px',
+            },
+          }}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
+    });
+
+    it('should call onScrollToBottom when scroll custom ListboxComponent is used', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          onScrollToBottom={onScrollToBottom}
+          slots={{ listbox: 'div' }}
+          slotProps={{
+            listbox: {
+              height: '100px',
+            },
+          }}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
+      testOnScrollToBottom({
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 2,
+      });
+    });
+
+    it('should call onScrollToBottom and custom Listbox onScroll when possible', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+      const onScroll = spy();
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          onScrollToBottom={onScrollToBottom}
+          slotProps={{
+            listbox: {
+              height: '100px',
+            },
+          }}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 1,
+      });
+      testOnScrollToBottom({
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 2,
+      });
+      expect(onScroll.callCount).to.equal(2);
+    });
+
+    it("should not call onScrollToBottom when listbox doesn't have scroll bar", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'keyboard',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 0,
+      });
+      testOnScrollToBottom({
+        reason: 'mouse',
+        getByRole,
+        onScrollToBottom,
+        onScrollToBottomCallCount: 0,
+      });
+    });
+  });
+
+  describe('prop: showLoadingWithOptions', () => {
+    it('should display loading text with options', () => {
+      render(
+        <Autocomplete loading showLoadingWithOptions open options={['one', 'two', 'three']} />,
+      );
+      expect(document?.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
+      expect(screen.getAllByRole('option').length).to.equal(3);
+    });
+
+    it('should not display options with loading text when showLoadingWithOptions is false', () => {
+      render(<Autocomplete loading showLoadingWithOptions={false} open options={[]} />);
+      expect(document?.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
+      expect(screen.queryByRole('option')).to.equal(null);
     });
   });
 });
