@@ -36,10 +36,6 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
-/**
- * @param {{reason:"mouse"|"keyboard",getByRole:(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => HTMLElement,onScrollToBottomCallCount:number,onScrollToBottom:Function}}
- */
-
 function testOnScrollToBottom({ reason, onScrollToBottomCallCount, getByRole, onScrollToBottom }) {
   const textbox = getByRole('combobox');
   act(() => {
@@ -2786,7 +2782,6 @@ describe('<Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'mouse',
         getByRole,
         onScrollToBottom,
@@ -2839,14 +2834,12 @@ describe('<Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'keyboard',
         getByRole,
         onScrollToBottom,
         onScrollToBottomCallCount: 1,
       });
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'mouse',
         getByRole,
         onScrollToBottom,
@@ -2874,14 +2867,12 @@ describe('<Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'keyboard',
         getByRole,
         onScrollToBottom,
         onScrollToBottomCallCount: 1,
       });
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'mouse',
         getByRole,
         onScrollToBottom,
@@ -2905,14 +2896,12 @@ describe('<Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'keyboard',
         getByRole,
         onScrollToBottom,
         onScrollToBottomCallCount: 0,
       });
       testOnScrollToBottom({
-        getAllByRole,
         reason: 'mouse',
         getByRole,
         onScrollToBottom,
