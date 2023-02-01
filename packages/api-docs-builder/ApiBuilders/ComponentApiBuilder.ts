@@ -285,9 +285,7 @@ function toGitHubPath(filepath: string): string {
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(
-    language: (typeof LANGUAGES)[0],
-  ): string {
+  function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
     return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
