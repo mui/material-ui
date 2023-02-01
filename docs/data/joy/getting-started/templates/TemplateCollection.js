@@ -61,7 +61,7 @@ const AUTHORS = {
 };
 
 export default function TemplateCollection() {
-  const newTemplates = ['sign-in']; // Stay at the top of the page with `new` badge
+  const newTemplates = ['sign-in-side']; // Stay at the top of the page with `new` badge
   const templates = extractTemplates(cache);
   const theme = useTheme();
   const names = [

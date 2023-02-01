@@ -22,7 +22,7 @@ const directory = 'docs/public/static/screenshots';
     await Promise.resolve().then(() =>
       urls.reduce(async (sequence, aUrl) => {
         await sequence;
-        await page.goto(`${host}${aUrl}`);
+        await page.goto(`${host}${aUrl}`, { waitUntil: 'networkidle' });
 
         const filePath = `${directory}${aUrl.replace(/\/$/, '')}.jpg`;
         // eslint-disable-next-line no-console
@@ -33,6 +33,7 @@ const directory = 'docs/public/static/screenshots';
         const toggle = await page.$('#toggle-mode');
         if (toggle) {
           await page.click('#toggle-mode');
+          await page.waitForLoadState('networkidle');
           await page.screenshot({ path: filePath.replace('.jpg', '-dark.jpg') });
 
           await page.click('#toggle-mode'); // switch back to light

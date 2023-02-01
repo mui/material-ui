@@ -54,7 +54,10 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
   );
 }
 
-export default function JoySignInTemplate() {
+/**
+ * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
+ */
+export default function JoySignInSideTemplate() {
   return (
     <CssVarsProvider
       defaultMode="dark"
@@ -65,7 +68,7 @@ export default function JoySignInTemplate() {
       <GlobalStyles
         styles={{
           ':root': {
-            '--Collapsed-breakpoint': '769px',
+            '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
             '--Cover-width': '40vw', // must be `vw` only
             '--Form-maxWidth': '700px',
           },
@@ -250,18 +253,38 @@ export default function JoySignInTemplate() {
           left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))',
           transition: '0.4s',
           transitionDelay: '0.1s',
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8)',
-          backgroundRepeat: 'no-repeat',
           backgroundColor: 'background.level1',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          [theme.getColorSchemeSelector('dark')]: {
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831)',
+          '& img': {
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            '&:last-of-type': {
+              display: 'none',
+            },
+            [theme.getColorSchemeSelector('dark')]: {
+              '&:first-of-type': {
+                display: 'none',
+              },
+              '&:last-of-type': {
+                display: 'initial',
+              },
+              // In practice, remove the `&:first-of-type`, `&:last-of-type` and use `content` instead.
+              // content: 'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831)',
+            },
           },
         })}
-      />
+      >
+        {/* Note: We need to add two images to take screenshots between modes */}
+        {/* Using a single image with `content` CSS property to switch images between modes is simpler */}
+        <img
+          src="https://images.unsplash.com/photo-1527181152855-fc03fc7949c8"
+          alt=""
+        />
+        <img
+          src="https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831"
+          alt=""
+        />
+      </Box>
     </CssVarsProvider>
   );
 }
