@@ -9,7 +9,7 @@ import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
-import Button from '@mui/joy/Button';
+import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
@@ -54,9 +54,21 @@ function addHiddenInput(form, name, value) {
  * @type {Object.<string, Author | undefined>}
  */
 const AUTHORS = {
-  'sign-in': {
-    name: 'Siriwat K',
-    github: 'siriwatknp',
+  team: {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
+  files: {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
+  email: {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
+  'sign-in-side': {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
   },
 };
 
@@ -75,7 +87,7 @@ export default function TemplateCollection() {
         flexGrow: 1,
         gap: 4,
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
       }}
     >
       {names.map((name) => {
@@ -106,20 +118,6 @@ export default function TemplateCollection() {
                     New
                   </Chip>
                 ) : null
-              }
-              endDecorator={
-                author && (
-                  <Typography level="body2" fontWeight="md">
-                    by{' '}
-                    <Link
-                      href={`https://github.com/${author.github}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <b>{author.name}</b>
-                    </Link>
-                  </Typography>
-                )
               }
               slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
               sx={{ mb: 1 }}
@@ -157,8 +155,8 @@ export default function TemplateCollection() {
                 py: 1,
                 gap: 1,
                 display: 'flex',
+                alignItems: 'center',
                 flexWrap: 'wrap',
-                '& > *': { flex: 1, minWidth: 'max-content' },
               }}
             >
               <NextLink
@@ -166,23 +164,24 @@ export default function TemplateCollection() {
                 passHref
                 legacyBehavior
               >
-                <Button
+                <IconButton
                   component="a"
                   variant="outlined"
                   color="neutral"
                   size="sm"
+                  aria-label="See live preview"
                   data-ga-event-category="joy-template"
                   data-ga-event-label={name}
                   data-ga-event-action="preview"
-                  startDecorator={<Visibility />}
                 >
-                  Live demo
-                </Button>
+                  <Visibility />
+                </IconButton>
               </NextLink>
-              <Button
+              <IconButton
                 variant="outlined"
                 color="neutral"
                 size="sm"
+                aria-label="Code sandbox playground"
                 data-ga-event-category="joy-template"
                 data-ga-event-label={name}
                 data-ga-event-action="codesandbox"
@@ -213,14 +212,20 @@ export default function TemplateCollection() {
                   form.submit();
                   document.body.removeChild(form);
                 }}
-                startDecorator={
-                  <SvgIcon viewBox="0 0 1080 1080">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                }
               >
-                CodeSandbox
-              </Button>
+                <SvgIcon viewBox="0 0 1080 1080">
+                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                </SvgIcon>
+              </IconButton>
+
+              {author && (
+                <Typography level="body2" fontWeight="md" sx={{ ml: 'auto', pr: 1 }}>
+                  Created by{' '}
+                  <Link href={author.link} target="_blank" rel="noopener noreferrer">
+                    <b>{author.name}</b>
+                  </Link>
+                </Typography>
+              )}
             </Box>
           </Card>
         );
