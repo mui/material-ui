@@ -14,7 +14,7 @@ permissions: {}
 
 jobs:
   main:
-    if: github.actor != 'l10nbot' && contains(github.event.pull_request.labels.*.name, 'docs')
+    # if: github.actor != 'l10nbot' && contains(github.event.pull_request.labels.*.name, 'docs')
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.actor }}"
