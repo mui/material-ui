@@ -10,8 +10,7 @@ on:
     paths:
       - 'docs/**'
 
-permissions:
-  pull-requests: write
+permissions: write-all
 
 jobs:
   main:
