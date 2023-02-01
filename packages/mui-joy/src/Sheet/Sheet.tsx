@@ -4,6 +4,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { getPath } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
@@ -32,12 +33,22 @@ export const SheetRoot = styled('div', {
 })<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
+  const bgcolor = resolveSxValue({ theme, ownerState }, 'bgcolor');
+  const backgroundColor = resolveSxValue({ theme, ownerState }, 'backgroundColor');
+  const background = resolveSxValue({ theme, ownerState }, 'background');
+  const resolvedBg =
+    (getPath(theme, `palette.${bgcolor}`) as string) ||
+    bgcolor ||
+    (getPath(theme, `palette.${backgroundColor}`) as string) ||
+    backgroundColor ||
+    background ||
+    variantStyle?.backgroundColor ||
+    variantStyle?.background ||
+    theme.vars.palette.background.surface;
   return [
     {
-      '--List-item-stickyBackground':
-        variantStyle?.backgroundColor ||
-        variantStyle?.background ||
-        theme.vars.palette.background.surface, // for sticky List
+      '--List-item-stickyBackground': resolvedBg, // for sticky List
+      '--Sheet-background': resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,

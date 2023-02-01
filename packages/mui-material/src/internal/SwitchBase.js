@@ -67,7 +67,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     onChange,
     onFocus,
     readOnly,
-    required,
+    required = false,
     tabIndex,
     type,
     value,

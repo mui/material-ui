@@ -431,7 +431,7 @@ export default function Demo(props) {
 
   return (
     <Root>
-      <AnchorLink id={`${demoName}`} />
+      <AnchorLink id={demoName} />
       <DemoRoot
         hiddenToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
@@ -494,7 +494,7 @@ export default function Demo(props) {
               language={demoData.sourceLanguage}
               copyButtonProps={{
                 'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demoOptions.demo,
+                'data-ga-event-label': demo.gaLabel,
                 'data-ga-event-action': 'copy-click',
               }}
             />
@@ -516,7 +516,7 @@ export default function Demo(props) {
               language={demoData.sourceLanguage}
               copyButtonProps={{
                 'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demoOptions.demo,
+                'data-ga-event-label': demo.gaLabel,
                 'data-ga-event-action': 'copy-click',
               }}
             >
@@ -532,6 +532,9 @@ export default function Demo(props) {
 
 Demo.propTypes = {
   demo: PropTypes.object.isRequired,
+  /**
+   * The options provided with: {{"demo": "Name.js", …demoOptions}}
+   */
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,

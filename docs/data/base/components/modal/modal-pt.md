@@ -76,7 +76,7 @@ The following demo shows how to nest one modal within another:
 
 You can animate the open and close states of a modal using a transition component, as long as that component fulfills the following requirements:
 
-- Is a direct child descendent of the modal
+- Is a direct child descendant of the modal
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed

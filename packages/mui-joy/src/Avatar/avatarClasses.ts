@@ -38,10 +38,10 @@ export interface AvatarClasses {
 export type AvatarClassKey = keyof AvatarClasses;
 
 export function getAvatarUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAvatar', slot);
+  return generateUtilityClass('MuiAvatar', slot);
 }
 
-const avatarClasses: AvatarClasses = generateUtilityClasses('JoyAvatar', [
+const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'root',
   'colorPrimary',
   'colorNeutral',

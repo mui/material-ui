@@ -241,6 +241,7 @@ const SelectListbox = styled(StyledList, {
       theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
+    minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
     outline: 0,
     boxShadow: theme.shadow.md,
     zIndex: 1000,

@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "row": { "type": { "name": "bool" } },
+    "row": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

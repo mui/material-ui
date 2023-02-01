@@ -7,15 +7,15 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import { useSlider, getSliderUtilityClass } from '@mui/base/SliderUnstyled';
+import { useSlider } from '@mui/base/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
-import SliderValueLabelComponent from './SliderValueLabel';
-import sliderClasses from './sliderClasses';
+import SliderValueLabel from './SliderValueLabel';
+import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
 const valueToPercent = (value, min, max) => ((value - min) * 100) / (max - min);
 
@@ -298,7 +298,7 @@ SliderThumb.propTypes /* remove-proptypes */ = {
 
 export { SliderThumb };
 
-const SliderValueLabel = styled(SliderValueLabelComponent, {
+const StyledSliderValueLabel = styled(SliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -357,7 +357,7 @@ const SliderValueLabel = styled(SliderValueLabelComponent, {
   }),
 }));
 
-SliderValueLabel.propTypes /* remove-proptypes */ = {
+StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -368,7 +368,7 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
 };
 
-export { SliderValueLabel };
+export { StyledSliderValueLabel as SliderValueLabel };
 
 const SliderMark = styled('span', {
   name: 'MuiSlider',
@@ -581,7 +581,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
   const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
   const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
-  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? SliderValueLabel;
+  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? StyledSliderValueLabel;
   const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
   const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
   const InputSlot = slots?.input ?? components.Input ?? 'input';

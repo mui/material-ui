@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.115",
+  "version": "5.0.0-alpha.118",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -61,10 +61,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
-    "@mui/base": "5.0.0-alpha.113",
-    "@mui/system": "^5.11.4",
+    "@mui/base": "5.0.0-alpha.116",
+    "@mui/system": "^5.11.7",
     "@mui/types": "^7.2.3",
-    "@mui/utils": "^5.11.2",
+    "@mui/utils": "^5.11.7",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"

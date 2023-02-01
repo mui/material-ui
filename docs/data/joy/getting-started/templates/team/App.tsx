@@ -504,7 +504,7 @@ export default function TeamExample() {
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography fontSize="sm">Desinger</Typography>
+                      <Typography fontSize="sm">Designer</Typography>
                       <Typography level="body3">Pinterest</Typography>
                     </ListItemContent>
                     <Typography level="body2">2012-2015</Typography>

@@ -27,7 +27,7 @@ export default function ColorInversionPopup() {
   const [menuButton, setMenuButton] = React.useState<HTMLElement | null>(null);
   return (
     <Card
-      row
+      orientation="horizontal"
       variant="solid"
       color={color}
       invertedColors
