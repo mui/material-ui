@@ -77,7 +77,7 @@ For the right candidate:
 - Write the MUI Toolpad documentation.
 - Create a docs portal for information shared across all MUI products.
 - Start a writer's program to solicit technical content from the community.
-- Create a learning section in the documentation for written tutorials.
+- Create a learning hub in the documentation for tutorials.
 - Own the Algolia search experience, improving the content on the most frequent search queries.
 - Analyze user feedback on the docs to prioritize and delegate improvements where needed.
 
