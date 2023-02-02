@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   createMount,
   createRenderer,
@@ -36,6 +37,39 @@ describe('MenuUnstyled', () => {
     },
     skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],
   }));
+
+  describe('after initialization', () => {
+    const spyFocus = spy();
+
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('focus', spyFocus, true);
+        return () => {
+          document.removeEventListener('focus', spyFocus, true);
+        };
+      }, []);
+
+      return (
+        <MenuUnstyled {...defaultProps}>
+          <MenuItemUnstyled>1</MenuItemUnstyled>
+          <MenuItemUnstyled>2</MenuItemUnstyled>
+          <MenuItemUnstyled>3</MenuItemUnstyled>
+        </MenuUnstyled>
+      );
+    }
+
+    it('highlights the first item when the menu is opened', () => {
+      const { getAllByRole } = render(<Test />);
+      const [firstItem, ...otherItems] = getAllByRole('menuitem');
+
+      expect(firstItem.tabIndex).to.equal(0);
+      otherItems.forEach((item) => {
+        expect(item.tabIndex).to.equal(-1);
+      });
+      expect(spyFocus.callCount).to.equal(1);
+      expect(spyFocus.firstCall.args[0]).to.have.property('target', firstItem);
+    });
+  });
 
   describe('keyboard navigation', () => {
     it('changes the highlighted item using the arrow keys', () => {

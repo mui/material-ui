@@ -5,6 +5,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useControlled as useControlled,
   unstable_useId as useId,
+  usePreviousProps,
 } from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
@@ -193,24 +194,6 @@ export default function useAutocomplete(props) {
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
   );
 
-  const prevValue = React.useRef();
-
-  React.useEffect(() => {
-    const valueChange = value !== prevValue.current;
-    prevValue.current = value;
-
-    if (focused && !valueChange) {
-      return;
-    }
-
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
-      return;
-    }
-
-    resetInputValue(null, value);
-  }, [value, resetInputValue, focused, prevValue, freeSolo]);
-
   const [open, setOpenState] = useControlled({
     controlled: openProp,
     default: false,
@@ -246,6 +229,26 @@ export default function useAutocomplete(props) {
         },
       )
     : [];
+
+  const previousProps = usePreviousProps({
+    filteredOptions,
+    value,
+  });
+
+  React.useEffect(() => {
+    const valueChange = value !== previousProps.value;
+
+    if (focused && !valueChange) {
+      return;
+    }
+
+    // Only reset the input's value when freeSolo if the component's value changes.
+    if (freeSolo && !valueChange) {
+      return;
+    }
+
+    resetInputValue(null, value);
+  }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
@@ -461,8 +464,38 @@ export default function useAutocomplete(props) {
     },
   );
 
+  const checkHighlightedOptionExists = () => {
+    if (
+      highlightedIndexRef.current !== -1 &&
+      previousProps.filteredOptions &&
+      previousProps.filteredOptions.length !== filteredOptions.length &&
+      (multiple
+        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
+    ) {
+      const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
+
+      if (previousHighlightedOption) {
+        const previousHighlightedOptionExists = filteredOptions.some((option) => {
+          return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
+        });
+
+        if (previousHighlightedOptionExists) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
   const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
+      return;
+    }
+
+    // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
+    // If it exists and the value hasn't changed, return, otherwise continue execution
+    if (checkHighlightedOptionExists()) {
       return;
     }
 
