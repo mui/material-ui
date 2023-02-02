@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Form Control component and hook
 components: FormControlUnstyled
+hooks: useFormControlUnstyledContext
 githubLabel: 'component: FormControl'
 ---
 

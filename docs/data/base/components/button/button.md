@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Button component and hook
 components: ButtonUnstyled
+hooks: useButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---

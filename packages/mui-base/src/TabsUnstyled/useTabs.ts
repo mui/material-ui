@@ -31,8 +31,17 @@ export interface UseTabsParameters {
    */
   selectionFollowsFocus?: boolean;
 }
-
-const useTabs = (parameters: UseTabsParameters) => {
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ *
+ * API:
+ *
+ * - [useTabs API](https://mui.com/base/api/use-tabs/)
+ */
+function useTabs(parameters: UseTabsParameters) {
   const {
     value: valueProp,
     defaultValue,
@@ -68,6 +77,6 @@ const useTabs = (parameters: UseTabsParameters) => {
   return {
     tabsContextValue,
   };
-};
+}
 
 export default useTabs;

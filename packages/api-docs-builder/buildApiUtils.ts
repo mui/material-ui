@@ -94,6 +94,27 @@ export type ComponentInfo = {
   isSystemComponent?: boolean;
 };
 
+export type HookInfo = {
+  /**
+   * Full path to the file
+   */
+  filename: string;
+  /**
+   * Hook name
+   */
+  name: string;
+  apiPathname: string;
+  readFile: () => {
+    src: string;
+    spread: boolean;
+    shouldSkip: boolean;
+    EOL: string;
+  };
+  getDemos: () => Array<{ name: string; demoPathname: string }>;
+  apiPagesDirectory: string;
+  skipApiGeneration?: boolean;
+};
+
 const migratedBaseComponents = [
   'BadgeUnstyled',
   'ButtonUnstyled',
@@ -198,6 +219,22 @@ function findBaseDemos(
     }));
 }
 
+function findBaseHooksDemos(
+  hookName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; hooks: readonly string[] }>,
+) {
+  return pagesMarkdown
+    .filter((page) => page.hooks && page.hooks.includes(hookName))
+    .map((page) => ({
+      name: page.title,
+      demoPathname: page.pathname.match(/material\//)
+        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+        : `${page.pathname.replace('/components/', '/react-')}/#hook${
+            page.hooks?.length > 1 ? 's' : ''
+          }`,
+    }));
+}
+
 interface PageMarkdown {
   pathname: string;
   title: string;
@@ -279,6 +316,45 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       return findBaseDemos(name, allMarkdowns);
     },
   };
+};
+
+export const getBaseHookInfo = (filename: string): HookInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the hook name from: ${filename}`);
+  }
+  const result = {
+    filename,
+    name,
+    apiPathname: `/base/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => {
+          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+          const markdownHeaders = getHeaders(markdownContent) as any;
+
+          return {
+            ...markdown,
+            title: getTitle(markdownContent),
+            hooks: markdownHeaders.hooks as string[],
+          };
+        });
+      return findBaseHooksDemos(name, allMarkdowns);
+    },
+  };
+  return result;
 };
 
 export const getSystemComponentInfo = (filename: string): ComponentInfo => {

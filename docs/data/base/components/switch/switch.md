@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Switch component and hook
 components: SwitchUnstyled
+hooks: useSwitch
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
