@@ -108,6 +108,7 @@ const pages = [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
       {
+        pathname: '/joy-ui/customization/theme',
         subheader: 'Theme',
         children: [
           { pathname: '/joy-ui/customization/theme-colors', title: 'Colors' },
