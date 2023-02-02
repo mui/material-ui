@@ -58,7 +58,7 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const NestedContext = React.createContext<undefined | number>(undefined);
+  const NestedContext = React.createContext<number>(0);
   const OverflowContext = React.createContext<boolean | undefined>(undefined);
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
@@ -93,7 +93,7 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
-    const nested = React.useContext(NestedContext);
+    const level = React.useContext(NestedContext);
     const overflow = React.useContext(OverflowContext);
     const {
       className,
@@ -110,7 +110,7 @@ export default function createGrid(
     } = props;
     // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
     let disableEqualOverflow = themeDisableEqualOverflow;
-    if (nested && themeDisableEqualOverflow !== undefined) {
+    if (level && themeDisableEqualOverflow !== undefined) {
       disableEqualOverflow = inProps.disableEqualOverflow;
     }
     // collect breakpoints related props because they can be customized from the theme.
@@ -128,15 +128,15 @@ export default function createGrid(
       }
     });
 
-    const columns = inProps.columns ?? (nested ? undefined : columnsProp);
-    const spacing = inProps.spacing ?? (nested ? undefined : spacingProp);
+    const columns = inProps.columns ?? (level ? undefined : columnsProp);
+    const spacing = inProps.spacing ?? (level ? undefined : spacingProp);
     const rowSpacing =
-      inProps.rowSpacing ?? inProps.spacing ?? (nested ? undefined : rowSpacingProp);
+      inProps.rowSpacing ?? inProps.spacing ?? (level ? undefined : rowSpacingProp);
     const columnSpacing =
-      inProps.columnSpacing ?? inProps.spacing ?? (nested ? undefined : columnSpacingProp);
+      inProps.columnSpacing ?? inProps.spacing ?? (level ? undefined : columnSpacingProp);
     const ownerState = {
       ...props,
-      nested,
+      level,
       columns,
       container,
       direction,
@@ -163,7 +163,7 @@ export default function createGrid(
     );
 
     if (container) {
-      result = <NestedContext.Provider value={(nested ?? 0) + 1}>{result}</NestedContext.Provider>;
+      result = <NestedContext.Provider value={level + 1}>{result}</NestedContext.Provider>;
     }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {

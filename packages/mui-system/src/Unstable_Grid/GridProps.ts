@@ -162,10 +162,17 @@ export interface GridBaseProps extends Breakpoints {
 
 export interface GridOwnerState extends GridBaseProps {
   /**
-   * If `nested` is undefined, the element is the top-most grid.
-   * If `nested` is number (starts from `1`), the element is a nested grid at that level.
+   * The level of the grid starts from `0`
+   * and increases when the grid nests inside another grid regardless of container or item.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <Grid> // level 1
+   *     <Grid> // level 2
+   *   <Grid> // level 1
+   * ```
    */
-  nested: undefined | number;
+  level: number;
   gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
   gridOffset: Partial<Record<Breakpoint, GridSize>>;
 }
