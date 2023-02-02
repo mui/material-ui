@@ -46,7 +46,7 @@ We are looking for an experienced writer-developer to join us as a Technical Wri
 ### Why this is interesting
 
 Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
-As the next hire for our Developer Experience team, you will work closely with our Developer Advocate to collaborate on educational resources for developers.
+As the next hire for our Developer Experience team, you will work closely with our Developer Advocate to collaborate on educational resources, and oversee the publishing of new docs written by our engineers.
 You could have a big impact in this role if you bring a solid vision for the documentation experience.
 There is an endless number of improvements to be made by a competent editor and strategist.
 
