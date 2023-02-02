@@ -209,6 +209,12 @@ const openRolesData = [
           'You will build a thriving and connected developer community around our suite of products.',
         url: '/careers/developer-advocate/',
       },
+      {
+        title: 'Technical Writer',
+        description:
+          'You will own the documentation and technical content strategy for our products.',
+        url: '/careers/technical-writer/',
+      },
     ],
   },
   {
