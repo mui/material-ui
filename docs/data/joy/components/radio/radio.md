@@ -152,7 +152,7 @@ The check icon's color inherits the radio button's `solid` variant, so that we d
 
 ## Accessibility
 
-Here are a few tips to make sure you have an accessible radio button component:
+Here are a few tips to make sure you have an accessible Radio button component:
 
 - Every Form Control should have proper labels.
   This includes radio buttons, checkboxes, and switches.
