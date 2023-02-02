@@ -1,7 +1,7 @@
 import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
-import { UseTabPanelParameters } from './useTabPanel.types';
+import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
 
-const useTabPanel = (parameters: UseTabPanelParameters) => {
+const useTabPanel = (parameters: UseTabPanelParameters): UseTabPanelReturnValue => {
   const { value } = parameters;
 
   const context = useTabContext();

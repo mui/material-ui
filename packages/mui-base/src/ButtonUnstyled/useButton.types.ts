@@ -39,3 +39,11 @@ export interface UseButtonParameters {
    */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
+
+export interface UseButtonReturnValue {
+  getRootProps: () => UseButtonRootSlotProps;
+  focusVisible: boolean;
+  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  disabled: boolean;
+  active: boolean;
+}

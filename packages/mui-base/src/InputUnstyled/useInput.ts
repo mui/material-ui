@@ -7,9 +7,10 @@ import {
   UseInputInputSlotProps,
   UseInputParameters,
   UseInputRootSlotProps,
+  UseInputReturnValue,
 } from './useInput.types';
 
-export default function useInput(parameters: UseInputParameters) {
+export default function useInput(parameters: UseInputParameters):UseInputReturnValue {
   const {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,

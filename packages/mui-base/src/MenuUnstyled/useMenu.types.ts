@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { UseListboxRootSlotProps } from '../ListboxUnstyled';
+import { UseListboxRootSlotProps, UseListboxOptionSlotProps } from '../ListboxUnstyled';
+import { EventHandlers } from '../utils';
 
 export interface MenuItemMetadata {
   id: string;
@@ -31,3 +32,20 @@ export type UseMenuListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
   ref: React.Ref<any>;
   role: React.AriaRole;
 };
+
+export interface UseMenuReturnValue {
+  registerItem: (id: string, metadata: MenuItemMetadata) => void;
+  unregisterItem: (id: string) => void;
+  menuItems: Record<string, MenuItemMetadata>;
+  getListboxProps: <TOther extends EventHandlers>(
+    otherHandlers?: TOther,
+  ) => UseMenuListboxSlotProps;
+  getItemState: (id: string) => MenuItemState;
+  getItemProps: <TOther extends EventHandlers = {}>(
+    option: string,
+    otherHandlers?: TOther,
+  ) => UseListboxOptionSlotProps<TOther>;
+  highlightedOption: string | null;
+  highlightFirstItem: () => void;
+  highlightLastItem: () => void;
+}

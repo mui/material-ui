@@ -3,11 +3,15 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
+import {
+  UseButtonParameters,
+  UseButtonReturnValue,
+  UseButtonRootSlotProps,
+} from './useButton.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
-export default function useButton(parameters: UseButtonParameters) {
+export default function useButton(parameters: UseButtonParameters): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,

@@ -12,6 +12,7 @@ import {
   MenuItemState,
   UseMenuListboxSlotProps,
   UseMenuParameters,
+  UseMenuReturnValue,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
 
@@ -43,7 +44,7 @@ function stateReducer(
   return newState;
 }
 
-export default function useMenu(parameters: UseMenuParameters = {}) {
+export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
 
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});

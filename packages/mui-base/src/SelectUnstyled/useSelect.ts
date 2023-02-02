@@ -15,6 +15,7 @@ import {
   UseSelectParameters,
   UseSelectSingleParameters,
   UseSelectSingleResult,
+  UseSelectReturnValue,
 } from './useSelect.types';
 import {
   ListboxReducer,
@@ -28,7 +29,7 @@ import defaultOptionStringifier from './defaultOptionStringifier';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
-function useSelect<TValue>(props: UseSelectParameters<TValue>) {
+function useSelect<TValue>(props: UseSelectParameters<TValue>): UseSelectReturnValue<TValue> {
   const {
     buttonRef: buttonRefProp,
     defaultValue,

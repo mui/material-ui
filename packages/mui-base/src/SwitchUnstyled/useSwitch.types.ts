@@ -49,3 +49,11 @@ interface UseSwitchInputSlotOwnProps {
 
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
   UseSwitchInputSlotOwnProps;
+
+export interface UseSwitchReturnValue {
+  checked: boolean;
+  disabled: boolean;
+  focusVisible: boolean;
+  getInputProps: (otherProps?: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps;
+  readOnly: boolean;
+}

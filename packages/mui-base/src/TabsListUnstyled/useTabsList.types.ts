@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { EventHandlers } from '../utils';
 
 export interface UseTabsListParameters {
   'aria-label'?: string;
@@ -18,3 +19,16 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
   ref: React.Ref<any>;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };
+
+export interface UseTabsListReturnValue {
+  isRtl: boolean;
+  orientation: 'horizontal' | 'vertical';
+  value: string | number | false;
+  processChildren: () =>
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
+    | null
+    | undefined;
+  getRootProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseTabsListRootSlotProps<TOther>;
+}

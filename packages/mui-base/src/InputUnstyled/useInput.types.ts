@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormControlUnstyledState } from '../FormControlUnstyled';
 
 export interface UseInputParameters {
   /**
@@ -52,3 +53,14 @@ export interface UseInputInputSlotOwnProps {
 
 export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInputSlotOwnProps> &
   UseInputInputSlotOwnProps;
+
+export interface UseInputReturnValue {
+  disabled: boolean;
+  error: boolean;
+  focused: boolean;
+  formControlContext: FormControlUnstyledState | undefined;
+  getInputProps: () => UseInputInputSlotProps;
+  getRootProps: () => UseInputRootSlotProps;
+  required: boolean;
+  value: unknown;
+}

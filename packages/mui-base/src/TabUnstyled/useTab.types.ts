@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { UseButtonRootSlotProps } from '../ButtonUnstyled';
+import { UseButtonRootSlotProps, UseButtonReturnValue } from '../ButtonUnstyled';
+import { EventHandlers } from '../utils';
 
 export interface UseTabParameters {
   /**
@@ -30,3 +31,11 @@ export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<
   id: string | undefined;
   role: React.AriaRole;
 };
+
+type UseTabOtherButtonProps = Omit<UseButtonReturnValue, 'getRootProps'>;
+export interface UseTabReturnValue extends UseTabOtherButtonProps {
+  getRootProps: <TOther extends EventHandlers>(
+    otherHandlers?: TOther,
+  ) => UseTabRootSlotProps<TOther>;
+  selected: boolean;
+}

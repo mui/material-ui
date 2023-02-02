@@ -117,3 +117,22 @@ export interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TVa
 export interface UseSelectMultiResult<TValue> extends UseSelectCommonResult<TValue> {
   value: TValue[];
 }
+
+export interface UseSelectReturnValue<TValue> {
+  buttonActive: boolean;
+  buttonFocusVisible: boolean;
+  disabled: boolean;
+  getButtonProps: <TOther extends EventHandlers>(
+    otherHandlers?: TOther,
+  ) => UseSelectButtonSlotProps<TOther>;
+  getListboxProps: <TOther extends EventHandlers>(
+    otherHandlers?: TOther,
+  ) => UseSelectListboxSlotProps<TOther>;
+  getOptionProps: <TOther extends EventHandlers>(
+    option: SelectOption<TValue>,
+    otherHandlers?: TOther,
+  ) => UseSelectOptionSlotProps<TOther>;
+  getOptionState: (option: SelectOption<TValue>) => OptionState;
+  open: boolean;
+  value: TValue | TValue[] | null;
+}

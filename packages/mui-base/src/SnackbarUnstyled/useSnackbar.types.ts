@@ -49,3 +49,10 @@ export interface UseSnackbarRootSlotOwnProps {
   ref?: React.Ref<any>;
   role: React.AriaRole;
 }
+
+export interface UseSnackbarReturnValue {
+  getRootProps: <TOther extends Record<string, ((event: any) => void) | undefined> = {}>(
+    otherHandlers?: TOther,
+  ) => UseSnackbarRootSlotProps<TOther>;
+  onClickAway: (event: React.SyntheticEvent<any> | Event) => void;
+}

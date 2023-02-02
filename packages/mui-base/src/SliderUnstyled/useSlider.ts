@@ -14,6 +14,7 @@ import {
   UseSliderParameters,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
+  UseSliderReturnValue,
 } from './useSlider.types';
 import { EventHandlers } from '../utils';
 
@@ -139,7 +140,7 @@ function focusThumb({
   }
 }
 
-const axisProps = {
+export const axisProps = {
   horizontal: {
     offset: (percent: number) => ({ left: `${percent}%` }),
     leap: (percent: number) => ({ width: `${percent}%` }),
@@ -178,7 +179,7 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-export default function useSlider(parameters: UseSliderParameters) {
+export default function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
     defaultValue,

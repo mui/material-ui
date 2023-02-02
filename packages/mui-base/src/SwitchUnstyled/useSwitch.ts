@@ -4,7 +4,11 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
+import {
+  UseSwitchInputSlotProps,
+  UseSwitchParameters,
+  UseSwitchReturnValue,
+} from './useSwitch.types';
 
 /**
  * The basic building block for creating custom switches.
@@ -13,7 +17,7 @@ import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types'
  *
  * - [Switches](https://mui.com/components/switches/)
  */
-export default function useSwitch(props: UseSwitchParameters) {
+export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const {
     checked: checkedProp,
     defaultChecked,

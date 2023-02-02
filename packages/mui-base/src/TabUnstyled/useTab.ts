@@ -1,9 +1,9 @@
 import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import { useButton } from '../ButtonUnstyled';
-import { UseTabParameters, UseTabRootSlotProps } from './useTab.types';
+import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
 
-const useTab = (parameters: UseTabParameters) => {
+const useTab = (parameters: UseTabParameters): UseTabReturnValue => {
   const { value: valueProp, onChange, onClick, onFocus } = parameters;
 
   const { getRootProps: getRootPropsButton, ...otherButtonProps } = useButton(parameters);

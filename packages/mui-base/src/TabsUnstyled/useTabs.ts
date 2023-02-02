@@ -32,7 +32,18 @@ export interface UseTabsParameters {
   selectionFollowsFocus?: boolean;
 }
 
-const useTabs = (parameters: UseTabsParameters) => {
+export interface UseTabsReturnValue {
+  tabsContextValue: {
+    idPrefix: string | undefined;
+    value: string | number | false;
+    onSelected: (e: React.SyntheticEvent, newValue: string | number | false) => void;
+    orientation: 'horizontal' | 'vertical' | undefined;
+    direction: 'ltr' | 'rtl' | undefined;
+    selectionFollowsFocus: boolean | undefined;
+  };
+}
+
+const useTabs = (parameters: UseTabsParameters): UseTabsReturnValue => {
   const {
     value: valueProp,
     defaultValue,

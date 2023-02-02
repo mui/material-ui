@@ -8,7 +8,14 @@ export interface UseBadgeParameters {
   showZero?: boolean;
 }
 
-export default function useBadge(parameters: UseBadgeParameters) {
+export interface UseBadgeReturnValue {
+  badgeContent: React.ReactNode;
+  invisible: boolean;
+  max: number;
+  displayValue: React.ReactNode;
+}
+
+export default function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
   const {
     badgeContent: badgeContentProp,
     invisible: invisibleProp = false,

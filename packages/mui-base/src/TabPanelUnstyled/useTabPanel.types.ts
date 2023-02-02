@@ -10,3 +10,12 @@ export interface UseTabPanelRootSlotProps {
   hidden?: boolean;
   id?: string;
 }
+
+export interface UseTabPanelReturnValue {
+  hidden: boolean;
+  getRootProps: () => {
+    'aria-labelledby': string | undefined;
+    hidden: boolean;
+    id: string | undefined;
+  };
+}
