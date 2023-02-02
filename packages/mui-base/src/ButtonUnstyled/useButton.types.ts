@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { EventHandlers } from '../utils/types';
 
 export interface UseButtonRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
@@ -38,4 +39,34 @@ export interface UseButtonParameters {
    * @default 'button'
    */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+}
+
+export interface UseButtonReturnValue {
+  /**
+   * Resolver for the root slot's props.
+   * @param otherHandlers event handlers for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseButtonRootSlotProps<TOther>;
+  /**
+   * If `true`, the component is being focused using keyboard.
+   * @default false
+   */
+  focusVisible: boolean;
+  /**
+   * Callback for setting the `focusVisible` param.
+   */
+  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: boolean;
+  /**
+   * If `true`, the component is active (pressed).
+   * @default false
+   */
+  active: boolean;
 }
