@@ -632,7 +632,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
     // Generate pages, json and translations
     const translationPagesDirectory =
       reactApi.apiPathname.indexOf('/joy-ui/') === 0
-        ? 'docs/translations/joy-api-docs'
+        ? 'docs/translations/api-docs-joy'
         : 'docs/translations/api-docs';
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
     generateApiPage(apiPagesDirectory, reactApi);
