@@ -113,7 +113,7 @@ To add an icon to both unchecked and checked states, use the `uncheckedIcon` and
 
 ### Without an icon
 
-To communicate the checked and unchecked states with different artifacts, such as border or background color, use the `disableIcon` prop to remove the default icon.
+To communicate the checked and unchecked states with different properties, such as border or background color, use the `disableIcon` prop to remove the default icon.
 
 {{"demo": "IconlessRadio.js"}}
 
