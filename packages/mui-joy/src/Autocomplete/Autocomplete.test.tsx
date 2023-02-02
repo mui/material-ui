@@ -51,17 +51,16 @@ function testOnScrollToBottom({
   const listbox = getByRole('listbox');
 
   if (reason === 'mouse') {
-    fireEvent.scroll(listbox, {
-      target: {
-        scrollTop: listbox.scrollHeight - listbox.offsetHeight,
-      },
-    });
-    console.log(
-      listbox.scrollHeight - listbox.offsetHeight,
-      onScrollToBottom.callCount,
-      listbox.scrollTop,
-      reason,
-    );
+    const scrollTop = listbox.scrollHeight - listbox.offsetHeight;
+
+    if (scrollTop > 0) {
+      fireEvent.scroll(listbox, {
+        target: {
+          scrollTop,
+        },
+      });
+    }
+
     if (onScrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
@@ -78,7 +77,7 @@ function testOnScrollToBottom({
     if (listbox.scrollTop > 0) {
       fireEvent.scroll(listbox);
     }
-    console.log(onScrollToBottom.callCount, listbox.scrollTop, reason);
+
     if (onScrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
