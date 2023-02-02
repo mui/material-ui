@@ -27,7 +27,7 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-Our documentation is crucial to the success of our products, and until now, there has never been a unifying editorial strategy behind what gets published.
+Our documentation is crucial to the success of our products, and until recently, there has not been a unifying editorial strategy behind what gets published.
 Your mission will be to be to own the vision and strategy for our docs.
 We are looking for someone who can contribute to the following outcomes:
 
