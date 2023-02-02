@@ -365,7 +365,6 @@ function findJoyUIDemos(
   componentName: string,
   pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; components: readonly string[] }>,
 ) {
-  // console.log(pagesMarkdown);
   return pagesMarkdown
     .filter(
       (page) => page.pathname.indexOf('/joy/') === 0 && page.components.includes(componentName),
