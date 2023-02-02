@@ -19,6 +19,19 @@ parameters:
     description: The base url for running end-to-end test
     type: string
     default: ''
+  # parameters coming when triggered from GitHub action
+  GHA_Actor:
+    type: string
+    default: ''
+  GHA_Action:
+    type: string
+    default: ''
+  GHA_Event:
+    type: string
+    default: ''
+  GHA_Meta:
+    type: string
+    default: ''
 
 defaults: &defaults
   parameters:
@@ -797,7 +810,9 @@ workflows:
 
   bundling:
     when:
-      equal: [bundling, << pipeline.parameters.workflow >>]
+      or:
+        - equal: [bundling, << pipeline.parameters.workflow >>]
+        - equal: ['workflow:bundling', '<< pipeline.parameters.GHA_Meta >>']
     jobs:
       - test_bundling_prepare
       - test_bundling_node-esm:
