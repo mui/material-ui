@@ -28,14 +28,14 @@ For additional details about the MUI team and culture, you can check our [career
 ## Why we're hiring
 
 Our documentation is crucial to the success of our products, and until now, there has never been a unifying editorial strategy behind what gets published.
-Your mission will be to be to own the vision and strategy for our docs. 
+Your mission will be to be to own the vision and strategy for our docs.
 We are looking for someone who can contribute to the following outcomes:
 
 - Implement consistent and high-quality style, structure, formatting, and information architecture across the docs.
 - Improve the developer experience by contributing to the docs infrastructure.
 - Help make our docs more beginner-friendly by creating new technical content.
 
-Both our open-source community and our premium products are growing fast (x2 YoY). 
+Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 ## About the role
@@ -44,77 +44,62 @@ We are looking for an experienced writer-developer to join us as a Technical Wri
 
 ### Why this is interesting
 
-Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. 
+Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+As the next hire for our Developer Experience team, you will work closely with our Developer Advocate to collaborate on educational resources for developers.
+You could have a massive impact in this role if you bring a solid vision for the documentation experience.
 There is an endless number of improvements to be made by a competent editor and strategist.
 
 ### What you'll do on a day-to-day basis
 
 Depending on the day, you'll work on:
 
-Content.
-
-Revise and expand existing product documentation for consistency and comprehensiveness.
-
-Review and edit new docs from engineers as they're written.
-
-Create new documentation and technical guides as needed.
-
-Contribute to the company blog and oversee the editorial calendar.
-
-Community.
-
-Work with the open source community to bring docs contributions up to MUI's standards.
-
-Find freelance writers to work with to publish more technical content.
-
-Technical.
-
-Write code where required to support how-to content and blog posts.
-
-Create inspiring sample applications, documentation, and tutorials.
-
-Follow GitHub issues to understand where developers face frustration with our docs and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
+- **Content**.
+  - Revise and expand existing product documentation for consistency and comprehensiveness.
+  - Review and edit new docs from engineers as they're written.
+  - Create new documentation and technical guides as needed.
+  - Contribute to the company blog and oversee the editorial calendar.
+- **Community**.
+  - Work with the open source community to solicit docs contributions and bring them up to MUI's standards.
+  - Find freelance writers to work with to publish more technical content.
+- **Technical**.
+  - Write code where required to support how-to content and blog posts.
+  - Create inspiring sample applications, documentation, and tutorials.
+  - Follow GitHub issues to understand where developers face frustrations with our docs and develop strategies to overcome these.
 
 For the right candidate:
 
-Working with the Leadership to construct and execute on a hiring plan to grow the Developer Experience team.
+- Working with the Leadership to construct and execute on a hiring plan to grow the Developer Experience team.
 
-Here are a few initiatives you might work on
+### Here are a few initiatives you might work on
 
-Edit and revise the Material UI component documentation
-
-Create a docs portal / "how to use our docs" section for info shared across all MUI products.
-
-Start a writer's program to solicit technical content from the community.
-
-Create a learning section in the documentation for written tutorials.
-
-Own the Algolia search experience, improving the content on the most frequent search queries.
-
-Analyze user feedback on the docs to prioritize and delegate improvements where needed.
+- Edit and revise the Material UI and MUI X documentation.
+- Write the MUI Toolpad documentation.
+- Create a docs portal for information shared across all MUI products.
+- Start a writer's program to solicit technical content from the community.
+- Create a learning section in the documentation for written tutorials.
+- Own the Algolia search experience, improving the content on the most frequent search queries.
+- Analyze user feedback on the docs to prioritize and delegate improvements where needed.
 
 ## About you
 
 ### Skills you should have
 
-You are fluent in English (both written and spoken) and have a strong portfolio of published technical writing.
-
-You are passionate about helping other developers solve problems and have an educational mindset.
-
-You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
-
-Engineering background: you should be comfortable building React component demos from scratch to illustrate key concepts in the docs.
-
-You are passionate about UI development.
+- You are fluent in English (both written and spoken) and have a strong portfolio of published technical content.
+- You are passionate about helping other developers solve problems and have an educational mindset.
+- You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
+- Engineering background: you should be comfortable building React component demos from scratch to illustrate key concepts in the docs.
+- You are passionate about UI development.
 
 ### What would be nice if you had, but isn't required
 
-Experience as an editor or content lead.
-
-Experience working with open-source.
-
-Experience using MUI.
+- Experience as an editor or content lead.
+- Experience working with open-source.
+- Experience using MUI.
 
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location. We are ready to pay top market rates for a person that can clearly exceed the role's expectations. You can find the other perks & benefits on the careers page.
+
+## How to apply?
+
+[Apply now for this position 📮](link-to-role)
