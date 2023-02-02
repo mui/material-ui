@@ -72,6 +72,7 @@ export default function JoySignInSideTemplate() {
             '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
             '--Cover-width': '40vw', // must be `vw` only
             '--Form-maxWidth': '700px',
+            '--Transition-duration': '0.4s', // set to `none` to disable transition
           },
         }}
       />
@@ -79,8 +80,8 @@ export default function JoySignInSideTemplate() {
         sx={(theme) => ({
           width:
             'clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
-          transition: '0.4s',
-          transitionDelay: '0.1s',
+          transition: 'width var(--Transition-duration)',
+          transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           position: 'relative',
           zIndex: 1,
           display: 'flex',
@@ -225,8 +226,9 @@ export default function JoySignInSideTemplate() {
           top: 0,
           bottom: 0,
           left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))',
-          transition: '0.4s',
-          transitionDelay: '0.1s',
+          transition:
+            'background-image var(--Transition-duration), left var(--Transition-duration) !important',
+          transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           backgroundColor: 'background.level1',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
