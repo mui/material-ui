@@ -1,0 +1,113 @@
+# Technical Writer
+
+<p class="description">You will own the documentation and technical content strategy for our suite of products.</p>
+
+## Details of the Role
+
+Location: Remote (strong requirement for UTC-8 to UTC+2).
+
+Type of work: Full-time (contractor or employee depending on circumstances).
+
+We're a remote company, we prefer asynchronous communication over meetings.
+
+We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+
+## About the company
+
+MUI started with Material UI, the most successful React implementation of Google's Material Design. We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX. Today, countless teams and organizations rely on our open-source libraries to build their design system.
+
+A couple of years ago, we started to expand our suite of products. We released MUI X, a collection of advanced components; MUI Design kits, the MUI components available for Figma, Sketch, etc.; and also host Templates, a set of pre-built UI kits. We've seen rapid growth with all of them (2-3x per year) and we have more to come. We are building a low-code platform for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+
+We are a fully distributed team, spread across multiple time zones. We work mainly asynchronously, relying mostly on written collaboration. Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us. For additional details about the MUI team and culture, you can check our careers and about pages and also our public Handbook.
+
+## Why we're hiring
+
+Our documentation is crucial to the success of our products, and until now, there has never been a unifying editorial strategy. Your mission will be to be to own the vision, strategy, and execution of our docs. We are looking for someone who can contribute to the following outcomes:
+
+Bring consistent style, structure, formatting, and information architecture to the documentation—both new and existing.
+
+Improve the overall developer experience by contributing to the docs infrastructure.
+
+Make our docs more beginner-friendly by suggesting and creating new technical guides to help users succeed.
+
+Both our open-source community and our premium products are growing fast (x2 YoY). We need talented people to keep that going!
+
+## About the role
+
+We are looking for an experienced writer-developer to join us as a Technical Writer to lead documentation projects.
+
+Why this is interesting
+
+Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. There is an endless number of improvements to be made by a competent editor and strategist.
+
+### What you'll do on a day-to-day basis
+
+Depending on the day, you'll work on:
+
+Content.
+
+Revise and expand existing product documentation for consistency and comprehensiveness.
+
+Review and edit new docs from engineers as they're written.
+
+Create new documentation and technical guides as needed.
+
+Contribute to the company blog and oversee the editorial calendar.
+
+Community.
+
+Work with the open source community to bring docs contributions up to MUI's standards.
+
+Find freelance writers to work with to publish more technical content.
+
+Technical.
+
+Write code where required to support how-to content and blog posts.
+
+Create inspiring sample applications, documentation, and tutorials.
+
+Follow GitHub issues to understand where developers face frustration with our docs and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
+
+For the right candidate:
+
+Working with the Leadership to construct and execute on a hiring plan to grow the Developer Experience team.
+
+Here are a few initiatives you might work on
+
+Edit and revise the Material UI component documentation
+
+Create a docs portal / "how to use our docs" section for info shared across all MUI products.
+
+Start a writer's program to solicit technical content from the community.
+
+Create a learning section in the documentation for written tutorials.
+
+Own the Algolia search experience, improving the content on the most frequent search queries.
+
+Analyze user feedback on the docs to prioritize and delegate improvements where needed.
+
+## About you
+
+### Skills you should have
+
+You are fluent in English (both written and spoken) and have a strong portfolio of published technical writing.
+
+You are passionate about helping other developers solve problems and have an educational mindset.
+
+You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
+
+Engineering background: you should be comfortable building React component demos from scratch to illustrate key concepts in the docs.
+
+You are passionate about UI development.
+
+### What would be nice if you had, but isn't required
+
+Experience as an editor or content lead.
+
+Experience working with open-source.
+
+Experience using MUI.
+
+## Benefits & Compensation
+
+Competitive compensation depending on the profile and location. We are ready to pay top market rates for a person that can clearly exceed the role's expectations. You can find the other perks & benefits on the careers page.
