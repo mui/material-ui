@@ -28,6 +28,7 @@ For additional details about the MUI team and culture, you can check our [career
 ## Why we're hiring
 
 Our documentation is crucial to the success of our products, and until recently, there has not been a unifying editorial strategy behind what gets published.
+This means we have a massive backlog of existing technical content to be audited and revised.
 Your mission will be to be to own the vision and strategy for our docs.
 We are looking for someone who can contribute to the following outcomes:
 
@@ -46,7 +47,7 @@ We are looking for an experienced writer-developer to join us as a Technical Wri
 
 Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 As the next hire for our Developer Experience team, you will work closely with our Developer Advocate to collaborate on educational resources for developers.
-You could have a massive impact in this role if you bring a solid vision for the documentation experience.
+You could have a big impact in this role if you bring a solid vision for the documentation experience.
 There is an endless number of improvements to be made by a competent editor and strategist.
 
 ### What you'll do on a day-to-day basis
