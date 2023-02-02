@@ -56,12 +56,17 @@ function testOnScrollToBottom({
         scrollTop: listbox.scrollHeight - listbox.offsetHeight,
       },
     });
+    console.log(
+      listbox.scrollHeight - listbox.offsetHeight,
+      onScrollToBottom.callCount,
+      listbox.scrollTop,
+      reason,
+    );
     if (onScrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
       expect(listbox.scrollTop).to.equal(0);
     }
-
     expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
   } else if (reason === 'keyboard') {
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -73,6 +78,7 @@ function testOnScrollToBottom({
     if (listbox.scrollTop > 0) {
       fireEvent.scroll(listbox);
     }
+    console.log(onScrollToBottom.callCount, listbox.scrollTop, reason);
     if (onScrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
