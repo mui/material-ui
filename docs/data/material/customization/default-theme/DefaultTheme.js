@@ -59,7 +59,12 @@ function DefaultTheme() {
   return (
     <Box sx={{ width: '100%' }}>
       <FormControlLabel
-        sx={{ pb: 1 }}
+        sx={{
+          pb: 1,
+          label: {
+            color: (theme) => theme.palette.text.primary,
+          },
+        }}
         control={
           <Switch
             checked={checked}
@@ -72,7 +77,12 @@ function DefaultTheme() {
         label={t('expandAll')}
       />
       <FormControlLabel
-        sx={{ pb: 1 }}
+        sx={{
+          pb: 1,
+          label: {
+            color: (theme) => theme.palette.text.primary,
+          },
+        }}
         control={
           <Switch
             checked={darkTheme}
