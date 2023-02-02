@@ -4,41 +4,48 @@
 
 ## Details of the Role
 
-Location: Remote (strong requirement for UTC-8 to UTC+2).
-
-Type of work: Full-time (contractor or employee depending on circumstances).
-
-We're a remote company, we prefer asynchronous communication over meetings.
-
-We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- Location: Remote (strong requirement for UTC-8 to UTC+2).
+- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- We're a remote company, we prefer asynchronous communication over meetings.
+- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
 ## About the company
 
-MUI started with Material UI, the most successful React implementation of Google's Material Design. We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX. Today, countless teams and organizations rely on our open-source libraries to build their design system.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
+We have gained a large following, thanks to our focus on Material Design fidelity, our obsession with details, on offering a large number of components, our community engagement, and by carefully improving the DX.
+Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
-A couple of years ago, we started to expand our suite of products. We released MUI X, a collection of advanced components; MUI Design kits, the MUI components available for Figma, Sketch, etc.; and also host Templates, a set of pre-built UI kits. We've seen rapid growth with all of them (2-3x per year) and we have more to come. We are building a low-code platform for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+A couple of years ago, we started to expand our suite of products.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
+We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
 
-We are a fully distributed team, spread across multiple time zones. We work mainly asynchronously, relying mostly on written collaboration. Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us. For additional details about the MUI team and culture, you can check our careers and about pages and also our public Handbook.
+We are a fully distributed team, spread across multiple time zones.
+We work mainly asynchronously, relying mostly on written collaboration.
+Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
+For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Our documentation is crucial to the success of our products, and until now, there has never been a unifying editorial strategy. Your mission will be to be to own the vision, strategy, and execution of our docs. We are looking for someone who can contribute to the following outcomes:
+Our documentation is crucial to the success of our products, and until now, there has never been a unifying editorial strategy behind what gets published.
+Your mission will be to be to own the vision and strategy for our docs. 
+We are looking for someone who can contribute to the following outcomes:
 
-Bring consistent style, structure, formatting, and information architecture to the documentation—both new and existing.
+- Implement consistent and high-quality style, structure, formatting, and information architecture across the docs.
+- Improve the developer experience by contributing to the docs infrastructure.
+- Help make our docs more beginner-friendly by creating new technical content.
 
-Improve the overall developer experience by contributing to the docs infrastructure.
-
-Make our docs more beginner-friendly by suggesting and creating new technical guides to help users succeed.
-
-Both our open-source community and our premium products are growing fast (x2 YoY). We need talented people to keep that going!
+Both our open-source community and our premium products are growing fast (x2 YoY). 
+We need talented people to keep that going!
 
 ## About the role
 
 We are looking for an experienced writer-developer to join us as a Technical Writer to lead documentation projects.
 
-Why this is interesting
+### Why this is interesting
 
-Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. There is an endless number of improvements to be made by a competent editor and strategist.
+Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month. 
+There is an endless number of improvements to be made by a competent editor and strategist.
 
 ### What you'll do on a day-to-day basis
 
