@@ -102,6 +102,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     marks: marksProp,
     classes: classesProp,
     disabled,
+    disableSwap,
     isRtl,
     defaultValue,
     max,
