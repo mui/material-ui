@@ -1,12 +1,29 @@
 {
   "componentDescription": "A permanently displayed menu following https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/.\nIt's exposed to help customization of the [`Menu`](/material-ui/api/menu/) component if you\nuse it separately you need to move focus into the component manually. Once\nthe focus is placed inside the component it is fully keyboard accessible.",
   "propDescriptions": {
-    "actions": "A ref with imperative actions. It allows to select the first or last menu item.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "size": "The size of the component (affect other nested list* components because the <code>Menu</code> inherits <code>List</code>).",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "autoFocus": "If <code>true</code>, will focus the <code>[role=&quot;menu&quot;]</code> container and move into tab order.",
+    "autoFocusItem": "If <code>true</code>, will focus the first menuitem if <code>variant=&quot;menu&quot;</code> or selected item if <code>variant=&quot;selectedMenu&quot;</code>.",
+    "children": "MenuList contents, normally <code>MenuItem</code>s.",
+    "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
+    "disableListWrap": "If <code>true</code>, the menu items will not wrap focus.",
+    "variant": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element."
   },
-  "classDescriptions": {}
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "padding": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disablePadding={true}</code>"
+    },
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "dense"
+    },
+    "subheader": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "a <code>subheader</code> is provided"
+    }
+  }
 }
