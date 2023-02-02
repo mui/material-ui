@@ -63,7 +63,7 @@ Use `label` prop to label the radio buttons.
 
 {{"demo": "RadioButtonLabel.js"}}
 
-For more complex layouts, compose a radio button with `FormControl`, `FormLabel`, and `FormHelperText` (optional).
+For more complex layouts, compose a radio button with Form Control, Form Label, and Form Helper Text (optional).
 
 {{"demo": "RadioButtonControl.js"}}
 
@@ -75,7 +75,7 @@ To swap the label and radio position, use the CSS property `flex-direction: row-
 
 ### Radio group
 
-The RadioGroup component is the ideal wrapper for multiple Radio components as it provides a tailored API for radio button grouping and proper keyboard navigation accessibility support.
+The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for radio button grouping and proper keyboard navigation accessibility support.
 
 {{"demo": "RadioButtonsGroup.js"}}
 
@@ -96,7 +96,7 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 To make the radio button's container clickable, use the `overlay` prop.
 
-Applying `overlay` to the parent RadioGroup component will pass the prop to each child radio button inside the RadioGroup.
+Applying `overlay` to the parent Radio Group component will pass the prop to each child radio button inside the Radio Group.
 
 {{"demo": "OverlayRadio.js"}}
 
@@ -137,7 +137,7 @@ Provide an icon as a label to the Radio to make the radio buttons concise. You n
 
 ### Payment methods
 
-Mix radio buttons with the [`List`](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
+Mix radio buttons with the [List](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
 
 {{"demo": "ExamplePaymentChannels.js"}}
 
@@ -154,9 +154,9 @@ The check icon's color inherits the radio button's `solid` variant, so that we d
 
 Here are a few tips to make sure you have an accessible radio button component:
 
-- Every form control should have proper labels.
+- Every Form Control should have proper labels.
   This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done by using the `FormControl` and `FormLabel` element.
+  In most cases, this is done by using the Form Control and Form Label element.
 - When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
   You can also use the `inputProps` prop to add them.
 
