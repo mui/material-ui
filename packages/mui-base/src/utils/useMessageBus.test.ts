@@ -1,6 +1,6 @@
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { createMessageBus } from './messageBus';
+import { createMessageBus } from './useMessageBus';
 
 describe('messageBus', () => {
   it('should be able to subscribe to a message', () => {

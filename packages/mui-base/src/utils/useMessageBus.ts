@@ -9,22 +9,17 @@ export function createMessageBus(): MessageBus {
   const listeners = new Map<string, Set<Function>>();
 
   function subscribe(topic: string, callback: Function) {
-    const topicListeners = listeners.get(topic);
-    if (topicListeners) {
+    let topicListeners = listeners.get(topic);
+    if (!topicListeners) {
+      topicListeners = new Set([callback]);
+      listeners.set(topic, topicListeners);
+    } else {
       topicListeners.add(callback);
-      return () => {
-        topicListeners.delete(callback);
-        if (topicListeners.size === 0) {
-          listeners.delete(topic);
-        }
-      };
     }
 
-    const newTopicListeners = new Set([callback]);
-    listeners.set(topic, newTopicListeners);
     return () => {
-      newTopicListeners.delete(callback);
-      if (newTopicListeners.size === 0) {
+      topicListeners!.delete(callback);
+      if (topicListeners!.size === 0) {
         listeners.delete(topic);
       }
     };
