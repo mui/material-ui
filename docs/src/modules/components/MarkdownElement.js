@@ -106,6 +106,9 @@ const Root = styled('div')(
     '& ul': {
       paddingLeft: 30,
     },
+    '& span.display-none': {
+      display: 'none',
+    },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
       paddingRight: 26 * 2 + 10,
