@@ -284,6 +284,14 @@ type AutocompleteOwnProps<
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
   };
 
+  /**  
+   * AutocompleteProps signature:
+   * @template T
+   * @param {string | object} T The option structure, must be a string or a object with { label: string }
+   * @param {boolean | undefined} Multiple If your component is set with property multiple as true
+   * @param {boolean | undefined} DisableClearable If your component is set with property disableClearable as true
+   * @param {boolean | undefined} FreeSolo If your component is set with property freeSolo as true
+   */   
 export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined,
