@@ -2,7 +2,6 @@ import * as React from 'react';
 import LZString from 'lz-string';
 import startCase from 'lodash/startCase';
 import NextLink from 'next/link';
-import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
@@ -70,12 +69,15 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  'order-dashboard': {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
 };
 
 export default function TemplateCollection() {
-  const newTemplates = ['sign-in-side']; // Stay at the top of the page with `new` badge
+  const newTemplates = ['order-dashboard', 'sign-in-side']; // Stay at the top of the page with `new` badge
   const templates = extractTemplates(cache);
-  const theme = useTheme();
   const names = [
     ...newTemplates,
     ...Object.keys(templates).filter((name) => !newTemplates.includes(name)),
@@ -127,12 +129,13 @@ export default function TemplateCollection() {
 
             <AspectRatio ratio="2" variant="outlined">
               <Box
-                sx={{
-                  background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}${
-                    theme.palette.mode === 'dark' ? '-dark' : ''
-                  }.jpg)`,
+                sx={(theme) => ({
+                  background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
                   transition: '0.3s',
-                }}
+                  [theme.getColorSchemeSelector('dark')]: {
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+                  },
+                })}
               />
               <NextLink
                 href={`/joy-ui/getting-started/templates/${name}/`}
