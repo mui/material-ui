@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { usePreviousProps } from '@mui/utils';
+import { UseBadgeReturnValue } from './useBadge.types';
 
 export interface UseBadgeParameters {
   badgeContent?: React.ReactNode;
@@ -17,7 +18,7 @@ export interface UseBadgeParameters {
  *
  * - [useBadge API](https://mui.com/base/api/use-badge/)
  */
-export default function useBadge(parameters: UseBadgeParameters) {
+export default function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
   const {
     badgeContent: badgeContentProp,
     invisible: invisibleProp = false,
