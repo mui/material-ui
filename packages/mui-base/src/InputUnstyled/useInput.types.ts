@@ -56,7 +56,7 @@ export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInp
 
 export interface UseInputReturnValue {
   /**
-   * If `true`, the component is disabled.
+   * If `true`, it indicates that the component is disabled.
    * @default false
    */
   disabled: boolean;
@@ -91,12 +91,12 @@ export interface UseInputReturnValue {
     externalProps?: TOther,
   ) => UseInputRootSlotProps<TOther>;
   /**
-   * If `true`, the `input` element is required.
+   * If `true`, it indicates that the `input` element is required.
    * @default false
    */
   required: boolean;
   /**
-   * `value` of input element.
+   * The `value` of input element.
    */
   value: unknown;
 }

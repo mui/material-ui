@@ -35,7 +35,10 @@
   },
   "returnValue": {
     "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, it indicates that the component is disabled."
+      },
       "default": "false",
       "required": true
     },
@@ -74,12 +77,15 @@
       "required": true
     },
     "required": {
-      "type": { "name": "boolean", "description": "If `true`, the `input` element is required." },
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, it indicates that the `input` element is required."
+      },
       "default": "false",
       "required": true
     },
     "value": {
-      "type": { "name": "unknown", "description": "`value` of input element." },
+      "type": { "name": "unknown", "description": "The `value` of input element." },
       "required": true
     }
   },
