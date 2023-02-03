@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormControlUnstyledState } from '../FormControlUnstyled';
 
 export interface UseInputParameters {
   /**
@@ -52,3 +53,50 @@ export interface UseInputInputSlotOwnProps {
 
 export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInputSlotOwnProps> &
   UseInputInputSlotOwnProps;
+
+export interface UseInputReturnValue {
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: boolean;
+  /**
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
+   * @default false
+   */
+  error: boolean;
+  /**
+   * If `true`, the `input` will be focused.
+   * @default false
+   */
+  focused: boolean;
+  /**
+   * Return value from `useFormControlUnstyledContext` hook.
+   */
+  formControlContext: FormControlUnstyledState | undefined;
+  /**
+   * Resolver for the input slot's props.
+   * @param externalProps props for the input slot
+   * @returns props that should be spread on the input slot
+   */
+  getInputProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseInputInputSlotProps<TOther>;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseInputRootSlotProps<TOther>;
+  /**
+   * If `true`, the `input` element is required.
+   * @default false
+   */
+  required: boolean;
+  /**
+   * `value` of input element.
+   */
+  value: unknown;
+}

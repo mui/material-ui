@@ -33,7 +33,56 @@
     },
     "value": { "type": { "name": "unknown", "description": "" } }
   },
-  "returnValue": {},
+  "returnValue": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
+      "default": "false",
+      "required": true
+    },
+    "error": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute."
+      },
+      "default": "false",
+      "required": true
+    },
+    "focused": {
+      "type": { "name": "boolean", "description": "If `true`, the `input` will be focused." },
+      "default": "false",
+      "required": true
+    },
+    "formControlContext": {
+      "type": {
+        "name": "FormControlUnstyledState | undefined",
+        "description": "Return value from `useFormControlUnstyledContext` hook."
+      },
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseInputInputSlotProps<TOther>",
+        "description": "Resolver for the input slot's props."
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseInputRootSlotProps<TOther>",
+        "description": "Resolver for the root slot's props."
+      },
+      "required": true
+    },
+    "required": {
+      "type": { "name": "boolean", "description": "If `true`, the `input` element is required." },
+      "default": "false",
+      "required": true
+    },
+    "value": {
+      "type": { "name": "unknown", "description": "`value` of input element." },
+      "required": true
+    }
+  },
   "name": "useInput",
   "filename": "/packages/mui-base/src/InputUnstyled/useInput.ts",
   "demos": "<ul><li><a href=\"/base/react-input/#hook\">Unstyled Input</a></li></ul>"
