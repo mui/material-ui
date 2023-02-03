@@ -3,7 +3,7 @@ product: material-ui
 title: React Modal（模态框）组件
 components: Modal
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 unstyled: /base/react-modal/
 ---
 
@@ -95,7 +95,7 @@ This is done for accessibility purposes. However, it might create issues. In the
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 

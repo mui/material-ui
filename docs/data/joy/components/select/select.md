@@ -117,7 +117,7 @@ Take a look at [selected value appearance](#selected-value-appearance) to see ho
 
 ### Grouped options
 
-To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-grouped/), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
 That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}

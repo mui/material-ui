@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Modal component
 components: ModalUnstyled
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Unstyled Modal
@@ -150,7 +150,7 @@ If the user needs to interact with another part of the page—for example, to in
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices.
 
 - All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your Modal component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the Modal:
