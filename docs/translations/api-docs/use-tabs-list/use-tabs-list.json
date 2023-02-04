@@ -1,5 +1,10 @@
 {
   "hookDescription": "",
   "parametersDescriptions": { "children": "The content of the component." },
-  "returnValueDescriptions": {}
+  "returnValueDescriptions": {
+    "getRootProps": "Resolver for the root slot's props.",
+    "isRtl": "The direction of the text.",
+    "orientation": "The component orientation (layout flow direction).",
+    "value": "The value of the currently selected <code>Tab</code>."
+  }
 }
