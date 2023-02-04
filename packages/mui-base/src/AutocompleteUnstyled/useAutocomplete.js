@@ -90,7 +90,7 @@ export default function useAutocomplete(props) {
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
-    disabled: disabledProp,
+    disabled: disabledProp = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
     filterOptions = defaultFilterOptions,
