@@ -30,6 +30,7 @@ export interface Options {
    * This option is kept for backwards compatibility and has no longer any effect.
    * It's previous behavior is now handled automatically.
    */
+  // TODO: Deprecate for v6
   noSsr?: boolean;
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
@@ -41,8 +42,11 @@ function useMediaQueryOld(
   ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
   noSsr: boolean | undefined,
 ): boolean {
+  const supportMatchMedia =
+    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+
   const [match, setMatch] = React.useState(() => {
-    if (noSsr && matchMedia) {
+    if (noSsr && supportMatchMedia) {
       return matchMedia!(query).matches;
     }
     if (ssrMatchMedia) {
@@ -57,7 +61,7 @@ function useMediaQueryOld(
   useEnhancedEffect(() => {
     let active = true;
 
-    if (!matchMedia) {
+    if (!supportMatchMedia) {
       return undefined;
     }
 
@@ -77,7 +81,7 @@ function useMediaQueryOld(
       active = false;
       queryList.removeListener(updateMatch);
     };
-  }, [query, matchMedia]);
+  }, [query, matchMedia, supportMatchMedia]);
 
   return match;
 }
@@ -90,19 +94,15 @@ function useMediaQueryNew(
   defaultMatches: boolean,
   matchMedia: typeof window.matchMedia | null,
   ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
-  noSsr: boolean | undefined,
 ): boolean {
   const getDefaultSnapshot = React.useCallback(() => defaultMatches, [defaultMatches]);
   const getServerSnapshot = React.useMemo(() => {
-    if (noSsr && matchMedia) {
-      return () => matchMedia!(query).matches;
-    }
     if (ssrMatchMedia !== null) {
       const { matches } = ssrMatchMedia(query);
       return () => matches;
     }
     return getDefaultSnapshot;
-  }, [noSsr, matchMedia, getDefaultSnapshot, query, ssrMatchMedia]);
+  }, [getDefaultSnapshot, query, ssrMatchMedia]);
   const [getSnapshot, subscribe] = React.useMemo(() => {
     if (matchMedia === null) {
       return [getDefaultSnapshot, () => () => {}];
