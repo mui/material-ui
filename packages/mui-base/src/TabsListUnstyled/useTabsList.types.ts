@@ -22,7 +22,7 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
 export interface UseTabsListReturnValue {
   /**
    * The direction of the text.
-   * @default 'false'
+   * @default false
    */
   isRtl: boolean;
   /**
