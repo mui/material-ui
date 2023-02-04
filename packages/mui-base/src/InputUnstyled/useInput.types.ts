@@ -56,7 +56,7 @@ export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInp
 
 export interface UseInputReturnValue {
   /**
-   * If `true`, it indicates that the component is disabled.
+   * If `true`, the component will be disabled.
    * @default false
    */
   disabled: boolean;
@@ -71,7 +71,7 @@ export interface UseInputReturnValue {
    */
   focused: boolean;
   /**
-   * Return value from `useFormControlUnstyledContext` hook.
+   * Return value from the `useFormControlUnstyledContext` hook.
    */
   formControlContext: FormControlUnstyledState | undefined;
   /**
@@ -91,12 +91,12 @@ export interface UseInputReturnValue {
     externalProps?: TOther,
   ) => UseInputRootSlotProps<TOther>;
   /**
-   * If `true`, it indicates that the `input` element is required.
+   * If `true`, the `input` will indicate that it's required.
    * @default false
    */
   required: boolean;
   /**
-   * The `value` of input element.
+   * TThe `value` of the `input` element.
    */
   value: unknown;
 }
