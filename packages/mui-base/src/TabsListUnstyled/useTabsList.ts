@@ -81,6 +81,7 @@ const moveFocus = (
  *
  * - [useTabsList API](https://mui.com/base/api/use-tabs-list/)
  */
+
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
   const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
 
