@@ -1,5 +1,5 @@
 {
-  "name": "create-react-app",
+  "name": "test",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -27,5 +27,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
