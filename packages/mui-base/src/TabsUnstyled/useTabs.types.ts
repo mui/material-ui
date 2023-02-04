@@ -37,7 +37,6 @@ export interface UseTabsReturnValue {
     idPrefix: string | undefined;
     /**
      * The value of the currently selected `Tab`.
-     * If you don't want any selected `Tab`, you can set this prop to `false`.
      */
     value: string | number | false;
     /**
