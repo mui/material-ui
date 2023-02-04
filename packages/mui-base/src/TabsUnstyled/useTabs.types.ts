@@ -31,30 +31,11 @@ export interface UseTabsParameters {
 
 export interface UseTabsReturnValue {
   tabsContextValue: {
-    /**
-     * Id used as a prefix for the current Tabs.
-     */
     idPrefix: string | undefined;
-    /**
-     * The value of the currently selected `Tab`.
-     */
     value: string | number | false;
-    /**
-     * Callback for setting new value.
-     */
     onSelected: (e: React.SyntheticEvent, newValue: string | number | false) => void;
-    /**
-     * The component orientation (layout flow direction).
-     */
     orientation?: 'horizontal' | 'vertical';
-    /**
-     * The direction of the text.
-     */
     direction: 'ltr' | 'rtl' | undefined;
-    /**
-     * If `true` the selected tab changes on focus. Otherwise it only
-     * changes on activation.
-     */
     selectionFollowsFocus: boolean | undefined;
   };
 }
