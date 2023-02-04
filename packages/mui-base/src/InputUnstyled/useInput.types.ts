@@ -96,7 +96,7 @@ export interface UseInputReturnValue {
    */
   required: boolean;
   /**
-   * TThe `value` of the `input` element.
+   * The `value` of the `input` element.
    */
   value: unknown;
 }

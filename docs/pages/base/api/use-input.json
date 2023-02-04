@@ -35,10 +35,7 @@
   },
   "returnValue": {
     "disabled": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, it indicates that the component is disabled."
-      },
+      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
       "default": "false",
       "required": true
     },
@@ -58,7 +55,7 @@
     "formControlContext": {
       "type": {
         "name": "FormControlUnstyledState | undefined",
-        "description": "Return value from `useFormControlUnstyledContext` hook."
+        "description": "Return value from the `useFormControlUnstyledContext` hook."
       },
       "required": true
     },
@@ -79,13 +76,13 @@
     "required": {
       "type": {
         "name": "boolean",
-        "description": "If `true`, it indicates that the `input` element is required."
+        "description": "If `true`, the `input` will indicate that it's required."
       },
       "default": "false",
       "required": true
     },
     "value": {
-      "type": { "name": "unknown", "description": "The `value` of input element." },
+      "type": { "name": "unknown", "description": "The `value` of the `input` element." },
       "required": true
     }
   },
