@@ -28,7 +28,35 @@
       "type": { "name": "boolean", "description": "If `true`, the `input` element is required." }
     }
   },
-  "returnValue": {},
+  "returnValue": {
+    "checked": {
+      "type": { "name": "boolean", "description": "If `true`, the component is checked." },
+      "required": true
+    },
+    "disabled": {
+      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
+      "required": true
+    },
+    "focusVisible": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, the component is being focused using keyboard."
+      },
+      "default": "false",
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "(otherProps?: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps",
+        "description": "Function to get the props to place on an HTML `<input>` to make the switch accessible."
+      },
+      "required": true
+    },
+    "readOnly": {
+      "type": { "name": "boolean", "description": "If `true`, the component is read only." },
+      "required": true
+    }
+  },
   "name": "useSwitch",
   "filename": "/packages/mui-base/src/SwitchUnstyled/useSwitch.ts",
   "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Unstyled Switch</a></li></ul>"

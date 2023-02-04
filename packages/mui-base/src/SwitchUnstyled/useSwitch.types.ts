@@ -49,3 +49,27 @@ interface UseSwitchInputSlotOwnProps {
 
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
   UseSwitchInputSlotOwnProps;
+
+export interface UseSwitchReturnValue {
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: boolean;
+  /**
+   * If `true`, the component is disabled.
+   */
+  disabled: boolean;
+  /**
+   * If `true`, the component is being focused using keyboard.
+   * @default false
+   */
+  focusVisible: boolean;
+  /**
+   * Function to get the props to place on an HTML `<input>` to make the switch accessible.
+   */
+  getInputProps: (otherProps?: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps;
+  /**
+   * If `true`, the component is read only.
+   */
+  readOnly: boolean;
+}
