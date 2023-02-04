@@ -17,7 +17,7 @@
     },
     "isRtl": {
       "type": { "name": "boolean", "description": "The direction of the text." },
-      "default": "'false'",
+      "default": "false",
       "required": true
     },
     "orientation": {
