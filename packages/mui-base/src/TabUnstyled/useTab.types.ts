@@ -30,3 +30,36 @@ export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<
   id: string | undefined;
   role: React.AriaRole;
 };
+
+export interface UseTabReturnValue {
+  /**
+   * If `true`, the tab is disabled.
+   */
+  selected: boolean;
+  /**
+   * If `true`, the tab's focus is visible.
+   */
+  focusVisible: boolean;
+  /**
+   * Callback for setting the `focusVisible` param.
+   */
+  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
+   * If `true`, the tab is disabled.
+   * @default false
+   */
+  disabled: boolean;
+  /**
+   * If `true`, the tab is active.
+   * @default false
+   */
+  active: boolean;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseTabRootSlotProps<TOther>;
+}
