@@ -1,5 +1,5 @@
 import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
-import { UseTabPanelParameters } from './useTabPanel.types';
+import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
 /**
  *
  * Demos:
@@ -10,7 +10,7 @@ import { UseTabPanelParameters } from './useTabPanel.types';
  *
  * - [useTabPanel API](https://mui.com/base/api/use-tab-panel/)
  */
-function useTabPanel(parameters: UseTabPanelParameters) {
+function useTabPanel(parameters: UseTabPanelParameters):UseTabPanelReturnValue {
   const { value } = parameters;
 
   const context = useTabContext();
