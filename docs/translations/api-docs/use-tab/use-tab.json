@@ -4,5 +4,12 @@
     "onChange": "Callback invoked when new value is being set.",
     "value": "You can provide your own value. Otherwise, we fall back to the child position index."
   },
-  "returnValueDescriptions": {}
+  "returnValueDescriptions": {
+    "active": "If <code>true</code>, the tab is active.",
+    "disabled": "If <code>true</code>, the tab is disabled.",
+    "focusVisible": "If <code>true</code>, the tab's focus is visible.",
+    "getRootProps": "Resolver for the root slot's props.",
+    "selected": "If <code>true</code>, the tab is disabled.",
+    "setFocusVisible": "Callback for setting the <code>focusVisible</code> param."
+  }
 }
