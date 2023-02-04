@@ -65,7 +65,7 @@ export interface UseSwitchReturnValue {
    */
   focusVisible: boolean;
   /**
-   * Function to get the props to place on an HTML `<input>` to make the switch accessible.
+   * Function to get the props to place on an HTML `input` to make the switch accessible.
    */
   getInputProps: (otherProps?: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps;
   /**
