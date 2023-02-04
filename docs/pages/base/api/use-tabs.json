@@ -39,7 +39,7 @@
   "returnValue": {
     "tabsContextValue": {
       "type": {
-        "name": "{\n  /**\n   * Id used as a prefix for the current Tabs.\n   */\n  idPrefix: string | undefined\n  /**\n   * The value of the currently selected `Tab`.\n   */\n  value: string | number | false\n  /**\n   * Callback for setting new value.\n   */\n  onSelected: (e: React.SyntheticEvent, newValue: string | number | false) => void\n  /**\n   * The component orientation (layout flow direction).\n   */\n  orientation?: 'horizontal' | 'vertical'\n  /**\n   * The direction of the text.\n   */\n  direction: 'ltr' | 'rtl' | undefined\n  /**\n   * If `true` the selected tab changes on focus. Otherwise it only\n   * changes on activation.\n   */\n  selectionFollowsFocus: boolean | undefined\n}",
+        "name": "{\n  idPrefix: string | undefined\n  value: string | number | false\n  onSelected: (e: React.SyntheticEvent, newValue: string | number | false) => void\n  orientation?: 'horizontal' | 'vertical'\n  direction: 'ltr' | 'rtl' | undefined\n  selectionFollowsFocus: boolean | undefined\n}",
         "description": ""
       },
       "required": true
