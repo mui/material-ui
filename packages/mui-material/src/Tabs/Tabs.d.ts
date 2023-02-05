@@ -14,7 +14,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     /**
      * Callback fired when the component mounts.
      * This is useful when you want to trigger an action programmatically.
-     * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
+     * It supports one action: `updateIndicator()`
      *
      * @param {object} actions This object contains all possible actions
      * that can be triggered programmatically.
@@ -149,7 +149,6 @@ declare const Tabs: OverridableComponent<TabsTypeMap>;
 
 export interface TabsActions {
   updateIndicator(): void;
-  updateScrollButtons(): void;
 }
 
 export type TabsProps<

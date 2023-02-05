@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "action": "Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: <code>updateIndicator()</code> and <code>updateScrollButtons()</code>",
+    "action": "Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports one action: <code>updateIndicator()</code>",
     "allowScrollButtonsMobile": "If <code>true</code>, the scroll buttons aren&#39;t forced hidden on mobile. By default the scroll buttons are hidden on mobile and takes precedence over <code>scrollButtons</code>.",
     "aria-label": "The label for the Tabs as a string.",
     "aria-labelledby": "An id or list of ids separated by a space that label the Tabs.",

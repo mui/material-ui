@@ -297,10 +297,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState(defaultIndicatorStyle);
-  const [displayScroll, setDisplayScroll] = React.useState({
-    start: false,
-    end: false,
-  });
+  const [displayStartScroll, setDisplayStartScroll] = React.useState(false);
+  const [displayEndScroll, setDisplayEndScroll] = React.useState(false);
 
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
@@ -493,7 +491,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       />
     ) : null;
 
-    const scrollButtonsActive = displayScroll.start || displayScroll.end;
+    const scrollButtonsActive = displayStartScroll || displayEndScroll;
     const showScrollButtons =
       scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
@@ -502,7 +500,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
-        disabled={!displayScroll.start}
+        disabled={!displayStartScroll}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
@@ -513,7 +511,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
-        disabled={!displayScroll.end}
+        disabled={!displayEndScroll}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
       />
@@ -540,28 +538,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   });
 
-  const updateScrollButtonState = useEventCallback(() => {
-    if (scrollable && scrollButtons !== false) {
-      const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
-      let showStartScroll;
-      let showEndScroll;
-
-      if (vertical) {
-        showStartScroll = scrollTop > 1;
-        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
-      } else {
-        const scrollLeft = getNormalizedScrollLeft(tabsRef.current, theme.direction);
-        // use 1 for the potential rounding error with browser zooms.
-        showStartScroll = isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-        showEndScroll = !isRtl ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
-      }
-
-      if (showStartScroll !== displayScroll.start || showEndScroll !== displayScroll.end) {
-        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
-      }
-    }
-  });
-
   React.useEffect(() => {
     const handleResize = debounce(() => {
       // If the Tabs component is replaced by Suspense with a fallback, the last
@@ -572,7 +548,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       // replaced by Suspense with a fallback, once React is updated to version 18
       if (tabsRef.current) {
         updateIndicatorState();
-        updateScrollButtonState();
       }
     });
     const win = ownerWindow(tabsRef.current);
@@ -594,21 +569,45 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         resizeObserver.disconnect();
       }
     };
-  }, [updateIndicatorState, updateScrollButtonState]);
-
-  const handleTabsScroll = React.useMemo(
-    () =>
-      debounce(() => {
-        updateScrollButtonState();
-      }),
-    [updateScrollButtonState],
-  );
+  }, [updateIndicatorState]);
 
   React.useEffect(() => {
+    let visibleObserver;
+    const { 0: firstTab, length, [length - 1]: lastTab } = Array.from(tabListRef.current.children);
+
+    if (
+      typeof IntersectionObserver !== 'undefined' &&
+      length > 0 &&
+      scrollable &&
+      scrollButtons !== false
+    ) {
+      const handleVisibility = (entries) => {
+        entries.forEach(({ intersectionRatio, target }) => {
+          if (target === firstTab) {
+            setDisplayStartScroll(intersectionRatio !== 1);
+          }
+          if (target === lastTab) {
+            setDisplayEndScroll(intersectionRatio !== 1);
+          }
+        });
+      };
+      visibleObserver = new IntersectionObserver(handleVisibility, {
+        root: tabsRef.current,
+        threshold: 1,
+      });
+
+      visibleObserver.observe(firstTab);
+      if (lastTab && firstTab !== lastTab) {
+        visibleObserver.observe(lastTab);
+      }
+    }
+
     return () => {
-      handleTabsScroll.clear();
+      if (visibleObserver) {
+        visibleObserver.disconnect();
+      }
     };
-  }, [handleTabsScroll]);
+  }, [scrollable, scrollButtons, tabsRef, childrenProp]);
 
   React.useEffect(() => {
     setMounted(true);
@@ -616,7 +615,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   React.useEffect(() => {
     updateIndicatorState();
-    updateScrollButtonState();
   });
 
   React.useEffect(() => {
@@ -628,9 +626,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     action,
     () => ({
       updateIndicator: updateIndicatorState,
-      updateScrollButtons: updateScrollButtonState,
     }),
-    [updateIndicatorState, updateScrollButtonState],
+    [updateIndicatorState],
   );
 
   const indicator = (
@@ -742,7 +739,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             : -scrollerStyle.scrollbarWidth,
         }}
         ref={tabsRef}
-        onScroll={handleTabsScroll}
       >
         {/* The tablist isn't interactive but the tabs are */}
         <FlexContainer
@@ -772,7 +768,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
-   * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
+   * It supports one action: `updateIndicator()`
    *
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
