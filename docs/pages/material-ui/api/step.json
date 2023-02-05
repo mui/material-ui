@@ -18,8 +18,20 @@
   },
   "name": "Step",
   "styles": {
-    "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
-    "globalClasses": { "completed": "Mui-completed" },
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel",
+      "active",
+      "completed",
+      "disabled"
+    ],
+    "globalClasses": {
+      "active": "Mui-active",
+      "completed": "Mui-completed",
+      "disabled": "Mui-disabled"
+    },
     "name": "MuiStep"
   },
   "spread": true,

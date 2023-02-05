@@ -121,4 +121,45 @@ describe('<Step />', () => {
       expect(stepLabels[1]).to.have.class(stepLabelClasses.disabled);
     });
   });
+
+  describe('reflects props in classNames', () => {
+    it('renders with "active" className when active', () => {
+      const { container } = render(
+        <Step active>
+          <StepLabel>Step 1</StepLabel>
+        </Step>,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+      const label = container.querySelector(`.${stepLabelClasses.root}`);
+      expect(root).to.have.class(classes.active);
+      expect(label).to.have.class(stepLabelClasses.active);
+    });
+
+    it('renders with "completed" className when completed', () => {
+      const { container } = render(
+        <Step completed>
+          <StepLabel>Step 1</StepLabel>
+        </Step>,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+      const label = container.querySelector(`.${stepLabelClasses.root}`);
+      expect(root).to.have.class(classes.completed);
+      expect(label).to.have.class(stepLabelClasses.completed);
+    });
+
+    it('renders with "disabled" className when disabled', () => {
+      const { container } = render(
+        <Step disabled>
+          <StepLabel>Step 1</StepLabel>
+        </Step>,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+      const label = container.querySelector(`.${stepLabelClasses.root}`);
+      expect(root).to.have.class(classes.disabled);
+      expect(label).to.have.class(stepLabelClasses.disabled);
+    });
+  });
 });

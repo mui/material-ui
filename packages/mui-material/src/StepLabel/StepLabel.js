@@ -16,6 +16,8 @@ const useUtilityClasses = (ownerState) => {
     root: [
       'root',
       orientation,
+      active && 'active',
+      completed && 'completed',
       error && 'error',
       disabled && 'disabled',
       alternativeLabel && 'alternativeLabel',

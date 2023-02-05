@@ -10,8 +10,12 @@ export interface StepClasses {
   vertical: string;
   /** Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: string;
+  /** State class applied to the root element if `active={true}`. */
+  active: string;
   /** State class applied to the root element if `completed={true}`. */
   completed: string;
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string;
 }
 
 export type StepClassKey = keyof StepClasses;
@@ -25,7 +29,9 @@ const stepClasses: StepClasses = generateUtilityClasses('MuiStep', [
   'horizontal',
   'vertical',
   'alternativeLabel',
+  'active',
   'completed',
+  'disabled',
 ]);
 
 export default stepClasses;

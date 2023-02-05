@@ -10,10 +10,17 @@ import styled from '../styles/styled';
 import { getStepUtilityClass } from './stepClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, orientation, alternativeLabel, completed } = ownerState;
+  const { classes, orientation, alternativeLabel, active, completed, disabled } = ownerState;
 
   const slots = {
-    root: ['root', orientation, alternativeLabel && 'alternativeLabel', completed && 'completed'],
+    root: [
+      'root',
+      orientation,
+      alternativeLabel && 'alternativeLabel',
+      active && 'active',
+      completed && 'completed',
+      disabled && 'disabled',
+    ],
   };
 
   return composeClasses(slots, getStepUtilityClass, classes);

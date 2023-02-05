@@ -86,6 +86,17 @@ describe('<StepLabel />', () => {
   });
 
   describe('<Step /> prop: active', () => {
+    it('renders <StepLabel> with the className active', () => {
+      const { container } = render(
+        <Step active>
+          <StepLabel>Step One</StepLabel>
+        </Step>,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+      expect(root).to.have.class(classes.active);
+    });
+
     it('renders <Typography> with the className active', () => {
       const { container } = render(
         <Step active>
@@ -123,6 +134,17 @@ describe('<StepLabel />', () => {
   });
 
   describe('<Step /> prop: completed', () => {
+    it('renders <StepLabel> with the className completed', () => {
+      const { container } = render(
+        <Step completed>
+          <StepLabel>Step One</StepLabel>
+        </Step>,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+      expect(root).to.have.class(classes.active);
+    });
+
     it('renders <Typography> with the className completed', () => {
       const { container } = render(
         <Step completed>
