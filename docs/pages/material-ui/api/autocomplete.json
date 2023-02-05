@@ -68,7 +68,7 @@
     "onHighlightChange": { "type": { "name": "func" } },
     "onInputChange": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },
-    "onScrollToBottom": { "type": { "name": "func" }, "default": "undefined" },
+    "onScrollToBottom": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "openOnFocus": { "type": { "name": "bool" }, "default": "false" },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
