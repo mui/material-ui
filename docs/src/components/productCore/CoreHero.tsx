@@ -223,13 +223,13 @@ export default function Hero() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
+              '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
                 color: 'primary.400',
               }),
             })}
           >
-            <IconImage name="product-core" /> MUI Core
+            <IconImage width={28} height={28} name="product-core" /> MUI Core
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Ready to use components, <br />
