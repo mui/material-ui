@@ -162,7 +162,7 @@ To display invalid state, set the `error` prop on the `FormControl`.
 
 ### Infinite scrolling
 
-This demo shows how to implement Infinite scrolling using `onScrollToBottom` prop
+This demo shows how to implement Infinite scrolling using `onScrollToBottom` prop.
 
 {{"demo": "InfiniteScrolling.js"}}
 

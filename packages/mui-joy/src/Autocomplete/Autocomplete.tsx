@@ -325,11 +325,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     required,
     type,
     startDecorator,
+    showLoadingWithOptions = false,
     size: sizeProp = 'md',
     color: colorProp = 'neutral',
     variant = 'outlined',
     value: valueProp,
-    showLoadingWithOptions = false,
     ...otherProps
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
@@ -673,7 +673,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           {groupedOptions.length === 0 && !freeSolo && !loading ? (
             <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
           ) : null}
-
           {loading &&
           (showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)) ? (
             <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
@@ -959,7 +958,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
-   * Callback fires when scroll bar reaches bottom of listbox
+   * Callback fires when scroll bar reaches bottom of listbox.
    * @param {React.SyntheticEvent}
    */
   onScrollToBottom: PropTypes.func,

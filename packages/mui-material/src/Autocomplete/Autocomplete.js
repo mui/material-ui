@@ -425,10 +425,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderOption: renderOptionProp,
     renderTags,
     selectOnFocus = !props.freeSolo,
+    showLoadingWithOptions = false,
     size = 'medium',
     slotProps = {},
     value: valueProp,
-    showLoadingWithOptions = false,
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -980,8 +980,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
-   * Callback fires when scroll bar reaches bottom of listbox
-   * @default undefined
+   * Callback fires when scroll bar reaches bottom of listbox.
    */
   onScrollToBottom: PropTypes.func,
   /**
