@@ -541,9 +541,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const popperSlotProps = slotProps.popper ?? componentsProps.popper;
   const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
-  const { onScroll: listBoxOnScroll, ...restOfListboxProps } = ListboxProps ?? {
-    onScroll: undefined,
-  };
+  const { onScroll: listBoxOnScroll, ...restOfListboxProps } = ListboxProps ?? {};
 
   return (
     <React.Fragment>
