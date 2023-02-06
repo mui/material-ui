@@ -177,9 +177,6 @@ export * from './TabPanel';
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
 
-export { default as Table } from './Table';
-export * from './Table';
-
 export { default as Textarea } from './Textarea';
 export * from './Textarea';
 
