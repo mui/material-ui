@@ -534,21 +534,20 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
           astTypes.visit(ast, {
             visitVariableDeclaration: (variablePath) => {
               const definitions: any[] = [];
-              if (variablePath.node.declarations) {
-                variablePath
-                  .get('declarations')
-                  .each((declarator: any) => definitions.push(declarator.get('init')));
-              }
+              /* 
+              `variablePath.get('declarations')` and
+              `variablePath.node.declarations` return different data
+              */
+              variablePath
+                .get('declarations')
+                .each((declarator: any) => definitions.push(declarator.get('init')));
 
-              definitions.forEach((definition) => {
-                if (definition.value?.callee) {
-                  const definitionName = definition.value.callee.name;
-
-                  if (definitionName === `create${name}`) {
-                    node = definition;
-                  }
+              variablePath.node.declarations.forEach((declarator: any, index: number) => {
+                if (declarator.init.callee?.name === `create${name}`) {
+                  node = definitions[index];
                 }
               });
+
               return false;
             },
           });
