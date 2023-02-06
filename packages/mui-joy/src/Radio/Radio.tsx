@@ -10,7 +10,7 @@ import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioOwnerState) => {
@@ -386,7 +386,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       {label && (
         <SlotLabel {...labelProps}>
           {/* Automatically adjust the Typography to render `span` */}
-          <TypographyContext.Provider value>{label}</TypographyContext.Provider>
+          <TypographyNestedContext.Provider value>{label}</TypographyNestedContext.Provider>
         </SlotLabel>
       )}
     </SlotRoot>

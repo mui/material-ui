@@ -11,7 +11,7 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
@@ -347,9 +347,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
         {icon}
       </SlotCheckbox>
       {label && (
-        <TypographyContext.Provider value>
+        <TypographyNestedContext.Provider value>
           <SlotLabel {...labelProps}>{label}</SlotLabel>
-        </TypographyContext.Provider>
+        </TypographyNestedContext.Provider>
       )}
     </SlotRoot>
   );

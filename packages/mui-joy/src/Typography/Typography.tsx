@@ -16,7 +16,7 @@ import { getTypographyUtilityClass } from './typographyClasses';
  * For creating nested Typography to have inherit level (unless an explicit `level` prop is provided)
  * and change the HTML tag to `span` (unless an explicit `component` prop is provided).
  */
-export const TypographyContext = React.createContext(false);
+export const TypographyNestedContext = React.createContext(false);
 
 /**
  * @internal
@@ -153,7 +153,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     name: 'JoyTypography',
   });
 
-  const nesting = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyNestedContext);
   const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as TypographyProps;
@@ -219,7 +219,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   });
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyNestedContext.Provider value>
       <SlotRoot {...rootProps}>
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
@@ -228,7 +228,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         {children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
-    </TypographyContext.Provider>
+    </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
 

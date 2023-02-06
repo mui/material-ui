@@ -14,7 +14,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
-import { TypographyContext, TypographyInheritContext } from '../Typography/Typography';
+import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -181,7 +181,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
-  const nesting = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyNestedContext);
   const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
@@ -269,7 +269,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   });
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyNestedContext.Provider value>
       <SlotRoot {...rootProps}>
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
@@ -278,7 +278,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
         {children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
-    </TypographyContext.Provider>
+    </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 
