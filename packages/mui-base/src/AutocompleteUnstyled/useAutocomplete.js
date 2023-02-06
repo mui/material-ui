@@ -1095,6 +1095,7 @@ export default function useAutocomplete(props) {
       autoCapitalize: 'none',
       spellCheck: 'false',
       role: 'combobox',
+      disabled: disabledProp,
     }),
     getClearProps: () => ({
       tabIndex: -1,
