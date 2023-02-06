@@ -198,12 +198,16 @@ function addDeployPreviewUrls() {
   markdown(`
 ## Netlify deploy preview
 
-${docs
-  .map((path) => {
-    const formattedUrl = formatFileToLink(path);
-    return `- [${formattedUrl}](${netlifyPreview}${formattedUrl})`;
-  })
-  .join('\n')}
+${
+  docs.length
+    ? docs
+        .map((path) => {
+          const formattedUrl = formatFileToLink(path);
+          return `- [${formattedUrl}](${netlifyPreview}${formattedUrl})`;
+        })
+        .join('\n')
+    : 'No updates.'
+}
 `);
 }
 
