@@ -16,7 +16,7 @@ export default function BasicCheckbox() {
           </React.Fragment>
         }
       />
-      <FormHelperText sx={{ ml: 'var(--Checkbox-labelInset)' }}>
+      <FormHelperText>
         <Typography level="body2">
           Read our <Link href="#link">terms and conditions</Link>.
         </Typography>

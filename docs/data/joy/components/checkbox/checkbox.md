@@ -153,6 +153,8 @@ Learn more about accessible design patterns for checkboxes [in the W3C documenta
 
 ### Sign-up checkbox
 
+To use an interactive element together with a Checkbox, you can wrap it with a FormControl and FormHelperText.
+
 {{"demo": "ExampleSignUpCheckbox.js"}}
 
 :::info
