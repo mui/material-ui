@@ -18,6 +18,8 @@ module.exports = [
   { pathname: '/joy-ui/api/chip' },
   { pathname: '/joy-ui/api/chip-delete' },
   { pathname: '/joy-ui/api/circular-progress' },
+  { pathname: '/joy-ui/api/color-inversion' },
+  { pathname: '/joy-ui/api/container' },
   { pathname: '/joy-ui/api/css-baseline' },
   { pathname: '/joy-ui/api/divider' },
   { pathname: '/joy-ui/api/form-control' },

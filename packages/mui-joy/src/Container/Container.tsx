@@ -1,11 +1,18 @@
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
-import { ContainerTypeMap } from './ContainerProps';
 import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Grid](https://mui.com/material-ui/react-grid/)
+ *
+ * API:
+ *
+ * - [Container API](https://mui.com/joy-ui/api/container/)
+ */
 const Container = createContainer<Theme>({
   componentName: 'JoyContainer',
   createStyledComponent: styled('div', {
@@ -14,7 +21,7 @@ const Container = createContainer<Theme>({
     overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyContainer' }),
-}) as OverridableComponent<ContainerTypeMap>;
+});
 
 Container.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

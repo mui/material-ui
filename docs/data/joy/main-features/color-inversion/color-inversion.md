@@ -1,3 +1,8 @@
+---
+product: joy-ui
+components: ColorInversion
+---
+
 # Color inversion
 
 <p class="description">Joy UI components can invert their colors to match with the parent's variant.</p>

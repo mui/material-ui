@@ -26,7 +26,7 @@ export const scopedVariables = {
   '--List-item-marginInline': '0px',
 };
 
-export interface ListProviderProps {
+interface ListProviderProps {
   /**
    * If `undefined`, there is no effect.
    * If `true` or `false`, affects the nested List styles.
@@ -46,7 +46,9 @@ export interface ListProviderProps {
   wrap?: boolean;
 }
 
-// internal component
+/**
+ * @internal
+ */
 function ListProvider({
   children,
   nested,

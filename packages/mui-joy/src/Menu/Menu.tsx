@@ -52,7 +52,17 @@ const MenuRoot = styled(StyledList, {
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [Menu API](https://mui.com/joy-ui/api/menu/)
+ * - inherits [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ */
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
@@ -194,6 +204,7 @@ Menu.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
