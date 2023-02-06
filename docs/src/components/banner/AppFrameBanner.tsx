@@ -7,7 +7,7 @@ import { alpha } from '@mui/material/styles';
 export default function AppFrameBanner() {
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
-      href={'/x/whats-new'} //href={ROUTES.careers} // Fix me!
+      href={ROUTES.advancedComponentsWhatsNew}
       target="_blank"
       variant="caption"
       sx={(theme) => ({
@@ -40,7 +40,7 @@ export default function AppFrameBanner() {
         },
       })}
     >
-      🚀&#160;&#160;MUI X v6-beta is out! Check out what's new in this major version!&nbsp;
+      🚀&#160;&#160;MUI X v6-beta is out! Discover what's new in this major version!&nbsp;
       <br />
     </Link>
   ) : null;
