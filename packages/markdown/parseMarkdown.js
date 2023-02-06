@@ -112,6 +112,15 @@ function getHeaders(markdown) {
       headers.components = [];
     }
 
+    if (headers.hooks) {
+      headers.hooks = headers.hooks
+        .split(',')
+        .map((x) => x.trim())
+        .sort();
+    } else {
+      headers.hooks = [];
+    }
+
     return headers;
   } catch (err) {
     throw new Error(`${err.message} in getHeader(markdown) with markdown: \n\n${header}`);
@@ -156,7 +165,7 @@ const noSEOadvantage = [
   'https://m2.material.io/',
   'https://getbootstrap.com/',
   'https://icons.getbootstrap.com/',
-  'https://materialdesignicons.com/',
+  'https://pictogrammers.com/',
   'https://www.w3.org/',
   'https://tailwindcss.com/',
   'https://heroicons.com/',
@@ -444,6 +453,13 @@ ${headers.components
       componentPkg,
       component,
     )})`;
+  })
+  .join('\n')}
+${headers.hooks
+  .map((hook) => {
+    const componentPkgMap = componentPackageMapping[headers.product];
+    const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
+    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
   })
   .join('\n')}
   `);

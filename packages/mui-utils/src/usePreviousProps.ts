@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-const usePreviousProps = (value: object): object => {
-  const ref = React.useRef({});
+const usePreviousProps = <T>(value: T) => {
+  const ref = React.useRef<T | {}>({});
   React.useEffect(() => {
     ref.current = value;
   });
-  return ref.current;
+  return ref.current as Partial<T>;
 };
 
 export default usePreviousProps;

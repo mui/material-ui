@@ -35,15 +35,15 @@ We are aiming to make high-end design accessible to the many, empowering develop
 
 ### Why this is interesting
 
-Our products empowers React developers to build amazing applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Our products empower React developers to build amazing applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 However, despite Material UI – our biggest library – being [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, its adoption is only at 25%.
-More importantly, our challenges go way beyond the ones of design sytems.
+More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
 It's why we've been expanding our offering with Joy UI, MUI Base, and MUI Toolpad.
 
-Design is a protagonist to achieving this goal.
+Design is foundational to achieving this goal.
 
 ## About the role
 
@@ -70,17 +70,18 @@ As a **team leader**, you will:
 
 We're looking for someone with an expert eye for both UI and UX design. Details matter to you.
 
-You're a manager that can support, and guide the team.
-And, it's also important that you have enough development skills – CSS, JSX, Git, etc. – to assist the implementation of the designs (or implemenet them yourself).
+You're a manager that can support and guide the team.
+
+And, it's also important that you have enough development skills – CSS, JSX, Git, etc. – to communicate effectively with engineers, product managers, and other designers, ensuring that the implementation truly reflects the feature/project's vision.
 
 ### Skills you should have
 
 - **Expert-level UI knowledge**. You can craft great-looking designs, spotting tiny details most people wouldn't pay attention to.
 - **Expert-level UX knowledge**. You can build intuitive solutions, both high and low-level ones. You care about the entire user journey as well as an interaction with a specific component.
 - **Sharp written and verbal communication skills**. Communicating clearly is fundamental to create and manage high-quality products and teams. You'll interface with our team, community members, enterprise customers and also contribute to user documentation.
-- **Managerial abilities**. You have either managed a team before or are feeling ready to start now. You've shown that you're a design leader and can provide the needed guidance and support to other designers.
+- **Managerial abilities**. You have either managed a team before or are feeling ready to start now. You've shown that you're a design leader at heart and can provide the needed guidance and support to other designers.
 - **Comfortable around design systems**. You've worked on one before and have experienced the challenges of developing it.
-- **Enough development autonomy**. Our products are essentially code. Knowing how to navigate through code is essential to really understand them, improve the collaboration with engineers, and guarantee the attention to detail that's key for their success. You know how to work with CSS (mainly CSS-in-JS), JSX, and Git.
+- **Enough development autonomy**. Our products are essentially code. Knowing how to navigate through code is key to understanding MUI products and collaborating with engineers. You know how to work with CSS (mainly CSS-in-JS), JSX, and Git.
 
 ### What would be nice if you had, but isn't required
 
@@ -91,6 +92,17 @@ And, it's also important that you have enough development skills – CSS, JSX, G
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
+
+## Interview steps
+
+Here's a brief overview of how this role's process will be carried through:
+
+- **Introduction call** (20 to 25 min ⎯ with a designer): A short call to quickly introduce each other.
+- **Career deep dive** (40 to 60 min ⎯ with a designer): We'll go through your career a bit more in-depth and will be interested in understanding your trajectory up to the point where you've applied to this role.
+- **Comparable experience review** (40 to 60 min ⎯ with a designer, product manager or tech lead): You'll present one to three (up to you) of your prior experiences that showcase how capable you're of taking this role.
+- **Conversation with the CEO** (30 min): A quick call so you get to know each other, and talk about vision, future, history, etc.
+
+We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well. It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you, making for a great match!
 
 ## How to apply?
 

@@ -122,7 +122,9 @@ function AppLayoutDocs(props) {
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
           <StyledAppContainer disableAd={disableAd}>
-            <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
+            <ActionsDiv>
+              <EditPage markdownLocation={location} />
+            </ActionsDiv>
             {children}
             <NoSsr>
               <AppLayoutDocsFooter tableOfContents={toc} />
@@ -141,7 +143,7 @@ AppLayoutDocs.propTypes = {
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
-  location: PropTypes.string,
+  location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
 };

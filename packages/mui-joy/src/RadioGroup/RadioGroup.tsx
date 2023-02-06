@@ -15,11 +15,11 @@ import RadioGroupContext from './RadioGroupContext';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
-  const { row, size, variant, color } = ownerState;
+  const { orientation, size, variant, color } = ownerState;
   const slots = {
     root: [
       'root',
-      row && 'row',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
@@ -44,7 +44,7 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
-  flexDirection: ownerState.row ? 'row' : 'column',
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
@@ -68,7 +68,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     color = 'neutral',
     variant = 'plain',
     size = 'md',
-    row = false,
+    orientation = 'vertical',
     role = 'radiogroup',
     ...other
   } = props;
@@ -80,7 +80,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   });
 
   const ownerState = {
-    row,
+    orientation,
     size,
     variant,
     color,
@@ -110,7 +110,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     () => ({
       disableIcon,
       overlay,
-      row,
+      orientation,
       size,
       name,
       value,
@@ -122,7 +122,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
         }
       },
     }),
-    [disableIcon, name, onChange, overlay, row, setValueState, size, value],
+    [disableIcon, name, onChange, overlay, orientation, setValueState, size, value],
   );
 
   return (
@@ -204,6 +204,11 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
    */
   overlay: PropTypes.bool,
@@ -211,11 +216,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, flex direction is set to 'row'.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'

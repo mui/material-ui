@@ -38,10 +38,10 @@ export interface MenuClasses {
 export type MenuClassKey = keyof MenuClasses;
 
 export function getMenuUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenu', slot);
+  return generateUtilityClass('MuiMenu', slot);
 }
 
-const menuClasses: MenuClasses = generateUtilityClasses('JoyMenu', [
+const menuClasses: MenuClasses = generateUtilityClasses('MuiMenu', [
   'root',
   'expanded',
   'colorPrimary',

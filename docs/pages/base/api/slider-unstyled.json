@@ -8,11 +8,11 @@
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "disabled": { "type": { "name": "bool" } },
-    "disableSwap": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
-    "isRtl": { "type": { "name": "bool" } },
+    "isRtl": { "type": { "name": "bool" }, "default": "false" },
     "marks": {
       "type": {
         "name": "union",
@@ -33,7 +33,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;{ children?: element, className?: string, open?: bool, style?: object, value?: number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
+        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: any<br>&#124;&nbsp;func }"
       },
       "default": "{}"
     },
@@ -56,10 +56,6 @@
     "value": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "valueLabelDisplay": {
-      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
-      "default": "'off'"
-    },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
       "default": "function Identity(x) {\n  return x;\n}"
@@ -80,10 +76,6 @@
       "thumb",
       "active",
       "focusVisible",
-      "valueLabel",
-      "valueLabelOpen",
-      "valueLabelCircle",
-      "valueLabelLabel",
       "mark",
       "markActive",
       "markLabel",
@@ -102,10 +94,6 @@
       "thumb": "MuiSlider-thumb",
       "active": "Mui-active",
       "focusVisible": "Mui-focusVisible",
-      "valueLabel": "MuiSlider-valueLabel",
-      "valueLabelOpen": "MuiSlider-valueLabelOpen",
-      "valueLabelCircle": "MuiSlider-valueLabelCircle",
-      "valueLabelLabel": "MuiSlider-valueLabelLabel",
       "mark": "MuiSlider-mark",
       "markActive": "MuiSlider-markActive",
       "markLabel": "MuiSlider-markLabel",

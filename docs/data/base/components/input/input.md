@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Input component and hook
 components: InputUnstyled
+hooks: useInput
 githubLabel: 'component: input'
 ---
 

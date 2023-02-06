@@ -28,6 +28,16 @@ import defaultOptionStringifier from './defaultOptionStringifier';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Select](https://mui.com/base/react-select/#hook)
+ *
+ * API:
+ *
+ * - [useSelect API](https://mui.com/base/api/use-select/)
+ */
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const {
     buttonRef: buttonRefProp,

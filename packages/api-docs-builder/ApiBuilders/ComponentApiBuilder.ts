@@ -91,7 +91,10 @@ export function writePrettifiedFile(
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
-async function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
+export async function computeApiDescription(
+  api: { description: ReactApi['description'] },
+  options: { host: string },
+): Promise<string> {
   const { host } = options;
   const file = await remark()
     .use(function docsLinksAttacher() {
@@ -278,14 +281,16 @@ function extractClassConditions(descriptions: any) {
  * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
  * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGitHubPath(filepath: string): string {
+export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
+  function resolveApiDocsTranslationsComponentLanguagePath(
+    language: (typeof LANGUAGES)[0],
+  ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
     return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
@@ -445,14 +450,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
-      if (
-        propDescriptor.type.name !== 'bool' ||
-        propDescriptor.jsdocDefaultValue?.value !== 'false'
-      ) {
-        defaultValue = propDescriptor.jsdocDefaultValue?.value;
-      }
+      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
