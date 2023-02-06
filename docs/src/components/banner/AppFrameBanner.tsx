@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { alpha } from '@mui/material/styles';
 
 export default function AppFrameBanner() {
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
-      href={ROUTES.advancedComponentsWhatsNew}
+      href="https://next.mui.com/x/whats-new/"
       target="_blank"
       variant="caption"
       sx={(theme) => ({

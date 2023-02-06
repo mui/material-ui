@@ -31,7 +31,6 @@ const ROUTES = {
   goldSponsor: '/material-ui/discover-more/backers/#gold',
   store: 'https://mui.com/store/',
   advancedComponents: '/x/introduction/',
-  advancedComponentsWhatsNew: 'https://next.mui.com/x/whats-new/',
   toolpadDocs: '/toolpad/getting-started/overview/',
   dataGridSpace: '/x/react-data-grid/getting-started/',
   dataGridDocs: '/x/react-data-grid/getting-started/',
