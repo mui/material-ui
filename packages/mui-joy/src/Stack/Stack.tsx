@@ -1,7 +1,10 @@
 import { createStack } from '@mui/system';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
+import { StackTypeMap } from './StackProps';
+
 /**
  *
  * Demos:
@@ -19,7 +22,7 @@ const Stack = createStack({
     overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyStack' }),
-});
+}) as OverridableComponent<StackTypeMap>;
 
 Stack.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

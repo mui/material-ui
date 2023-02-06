@@ -1,8 +1,10 @@
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
+import { ContainerTypeMap } from './ContainerProps';
 
 const Container = createContainer<Theme>({
   componentName: 'JoyContainer',
@@ -12,7 +14,7 @@ const Container = createContainer<Theme>({
     overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyContainer' }),
-});
+}) as OverridableComponent<ContainerTypeMap>;
 
 Container.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -47,10 +49,7 @@ Container.propTypes /* remove-proptypes */ = {
    * Set to `false` to disable `maxWidth`.
    * @default 'lg'
    */
-  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
-    PropTypes.string,
-  ]),
+  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
