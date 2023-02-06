@@ -10,9 +10,9 @@
       "default": "'default'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disableGutters": { "type": { "name": "bool" } },
-    "disableSticky": { "type": { "name": "bool" } },
-    "inset": { "type": { "name": "bool" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "disableSticky": { "type": { "name": "bool" }, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

@@ -53,7 +53,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="direction"
                 aria-label="direction"
                 value={direction}
@@ -73,7 +73,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="alignItems"
                 aria-label="align items"
                 value={alignItems}
@@ -94,7 +94,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="justifyContent"
                 aria-label="justifyContent"
                 value={justifyContent}
@@ -116,7 +116,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="spacing"
                 aria-label="spacing"
                 value={spacing.toString()}

@@ -1592,7 +1592,7 @@ This is done to match the most common use cases with Material Design.
 
 ```diff
 -<Tabs />
-+<Tabs indicatorColor="primary" textColor="inherit" />
++<Tabs indicatorColor="secondary" textColor="inherit" />
 ```
 
 ### Update event type (TypeScript)

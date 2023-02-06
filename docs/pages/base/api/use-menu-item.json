@@ -8,5 +8,5 @@
   "returnValue": {},
   "name": "useMenuItem",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/useMenuItem.ts",
-  "demos": "<ul><li><a href=\"/base/react-menu/#hook\">Unstyled Menu</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Unstyled Menu</a></li></ul>"
 }

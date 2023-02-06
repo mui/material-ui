@@ -10,11 +10,11 @@
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "error": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
     "focused": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
-    "hiddenLabel": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "hiddenLabel": { "type": { "name": "bool" }, "default": "false" },
     "margin": {
       "type": {
         "name": "enum",
@@ -22,7 +22,7 @@
       },
       "default": "'none'"
     },
-    "required": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",

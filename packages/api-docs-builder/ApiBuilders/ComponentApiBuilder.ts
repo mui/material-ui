@@ -450,14 +450,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
-      if (
-        propDescriptor.type.name !== 'bool' ||
-        propDescriptor.jsdocDefaultValue?.value !== 'false'
-      ) {
-        defaultValue = propDescriptor.jsdocDefaultValue?.value;
-      }
+      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);

@@ -327,8 +327,9 @@ const Root = styled('div')(
     '& a code': {
       color: darken(lightTheme.palette.primary.main, 0.04),
     },
-    '& img, video': {
-      maxWidth: '100%',
+    '& img, & video': {
+      // Use !important so that inline style on <img> or <video> can't win.
+      maxWidth: '100% !important',
     },
     '& img': {
       // Avoid layout jump

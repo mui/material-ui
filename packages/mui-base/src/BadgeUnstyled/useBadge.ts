@@ -25,7 +25,7 @@ export default function useBadge(parameters: UseBadgeParameters) {
     showZero = false,
   } = parameters;
 
-  const prevProps: Partial<UseBadgeParameters> = usePreviousProps({
+  const prevProps = usePreviousProps({
     badgeContent: badgeContentProp,
     max: maxProp,
   });

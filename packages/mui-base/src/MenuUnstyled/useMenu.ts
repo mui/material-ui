@@ -46,7 +46,7 @@ function stateReducer(
  *
  * Demos:
  *
- * - [Unstyled Menu](https://mui.com/base/react-menu/#hook)
+ * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
  *
  * API:
  *

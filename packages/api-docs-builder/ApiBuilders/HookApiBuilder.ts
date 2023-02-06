@@ -259,13 +259,8 @@ const attachTable = (
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
       const defaultTag = propDescriptor.tags?.default;
-      const defaultValueText = defaultTag?.text?.[0]?.text;
-      if (propDescriptor.typeStr !== 'bool' || defaultValueText !== 'false') {
-        defaultValue = defaultValueText;
-      }
+      const defaultValue: string | undefined = defaultTag?.text?.[0]?.text;
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
@@ -302,6 +297,16 @@ const attachTable = (
   reactApi[tableName] = parameters;
 };
 
+<<<<<<< HEAD
+=======
+const generateTranslationDescription = (description: string) => {
+  return description
+    .replace(/\n@default.*$/, '')
+    .replace(/`([a-z]|[A-Z]|\()/g, '<code>$1')
+    .replace(/`/g, '</code>');
+};
+
+>>>>>>> master
 const attachTranslations = (reactApi: ReactApi) => {
   const translations: ReactApi['translations'] = {
     hookDescription: reactApi.description,
@@ -311,13 +316,21 @@ const attachTranslations = (reactApi: ReactApi) => {
 
   (reactApi.parameters ?? []).forEach(({ name: propName, description }) => {
     if (description) {
+<<<<<<< HEAD
       translations.parametersDescriptions[propName] = description.replace(/\n@default.*$/, '');
+=======
+      translations.parametersDescriptions[propName] = generateTranslationDescription(description);
+>>>>>>> master
     }
   });
 
   (reactApi.returnValue ?? []).forEach(({ name: propName, description }) => {
     if (description) {
+<<<<<<< HEAD
       translations.returnValueDescriptions[propName] = description.replace(/\n@default.*$/, '');
+=======
+      translations.returnValueDescriptions[propName] = generateTranslationDescription(description);
+>>>>>>> master
     }
   });
 
