@@ -1,10 +1,17 @@
 import { createStack } from '@mui/system';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
-import { StackTypeMap } from './StackProps';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Stack](https://mui.com/joy-ui/react-stack/)
+ *
+ * API:
+ *
+ * - [Stack API](https://mui.com/joy-ui/api/stack/)
+ */
 const Stack = createStack({
   createStyledComponent: styled('div', {
     name: 'JoyStack',
@@ -12,7 +19,7 @@ const Stack = createStack({
     overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyStack' }),
-}) as OverridableComponent<StackTypeMap>;
+});
 
 Stack.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
