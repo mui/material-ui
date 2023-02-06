@@ -86,6 +86,7 @@ const TypographyRoot = styled('span', {
       }
     : {
         fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inheriting.
+        display: 'block', // don't rely on user agent, always `block`.
       }),
   ...((ownerState.startDecorator || ownerState.endDecorator) && {
     display: 'flex', // should not be used as a default because it does not work well with `noWrap`.
