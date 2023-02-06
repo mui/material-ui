@@ -67,7 +67,7 @@ export const SheetRoot = styled('div', {
  *
  * Demos:
  *
- * - [Sheet](https://mui.com/material-ui/react-sheet/)
+ * - [Sheet](https://mui.com/joy-ui/react-sheet/)
  *
  * API:
  *

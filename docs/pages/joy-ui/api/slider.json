@@ -107,6 +107,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Slider/Slider.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-slider/\">Slider</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-slider/\">Slider</a></li></ul>",
   "cssComponent": false
 }

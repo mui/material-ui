@@ -387,7 +387,7 @@ const SliderInput = styled('input', {
  *
  * Demos:
  *
- * - [Slider](https://mui.com/material-ui/react-slider/)
+ * - [Slider](https://mui.com/joy-ui/react-slider/)
  *
  * API:
  *

@@ -31,6 +31,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/ChipDelete/ChipDelete.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-chip/\">Chip</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-chip/\">Chip</a></li></ul>",
   "cssComponent": false
 }

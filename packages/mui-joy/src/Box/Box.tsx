@@ -7,7 +7,7 @@ import defaultTheme from '../styles/defaultTheme';
  *
  * Demos:
  *
- * - [Grid](https://mui.com/material-ui/react-grid/)
+ * - [Grid](https://mui.com/joy-ui/react-grid/)
  *
  * API:
  *

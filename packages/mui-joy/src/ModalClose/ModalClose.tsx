@@ -66,7 +66,7 @@ const modalDialogVariantMapping = {
  *
  * Demos:
  *
- * - [Modal](https://mui.com/material-ui/react-modal/)
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
  *
  * API:
  *

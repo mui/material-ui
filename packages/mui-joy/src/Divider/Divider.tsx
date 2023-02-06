@@ -91,7 +91,7 @@ export const DividerRoot = styled('hr', {
  *
  * Demos:
  *
- * - [Divider](https://mui.com/material-ui/react-divider/)
+ * - [Divider](https://mui.com/joy-ui/react-divider/)
  *
  * API:
  *

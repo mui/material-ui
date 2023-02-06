@@ -272,7 +272,7 @@ const excludeUseAutocompleteParams = <
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
  *
  * API:
  *

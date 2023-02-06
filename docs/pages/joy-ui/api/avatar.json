@@ -38,6 +38,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Avatar/Avatar.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-avatar/\">Avatar</a></li></ul>",
   "cssComponent": false
 }

@@ -64,7 +64,7 @@ const ScopedCssBaselineRoot = styled('div', {
  *
  * Demos:
  *
- * - [CSS Baseline](https://mui.com/material-ui/react-css-baseline/)
+ * - [CSS Baseline](https://mui.com/joy-ui/react-css-baseline/)
  *
  * API:
  *

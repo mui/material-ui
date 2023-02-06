@@ -22,6 +22,6 @@
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-joy/src/Breadcrumbs/Breadcrumbs.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-breadcrumbs/\">Breadcrumbs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-breadcrumbs/\">Breadcrumbs</a></li></ul>",
   "cssComponent": false
 }

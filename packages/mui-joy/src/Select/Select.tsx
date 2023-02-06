@@ -308,7 +308,7 @@ const SelectIndicator = styled('span', {
  *
  * Demos:
  *
- * - [Select](https://mui.com/material-ui/react-select/)
+ * - [Select](https://mui.com/joy-ui/react-select/)
  *
  * API:
  *

@@ -222,7 +222,7 @@ const RadioIcon = styled('span', {
  *
  * Demos:
  *
- * - [Radio Group](https://mui.com/material-ui/react-radio/)
+ * - [Radio Group](https://mui.com/joy-ui/react-radio/)
  *
  * API:
  *

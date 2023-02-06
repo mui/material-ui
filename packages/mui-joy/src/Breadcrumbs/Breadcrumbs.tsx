@@ -79,7 +79,7 @@ const BreadcrumbsSeparator = styled('li', {
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Breadcrumbs](https://mui.com/joy-ui/react-breadcrumbs/)
  *
  * API:
  *

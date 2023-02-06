@@ -67,7 +67,7 @@ const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://mui.com/joy-ui/react-list/)
  *
  * API:
  *

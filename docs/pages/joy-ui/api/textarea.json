@@ -36,6 +36,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-textarea/\">Textarea</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-textarea/\">Textarea</a></li></ul>",
   "cssComponent": false
 }

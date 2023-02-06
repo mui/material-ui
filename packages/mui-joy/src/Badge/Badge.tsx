@@ -137,7 +137,7 @@ const BadgeBadge = styled('span', {
  *
  * Demos:
  *
- * - [Badge](https://mui.com/material-ui/react-badge/)
+ * - [Badge](https://mui.com/joy-ui/react-badge/)
  *
  * API:
  *

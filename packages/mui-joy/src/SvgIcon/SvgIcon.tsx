@@ -58,7 +58,7 @@ const SvgIconRoot = styled('svg', {
  *
  * Demos:
  *
- * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
  *
  * API:
  *

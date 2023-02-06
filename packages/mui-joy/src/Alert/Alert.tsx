@@ -103,7 +103,7 @@ const AlertEndDecorator = styled('span', {
  *
  * Demos:
  *
- * - [Alert](https://mui.com/material-ui/react-alert/)
+ * - [Alert](https://mui.com/joy-ui/react-alert/)
  *
  * API:
  *

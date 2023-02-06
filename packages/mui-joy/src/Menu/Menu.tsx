@@ -56,7 +56,7 @@ const MenuRoot = styled(StyledList, {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
  *
  * API:
  *

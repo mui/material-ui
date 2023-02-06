@@ -272,7 +272,7 @@ const TableRoot = styled('table', {
  *
  * Demos:
  *
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/joy-ui/react-table/)
  *
  * API:
  *

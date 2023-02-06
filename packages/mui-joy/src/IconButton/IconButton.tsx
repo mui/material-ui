@@ -93,7 +93,7 @@ export const IconButtonRoot = styled(StyledIconButton, {
  *
  * Demos:
  *
- * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Button](https://mui.com/joy-ui/react-button/)
  *
  * API:
  *

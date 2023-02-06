@@ -30,6 +30,6 @@
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-joy/src/Divider/Divider.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Divider</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-divider/\">Divider</a></li></ul>",
   "cssComponent": false
 }

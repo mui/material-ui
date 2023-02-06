@@ -195,7 +195,7 @@ const CircularProgressProgress = styled('circle', {
  *
  * Demos:
  *
- * - [Circular Progress](https://mui.com/material-ui/react-circular-progres/)
+ * - [Circular Progress](https://mui.com/joy-ui/react-circular-progres/)
  *
  * API:
  *

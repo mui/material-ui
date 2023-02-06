@@ -47,7 +47,7 @@ const AsteriskComponent = styled('span', {
  *
  * Demos:
  *
- * - [Input](https://mui.com/material-ui/react-input/)
+ * - [Input](https://mui.com/joy-ui/react-input/)
  *
  * API:
  *

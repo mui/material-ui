@@ -35,6 +35,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormControl/FormControl.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-input/\">Input</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-input/\">Input</a></li></ul>",
   "cssComponent": false
 }

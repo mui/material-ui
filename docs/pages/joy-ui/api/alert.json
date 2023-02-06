@@ -37,6 +37,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Alert/Alert.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-alert/\">Alert</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-alert/\">Alert</a></li></ul>",
   "cssComponent": false
 }

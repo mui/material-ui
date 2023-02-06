@@ -210,7 +210,7 @@ const TextareaEndDecorator = styled('div', {
  *
  * Demos:
  *
- * - [Textarea](https://mui.com/material-ui/react-textarea/)
+ * - [Textarea](https://mui.com/joy-ui/react-textarea/)
  *
  * API:
  *

@@ -52,6 +52,6 @@
   "forwardsRefTo": "HTMLTableElement",
   "filename": "/packages/mui-joy/src/Table/Table.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-table/\">Table</a></li></ul>",
   "cssComponent": false
 }

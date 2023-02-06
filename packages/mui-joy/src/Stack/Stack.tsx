@@ -6,7 +6,7 @@ import { useThemeProps } from '../styles';
  *
  * Demos:
  *
- * - [Stack](https://mui.com/material-ui/react-stack/)
+ * - [Stack](https://mui.com/joy-ui/react-stack/)
  *
  * API:
  *

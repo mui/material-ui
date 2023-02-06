@@ -88,7 +88,7 @@ const AspectRatioContent = styled('div', {
  *
  * Demos:
  *
- * - [Aspect Ratio](https://mui.com/material-ui/react-aspect-ratio/)
+ * - [Aspect Ratio](https://mui.com/joy-ui/react-aspect-ratio/)
  *
  * API:
  *

@@ -46,7 +46,7 @@ const TabListRoot = styled(StyledList, {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
  *
  * API:
  *

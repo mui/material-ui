@@ -22,6 +22,6 @@
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-joy/src/Container/Container.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-grid/\">Grid</a></li></ul>",
   "cssComponent": false
 }

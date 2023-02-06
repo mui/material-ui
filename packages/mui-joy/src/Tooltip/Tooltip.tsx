@@ -208,7 +208,7 @@ function composeFocusEventHandler(
  *
  * Demos:
  *
- * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://mui.com/joy-ui/react-tooltip/)
  *
  * API:
  *

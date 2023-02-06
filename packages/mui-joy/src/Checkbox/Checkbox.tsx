@@ -185,7 +185,7 @@ const defaultIndeterminateIcon = <IndeterminateIcon />;
  *
  * Demos:
  *
- * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Checkbox](https://mui.com/joy-ui/react-checkbox/)
  *
  * API:
  *

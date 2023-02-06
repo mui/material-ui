@@ -43,6 +43,6 @@
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-joy/src/Typography/Typography.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-typography/\">Typography</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-typography/\">Typography</a></li></ul>",
   "cssComponent": true
 }

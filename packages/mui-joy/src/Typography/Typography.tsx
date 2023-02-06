@@ -148,7 +148,7 @@ const defaultVariantMapping: Record<string, string> = {
  *
  * Demos:
  *
- * - [Typography](https://mui.com/material-ui/react-typography/)
+ * - [Typography](https://mui.com/joy-ui/react-typography/)
  *
  * API:
  *

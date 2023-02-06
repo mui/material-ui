@@ -197,7 +197,7 @@ const ChipEndDecorator = styled('span', {
  *
  * Demos:
  *
- * - [Chip](https://mui.com/material-ui/react-chip/)
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
  *
  * API:
  *

@@ -89,7 +89,7 @@ const CardRoot = styled('div', {
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://mui.com/joy-ui/react-card/)
  *
  * API:
  *

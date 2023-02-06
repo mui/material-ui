@@ -171,7 +171,7 @@ const LinkRoot = styled('a', {
  *
  * Demos:
  *
- * - [Link](https://mui.com/material-ui/react-link/)
+ * - [Link](https://mui.com/joy-ui/react-link/)
  *
  * API:
  *
