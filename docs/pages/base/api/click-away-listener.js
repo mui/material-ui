@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/click-away-listener',
     false,
-    /click-away-listener.*.json$/,
+    /\.\/click-away-listener.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

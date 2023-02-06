@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/badge-unstyled',
     false,
-    /badge-unstyled.*.json$/,
+    /\.\/badge-unstyled.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

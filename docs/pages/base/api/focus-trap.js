@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/translations/api-docs/focus-trap', false, /focus-trap.*.json$/);
+  const req = require.context(
+    'docs/translations/api-docs/focus-trap',
+    false,
+    /\.\/focus-trap.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

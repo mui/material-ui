@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/native-select',
     false,
-    /native-select.*.json$/,
+    /\.\/native-select.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

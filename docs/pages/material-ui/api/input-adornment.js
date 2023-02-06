@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/input-adornment',
     false,
-    /input-adornment.*.json$/,
+    /\.\/input-adornment.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/use-form-control-unstyled-context',
     false,
-    /use-form-control-unstyled-context.*.json$/,
+    /\.\/use-form-control-unstyled-context.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

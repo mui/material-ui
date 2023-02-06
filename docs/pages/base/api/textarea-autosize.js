@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/textarea-autosize',
     false,
-    /textarea-autosize.*.json$/,
+    /\.\/textarea-autosize.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

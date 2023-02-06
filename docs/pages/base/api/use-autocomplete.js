@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/use-autocomplete',
     false,
-    /use-autocomplete.*.json$/,
+    /\.\/use-autocomplete.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

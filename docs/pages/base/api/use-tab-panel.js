@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/use-tab-panel',
     false,
-    /use-tab-panel.*.json$/,
+    /\.\/use-tab-panel.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/tab-scroll-button',
     false,
-    /tab-scroll-button.*.json$/,
+    /\.\/tab-scroll-button.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 
