@@ -153,9 +153,12 @@ Learn more about accessible design patterns for checkboxes [in the W3C documenta
 
 ### Sign-up checkbox
 
-It is recommended that the interactive elements such as link should be placed outside of the checkbox's label. To learn more, [visit HTML label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#accessibility_concerns) page by mozilla.
-
 {{"demo": "ExampleSignUpCheckbox.js"}}
+
+:::info
+It is recommended that the interactive elements such as link should be placed outside of the checkbox's label.
+To learn more, [visit HTML label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#accessibility_concerns) from Mozilla.
+:::
 
 ### Filtering status
 

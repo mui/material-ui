@@ -7,22 +7,18 @@ import Typography from '@mui/joy/Typography';
 
 export default function BasicCheckbox() {
   return (
-    <FormControl size="sm">
+    <FormControl size="sm" sx={{ width: 400 }}>
       <Checkbox
         label={
           <React.Fragment>
             I have read and agree to the{' '}
-            <Typography fontWeight="md">privacy policy</Typography>,{' '}
-            <Typography fontWeight="md">terms of service</Typography>, and{' '}
-            <Typography fontWeight="md">community guidelines</Typography>.
+            <Typography fontWeight="md">terms and conditions</Typography>.
           </React.Fragment>
         }
       />
       <FormHelperText sx={{ ml: 'var(--Checkbox-labelInset)' }}>
-        <Typography level="body3">
-          Read our <Link href="#link">privacy policy</Link>,{' '}
-          <Link href="#link">terms of service</Link>, and{' '}
-          <Link href="#link">community guidelines</Link>.
+        <Typography level="body2">
+          Read our <Link href="#link">terms and conditions</Link>.
         </Typography>
       </FormHelperText>
     </FormControl>
