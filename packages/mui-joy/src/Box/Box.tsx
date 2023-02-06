@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { Theme } from '../styles/types';
 import defaultTheme from '../styles/defaultTheme';
-/**
- *
- * Demos:
- *
- * - [Grid](https://mui.com/joy-ui/react-grid/)
- *
- * API:
- *
- * - [Box API](https://mui.com/joy-ui/api/box/)
- */
+
 const Box = createBox<Theme>({
   defaultTheme,
   defaultClassName: 'MuiBox-root',

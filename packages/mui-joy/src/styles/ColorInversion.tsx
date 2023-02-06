@@ -2,16 +2,7 @@ import * as React from 'react';
 import { useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme from './defaultTheme';
 import { ColorPaletteProp, VariantProp } from './types';
-/**
- *
- * Demos:
- *
- * - [Color inversion](https://mui.com/main-features/color-inversion/)
- *
- * API:
- *
- * - [ColorInversion API](https://mui.com/joy-ui/api/color-inversion/)
- */
+
 const ColorInversion = React.createContext<undefined | Array<VariantProp>>(undefined);
 
 export const useColorInversion = (childVariant: VariantProp | undefined) => {

@@ -208,7 +208,12 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
           if (
             component.filename.includes('ThemeProvider') ||
             (component.filename.includes('mui-material') &&
-              component.filename.includes('CssVarsProvider'))
+              component.filename.includes('CssVarsProvider')) ||
+            (component.filename.includes('mui-joy') &&
+              (component.filename.includes('ColorInversion') ||
+                component.filename.includes('ListProvider') || // internal component
+                component.filename.includes('Box') || // demo isn't ready
+                component.filename.includes('Container'))) // demo isn't ready
           ) {
             return false;
           }

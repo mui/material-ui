@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
-/**
- *
- * Demos:
- *
- * - [Grid](https://mui.com/joy-ui/react-grid/)
- *
- * API:
- *
- * - [Container API](https://mui.com/joy-ui/api/container/)
- */
+
 const Container = createContainer<Theme>({
   componentName: 'JoyContainer',
   createStyledComponent: styled('div', {
