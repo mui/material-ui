@@ -132,7 +132,7 @@ function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd}>
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>
               <EditPage markdownLocation={location} />
             </ActionsDiv>
@@ -157,6 +157,7 @@ AppLayoutDocs.propTypes = {
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
+  hasTabs: PropTypes.bool,
 };
 
 if (process.env.NODE_ENV !== 'production') {

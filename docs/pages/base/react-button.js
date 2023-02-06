@@ -25,9 +25,9 @@ Page.getInitialProps = () => {
   const hookApiDescriptions = mapApiPageTranslations(hookApiReq);
 
   return {
-    componentApiDescriptions,
-    componentApiPageContent: componentApiJsonPageContent,
-    hookApiDescriptions,
-    hookApiPageContent: hookApiJsonPageContent,
+    componentsApiDescriptions: { button: componentApiDescriptions },
+    componentsApiPageContents: { button: componentApiJsonPageContent },
+    hooksApiDescriptions: { useButton: hookApiDescriptions },
+    hooksApiPageContents: { useButton: hookApiJsonPageContent },
   };
 };

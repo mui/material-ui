@@ -11,6 +11,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 
 <p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
 
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Tabs are implemented using a collection of related components:

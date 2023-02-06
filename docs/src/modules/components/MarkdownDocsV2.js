@@ -2,12 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import path from 'path';
 import { useRouter } from 'next/router';
+import kebabCase from 'lodash/kebabCase';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
 import Box from '@mui/material/Box';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import ComponentApiContent from 'docs/src/modules/components/ComponentApiContent';
-import HookApiContent from 'docs/src/modules/components/HookApiContent';
+import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
+import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getHookTranslatedHeader } from 'docs/src/modules/components/HookApiPage';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
@@ -58,10 +59,10 @@ export default function MarkdownDocs(props) {
     docs,
     demoComponents,
     srcComponents,
-    componentApiDescriptions,
-    componentApiPageContent,
-    hookApiDescriptions,
-    hookApiPageContent,
+    componentsApiDescriptions,
+    componentsApiPageContents,
+    hooksApiDescriptions,
+    hooksApiPageContents,
   } = props;
 
   const userLanguage = useUserLanguage();
@@ -76,54 +77,86 @@ export default function MarkdownDocs(props) {
   const { description, location, rendered, title, toc } = localizedDoc;
   const demosToc = toc.filter((item) => item.text !== 'API');
 
-  const {
-    hookDescription,
-    hookDescriptionToc = [],
-    parametersDescriptions,
-    returnValueDescriptions,
-  } = hookApiDescriptions[userLanguage];
-
-  function createHookTocEntry(sectionName) {
+  function createHookTocEntry(hookName, sectionName) {
     return {
       text: getHookTranslatedHeader(t, sectionName),
-      hash: sectionName,
+      hash: `${hookName}-${sectionName}`,
       children: [],
     };
   }
 
-  const hooksToc = [
-    createHookTocEntry('import'),
-    ...hookDescriptionToc,
-    createHookTocEntry('parameters'),
-    createHookTocEntry('return-value'),
-  ].filter(Boolean);
+  const hooksToc = [];
+  Object.keys(hooksApiPageContents).forEach((key) => {
+    const {
+      hookDescription,
+      hookDescriptionToc = [],
+      parametersDescriptions,
+      returnValueDescriptions,
+    } = hooksApiDescriptions[key][userLanguage];
+    const { name: hookName } = hooksApiPageContents[key];
 
-  function createComponentTocEntry(sectionName) {
+    const hookNameKebabCase = kebabCase(hookName);
+
+    const hookToc = [
+      createHookTocEntry(hookNameKebabCase, 'import'),
+      ...hookDescriptionToc,
+      createHookTocEntry(hookNameKebabCase, 'parameters'),
+      createHookTocEntry(hookNameKebabCase, 'return-value'),
+    ].filter(Boolean);
+
+    hooksToc.push({
+      text: hookName,
+      hash: hookNameKebabCase,
+      children: hookToc,
+    });
+  });
+
+  function createComponentTocEntry(componentName, sectionName, hasInheritance = false) {
     return {
       text: getComponentTranslatedHeader(t, sectionName),
-      hash: sectionName,
+      hash: `${componentName}-${sectionName}`,
       children: [
-        ...(sectionName === 'props' && componentApiPageContent.inheritance
+        ...(hasInheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
           : []),
       ],
     };
   }
 
-  const {
-    componentDescription,
-    componentDescriptionToc = [],
-    classDescriptions,
-    propDescriptions,
-  } = componentApiDescriptions[userLanguage];
+  const componentsApiToc = [];
 
-  const componentApiToc = [
-    createComponentTocEntry('import'),
-    ...componentDescriptionToc,
-    componentApiPageContent.styles.name && createComponentTocEntry('component-name'),
-    createComponentTocEntry('props'),
-    componentApiPageContent.styles.classes.length > 0 && createComponentTocEntry('css'),
-  ].filter(Boolean);
+  Object.keys(componentsApiPageContents).forEach((key) => {
+    const {
+      componentDescription,
+      componentDescriptionToc = [],
+      classDescriptions,
+      propDescriptions,
+    } = componentsApiDescriptions[key][userLanguage];
+
+    const { name: componentName } = componentsApiPageContents[key];
+
+    const componentNameKebabCase = kebabCase(componentName);
+
+    const componentApiToc = [
+      createComponentTocEntry(componentNameKebabCase, 'import'),
+      ...componentDescriptionToc,
+      componentsApiPageContents[key].styles.name &&
+        createComponentTocEntry(componentNameKebabCase, 'component-name'),
+      createComponentTocEntry(
+        componentNameKebabCase,
+        'props',
+        componentsApiPageContents[key].inheritance,
+      ),
+      componentsApiPageContents[key].styles.classes.length > 0 &&
+        createComponentTocEntry(componentNameKebabCase, 'css'),
+    ].filter(Boolean);
+
+    componentsApiToc.push({
+      text: componentName,
+      hash: componentNameKebabCase,
+      children: componentApiToc,
+    });
+  });
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
@@ -175,7 +208,7 @@ export default function MarkdownDocs(props) {
         activeTab === 'hook-api'
           ? hooksToc
           : activeTab === 'component-api'
-          ? componentApiToc
+          ? componentsApiToc
           : demosToc
       }
       hasTabs
@@ -212,13 +245,16 @@ export default function MarkdownDocs(props) {
         <Box
           {...(activeTab !== 'component-api' && { sx: { display: 'none' }, 'aria-hidden': true })}
         >
-          <ComponentApiContent
-            descriptions={componentApiDescriptions}
-            pageContent={componentApiPageContent}
+          <ComponentsApiContent
+            descriptions={componentsApiDescriptions}
+            pageContents={componentsApiPageContents}
           />
         </Box>
         <Box {...(activeTab !== 'hook-api' && { sx: { display: 'none' }, 'aria-hidden': true })}>
-          <HookApiContent descriptions={hookApiDescriptions} pageContent={hookApiPageContent} />
+          <HooksApiContent
+            descriptions={hooksApiDescriptions}
+            pagesContents={hooksApiPageContents}
+          />
         </Box>
       </Provider>
     </AppLayoutDocs>
@@ -232,6 +268,10 @@ MarkdownDocs.propTypes = {
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
   srcComponents: PropTypes.object,
+  componentsApiDescriptions: PropTypes.object,
+  componentsApiPageContents: PropTypes.object,
+  hooksApiDescriptions: PropTypes.object,
+  hooksApiPageContents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
