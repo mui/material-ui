@@ -40,7 +40,7 @@ export default function AppFrameBanner() {
         },
       })}
     >
-      🚀&#160;&#160;MUI X v6-beta is out! Discover what's new in this major version!&nbsp;
+      🚀&#160;&#160;MUI X v6-beta is out! Discover what's new and get started now with the new major version!&nbsp;
       <br />
     </Link>
   ) : null;
