@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 ## Introduction
 
-Radio buttons allow users to make a mututally exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
+Radio buttons let users make a mututally exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
 
 To provide the user with multiple selection options, use Checkbox instead.
 
