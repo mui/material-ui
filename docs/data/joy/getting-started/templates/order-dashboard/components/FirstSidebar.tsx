@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
+import GlobalStyles from '@mui/joy/GlobalStyles';
 import Avatar from '@mui/joy/Avatar';
 import Divider from '@mui/joy/Divider';
 import List from '@mui/joy/List';
@@ -7,10 +7,12 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
+import { openSidebar } from '../utils';
 
 export default function FirstSidebar() {
   return (
     <Sheet
+      className="FirstSidebar"
       variant="solid"
       color="success"
       invertedColors
@@ -19,8 +21,14 @@ export default function FirstSidebar() {
           xs: 'fixed',
           md: 'sticky',
         },
-        zIndex: 3,
+        transform: {
+          xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))',
+          md: 'none',
+        },
+        transition: 'transform 0.4s',
+        zIndex: 10000,
         height: '100dvh',
+        width: 'var(--FirstSidebar-width)',
         top: 0,
         p: 1.5,
         py: 3,
@@ -32,20 +40,14 @@ export default function FirstSidebar() {
         bgcolor: 'success.600',
       }}
     >
-      <AspectRatio
-        ratio="1"
-        variant="solid"
-        sx={{
-          width: 36,
-          borderRadius: 'xs',
-          boxShadow: (theme) => theme.shadow.md,
-          '--joy-shadowChannel': (theme) => theme.vars.palette.success.darkChannel,
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--FirstSidebar-width': '68px',
+          },
         }}
-      >
-        <div>
-          <MuiLogo />
-        </div>
-      </AspectRatio>
+      />
+      <MuiLogo />
       <List sx={{ '--List-item-radius': '8px', '--List-gap': '12px' }}>
         <ListItem>
           <ListItemButton>
@@ -53,27 +55,27 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton selected variant="soft">
+          <ListItemButton selected variant="soft" onClick={() => openSidebar()}>
             <i data-feather="bar-chart-2" />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton>
+          <ListItemButton onClick={() => openSidebar()}>
             <i data-feather="layers" />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton>
+          <ListItemButton onClick={() => openSidebar()}>
             <i data-feather="check-square" />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton>
+          <ListItemButton onClick={() => openSidebar()}>
             <i data-feather="flag" />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton>
+          <ListItemButton onClick={() => openSidebar()}>
             <i data-feather="users" />
           </ListItemButton>
         </ListItem>

@@ -10,6 +10,9 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
+import Modal from '@mui/joy/Modal';
+import ModalDialog from '@mui/joy/ModalDialog';
+import ModalClose from '@mui/joy/ModalClose';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Table from '@mui/joy/Table';
@@ -17,7 +20,6 @@ import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const rows = [
   {
@@ -155,19 +157,97 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>('desc');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
+  const [open, setOpen] = React.useState(false);
+  const renderFilters = () => (
+    <React.Fragment>
+      <FormControl>
+        <FormLabel>Status</FormLabel>
+        <Select
+          placeholder="Filter by status"
+          slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
+        >
+          <Option value="paid">Paid</Option>
+          <Option value="pending">Pending</Option>
+          <Option value="refunded">Refunded</Option>
+          <Option value="cancelled">Cancelled</Option>
+        </Select>
+      </FormControl>
 
+      <FormControl>
+        <FormLabel>Category</FormLabel>
+        <Select placeholder="All">
+          <Option value="all">All</Option>
+        </Select>
+      </FormControl>
+
+      <FormControl>
+        <FormLabel>Customer</FormLabel>
+        <Select placeholder="All">
+          <Option value="all">All</Option>
+        </Select>
+      </FormControl>
+    </React.Fragment>
+  );
   return (
     <React.Fragment>
       <Sheet
+        className="SearchAndFilters-mobile"
+        sx={{
+          display: {
+            xs: 'flex',
+            sm: 'none',
+          },
+          my: 1,
+          gap: 1,
+        }}
+      >
+        <Input
+          size="sm"
+          placeholder="Search"
+          startDecorator={<i data-feather="search" />}
+          sx={{ flexGrow: 1 }}
+        />
+        <IconButton
+          size="sm"
+          variant="outlined"
+          color="neutral"
+          onClick={() => setOpen(true)}
+        >
+          <i data-feather="filter" />
+        </IconButton>
+        <Modal open={open} onClose={() => setOpen(false)}>
+          <ModalDialog aria-labelledby="filter-modal" layout="fullscreen">
+            <ModalClose />
+            <Typography id="filter-modal" level="h2">
+              Filters
+            </Typography>
+            <Divider sx={{ my: 2 }} />
+            <Sheet sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {renderFilters()}
+              <Button color="success" onClick={() => setOpen(false)}>
+                Submit
+              </Button>
+            </Sheet>
+          </ModalDialog>
+        </Modal>
+      </Sheet>
+      <Sheet
+        className="SearchAndFilters-tabletUp"
         variant="soft"
         sx={{
           borderRadius: 'sm',
           p: 2,
-          display: 'flex',
+          display: {
+            xs: 'none',
+            sm: 'flex',
+          },
           flexWrap: 'wrap',
           gap: 1.5,
           my: 1,
           mb: 2,
+          '& > *': {
+            flex: 1,
+          },
         }}
       >
         <FormControl sx={{ flex: 2, minWidth: 'min-content' }}>
@@ -175,34 +255,10 @@ export default function OrderTable() {
           <Input placeholder="Search" startDecorator={<i data-feather="search" />} />
         </FormControl>
 
-        <FormControl sx={{ flex: 1 }}>
-          <FormLabel>Status</FormLabel>
-          <Select
-            placeholder="Filter by status"
-            slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
-          >
-            <Option value="paid">Paid</Option>
-            <Option value="pending">Pending</Option>
-            <Option value="refunded">Refunded</Option>
-            <Option value="cancelled">Cancelled</Option>
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ flex: 1 }}>
-          <FormLabel>Category</FormLabel>
-          <Select placeholder="All">
-            <Option value="all">All</Option>
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ flex: 1 }}>
-          <FormLabel>Customer</FormLabel>
-          <Select placeholder="All">
-            <Option value="all">All</Option>
-          </Select>
-        </FormControl>
+        {renderFilters()}
       </Sheet>
       <Sheet
+        className="OrderTableContainer"
         variant="outlined"
         sx={{
           width: '100%',
@@ -223,6 +279,9 @@ export default function OrderTable() {
             '--Table-headerUnderlineThickness': '1px',
             '--TableRow-hoverBackground': (theme) =>
               theme.vars.palette.background.level1,
+            '& thead th': {
+              zIndex: 2,
+            },
           }}
         >
           <thead>
@@ -243,6 +302,7 @@ export default function OrderTable() {
                       ? 'success'
                       : undefined
                   }
+                  slotProps={{ checkbox: { sx: { textAlign: 'left' } } }}
                   sx={{ verticalAlign: 'text-bottom' }}
                 />
               </th>
@@ -253,7 +313,7 @@ export default function OrderTable() {
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
                   fontWeight="xl"
-                  endDecorator={<ArrowDownwardIcon />}
+                  endDecorator={<i data-feather="arrow-down" />}
                   sx={{
                     '& svg': {
                       transition: '0.2s',
@@ -286,6 +346,7 @@ export default function OrderTable() {
                           : ids.filter((itemId) => itemId !== row.id),
                       );
                     }}
+                    slotProps={{ checkbox: { sx: { textAlign: 'left' } } }}
                     sx={{ verticalAlign: 'text-bottom' }}
                   />
                 </td>
@@ -345,10 +406,38 @@ export default function OrderTable() {
       </Sheet>
       <Divider sx={{ my: 3 }} />
       <Box
+        className="Pagination-mobile"
+        sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}
+      >
+        <IconButton
+          aria-label="previous page"
+          variant="outlined"
+          color="neutral"
+          size="sm"
+        >
+          <i data-feather="arrow-left" />
+        </IconButton>
+        <Typography level="body2" mx="auto">
+          Page 1 of 10
+        </Typography>
+        <IconButton
+          aria-label="next page"
+          variant="outlined"
+          color="neutral"
+          size="sm"
+        >
+          <i data-feather="arrow-right" />
+        </IconButton>
+      </Box>
+      <Box
+        className="Pagination-laptopUp"
         sx={{
-          display: 'flex',
           gap: 1,
           [`& .${iconButtonClasses.root}`]: { borderRadius: '50%' },
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
         }}
       >
         <Button
@@ -361,27 +450,16 @@ export default function OrderTable() {
         </Button>
 
         <Box sx={{ flex: 1 }} />
-        <IconButton size="sm" variant="soft" color="neutral">
-          1
-        </IconButton>
-        <IconButton size="sm" variant="plain" color="neutral">
-          2
-        </IconButton>
-        <IconButton size="sm" variant="plain" color="neutral">
-          3
-        </IconButton>
-        <IconButton size="sm" variant="plain" color="neutral">
-          ...
-        </IconButton>
-        <IconButton size="sm" variant="plain" color="neutral">
-          8
-        </IconButton>
-        <IconButton size="sm" variant="plain" color="neutral">
-          9
-        </IconButton>
-        <IconButton size="sm" variant="plain" color="neutral">
-          10
-        </IconButton>
+        {['1', '2', '3', '…', '8', '9', '10'].map((page) => (
+          <IconButton
+            key={page}
+            size="sm"
+            variant={Number(page) ? 'soft' : 'plain'}
+            color="neutral"
+          >
+            {page}
+          </IconButton>
+        ))}
         <Box sx={{ flex: 1 }} />
 
         <Button

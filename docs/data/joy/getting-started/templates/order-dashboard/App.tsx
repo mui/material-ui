@@ -11,6 +11,9 @@ import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import SecondSidebar from './components/SecondSidebar';
 import OrderTable from './components/OrderTable';
+import Header from './components/Header';
+import ColorSchemeToggle from './components/ColorSchemeToggle';
+import customTheme from './theme';
 
 export default function JoyOrderDashboardTemplate() {
   const status = useScript(`https://unpkg.com/feather-icons`);
@@ -26,7 +29,7 @@ export default function JoyOrderDashboardTemplate() {
   }, [status]);
 
   return (
-    <CssVarsProvider>
+    <CssVarsProvider disableTransitionOnChange theme={customTheme}>
       <GlobalStyles
         styles={{
           '.feather': {
@@ -40,70 +43,100 @@ export default function JoyOrderDashboardTemplate() {
       />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+        <Header />
         <FirstSidebar />
         <SecondSidebar />
         <Box
-          sx={{
-            p: 3,
+          component="main"
+          className="MainContent"
+          sx={(theme) => ({
+            p: {
+              xs: 2,
+              sm: 3,
+            },
+            pt: {
+              xs: `calc(${theme.spacing(2)} + var(--Header-height))`,
+              sm: `calc(${theme.spacing(2)} + var(--Header-height))`,
+              md: 3,
+            },
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
             minWidth: 0,
             height: '100dvh',
-          }}
+          })}
         >
-          <Breadcrumbs
-            size="sm"
-            aria-label="breadcrumbs"
-            separator={<i data-feather="chevron-right" />}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Breadcrumbs
+              size="sm"
+              aria-label="breadcrumbs"
+              separator={<i data-feather="chevron-right" />}
+              sx={{
+                '--Breadcrumbs-gap': '1rem',
+                '--Icon-fontSize': '16px',
+                fontWeight: 'lg',
+                color: 'neutral.400',
+              }}
+            >
+              <Link
+                underline="none"
+                color="neutral"
+                fontSize="inherit"
+                href="#some-link"
+                aria-label="Home"
+              >
+                <i data-feather="home" />
+              </Link>
+              <Link
+                underline="hover"
+                color="neutral"
+                fontSize="inherit"
+                href="#some-link"
+              >
+                Dashboard
+              </Link>
+              <Typography fontSize="inherit" variant="soft" color="success">
+                Orders
+              </Typography>
+            </Breadcrumbs>
+            <ColorSchemeToggle
+              sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
+            />
+          </Box>
+
+          <Box
             sx={{
-              '--Breadcrumbs-gap': '1rem',
-              '--Icon-fontSize': '16px',
-              fontWeight: 'lg',
-              color: 'neutral.400',
+              display: 'flex',
+              alignItems: 'center',
+              my: 1,
+              gap: 1,
+              flexWrap: 'wrap',
+              '& > *': {
+                minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
+                flexGrow: 1,
+              },
             }}
           >
-            <Link
-              underline="none"
-              color="neutral"
-              fontSize="inherit"
-              href="#some-link"
-              aria-label="Home"
-            >
-              <i data-feather="home" />
-            </Link>
-            <Link
-              underline="hover"
-              color="neutral"
-              fontSize="inherit"
-              href="#some-link"
-            >
-              Dashboard
-            </Link>
-            <Typography fontSize="inherit" variant="soft" color="success">
-              Orders
-            </Typography>
-          </Breadcrumbs>
-
-          <Box sx={{ display: 'flex', alignItems: 'center', my: 1, gap: 1 }}>
             <Typography level="h1" fontSize="xl4">
               Orders
             </Typography>
-            <Box sx={{ flex: 1 }} />
-            <Button
-              variant="outlined"
-              color="neutral"
-              startDecorator={<i data-feather="download-cloud" />}
-            >
-              Download PDF
-            </Button>
-            <Button
-              variant="outlined"
-              color="neutral"
-              startDecorator={<i data-feather="table" />}
-            >
-              Download CSV
-            </Button>
+            <Box sx={{ flex: 999 }} />
+            <Box sx={{ display: 'flex', gap: 1, '& > *': { flexGrow: 1 } }}>
+              <Button
+                variant="outlined"
+                color="neutral"
+                startDecorator={<i data-feather="download-cloud" />}
+              >
+                Download PDF
+              </Button>
+              <Button
+                variant="outlined"
+                color="neutral"
+                startDecorator={<i data-feather="table" />}
+              >
+                Download CSV
+              </Button>
+            </Box>
           </Box>
 
           <OrderTable />
