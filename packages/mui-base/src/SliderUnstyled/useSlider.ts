@@ -633,6 +633,9 @@ export default function useSlider(parameters: UseSliderParameters) {
     return {
       ...otherHandlers,
       ...ownEventHandlers,
+      style: (index) => ({
+        pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+      }),
     };
   };
 
