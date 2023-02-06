@@ -371,7 +371,10 @@ function findJoyUIDemos(
     )
     .map((page) => ({
       name: page.title,
-      demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`),
+      demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`).replace(
+        'material-ui',
+        'joy-ui',
+      ),
     }));
 }
 
