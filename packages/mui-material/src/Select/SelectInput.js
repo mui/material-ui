@@ -311,7 +311,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         'ArrowUp',
         'ArrowDown',
         // The native select doesn't respond to enter on macOS, but it's recommended by
-        // https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
+        // https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
         'Enter',
       ];
 

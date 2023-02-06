@@ -1,5 +1,5 @@
-import pagesApi from './pagesApi';
-import type { MuiPage, OrderedMuiPage } from './MuiPage';
+import pagesApi from 'docs/src/pagesApi';
+import type { MuiPage, OrderedMuiPage } from 'docs/src/MuiPage';
 
 const pages: readonly MuiPage[] = [
   {
