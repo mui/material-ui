@@ -547,7 +547,6 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
                   node = definitions[index];
                 }
               });
-
               return false;
             },
           });
