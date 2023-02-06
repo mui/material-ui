@@ -87,7 +87,7 @@ const VirtuosoTableComponents: TableComponents<Data> = {
     <TableContainer component={Paper} {...props} ref={ref} />
   )),
   Table: (props) => (
-    <Table {...props} style={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
+    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
   ),
   TableHead,
   TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
