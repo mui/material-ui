@@ -13,7 +13,7 @@
   "name": "FormHelperText",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiFormHelperText" },
   "spread": true,
-  "forwardsRefTo": "HTMLParagraphElement",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormHelperText/FormHelperText.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-input/\">Input</a></li></ul>",
