@@ -15,10 +15,7 @@ export default function ComponentPageTabs(props) {
   } = props;
 
   return (
-    <Box
-      className="component-tabs"
-      sx={{ display: 'inline' }}
-    >
+    <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Tabs
         value={activeTab}
         onChange={(e, value) => setActiveTab(value)}

@@ -297,8 +297,6 @@ const attachTable = (
   reactApi[tableName] = parameters;
 };
 
-<<<<<<< HEAD
-=======
 const generateTranslationDescription = (description: string) => {
   return description
     .replace(/\n@default.*$/, '')
@@ -306,7 +304,6 @@ const generateTranslationDescription = (description: string) => {
     .replace(/`/g, '</code>');
 };
 
->>>>>>> master
 const attachTranslations = (reactApi: ReactApi) => {
   const translations: ReactApi['translations'] = {
     hookDescription: reactApi.description,
@@ -316,21 +313,13 @@ const attachTranslations = (reactApi: ReactApi) => {
 
   (reactApi.parameters ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-<<<<<<< HEAD
-      translations.parametersDescriptions[propName] = description.replace(/\n@default.*$/, '');
-=======
       translations.parametersDescriptions[propName] = generateTranslationDescription(description);
->>>>>>> master
     }
   });
 
   (reactApi.returnValue ?? []).forEach(({ name: propName, description }) => {
     if (description) {
-<<<<<<< HEAD
-      translations.returnValueDescriptions[propName] = description.replace(/\n@default.*$/, '');
-=======
       translations.returnValueDescriptions[propName] = generateTranslationDescription(description);
->>>>>>> master
     }
   });
 
