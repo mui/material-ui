@@ -5,7 +5,9 @@ import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemDecorator, {
+  listItemDecoratorClasses,
+} from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -18,8 +20,12 @@ export default function SecondSidebar() {
       color="success"
       invertedColors
       sx={{
+        position: {
+          xs: 'fixed',
+          lg: 'sticky',
+        },
+        zIndex: 2,
         height: '100dvh',
-        position: 'sticky',
         top: 0,
         p: 1.5,
         py: 3,
@@ -34,6 +40,11 @@ export default function SecondSidebar() {
           '--List-item-radius': '4px',
           '--List-item-minHeight': '32px',
           '--List-gap': '4px',
+          [`& .${listItemDecoratorClasses.root}`]: {
+            display: {
+              md: 'none',
+            },
+          },
         }}
       >
         <ListSubheader role="presentation" sx={{ color: 'text.primary' }}>

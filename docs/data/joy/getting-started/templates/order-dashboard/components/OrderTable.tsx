@@ -6,14 +6,18 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Link from '@mui/joy/Link';
+import Input from '@mui/joy/Input';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import { visuallyHidden } from '@mui/utils';
 
 const rows = [
   {
@@ -31,18 +35,18 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Steve Hampton',
+      email: 'steve.hamp@email.com',
     },
-    subscription: 'Yearly',
+    subscription: 'Monthly',
   },
   {
     id: 'INV-1232',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Ciaran Murray',
+      email: 'ciaran.murray@email.com',
     },
     subscription: 'Yearly',
   },
@@ -51,8 +55,8 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Refunded',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Maria Macdonald',
+      email: 'maria.mc@email.com',
     },
     subscription: 'Yearly',
   },
@@ -61,8 +65,8 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Charles Fulton',
+      email: 'fulton@email.com',
     },
     subscription: 'Yearly',
   },
@@ -71,8 +75,8 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Jay Hooper',
+      email: 'hooper@email.com',
     },
     subscription: 'Yearly',
   },
@@ -81,30 +85,30 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Krystal Stevens',
+      email: 'k.stevens@email.com',
     },
-    subscription: 'Yearly',
+    subscription: 'Monthly',
   },
   {
     id: 'INV-1227',
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Sachin Flynn',
+      email: 's.flyn@email.com',
     },
-    subscription: 'Yearly',
+    subscription: 'Monthly',
   },
   {
     id: 'INV-1226',
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
-      name: 'Olivia Ryhe',
-      email: 'olivia@email.com',
+      name: 'Bradley Rosales',
+      email: 'brad123@email.com',
     },
-    subscription: 'Yearly',
+    subscription: 'Monthly',
   },
 ];
 
@@ -155,6 +159,50 @@ export default function OrderTable() {
   return (
     <React.Fragment>
       <Sheet
+        variant="soft"
+        sx={{
+          borderRadius: 'sm',
+          p: 2,
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 1.5,
+          my: 1,
+          mb: 2,
+        }}
+      >
+        <FormControl sx={{ flex: 2, minWidth: 'min-content' }}>
+          <FormLabel>Search for order</FormLabel>
+          <Input placeholder="Search" startDecorator={<i data-feather="search" />} />
+        </FormControl>
+
+        <FormControl sx={{ flex: 1 }}>
+          <FormLabel>Status</FormLabel>
+          <Select
+            placeholder="Filter by status"
+            slotProps={{ button: { sx: { whiteSpace: 'nowrap' } } }}
+          >
+            <Option value="paid">Paid</Option>
+            <Option value="pending">Pending</Option>
+            <Option value="refunded">Refunded</Option>
+            <Option value="cancelled">Cancelled</Option>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ flex: 1 }}>
+          <FormLabel>Category</FormLabel>
+          <Select placeholder="All">
+            <Option value="all">All</Option>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ flex: 1 }}>
+          <FormLabel>Customer</FormLabel>
+          <Select placeholder="All">
+            <Option value="all">All</Option>
+          </Select>
+        </FormControl>
+      </Sheet>
+      <Sheet
         variant="outlined"
         sx={{
           width: '100%',
@@ -179,7 +227,7 @@ export default function OrderTable() {
         >
           <thead>
             <tr>
-              <th style={{ width: 40 }}>
+              <th style={{ width: 48, textAlign: 'center' }}>
                 <Checkbox
                   indeterminate={
                     selected.length > 0 && selected.length !== rows.length
@@ -227,7 +275,7 @@ export default function OrderTable() {
           <tbody>
             {stableSort(rows, getComparator(order, 'id')).map((row) => (
               <tr key={row.id}>
-                <td>
+                <td style={{ textAlign: 'center' }}>
                   <Checkbox
                     checked={selected.includes(row.id)}
                     color={selected.includes(row.id) ? 'success' : undefined}
@@ -271,9 +319,7 @@ export default function OrderTable() {
                   <Box sx={{ display: 'flex', gap: 1.5 }}>
                     <Avatar>T</Avatar>
                     <div>
-                      <Typography fontWeight="lg" sx={{ display: 'block' }}>
-                        {row.customer.name}
-                      </Typography>
+                      <Typography fontWeight="lg">{row.customer.name}</Typography>
                       <Typography level="body2">{row.customer.email}</Typography>
                     </div>
                   </Box>

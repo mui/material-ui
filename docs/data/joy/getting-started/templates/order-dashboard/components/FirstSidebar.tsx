@@ -15,8 +15,12 @@ export default function FirstSidebar() {
       color="success"
       invertedColors
       sx={{
+        position: {
+          xs: 'fixed',
+          md: 'sticky',
+        },
+        zIndex: 3,
         height: '100dvh',
-        position: 'sticky',
         top: 0,
         p: 1.5,
         py: 3,

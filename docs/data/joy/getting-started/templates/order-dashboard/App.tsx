@@ -5,13 +5,7 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import Link from '@mui/joy/Link';
-import Input from '@mui/joy/Input';
-import Sheet from '@mui/joy/Sheet';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
 import Typography from '@mui/joy/Typography';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
@@ -111,43 +105,6 @@ export default function JoyOrderDashboardTemplate() {
               Download CSV
             </Button>
           </Box>
-
-          <Sheet
-            variant="soft"
-            sx={{ borderRadius: 'sm', p: 2, display: 'flex', gap: 1.5, my: 3 }}
-          >
-            <FormControl sx={{ flex: 2 }}>
-              <FormLabel>Search for order</FormLabel>
-              <Input
-                placeholder="Search"
-                startDecorator={<i data-feather="search" />}
-              />
-            </FormControl>
-
-            <FormControl sx={{ flex: 1 }}>
-              <FormLabel>Status</FormLabel>
-              <Select placeholder="Filter by status">
-                <Option>Paid</Option>
-                <Option>Pending</Option>
-                <Option>Refunded</Option>
-                <Option>Cancelled</Option>
-              </Select>
-            </FormControl>
-
-            <FormControl sx={{ flex: 1 }}>
-              <FormLabel>Category</FormLabel>
-              <Select placeholder="All">
-                <Option>All</Option>
-              </Select>
-            </FormControl>
-
-            <FormControl sx={{ flex: 1 }}>
-              <FormLabel>Customer</FormLabel>
-              <Select placeholder="All">
-                <Option>All</Option>
-              </Select>
-            </FormControl>
-          </Sheet>
 
           <OrderTable />
         </Box>
