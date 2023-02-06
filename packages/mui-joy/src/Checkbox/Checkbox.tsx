@@ -50,16 +50,22 @@ const CheckboxRoot = styled('span', {
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
     '--Checkbox-gap': '0.375rem',
+    '& ~ *': {
+      // size + gap, for sibling elements to create spacing that will align with the label
+      '--Checkbox-labelInset': '1.375rem',
+    },
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--Checkbox-size': '1.25rem',
     '--Checkbox-gap': '0.5rem',
+    '& ~ *': { '--Checkbox-labelInset': '1.75rem' },
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--Checkbox-size': '1.5rem',
     '--Checkbox-gap': '0.625rem',
+    '& ~ *': { '--Checkbox-labelInset': '2.125rem' },
     fontSize: theme.vars.fontSize.lg,
   }),
   position: ownerState.overlay ? 'initial' : 'relative',
