@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Snackbar component and hook
 components: SnackbarUnstyled
+hooks: useSnackbar
 githubLabel: 'component: snackbar'
 ---
 

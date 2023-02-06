@@ -67,8 +67,17 @@ const moveFocus = (
     }
   }
 };
-
-const useTabsList = (parameters: UseTabsListParameters) => {
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ *
+ * API:
+ *
+ * - [useTabsList API](https://mui.com/base/api/use-tabs-list/)
+ */
+function useTabsList(parameters: UseTabsListParameters) {
   const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
 
   const tabsListRef = React.createRef<any>();
@@ -198,6 +207,6 @@ const useTabsList = (parameters: UseTabsListParameters) => {
     processChildren,
     getRootProps,
   };
-};
+}
 
 export default useTabsList;

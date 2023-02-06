@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Badge component and hook
 components: BadgeUnstyled
+hooks: useBadge
 githubLabel: 'component: badge'
 ---
 
