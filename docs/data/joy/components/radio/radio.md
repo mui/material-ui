@@ -59,44 +59,44 @@ The Radio component supports every Joy UI global variant and it comes with `outl
 
 ### Label
 
-Use `label` prop to label the radio buttons.
+Use `label` prop to label the Radio button.
 
 {{"demo": "RadioButtonLabel.js"}}
 
-For more complex layouts, compose a radio button with Form Control, Form Label, and Form Helper Text (optional).
+For more complex layouts, compose a Radio button with Form Control, Form Label, and Form Helper Text (optional).
 
 {{"demo": "RadioButtonControl.js"}}
 
 ### Position
 
-To swap the label and radio position, use the CSS property `flex-direction: row-reverse`.
+To swap the label and Radio position, use the CSS property `flex-direction: row-reverse`.
 
 {{"demo": "RadioPositionEnd.js"}}
 
 ### Radio group
 
-The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for radio button grouping and proper keyboard navigation accessibility support.
+The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for Radio button grouping and proper keyboard navigation accessibility support.
 
 {{"demo": "RadioButtonsGroup.js"}}
 
 ### Controlled
 
-To control what the radio button is selecting, use the `value` and `onChange` props.
+To control what the Radio button is selecting, use the `value` and `onChange` props.
 
 {{"demo": "ControlledRadioButtonsGroup.js"}}
 
 ### Focus outline
 
-The focus outline, by default, wraps both the radio and its label.
+The focus outline, by default, wraps both the Radio and its label.
 To change that, target the `radioClasses.radio` class and add `position: 'relative'`.
 
 {{"demo": "RadioFocus.js"}}
 
 ### Overlay
 
-To make the radio button's container clickable, use the `overlay` prop.
+To make the Radio button's container clickable, use the `overlay` prop.
 
-Applying `overlay` to the parent Radio Group component will pass the prop to each child radio button inside the Radio Group.
+Applying `overlay` to the parent Radio Group component will pass the prop to each child Radio button inside the Radio Group.
 
 {{"demo": "OverlayRadio.js"}}
 
@@ -131,22 +131,22 @@ A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-gro
 
 ### Alignment buttons
 
-Provide an icon as a label to the Radio to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+Provide an icon as a label to the Radio to make the buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
 
 ### Payment methods
 
-Mix radio buttons with the [List](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
+Mix Radio buttons with the [List](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
 
 {{"demo": "ExamplePaymentChannels.js"}}
 
 ### E-commerce product attributes
 
-This example demonstrates complex customization using the Sheet component as a container for the radios.
+This example demonstrates complex customization using the Sheet component as a container for the Radios.
 The focus outline is customized to be smaller, and the color changes based on the value.
 
-The check icon's color inherits the radio button's `solid` variant, so that we don't need to handpick a color that has enough contrast with the background.
+The check icon's color inherits the Radio button's `solid` variant, so that we don't need to handpick a color that has enough contrast with the background.
 
 {{"demo": "ExampleProductAttributes.js"}}
 
@@ -155,7 +155,7 @@ The check icon's color inherits the radio button's `solid` variant, so that we d
 Here are a few tips to make sure you have an accessible Radio button component:
 
 - Every Form Control should have proper labels.
-  This includes radio buttons, checkboxes, and switches.
+  This includes Radio buttons, Checkboxes, and Switches.
   In most cases, this is done by using the Form Control and Form Label element.
 - When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
   You can also use the `inputProps` prop to add them.
