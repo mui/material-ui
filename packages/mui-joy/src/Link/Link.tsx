@@ -14,7 +14,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyContext, TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -114,7 +114,7 @@ const LinkRoot = styled('a', {
         ? {
             paddingBlock: 'min(0.15em, 4px)',
             paddingInline: '0.375em', // better than left, right because it also works with writing mode.
-            ...(!ownerState.nested && {
+            ...(!ownerState.nesting && {
               marginInline: '-0.375em',
             }),
           }
@@ -181,7 +181,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
-  const nested = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyContext);
+  const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
@@ -198,7 +199,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ...other
   } = props;
 
-  const level = nested ? inProps.level || 'inherit' : levelProp;
+  const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
   const {
     isFocusVisibleRef,
@@ -236,7 +237,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     variant,
     level,
     overlay,
-    nested,
+    nesting,
   };
 
   const classes = useUtilityClasses(ownerState);
