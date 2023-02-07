@@ -978,7 +978,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
-   * Callback fires when scroll bar reaches bottom of listbox.
+   * Callback fired when scroll bar reaches bottom of listbox.
    */
   onScrollToBottom: PropTypes.func,
   /**

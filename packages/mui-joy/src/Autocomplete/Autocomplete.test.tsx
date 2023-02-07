@@ -36,19 +36,17 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
 
 type TestOnScrollToBottom = {
   reason: 'mouse' | 'keyboard';
-  getByRole: (role: string) => HTMLElement;
-  onScrollToBottomCallCount: number;
+  scrollToBottomCallCount: number;
   onScrollToBottom: ReturnType<typeof spy>;
 };
 
 function testOnScrollToBottom({
   reason,
-  onScrollToBottomCallCount,
-  getByRole,
+  scrollToBottomCallCount,
   onScrollToBottom,
 }: TestOnScrollToBottom) {
-  const textbox = getByRole('combobox');
-  const listbox = getByRole('listbox');
+  const textbox = screen.getByRole('combobox');
+  const listbox = screen.getByRole('listbox');
 
   if (reason === 'mouse') {
     const scrollTop = listbox.scrollHeight - listbox.offsetHeight;
@@ -61,12 +59,12 @@ function testOnScrollToBottom({
       });
     }
 
-    if (onScrollToBottomCallCount > 0) {
+    if (scrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
       expect(listbox.scrollTop).to.equal(0);
     }
-    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+    expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
   } else if (reason === 'keyboard') {
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -78,13 +76,13 @@ function testOnScrollToBottom({
       fireEvent.scroll(listbox);
     }
 
-    if (onScrollToBottomCallCount > 0) {
+    if (scrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
       expect(listbox.scrollTop).to.equal(0);
     }
     checkHighlightIs(listbox, 'five');
-    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+    expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
   }
 }
 
@@ -2336,7 +2334,7 @@ describe('Joy <Autocomplete />', () => {
         this.skip();
       }
       const onScrollToBottom = spy();
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           autoFocus
@@ -2353,9 +2351,8 @@ describe('Joy <Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
     });
 
@@ -2365,7 +2362,7 @@ describe('Joy <Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           autoFocus
@@ -2382,20 +2379,19 @@ describe('Joy <Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
     });
 
-    it('should call onScrollToBottom and custom listbox onScroll when possible', function test() {
+    it('should call onScrollToBottom and custom listbox onScroll when provided', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
       const onScrollToBottom = spy();
       const onScroll = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2413,15 +2409,13 @@ describe('Joy <Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 2,
+        scrollToBottomCallCount: 2,
       });
       expect(onScroll.callCount).to.equal(2);
     });
@@ -2432,7 +2426,7 @@ describe('Joy <Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           autoFocus
           open
@@ -2442,15 +2436,13 @@ describe('Joy <Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 0,
+        scrollToBottomCallCount: 0,
       });
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 0,
+        scrollToBottomCallCount: 0,
       });
     });
   });

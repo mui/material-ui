@@ -36,12 +36,12 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
-function testOnScrollToBottom({ reason, onScrollToBottomCallCount, getByRole, onScrollToBottom }) {
-  const textbox = getByRole('combobox');
+function testOnScrollToBottom({ reason, scrollToBottomCallCount, onScrollToBottom }) {
+  const textbox = screen.getByRole('combobox');
   act(() => {
     textbox.focus();
   });
-  const listbox = getByRole('listbox');
+  const listbox = screen.getByRole('listbox');
 
   if (reason === 'mouse') {
     fireEvent.scroll(listbox, {
@@ -49,13 +49,13 @@ function testOnScrollToBottom({ reason, onScrollToBottomCallCount, getByRole, on
         scrollTop: listbox.scrollHeight - listbox.offsetHeight,
       },
     });
-    if (onScrollToBottomCallCount > 0) {
+    if (scrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
       expect(listbox.scrollTop).to.equal(0);
     }
 
-    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+    expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
   } else if (reason === 'keyboard') {
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -66,13 +66,13 @@ function testOnScrollToBottom({ reason, onScrollToBottomCallCount, getByRole, on
     if (listbox.scrollTop > 0) {
       fireEvent.scroll(listbox);
     }
-    if (onScrollToBottomCallCount > 0) {
+    if (scrollToBottomCallCount > 0) {
       expect(listbox.scrollTop).to.greaterThan(0);
     } else {
       expect(listbox.scrollTop).to.equal(0);
     }
     checkHighlightIs(listbox, 'five');
-    expect(onScrollToBottom.callCount).to.equal(onScrollToBottomCallCount);
+    expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
   }
 }
 
@@ -2772,7 +2772,7 @@ describe('<Autocomplete />', () => {
         this.skip();
       }
       const onScrollToBottom = spy();
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2783,9 +2783,8 @@ describe('<Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
     });
 
@@ -2795,7 +2794,7 @@ describe('<Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2808,9 +2807,8 @@ describe('<Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
     });
 
@@ -2820,7 +2818,7 @@ describe('<Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2834,26 +2832,24 @@ describe('<Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 2,
+        scrollToBottomCallCount: 2,
       });
     });
 
-    it('should call onScrollToBottom and custom Listbox onScroll when possible', function test() {
+    it('should call onScrollToBottom and custom listbox onScroll when provided', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
       const onScrollToBottom = spy();
       const onScroll = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2867,15 +2863,13 @@ describe('<Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 1,
+        scrollToBottomCallCount: 1,
       });
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 2,
+        scrollToBottomCallCount: 2,
       });
       expect(onScroll.callCount).to.equal(2);
     });
@@ -2886,7 +2880,7 @@ describe('<Autocomplete />', () => {
       }
       const onScrollToBottom = spy();
 
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
           options={['one', 'two', 'three', 'four', 'five']}
@@ -2896,15 +2890,13 @@ describe('<Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'keyboard',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 0,
+        scrollToBottomCallCount: 0,
       });
       testOnScrollToBottom({
         reason: 'mouse',
-        getByRole,
         onScrollToBottom,
-        onScrollToBottomCallCount: 0,
+        scrollToBottomCallCount: 0,
       });
     });
   });

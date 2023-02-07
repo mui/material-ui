@@ -221,7 +221,7 @@ export interface UseAutocompleteProps<
     details?: AutocompleteChangeDetails<T>,
   ) => void;
   /**
-   * Callback fires when scroll bar reaches bottom of listbox.
+   * Callback fired when scroll bar reaches bottom of listbox.
    * @param {React.SyntheticEvent}
    */
   onScrollToBottom?: (event: React.SyntheticEvent) => void;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function InfiniteScolling() {
+export default function InfiniteScrolling() {
   const [films, setFilms] = React.useState(allFilms.slice(0, 10));
   const [isLoading, setIsLoading] = React.useState(false);
 
