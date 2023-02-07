@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 # Box
 
-<p class="description">A The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
 The Box component packages [all the style functions](/system/getting-started/the-sx-prop/) that are exposed in `@mui/system`.
 

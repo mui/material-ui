@@ -8,7 +8,7 @@ materialDesign: https://m2.material.io/components/lists
 
 # Lists
 
-<p class="description">A Lists are continuous, vertical indexes of text or images.</p>
+<p class="description">Lists are continuous, vertical indexes of text or images.</p>
 
 Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 

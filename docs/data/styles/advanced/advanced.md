@@ -1,6 +1,6 @@
 # Advanced (LEGACY)
 
-<p class="description">A This section covers more advanced usage of @mui/styles.</p>
+<p class="description">This section covers more advanced usage of @mui/styles.</p>
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
