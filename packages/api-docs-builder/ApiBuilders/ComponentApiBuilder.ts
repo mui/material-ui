@@ -553,22 +553,22 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
           let node;
           astTypes.visit(ast, {
             visitVariableDeclaration: (variablePath) => {
+              const definitions: any[] = [];
               if (variablePath.node.declarations) {
-                const definitions: any[] = [];
-                /* 
-                `variablePath.get('declarations')` and
-                `variablePath.node.declarations` return different data
-                */
                 variablePath
                   .get('declarations')
                   .each((declarator: any) => definitions.push(declarator.get('init')));
-
-                variablePath.node.declarations.forEach((declarator: any, index: number) => {
-                  if (declarator.init.callee?.name === `create${name}`) {
-                    node = definitions[index];
-                  }
-                });
               }
+
+              definitions.forEach((definition) => {
+                if (definition.value?.callee) {
+                  const definitionName = definition.value.callee.name;
+
+                  if (definitionName === `create${name}`) {
+                    node = definition;
+                  }
+                }
+              });
 
               return false;
             },
