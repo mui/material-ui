@@ -71,6 +71,11 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
+interface PropTemplateDescriptor {
+  key: string;
+  description: string;
+}
+
 export default function generatePropDescription(
   prop: DescribeablePropDescriptor,
   propName: string,
@@ -101,6 +106,16 @@ export default function generatePropDescription(
   );
   let parsedReturns: { description?: string | null; type?: doctrine.Type | null } | undefined =
     annotation.tags.find((tag) => tag.title === 'returns');
+  const parsedTemplates = annotation.tags
+    .filter((tag) => tag.title === 'template')
+    .map((template) => {
+      const [key, description] = template.description?.split(/(?<=^\S+)\s/) || [];
+      if (!description) {
+        return null;
+      }
+      return { key, description };
+    })
+    .filter(Boolean) as PropTemplateDescriptor[];
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
@@ -137,6 +152,16 @@ export default function generatePropDescription(
     const returnTypeName = resolveType(returnType);
 
     signature += `) => ${returnTypeName}\`<br>`;
+    if (parsedTemplates.length > 0) {
+      signature += `*templates:* `;
+      signature += parsedTemplates
+        .map(
+          // stripping "`" as it's not going to be parsed into `code` blocks inside of a title
+          (template) => `<span title="${template.description.replace(/`/g, '')}"><code>${template.key}</code></span>`,
+        )
+        .join(', ');
+      signature += '.<br>';
+    }
     signature += parsedArgs
       .filter((tag) => tag.description)
       .map((tag) => `*${tag.name}:* ${tag.description}`)
