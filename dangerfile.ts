@@ -1,8 +1,9 @@
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
-const { danger, markdown, message } = require('danger');
-const { exec } = require('child_process');
-const { loadComparison } = require('./scripts/sizeSnapshot');
+import { danger, markdown } from 'danger';
+import { exec } from 'child_process';
+import { loadComparison } from './scripts/sizeSnapshot';
+import replaceUrl from './packages/api-docs-builder/utils/replaceUrl';
 
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
@@ -15,7 +16,7 @@ const gzipSizeChangeThreshold = 100;
  * executes a git subcommand
  * @param {any} args
  */
-function git(args) {
+function git(args: any) {
   return new Promise((resolve, reject) => {
     exec(`git ${args}`, (err, stdout) => {
       if (err) {
@@ -44,8 +45,8 @@ async function reportBundleSizeCleanup() {
  * @param {number} parsedThreshold
  * @param {number} gzipThreshold
  */
-function createComparisonFilter(parsedThreshold, gzipThreshold) {
-  return (comparisonEntry) => {
+function createComparisonFilter(parsedThreshold: number, gzipThreshold: number) {
+  return (comparisonEntry: any) => {
     const [, snapshot] = comparisonEntry;
     return (
       Math.abs(snapshot.parsed.absoluteDiff) >= parsedThreshold ||
@@ -59,7 +60,7 @@ function createComparisonFilter(parsedThreshold, gzipThreshold) {
  * `@mui/material/Paper`
  * @param {[string, any]} comparisonEntry
  */
-function isPackageComparison(comparisonEntry) {
+function isPackageComparison(comparisonEntry: [string, any]) {
   const [bundleKey] = comparisonEntry;
   return /^@[\w-]+\/[\w-]+$/.test(bundleKey);
 }
@@ -70,7 +71,7 @@ function isPackageComparison(comparisonEntry) {
  * @param {string} goodEmoji emoji on reduction
  * @param {string} badEmoji emoji on increase
  */
-function addPercent(change, goodEmoji = '', badEmoji = ':small_red_triangle:') {
+function addPercent(change: number, goodEmoji = '', badEmoji = ':small_red_triangle:') {
   const formatted = (change * 100).toFixed(2);
   if (/^-|^0(?:\.0+)$/.test(formatted)) {
     return `${formatted}% ${goodEmoji}`;
@@ -78,7 +79,10 @@ function addPercent(change, goodEmoji = '', badEmoji = ':small_red_triangle:') {
   return `+${formatted}% ${badEmoji}`;
 }
 
-function generateEmphasizedChange([bundle, { parsed, gzip }]) {
+function generateEmphasizedChange([bundle, { parsed, gzip }]: [
+  string,
+  { parsed: { relativeDiff: number }; gzip: { relativeDiff: number } },
+]) {
   // increase might be a bug fix which is a nice thing. reductions are always nice
   const changeParsed = addPercent(parsed.relativeDiff, ':heart_eyes:', '');
   const changeGzip = addPercent(gzip.relativeDiff, ':heart_eyes:', '');
@@ -90,9 +94,9 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]) {
  * Puts results in different buckets wh
  * @param {*} results
  */
-function sieveResults(results) {
-  const main = [];
-  const pages = [];
+function sieveResults<T>(results: Array<[string, T]>) {
+  const main: [string, T][] = [];
+  const pages: [string, T][] = [];
 
   results.forEach((entry) => {
     const [bundleId] = entry;
@@ -109,13 +113,18 @@ function sieveResults(results) {
 
 function prepareBundleSizeReport() {
   markdown(
-    `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
+    `## Bundle size report
+
+Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
   );
 }
 
 // A previous build might have failed to produce a snapshot
 // Let's walk up the tree a bit until we find a commit that has a successful snapshot
-async function loadLastComparison(upstreamRef, n = 0) {
+async function loadLastComparison(
+  upstreamRef: any,
+  n = 0,
+): Promise<Awaited<ReturnType<typeof loadComparison>>> {
   const mergeBaseCommit = await git(`merge-base HEAD~${n} ${UPSTREAM_REMOTE}/${upstreamRef}`);
   try {
     return await loadComparison(mergeBaseCommit, upstreamRef);
@@ -158,17 +167,64 @@ async function reportBundleSize() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](${detailedComparisonUrl})`;
+    const details = `## Bundle size report
+
+[Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
-    markdown(`[No bundle size changes](${detailedComparisonUrl})`);
+    markdown(`## Bundle size report
+
+[No bundle size changes](${detailedComparisonUrl})`);
   }
 }
 
+function addDeployPreviewUrls() {
+  /**
+   * The incoming path from danger does not start with `/`
+   * e.g. ['docs/data/joy/components/button/button.md']
+   */
+  function formatFileToLink(path: string) {
+    const url = path.replace('docs/data', '').replace(/\/[^/]+\.md$/, '/');
+
+    if (url.startsWith('/material')) {
+      // needs to convert to correct material legacy folder structure to the existing url.
+      return replaceUrl(url.replace('/material', ''), '').replace(/^\//, '');
+    }
+
+    return url
+      .replace('joy/', 'joy-ui/')
+      .replace('components/', 'react-')
+      .replace(/\/[^/]+\.md$/, '/');
+  }
+
+  const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
+
+  const files = [...danger.git.created_files, ...danger.git.modified_files];
+
+  // limit to the first 5 docs
+  const docs = files
+    .filter((file) => file.startsWith('docs/data') && file.endsWith('.md'))
+    .slice(0, 5);
+
+  markdown(`
+## Netlify deploy preview
+
+${
+  docs.length
+    ? docs
+        .map((path) => {
+          const formattedUrl = formatFileToLink(path);
+          return `- [${path}](${netlifyPreview}${formattedUrl})`;
+        })
+        .join('\n')
+    : 'No updates.'
+}
+`);
+}
+
 async function run() {
-  const netlifyPreview = `https://deploy-preview-${process.env.CIRCLE_PR_NUMBER}--material-ui.netlify.app/`;
-  message(`Netlify deploy preview: <a href="${netlifyPreview}">${netlifyPreview}</a>`);
+  addDeployPreviewUrls();
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
