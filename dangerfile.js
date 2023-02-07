@@ -3,6 +3,7 @@
 const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
+const replaceUrl = require('./packages/api-docs-builder/utils/replaceUrl');
 
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
@@ -178,9 +179,14 @@ function addDeployPreviewUrls() {
    * e.g. ['docs/data/joy/components/button/button.md']
    */
   function formatFileToLink(path) {
+    const url = path.replace('docs/data', '').replace(/\/[^/]+\.md$/, '/');
+
+    if (url.startsWith('/material')) {
+      // needs to convert to correct material legacy folder structure to the existing url.
+      return replaceUrl(url.replace('/material', ''), '');
+    }
+
     return path
-      .replace('docs/data/', '')
-      .replace('material/', 'material-ui/')
       .replace('joy/', 'joy-ui/')
       .replace('components/', 'react-')
       .replace(/\/[^/]+\.md$/, '/');
