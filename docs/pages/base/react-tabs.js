@@ -12,7 +12,8 @@ import useTabsListApiJsonPageContent from './api/use-tabs-list.json';
 import useTabPanelApiJsonPageContent from './api/use-tab-panel.json';
 
 export default function Page(props) {
-  return <MarkdownDocs {...pageProps} {...props} />;
+  const { userLanguage, ...other } = props;
+  return <MarkdownDocs {...pageProps} {...other} />;
 }
 
 Page.getInitialProps = () => {

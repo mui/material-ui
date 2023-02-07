@@ -6,7 +6,8 @@ import componentApiJsonPageContent from './api/button-unstyled.json';
 import hookApiJsonPageContent from './api/use-button.json';
 
 export default function Page(props) {
-  return <MarkdownDocs {...pageProps} {...props} />;
+  const { userLanguage, ...other } = props;
+  return <MarkdownDocs {...pageProps} {...other} />;
 }
 
 Page.getInitialProps = () => {

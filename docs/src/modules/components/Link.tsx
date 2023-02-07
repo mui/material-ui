@@ -88,8 +88,23 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href?.pathname;
+  const query: Record<string, string> | undefined =
+    typeof href === 'string' ? undefined : (href?.query as Record<string, string>);
+  const hash = typeof href === 'string' ? undefined : href?.hash;
+
+  let pathNameHash;
+  if (router.asPath.indexOf('#') >= 0) {
+    pathNameHash = router.asPath.split('#')[1];
+  }
+
+  const shouldBeActive =
+    router.pathname === pathname &&
+    (!query ||
+      !query.docsTab ||
+      (query.docsTab === router.query.docsTab && (!hash || hash === pathNameHash)));
+
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName,
+    [activeClassName]: shouldBeActive && activeClassName,
   });
 
   const isExternal =

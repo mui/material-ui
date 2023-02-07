@@ -7,6 +7,7 @@ import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
 import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
+import NoSsr from '@mui/base/NoSsr';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
@@ -252,34 +253,36 @@ export default function AppNavDrawerItem(props) {
 
   return (
     <StyledLi {...other} depth={depth}>
-      {/* Fix overloading with prefetch={false}, only prefetch on hover */}
-      <Item
-        component={subheader ? DeadLink : Link}
-        depth={depth}
-        hasIcon={hasIcon}
-        href={href}
-        prefetch={false}
-        subheader={subheader}
-        activeClassName={expandable ? null : 'app-drawer-active'}
-        className={topLevel ? 'algolia-lvl0' : null}
-        onClick={handleClick}
-        {...linkProps}
-      >
-        {iconElement}
-        {title}
-        {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
-        {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
-        {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
-        {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
-      </Item>
-      {expandable ? (
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          {children}
-        </Collapse>
-      ) : (
-        children
-      )}
+      <NoSsr>
+        {/* Fix overloading with prefetch={false}, only prefetch on hover */}
+        <Item
+          component={subheader ? DeadLink : Link}
+          depth={depth}
+          hasIcon={hasIcon}
+          href={href}
+          prefetch={false}
+          subheader={subheader}
+          activeClassName={expandable ? null : 'app-drawer-active'}
+          className={topLevel ? 'algolia-lvl0' : null}
+          onClick={handleClick}
+          {...linkProps}
+        >
+          {iconElement}
+          {title}
+          {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
+          {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
+          {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
+          {newFeature && <Chip label="New" sx={sxChip('success')} />}
+          {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+        </Item>
+        {expandable ? (
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            {children}
+          </Collapse>
+        ) : (
+          children
+        )}
+      </NoSsr>
     </StyledLi>
   );
 }

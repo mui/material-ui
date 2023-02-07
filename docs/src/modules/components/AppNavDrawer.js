@@ -235,7 +235,11 @@ function reduceChildRoutes(context) {
         depth={depth}
         key={title}
         title={title}
-        href={firstChild.pathname}
+        href={{
+          pathname: firstChild.pathname,
+          ...(firstChild.query && { query: firstChild.query }),
+          ...(firstChild.hash && { hash: firstChild.hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
         plan={page.plan}
@@ -262,7 +266,11 @@ function reduceChildRoutes(context) {
         depth={depth}
         key={title}
         title={title}
-        href={{ pathname: page.pathname, ...(page.query && { query: page.query }) }}
+        href={{
+          pathname: page.pathname,
+          ...(page.query && { query: page.query }),
+          ...(page.hash && { hash: page.hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
         plan={page.plan}

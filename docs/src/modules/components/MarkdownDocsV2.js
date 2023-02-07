@@ -43,12 +43,29 @@ export default function MarkdownDocs(props) {
   const router = useRouter();
   const [activeTab, setActiveTabState] = React.useState(router.query.docsTab ?? '');
 
+  let hash;
+  if (router.asPath.indexOf('#') >= 0) {
+    hash = router.asPath.split('#')[1];
+  }
   const setActiveTab = (newValue) => {
     const value = newValue ?? '';
     setActiveTabState(newValue);
-    router.push(`${router.pathname}/${newValue !== '' ? `?docsTab=${newValue}` : ''}`, undefined, {
-      shallow: true,
-    });
+    router
+      .push(
+        `${router.pathname}/${newValue !== '' ? `?docsTab=${newValue}` : ''}${
+          hash ? `#${hash}` : ''
+        }`,
+        undefined,
+        {
+          shallow: true,
+        },
+      )
+      .catch((e) => {
+        // workaround for https://github.com/vercel/next.js/issues/37362
+        if (!e.cancelled) {
+          throw e;
+        }
+      });
   };
 
   const { canonicalAs } = pathnameToLanguage(router.asPath);

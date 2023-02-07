@@ -3,6 +3,7 @@ module.exports = [
   {
     pathname: '/base/react-button',
     query: { docsTab: 'component-api' },
+    hash: 'button-unstyled',
     title: 'ButtonUnstyled',
   },
   { pathname: '/base/api/click-away-listener' },
@@ -33,6 +34,7 @@ module.exports = [
   {
     pathname: '/base/react-button',
     query: { docsTab: 'hook-api' },
+    hash: 'use-button',
     title: 'useButton',
   },
   { pathname: '/base/api/use-form-control-unstyled-context' },
@@ -43,8 +45,28 @@ module.exports = [
   { pathname: '/base/api/use-slider' },
   { pathname: '/base/api/use-snackbar' },
   { pathname: '/base/api/use-switch' },
-  { pathname: '/base/api/use-tab' },
-  { pathname: '/base/api/use-tab-panel' },
-  { pathname: '/base/api/use-tabs' },
-  { pathname: '/base/api/use-tabs-list' },
+  {
+    pathname: '/base/react-tabs',
+    query: { docsTab: 'hook-api' },
+    hash: 'use-tab',
+    title: 'useTab',
+  },
+  {
+    pathname: '/base/react-tabs',
+    query: { docsTab: 'hook-api' },
+    hash: 'use-tabs',
+    title: 'useTabs',
+  },
+  {
+    pathname: '/base/react-tabs',
+    query: { docsTab: 'hook-api' },
+    hash: 'use-tab-panel',
+    title: 'useTabPanel',
+  },
+  {
+    pathname: '/base/react-tabs',
+    query: { docsTab: 'hook-api' },
+    hash: 'use-tabs-list',
+    title: 'useTabsList',
+  },
 ];
