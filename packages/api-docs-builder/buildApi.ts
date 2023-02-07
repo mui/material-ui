@@ -207,13 +207,14 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         (component) => {
           if (
             component.filename.includes('ThemeProvider') ||
-            (component.filename.includes('mui-material') &&
-              component.filename.includes('CssVarsProvider')) ||
+            component.filename.includes('CssVarsProvider') ||
             (component.filename.includes('mui-joy') &&
-              (component.filename.includes('ColorInversion') ||
-                component.filename.includes('ListProvider') || // internal component
-                component.filename.includes('Box') || // demo isn't ready
-                component.filename.includes('Container'))) // demo isn't ready
+              // ListProvider is an internal component
+              // Box's demo isn't ready
+              // Container's demo isn't ready
+              // Grid has problem with react-docgen
+              // Stack has problem with react-docgen
+              component.filename.match(/(ListProvider|Box|Container|ColorInversion|Grid|Stack)/))
           ) {
             return false;
           }
