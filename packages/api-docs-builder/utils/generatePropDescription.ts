@@ -156,8 +156,11 @@ export default function generatePropDescription(
       signature += `*templates:* `;
       signature += parsedTemplates
         .map(
-          // stripping "`" as it's not going to be parsed into `code` blocks inside of a title
-          (template) => `<span title="${template.description.replace(/`/g, '')}"><code>${template.key}</code></span>`,
+          (template) =>
+            // stripping "`" as it's not going to be parsed into `code` blocks inside of a title
+            `<span title="${template.description.replace(/`/g, '')}"><code>${
+              template.key
+            }</code></span>`,
         )
         .join(', ');
       signature += '.<br>';
