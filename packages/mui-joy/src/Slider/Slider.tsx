@@ -617,7 +617,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             })}
             style={{
               ...style,
-              pointerEvents: active !== -1 && active !== index ? 'none' : undefined
+              pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
             }}
           >
             <SlotInput

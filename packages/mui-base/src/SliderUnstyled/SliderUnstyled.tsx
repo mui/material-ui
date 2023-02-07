@@ -282,7 +282,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
             })}
             style={{
               ...style,
-              pointerEvents: active !== -1 && active !== index ? 'none' : undefined
+              pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
             }}
           >
             <Input
