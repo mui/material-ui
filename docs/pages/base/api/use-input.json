@@ -62,14 +62,14 @@
     "getInputProps": {
       "type": {
         "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseInputInputSlotProps<TOther>",
-        "description": "Resolver for the `input` slot's props."
+        "description": "Resolver for the input slot's props."
       },
       "required": true
     },
     "getRootProps": {
       "type": {
         "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseInputRootSlotProps<TOther>",
-        "description": "Resolver for the `root` slot's props."
+        "description": "Resolver for the root slot's props."
       },
       "required": true
     },

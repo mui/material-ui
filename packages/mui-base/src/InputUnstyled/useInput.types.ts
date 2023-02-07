@@ -75,7 +75,7 @@ export interface UseInputReturnValue {
    */
   formControlContext: FormControlUnstyledState | undefined;
   /**
-   * Resolver for the `input` slot's props.
+   * Resolver for the input slot's props.
    * @param externalProps props for the input slot
    * @returns props that should be spread on the input slot
    */
@@ -83,7 +83,7 @@ export interface UseInputReturnValue {
     externalProps?: TOther,
   ) => UseInputInputSlotProps<TOther>;
   /**
-   * Resolver for the `root` slot's props.
+   * Resolver for the root slot's props.
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
