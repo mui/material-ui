@@ -1,7 +1,6 @@
 ---
 product: joy-ui
 title: React Grid component
-components: Box, Container, Grid
 githubLabel: 'component: Grid'
 ---
 

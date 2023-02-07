@@ -191,7 +191,6 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T exten
  *
  * Demos:
  *
- * - [Grid (Joy UI)](https://mui.com/joy/react-grid/)
  * - [Box (Material UI)](https://mui.com/material-ui/react-box/)
  * - [Box (MUI System)](https://mui.com/system/react-box/)
  *

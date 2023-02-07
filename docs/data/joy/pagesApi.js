@@ -22,7 +22,6 @@ module.exports = [
   { pathname: '/joy-ui/api/form-control' },
   { pathname: '/joy-ui/api/form-helper-text' },
   { pathname: '/joy-ui/api/form-label' },
-  { pathname: '/joy-ui/api/grid' },
   { pathname: '/joy-ui/api/icon-button' },
   { pathname: '/joy-ui/api/input' },
   { pathname: '/joy-ui/api/linear-progress' },
@@ -47,7 +46,6 @@ module.exports = [
   { pathname: '/joy-ui/api/select' },
   { pathname: '/joy-ui/api/sheet' },
   { pathname: '/joy-ui/api/slider' },
-  { pathname: '/joy-ui/api/stack' },
   { pathname: '/joy-ui/api/svg-icon' },
   { pathname: '/joy-ui/api/switch' },
   { pathname: '/joy-ui/api/tab' },
@@ -56,7 +54,6 @@ module.exports = [
   { pathname: '/joy-ui/api/tab-panel' },
   { pathname: '/joy-ui/api/tabs' },
   { pathname: '/joy-ui/api/textarea' },
-  { pathname: '/joy-ui/api/text-field' },
   { pathname: '/joy-ui/api/tooltip' },
   { pathname: '/joy-ui/api/typography' },
 ];

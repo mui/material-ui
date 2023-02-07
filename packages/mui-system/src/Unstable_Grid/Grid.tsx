@@ -4,7 +4,6 @@ import createGrid from './createGrid';
  *
  * Demos:
  *
- * - [Grid (Joy UI)](https://mui.com/joy/react-grid/)
  * - [Grid (Material UI)](https://mui.com/material-ui/react-grid/)
  *
  * API:
