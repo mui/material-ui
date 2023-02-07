@@ -41,7 +41,13 @@ Note that the `color` prop is an exception, it refers to the palette instead of 
 :::
 
 ```jsx
-<Typography textColor="neutral.500" fontSize="sm" fontWeight="lg">
+
+// Using the neutral color pallette that defaults to the 500 value
+<Typography color="neutral" fontSize="sm" fontWeight="lg" />
+
+// Changing the specific element's color to neutral
+<Typography textColor="neutral.300" fontSize="sm" fontWeight="lg" >
+
 ```
 
 ### Levels
