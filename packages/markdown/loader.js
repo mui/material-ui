@@ -31,6 +31,7 @@ function moduleIDToJSIdentifier(moduleID) {
 const componentPackageMapping = {
   'material-ui': {},
   base: {},
+  'joy-ui': {},
 };
 
 const packages = [
