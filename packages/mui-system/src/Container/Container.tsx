@@ -5,6 +5,7 @@ import createContainer from './createContainer';
  *
  * Demos:
  *
+ * - [Grid (Joy UI)](https://mui.com/joy/react-grid/)
  * - [Container (Material UI)](https://mui.com/material-ui/react-container/)
  * - [Container (MUI System)](https://mui.com/system/react-container/)
  *
