@@ -464,6 +464,12 @@ export default function useAutocomplete(props) {
     },
   );
 
+  const isSameValue = (value1, value2) => {
+    const label1 = value1 === null ? '' : getOptionLabel(value1);
+    const label2 = value2 === null ? '' : getOptionLabel(value2);
+    return label1 === label2;
+  };
+
   const checkHighlightedOptionExists = () => {
     if (
       highlightedIndexRef.current !== -1 &&
@@ -472,7 +478,7 @@ export default function useAutocomplete(props) {
       (multiple
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
-        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
+        : isSameValue(previousProps.value, value))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
