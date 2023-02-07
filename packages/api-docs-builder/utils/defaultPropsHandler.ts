@@ -149,28 +149,21 @@ function getExplicitPropsDeclaration(
       }
     });
 
+  if (!propsPath) {
+    console.error(`${functionNode.parent.value.id.name}: could not find props declaration to generate jsdoc table. The component declaration should be in this format:
+
+  function Component(props: ComponentProps) {
+    const { ...spreadAsUsual } = props;
+    ...
+  }
+    `);
+  }
+
   return propsPath;
 }
 
-/**
- * Handle the case where props are spread as params:
- *
- * @example
- * function Component({ className, ...other }) {}
- */
-function getImplicitPropsDeclaration(
-  componentDefinition: NodePath,
-  importer: Importer,
-): NodePath | undefined {
-  const value = resolveToValue(componentDefinition, importer);
-
-  return value.get('params', 0);
-}
-
 const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
-  const props =
-    getExplicitPropsDeclaration(componentDefinition, importer) ||
-    getImplicitPropsDeclaration(componentDefinition, importer);
+  const props = getExplicitPropsDeclaration(componentDefinition, importer);
 
   if (props !== undefined) {
     getDefaultValuesFromProps(props.get('properties'), documentation, importer);
