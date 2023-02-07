@@ -282,8 +282,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
             })}
             style={{
               ...style,
-              // @ts-ignore
-              ...thumbProps.style(index),
+              pointerEvents: active !== -1 && active !== index ? 'none' : undefined
             }}
           >
             <Input

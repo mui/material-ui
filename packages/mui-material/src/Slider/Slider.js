@@ -765,7 +765,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
                 })}
                 style={{
                   ...style,
-                  ...thumbProps.style(index),
+                  pointerEvents: active !== -1 && active !== index ? 'none' : undefined
                 }}
               >
                 <InputSlot
