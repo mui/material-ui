@@ -75,6 +75,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     getItemState,
     highlightFirstItem,
     highlightLastItem,
+    registerHighlightChangeHandler,
   } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
@@ -121,8 +122,16 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
         getItemProps,
         getListboxProps,
         open: true,
+        registerHighlightChangeHandler,
       } as MenuUnstyledContextType),
-    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+    [
+      getItemProps,
+      getItemState,
+      getListboxProps,
+      registerItem,
+      unregisterItem,
+      registerHighlightChangeHandler,
+    ],
   );
 
   return (

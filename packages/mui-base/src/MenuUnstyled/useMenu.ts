@@ -14,6 +14,7 @@ import {
   UseMenuParameters,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
+import useMenuChangeNotifiers from './useMenuChangeNotifiers';
 
 function stateReducer(
   state: ListboxState<string>,
@@ -67,6 +68,8 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     });
   }, []);
 
+  const { notifyHighlightChanged, registerHighlightChangeHandler } = useMenuChangeNotifiers();
+
   const {
     getOptionState,
     getOptionProps,
@@ -83,6 +86,10 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     stateReducer,
     disabledItemsFocusable: true,
   });
+
+  React.useEffect(() => {
+    notifyHighlightChanged(highlightedOption);
+  }, [highlightedOption, notifyHighlightChanged]);
 
   const highlightFirstItem = React.useCallback(() => {
     if (Object.keys(menuItems).length > 0) {
@@ -160,5 +167,6 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     highlightedOption,
     highlightFirstItem,
     highlightLastItem,
+    registerHighlightChangeHandler,
   };
 }

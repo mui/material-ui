@@ -85,6 +85,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     getItemState,
     highlightFirstItem,
     highlightLastItem,
+    registerHighlightChangeHandler,
   } = useMenu({
     open,
     onClose,
@@ -151,8 +152,16 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       getItemState,
       getItemProps,
       open,
+      registerHighlightChangeHandler,
     }),
-    [getItemProps, getItemState, open, registerItem, unregisterItem],
+    [
+      getItemProps,
+      getItemState,
+      open,
+      registerItem,
+      unregisterItem,
+      registerHighlightChangeHandler,
+    ],
   );
 
   const result = (

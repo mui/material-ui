@@ -76,8 +76,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     }),
   );
 
-  const highlightedIndexRef = React.useRef<number>(-1);
-
   React.useEffect(() => {
     // if a controlled value changes, we need to update the state to keep things in sync
     if (valueParam !== undefined && valueParam !== selectedValue) {
@@ -89,25 +87,15 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     }
   }, [valueParam, selectedValue, dispatch]);
 
-  React.useEffect(() => {
-    if (highlightedValue == null) {
-      highlightedIndexRef.current = -1;
-    } else {
-      highlightedIndexRef.current = options.findIndex((option) =>
-        optionComparer(option, highlightedValue),
-      );
-    }
-  }, [highlightedValue, options, optionComparer]);
-
-  // introducing a ref to avoid recreating the getOptionState function on each change.
-  const latestSelectedValue = useLatest(selectedValue);
-
   const highlightedIndex = React.useMemo(() => {
     return highlightedValue == null
       ? -1
       : options.findIndex((option) => optionComparer(option, highlightedValue));
   }, [highlightedValue, options, optionComparer]);
 
+  // introducing refs to avoid recreating the getOptionState function on each change.
+  const latestSelectedValue = useLatest(selectedValue);
+  const latestHighlightedIndex = useLatest(highlightedIndex);
   const previousOptions = React.useRef<TOption[]>([]);
 
   React.useEffect(() => {
@@ -264,14 +252,22 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       }
 
       const disabled = isOptionDisabled(option, index);
+      const highlighted = latestHighlightedIndex.current === index && index !== -1;
 
       return {
         selected,
         disabled,
-        highlighted: highlightedIndexRef.current === index && index !== -1,
+        highlighted,
       };
     },
-    [options, multiple, isOptionDisabled, optionComparer, latestSelectedValue],
+    [
+      options,
+      multiple,
+      isOptionDisabled,
+      optionComparer,
+      latestSelectedValue,
+      latestHighlightedIndex,
+    ],
   );
 
   const getOptionTabIndex = React.useCallback(
@@ -324,7 +320,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   );
 
   React.useDebugValue({
-    highlightedOption: options[highlightedIndex],
+    highlightedOption: highlightedValue,
     selectedOption: selectedValue,
   });
 
@@ -332,7 +328,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     getRootProps,
     getOptionProps,
     getOptionState,
-    highlightedOption: options[highlightedIndex] ?? null,
+    highlightedOption: highlightedValue,
     selectedOption: selectedValue,
     setSelectedValue,
     setHighlightedValue,

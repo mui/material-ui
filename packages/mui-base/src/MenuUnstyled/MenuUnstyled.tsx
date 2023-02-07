@@ -59,6 +59,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     getItemState,
     highlightFirstItem,
     highlightLastItem,
+    registerHighlightChangeHandler,
   } = useMenu({
     open,
     onClose,
@@ -113,8 +114,16 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
       getItemState,
       getItemProps,
       open,
+      registerHighlightChangeHandler,
     }),
-    [getItemProps, getItemState, open, registerItem, unregisterItem],
+    [
+      getItemProps,
+      getItemState,
+      open,
+      registerItem,
+      unregisterItem,
+      registerHighlightChangeHandler,
+    ],
   );
 
   return (
