@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './menu.json';
+import jsonPageContent from './css-baseline.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/translations/api-docs/menu', false, /menu.*.json$/);
+  const req = require.context(
+    'docs/translations/api-docs-joy/css-baseline',
+    false,
+    /css-baseline.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

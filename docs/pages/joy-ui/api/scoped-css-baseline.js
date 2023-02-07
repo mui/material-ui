@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/scoped-css-baseline',
+    'docs/translations/api-docs-joy/scoped-css-baseline',
     false,
     /scoped-css-baseline.*.json$/,
   );

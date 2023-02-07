@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/breadcrumbs',
+    'docs/translations/api-docs-joy/breadcrumbs',
     false,
     /breadcrumbs.*.json$/,
   );

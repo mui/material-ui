@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/list-divider',
+    'docs/translations/api-docs-joy/list-divider',
     false,
     /list-divider.*.json$/,
   );
