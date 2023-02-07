@@ -27,7 +27,7 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-Our documentation is crucial to the success of our products, and until recently, there has not been a unifying editorial strategy behind what gets published.
+Our documentation is crucial to the success of our products, and until recently, there has not been a unifying editorial strategy behind how our docs get published.
 This means we have a massive backlog of existing technical content to be audited and revised.
 Your mission will be to be to own the vision and strategy for our docs.
 We are looking for someone who can contribute to the following outcomes:
@@ -46,7 +46,7 @@ We are looking for an experienced writer-developer to join us as a Technical Wri
 ### Why this is interesting
 
 Our solutions empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
-As the next hire for our Developer Experience team, you will work closely with our Developer Advocate to collaborate on educational resources, and oversee the publishing of new docs written by our engineers.
+As the next hire for our Developer Experience team, you will work closely with our Developer Advocate to collaborate on educational resources, and oversee the editing and publishing of new docs written by our engineers across all product teams.
 You could have a big impact in this role if you bring a solid vision for the documentation experience.
 There is an endless number of improvements to be made by a competent editor and strategist.
 
@@ -88,12 +88,13 @@ For the right candidate:
 - You are fluent in English (both written and spoken) and have a strong portfolio of published technical content.
 - You are passionate about helping other developers solve problems and have an educational mindset.
 - You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
-- Engineering background: you should be comfortable building React component demos from scratch to illustrate key concepts in the docs.
+- You should be comfortable building React component demos from scratch to illustrate key concepts in the docs.
 - You are passionate about UI development.
 
 ### What would be nice if you had, but isn't required
 
 - Experience as an editor or content lead.
+- Experience as a front-end developer.
 - Experience working with open-source.
 - Experience using MUI.
 
