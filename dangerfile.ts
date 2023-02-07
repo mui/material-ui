@@ -189,10 +189,10 @@ function addDeployPreviewUrls() {
 
     if (url.startsWith('/material')) {
       // needs to convert to correct material legacy folder structure to the existing url.
-      return replaceUrl(url.replace('/material', ''), '');
+      return replaceUrl(url.replace('/material', ''), '').replace(/^\//, '');
     }
 
-    return path
+    return url
       .replace('joy/', 'joy-ui/')
       .replace('components/', 'react-')
       .replace(/\/[^/]+\.md$/, '/');
@@ -215,7 +215,7 @@ ${
     ? docs
         .map((path) => {
           const formattedUrl = formatFileToLink(path);
-          return `- [${formattedUrl}](${netlifyPreview}${formattedUrl})`;
+          return `- [${path}](${netlifyPreview}${formattedUrl})`;
         })
         .join('\n')
     : 'No updates.'
