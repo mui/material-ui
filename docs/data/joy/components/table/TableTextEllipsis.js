@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Avatar from '@mui/joy/Avatar';
+import Box from '@mui/joy/Box';
 import Table from '@mui/joy/Table';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
@@ -20,7 +22,19 @@ export default function TableTextEllipsis() {
       </thead>
       <tbody>
         <tr>
-          <td>Morty D Ardiousdellois Addami</td>
+          <td>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Avatar src="/static/images/avatar/1.jpg" />
+              <Box sx={{ minWidth: 0 }}>
+                <Typography noWrap fontWeight="lg">
+                  Morty D Ardiousdellois Addami
+                </Typography>
+                <Typography noWrap level="body2">
+                  Writer, Youtuber
+                </Typography>
+              </Box>
+            </Box>
+          </td>
           <td>
             Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at
             velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta

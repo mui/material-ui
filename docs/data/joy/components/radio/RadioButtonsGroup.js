@@ -10,7 +10,14 @@ export default function RadioButtonsGroup() {
     <FormControl>
       <FormLabel>Gender</FormLabel>
       <RadioGroup defaultValue="female" name="radio-buttons-group" sx={{ my: 1 }}>
-        <Radio value="female" label="Female" />
+        <Radio
+          value="female"
+          label="Female"
+          slotProps={{ input: { 'aria-describedby': 'female-helper-text' } }}
+        />
+        <FormHelperText id="female-helper-text">
+          A helper text for this radio.
+        </FormHelperText>
         <Radio value="male" label="Male" />
         <Radio value="other" label="Other" />
       </RadioGroup>

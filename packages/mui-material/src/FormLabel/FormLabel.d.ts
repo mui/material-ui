@@ -7,7 +7,7 @@ import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides {}
 
-interface FormLabelOwnProps {
+export interface FormLabelOwnProps {
   /**
    * The content of the component.
    */

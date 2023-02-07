@@ -151,6 +151,17 @@ Learn more about accessible design patterns for checkboxes [in the W3C documenta
 
 ## Common examples
 
+### Sign-up checkbox
+
+To use an interactive element together with a Checkbox, you can wrap it with a FormControl and FormHelperText.
+
+{{"demo": "ExampleSignUpCheckbox.js"}}
+
+:::info
+It is recommended that the interactive elements such as link should be placed outside of the checkbox's label.
+To learn more, [visit HTML label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#accessibility_concerns) from Mozilla.
+:::
+
 ### Filtering status
 
 This example uses variants and colors available to the List Item and Checkbox components to communicate state changes.

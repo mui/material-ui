@@ -28,10 +28,10 @@ export default function RadioUsage() {
           defaultValue: 'md',
         },
         {
-          propName: 'row',
-          knob: 'switch',
-          defaultValue: false,
-          codeBlockDisplay: false,
+          propName: 'orientation',
+          knob: 'radio',
+          options: ['vertical', 'horizontal'],
+          defaultValue: 'vertical',
         },
       ]}
       renderDemo={({ orientation, ...props }) => (
