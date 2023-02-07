@@ -42,7 +42,7 @@ Note that the `color` prop is an exception, it refers to the palette instead of 
 
 ```jsx
 
-// Using the neutral color pallette that defaults to the 500 value
+// Using the neutral color palette that defaults to the 500 value
 <Typography color="neutral" fontSize="sm" fontWeight="lg" />
 
 // Changing the specific element's color to neutral
