@@ -44,13 +44,13 @@ export default function XHero() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
+              '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
                 color: 'primary.400',
               }),
             })}
           >
-            <IconImage name="product-advanced" /> MUI X
+            <IconImage width={28} height={28} name="product-advanced" /> MUI X
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Performant
