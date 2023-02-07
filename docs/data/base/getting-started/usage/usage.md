@@ -1,6 +1,6 @@
 # Usage
 
-<p class="description">Learn the basics of working with MUI Base components.</p>
+<p class="description">A Learn the basics of working with MUI Base components.</p>
 
 ## Quickstart
 

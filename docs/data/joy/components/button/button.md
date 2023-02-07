@@ -8,7 +8,7 @@ unstyled: /base/react-button/
 
 # Button
 
-<p class="description">Buttons let users take actions and make choices with a single tap.</p>
+<p class="description">A Buttons let users take actions and make choices with a single tap.</p>
 
 ## Introduction
 
