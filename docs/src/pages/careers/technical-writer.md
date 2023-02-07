@@ -87,8 +87,7 @@ For the right candidate:
 
 - You are fluent in English (both written and spoken) and have a strong portfolio of published technical content.
 - You are passionate about helping other developers solve problems and have an educational mindset.
-- You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
-- You should be comfortable building React component demos from scratch to illustrate key concepts in the docs.
+- You are comfortable building React component demos from scratch to illustrate key concepts in the docs.
 - You are passionate about UI development.
 
 ### What would be nice if you had, but isn't required
