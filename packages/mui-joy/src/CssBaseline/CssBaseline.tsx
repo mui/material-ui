@@ -16,8 +16,7 @@ import { CssBaselineProps } from './CssBaselineProps';
  *
  * - [CssBaseline API](https://mui.com/joy-ui/api/css-baseline/)
  */
-function CssBaseline(props: CssBaselineProps) {
-  const { children, disableColorScheme = false } = props;
+function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps) {
   return (
     <React.Fragment>
       <GlobalStyles
