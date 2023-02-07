@@ -39,7 +39,7 @@ export default function SecondSidebar() {
         variant="solid"
         color="success"
         invertedColors
-        sx={{
+        sx={(theme) => ({
           position: {
             xs: 'fixed',
             lg: 'sticky',
@@ -59,7 +59,10 @@ export default function SecondSidebar() {
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
-        }}
+          [theme.getColorSchemeSelector('dark')]: {
+            bgcolor: 'success.800',
+          },
+        })}
       >
         <List
           sx={{

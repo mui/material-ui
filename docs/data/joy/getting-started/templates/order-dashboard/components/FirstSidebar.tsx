@@ -16,7 +16,7 @@ export default function FirstSidebar() {
       variant="solid"
       color="success"
       invertedColors
-      sx={{
+      sx={(theme) => ({
         position: {
           xs: 'fixed',
           md: 'sticky',
@@ -38,7 +38,10 @@ export default function FirstSidebar() {
         alignItems: 'center',
         gap: 2,
         bgcolor: 'success.600',
-      }}
+        [theme.getColorSchemeSelector('dark')]: {
+          bgcolor: 'success.900',
+        },
+      })}
     >
       <GlobalStyles
         styles={{
