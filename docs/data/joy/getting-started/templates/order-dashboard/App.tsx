@@ -15,16 +15,18 @@ import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
 
+const useEnhancedEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export default function JoyOrderDashboardTemplate() {
   const status = useScript(`https://unpkg.com/feather-icons`);
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     // Feather icon setup: https://github.com/feathericons/feather#4-replace
     // @ts-ignore
     if (typeof feather !== 'undefined') {
       // @ts-ignore
       feather.replace();
-      console.log('test');
     }
   }, [status]);
 
@@ -32,7 +34,7 @@ export default function JoyOrderDashboardTemplate() {
     <CssVarsProvider disableTransitionOnChange theme={customTheme}>
       <GlobalStyles
         styles={{
-          '.feather': {
+          '[data-feather], .feather': {
             color: 'var(--Icon-color)',
             margin: 'var(--Icon-margin)',
             fontSize: 'var(--Icon-fontSize, 20px)',
