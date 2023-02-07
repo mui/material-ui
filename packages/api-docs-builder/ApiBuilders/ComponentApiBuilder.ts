@@ -324,7 +324,11 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
-const generateApiPage = (apiPagesDirectory: string, translationPagesDirectory:string, reactApi: ReactApi) => {
+const generateApiPage = (
+  apiPagesDirectory: string,
+  translationPagesDirectory: string,
+  reactApi: ReactApi,
+) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
