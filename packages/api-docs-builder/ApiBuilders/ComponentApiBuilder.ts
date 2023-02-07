@@ -324,7 +324,7 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiPage = (apiPagesDirectory: string, translationPagesDirectory:string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -369,12 +369,12 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
   };
 
   writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
+    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
   writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
+    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
@@ -387,7 +387,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
+    '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
     false,
     /${kebabCase(reactApi.name)}.*.json$/,
   );
@@ -636,7 +636,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
         ? 'docs/translations/api-docs-joy'
         : 'docs/translations/api-docs';
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);
