@@ -273,7 +273,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
           <Thumb
             key={index}
             data-index={index}
-            data-focusvisible={focusedThumbIndex === index}
             {...thumbProps}
             className={clsx(classes.thumb, thumbProps.className, {
               [classes.active]: active === index,
