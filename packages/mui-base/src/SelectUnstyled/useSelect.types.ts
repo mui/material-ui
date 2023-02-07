@@ -117,23 +117,26 @@ interface UseSelectCommonResult<TValue> {
   getListboxProps: <TOther extends EventHandlers = {}>(
     otherHandlers?: TOther,
   ) => UseSelectListboxSlotProps<TOther>;
-  getOptionProps: <TOther extends EventHandlers = {}>(
-    option: SelectOption<TValue>,
-    otherHandlers?: TOther,
-  ) => UseSelectOptionSlotProps<TOther>;
-  getOptionState: (option: SelectOption<TValue>) => OptionState;
+  contextValue: {
+    getOptionProps: <TOther extends EventHandlers = {}>(
+      option: SelectOption<TValue>,
+      otherHandlers?: TOther,
+    ) => UseSelectOptionSlotProps<TOther>;
+    getOptionState: (option: SelectOption<TValue>) => OptionState;
+    listboxRef: React.RefObject<HTMLElement>;
+    /**
+     * Registers a handler for when the highlighted option changes.
+     * @param handler A function that will be called with the new highlighted option.
+     */
+    registerHighlightChangeHandler: SelectChangeNotifiers<TValue>['registerHighlightChangeHandler'];
+    /**
+     * Registers a handler for when the selection changes.
+     * @param handler A function that will be called with the new selected items.
+     */
+    registerSelectionChangeHandler: SelectChangeNotifiers<TValue>['registerSelectionChangeHandler'];
+  };
   open: boolean;
   highlightedOption: TValue | null;
-  /**
-   * Registers a handler for when the highlighted option changes.
-   * @param handler A function that will be called with the new highlighted option.
-   */
-  registerHighlightChangeHandler: SelectChangeNotifiers<TValue>['registerHighlightChangeHandler'];
-  /**
-   * Registers a handler for when the selection changes.
-   * @param handler A function that will be called with the new selected items.
-   */
-  registerSelectionChangeHandler: SelectChangeNotifiers<TValue>['registerSelectionChangeHandler'];
 }
 
 export interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {

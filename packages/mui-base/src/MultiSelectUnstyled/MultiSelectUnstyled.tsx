@@ -146,13 +146,10 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
     value,
   } = useSelect<TValue>({
     buttonRef: handleButtonRef,
@@ -226,18 +223,10 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const context: SelectUnstyledContextType = React.useMemo(
     () => ({
-      getOptionProps,
-      getOptionState,
+      ...contextValue,
       listboxRef,
-      registerSelectionChangeHandler,
-      registerHighlightChangeHandler,
     }),
-    [
-      getOptionProps,
-      getOptionState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-    ],
+    [contextValue],
   );
 
   return (

@@ -340,17 +340,30 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     open,
   });
 
+  const contextValue = React.useMemo(
+    () => ({
+      listboxRef,
+      getOptionProps,
+      getOptionState,
+      registerHighlightChangeHandler,
+      registerSelectionChangeHandler,
+    }),
+    [
+      getOptionProps,
+      getOptionState,
+      registerHighlightChangeHandler,
+      registerSelectionChangeHandler,
+    ],
+  );
+
   return {
     buttonActive,
     buttonFocusVisible,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
+    contextValue,
     open,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
     value: selectedOption,
     highlightedOption,
   };

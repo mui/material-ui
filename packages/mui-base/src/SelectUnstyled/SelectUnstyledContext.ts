@@ -10,7 +10,7 @@ export interface SelectUnstyledContextType {
     value: any,
     otherHandlers: OtherHandlers,
   ) => UseSelectOptionSlotProps;
-  listboxRef: React.RefObject<HTMLElement>;
+  listboxRef: React.RefObject<any>;
   registerSelectionChangeHandler: SelectChangeNotifiers<any>['registerSelectionChangeHandler'];
   registerHighlightChangeHandler: SelectChangeNotifiers<any>['registerHighlightChangeHandler'];
 }

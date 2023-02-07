@@ -430,14 +430,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
     value,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
   } = useSelect({
     buttonRef,
     defaultValue,
@@ -560,20 +557,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const context = React.useMemo(
     () => ({
-      getOptionProps,
-      getOptionState,
+      ...contextValue,
       listboxRef,
       color,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
     }),
-    [
-      color,
-      getOptionProps,
-      getOptionState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-    ],
+    [color, contextValue],
   );
 
   const modifiers = React.useMemo(

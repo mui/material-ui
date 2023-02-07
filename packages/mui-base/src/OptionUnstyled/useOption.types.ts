@@ -16,5 +16,5 @@ export interface UseOptionReturnValue {
 }
 
 export type UseOptionRootSlotProps<Other extends EventHandlers = {}> = UseSelectOptionSlotProps & {
-  ref?: React.Ref<HTMLElement>;
+  ref?: React.RefCallback<HTMLElement> | null;
 } & Other;

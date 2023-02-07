@@ -72,7 +72,7 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
       if (!listboxRef.current || !optionRef.current) {
         return;
       }
-      const listboxClientRect = listboxRef.current.getBoundingClientRect();
+      const listboxClientRect = (listboxRef.current as HTMLElement).getBoundingClientRect();
       const optionClientRect = optionRef.current.getBoundingClientRect();
 
       if (optionClientRect.top < listboxClientRect.top) {
