@@ -142,6 +142,9 @@ export default class MyDocument extends Document {
               '.plan-premium': {
                 backgroundImage: 'url(/static/x/premium.svg)',
               },
+              '.info-block': {
+                cursor: 'help',
+              },
             }}
           />
         </Head>

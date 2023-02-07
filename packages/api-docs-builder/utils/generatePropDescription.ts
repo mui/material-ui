@@ -158,7 +158,7 @@ export default function generatePropDescription(
         .map(
           (template) =>
             // stripping "`" as it's not going to be parsed into `code` blocks inside of a title
-            `<span title="${template.description.replace(/`/g, '')}"><code>${
+            `<span class="info-block" title="${template.description.replace(/`/g, '')}"><code>${
               template.key
             }</code></span>`,
         )
