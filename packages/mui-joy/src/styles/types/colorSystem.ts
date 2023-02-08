@@ -108,18 +108,10 @@ export type ColorPaletteProp = OverridableStringUnion<
 
 export interface PalettePrimaryOverrides {}
 
-export interface PaletteNeutralOverrides {}
-
-export interface PaletteDangerOverrides {}
-
-export interface PaletteInfoOverrides {}
-
-export interface PaletteSuccessOverrides {}
-
-export interface PaletteWarningOverrides {}
-
 export interface PalettePrimary
   extends OverridableRecord<PaletteRange, PalettePrimaryOverrides, string> {}
+
+export interface PaletteNeutralOverrides {}
 export interface PaletteNeutral
   extends OverridableRecord<
     PaletteRange & {
@@ -130,12 +122,20 @@ export interface PaletteNeutral
     PaletteNeutralOverrides,
     string
   > {}
+
+export interface PaletteDangerOverrides {}
 export interface PaletteDanger
   extends OverridableRecord<PaletteRange, PaletteDangerOverrides, string> {}
+
+export interface PaletteInfoOverrides {}
 export interface PaletteInfo
   extends OverridableRecord<PaletteRange, PaletteInfoOverrides, string> {}
+
+export interface PaletteSuccessOverrides {}
 export interface PaletteSuccess
   extends OverridableRecord<PaletteRange, PaletteSuccessOverrides, string> {}
+
+export interface PaletteWarningOverrides {}
 export interface PaletteWarning
   extends OverridableRecord<PaletteRange, PaletteWarningOverrides, string> {}
 
