@@ -9,10 +9,10 @@
     "required": "If <code>true</code>, the <code>input</code> element is required."
   },
   "returnValueDescriptions": {
-    "checked": "If <code>true</code>, the component is checked.",
-    "disabled": "If <code>true</code>, the component is disabled.",
-    "focusVisible": "If <code>true</code>, the component is being focused using keyboard.",
+    "checked": "If <code>true</code>, the component will be checked.",
+    "disabled": "If <code>true</code>, the component will be disabled.",
+    "focusVisible": "If <code>true</code>, it indicates that the component is being focused using keyboard.",
     "getInputProps": "Function to get the props to place on an HTML <code>input</code> to make the switch accessible.",
-    "readOnly": "If <code>true</code>, the component is read only."
+    "readOnly": "If <code>true</code>, the component will be read only."
   }
 }

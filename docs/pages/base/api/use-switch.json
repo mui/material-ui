@@ -30,17 +30,17 @@
   },
   "returnValue": {
     "checked": {
-      "type": { "name": "boolean", "description": "If `true`, the component is checked." },
+      "type": { "name": "boolean", "description": "If `true`, the component will be checked." },
       "required": true
     },
     "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
+      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
       "required": true
     },
     "focusVisible": {
       "type": {
         "name": "boolean",
-        "description": "If `true`, the component is being focused using keyboard."
+        "description": "If `true`, it indicates that the component is being focused using keyboard."
       },
       "default": "false",
       "required": true
@@ -53,7 +53,7 @@
       "required": true
     },
     "readOnly": {
-      "type": { "name": "boolean", "description": "If `true`, the component is read only." },
+      "type": { "name": "boolean", "description": "If `true`, the component will be read only." },
       "required": true
     }
   },
