@@ -1,11 +1,5 @@
 import { OverridableStringUnion, Simplify } from '@mui/types';
-
-type OverridableRecord<DefaultRecord extends { [k: string]: any }, Overrides = {}> = {
-  [k in OverridableStringUnion<
-    Exclude<keyof DefaultRecord, symbol>,
-    Overrides
-  >]: k extends keyof DefaultRecord ? DefaultRecord[k] : never;
-};
+import { MergeDefault, OverridableRecord } from './utils';
 
 /**
  * ====================================================
@@ -163,22 +157,25 @@ export interface Palette
   mode: 'light' | 'dark';
 }
 
+export type PaletteOptions = MergeDefault<
+  Palette,
+  {
+    primary: DefaultPaletteRange & PaletteVariant;
+    neutral: DefaultPaletteRange & PaletteVariant;
+    danger: DefaultPaletteRange & PaletteVariant;
+    info: DefaultPaletteRange & PaletteVariant;
+    success: DefaultPaletteRange & PaletteVariant;
+    warning: DefaultPaletteRange & PaletteVariant;
+    background: DefaultPaletteBackground;
+    common: DefaultPaletteCommon;
+    text: DefaultPaletteText;
+  }
+>;
+
 export interface ColorSystem {
   palette: Palette;
   shadowRing: string;
   shadowChannel: string;
-}
-
-export interface PaletteOptions extends Palette {
-  primary: DefaultPaletteRange & PaletteVariant;
-  neutral: DefaultPaletteRange & PaletteVariant;
-  danger: DefaultPaletteRange & PaletteVariant;
-  info: DefaultPaletteRange & PaletteVariant;
-  success: DefaultPaletteRange & PaletteVariant;
-  warning: DefaultPaletteRange & PaletteVariant;
-  background: DefaultPaletteBackground;
-  common: DefaultPaletteCommon;
-  text: DefaultPaletteText;
 }
 
 export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<

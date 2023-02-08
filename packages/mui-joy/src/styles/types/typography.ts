@@ -1,7 +1,7 @@
 import { CSSObject } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
+import { MergeDefault, OverridableRecord } from './utils';
 
-export interface FontSize {
+export interface DefaultFontSize {
   xs3: string;
   xs2: string;
   xs: string;
@@ -16,15 +16,19 @@ export interface FontSize {
   xl6: string;
   xl7: string;
 }
+export interface FontSizeOverrides {}
+export interface FontSize extends OverridableRecord<DefaultFontSize, FontSizeOverrides> {}
 
-export interface FontFamily {
+export interface DefaultFontFamily {
   body: string;
   display: string;
   code: string;
   fallback: string;
 }
+export interface FontFamilyOverrides {}
+export interface FontFamily extends OverridableRecord<DefaultFontFamily, FontFamilyOverrides> {}
 
-export interface FontWeight {
+export interface DefaultFontWeight {
   xs: string | number;
   sm: string | number;
   md: string | number;
@@ -33,35 +37,42 @@ export interface FontWeight {
   xl2: string | number;
   xl3: string | number;
 }
+export interface FontWeightOverrides {}
+export interface FontWeight extends OverridableRecord<DefaultFontWeight, FontWeightOverrides> {}
 
-export interface LineHeight {
+export interface DefaultLineHeight {
   sm: string | number;
   md: string | number;
   lg: string | number;
 }
+export interface LineHeightOverrides {}
+export interface LineHeight extends OverridableRecord<DefaultLineHeight, LineHeightOverrides> {}
 
-export interface LetterSpacing {
+export interface DefaultLetterSpacing {
   sm: string;
   md: string;
   lg: string;
 }
+export interface LetterSpacingOverrides {}
+export interface LetterSpacing
+  extends OverridableRecord<DefaultLetterSpacing, LetterSpacingOverrides> {}
 
+export interface DefaultTypographySystem {
+  display1: CSSObject;
+  display2: CSSObject;
+  h1: CSSObject;
+  h2: CSSObject;
+  h3: CSSObject;
+  h4: CSSObject;
+  h5: CSSObject;
+  h6: CSSObject;
+  body1: CSSObject;
+  body2: CSSObject;
+  body3: CSSObject;
+  body4: CSSObject;
+  body5: CSSObject;
+}
 export interface TypographySystemOverrides {}
-export type ExtendedTypographySystem = OverridableStringUnion<
-  | 'display1'
-  | 'display2'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'body1'
-  | 'body2'
-  | 'body3'
-  | 'body4'
-  | 'body5',
-  TypographySystemOverrides
->;
-
-export interface TypographySystem extends Record<ExtendedTypographySystem, CSSObject> {}
+export interface TypographySystem
+  extends OverridableRecord<DefaultTypographySystem, TypographySystemOverrides> {}
+export type TypographySystemOptions = MergeDefault<TypographySystem, DefaultTypographySystem>;
