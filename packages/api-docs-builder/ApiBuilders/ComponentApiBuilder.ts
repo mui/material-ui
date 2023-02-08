@@ -6,7 +6,7 @@ import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import * as prettier from 'prettier';
-import remark from 'remark';
+import { remark } from 'remark';
 import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
