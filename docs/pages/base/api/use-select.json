@@ -1,6 +1,65 @@
 {
   "parameters": {},
-  "returnValue": {},
+  "returnValue": {
+    "buttonActive": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, the select's button is active (pressed)."
+      },
+      "default": "false",
+      "required": true
+    },
+    "buttonFocusVisible": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, the select's button is being focused using keyboard."
+      },
+      "default": "false",
+      "required": true
+    },
+    "disabled": {
+      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
+      "default": "false",
+      "required": true
+    },
+    "getButtonProps": {
+      "type": {
+        "name": "<TOther extends EventHandlers>(otherHandlers?: TOther) => UseSelectButtonSlotProps<TOther>",
+        "description": "Resolver for the button slot's props."
+      },
+      "required": true
+    },
+    "getListboxProps": {
+      "type": {
+        "name": "<TOther extends EventHandlers>(otherHandlers?: TOther) => UseSelectListboxSlotProps<TOther>",
+        "description": "Resolver for the listbox slot's props."
+      },
+      "required": true
+    },
+    "getOptionProps": {
+      "type": {
+        "name": "<TOther extends EventHandlers>(option: SelectOption<TValue>, otherHandlers?: TOther) => UseSelectOptionSlotProps<TOther>",
+        "description": "Resolver for the specified option's props."
+      },
+      "required": true
+    },
+    "getOptionState": {
+      "type": {
+        "name": "(option: SelectOption<TValue>) => OptionState",
+        "description": "Resolver for the specified option's state."
+      },
+      "required": true
+    },
+    "open": {
+      "type": { "name": "boolean", "description": "If `true`, the select dropdown is open." },
+      "default": "false",
+      "required": true
+    },
+    "value": {
+      "type": { "name": "TValue | TValue[] | null", "description": "The selected value." },
+      "required": true
+    }
+  },
   "name": "useSelect",
   "filename": "/packages/mui-base/src/SelectUnstyled/useSelect.ts",
   "demos": "<ul><li><a href=\"/base/react-select/#hook\">Unstyled Select</a></li></ul>"
