@@ -10,7 +10,7 @@ import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.typ
  *
  * - [useTabPanel API](https://mui.com/base/api/use-tab-panel/)
  */
-function useTabPanel(parameters: UseTabPanelParameters):UseTabPanelReturnValue {
+function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
   const { value } = parameters;
 
   const context = useTabContext();
