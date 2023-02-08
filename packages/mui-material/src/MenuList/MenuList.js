@@ -233,7 +233,10 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       }
     }
 
-    if (activeItemIndex === index && (child.props.disabled || child.type.muiSkipListHighlight)) {
+    if (
+      activeItemIndex === index &&
+      (child.props.disabled || child.props.muiSkipListHighlight || child.type.muiSkipListHighlight)
+    ) {
       activeItemIndex += 1;
       if (activeItemIndex >= children.length) {
         // there are no focusable items within the list.
