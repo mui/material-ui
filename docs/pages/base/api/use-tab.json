@@ -19,17 +19,17 @@
   },
   "returnValue": {
     "active": {
-      "type": { "name": "boolean", "description": "If `true`, the tab is active." },
+      "type": { "name": "boolean", "description": "If `true`, the component will be active." },
       "default": "false",
       "required": true
     },
     "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the tab is disabled." },
+      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
       "default": "false",
       "required": true
     },
     "focusVisible": {
-      "type": { "name": "boolean", "description": "If `true`, the tab's focus is visible." },
+      "type": { "name": "boolean", "description": "If `true`, the tab's focus will be visible." },
       "required": true
     },
     "getRootProps": {
@@ -40,7 +40,7 @@
       "required": true
     },
     "selected": {
-      "type": { "name": "boolean", "description": "If `true`, the tab is disabled." },
+      "type": { "name": "boolean", "description": "If `true`, the tab will be selected." },
       "required": true
     },
     "setFocusVisible": {

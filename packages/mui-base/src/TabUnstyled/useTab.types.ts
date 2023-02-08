@@ -33,11 +33,11 @@ export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<
 
 export interface UseTabReturnValue {
   /**
-   * If `true`, the tab is disabled.
+   * If `true`, the tab will be selected.
    */
   selected: boolean;
   /**
-   * If `true`, the tab's focus is visible.
+   * If `true`, the tab's focus will be visible.
    */
   focusVisible: boolean;
   /**
@@ -45,12 +45,12 @@ export interface UseTabReturnValue {
    */
   setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
   /**
-   * If `true`, the tab is disabled.
+   * If `true`, the component will be disabled.
    * @default false
    */
   disabled: boolean;
   /**
-   * If `true`, the tab is active.
+   * If `true`, the component will be active.
    * @default false
    */
   active: boolean;

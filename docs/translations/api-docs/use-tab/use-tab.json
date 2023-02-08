@@ -5,11 +5,11 @@
     "value": "You can provide your own value. Otherwise, we fall back to the child position index."
   },
   "returnValueDescriptions": {
-    "active": "If <code>true</code>, the tab is active.",
-    "disabled": "If <code>true</code>, the tab is disabled.",
-    "focusVisible": "If <code>true</code>, the tab's focus is visible.",
+    "active": "If <code>true</code>, the component will be active.",
+    "disabled": "If <code>true</code>, the component will be disabled.",
+    "focusVisible": "If <code>true</code>, the tab's focus will be visible.",
     "getRootProps": "Resolver for the root slot's props.",
-    "selected": "If <code>true</code>, the tab is disabled.",
+    "selected": "If <code>true</code>, the tab will be selected.",
     "setFocusVisible": "Callback for setting the <code>focusVisible</code> param."
   }
 }
