@@ -4,6 +4,7 @@ import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { UseOptionParameters, UseOptionReturnValue } from './useOption.types';
 import { EventHandlers } from '../utils';
 import useForcedRerendering from '../utils/useForcedRerendering';
+
 /**
  *
  * API:
