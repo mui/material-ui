@@ -21,8 +21,11 @@ export default function ComponentPageTabs(props) {
         onChange={(e, value) => setActiveTab(value)}
         sx={{
           position: 'sticky',
-          top: 5,
-          zIndex: 9999,
+          // to be positioned below the app bar
+          top: 65,
+          mx: -2,
+          backgroundColor: theme => theme.palette.mode === 'dark' ? 'rgba(10, 25, 41, 0.7)' : 'rgba(255,255,255,0.8)',
+          zIndex: 1000,
         }}
       >
         <Tab label="Demos" value="" />
