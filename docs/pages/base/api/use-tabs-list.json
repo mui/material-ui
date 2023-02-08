@@ -16,7 +16,10 @@
       "required": true
     },
     "isRtl": {
-      "type": { "name": "boolean", "description": "The direction of the text." },
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, it will indicate that the text's direction in right-to-left."
+      },
       "default": "false",
       "required": true
     },
@@ -31,7 +34,7 @@
     "processChildren": {
       "type": {
         "name": "() => React.ReactElement<any, string | React.JSXElementConstructor<any>>[] | null | undefined",
-        "description": ""
+        "description": "Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation."
       },
       "required": true
     },

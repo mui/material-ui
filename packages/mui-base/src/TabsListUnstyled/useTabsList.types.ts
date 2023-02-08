@@ -21,7 +21,7 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
 
 export interface UseTabsListReturnValue {
   /**
-   * The direction of the text.
+   * If `true`, it will indicate that the text's direction in right-to-left.
    * @default false
    */
   isRtl: boolean;
@@ -34,6 +34,9 @@ export interface UseTabsListReturnValue {
    * The value of the currently selected `Tab`.
    */
   value: string | number | false;
+  /**
+   * Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation.
+   */
   processChildren: () =>
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
     | null
