@@ -12,12 +12,7 @@ import {
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import {
-  Palette,
-  PaletteOptions,
-  ColorPaletteProp,
-  DefaultPaletteRange,
-} from './types/colorSystem';
+import { PaletteOptions, ColorPaletteProp, PaletteRange, ColorSystem } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystemOptions, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
@@ -45,7 +40,9 @@ type Partial3Level<T> = {
   };
 };
 
-export interface ColorSystemOptions extends Partial3Level<MergeDefault<Palette, PaletteOptions>> {}
+export type ColorSystemOptions = Partial3Level<
+  MergeDefault<ColorSystem, { palette: PaletteOptions }>
+>;
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
@@ -611,7 +608,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   /**
    * Color channels generation
    */
-  function attachColorChannels(palette: Record<ColorPaletteProp, DefaultPaletteRange>) {
+  function attachColorChannels(palette: Record<ColorPaletteProp, PaletteRange>) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
@@ -633,7 +630,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   (
     Object.entries(theme.colorSchemes) as Array<
-      [string, { palette: Record<ColorPaletteProp, DefaultPaletteRange> }]
+      [string, { palette: Record<ColorPaletteProp, PaletteRange> }]
     >
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);

@@ -117,24 +117,20 @@ export interface PaletteSuccessOverrides {}
 
 export interface PaletteWarningOverrides {}
 
-export interface PalettePrimary
-  extends OverridableRecord<DefaultPaletteRange, PalettePrimaryOverrides> {}
+export interface PalettePrimary extends OverridableRecord<PaletteRange, PalettePrimaryOverrides> {}
 export interface PaletteNeutral
   extends OverridableRecord<
-    DefaultPaletteRange & {
+    PaletteRange & {
       plainHoverColor: string;
       outlinedHoverColor: string;
       softHoverColor: string;
     },
     PaletteNeutralOverrides
   > {}
-export interface PaletteDanger
-  extends OverridableRecord<DefaultPaletteRange, PaletteDangerOverrides> {}
-export interface PaletteInfo extends OverridableRecord<DefaultPaletteRange, PaletteInfoOverrides> {}
-export interface PaletteSuccess
-  extends OverridableRecord<DefaultPaletteRange, PaletteSuccessOverrides> {}
-export interface PaletteWarning
-  extends OverridableRecord<DefaultPaletteRange, PaletteWarningOverrides> {}
+export interface PaletteDanger extends OverridableRecord<PaletteRange, PaletteDangerOverrides> {}
+export interface PaletteInfo extends OverridableRecord<PaletteRange, PaletteInfoOverrides> {}
+export interface PaletteSuccess extends OverridableRecord<PaletteRange, PaletteSuccessOverrides> {}
+export interface PaletteWarning extends OverridableRecord<PaletteRange, PaletteWarningOverrides> {}
 
 export interface PaletteOverrides {}
 export interface Palette
