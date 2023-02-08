@@ -108,7 +108,7 @@ export async function computeApiDescription(
     })
     .process(api.description);
 
-  return file.contents.toString().trim();
+  return file.toString().trim();
 }
 
 /**
