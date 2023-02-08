@@ -12,7 +12,7 @@ import {
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { PaletteOptions, ColorPaletteProp, PaletteRange, ColorSystem } from './types/colorSystem';
+import { PaletteOptions, ColorPaletteProp, Palette, ColorSystem } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystemOptions, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
@@ -608,7 +608,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   /**
    * Color channels generation
    */
-  function attachColorChannels(palette: Record<ColorPaletteProp, PaletteRange>) {
+  function attachColorChannels(palette: Pick<Palette, ColorPaletteProp>) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
@@ -630,7 +630,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   (
     Object.entries(theme.colorSchemes) as Array<
-      [string, { palette: Record<ColorPaletteProp, PaletteRange> }]
+      [string, { palette: Pick<Palette, ColorPaletteProp> }]
     >
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);
