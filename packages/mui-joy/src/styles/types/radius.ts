@@ -9,4 +9,4 @@ export interface DefaultRadius {
 }
 export interface RadiusOverrides {}
 
-export interface Radius extends OverridableRecord<DefaultRadius, RadiusOverrides> {}
+export interface Radius extends OverridableRecord<DefaultRadius, RadiusOverrides, string> {}

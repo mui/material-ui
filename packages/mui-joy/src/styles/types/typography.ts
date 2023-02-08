@@ -17,7 +17,7 @@ export interface DefaultFontSize {
   xl7: string;
 }
 export interface FontSizeOverrides {}
-export interface FontSize extends OverridableRecord<DefaultFontSize, FontSizeOverrides> {}
+export interface FontSize extends OverridableRecord<DefaultFontSize, FontSizeOverrides, string> {}
 
 export interface DefaultFontFamily {
   body: string;
@@ -26,7 +26,8 @@ export interface DefaultFontFamily {
   fallback: string;
 }
 export interface FontFamilyOverrides {}
-export interface FontFamily extends OverridableRecord<DefaultFontFamily, FontFamilyOverrides> {}
+export interface FontFamily
+  extends OverridableRecord<DefaultFontFamily, FontFamilyOverrides, string> {}
 
 export interface DefaultFontWeight {
   xs: string | number;
@@ -38,7 +39,8 @@ export interface DefaultFontWeight {
   xl3: string | number;
 }
 export interface FontWeightOverrides {}
-export interface FontWeight extends OverridableRecord<DefaultFontWeight, FontWeightOverrides> {}
+export interface FontWeight
+  extends OverridableRecord<DefaultFontWeight, FontWeightOverrides, string | number> {}
 
 export interface DefaultLineHeight {
   sm: string | number;
@@ -46,7 +48,8 @@ export interface DefaultLineHeight {
   lg: string | number;
 }
 export interface LineHeightOverrides {}
-export interface LineHeight extends OverridableRecord<DefaultLineHeight, LineHeightOverrides> {}
+export interface LineHeight
+  extends OverridableRecord<DefaultLineHeight, LineHeightOverrides, string | number> {}
 
 export interface DefaultLetterSpacing {
   sm: string;
@@ -55,7 +58,7 @@ export interface DefaultLetterSpacing {
 }
 export interface LetterSpacingOverrides {}
 export interface LetterSpacing
-  extends OverridableRecord<DefaultLetterSpacing, LetterSpacingOverrides> {}
+  extends OverridableRecord<DefaultLetterSpacing, LetterSpacingOverrides, string> {}
 
 export interface DefaultTypographySystem {
   display1: CSSObject;
@@ -74,5 +77,5 @@ export interface DefaultTypographySystem {
 }
 export interface TypographySystemOverrides {}
 export interface TypographySystem
-  extends OverridableRecord<DefaultTypographySystem, TypographySystemOverrides> {}
+  extends OverridableRecord<DefaultTypographySystem, TypographySystemOverrides, CSSObject> {}
 export type TypographySystemOptions = MergeDefault<TypographySystem, DefaultTypographySystem>;

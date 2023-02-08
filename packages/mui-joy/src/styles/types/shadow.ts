@@ -8,4 +8,4 @@ export interface DefaultShadow {
   xl: string;
 }
 export interface ShadowOverrides {}
-export interface Shadow extends OverridableRecord<DefaultShadow, ShadowOverrides> {}
+export interface Shadow extends OverridableRecord<DefaultShadow, ShadowOverrides, string> {}
