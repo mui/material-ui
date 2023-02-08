@@ -99,7 +99,8 @@ export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
    */
   focusVisible?: boolean;
   /**
-   * If `true`, the element is rendered by a Typography component.
+   * @internal
+   * If `true`, the element is rendered inside a Typography component.
    */
-  nested: boolean;
+  nesting: boolean;
 }

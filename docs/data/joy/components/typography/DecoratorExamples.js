@@ -49,12 +49,8 @@ export default function DecoratorExamples() {
         variant="soft"
         color="danger"
         startDecorator="🚨"
-        py={1}
-        px={1}
-        borderRadius="xs"
-        display="inline-flex"
         fontSize="sm"
-        sx={{ '--Typography-gap': '0.5rem' }}
+        sx={{ '--Typography-gap': '0.5rem', p: 1 }}
       >
         Simple alert using only Typography.
       </Typography>

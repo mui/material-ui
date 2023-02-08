@@ -54,7 +54,7 @@ const theme = extendTheme({
     },
   },
   fontFamily: {
-    display: 'Inter var, var(--joy-fontFamily-fallback)',
+    display: 'Inter, var(--joy-fontFamily-fallback)',
     body: 'Inter, var(--joy-fontFamily-fallback)',
   },
 });

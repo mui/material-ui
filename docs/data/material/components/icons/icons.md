@@ -177,7 +177,7 @@ FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct d
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons.
+[materialdesignicons.com](https://pictogrammers.com/library/mdi/) provides over 2,000 icons.
 For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
 
 Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.

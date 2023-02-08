@@ -123,6 +123,9 @@ function useStateChangeDetection<TOption>(
   ]);
 }
 
+/**
+ * @ignore - do not document.
+ */
 export default function useControllableReducer<TOption>(
   internalReducer: ListboxReducer<TOption>,
   externalReducer: ListboxReducer<TOption> | undefined,
