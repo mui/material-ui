@@ -46,7 +46,10 @@ type DefaultState = 'Hover' | 'Active' | 'Disabled';
 type DefaultProperty = 'Color' | 'Bg' | 'Border';
 
 export interface PaletteVariant
-  extends Record<`${DefaultVariant}${DefaultState}${DefaultProperty}`, string> {}
+  extends Record<
+    `${DefaultVariant}${DefaultProperty}` | `${DefaultVariant}${DefaultState}${DefaultProperty}`,
+    string
+  > {}
 
 export interface PaletteRangeOverrides {}
 export interface DefaultPaletteRange extends DefaultPaletteVariant {
