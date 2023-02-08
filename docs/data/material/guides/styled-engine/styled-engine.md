@@ -104,12 +104,12 @@ You can use these `styled-component` examples as a reference:
 
 <!-- #default-branch-switch -->
 
-- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [create-react-app](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components)
+- [create-react-app with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
 - [and many others](https://github.com/mui/material-ui/tree/master/examples)
 
 :::warning
 `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/material-ui/getting-started/installation/) for more info.
 :::
 
-This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
+This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
