@@ -89,8 +89,8 @@ const ModalDialogRoot = styled(SheetRoot, {
   ...(ownerState.layout === 'center' && {
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, max(-50%, -50vh + var(--ModalDialog-padding)))',
-    maxHeight: 'calc(100vh - 2 * var(--ModalDialog-padding))',
+    transform: 'translate(-50%, -50%)',
+    maxHeight: 'calc(94vh)',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
     '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
