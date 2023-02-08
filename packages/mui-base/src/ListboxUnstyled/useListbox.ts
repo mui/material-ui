@@ -20,6 +20,9 @@ const defaultIsOptionDisabled = () => false;
 const defaultOptionStringifier = <TOption>(option: TOption) =>
   typeof option === 'string' ? option : String(option);
 
+/**
+ * @ignore - do not document.
+ */
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
     disabledItemsFocusable = false,
@@ -267,7 +270,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     return {
       selected,
       disabled,
-      highlighted: highlightedIndex === index,
+      highlighted: highlightedIndex === index && index !== -1,
     };
   };
 
