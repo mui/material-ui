@@ -17,11 +17,6 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
   children?: React.ReactNode;
   className?: string;
   /**
-   * If `true`, the component will not have any built-in classes applied.
-   * @default undefined
-   */
-  disableDefaultClasses?: boolean;
-  /**
    * The props used for each slot inside the Button.
    * @default {}
    */

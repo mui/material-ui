@@ -19,32 +19,23 @@ export interface ClassNameConfiguratorProps extends Partial<ClassNameConfigurati
 }
 
 /**
- * Creates a function that controls how the component classes are generated.
- * Currently it only controls whether the classes are applied or not.
+ * @ignore - do not document.
  *
- * @param disableClassesOverride Allows to override the setting from the context.
- * @returns Function to be called with the `generateUtilityClass` function to generate the classes.
+ * Wraps the `generateUtilityClass` function and controls how the classes are generated.
+ * Currently it only affects whether the classes are applied or not.
+ *
+ * @returns Function to be called with the `generateUtilityClass` function specific to a component to generate the classes.
  */
-export function useClassNameGenerator(disableClassesOverride?: boolean) {
-  const { disableDefaultClasses: disableClasses } = React.useContext(ClassNameConfiguratorContext);
+export function useClassNamesOverride(generateUtilityClass: (slot: string) => string) {
+  const { disableDefaultClasses } = React.useContext(ClassNameConfiguratorContext);
 
-  let disable = disableClasses;
-  if (disableClassesOverride !== undefined) {
-    disable = disableClassesOverride;
-  }
+  return (slot: string) => {
+    if (disableDefaultClasses) {
+      return '';
+    }
 
-  return React.useCallback(
-    function overrideClasses(generateUtilityClass: (slot: string) => string) {
-      return (slot: string) => {
-        if (disable) {
-          return '';
-        }
-
-        return generateUtilityClass(slot);
-      };
-    },
-    [disable],
-  );
+    return generateUtilityClass(slot);
+  };
 }
 
 /**

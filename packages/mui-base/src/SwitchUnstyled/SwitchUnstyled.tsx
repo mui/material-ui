@@ -13,12 +13,11 @@ import {
   SwitchUnstyledTypeMap,
 } from './SwitchUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { useClassNameGenerator } from '../utils/ClassNameConfigurator';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 
 const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
   const { checked, disabled, focusVisible, readOnly } = ownerState;
-  const overrideClassNames = useClassNameGenerator();
 
   const slots = {
     root: [
@@ -33,7 +32,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
     track: ['track'],
   };
 
-  return composeClasses(slots, overrideClassNames(getSwitchUnstyledUtilityClass), {});
+  return composeClasses(slots, useClassNamesOverride(getSwitchUnstyledUtilityClass), {});
 };
 
 /**
