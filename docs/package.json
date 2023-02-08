@@ -20,9 +20,9 @@
     "link-check": "node ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.20.7",
+    "@babel/core": "^7.20.12",
     "@babel/plugin-transform-object-assign": "^7.18.6",
-    "@babel/runtime-corejs2": "^7.20.7",
+    "@babel/runtime-corejs2": "^7.20.13",
     "@docsearch/react": "^3.3.2",
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
@@ -101,7 +101,7 @@
     "react-imask": "^6.4.3",
     "react-intersection-observer": "^9.4.1",
     "react-is": "^18.2.0",
-    "react-number-format": "^4.9.4",
+    "react-number-format": "^5.1.3",
     "react-router-dom": "^6.8.1",
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
