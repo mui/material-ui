@@ -150,23 +150,33 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     };
   };
 
-  const getItemState = (id: string): MenuItemState => {
-    const { disabled, highlighted } = getOptionState(id);
-    return { disabled, highlighted };
-  };
+  const getItemState = React.useCallback(
+    (id: string): MenuItemState => {
+      const { disabled, highlighted } = getOptionState(id);
+      return { disabled, highlighted };
+    },
+    [getOptionState],
+  );
 
   React.useDebugValue({ menuItems, highlightedOption });
 
+  const contextValue = React.useMemo(
+    () => ({
+      getItemProps: getOptionProps,
+      getItemState,
+      registerHighlightChangeHandler,
+      registerItem,
+      unregisterItem,
+    }),
+    [getOptionProps, getItemState, registerHighlightChangeHandler, registerItem, unregisterItem],
+  );
+
   return {
-    registerItem,
-    unregisterItem,
-    menuItems,
+    contextValue,
     getListboxProps,
-    getItemState,
-    getItemProps: getOptionProps,
     highlightedOption,
     highlightFirstItem,
     highlightLastItem,
-    registerHighlightChangeHandler,
+    menuItems,
   };
 }
