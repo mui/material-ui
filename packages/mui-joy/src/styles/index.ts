@@ -14,6 +14,8 @@ export type {
   PaletteTextOverrides,
   PaletteBackground,
   PaletteBackgroundOverrides,
+  PaletteCommon,
+  PaletteCommonOverrides,
   PalettePrimary,
   PalettePrimaryOverrides,
   PaletteNeutral,
@@ -27,6 +29,7 @@ export type {
   PaletteWarning,
   PaletteWarningOverrides,
   Palette,
+  PaletteOverrides,
 } from './types/colorSystem';
 export type { Focus } from './types/focus';
 export type { Radius } from './types/radius';

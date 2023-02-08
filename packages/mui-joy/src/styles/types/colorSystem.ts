@@ -1,5 +1,12 @@
 import { OverridableStringUnion, Simplify } from '@mui/types';
 
+type OverridableRecord<DefaultRecord extends { [k: string]: any }, Overrides = {}> = {
+  [k in OverridableStringUnion<
+    Exclude<keyof DefaultRecord, symbol>,
+    Overrides
+  >]: k extends keyof DefaultRecord ? DefaultRecord[k] : never;
+};
+
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
@@ -42,44 +49,53 @@ export interface PaletteVariant
   extends Record<`${DefaultVariant}${DefaultState}${DefaultProperty}`, string> {}
 
 export interface PaletteRangeOverrides {}
-export type DefaultPaletteRange = OverridableStringUnion<
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | 'mainChannel'
-  | 'lightChannel'
-  | 'darkChannel'
-  | keyof DefaultPaletteVariant,
-  PaletteRangeOverrides
->;
+export interface DefaultPaletteRange extends DefaultPaletteVariant {
+  '50': string;
+  '100': string;
+  '200': string;
+  '300': string;
+  '400': string;
+  '500': string;
+  '600': string;
+  '700': string;
+  '800': string;
+  '900': string;
+  mainChannel: string;
+  lightChannel: string;
+  darkChannel: string;
+}
+export interface PaletteRange
+  extends OverridableRecord<DefaultPaletteRange, PaletteRangeOverrides> {}
 
-export interface PaletteRange extends Record<DefaultPaletteRange, string>, PaletteVariant {}
-
-export interface PaletteCommon {
+interface DefaultPaletteCommon {
   white: string;
   black: string;
 }
+export interface PaletteCommonOverrides {}
+export interface PaletteCommon
+  extends OverridableRecord<DefaultPaletteCommon, PaletteCommonOverrides> {}
 
+interface DefaultPaletteText {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
 export interface PaletteTextOverrides {}
-type DefaultPaletteText = OverridableStringUnion<
-  'primary' | 'secondary' | 'tertiary',
-  PaletteTextOverrides
->;
-export interface PaletteText extends Record<DefaultPaletteText, string> {}
+export interface PaletteText extends OverridableRecord<DefaultPaletteText, PaletteTextOverrides> {}
 
+interface DefaultPaletteBackground {
+  body: string;
+  surface: string;
+  popup: string;
+  level1: string;
+  level2: string;
+  level3: string;
+  tooltip: string;
+  backdrop: string;
+}
 export interface PaletteBackgroundOverrides {}
-type DefaultPaletteBackground = OverridableStringUnion<
-  'body' | 'surface' | 'popup' | 'level1' | 'level2' | 'level3' | 'tooltip' | 'backdrop',
-  PaletteBackgroundOverrides
->;
-export interface PaletteBackground extends Record<DefaultPaletteBackground, string> {}
+export interface PaletteBackground
+  extends OverridableRecord<DefaultPaletteBackground, PaletteBackgroundOverrides> {}
 
 export interface ColorPalettePropOverrides {}
 
@@ -93,46 +109,55 @@ export type ColorPaletteProp = OverridableStringUnion<
 // Split interfaces into multiple chunks so that they can be augmented independently
 
 export interface PalettePrimaryOverrides {}
-type DefaultPalettePrimary = OverridableStringUnion<DefaultPaletteRange, PalettePrimaryOverrides>;
 
 export interface PaletteNeutralOverrides {}
-type DefaultPaletteNeutral = OverridableStringUnion<
-  DefaultPaletteRange | 'plainHoverColor' | 'outlinedHoverColor' | 'softHoverColor',
-  PaletteNeutralOverrides
->;
 
 export interface PaletteDangerOverrides {}
-type DefaultPaletteDanger = OverridableStringUnion<DefaultPaletteRange, PaletteDangerOverrides>;
 
 export interface PaletteInfoOverrides {}
-type DefaultPaletteInfo = OverridableStringUnion<DefaultPaletteRange, PaletteInfoOverrides>;
 
 export interface PaletteSuccessOverrides {}
-type DefaultPaletteSuccess = OverridableStringUnion<DefaultPaletteRange, PaletteSuccessOverrides>;
 
 export interface PaletteWarningOverrides {}
-type DefaultPaletteWarning = OverridableStringUnion<DefaultPaletteRange, PaletteWarningOverrides>;
 
-export interface PalettePrimary extends Record<DefaultPalettePrimary, string> {}
-export interface PaletteNeutral extends Record<DefaultPaletteNeutral, string> {}
-export interface PaletteDanger extends Record<DefaultPaletteDanger, string> {}
-export interface PaletteInfo extends Record<DefaultPaletteInfo, string> {}
-export interface PaletteSuccess extends Record<DefaultPaletteSuccess, string> {}
-export interface PaletteWarning extends Record<DefaultPaletteWarning, string> {}
+export interface PalettePrimary
+  extends OverridableRecord<DefaultPaletteRange, PalettePrimaryOverrides> {}
+export interface PaletteNeutral
+  extends OverridableRecord<
+    DefaultPaletteRange & {
+      plainHoverColor: string;
+      outlinedHoverColor: string;
+      softHoverColor: string;
+    },
+    PaletteNeutralOverrides
+  > {}
+export interface PaletteDanger
+  extends OverridableRecord<DefaultPaletteRange, PaletteDangerOverrides> {}
+export interface PaletteInfo extends OverridableRecord<DefaultPaletteRange, PaletteInfoOverrides> {}
+export interface PaletteSuccess
+  extends OverridableRecord<DefaultPaletteRange, PaletteSuccessOverrides> {}
+export interface PaletteWarning
+  extends OverridableRecord<DefaultPaletteRange, PaletteWarningOverrides> {}
 
-export interface Palette {
+export interface PaletteOverrides {}
+export interface Palette
+  extends OverridableRecord<
+    {
+      primary: PalettePrimary;
+      neutral: PaletteNeutral;
+      danger: PaletteDanger;
+      info: PaletteInfo;
+      success: PaletteSuccess;
+      warning: PaletteWarning;
+      common: PaletteCommon;
+      text: PaletteText;
+      background: PaletteBackground;
+      divider: string;
+      focusVisible: string;
+    },
+    PaletteOverrides
+  > {
   mode: 'light' | 'dark';
-  primary: PalettePrimary;
-  neutral: PaletteNeutral;
-  danger: PaletteDanger;
-  info: PaletteInfo;
-  success: PaletteSuccess;
-  warning: PaletteWarning;
-  common: PaletteCommon;
-  text: PaletteText;
-  background: PaletteBackground;
-  divider: string;
-  focusVisible: string;
 }
 
 export interface ColorSystem {
@@ -142,12 +167,15 @@ export interface ColorSystem {
 }
 
 export interface PaletteOptions extends Palette {
-  primary: PalettePrimary & PaletteVariant;
-  neutral: PaletteNeutral & PaletteVariant;
-  danger: PaletteDanger & PaletteVariant;
-  info: PaletteInfo & PaletteVariant;
-  success: PaletteSuccess & PaletteVariant;
-  warning: PaletteWarning & PaletteVariant;
+  primary: DefaultPaletteRange & PaletteVariant;
+  neutral: DefaultPaletteRange & PaletteVariant;
+  danger: DefaultPaletteRange & PaletteVariant;
+  info: DefaultPaletteRange & PaletteVariant;
+  success: DefaultPaletteRange & PaletteVariant;
+  warning: DefaultPaletteRange & PaletteVariant;
+  background: DefaultPaletteBackground;
+  common: DefaultPaletteCommon;
+  text: DefaultPaletteText;
 }
 
 export type ApplyColorInversion<T extends { color?: ColorPaletteProp | 'inherit' }> = Simplify<

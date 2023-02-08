@@ -611,9 +611,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   /**
    * Color channels generation
    */
-  function attachColorChannels(
-    palette: Record<ColorPaletteProp, Record<DefaultPaletteRange, string>>,
-  ) {
+  function attachColorChannels(palette: Record<ColorPaletteProp, DefaultPaletteRange>) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
@@ -635,7 +633,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   (
     Object.entries(theme.colorSchemes) as Array<
-      [string, { palette: Record<ColorPaletteProp, Record<DefaultPaletteRange, string>> }]
+      [string, { palette: Record<ColorPaletteProp, DefaultPaletteRange> }]
     >
   ).forEach(([, colorSystem]) => {
     attachColorChannels(colorSystem.palette);
