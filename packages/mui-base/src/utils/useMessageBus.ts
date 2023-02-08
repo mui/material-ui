@@ -35,6 +35,9 @@ export function createMessageBus(): MessageBus {
   return { subscribe, publish };
 }
 
+/**
+ * @ignore - internal hook.
+ */
 export default function useMessageBus() {
   const bus = React.useRef<MessageBus>();
   if (!bus.current) {

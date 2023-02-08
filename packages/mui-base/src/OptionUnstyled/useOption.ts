@@ -4,7 +4,12 @@ import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { UseOptionParameters, UseOptionReturnValue } from './useOption.types';
 import { EventHandlers } from '../utils';
 import useForcedRerendering from '../utils/useForcedRerendering';
-
+/**
+ *
+ * API:
+ *
+ * - [useOption API](https://mui.com/base/api/use-option/)
+ */
 export default function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
   const { value, optionRef: optionRefParam } = params;
 
