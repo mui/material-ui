@@ -74,7 +74,7 @@
   "devDependencies": {
     "@argos-ci/core": "^0.7.3",
     "@babel/cli": "^7.20.7",
-    "@babel/core": "^7.20.7",
+    "@babel/core": "^7.20.12",
     "@babel/node": "^7.20.7",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
@@ -205,7 +205,7 @@
     "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {
-    "**/@babel/core": "^7.20.7",
+    "**/@babel/core": "^7.20.12",
     "**/@babel/code-frame": "^7.18.6",
     "**/@babel/plugin-proposal-class-properties": "^7.18.6",
     "**/@babel/plugin-proposal-object-rest-spread": "^7.20.7",
@@ -217,7 +217,7 @@
     "**/@babel/preset-env": "^7.20.2",
     "**/@babel/preset-react": "^7.18.6",
     "**/@babel/preset-typescript": "^7.18.6",
-    "**/@babel/runtime": "^7.20.7",
+    "**/@babel/runtime": "^7.20.13",
     "**/@definitelytyped/header-parser": "^0.0.147",
     "**/@definitelytyped/typescript-versions": "^0.0.147",
     "**/@definitelytyped/utils": "^0.0.147",
