@@ -32,7 +32,7 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "<TOther extends Record<string, ((event: any) => void) | undefined> = {}>(otherHandlers?: TOther) => UseSnackbarRootSlotProps<TOther>",
+        "name": "<TOther extends Record<string, ((event: any) => void) | undefined> = {}>(externalProps?: TOther) => UseSnackbarRootSlotProps<TOther>",
         "description": "Resolver for the root slot's props."
       },
       "required": true

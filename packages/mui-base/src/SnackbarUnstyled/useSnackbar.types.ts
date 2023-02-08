@@ -57,7 +57,7 @@ export interface UseSnackbarReturnValue {
    * @returns props that should be spread on the root slot
    */
   getRootProps: <TOther extends Record<string, ((event: any) => void) | undefined> = {}>(
-    otherHandlers?: TOther,
+    externalProps?: TOther,
   ) => UseSnackbarRootSlotProps<TOther>;
   /**
    * Callback fired when a "click away" event is detected.
