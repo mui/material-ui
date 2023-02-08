@@ -117,3 +117,63 @@ export interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TVa
 export interface UseSelectMultiResult<TValue> extends UseSelectCommonResult<TValue> {
   value: TValue[];
 }
+
+export interface UseSelectReturnValue<TValue> {
+  /**
+   * If `true`, the select's button is active (pressed).
+   * @default false
+   */
+  buttonActive: boolean;
+  /**
+   * If `true`, the select's button is being focused using keyboard.
+   * @default false
+   */
+  buttonFocusVisible: boolean;
+  /**
+   * If `true`, the component will be disabled.
+   * @default false
+   */
+  disabled: boolean;
+  /**
+   * Resolver for the button slot's props.
+   * @param otherHandlers event handlers for the root button slot
+   * @returns props that should be spread on the root button slot
+   */
+  getButtonProps: <TOther extends EventHandlers>(
+    otherHandlers?: TOther,
+  ) => UseSelectButtonSlotProps<TOther>;
+  /**
+   * Resolver for the listbox slot's props.
+   * @param otherHandlers event handlers for the listbox slot
+   * @returns props that should be spread on the root button slot
+   */
+  getListboxProps: <TOther extends EventHandlers>(
+    otherHandlers?: TOther,
+  ) => UseSelectListboxSlotProps<TOther>;
+  /**
+   * Resolver for the specified option's props.
+   * @param option the select's option for which the props are resolved
+   * @param otherHandlers event handlers for the specified option slot
+   * @returns props that should be spread on the specified option slot
+   */
+  getOptionProps: <TOther extends EventHandlers>(
+    option: SelectOption<TValue>,
+    otherHandlers?: TOther,
+  ) => UseSelectOptionSlotProps<TOther>;
+  /**
+   * Resolver for the specified option's state.
+   * @param option the select's option which state is resolved
+   * @param otherHandlers event handlers for the specified option slot
+   * @returns props that should be spread on the specified option slot
+   */
+  getOptionState: (option: SelectOption<TValue>) => OptionState;
+  /**
+   * If `true`, the select dropdown is open.
+   * @default false
+   */
+  open: boolean;
+  /**
+   * The selected value.
+   */
+  value: TValue | TValue[] | null;
+}

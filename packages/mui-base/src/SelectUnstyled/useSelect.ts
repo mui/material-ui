@@ -13,6 +13,7 @@ import {
   UseSelectMultiResult,
   UseSelectOptionSlotProps,
   UseSelectParameters,
+  UseSelectReturnValue,
   UseSelectSingleParameters,
   UseSelectSingleResult,
 } from './useSelect.types';
@@ -38,7 +39,7 @@ function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMu
  *
  * - [useSelect API](https://mui.com/base/api/use-select/)
  */
-function useSelect<TValue>(props: UseSelectParameters<TValue>) {
+function useSelect<TValue>(props: UseSelectParameters<TValue>): UseSelectReturnValue<TValue> {
   const {
     buttonRef: buttonRefProp,
     defaultValue,
