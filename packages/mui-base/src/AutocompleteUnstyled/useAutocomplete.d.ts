@@ -148,6 +148,7 @@ export interface UseAutocompleteProps<
    * Used to determine the disabled state for a given option.
    *
    * @param {T} option The option to test.
+   * @template T The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
   getOptionDisabled?: (option: T) => boolean;
