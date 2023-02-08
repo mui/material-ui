@@ -45,7 +45,7 @@ async function createApp() {
   const rootPath = path.join(__dirname, '../../../../');
   const umdPath = '/umd.js';
 
-  let index = await fse.readFile(path.join(rootPath, 'examples/cdn/index.html'), 'utf8');
+  let index = await fse.readFile(path.join(rootPath, 'examples/material-via-cdn/index.html'), 'utf8');
   index = index.replace(
     'https://unpkg.com/@mui/material@latest/umd/material-ui.development.js',
     umdPath,
@@ -112,8 +112,8 @@ async function startBrowser() {
 }
 
 async function run() {
-  let server = { close() {} };
-  let closeBrowser = () => {};
+  let server = { close() { } };
+  let closeBrowser = () => { };
   try {
     const app = await createApp();
     server = await startServer(app);
