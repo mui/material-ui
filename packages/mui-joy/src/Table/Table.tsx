@@ -9,8 +9,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
-import typographyClasses from '../Typography/typographyClasses';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
   const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
@@ -267,14 +266,6 @@ const TableRoot = styled('table', {
         top: 'var(--private_TableCell-height)',
       },
     },
-    {
-      // Typography integration
-      [tableSelector.getCell()]: {
-        [`& .${typographyClasses.noWrap}`]: {
-          display: 'block',
-        },
-      },
-    },
   ];
 });
 
@@ -317,7 +308,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyInheritContext.Provider value>
       <TableRoot
         as={component}
         ownerState={ownerState}
@@ -327,7 +318,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
       >
         {children}
       </TableRoot>
-    </TypographyContext.Provider>
+    </TypographyInheritContext.Provider>
   );
 }) as OverridableComponent<TableTypeMap>;
 

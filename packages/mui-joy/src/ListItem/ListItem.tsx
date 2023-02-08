@@ -173,7 +173,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   if (listComponent) {
     // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-    // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+    // https://www.w3.org/WAI/ARIA/apg/patterns/menubar/examples/menubar-navigation/
     role = { menu: 'none', menubar: 'none', group: 'presentation' }[listRole];
   }
   if (roleProp) {

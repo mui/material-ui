@@ -292,6 +292,13 @@ export interface UseAutocompleteProps<
   value?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
 }
 
+export interface UseAutocompleteParameters<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+> extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {}
+
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =
@@ -318,7 +325,12 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-
+/**
+ *
+ * API:
+ *
+ * - [useAutocomplete API](https://mui.com/base/api/use-autocomplete/)
+ */
 export default function useAutocomplete<
   T,
   Multiple extends boolean | undefined = false,
