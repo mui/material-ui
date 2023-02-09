@@ -1,3 +1,5 @@
+import type { ElementType } from 'react';
+
 export interface MuiPage {
   pathname: string;
   children?: MuiPage[];
@@ -6,7 +8,7 @@ export interface MuiPage {
   /**
    * Icon component to use. Overrides `icon` if provided.
    */
-  IconComponent?: React.ElementType;
+  IconComponent?: ElementType;
   /**
    * Indicates if the pages are regarding some legacy API.
    */
