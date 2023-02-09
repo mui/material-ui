@@ -19,7 +19,7 @@ It renders an unordered list (`<ul>`) by default.
 Use the Unstyled Menu Item to add items to the menu.
 These are rendered as `<li>` elements.
 
-{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
