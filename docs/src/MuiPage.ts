@@ -4,6 +4,10 @@ export interface MuiPage {
   disableDrawer?: boolean;
   icon?: string;
   /**
+   * Icon component to use. Overrides `icon` if provided.
+   */
+  IconComponent?: React.ElementType;
+  /**
    * Indicates if the pages are regarding some legacy API.
    */
   legacy?: boolean;

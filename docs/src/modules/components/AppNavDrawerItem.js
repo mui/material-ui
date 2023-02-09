@@ -17,9 +17,7 @@ import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
-import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 import ScienceIcon from '@mui/icons-material/Science';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -32,9 +30,7 @@ const iconsMap = {
   AddIcon: AddCircleRoundedIcon,
   BookIcon: BookRoundedIcon,
   ReaderIcon: ChromeReaderModeRoundedIcon,
-  TableViewIcon: TableViewRoundedIcon,
   ExperimentIcon: ScienceIcon,
-  DatePickerIcon: DateRangeRounded,
 };
 
 const Item = styled(
@@ -202,6 +198,7 @@ export default function AppNavDrawerItem(props) {
     depth,
     href,
     icon,
+    IconComponent: IconComponentProp,
     legacy,
     newFeature,
     linkProps,
@@ -231,8 +228,8 @@ export default function AppNavDrawerItem(props) {
     }
   };
 
-  const hasIcon = icon && iconsMap[icon];
-  const IconComponent = hasIcon ? iconsMap[icon] : null;
+  const hasIcon = !!IconComponentProp || (icon && iconsMap[icon]);
+  const IconComponent = IconComponentProp || iconsMap[icon] || null;
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
   const iconElement = hasIcon ? (
     <Box
@@ -289,6 +286,7 @@ AppNavDrawerItem.propTypes = {
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   icon: PropTypes.string,
+  IconComponent: PropTypes.elementType,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   newFeature: PropTypes.bool,

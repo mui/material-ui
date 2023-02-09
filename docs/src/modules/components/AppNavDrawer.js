@@ -241,6 +241,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
+        IconComponent={page.IconComponent}
         subheader={subheader}
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || subheader}
@@ -268,6 +269,7 @@ function reduceChildRoutes(context) {
         newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
+        IconComponent={page.IconComponent}
         subheader={Boolean(page.subheader)}
         onClick={onClose}
       />,
