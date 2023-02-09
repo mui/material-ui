@@ -149,12 +149,12 @@ export interface UseSelectMultiResult<TValue> extends UseSelectCommonResult<TVal
 
 export interface UseSelectReturnValue<TValue> {
   /**
-   * If `true`, the select's button is active (pressed).
+   * If `true`, the select's button will be active (pressed).
    * @default false
    */
   buttonActive: boolean;
   /**
-   * If `true`, the select's button is being focused using keyboard.
+   * If `true`, it indicates that the select's button is being focused using keyboard.
    * @default false
    */
   buttonFocusVisible: boolean;
@@ -197,7 +197,7 @@ export interface UseSelectReturnValue<TValue> {
    */
   getOptionState: (option: SelectOption<TValue>) => OptionState;
   /**
-   * If `true`, the select dropdown is open.
+   * If `true`, the select dropdown will be opened.
    * @default false
    */
   open: boolean;
