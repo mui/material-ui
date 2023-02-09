@@ -37,6 +37,18 @@ export default function VariableWidth() {
       <NoMaxWidthTooltip title={longText}>
         <Button sx={{ m: 1 }}>No wrapping</Button>
       </NoMaxWidthTooltip>
+      <Tooltip
+        PopperProps={{
+          sx: {
+            '& .MuiTooltip-tooltip': {
+              maxWidth: 'none',
+            },
+          },
+        }}
+        title={longText}
+      >
+        <Button sx={{ m: 1 }}>Sx no wrapping</Button>
+      </Tooltip>
     </div>
   );
 }
