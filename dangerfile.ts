@@ -193,6 +193,7 @@ function addDeployPreviewUrls() {
     }
 
     return url
+      .replace(/^\//, '') // remove initial `/`
       .replace('joy/', 'joy-ui/')
       .replace('components/', 'react-')
       .replace(/\/[^/]+\.md$/, '/');
@@ -218,7 +219,7 @@ ${
           return `- [${path}](${netlifyPreview}${formattedUrl})`;
         })
         .join('\n')
-    : 'No updates.'
+    : netlifyPreview
 }
 `);
 }
