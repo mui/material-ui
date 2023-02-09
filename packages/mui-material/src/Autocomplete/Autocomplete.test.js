@@ -1667,6 +1667,7 @@ describe('<Autocomplete />', () => {
           open
           options={[{ label: 'one' }, { label: 'two' }]}
           renderInput={(params) => <TextField {...params} autoFocus />}
+          isOptionEqualToValue={(o, v) => o.label === v.label}
         />,
       );
       const textbox = screen.getByRole('combobox');
@@ -2798,28 +2799,80 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseDown(textbox);
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
+  });
 
-    it('should not be able to delete the tag when multiple=true', () => {
-      const { container } = render(
-        <Autocomplete
-          readOnly
-          multiple
-          defaultValue={['one', 'two']}
-          options={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
-      );
+  it('should not be able to delete the tag when multiple=true', () => {
+    const { container } = render(
+      <Autocomplete
+        readOnly
+        multiple
+        defaultValue={['one', 'two']}
+        options={['one', 'two', 'three']}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
 
-      const chip = container.querySelector(`.${chipClasses.root}`);
-      expect(chip).not.to.have.class(chipClasses.deletable);
+    const chip = container.querySelector(`.${chipClasses.root}`);
+    expect(chip).not.to.have.class(chipClasses.deletable);
 
-      const textbox = screen.getByRole('combobox');
-      act(() => {
-        textbox.focus();
-      });
-      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
-      fireEvent.keyDown(textbox, { key: 'Backspace' });
-      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+    const textbox = screen.getByRole('combobox');
+    act(() => {
+      textbox.focus();
     });
+    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+    fireEvent.keyDown(textbox, { key: 'Backspace' });
+    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+  });
+
+  // https://github.com/mui/material-ui/issues/36114
+  it('should allow deleting a tag immediately after adding it while the listbox is still open', () => {
+    const { container } = render(
+      <Autocomplete
+        multiple
+        disableCloseOnSelect
+        filterSelectedOptions
+        options={['one', 'two', 'three']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    const textbox = screen.getByRole('combobox');
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+    fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
+
+    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+    fireEvent.keyDown(textbox, { key: 'Backspace' });
+    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+  });
+
+  it('should allow deleting a tag immediately after adding it while the listbox is still open 2', () => {
+    const { container } = render(
+      <Autocomplete
+        multiple
+        disableCloseOnSelect
+        filterSelectedOptions
+        options={[{ label: 'one' }, { label: 'two' }, { label: 'three' }]}
+        isOptionEqualToValue={(opt, val) => opt.label === val.label}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    const textbox = screen.getByRole('combobox');
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+    fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
+
+    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+    fireEvent.keyDown(textbox, { key: 'Backspace' });
+    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
   });
 });

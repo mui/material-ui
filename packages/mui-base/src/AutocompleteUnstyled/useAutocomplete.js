@@ -470,14 +470,15 @@ export default function useAutocomplete(props) {
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
       (multiple
-        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
-        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
+        ? value.length === previousProps.value.length &&
+          previousProps.value.every((val, i) => isOptionEqualToValue(value[i], val))
+        : isOptionEqualToValue(previousProps.value ?? '', value ?? ''))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
       if (previousHighlightedOption) {
         const previousHighlightedOptionExists = filteredOptions.some((option) => {
-          return getOptionLabel(option) === getOptionLabel(previousHighlightedOption);
+          return isOptionEqualToValue(option, previousHighlightedOption);
         });
 
         if (previousHighlightedOptionExists) {
