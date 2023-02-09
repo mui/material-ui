@@ -1,0 +1,22 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The avatars to stack.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "componentsProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future.",
+    "max": "Max avatars to show before +x.",
+    "slotProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
+    "spacing": "Spacing between avatars.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "total": "The total number of avatars. Used for calculating the number of extra avatars.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "avatar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the avatar elements"
+    }
+  }
+}

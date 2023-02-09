@@ -1,0 +1,63 @@
+{
+  "componentDescription": "",
+  "propDescriptions": { "children": "A list of <code>&lt;Tab /&gt;</code> elements." },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "vertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "flexContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the flex container element"
+    },
+    "flexContainerVertical": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the flex container element",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "centered": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the flex container element",
+      "conditions": "<code>centered={true}</code> & <code>!variant=\"scrollable\"</code>"
+    },
+    "scroller": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the tablist element"
+    },
+    "fixed": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tablist element",
+      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
+    },
+    "scrollableX": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tablist element",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "scrollableY": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tablist element",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "hideScrollbar": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tablist element",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
+    },
+    "scrollButtons": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the ScrollButtonComponent component"
+    },
+    "scrollButtonsHideMobile": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the ScrollButtonComponent component",
+      "conditions": "<code>allowScrollButtonsMobile={true}</code>"
+    },
+    "indicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the TabIndicator component"
+    }
+  }
+}

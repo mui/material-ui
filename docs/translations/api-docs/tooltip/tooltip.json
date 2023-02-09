@@ -1,0 +1,90 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "arrow": "If <code>true</code>, adds an arrow to the tooltip.",
+    "children": "Tooltip reference element.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "components": "The components used for each slot inside.<br>This prop is an alias for the <code>slots</code> prop. It&#39;s recommended to use the <code>slots</code> prop instead.",
+    "componentsProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>slotProps</code> prop. It&#39;s recommended to use the <code>slotProps</code> prop instead, as <code>componentsProps</code> will be deprecated in the future.",
+    "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
+    "disableFocusListener": "Do not respond to focus-visible events.",
+    "disableHoverListener": "Do not respond to hover events.",
+    "disableInteractive": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
+    "disableTouchListener": "Do not respond to long press touch events.",
+    "enterDelay": "The number of milliseconds to wait before showing the tooltip. This prop won&#39;t impact the enter touch delay (<code>enterTouchDelay</code>).",
+    "enterNextDelay": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
+    "enterTouchDelay": "The number of milliseconds a user must touch the element before showing the tooltip.",
+    "followCursor": "If <code>true</code>, the tooltip follow the cursor over the wrapped element.",
+    "id": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id.",
+    "leaveDelay": "The number of milliseconds to wait before hiding the tooltip. This prop won&#39;t impact the leave touch delay (<code>leaveTouchDelay</code>).",
+    "leaveTouchDelay": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
+    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
+    "onOpen": "Callback fired when the component requests to be open.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
+    "open": "If <code>true</code>, the component is shown.",
+    "placement": "Tooltip placement.",
+    "PopperComponent": "The component used for the popper.",
+    "PopperProps": "Props applied to the <a href=\"/material-ui/api/popper/\"><code>Popper</code></a> element.",
+    "slotProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
+    "slots": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "title": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
+    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+  },
+  "classDescriptions": {
+    "popper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Popper component"
+    },
+    "popperInteractive": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the Popper component",
+      "conditions": "<code>disableInteractive={true}</code>"
+    },
+    "popperArrow": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Popper component",
+      "conditions": "<code>arrow={true}</code>"
+    },
+    "popperClose": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the Popper component",
+      "conditions": "the tooltip is open"
+    },
+    "tooltip": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the tooltip (label wrapper) element"
+    },
+    "tooltipArrow": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "<code>arrow={true}</code>"
+    },
+    "arrow": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the arrow element" },
+    "touch": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "the tooltip is opened by touch"
+    },
+    "tooltipPlacementLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "<code>placement</code> contains \"left\""
+    },
+    "tooltipPlacementRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "<code>placement</code> contains \"right\""
+    },
+    "tooltipPlacementTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "<code>placement</code> contains \"top\""
+    },
+    "tooltipPlacementBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "<code>placement</code> contains \"bottom\""
+    }
+  }
+}
