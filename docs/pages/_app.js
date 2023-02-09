@@ -131,6 +131,8 @@ function AppWrapper(props) {
 
   const { asPathWithoutLang, product, ...router } = useRouterExtra();
 
+  console.log('router.pathname', router.pathname);
+
   React.useEffect(() => {
     loadDependencies();
     registerServiceWorker();
@@ -155,6 +157,9 @@ function AppWrapper(props) {
     }
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);
+
+    console.log('activePage', activePage);
+    console.log('activePageParents', activePageParents);
 
     return { activePage, activePageParents, pages };
   }, [product, router.pathname]);
