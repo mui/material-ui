@@ -356,7 +356,13 @@ const augmentPalette = (colorSchemes: any, prop: keyof Palette) => {
       !Object.keys(defaultTheme.colorSchemes.light.palette[prop]).includes(k) &&
       !k.match(/^(plain|outlined|soft|solid)/)
     ) {
-      result.push(`${k}: string;`);
+      result.push(`${k}: true;`);
+    }
+    if (
+      Object.keys(defaultTheme.colorSchemes.light.palette[prop]).includes(k) &&
+      palette[k] === undefined
+    ) {
+      result.push(`${k}: false;`);
     }
   });
   return result.join('\n');
@@ -379,27 +385,40 @@ ${text}
 const generateThemeAugmentation = (data: any) => {
   const result = [
     renderInterface(
-      'PalettePrimary',
+      'PalettePrimaryOverrides',
       prependSpace(augmentPalette(data?.colorSchemes, 'primary'), 4),
     ),
     renderInterface(
-      `PaletteNeutral`,
+      `PaletteNeutralOverrides`,
       prependSpace(augmentPalette(data?.colorSchemes, 'neutral'), 4),
     ),
-    renderInterface('PaletteDanger', prependSpace(augmentPalette(data?.colorSchemes, 'danger'), 4)),
-    renderInterface('PaletteInfo', prependSpace(augmentPalette(data?.colorSchemes, 'info'), 4)),
     renderInterface(
-      'PaletteSuccess',
+      'PaletteDangerOverrides',
+      prependSpace(augmentPalette(data?.colorSchemes, 'danger'), 4),
+    ),
+    renderInterface(
+      'PaletteInfoOverrides',
+      prependSpace(augmentPalette(data?.colorSchemes, 'info'), 4),
+    ),
+    renderInterface(
+      'PaletteSuccessOverrides',
       prependSpace(augmentPalette(data?.colorSchemes, 'success'), 4),
     ),
     renderInterface(
-      'PaletteWarning',
+      'PaletteWarningOverrides',
       prependSpace(augmentPalette(data?.colorSchemes, 'warning'), 4),
     ),
-    renderInterface('PaletteText', prependSpace(augmentPalette(data?.colorSchemes, 'text'), 4)),
     renderInterface(
-      'PaletteBackground',
+      'PaletteBackgroundOverrides',
       prependSpace(augmentPalette(data?.colorSchemes, 'background'), 4),
+    ),
+    renderInterface(
+      'PaletteCommonOverrides',
+      prependSpace(augmentPalette(data?.colorSchemes, 'common'), 4),
+    ),
+    renderInterface(
+      'PaletteTextOverrides',
+      prependSpace(augmentPalette(data?.colorSchemes, 'text'), 4),
     ),
   ]
     .filter((text) => !!text)
@@ -631,9 +650,17 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
         Browse palette
       </Button>
       <Modal open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-        <ModalDialog sx={{ '--ModalDialog-minWidth': '700px' }}>
+        <ModalDialog
+          aria-labelledby="color-palettes-modal"
+          sx={{
+            '--ModalDialog-minWidth': '700px',
+            maxHeight: '94vh',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
           <ModalClose />
-          <Typography component="h2" fontSize="lg" fontWeight="lg" sx={{ mt: -0.5, mb: 1 }}>
+          <Typography id="color-palettes-modal" component="h2">
             Palettes
           </Typography>
           <Alert
@@ -645,7 +672,15 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
           >
             The selected palette will replace the current tokens.
           </Alert>
-          <Tabs size="sm" defaultValue={0} sx={{ minHeight: 500 }}>
+          <Tabs
+            size="sm"
+            defaultValue={0}
+            sx={{
+              minHeight: 0,
+              flexBasis: 480,
+              [`& .${tabPanelClasses.root}`]: { overflow: 'auto', mr: -2, pr: 2 },
+            }}
+          >
             <TabList
               variant="plain"
               sx={{
@@ -762,65 +797,6 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
           </Tabs>
         </ModalDialog>
       </Modal>
-      {/* <Menu
-        size="sm"
-        component="div"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        placement="bottom-start"
-        onClose={() => setAnchorEl(null)}
-        sx={{ maxHeight: 400, overflow: 'auto' }}
-      >
-        <List size="sm">
-          <ListItem sticky sx={{ fontWeight: 'lg' }}>
-            Material Design
-          </ListItem>
-          {Object.entries(mdColors).map(([name, colors]) => {
-            if (name === 'common') {
-              return <React.Fragment key={name} />;
-            }
-            const filteredColors: Record<string, string> = {};
-            (Object.keys(colors) as Array<keyof typeof colors>).forEach((key) => {
-              if (!Number.isNaN(Number(key))) {
-                filteredColors[key] = colors[key];
-              }
-            });
-            return (
-              <MenuItem
-                key={name}
-                aria-label={name}
-                onClick={() => {
-                  setAnchorEl(null);
-                  onSelect(filteredColors);
-                }}
-              >
-                {Object.entries(filteredColors).map(([key, value]) => (
-                  <Box key={key} sx={{ width: 20, height: 20, bgcolor: value }} />
-                ))}
-              </MenuItem>
-            );
-          })}
-        </List>
-        <List size="sm">
-          <ListItem sticky sx={{ fontWeight: 'lg' }}>
-            Tailwind CSS
-          </ListItem>
-          {Object.entries(tailwindColors).map(([name, colors]) => (
-            <MenuItem
-              key={name}
-              aria-label={name}
-              onClick={() => {
-                setAnchorEl(null);
-                onSelect(colors);
-              }}
-            >
-              {Object.entries(colors).map(([key, value]) => (
-                <Box key={key} sx={{ width: 20, height: 20, bgcolor: value }} />
-              ))}
-            </MenuItem>
-          ))}
-        </List>
-      </Menu> */}
     </React.Fragment>
   );
 }
@@ -917,6 +893,7 @@ function ColorAutocomplete({
       options={options}
       slotProps={{
         listbox: {
+          disablePortal: true,
           placement: 'bottom-start',
           sx: {
             minWidth: 'max-content',
@@ -930,7 +907,7 @@ function ColorAutocomplete({
           {data}
         </AutocompleteOption>
       )}
-      value={value || null}
+      value={value ?? ''}
       blurOnSelect
       openOnFocus
       {...props}
@@ -1008,6 +985,7 @@ function GlobalVariantTokenCreator({
         blurOnSelect
         slotProps={{
           listbox: {
+            disablePortal: true,
             sx: {
               minWidth: 'max-content',
               maxHeight: 160,
@@ -1096,11 +1074,6 @@ function GlobalVariantForm({
     `${selectedVariant}ActiveBorder`,
     `${selectedVariant}DisabledBorder`,
   ].filter((item) => !(tokens as Array<string>).includes(item));
-  // const mergedValueProp = { ...themeDefaultValueProp, ...valueProp };
-  // const primitives = Object.keys(mergedValueProp)
-  //   .filter((k) => !k.match(/Channel$/) && !k.match(/^(plain|outlined|soft|solid)/))
-  //   .filter((k) => mergedValueProp[k] !== undefined);
-  // const primitiveTokens = primitives.map((primitive) => `var(--joy-palette-${color}-${primitive})`);
   return (
     <React.Fragment>
       <Typography component="div" fontWeight="lg" mb={0.5}>

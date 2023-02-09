@@ -99,8 +99,10 @@ const pages = [
     children: [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
+      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
       {
         subheader: 'Theme',
+        pathname: '/joy-ui/customization/theme',
         children: [
           { pathname: '/joy-ui/customization/theme-colors', title: 'Colors' },
           { pathname: '/joy-ui/customization/theme-shadow', title: 'Shadow' },
@@ -108,9 +110,14 @@ const pages = [
           { pathname: '/joy-ui/customization/themed-components', title: 'Components' },
         ],
       },
-      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
-      { pathname: '/joy-ui/customization/default-theme-viewer' },
-      { pathname: '/joy-ui/customization/theme-builder' },
+      {
+        subheader: 'Tools',
+        pathname: '/joy-ui/customization/tool',
+        children: [
+          { pathname: '/joy-ui/customization/default-theme-viewer' },
+          { pathname: '/joy-ui/customization/theme-builder' },
+        ],
+      },
     ],
   },
   {
