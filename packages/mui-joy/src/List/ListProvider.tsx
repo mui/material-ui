@@ -47,14 +47,10 @@ interface ListProviderProps {
 }
 
 /**
- * @internal
+ * @ignore - internal component.
  */
-function ListProvider({
-  children,
-  nested,
-  row = false,
-  wrap = false,
-}: React.PropsWithChildren<ListProviderProps>) {
+function ListProvider(props: React.PropsWithChildren<ListProviderProps>) {
+  const { children, nested, row = false, wrap = false } = props;
   const baseProviders = (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
