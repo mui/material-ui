@@ -19,8 +19,8 @@ declare module '@mui/joy/styles' {
   }
 
   interface PaletteRangeOverrides {
-    '100': false;
-    '120': true;
+    100: false;
+    120: true;
   }
 }
 
