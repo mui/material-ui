@@ -177,7 +177,16 @@ function doesSupportTouchActionNone() {
   }
   return cachedSupportsTouchActionNone;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Slider](https://mui.com/base/react-slider/#hook)
+ *
+ * API:
+ *
+ * - [useSlider API](https://mui.com/base/api/use-slider/)
+ */
 export default function useSlider(parameters: UseSliderParameters) {
   const {
     'aria-labelledby': ariaLabelledby,

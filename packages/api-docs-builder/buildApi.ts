@@ -4,10 +4,13 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import findComponents from './utils/findComponents';
+import findHooks from './utils/findHooks';
 import {
   ComponentInfo,
+  HookInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getBaseHookInfo,
   getSystemComponentInfo,
   extractApiPage,
 } from './buildApiUtils';
@@ -15,6 +18,7 @@ import generateComponentApi, {
   writePrettifiedFile,
   ReactApi,
 } from './ApiBuilders/ComponentApiBuilder';
+import generateHookApi from './ApiBuilders/HookApiBuilder';
 import { createTypeScriptProject, TypeScriptProject } from './utils/createTypeScriptProject';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -111,6 +115,7 @@ interface Settings {
   getProjects: () => TypeScriptProject[];
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
+  getHookInfo?: (filename: string) => HookInfo;
 }
 
 const SETTINGS: Settings[] = [
@@ -146,6 +151,7 @@ const SETTINGS: Settings[] = [
     ],
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
+    getHookInfo: getBaseHookInfo,
   },
   {
     output: {
@@ -165,7 +171,7 @@ const SETTINGS: Settings[] = [
 
 type CommandOptions = { grep?: string };
 
-async function run(argv: CommandOptions) {
+async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
@@ -181,7 +187,7 @@ async function run(argv: CommandOptions) {
       mkdirSync(manifestDir, { recursive: true });
     }
 
-    const componentBuilds = projects.flatMap((project) => {
+    const apiBuilds = projects.flatMap((project) => {
       const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
         (component) => {
           if (
@@ -198,7 +204,14 @@ async function run(argv: CommandOptions) {
         },
       );
 
-      return projectComponents.map(async (component) => {
+      const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+        if (grep === null) {
+          return true;
+        }
+        return grep.test(hook.filename);
+      });
+
+      const componentsBuilds = projectComponents.map(async (component) => {
         try {
           const { filename } = component;
           const componentInfo = setting.getComponentInfo(filename);
@@ -211,9 +224,27 @@ async function run(argv: CommandOptions) {
           throw error;
         }
       });
+
+      const hooksBuilds = projectHooks.map(async (hook) => {
+        if (!setting.getHookInfo) {
+          return [];
+        }
+        try {
+          const { filename } = hook;
+          const hookInfo = setting.getHookInfo(filename);
+
+          mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+          return generateHookApi(hookInfo, project);
+        } catch (error: any) {
+          error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
+          throw error;
+        }
+      });
+
+      return [...componentsBuilds, ...hooksBuilds];
     });
 
-    const builds = await Promise.allSettled(componentBuilds);
+    const builds = await Promise.allSettled(apiBuilds);
 
     const fails = builds.filter(
       (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
@@ -226,6 +257,7 @@ async function run(argv: CommandOptions) {
       process.exit(1);
     }
 
+    // @ts-ignore ignore hooks builds for now
     allBuilds = [...allBuilds, ...builds];
 
     const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
@@ -246,7 +278,7 @@ async function run(argv: CommandOptions) {
 }
 
 yargs
-  .command<CommandOptions>({
+  .command({
     command: '$0',
     describe: 'formats codebase',
     builder: (command) => {

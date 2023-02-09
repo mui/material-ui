@@ -131,7 +131,7 @@ function defaultIsEnabled(): boolean {
  *
  * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
  */
-function FocusTrap(props: FocusTrapProps) {
+function FocusTrap(props: FocusTrapProps): JSX.Element {
   const {
     children,
     disableAutoFocus = false,

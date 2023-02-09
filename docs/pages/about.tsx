@@ -434,6 +434,16 @@ const teamMembers: Array<Profile> = [
     twitter: 'MBilalShafi',
     github: 'MBilalShafi',
   },
+  {
+    src: '/static/branding/about/albert.png',
+    name: 'Albert Yu',
+    title: 'MUI Core Engineer',
+    location: 'Hong Kong',
+    locationCountry: 'hk',
+    about: 'Minimalist, dog lover 🏔🐕',
+    github: 'mj12albert',
+    twitter: 'mj12albert',
+  },
 ];
 
 const contributors = [
