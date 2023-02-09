@@ -2825,54 +2825,56 @@ describe('<Autocomplete />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/36114
-  it('should allow deleting a tag immediately after adding it while the listbox is still open', () => {
-    const { container } = render(
-      <Autocomplete
-        multiple
-        disableCloseOnSelect
-        filterSelectedOptions
-        options={['one', 'two', 'three']}
-        renderInput={(params) => <TextField {...params} autoFocus />}
-      />,
-    );
+  describe('deleting a tag immediately after adding it while the listbox is still open', () => {
+    it('should allow it, given that options are primitive values', () => {
+      const { container } = render(
+        <Autocomplete
+          multiple
+          disableCloseOnSelect
+          filterSelectedOptions
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
 
-    const textbox = screen.getByRole('combobox');
+      const textbox = screen.getByRole('combobox');
 
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
-    fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
 
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
 
-    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
-    fireEvent.keyDown(textbox, { key: 'Backspace' });
-    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
-  });
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
 
-  it('should allow deleting a tag immediately after adding it while the listbox is still open 2', () => {
-    const { container } = render(
-      <Autocomplete
-        multiple
-        disableCloseOnSelect
-        filterSelectedOptions
-        options={[{ label: 'one' }, { label: 'two' }, { label: 'three' }]}
-        isOptionEqualToValue={(opt, val) => opt.label === val.label}
-        renderInput={(params) => <TextField {...params} autoFocus />}
-      />,
-    );
+    it('should allow it, given that options are objects', () => {
+      const { container } = render(
+        <Autocomplete
+          multiple
+          disableCloseOnSelect
+          filterSelectedOptions
+          options={[{ label: 'one' }, { label: 'two' }, { label: 'three' }]}
+          isOptionEqualToValue={(opt, val) => opt.label === val.label}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
 
-    const textbox = screen.getByRole('combobox');
+      const textbox = screen.getByRole('combobox');
 
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
-    fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
 
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight another option
 
-    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
-    fireEvent.keyDown(textbox, { key: 'Backspace' });
-    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
   });
 });
