@@ -32,6 +32,5 @@
       "nodeName": "the root element",
       "conditions": "the <code>Modal</code> has exited"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

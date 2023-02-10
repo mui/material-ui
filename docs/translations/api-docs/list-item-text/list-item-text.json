@@ -36,6 +36,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the secondary `Typography` component"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

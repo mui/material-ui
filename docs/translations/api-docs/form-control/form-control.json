@@ -33,6 +33,5 @@
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

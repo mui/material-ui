@@ -28,5 +28,8 @@
       "conditions": "the <code>Modal</code> has exited"
     }
   },
-  "slotDescriptions": {}
+  "slotDescriptions": {
+    "backdrop": "The component used to render the backdrop.",
+    "root": "The component used to render the root."
+  }
 }

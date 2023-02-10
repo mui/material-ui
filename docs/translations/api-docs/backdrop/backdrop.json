@@ -21,6 +21,5 @@
       "nodeName": "the root element",
       "conditions": "<code>invisible={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

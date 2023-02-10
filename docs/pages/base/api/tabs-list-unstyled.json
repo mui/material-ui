@@ -13,6 +13,14 @@
   },
   "name": "TabsListUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "typeStr": "React.ElementType"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsListUnstyled/TabsListUnstyled.tsx",

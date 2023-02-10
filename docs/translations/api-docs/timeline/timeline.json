@@ -24,6 +24,5 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"alternate\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

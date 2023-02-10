@@ -130,6 +130,5 @@
       "nodeName": "the input element",
       "conditions": "<code>hiddenLabel={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

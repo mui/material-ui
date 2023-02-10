@@ -51,6 +51,5 @@
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

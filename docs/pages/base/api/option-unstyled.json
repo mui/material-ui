@@ -15,6 +15,14 @@
   },
   "name": "OptionUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'li'",
+      "typeStr": "React.ElementType"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionUnstyled/OptionUnstyled.tsx",

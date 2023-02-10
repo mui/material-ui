@@ -42,6 +42,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the `expandIcon`'s wrapper element"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

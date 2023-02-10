@@ -36,6 +36,5 @@
       "nodeName": "the children",
       "conditions": "<code>orientation=\"vertical\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

@@ -151,6 +151,5 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the thumb label's label element"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

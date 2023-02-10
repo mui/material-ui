@@ -49,6 +49,5 @@
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

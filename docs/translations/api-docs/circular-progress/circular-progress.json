@@ -52,6 +52,5 @@
       "nodeName": "the `circle` svg path",
       "conditions": "<code>disableShrink={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

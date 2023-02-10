@@ -34,6 +34,5 @@
       "nodeName": "the root element",
       "conditions": "<code>completed={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

@@ -19,6 +19,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the separator element"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

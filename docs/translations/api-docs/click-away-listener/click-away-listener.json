@@ -7,6 +7,5 @@
     "onClickAway": "Callback fired when a &quot;click away&quot; event is detected.",
     "touchEvent": "The touch event to listen to. You can disable the listener by providing <code>false</code>."
   },
-  "classDescriptions": {},
-  "slotDescriptions": {}
+  "classDescriptions": {}
 }

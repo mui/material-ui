@@ -17,6 +17,5 @@
       "nodeName": "the overlay that covers the action area",
       "conditions": "it is keyboard focused"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

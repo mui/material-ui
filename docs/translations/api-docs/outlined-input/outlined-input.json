@@ -100,6 +100,5 @@
       "nodeName": "the input element",
       "conditions": "<code>endAdornment</code> is provided"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

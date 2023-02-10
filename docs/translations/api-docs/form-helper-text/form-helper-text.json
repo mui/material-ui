@@ -50,6 +50,5 @@
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

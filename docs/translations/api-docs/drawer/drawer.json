@@ -67,6 +67,5 @@
       "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not \"temporary\""
     },
     "modal": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Modal component" }
-  },
-  "slotDescriptions": {}
+  }
 }

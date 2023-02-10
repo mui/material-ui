@@ -13,6 +13,5 @@
       "nodeName": "the root element",
       "conditions": "<code>dividers={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

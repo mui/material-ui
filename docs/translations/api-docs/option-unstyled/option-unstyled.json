@@ -9,5 +9,5 @@
     "value": "The value of the option."
   },
   "classDescriptions": {},
-  "slotDescriptions": {}
+  "slotDescriptions": { "root": "The component used to render the root." }
 }

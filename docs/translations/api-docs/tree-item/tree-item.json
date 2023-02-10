@@ -52,6 +52,5 @@
       "nodeName": "the tree node icon"
     },
     "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label element" }
-  },
-  "slotDescriptions": {}
+  }
 }

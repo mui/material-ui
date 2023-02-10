@@ -69,6 +69,56 @@
     },
     "name": null
   },
+  "slots": [
+    {
+      "name": "actions",
+      "description": "The component used to render the actions.",
+      "default": "TablePaginationActionsUnstyled",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The component used to render the displayed rows.",
+      "default": "'p'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component used to render the menu item.",
+      "default": "'option'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'td'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "select",
+      "description": "The component used to render the select.",
+      "default": "'select'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The component used to render the select label.",
+      "default": "'p'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "spacer",
+      "description": "The component used to render the spacer.",
+      "default": "'div'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component used to render the toolbar.",
+      "default": "'div'",
+      "typeStr": "React.ElementType"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",

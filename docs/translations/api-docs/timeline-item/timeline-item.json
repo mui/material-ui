@@ -28,6 +28,5 @@
       "nodeName": "the root element",
       "conditions": "TimelineOppositeContent isn't provided"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

@@ -19,6 +19,5 @@
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

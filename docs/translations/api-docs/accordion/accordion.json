@@ -40,6 +40,5 @@
       "nodeName": "the region element",
       "conditions": "the container of the children"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

@@ -60,6 +60,5 @@
       "nodeName": "the wrapper element of `icon`",
       "conditions": "<code>icon</code> is provided"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

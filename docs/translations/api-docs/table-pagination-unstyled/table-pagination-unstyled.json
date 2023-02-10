@@ -59,5 +59,14 @@
       "nodeName": "the internal `TablePaginationUnstyledActions` component"
     }
   },
-  "slotDescriptions": {}
+  "slotDescriptions": {
+    "actions": "The component used to render the actions.",
+    "displayedRows": "The component used to render the displayed rows.",
+    "menuItem": "The component used to render the menu item.",
+    "root": "The component used to render the root.",
+    "select": "The component used to render the select.",
+    "selectLabel": "The component used to render the select label.",
+    "spacer": "The component used to render the spacer.",
+    "toolbar": "The component used to render the toolbar."
+  }
 }

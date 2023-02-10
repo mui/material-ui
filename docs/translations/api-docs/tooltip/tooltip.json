@@ -86,6 +86,5 @@
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"bottom\""
     }
-  },
-  "slotDescriptions": {}
+  }
 }

@@ -25,6 +25,5 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"dense\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

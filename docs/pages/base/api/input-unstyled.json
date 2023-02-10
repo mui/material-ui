@@ -43,6 +43,26 @@
   },
   "name": "InputUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "textarea",
+      "description": "The component used to render the textarea.",
+      "default": "'textarea'",
+      "typeStr": "React.ElementType"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",

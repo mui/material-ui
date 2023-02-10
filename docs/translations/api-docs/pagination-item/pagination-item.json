@@ -94,6 +94,5 @@
       "conditions": "<code>selected={true}</code>"
     },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon to display" }
-  },
-  "slotDescriptions": {}
+  }
 }

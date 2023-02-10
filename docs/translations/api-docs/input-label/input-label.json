@@ -76,6 +76,5 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

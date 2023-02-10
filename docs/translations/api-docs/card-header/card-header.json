@@ -34,6 +34,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the subheader Typography element"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

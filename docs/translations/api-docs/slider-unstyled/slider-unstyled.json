@@ -101,5 +101,14 @@
       "conditions": "active (depending on the value)"
     }
   },
-  "slotDescriptions": {}
+  "slotDescriptions": {
+    "input": "The component used to render the input.",
+    "mark": "The component used to render the mark.",
+    "markLabel": "The component used to render the mark label.",
+    "rail": "The component used to render the rail.",
+    "root": "The component used to render the root.",
+    "thumb": "The component used to render the thumb.",
+    "track": "The component used to render the track.",
+    "valueLabel": "The component used to render the value label."
+  }
 }

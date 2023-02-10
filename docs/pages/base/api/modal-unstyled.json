@@ -38,6 +38,19 @@
     "globalClasses": { "root": "MuiModal-root", "hidden": "MuiModal-hidden" },
     "name": null
   },
+  "slots": [
+    {
+      "name": "backdrop",
+      "description": "The component used to render the backdrop.",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "typeStr": "React.ElementType"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.tsx",

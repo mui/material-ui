@@ -97,6 +97,5 @@
       "nodeName": "the input element",
       "conditions": "<code>type=\"search\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

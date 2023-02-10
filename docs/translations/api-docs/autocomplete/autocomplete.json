@@ -157,6 +157,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the group's ul elements"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

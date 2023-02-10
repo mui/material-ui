@@ -4,6 +4,5 @@
     "children": "The content of the component.",
     "value": "The value of the currently selected <code>Tab</code>."
   },
-  "classDescriptions": {},
-  "slotDescriptions": {}
+  "classDescriptions": {}
 }

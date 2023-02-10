@@ -13,5 +13,5 @@
     "value": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>false</code>."
   },
   "classDescriptions": {},
-  "slotDescriptions": {}
+  "slotDescriptions": { "root": "The component used to render the root." }
 }

@@ -9,6 +9,5 @@
     "isEnabled": "This prop extends the <code>open</code> prop. It allows to toggle the open state without having to wait for a rerender when changing the <code>open</code> prop. This prop should be memoized. It can be used to support multiple focus trap mounted at the same time.",
     "open": "If <code>true</code>, focus is locked."
   },
-  "classDescriptions": {},
-  "slotDescriptions": {}
+  "classDescriptions": {}
 }

@@ -74,6 +74,5 @@
       "nodeName": "the root element",
       "conditions": "<code>context.table.stickyHeader={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

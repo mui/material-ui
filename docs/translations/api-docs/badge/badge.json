@@ -139,6 +139,5 @@
       "nodeName": "the badge `span` element",
       "conditions": "<code>overlap=\"circular\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

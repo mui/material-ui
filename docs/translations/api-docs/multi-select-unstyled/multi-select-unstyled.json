@@ -19,5 +19,9 @@
     "value": "The selected values. Set to an empty array to deselect all options."
   },
   "classDescriptions": {},
-  "slotDescriptions": {}
+  "slotDescriptions": {
+    "listbox": "The component used to render the listbox.",
+    "popper": "The component used to render the popper.",
+    "root": "The component used to render the root."
+  }
 }

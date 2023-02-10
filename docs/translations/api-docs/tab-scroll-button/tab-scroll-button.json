@@ -20,6 +20,5 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

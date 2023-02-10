@@ -276,6 +276,5 @@
       "nodeName": "the startIcon element",
       "conditions": "<code>loading={true}</code> and <code>loadingPosition=\"start\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

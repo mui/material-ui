@@ -12,6 +12,5 @@
       "nodeName": "the root element",
       "conditions": "the parent <code>ListItem</code> has <code>disableGutters={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

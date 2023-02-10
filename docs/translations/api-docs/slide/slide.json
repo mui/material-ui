@@ -10,6 +10,5 @@
     "in": "If <code>true</code>, the component will transition in.",
     "timeout": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
   },
-  "classDescriptions": {},
-  "slotDescriptions": {}
+  "classDescriptions": {}
 }

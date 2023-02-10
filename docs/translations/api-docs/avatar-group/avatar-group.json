@@ -18,6 +18,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the avatar elements"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

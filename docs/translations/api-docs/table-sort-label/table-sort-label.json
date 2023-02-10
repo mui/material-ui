@@ -27,6 +27,5 @@
       "nodeName": "the icon component",
       "conditions": "<code>direction=\"asc\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

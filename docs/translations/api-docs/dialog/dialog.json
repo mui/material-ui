@@ -91,6 +91,5 @@
       "nodeName": "the Paper component",
       "conditions": "<code>fullScreen={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

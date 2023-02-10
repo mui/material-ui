@@ -119,6 +119,5 @@
       "nodeName": "the root element",
       "conditions": "<code>paragraph={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

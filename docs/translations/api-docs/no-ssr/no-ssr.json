@@ -5,6 +5,5 @@
     "defer": "If <code>true</code>, the component will not only prevent server-side rendering. It will also defer the rendering of the children into a different screen frame.",
     "fallback": "The fallback content to display."
   },
-  "classDescriptions": {},
-  "slotDescriptions": {}
+  "classDescriptions": {}
 }

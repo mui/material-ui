@@ -5,6 +5,5 @@
     "container": "An HTML element or function that returns one. The <code>container</code> will have the portal children appended to it.<br>By default, it uses the body of the top-level document object, so it&#39;s simply <code>document.body</code> most of the time.",
     "disablePortal": "The <code>children</code> will be under the DOM hierarchy of the parent component."
   },
-  "classDescriptions": {},
-  "slotDescriptions": {}
+  "classDescriptions": {}
 }

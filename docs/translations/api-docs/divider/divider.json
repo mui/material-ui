@@ -79,6 +79,5 @@
       "nodeName": "the span children element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

@@ -48,6 +48,5 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the asterisk element"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

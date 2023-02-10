@@ -20,6 +20,26 @@
   },
   "name": "OptionGroupUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "label",
+      "description": "The component used to render the label.",
+      "default": "'span'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "list",
+      "description": "The component used to render the list.",
+      "default": "'ul'",
+      "typeStr": "React.ElementType"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'li'",
+      "typeStr": "React.ElementType"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionGroupUnstyled/OptionGroupUnstyled.tsx",

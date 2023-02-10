@@ -37,6 +37,5 @@
       "nodeName": "the root element",
       "conditions": "<code>disableSticky={true}</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }

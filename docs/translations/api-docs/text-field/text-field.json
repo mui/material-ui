@@ -34,6 +34,5 @@
     "value": "The value of the <code>input</code> element, required for a controlled component.",
     "variant": "The variant to use."
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } },
-  "slotDescriptions": {}
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
 }

@@ -138,6 +138,5 @@
       "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
     }
-  },
-  "slotDescriptions": {}
+  }
 }
