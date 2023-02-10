@@ -54,6 +54,7 @@ import { TabOwnerState } from '@mui/joy/Tab';
 import { TabListOwnerState } from '@mui/joy/TabList';
 import { TabPanelOwnerState } from '@mui/joy/TabPanel';
 import { TabsOwnerState } from '@mui/joy/Tabs';
+import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
@@ -1036,6 +1037,19 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<TabsOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyTable: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<TableOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

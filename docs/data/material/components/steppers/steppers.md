@@ -18,8 +18,8 @@ Steppers may display a transient feedback message after a step is saved.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-:::warning
-Steppers are no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support them.
+:::info
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ## Horizontal stepper

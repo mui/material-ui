@@ -8,6 +8,8 @@ import Typography from '@mui/joy/Typography';
 export default function DividerInModalDialog() {
   return (
     <ModalDialog
+      aria-labelledby="divider-modal-title"
+      aria-describedby="divider-modal-desc"
       sx={{
         // this custom styles is for demonstration purpose, you might not need them in your app
         position: 'static',
@@ -15,15 +17,15 @@ export default function DividerInModalDialog() {
         maxWidth: 300,
       }}
     >
-      <Typography fontSize="lg" fontWeight="lg">
+      <Typography fontSize="lg" fontWeight="lg" id="divider-modal-title">
         Modal Title
       </Typography>
-      <Divider inset="none" sx={{ my: 1.5 }} />
-      <Typography level="body2">
+      <Divider inset="none" />
+      <Typography level="body2" id="divider-modal-desc" fontSize="sm">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry standard dummy text ever since the 1500s
       </Typography>
-      <Divider sx={{ mt: 2 }} />
+      <Divider />
       <Box
         sx={{
           bgcolor: 'background.level1',

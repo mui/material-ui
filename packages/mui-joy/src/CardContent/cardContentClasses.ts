@@ -8,9 +8,9 @@ export interface CardContentClasses {
 export type CardContentClassKey = keyof CardContentClasses;
 
 export function getCardContentUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCardContent', slot);
+  return generateUtilityClass('MuiCardContent', slot);
 }
 
-const cardClasses: CardContentClasses = generateUtilityClasses('JoyCardContent', ['root']);
+const cardClasses: CardContentClasses = generateUtilityClasses('MuiCardContent', ['root']);
 
 export default cardClasses;

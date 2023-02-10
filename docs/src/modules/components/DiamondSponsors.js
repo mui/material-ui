@@ -49,6 +49,7 @@ export default function DiamondSponsors() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
@@ -79,7 +80,7 @@ export default function DiamondSponsors() {
           data-ga-event-category="sponsor"
           data-ga-event-action="drawer"
           data-ga-event-label="octopus"
-          href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+          href="https://www.octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >

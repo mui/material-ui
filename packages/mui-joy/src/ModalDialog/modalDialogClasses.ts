@@ -40,10 +40,10 @@ export interface ModalDialogClasses {
 export type ModalDialogClassKey = keyof ModalDialogClasses;
 
 export function getModalDialogUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyModalDialog', slot);
+  return generateUtilityClass('MuiModalDialog', slot);
 }
 
-const modalDialogClasses: ModalDialogClasses = generateUtilityClasses('JoyModalDialog', [
+const modalDialogClasses: ModalDialogClasses = generateUtilityClasses('MuiModalDialog', [
   'root',
   'colorPrimary',
   'colorNeutral',

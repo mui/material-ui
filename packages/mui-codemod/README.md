@@ -62,6 +62,112 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `joy-rename-classname-prefix`
+
+Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
+
+```diff
+ <Button
+-  sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
++  sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-classname-prefix <path>
+```
+
+#### `joy-rename-row-prop`
+
+Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components.
+
+```diff
+ <Card
+-  row
++  orientation={"horizontal"}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-row-prop <path>
+```
+
+#### `joy-avatar-remove-imgProps`
+
+Remove `imgProps` prop by transferring its value into `slotProps.img`
+
+This change only affects Joy UI Avatar component.
+
+```diff
+ <Avatar
+-  imgProps={{ ['data-id']: 'imageId' }}
+-  slotProps={{ root: { ['data-id']: 'rootId' }}}
++  slotProps={{ root: { ['data-id']: 'rootId' }, img: { ['data-id']: 'imageId' } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-avatar-remove-imgProps <path>
+```
+
+#### `joy-text-field-to-input`
+
+Replace `<TextField>` with composition of `Input`
+
+This change only affects Joy UI components.
+
+```diff
+-import TextField from '@mui/joy/TextField';
++import FormControl from '@mui/joy/FormControl';
++import FormLabel from '@mui/joy/FormLabel';
++import FormHelperText from '@mui/joy/FormHelperText';
++import Input from '@mui/joy/Input';
+
+-<TextField
+-  id="Id"
+-  label="Label"
+-  placeholder="Placeholder"
+-  helperText="Help!"
+-  name="Name"
+-  type="tel"
+-  autoComplete="on"
+-  autoFocus
+-  error
+-  required
+-  fullWidth
+-  defaultValue="DefaultValue"
+-  size="sm"
+-  color="primary"
+-  variant="outlined"
+-/>
++<FormControl
++  id="Id"
++  required
++  size="sm"
++  color="primary">
++  <FormLabel>
++    Label
++  </FormLabel>
++  <JoyInput
++    placeholder="Placeholder"
++    name="Name"
++    type="tel"
++    autoComplete="on"
++    autoFocus
++    error
++    fullWidth
++    defaultValue="DefaultValue"
++    variant="outlined" />
++  <FormHelperText id="Id-helper-text">
++    Help!
++  </FormHelperText>
++</FormControl>
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-text-field-to-input <path>
+```
+
 #### `joy-rename-components-to-slots`
 
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.

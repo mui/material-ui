@@ -52,10 +52,10 @@ export interface SwitchClasses {
 export type SwitchClassKey = keyof SwitchClasses;
 
 export function getSwitchUtilityClass(slot: string): string {
-  return generateUtilityClass('JoySwitch', slot);
+  return generateUtilityClass('MuiSwitch', slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
+const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'root',
   'checked',
   'disabled',

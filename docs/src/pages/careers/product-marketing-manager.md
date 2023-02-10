@@ -4,11 +4,10 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- Level: _No ladders created yet_.
-- We're a remote company, we prefer asynchronous communication over meetings.
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- **Level**: _No ladders created yet_.
+- We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
 
@@ -19,7 +18,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
@@ -42,7 +41,7 @@ We believe that we could do a lot better. This is a white canvas opportunity at 
 
 In this role, you will be a founding member of the marketing team and a passionate voice of our users, customers and prospects. This is a full stack product marketing role in that you will support messaging and positioning, sales materials and training, web copy, customer collateral and presentations, and act as the subject matter expert for the value of our product among the enterprise and SMB audiences.
 
-Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ## About the role
 
@@ -62,19 +61,15 @@ Depending on the day, you'll:
 
 ### Skills you should have
 
-- 2+ years of B2B product marketing experience.
-- You're a passionate, self-starter with a can-do attitude. You're eager to jump in and get things done but don't get flustered in a fast-paced and often changing environment.
-- As the first role, you'll need to bring an entrepreneurial, iterative mindset and be comfortable driving for clarity in ambiguous situations. When this is a success, you'll have an opportunity to help build the team.
+- A technical background.
 - Experience marketing to software developers.
-- Always willing to roll up your sleeves and get scrappy.
-- You are a strong critical thinker who feels comfortable pouring over analytics to make data-driven decisions, and explaining those decisions to leadership with the data.
-- Proven ability to be self-directed and work with limited supervision
-- Empathy. For our customers, for the team, and for yourself.
-- Outstanding written English communications skills with the ability to explain and translate complex technical concepts into simple and intuitive communications.
-
-### What would be nice if you had, but isn't required
-
-- Experience at a developer technology company with an aptitude for understanding and ramping on new technologies.
+- 2+ years experience of B2B product marketing.
+- As the first role, you'll need to bring an entrepreneurial, iterative mindset and be comfortable driving for clarity in ambiguous situations. When this is a success, you'll have an opportunity to help build the team.
+- Proven ability to be self-directed and work with limited supervision.
+- Passionate, self-starter with a can-do attitude. You're eager to jump in and get things done but don't get flustered in a fast-paced and often changing environment. Always willing to roll up your sleeves and get scrappy.
+- Strong critical thinker who feels comfortable pouring over analytics to make data-driven decisions, and explaining those decisions to leadership with the data.
+- Empathy: for our customers, for the team, and for yourself.
+- Outstanding written English communication skills. An ability to explain and translate complex technical concepts into simple and intuitive communications.
 
 ## Benefits & Compensation
 

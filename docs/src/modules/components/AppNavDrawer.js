@@ -159,6 +159,7 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.45, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
+  boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
   flexGrow: 1,
   flexDirection: 'row',
@@ -179,6 +180,7 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
     paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
@@ -454,7 +456,7 @@ export default function AppNavDrawer(props) {
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
                 {
-                  text: 'v6-alpha',
+                  text: 'v6-next',
                   ...(process.env.DATA_GRID_VERSION.startsWith('6')
                     ? {
                         text: `v${process.env.DATA_GRID_VERSION}`,
@@ -493,7 +495,7 @@ export default function AppNavDrawer(props) {
                         current: true,
                       }
                     : {
-                        text: `v6-alpha`,
+                        text: `v6-next`,
                         href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },

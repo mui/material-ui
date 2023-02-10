@@ -6,6 +6,10 @@
 
 To set dark mode as the default for your app, add `defaultMode: 'dark'` to your `<CssVarsProvider>` wrapper component:
 
+:::warning
+When you change the `defaultMode` to another value, you must clear the local storage for it to take effect.
+:::
+
 {{"demo": "DarkModeByDefault.js"}}
 
 For server-side applications, check out the framework setup in [the section below](#server-side-rendering) and provide the same value to the `getInitColorSchemeScript` function:
