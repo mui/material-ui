@@ -13,7 +13,6 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -24,6 +23,7 @@ import generatePropDescription from '../utils/generatePropDescription';
 import parseStyles, { Styles } from '../utils/parseStyles';
 import { ComponentInfo } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import parseSlots, { Slot } from '../utils/parseSlots';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
@@ -47,6 +47,7 @@ export interface ReactApi extends ReactDocgenApi {
    */
   src: string;
   styles: Styles;
+  slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
     required: boolean | undefined;
@@ -58,6 +59,7 @@ export interface ReactApi extends ReactDocgenApi {
     componentDescription: string;
     propDescriptions: { [key: string]: string | undefined };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
+    slotDescriptions: { [key: string]: string | undefined };
   };
 }
 
@@ -350,6 +352,7 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
       ),
       name: reactApi.styles.name,
     },
+    slots: reactApi.slots,
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
@@ -404,6 +407,7 @@ const attachTranslations = (reactApi: ReactApi) => {
     componentDescription: reactApi.description,
     propDescriptions: {},
     classDescriptions: {},
+    slotDescriptions: {},
   };
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
@@ -418,6 +422,8 @@ const attachTranslations = (reactApi: ReactApi) => {
 
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
+      } else if (propName === 'slots') {
+        description += ' See <a href="#slots">Slots API</a> below for more details.';
       } else if (propName === 'sx') {
         description +=
           ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
@@ -427,9 +433,10 @@ const attachTranslations = (reactApi: ReactApi) => {
   });
 
   /**
-   * CSS class descriptiohs.
+   * CSS class descriptions.
    */
   translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+  // translations.slotDescriptions = generateSlotDescriptions(reactApi.slots.descriptions);
 
   reactApi.translations = translations;
 };
@@ -597,7 +604,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
   reactApi.styles = await parseStyles({ project, componentName: reactApi.name });
-
+  reactApi.slots = parseSlots({ project, componentName: reactApi.name });
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = reactApi.muiName;
   }
