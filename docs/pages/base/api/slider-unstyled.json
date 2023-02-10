@@ -42,7 +42,7 @@
         "name": "shape",
         "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
       },
-      "default": "{\n  root: 'span',\n  track: 'span',\n  rail: 'span',\n  thumb: 'span',\n  mark: 'span',\n  markLabel: 'span',\n  valueLabel: undefined,\n  input: 'input',\n}"
+      "default": "{}"
     },
     "step": { "type": { "name": "number" }, "default": "1" },
     "tabIndex": { "type": { "name": "number" } },

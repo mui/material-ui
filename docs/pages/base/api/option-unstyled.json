@@ -10,7 +10,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{ root: 'li' }"
+      "default": "{}"
     }
   },
   "name": "OptionUnstyled",

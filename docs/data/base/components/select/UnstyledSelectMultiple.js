@@ -144,7 +144,7 @@ CustomMultiSelect.propTypes = {
   /**
    * The components used for each slot inside the MultiSelect.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'button', listbox: 'ul', popper: PopperUnstyled }
+   * @default {}
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,

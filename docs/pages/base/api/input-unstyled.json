@@ -29,7 +29,7 @@
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
       },
-      "default": "{ root: 'div', input: 'input', textarea: 'textarea' }"
+      "default": "{}"
     },
     "startAdornment": { "type": { "name": "node" } },
     "type": {

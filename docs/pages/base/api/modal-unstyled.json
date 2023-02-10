@@ -29,7 +29,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
-      "default": "{ root: 'div', backdrop: undefined }"
+      "default": "{}"
     }
   },
   "name": "ModalUnstyled",

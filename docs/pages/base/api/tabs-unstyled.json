@@ -24,7 +24,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{ root: 'div' }"
+      "default": "{}"
     },
     "value": {
       "type": {

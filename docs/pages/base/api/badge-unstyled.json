@@ -15,7 +15,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
-      "default": "{ root: 'span', badge: 'span' }"
+      "default": "{}"
     }
   },
   "name": "BadgeUnstyled",

@@ -36,7 +36,7 @@
         "name": "shape",
         "description": "{ actions?: elementType, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
       },
-      "default": "{\n  root: 'td',\n  actions: TablePaginationActionsUnstyled,\n  select: 'select',\n  selectLabel: 'p',\n  menuItem: 'option',\n  displayedRows: 'p',\n  toolbar: 'div',\n  spacer: 'div',\n}"
+      "default": "{}"
     }
   },
   "name": "TablePaginationUnstyled",

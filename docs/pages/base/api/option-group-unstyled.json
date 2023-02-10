@@ -15,7 +15,7 @@
         "name": "shape",
         "description": "{ label?: elementType, list?: elementType, root?: elementType }"
       },
-      "default": "{ root: 'li', label: 'span', list: 'ul' }"
+      "default": "{}"
     }
   },
   "name": "OptionGroupUnstyled",

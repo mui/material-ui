@@ -25,7 +25,7 @@
         "name": "shape",
         "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
       },
-      "default": "{ root: 'button', listbox: 'ul', popper: PopperUnstyled }"
+      "default": "{}"
     },
     "value": { "type": { "name": "array" } }
   },
