@@ -119,7 +119,7 @@ const theme = createTheme({
 ## Server-side rendering
 
 :::warning
-⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
+Server-side rendering and client-side media queries are fundamentally at odds.
 Be aware of the tradeoff. The support can only be partial.
 :::
 

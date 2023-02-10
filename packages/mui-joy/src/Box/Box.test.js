@@ -23,13 +23,7 @@ describe('Joy <Box />', () => {
     refInstanceof: window.HTMLDivElement,
   }));
 
-  it('respects theme from context', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-    if (isJSDOM) {
-      this.skip();
-    }
-
+  it('respects theme from context', () => {
     const { container } = render(
       <ThemeProvider
         theme={{
@@ -211,24 +205,6 @@ describe('Joy <Box />', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         fontWeight: '500',
-      });
-    });
-
-    it('letterSpacing', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
-
-      if (isJSDOM) {
-        this.skip();
-      }
-
-      const { container } = render(
-        <CssVarsProvider theme={theme}>
-          <Box sx={{ letterSpacing: 'md' }} />
-        </CssVarsProvider>,
-      );
-
-      expect(container.firstChild).toHaveComputedStyle({
-        letterSpacing: '1.328px',
       });
     });
 

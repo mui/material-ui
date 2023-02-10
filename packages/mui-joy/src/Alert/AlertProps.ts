@@ -1,6 +1,6 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
@@ -62,4 +62,4 @@ export type AlertProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AlertTypeMap<P, D>, D>;
 
-export interface AlertOwnerState extends AlertProps {}
+export interface AlertOwnerState extends ApplyColorInversion<AlertProps> {}

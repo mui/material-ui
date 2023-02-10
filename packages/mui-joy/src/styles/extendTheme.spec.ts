@@ -54,12 +54,23 @@ import { TabOwnerState } from '@mui/joy/Tab';
 import { TabListOwnerState } from '@mui/joy/TabList';
 import { TabPanelOwnerState } from '@mui/joy/TabPanel';
 import { TabsOwnerState } from '@mui/joy/Tabs';
+import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
 import { expectType } from '@mui/types';
 
 extendTheme({
+  colorInversion: (theme) => ({
+    soft: {
+      primary: {
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        [theme.getColorSchemeSelector('dark')]: {
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+        },
+      },
+    },
+  }),
   components: {
     JoyAlert: {
       defaultProps: {
@@ -1026,6 +1037,19 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<TabsOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyTable: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<TableOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

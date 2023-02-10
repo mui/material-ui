@@ -1,6 +1,6 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type SheetSlot = 'root';
 
@@ -41,4 +41,4 @@ export type SheetProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SheetTypeMap<P, D>, D>;
 
-export interface SheetOwnerState extends SheetProps {}
+export interface SheetOwnerState extends ApplyColorInversion<SheetProps> {}

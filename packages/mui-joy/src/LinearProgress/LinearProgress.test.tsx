@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/joy/LinearProgress';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -9,18 +9,17 @@ describe('<LinearProgress />', () => {
   const { render } = createRenderer();
   describeConformance(<LinearProgress />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'div',
     render,
     ThemeProvider,
     muiName: 'JoyLinearProgress',
-    refInstanceof: window.HTMLSpanElement,
+    refInstanceof: window.HTMLDivElement,
     testVariantProps: { determinate: true },
     testCustomVariant: true,
-    slots: {
-      root: { expectedClassName: classes.root },
-    },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<LinearProgress />, { muiName: 'JoyLinearProgress', classes });
 
   describe('prop: determinate', () => {
     it('should render a determinate circular progress', () => {

@@ -2,7 +2,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import { ThemeProvider as MDThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider as MDThemeProvider,
+  createTheme as mdCreateTheme,
+} from '@mui/material/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
@@ -44,6 +47,7 @@ export interface InputConformanceOptions {
   ) => (node: React.ReactElement) => ReactWrapper;
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
+  createTheme?: (arg: any) => any;
 }
 
 export interface ConformanceOptions extends InputConformanceOptions {
@@ -552,7 +556,12 @@ function testThemeDefaultProps(element: React.ReactElement, getOptions: () => Co
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render, ThemeProvider = MDThemeProvider } = getOptions();
+      const {
+        muiName,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -592,7 +601,13 @@ function testThemeStyleOverrides(
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render, ThemeProvider = MDThemeProvider } = getOptions();
+      const {
+        muiName,
+        testStateOverrides,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -646,6 +661,7 @@ function testThemeStyleOverrides(
         testRootOverrides = { slotName: 'root' },
         render,
         ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
       } = getOptions();
 
       const testStyle = {
@@ -748,6 +764,7 @@ function testThemeStyleOverrides(
         testStateOverrides,
         render,
         ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
       } = getOptions();
 
       const classKeys = Object.keys(classes);
@@ -817,7 +834,13 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const { muiName, testVariantProps, render, ThemeProvider = MDThemeProvider } = getOptions();
+      const {
+        muiName,
+        testVariantProps,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');
@@ -864,7 +887,13 @@ function testThemeVariants(element: React.ReactElement, getOptions: () => Confor
         this.skip();
       }
 
-      const { muiName, testCustomVariant, render, ThemeProvider = MDThemeProvider } = getOptions();
+      const {
+        muiName,
+        testCustomVariant,
+        render,
+        ThemeProvider = MDThemeProvider,
+        createTheme = mdCreateTheme,
+      } = getOptions();
 
       if (!testCustomVariant) {
         return;
@@ -919,6 +948,29 @@ function describeConformance(
   minimalElement: React.ReactElement,
   getOptions: () => InputConformanceOptions,
 ) {
+  let originalMatchmedia: typeof window.matchMedia;
+  const storage: Record<string, string> = {};
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+    // Create mocks of localStorage getItem and setItem functions
+    Object.defineProperty(global, 'localStorage', {
+      value: {
+        getItem: (key: string) => storage[key],
+        setItem: (key: string, value: string) => {
+          storage[key] = value;
+        },
+      },
+      configurable: true,
+    });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
+  });
   const {
     after: runAfterHook = () => {},
     only = Object.keys(fullSuite),

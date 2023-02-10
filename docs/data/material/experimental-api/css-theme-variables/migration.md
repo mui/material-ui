@@ -277,10 +277,10 @@ const Button = styled('button')(({ theme }) => ({
 }));
 ```
 
-:::info
+:::warning
 The `theme.getColorSchemeSelector()` is a utility function that returns an attribute selector `'[data-mui-color-scheme="dark"] &'`.
 
-⚠️ Note that the attribute selector creates higher CSS specificity which could be cumbersome for theming.
+Note that the attribute selector creates higher CSS specificity which could be cumbersome for theming.
 :::
 
 ## 5. Test dark-mode flickering

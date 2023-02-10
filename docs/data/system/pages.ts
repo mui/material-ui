@@ -1,4 +1,4 @@
-import pagesApi from './pagesApi';
+import pagesApi from 'docs/data/system/pagesApi';
 
 const pages = [
   {
@@ -14,21 +14,6 @@ const pages = [
   },
   {
     pathname: '/style-utilities',
-    scopePathnames: [
-      '/system/properties',
-      '/system/borders',
-      '/system/display',
-      '/system/flexbox',
-      '/system/grid',
-      '/system/palette',
-      '/system/positions',
-      '/system/shadows',
-      '/system/sizing',
-      '/system/spacing',
-      '/system/screen-readers',
-      '/system/typography',
-      '/system/styled',
-    ],
     icon: 'BuildIcon',
     children: [
       { pathname: '/system/properties' },

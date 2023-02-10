@@ -9,6 +9,8 @@ function compose(...styles) {
     return acc;
   }, {});
 
+  // false positive
+  // eslint-disable-next-line react/function-component-definition
   const fn = (props) => {
     return Object.keys(props).reduce((acc, prop) => {
       if (handlers[prop]) {

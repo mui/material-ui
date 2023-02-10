@@ -3,8 +3,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "dense": { "type": { "name": "bool" } },
-    "disablePadding": { "type": { "name": "bool" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disablePadding": { "type": { "name": "bool" }, "default": "false" },
     "subheader": { "type": { "name": "node" } },
     "sx": {
       "type": {

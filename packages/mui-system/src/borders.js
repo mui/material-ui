@@ -67,6 +67,8 @@ export const borderLeftColor = style({
   themeKey: 'palette',
 });
 
+// false positive
+// eslint-disable-next-line react/function-component-definition
 export const borderRadius = (props) => {
   if (props.borderRadius !== undefined && props.borderRadius !== null) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');

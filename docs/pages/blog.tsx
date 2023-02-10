@@ -23,9 +23,11 @@ import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
+import generateRssFeed from 'docs/scripts/generateRSSFeed';
 
 export const getStaticProps = () => {
   const data = getAllBlogPosts();
+  generateRssFeed(data.allBlogPosts);
   return {
     props: data,
   };
@@ -289,7 +291,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     },
                     '&:focus-within': {
                       '& a': {
-                        outline: 'none',
+                        outline: 0,
                       },
                     },
                   },

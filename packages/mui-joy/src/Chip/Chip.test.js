@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, fireEvent } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+  fireEvent,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Chip, { chipClasses as classes } from '@mui/joy/Chip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -33,6 +38,8 @@ describe('<Chip />', () => {
       skip: ['classesRoot', 'componentsProp'],
     }),
   );
+
+  describeJoyColorInversion(<Chip />, { muiName: 'JoyChip', classes });
 
   it('renders children', () => {
     const { getByText } = render(

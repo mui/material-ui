@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, fireEvent } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+  fireEvent,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { avatarClasses as classes } from '@mui/joy/Avatar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -27,6 +32,8 @@ describe('<Avatar />', () => {
     },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<Avatar />, { muiName: 'JoyAvatar', classes });
 
   describe('prop: variant', () => {
     it('soft by default', () => {

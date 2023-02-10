@@ -8,8 +8,8 @@ export type FormLabelSlot = 'root' | 'asterisk';
 export type FormLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   FormLabelSlot,
   {
-    root: SlotProps<'div', {}, FormLabelOwnerState>;
-    asterisk: SlotProps<'div', {}, FormLabelOwnerState>;
+    root: SlotProps<'label', {}, FormLabelOwnerState>;
+    asterisk: SlotProps<'span', {}, FormLabelOwnerState>;
   }
 >;
 

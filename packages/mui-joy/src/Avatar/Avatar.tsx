@@ -6,6 +6,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarOwnerState, AvatarTypeMap } from './AvatarProps';
@@ -84,7 +85,7 @@ const AvatarImg = styled('img', {
   textIndent: 10000,
 });
 
-const AvatarFallback = styled(Person, {
+const AvatarFallback = styled(Person as unknown as 'svg', {
   name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
@@ -149,14 +150,14 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color: colorProp = 'neutral',
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
-    imgProps,
     src,
     srcSet,
     children: childrenProp,
     ...other
   } = props;
-  const color = inProps.color || groupContext?.color || colorProp;
   const variant = inProps.variant || groupContext?.variant || variantProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color || groupContext?.color, colorProp);
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -184,7 +185,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       alt,
       src,
       srcSet,
-      ...imgProps,
     },
     className: classes.img,
     elementType: AvatarImg,
@@ -201,7 +201,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
-    ...imgProps,
     ...imageProps,
     src,
     srcSet,
@@ -246,11 +245,6 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-   * It can be used to listen for the loading error event.
-   */
-  imgProps: PropTypes.object,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.

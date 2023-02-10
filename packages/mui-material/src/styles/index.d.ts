@@ -65,6 +65,9 @@ export {
   StyledEngineProvider,
   SxProps,
 } from '@mui/system';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx(): any;
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';

@@ -13,7 +13,11 @@ The default system consists of 13 built-in levels:
 - The `h1` to `h6` levels follow the semantic HTML headings.
 - The `display1` and `display2` usually appear as taglines for marketing and landing pages.
 
-{{"demo": "DefaultTypographySystem.js"}}
+:::info
+🔍 You can hover on each cell in the table below to see the preview value.
+:::
+
+{{"demo": "TypographyThemeViewer.js", "bg": "inline"}}
 
 :::info
 [CSS Baseline](/joy-ui/react-css-baseline/), [Scoped CSS Baseline](/joy-ui/react-css-baseline/#scoping-on-children), and [Typography](/joy-ui/react-typography/) are the only components that consume the theme typography directly.
@@ -157,6 +161,6 @@ Here is a collection of well-known typography systems that you can use with Joy 
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-:::success
-Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system ❤️.
+:::info
+Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system. ❤️
 :::

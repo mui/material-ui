@@ -463,6 +463,91 @@ export const bnBD: Localization = {
   },
 };
 
+export const beBY: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Паказаць шлях',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Перайсці на першую старонку';
+          }
+          if (type === 'last') {
+            return 'Перайсці на апошнюю старонку';
+          }
+          if (type === 'next') {
+            return 'Перайсці на наступную старонку';
+          }
+          // if (type === 'previous') {
+          return 'Перайсці на папярэднюю старонку';
+        },
+        labelRowsPerPage: 'Радкоў на старонцы:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} з ${count !== -1 ? count : `больш чым ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          let pluralForm = 'Зорак';
+          const lastDigit = value % 10;
+
+          if (lastDigit > 1 && lastDigit < 5 && (value < 10 || value > 20)) {
+            pluralForm = 'Зоркі';
+          } else if (lastDigit === 1 && value % 100 !== 11) {
+            pluralForm = 'Зорка';
+          }
+
+          return `${value} ${pluralForm}`;
+        },
+        emptyLabelText: 'Рэйтынг адсутнічае',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Ачысціць',
+        closeText: 'Закрыць',
+        loadingText: 'Загрузка…',
+        noOptionsText: 'Няма варыянтаў',
+        openText: 'Адкрыць',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Закрыць',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Навігацыя па старонкам',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            if (selected) {
+              return `${page} старонка`;
+            }
+            return `Перайсці на ${page} старонку`;
+          }
+          if (type === 'first') {
+            return 'Перайсці на першую старонку';
+          }
+          if (type === 'last') {
+            return 'Перайсці на апошнюю старонку';
+          }
+          if (type === 'next') {
+            return 'Перайсці на наступную старонку';
+          }
+          // if (type === 'previous') {
+          return 'Перайсці на папярэднюю старонку';
+        },
+      },
+    },
+  },
+};
+
 export const bgBG: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -1131,8 +1216,8 @@ export const faIR: Localization = {
           return 'رفتن به صفحه‌ی قبلی';
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} از ${count !== -1 ? count : `بیشتر از ${to}`}`,
       },
     },
     MuiRating: {
@@ -2110,7 +2195,78 @@ export const koKR: Localization = {
   },
 };
 
-export const kzKZ: Localization = {
+export const kuLatn: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Rê nîşan bide',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Biçe rûpela yekem';
+          }
+          if (type === 'last') {
+            return 'Biçe rûpela dawî';
+          }
+          if (type === 'next') {
+            return 'Biçe rûpela din';
+          }
+          // if (type === 'previous') {
+          return 'Biçe rûpela berê';
+        },
+        labelRowsPerPage: 'Rêz li ser rûpelê:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} of ${count !== -1 ? count : `zêdetir ji ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} Stêrk`,
+        emptyLabelText: 'Vala',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Paqij bike',
+        closeText: 'Bigre',
+        loadingText: 'Tê barkirin…',
+        noOptionsText: 'Vebijêrk tune',
+        openText: 'Veke',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Bigre',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navîgasyona rûpelan',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Biçe '}rûpel ${page}`;
+          }
+          if (type === 'first') {
+            return 'Biçe rûpela yekem';
+          }
+          if (type === 'last') {
+            return 'Biçe rûpela dawî';
+          }
+          if (type === 'next') {
+            return 'Biçe rûpela din';
+          }
+          // if (type === 'previous') {
+          return 'Biçe rûpela berê';
+        },
+      },
+    },
+  },
+};
+
+export const kkKZ: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {

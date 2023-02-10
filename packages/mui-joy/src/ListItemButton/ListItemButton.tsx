@@ -5,6 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -45,7 +46,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       }),
       ...(ownerState.disabled && {
         '--List-decorator-color':
-          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+          theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       }),
       WebkitTapHighlightColor: 'transparent',
       boxSizing: 'border-box',
@@ -56,6 +57,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       textAlign: 'initial',
       textDecoration: 'initial', // reset native anchor tag
       backgroundColor: 'initial', // reset button background
+      cursor: 'pointer',
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
       marginInline: 'var(--List-itemButton-marginInline)',
       marginBlock: 'var(--List-itemButton-marginBlock)',
@@ -64,7 +66,7 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
         marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
       }),
       // account for the border width, so that all of the ListItemButtons content aligned horizontally
-      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth, 0px))',
       // account for the border width, so that all of the ListItemButtons content aligned vertically
       paddingInlineStart:
         'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
@@ -87,9 +89,13 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       }),
       [theme.focus.selector]: theme.focus.default,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(!ownerState.selected && {
+        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      }),
+    },
     {
       [`&.${listItemButtonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
@@ -119,10 +125,13 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color = selected ? 'primary' : 'neutral',
+    color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
     ...other
   } = props;
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -245,7 +254,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * Use to apply selected styling.
+   * If `true`, the component is selected.
    * @default false
    */
   selected: PropTypes.bool,

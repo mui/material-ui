@@ -1,3 +1,5 @@
+import MuiError from '@mui/utils/macros/MuiError.macro';
+
 export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@mui/styled-engine';
 export { default as borders } from './borders';
 export * from './borders';
@@ -31,6 +33,14 @@ export {
   extendSxProp as unstable_extendSxProp,
   unstable_defaultSxConfig,
 } from './styleFunctionSx';
+// TODO: Remove this function in v6
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx() {
+  throw new MuiError(
+    'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
+      'For more details, see https://github.com/mui/material-ui/pull/35150.',
+  );
+}
 export { default as unstable_getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
 export { default as createBox } from './createBox';

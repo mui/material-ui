@@ -4,7 +4,7 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import pages from 'docs/src/pages';
+import generalPages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -142,18 +142,22 @@ function AppWrapper(props) {
     }
   }, []);
 
-  let productPages = pages;
-  if (product === 'base') {
-    productPages = basePages;
-  } else if (product === 'material-ui') {
-    productPages = materialPages;
-  } else if (product === 'joy-ui') {
-    productPages = joyPages;
-  } else if (product === 'system') {
-    productPages = systemPages;
-  }
+  const pageContextValue = React.useMemo(() => {
+    let pages = generalPages;
+    if (product === 'base') {
+      pages = basePages;
+    } else if (product === 'material-ui') {
+      pages = materialPages;
+    } else if (product === 'joy-ui') {
+      pages = joyPages;
+    } else if (product === 'system') {
+      pages = systemPages;
+    }
 
-  const activePage = findActivePage(productPages, router.pathname);
+    const { activePage, activePageParents } = findActivePage(pages, router.pathname);
+
+    return { activePage, activePageParents, pages };
+  }, [product, router.pathname]);
 
   let fonts = [];
   if (asPathWithoutLang.match(/onepirate/)) {
@@ -161,11 +165,6 @@ function AppWrapper(props) {
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
   }
-
-  const pageContextValue = React.useMemo(
-    () => ({ activePage, pages: productPages }),
-    [activePage, productPages],
-  );
 
   return (
     <React.Fragment>

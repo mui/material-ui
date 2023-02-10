@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ListSlot = 'root';
 
@@ -20,10 +20,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListPropsColorOverrides>;
     /**
-     * If `true`, display the list in horizontal direction.
-     * @default false
+     * The component orientation.
+     * @default 'vertical'
      */
-    row?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
@@ -56,7 +56,7 @@ export type ListProps<
   },
 > = OverrideProps<ListTypeMap<P, D>, D>;
 
-export interface ListOwnerState extends ListProps {
+export interface ListOwnerState extends ApplyColorInversion<ListProps> {
   /**
    * @internal
    * The explicit size specified on the element instance.

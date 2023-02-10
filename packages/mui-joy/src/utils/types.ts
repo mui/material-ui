@@ -6,14 +6,14 @@ type SlotCommonProps = {
 };
 
 export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
-  | (React.ComponentPropsWithRef<TSlotComponent> &
+  // omit `color` from HTML attributes because it conflicts with Joy UI `color` prop.
+  | (Omit<React.ComponentPropsWithRef<TSlotComponent>, 'color'> &
       TOverrides &
       SlotCommonProps &
       Record<string, unknown>)
   | ((
       ownerState: TOwnerState,
-    ) => Record<string, unknown> &
-      React.ComponentPropsWithRef<TSlotComponent> &
+    ) => Omit<React.ComponentPropsWithRef<TSlotComponent>, 'color'> &
       TOverrides &
       SlotCommonProps &
       Record<string, unknown>);

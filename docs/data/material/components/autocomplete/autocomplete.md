@@ -70,7 +70,7 @@ The component has two states that can be controlled:
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
 :::warning
-⚠️ These two states are isolated, they should be controlled independently.
+These two states are isolated, and should be controlled independently.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -86,7 +86,7 @@ The prop is designed to cover the primary use case of a **search input** with su
 {{"demo": "FreeSolo.js"}}
 
 :::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
@@ -187,8 +187,8 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 {{"demo": "GoogleMaps.js"}}
 
-:::warning
-⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::error
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 :::
 
 ## Multiple values

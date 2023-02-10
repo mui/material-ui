@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type BadgeSlot = 'root' | 'badge';
@@ -91,4 +91,4 @@ export type BadgeProps<
   P = { component?: React.ElementType },
 > = OverrideProps<BadgeTypeMap<D, P>, D>;
 
-export interface BadgeOwnerState extends BadgeProps {}
+export interface BadgeOwnerState extends ApplyColorInversion<BadgeProps> {}

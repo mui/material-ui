@@ -2,7 +2,7 @@
 product: joy-ui
 title: React Radio Group component
 githubLabel: 'component: radio'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 ---
 
 # Radio Group
@@ -17,7 +17,7 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
 :::
 
@@ -90,7 +90,7 @@ You can also use it directly in the `RadioGroup` component as it will automatica
 {{"demo": "OverlayRadio.js"}}
 
 :::info
-💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
+Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
 :::
 
 ### Icon
@@ -127,7 +127,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radio/) for more details.
 
 ## Common examples
 

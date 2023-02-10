@@ -7,6 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import {
@@ -90,7 +91,7 @@ const CircularProgressRoot = styled('span', {
     // internal variables
     '--_thickness-diff':
       'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
-    '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth))',
+    '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth, 0px))',
     '--_outlined-inset':
       'max(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
     width: 'var(--_root-size)',
@@ -101,6 +102,7 @@ const CircularProgressRoot = styled('span', {
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexShrink: 0, // prevent from shrinking when CircularProgress is in a flex container.
     position: 'relative',
     color,
     ...(ownerState.children && {
@@ -137,8 +139,8 @@ const CircularProgressSvg = styled('svg', {
   display: 'inherit',
   boxSizing: 'inherit',
   position: 'absolute',
-  top: 'calc(-1 * var(--variant-borderWidth))', // centered align
-  left: 'calc(-1 * var(--variant-borderWidth))', // centered align
+  top: 'calc(-1 * var(--variant-borderWidth, 0px))', // centered align
+  left: 'calc(-1 * var(--variant-borderWidth, 0px))', // centered align
 });
 
 const CircularProgressTrack = styled('circle', {
@@ -206,7 +208,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const {
     children,
     className,
-    color = 'primary',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'soft',
     thickness,
@@ -214,6 +216,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     value = determinate ? 0 : 25, // `25` is the 1/4 of the circle.
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

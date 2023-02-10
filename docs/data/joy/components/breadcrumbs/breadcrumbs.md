@@ -36,7 +36,7 @@ The Breadcrumbs component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "BreadcrumbsSizes.js"}}
 
-:::success
+:::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 

@@ -40324,6 +40324,36 @@ Object.defineProperty(exports, "PhoneForwardedTwoTone", {
     return _PhoneForwardedTwoTone.default;
   }
 });
+Object.defineProperty(exports, "PhoneInTalk", {
+  enumerable: true,
+  get: function () {
+    return _PhoneInTalk.default;
+  }
+});
+Object.defineProperty(exports, "PhoneInTalkOutlined", {
+  enumerable: true,
+  get: function () {
+    return _PhoneInTalkOutlined.default;
+  }
+});
+Object.defineProperty(exports, "PhoneInTalkRounded", {
+  enumerable: true,
+  get: function () {
+    return _PhoneInTalkRounded.default;
+  }
+});
+Object.defineProperty(exports, "PhoneInTalkSharp", {
+  enumerable: true,
+  get: function () {
+    return _PhoneInTalkSharp.default;
+  }
+});
+Object.defineProperty(exports, "PhoneInTalkTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _PhoneInTalkTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "PhoneIphone", {
   enumerable: true,
   get: function () {
@@ -70018,6 +70048,11 @@ var _PhoneForwardedOutlined = _interopRequireDefault(require("./PhoneForwardedOu
 var _PhoneForwardedRounded = _interopRequireDefault(require("./PhoneForwardedRounded"));
 var _PhoneForwardedSharp = _interopRequireDefault(require("./PhoneForwardedSharp"));
 var _PhoneForwardedTwoTone = _interopRequireDefault(require("./PhoneForwardedTwoTone"));
+var _PhoneInTalk = _interopRequireDefault(require("./PhoneInTalk"));
+var _PhoneInTalkOutlined = _interopRequireDefault(require("./PhoneInTalkOutlined"));
+var _PhoneInTalkRounded = _interopRequireDefault(require("./PhoneInTalkRounded"));
+var _PhoneInTalkSharp = _interopRequireDefault(require("./PhoneInTalkSharp"));
+var _PhoneInTalkTwoTone = _interopRequireDefault(require("./PhoneInTalkTwoTone"));
 var _PhoneIphone = _interopRequireDefault(require("./PhoneIphone"));
 var _PhoneIphoneOutlined = _interopRequireDefault(require("./PhoneIphoneOutlined"));
 var _PhoneIphoneRounded = _interopRequireDefault(require("./PhoneIphoneRounded"));

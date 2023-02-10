@@ -1,7 +1,7 @@
 # This workflow is a workaround for ci.yml to bypass the github checks
 #
 # Ref: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/troubleshooting-required-status-checks#handling-skipped-but-required-checks
-name: CI
+name: CI Check
 
 on:
   push:

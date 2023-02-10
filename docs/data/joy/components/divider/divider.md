@@ -32,8 +32,8 @@ export default function MyApp() {
 
 Use the `Divider` to wrap elements that will be added to it.
 
-:::info
-♿️ **a11y tip**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` on it to make sure screen readers can announce its content:
+:::warning
+When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` on it to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">

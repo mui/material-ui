@@ -25,6 +25,8 @@ export interface BadgeClasses {
   colorSuccess: string;
   /** Styles applied to the badge `span` element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
   /** State class applied to the badge `span` element if `location="inside"`. */
@@ -50,10 +52,10 @@ export interface BadgeClasses {
 export type BadgeClassKey = keyof BadgeClasses;
 
 export function getBadgeUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyBadge', slot);
+  return generateUtilityClass('MuiBadge', slot);
 }
 
-const badgeClasses: BadgeClasses = generateUtilityClasses('JoyBadge', [
+const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
   'root',
   'badge',
   'anchorOriginTopRight',
@@ -66,6 +68,7 @@ const badgeClasses: BadgeClasses = generateUtilityClasses('JoyBadge', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'invisible',
   'locationInside',
   'locationOutside',

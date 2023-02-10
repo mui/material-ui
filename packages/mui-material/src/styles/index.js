@@ -1,3 +1,5 @@
+import MuiError from '@mui/utils/macros/MuiError.macro';
+
 export { default as adaptV4Theme } from './adaptV4Theme';
 export {
   hexToRgb,
@@ -14,6 +16,14 @@ export {
   css,
   keyframes,
 } from '@mui/system';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx() {
+  throw new MuiError(
+    'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
+      'For more details, see https://github.com/mui/material-ui/pull/35150.',
+  );
+}
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';

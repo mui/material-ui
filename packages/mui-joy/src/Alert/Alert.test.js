@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Alert, { alertClasses as classes } from '@mui/joy/Alert';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -25,6 +25,8 @@ describe('<Alert />', () => {
     },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<Alert />, { muiName: 'JoyAlert', classes });
 
   describe('prop: variant', () => {
     it('soft by default', () => {

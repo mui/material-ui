@@ -22,7 +22,7 @@ Here's what it will look like in the end:
 {{"demo": "PlayerFinal.js", "hideToolbar": true, "bg": true}}
 
 :::info
-💡 All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
+All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
 :::
 
 ## Setting up the project

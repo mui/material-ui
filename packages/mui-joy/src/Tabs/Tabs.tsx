@@ -7,6 +7,7 @@ import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -45,6 +46,7 @@ const TabsRoot = styled(SheetRoot, {
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'row',
+    alignItems: 'flex-start',
   }),
 }));
 
@@ -57,19 +59,21 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const {
     children,
     value: valueProp,
-    defaultValue,
+    defaultValue = valueProp === undefined ? 0 : undefined,
     orientation = 'horizontal',
     direction = 'ltr',
     component,
     onChange,
     selectionFollowsFocus,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
-  const { tabsContextValue } = useTabs({ ...props, orientation });
+  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,

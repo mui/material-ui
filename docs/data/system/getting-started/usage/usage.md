@@ -298,7 +298,7 @@ Here's what that looks like:
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-:::warning
+:::success
 This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
 
 We recommend using the object API instead if you need to define more than a few breakpoints.

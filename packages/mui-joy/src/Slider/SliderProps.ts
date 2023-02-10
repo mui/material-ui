@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SliderSlot =
@@ -21,7 +21,7 @@ export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
     track: SlotProps<'span', {}, SliderOwnerState>;
     rail: SlotProps<'span', {}, SliderOwnerState>;
     thumb: SlotProps<'span', {}, SliderOwnerState>;
-    mark: SlotProps<'span', {}, SliderOwnerState>;
+    mark: SlotProps<'span', {}, SliderOwnerState & { percent?: number }>;
     markLabel: SlotProps<'span', {}, SliderOwnerState>;
     valueLabel: SlotProps<'span', {}, SliderOwnerState>;
     input: SlotProps<'input', {}, SliderOwnerState>;
@@ -52,6 +52,15 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
        */
       sx?: SxProps;
       /**
+       * Controls when the value label is displayed:
+       *
+       * - `auto` the value label will display when the thumb is hovered or focused.
+       * - `on` will display persistently.
+       * - `off` will never display.
+       * @default 'off'
+       */
+      valueLabelDisplay?: 'on' | 'auto' | 'off';
+      /**
        * The variant to use.
        * @default 'solid'
        */
@@ -65,7 +74,7 @@ export type SliderProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export interface SliderOwnerState extends SliderProps {
+export interface SliderOwnerState extends ApplyColorInversion<SliderProps> {
   /**
    * If `true`, the thumb is in dragging state.
    */

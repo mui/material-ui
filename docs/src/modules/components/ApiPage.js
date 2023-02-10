@@ -1,122 +1,14 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { exactProp } from '@mui/utils';
-import { alpha, styled } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-
-const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
-
-const Wrapper = styled('div')({
-  overflow: 'hidden',
-});
-const Table = styled('table')(({ theme }) => {
-  const contentColor =
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 1)
-      : 'rgba(255, 255, 255, 1)';
-  const contentColorTransparent =
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 0)
-      : 'rgba(255, 255, 255, 0)';
-  const shadowColor = theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.2)';
-  return {
-    borderRadius: 10,
-    background: `
-  linear-gradient(to right, ${contentColor} 5%, ${contentColorTransparent}),
-  linear-gradient(to right, ${contentColorTransparent}, ${contentColor} 100%) 100%,
-  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0) 5%),
-  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0) 5%)`,
-    backgroundAttachment: 'local, local, scroll, scroll',
-    // the above background create thin line on the left and right sides of the table
-    // as a workaround, use negative margin with overflow `hidden` on the parent
-    marginLeft: -1,
-    marginRight: -1,
-  };
-});
-
-function PropsTable(props) {
-  const { componentProps, propDescriptions } = props;
-  const t = useTranslate();
-
-  return (
-    <Wrapper>
-      <Table>
-        <thead>
-          <tr>
-            <th align="left">{t('api-docs.name')}</th>
-            <th align="left">{t('api-docs.type')}</th>
-            <th align="left">{t('api-docs.default')}</th>
-            <th align="left">{t('api-docs.description')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(componentProps).map(([propName, propData]) => {
-            const typeDescription = propData.type.description || propData.type.name;
-            const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
-            return (
-              propData.description !== '@ignore' && (
-                <tr key={propName}>
-                  <td align="left">
-                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
-                      {propName}
-                      {propData.required && (
-                        <sup>
-                          <Asterisk title="required">*</Asterisk>
-                        </sup>
-                      )}
-                    </span>
-                  </td>
-                  <td align="left">
-                    <span
-                      className="prop-type"
-                      dangerouslySetInnerHTML={{ __html: typeDescription }}
-                    />
-                  </td>
-                  <td align="left">
-                    {propDefault && <span className="prop-default">{propDefault}</span>}
-                  </td>
-                  <td align="left">
-                    {propData.deprecated && (
-                      <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                        <strong>{t('api-docs.deprecated')}</strong>
-                        {propData.deprecationInfo && ' - '}
-                        {propData.deprecationInfo && (
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: propData.deprecationInfo,
-                            }}
-                          />
-                        )}
-                      </Alert>
-                    )}
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: propDescriptions[propName] || '',
-                      }}
-                    />
-                  </td>
-                </tr>
-              )
-            );
-          })}
-        </tbody>
-      </Table>
-    </Wrapper>
-  );
-}
-
-PropsTable.propTypes = {
-  componentProps: PropTypes.object.isRequired,
-  propDescriptions: PropTypes.object.isRequired,
-};
 
 function ClassesTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -194,7 +86,7 @@ function Heading(props) {
   return (
     <Level id={hash}>
       {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={hash} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
+      <a aria-labelledby={hash} className="anchor-link" href={`#${hash}`} tabIndex={-1}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
@@ -306,15 +198,13 @@ export default function ApiPage(props) {
           {disableAd ? null : <Ad />}
         </Typography>
         <Heading hash="demos" />
-        <div className="MuiCallout-root MuiCallout-info">
-          <p
-            dangerouslySetInnerHTML={{
-              __html:
-                'For examples and details on the usage of this React component, visit the component demo pages:',
-            }}
-          />
-          <span dangerouslySetInnerHTML={{ __html: demos }} />
-        </div>
+        <div
+          className="MuiCallout-root MuiCallout-info"
+          dangerouslySetInnerHTML={{
+            __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
+              ${demos}`,
+          }}
+        />
         <Heading hash="import" />
         <HighlightedCode
           code={`
@@ -350,7 +240,7 @@ import { ${componentName} } from '${source}';`}
         )}
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-        <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
+        <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
         <br />
         {cssComponent && (
           <React.Fragment>

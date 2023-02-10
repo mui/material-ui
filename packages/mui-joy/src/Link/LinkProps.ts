@@ -4,8 +4,10 @@ import {
   ColorPaletteProp,
   SxProps,
   SystemProps,
+  ApplyColorInversion,
   TypographySystem,
   VariantProp,
+  TextColor,
 } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -60,7 +62,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        * The system color.
        */
-      textColor?: SystemProps['color'];
+      textColor?: TextColor;
       /**
        * Element placed before the children.
        */
@@ -91,13 +93,14 @@ export type LinkProps<
   },
 > = OverrideProps<LinkTypeMap<P, D>, D>;
 
-export interface LinkOwnerState extends LinkProps {
+export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
   /**
    * If `true`, the element's focus is visible.
    */
   focusVisible?: boolean;
   /**
-   * If `true`, the element is rendered by a Typography component.
+   * @internal
+   * If `true`, the element is rendered inside a Typography component.
    */
-  nested: boolean;
+  nesting: boolean;
 }

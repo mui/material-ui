@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { ListProps } from '../List/ListProps';
-import { SxProps } from '../styles/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type AutocompleteListboxSlot = 'root';
+
+export interface AutocompleteListboxPropsSizeOverrides {}
+export interface AutocompleteListboxPropsColorOverrides {}
+export interface AutocompleteListboxPropsVariantOverrides {}
 
 export interface AutocompleteListboxTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
@@ -11,17 +14,17 @@ export interface AutocompleteListboxTypeMap<P = {}, D extends React.ElementType 
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: ListProps['color'];
+    color?: OverridableStringUnion<ColorPaletteProp, AutocompleteListboxPropsColorOverrides>;
     /**
      * The variant to use.
      * @default 'outlined'
      */
-    variant?: ListProps['variant'];
+    variant?: OverridableStringUnion<VariantProp, AutocompleteListboxPropsVariantOverrides>;
     /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
      */
-    size?: ListProps['size'];
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompleteListboxPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -37,4 +40,5 @@ export type AutocompleteListboxProps<
   },
 > = OverrideProps<AutocompleteListboxTypeMap<P, D>, D>;
 
-export interface AutocompleteListboxOwnerState extends AutocompleteListboxProps {}
+export interface AutocompleteListboxOwnerState
+  extends ApplyColorInversion<AutocompleteListboxProps> {}

@@ -71,7 +71,15 @@ function DemoComponents() {
       <h4>Enabled</h4>
       <Stack direction="row" gap={1}>
         {variants.map((variant) => (
-          <Button key={`${variant}-enabled`} variant={variant}>
+          <Button key={variant} variant={variant}>
+            {capitalize(variant as string)}
+          </Button>
+        ))}
+      </Stack>
+      <h4>Enabled without a ripple effect</h4>
+      <Stack direction="row" gap={1}>
+        {variants.map((variant) => (
+          <Button key={variant} variant={variant} disableRipple>
             {capitalize(variant as string)}
           </Button>
         ))}
@@ -79,7 +87,7 @@ function DemoComponents() {
       <h4>Disabled</h4>
       <Stack direction="row" gap={1}>
         {variants.map((variant) => (
-          <Button key={`${variant}-disabled`} variant={variant} disabled>
+          <Button key={variant} variant={variant} disabled>
             {capitalize(variant as string)}
           </Button>
         ))}
@@ -151,7 +159,7 @@ function DemoComponents() {
               bgcolor: 'error',
               border: 1,
               borderColor: 'tertiary',
-              borderRadius: '1px',
+              borderRadius: 'medium',
             }}
           >
             Button

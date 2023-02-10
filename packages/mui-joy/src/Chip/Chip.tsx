@@ -6,6 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
@@ -41,9 +42,9 @@ const ChipRoot = styled('div', {
     {
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
+        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--Chip-decorator-childRadius':
-        'max(var(--_Chip-radius) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) / 2, var(--_Chip-radius) / 2))',
+        'max(var(--_Chip-radius) - var(--variant-borderWidth, 0px) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) + var(--variant-borderWidth, 0px), var(--_Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
@@ -54,7 +55,7 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth))',
+          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
         '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
         '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
         fontSize: theme.vars.fontSize.xs,
@@ -77,7 +78,7 @@ const ChipRoot = styled('div', {
       }),
       '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
       '--_Chip-paddingBlock':
-        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       minHeight: 'var(--_Chip-minHeight)',
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--_Chip-radius)',
@@ -94,7 +95,7 @@ const ChipRoot = styled('div', {
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       [`&.${chipClasses.disabled}`]: {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+        color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
     },
     ...(!ownerState.clickable
@@ -108,7 +109,7 @@ const ChipRoot = styled('div', {
       : [
           {
             '--variant-borderWidth': '0px',
-            color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+            color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
           },
         ]),
   ];
@@ -144,6 +145,7 @@ const ChipAction = styled('button', {
     bottom: 0,
     right: 0,
     border: 'none',
+    cursor: 'pointer',
     padding: 'initial',
     margin: 'initial',
     backgroundColor: 'initial',
@@ -201,7 +203,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const {
     children,
     className,
-    color = 'primary',
+    color: colorProp = 'primary',
     slotProps = {},
     onClick,
     disabled = false,
@@ -211,6 +213,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     endDecorator,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
@@ -283,7 +287,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   });
 
   const chipContextValue = React.useMemo(
-    () => ({ disabled, variant, color }),
+    () => ({ disabled, variant, color: color === 'context' ? undefined : color }),
     [color, disabled, variant],
   );
 

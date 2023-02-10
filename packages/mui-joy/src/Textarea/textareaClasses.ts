@@ -29,6 +29,8 @@ export interface TextareaClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -46,10 +48,10 @@ export interface TextareaClasses {
 export type TextareaClassKey = keyof TextareaClasses;
 
 export function getTextareaUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTextarea', slot);
+  return generateUtilityClass('MuiTextarea', slot);
 }
 
-const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
+const textareaClasses: TextareaClasses = generateUtilityClasses('MuiTextarea', [
   'root',
   'textarea',
   'startDecorator',
@@ -64,6 +66,7 @@ const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

@@ -14,8 +14,8 @@ export type TextareaSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     root: SlotProps<'div', {}, TextareaOwnerState>;
     textarea: SlotProps<'textarea', {}, TextareaOwnerState>;
-    startDecorator: SlotProps<'span', {}, TextareaOwnerState>;
-    endDecorator: SlotProps<'span', {}, TextareaOwnerState>;
+    startDecorator: SlotProps<'div', {}, TextareaOwnerState>;
+    endDecorator: SlotProps<'div', {}, TextareaOwnerState>;
   }
 >;
 

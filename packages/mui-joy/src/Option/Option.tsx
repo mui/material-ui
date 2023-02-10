@@ -6,6 +6,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -24,11 +25,14 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => ({
-  [`&.${optionClasses.highlighted}`]: {
-    backgroundColor: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
-  },
-}));
+})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+  return {
+    [`&.${optionClasses.highlighted}`]: {
+      backgroundColor: variantStyle?.backgroundColor,
+    },
+  };
+});
 
 const Option = React.forwardRef(function Option(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -64,10 +68,8 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const optionProps = selectContext.getOptionProps(selectOption);
   const listboxRef = selectContext.listboxRef;
 
-  let color = colorProp;
-  if (optionState.selected && !inProps.color) {
-    color = 'primary';
-  }
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, optionState.selected ? 'primary' : colorProp);
 
   const ownerState = {
     ...props,

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import { ThemeProvider } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
@@ -10,10 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Frame from 'docs/src/components/action/Frame';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
-
-const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-full" pro />;
 
 type GridDataType = 'Employee' | 'Commodity';
 
@@ -164,40 +160,54 @@ export default function XGridFullDemo() {
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2 }}>
-        {dataGridStyleOverrides}
+        <XGridGlobalStyles selector="#data-grid-full" pro />
         <Paper
           id="data-grid-full"
           variant="outlined"
-          sx={{
-            height: 328,
-            overflow: 'auto',
-            '& .MuiDataGrid-root': {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
-              '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
-              '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
-              '& .MuiDataGrid-renderingZone': {
-                '& .MuiDataGrid-cell': {
-                  bgcolor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50',
+          sx={[
+            {
+              height: 328,
+              overflow: 'auto',
+              '& .MuiDataGrid-root': {
+                bgcolor: '#fff',
+                '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+                '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
+                '& .MuiDataGrid-renderingZone': {
+                  '& .MuiDataGrid-cell': {
+                    bgcolor: 'grey.50',
+                  },
                 },
-              },
-              '& .MuiDataGrid-footerContainer': {
-                minHeight: 48,
-                borderTop: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              },
-              '& .MuiTablePagination-root': {
-                fontSize: '0.75rem',
-                '& p': {
-                  fontSize: '0.75rem',
-                },
-                '& .MuiToolbar-root': {
+                '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
+                  borderTop: '1px solid',
+                  borderColor: 'grey.200',
+                },
+                '& .MuiTablePagination-root': {
+                  fontSize: '0.75rem',
+                  '& p': {
+                    fontSize: '0.75rem',
+                  },
+                  '& .MuiToolbar-root': {
+                    minHeight: 48,
+                  },
                 },
               },
             },
-          }}
+            (theme) =>
+              theme.applyDarkStyles({
+                '& .MuiDataGrid-root': {
+                  bgcolor: 'primaryDark.900',
+                  '& .MuiDataGrid-renderingZone': {
+                    '& .MuiDataGrid-cell': {
+                      bgcolor: 'primaryDark.800',
+                    },
+                  },
+                  '& .MuiDataGrid-footerContainer': {
+                    borderColor: 'primaryDark.600',
+                  },
+                },
+              }),
+          ]}
         >
           <DataGridPro
             density="compact"
@@ -207,17 +217,14 @@ export default function XGridFullDemo() {
             }}
             loading={loading}
             checkboxSelection
-            disableSelectionOnClick
-            experimentalFeatures={{ newEditingApi: true }}
+            disableRowSelectionOnClick
             {...pagination}
           />
         </Paper>
       </Frame.Demo>
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Frame.Info sx={{ p: 1 }}>
-          <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
-        </Frame.Info>
-      </ThemeProvider>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ p: 1 }}>
+        <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
+      </Frame.Info>
     </Frame>
   );
 }

@@ -570,30 +570,37 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ theme }) => [
-            {
-              color: (theme.vars || theme).palette.primary[600],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[700],
-              },
-              fontWeight: 700,
-              display: 'inline-flex',
-              alignItems: 'center',
-              '&.MuiTypography-body1 > svg': {
-                marginTop: 2,
-              },
-              '& svg:last-child': {
-                marginLeft: 2,
-              },
+          root: {
+            fontWeight: 700,
+            display: 'inline-flex',
+            alignItems: 'center',
+            '&.MuiTypography-body1 > svg': {
+              marginTop: 2,
             },
-            theme.applyDarkStyles({
-              color: (theme.vars || theme).palette.primary[300],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[200],
-              },
-            }),
-          ],
+            '& svg:last-child': {
+              marginLeft: 2,
+            },
+          },
         },
+        variants: [
+          {
+            props: { color: 'primary' },
+            style: ({ theme }) => [
+              {
+                color: (theme.vars || theme).palette.primary[600],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[700],
+                },
+              },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+            ],
+          },
+        ],
       },
       MuiChip: {
         styleOverrides: {

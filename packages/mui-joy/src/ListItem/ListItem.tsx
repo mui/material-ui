@@ -9,8 +9,9 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
-import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
+import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
@@ -112,7 +113,7 @@ const ListItemStartAction = styled('div', {
   name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
-})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
+})<{ ownerState: ListItemOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
   top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
@@ -125,7 +126,7 @@ const ListItemEndAction = styled('div', {
   name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
-})<{ ownerState: ListItemProps }>(({ ownerState }) => ({
+})<{ ownerState: ListItemOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   position: 'absolute',
   top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
@@ -153,12 +154,14 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested = false,
     sticky = false,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     startAction,
     endAction,
     role: roleProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const [subheaderId, setSubheaderId] = React.useState('');
 
@@ -170,7 +173,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   if (listComponent) {
     // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-    // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+    // https://www.w3.org/WAI/ARIA/apg/patterns/menubar/examples/menubar-navigation/
     role = { menu: 'none', menubar: 'none', group: 'presentation' }[listRole];
   }
   if (roleProp) {
@@ -178,6 +181,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   }
 
   const ownerState = {
+    ...props,
     sticky,
     startAction,
     endAction,
@@ -189,7 +193,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     nested,
     component,
     role,
-    ...props,
   };
 
   const classes = useUtilityClasses(ownerState);

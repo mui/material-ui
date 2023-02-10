@@ -4,6 +4,19 @@
 
 A typical release goes like this:
 
+### Prerequisites
+
+1. You must be a member of the `@mui` org in npm to publish the release
+1. Set up your npm authToken by logging into npm (`npm login`) . This will save a token to `~/.npmrc` as a line that looks
+   like this:
+   ```text
+   //registry.npmjs.org/:_authToken=npm_000000000000000000000000000000000000
+   ```
+1. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
+   ```sh
+   git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
+   ```
+
 ### Prepare
 
 The following steps must be proposed as a pull request.
@@ -20,7 +33,7 @@ The following steps must be proposed as a pull request.
 
 ### Release
 
-1. checkout merge commit of the merged PR
+1. Checkout merge commit of the merged PR
 1. `yarn`
 1. `yarn release:build`
 1. `yarn release:publish`
@@ -29,17 +42,8 @@ The following steps must be proposed as a pull request.
 
 ### Documentation
 
-Push the next branch on the release branch to deploy the documentation with the latest changes. It lives at https://material-ui.netlify.app/. Force push if necessary.
-
-Note: if you don't have the `material-ui-docs` remote already, you should add it with
-
-```sh
-git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
-```
-
-```sh
-yarn docs:deploy
-```
+`yarn docs:deploy` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
+Force push if necessary.
 
 ### Announce
 

@@ -190,7 +190,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
+    <CircularProgress
+      {...(color !== 'context' && { color })}
+      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
+    />
   );
 
   React.useImperativeHandle(

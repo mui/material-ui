@@ -12,8 +12,6 @@ import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
-import { getUnstyledFilename } from '@mui-internal/docs-utilities';
-import * as ttp from 'typescript-to-proptypes';
 import { LANGUAGES } from 'docs/config';
 
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
@@ -25,6 +23,7 @@ import createDescribeableProp, {
 import generatePropDescription from '../utils/generatePropDescription';
 import parseStyles, { Styles } from '../utils/parseStyles';
 import { ComponentInfo } from '../buildApiUtils';
+import { TypeScriptProject } from '../utils/createTypeScriptProject';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
@@ -92,7 +91,10 @@ export function writePrettifiedFile(
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
-async function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
+export async function computeApiDescription(
+  api: { description: ReactApi['description'] },
+  options: { host: string },
+): Promise<string> {
   const { host } = options;
   const file = await remark()
     .use(function docsLinksAttacher() {
@@ -279,14 +281,16 @@ function extractClassConditions(descriptions: any) {
  * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
  * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGitHubPath(filepath: string): string {
+export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const componentName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
-  function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
+  function resolveApiDocsTranslationsComponentLanguagePath(
+    language: (typeof LANGUAGES)[0],
+  ): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
     return path.join(apiDocsTranslationPath, `${kebabCase(componentName)}${languageSuffix}.json`);
@@ -446,14 +450,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
         return [] as any;
       }
 
-      // Only keep `default` for bool props if it isn't 'false'.
-      let defaultValue: string | undefined;
-      if (
-        propDescriptor.type.name !== 'bool' ||
-        propDescriptor.jsdocDefaultValue?.value !== 'false'
-      ) {
-        defaultValue = propDescriptor.jsdocDefaultValue?.value;
-      }
+      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
 
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
@@ -506,7 +503,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.ts.Program) => {
+const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeScriptProject) => {
   const {
     filename,
     name,
@@ -575,43 +572,6 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
     reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
   }
 
-  // === Handle unstyled component ===
-  const unstyledFileName = getUnstyledFilename(filename);
-  let unstyledSrc;
-
-  // Try to get data for the unstyled component
-  try {
-    unstyledSrc = readFileSync(unstyledFileName, 'utf8');
-  } catch (err) {
-    // Unstyled component does not exist
-  }
-
-  if (unstyledSrc) {
-    const unstyledReactAPI = docgenParse(
-      unstyledSrc,
-      null,
-      defaultHandlers.concat(muiDefaultPropsHandler),
-      {
-        filename: unstyledFileName,
-      },
-    );
-
-    Object.keys(unstyledReactAPI.props).forEach((prop) => {
-      if (
-        unstyledReactAPI.props[prop].defaultValue &&
-        reactApi.props &&
-        (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
-      ) {
-        if (reactApi.props[prop]) {
-          reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
-          reactApi.props[prop].jsdocDefaultValue = unstyledReactAPI.props[prop].jsdocDefaultValue;
-        } else {
-          reactApi.props[prop] = unstyledReactAPI.props[prop];
-        }
-      }
-    });
-  } // ================================
-
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
@@ -636,7 +596,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.styles = await parseStyles(reactApi, program);
+  reactApi.styles = await parseStyles({ project, componentName: reactApi.name });
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = reactApi.muiName;

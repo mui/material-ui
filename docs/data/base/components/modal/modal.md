@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Modal component
 components: ModalUnstyled
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Unstyled Modal
@@ -82,7 +82,7 @@ The following demo shows how to nest one Modal within another:
 
 You can animate the open and close states of a Modal using a transition component, as long as that component fulfills the following requirements:
 
-- Is a direct child descendent of the modal
+- Is a direct child descendant of the modal
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
@@ -128,6 +128,18 @@ In order to display an Unstyled Modal rendered on the server, you need to disabl
 
 ## Limitations
 
+### Overflow layout shift
+
+The modal disables the page scrolling while open by setting `overflow: hidden` as inline-style on the relevant scroll container, this hides the scrollbar and hence impacts the page layout.
+To compensate for this offset and avoid a layout shift, the modal also set a padding property on the scroll container (~15px under normal conditions).
+
+This can create a layout shift with `position: fixed` and `position: sticky` elements.
+You need to add the `.mui-fixed` class name on these elements so the modal can add a CSS padding property when the scroll is disabled.
+
+```jsx
+<Box sx={{ position: 'sticky', right: 0, top: 0, left: 0 }} className="mui-fixed">
+```
+
 ### Focus trap
 
 Unstyled Modal moves the focus back to the body of the component if the focus tries to escape it.
@@ -138,7 +150,7 @@ If the user needs to interact with another part of the page—for example, to in
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices.
 
 - All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your Modal component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the Modal:
@@ -150,7 +162,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the Modal.
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the Modal.
   :::warning
   A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

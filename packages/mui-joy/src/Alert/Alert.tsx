@@ -1,16 +1,17 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
-import { AlertProps, AlertTypeMap } from './AlertProps';
+import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
 
-const useUtilityClasses = (ownerState: AlertProps) => {
+const useUtilityClasses = (ownerState: AlertOwnerState) => {
   const { variant, color, size } = ownerState;
 
   const slots = {
@@ -31,10 +32,10 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   '--Alert-radius': theme.vars.radius.sm,
   '--Alert-decorator-childRadius':
-    'max((var(--Alert-radius) - var(--variant-borderWidth)) - var(--Alert-padding), min(var(--Alert-padding) / 2, (var(--Alert-radius) - var(--variant-borderWidth)) / 2))',
+    'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
   '--Button-minHeight': 'var(--Alert-decorator-childHeight)',
   '--IconButton-size': 'var(--Alert-decorator-childHeight)',
   '--Button-radius': 'var(--Alert-decorator-childRadius)',
@@ -76,23 +77,27 @@ const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   flex: 'none',
   marginInlineEnd: 'var(--Alert-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  ...(ownerState.color !== 'context' && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
 
 const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   display: 'inherit',
   flex: 'none',
   marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  ...(ownerState.color !== 'context' && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
@@ -104,7 +109,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
-    color = 'primary',
+    color: colorProp = 'primary',
     role = 'alert',
     variant = 'soft',
     size = 'md',
@@ -112,6 +117,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     endDecorator,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,

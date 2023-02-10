@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { TabsUnstyledOwnProps } from '@mui/base/TabsUnstyled';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type TabsSlot = 'root';
 
@@ -41,4 +41,4 @@ export type TabsProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabsTypeMap<P, D>, D>;
 
-export interface TabsOwnerState extends TabsProps {}
+export interface TabsOwnerState extends ApplyColorInversion<TabsProps> {}

@@ -21,6 +21,8 @@ export interface AutocompleteListboxClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Classname applied to the root element if `variant="outlined"`. */
@@ -34,11 +36,11 @@ export interface AutocompleteListboxClasses {
 export type AutocompleteListboxClassKey = keyof AutocompleteListboxClasses;
 
 export function getAutocompleteListboxUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAutocompleteListbox', slot);
+  return generateUtilityClass('MuiAutocompleteListbox', slot);
 }
 
 const autocompleteListboxClasses: AutocompleteListboxClasses = generateUtilityClasses(
-  'JoyAutocompleteListbox',
+  'MuiAutocompleteListbox',
   [
     'root',
     'sizeSm',
@@ -50,6 +52,7 @@ const autocompleteListboxClasses: AutocompleteListboxClasses = generateUtilityCl
     'colorInfo',
     'colorSuccess',
     'colorWarning',
+    'colorContext',
     'variantPlain',
     'variantOutlined',
     'variantSoft',

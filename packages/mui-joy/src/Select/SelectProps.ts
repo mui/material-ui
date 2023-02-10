@@ -1,8 +1,8 @@
+import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SelectOption, SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type { SelectOption } from '@mui/base/SelectUnstyled';
@@ -29,10 +29,11 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
     indicator: SlotProps<'span', {}, SelectOwnerState<any>>;
     listbox: SlotProps<
       'ul',
-      Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
-        component?: React.ElementType;
-        sx?: SxProps;
-      },
+      {
+        color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
+        variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
+        size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
+      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
       SelectOwnerState<any>
     >;
   }
@@ -126,7 +127,8 @@ export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
     value?: TValue | null;
   };
 
-export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}>
+  extends ApplyColorInversion<SelectOwnProps<TValue>> {
   /**
    * If `true`, the select button is active.
    */

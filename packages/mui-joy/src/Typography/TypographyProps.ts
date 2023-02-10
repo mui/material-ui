@@ -6,6 +6,8 @@ import {
   SystemProps,
   TypographySystem,
   VariantProp,
+  ApplyColorInversion,
+  TextColor,
 } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
@@ -83,7 +85,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       /**
        * The system color.
        */
-      textColor?: SystemProps['color'];
+      textColor?: TextColor;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
@@ -103,7 +105,7 @@ export type TypographyProps<
   },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
-export interface TypographyOwnerState extends TypographyProps {
+export interface TypographyOwnerState extends ApplyColorInversion<TypographyProps> {
   /**
    * If `true`, the element is rendered in a Typography.
    */

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type MenuListSlot = 'root';
 
@@ -47,4 +47,4 @@ export type MenuListProps<
   },
 > = OverrideProps<MenuListTypeMap<P, D>, D>;
 
-export interface MenuListOwnerState extends MenuListProps {}
+export interface MenuListOwnerState extends ApplyColorInversion<MenuListProps> {}

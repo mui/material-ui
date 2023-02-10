@@ -2,7 +2,7 @@
 product: joy-ui
 title: React Menu component
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base/react-menu/
 ---
 
@@ -55,7 +55,7 @@ When specifying a size for the `Menu` component, menu items inside of it will in
 
 {{"demo": "SizeMenu.js"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 

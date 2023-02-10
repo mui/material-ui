@@ -11,10 +11,10 @@
     },
     "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "defaultPage": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "getItemAriaLabel": { "type": { "name": "func" } },
-    "hideNextButton": { "type": { "name": "bool" } },
-    "hidePrevButton": { "type": { "name": "bool" } },
+    "hideNextButton": { "type": { "name": "bool" }, "default": "false" },
+    "hidePrevButton": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
     "page": { "type": { "name": "custom", "description": "integer" } },
     "renderItem": {
@@ -25,8 +25,8 @@
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "default": "'circular'"
     },
-    "showFirstButton": { "type": { "name": "bool" } },
-    "showLastButton": { "type": { "name": "bool" } },
+    "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
+    "showLastButton": { "type": { "name": "bool" }, "default": "false" },
     "siblingCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "size": {
       "type": {

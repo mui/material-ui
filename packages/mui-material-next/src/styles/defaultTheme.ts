@@ -12,7 +12,6 @@ export const getThemeWithVars = (
     opacity,
     overlays,
     shape,
-    md3,
     ref,
     sys,
     palette: paletteInput,
@@ -37,7 +36,6 @@ export const getThemeWithVars = (
     opacity,
     overlays,
     shape,
-    md3,
     ref: {
       ...ref,
       ...colorSchemeRef,
@@ -72,7 +70,6 @@ export const getThemeWithVars = (
         ...sys,
         ...colorSchemeSys,
       },
-      md3,
       palette,
     },
   } as unknown as Theme;

@@ -17,6 +17,8 @@ export interface ListSubheaderClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** State class applied to the root element if `variant="soft"`. */
@@ -30,10 +32,10 @@ export interface ListSubheaderClasses {
 export type ListSubheaderClassKey = keyof ListSubheaderClasses;
 
 export function getListSubheaderUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyListSubheader', slot);
+  return generateUtilityClass('MuiListSubheader', slot);
 }
 
-const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('JoyListSubheader', [
+const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('MuiListSubheader', [
   'root',
   'sticky',
   'colorPrimary',
@@ -42,6 +44,7 @@ const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('JoyLi
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantSoft',
   'variantOutlined',

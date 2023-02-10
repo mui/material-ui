@@ -25,6 +25,8 @@ export interface InputClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -50,10 +52,10 @@ export interface InputClasses {
 export type InputClassKey = keyof InputClasses;
 
 export function getInputUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyInput', slot);
+  return generateUtilityClass('MuiInput', slot);
 }
 
-const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
+const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
   'root',
   'input',
   'formControl',
@@ -68,6 +70,7 @@ const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

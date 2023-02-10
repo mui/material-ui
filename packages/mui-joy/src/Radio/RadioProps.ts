@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label';
@@ -93,7 +93,7 @@ export type RadioProps<
   },
 > = OverrideProps<RadioTypeMap<P, D>, D>;
 
-export interface RadioOwnerState extends RadioProps {
+export interface RadioOwnerState extends ApplyColorInversion<RadioProps> {
   /**
    * If `true`, the element's focus is visible.
    */
@@ -102,7 +102,7 @@ export interface RadioOwnerState extends RadioProps {
    * @internal
    * The value from the RadioGroup component.
    */
-  row?: boolean;
+  orientation?: 'horizontal' | 'vertical';
   /**
    * @internal
    * The internal prop for controlling CSS margin of the element.
