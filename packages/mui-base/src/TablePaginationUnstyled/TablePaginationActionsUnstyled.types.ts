@@ -81,35 +81,43 @@ export interface TablePaginationActionsUnstyledSlots {
   /**
    * The component used to render the first button.
    * @default 'button'
-   */ firstButton?: React.ElementType;
+   */
+  firstButton?: React.ElementType;
   /**
    * The component used to render the last button.
    * @default 'button'
-   */ lastButton?: React.ElementType;
+   */
+  lastButton?: React.ElementType;
   /**
    * The component used to render the next button.
    * @default 'button'
-   */ nextButton?: React.ElementType;
+   */
+  nextButton?: React.ElementType;
   /**
    * The component used to render the back button.
    * @default 'button'
-   */ backButton?: React.ElementType;
+   */
+  backButton?: React.ElementType;
   /**
    * The component used to render the first page icon.
    * @default FirstPageIconDefault
-   */ firstPageIcon?: React.ElementType;
+   */
+  firstPageIcon?: React.ElementType;
   /**
    * The component used to render the last page icon.
    * @default LastPageIconDefault
-   */ lastPageIcon?: React.ElementType;
+   */
+  lastPageIcon?: React.ElementType;
   /**
    * The component used to render the next page icon.
    * @default NextPageIconDefault
-   */ nextPageIcon?: React.ElementType;
+   */
+  nextPageIcon?: React.ElementType;
   /**
    * The component used to render the back page icon.
    * @default BackPageIconDefault
-   */ backPageIcon?: React.ElementType;
+   */
+  backPageIcon?: React.ElementType;
 }
 
 export type TablePaginationActionsUnstyledProps<

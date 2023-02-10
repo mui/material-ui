@@ -200,7 +200,7 @@ export default function ApiPage(props) {
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
-    componentSlots.length > 0 && createTocEntry('slots'),
+    componentSlots?.length > 0 && createTocEntry('slots'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -328,7 +328,7 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentSlots && componentSlots.length ? (
+        {componentSlots?.length ? (
           <React.Fragment>
             <Heading hash="slots" />
             <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
