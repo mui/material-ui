@@ -616,6 +616,7 @@ export function getThemedComponents(): ThemeOptions {
                   color: (theme.vars || theme).palette.grey[900],
                 },
                 ...theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.grey[700], 0.5),
                   color: (theme.vars || theme).palette.grey[300],
                   borderColor: alpha(theme.palette.grey[100], 0.1),
                   '&:hover': {
