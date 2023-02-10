@@ -49,7 +49,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     open,
     resumeHideDuration,
     slotProps = {},
-    slots = {},
+    slots = { root: 'div' },
     ...other
   } = props;
 
@@ -67,7 +67,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
 
   const ownerState: SnackbarUnstyledOwnerState = props;
 
-  const Root = component || slots.root || 'div';
+  const Root = component || slots.root!;
 
   const rootProps: WithOptionalOwnerState<SnackbarUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
@@ -204,7 +204,7 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Snackbar.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'div' }
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

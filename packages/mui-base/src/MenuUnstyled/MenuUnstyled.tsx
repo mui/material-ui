@@ -47,7 +47,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     onClose,
     open = false,
     slotProps = {},
-    slots = {},
+    slots = { root: PopperUnstyled, listbox: 'ul' },
     ...other
   } = props;
 
@@ -73,7 +73,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
 
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? PopperUnstyled;
+  const Root = component ?? slots.root!;
   const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
@@ -89,7 +89,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ownerState,
   }) as MenuUnstyledRootSlotProps;
 
-  const Listbox = slots.listbox ?? 'ul';
+  const Listbox = slots.listbox!;
   const listboxProps = useSlotProps({
     elementType: Listbox,
     getSlotProps: getListboxProps,
@@ -177,7 +177,7 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Menu.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: PopperUnstyled, listbox: 'ul' }
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,

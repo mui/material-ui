@@ -234,7 +234,7 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'div' }
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

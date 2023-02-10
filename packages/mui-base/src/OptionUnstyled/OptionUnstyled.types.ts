@@ -32,16 +32,22 @@ export interface OptionUnstyledOwnProps<TValue> {
   /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'li' }
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: OptionUnstyledSlots;
   /**
    * A text representation of the option's content.
    * Used for keyboard text navigation matching.
    */
   label?: string;
+}
+
+export interface OptionUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
 }
 
 export interface OptionUnstyledTypeMap<TValue, P = {}, D extends React.ElementType = 'li'> {

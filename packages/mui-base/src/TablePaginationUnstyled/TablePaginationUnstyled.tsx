@@ -75,7 +75,16 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       rowsPerPageOptions = [10, 25, 50, 100],
       selectId: selectIdProp,
       slotProps = {},
-      slots = {},
+      slots = {
+        root: 'td',
+        actions: TablePaginationActionsUnstyled,
+        select: 'select',
+        selectLabel: 'p',
+        menuItem: 'option',
+        displayedRows: 'p',
+        toolbar: 'div',
+        spacer: 'div',
+      },
       ...other
     } = props;
 
@@ -97,7 +106,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
     const selectId = useId(selectIdProp);
     const labelId = useId(labelIdProp);
 
-    const Root = component ?? slots.root ?? 'td';
+    const Root = component ?? slots.root!;
     const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> = useSlotProps({
       elementType: Root,
       externalSlotProps: slotProps.root,
@@ -127,7 +136,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.select,
       });
 
-    const Actions = slots.actions ?? TablePaginationActionsUnstyled;
+    const Actions = slots.actions!;
     const actionsProps: WithOptionalOwnerState<TablePaginationUnstyledActionsSlotProps> =
       useSlotProps({
         elementType: Actions,
@@ -143,7 +152,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.actions,
       });
 
-    const MenuItem = slots.menuItem ?? 'option';
+    const MenuItem = slots.menuItem!;
     const menuItemProps: WithOptionalOwnerState<TablePaginationUnstyledMenuItemSlotProps> =
       useSlotProps({
         elementType: MenuItem,
@@ -155,7 +164,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.menuItem,
       });
 
-    const SelectLabel = slots.selectLabel ?? 'p';
+    const SelectLabel = slots.selectLabel!;
     const selectLabelProps: WithOptionalOwnerState<TablePaginationUnstyledSelectLabelSlotProps> =
       useSlotProps({
         elementType: SelectLabel,
@@ -167,7 +176,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.selectLabel,
       });
 
-    const DisplayedRows = slots.displayedRows ?? 'p';
+    const DisplayedRows = slots.displayedRows!;
     const displayedRowsProps: WithOptionalOwnerState<TablePaginationUnstyledDisplayedRowsSlotProps> =
       useSlotProps({
         elementType: DisplayedRows,
@@ -176,7 +185,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.displayedRows,
       });
 
-    const Toolbar = slots.toolbar ?? 'div';
+    const Toolbar = slots.toolbar!;
     const toolbarProps: WithOptionalOwnerState<TablePaginationUnstyledToolbarSlotProps> =
       useSlotProps({
         elementType: Toolbar,
@@ -185,7 +194,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         className: classes.toolbar,
       });
 
-    const Spacer = slots.spacer ?? 'div';
+    const Spacer = slots.spacer!;
     const spacerProps: WithOptionalOwnerState<TablePaginationUnstyledSpacerSlotProps> =
       useSlotProps({
         elementType: Spacer,
@@ -374,7 +383,16 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the TablePagination.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default {
+   *   root: 'td',
+   *   actions: TablePaginationActionsUnstyled,
+   *   select: 'select',
+   *   selectLabel: 'p',
+   *   menuItem: 'option',
+   *   displayedRows: 'p',
+   *   toolbar: 'div',
+   *   spacer: 'div',
+   * }
    */
   slots: PropTypes.shape({
     actions: PropTypes.elementType,

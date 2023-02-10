@@ -46,12 +46,18 @@ export interface FormControlUnstyledOwnProps {
   /**
    * The components used for each slot inside the FormControl.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'div' }
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: FormControlUnstyledSlots;
   value?: unknown;
+}
+
+export interface FormControlUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormControlUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

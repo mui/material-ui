@@ -20,14 +20,6 @@ export interface MenuItemUnstyledOwnProps {
    */
   disabled?: boolean;
   /**
-   * The components used for each slot inside the MenuItem.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-  };
-  /**
    * The props used for each slot inside the MenuItem.
    * @default {}
    */
@@ -39,10 +31,24 @@ export interface MenuItemUnstyledOwnProps {
     >;
   };
   /**
+   * The components used for each slot inside the MenuItem.
+   * Either a string to use a HTML element or a component.
+   * @default { root: 'li' }
+   */
+  slots?: MenuItemUnstyledSlots;
+  /**
    * A text representation of the menu item's content.
    * Used for keyboard text navigation matching.
    */
   label?: string;
+}
+
+export interface MenuItemUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
 }
 
 export interface MenuItemUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {

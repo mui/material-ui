@@ -34,7 +34,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
   props,
   ref,
 ) {
-  const { children, component, value, slotProps = {}, slots = {}, ...other } = props;
+  const { children, component, value, slotProps = {}, slots = { root: 'div' }, ...other } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
@@ -45,7 +45,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabPanelRoot: React.ElementType = component ?? slots.root ?? 'div';
+  const TabPanelRoot: React.ElementType = component ?? slots.root!;
   const tabPanelRootProps: WithOptionalOwnerState<TabPanelUnstyledRootSlotProps> = useSlotProps({
     elementType: TabPanelRoot,
     getSlotProps: getRootProps,
@@ -86,7 +86,7 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the TabPanel.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'div' }
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

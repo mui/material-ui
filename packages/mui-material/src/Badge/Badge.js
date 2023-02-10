@@ -400,7 +400,7 @@ Badge.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'span', badge: 'span' }
    */
   slots: PropTypes.shape({
     badge: PropTypes.elementType,

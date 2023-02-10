@@ -16,14 +16,6 @@ export interface TabPanelUnstyledOwnProps {
    */
   value: number | string;
   /**
-   * The components used for each slot inside the TabPanel.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-  };
-  /**
    * The props used for each slot inside the TabPanel.
    * @default {}
    */
@@ -34,6 +26,20 @@ export interface TabPanelUnstyledOwnProps {
       TabPanelUnstyledOwnerState
     >;
   };
+  /**
+   * The components used for each slot inside the TabPanel.
+   * Either a string to use a HTML element or a component.
+   * @default { root: 'div' }
+   */
+  slots?: TabPanelUnstyledSlots;
+}
+
+export interface TabPanelUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface TabPanelUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

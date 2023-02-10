@@ -123,13 +123,9 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
     /**
      * The components used for each slot inside the InputBase.
      * Either a string to use a HTML element or a component.
-     * @default {}
+     * @default { root: 'div', input: 'input', textarea: 'textarea' }
      */
-    slots?: {
-      root?: React.ElementType;
-      input?: React.ElementType;
-      textarea?: React.ElementType;
-    };
+    slots?: InputUnstyledSlots;
     /**
      * Leading adornment for this input.
      */
@@ -139,6 +135,24 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      */
     value?: unknown;
   };
+
+export interface InputUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component used to render the textarea.
+   * @default 'textarea'
+   */
+  textarea?: React.ElementType;
+}
 
 export interface InputUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & InputUnstyledOwnProps;

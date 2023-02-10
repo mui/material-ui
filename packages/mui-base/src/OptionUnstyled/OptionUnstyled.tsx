@@ -35,7 +35,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     disabled = false,
     label,
     slotProps = {},
-    slots = {},
+    slots = { root: 'li' },
     value,
     ...other
   } = props;
@@ -45,7 +45,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
-  const Root = component || slots.root || 'li';
+  const Root = component || slots.root!;
 
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
@@ -109,7 +109,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'li' }
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

@@ -187,18 +187,18 @@ export interface SliderUnstyledOwnProps {
   /**
    * The components used for each slot inside the Slider.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default {
+   *   root: 'span',
+   *   track: 'span',
+   *   rail: 'span',
+   *   thumb: 'span',
+   *   mark: 'span',
+   *   markLabel: 'span',
+   *   valueLabel: undefined,
+   *   input: 'input',
+   * }
    */
-  slots?: {
-    root?: React.ElementType;
-    track?: React.ElementType;
-    rail?: React.ElementType;
-    thumb?: React.ElementType;
-    mark?: React.ElementType;
-    markLabel?: React.ElementType;
-    valueLabel?: React.ElementType;
-    input?: React.ElementType;
-  };
+  slots?: SliderUnstyledSlots;
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -240,6 +240,48 @@ export interface SliderUnstyledOwnProps {
    * }
    */
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
+}
+
+export interface SliderUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track?: React.ElementType;
+  /**
+   * The component used to render the rail.
+   * @default 'span'
+   */
+  rail?: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb?: React.ElementType;
+  /**
+   * The component used to render the mark.
+   * @default 'span'
+   */
+  mark?: React.ElementType;
+  /**
+   * The component used to render the mark label.
+   * @default 'span'
+   */
+  markLabel?: React.ElementType;
+  /**
+   * The component used to render the value label.
+   */
+  valueLabel?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
 }
 
 export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {

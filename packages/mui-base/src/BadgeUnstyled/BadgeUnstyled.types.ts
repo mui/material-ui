@@ -46,17 +46,27 @@ export interface BadgeUnstyledOwnProps {
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'span', badge: 'span' }
    */
-  slots?: {
-    root?: React.ElementType;
-    badge?: React.ElementType;
-  };
+  slots?: BadgeUnstyledSlots;
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false
    */
   showZero?: boolean;
+}
+
+export interface BadgeUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the badge.
+   * @default 'span'
+   */
+  badge?: React.ElementType;
 }
 
 export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {

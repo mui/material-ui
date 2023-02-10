@@ -42,7 +42,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
     onFocus,
     component,
     slotProps = {},
-    slots = {},
+    slots = { root: 'button' },
     ...other
   } = props;
 
@@ -75,7 +75,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabRoot: React.ElementType = component ?? slots.root ?? 'button';
+  const TabRoot: React.ElementType = component ?? slots.root!;
   const tabRootProps: WithOptionalOwnerState<TabUnstyledRootSlotProps> = useSlotProps({
     elementType: TabRoot,
     getSlotProps: getRootProps,
@@ -143,7 +143,7 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Tab.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'button' }
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,
