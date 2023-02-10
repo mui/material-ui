@@ -80,7 +80,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     onChange,
     required = false,
     slotProps = {},
-    slots = { root: 'div' },
+    slots = {},
     value: incomingValue,
     ...other
   } = props;
@@ -139,7 +139,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     return children;
   };
 
-  const Root = component ?? slots.root!;
+  const Root = component ?? slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -209,7 +209,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the FormControl.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div' }
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

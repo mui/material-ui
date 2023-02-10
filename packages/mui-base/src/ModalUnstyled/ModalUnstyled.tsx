@@ -92,7 +92,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     onTransitionEnter,
     onTransitionExited,
     slotProps = {},
-    slots = { root: 'div', backdrop: undefined },
+    slots = {},
     ...other
   } = props;
 
@@ -260,7 +260,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
     childProps.onExited = createChainedFunction(handleExited, children.props.onExited);
   }
 
-  const Root = component ?? slots.root!;
+  const Root = component ?? slots.root ?? 'div';
   const rootProps = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -437,7 +437,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div', backdrop: undefined }
+   * @default {}
    */
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,

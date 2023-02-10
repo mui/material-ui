@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  * - [TabsListUnstyled API](https://mui.com/base/api/tabs-list-unstyled/)
  */
 const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props, ref) => {
-  const { children, component, slotProps = {}, slots = { root: 'div' }, ...other } = props;
+  const { children, component, slotProps = {}, slots = {}, ...other } = props;
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
@@ -44,7 +44,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabsListRoot: React.ElementType = component ?? slots.root!;
+  const TabsListRoot: React.ElementType = component ?? slots.root ?? 'div';
   const tabsListRootProps: WithOptionalOwnerState<TabsListUnstyledRootSlotProps> = useSlotProps({
     elementType: TabsListRoot,
     getSlotProps: getRootProps,
@@ -83,7 +83,7 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the TabsList.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div' }
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

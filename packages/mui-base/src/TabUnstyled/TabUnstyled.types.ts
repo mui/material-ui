@@ -26,17 +26,11 @@ export interface TabUnstyledOwnProps
   /**
    * The components used for each slot inside the Tab.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'button' }
+   * @default {}
    */
-  slots?: TabUnstyledSlots;
-}
-
-export interface TabUnstyledSlots {
-  /**
-   * The component used to render the root.
-   * @default 'button'
-   */
-  root?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
+  };
 }
 
 export type TabUnstyledProps<

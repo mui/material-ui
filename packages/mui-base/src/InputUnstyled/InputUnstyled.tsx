@@ -56,7 +56,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     type: typeProp,
     rows,
     slotProps = {},
-    slots = { root: 'div', input: 'input', textarea: 'textarea' },
+    slots = {},
     minRows,
     maxRows,
     ...other
@@ -123,7 +123,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     type,
   };
 
-  const Root = component ?? slots.root!;
+  const Root = component ?? slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -135,7 +135,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
     className: [classes.root, rootStateClasses, className],
   });
-  const Input = multiline ? slots.textarea! : slots.input!;
+  const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
@@ -306,7 +306,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div', input: 'input', textarea: 'textarea' }
+   * @default {}
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,

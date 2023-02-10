@@ -10,6 +10,14 @@ export interface SnackbarUnstyledClickAwayListenerSlotPropsOverrides {}
 export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
   children?: React.ReactNode;
   /**
+   * The components used for each slot inside the Snackbar.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+  };
+  /**
    * The props used for each slot inside the Snackbar.
    * @default {}
    */
@@ -26,24 +34,10 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
     >;
   };
   /**
-   * The components used for each slot inside the Snackbar.
-   * Either a string to use a HTML element or a component.
-   * @default { root: 'div' }
-   */
-  slots?: SnackbarUnstyledSlots;
-  /**
    * The prop used to handle exited transition and unmount the component.
    * @default true
    */
   exited?: boolean;
-}
-
-export interface SnackbarUnstyledSlots {
-  /**
-   * The component used to render the root.
-   * @default 'div'
-   */
-  root?: React.ElementType;
 }
 
 export interface SnackbarUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

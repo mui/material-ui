@@ -55,7 +55,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     onKeyUp,
     onMouseLeave,
     slotProps = {},
-    slots = { root: props.href || props.to ? 'a' : 'button' },
+    slots = {},
     ...other
   } = props;
 
@@ -86,7 +86,8 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? slots.root!;
+  const defaultElement = other.href || other.to ? 'a' : 'button';
+  const Root: React.ElementType = component ?? slots.root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -179,7 +180,7 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Button.
    * Either a string to use a HTML element or a component.
-   * @default { root: props.href || props.to ? 'a' : 'button' }
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

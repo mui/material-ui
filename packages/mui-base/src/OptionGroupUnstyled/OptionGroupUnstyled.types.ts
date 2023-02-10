@@ -19,6 +19,16 @@ export interface OptionGroupUnstyledOwnProps {
    */
   disabled?: boolean;
   /**
+   * The components used for each slot inside the OptionGroupUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    label?: React.ElementType;
+    list?: React.ElementType;
+  };
+  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
@@ -39,30 +49,6 @@ export interface OptionGroupUnstyledOwnProps {
       OptionGroupUnstyledOwnerState
     >;
   };
-  /**
-   * The components used for each slot inside the OptionGroupUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default { root: 'li', label: 'span', list: 'ul' }
-   */
-  slots?: OptionGroupUnstyledSlots;
-}
-
-export interface OptionGroupUnstyledSlots {
-  /**
-   * The component used to render the root.
-   * @default 'li'
-   */
-  root?: React.ElementType;
-  /**
-   * The component used to render the label.
-   * @default 'span'
-   */
-  label?: React.ElementType;
-  /**
-   * The component used to render the list.
-   * @default 'ul'
-   */
-  list?: React.ElementType;
 }
 
 export interface OptionGroupUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {

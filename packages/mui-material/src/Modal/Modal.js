@@ -296,7 +296,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div', backdrop: undefined }
+   * @default {}
    */
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,

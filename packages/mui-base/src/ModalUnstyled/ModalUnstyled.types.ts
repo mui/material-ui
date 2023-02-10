@@ -114,21 +114,12 @@ export interface ModalUnstyledOwnProps {
   /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div', backdrop: undefined }
+   * @default {}
    */
-  slots?: ModalUnstyledSlots;
-}
-
-export interface ModalUnstyledSlots {
-  /**
-   * The component used to render the root.
-   * @default 'div'
-   */
-  root?: React.ElementType;
-  /**
-   * The component used to render the backdrop.
-   */
-  backdrop?: React.ElementType;
+  slots?: {
+    root?: React.ElementType;
+    backdrop?: React.ElementType;
+  };
 }
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

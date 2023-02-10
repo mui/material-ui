@@ -43,7 +43,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     onChange,
     selectionFollowsFocus,
     slotProps = {},
-    slots = { root: 'div' },
+    slots = {},
     ...other
   } = props;
 
@@ -57,7 +57,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabsRoot: React.ElementType = component ?? slots.root!;
+  const TabsRoot: React.ElementType = component ?? slots.root ?? 'div';
   const tabsRootProps: WithOptionalOwnerState<TabsUnstyledRootSlotProps> = useSlotProps({
     elementType: TabsRoot,
     externalSlotProps: slotProps.root,
@@ -123,7 +123,7 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Tabs.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div' }
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

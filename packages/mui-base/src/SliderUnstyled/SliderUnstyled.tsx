@@ -88,16 +88,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     isRtl = false,
     defaultValue,
     slotProps = {},
-    slots = {
-      root: 'span',
-      track: 'span',
-      rail: 'span',
-      thumb: 'span',
-      mark: 'span',
-      markLabel: 'span',
-      valueLabel: undefined,
-      input: 'input',
-    },
+    slots = {},
     ...other
   } = props;
 
@@ -147,7 +138,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root!;
+  const Root = component ?? slots.root ?? 'span';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -157,7 +148,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     className: [classes.root, className],
   });
 
-  const Rail = slots.rail!;
+  const Rail = slots.rail ?? 'span';
   const railProps = useSlotProps({
     elementType: Rail,
     externalSlotProps: slotProps.rail,
@@ -165,7 +156,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     className: classes.rail,
   });
 
-  const Track = slots.track!;
+  const Track = slots.track ?? 'span';
   const trackProps = useSlotProps({
     elementType: Track,
     externalSlotProps: slotProps.track,
@@ -179,7 +170,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     className: classes.track,
   });
 
-  const Thumb = slots.thumb!;
+  const Thumb = slots.thumb ?? 'span';
   const thumbProps = useSlotProps({
     elementType: Thumb,
     getSlotProps: getThumbProps,
@@ -194,7 +185,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     ownerState,
   });
 
-  const Mark = slots.mark!;
+  const Mark = slots.mark ?? 'span';
   const markProps = useSlotProps({
     elementType: Mark,
     externalSlotProps: slotProps.mark,
@@ -202,14 +193,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     className: classes.mark,
   });
 
-  const MarkLabel = slots.markLabel!;
+  const MarkLabel = slots.markLabel ?? 'span';
   const markLabelProps = useSlotProps({
     elementType: MarkLabel,
     externalSlotProps: slotProps.markLabel,
     ownerState,
   });
 
-  const Input = slots.input!;
+  const Input = slots.input || 'input';
   const inputProps = useSlotProps({
     elementType: Input,
     getSlotProps: getHiddenInputProps,
@@ -493,16 +484,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Slider.
    * Either a string to use a HTML element or a component.
-   * @default {
-   *   root: 'span',
-   *   track: 'span',
-   *   rail: 'span',
-   *   thumb: 'span',
-   *   mark: 'span',
-   *   markLabel: 'span',
-   *   valueLabel: undefined,
-   *   input: 'input',
-   * }
+   * @default {}
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,

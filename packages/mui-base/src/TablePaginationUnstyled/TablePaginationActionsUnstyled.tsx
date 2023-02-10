@@ -46,17 +46,7 @@ const TablePaginationActionsUnstyled = React.forwardRef<
     // @ts-ignore
     ownerState: ownerStateProp,
     slotProps = {},
-    slots = {
-      root: 'div',
-      firstButton: 'button',
-      lastButton: 'button',
-      nextButton: 'button',
-      backButton: 'button',
-      firstPageIcon: FirstPageIconDefault,
-      lastPageIcon: LastPageIconDefault,
-      nextPageIcon: NextPageIconDefault,
-      backPageIcon: BackPageIconDefault,
-    },
+    slots = {},
     ...other
   } = props;
 
@@ -78,7 +68,7 @@ const TablePaginationActionsUnstyled = React.forwardRef<
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
-  const Root = component ?? slots.root!;
+  const Root = slots.root ?? component ?? 'div';
   const rootProps: WithOptionalOwnerState<TablePaginationActionsUnstyledRootSlotProps> =
     useSlotProps({
       elementType: Root,
@@ -88,7 +78,7 @@ const TablePaginationActionsUnstyled = React.forwardRef<
       ownerState,
     });
 
-  const FirstButton = slots.firstButton!;
+  const FirstButton = slots.firstButton ?? 'button';
   const firstButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
     useSlotProps({
       elementType: FirstButton,
@@ -102,7 +92,7 @@ const TablePaginationActionsUnstyled = React.forwardRef<
       ownerState,
     });
 
-  const LastButton = slots.lastButton!;
+  const LastButton = slots.lastButton ?? 'button';
   const lastButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
     useSlotProps({
       elementType: LastButton,
@@ -116,7 +106,7 @@ const TablePaginationActionsUnstyled = React.forwardRef<
       ownerState,
     });
 
-  const NextButton = slots.nextButton!;
+  const NextButton = slots.nextButton ?? 'button';
   const nextButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
     useSlotProps({
       elementType: NextButton,
@@ -130,7 +120,7 @@ const TablePaginationActionsUnstyled = React.forwardRef<
       ownerState,
     });
 
-  const BackButton = slots.backButton!;
+  const BackButton = slots.backButton ?? 'button';
   const backButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
     useSlotProps({
       elementType: BackButton,
@@ -144,10 +134,10 @@ const TablePaginationActionsUnstyled = React.forwardRef<
       ownerState,
     });
 
-  const LastPageIcon = slots.lastPageIcon!;
-  const FirstPageIcon = slots.firstPageIcon!;
-  const NextPageIcon = slots.nextPageIcon!;
-  const BackPageIcon = slots.backPageIcon!;
+  const LastPageIcon = slots.lastPageIcon ?? LastPageIconDefault;
+  const FirstPageIcon = slots.firstPageIcon ?? FirstPageIconDefault;
+  const NextPageIcon = slots.nextPageIcon ?? NextPageIconDefault;
+  const BackPageIcon = slots.backPageIcon ?? BackPageIconDefault;
 
   return (
     <Root {...rootProps}>

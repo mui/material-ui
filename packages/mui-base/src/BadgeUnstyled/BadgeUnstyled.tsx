@@ -41,7 +41,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props: BadgeUnstyl
     invisible: invisibleProp,
     max: maxProp = 99,
     slotProps = {},
-    slots = { root: 'span', badge: 'span' },
+    slots = {},
     showZero = false,
     ...other
   } = props;
@@ -61,7 +61,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props: BadgeUnstyl
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component || slots.root!;
+  const Root = component || slots.root || 'span';
   const rootProps: WithOptionalOwnerState<BadgeUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -73,7 +73,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props: BadgeUnstyl
     className: classes.root,
   });
 
-  const Badge = slots.badge!;
+  const Badge = slots.badge || 'span';
   const badgeProps: WithOptionalOwnerState<BadgeUnstyledBadgeSlotProps> = useSlotProps({
     elementType: Badge,
     externalSlotProps: slotProps.badge,
@@ -133,7 +133,7 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'span', badge: 'span' }
+   * @default {}
    */
   slots: PropTypes.shape({
     badge: PropTypes.elementType,

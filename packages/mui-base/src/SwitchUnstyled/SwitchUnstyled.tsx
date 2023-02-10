@@ -60,7 +60,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     readOnly: readOnlyProp,
     required,
     slotProps = {},
-    slots = { root: 'span', input: 'input', thumb: 'span', track: 'span' },
+    slots = {},
     ...other
   } = props;
 
@@ -87,7 +87,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? slots.root!;
+  const Root: React.ElementType = component ?? slots.root ?? 'span';
   const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -99,7 +99,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.root,
   });
 
-  const Thumb: React.ElementType = slots.thumb!;
+  const Thumb: React.ElementType = slots.thumb ?? 'span';
   const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = useSlotProps({
     elementType: Thumb,
     externalSlotProps: slotProps.thumb,
@@ -107,7 +107,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.thumb,
   });
 
-  const Input: React.ElementType = slots.input!;
+  const Input: React.ElementType = slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: getInputProps,
@@ -116,7 +116,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.input,
   });
 
-  const Track: React.ElementType = slots.track === null ? () => null : slots.track!;
+  const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
   const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = useSlotProps({
     elementType: Track,
     externalSlotProps: slotProps.track,
@@ -200,7 +200,7 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'span', input: 'input', thumb: 'span', track: 'span' }
+   * @default {}
    */
   slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     input: PropTypes.elementType,

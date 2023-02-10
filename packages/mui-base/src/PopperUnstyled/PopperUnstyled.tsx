@@ -267,7 +267,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
     style,
     transition = false,
     slotProps = {},
-    slots = { root: 'div' },
+    slots = {},
     ...other
   } = props;
 
@@ -530,7 +530,7 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'div' }
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

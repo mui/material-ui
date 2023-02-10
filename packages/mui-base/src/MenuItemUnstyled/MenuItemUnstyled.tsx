@@ -40,7 +40,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
     component,
     label,
     slotProps = {},
-    slots = { root: 'li' },
+    slots = {},
     ...other
   } = props;
 
@@ -54,7 +54,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
 
   const classes = getUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root!;
+  const Root = component ?? slots.root ?? 'li';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -101,7 +101,7 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the MenuItem.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'li' }
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

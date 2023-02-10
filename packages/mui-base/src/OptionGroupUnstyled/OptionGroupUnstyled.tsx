@@ -36,17 +36,11 @@ function useUtilityClasses(disabled: boolean) {
 const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
   BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
 >(props: OptionGroupUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<HTMLLIElement>) {
-  const {
-    component,
-    disabled = false,
-    slotProps = {},
-    slots = { root: 'li', label: 'span', list: 'ul' },
-    ...other
-  } = props;
+  const { component, disabled = false, slotProps = {}, slots = {}, ...other } = props;
 
-  const Root = component || slots.root!;
-  const Label = slots.label!;
-  const List = slots.list!;
+  const Root = component || slots?.root || 'li';
+  const Label = slots?.label || 'span';
+  const List = slots?.list || 'ul';
 
   const classes = useUtilityClasses(disabled);
 
@@ -118,7 +112,7 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the OptionGroupUnstyled.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'li', label: 'span', list: 'ul' }
+   * @default {}
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,

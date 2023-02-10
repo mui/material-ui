@@ -94,7 +94,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     optionStringifier = defaultOptionStringifier,
     renderValue: renderValueProp,
     slotProps = {},
-    slots = { root: 'button', listbox: 'ul', popper: PopperUnstyled },
+    slots = {},
     value: valueProp,
     ...other
   } = props;
@@ -118,9 +118,9 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? slots.root!;
-  const ListboxRoot = slots.listbox!;
-  const Popper = slots.popper!;
+  const Button = component ?? slots.root ?? 'button';
+  const ListboxRoot = slots.listbox ?? 'ul';
+  const Popper = slots.popper ?? PopperUnstyled;
 
   const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
     setButtonDefined(element != null);
@@ -334,7 +334,7 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside the MultiSelect.
    * Either a string to use a HTML element or a component.
-   * @default { root: 'button', listbox: 'ul', popper: PopperUnstyled }
+   * @default {}
    */
   slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.elementType,
