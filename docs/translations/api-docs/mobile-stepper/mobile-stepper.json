@@ -48,5 +48,6 @@
       "nodeName": "the Linear Progress component",
       "conditions": "<code>variant=\"progress\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

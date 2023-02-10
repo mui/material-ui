@@ -47,5 +47,6 @@
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

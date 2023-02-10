@@ -42,7 +42,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{ root: 'div' }"
     },
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },

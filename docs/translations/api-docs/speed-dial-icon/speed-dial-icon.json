@@ -29,5 +29,6 @@
       "nodeName": "the `openIcon`",
       "conditions": "provided and if <code>open={true}</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

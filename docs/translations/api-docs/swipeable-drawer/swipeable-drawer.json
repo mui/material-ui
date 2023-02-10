@@ -15,5 +15,6 @@
     "swipeAreaWidth": "The width of the left most (or right most) area in <code>px</code> that the drawer can be swiped open from.",
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {}
 }

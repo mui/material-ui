@@ -41,5 +41,6 @@
     "tooltipPlacementRight": {
       "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

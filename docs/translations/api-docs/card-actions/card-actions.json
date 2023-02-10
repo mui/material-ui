@@ -13,5 +13,6 @@
       "nodeName": "the root element",
       "conditions": "<code>disableSpacing={true}</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

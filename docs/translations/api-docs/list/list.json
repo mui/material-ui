@@ -26,5 +26,6 @@
       "nodeName": "the root element",
       "conditions": "a <code>subheader</code> is provided"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

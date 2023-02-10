@@ -59,5 +59,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the TabIndicator component"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

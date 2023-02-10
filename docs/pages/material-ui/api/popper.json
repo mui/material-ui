@@ -46,7 +46,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{ root: 'div' }"
     },
     "sx": {
       "type": {

@@ -249,5 +249,6 @@
       "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"large\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

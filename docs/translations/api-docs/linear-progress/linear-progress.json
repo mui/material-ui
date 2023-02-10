@@ -94,5 +94,6 @@
       "nodeName": "the bar2 element",
       "conditions": "<code>variant=\"buffer\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

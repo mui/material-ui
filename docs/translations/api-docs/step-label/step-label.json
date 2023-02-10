@@ -61,5 +61,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the container element which wraps label and `optional`"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

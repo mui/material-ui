@@ -63,5 +63,6 @@
       "nodeName": "the actionIcon",
       "conditions": "<code>actionPosition=\"left\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

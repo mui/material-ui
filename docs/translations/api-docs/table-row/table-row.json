@@ -30,5 +30,6 @@
       "nodeName": "the root element",
       "conditions": "table variant=\"footer\""
     }
-  }
+  },
+  "slotDescriptions": {}
 }

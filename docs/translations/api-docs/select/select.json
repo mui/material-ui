@@ -80,5 +80,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the underlying native input component"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

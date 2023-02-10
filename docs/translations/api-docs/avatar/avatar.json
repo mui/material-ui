@@ -40,5 +40,6 @@
       "conditions": "either <code>src</code> or <code>srcSet</code> is defined"
     },
     "fallback": { "description": "Styles applied to the fallback icon" }
-  }
+  },
+  "slotDescriptions": {}
 }

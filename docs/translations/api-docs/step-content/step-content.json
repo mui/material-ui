@@ -19,5 +19,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Transition component"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

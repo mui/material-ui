@@ -62,5 +62,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the internal `TablePaginationActions` component"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

@@ -45,5 +45,6 @@
       "nodeName": "the root element",
       "conditions": "<code>maxWidth=\"xl\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

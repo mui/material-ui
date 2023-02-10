@@ -49,5 +49,6 @@
     "heightAuto": {
       "description": "Styles applied when the component is passed children and no height."
     }
-  }
+  },
+  "slotDescriptions": {}
 }

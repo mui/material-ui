@@ -25,5 +25,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the label's span element"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

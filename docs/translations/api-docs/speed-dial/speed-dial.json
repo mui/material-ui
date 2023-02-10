@@ -35,5 +35,6 @@
       "nodeName": "the actions (`children` wrapper) element",
       "conditions": "<code>open={false}</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

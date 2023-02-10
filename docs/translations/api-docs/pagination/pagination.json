@@ -34,5 +34,6 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

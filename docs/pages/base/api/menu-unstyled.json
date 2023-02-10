@@ -20,7 +20,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{ root: PopperUnstyled, listbox: 'ul' }"
     }
   },
   "name": "MenuUnstyled",

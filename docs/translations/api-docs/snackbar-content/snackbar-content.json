@@ -18,5 +18,6 @@
       "nodeName": "the action wrapper element",
       "conditions": "<code>action</code> is provided"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

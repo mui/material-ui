@@ -16,5 +16,6 @@
       "nodeName": "the root element",
       "conditions": "<code>stickyHeader={true}</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

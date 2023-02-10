@@ -14,7 +14,7 @@
     "role": "The ARIA role attribute of the element.",
     "severity": "The severity of the alert. This defines the color and icon used.",
     "slotProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
-    "slots": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
+    "slots": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future. See <a href=\"#slots\">Slots API</a> below for more details.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
@@ -108,5 +108,6 @@
       "nodeName": "the action wrapper element",
       "conditions": "<code>action</code> is provided"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

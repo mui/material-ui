@@ -37,5 +37,6 @@
       "nodeName": "the root element",
       "conditions": "the link is keyboard focused"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

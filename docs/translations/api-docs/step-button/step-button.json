@@ -23,5 +23,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the `ButtonBase` touch-ripple"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

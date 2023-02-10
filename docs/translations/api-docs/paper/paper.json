@@ -26,5 +26,6 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"elevation\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

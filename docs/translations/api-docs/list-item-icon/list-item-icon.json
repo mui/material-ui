@@ -12,5 +12,6 @@
       "nodeName": "the root element",
       "conditions": "the parent <code>ListItem</code> uses <code>alignItems=\"flex-start\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

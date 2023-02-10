@@ -25,5 +25,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the List component via `MenuList`"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

@@ -45,7 +45,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{ root: 'span', badge: 'span' }"
     },
     "sx": {
       "type": {

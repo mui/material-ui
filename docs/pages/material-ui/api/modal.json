@@ -51,7 +51,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{ root: 'div', backdrop: undefined }"
     },
     "sx": {
       "type": {

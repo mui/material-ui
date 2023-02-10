@@ -20,5 +20,6 @@
       "nodeName": "the root element",
       "conditions": "<code>component=\"picture or img\"</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

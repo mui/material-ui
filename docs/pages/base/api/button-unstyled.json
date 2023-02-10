@@ -15,7 +15,7 @@
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{ root: props.href || props.to ? 'a' : 'button' }"
     }
   },
   "name": "ButtonUnstyled",

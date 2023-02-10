@@ -48,5 +48,6 @@
     "sizeSmall": {
       "description": "Styles applied if the adornment is used inside <FormControl size=\"small\" />."
     }
-  }
+  },
+  "slotDescriptions": {}
 }

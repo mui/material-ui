@@ -28,5 +28,6 @@
       "nodeName": "the root element",
       "conditions": "<code>alternativeLabel={true}</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

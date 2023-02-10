@@ -60,5 +60,6 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>`"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

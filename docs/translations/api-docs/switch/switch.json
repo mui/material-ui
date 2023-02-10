@@ -71,5 +71,6 @@
       "description": "Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop."
     },
     "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track element" }
-  }
+  },
+  "slotDescriptions": {}
 }

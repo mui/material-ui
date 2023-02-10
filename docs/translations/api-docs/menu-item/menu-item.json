@@ -44,5 +44,6 @@
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

@@ -23,5 +23,6 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "paper": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Paper component" }
-  }
+  },
+  "slotDescriptions": {}
 }

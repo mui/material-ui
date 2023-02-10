@@ -19,7 +19,7 @@
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, thumb?: elementType, track?: elementType<br>&#124;&nbsp;null }"
       },
-      "default": "{}"
+      "default": "{ root: 'span', input: 'input', thumb: 'span', track: 'span' }"
     }
   },
   "name": "SwitchUnstyled",

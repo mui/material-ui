@@ -37,5 +37,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the inner wrapper element"
     }
-  }
+  },
+  "slotDescriptions": {}
 }

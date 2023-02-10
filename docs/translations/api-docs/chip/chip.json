@@ -232,5 +232,6 @@
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     }
-  }
+  },
+  "slotDescriptions": {}
 }
