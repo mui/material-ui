@@ -1,9 +1,5 @@
 import * as ts from 'typescript';
-import {
-  getSymbolDescription,
-  getSymbolJSDocTags,
-  stringifySymbol,
-} from '../ApiBuilders/HookApiBuilder';
+import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 
 export interface Slot {

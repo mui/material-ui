@@ -1,3 +1,5 @@
+import * as ts from 'typescript';
+import * as prettier from 'prettier';
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
@@ -5,6 +7,7 @@ import { getHeaders, getTitle } from '@mui/markdown';
 import { getLineFeed } from '@mui-internal/docs-utilities';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import findPagesMarkdownNew from './utils/findPagesMarkdown';
+import { TypeScriptProject } from './utils/createTypeScriptProject';
 
 const systemComponents = fs
   .readdirSync(path.resolve('packages', 'mui-system', 'src'))
@@ -399,4 +402,50 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
       return findSystemDemos(name, allMarkdowns);
     },
   };
+};
+
+export const formatType = (rawType: string) => {
+  if (!rawType) {
+    return '';
+  }
+
+  const prefix = 'type FakeType = ';
+  const signatureWithTypeName = `${prefix}${rawType}`;
+
+  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
+    printWidth: 999,
+    singleQuote: true,
+    semi: false,
+    trailingComma: 'none',
+    parser: 'typescript',
+  });
+
+  return prettifiedSignatureWithTypeName.slice(prefix.length).replace(/\n$/, '');
+};
+
+export const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
+  symbol
+    .getDocumentationComment(project.checker)
+    .flatMap((comment) => comment.text.split('\n'))
+    .filter((line) => !line.startsWith('TODO'))
+    .join('\n');
+    
+export const getSymbolJSDocTags = (symbol: ts.Symbol) =>
+  Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
+
+export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) => {
+  let rawType: string;
+
+  const declaration = symbol.declarations?.[0];
+  if (declaration && ts.isPropertySignature(declaration)) {
+    rawType = declaration.type?.getText() ?? '';
+  } else {
+    rawType = project.checker.typeToString(
+      project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
+      symbol.valueDeclaration,
+      ts.TypeFormatFlags.NoTruncation,
+    );
+  }
+
+  return formatType(rawType);
 };
