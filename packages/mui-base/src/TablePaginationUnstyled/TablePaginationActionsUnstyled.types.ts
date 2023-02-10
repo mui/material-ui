@@ -19,17 +19,7 @@ export interface TablePaginationActionsUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    firstButton?: React.ElementType;
-    lastButton?: React.ElementType;
-    nextButton?: React.ElementType;
-    backButton?: React.ElementType;
-    firstPageIcon?: React.ElementType;
-    lastPageIcon?: React.ElementType;
-    nextPageIcon?: React.ElementType;
-    backPageIcon?: React.ElementType;
-  };
+  slots?: TablePaginationActionsUnstyledSlots;
   /**
    * The props used for each slot inside the TablePagination.
    * @default {}
@@ -80,6 +70,46 @@ export interface TablePaginationActionsUnstyledOwnProps {
   rowsPerPage: number;
   showFirstButton: boolean;
   showLastButton: boolean;
+}
+
+export interface TablePaginationActionsUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the first button.
+   * @default 'button'
+   */ firstButton?: React.ElementType;
+  /**
+   * The component used to render the last button.
+   * @default 'button'
+   */ lastButton?: React.ElementType;
+  /**
+   * The component used to render the next button.
+   * @default 'button'
+   */ nextButton?: React.ElementType;
+  /**
+   * The component used to render the back button.
+   * @default 'button'
+   */ backButton?: React.ElementType;
+  /**
+   * The component used to render the first page icon.
+   * @default FirstPageIconDefault
+   */ firstPageIcon?: React.ElementType;
+  /**
+   * The component used to render the last page icon.
+   * @default LastPageIconDefault
+   */ lastPageIcon?: React.ElementType;
+  /**
+   * The component used to render the next page icon.
+   * @default NextPageIconDefault
+   */ nextPageIcon?: React.ElementType;
+  /**
+   * The component used to render the back page icon.
+   * @default BackPageIconDefault
+   */ backPageIcon?: React.ElementType;
 }
 
 export type TablePaginationActionsUnstyledProps<

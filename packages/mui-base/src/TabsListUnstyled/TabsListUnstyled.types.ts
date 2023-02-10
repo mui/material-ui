@@ -27,9 +27,15 @@ export interface TabsListUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: TabsListUnstyledSlots;
+}
+
+export interface TabsListUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface TabsListUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
