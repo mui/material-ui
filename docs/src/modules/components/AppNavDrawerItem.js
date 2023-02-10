@@ -55,90 +55,106 @@ const Item = styled(
     }),
   };
 
-  return {
-    ...theme.typography.body2,
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: 5,
-    outline: 0,
-    width: '100%',
-    paddingTop: 5,
-    paddingBottom: 5,
-    justifyContent: 'flex-start',
-    fontWeight: theme.typography.fontWeightMedium,
-    transition: theme.transitions.create(['color', 'background-color'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    fontSize: theme.typography.pxToRem(14),
-    textDecoration: 'none',
-    paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
-    ...color,
-    ...(subheader && {
-      marginTop: theme.spacing(1),
-      textTransform: 'uppercase',
-      letterSpacing: '.08rem',
-      fontWeight: theme.typography.fontWeightBold,
-      fontSize: theme.typography.pxToRem(11),
-    }),
-    ...(hasIcon && {
-      paddingLeft: 2,
-    }),
-    '&.app-drawer-active': {
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        '@media (hover: none)': {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+  return [
+    {
+      ...theme.typography.body2,
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: 5,
+      outline: 0,
+      width: '100%',
+      paddingTop: 5,
+      paddingBottom: 5,
+      justifyContent: 'flex-start',
+      fontWeight: theme.typography.fontWeightMedium,
+      transition: theme.transitions.create(['color', 'background-color'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      fontSize: theme.typography.pxToRem(14),
+      textDecoration: 'none',
+      paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
+      ...color,
+      ...(subheader && {
+        marginTop: theme.spacing(1),
+        textTransform: 'uppercase',
+        letterSpacing: '.08rem',
+        fontWeight: theme.typography.fontWeightBold,
+        fontSize: theme.typography.pxToRem(11),
+      }),
+      ...(hasIcon && {
+        paddingLeft: 2,
+      }),
+      '&.app-drawer-active': {
+        color: (theme.vars || theme).palette.primary[600],
+        backgroundColor: (theme.vars || theme).palette.primary[50],
+        '&:hover': {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
+          '@media (hover: none)': {
+            backgroundColor: alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity,
+            ),
+          },
+        },
+        '&.Mui-focusVisible': {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
         },
       },
+      '& .MuiChip-root': {
+        marginTop: '2px',
+      },
+      ...(!subheader && {
+        '&:hover': {
+          color: (theme.vars || theme).palette.common.black,
+          backgroundColor: (theme.vars || theme).palette.grey[50],
+          '@media (hover: none)': {
+            color: color.color,
+            backgroundColor: 'transparent',
+          },
+        },
+      }),
       '&.Mui-focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
+        backgroundColor: (theme.vars || theme).palette.action.focus,
       },
-    },
-    '& .MuiChip-root': {
-      marginTop: '2px',
-    },
-    ...(!subheader && {
-      '&:hover': {
-        color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-        backgroundColor:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
+      [theme.breakpoints.up('md')]: {
+        paddingTop: 3,
+        paddingBottom: 3,
+      },
+      '& .ItemButtonIcon': {
+        marginLeft: 'auto !important',
+        marginRight: '5px',
+        color: (theme.vars || theme).palette.primary.main,
+      },
+      '&:hover .ItemButtonIcon': {
+        color: (theme.vars || theme).palette.text.primary,
         '@media (hover: none)': {
-          color: color.color,
-          backgroundColor: 'transparent',
+          color: (theme.vars || theme).palette.primary.main,
         },
       },
-    }),
-    '&.Mui-focusVisible': {
-      backgroundColor: theme.palette.action.focus,
     },
-    [theme.breakpoints.up('md')]: {
-      paddingTop: 3,
-      paddingBottom: 3,
-    },
-    '& .ItemButtonIcon': {
-      marginLeft: 'auto !important',
-      marginRight: '5px',
-      color: theme.palette.primary.main,
-    },
-    '&:hover .ItemButtonIcon': {
-      color: theme.palette.text.primary,
-      '@media (hover: none)': {
-        color: theme.palette.primary.main,
+    theme.applyDarkStyles({
+      '&.app-drawer-active': {
+        color: (theme.vars || theme).palette.primary[300],
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
       },
-    },
-  };
+      ...(!subheader && {
+        '&:hover': {
+          color: '#fff',
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+          '@media (hover: none)': {
+            color: color.color,
+            backgroundColor: 'transparent',
+          },
+        },
+      }),
+    }),
+  ];
 });
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
@@ -155,34 +171,35 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const sxChip = (color) => ({
-  ml: 1,
-  fontSize: (theme) => theme.typography.pxToRem(10),
-  fontWeight: 'semiBold',
-  textTransform: 'uppercase',
-  letterSpacing: '.04rem',
-  height: '16px',
-  border: 1,
-  borderColor: (theme) =>
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette[color][800], 0.5)
-      : theme.palette[color][300],
-  bgcolor: (theme) =>
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette[color][900], 0.5)
-      : alpha(theme.palette[color][100], 0.5),
-  color: (theme) =>
-    theme.palette.mode === 'dark' ? theme.palette[color][300] : theme.palette[color][700],
-  '&:hover': {
-    bgcolor: (theme) =>
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette[color][900], 0.5)
-        : alpha(theme.palette[color][100], 0.5),
-  },
-  '& .MuiChip-label': {
-    px: 0.6,
-  },
-});
+const sxChip = (color) => [
+  (theme) => ({
+    ml: 1,
+    fontSize: theme.typography.pxToRem(10),
+    fontWeight: 'semiBold',
+    textTransform: 'uppercase',
+    letterSpacing: '.04rem',
+    height: '16px',
+    border: 1,
+    borderColor: theme.palette[color][300],
+    bgcolor: alpha(theme.palette[color][100], 0.5),
+    color: (theme.vars || theme).palette[color][700],
+    '&:hover': {
+      bgcolor: alpha(theme.palette[color][100], 0.5),
+    },
+    '& .MuiChip-label': {
+      px: 0.6,
+    },
+  }),
+  (theme) =>
+    theme.applyDarkStyles({
+      borderColor: alpha(theme.palette[color][800], 0.5),
+      bgcolor: alpha(theme.palette[color][900], 0.5),
+      color: (theme.vars || theme).palette[color][300],
+      '&:hover': {
+        bgcolor: alpha(theme.palette[color][900], 0.5),
+      },
+    }),
+];
 
 function DeadLink(props) {
   const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;

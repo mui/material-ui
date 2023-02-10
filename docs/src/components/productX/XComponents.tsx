@@ -32,11 +32,14 @@ const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
 })<{ ratio: number; src: string }>(({ src, ratio, theme }) => ({
   height: 0,
-  backgroundImage: `url(${src.replace('$mode', theme.palette.mode)})`,
+  backgroundImage: `url(${src})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   paddingBottom: `${(1 / ratio) * 100}%`,
   margin: 'auto',
+  ...theme.applyDarkStyles({
+    backgroundImage: `url(${src.replace('$mode', theme.palette.mode)})`,
+  }),
 }));
 
 function PrefetchImages() {
