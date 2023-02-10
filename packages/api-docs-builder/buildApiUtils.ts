@@ -429,7 +429,7 @@ export const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProje
     .flatMap((comment) => comment.text.split('\n'))
     .filter((line) => !line.startsWith('TODO'))
     .join('\n');
-    
+
 export const getSymbolJSDocTags = (symbol: ts.Symbol) =>
   Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
 
