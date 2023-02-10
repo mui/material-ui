@@ -366,4 +366,48 @@ describe('useAutocomplete', () => {
       fireEvent.click(button);
     }).not.to.throw();
   });
+
+  it('should call getOptionLabel only with existing options on filtered options change', () => {
+    function Test(props) {
+      const { options, getOptionLabel, filtered } = props;
+      const {
+        groupedOptions,
+        getRootProps,
+        getInputLabelProps,
+        getInputProps,
+        getListboxProps,
+        getOptionProps,
+      } = useAutocomplete({
+        options,
+        getOptionLabel,
+        filterOptions: (list) => list.filter((option) => filtered.includes(option)),
+        filterSelectedOptions: true,
+        autoHighlight: true,
+        open: true,
+      });
+
+      return (
+        <div>
+          <div {...getRootProps()}>
+            <label {...getInputLabelProps()}>useAutocomplete</label>
+            <input {...getInputProps()} />
+          </div>
+          <ul {...getListboxProps()}>
+            {groupedOptions.map((option, index) => {
+              return <li {...getOptionProps({ option, index })}>{option}</li>;
+            })}
+          </ul>
+        </div>
+      );
+    }
+
+    const getOptionLabel = spy((x) => x);
+    const options = ['foo', 'bar'];
+
+    const { setProps } = render(<Test {...{ getOptionLabel, options }} filtered={options} />);
+    setProps({ filtered: options.slice(1) }); // filter out some options
+
+    const calledOptions = getOptionLabel.getCalls().map(({ args: [option] }) => option);
+    expect(options).to.include.members(calledOptions);
+  });
 });
