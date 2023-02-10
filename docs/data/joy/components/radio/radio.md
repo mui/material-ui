@@ -14,7 +14,6 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 Radio buttons let users make a mutually exclusive choice (e.g., this or that). 
 Only one selection is allowed from the available set of options.
 
-
 Radio buttons should have the most commonly used option selected by default.
 
 :::success
@@ -23,6 +22,7 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 - Use checkboxes to give the user **multiple binary choices**—radio buttons are preferable when you need to restrict user selection to one mutually exclusive option from a series.
 - Use a switch to provide the user with **a single binary choice**—radio buttons are preferable when you need to give the user multiple binary choices.
 - Consider using a select if it's not important for the user to be able to see all options.
+- If available options can be collapsed, consider using a Select component to conserve space.
   :::
 
 {{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
@@ -35,9 +35,12 @@ To learn how to add more variants or sizes to the component, check out the [Them
 
 ## Basics
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
-
 ```jsx
+import Radio from '@mui/joy/Radio';
+```
+
+<!-- remove? -->
+<!-- ```jsx
 import Box from '@mui/joy/Box';
 import Radio from '@mui/joy/Radio';
 
@@ -48,13 +51,37 @@ export default function MyApp() {
     </Box>
   );
 }
-```
-
-The Radio component supports every Joy UI global variant and it comes with `outlined` set as the default one.
+``` -->
 
 {{"demo": "RadioButtons.js"}}
 
 ## Customization
+
+### Variants
+The Radio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `soft` , `solid` , and `plain`.
+
+{{"demo": "RadioVariants.tsx"}}
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Sizes
+
+The Radio component comes in three sizes: `sm`, `md` (default), and `lg`:
+
+{{"demo": "RadioSizes.tsx"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
+### Colors
+
+Every palette included in the theme is available via the `color` prop.
+
+{{"demo": "RadioColors.tsx"}}
 
 ### Label
 
@@ -73,6 +100,10 @@ To swap the positions of a Radio and its label, use the CSS property `flex-direc
 {{"demo": "RadioPositionEnd.js"}}
 
 ## Usage with Radio Group
+
+```jsx
+import RadioGroup from '@mui/joy/RadioGroup';
+```
 
 The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for grouping and better keyboard navigation accessibility.
 
