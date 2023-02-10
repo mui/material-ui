@@ -6,7 +6,7 @@ import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
 import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ChatRounded from '@mui/icons-material/ChatRounded';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
 import { styled } from '@mui/material/styles';
@@ -18,10 +18,7 @@ const Root = styled('ul')(({ theme }) => ({
   listStyle: 'none',
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(2),
-  '& li': {
-    margin: theme.spacing(0.5),
-  },
+  gap: 8,
   '& .MuiChip-root .MuiChip-iconSmall': {
     marginLeft: 4,
   },
@@ -58,31 +55,12 @@ export default function ComponentLinkHeader(props) {
             href={`${process.env.SOURCE_CODE_REPO}/labels/${encodeURIComponent(
               headers.githubLabel,
             )}`}
-            icon={<InfoOutlinedIcon />}
+            icon={<ChatRounded color="primary" />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
             data-ga-event-label={t('githubLabel')}
             data-ga-event-split="0.1"
             label={t('githubLabel')}
-          />
-        </li>
-      ) : null}
-      {headers.waiAria ? (
-        <li>
-          <Chip
-            clickable
-            role={undefined}
-            component="a"
-            size="small"
-            variant="outlined"
-            rel="nofollow"
-            href={headers.waiAria}
-            icon={<W3CIcon />}
-            data-ga-event-category="ComponentLinkHeader"
-            data-ga-event-action="click"
-            data-ga-event-label="WAI-ARIA"
-            data-ga-event-split="0.1"
-            label="WAI-ARIA"
           />
         </li>
       ) : null}
@@ -96,7 +74,7 @@ export default function ComponentLinkHeader(props) {
             variant="outlined"
             rel="nofollow"
             href={`https://bundlephobia.com/package/${packageName}@latest`}
-            icon={<BundleSizeIcon />}
+            icon={<BundleSizeIcon color="primary" />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
             data-ga-event-label={t('bundleSize')}
@@ -105,6 +83,25 @@ export default function ComponentLinkHeader(props) {
           />
         </Tooltip>
       </li>
+      {headers.waiAria ? (
+        <li>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            size="small"
+            variant="outlined"
+            rel="nofollow"
+            href={headers.waiAria}
+            icon={<W3CIcon color="primary" />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="WAI-ARIA"
+            data-ga-event-split="0.1"
+            label="WAI-ARIA"
+          />
+        </li>
+      ) : null}
       {headers.materialDesign ? (
         <li>
           <Chip
