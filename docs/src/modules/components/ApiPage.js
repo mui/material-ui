@@ -72,26 +72,34 @@ function SlotsTable(props) {
         </tr>
       </thead>
       <tbody>
-        {componentSlots.map(({ name, typeStr, default: defaultValue }) => (
-          <tr key={name}>
-            <td align="left" width="15%">
-              <span className="slot-name">{name}</span>
-            </td>
-            <td align="left" width="15%">
-              <span className="slot-type" dangerouslySetInnerHTML={{ __html: typeStr }} />
-            </td>
-            <td align="left" width="20%">
-              {defaultValue && <span className="slot-default">{defaultValue}</span>}
-            </td>
-            <td
-              align="left"
-              width="50%"
-              dangerouslySetInnerHTML={{
-                __html: slotDescriptions[name] || '',
-              }}
-            />
-          </tr>
-        ))}
+        {componentSlots.map(({ name, typeStr, default: defaultValue }) => {
+          const simplifiedTypeStr = typeStr.includes('<')
+            ? typeStr.slice(0, typeStr.indexOf('<'))
+            : typeStr;
+          return (
+            <tr key={name}>
+              <td align="left" width="15%">
+                <span className="slot-name">{name}</span>
+              </td>
+              <td align="left" width="15%">
+                <span
+                  className="slot-type"
+                  dangerouslySetInnerHTML={{ __html: simplifiedTypeStr }}
+                />
+              </td>
+              <td align="left" width="20%">
+                {defaultValue && <span className="slot-default">{defaultValue}</span>}
+              </td>
+              <td
+                align="left"
+                width="50%"
+                dangerouslySetInnerHTML={{
+                  __html: slotDescriptions[name] || '',
+                }}
+              />
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
