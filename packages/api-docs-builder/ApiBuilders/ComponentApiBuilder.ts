@@ -352,7 +352,7 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
       ),
       name: reactApi.styles.name,
     },
-    ...(reactApi.slots.length > 0 && { slots: reactApi.slots }),
+    ...(reactApi.slots && reactApi.slots.length > 0 && { slots: reactApi.slots }),
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
@@ -434,7 +434,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   /**
    * Slot descriptions.
    */
-  if (reactApi.slots.length > 0) {
+  if (reactApi.slots && reactApi.slots.length > 0) {
     translations.slotDescriptions = {};
     reactApi.slots.forEach((slot: Slot) => {
       const { name, description } = slot;
