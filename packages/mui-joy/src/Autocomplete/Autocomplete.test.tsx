@@ -1325,12 +1325,7 @@ describe('Joy <Autocomplete />', () => {
 
     it('should keep focus on selected option when options updates and when options are provided as objects', () => {
       const { setProps } = render(
-        <Autocomplete
-          open
-          options={[{ label: 'one' }, { label: 'two' }]}
-          autoFocus
-          isOptionEqualToValue={(option, value) => option.label === value.label}
-        />,
+        <Autocomplete open options={[{ label: 'one' }, { label: 'two' }]} autoFocus />,
       );
       const textbox = screen.getByRole('combobox');
       const listbox = screen.getByRole('listbox');

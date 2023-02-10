@@ -1667,7 +1667,6 @@ describe('<Autocomplete />', () => {
           open
           options={[{ label: 'one' }, { label: 'two' }]}
           renderInput={(params) => <TextField {...params} autoFocus />}
-          isOptionEqualToValue={(o, v) => o.label === v.label}
         />,
       );
       const textbox = screen.getByRole('combobox');
@@ -2858,7 +2857,6 @@ describe('<Autocomplete />', () => {
           disableCloseOnSelect
           filterSelectedOptions
           options={[{ label: 'one' }, { label: 'two' }, { label: 'three' }]}
-          isOptionEqualToValue={(opt, val) => opt.label === val.label}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
