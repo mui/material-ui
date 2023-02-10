@@ -76,7 +76,7 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 
 The `AvatarGroup` does not provide built-in props to control the maximum and the total number of avatars within a group. This is because customization is broader if you have full control of the logic.
 
-Use the snippet below as insipiration to create that:
+Use the snippet below as inspiration to create that:
 
 {{"demo": "MaxAndTotalAvatars.js"}}
 

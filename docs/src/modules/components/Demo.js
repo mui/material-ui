@@ -330,6 +330,20 @@ export default function Demo(props) {
     }
   }
 
+  if (!demoOptions.demo.endsWith('.js') && demoOptions.hideToolbar !== true) {
+    throw new Error(
+      [
+        `The following demos use TS directly: ${demoOptions.demo}.`,
+        '',
+        'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
+        `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
+        '',
+        "Otherwise, if it's not a code demo hide the toolbar:",
+        `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
+      ].join('\n'),
+    );
+  }
+
   const t = useTranslate();
   const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
@@ -431,7 +445,7 @@ export default function Demo(props) {
 
   return (
     <Root>
-      <AnchorLink id={`${demoName}`} />
+      <AnchorLink id={demoName} />
       <DemoRoot
         hiddenToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
@@ -494,7 +508,7 @@ export default function Demo(props) {
               language={demoData.sourceLanguage}
               copyButtonProps={{
                 'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demoOptions.demo,
+                'data-ga-event-label': demo.gaLabel,
                 'data-ga-event-action': 'copy-click',
               }}
             />
@@ -516,7 +530,7 @@ export default function Demo(props) {
               language={demoData.sourceLanguage}
               copyButtonProps={{
                 'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demoOptions.demo,
+                'data-ga-event-label': demo.gaLabel,
                 'data-ga-event-action': 'copy-click',
               }}
             >
@@ -532,6 +546,9 @@ export default function Demo(props) {
 
 Demo.propTypes = {
   demo: PropTypes.object.isRequired,
+  /**
+   * The options provided with: {{"demo": "Name.js", …demoOptions}}
+   */
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,

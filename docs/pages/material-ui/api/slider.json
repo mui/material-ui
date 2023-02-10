@@ -28,8 +28,8 @@
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
-    "disabled": { "type": { "name": "bool" } },
-    "disableSwap": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
     "marks": {
@@ -48,7 +48,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
-    "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
     "size": {
       "type": {
         "name": "union",
@@ -94,13 +94,15 @@
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "(x) => x"
+      "default": "function Identity(x) {\n  return x;\n}"
     }
   },
   "name": "Slider",
   "styles": {
     "classes": [
       "root",
+      "colorPrimary",
+      "colorSecondary",
       "marked",
       "vertical",
       "disabled",
@@ -112,20 +114,18 @@
       "thumb",
       "active",
       "focusVisible",
-      "valueLabel",
-      "valueLabelOpen",
-      "valueLabelCircle",
-      "valueLabelLabel",
       "mark",
       "markActive",
       "markLabel",
       "markLabelActive",
-      "colorPrimary",
-      "colorSecondary",
       "sizeSmall",
       "thumbColorPrimary",
       "thumbColorSecondary",
-      "thumbSizeSmall"
+      "thumbSizeSmall",
+      "valueLabel",
+      "valueLabelOpen",
+      "valueLabelCircle",
+      "valueLabelLabel"
     ],
     "globalClasses": {
       "disabled": "Mui-disabled",
@@ -137,7 +137,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Slider/Slider.js",
-  "inheritance": { "component": "SliderUnstyled", "pathname": "/base/api/slider-unstyled/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-slider/\">Slider</a></li></ul>",
   "cssComponent": false
 }

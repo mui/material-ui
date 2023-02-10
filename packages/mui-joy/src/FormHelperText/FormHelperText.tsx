@@ -18,7 +18,7 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getFormHelperTextUtilityClass, {});
 };
 
-const FormHelperTextRoot = styled('p', {
+const FormHelperTextRoot = styled('div', {
   name: 'JoyFormHelperText',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

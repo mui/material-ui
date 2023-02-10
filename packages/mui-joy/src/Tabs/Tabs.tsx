@@ -46,6 +46,7 @@ const TabsRoot = styled(SheetRoot, {
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'row',
+    alignItems: 'flex-start',
   }),
 }));
 
@@ -58,7 +59,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const {
     children,
     value: valueProp,
-    defaultValue,
+    defaultValue = valueProp === undefined ? 0 : undefined,
     orientation = 'horizontal',
     direction = 'ltr',
     component,
@@ -72,7 +73,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { tabsContextValue } = useTabs({ ...props, orientation });
+  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,

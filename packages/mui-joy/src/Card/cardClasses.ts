@@ -31,17 +31,19 @@ export interface CardClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `row={true}`. */
-  row: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type CardClassKey = keyof CardClasses;
 
 export function getCardUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCard', slot);
+  return generateUtilityClass('MuiCard', slot);
 }
 
-const cardClasses: CardClasses = generateUtilityClasses('JoyCard', [
+const cardClasses: CardClasses = generateUtilityClasses('MuiCard', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -57,7 +59,8 @@ const cardClasses: CardClasses = generateUtilityClasses('JoyCard', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'row',
+  'horizontal',
+  'vertical',
 ]);
 
 export default cardClasses;

@@ -89,9 +89,13 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       }),
       [theme.focus.selector]: theme.focus.default,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(!ownerState.selected && {
+        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      }),
+    },
     {
       [`&.${listItemButtonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],

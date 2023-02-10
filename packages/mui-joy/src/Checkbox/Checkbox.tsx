@@ -11,7 +11,7 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
@@ -50,16 +50,19 @@ const CheckboxRoot = styled('span', {
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
     '--Checkbox-gap': '0.375rem',
+    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--Checkbox-size': '1.25rem',
     '--Checkbox-gap': '0.5rem',
+    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--Checkbox-size': '1.5rem',
     '--Checkbox-gap': '0.625rem',
+    '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
     fontSize: theme.vars.fontSize.lg,
   }),
   position: ownerState.overlay ? 'initial' : 'relative',
@@ -82,35 +85,41 @@ const CheckboxCheckbox = styled('span', {
   name: 'JoyCheckbox',
   slot: 'Checkbox',
   overridesResolver: (props, styles) => styles.checkbox,
-})<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
-  {
-    boxSizing: 'border-box',
-    borderRadius: theme.vars.radius.xs,
-    width: 'var(--Checkbox-size)',
-    height: 'var(--Checkbox-size)',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexShrink: 0,
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    ...(ownerState.disableIcon && {
-      display: 'contents',
-    }),
-  },
-  ...(!ownerState.disableIcon
-    ? [
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-        {
-          [`&.${checkboxClasses.disabled}`]:
-            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-        },
-      ]
-    : []),
-]);
+})<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  return [
+    {
+      boxSizing: 'border-box',
+      borderRadius: theme.vars.radius.xs,
+      width: 'var(--Checkbox-size)',
+      height: 'var(--Checkbox-size)',
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexShrink: 0,
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      ...(ownerState.disableIcon && {
+        display: 'contents',
+      }),
+    },
+    ...(!ownerState.disableIcon
+      ? [
+          {
+            ...variantStyle,
+            backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+          },
+          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+          {
+            [`&.${checkboxClasses.disabled}`]:
+              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          },
+        ]
+      : []),
+  ];
+});
 
 const CheckboxAction = styled('span', {
   name: 'JoyCheckbox',
@@ -122,10 +131,10 @@ const CheckboxAction = styled('span', {
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
     position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+    top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
+    left: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
@@ -319,20 +328,28 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     ownerState,
   });
 
+  let icon = uncheckedIcon;
+
+  if (disableIcon) {
+    icon = null;
+  } else if (indeterminate) {
+    icon = indeterminateIcon;
+  } else if (checked) {
+    icon = checkedIcon;
+  }
+
   return (
     <SlotRoot {...rootProps}>
       <SlotCheckbox {...checkboxProps}>
         <SlotAction {...actionProps}>
           <SlotInput {...inputProps} />
         </SlotAction>
-        {indeterminate && !checked && !disableIcon && indeterminateIcon}
-        {checked && !disableIcon && checkedIcon}
-        {!checked && !disableIcon && !indeterminate && uncheckedIcon}
+        {icon}
       </SlotCheckbox>
       {label && (
-        <TypographyContext.Provider value>
+        <TypographyNestedContext.Provider value>
           <SlotLabel {...labelProps}>{label}</SlotLabel>
-        </TypographyContext.Provider>
+        </TypographyNestedContext.Provider>
       )}
     </SlotRoot>
   );

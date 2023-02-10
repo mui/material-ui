@@ -4,7 +4,7 @@
     "avatar": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "disableTypography": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "subheader": { "type": { "name": "node" } },
     "subheaderTypographyProps": { "type": { "name": "object" } },
     "sx": {

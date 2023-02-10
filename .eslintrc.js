@@ -420,7 +420,7 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs'],
+      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },

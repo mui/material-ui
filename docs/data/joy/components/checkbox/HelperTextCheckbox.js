@@ -7,7 +7,7 @@ export default function HelperTextCheckbox() {
   return (
     <FormControl>
       <Checkbox label="Label" />
-      <FormHelperText>A description for the checkbox.</FormHelperText>
+      <FormHelperText>A description for the Checkbox.</FormHelperText>
     </FormControl>
   );
 }
