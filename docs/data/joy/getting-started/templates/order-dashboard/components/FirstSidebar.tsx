@@ -13,9 +13,8 @@ export default function FirstSidebar() {
   return (
     <Sheet
       className="FirstSidebar"
-      variant="solid"
-      color="success"
-      invertedColors
+      variant="soft"
+      color="primary"
       sx={(theme) => ({
         position: {
           xs: 'fixed',
@@ -37,9 +36,12 @@ export default function FirstSidebar() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: 2,
-        bgcolor: 'success.600',
+        bgcolor: 'primary.50',
+        borderRight: '1px solid',
+        borderColor: 'neutral.100',
         [theme.getColorSchemeSelector('dark')]: {
-          bgcolor: 'success.900',
+          bgcolor: 'primary.900',
+          borderColor: 'neutral.800',
         },
       })}
     >
@@ -58,7 +60,12 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton selected variant="soft" onClick={() => openSidebar()}>
+          <ListItemButton
+            selected
+            variant="solid"
+            color="primary"
+            onClick={() => openSidebar()}
+          >
             <i data-feather="bar-chart-2" />
           </ListItemButton>
         </ListItem>
@@ -103,7 +110,7 @@ export default function FirstSidebar() {
         </ListItem>
       </List>
       <Divider />
-      <Avatar src="/static/images/avatar/3.jpg" />
+      <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
     </Sheet>
   );
 }

@@ -5,14 +5,12 @@ export default function MuiLogo({ sx, ...props }: AspectRatioProps) {
   return (
     <AspectRatio
       ratio="1"
-      variant="solid"
+      variant="plain"
       {...props}
       sx={[
         {
           width: 36,
-          borderRadius: 'xs',
-          boxShadow: (theme) => theme.shadow.md,
-          '--joy-shadowChannel': (theme) => theme.vars.palette.success.darkChannel,
+          borderRadius: 'sm',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

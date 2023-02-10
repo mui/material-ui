@@ -37,8 +37,7 @@ export default function SecondSidebar() {
       <Sheet
         className="SecondSidebar"
         variant="solid"
-        color="success"
-        invertedColors
+        color="neutral"
         sx={(theme) => ({
           position: {
             xs: 'fixed',
@@ -48,25 +47,28 @@ export default function SecondSidebar() {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--FirstSidebar-width, 0px)))',
             lg: 'none',
           },
-          bgcolor: 'success.500',
+          bgcolor: 'transparent',
+          borderRight: '1px solid',
+          borderColor: 'neutral.100',
           transition: 'transform 0.4s',
           zIndex: 9999,
           height: '100dvh',
           top: 0,
-          p: 1.5,
+          p: 2,
           py: 3,
           flexShrink: 0,
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
           [theme.getColorSchemeSelector('dark')]: {
-            bgcolor: 'success.800',
+            bgcolor: 'neutral.900',
+            borderColor: 'neutral.800',
           },
         })}
       >
         <List
           sx={{
-            '--List-item-radius': '4px',
+            '--List-item-radius': '8px',
             '--List-item-minHeight': '32px',
             '--List-gap': '4px',
           }}
@@ -136,7 +138,9 @@ export default function SecondSidebar() {
         </List>
         <Box sx={{ pl: 1, mt: 'auto', display: 'flex', alignItems: 'center' }}>
           <div>
-            <Typography>Olivia Ryhe</Typography>
+            <Typography fontWeight="lg" level="body2">
+              Olivia Ryhe
+            </Typography>
             <Typography level="body2">olivia@email.com</Typography>
           </div>
           <IconButton variant="plain" sx={{ ml: 'auto' }}>

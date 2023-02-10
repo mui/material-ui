@@ -27,6 +27,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
+      initial: 'O',
       name: 'Olivia Ryhe',
       email: 'olivia@email.com',
     },
@@ -37,6 +38,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
+      initial: 'S',
       name: 'Steve Hampton',
       email: 'steve.hamp@email.com',
     },
@@ -47,6 +49,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
+      initial: 'C',
       name: 'Ciaran Murray',
       email: 'ciaran.murray@email.com',
     },
@@ -57,6 +60,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Refunded',
     customer: {
+      initial: 'M',
       name: 'Maria Macdonald',
       email: 'maria.mc@email.com',
     },
@@ -67,6 +71,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
+      initial: 'C',
       name: 'Charles Fulton',
       email: 'fulton@email.com',
     },
@@ -77,6 +82,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
+      initial: 'J',
       name: 'Jay Hooper',
       email: 'hooper@email.com',
     },
@@ -87,6 +93,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
+      initial: 'K',
       name: 'Krystal Stevens',
       email: 'k.stevens@email.com',
     },
@@ -97,6 +104,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Paid',
     customer: {
+      initial: 'S',
       name: 'Sachin Flynn',
       email: 's.flyn@email.com',
     },
@@ -107,6 +115,7 @@ const rows = [
     date: 'Feb 3, 2023',
     status: 'Cancelled',
     customer: {
+      initial: 'B',
       name: 'Bradley Rosales',
       email: 'brad123@email.com',
     },
@@ -160,7 +169,7 @@ export default function OrderTable() {
   const [open, setOpen] = React.useState(false);
   const renderFilters = () => (
     <React.Fragment>
-      <FormControl>
+      <FormControl size="sm">
         <FormLabel>Status</FormLabel>
         <Select
           placeholder="Filter by status"
@@ -173,14 +182,14 @@ export default function OrderTable() {
         </Select>
       </FormControl>
 
-      <FormControl>
+      <FormControl size="sm">
         <FormLabel>Category</FormLabel>
         <Select placeholder="All">
           <Option value="all">All</Option>
         </Select>
       </FormControl>
 
-      <FormControl>
+      <FormControl size="sm">
         <FormLabel>Customer</FormLabel>
         <Select placeholder="All">
           <Option value="all">All</Option>
@@ -231,12 +240,11 @@ export default function OrderTable() {
           </ModalDialog>
         </Modal>
       </Sheet>
-      <Sheet
+      <Box
         className="SearchAndFilters-tabletUp"
-        variant="soft"
         sx={{
           borderRadius: 'sm',
-          p: 2,
+          py: 2,
           display: {
             xs: 'none',
             sm: 'flex',
@@ -246,24 +254,23 @@ export default function OrderTable() {
           my: 1,
           mb: 2,
           '& > *': {
-            flex: 1,
+            minWidth: '200px',
           },
         }}
       >
-        <FormControl sx={{ flex: 2, minWidth: 'min-content' }}>
+        <FormControl sx={{ minWidth: '360px' }} size="sm">
           <FormLabel>Search for order</FormLabel>
           <Input placeholder="Search" startDecorator={<i data-feather="search" />} />
         </FormControl>
 
         {renderFilters()}
-      </Sheet>
+      </Box>
       <Sheet
         className="OrderTableContainer"
         variant="outlined"
         sx={{
           width: '100%',
-          boxShadow: 'sm',
-          borderRadius: 'sm',
+          borderRadius: 'md',
           flex: 1,
           overflow: 'auto',
           minHeight: 0,
@@ -275,7 +282,7 @@ export default function OrderTable() {
           hoverRow
           sx={{
             '--TableCell-headBackground': (theme) =>
-              theme.vars.palette.background.level2,
+              theme.vars.palette.background.level1,
             '--Table-headerUnderlineThickness': '1px',
             '--TableRow-hoverBackground': (theme) =>
               theme.vars.palette.background.level1,
@@ -286,7 +293,7 @@ export default function OrderTable() {
         >
           <thead>
             <tr>
-              <th style={{ width: 48, textAlign: 'center' }}>
+              <th style={{ width: 48, textAlign: 'center', padding: 12 }}>
                 <Checkbox
                   indeterminate={
                     selected.length > 0 && selected.length !== rows.length
@@ -299,20 +306,20 @@ export default function OrderTable() {
                   }}
                   color={
                     selected.length > 0 || selected.length === rows.length
-                      ? 'success'
+                      ? 'primary'
                       : undefined
                   }
                   slotProps={{ checkbox: { sx: { textAlign: 'left' } } }}
                   sx={{ verticalAlign: 'text-bottom' }}
                 />
               </th>
-              <th style={{ width: 160 }}>
+              <th style={{ width: 140, padding: 12 }}>
                 <Link
                   underline="none"
-                  color="success"
+                  color="primary"
                   component="button"
                   onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
-                  fontWeight="xl"
+                  fontWeight="lg"
                   endDecorator={<i data-feather="arrow-down" />}
                   sx={{
                     '& svg': {
@@ -325,11 +332,11 @@ export default function OrderTable() {
                   Invoice
                 </Link>
               </th>
-              <th style={{ width: 144 }}>Date</th>
-              <th style={{ width: 100 }}>Status</th>
-              <th style={{ width: 240 }}>Customer</th>
-              <th style={{ width: 120 }}>Subscription</th>
-              <th style={{ width: 160 }}> </th>
+              <th style={{ width: 120, padding: 12 }}>Date</th>
+              <th style={{ width: 120, padding: 12 }}>Status</th>
+              <th style={{ width: 220, padding: 12 }}>Customer</th>
+              <th style={{ width: 120, padding: 12 }}>Subscription</th>
+              <th style={{ width: 160, padding: 12 }}> </th>
             </tr>
           </thead>
           <tbody>
@@ -338,7 +345,7 @@ export default function OrderTable() {
                 <td style={{ textAlign: 'center' }}>
                   <Checkbox
                     checked={selected.includes(row.id)}
-                    color={selected.includes(row.id) ? 'success' : undefined}
+                    color={selected.includes(row.id) ? 'primary' : undefined}
                     onChange={(event) => {
                       setSelected((ids) =>
                         event.target.checked
@@ -351,7 +358,7 @@ export default function OrderTable() {
                   />
                 </td>
                 <td>
-                  <Typography fontWeight="lg">{row.id}</Typography>
+                  <Typography fontWeight="md">{row.id}</Typography>
                 </td>
                 <td>{row.date}</td>
                 <td>
@@ -377,11 +384,13 @@ export default function OrderTable() {
                   </Chip>
                 </td>
                 <td>
-                  <Box sx={{ display: 'flex', gap: 1.5 }}>
-                    <Avatar>T</Avatar>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                    <Avatar size="sm">{row.customer.initial}</Avatar>
                     <div>
-                      <Typography fontWeight="lg">{row.customer.name}</Typography>
-                      <Typography level="body2">{row.customer.email}</Typography>
+                      <Typography fontWeight="xl" level="body3">
+                        {row.customer.name}
+                      </Typography>
+                      <Typography level="body3">{row.customer.email}</Typography>
                     </div>
                   </Box>
                 </td>
@@ -393,8 +402,8 @@ export default function OrderTable() {
                   <Link
                     fontWeight="lg"
                     component="button"
-                    color="success"
-                    sx={{ ml: 1 }}
+                    color="primary"
+                    sx={{ ml: 2 }}
                   >
                     Download
                   </Link>
@@ -404,7 +413,6 @@ export default function OrderTable() {
           </tbody>
         </Table>
       </Sheet>
-      <Divider sx={{ my: 3 }} />
       <Box
         className="Pagination-mobile"
         sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}
@@ -432,6 +440,7 @@ export default function OrderTable() {
       <Box
         className="Pagination-laptopUp"
         sx={{
+          pt: 4,
           gap: 1,
           [`& .${iconButtonClasses.root}`]: { borderRadius: '50%' },
           display: {
@@ -454,7 +463,7 @@ export default function OrderTable() {
           <IconButton
             key={page}
             size="sm"
-            variant={Number(page) ? 'soft' : 'plain'}
+            variant={Number(page) ? 'outlined' : 'plain'}
             color="neutral"
           >
             {page}
