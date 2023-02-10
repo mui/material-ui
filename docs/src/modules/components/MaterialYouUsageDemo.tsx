@@ -239,16 +239,19 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
         </BrandingProvider>
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           flexShrink: 0,
           gap: 2,
           p: 3,
           mt: 1,
-          borderLeft: (theme) =>
-            `1px solid ${theme.palette.mode === 'dark' ? alpha(grey[700], 0.3) : grey[100]}`,
+          borderLeft: '1px solid',
+          borderColor: 'grey.100',
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
-        }}
+          ...theme.applyDarkStyles({
+            borderColor: alpha(grey[700], 0.3),
+          }),
+        })}
       >
         <Box
           sx={{
