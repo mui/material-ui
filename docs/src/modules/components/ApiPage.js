@@ -74,17 +74,18 @@ function SlotsTable(props) {
       <tbody>
         {componentSlots.map(({ name, typeStr, default: defaultValue }) => (
           <tr key={name}>
-            <td align="left">
+            <td align="left" width="15%">
               <span className="slot-name">{name}</span>
             </td>
-            <td align="left">
+            <td align="left" width="15%">
               <span className="slot-type" dangerouslySetInnerHTML={{ __html: typeStr }} />
             </td>
-            <td align="left">
+            <td align="left" width="20%">
               {defaultValue && <span className="slot-default">{defaultValue}</span>}
             </td>
             <td
               align="left"
+              width="50%"
               dangerouslySetInnerHTML={{
                 __html: slotDescriptions[name] || '',
               }}
@@ -199,6 +200,7 @@ export default function ApiPage(props) {
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
+    componentSlots.length > 0 && createTocEntry('slots'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
