@@ -8,7 +8,7 @@ export default function RadioColors() {
   return (
     <FormControl>
       <FormLabel>Colors</FormLabel>
-      <RadioGroup defaultValue="medium" name="radio-buttons-group" sx={{ my: 1 }}>
+      <RadioGroup defaultValue="medium" name="radio-buttons-group">
         <Radio value="primary" label="Primary" color="primary" />
         <Radio value="neutral" label="Neutral" color="neutral" />
         <Radio value="danger" label="Danger" color="danger" />

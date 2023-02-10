@@ -8,8 +8,8 @@ export default function RadioVariants() {
   return (
     <FormControl>
       <FormLabel>Variants</FormLabel>
-      <RadioGroup defaultValue="outlined" name="radio-buttons-group" sx={{ my: 1 }}>
-        <Radio value="outlined" label="Outlined" variant="outlined"/>
+      <RadioGroup defaultValue="outlined" name="radio-buttons-group">
+        <Radio value="outlined" label="Outlined" variant="outlined" />
         <Radio value="soft" label="Soft" variant="soft" />
         <Radio value="solid" label="Solid" variant="solid" />
         <Radio value="plain" label="Plain" variant="plain" />

@@ -8,7 +8,7 @@ export default function RadioSizes() {
   return (
     <FormControl>
       <FormLabel>Sizes</FormLabel>
-      <RadioGroup defaultValue="medium" name="radio-buttons-group" sx={{ my: 1 }}>
+      <RadioGroup defaultValue="medium" name="radio-buttons-group">
         <Radio value="small" label="Small" size="sm" />
         <Radio value="medium" label="Medium" size="md" />
         <Radio value="large" label="Large" size="lg" />

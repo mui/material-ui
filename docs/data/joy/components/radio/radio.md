@@ -37,9 +37,11 @@ To learn how to add more variants or sizes to the component, check out the [Them
 ```jsx
 import Radio from '@mui/joy/Radio';
 ```
+
 The Radio component can be used within a Box for a simple interface.
 
-```jsx
+<!-- remove? -->
+<!-- ```jsx
 import Box from '@mui/joy/Box';
 import Radio from '@mui/joy/Radio';
 
@@ -50,13 +52,14 @@ export default function MyApp() {
     </Box>
   );
 }
-```
+``` -->
 
 {{"demo": "RadioButtons.js"}}
 
 ## Customization
 
 ### Variants
+
 The Radio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `soft` , `solid` , and `plain`.
 
 {{"demo": "RadioVariants.js"}}
