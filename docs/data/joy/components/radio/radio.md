@@ -11,8 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 ## Introduction
 
-Radio buttons let users make a mutually exclusive choice (e.g., this or that). 
-Only one selection is allowed from the available set of options.
+Radio buttons let users make a mutually exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
 
 Radio buttons should have the most commonly used option selected by default.
 
@@ -38,9 +37,9 @@ To learn how to add more variants or sizes to the component, check out the [Them
 ```jsx
 import Radio from '@mui/joy/Radio';
 ```
+The Radio component can be used within a Box for a simple interface.
 
-<!-- remove? -->
-<!-- ```jsx
+```jsx
 import Box from '@mui/joy/Box';
 import Radio from '@mui/joy/Radio';
 
@@ -51,7 +50,7 @@ export default function MyApp() {
     </Box>
   );
 }
-``` -->
+```
 
 {{"demo": "RadioButtons.js"}}
 
@@ -60,7 +59,7 @@ export default function MyApp() {
 ### Variants
 The Radio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `outlined` (default), `soft` , `solid` , and `plain`.
 
-{{"demo": "RadioVariants.tsx"}}
+{{"demo": "RadioVariants.js"}}
 
 :::info
 To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
@@ -71,7 +70,7 @@ Note that you lose the global variants when you add custom variants.
 
 The Radio component comes in three sizes: `sm`, `md` (default), and `lg`:
 
-{{"demo": "RadioSizes.tsx"}}
+{{"demo": "RadioSizes.js"}}
 
 :::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
@@ -81,7 +80,7 @@ To learn how to add custom sizes to the component, check out [Themed components�
 
 Every palette included in the theme is available via the `color` prop.
 
-{{"demo": "RadioColors.tsx"}}
+{{"demo": "RadioColors.js"}}
 
 ### Label
 
