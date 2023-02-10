@@ -6,71 +6,70 @@ githubLabel: 'component: CircularProgress'
 
 # Circular Progress
 
-<p class="description">Circular Progress indicators, commonly known as spinners, express an unspecified wait time or display the length of a process.</p>
+<p class="description">The Circular Progress component showcases the duration of a process or an indefinite wait period.</p>
 
 ## Introduction
 
-Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
+The Circular Progress Indicator, often referred to as a Spinner, is a visual representation of the progress of an operation or task.
 
-The `CircularProgress` is indeterminate by default, indicating an unspecified wait time.
-To actually have it represent how long an operation will take, use the [determinate](#determinate) mode.
-
-The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
+`CircularProgress` defaults to indeterminate, signifying an undefined wait duration.
+If you'd like to represent how long an operation will take, you can use [determinate](#determinate) mode.
 
 {{"demo": "CircularProgressUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+:::info
+The animations of the components rely on CSS as much as possible to work, even before the JavaScript is loaded.
+:::
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import CircularProgress from '@mui/joy/CircularProgress';
-
-export default function MyApp() {
-  return <CircularProgress />;
-}
 ```
+
+`CircularProgress` provides users with updates on the status of ongoing processes such as loading an app, submitting a form, or saving updates.
+
+## Customization
 
 ### Variants
 
-The circular progress component supports the four global variants: `solid`, `soft` (default), `outlined`, and `plain`.
+The Circular Progress component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "CircularProgressVariants.js"}}
 
-### Colors
-
-Every palette included in the theme is available via the `color` prop.
-Play around combining different colors.
-
-{{"demo": "CircularProgressColors.js"}}
-
 ### Sizes
 
-The circular progress component comes with three sizes out of the box: `sm`, `md` (default), and `lg`.
+The Circular progress component comes in three sizes: `sm`, `md` (default), and `lg`.
 
 {{"demo": "CircularProgressSizes.js"}}
 
 :::info
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-### Determinate
+### Colors
 
-You can use the `determinate` prop if you want to indicate a specified wait time.
+Every palette included in the theme is available via the `color` prop.
 
-{{"demo": "CircularProgressDeterminate.js"}}
+{{"demo": "CircularProgressColors.js"}}
 
 ### Thickness
 
-Provides a number to `thickness` prop to control the circle's stroke width.
+You can use the `thickness` prop to control the circle's stroke width.
 
 {{"demo": "CircularProgressThickness.js"}}
 
+### Determinate
+
+The `determinate` prop lets you indicate a specified wait time.
+
+{{"demo": "CircularProgressDeterminate.js"}}
+
 ### Children
 
-The circular progress component places the provided children in the center by default.
+By default, the circular progress component places any children in the center.
 
 {{"demo": "CircularProgressChildren.js"}}
 
@@ -90,6 +89,27 @@ The size of the circular progress is controlled by a button, an icon button, or 
 
 Play around with all the CSS variables available on the component to see how the design changes.
 
-You can use those to customize the component on both the `sx` prop and the theme.
+You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "CircularProgressVariables.js", "hideToolbar": true}}
+
+## Accessibility
+
+When creating your circular progress component, ensure sufficient color contrast between the it and the background, using a minimum of [WCAG 2.0's color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) of 4.5:1.
+
+## Anatomy
+
+The Circular Progress component is composed of a single root `<span>` with an `<svg>` component that wraps around two `<circle>`.
+
+```html
+<span
+  role="progressbar"
+  style="--CircularProgress-percent:25"
+  class="MuiCircularProgress-root"
+>
+  <svg class="MuiCircularProgress-svg">
+    <circle class="MuiCircularProgress-track"></circle>
+    <circle class="MuiCircularProgress-progress"></circle>
+  </svg>
+</span>
+```
