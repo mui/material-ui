@@ -6,7 +6,7 @@ export interface Slot {
   name: string;
   description: string;
   typeStr: string;
-  defaultValue?: string;
+  default?: string;
 }
 
 export default function parseSlots({
@@ -43,7 +43,7 @@ export default function parseSlots({
       slots[propertySymbol.name] = {
         name: propertySymbol.name,
         description: getSymbolDescription(propertySymbol, project),
-        defaultValue: tags.default?.text?.[0].text,
+        default: tags.default?.text?.[0].text,
         typeStr: stringifySymbol(propertySymbol, project),
       };
     });
