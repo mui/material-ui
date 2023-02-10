@@ -112,7 +112,7 @@ CustomInput.propTypes = {
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'div', input: 'input', textarea: 'textarea' }
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,

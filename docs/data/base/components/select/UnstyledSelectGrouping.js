@@ -168,7 +168,7 @@ CustomSelect.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'button', listbox: 'ul', popper: PopperUnstyled }
    */
   slots: PropTypes.shape({
     listbox: PropTypes.elementType,
@@ -192,7 +192,7 @@ CustomOptionGroup.propTypes = {
   /**
    * The components used for each slot inside the OptionGroupUnstyled.
    * Either a string to use a HTML element or a component.
-   * @default {}
+   * @default { root: 'li', label: 'span', list: 'ul' }
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,
