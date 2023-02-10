@@ -5,25 +5,24 @@ githubLabel: 'component: radio'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
-# Radio Group
+# Radio
 
-<p class="description">The Radio Group enables the user to select one option from a set.</p>
+<p class="description">Radio buttons enable the user to select one option from a set.</p>
 
 ## Introduction
 
-Radio buttons let users make a mututally exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
+Radio buttons let users make a mutually exclusive choice (e.g., this or that). 
+Only one selection is allowed from the available set of options.
 
-To provide the user with multiple selection options, use Checkbox instead.
-
-If available options can be collapsed, consider using a Select component to conserve space.
 
 Radio buttons should have the most commonly used option selected by default.
 
 :::success
-When should you use radio buttons rather than checkboxes or switches?
+When should you use radio buttons rather than checkboxes, switches, or selects?
 
 - Use checkboxes to give the user **multiple binary choices**—radio buttons are preferable when you need to restrict user selection to one mutually exclusive option from a series.
 - Use a switch to provide the user with **a single binary choice**—radio buttons are preferable when you need to give the user multiple binary choices.
+- Consider using a select if it's not important for the user to be able to see all options.
   :::
 
 {{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
@@ -59,36 +58,37 @@ The Radio component supports every Joy UI global variant and it comes with `outl
 
 ### Label
 
-Use `label` prop to label the Radio button.
+Use the `label` prop to add a label to a Radio button.
 
 {{"demo": "RadioButtonLabel.js"}}
 
-For more complex layouts, compose a Radio button with Form Control, Form Label, and Form Helper Text (optional).
+For more complex layouts, compose a Radio Button with Form Control, Form Label, and Form Helper Text (optional), as shown below:
 
 {{"demo": "RadioButtonControl.js"}}
 
 ### Position
 
-To swap the label and Radio position, use the CSS property `flex-direction: row-reverse`.
+To swap the positions of a Radio and its label, use the CSS property `flex-direction: row-reverse`.
 
 {{"demo": "RadioPositionEnd.js"}}
 
-### Radio group
+## Usage with Radio Group
 
-The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for Radio button grouping and proper keyboard navigation accessibility support.
+The Radio Group component is the ideal wrapper for multiple Radio components as it provides a tailored API for grouping and better keyboard navigation accessibility.
 
 {{"demo": "RadioButtonsGroup.js"}}
 
 ### Controlled
 
-To control what the Radio button is selecting, use the `value` and `onChange` props.
+Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
+For example, the Radio buttons in the demo below update the state to reflect the selected option:
 
 {{"demo": "ControlledRadioButtonsGroup.js"}}
 
 ### Focus outline
 
-The focus outline, by default, wraps both the Radio and its label.
-To change that, target the `radioClasses.radio` class and add `position: 'relative'`.
+By default, the focus outline wraps both the Radio button and its label.
+If you need to focus to omit the label, target the `radioClasses.radio` class and add `position: 'relative'`.
 
 {{"demo": "RadioFocus.js"}}
 
@@ -96,7 +96,7 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 To make the Radio button's container clickable, use the `overlay` prop.
 
-Applying `overlay` to the parent Radio Group component will pass the prop to each child Radio button inside the Radio Group.
+You can also apply this prop directly to a Radio Group when present, which will pass the prop to each individual Radio button nested within.
 
 {{"demo": "OverlayRadio.js"}}
 
@@ -104,16 +104,17 @@ Applying `overlay` to the parent Radio Group component will pass the prop to eac
 Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
 :::
 
-### Icon
+### Custom icons
 
-Radio, by default, comes without an unchecked component.
-To add an icon to both unchecked and checked states, use the `uncheckedIcon` and `checkedIcon` props.
+Use the `checkedIcon` and/or `uncheckedIcon` props to add custom icons to the Radio button that correspond to each state, respectively.
+The demo below shows how to apply a custom `checkedIcon` to the Radio button that sits on the corner of each Sheet:
 
 {{"demo": "IconsRadio.js"}}
 
-### Without an icon
+### No icon
 
-To communicate the checked and unchecked states with different properties, such as border or background color, use the `disableIcon` prop to remove the default icon.
+Use the `disableIcon` prop to remove the Radio button's icon.
+In this case, you'll need to use CSS properties like border and background color to communicate the state of the Radio button, as shown in the demo below:
 
 {{"demo": "IconlessRadio.js"}}
 
@@ -131,22 +132,23 @@ A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-gro
 
 ### Alignment buttons
 
-Provide an icon as a label to the Radio to make the buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+This example uses icons as labels for a group of Radio buttons to recreate the form and function of [Toggle Buttons](https://mui.com/material-ui/react-toggle-button/).
+In this case, you must provide an `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
 
 ### Payment methods
 
-Mix Radio buttons with the [List](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
+Mix Radio buttons with the [List](/joy-ui/react-list/) components to create a vertical or horizontal payment method list.
 
 {{"demo": "ExamplePaymentChannels.js"}}
 
 ### E-commerce product attributes
 
-This example demonstrates complex customization using the Sheet component as a container for the Radios.
+This example demonstrates complex customization using the Sheet component as a container for the Radio buttons.
 The focus outline is customized to be smaller, and the color changes based on the value.
 
-The check icon's color inherits the Radio button's `solid` variant, so that we don't need to handpick a color that has enough contrast with the background.
+The check icon's color inherits the Radio button's `solid` variant, so you don't need to handpick a color that contrasts enough with the background.
 
 {{"demo": "ExampleProductAttributes.js"}}
 
@@ -179,11 +181,11 @@ The Radio Group component is composed of a root `<div>` element that can wrap mu
 
 ```html
 <div class="JoyRadioGroup-root">
-  <!-- radio components here -->
+  <!-- Radio components here -->
 </div>
 ```
 
-The Radio component is composed of a root `<span>`, with further nested `<span>` for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
+The Radio component is composed of a root `<span>`, with further nested `<span>` elements for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
 
 ```html
   <span class="JoyRadio-root">
