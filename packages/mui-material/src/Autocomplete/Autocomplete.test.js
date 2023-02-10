@@ -2798,29 +2798,29 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseDown(textbox);
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
-  });
 
-  it('should not be able to delete the tag when multiple=true', () => {
-    const { container } = render(
-      <Autocomplete
-        readOnly
-        multiple
-        defaultValue={['one', 'two']}
-        options={['one', 'two', 'three']}
-        renderInput={(params) => <TextField {...params} />}
-      />,
-    );
+    it('should not be able to delete the tag when multiple=true', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          multiple
+          defaultValue={['one', 'two']}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
 
-    const chip = container.querySelector(`.${chipClasses.root}`);
-    expect(chip).not.to.have.class(chipClasses.deletable);
+      const chip = container.querySelector(`.${chipClasses.root}`);
+      expect(chip).not.to.have.class(chipClasses.deletable);
 
-    const textbox = screen.getByRole('combobox');
-    act(() => {
-      textbox.focus();
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
-    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
-    fireEvent.keyDown(textbox, { key: 'Backspace' });
-    expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
   });
 
   // https://github.com/mui/material-ui/issues/36114
