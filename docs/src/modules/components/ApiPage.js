@@ -328,7 +328,7 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentSlots.length ? (
+        {componentSlots && componentSlots.length ? (
           <React.Fragment>
             <Heading hash="slots" />
             <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
