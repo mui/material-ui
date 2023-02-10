@@ -59,7 +59,7 @@ export interface ReactApi extends ReactDocgenApi {
     componentDescription: string;
     propDescriptions: { [key: string]: string | undefined };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
-    slotDescriptions: { [key: string]: string | undefined };
+    slotDescriptions?: { [key: string]: string };
   };
 }
 
@@ -352,7 +352,7 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
       ),
       name: reactApi.styles.name,
     },
-    slots: reactApi.slots,
+    ...(reactApi.slots.length > 0 && { slots: reactApi.slots }),
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
@@ -407,7 +407,6 @@ const attachTranslations = (reactApi: ReactApi) => {
     componentDescription: reactApi.description,
     propDescriptions: {},
     classDescriptions: {},
-    slotDescriptions: {},
   };
   Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
     let prop: DescribeablePropDescriptor | null;
@@ -433,10 +432,20 @@ const attachTranslations = (reactApi: ReactApi) => {
   });
 
   /**
+   * Slot descriptions.
+   */
+  if (reactApi.slots.length > 0) {
+    translations.slotDescriptions = {};
+    reactApi.slots.forEach((slot: Slot) => {
+      const { name, description } = slot;
+      translations.slotDescriptions![name] = description;
+    });
+  }
+
+  /**
    * CSS class descriptions.
    */
   translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
-  // translations.slotDescriptions = generateSlotDescriptions(reactApi.slots.descriptions);
 
   reactApi.translations = translations;
 };
