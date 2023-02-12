@@ -9,10 +9,6 @@ export interface TablePaginationActionsUnstyledNextButtonSlotPropsOverrides {}
 export interface TablePaginationActionsUnstyledBackButtonSlotPropsOverrides {}
 
 export interface TablePaginationActionsUnstyledOwnProps {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {};
   count: number;
   /**
    * The components used for each slot inside the TablePagination.

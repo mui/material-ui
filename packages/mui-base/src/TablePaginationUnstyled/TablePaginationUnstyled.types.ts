@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { TablePaginationUnstyledClasses } from './tablePaginationUnstyledClasses';
 import { SlotComponentProps } from '../utils';
 
 export interface LabelDisplayedRowsArgs {
@@ -22,10 +21,6 @@ export interface TablePaginationUnstyledToolbarSlotPropsOverrides {}
 export interface TablePaginationUnstyledSpacerSlotPropsOverrides {}
 
 export interface TablePaginationUnstyledOwnProps {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<TablePaginationUnstyledClasses>;
   /**
    * @ignore
    */

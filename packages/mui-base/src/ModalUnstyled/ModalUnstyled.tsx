@@ -23,14 +23,14 @@ import { getModalUtilityClass } from './modalUnstyledClasses';
 import { useSlotProps } from '../utils';
 
 const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
-  const { open, exited, classes } = ownerState;
+  const { open, exited } = ownerState;
 
   const slots = {
     root: ['root', !open && exited && 'hidden'],
     backdrop: ['backdrop'],
   };
 
-  return composeClasses(slots, getModalUtilityClass, classes);
+  return composeClasses(slots, getModalUtilityClass, {});
 };
 
 function getContainer(container: ModalUnstyledOwnProps['container']) {
@@ -71,7 +71,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
 >(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<Element> | undefined) {
   const {
     children,
-    classes: classesProp,
     closeAfterTransition = false,
     component,
     container,
@@ -171,7 +170,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
 
   const ownerState: ModalUnstyledOwnerState = {
     ...props,
-    classes: classesProp,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
