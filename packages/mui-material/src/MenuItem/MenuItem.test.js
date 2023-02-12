@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, createRenderer, fireEvent, screen, createMount } from 'test/utils';
+import {
+  act,
+  describeConformance,
+  createRenderer,
+  fireEvent,
+  screen,
+  createMount,
+} from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -176,12 +183,12 @@ describe('<MenuItem />', () => {
     });
 
     it('should accept object value', () => {
-      const wrapper = mount(<MenuItem value={{id: 1, name: 'Hello World'}} />);
+      const wrapper = mount(<MenuItem value={{ id: 1, name: 'Hello World' }} />);
 
-      expect(wrapper.find(MenuItem).props().value).to.deep.equal({id: 1, name: 'Hello World'});
+      expect(wrapper.find(MenuItem).props().value).to.deep.equal({ id: 1, name: 'Hello World' });
 
-      wrapper.setProps({ value: {id: 2, message: 'Hello'} });
-      expect(wrapper.find(MenuItem).props().value).to.deep.equal( {id: 2, message: 'Hello'});
+      wrapper.setProps({ value: { id: 2, message: 'Hello' } });
+      expect(wrapper.find(MenuItem).props().value).to.deep.equal({ id: 2, message: 'Hello' });
     });
   });
 });
