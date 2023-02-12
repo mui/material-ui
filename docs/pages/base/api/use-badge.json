@@ -5,7 +5,28 @@
     "max": { "type": { "name": "number", "description": "" } },
     "showZero": { "type": { "name": "boolean", "description": "" } }
   },
-  "returnValue": {},
+  "returnValue": {
+    "badgeContent": {
+      "type": {
+        "name": "React.ReactNode",
+        "description": "Defines the content that's displayed inside the badge."
+      }
+    },
+    "invisible": {
+      "type": { "name": "boolean", "description": "Maximum number to be displayed in the badge." },
+      "default": "false"
+    },
+    "max": {
+      "type": { "name": "number", "description": "Maximum number to be displayed in the badge." },
+      "default": "99"
+    },
+    "displayValue": {
+      "type": {
+        "name": "React.ReactNode",
+        "description": "Value to be displayed in the badge. If badgeContent is greater that `max` it will return `max+`."
+      }
+    }
+  },
   "name": "useBadge",
   "filename": "/packages/mui-base/src/BadgeUnstyled/useBadge.ts",
   "demos": "<ul><li><a href=\"/base/react-badge/#hook\">Unstyled badge</a></li></ul>"

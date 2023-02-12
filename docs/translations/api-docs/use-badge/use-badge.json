@@ -1,1 +1,10 @@
-{ "hookDescription": "", "parametersDescriptions": {}, "returnValueDescriptions": {} }
+{
+  "hookDescription": "",
+  "parametersDescriptions": {},
+  "returnValueDescriptions": {
+    "badgeContent": "Defines the content that's displayed inside the badge.",
+    "invisible": "If <code>true</code>, the component will not be visible.",
+    "max": "Maximum number to display in the badge if it's a number'.",
+    "displayValue": "Value to be displayed in the badge. If badgeContent is greater that `max` it will return `max+`."
+  }
+}
