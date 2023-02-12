@@ -111,7 +111,6 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
-      paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
