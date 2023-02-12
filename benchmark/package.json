@@ -29,7 +29,7 @@
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
     "styled-components": "^5.3.6",
-    "theme-ui": "^0.15.4",
+    "theme-ui": "^0.15.5",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
   }
