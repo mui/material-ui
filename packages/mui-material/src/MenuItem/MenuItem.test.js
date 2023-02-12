@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, describeConformance, createRenderer, fireEvent, screen, createMount } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -160,6 +160,28 @@ describe('<MenuItem />', () => {
       expect(context).to.have.property('dense', false);
       setProps({ dense: true });
       expect(context).to.have.property('dense', true);
+    });
+  });
+
+  describe('consume value Prop', () => {
+    const mount = createMount();
+
+    it('should accept primitive value', () => {
+      const wrapper = mount(<MenuItem value={123} />);
+
+      expect(wrapper.find(MenuItem).props().value).to.equal(123);
+
+      wrapper.setProps({ value: 'Hello World' });
+      expect(wrapper.find(MenuItem).props().value).to.equal('Hello World');
+    });
+
+    it('should accept object value', () => {
+      const wrapper = mount(<MenuItem value={{id: 1, name: 'Hello World'}} />);
+
+      expect(wrapper.find(MenuItem).props().value).to.deep.equal({id: 1, name: 'Hello World'});
+
+      wrapper.setProps({ value: {id: 2, message: 'Hello'} });
+      expect(wrapper.find(MenuItem).props().value).to.deep.equal( {id: 2, message: 'Hello'});
     });
   });
 });
