@@ -17,7 +17,7 @@ It typically sits on or near an element and indicates the status of that element
 
 The Unstyled Badge component creates a badge that is applied to its child element.
 
-{{"demo": "UnstyledBadgeIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledBadgeIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
