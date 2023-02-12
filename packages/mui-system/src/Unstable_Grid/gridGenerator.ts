@@ -12,6 +12,25 @@ interface Iterator<T> {
   (appendStyle: (responsiveStyles: Record<string, any>, style: object) => void, value: T): void;
 }
 
+function isNestedContainer(ownerState: Props['ownerState']) {
+  return ownerState.level > 0 && ownerState.container;
+}
+
+function createGetSelfSpacing(ownerState: Props['ownerState']) {
+  return function getSelfSpacing(axis: 'row' | 'column') {
+    return `var(--Grid-${axis}Spacing${ownerState.level || ''})`;
+  };
+}
+
+function createGetParentSpacing(ownerState: Props['ownerState']) {
+  return function getParentSpacing(axis: 'row' | 'column') {
+    if (ownerState.level === 0) {
+      return `var(--Grid-${axis}Spacing)`;
+    }
+    return `var(--Grid-${axis}Spacing${ownerState.level - 1 || ''})`;
+  };
+}
+
 export const filterBreakpointKeys = (breakpointsKeys: Breakpoint[], responsiveKeys: string[]) =>
   breakpointsKeys.filter((key: string) => responsiveKeys.includes(key));
 
@@ -66,6 +85,7 @@ export const traverseBreakpoints = <T = unknown>(
 };
 
 export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
+  const getSelfSpacing = createGetSelfSpacing(ownerState);
   const styles = {};
   traverseBreakpoints<'auto' | number | true>(
     theme.breakpoints,
@@ -93,7 +113,7 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
           flexGrow: 0,
           flexBasis: 'auto',
           width: `calc(100% * ${value} / var(--Grid-columns)${
-            ownerState.nested && ownerState.container ? ` + var(--Grid-columnSpacing)` : ''
+            isNestedContainer(ownerState) ? ` + ${getSelfSpacing('column')}` : ''
           })`,
         };
       }
@@ -141,13 +161,21 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
   }
-  const styles = {};
+  const getParentSpacing = createGetParentSpacing(ownerState);
+  const styles = isNestedContainer(ownerState)
+    ? {
+        // Set the default spacing as its parent spacing.
+        // It will be overridden if spacing props are provided
+        [`--Grid-rowSpacing${ownerState.level || ''}`]: getParentSpacing('row'),
+      }
+    : {};
   traverseBreakpoints<number | string>(
     theme.breakpoints,
     ownerState.rowSpacing,
     (appendStyle, value) => {
       appendStyle(styles, {
-        '--Grid-rowSpacing': typeof value === 'string' ? value : theme.spacing?.(value),
+        [`--Grid-rowSpacing${ownerState.level || ''}`]:
+          typeof value === 'string' ? value : theme.spacing?.(value),
       });
     },
   );
@@ -158,13 +186,21 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
   if (!ownerState.container) {
     return {};
   }
-  const styles = {};
+  const getParentSpacing = createGetParentSpacing(ownerState);
+  const styles = isNestedContainer(ownerState)
+    ? {
+        // Set the default spacing as its parent spacing.
+        // It will be overridden if spacing props are provided
+        [`--Grid-columnSpacing${ownerState.level || ''}`]: getParentSpacing('column'),
+      }
+    : {};
   traverseBreakpoints<number | string>(
     theme.breakpoints,
     ownerState.columnSpacing,
     (appendStyle, value) => {
       appendStyle(styles, {
-        '--Grid-columnSpacing': typeof value === 'string' ? value : theme.spacing?.(value),
+        [`--Grid-columnSpacing${ownerState.level || ''}`]:
+          typeof value === 'string' ? value : theme.spacing?.(value),
       });
     },
   );
@@ -187,39 +223,31 @@ export const generateGridDirectionStyles = ({ theme, ownerState }: Props) => {
 };
 
 export const generateGridStyles = ({ ownerState }: Props): {} => {
+  const getSelfSpacing = createGetSelfSpacing(ownerState);
+  const getParentSpacing = createGetParentSpacing(ownerState);
   return {
     minWidth: 0,
     boxSizing: 'border-box',
-    ...(ownerState.container
-      ? {
-          display: 'flex',
-          flexWrap: 'wrap',
-          ...(ownerState.wrap &&
-            ownerState.wrap !== 'wrap' && {
-              flexWrap: ownerState.wrap,
-            }),
-          margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
-          ...(ownerState.disableEqualOverflow && {
-            margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
-          }),
-          ...(ownerState.nested
-            ? {
-                padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
-                ...((ownerState.disableEqualOverflow || ownerState.parentDisableEqualOverflow) && {
-                  padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
-                }),
-              }
-            : {
-                '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
-                '--Grid-nested-columnSpacing': 'var(--Grid-columnSpacing)',
-              }),
-        }
-      : {
-          padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
-          ...(ownerState.disableEqualOverflow && {
-            padding: `calc(var(--Grid-rowSpacing)) 0px 0px calc(var(--Grid-columnSpacing))`,
-          }),
+    ...(ownerState.container && {
+      display: 'flex',
+      flexWrap: 'wrap',
+      ...(ownerState.wrap &&
+        ownerState.wrap !== 'wrap' && {
+          flexWrap: ownerState.wrap,
         }),
+      margin: `calc(${getSelfSpacing('row')} / -2) calc(${getSelfSpacing('column')} / -2)`,
+      ...(ownerState.disableEqualOverflow && {
+        margin: `calc(${getSelfSpacing('row')} * -1) 0px 0px calc(${getSelfSpacing(
+          'column',
+        )} * -1)`,
+      }),
+    }),
+    ...((!ownerState.container || isNestedContainer(ownerState)) && {
+      padding: `calc(${getParentSpacing('row')} / 2) calc(${getParentSpacing('column')} / 2)`,
+      ...((ownerState.disableEqualOverflow || ownerState.parentDisableEqualOverflow) && {
+        padding: `${getParentSpacing('row')} 0px 0px ${getParentSpacing('column')}`,
+      }),
+    }),
   };
 };
 

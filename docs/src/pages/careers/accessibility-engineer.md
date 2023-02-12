@@ -4,11 +4,10 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
-- We're a remote company, we prefer asynchronous communication over meetings.
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- **Level**: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
+- We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
 
@@ -19,7 +18,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
@@ -38,7 +37,7 @@ We need talented people to keep that going!
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 So, by improving the accessibility of our components, you will help millions of end-users who use [the products built with our UI library](https://trends.builtwith.com/framework/Material-UI).
 You will also be responsible to train the developers using MUI's products to a11y. For example, there might be an opportunity to create an eslint plugin aware of Material UI APIs to catch a11y issues before they go to production.
@@ -62,14 +61,13 @@ Depending on the day, you'll:
 
 ### Skills you should have
 
+- **Strong grasp of accessibility techniques in web development** applying HTML5, CSS, ARIA, and JavaScript. You should have held a Front-end Engineer (or closely related) role in the past.
 - **A track record of accessibility experience with both consumer/enterprise products and assistive technologies, such as screen readers, eye control, and other accessibility technologies**.
   If you've been the accessibility champ in a previous company, pushing towards making sure the user interfaces can be used by disabled people, we want you in our team!
 - **Hands-on knowledge of accessibility guidelines and standards** (such as Section 508, WCAG, and EN 301 549) as well as technologies (such as UI Automation, IAccessible, ARIA, and related accessibility APIs)
   You would be the one who the team can go to with any a11y topics/questions.
 - **An advocate of continuous learning;** able to absorb and share new ideas, approaches, and techniques for achieving accessibility.
   Continuous learning is one of the most important parts of this field.
-- **Strong grasp of accessibility techniques in web development** applying HTML5, CSS, ARIA, and JavaScript.
-  We are creating products used on the web.
 - **Experience with assistive technologies across multiple platforms**, including screen readers, magnification, and read-aloud tools.
 
 ### What would be nice if you had, but isn't required

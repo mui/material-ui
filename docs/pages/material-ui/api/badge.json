@@ -29,13 +29,13 @@
       },
       "default": "{}"
     },
-    "invisible": { "type": { "name": "bool" } },
+    "invisible": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "99" },
     "overlap": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rectangular'" },
       "default": "'rectangular'"
     },
-    "showZero": { "type": { "name": "bool" } },
+    "showZero": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",

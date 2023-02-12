@@ -52,10 +52,10 @@ export interface ChipClasses {
 export type ChipClassKey = keyof ChipClasses;
 
 export function getChipUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyChip', slot);
+  return generateUtilityClass('MuiChip', slot);
 }
 
-const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
+const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'root',
   'clickable',
   'colorPrimary',

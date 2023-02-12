@@ -1,0 +1,52 @@
+{
+  "parameters": {
+    "ref": { "type": { "name": "React.Ref<unknown>", "description": "" }, "required": true },
+    "aria-label": { "type": { "name": "string", "description": "" } },
+    "aria-labelledby": { "type": { "name": "string", "description": "" } },
+    "children": {
+      "type": { "name": "React.ReactNode", "description": "The content of the component." }
+    }
+  },
+  "returnValue": {
+    "getRootProps": {
+      "type": {
+        "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseTabsListRootSlotProps<TOther>",
+        "description": "Resolver for the root slot's props."
+      },
+      "required": true
+    },
+    "isRtl": {
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, it will indicate that the text's direction in right-to-left."
+      },
+      "default": "false",
+      "required": true
+    },
+    "orientation": {
+      "type": {
+        "name": "'horizontal' | 'vertical'",
+        "description": "The component orientation (layout flow direction)."
+      },
+      "default": "'horizontal'",
+      "required": true
+    },
+    "processChildren": {
+      "type": {
+        "name": "() => React.ReactElement<any, string | React.JSXElementConstructor<any>>[] | null | undefined",
+        "description": "Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation."
+      },
+      "required": true
+    },
+    "value": {
+      "type": {
+        "name": "string | number | false",
+        "description": "The value of the currently selected `Tab`."
+      },
+      "required": true
+    }
+  },
+  "name": "useTabsList",
+  "filename": "/packages/mui-base/src/TabsListUnstyled/useTabsList.ts",
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+}
