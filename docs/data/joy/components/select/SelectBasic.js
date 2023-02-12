@@ -4,7 +4,17 @@ import Option from '@mui/joy/Option';
 
 export default function SelectBasic() {
   return (
-    <Select defaultValue="dog">
+    <Select
+      defaultValue="dog"
+      slotProps={{
+        listbox: {
+          sx: {
+            maxHeight: 300,
+            overflow: 'auto', // required for scrolling
+          },
+        },
+      }}
+    >
       <Option value="dog">Dog</Option>
       <Option value="cat">Cat</Option>
       <Option value="fish">Fish</Option>
