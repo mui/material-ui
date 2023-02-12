@@ -23,7 +23,16 @@ export default function ComponentPageTabs(props) {
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
+          mt: 3,
           pt: 1,
+          mx: {
+            xs: -2,
+            sm: 0,
+          },
+          px: {
+            xs: 2,
+            sm: 0,
+          },
           backgroundColor: (theme) =>
             theme.palette.mode === 'dark'
               ? alpha(theme.palette.primaryDark[900], 0.7)
@@ -32,7 +41,6 @@ export default function ComponentPageTabs(props) {
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
-          mt: 3,
         }}
       >
         <Tab label="Demos" value="" />
