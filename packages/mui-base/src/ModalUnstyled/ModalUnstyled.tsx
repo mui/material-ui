@@ -328,10 +328,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: elementAcceptingRef.isRequired,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
    */
