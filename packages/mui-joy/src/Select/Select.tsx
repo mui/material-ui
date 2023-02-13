@@ -218,6 +218,7 @@ const SelectButton = styled('button', {
   flex: 1,
   fontFamily: 'inherit',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),

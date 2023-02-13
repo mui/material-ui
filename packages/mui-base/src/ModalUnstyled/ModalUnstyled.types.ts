@@ -4,7 +4,8 @@ import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
-export interface ModalUnstyledComponentsPropsOverrides {}
+export interface ModalUnstyledRootSlotPropsOverrides {}
+export interface ModalUnstyledBackdropSlotPropsOverrides {}
 
 export interface ModalUnstyledOwnProps {
   /**
@@ -103,14 +104,10 @@ export interface ModalUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      ModalUnstyledComponentsPropsOverrides,
-      ModalUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', ModalUnstyledRootSlotPropsOverrides, ModalUnstyledOwnerState>;
     backdrop?: SlotComponentProps<
       'div',
-      ModalUnstyledComponentsPropsOverrides,
+      ModalUnstyledBackdropSlotPropsOverrides,
       ModalUnstyledOwnerState
     >;
   };

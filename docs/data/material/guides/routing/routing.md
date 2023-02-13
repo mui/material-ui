@@ -63,7 +63,7 @@ In the event you need to provide a richer structure, see the next section.
 ## `component` prop
 
 You can achieve the integration with third-party routing libraries with the `component` prop.
-You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
+You can learn more about this prop in the **[composition guide](/material-ui/guides/composition/#component-prop)**.
 
 ### Link
 

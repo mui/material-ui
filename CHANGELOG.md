@@ -25,7 +25,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 05 -->[System] Fix nested grid v2 (#35994) @siriwatknp
 
-### `@mui/styled-engine@5.11.1`
+### `@mui/styled-engine@5.11.8`
 
 - &#8203;<!-- 06 -->[styled-engine] Create cache only if `document` is available (#36001) @m4theushw
 
