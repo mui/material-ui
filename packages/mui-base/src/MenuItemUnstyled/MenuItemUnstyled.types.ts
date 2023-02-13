@@ -7,6 +7,7 @@ export interface MenuItemUnstyledRootSlotPropsOverrides {}
 export interface MenuItemUnstyledOwnerState extends MenuItemUnstyledOwnProps {
   disabled: boolean;
   focusVisible: boolean;
+  highlighted: boolean;
 }
 
 export interface MenuItemUnstyledOwnProps {

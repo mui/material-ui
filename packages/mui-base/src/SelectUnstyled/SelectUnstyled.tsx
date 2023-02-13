@@ -17,7 +17,7 @@ import useSelect from './useSelect';
 import { SelectChild, SelectOption } from './useSelect.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
-import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
+import { SelectUnstyledContext } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
 import defaultOptionStringifier from './defaultOptionStringifier';
@@ -127,10 +127,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+    },
+    [setListboxOpen, onListboxOpenChange],
+  );
 
   const {
     buttonActive,
@@ -138,8 +141,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
+    contextValue,
     value,
   } = useSelect({
     buttonRef: handleButtonRef,
@@ -147,9 +149,9 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     disabled: disabledProp,
     listboxId,
     multiple: false,
+    open: listboxOpen,
     onChange,
     onOpenChange: handleOpenChange,
-    open: listboxOpen,
     options,
     optionStringifier,
     value: valueProp,
@@ -208,22 +210,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     className: classes.popper,
   });
 
-  const context: SelectUnstyledContextType = React.useMemo(
-    () => ({
-      getOptionProps,
-      getOptionState,
-      listboxRef,
-    }),
-    [getOptionProps, getOptionState],
-  );
-
   return (
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOption as any)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
-            <SelectUnstyledContext.Provider value={context}>
+            <SelectUnstyledContext.Provider value={contextValue}>
               {children}
             </SelectUnstyledContext.Provider>
           </ListboxRoot>

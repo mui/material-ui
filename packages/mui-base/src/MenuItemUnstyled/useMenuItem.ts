@@ -4,6 +4,7 @@ import { EventHandlers } from '../utils/types';
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import { useButton } from '../ButtonUnstyled';
 import { UseMenuItemParameters } from './useMenuItem.types';
+import useForcedRerendering from '../utils/useForcedRerendering';
 
 /**
  *
@@ -28,7 +29,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     throw new Error('MenuItemUnstyled must be used within a MenuUnstyled');
   }
 
-  const { registerItem, unregisterItem, open } = menuContext;
+  const { registerItem, unregisterItem, open, registerHighlightChangeHandler } = menuContext;
 
   React.useEffect(() => {
     if (id === undefined) {
@@ -66,7 +67,22 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
   const { highlighted } = itemState ?? { highlighted: false };
 
+  const rerender = useForcedRerendering();
+
   React.useEffect(() => {
+    function updateHighlightedState(highlightedItemId: string | null) {
+      if (highlightedItemId === id && !highlighted) {
+        rerender();
+      } else if (highlightedItemId !== id && highlighted) {
+        rerender();
+      }
+    }
+
+    return registerHighlightChangeHandler(updateHighlightedState);
+  });
+
+  React.useEffect(() => {
+    // TODO: this should be handled by the MenuButton
     requestFocus(highlighted && open);
   }, [highlighted, open]);
 
@@ -79,6 +95,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
       }),
       disabled: false,
       focusVisible,
+      highlighted: false,
     };
   }
 
@@ -96,5 +113,6 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     },
     disabled: itemState?.disabled ?? false,
     focusVisible,
+    highlighted,
   };
 }

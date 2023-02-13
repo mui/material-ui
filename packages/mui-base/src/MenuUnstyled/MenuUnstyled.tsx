@@ -51,15 +51,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ...other
   } = props;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     open,
     onClose,
     listboxId,
@@ -106,21 +98,20 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     className: classes.listbox,
   });
 
-  const contextValue: MenuUnstyledContextType = React.useMemo(
+  const menuContextValue: MenuUnstyledContextType = React.useMemo(
     () => ({
-      registerItem,
-      unregisterItem,
-      getItemState,
-      getItemProps,
+      ...contextValue,
       open,
     }),
-    [getItemProps, getItemState, open, registerItem, unregisterItem],
+    [contextValue, open],
   );
 
   return (
     <Root {...rootProps}>
       <Listbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
+        <MenuUnstyledContext.Provider value={menuContextValue}>
+          {children}
+        </MenuUnstyledContext.Provider>
       </Listbox>
     </Root>
   );
