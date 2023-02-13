@@ -2,18 +2,15 @@
 
 <p class="description">A tool for generating Joy UI theme.</p>
 
-## Palette
+## Customize the palette
 
-<details>
-  <summary>How to use</summary>
+1. On the left panel, you see the default Joy UI palettes. Select one to open the color token editor.
+2. Each palette contains a `primitive` and `global variant` sets of tokens.
 
-1. At the top-left of the toolbar, pick a color scheme (default to light) to start customizing the colors.
-2. On the left panel, you will see the default palettes. Select one to open the token editor.
-3. Each palette contains `primitive` and `global variant` tokens.
-   - **Primitive tokens**: You can select a predefined colors by clicking "Browse palette" or manually fill the color in the input. The placeholder you see is the default value of the token if you don't provide a custom one. You can remove the token from the theme by clicking the button in front of each token.
-   - **Global variant tokens**: When you edit a global variant token, you can choose a value that refers to other token in the theme or fill a color manually. You can also add a new global variant token and preview the change instantly.
-4. Once you have done with the customization, you can see the snippet by clicking **_"Show me the code"_** button. An alternative way is to click **_"Open sandbox"_** to open a sandbox playground with the custom theme.
+   - **Primitive:** this is the list of 10 values ranging from 50 to 900 (lightest to dark). It's where you add each value's HEX code.
+   - **Global variant:** refers to higher level tokens, that use the primitive ones, with semantic meaning.
 
-</details>
+3. Browse through famous sets of colors or fill in each primitive value with your own HEX color code scale. You can also reduce the number of primitive colors by clicking on the minus icon button.
+4. Click on "Show me the code" to see a snippet of your changes, that you can copy and paste onto your codebase. You can also open it on CodeSandbox to play with it even further.
 
 {{"component": "modules/components/JoyThemeBuilder.tsx"}}
