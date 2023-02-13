@@ -401,12 +401,9 @@ export const getJoyComponentInfo = (filename: string): ComponentInfo => {
       }
       return {
         name: inheritedComponent,
-        apiPathname:
-          inheritedComponent === 'Transition'
-            ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
-                inheritedComponent,
-              )}/`,
+        apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
+          inheritedComponent,
+        )}/`,
       };
     },
     getDemos: () => {
