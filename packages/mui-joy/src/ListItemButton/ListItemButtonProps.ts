@@ -6,7 +6,6 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
-import { ListItemButtonClasses } from './listItemButtonClasses';
 
 export type ListItemButtonSlot = 'root';
 
@@ -37,10 +36,6 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemButtonClasses>;
     /**
      * If `true`, the component is disabled.
      * @default false
