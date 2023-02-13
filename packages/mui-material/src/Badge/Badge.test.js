@@ -37,7 +37,7 @@ describe('<Badge />', () => {
     }),
   );
 
-  it('renderapps children and badgeContent', () => {
+  it('renders children and badgeContent', () => {
     const children = <div id="child" data-testid="child" />;
     const badge = <div id="badge" data-testid="badge" />;
     const { container, getByTestId } = render(<Badge badgeContent={badge}>{children}</Badge>);
