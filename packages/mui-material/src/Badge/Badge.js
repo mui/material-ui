@@ -264,7 +264,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   // support both `slots` and `components` for backward compatibility
-  const RootSlot = component ?? slots?.root ?? components.Root ?? BadgeRoot;
+  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
   const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
 
   const rootSlotProps = slotProps?.root ?? componentsProps.root;
@@ -276,6 +276,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     externalForwardedProps: other,
     additionalProps: {
       ref,
+      as: component,
     },
     ownerState,
     className: clsx(rootSlotProps?.className, classes.root, className),
