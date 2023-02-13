@@ -2419,7 +2419,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.property('value', 'a');
     });
 
-    it('should not call getOptionLabel with unknown values when computing highlight', () => {
+    it('should not throw error when nested options are provided', () => {
       const { getByRole } = render(
         <Autocomplete
           openOnFocus
