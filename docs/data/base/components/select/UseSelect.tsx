@@ -152,6 +152,7 @@ interface OptionProps {
   children?: React.ReactNode;
   className?: string;
   value: string;
+  disabled?: boolean;
 }
 
 function renderSelectedValue(value: string | null, options: SelectOption<string>[]) {
@@ -161,10 +162,10 @@ function renderSelectedValue(value: string | null, options: SelectOption<string>
 }
 
 function CustomOption(props: OptionProps) {
-  const { children, value, className } = props;
+  const { children, value, className, disabled = false } = props;
   const { getRootProps, highlighted } = useOption({
     value,
-    disabled: false,
+    disabled,
   });
 
   return (

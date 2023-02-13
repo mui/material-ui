@@ -258,9 +258,10 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       const highlighted = latestHighlightedIndex.current === index && index !== -1;
 
       return {
-        selected,
         disabled,
         highlighted,
+        index,
+        selected,
       };
     },
     [
@@ -298,13 +299,12 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       otherHandlers: TOther = {} as TOther,
     ): UseListboxOptionSlotProps<TOther> => {
       const optionState = getOptionState(option);
-      const index = options.findIndex((opt) => optionComparer(opt, option));
 
       return {
         ...otherHandlers,
         'aria-disabled': optionState.disabled || undefined,
         'aria-selected': optionState.selected,
-        id: optionIdGenerator(option, index),
+        id: optionIdGenerator(option, optionState.index),
         onClick: createHandleOptionClick(option, otherHandlers),
         onPointerOver: createHandleOptionPointerOver(option, otherHandlers),
         role: 'option',
@@ -317,8 +317,6 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       createHandleOptionPointerOver,
       getOptionTabIndex,
       getOptionState,
-      optionComparer,
-      options,
     ],
   );
 
