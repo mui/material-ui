@@ -7,7 +7,7 @@ export interface ButtonUnstyledActions {
   focusVisible(): void;
 }
 
-export interface ButtonUnstyledComponentsPropsOverrides {}
+export interface ButtonUnstyledRootSlotPropsOverrides {}
 
 export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'> {
   /**
@@ -23,7 +23,7 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
   slotProps?: {
     root?: SlotComponentProps<
       'button',
-      ButtonUnstyledComponentsPropsOverrides,
+      ButtonUnstyledRootSlotPropsOverrides,
       ButtonUnstyledOwnerState
     >;
   };
