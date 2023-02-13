@@ -5,7 +5,7 @@ export default function useRouterExtra() {
 
   const asPathWithoutLang = router.asPath.replace(/^\/+[a-zA-Z]{2}\//, '/');
   let product = asPathWithoutLang.replace(/^\/+([^/]+)\/.*/, '$1');
-  if (asPathWithoutLang.startsWith('/x')) {
+  if (asPathWithoutLang.startsWith('/x/')) {
     product = asPathWithoutLang.replace('/x/react-', '').replace(/\/.*/, '');
   }
   return {
