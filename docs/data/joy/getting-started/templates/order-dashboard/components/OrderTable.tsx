@@ -251,14 +251,15 @@ export default function OrderTable() {
           },
           flexWrap: 'wrap',
           gap: 1.5,
-          my: 1,
-          mb: 2,
           '& > *': {
-            minWidth: '200px',
+            minWidth: {
+              xs: '120px',
+              md: '160px',
+            },
           },
         }}
       >
-        <FormControl sx={{ minWidth: '360px' }} size="sm">
+        <FormControl sx={{ flex: 1 }} size="sm">
           <FormLabel>Search for order</FormLabel>
           <Input placeholder="Search" startDecorator={<i data-feather="search" />} />
         </FormControl>

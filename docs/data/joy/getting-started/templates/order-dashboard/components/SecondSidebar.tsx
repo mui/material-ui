@@ -36,9 +36,7 @@ export default function SecondSidebar() {
       />
       <Sheet
         className="SecondSidebar"
-        variant="solid"
-        color="neutral"
-        sx={(theme) => ({
+        sx={{
           position: {
             xs: 'fixed',
             lg: 'sticky',
@@ -47,9 +45,8 @@ export default function SecondSidebar() {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--FirstSidebar-width, 0px)))',
             lg: 'none',
           },
-          bgcolor: 'transparent',
           borderRight: '1px solid',
-          borderColor: 'neutral.100',
+          borderColor: 'divider',
           transition: 'transform 0.4s',
           zIndex: 9999,
           height: '100dvh',
@@ -60,11 +57,7 @@ export default function SecondSidebar() {
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
-          [theme.getColorSchemeSelector('dark')]: {
-            bgcolor: 'neutral.900',
-            borderColor: 'neutral.800',
-          },
-        })}
+        }}
       >
         <List
           sx={{

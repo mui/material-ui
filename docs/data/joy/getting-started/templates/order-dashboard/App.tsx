@@ -54,7 +54,7 @@ export default function JoyOrderDashboardTemplate() {
           sx={(theme) => ({
             p: {
               xs: 2,
-              sm: 6,
+              md: 6,
             },
             pt: {
               xs: `calc(${theme.spacing(2)} + var(--Header-height))`,
@@ -66,7 +66,7 @@ export default function JoyOrderDashboardTemplate() {
             flexDirection: 'column',
             minWidth: 0,
             height: '100dvh',
-            gap: 8,
+            gap: 1,
           })}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -79,6 +79,7 @@ export default function JoyOrderDashboardTemplate() {
                 '--Icon-fontSize': '16px',
                 fontWeight: 'lg',
                 color: 'neutral.400',
+                px: 0,
               }}
             >
               <Link
