@@ -130,6 +130,7 @@ const CheckboxAction = styled('span', {
     borderRadius: `var(--Checkbox-action-radius, ${
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
+    textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',

@@ -1046,7 +1046,7 @@ export default function PricingTable({
           </Box>
         </Box>
       )}
-      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
+      <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
         MUI Core (open-source)
       </RowHead>
       {renderRow('Material UI')}
@@ -1056,7 +1056,7 @@ export default function PricingTable({
       {renderRow('MUI Base')}
       {divider}
       {renderRow('MUI System')}
-      <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
+      <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
         MUI X (open-core)
       </RowHead>
       <Box

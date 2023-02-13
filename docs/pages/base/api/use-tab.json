@@ -17,7 +17,40 @@
       }
     }
   },
-  "returnValue": {},
+  "returnValue": {
+    "active": {
+      "type": { "name": "boolean", "description": "If `true`, the component will be active." },
+      "default": "false",
+      "required": true
+    },
+    "disabled": {
+      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
+      "default": "false",
+      "required": true
+    },
+    "focusVisible": {
+      "type": { "name": "boolean", "description": "If `true`, the tab's focus will be visible." },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseTabRootSlotProps<TOther>",
+        "description": "Resolver for the root slot's props."
+      },
+      "required": true
+    },
+    "selected": {
+      "type": { "name": "boolean", "description": "If `true`, the tab will be selected." },
+      "required": true
+    },
+    "setFocusVisible": {
+      "type": {
+        "name": "React.Dispatch<React.SetStateAction<boolean>>",
+        "description": "Callback for setting the `focusVisible` param."
+      },
+      "required": true
+    }
+  },
   "name": "useTab",
   "filename": "/packages/mui-base/src/TabUnstyled/useTab.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"

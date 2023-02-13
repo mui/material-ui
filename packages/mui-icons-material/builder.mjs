@@ -7,7 +7,7 @@ import globAsync from 'fast-glob';
 import * as svgo from 'svgo';
 import { fileURLToPath } from 'url';
 import intersection from 'lodash/intersection.js';
-import Queue from '../../modules/waterfall/Queue.mjs';
+import { Queue } from '@mui/internal-waterfall';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
