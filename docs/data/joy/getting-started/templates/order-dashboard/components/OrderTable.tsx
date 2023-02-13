@@ -287,9 +287,6 @@ export default function OrderTable() {
             '--Table-headerUnderlineThickness': '1px',
             '--TableRow-hoverBackground': (theme) =>
               theme.vars.palette.background.level1,
-            '& thead th': {
-              zIndex: 2,
-            },
           }}
         >
           <thead>
@@ -310,7 +307,6 @@ export default function OrderTable() {
                       ? 'primary'
                       : undefined
                   }
-                  slotProps={{ checkbox: { sx: { textAlign: 'left' } } }}
                   sx={{ verticalAlign: 'text-bottom' }}
                 />
               </th>
