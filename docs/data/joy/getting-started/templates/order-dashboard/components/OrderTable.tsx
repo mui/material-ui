@@ -233,7 +233,7 @@ export default function OrderTable() {
             <Divider sx={{ my: 2 }} />
             <Sheet sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {renderFilters()}
-              <Button color="success" onClick={() => setOpen(false)}>
+              <Button color="primary" onClick={() => setOpen(false)}>
                 Submit
               </Button>
             </Sheet>
@@ -384,7 +384,11 @@ export default function OrderTable() {
                   <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                     <Avatar size="sm">{row.customer.initial}</Avatar>
                     <div>
-                      <Typography fontWeight="xl" level="body3">
+                      <Typography
+                        fontWeight="lg"
+                        level="body3"
+                        textColor="text.primary"
+                      >
                         {row.customer.name}
                       </Typography>
                       <Typography level="body3">{row.customer.email}</Typography>

@@ -52,13 +52,18 @@ export default function JoyOrderDashboardTemplate() {
           component="main"
           className="MainContent"
           sx={(theme) => ({
-            p: {
+            px: {
               xs: 2,
               md: 6,
             },
             pt: {
               xs: `calc(${theme.spacing(2)} + var(--Header-height))`,
               sm: `calc(${theme.spacing(2)} + var(--Header-height))`,
+              md: 3,
+            },
+            pb: {
+              xs: 2,
+              sm: 2,
               md: 3,
             },
             flex: 1,
@@ -107,7 +112,6 @@ export default function JoyOrderDashboardTemplate() {
               sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
             />
           </Box>
-
           <Box
             sx={{
               display: 'flex',
@@ -142,7 +146,6 @@ export default function JoyOrderDashboardTemplate() {
               </Button>
             </Box>
           </Box>
-
           <OrderTable />
         </Box>
       </Box>
