@@ -15,7 +15,8 @@ export default function FirstSidebar() {
       className="FirstSidebar"
       variant="soft"
       color="primary"
-      sx={(theme) => ({
+      invertedColors
+      sx={{
         position: {
           xs: 'fixed',
           md: 'sticky',
@@ -36,14 +37,9 @@ export default function FirstSidebar() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: 2,
-        bgcolor: 'primary.50',
         borderRight: '1px solid',
-        borderColor: 'neutral.100',
-        [theme.getColorSchemeSelector('dark')]: {
-          bgcolor: 'primary.900',
-          borderColor: 'neutral.800',
-        },
-      })}
+        borderColor: 'divider',
+      }}
     >
       <GlobalStyles
         styles={{
