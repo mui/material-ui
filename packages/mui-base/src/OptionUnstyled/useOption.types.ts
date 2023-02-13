@@ -10,6 +10,7 @@ export interface UseOptionParameters<Value> {
 export interface UseOptionReturnValue {
   selected: boolean;
   highlighted: boolean;
+  index: number;
   getRootProps: <Other extends EventHandlers>(
     otherHandlers?: Other,
   ) => UseOptionRootSlotProps<Other>;

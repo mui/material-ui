@@ -7,6 +7,7 @@ const dummyGetOptionState = () => ({
   disabled: false,
   highlighted: false,
   selected: false,
+  index: 0,
 });
 
 const dummyGetOptionProps = () => ({

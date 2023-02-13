@@ -52,7 +52,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
 
   const row = React.useContext(RowListContext);
 
-  const { getRootProps, selected, highlighted } = useOption({
+  const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
     value,
     optionRef: ref,
@@ -66,6 +66,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     disabled,
     selected,
     highlighted,
+    index,
     component,
     variant,
     color,

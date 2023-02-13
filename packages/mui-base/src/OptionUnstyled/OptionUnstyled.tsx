@@ -47,7 +47,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const Root = component || slots.root || 'li';
 
-  const { getRootProps, selected, highlighted } = useOption({
+  const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
     value,
     optionRef: ref,
@@ -56,8 +56,9 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
     disabled,
-    selected,
     highlighted,
+    index,
+    selected,
   };
 
   const classes = useUtilityClasses(ownerState);

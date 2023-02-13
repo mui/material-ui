@@ -95,7 +95,8 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
       ...getOptionProps(value, otherHandlers),
       ref: handleRef,
     }),
-    selected,
     highlighted,
+    index: optionState.index,
+    selected,
   };
 }
