@@ -270,7 +270,6 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
             onClick={() => setProps(initialProps as T)}
             sx={{
               visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
-              // '--IconButton-size': '30px',
             }}
           >
             <ReplayRoundedIcon />

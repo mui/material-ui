@@ -68,11 +68,13 @@ export default function DiamondSponsors() {
           }),
           (theme) =>
             theme.applyDarkStyles({
-              borderColor: 'primaryDark.700',
-              '&:hover': {
-                color: 'primary.300',
-                borderColor: 'primaryDark.600',
-                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              '& a': {
+                borderColor: 'primaryDark.700',
+                '&:hover': {
+                  color: 'primary.300',
+                  borderColor: 'primaryDark.600',
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                },
               },
             }),
         ]}
@@ -87,7 +89,7 @@ export default function DiamondSponsors() {
         >
           <Box
             component="img"
-            height="30"
+            height="30px"
             src={`/static/sponsors/octopus-light.svg`}
             alt="octopus"
             title="Repeatable, reliable deployments"
@@ -109,7 +111,7 @@ export default function DiamondSponsors() {
         >
           <Box
             component="img"
-            height="26"
+            height="26px"
             src={`/static/sponsors/doit-light.svg`}
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
@@ -131,7 +133,7 @@ export default function DiamondSponsors() {
         >
           <Box
             component="img"
-            height="26"
+            height="26px"
             src={'https://brand.zesty.io/zesty-io-logo-horizontal.svg'}
             alt="zesty.io"
             title="The only Next.js CMS you need"
