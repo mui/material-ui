@@ -151,6 +151,7 @@ const RadioAction = styled('span', {
 })<{ ownerState: RadioOwnerState }>(({ theme, ownerState }) => [
   {
     position: 'absolute',
+    textAlign: 'left', // prevent text-align inheritance
     borderRadius: `var(--Radio-action-radius, ${
       // Automatic radius adjustment when composing with ListItem or Sheet
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
