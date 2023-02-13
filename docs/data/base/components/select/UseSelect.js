@@ -146,10 +146,10 @@ function renderSelectedValue(value, options) {
 }
 
 function CustomOption(props) {
-  const { children, value, className } = props;
+  const { children, value, className, disabled = false } = props;
   const { getRootProps, highlighted } = useOption({
     value,
-    disabled: false,
+    disabled,
   });
 
   return (
@@ -166,6 +166,7 @@ function CustomOption(props) {
 CustomOption.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   value: PropTypes.string.isRequired,
 };
 

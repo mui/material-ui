@@ -13,6 +13,7 @@
       "required": true
     },
     "highlighted": { "type": { "name": "boolean", "description": "" }, "required": true },
+    "index": { "type": { "name": "number", "description": "" }, "required": true },
     "selected": { "type": { "name": "boolean", "description": "" }, "required": true }
   },
   "name": "useOption",
