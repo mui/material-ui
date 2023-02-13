@@ -3,7 +3,7 @@ import { OverrideProps } from '@mui/types';
 import { UseTabsListRootSlotProps } from './useTabsList.types';
 import { SlotComponentProps } from '../utils';
 
-interface TabsListUnstyledComponentsPropsOverrides {}
+interface TabsListUnstyledRootSlotPropsOverrides {}
 
 export interface TabsListUnstyledOwnProps {
   /**
@@ -18,7 +18,7 @@ export interface TabsListUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      TabsListUnstyledComponentsPropsOverrides,
+      TabsListUnstyledRootSlotPropsOverrides,
       TabsListUnstyledOwnerState
     >;
   };
