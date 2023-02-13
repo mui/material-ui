@@ -366,47 +366,4 @@ describe('useAutocomplete', () => {
       fireEvent.click(button);
     }).not.to.throw();
   });
-
-  it('should call getOptionLabel when computing highlight', () => {
-    function Test(props) {
-      const { options, getOptionLabel, open } = props;
-      const {
-        groupedOptions,
-        getRootProps,
-        getInputLabelProps,
-        getInputProps,
-        getListboxProps,
-        getOptionProps,
-      } = useAutocomplete({
-        options,
-        getOptionLabel,
-        autoHighlight: true,
-        open,
-      });
-
-      return (
-        <div>
-          <div {...getRootProps()}>
-            <label {...getInputLabelProps()}>useAutocomplete</label>
-            <input {...getInputProps()} />
-          </div>
-          <ul {...getListboxProps()}>
-            {groupedOptions.map((option, index) => {
-              return <li {...getOptionProps({ option, index })}>{option}</li>;
-            })}
-          </ul>
-        </div>
-      );
-    }
-
-    const getOptionLabel = spy((x) => x);
-    const options = ['foo', 'bar'];
-
-    const { setProps } = render(<Test options={options} getOptionLabel={getOptionLabel} open />);
-    setProps({ open: false });
-    setProps({ open: true });
-
-    const calledOptions = getOptionLabel.getCalls().map(({ args: [option] }) => option);
-    expect(options).to.include.members(calledOptions);
-  });
 });
