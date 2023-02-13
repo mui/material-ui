@@ -51,7 +51,7 @@ const SearchButton = styled('button')(({ theme }) => [
     transitionProperty: 'all',
     transitionDuration: '150ms',
     '&:hover': {
-      background: theme.palette.grey[100],
+      background: (theme.vars || theme).palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
     },
   },
@@ -59,7 +59,7 @@ const SearchButton = styled('button')(({ theme }) => [
     backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
     '&:hover': {
-      background: theme.palette.primaryDark[700],
+      background: (theme.vars || theme).palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
     },
   }),
