@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SliderUnstyled } from '@mui/base';
 
 declare module '@mui/base' {
-  interface SliderUnstyledRootSlotOverrides {
+  interface SliderUnstyledRootSlotPropsOverrides {
     variant?: 'one' | 'two';
   }
 }

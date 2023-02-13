@@ -4,7 +4,7 @@ import { SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface FormControlUnstyledRootSlotOverrides {}
+export interface FormControlUnstyledRootSlotPropsOverrides {}
 
 export interface FormControlUnstyledOwnProps {
   /**
@@ -39,7 +39,7 @@ export interface FormControlUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      FormControlUnstyledRootSlotOverrides,
+      FormControlUnstyledRootSlotPropsOverrides,
       FormControlUnstyledOwnerState
     >;
   };

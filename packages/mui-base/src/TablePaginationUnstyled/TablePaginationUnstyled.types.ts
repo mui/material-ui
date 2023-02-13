@@ -12,14 +12,14 @@ export interface LabelDisplayedRowsArgs {
 
 export type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
-export interface TablePaginationUnstyledRootSlotOverrides {}
-export interface TablePaginationUnstyledActionsSlotOverrides {}
-export interface TablePaginationUnstyledSelectSlotOverrides {}
-export interface TablePaginationUnstyledSelectLabelSlotOverrides {}
-export interface TablePaginationUnstyledMenuItemSlotOverrides {}
-export interface TablePaginationUnstyledDisplayedRowsSlotOverrides {}
-export interface TablePaginationUnstyledToolbarSlotOverrides {}
-export interface TablePaginationUnstyledSpacerSlotOverrides {}
+export interface TablePaginationUnstyledRootSlotPropsOverrides {}
+export interface TablePaginationUnstyledActionsSlotPropsOverrides {}
+export interface TablePaginationUnstyledSelectSlotPropsOverrides {}
+export interface TablePaginationUnstyledSelectLabelSlotPropsOverrides {}
+export interface TablePaginationUnstyledMenuItemSlotPropsOverrides {}
+export interface TablePaginationUnstyledDisplayedRowsSlotPropsOverrides {}
+export interface TablePaginationUnstyledToolbarSlotPropsOverrides {}
+export interface TablePaginationUnstyledSpacerSlotPropsOverrides {}
 
 export interface TablePaginationUnstyledOwnProps {
   /**
@@ -52,42 +52,42 @@ export interface TablePaginationUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledRootSlotOverrides,
+      TablePaginationUnstyledRootSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     actions?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledActionsSlotOverrides,
+      TablePaginationUnstyledActionsSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     select?: SlotComponentProps<
       'select',
-      TablePaginationUnstyledSelectSlotOverrides,
+      TablePaginationUnstyledSelectSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     selectLabel?: SlotComponentProps<
       'p',
-      TablePaginationUnstyledSelectLabelSlotOverrides,
+      TablePaginationUnstyledSelectLabelSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     menuItem?: SlotComponentProps<
       'option',
-      TablePaginationUnstyledMenuItemSlotOverrides,
+      TablePaginationUnstyledMenuItemSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     displayedRows?: SlotComponentProps<
       'p',
-      TablePaginationUnstyledDisplayedRowsSlotOverrides,
+      TablePaginationUnstyledDisplayedRowsSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     toolbar?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledToolbarSlotOverrides,
+      TablePaginationUnstyledToolbarSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     spacer?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledSpacerSlotOverrides,
+      TablePaginationUnstyledSpacerSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
   };

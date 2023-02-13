@@ -24,14 +24,14 @@ export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 }
 
-export interface SliderUnstyledRootSlotOverrides {}
-export interface SliderUnstyledTrackSlotOverrides {}
-export interface SliderUnstyledRailSlotOverrides {}
-export interface SliderUnstyledThumbSlotOverrides {}
-export interface SliderUnstyledMarkSlotOverrides {}
-export interface SliderUnstyledMarkLabelSlotOverrides {}
-export interface SliderUnstyledValueLabelSlotOverrides {}
-export interface SliderUnstyledInputSlotOverrides {}
+export interface SliderUnstyledRootSlotPropsOverrides {}
+export interface SliderUnstyledTrackSlotPropsOverrides {}
+export interface SliderUnstyledRailSlotPropsOverrides {}
+export interface SliderUnstyledThumbSlotPropsOverrides {}
+export interface SliderUnstyledMarkSlotPropsOverrides {}
+export interface SliderUnstyledMarkLabelSlotPropsOverrides {}
+export interface SliderUnstyledValueLabelSlotPropsOverrides {}
+export interface SliderUnstyledInputSlotPropsOverrides {}
 
 export interface SliderUnstyledOwnProps {
   /**
@@ -143,22 +143,46 @@ export interface SliderUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'span', SliderUnstyledRootSlotOverrides, SliderUnstyledOwnerState>;
-    track?: SlotComponentProps<'span', SliderUnstyledTrackSlotOverrides, SliderUnstyledOwnerState>;
-    rail?: SlotComponentProps<'span', SliderUnstyledRailSlotOverrides, SliderUnstyledOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderUnstyledThumbSlotOverrides, SliderUnstyledOwnerState>;
-    mark?: SlotComponentProps<'span', SliderUnstyledMarkSlotOverrides, SliderUnstyledOwnerState>;
+    root?: SlotComponentProps<
+      'span',
+      SliderUnstyledRootSlotPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    track?: SlotComponentProps<
+      'span',
+      SliderUnstyledTrackSlotPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    rail?: SlotComponentProps<
+      'span',
+      SliderUnstyledRailSlotPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    thumb?: SlotComponentProps<
+      'span',
+      SliderUnstyledThumbSlotPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
+    mark?: SlotComponentProps<
+      'span',
+      SliderUnstyledMarkSlotPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
     markLabel?: SlotComponentProps<
       'span',
-      SliderUnstyledMarkLabelSlotOverrides,
+      SliderUnstyledMarkLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     valueLabel?: SlotComponentProps<
       React.ElementType,
-      SliderUnstyledValueLabelSlotOverrides,
+      SliderUnstyledValueLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
-    input?: SlotComponentProps<'input', SliderUnstyledInputSlotOverrides, SliderUnstyledOwnerState>;
+    input?: SlotComponentProps<
+      'input',
+      SliderUnstyledInputSlotPropsOverrides,
+      SliderUnstyledOwnerState
+    >;
   };
   /**
    * The components used for each slot inside the Slider.

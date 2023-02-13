@@ -2,7 +2,7 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
-export interface MenuItemUnstyledRootSlotOverrides {}
+export interface MenuItemUnstyledRootSlotPropsOverrides {}
 
 export interface MenuItemUnstyledOwnerState extends MenuItemUnstyledOwnProps {
   disabled: boolean;
@@ -31,7 +31,11 @@ export interface MenuItemUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'li', MenuItemUnstyledRootSlotOverrides, MenuItemUnstyledOwnerState>;
+    root?: SlotComponentProps<
+      'li',
+      MenuItemUnstyledRootSlotPropsOverrides,
+      MenuItemUnstyledOwnerState
+    >;
   };
   /**
    * A text representation of the menu item's content.

@@ -4,7 +4,7 @@ import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 import { SlotComponentProps } from '../utils';
 import { UseTabRootSlotProps } from './useTab.types';
 
-interface TabUnstyledRootSlotOverrides {}
+interface TabUnstyledRootSlotPropsOverrides {}
 
 export interface TabUnstyledOwnProps
   extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'slots' | 'slotProps'> {
@@ -29,7 +29,7 @@ export interface TabUnstyledOwnProps
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', TabUnstyledRootSlotOverrides, TabUnstyledOwnerState>;
+    root?: SlotComponentProps<'div', TabUnstyledRootSlotPropsOverrides, TabUnstyledOwnerState>;
   };
 }
 

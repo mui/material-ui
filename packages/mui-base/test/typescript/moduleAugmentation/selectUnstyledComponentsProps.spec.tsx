@@ -2,11 +2,11 @@ import * as React from 'react';
 import { SelectUnstyled, MultiSelectUnstyled } from '@mui/base';
 
 declare module '@mui/base' {
-  interface SelectUnstyledRootSlotOverrides {
+  interface SelectUnstyledRootSlotPropsOverrides {
     variant?: 'one' | 'two';
   }
 
-  interface MultiSelectUnstyledRootSlotOverrides {
+  interface MultiSelectUnstyledRootSlotPropsOverrides {
     variant?: 'a' | 'b';
   }
 }

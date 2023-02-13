@@ -6,7 +6,7 @@ import { SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
-interface PopperUnstyledRootSlotOverrides {}
+interface PopperUnstyledRootSlotPropsOverrides {}
 
 export interface PopperUnstyledTransitionProps {
   in: boolean;
@@ -89,7 +89,11 @@ export interface PopperUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', PopperUnstyledRootSlotOverrides, PopperUnstyledOwnerState>;
+    root?: SlotComponentProps<
+      'div',
+      PopperUnstyledRootSlotPropsOverrides,
+      PopperUnstyledOwnerState
+    >;
   };
   /**
    * The components used for each slot inside the Popper.

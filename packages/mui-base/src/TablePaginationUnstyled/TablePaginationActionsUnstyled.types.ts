@@ -2,11 +2,11 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-export interface TablePaginationActionsUnstyledRootSlotOverrides {}
-export interface TablePaginationActionsUnstyledFirstButtonSlotOverrides {}
-export interface TablePaginationActionsUnstyledLastButtonSlotOverrides {}
-export interface TablePaginationActionsUnstyledNextButtonSlotOverrides {}
-export interface TablePaginationActionsUnstyledBackButtonSlotOverrides {}
+export interface TablePaginationActionsUnstyledRootSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledFirstButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledLastButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledNextButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledBackButtonSlotPropsOverrides {}
 
 export interface TablePaginationActionsUnstyledOwnProps {
   /**
@@ -37,27 +37,27 @@ export interface TablePaginationActionsUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      TablePaginationActionsUnstyledRootSlotOverrides,
+      TablePaginationActionsUnstyledRootSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     firstButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledFirstButtonSlotOverrides,
+      TablePaginationActionsUnstyledFirstButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     lastButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledLastButtonSlotOverrides,
+      TablePaginationActionsUnstyledLastButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     nextButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledNextButtonSlotOverrides,
+      TablePaginationActionsUnstyledNextButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     backButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledBackButtonSlotOverrides,
+      TablePaginationActionsUnstyledBackButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
   };

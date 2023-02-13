@@ -4,8 +4,8 @@ import { FormControlUnstyledState } from '../FormControlUnstyled';
 import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
 import { SlotComponentProps } from '../utils';
 
-export interface InputUnstyledRootSlotOverrides {}
-export interface InputUnstyledInputSlotOverrides {}
+export interface InputUnstyledRootSlotPropsOverrides {}
+export interface InputUnstyledInputSlotPropsOverrides {}
 
 export interface SingleLineInputUnstyledProps {
   /**
@@ -109,8 +109,16 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      * @default {}
      */
     slotProps?: {
-      root?: SlotComponentProps<'div', InputUnstyledRootSlotOverrides, InputUnstyledOwnerState>;
-      input?: SlotComponentProps<'input', InputUnstyledInputSlotOverrides, InputUnstyledOwnerState>;
+      root?: SlotComponentProps<
+        'div',
+        InputUnstyledRootSlotPropsOverrides,
+        InputUnstyledOwnerState
+      >;
+      input?: SlotComponentProps<
+        'input',
+        InputUnstyledInputSlotPropsOverrides,
+        InputUnstyledOwnerState
+      >;
     };
     /**
      * The components used for each slot inside the InputBase.
