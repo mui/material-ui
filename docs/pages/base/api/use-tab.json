@@ -1,52 +1,48 @@
 {
   "parameters": {
-    "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
-    "disabled": { "type": { "name": "boolean", "description": "" } },
+    "ref": {
+      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: number | string) => void",
-        "description": "Callback invoked when new value is being set."
+        "name": "(event: React.SyntheticEvent, value: number | string) =&gt void",
+        "description": "(event: React.SyntheticEvent, value: number | string) =&gt void"
       }
     },
-    "onClick": { "type": { "name": "React.MouseEventHandler", "description": "" } },
-    "onFocus": { "type": { "name": "React.FocusEventHandler", "description": "" } },
-    "value": {
-      "type": {
-        "name": "number | string",
-        "description": "You can provide your own value. Otherwise, we fall back to the child position index."
-      }
-    }
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
+    "onFocus": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
     "active": {
-      "type": { "name": "boolean", "description": "If `true`, the component will be active." },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
       "required": true
     },
     "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
       "required": true
     },
-    "focusVisible": {
-      "type": { "name": "boolean", "description": "If `true`, the tab's focus will be visible." },
-      "required": true
-    },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseTabRootSlotProps<TOther>",
-        "description": "Resolver for the root slot's props."
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabRootSlotProps&lt;TOther&gt"
       },
       "required": true
     },
-    "selected": {
-      "type": { "name": "boolean", "description": "If `true`, the tab will be selected." },
-      "required": true
-    },
+    "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "setFocusVisible": {
       "type": {
-        "name": "React.Dispatch<React.SetStateAction<boolean>>",
-        "description": "Callback for setting the `focusVisible` param."
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt&gt",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt&gt"
       },
       "required": true
     }
