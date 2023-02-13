@@ -27,7 +27,7 @@ const SearchButton = styled('button')(({ theme }) => [
     display: 'flex',
     alignItems: 'center',
     margin: 0,
-    paddingLeft: theme.spacing(1),
+    paddingLeft: theme.spacing(0.6),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
@@ -38,7 +38,7 @@ const SearchButton = styled('button')(({ theme }) => [
       },
     },
     [theme.breakpoints.up('sm')]: {
-      minWidth: 200,
+      minWidth: 150,
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
@@ -51,15 +51,15 @@ const SearchButton = styled('button')(({ theme }) => [
     transitionProperty: 'all',
     transitionDuration: '150ms',
     '&:hover': {
-      background: alpha(theme.palette.grey[100], 0.7),
+      background: theme.palette.grey[100],
       borderColor: (theme.vars || theme).palette.grey[300],
     },
   },
   theme.applyDarkStyles({
-    backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
     borderColor: (theme.vars || theme).palette.primaryDark[700],
     '&:hover': {
-      background: alpha(theme.palette.primaryDark[700], 0.4),
+      background: theme.palette.primaryDark[700],
       borderColor: (theme.vars || theme).palette.primaryDark[600],
     },
   }),
@@ -80,10 +80,10 @@ const Shortcut = styled('div')(({ theme }) => {
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     backgroundColor: '#FFF',
-    padding: theme.spacing(0, 0.8),
-    borderRadius: 5,
+    padding: theme.spacing(0, 0.5),
+    borderRadius: 7,
     ...theme.applyDarkStyles({
-      borderColor: (theme.vars || theme).palette.primaryDark[500],
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
       backgroundColor: (theme.vars || theme).palette.primaryDark[800],
     }),
   };
