@@ -464,13 +464,13 @@ export default function useAutocomplete(props) {
     },
   );
 
-  const isSameValue = (value1, value2) => {
-    const label1 = value1 === null ? '' : getOptionLabel(value1);
-    const label2 = value2 === null ? '' : getOptionLabel(value2);
-    return label1 === label2;
-  };
-
   const checkHighlightedOptionExists = () => {
+    const isSameValue = (value1, value2) => {
+      const label1 = value1 === null ? '' : getOptionLabel(value1);
+      const label2 = value2 === null ? '' : getOptionLabel(value2);
+      return label1 === label2;
+    };
+
     if (
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
