@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { configure, fireEvent, getConfig } from '@testing-library/react';
+import { FireFunction } from 'test/utils/createRenderer';
 
-const noWrapper = (callback) => callback();
+const noWrapper = (callback: () => void) => callback();
 
 /**
  * @param {() => void} callback
  * @returns {void}
  */
-function withMissingActWarningsIgnored(callback) {
+function withMissingActWarningsIgnored(callback: () => void) {
   if (React.version.startsWith('18')) {
     callback();
     return;
@@ -45,52 +46,32 @@ function withMissingActWarningsIgnored(callback) {
 // Note that using `fireEvent` from `@testing-library/dom` would not work since /react configures both `fireEvent` to use `act` as a wrapper.
 // -----------------------------------------
 
-export function click(element, options) {
+export function click(...args: Parameters<FireFunction>) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.click(element, options);
+    fireEvent.click(...args);
   });
 }
 
-/**
- * @param {Element} element
- * @param {{}} [options]
- * @returns {void}
- */
-export function keyDown(element, options) {
+export function keyDown(...args: Parameters<FireFunction>) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.keyDown(element, options);
+    fireEvent.keyDown(...args);
   });
 }
 
-/**
- * @param {Element} element
- * @param {{}} [options]
- * @returns {void}
- */
-export function keyUp(element, options) {
+export function keyUp(...args: Parameters<FireFunction>) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.keyUp(element, options);
+    fireEvent.keyUp(...args);
   });
 }
 
-/**
- * @param {Element | Node | Document | Window} element
- * @param {{}} [options]
- * @returns {void}
- */
-export function mouseDown(element, options) {
+export function mouseDown(...args: Parameters<FireFunction>) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.mouseDown(element, options);
+    fireEvent.mouseDown(...args);
   });
 }
 
-/**
- * @param {Element | Node | Document | Window} element
- * @param {{}} [options]
- * @returns {void}
- */
-export function mouseUp(element, options) {
+export function mouseUp(...args: Parameters<FireFunction>) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.mouseDown(element, options);
+    fireEvent.mouseDown(...args);
   });
 }
