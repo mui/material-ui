@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+import { useBadge } from '@mui/base/BadgeUnstyled';
+import { useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
@@ -200,13 +201,15 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       horizontal: 'right',
     },
     className,
-    component = 'span',
+    classes: classesProp,
+    component,
     components = {},
     componentsProps = {},
+    children,
     overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
     invisible: invisibleProp = false,
-    max,
+    max: maxProp = 99,
     badgeContent: badgeContentProp,
     slots,
     slotProps,
@@ -215,21 +218,27 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     ...other
   } = props;
 
+  const {
+    badgeContent,
+    invisible: invisibleFromHook,
+    max,
+    displayValue: displayValueFromHook,
+  } = useBadge({
+    max: maxProp,
+    invisible: invisibleProp,
+    badgeContent: badgeContentProp,
+    showZero,
+  });
+
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
     color: colorProp,
     overlap: overlapProp,
     variant: variantProp,
+    badgeContent: badgeContentProp,
   });
 
-  let invisible = invisibleProp;
-
-  if (
-    invisibleProp === false &&
-    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
-  ) {
-    invisible = true;
-  }
+  const invisible = invisibleFromHook || (badgeContent == null && variantProp !== 'dot');
 
   const {
     color = colorProp,
@@ -238,15 +247,22 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     variant = variantProp,
   } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, anchorOrigin, invisible, color, overlap, variant };
+  const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
+
+  const ownerState = {
+    ...props,
+    badgeContent,
+    invisible,
+    max,
+    displayValue,
+    showZero,
+    anchorOrigin,
+    color,
+    overlap,
+    variant,
+  };
+
   const classes = useUtilityClasses(ownerState);
-
-  let displayValue;
-
-  if (variant !== 'dot') {
-    displayValue =
-      badgeContentProp && Number(badgeContentProp) > max ? `${max}+` : badgeContentProp;
-  }
 
   // support both `slots` and `components` for backward compatibility
   const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
@@ -255,48 +271,33 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const rootSlotProps = slotProps?.root ?? componentsProps.root;
   const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
 
+  const rootProps = useSlotProps({
+    elementType: RootSlot,
+    externalSlotProps: rootSlotProps,
+    externalForwardedProps: other,
+    additionalProps: {
+      ...(shouldSpreadAdditionalProps(RootSlot) && {
+        as: component,
+        ref,
+      }),
+    },
+    ownerState,
+    className: clsx(rootSlotProps?.className, classes.root, className),
+  });
+
+  const badgeProps = useSlotProps({
+    elementType: BadgeSlot,
+    externalSlotProps: badgeSlotProps,
+    externalForwardedProps: other,
+    ownerState,
+    className: clsx(classes.badge, badgeSlotProps?.className),
+  });
+
   return (
-    <BadgeUnstyled
-      invisible={invisibleProp}
-      badgeContent={displayValue}
-      showZero={showZero}
-      max={max}
-      {...other}
-      slots={{
-        root: RootSlot,
-        badge: BadgeSlot,
-      }}
-      className={clsx(rootSlotProps?.className, classes.root, className)}
-      slotProps={{
-        root: {
-          ...rootSlotProps,
-          ...(shouldSpreadAdditionalProps(RootSlot) && {
-            as: component,
-            ownerState: {
-              ...rootSlotProps?.ownerState,
-              anchorOrigin,
-              color,
-              overlap,
-              variant,
-            },
-          }),
-        },
-        badge: {
-          ...badgeSlotProps,
-          className: clsx(classes.badge, badgeSlotProps?.className),
-          ...(shouldSpreadAdditionalProps(BadgeSlot) && {
-            ownerState: {
-              ...badgeSlotProps?.ownerState,
-              anchorOrigin,
-              color,
-              overlap,
-              variant,
-            },
-          }),
-        },
-      }}
-      ref={ref}
-    />
+    <RootSlot {...rootProps}>
+      {children}
+      <BadgeSlot {...badgeProps}>{displayValue}</BadgeSlot>
+    </RootSlot>
   );
 });
 

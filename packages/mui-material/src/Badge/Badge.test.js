@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { BadgeUnstyled } from '@mui/base';
 import { createRenderer, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 
@@ -30,7 +29,7 @@ describe('<Badge />', () => {
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
@@ -38,7 +37,7 @@ describe('<Badge />', () => {
     }),
   );
 
-  it('renders children and badgeContent', () => {
+  it('renderapps children and badgeContent', () => {
     const children = <div id="child" data-testid="child" />;
     const badge = <div id="badge" data-testid="badge" />;
     const { container, getByTestId } = render(<Badge badgeContent={badge}>{children}</Badge>);
