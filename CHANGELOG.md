@@ -32,6 +32,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [base] Override the types of `slotProps` per slot (#35964) @hbjORbj
 - [Select][base] Prevent unnecessary rerendering of Select options (#35946) @michaldudak
+- [Select][base] Update the generated docs (#36183) @michaldudak
 - [useAutocomplete] Pass only valid values for the getOptionLabel prop (#36088) @rangoo94
 - [useAutocomplete] Fix `useAutocomplete` disabled prop not disabling the input (#36076) @sai6855
 - [useInput] Add return value interface (#36036) @Shorifpatwary
