@@ -323,14 +323,10 @@ function testDisablingClassGeneration(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots } = getOptions();
+  const { render } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
-  }
-
-  if (!slots) {
-    throwMissingPropError('slots');
   }
 
   it(`does not generate any class names if placed within a ClassNameConfigurator`, () => {
