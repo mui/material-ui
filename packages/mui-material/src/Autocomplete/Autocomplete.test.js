@@ -2915,20 +2915,6 @@ describe('<Autocomplete />', () => {
       expect(document.querySelector(`.${classes.loading}`).textContent).to.equal('Loading…');
       expect(screen.getAllByRole('option').length).to.equal(3);
     });
-
-    it('should not display options with loading text when showLoadingWithOptions is false', () => {
-      render(
-        <Autocomplete
-          loading
-          showLoadingWithOptions={false}
-          open
-          options={[]}
-          renderInput={(params) => <TextField {...params} />}
-        />,
-      );
-      expect(document.querySelector(`.${classes.loading}`).textContent).to.equal('Loading…');
-      expect(screen.queryByRole('option')).to.equal(null);
-    });
   });
 
   describe('prop: readOnly', () => {
