@@ -357,6 +357,10 @@ interface Clock {
    * Runs the current test suite (i.e. `describe` block) with fake timers.
    */
   withFakeTimers(): void;
+  /**
+   * Restore the real timer
+   */
+  restore(): void;
 }
 
 type ClockConfig = undefined | number | Date;
@@ -425,6 +429,9 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
       after(() => {
         mode = defaultMode;
       });
+    },
+    restore() {
+      clock?.restore();
     },
   };
 }

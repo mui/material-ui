@@ -571,9 +571,34 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     };
   }, [updateIndicatorState]);
 
+  /**
+   * Toggle visibility of start and end scroll buttons
+   * Using IntersectionObserver on first and last Tabs.
+   */
   React.useEffect(() => {
-    let visibleObserver;
+    let firstObserver;
+    let lastObserver;
     const { 0: firstTab, length, [length - 1]: lastTab } = Array.from(tabListRef.current.children);
+    const observerOptions = {
+      root: tabsRef.current,
+      threshold: 1,
+    };
+
+    const handleScrollButtonStart = debounce((entries) => {
+      let display = false;
+      entries.forEach(({ intersectionRatio }) => {
+        display = intersectionRatio !== 1;
+      });
+      setDisplayStartScroll(display);
+    });
+
+    const handleScrollButtonEnd = debounce((entries) => {
+      let display = false;
+      entries.forEach(({ intersectionRatio }) => {
+        display = intersectionRatio !== 1;
+      });
+      setDisplayEndScroll(display);
+    });
 
     if (
       typeof IntersectionObserver !== 'undefined' &&
@@ -581,31 +606,20 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollable &&
       scrollButtons !== false
     ) {
-      const handleVisibility = (entries) => {
-        entries.forEach(({ intersectionRatio, target }) => {
-          if (target === firstTab) {
-            setDisplayStartScroll(intersectionRatio !== 1);
-          }
-          if (target === lastTab) {
-            setDisplayEndScroll(intersectionRatio !== 1);
-          }
-        });
-      };
-      visibleObserver = new IntersectionObserver(handleVisibility, {
-        root: tabsRef.current,
-        threshold: 1,
-      });
+      firstObserver = new IntersectionObserver(handleScrollButtonStart, observerOptions);
+      firstObserver.observe(firstTab);
 
-      visibleObserver.observe(firstTab);
-      if (lastTab && firstTab !== lastTab) {
-        visibleObserver.observe(lastTab);
+      if (length > 1) {
+        lastObserver = new IntersectionObserver(handleScrollButtonEnd, observerOptions);
+        lastObserver.observe(lastTab);
       }
     }
 
     return () => {
-      if (visibleObserver) {
-        visibleObserver.disconnect();
-      }
+      firstObserver?.disconnect();
+      lastObserver?.disconnect();
+      handleScrollButtonStart.clear();
+      handleScrollButtonEnd.clear();
     };
   }, [scrollable, scrollButtons, tabsRef, childrenProp]);
 
