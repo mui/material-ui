@@ -31,6 +31,10 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the <code>Modal</code> has exited"
+    },
+    "backdrop": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the backdrop element"
     }
   }
 }
