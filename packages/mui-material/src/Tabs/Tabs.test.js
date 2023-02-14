@@ -1363,4 +1363,77 @@ describe('<Tabs />', () => {
       ]);
     });
   });
+
+  describe('dynamic tabs', () => {
+    it('should not show scroll buttons if a tab added or removed in auto width', async function test() {
+      this.timeout(delayObserver * 2.5);
+      if (isJSDOM) {
+        this.skip();
+      }
+
+      const DynamicTabs = () => {
+        const [tabs, setTabs] = React.useState(['item1', 'item2', 'item3']);
+        return (
+          <>
+            <button data-testid="add" onClick={() => setTabs([...tabs, `item${tabs.length + 1}`])}>add</button>
+            <button data-testid="delete" onClick={() => setTabs(tabs.slice(0, tabs.length - 1))}>delete</button>
+            <Tabs value={0} variant="scrollable" scrollButtons>
+              {tabs.map( (label, index) => <Tab key={'tab' + index} label={label} />)}
+            </Tabs>
+          </>
+        )
+      };
+      const { container, getByTestId } = render(<DynamicTabs />);
+      const addButton = getByTestId('add');
+      const deleteButton = getByTestId('delete');
+
+      fireEvent.click(addButton);
+      fireEvent.click(addButton);
+      await waitForObserver(() => {
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(false);
+      });
+
+      fireEvent.click(deleteButton);
+      await waitForObserver(() => {
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(false);
+      });
+    });
+
+    it.only('should show scroll buttons if a tab added or removed in fixed width', async function test() {
+      this.timeout(delayObserver * 2.5);
+      if (isJSDOM) {
+        this.skip();
+      }
+
+      const DynamicTabs = () => {
+        const [tabs, setTabs] = React.useState(['item1', 'item2']);
+        return (
+          <>
+            <button data-testid="add" onClick={() => setTabs([...tabs, `item${tabs.length + 1}`])}>add</button>
+            <button data-testid="delete" onClick={() => setTabs(tabs.slice(0, tabs.length - 1))}>delete</button>
+            <Tabs value={0} variant="scrollable" scrollButtons style={{width: '260px'}}>
+              {tabs.map( (label, index) => <Tab key={'tab' + index} label={label} />)}
+            </Tabs>
+          </>
+        )
+      };
+      const { container, getByTestId } = render(<DynamicTabs />);
+      const addButton = getByTestId('add');
+      const deleteButton = getByTestId('delete');
+
+      fireEvent.click(addButton);
+      await waitForObserver(() => {
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(true);
+      });
+
+      fireEvent.click(deleteButton);
+      await waitForObserver(() => {
+        expect(hasLeftScrollButton(container)).to.equal(false);
+        expect(hasRightScrollButton(container)).to.equal(false);
+      });
+    });
+  });
 });
