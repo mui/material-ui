@@ -54,9 +54,9 @@ export type InputLabelTypeMap<
     shrink?: boolean;
     /**
      * The size of the component.
-     * @default 'normal'
+     * @default 'medium'
      */
-    size?: OverridableStringUnion<'small' | 'normal', InputLabelPropsSizeOverrides>;
+    size?: OverridableStringUnion<'small' | 'medium', InputLabelPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
