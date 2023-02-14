@@ -1,32 +1,45 @@
 {
   "parameters": {
-    "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
-    "aria-labelledby": { "type": { "name": "string", "description": "" } },
-    "defaultValue": { "type": { "name": "number | number[]", "description": "" } },
-    "disabled": { "type": { "name": "boolean", "description": "" } },
-    "disableSwap": { "type": { "name": "boolean", "description": "" } },
-    "isRtl": { "type": { "name": "boolean", "description": "" } },
-    "marks": { "type": { "name": "boolean | Mark[]", "description": "" } },
-    "max": { "type": { "name": "number", "description": "" } },
-    "min": { "type": { "name": "number", "description": "" } },
-    "name": { "type": { "name": "string", "description": "" } },
+    "ref": {
+      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" },
+      "required": true
+    },
+    "aria-labelledby": { "type": { "name": "string", "description": "string" } },
+    "defaultValue": { "type": { "name": "number | number[]", "description": "number | number[]" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "disableSwap": { "type": { "name": "boolean", "description": "boolean" } },
+    "isRtl": { "type": { "name": "boolean", "description": "boolean" } },
+    "marks": { "type": { "name": "boolean | Mark[]", "description": "boolean | Mark[]" } },
+    "max": { "type": { "name": "number", "description": "number" } },
+    "min": { "type": { "name": "number", "description": "number" } },
+    "name": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
-        "name": "(event: Event, value: number | number[], activeThumb: number) => void",
-        "description": ""
+        "name": "(event: Event, value: number | number[], activeThumb: number) =&gt void",
+        "description": "(event: Event, value: number | number[], activeThumb: number) =&gt void"
       }
     },
     "onChangeCommitted": {
       "type": {
-        "name": "(event: React.SyntheticEvent | Event, value: number | number[]) => void",
-        "description": ""
+        "name": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt void",
+        "description": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt void"
       }
     },
-    "orientation": { "type": { "name": "'horizontal' | 'vertical'", "description": "" } },
-    "scale": { "type": { "name": "(value: number) => number", "description": "" } },
-    "step": { "type": { "name": "number | null", "description": "" } },
-    "tabIndex": { "type": { "name": "number", "description": "" } },
-    "value": { "type": { "name": "number | number[]", "description": "" } }
+    "orientation": {
+      "type": {
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
+      }
+    },
+    "scale": {
+      "type": {
+        "name": "(value: number) =&gt number",
+        "description": "(value: number) =&gt number"
+      }
+    },
+    "step": { "type": { "name": "number | null", "description": "number | null" } },
+    "tabIndex": { "type": { "name": "number", "description": "number" } },
+    "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
   },
   "returnValue": {},
   "name": "useSlider",
