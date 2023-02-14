@@ -100,7 +100,7 @@ function ProductIdentifier({ name, metadata, versionSelector }) {
       <Typography
         sx={(theme) => ({
           ml: 1,
-          color: theme.palette.grey[600],
+          color: (theme.vars || theme).palette.grey[600],
           fontSize: theme.typography.pxToRem(11),
           fontWeight: 700,
           textTransform: 'uppercase',
