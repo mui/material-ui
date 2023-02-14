@@ -6,6 +6,8 @@ export interface ModalUnstyledClasses {
   root: string;
   /** Styles applied to the root element if the `Modal` has exited. */
   hidden: string;
+  /** Styles applied to the backdrop element. */
+  backdrop: string;
 }
 
 export type ModalUnstyledClassKey = keyof ModalUnstyledClasses;
@@ -17,6 +19,7 @@ export function getModalUtilityClass(slot: string): string {
 const modalUnstyledClasses: ModalUnstyledClasses = generateUtilityClasses('MuiModal', [
   'root',
   'hidden',
+  'backdrop',
 ]);
 
 export default modalUnstyledClasses;
