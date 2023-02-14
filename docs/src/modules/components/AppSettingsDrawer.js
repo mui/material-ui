@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme, alpha } from '@mui/material/styles';
+import { styled, useTheme, alpha, useColorScheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import MaterialToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -36,6 +36,25 @@ const IconToggleButton = styled(ToggleButton)({
     marginRight: '8px',
   },
 });
+
+function CssVarsToggleButtonGroup(props) {
+  const { mode, setMode } = useColorScheme();
+  return (
+    <MaterialToggleButtonGroup
+      exclusive
+      color="primary"
+      aria-labelledby="settings-mode"
+      fullWidth
+      {...props}
+      value={mode}
+      onChange={(event, value) => {
+        // eslint-disable-next-line react/prop-types
+        props.onChange?.(event, value);
+        setMode(value);
+      }}
+    />
+  );
+}
 
 function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
@@ -80,6 +99,8 @@ function AppSettingsDrawer(props) {
 
     changeTheme({ direction });
   };
+
+  const ToggleButtonGroup = upperTheme.vars ? CssVarsToggleButtonGroup : MaterialToggleButtonGroup;
 
   return (
     <Drawer

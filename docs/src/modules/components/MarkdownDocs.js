@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
 import { CssVarsProvider } from '@mui/joy/styles';
-import { useColorScheme } from '@mui/material/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -13,20 +12,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import BrandingProvider from 'docs/src/BrandingProvider';
-
-function MaterialModeObserver({ mode }) {
-  const { setMode } = useColorScheme();
-  React.useEffect(() => {
-    setMode(mode);
-  }, [mode, setMode]);
-  return null;
-}
-
-MaterialModeObserver.propTypes = {
-  mode: PropTypes.oneOf(['light', 'dark']),
-};
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -51,16 +37,12 @@ export default function MarkdownDocs(props) {
   const t = useTranslate();
 
   const localizedDoc = docs[userLanguage] || docs.en;
-  const { description, location, rendered, title, toc, headers } = localizedDoc;
+  const { description, location, rendered, title, toc } = localizedDoc;
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
 
-  const isCssVarsProvider = headers.provider === 'CssVarsProvider';
-  const Provider = isCssVarsProvider ? BrandingCssVarsProvider : BrandingProvider;
-
   return (
-    <Provider dense>
-      {isCssVarsProvider && <MaterialModeObserver mode={theme.palette.mode} />}
+    <BrandingProvider dense>
       <AppLayoutDocs
         description={description}
         disableAd={disableAd}
@@ -127,7 +109,6 @@ export default function MarkdownDocs(props) {
           return (
             <Demo
               key={index}
-              headers={headers}
               mode={theme.palette.mode}
               demo={{
                 raw: demo.raw,
@@ -145,7 +126,7 @@ export default function MarkdownDocs(props) {
           );
         })}
       </AppLayoutDocs>
-    </Provider>
+    </BrandingProvider>
   );
 }
 
