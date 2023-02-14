@@ -229,10 +229,13 @@ In addition to using the default typography variants, you can add custom ones, o
 
 **Step 1. Update the theme's typography object**
 
+Let's add a variant called "poster", and get rid the "h3" variant:
+
 ```js
 const theme = createTheme({
   typography: {
     poster: {
+      fontSize: '4rem',
       color: 'red',
     },
     // Disable h3 variant
@@ -241,7 +244,49 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. (Optional) Set the default semantic element for your new variant**
+
+At this point, you can already use the new `poster` variant, which will render a `<span>` by default with your custom styles. Sometimes you may want to default to a different HTML element for semantic purposes, or to replace the inline `<span>` with a block-level element for styling purposes.
+
+To do this we need to update the `variantMapping` prop of the `Typography` globally in the theme:
+
+```js
+const theme = createTheme({
+  typography: {
+    poster: {
+      fontSize: 64,
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // we have to provide the default variantMapping first because currently
+          // custom entries will replace this whole object instead of merging
+          h1: 'h1',
+          h2: 'h2',
+          h3: 'h3',
+          h4: 'h4',
+          h5: 'h5',
+          h6: 'h6',
+          subtitle1: 'h6',
+          subtitle2: 'h6',
+          body1: 'p',
+          body2: 'p',
+          inherit: 'p',
+          // map our new variant to render a <h1> by default
+          poster: 'h1',
+        },
+      },
+    },
+  },
+});
+```
+
+**Step 3. Update the necessary typings (if you are using TypeScript)**
 
 :::info
 If you aren't using TypeScript you should skip this step.
@@ -272,14 +317,14 @@ declare module '@mui/material/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Step 4. You can now use the new variant**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
 ```jsx
 <Typography variant="poster">poster</Typography>;
 
-/* This variant is no longer supported */
+/* This variant is no longer supported, if you are using TypeScript it will give an error */
 <Typography variant="h3">h3</Typography>;
 ```
 

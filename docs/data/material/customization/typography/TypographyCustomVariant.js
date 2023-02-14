@@ -7,10 +7,34 @@ const theme = createTheme({
   typography: {
     // @ts-ignore
     poster: {
-      color: 'red',
+      fontSize: '4rem',
+      color: 'indianred',
     },
     // Disable v3 variant
     h3: undefined,
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // we have to provide the default variantMapping first because currently
+          // custom entries will replace this whole object instead of being merged
+          h1: 'h1',
+          h2: 'h2',
+          h3: 'h3',
+          h4: 'h4',
+          h5: 'h5',
+          h6: 'h6',
+          subtitle1: 'h6',
+          subtitle2: 'h6',
+          body1: 'p',
+          body2: 'p',
+          inherit: 'p',
+          // @ts-ignore
+          poster: 'h1', // map our new variant to render a <h1> by default
+        },
+      },
+    },
   },
 });
 
