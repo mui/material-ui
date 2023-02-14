@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
+import { createSpacing } from '@mui/system';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
@@ -51,10 +52,19 @@ const theme = extendTheme({
   ...getThemedComponents(),
 });
 
-export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
-  const { children } = props;
+const denseTheme = { ...theme, spacing: createSpacing() };
+
+export default function BrandingCssVarsProvider(props: {
+  children: React.ReactNode;
+  dense?: boolean;
+}) {
+  const { children, dense } = props;
   return (
-    <CssVarsProvider theme={theme} defaultMode="system" disableTransitionOnChange>
+    <CssVarsProvider
+      theme={dense ? denseTheme : theme}
+      defaultMode="system"
+      disableTransitionOnChange
+    >
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
