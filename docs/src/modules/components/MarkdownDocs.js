@@ -13,8 +13,6 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import BrandingProvider from 'docs/src/BrandingProvider';
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -27,7 +25,7 @@ export default function MarkdownDocs(props) {
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
-    cssVars = false,
+    enableCssVars = false,
     disableAd = false,
     disableToc = false,
     demos = {},
@@ -44,106 +42,103 @@ export default function MarkdownDocs(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
 
-  const Provider = cssVars ? BrandingCssVarsProvider : BrandingProvider;
-
   return (
-    <Provider dense>
-      <AppLayoutDocs
-        description={description}
-        disableAd={disableAd}
-        disableToc={disableToc}
-        location={location}
-        title={title}
-        toc={toc}
-      >
-        {isJoy && <JoyCssVarsProvider />}
-        {cssVars && !isJoy && <Material2CssVarsProvider />}
-        {disableAd ? null : (
-          <AdGuest>
-            <Ad />
-          </AdGuest>
-        )}
-        {rendered.map((renderedMarkdownOrDemo, index) => {
-          if (typeof renderedMarkdownOrDemo === 'string') {
-            return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
+    <AppLayoutDocs
+      description={description}
+      disableAd={disableAd}
+      disableToc={disableToc}
+      enableCssVars={enableCssVars}
+      location={location}
+      title={title}
+      toc={toc}
+    >
+      {isJoy && <JoyCssVarsProvider />}
+      {enableCssVars && !isJoy && <Material2CssVarsProvider />}
+      {disableAd ? null : (
+        <AdGuest>
+          <Ad />
+        </AdGuest>
+      )}
+      {rendered.map((renderedMarkdownOrDemo, index) => {
+        if (typeof renderedMarkdownOrDemo === 'string') {
+          return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
+        }
+
+        if (renderedMarkdownOrDemo.component) {
+          const name = renderedMarkdownOrDemo.component;
+          const Component = srcComponents?.[name];
+
+          if (Component === undefined) {
+            throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
           }
 
-          if (renderedMarkdownOrDemo.component) {
-            const name = renderedMarkdownOrDemo.component;
-            const Component = srcComponents?.[name];
+          return <Component key={index} {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
+        }
 
-            if (Component === undefined) {
-              throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
-            }
+        const name = renderedMarkdownOrDemo.demo;
+        const demo = demos?.[name];
+        if (demo === undefined) {
+          const errorMessage = [
+            `Missing demo: ${name}. You can use one of the following:`,
+            Object.keys(demos),
+          ].join('\n');
 
-            return <Component key={index} {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
+          if (userLanguage === 'en') {
+            throw new Error(errorMessage);
           }
 
-          const name = renderedMarkdownOrDemo.demo;
-          const demo = demos?.[name];
-          if (demo === undefined) {
-            const errorMessage = [
-              `Missing demo: ${name}. You can use one of the following:`,
-              Object.keys(demos),
-            ].join('\n');
-
-            if (userLanguage === 'en') {
-              throw new Error(errorMessage);
-            }
-
-            if (process.env.NODE_ENV !== 'production') {
-              console.error(errorMessage);
-            }
-
-            const warnIcon = (
-              <span role="img" aria-label={t('emojiWarning')}>
-                ⚠️
-              </span>
-            );
-            return (
-              <div key={index}>
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {warnIcon} Missing demo `{name}` {warnIcon}
-              </div>
-            );
+          if (process.env.NODE_ENV !== 'production') {
+            console.error(errorMessage);
           }
 
-          const splitLocationBySlash = location.split('/');
-          splitLocationBySlash.pop();
-          const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
-
-          return (
-            <Demo
-              key={index}
-              headers={headers}
-              mode={theme.palette.mode}
-              demo={{
-                raw: demo.raw,
-                js: demoComponents[demo.module] ?? noComponent(demo.module),
-                scope: demos.scope,
-                jsxPreview: demo.jsxPreview,
-                rawTS: demo.rawTS,
-                tsx: demoComponents[demo.moduleTS] ?? null,
-                gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
-              }}
-              disableAd={disableAd}
-              demoOptions={renderedMarkdownOrDemo}
-              githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
-            />
+          const warnIcon = (
+            <span role="img" aria-label={t('emojiWarning')}>
+              ⚠️
+            </span>
           );
-        })}
-      </AppLayoutDocs>
-    </Provider>
+          return (
+            <div key={index}>
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {warnIcon} Missing demo `{name}` {warnIcon}
+            </div>
+          );
+        }
+
+        const splitLocationBySlash = location.split('/');
+        splitLocationBySlash.pop();
+        const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
+
+        return (
+          <Demo
+            key={index}
+            headers={headers}
+            mode={theme.palette.mode}
+            demo={{
+              raw: demo.raw,
+              js: demoComponents[demo.module] ?? noComponent(demo.module),
+              scope: demos.scope,
+              jsxPreview: demo.jsxPreview,
+              rawTS: demo.rawTS,
+              tsx: demoComponents[demo.moduleTS] ?? null,
+              gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
+            }}
+            disableAd={disableAd}
+            demoOptions={renderedMarkdownOrDemo}
+            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
+          />
+        );
+      })}
+    </AppLayoutDocs>
   );
 }
 
 MarkdownDocs.propTypes = {
-  cssVars: PropTypes.bool,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  enableCssVars: PropTypes.bool,
   srcComponents: PropTypes.object,
 };
 

@@ -5,7 +5,7 @@ import jsonPageContent from './accordion.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <ApiPage cssVars descriptions={descriptions} pageContent={pageContent} />;
+  return <ApiPage enableCssVars descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {

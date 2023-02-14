@@ -52,8 +52,8 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
-export default function ApiPage(props) {
-  const { descriptions, disableAd = false, pageContent } = props;
+export default function HookApiPage(props) {
+  const { descriptions, disableAd = false, pageContent, enableCssVars } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -100,6 +100,7 @@ export default function ApiPage(props) {
       description={description}
       disableAd={disableAd}
       disableToc={false}
+      enableCssVars={enableCssVars}
       location={apiSourceLocation}
       title={`${hookName} API`}
       toc={toc}
@@ -162,12 +163,13 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
   );
 }
 
-ApiPage.propTypes = {
+HookApiPage.propTypes = {
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
+  enableCssVars: PropTypes.bool,
   pageContent: PropTypes.object.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  ApiPage.propTypes = exactProp(ApiPage.propTypes);
+  HookApiPage.propTypes = exactProp(HookApiPage.propTypes);
 }

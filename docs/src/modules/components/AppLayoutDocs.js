@@ -14,6 +14,8 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -75,6 +77,7 @@ function AppLayoutDocs(props) {
     description,
     disableAd = false,
     disableToc = false,
+    enableCssVars = false,
     location,
     title,
     toc,
@@ -100,41 +103,45 @@ function AppLayoutDocs(props) {
     productName = 'Joy UI';
   }
 
+  const Provider = enableCssVars ? BrandingCssVarsProvider : BrandingProvider;
+
   return (
-    <AppFrame>
-      <GlobalStyles
-        styles={{
-          ':root': {
-            '--MuiDocs-navDrawer-width': '300px',
-          },
-        }}
-      />
-      <AdManager>
-        <Head
-          title={`${title} - ${productName}`}
-          description={description}
-          largeCard={false}
-          card="https://mui.com/static/logo.png"
+    <Provider dense>
+      <AppFrame>
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--MuiDocs-navDrawer-width': '300px',
+            },
+          }}
         />
-        <Main disableToc={disableToc}>
-          {/*
+        <AdManager>
+          <Head
+            title={`${title} - ${productName}`}
+            description={description}
+            largeCard={false}
+            card="https://mui.com/static/logo.png"
+          />
+          <Main disableToc={disableToc}>
+            {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd}>
-            <ActionsDiv>
-              <EditPage markdownLocation={location} />
-            </ActionsDiv>
-            {children}
-            <NoSsr>
-              <AppLayoutDocsFooter tableOfContents={toc} />
-            </NoSsr>
-          </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
-        </Main>
-      </AdManager>
-      <BackToTop />
-    </AppFrame>
+            <StyledAppContainer disableAd={disableAd}>
+              <ActionsDiv>
+                <EditPage markdownLocation={location} />
+              </ActionsDiv>
+              {children}
+              <NoSsr>
+                <AppLayoutDocsFooter tableOfContents={toc} />
+              </NoSsr>
+            </StyledAppContainer>
+            {disableToc ? null : <AppTableOfContents toc={toc} />}
+          </Main>
+        </AdManager>
+        <BackToTop />
+      </AppFrame>
+    </Provider>
   );
 }
 
@@ -143,6 +150,7 @@ AppLayoutDocs.propTypes = {
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
+  enableCssVars: PropTypes.bool,
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
