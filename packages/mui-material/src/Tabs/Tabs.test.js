@@ -1371,18 +1371,24 @@ describe('<Tabs />', () => {
         this.skip();
       }
 
-      const DynamicTabs = () => {
+      function DynamicTabs() {
         const [tabs, setTabs] = React.useState(['item1', 'item2', 'item3']);
         return (
-          <>
-            <button data-testid="add" onClick={() => setTabs([...tabs, `item${tabs.length + 1}`])}>add</button>
-            <button data-testid="delete" onClick={() => setTabs(tabs.slice(0, tabs.length - 1))}>delete</button>
+          <React.Fragment>
+            <button data-testid="add" onClick={() => setTabs([...tabs, `item${tabs.length + 1}`])}>
+              add
+            </button>
+            <button data-testid="delete" onClick={() => setTabs(tabs.slice(0, tabs.length - 1))}>
+              delete
+            </button>
             <Tabs value={0} variant="scrollable" scrollButtons>
-              {tabs.map( (label, index) => <Tab key={'tab' + index} label={label} />)}
+              {tabs.map((label, index) => (
+                <Tab key={`tab${index}`} label={label} />
+              ))}
             </Tabs>
-          </>
-        )
-      };
+          </React.Fragment>
+        );
+      }
       const { container, getByTestId } = render(<DynamicTabs />);
       const addButton = getByTestId('add');
       const deleteButton = getByTestId('delete');
@@ -1401,24 +1407,30 @@ describe('<Tabs />', () => {
       });
     });
 
-    it.only('should show scroll buttons if a tab added or removed in fixed width', async function test() {
+    it('should show scroll buttons if a tab added or removed in fixed width', async function test() {
       this.timeout(delayObserver * 2.5);
       if (isJSDOM) {
         this.skip();
       }
 
-      const DynamicTabs = () => {
+      function DynamicTabs() {
         const [tabs, setTabs] = React.useState(['item1', 'item2']);
         return (
-          <>
-            <button data-testid="add" onClick={() => setTabs([...tabs, `item${tabs.length + 1}`])}>add</button>
-            <button data-testid="delete" onClick={() => setTabs(tabs.slice(0, tabs.length - 1))}>delete</button>
-            <Tabs value={0} variant="scrollable" scrollButtons style={{width: '260px'}}>
-              {tabs.map( (label, index) => <Tab key={'tab' + index} label={label} />)}
+          <React.Fragment>
+            <button data-testid="add" onClick={() => setTabs([...tabs, `item${tabs.length + 1}`])}>
+              add
+            </button>
+            <button data-testid="delete" onClick={() => setTabs(tabs.slice(0, tabs.length - 1))}>
+              delete
+            </button>
+            <Tabs value={0} variant="scrollable" scrollButtons style={{ width: '260px' }}>
+              {tabs.map((label, index) => (
+                <Tab key={`tab${index}`} label={label} />
+              ))}
             </Tabs>
-          </>
-        )
-      };
+          </React.Fragment>
+        );
+      }
       const { container, getByTestId } = render(<DynamicTabs />);
       const addButton = getByTestId('add');
       const deleteButton = getByTestId('delete');
