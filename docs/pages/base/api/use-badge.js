@@ -5,7 +5,7 @@ import jsonPageContent from './use-badge.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
-  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
+  return <HookApiPage enableCssVars descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
