@@ -24,6 +24,7 @@ import {
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
 import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
@@ -61,7 +62,7 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
     popper: ['popper'],
   };
 
-  return composeClasses(slots, getSelectUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getSelectUnstyledUtilityClass));
 }
 
 /**

@@ -10,6 +10,7 @@ import {
   TabPanelUnstyledRootSlotProps,
   TabPanelUnstyledTypeMap,
 } from './TabPanelUnstyled.types';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { hidden: boolean }) => {
   const { hidden } = ownerState;
@@ -18,7 +19,7 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
     root: ['root', hidden && 'hidden'],
   };
 
-  return composeClasses(slots, getTabPanelUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTabPanelUnstyledUtilityClass));
 };
 /**
  *

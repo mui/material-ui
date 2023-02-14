@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', active && 'active'],
   };
 
-  return composeClasses(slots, useClassNamesOverride(getButtonUnstyledUtilityClass), {});
+  return composeClasses(slots, useClassNamesOverride(getButtonUnstyledUtilityClass));
 };
 /**
  * The foundation for building custom-styled buttons.

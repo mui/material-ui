@@ -21,6 +21,7 @@ import ModalManager, { ariaHidden } from './ModalManager';
 import FocusTrap from '../FocusTrap';
 import { getModalUtilityClass } from './modalUnstyledClasses';
 import { useSlotProps } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
   const { open, exited, classes } = ownerState;
@@ -30,7 +31,7 @@ const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
     backdrop: ['backdrop'],
   };
 
-  return composeClasses(slots, getModalUtilityClass, classes);
+  return composeClasses(slots, useClassNamesOverride(getModalUtilityClass), classes);
 };
 
 function getContainer(container: ModalUnstyledOwnProps['container']) {

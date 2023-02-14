@@ -8,18 +8,20 @@ import {
   TabUnstyledProps,
   TabUnstyledTypeMap,
   TabUnstyledRootSlotProps,
+  TabUnstyledOwnerState,
 } from './TabUnstyled.types';
 import useTab from './useTab';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
+const useUtilityClasses = (ownerState: TabUnstyledOwnerState) => {
   const { selected, disabled } = ownerState;
 
   const slots = {
     root: ['root', selected && 'selected', disabled && 'disabled'],
   };
 
-  return composeClasses(slots, getTabUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTabUnstyledUtilityClass));
 };
 /**
  *

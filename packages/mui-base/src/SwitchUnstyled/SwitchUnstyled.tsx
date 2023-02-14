@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
     track: ['track'],
   };
 
-  return composeClasses(slots, useClassNamesOverride(getSwitchUnstyledUtilityClass), {});
+  return composeClasses(slots, useClassNamesOverride(getSwitchUnstyledUtilityClass));
 };
 
 /**

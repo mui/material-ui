@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
-import classes from './inputUnstyledClasses';
+import { getInputUnstyledUtilityClass } from './inputUnstyledClasses';
 import {
   InputUnstyledInputSlotProps,
   InputUnstyledOwnerState,
@@ -12,6 +12,29 @@ import {
 } from './InputUnstyled.types';
 import useInput from './useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
+import composeClasses from '../composeClasses';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+
+const useUtilityClasses = (ownerState: InputUnstyledOwnerState) => {
+  const { disabled, error, focused, formControlContext, multiline, startAdornment, endAdornment } =
+    ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      error && 'error',
+      focused && 'focused',
+      Boolean(formControlContext) && 'formControl',
+      multiline && 'multiline',
+      Boolean(startAdornment) && 'adornedStart',
+      Boolean(endAdornment) && 'adornedEnd',
+    ],
+    input: ['input', disabled && 'disabled', multiline && 'multiline'],
+  };
+
+  return composeClasses(slots, useClassNamesOverride(getInputUnstyledUtilityClass));
+};
 
 /**
  *
@@ -93,20 +116,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     type,
   };
 
-  const rootStateClasses = {
-    [classes.disabled]: disabledState,
-    [classes.error]: errorState,
-    [classes.focused]: focused,
-    [classes.formControl]: Boolean(formControlContext),
-    [classes.multiline]: multiline,
-    [classes.adornedStart]: Boolean(startAdornment),
-    [classes.adornedEnd]: Boolean(endAdornment),
-  };
-
-  const inputStateClasses = {
-    [classes.disabled]: disabledState,
-    [classes.multiline]: multiline,
-  };
+  const classes = useUtilityClasses(ownerState);
 
   const propsToForward = {
     'aria-describedby': ariaDescribedby,
@@ -133,7 +143,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root, rootStateClasses, className],
+    className: [classes.root, className],
   });
   const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
@@ -150,7 +160,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
         }),
     },
     ownerState,
-    className: [classes.input, inputStateClasses],
+    className: classes.input,
   });
 
   if (process.env.NODE_ENV !== 'production') {
