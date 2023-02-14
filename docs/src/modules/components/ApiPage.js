@@ -10,6 +10,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 
 function ClassesTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -102,7 +103,7 @@ Heading.propTypes = {
 };
 
 export default function ApiPage(props) {
-  const { descriptions, disableAd = false, pageContent } = props;
+  const { descriptions, disableAd = false, pageContent, cssVars } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -178,8 +179,10 @@ export default function ApiPage(props) {
     inheritanceSuffix = t('api-docs.inheritanceSuffixTransition');
   }
 
+  const Provider = cssVars ? BrandingCssVarsProvider : BrandingProvider;
+
   return (
-    <BrandingProvider dense>
+    <Provider dense>
       <AppLayoutDocs
         description={description}
         disableAd={disableAd}
@@ -291,11 +294,12 @@ import { ${componentName} } from '${source}';`}
           </symbol>
         </svg>
       </AppLayoutDocs>
-    </BrandingProvider>
+    </Provider>
   );
 }
 
 ApiPage.propTypes = {
+  cssVars: PropTypes.bool,
   descriptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   pageContent: PropTypes.object.isRequired,

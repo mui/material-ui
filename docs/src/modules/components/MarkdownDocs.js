@@ -12,6 +12,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
 function noComponent(moduleID) {
@@ -37,12 +38,14 @@ export default function MarkdownDocs(props) {
   const t = useTranslate();
 
   const localizedDoc = docs[userLanguage] || docs.en;
-  const { description, location, rendered, title, toc } = localizedDoc;
+  const { description, location, rendered, title, toc, headers } = localizedDoc;
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
 
+  const Provider = headers.cssVars ? BrandingCssVarsProvider : BrandingProvider;
+
   return (
-    <BrandingProvider dense>
+    <Provider dense>
       <AppLayoutDocs
         description={description}
         disableAd={disableAd}
@@ -109,6 +112,7 @@ export default function MarkdownDocs(props) {
           return (
             <Demo
               key={index}
+              headers={headers}
               mode={theme.palette.mode}
               demo={{
                 raw: demo.raw,
@@ -126,7 +130,7 @@ export default function MarkdownDocs(props) {
           );
         })}
       </AppLayoutDocs>
-    </BrandingProvider>
+    </Provider>
   );
 }
 

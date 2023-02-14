@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 
 export default function Experiments({ experiments }) {
   const categories = {};
@@ -31,7 +32,7 @@ export default function Experiments({ experiments }) {
   });
 
   return (
-    <React.Fragment>
+    <BrandingCssVarsProvider>
       <CssBaseline />
       <Container>
         <Box
@@ -67,7 +68,10 @@ export default function Experiments({ experiments }) {
         </Box>
       </Container>
       <Box
-        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+        sx={(theme) => ({
+          bgcolor: 'grey.50',
+          ...theme.applyDarkStyles({ bgcolor: 'primaryDark.900' }),
+        })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Typography
@@ -136,7 +140,7 @@ export default function Experiments({ experiments }) {
           )}
         </Container>
       </Box>
-    </React.Fragment>
+    </BrandingCssVarsProvider>
   );
 }
 
