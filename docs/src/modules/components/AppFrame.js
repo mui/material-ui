@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
-import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,8 +17,6 @@ import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
-import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
@@ -167,10 +164,6 @@ export default function AppFrame(props) {
 
   return (
     <RootDiv className={className}>
-      <NextNProgressBar />
-      <CssBaseline />
-      <SkipLink />
-      <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
         <GlobalStyles
           styles={{
