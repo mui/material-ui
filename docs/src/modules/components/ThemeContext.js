@@ -8,6 +8,7 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { getDesignTokens, getMetaThemeColor } from 'docs/src/modules/brandingTheme';
+import applyDarkStyles from '../utils/applyDarkStyles';
 
 const languageMap = {
   en: enUS,
@@ -196,7 +197,7 @@ export function ThemeProvider(props) {
 
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);
-    return createTheme(
+    const nextTheme = createTheme(
       {
         direction,
         nprogress: {
@@ -226,6 +227,8 @@ export function ThemeProvider(props) {
       },
       languageMap[userLanguage],
     );
+    nextTheme.applyDarkStyles = (css) => applyDarkStyles(nextTheme, css);
+    return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
 
   React.useEffect(() => {
