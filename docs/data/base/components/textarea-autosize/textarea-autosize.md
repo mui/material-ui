@@ -51,4 +51,4 @@ Use the `minRows` prop to define the minimum height of the component:
 
 Use the `maxRows` prop to define the maximum height of the component:
 
-{{"demo": "MaxHeightTextarea.js"}}
+{{"demo": "MaxHeightTextarea.js", "noHorizontalScroll": true}}
