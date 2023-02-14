@@ -53,7 +53,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Fix demos showing TypeScript instead of JavaScript (#35850) @mj12albert
 - [docs] Update release instructions (#36113) @mj12albert
 - [docs] Rename `v6-alpha` to `v6-next` in navigation (#36102) @LukasTy
-- [docs] Revise Joy UI "Input" page  (#35970) @LadyBluenotes
+- [docs] Revise Joy UI "Input" page (#35970) @LadyBluenotes
 - [docs] Revise Joy UI "Typography" page (#35868) @LadyBluenotes
 
 ### Examples
