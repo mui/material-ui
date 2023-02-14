@@ -46,12 +46,12 @@ const Item = styled(
   },
 )(({ theme, hasIcon, depth, subheader }) => {
   const color = {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     ...(depth === 0 && {
-      color: theme.palette.text.primary,
+      color: (theme.vars || theme).palette.text.primary,
     }),
     ...(subheader && {
-      color: theme.palette.grey[600],
+      color: (theme.vars || theme).palette.grey[600],
     }),
   };
 
@@ -139,6 +139,7 @@ const Item = styled(
       },
     },
     theme.applyDarkStyles({
+      ...color,
       '&.app-drawer-active': {
         color: (theme.vars || theme).palette.primary[300],
         backgroundColor: (theme.vars || theme).palette.primaryDark[700],
@@ -180,7 +181,7 @@ const sxChip = (color) => [
     letterSpacing: '.04rem',
     height: '16px',
     border: 1,
-    borderColor: theme.palette[color][300],
+    borderColor: (theme.vars || theme).palette[color][300],
     bgcolor: alpha(theme.palette[color][100], 0.5),
     color: (theme.vars || theme).palette[color][700],
     '&:hover': {
