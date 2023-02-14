@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import ClassNameConfigurator from '@mui/base/utils/ClassNameConfigurator';
+import { ClassNameConfigurator } from '@mui/base/utils';
 import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
 import createDescribe from './createDescribe';
 import {

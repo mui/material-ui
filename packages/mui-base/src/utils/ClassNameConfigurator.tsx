@@ -19,7 +19,7 @@ export interface ClassNameConfiguratorProps extends Partial<ClassNameConfigurati
 }
 
 /**
- * @ignore - do not document.
+ * @ignore - internal hook.
  *
  * Wraps the `generateUtilityClass` function and controls how the classes are generated.
  * Currently it only affects whether the classes are applied or not.
