@@ -47,6 +47,7 @@ const parseFile = (filename: string) => {
     shouldSkip:
       filename.indexOf('internal') !== -1 ||
       !!src.match(/@ignore - internal component\./) ||
+      !!src.match(/@ignore - internal hook\./) ||
       !!src.match(/@ignore - do not document\./),
     spread: !src.match(/ = exactProp\(/),
     EOL: getLineFeed(src),

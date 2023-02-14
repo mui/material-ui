@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { ListDividerClasses } from './listDividerClasses';
 
 export type ListDividerSlot = 'root';
 
@@ -13,10 +12,6 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListDividerClasses>;
     /**
      * The empty space on the side(s) of the divider in a vertical list.
      *

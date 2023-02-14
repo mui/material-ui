@@ -470,7 +470,8 @@ export default function useAutocomplete(props) {
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
       (multiple
-        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+        ? value.length === previousProps.value.length &&
+          previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
         : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
@@ -1095,6 +1096,7 @@ export default function useAutocomplete(props) {
       autoCapitalize: 'none',
       spellCheck: 'false',
       role: 'combobox',
+      disabled: disabledProp,
     }),
     getClearProps: () => ({
       tabIndex: -1,
