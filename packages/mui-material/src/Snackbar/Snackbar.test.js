@@ -271,11 +271,13 @@ describe('<Snackbar />', () => {
   [
     {
       type: 'mouse',
+      disablePropName: 'disableMouseEnterListener',
       enter: (container) => fireEvent.mouseEnter(container.querySelector('button')),
       leave: (container) => fireEvent.mouseLeave(container.querySelector('button')),
     },
     {
       type: 'keyboard',
+      disablePropName: 'disableFocusListener',
       enter: (container) => act(() => container.querySelector('button').focus()),
       leave: (container) => act(() => container.querySelector('button').blur()),
     },
@@ -417,6 +419,33 @@ describe('<Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
+      });
+
+      it('should call onClose if disableProp was given even user interaction has been fired', () => {
+        const handleClose = spy();
+        const autoHideDuration = 2e3;
+        const resumeHideDuration = 3e3;
+
+        const { container } = render(
+          <Snackbar
+            action={<button>undo</button>}
+            open
+            onClose={handleClose}
+            message="message"
+            autoHideDuration={autoHideDuration}
+            resumeHideDuration={resumeHideDuration}
+            {...{ [userInteraction.disablePropName]: true }}
+          />,
+        );
+
+        expect(handleClose.callCount).to.equal(0);
+
+        clock.tick(autoHideDuration / 2);
+        userInteraction.enter(container.querySelector('div'));
+        clock.tick(autoHideDuration / 2);
+        userInteraction.leave(container.querySelector('div'));
+
+        expect(handleClose.callCount).to.equal(1);
       });
     });
   });

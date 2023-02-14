@@ -89,6 +89,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     className,
     ClickAwayListenerProps,
     ContentProps,
+    disableFocusListener = false,
+    disableMouseEnterListener = false,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -155,11 +157,19 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     if (onFocus) {
       onFocus(event);
     }
+
+    if (disableFocusListener) {
+      return;
+    }
     handlePause();
   };
   const handleMouseEnter = (event) => {
     if (onMouseEnter) {
       onMouseEnter(event);
+    }
+
+    if (disableMouseEnterListener) {
+      return;
     }
     handlePause();
   };
@@ -168,11 +178,19 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     if (onBlur) {
       onBlur(event);
     }
+
+    if (disableFocusListener) {
+      return;
+    }
     handleResume();
   };
   const handleMouseLeave = (event) => {
     if (onMouseLeave) {
       onMouseLeave(event);
+    }
+
+    if (disableMouseEnterListener) {
+      return;
     }
     handleResume();
   };
@@ -324,6 +342,16 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
+  /**
+   * If `true`, the `autoHideDuration` timer will expire even if the snackbar is focused.
+   * @default false
+   */
+  disableFocusListener: PropTypes.bool,
+  /**
+   * If `true`, the `autoHideDuration` timer will expire even mouse entered to snackbar.
+   * @default false
+   */
+  disableMouseEnterListener: PropTypes.bool,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
