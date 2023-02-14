@@ -4,7 +4,7 @@
     "buttonActive": {
       "type": {
         "name": "boolean",
-        "description": "If `true`, the select's button is active (pressed)."
+        "description": "If `true`, the select's button will be active (pressed)."
       },
       "default": "false",
       "required": true
@@ -12,7 +12,7 @@
     "buttonFocusVisible": {
       "type": {
         "name": "boolean",
-        "description": "If `true`, the select's button is being focused using keyboard."
+        "description": "If `true`, it indicates that the select's button is being focused using keyboard."
       },
       "default": "false",
       "required": true
@@ -51,7 +51,10 @@
       "required": true
     },
     "open": {
-      "type": { "name": "boolean", "description": "If `true`, the select dropdown is open." },
+      "type": {
+        "name": "boolean",
+        "description": "If `true`, the select dropdown will be opened."
+      },
       "default": "false",
       "required": true
     },

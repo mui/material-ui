@@ -2,14 +2,14 @@
   "hookDescription": "",
   "parametersDescriptions": {},
   "returnValueDescriptions": {
-    "buttonActive": "If <code>true</code>, the select's button is active (pressed).",
-    "buttonFocusVisible": "If <code>true</code>, the select's button is being focused using keyboard.",
+    "buttonActive": "If <code>true</code>, the select's button will be active (pressed).",
+    "buttonFocusVisible": "If <code>true</code>, it indicates that the select's button is being focused using keyboard.",
     "disabled": "If <code>true</code>, the component will be disabled.",
     "getButtonProps": "Resolver for the button slot's props.",
     "getListboxProps": "Resolver for the listbox slot's props.",
     "getOptionProps": "Resolver for the specified option's props.",
     "getOptionState": "Resolver for the specified option's state.",
-    "open": "If <code>true</code>, the select dropdown is open.",
+    "open": "If <code>true</code>, the select dropdown will be opened.",
     "value": "The selected value."
   }
 }
