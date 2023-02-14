@@ -642,6 +642,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       ...ownerState,
       ...thumbSlotProps?.ownerState,
     },
+    className: classes.thumb,
   });
 
   const valueLabelProps = useSlotProps({
@@ -665,6 +666,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     elementType: MarkLabelSlot,
     externalSlotProps: markLabelSlotProps,
     ownerState,
+    className: classes.markLabel,
   });
 
   const inputSliderProps = useSlotProps({
