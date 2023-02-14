@@ -15,7 +15,7 @@ import {
   screen,
 } from 'test/utils';
 
-describe('MultiSelectUnstyled', () => {
+describe('<MultiSelectUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
