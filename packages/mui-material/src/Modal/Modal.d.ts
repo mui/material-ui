@@ -40,6 +40,10 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
      */
     classes?: Partial<ModalUnstyledClasses>;
     /**
+     * @ignore
+     */
+    className?: string;
+    /**
      * The components used for each slot inside.
      *
      * This prop is an alias for the `slots` prop.
