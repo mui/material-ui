@@ -9,7 +9,6 @@ const Grid = createGrid({
     name: 'JoyGrid',
     overridesResolver: (props, styles) => styles.root,
   }),
-  componentName: 'JoyGrid',
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyGrid' }),
 }) as OverridableComponent<GridTypeMap>;
 
