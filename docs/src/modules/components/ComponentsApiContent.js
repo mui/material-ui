@@ -158,9 +158,9 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} />
           <HighlightedCode
             code={`
-  import ${componentName} from '${source}/${componentName}';
-  // ${t('or')}
-  import { ${componentName} } from '${source}';`}
+import ${componentName} from '${source}/${componentName}';
+// ${t('or')}
+import { ${componentName} } from '${source}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
