@@ -10,7 +10,13 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
-import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  useTheme,
+  styled,
+  createTheme,
+  ThemeProvider,
+  Experimental_CssVarsProvider as Material2CssVarsProvider,
+} from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -159,12 +165,20 @@ const jss = create({
     typeof window !== 'undefined' ? document.querySelector('#insertion-point-jss') : null,
 });
 
+function DemoThemeProvider({ children }) {
+  return <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>;
+}
+DemoThemeProvider.propTypes = {
+  children: PropTypes.element,
+};
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
   const router = useRouter();
+  const theme = useTheme();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { children: childrenProp, iframe = false, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoIframe : React.Fragment;
@@ -175,13 +189,15 @@ function DemoSandbox(props) {
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
   const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
 
+  const Provider = theme.vars ? Material2CssVarsProvider : DemoThemeProvider;
+
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {canonicalAs.startsWith('/joy-ui/') ? (
         children
       ) : (
         <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>
+          <Provider {...(theme.vars && { disableStyleSheetGeneration: true })}>{children}</Provider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>

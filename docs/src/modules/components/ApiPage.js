@@ -103,7 +103,7 @@ Heading.propTypes = {
 };
 
 export default function ApiPage(props) {
-  const { descriptions, disableAd = false, pageContent, cssVars } = props;
+  const { cssVars = false, descriptions, disableAd = false, pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 

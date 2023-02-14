@@ -88,22 +88,25 @@ const Item = styled(
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
-          backgroundColor: alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+              ),
           '@media (hover: none)': {
-            backgroundColor: alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity,
-            ),
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+              : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
           },
         },
         '&.Mui-focusVisible': {
-          backgroundColor: alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+              ),
         },
       },
       '& .MuiChip-root': {

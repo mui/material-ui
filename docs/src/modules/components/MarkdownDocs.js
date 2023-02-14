@@ -4,7 +4,8 @@ import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
+import { Experimental_CssVarsProvider as Material2CssVarsProvider } from '@mui/material/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -26,6 +27,7 @@ export default function MarkdownDocs(props) {
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
+    cssVars = false,
     disableAd = false,
     disableToc = false,
     demos = {},
@@ -42,7 +44,7 @@ export default function MarkdownDocs(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/');
 
-  const Provider = headers.cssVars ? BrandingCssVarsProvider : BrandingProvider;
+  const Provider = cssVars ? BrandingCssVarsProvider : BrandingProvider;
 
   return (
     <Provider dense>
@@ -54,7 +56,8 @@ export default function MarkdownDocs(props) {
         title={title}
         toc={toc}
       >
-        {isJoy && <CssVarsProvider />}
+        {isJoy && <JoyCssVarsProvider />}
+        {cssVars && !isJoy && <Material2CssVarsProvider />}
         {disableAd ? null : (
           <AdGuest>
             <Ad />
@@ -135,6 +138,7 @@ export default function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  cssVars: PropTypes.bool,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
