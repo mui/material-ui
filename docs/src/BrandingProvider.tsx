@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createSpacing } from '@mui/system';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { brandingDarkTheme, brandingLightTheme } from 'docs/src/modules/brandingTheme';
@@ -12,13 +13,28 @@ interface BrandingProviderProps {
    * If not `undefined`, the provider is considered nesting and does not render NextNProgressBar & CssBaseline
    */
   mode?: 'light' | 'dark';
+  /**
+   * If `true`, the `theme.spacing` produces narrow spacing.
+   */
+  dense?: boolean;
 }
 
+const denseBrandingLightTheme = { ...brandingLightTheme, spacing: createSpacing() };
+const denseBrandingDarkTheme = { ...brandingDarkTheme, spacing: createSpacing() };
+
+const themeMapping = {
+  light: brandingLightTheme,
+  dark: brandingDarkTheme,
+  lightDense: denseBrandingLightTheme,
+  darkDense: denseBrandingDarkTheme,
+};
+
 export default function BrandingProvider(props: BrandingProviderProps) {
-  const { children, mode: modeProp } = props;
+  const { children, mode: modeProp, dense } = props;
   const upperTheme = useTheme();
   const mode = modeProp || upperTheme.palette.mode;
-  const theme = mode === 'dark' ? brandingDarkTheme : brandingLightTheme;
+  const theme = themeMapping[`${mode}${dense ? 'Dense' : ''}`];
+
   return (
     <ThemeProvider theme={modeProp ? () => theme : theme}>
       {modeProp ? null : <NextNProgressBar />}

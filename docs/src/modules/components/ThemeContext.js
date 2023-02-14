@@ -1,18 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, ptBR } from '@mui/material/locale';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import {
-  getDesignTokens,
-  getThemedComponents,
-  getMetaThemeColor,
-} from 'docs/src/modules/brandingTheme';
+import { getDesignTokens, getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 
 const languageMap = {
   en: enUS,
@@ -201,16 +196,14 @@ export function ThemeProvider(props) {
 
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);
-    const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
-    let nextTheme = createTheme(
+    return createTheme(
       {
         direction,
-        ...brandingDesignTokens,
         nprogress: {
           color: brandingDesignTokens.palette.primary.main,
         },
         palette: {
-          ...nextPalette,
+          ...paletteColors,
           mode: paletteMode,
         },
         // v5 migration
@@ -233,10 +226,6 @@ export function ThemeProvider(props) {
       },
       languageMap[userLanguage],
     );
-
-    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
-
-    return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
 
   React.useEffect(() => {
