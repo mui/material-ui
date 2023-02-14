@@ -273,6 +273,8 @@ const attachTable = (
       return {
         [propName]: {
           type: {
+            // The docgen generates this structure for the components. For consistency in the structure
+            // we are adding the same value in both the name and the description
             name: typeDescription,
             description: typeDescription,
           },
