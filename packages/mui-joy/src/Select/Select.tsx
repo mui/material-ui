@@ -420,22 +420,24 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-    if (!isOpen) {
-      onClose?.();
-    }
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose, onListboxOpenChange, setListboxOpen],
+  );
 
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
     value,
   } = useSelect({
     buttonRef,
@@ -559,12 +561,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const context = React.useMemo(
     () => ({
-      getOptionProps,
-      getOptionState,
-      listboxRef,
+      ...contextValue,
       color,
     }),
-    [color, getOptionProps, getOptionState],
+    [color, contextValue],
   );
 
   const modifiers = React.useMemo(

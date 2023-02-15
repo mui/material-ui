@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
  * @example <ErrorBoundary ref={errorRef}><MyComponent /></ErrorBoundary>;
  *          expect(errorRef.current.errors).to.have.length(0);
  */
-export class ErrorBoundary extends React.Component {
+export class ErrorBoundary extends React.Component<{ children: React.ReactNode }> {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
@@ -18,13 +18,13 @@ export class ErrorBoundary extends React.Component {
   /**
    * @public
    */
-  errors = [];
+  errors: unknown[] = [];
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: unknown) {
     return { error };
   }
 
-  componentDidCatch(error) {
+  componentDidCatch(error: unknown) {
     this.errors.push(error);
   }
 
@@ -41,24 +41,21 @@ export class ErrorBoundary extends React.Component {
  * a component within the RenderCounter tree "commits" an update.
  * @example <RenderCounter ref={getRenderCountRef}>...</RenderCounter>
  *          getRenderCountRef.current() === 2
- * @type {import('react').JSXElementConstructor<{children: import('react').ReactNode} & import('react').RefAttributes<() => number>>}
  */
-export const RenderCounter = React.forwardRef(function RenderCounter({ children }, ref) {
-  const getRenderCountRef = React.useRef(0);
-  React.useImperativeHandle(ref, () => () => getRenderCountRef.current);
+export const RenderCounter = React.forwardRef<() => number, { children: React.ReactNode }>(
+  function RenderCounter({ children }, ref) {
+    const getRenderCountRef = React.useRef(0);
+    React.useImperativeHandle(ref, () => () => getRenderCountRef.current);
 
-  return (
-    <React.Profiler
-      id="render-counter"
-      onRender={() => {
-        getRenderCountRef.current += 1;
-      }}
-    >
-      {children}
-    </React.Profiler>
-  );
-});
-
-RenderCounter.propTypes = {
-  children: PropTypes.node,
-};
+    return (
+      <React.Profiler
+        id="render-counter"
+        onRender={() => {
+          getRenderCountRef.current += 1;
+        }}
+      >
+        {children}
+      </React.Profiler>
+    );
+  },
+);
