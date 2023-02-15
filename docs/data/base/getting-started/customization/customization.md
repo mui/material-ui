@@ -183,6 +183,8 @@ export default function Switch(props) {
 }
 ```
 
+See our [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for more information about integrating MUI Base and Tailwind CSS.
+
 ### Styled components
 
 If you use a CSS-in-JS solution with a styled-components-like API (such as MUI System or Emotion), it's the most convenient to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo above](#overriding-subcomponent-slots).
