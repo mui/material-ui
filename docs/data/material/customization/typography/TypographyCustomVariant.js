@@ -31,7 +31,7 @@ const theme = createTheme({
           body2: 'p',
           inherit: 'p',
           // @ts-ignore
-          poster: 'h1', // map our new variant to render a <h1> by default
+          poster: 'h1', // map our new variant to render an <h1> by default
         },
       },
     },

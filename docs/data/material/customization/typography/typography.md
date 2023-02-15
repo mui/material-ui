@@ -229,7 +229,7 @@ In addition to using the default typography variants, you can add custom ones, o
 
 **Step 1. Update the theme's typography object**
 
-Let's add a variant called "poster", and get rid the "h3" variant:
+The code snippet below adds a custom variant to the theme called `poster`, and removes the default `h3` variant:
 
 ```js
 const theme = createTheme({
@@ -246,9 +246,10 @@ const theme = createTheme({
 
 **Step 2. (Optional) Set the default semantic element for your new variant**
 
-At this point, you can already use the new `poster` variant, which will render a `<span>` by default with your custom styles. Sometimes you may want to default to a different HTML element for semantic purposes, or to replace the inline `<span>` with a block-level element for styling purposes.
+At this point, you can already use the new `poster` variant, which will render a `<span>` by default with your custom styles.
+Sometimes you may want to default to a different HTML element for semantic purposes, or to replace the inline `<span>` with a block-level element for styling purposes.
 
-To do this we need to update the `variantMapping` prop of the `Typography` globally in the theme:
+To do this, update the `variantMapping` prop of the `Typography` component globally, at the theme level:
 
 ```js
 const theme = createTheme({
@@ -324,7 +325,7 @@ declare module '@mui/material/Typography' {
 ```jsx
 <Typography variant="poster">poster</Typography>;
 
-/* This variant is no longer supported, if you are using TypeScript it will give an error */
+/* This variant is no longer supported. If you are using TypeScript it will give an error */
 <Typography variant="h3">h3</Typography>;
 ```
 
