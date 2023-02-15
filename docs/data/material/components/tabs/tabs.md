@@ -10,7 +10,7 @@ unstyled: /base/react-tabs/
 
 # Tabs
 
-<p class="description">A Tabs make it easy to explore and switch between different views.</p>
+<p class="description">Tabs make it easy to explore and switch between different views.</p>
 
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
