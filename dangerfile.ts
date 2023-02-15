@@ -185,7 +185,7 @@ function addDeployPreviewUrls() {
    * e.g. ['docs/data/joy/components/button/button.md']
    */
   function formatFileToLink(path: string) {
-    let url = path.replace('docs/data', '').replace(/\.md$/, '/');
+    let url = path.replace('docs/data', '').replace(/\.md$/, '');
 
     const fragments = url.split('/').reverse();
     if (fragments[0] === fragments[1]) {
