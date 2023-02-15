@@ -3514,7 +3514,7 @@ _Feb 1, 2022_
 
 A big thanks to the 22 contributors who made this release possible. Here are some highlights ✨:
 
-- 🛠 @goncalovf added an example project using [MUI with Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs) (#28241)
+- 🛠 @goncalovf added an example project using [Material UI with Vite.js](https://github.com/mui/material-ui/tree/master/examples/material-vite) (#28241)
 - Number of 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.4.0`
