@@ -395,7 +395,7 @@ export interface CssVarsTheme extends ColorSystem {
 
   // Default theme tokens
   spacing: Theme['spacing'];
-  breakpints: Theme['breakpoints'];
+  breakpoints: Theme['breakpoints'];
   shape: Theme['shape'];
   typography: Theme['typography'];
   transitions: Theme['transitions'];

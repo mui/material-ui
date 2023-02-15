@@ -6,7 +6,7 @@ import {
   describeConformance,
   screen,
   fireEvent,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
@@ -24,11 +24,11 @@ describe('<Menu />', () => {
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
       'reactTestRenderer', // react-transition-group issue
-      'themeDefaultProps', // portal, can't determin the root
+      'themeDefaultProps', // portal, can't determine the root
     ],
   }));
 
@@ -268,7 +268,7 @@ describe('<Menu />', () => {
         );
       }).toErrorDev([
         "MUI: The Menu component doesn't accept a Fragment as a child.",
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           "MUI: The Menu component doesn't accept a Fragment as a child.",
       ]);
     });

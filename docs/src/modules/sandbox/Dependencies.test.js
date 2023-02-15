@@ -26,7 +26,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  formContro
+  formControl
 `;
 
   it('should handle @ dependencies', () => {

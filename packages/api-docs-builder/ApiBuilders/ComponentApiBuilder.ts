@@ -427,7 +427,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   });
 
   /**
-   * CSS class descriptiohs.
+   * CSS class descriptions.
    */
   translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 

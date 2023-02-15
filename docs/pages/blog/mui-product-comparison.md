@@ -148,7 +148,7 @@ It features an intuitive UI and corresponding API to display different views of 
 
 - **Data management:** Create, retrieve, update and delete your data with ease.
 - **Sophisticated data analysis:** Pin rows and columns, group and aggregate values, export your view of the data to other formats. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
-- **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familar with Material UI—no new concepts to master along the way.
+- **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familiar with Material UI—no new concepts to master along the way.
 - **Accessibility:** It's notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
 
 #### Ideal use cases

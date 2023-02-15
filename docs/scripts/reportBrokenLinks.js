@@ -163,7 +163,7 @@ const getAnchor = (link) => {
   return potentialAnchor.includes('#') ? potentialAnchor : '';
 };
 
-// Export usefull method for doing similar checks in other repositories
+// Export useful method for doing similar checks in other repositories
 module.exports = { parseDocFolder, getAnchor };
 
 /**

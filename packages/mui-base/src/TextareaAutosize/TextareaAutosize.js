@@ -135,7 +135,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     });
   }, [getUpdatedState]);
 
-  const syncHeightWithFlushSycn = () => {
+  const syncHeightWithFlushSync = () => {
     const newState = getUpdatedState();
 
     if (isEmpty(newState)) {
@@ -161,7 +161,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       // access a dom node that is no longer there (as the fallback component is being shown instead).
       // See https://github.com/mui/material-ui/issues/32640
       if (inputRef.current) {
-        syncHeightWithFlushSycn();
+        syncHeightWithFlushSync();
       }
     });
     const containerWindow = ownerWindow(inputRef.current);

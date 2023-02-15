@@ -245,7 +245,7 @@ describe('createCssVarsProvider', () => {
 
     describe('[option]: `disableTransitionOnChange`', () => {
       clock.withFakeTimers();
-      it('disable all css transitions when switching bewteen modes, given `disableTransitionOnChange` is true', () => {
+      it('disable all css transitions when switching between modes, given `disableTransitionOnChange` is true', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -286,7 +286,7 @@ describe('createCssVarsProvider', () => {
         );
       });
 
-      it('disable all css transitions when switching bewteen color schemes, given `disableTransitionOnChange` is true', () => {
+      it('disable all css transitions when switching between color schemes, given `disableTransitionOnChange` is true', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -327,7 +327,7 @@ describe('createCssVarsProvider', () => {
         );
       });
 
-      it('do not disable all css transitions when switching bewteen modes, given `disableTransitionOnChange` is false', () => {
+      it('do not disable all css transitions when switching between modes, given `disableTransitionOnChange` is false', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -360,7 +360,7 @@ describe('createCssVarsProvider', () => {
         expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
       });
 
-      it('do not disable all css transitions when switching bewteen color schemes, given `disableTransitionOnChange` is false', () => {
+      it('do not disable all css transitions when switching between color schemes, given `disableTransitionOnChange` is false', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },

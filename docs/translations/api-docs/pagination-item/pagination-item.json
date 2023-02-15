@@ -73,10 +73,10 @@
       "conditions": "<code>type=\"start-ellipsis\"</code> or <code>type=\"end-ellipsis\"</code>"
     },
     "firstLast": {
-      "description": "Styles applyed to the root element if `type=\"first\"` or type=\"last\"."
+      "description": "Styles applied to the root element if `type=\"first\"` or type=\"last\"."
     },
     "previousNext": {
-      "description": "Styles applyed to the root element if `type=\"previous\"` or type=\"next\"."
+      "description": "Styles applied to the root element if `type=\"previous\"` or type=\"next\"."
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

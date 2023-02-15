@@ -94,7 +94,7 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 ### Stripe
 
-To create constast between rows, use the `stripe` prop with `odd` or `even` values.
+To create contrast between rows, use the `stripe` prop with `odd` or `even` values.
 
 {{"demo": "TableStripe.js"}}
 

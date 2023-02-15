@@ -148,7 +148,7 @@ const blacklist = [
   'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
-  'docs-styles-advanced', // Redudant
+  'docs-styles-advanced', // Redundant
   'docs-styles-basics/StressTest.png', // Need interaction
   'docs-system-basics/BreakpointsAsArray.png', // Unit tests are enough
   'docs-system-basics/BreakpointsAsObject.png', // Unit tests are enough

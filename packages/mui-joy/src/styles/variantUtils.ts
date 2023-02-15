@@ -30,7 +30,7 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
  * @example 'plain'
  *
  * @param palette object that contains palette tokens
- * @example { primary: { plainColor: '', plainHoverColor: '', ...tokens }, ...other palete }
+ * @example { primary: { plainColor: '', plainHoverColor: '', ...tokens }, ...other palette }
  *
  * @param getCssVar a function that receive variant token and return a CSS variable
  *

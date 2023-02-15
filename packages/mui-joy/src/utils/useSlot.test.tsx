@@ -107,7 +107,7 @@ describe('useSlot', () => {
       expect(getByRole('button').firstChild).to.have.class('size-md');
     });
 
-    it('slot ownerstate should be overriable', () => {
+    it('slot ownerstate should be overridable', () => {
       const { getByRole } = render(<Item slotProps={{ decorator: { size: 'sm' } }} />);
       expect(getByRole('button').firstChild).to.have.class('size-sm');
     });

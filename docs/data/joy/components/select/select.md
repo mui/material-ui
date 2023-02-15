@@ -97,7 +97,7 @@ const App = () => (
 
 ### `Option` component
 
-The `Option` component is used for the chooseable options within the select.
+The `Option` component is used for the choosable options within the select.
 
 The selected option inherits the `color` from the Select parent, and it uses the `primary` palette by default.
 However, it does not inherit the Select's used `variant`.

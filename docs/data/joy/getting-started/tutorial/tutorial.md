@@ -65,7 +65,7 @@ Replace your basic Sheet from the previous step with the following `sx`-styled S
   sx={{
     width: 300,
     mx: 'auto', // margin left & right
-    my: 4, // margin top & botom
+    my: 4, // margin top & bottom
     py: 3, // padding top & bottom
     px: 2, // padding left & right
     display: 'flex',

@@ -102,7 +102,7 @@ describe('grid generator', () => {
       });
     });
 
-    it('filters out breakpoints keys based on responsize keys', () => {
+    it('filters out breakpoints keys based on responsive keys', () => {
       const styles = { sm: 6, md: 3, xl: 2, xs: 1 };
       const filteredKeys = filterBreakpointKeys(breakpoints.keys, Object.keys(styles));
       expect(filteredKeys).to.deep.equal(['xs', 'sm', 'md', 'xl']);

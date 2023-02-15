@@ -327,13 +327,13 @@ import MaterialTypography, {
   typographyClasses as muiTypographyClasses,
 } from '@mui/material/Typography';
 import JoyTypography, {
-  typographyClasses as joyTyographyClasses,
+  typographyClasses as joyTypographyClasses,
 } from '@mui/joy/Typography';
 import Stack from '@mui/material/Stack';
 
 <Stack
   sx={{
-    // similar to `& .${joyTyographyClasses.root}`
+    // similar to `& .${joyTypographyClasses.root}`
     [`& .${muiTypographyClasses.root}`]: {
       color: 'red',
     },

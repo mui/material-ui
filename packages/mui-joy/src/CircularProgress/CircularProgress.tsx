@@ -241,7 +241,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     additionalProps: {
       role: 'progressbar',
       style: {
-        // Setting this CSS varaible via inline-style
+        // Setting this CSS variable via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
         '--CircularProgress-percent': value,

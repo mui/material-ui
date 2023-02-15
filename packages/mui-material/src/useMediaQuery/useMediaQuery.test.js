@@ -7,7 +7,7 @@ import {
   createRenderer,
   screen,
   RenderCounter,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
@@ -303,7 +303,7 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'MUI: The `query` argument provided is invalid',
-        !strictModeDoubleLoggingSupressed && 'MUI: The `query` argument provided is invalid',
+        !strictModeDoubleLoggingSuppressed && 'MUI: The `query` argument provided is invalid',
       ]);
     });
   });
