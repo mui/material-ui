@@ -197,22 +197,20 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       }
     });
     let resizeObserver: ResizeObserver;
-    let containerWindow: Window;
-    if (inputRef.current) {
-      containerWindow = ownerWindow(inputRef.current);
-      containerWindow.addEventListener('resize', handleResize);
 
-      if (typeof ResizeObserver !== 'undefined') {
-        resizeObserver = new ResizeObserver(handleResize);
-        resizeObserver.observe(inputRef.current);
-      }
+    const input = inputRef.current!;
+    const containerWindow = ownerWindow(input);
+    
+    containerWindow.addEventListener('resize', handleResize);
+
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(input);
     }
 
     return () => {
       handleResize.clear();
-      if (containerWindow) {
-        containerWindow.removeEventListener('resize', handleResize);
-      }
+      containerWindow.removeEventListener('resize', handleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
