@@ -16,6 +16,12 @@ declare module '@mui/material/styles' {
   interface PaletteOptions {
     primaryDark?: PaletteColorOptions;
   }
+
+  interface CssVarsThemeOptions {
+    nprogress?: {
+      color: string;
+    };
+  }
 }
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
@@ -30,6 +36,9 @@ const theme = extendTheme({
     dark: {
       palette: darkPalette,
     },
+  },
+  nprogress: {
+    color: 'var(--muidocs-palette-primary-main)',
   },
   ...designTokens,
   typography: deepmerge(typography, {

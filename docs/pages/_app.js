@@ -178,12 +178,10 @@ function AppWrapper(props) {
         <CodeCopyProvider>
           <CodeVariantProvider>
             <PageContext.Provider value={pageContextValue}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                  <GoogleAnalytics />
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
+              <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                {children}
+                <GoogleAnalytics />
+              </DocsStyledEngineProvider>
             </PageContext.Provider>
           </CodeVariantProvider>
         </CodeCopyProvider>
@@ -198,12 +196,18 @@ AppWrapper.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
+const defaultGetLayout = (page) => <ThemeProvider>{page}</ThemeProvider>;
+
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  // Use the layout defined at the page level, if available
+  // Ref: https://nextjs.org/docs/basic-features/layouts#per-page-layouts
+  const getLayout = Component.getLayout || defaultGetLayout;
+
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </AppWrapper>
   );
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -75,11 +75,11 @@ export function DeferredAppSearch() {
     <React.Fragment>
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
+        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 150 } }} />}>
           <AppSearch />
         </React.Suspense>
       ) : (
-        <Box sx={{ minWidth: { sm: 200 } }} />
+        <Box sx={{ minWidth: { sm: 150 } }} />
       )}
     </React.Fragment>
   );
@@ -156,6 +156,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className } = props;
+  const upperTheme = useTheme();
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -167,10 +168,14 @@ export default function AppFrame(props) {
 
   return (
     <RootDiv className={className}>
-      <NextNProgressBar />
-      <CssBaseline />
-      <SkipLink />
-      <MarkdownLinks />
+      {!upperTheme.vars && (
+        <React.Fragment>
+          <NextNProgressBar />
+          <CssBaseline />
+          <SkipLink />
+          <MarkdownLinks />
+        </React.Fragment>
+      )}
       <StyledAppBar disablePermanent={disablePermanent}>
         <GlobalStyles
           styles={{
