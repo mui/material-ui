@@ -148,7 +148,6 @@ function getTheme(outerTheme) {
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
   }
-  resultTheme.applyDarkStyles = outerTheme.applyDarkStyles;
   return resultTheme;
 }
 
