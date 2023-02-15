@@ -317,6 +317,21 @@ describe('useAutocomplete', () => {
     });
   });
 
+  describe('getInputProps', () => {
+    it('should disable input element', () => {
+      function Test(props) {
+        const { options } = props;
+        const { getInputProps } = useAutocomplete({ options, disabled: true });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<Test options={['foo', 'bar']} />);
+      const input = screen.getByRole('combobox');
+
+      expect(input).to.have.attribute('disabled');
+    });
+  });
+
   it('should allow tuples or arrays as value when multiple=false', () => {
     function Test() {
       const defaultValue = ['bar'];

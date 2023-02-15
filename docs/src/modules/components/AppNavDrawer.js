@@ -456,7 +456,7 @@ export default function AppNavDrawer(props) {
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
                 {
-                  text: 'v6-alpha',
+                  text: 'v6-next',
                   ...(process.env.DATA_GRID_VERSION.startsWith('6')
                     ? {
                         text: `v${process.env.DATA_GRID_VERSION}`,
@@ -495,7 +495,7 @@ export default function AppNavDrawer(props) {
                         current: true,
                       }
                     : {
-                        text: `v6-alpha`,
+                        text: `v6-next`,
                         href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },

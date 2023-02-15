@@ -9,7 +9,9 @@ import {
 } from '../SelectUnstyled';
 import { SlotComponentProps } from '../utils';
 
-export interface MultiSelectUnstyledComponentsPropsOverrides {}
+export interface MultiSelectUnstyledRootSlotPropsOverrides {}
+export interface MultiSelectUnstyledListboxSlotPropsOverrides {}
+export interface MultiSelectUnstyledPopperSlotPropsOverrides {}
 
 export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
@@ -51,17 +53,17 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
   slotProps?: {
     root?: SlotComponentProps<
       'button',
-      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledRootSlotPropsOverrides,
       MultiSelectUnstyledOwnerState<TValue>
     >;
     listbox?: SlotComponentProps<
       'button',
-      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledListboxSlotPropsOverrides,
       MultiSelectUnstyledOwnerState<TValue>
     >;
     popper?: SlotComponentProps<
       typeof PopperUnstyled,
-      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledPopperSlotPropsOverrides,
       MultiSelectUnstyledOwnerState<TValue>
     >;
   };

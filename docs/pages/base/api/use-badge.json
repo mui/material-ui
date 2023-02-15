@@ -1,9 +1,9 @@
 {
   "parameters": {
-    "badgeContent": { "type": { "name": "React.ReactNode", "description": "" } },
-    "invisible": { "type": { "name": "boolean", "description": "" } },
-    "max": { "type": { "name": "number", "description": "" } },
-    "showZero": { "type": { "name": "boolean", "description": "" } }
+    "badgeContent": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } },
+    "invisible": { "type": { "name": "boolean", "description": "boolean" } },
+    "max": { "type": { "name": "number", "description": "number" } },
+    "showZero": { "type": { "name": "boolean", "description": "boolean" } }
   },
   "returnValue": {},
   "name": "useBadge",
