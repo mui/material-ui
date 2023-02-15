@@ -80,7 +80,7 @@ createTheme({
     MuiButton: {
       styleOverrides: {
         root: ({ theme }) => ({
-          // use javascript conditional expression
+          // use JavaScript conditional expression
           color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
         }),
       },
