@@ -185,18 +185,26 @@ function addDeployPreviewUrls() {
    * e.g. ['docs/data/joy/components/button/button.md']
    */
   function formatFileToLink(path: string) {
-    const url = path.replace('docs/data', '').replace(/\/[^/]+\.md$/, '/');
+    let url = path.replace('docs/data', '').replace(/\.md$/, '/');
 
     if (url.startsWith('/material')) {
       // needs to convert to correct material legacy folder structure to the existing url.
-      return replaceUrl(url.replace('/material', ''), '').replace(/^\//, '');
+      url = replaceUrl(url.replace('/material', ''), '/material-ui').replace(/^\//, '');
+    } else {
+      url = url
+        .replace(/^\//, '') // remove initial `/`
+        .replace('joy/', 'joy-ui/')
+        .replace('components/', 'react-')
+        .replace(/\.md$/, '/');
     }
 
-    return url
-      .replace(/^\//, '') // remove initial `/`
-      .replace('joy/', 'joy-ui/')
-      .replace('components/', 'react-')
-      .replace(/\/[^/]+\.md$/, '/');
+    const fragments = url.split('/').reverse();
+    if (fragments[0] === fragments[1]) {
+      // check if the end of pathname is the same as the one before
+      // e.g. `/data/material/getting-started/overview/overview.md
+      url = fragments.slice(1).reverse().join('/');
+    }
+    return url;
   }
 
   const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
