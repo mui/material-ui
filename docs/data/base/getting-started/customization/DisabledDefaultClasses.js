@@ -78,7 +78,7 @@ export default function DisabledDefaultClasses() {
 
   return (
     <div>
-      {/* The built-in classes (MuiSwitch-root, Mui-checked, etc.) are enabled by default,
+      {/* The built-in classes (MuiSwitch-root, Mui-checked, etc.) are enabled by default, 
            even though they are not used */}
       <SwitchUnstyled slots={slots} {...switch1A11yProps} />
       <ClassNameConfigurator disableDefaultClasses>
