@@ -170,6 +170,11 @@ module.exports = {
           "Do not import default from React. Use a namespace import (import * as React from 'react';) instead.",
         selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
       },
+      {
+        message:
+          "Do not import default from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom';) instead.",
+        selector: 'ImportDeclaration[source.value="react-dom"] ImportDefaultSpecifier',
+      },
     ],
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
