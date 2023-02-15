@@ -63,14 +63,14 @@ The following example shows how to add a custom class to two of the Unstyled Swi
 function Switch(props: SwitchUnstyledProps) {
   const slotProps = {
     thumb: {
-      className: 'switch:thumb'
+      className: 'switch:thumb',
     },
     track: {
-      className: 'switch:track'
-    }
-  }
+      className: 'switch:track',
+    },
+  };
 
-  return <SwitchUnstyled {...props} slotProps={slotProps}/>
+  return <SwitchUnstyled {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -149,15 +149,15 @@ export default function Switch(props) {
     root: (ownerState: SwitchUnstyledOwnerState) => ({
       className: clsx(classes.root, {
         [classes.checked]: ownerState.checked,
-        [classes.disabled]: ownerState.disabled
-      })
+        [classes.disabled]: ownerState.disabled,
+      }),
     }),
     thumb: { className: classes.thumb },
     track: { className: classes.track },
     input: { className: classes.input },
-  }
+  };
 
-  return <SwitchUnstyled {...props} slotProps={slotProps} />
+  return <SwitchUnstyled {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -171,15 +171,19 @@ Similarly to CSS Modules, the most straightforward way is the [`slotProps` custo
 export default function Switch(props) {
   const slotProps = {
     root: (ownerState: SwitchUnstyledOwnerState) => ({
-      className: `inline-block w-8 h-5 rounded-full cursor-pointer relative ${ownerState.checked ? 'bg-cyan-500' : 'bg-zinc-400'}`
+      className: `inline-block w-8 h-5 rounded-full cursor-pointer relative ${
+        ownerState.checked ? 'bg-cyan-500' : 'bg-zinc-400'
+      }`,
     }),
     thumb: (ownerState: SwitchUnstyledOwnerState) => ({
-      className: `bg-white block w-3.5 h-3.5 rounded-full relative top-[3px] ${ownerState.checked ? 'left-[3px]' : 'left-[14px]'}`
+      className: `bg-white block w-3.5 h-3.5 rounded-full relative top-[3px] ${
+        ownerState.checked ? 'left-[3px]' : 'left-[14px]'
+      }`,
     }),
     input: { className: 'absolute w-full h-full inset-0 opacity-0 z-10 m-0' },
-  }
+  };
 
-  return <SwitchUnstyled {...props} slotProps={slotProps} />
+  return <SwitchUnstyled {...props} slotProps={slotProps} />;
 }
 ```
 
