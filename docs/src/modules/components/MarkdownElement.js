@@ -441,7 +441,7 @@ const Root = styled('div')(
     },
   }),
   {
-    ':where(.mode-dark) &': {
+    ':where(.mode-dark, [data-mui-color-scheme="dark"]) &': {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
