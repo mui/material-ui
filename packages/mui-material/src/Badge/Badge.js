@@ -285,7 +285,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const badgeProps = useSlotProps({
     elementType: BadgeSlot,
     externalSlotProps: badgeSlotProps,
-    externalForwardedProps: other,
     ownerState,
     className: clsx(classes.badge, badgeSlotProps?.className),
   });
