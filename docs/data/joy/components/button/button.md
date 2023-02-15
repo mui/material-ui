@@ -148,7 +148,7 @@ For example, an Icon Button that displays a `<FavoriteBorder />` icon might have
 The Button component is composed of a single root `<button>` element that wraps around its contents:
 
 ```html
-<button class="JoyButton-root" type="button">
+<button class="MuiButton-root" type="button">
   <!-- Button contents -->
 </button>
 ```
