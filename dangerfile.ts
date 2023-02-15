@@ -187,6 +187,13 @@ function addDeployPreviewUrls() {
   function formatFileToLink(path: string) {
     let url = path.replace('docs/data', '').replace(/\.md$/, '/');
 
+    const fragments = url.split('/').reverse();
+    if (fragments[0] === fragments[1]) {
+      // check if the end of pathname is the same as the one before
+      // e.g. `/data/material/getting-started/overview/overview.md
+      url = fragments.slice(1).reverse().join('/');
+    }
+
     if (url.startsWith('/material')) {
       // needs to convert to correct material legacy folder structure to the existing url.
       url = replaceUrl(url.replace('/material', ''), '/material-ui').replace(/^\//, '');
@@ -194,16 +201,9 @@ function addDeployPreviewUrls() {
       url = url
         .replace(/^\//, '') // remove initial `/`
         .replace('joy/', 'joy-ui/')
-        .replace('components/', 'react-')
-        .replace(/\.md$/, '/');
+        .replace('components/', 'react-');
     }
 
-    const fragments = url.split('/').reverse();
-    if (fragments[0] === fragments[1]) {
-      // check if the end of pathname is the same as the one before
-      // e.g. `/data/material/getting-started/overview/overview.md
-      url = fragments.slice(1).reverse().join('/');
-    }
     return url;
   }
 
