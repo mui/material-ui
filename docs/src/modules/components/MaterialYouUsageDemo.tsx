@@ -95,8 +95,13 @@ export const prependLinesSpace = (code: string, size: number = 2) => {
 
 function ModeSwitcher({ md2Mode }: { md2Mode: Mode }) {
   const { setMode } = useColorScheme();
+  const mounted = React.useRef(false);
   React.useEffect(() => {
-    setMode(md2Mode);
+    if (mounted.current) {
+      // wait for the final mode from the upper theme.
+      setMode(md2Mode);
+    }
+    mounted.current = true;
   }, [md2Mode, setMode]);
   return null;
 }
