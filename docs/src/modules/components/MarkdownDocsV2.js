@@ -191,36 +191,40 @@ export default function MarkdownDocs(props) {
         <Box
           {...(activeTab !== 'component-api' && { sx: { display: 'none' }, 'aria-hidden': true })}
         >
-          <Box component="ul" sx={{ mt: 5 }}>
-            {Object.keys(componentsApiPageContents).map((component) => {
-              const product = router.pathname.split('/')[1];
-              const displayNameLink = upperFirst(component);
-              return (
-                <li>
-                  <ApiLink href={`/${product}/api/${kebabCase(component)}-unstyled`}>
-                    <code>
-                      {'<'}
-                      {displayNameLink}
-                      {' />'}
-                    </code>
-                  </ApiLink>
-                </li>
-              );
-            })}
+          <Box sx={{ height: 'calc(100vh - 350px)' }}>
+            <Box component="ul" sx={{ mt: 5 }}>
+              {Object.keys(componentsApiPageContents).map((component) => {
+                const product = router.pathname.split('/')[1];
+                const displayNameLink = upperFirst(component);
+                return (
+                  <li>
+                    <ApiLink href={`/${product}/api/${kebabCase(component)}-unstyled`}>
+                      <code>
+                        {'<'}
+                        {displayNameLink}
+                        {' />'}
+                      </code>
+                    </ApiLink>
+                  </li>
+                );
+              })}
+            </Box>
           </Box>
         </Box>
         <Box {...(activeTab !== 'hook-api' && { sx: { display: 'none' }, 'aria-hidden': true })}>
-          <Box component="ul" sx={{ mt: 5 }}>
-            {Object.keys(hooksApiPageContents).map((hook) => {
-              const product = router.pathname.split('/')[1];
-              return (
-                <li>
-                  <ApiLink href={`/${product}/api/${kebabCase(hook)}`}>
-                    <code>{hook}</code>
-                  </ApiLink>
-                </li>
-              );
-            })}
+          <Box sx={{ height: 'calc(100vh - 350px)' }}>
+            <Box component="ul" sx={{ mt: 5 }}>
+              {Object.keys(hooksApiPageContents).map((hook) => {
+                const product = router.pathname.split('/')[1];
+                return (
+                  <li>
+                    <ApiLink href={`/${product}/api/${kebabCase(hook)}`}>
+                      <code>{hook}</code>
+                    </ApiLink>
+                  </li>
+                );
+              })}
+            </Box>
           </Box>
         </Box>
       </Provider>
