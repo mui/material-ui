@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import TreeView from '@mui/lab/TreeView';
 import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
@@ -15,38 +15,8 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  [`& .${treeItemClasses.content}`]: {
-    color: theme.palette.text.secondary,
-    borderTopRightRadius: theme.spacing(2),
-    borderBottomRightRadius: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    fontWeight: theme.typography.fontWeightMedium,
-    '&.Mui-expanded': {
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
-      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-      color: 'var(--tree-view-color)',
-    },
-    [`& .${treeItemClasses.label}`]: {
-      fontWeight: 'inherit',
-      color: 'inherit',
-    },
-  },
-  [`& .${treeItemClasses.group}`]: {
-    marginLeft: 0,
-    [`& .${treeItemClasses.content}`]: {
-      paddingLeft: theme.spacing(2),
-    },
-  },
-}));
-
 function StyledTreeItem(props) {
+  const theme = useTheme();
   const {
     bgColor,
     color,
@@ -56,22 +26,65 @@ function StyledTreeItem(props) {
     ...other
   } = props;
 
+  let styleProps = {};
+  if (theme.palette.mode !== 'dark') {
+    styleProps = {
+      '--tree-view-color': color,
+      '--tree-view-bg-color': bgColor,
+    };
+  }
+
   return (
-    <StyledTreeItemRoot
+    <TreeItem
       label={
-        <Box sx={{ display: 'flex', alignItems: 'center', p: 0.5, pr: 0 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            p: 0.5,
+            pr: 0,
+            '& .MuiTypography-body2': {
+              fontWeight: 'inherit',
+              flexGrow: 1,
+            },
+          }}
+        >
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
-          <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
-            {labelText}
-          </Typography>
-          <Typography variant="caption" color="inherit">
+          <Typography variant="body2">{labelText}</Typography>
+          <Typography variant="caption" color="inherit" sx={{ ml: 'auto' }}>
             {labelInfo}
           </Typography>
         </Box>
       }
-      style={{
-        '--tree-view-color': color,
-        '--tree-view-bg-color': bgColor,
+      sx={{
+        color: 'text.secondary',
+        [`& .${treeItemClasses.content}`]: {
+          borderTopRightRadius: 2,
+          borderBottomRightRadius: 2,
+          paddingRight: 1,
+          fontWeight: theme.typography.fontWeightMedium,
+          '&.Mui-expanded': {
+            fontWeight: theme.typography.fontWeightRegular,
+          },
+          '&:hover': {
+            backgroundColor: 'action.hover',
+          },
+          '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
+            backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
+            color: 'var(--tree-view-color)',
+          },
+          [`& .${treeItemClasses.label}`]: {
+            fontWeight: 'inherit',
+            color: 'inherit',
+          },
+        },
+        [`& .${treeItemClasses.group}`]: {
+          marginLeft: 0,
+          [`& .${treeItemClasses.content}`]: {
+            paddingLeft: 2,
+          },
+        },
+        ...styleProps,
       }}
       {...other}
     />
