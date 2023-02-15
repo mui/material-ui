@@ -173,7 +173,8 @@ module.exports = {
       {
         message:
           "Do not import default from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom';) instead.",
-        selector: 'ImportDeclaration[source.value="react-dom"] ImportDefaultSpecifier',
+        selector:
+          'ImportDeclaration[source.value=/^react-dom(\\u002F(server|client))?$/] ImportDefaultSpecifier',
       },
     ],
 
