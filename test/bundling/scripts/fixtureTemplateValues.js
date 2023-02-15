@@ -640,10 +640,7 @@ console.assert(
   ReactIs.isValidElementType(DialogTitle_core__pathImport),
   'DialogTitle path import is not consumable.',
 );
-console.assert(
-  ReactIs.isValidElementType(Divider_core),
-  'Divider named import is not consumable.',
-);
+console.assert(ReactIs.isValidElementType(Divider_core), 'Divider named import is not consumable.');
 console.assert(
   ReactIs.isValidElementType(Divider_core__pathImport),
   'Divider path import is not consumable.',
@@ -929,10 +926,7 @@ console.assert(
   ReactIs.isValidElementType(Paper_core__pathImport),
   'Paper path import is not consumable.',
 );
-console.assert(
-  ReactIs.isValidElementType(Popover_core),
-  'Popover named import is not consumable.',
-);
+console.assert(ReactIs.isValidElementType(Popover_core), 'Popover named import is not consumable.');
 console.assert(
   ReactIs.isValidElementType(Popover_core__pathImport),
   'Popover path import is not consumable.',
@@ -1081,10 +1075,7 @@ console.assert(
   ReactIs.isValidElementType(StepLabel_core__pathImport),
   'StepLabel path import is not consumable.',
 );
-console.assert(
-  ReactIs.isValidElementType(Stepper_core),
-  'Stepper named import is not consumable.',
-);
+console.assert(ReactIs.isValidElementType(Stepper_core), 'Stepper named import is not consumable.');
 console.assert(
   ReactIs.isValidElementType(Stepper_core__pathImport),
   'Stepper path import is not consumable.',
@@ -1093,10 +1084,7 @@ console.assert(
   styles_core__pathImport !== null && typeof styles_core__pathImport === 'object',
   'styles path import is not consumable.',
 );
-console.assert(
-  ReactIs.isValidElementType(SvgIcon_core),
-  'SvgIcon named import is not consumable.',
-);
+console.assert(ReactIs.isValidElementType(SvgIcon_core), 'SvgIcon named import is not consumable.');
 console.assert(
   ReactIs.isValidElementType(SvgIcon_core__pathImport),
   'SvgIcon path import is not consumable.',
@@ -1233,18 +1221,12 @@ console.assert(
   ReactIs.isValidElementType(ToggleButtonGroup_core__pathImport),
   'ToggleButtonGroup path import is not consumable.',
 );
-console.assert(
-  ReactIs.isValidElementType(Toolbar_core),
-  'Toolbar named import is not consumable.',
-);
+console.assert(ReactIs.isValidElementType(Toolbar_core), 'Toolbar named import is not consumable.');
 console.assert(
   ReactIs.isValidElementType(Toolbar_core__pathImport),
   'Toolbar path import is not consumable.',
 );
-console.assert(
-  ReactIs.isValidElementType(Tooltip_core),
-  'Tooltip named import is not consumable.',
-);
+console.assert(ReactIs.isValidElementType(Tooltip_core), 'Tooltip named import is not consumable.');
 console.assert(
   ReactIs.isValidElementType(Tooltip_core__pathImport),
   'Tooltip path import is not consumable.',
@@ -1528,10 +1510,7 @@ console.assert(
   createStyles_styles__pathImport !== undefined,
   'createStyles path import is not consumable.',
 );
-console.assert(
-  getThemeProps_styles !== undefined,
-  'getThemeProps named import is not consumable.',
-);
+console.assert(getThemeProps_styles !== undefined, 'getThemeProps named import is not consumable.');
 console.assert(
   getThemeProps_styles__pathImport !== undefined,
   'getThemeProps path import is not consumable.',
