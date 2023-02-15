@@ -200,7 +200,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     const input = inputRef.current!;
     const containerWindow = ownerWindow(input);
-    
+
     containerWindow.addEventListener('resize', handleResize);
 
     if (typeof ResizeObserver !== 'undefined') {
