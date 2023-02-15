@@ -7,7 +7,6 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
-import { KebabKeys } from '@mui/types';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 type State = {
@@ -15,11 +14,8 @@ type State = {
   overflow?: boolean | undefined;
 };
 
-function getStyleValue(
-  computedStyle: KebabKeys<CSSStyleDeclaration>,
-  property: keyof KebabKeys<CSSStyleDeclaration>,
-) {
-  return parseInt(`${computedStyle[property]}`, 10) || 0;
+function getStyleValue(value: string) {
+  return parseInt(value, 10) || 0;
 }
 
 const styles: {
@@ -79,9 +75,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     const input = inputRef.current!;
 
     const containerWindow = ownerWindow(input);
-    const computedStyle = containerWindow.getComputedStyle(
-      input,
-    ) as unknown as KebabKeys<CSSStyleDeclaration>;
+    const computedStyle = containerWindow.getComputedStyle(input);
 
     // If input's width is shrunk and it's not visible, don't sync height.
     if (computedStyle.width === '0px') {
@@ -101,12 +95,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       inputShallow.value += ' ';
     }
 
-    const boxSizing = computedStyle['box-sizing'];
+    const boxSizing = computedStyle.boxSizing;
     const padding =
-      getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');
+      getStyleValue(computedStyle.paddingBottom) + getStyleValue(computedStyle.paddingTop);
     const border =
-      getStyleValue(computedStyle, 'border-bottom-width') +
-      getStyleValue(computedStyle, 'border-top-width');
+      getStyleValue(computedStyle.borderBottomWidth) + getStyleValue(computedStyle.borderTopWidth);
 
     // The height of the inner content
     const innerHeight = inputShallow.scrollHeight;

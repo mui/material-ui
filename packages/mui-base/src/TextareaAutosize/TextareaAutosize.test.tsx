@@ -10,7 +10,6 @@ import {
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-import { KebabKeys } from '@mui/types';
 
 describe('<TextareaAutosize />', () => {
   const { clock, render } = createRenderer();
@@ -34,7 +33,7 @@ describe('<TextareaAutosize />', () => {
   }));
 
   describe('layout', () => {
-    const getComputedStyleStub = new Map<Element, Partial<KebabKeys<CSSStyleDeclaration>>>();
+    const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(
       input: HTMLTextAreaElement,
       shadow: Element,
@@ -43,7 +42,7 @@ describe('<TextareaAutosize />', () => {
         scrollHeight,
         lineHeight: lineHeightArg,
       }: {
-        getComputedStyle: Partial<KebabKeys<CSSStyleDeclaration>>;
+        getComputedStyle: Partial<CSSStyleDeclaration>;
         scrollHeight?: number;
         lineHeight?: number | (() => number);
       },
@@ -87,7 +86,7 @@ describe('<TextareaAutosize />', () => {
 
         setLayout(input, shadow, {
           getComputedStyle: {
-            'box-sizing': 'content-box',
+            boxSizing: 'content-box',
           },
           scrollHeight: 30,
           lineHeight: 15,
@@ -110,7 +109,7 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          boxSizing: 'content-box',
         },
         scrollHeight: 30,
         lineHeight: 15,
@@ -134,8 +133,8 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'border-box',
-          'border-bottom-width': `${border}px`,
+          boxSizing: 'border-box',
+          borderBottomWidth: `${border}px`,
         },
         scrollHeight: 30,
         lineHeight: 15,
@@ -152,8 +151,8 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]')!;
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'border-box',
-          'padding-top': `${padding}px`,
+          boxSizing: 'border-box',
+          paddingTop: `${padding}px`,
         },
         scrollHeight: 30,
         lineHeight: 15,
@@ -171,7 +170,7 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]')!;
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          boxSizing: 'content-box',
         },
         scrollHeight: 30,
         lineHeight,
@@ -189,7 +188,7 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]')!;
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          boxSizing: 'content-box',
         },
         scrollHeight: 100,
         lineHeight,
@@ -207,7 +206,7 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]')!;
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'border-box',
+          boxSizing: 'border-box',
         },
         scrollHeight: lineHeight * 2,
         lineHeight,
@@ -217,7 +216,7 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'border-box',
+          boxSizing: 'border-box',
         },
         scrollHeight: lineHeight * 3,
         lineHeight,
@@ -227,7 +226,7 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'border-box',
+          boxSizing: 'border-box',
         },
         scrollHeight: lineHeight * 4,
         lineHeight,
@@ -244,7 +243,7 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]')!;
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          boxSizing: 'content-box',
         },
         scrollHeight: 100,
         lineHeight,
@@ -265,7 +264,7 @@ describe('<TextareaAutosize />', () => {
 
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          boxSizing: 'content-box',
         },
         scrollHeight: lineHeight * 2,
         lineHeight,
@@ -277,7 +276,7 @@ describe('<TextareaAutosize />', () => {
 
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          boxSizing: 'content-box',
           width: '0px',
         },
         scrollHeight: lineHeight * 3,
@@ -297,7 +296,7 @@ describe('<TextareaAutosize />', () => {
         let index = 0;
         setLayout(input, shadow, {
           getComputedStyle: {
-            'box-sizing': 'content-box',
+            boxSizing: 'content-box',
           },
           scrollHeight: 100,
           lineHeight: () => {

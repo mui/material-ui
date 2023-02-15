@@ -40,18 +40,6 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 /**
- * @internal
- */
-type Kebab<T extends string, A extends string = ''> = T extends `${infer F}${infer R}`
-  ? Kebab<R, `${A}${F extends Lowercase<F> ? '' : '-'}${Lowercase<F>}`>
-  : A;
-/**
- * Converts Object keys from CamelCase to KebabCase
- * @internal
- */
-export type KebabKeys<T> = { [K in keyof T as K extends string ? Kebab<K> : K]: T[K] };
-
-/**
  * Generate a set of string literal types with the given default record `T` and
  * override record `U`.
  *
