@@ -43,8 +43,7 @@ const ApiLink = styled(Link)(({ theme }) =>
   theme.unstable_sx({
     backgroundColor:
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-    fontWeight: 300,
-    fontSize: 12,
+    fontSize: 13,
     borderRadius: '6px',
     lineHeight: 1.5,
     fontFamily: 'Menlo,Consolas,"Droid Sans Mono",monospace',
