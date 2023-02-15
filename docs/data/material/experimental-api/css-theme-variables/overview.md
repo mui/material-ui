@@ -1,6 +1,6 @@
 # CSS theme variables
 
-<p class="description">An overview of adopting CSS theme variables in Material UI.</p>
+<p class="description">AAn overview of adopting CSS theme variables in Material UI.</p>
 
 [CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties.
 You can implement them to improve Material UI's theming and customization experience.
