@@ -4,7 +4,7 @@ import { prefixer, Element, RULESET } from 'stylis';
 
 // A workaround to https://github.com/emotion-js/emotion/issues/2836
 // to be able to use `:where` selector for styling.
-function globalSelector(element: Element) {
+export function globalSelector(element: Element) {
   switch (element.type) {
     case RULESET:
       element.props = (element.props as string[]).map((value: any) => {

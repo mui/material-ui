@@ -7,12 +7,13 @@ import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { useTheme } from '@mui/material/styles';
+import { globalSelector } from 'docs/src/createEmotionCache';
 
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({
   key: 'rtl',
   prepend: true,
-  stylisPlugins: [prefixer, rtlPlugin],
+  stylisPlugins: [prefixer, globalSelector, rtlPlugin],
 });
 
 export default function StyledEngineProvider(props) {
