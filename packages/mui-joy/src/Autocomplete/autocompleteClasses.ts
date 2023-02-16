@@ -74,10 +74,10 @@ export interface AutocompleteClasses {
 export type AutocompleteClassKey = keyof AutocompleteClasses;
 
 export function getAutocompleteUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAutocomplete', slot);
+  return generateUtilityClass('MuiAutocomplete', slot);
 }
 
-const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAutocomplete', [
+const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAutocomplete', [
   'root',
   'wrapper',
   'input',

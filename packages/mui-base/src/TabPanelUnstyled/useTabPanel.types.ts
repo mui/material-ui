@@ -10,3 +10,20 @@ export interface UseTabPanelRootSlotProps {
   hidden?: boolean;
   id?: string;
 }
+
+export interface UseTabPanelReturnValue {
+  /**
+   * If `true`, it indicates that the tab panel will be hidden.
+   * @default false
+   */
+  hidden: boolean;
+  /**
+   * Resolver for the root slot's props.
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: () => {
+    'aria-labelledby': string | undefined;
+    hidden: boolean;
+    id: string | undefined;
+  };
+}

@@ -80,7 +80,7 @@ It's common to find it in tables where you have one checkbox that selects every 
 
 To group multiple checkboxes, use `role="group"` on the wrapper component.
 
-Combine with the [`List`](/joy-ui/react-list/) component to ensure consistent spacing and enable screen readers to interpret the checkbox group as a list. Learn more about checkbox accessible design patters [in the W3C documentation](https://www.w3.org/WAI/ARIA/apg/example-index/checkbox/checkbox.html).
+Combine with the [`List`](/joy-ui/react-list/) component to ensure consistent spacing and enable screen readers to interpret the checkbox group as a list. Learn more about checkbox accessible design patters [in the W3C documentation](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/examples/checkbox-mixed/).
 
 {{"demo": "GroupCheckboxes.js"}}
 

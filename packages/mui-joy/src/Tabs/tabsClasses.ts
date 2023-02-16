@@ -40,10 +40,10 @@ export interface TabsClasses {
 export type TabsClassKey = keyof TabsClasses;
 
 export function getTabsUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTabs', slot);
+  return generateUtilityClass('MuiTabs', slot);
 }
 
-const tabListClasses: TabsClasses = generateUtilityClasses('JoyTabs', [
+const tabListClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
   'root',
   'horizontal',
   'vertical',

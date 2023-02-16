@@ -50,10 +50,10 @@ export interface RadioClasses {
 export type RadioClassKey = keyof RadioClasses;
 
 export function getRadioUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyRadio', slot);
+  return generateUtilityClass('MuiRadio', slot);
 }
 
-const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
+const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
   'root',
   'radio',
   'icon',

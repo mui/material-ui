@@ -2192,7 +2192,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 
 ### Core
 
-- [test] Build all `@material-ui/*` packages for Codesandbox CI (#18100) @eps1lon
+- [test] Build all `@material-ui/*` packages for CodeSandbox CI (#18100) @eps1lon
 - [test] Fix tests failing on subsequent runs in watchmode (#18076) @eps1lon
 - [test] Fix tests polluting DOM (#18163) @eps1lon
 - [core] Batch small changes (#18041) @oliviertassinari
@@ -13577,7 +13577,7 @@ _May 24, 2015_
       that you are trying to override, [submit an issue](https://github.com/mui/material-ui/issues/new)
       requesting to have it added.
     - _If you are using any of Material UI's Less files:_ These files have been
-      refactored into their [own javascript files](https://github.com/mui/material-ui/tree/css-in-js/src/styles)
+      refactored into their [own JavaScript files](https://github.com/mui/material-ui/tree/css-in-js/src/styles)
       and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
       Material UI has moved away from being a CSS Framework to being simply a
       set of React components.

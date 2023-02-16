@@ -27,20 +27,10 @@ export default function NestedModals({ random }) {
             },
           })}
         >
-          <Typography
-            id="nested-modal-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
-          >
+          <Typography id="nested-modal-title" component="h2">
             Infinite modals
           </Typography>
-          <Typography
-            id="nested-modal-description"
-            textColor="text.tertiary"
-            sx={{ mb: 1 }}
-          >
+          <Typography id="nested-modal-description" textColor="text.tertiary">
             Welcome to the infinite nested modals.
           </Typography>
           <NestedModals random />

@@ -9,12 +9,9 @@ import { DividerOwnerState, DividerTypeMap } from './DividerProps';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState: DividerOwnerState) => {
+  const { orientation, inset } = ownerState;
   const slots = {
-    root: [
-      'root',
-      ownerState.orientation === 'vertical' && 'vertical',
-      ownerState.inset && `inset${capitalize(ownerState.inset)}`,
-    ],
+    root: ['root', orientation, inset && `inset${capitalize(inset)}`],
   };
 
   return composeClasses(slots, getDividerUtilityClass, {});
@@ -146,10 +143,6 @@ Divider.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

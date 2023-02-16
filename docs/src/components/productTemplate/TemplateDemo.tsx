@@ -67,34 +67,34 @@ export default function TemplateDemo() {
   const TEMPLATES = {
     [DEMOS[0]]: [
       {
-        name: 'Flexy - React Material Dashboard (CRA + Next.js)',
+        name: 'Devias Kit Pro - Client & Admin Dashboard',
         src: {
-          light: '/static/branding/store-templates/template-light4.jpeg',
-          dark: '/static/branding/store-templates/template-dark4.jpeg',
+          light: '/static/branding/store-templates/template-4light.jpg',
+          dark: '/static/branding/store-templates/template-4dark.jpg',
         },
-        href: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
+        href: 'https://mui.com/store/items/devias-kit-pro/',
       },
       {
         name: 'Minimal - Client & Admin Dashboard',
         src: {
-          light: '/static/branding/store-templates/template-light1.jpeg',
-          dark: '/static/branding/store-templates/template-dark1.jpeg',
+          light: '/static/branding/store-templates/template-1light.jpg',
+          dark: '/static/branding/store-templates/template-1dark.jpg',
         },
         href: 'https://mui.com/store/items/minimal-dashboard/',
       },
       {
         name: 'Berry - React Material Admin Dashboard Template',
         src: {
-          light: '/static/branding/store-templates/template-light5.jpeg',
-          dark: '/static/branding/store-templates/template-dark5.jpeg',
+          light: '/static/branding/store-templates/template-5light.jpg',
+          dark: '/static/branding/store-templates/template-5dark.jpg',
         },
         href: 'https://mui.com/store/items/berry-react-material-admin/',
       },
       {
         name: 'Mira Pro - React Material Admin Dashboard',
         src: {
-          light: '/static/branding/store-templates/template-light3.jpeg',
-          dark: '/static/branding/store-templates/template-dark3.jpeg',
+          light: '/static/branding/store-templates/template-3light.jpg',
+          dark: '/static/branding/store-templates/template-3dark.jpg',
         },
         href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
       },
@@ -103,16 +103,16 @@ export default function TemplateDemo() {
       {
         name: 'theFront - Multipurpose Template + UI Kit',
         src: {
-          light: '/static/branding/store-templates/template-light2.jpeg',
-          dark: '/static/branding/store-templates/template-dark2.jpeg',
+          light: '/static/branding/store-templates/template-2light.jpg',
+          dark: '/static/branding/store-templates/template-2dark.jpg',
         },
         href: 'https://mui.com/store/items/the-front-landing-page/',
       },
       {
         name: 'Webbee - Multipurpose landing page UI Kit',
         src: {
-          light: '/static/branding/store-templates/template-light6.jpeg',
-          dark: '/static/branding/store-templates/template-dark6.jpeg',
+          light: '/static/branding/store-templates/template-6light.jpg',
+          dark: '/static/branding/store-templates/template-6dark.jpg',
         },
         href: 'https://mui.com/store/items/webbee-landing-page/',
       },
@@ -121,8 +121,8 @@ export default function TemplateDemo() {
       {
         name: 'Bazar Pro - Multipurpose React Ecommerce Template',
         src: {
-          light: '/static/branding/store-templates/template-bazar-light.jpeg',
-          dark: '/static/branding/store-templates/template-bazar-dark.jpeg',
+          light: '/static/branding/store-templates/template-bazar-light.jpg',
+          dark: '/static/branding/store-templates/template-bazar-dark.jpg',
         },
         href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
       },
@@ -204,18 +204,16 @@ export default function TemplateDemo() {
                       sx={(theme) => ({
                         borderRadius: 1,
                         height: { xs: 200, sm: 240 },
-                        background: `url(${item.src.light})`,
+                        backgroundImage: `url(${item.src.light})`,
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
-                        bgcolor: 'grey.400',
+                        bgcolor: 'background.paper',
                         boxShadow: '0px 4px 10px rgba(61, 71, 82, 0.25)',
                         transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
                         transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
                         ...theme.applyDarkStyles({
+                          backgroundImage: `url(${item.src.dark})`,
                           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.6)',
-                          background: `url(${item.src.dark})`,
-                          backgroundSize: 'cover',
-                          backgroundRepeat: 'no-repeat',
                         }),
                       })}
                     >

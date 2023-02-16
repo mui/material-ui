@@ -11,11 +11,13 @@ import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
+  const { orientation, inset } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       // `insetContext` class is already produced by Divider
-      ownerState.inset && ownerState.inset !== 'context' && `inset${capitalize(ownerState.inset)}`,
+      inset && inset !== 'context' && `inset${capitalize(inset)}`,
     ],
   };
 
@@ -112,10 +114,6 @@ ListDivider.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

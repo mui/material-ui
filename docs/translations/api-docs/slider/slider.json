@@ -34,6 +34,16 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
     "marked": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -86,23 +96,6 @@
       "nodeName": "the thumb element",
       "conditions": "keyboard focused"
     },
-    "valueLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label element"
-    },
-    "valueLabelOpen": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb label element",
-      "conditions": "it's open"
-    },
-    "valueLabelCircle": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's circle element"
-    },
-    "valueLabelLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's label element"
-    },
     "mark": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the mark element"
@@ -120,16 +113,6 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the mark label element",
       "conditions": "active (depending on the value)"
-    },
-    "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorSecondary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"secondary\"</code>"
     },
     "sizeSmall": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -150,6 +133,23 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "valueLabel": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the thumb label element"
+    },
+    "valueLabelOpen": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb label element",
+      "conditions": "it's open"
+    },
+    "valueLabelCircle": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the thumb label's circle element"
+    },
+    "valueLabelLabel": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the thumb label's label element"
     }
   }
 }

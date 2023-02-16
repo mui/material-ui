@@ -144,7 +144,7 @@ export default function MenuToolbarExample() {
 
   return (
     <List
-      row
+      orientation="horizontal"
       aria-label="Example application menu bar"
       role="menubar"
       data-joy-color-scheme="dark"
