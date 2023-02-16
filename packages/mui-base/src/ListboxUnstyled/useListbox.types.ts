@@ -1,18 +1,17 @@
 import * as React from 'react';
 
-type UseListboxStrictPropsRequiredKeys =
+type UseListboxStrictParametersRequiredKeys =
   | 'isOptionDisabled'
   | 'disableListWrap'
   | 'disabledItemsFocusable'
   | 'optionComparer'
-  | 'optionStringifier'
-  | 'multiple';
+  | 'optionStringifier';
 
-export type UseListboxPropsWithDefaults<TOption> = Omit<
+export type UseListboxParametersWithDefaults<TOption> = Omit<
   UseListboxParameters<TOption>,
-  UseListboxStrictPropsRequiredKeys
+  UseListboxStrictParametersRequiredKeys
 > &
-  Required<Pick<UseListboxParameters<TOption>, UseListboxStrictPropsRequiredKeys>>;
+  Required<Pick<UseListboxParameters<TOption>, UseListboxStrictParametersRequiredKeys>>;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
 
@@ -61,7 +60,7 @@ interface KeyDownAction {
 interface SetValueAction<TOption> {
   type: ActionTypes.setValue;
   event: null;
-  value: TOption | TOption[] | null;
+  value: TOption[];
 }
 
 interface SetHighlightAction<TOption> {
@@ -94,11 +93,13 @@ export type ListboxAction<TOption> =
   | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
-export type ListboxReducerAction<T> = ListboxAction<T> & { props: UseListboxPropsWithDefaults<T> };
+export type ListboxReducerAction<T> = ListboxAction<T> & {
+  props: UseListboxParametersWithDefaults<T>;
+};
 
 export interface ListboxState<TOption> {
   highlightedValue: TOption | null;
-  selectedValue: TOption | TOption[] | null;
+  selectedValue: TOption[];
 }
 
 export type ListboxReducer<TOption> = (
@@ -106,7 +107,11 @@ export type ListboxReducer<TOption> = (
   action: ListboxReducerAction<TOption>,
 ) => ListboxState<TOption>;
 
-interface UseListboxCommonProps<TOption> {
+export interface UseListboxParameters<TOption> {
+  /**
+   * The default selected value. Use when the listbox is not controlled.
+   */
+  defaultValue?: TOption[];
   /**
    * If `true`, it will be possible to highlight disabled options.
    * @default false
@@ -131,6 +136,13 @@ interface UseListboxCommonProps<TOption> {
    * Ref of the listbox DOM element.
    */
   listboxRef?: React.Ref<any>;
+  /**
+   * Callback fired when the value changes.
+   */
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TOption[],
+  ) => void;
   /**
    * Callback fired when the highlighted option changes.
    */
@@ -161,57 +173,11 @@ interface UseListboxCommonProps<TOption> {
    * based on the previous one and the performed action.
    */
   stateReducer?: ListboxReducer<TOption>;
-}
-
-interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
-  /**
-   * The default selected value. Use when the listbox is not controlled.
-   */
-  defaultValue?: TOption | null;
-  /**
-   * If `true`, the listbox will allow to select multiple options.
-   * @default false
-   */
-  multiple?: false;
   /**
    * The selected value. Use when the listbox is controlled.
    */
-  value?: TOption | null;
-  /**
-   * Callback fired when the value changes.
-   */
-  onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TOption,
-  ) => void;
+  value?: TOption[];
 }
-
-interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
-  /**
-   * The default selected value. Use when the listbox is not controlled.
-   */
-  defaultValue?: TOption[];
-  /**
-   * If `true`, the listbox will allow to select multiple options.
-   * @default false
-   */
-  multiple: true;
-  /**
-   * The selected value. Use when the listbox is controlled.
-   */
-  value: TOption[];
-  /**
-   * Callback fired when the value changes.
-   */
-  onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TOption[],
-  ) => void;
-}
-
-export type UseListboxParameters<TOption> =
-  | UseSingleSelectListboxParameters<TOption>
-  | UseMultiSelectListboxParameters<TOption>;
 
 export interface OptionState {
   disabled: boolean;

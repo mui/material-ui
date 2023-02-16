@@ -8,12 +8,12 @@ describe('useListbox defaultReducer', () => {
     it("assigns the provided value to the state's selectedValue", () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
         type: ActionTypes.setValue,
-        value: 'foo',
+        value: ['foo'],
         event: null,
         props: {
           options: ['foo', 'bar'],
@@ -22,11 +22,10 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
-          multiple: false,
         },
       };
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.equal('foo');
+      expect(result.selectedValue).to.deep.equal(['foo']);
     });
   });
 
@@ -34,7 +33,7 @@ describe('useListbox defaultReducer', () => {
     it('resets the highlightedIndex', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -47,7 +46,6 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
-          multiple: false,
         },
       };
 
@@ -60,7 +58,7 @@ describe('useListbox defaultReducer', () => {
     it('sets the selectedValue to the clicked value', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -73,13 +71,12 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
-          multiple: false,
         },
         option: 'two',
       };
 
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.equal('two');
+      expect(result.selectedValue).to.deep.equal(['two']);
     });
 
     it('add the clicked value to the selection if selectMultiple is set', () => {
@@ -98,7 +95,6 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
-          multiple: true,
         },
         option: 'two',
       };
@@ -123,7 +119,6 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
-          multiple: true,
         },
         option: 'two',
       };
@@ -138,7 +133,7 @@ describe('useListbox defaultReducer', () => {
       it('highlights the first non-disabled option if the first is disabled', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: null,
+          selectedValue: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -153,7 +148,6 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: false,
           },
         };
 
@@ -166,7 +160,7 @@ describe('useListbox defaultReducer', () => {
       it('highlights the last non-disabled option if the last is disabled', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: null,
+          selectedValue: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -181,7 +175,6 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: false,
           },
         };
 
@@ -194,7 +187,7 @@ describe('useListbox defaultReducer', () => {
       it('wraps the highlight around omitting disabled items', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: null,
+          selectedValue: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -209,7 +202,6 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: false,
           },
         };
 
@@ -222,7 +214,7 @@ describe('useListbox defaultReducer', () => {
       it('wraps the highlight around omitting disabled items', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: null,
+          selectedValue: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -237,7 +229,6 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: false,
           },
         };
 
@@ -248,7 +239,7 @@ describe('useListbox defaultReducer', () => {
       it('does not highlight any option if all are disabled', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: null,
+          selectedValue: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -263,7 +254,6 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => true,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: false,
           },
         };
 
@@ -276,7 +266,7 @@ describe('useListbox defaultReducer', () => {
       it('selects the highlighted option', () => {
         const state: ListboxState<string> = {
           highlightedValue: 'two',
-          selectedValue: null,
+          selectedValue: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -291,12 +281,11 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: false,
           },
         };
 
         const result = defaultReducer(state, action);
-        expect(result.selectedValue).to.equal('two');
+        expect(result.selectedValue).to.deep.equal(['two']);
       });
 
       it('add the highlighted value to the selection if selectMultiple is set', () => {
@@ -317,7 +306,6 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
-            multiple: true,
           },
           option: 'two',
         };
@@ -332,7 +320,7 @@ describe('useListbox defaultReducer', () => {
     it('should navigate to next match', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'two',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -345,7 +333,6 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
-          multiple: false,
           optionStringifier: (option) => option,
         },
       };
@@ -357,7 +344,7 @@ describe('useListbox defaultReducer', () => {
     it('should not move highlight when no matched options', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -370,7 +357,6 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
-          multiple: false,
           optionStringifier: (option) => option,
         },
       };
@@ -382,7 +368,7 @@ describe('useListbox defaultReducer', () => {
     it('should highlight first match that is not disabled', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -395,7 +381,6 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
-          multiple: false,
           optionStringifier: (option) => option,
         },
       };
@@ -407,7 +392,7 @@ describe('useListbox defaultReducer', () => {
     it('should move highlight to disabled items if disabledItemsFocusable=true', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -420,7 +405,6 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: true,
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
-          multiple: false,
           optionStringifier: (option) => option,
         },
       };
@@ -432,7 +416,7 @@ describe('useListbox defaultReducer', () => {
     it('should not move highlight when disabled wrap and match is before highlighted option', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'three',
-        selectedValue: null,
+        selectedValue: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -445,7 +429,6 @@ describe('useListbox defaultReducer', () => {
           disabledItemsFocusable: false,
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
-          multiple: false,
           optionStringifier: (option) => option,
         },
       };

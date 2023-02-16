@@ -5,7 +5,7 @@ import {
   ListboxReducer,
   ListboxReducerAction,
   ListboxState,
-  UseListboxPropsWithDefaults,
+  UseListboxParametersWithDefaults,
 } from './useListbox.types';
 import areArraysEqual from '../utils/areArraysEqual';
 
@@ -15,7 +15,7 @@ import areArraysEqual from '../utils/areArraysEqual';
  */
 function getControlledState<TOption>(
   internalState: ListboxState<TOption>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ) {
   if (props.value !== undefined) {
     return { ...internalState, selectedValue: props.value };
@@ -51,7 +51,7 @@ function areOptionsEqual<TOption>(
 function useStateChangeDetection<TOption>(
   nextState: ListboxState<TOption>,
   internalPreviousState: ListboxState<TOption>,
-  propsRef: React.RefObject<UseListboxPropsWithDefaults<TOption>>,
+  propsRef: React.RefObject<UseListboxParametersWithDefaults<TOption>>,
   lastActionRef: React.MutableRefObject<ListboxAction<TOption> | null>,
 ) {
   React.useEffect(() => {
@@ -69,34 +69,19 @@ function useStateChangeDetection<TOption>(
     }
 
     const previousState = getControlledState(internalPreviousState, propsRef.current);
-    const { multiple, optionComparer } = propsRef.current;
+    const { optionComparer } = propsRef.current;
 
-    if (multiple) {
-      const previousSelectedValues = (previousState?.selectedValue ?? []) as TOption[];
-      const nextSelectedValues = nextState.selectedValue as TOption[];
-      const onChange = propsRef.current.onChange as
-        | ((
-            e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-            value: TOption[],
-          ) => void)
-        | undefined;
+    const previousSelectedValues = (previousState?.selectedValue ?? []) as TOption[];
+    const nextSelectedValues = nextState.selectedValue as TOption[];
+    const onChange = propsRef.current.onChange as
+      | ((
+          e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+          value: TOption[],
+        ) => void)
+      | undefined;
 
-      if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
-        onChange?.(lastActionRef.current.event, nextSelectedValues);
-      }
-    } else {
-      const previousSelectedValue = previousState?.selectedValue as TOption | null;
-      const nextSelectedValue = nextState.selectedValue as TOption | null;
-      const onChange = propsRef.current.onChange as
-        | ((
-            e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-            value: TOption | null,
-          ) => void)
-        | undefined;
-
-      if (!areOptionsEqual(nextSelectedValue, previousSelectedValue, optionComparer)) {
-        onChange?.(lastActionRef.current.event, nextSelectedValue);
-      }
+    if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
+      onChange?.(lastActionRef.current.event, nextSelectedValues);
     }
 
     // Fires the highlightChange event when reducer returns changed `highlightedValue`.
@@ -129,14 +114,13 @@ function useStateChangeDetection<TOption>(
 export default function useControllableReducer<TOption>(
   internalReducer: ListboxReducer<TOption>,
   externalReducer: ListboxReducer<TOption> | undefined,
-  props: React.RefObject<UseListboxPropsWithDefaults<TOption>>,
+  props: React.RefObject<UseListboxParametersWithDefaults<TOption>>,
 ): [ListboxState<TOption>, (action: ListboxAction<TOption>) => void] {
-  const { value, defaultValue, multiple } = props.current!;
+  const { value, defaultValue } = props.current!;
 
   const actionRef = React.useRef<ListboxAction<TOption> | null>(null);
 
-  const initialSelectedValue =
-    (value === undefined ? defaultValue : value) ?? (multiple ? [] : null);
+  const initialSelectedValue = (value === undefined ? defaultValue : value) ?? [];
 
   const initialState = {
     highlightedValue: null,

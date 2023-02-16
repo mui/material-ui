@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   ListboxState,
-  UseListboxPropsWithDefaults,
+  UseListboxParametersWithDefaults,
   ActionTypes,
   ListboxReducerAction,
 } from './useListbox.types';
@@ -108,9 +108,9 @@ function getNewHighlightedOption<TOption>(
 function handleOptionSelection<TOption>(
   option: TOption,
   state: ListboxState<TOption>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
-  const { multiple, optionComparer = (o, v) => o === v, isOptionDisabled = () => false } = props;
+  const { optionComparer = (o, v) => o === v, isOptionDisabled = () => false } = props;
   const { selectedValue } = state;
 
   const optionIndex = props.options.findIndex((o) => props.optionComparer(option, o));
@@ -119,25 +119,14 @@ function handleOptionSelection<TOption>(
     return state;
   }
 
-  if (multiple) {
-    const selectedValues = (selectedValue as TOption[]) ?? [];
-    // if the option is already selected, remove it from the selection, otherwise add it
-    const newSelectedValues = selectedValues.some((sv) => optionComparer(sv, option))
-      ? (selectedValue as TOption[]).filter((v) => !optionComparer(v, option))
-      : [...((selectedValue as TOption[]) ?? []), option];
-
-    return {
-      selectedValue: newSelectedValues,
-      highlightedValue: option,
-    };
-  }
-
-  if (selectedValue != null && optionComparer(option, selectedValue as TOption)) {
-    return state;
-  }
+  const selectedValues = (selectedValue as TOption[]) ?? [];
+  // if the option is already selected, remove it from the selection, otherwise add it
+  const newSelectedValues = selectedValues.some((sv) => optionComparer(sv, option))
+    ? (selectedValue as TOption[]).filter((v) => !optionComparer(v, option))
+    : [...((selectedValue as TOption[]) ?? []), option];
 
   return {
-    selectedValue: option,
+    selectedValue: newSelectedValues,
     highlightedValue: option,
   };
 }
@@ -145,7 +134,7 @@ function handleOptionSelection<TOption>(
 function handleKeyDown<TOption>(
   event: React.KeyboardEvent,
   state: Readonly<ListboxState<TOption>>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
     props;
@@ -246,7 +235,7 @@ const textCriteriaMatches = <TOption>(
 function handleTextNavigation<TOption>(
   state: ListboxState<TOption>,
   searchString: string,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const {
     options,
@@ -305,34 +294,24 @@ function handleOptionsChange<TOption>(
   options: TOption[],
   previousOptions: TOption[],
   state: ListboxState<TOption>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
-  const { multiple, optionComparer } = props;
+  const { optionComparer } = props;
 
   const newHighlightedOption =
     state.highlightedValue == null
       ? null
       : options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
 
-  if (multiple) {
-    // exclude selected values that are no longer in the options
-    const selectedValues = (state.selectedValue as TOption[]) ?? [];
-    const newSelectedValues = selectedValues.filter((selectedValue) =>
-      options.some((option) => optionComparer(option, selectedValue)),
-    );
-
-    return {
-      highlightedValue: newHighlightedOption,
-      selectedValue: newSelectedValues,
-    };
-  }
-
-  const newSelectedValue =
-    options.find((option) => optionComparer(option, state.selectedValue as TOption)) ?? null;
+  // exclude selected values that are no longer in the options
+  const selectedValues = (state.selectedValue as TOption[]) ?? [];
+  const newSelectedValues = selectedValues.filter((selectedValue) =>
+    options.some((option) => optionComparer(option, selectedValue)),
+  );
 
   return {
     highlightedValue: newHighlightedOption,
-    selectedValue: newSelectedValue,
+    selectedValue: newSelectedValues,
   };
 }
 
