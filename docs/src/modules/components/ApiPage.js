@@ -66,33 +66,30 @@ function SlotsTable(props) {
       <thead>
         <tr>
           <th align="left">{t('api-docs.name')}</th>
-          <th align="left">{t('api-docs.type')}</th>
+          <th align="left">{t('api-docs.globalClass')}</th>
           <th align="left">{t('api-docs.default')}</th>
           <th align="left">{t('api-docs.description')}</th>
         </tr>
       </thead>
       <tbody>
-        {componentSlots.map(({ name, typeStr, default: defaultValue }) => {
-          const simplifiedTypeStr = typeStr.includes('<')
-            ? typeStr.slice(0, typeStr.indexOf('<'))
-            : typeStr;
+        {componentSlots.map(({ class: className, name, default: defaultValue }) => {
           return (
             <tr key={name}>
               <td align="left" width="15%">
                 <span className="slot-name">{name}</span>
               </td>
-              <td align="left" width="15%">
+              <td align="left" width="25%">
                 <span
-                  className="slot-type"
-                  dangerouslySetInnerHTML={{ __html: simplifiedTypeStr }}
+                  className="slot-globalClass"
+                  dangerouslySetInnerHTML={{ __html: className || 'ADASDASDASDASDASD' }}
                 />
               </td>
-              <td align="left" width="20%">
+              <td align="left" width="25%">
                 {defaultValue && <span className="slot-default">{defaultValue}</span>}
               </td>
               <td
                 align="left"
-                width="50%"
+                width="35%"
                 dangerouslySetInnerHTML={{
                   __html: slotDescriptions[name] || '',
                 }}
@@ -106,7 +103,7 @@ function SlotsTable(props) {
 }
 
 SlotsTable.propTypes = {
-  componentSlots: PropTypes.object.isRequired,
+  componentSlots: PropTypes.array.isRequired,
   slotDescriptions: PropTypes.object.isRequired,
 };
 
