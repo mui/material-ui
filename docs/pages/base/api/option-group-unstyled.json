@@ -25,19 +25,19 @@
       "name": "label",
       "description": "The component used to render the label.",
       "default": "'span'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiOptionGroup-label"
     },
     {
       "name": "list",
       "description": "The component used to render the list.",
       "default": "'ul'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiOptionGroup-list"
     },
     {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'li'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiOptionGroup-root"
     }
   ],
   "spread": true,

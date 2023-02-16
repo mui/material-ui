@@ -29,25 +29,25 @@
       "name": "input",
       "description": "The component used to render the input.",
       "default": "'input'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiSwitch-input"
     },
     {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'span'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiSwitch-root"
     },
     {
       "name": "thumb",
       "description": "The component used to render the thumb.",
       "default": "'span'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiSwitch-thumb"
     },
     {
       "name": "track",
       "description": "The component used to render the track.",
       "default": "'span'",
-      "typeStr": "React.ElementType | null"
+      "class": ".MuiSwitch-track"
     }
   ],
   "spread": true,

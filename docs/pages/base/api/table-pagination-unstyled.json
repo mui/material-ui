@@ -74,49 +74,49 @@
       "name": "actions",
       "description": "The component used to render the actions.",
       "default": "TablePaginationActionsUnstyled",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-actions"
     },
     {
       "name": "displayedRows",
       "description": "The component used to render the displayed rows.",
       "default": "'p'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-displayedRows"
     },
     {
       "name": "menuItem",
       "description": "The component used to render the menu item.",
       "default": "'option'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-menuItem"
     },
     {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'td'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-root"
     },
     {
       "name": "select",
       "description": "The component used to render the select.",
       "default": "'select'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-select"
     },
     {
       "name": "selectLabel",
       "description": "The component used to render the select label.",
       "default": "'p'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-selectLabel"
     },
     {
       "name": "spacer",
       "description": "The component used to render the spacer.",
       "default": "'div'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-spacer"
     },
     {
       "name": "toolbar",
       "description": "The component used to render the toolbar.",
       "default": "'div'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTablePagination-toolbar"
     }
   ],
   "spread": true,

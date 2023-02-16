@@ -25,13 +25,13 @@
       "name": "badge",
       "description": "The component used to render the badge.",
       "default": "'span'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiBadge-badge"
     },
     {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'span'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiBadge-root"
     }
   ],
   "spread": true,

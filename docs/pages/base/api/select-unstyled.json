@@ -36,19 +36,19 @@
       "name": "listbox",
       "description": "The component used to render the listbox.",
       "default": "'ul'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiSelect-listbox"
     },
     {
       "name": "popper",
       "description": "The component used to render the popper.",
       "default": "PopperUnstyled",
-      "typeStr": "React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>"
+      "class": ".MuiSelect-popper"
     },
     {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'button'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiSelect-root"
     }
   ],
   "spread": true,

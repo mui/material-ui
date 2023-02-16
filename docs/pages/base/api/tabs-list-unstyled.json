@@ -18,7 +18,7 @@
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'div'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiTabsList-root"
     }
   ],
   "spread": true,

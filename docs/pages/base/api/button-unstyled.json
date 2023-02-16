@@ -25,7 +25,7 @@
       "name": "root",
       "description": "The component used to render the root.",
       "default": "props.href || props.to ? 'a' : 'button'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiButton-root"
     }
   ],
   "spread": true,

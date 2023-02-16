@@ -30,13 +30,13 @@
       "name": "listbox",
       "description": "The component used to render the listbox.",
       "default": "'ul'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiMenu-listbox"
     },
     {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "PopperUnstyled",
-      "typeStr": "React.ElementType"
+      "class": ".MuiMenu-root"
     }
   ],
   "spread": false,

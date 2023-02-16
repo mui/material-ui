@@ -26,7 +26,7 @@
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'div'",
-      "typeStr": "React.ElementType"
+      "class": ".MuiSnackbar-root"
     }
   ],
   "spread": true,
