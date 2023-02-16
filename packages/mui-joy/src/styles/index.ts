@@ -61,12 +61,8 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
 } from './types/theme';
-export {
-  CssVarsProvider,
-  useColorScheme,
-  getInitColorSchemeScript,
-  shouldSkipGeneratingVar,
-} from './CssVarsProvider';
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript } from './CssVarsProvider';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
