@@ -28,7 +28,7 @@ export interface TabUnstyledOwnProps
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: TabUnstyledSlots
+  slots?: TabUnstyledSlots;
 }
 
 export interface TabUnstyledSlots {
