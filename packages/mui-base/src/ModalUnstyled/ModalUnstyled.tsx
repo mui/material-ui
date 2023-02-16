@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
     backdrop: ['backdrop'],
   };
 
-  return composeClasses(slots, getModalUtilityClass, {});
+  return composeClasses(slots, getModalUtilityClass);
 };
 
 function getContainer(container: ModalUnstyledOwnProps['container']) {

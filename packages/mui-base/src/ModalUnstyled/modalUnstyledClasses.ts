@@ -2,11 +2,11 @@ import generateUtilityClasses from '../generateUtilityClasses';
 import generateUtilityClass from '../generateUtilityClass';
 
 export interface ModalUnstyledClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if the `Modal` has exited. */
+  /** Class name applied to the root element if the `Modal` has exited. */
   hidden: string;
-  /** Styles applied to the backdrop element. */
+  /** Class name applied to the backdrop element. */
   backdrop: string;
 }
 
