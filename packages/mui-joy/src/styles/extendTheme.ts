@@ -614,12 +614,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
-  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
-  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
-    prefix: cssVarPrefix,
-    shouldSkipGeneratingVar,
-  });
-  theme.vars = rootVars as unknown as Theme['vars'];
   const colorSchemesCss: Record<string, any> = {};
   Object.keys(colorSchemes).forEach((key) => {
     const { css, vars } = cssVarsParser(theme, {
@@ -635,6 +629,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     }
     return colorSchemesCss[colorScheme];
   };
+
+  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
+  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  });
+  theme.vars = rootVars as unknown as Theme['vars'];
 
   /**
    * Color channels generation
@@ -678,6 +679,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     });
   };
   theme.getColorSchemeSelector = () => '&';
+
+  // @ts-ignore - this needs to be fixed
+  theme.palette = theme.colorSchemes.light.palette;
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
   theme.colorInversion =
