@@ -1,20 +1,22 @@
 import * as ts from 'typescript';
-import { getSymbolDescription, getSymbolJSDocTags, stringifySymbol } from '../buildApiUtils';
+import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 
 export interface Slot {
+  class: string;
   name: string;
   description: string;
-  typeStr: string;
   default?: string;
 }
 
 export default function parseSlots({
   project,
   componentName,
+  muiName,
 }: {
   project: TypeScriptProject;
   componentName: string;
+  muiName: string;
 }): Slot[] {
   // Generate the params
   let result: Slot[] = [];
@@ -41,7 +43,7 @@ export default function parseSlots({
         name: propertySymbol.name,
         description: getSymbolDescription(propertySymbol, project),
         default: tags.default?.text?.[0].text,
-        typeStr: stringifySymbol(propertySymbol, project),
+        class: `.${muiName}-${propertySymbol.name}`,
       };
     });
 
