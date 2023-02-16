@@ -54,9 +54,6 @@ export const SheetRoot = styled('div', {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
         '--internal-action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       }),
-      // TODO: discuss the theme transition.
-      // This value is copied from mui-material Sheet.
-      transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
