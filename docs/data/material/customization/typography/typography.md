@@ -265,20 +265,7 @@ const theme = createTheme({
     MuiTypography: {
       defaultProps: {
         variantMapping: {
-          // we have to provide the default variantMapping first because currently
-          // custom entries will replace this whole object instead of merging
-          h1: 'h1',
-          h2: 'h2',
-          h3: 'h3',
-          h4: 'h4',
-          h5: 'h5',
-          h6: 'h6',
-          subtitle1: 'h6',
-          subtitle2: 'h6',
-          body1: 'p',
-          body2: 'p',
-          inherit: 'p',
-          // map our new variant to render a <h1> by default
+          // Map the new variant to render a <h1> by default
           poster: 'h1',
         },
       },
