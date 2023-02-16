@@ -8,6 +8,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
+  unstable_cssVarsParser as cssVarsParser,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
@@ -45,8 +46,12 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
+export const defaultShouldSkipGeneratingVar = (keys) =>
+  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
+
 export default function extendTheme(options = {}, ...args) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar, ...input } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
@@ -392,13 +397,35 @@ export default function extendTheme(options = {}, ...args) {
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
+  const colorSchemesCss = {};
+
+  Object.keys(theme.colorSchemes).forEach((key) => {
+    const { css, vars } = cssVarsParser(theme, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
+    theme.vars = deepmerge(theme.vars, vars);
+    colorSchemesCss[key] = css;
+  });
+
+  // Used in the CssVarsProvider for injecting the CSS variables
+  theme.generateCssVars = (colorScheme) => {
+    if (!colorScheme) {
+      return rootCss;
+    }
+    return colorSchemesCss[colorScheme];
+  };
+
+  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
+  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  });
+
   theme.vars = {
-    shadows: theme.shadows,
-    zIndex: theme.zIndex,
-    opacity: theme.opacity,
-    overlays: theme.overlays,
-    shape: theme.shape,
-    palette: theme.palette,
+    ...rootVars,
+    // This includes palette, opacity etc.
+    ...theme.vars.colorSchemes.light
   };
 
   theme.unstable_sxConfig = {
