@@ -1,5 +1,53 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.4
+
+<!-- generated comparing v5.11.3..master -->
+
+_Jan 9, 2023_
+
+A big thanks to the 14 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.4`
+
+- [Autocomplete] Add index to renderOption's AutocompleteRenderOptionState (#35578) @CowDotDev
+- [Autocomplete] Fix grammar in console.error in `useAutocomplete` (#35723) @hamirmahal
+- [Modal] Fix can't override Backdrop Props using new Slots API (#35140) @ZeeshanTamboli
+- [Select] Revert "Update `renderValue` prop's TypeScript type (#34177)" (#35733) @michaldudak
+- [Tabs] Throw error only if individual `Tab` is hidden, not the whole `Tabs` (#34026) @Ryczko
+- [TextField] Improve WCAG 2.4.7 with error={true} (#35687) @oliviertassinari
+- [Tooltip] Remove `data-foo` attribute (#35736) @koolskateguy89
+
+### `@mui/joy@5.0.0-alpha.62`
+
+- [Autocomplete][joy] Specify `type` attribute for popup indicator (#35648) @hbjORbj
+- [Joy] Miscellaneous improvements (#35769) @siriwatknp
+- [Joy] Improve `onKeyDown` event handler for demo (#35642) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.113`
+
+- [Portal][base] Convert code to TypeScript (#35657) @sai6855
+
+### Docs
+
+- [docs] Revise and expand Joy UI Button doc (#35737) @samuelsycamore
+- [docs] Document the workaround for crashing a translated page (#35720) @michaldudak
+- [docs] Fix API page for `MenuItem` to list all valid props (#35561) @mnajdova
+- [docs] Fix ad exception in Joy UI (#35685) @oliviertassinari
+- [docs] Fix content wider than screen regression @oliviertassinari
+- [examples] Add `Vite.js with TypeScript` example (#35683) @miha53cevic
+
+### Core
+
+- [core] Close 2022 developer survey @oliviertassinari
+- [core] Fix the product license reference name (#35703) @oliviertassinari
+- [core] Use TypeScript AST instead of TTP for component doc building (#35379) @flaviendelangle
+- [test] Always use & for nesting styles (#35702) @oliviertassinari
+- [website] Improve Lead Designer role description (#35684) @oliviertassinari
+
+All contributors of this release in alphabetical order: @CowDotDev, @flaviendelangle, @hamirmahal, @hbjORbj, @koolskateguy89, @michaldudak, @miha53cevic, @mnajdova, @oliviertassinari, @Ryczko, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.11.3
 
 <!-- generated comparing v5.11.2..master -->

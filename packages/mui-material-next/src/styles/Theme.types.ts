@@ -246,7 +246,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   };
   palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'];
     ref: {
       palette: MD3Palettes;
       typeface: any;

@@ -102,36 +102,42 @@ const RadioRadio = styled('span', {
   name: 'JoyRadio',
   slot: 'Radio',
   overridesResolver: (props, styles) => styles.radio,
-})<{ ownerState: RadioOwnerState }>(({ ownerState, theme }) => [
-  {
-    margin: 0,
-    boxSizing: 'border-box',
-    width: 'var(--Radio-size)',
-    height: 'var(--Radio-size)',
-    borderRadius: 'var(--Radio-size)',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexShrink: 0,
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    ...(ownerState.disableIcon && {
-      display: 'contents',
-    }),
-  },
-  ...(!ownerState.disableIcon
-    ? [
-        theme.variants[ownerState.variant!]?.[ownerState.color!],
-        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
-        {
-          [`&.${radioClasses.disabled}`]:
-            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-        },
-      ]
-    : []),
-]);
+})<{ ownerState: RadioOwnerState }>(({ ownerState, theme }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  return [
+    {
+      margin: 0,
+      boxSizing: 'border-box',
+      width: 'var(--Radio-size)',
+      height: 'var(--Radio-size)',
+      borderRadius: 'var(--Radio-size)',
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexShrink: 0,
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      ...(ownerState.disableIcon && {
+        display: 'contents',
+      }),
+    },
+    ...(!ownerState.disableIcon
+      ? [
+          {
+            ...variantStyle,
+            backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+          },
+          { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+          { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+          {
+            [`&.${radioClasses.disabled}`]:
+              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          },
+        ]
+      : []),
+  ];
+});
 
 const RadioAction = styled('span', {
   name: 'JoyRadio',
@@ -144,10 +150,10 @@ const RadioAction = styled('span', {
       // Automatic radius adjustment when composing with ListItem or Sheet
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
+    left: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:

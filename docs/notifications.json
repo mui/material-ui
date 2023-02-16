@@ -10,13 +10,8 @@
     "text": "Migrate to the latest version for improved DX, customizability, and API consistency. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"date-pickers-stable-v5\" href=\"/blog/date-pickers-stable-v5/\">blog post</a> for details."
   },
   {
-    "id": 71,
+    "id": 72,
     "title": "<b>A major update is coming for MUI X—and you can get involved</b>",
     "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6-alpha-zero\" href=\"/blog/mui-x-v6-alpha-zero/\">blog post</a> for details, and let us know what you want to see in MUI X v6."
-  },
-  {
-    "id": 72,
-    "title": "<b>The MUI Developer survey is live!</b>",
-    "text": "Please take a few minutes to complete <a style=\"color: inherit;\" data-ga-event-category=\"Survey\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-developer-survey-2022\" href=\"https://www.surveymonkey.com/r/mui-developer-survey-2022?source=notification_docs\">the survey</a> and help us shape the roadmap for 2023."
   }
 ]

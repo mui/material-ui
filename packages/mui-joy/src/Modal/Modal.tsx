@@ -253,7 +253,6 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
 
   return (
     <CloseModalContext.Provider value={onClose}>
-      {/* @ts-expect-error TODO: include ref to MUI Base Portal props */}
       <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
         {/*
          * Marking an element with the role presentation indicates to assistive technology

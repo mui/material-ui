@@ -46,7 +46,7 @@ export default function ExampleButtonCheckbox() {
             label={item}
             checked={value.includes(item)}
             color="neutral"
-            variant="plain"
+            variant={value.includes(item) ? 'outlined' : 'plain'}
             onChange={(event) => {
               if (event.target.checked) {
                 setValue((val) => [...val, item]);
@@ -57,11 +57,8 @@ export default function ExampleButtonCheckbox() {
             slotProps={{
               action: ({ checked }) => ({
                 sx: {
-                  bgcolor: checked ? 'background.surface' : 'transparent',
+                  bgcolor: checked ? 'background.level1' : 'transparent',
                   boxShadow: checked ? 'sm' : 'none',
-                  '&:hover': {
-                    bgcolor: checked ? 'background.surface' : 'transparent',
-                  },
                 },
               }),
             }}

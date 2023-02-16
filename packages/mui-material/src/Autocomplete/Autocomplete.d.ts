@@ -52,6 +52,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
+  index: number;
   selected: boolean;
 }
 

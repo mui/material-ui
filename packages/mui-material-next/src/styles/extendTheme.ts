@@ -436,6 +436,17 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
+  theme.vars = {
+    shadows: theme.shadows,
+    zIndex: theme.zIndex,
+    opacity: theme.opacity,
+    overlays: theme.overlays,
+    shape: theme.shape,
+    palette: theme.palette,
+    ref: theme.ref,
+    sys: theme.sys,
+  };
+
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,

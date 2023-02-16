@@ -11,7 +11,11 @@
     }
   },
   "name": "MenuList",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": ["root", "padding", "dense", "subheader"],
+    "globalClasses": {},
+    "name": "MuiMenuList"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-material/src/MenuList/MenuList.js",

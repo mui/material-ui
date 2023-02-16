@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
-import Portal from './Portal';
+import Portal, { PortalProps } from '@mui/base/Portal';
 
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();
@@ -79,14 +79,14 @@ describe('<Portal />', () => {
         </Portal>
       </div>,
     );
-    const rootElement = document.querySelector('#test1');
+    const rootElement = document.querySelector<HTMLDivElement>('#test1')!;
     expect(rootElement.contains(document.querySelector('.woofPortal1'))).to.equal(true);
     expect(rootElement.contains(document.querySelector('.woofPortal2'))).to.equal(false);
   });
 
   it('should unmount when parent unmounts', () => {
     function Child() {
-      const containerRef = React.useRef();
+      const containerRef = React.useRef<HTMLDivElement>(null);
       return (
         <div>
           <div ref={containerRef} />
@@ -97,7 +97,7 @@ describe('<Portal />', () => {
       );
     }
 
-    function Parent(props) {
+    function Parent(props: { show?: boolean }) {
       const { show = true } = props;
       return <div>{show ? <Child /> : null}</div>;
     }
@@ -129,9 +129,13 @@ describe('<Portal />', () => {
   });
 
   it('should change container on prop change', () => {
-    function ContainerTest(props) {
+    type ContainerProps = {
+      disablePortal?: boolean;
+      containerElement?: boolean;
+    };
+    function ContainerTest(props: ContainerProps) {
       const { containerElement = false, disablePortal = true } = props;
-      const containerRef = React.useRef();
+      const containerRef = React.useRef<HTMLElement>(null);
       const container = React.useCallback(
         () => (containerElement ? containerRef.current : null),
         [containerElement],
@@ -148,27 +152,28 @@ describe('<Portal />', () => {
     }
 
     const { setProps } = render(<ContainerTest />);
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
       disablePortal: true,
     });
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('SPAN');
     setProps({
       containerElement: true,
       disablePortal: false,
     });
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('STRONG');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('STRONG');
     setProps({
       containerElement: false,
       disablePortal: false,
     });
-    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
+    expect(document.querySelector('#test3')?.parentElement?.nodeName).to.equal('BODY');
   });
 
   it('should call ref after child effect', () => {
-    const callOrder = [];
-    const handleRef = (node) => {
+    const callOrder: Array<string> = [];
+    const handleRef = (node: Element | null) => {
       if (node) {
         callOrder.push('ref');
       }
@@ -177,9 +182,9 @@ describe('<Portal />', () => {
       callOrder.push('effect');
     };
 
-    function Test(props) {
+    function Test(props: PortalProps) {
       const { container } = props;
-      const containerRef = React.useRef();
+      const containerRef = React.useRef<PortalProps['container']>(null);
 
       React.useEffect(() => {
         if (containerRef.current !== container) {
