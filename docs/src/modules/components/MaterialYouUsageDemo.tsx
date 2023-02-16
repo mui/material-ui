@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, useTheme as md2UseTheme } from '@mui/material/styles';
+import { useTheme as md2UseTheme } from '@mui/material/styles';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
@@ -11,7 +11,6 @@ import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { grey } from 'docs/src/modules/brandingTheme';
 import {
   extendTheme,
   CssVarsProvider as MaterialYouCssVarsProvider,
@@ -239,19 +238,16 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
         </BrandingProvider>
       </Box>
       <Box
-        sx={(theme) => ({
+        sx={{
           flexShrink: 0,
           gap: 2,
           p: 3,
           mt: 1,
           borderLeft: '1px solid',
-          borderColor: 'grey.100',
+          borderColor: 'divider',
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
-          ...theme.applyDarkStyles({
-            borderColor: alpha(grey[700], 0.3),
-          }),
-        })}
+        }}
       >
         <Box
           sx={{
