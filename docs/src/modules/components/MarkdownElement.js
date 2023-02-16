@@ -440,8 +440,8 @@ const Root = styled('div')(
       },
     },
   }),
-  {
-    ':where(.mode-dark, [data-mui-color-scheme="dark"]) &': {
+  ({ theme }) => ({
+    [`:where(.mode-dark${theme.vars ? ', [data-mui-color-scheme="dark"]' : ''}) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
@@ -569,7 +569,7 @@ const Root = styled('div')(
         boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
-  },
+  }),
 );
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
