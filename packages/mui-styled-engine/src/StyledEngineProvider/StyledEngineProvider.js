@@ -12,7 +12,7 @@ if (typeof document === 'object') {
 
 export default function StyledEngineProvider(props) {
   const { injectFirst, children } = props;
-  return injectFirst ? <CacheProvider value={cache}>{children}</CacheProvider> : children;
+  return injectFirst && cache ? <CacheProvider value={cache}>{children}</CacheProvider> : children;
 }
 
 StyledEngineProvider.propTypes = {

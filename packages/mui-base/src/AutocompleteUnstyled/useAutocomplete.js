@@ -465,13 +465,20 @@ export default function useAutocomplete(props) {
   );
 
   const checkHighlightedOptionExists = () => {
+    const isSameValue = (value1, value2) => {
+      const label1 = value1 ? getOptionLabel(value1) : '';
+      const label2 = value2 ? getOptionLabel(value2) : '';
+      return label1 === label2;
+    };
+
     if (
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
       (multiple
-        ? previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
-        : getOptionLabel(previousProps.value ?? '') === getOptionLabel(value ?? ''))
+        ? value.length === previousProps.value.length &&
+          previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
+        : isSameValue(previousProps.value, value))
     ) {
       const previousHighlightedOption = previousProps.filteredOptions[highlightedIndexRef.current];
 
@@ -1095,6 +1102,7 @@ export default function useAutocomplete(props) {
       autoCapitalize: 'none',
       spellCheck: 'false',
       role: 'combobox',
+      disabled: disabledProp,
     }),
     getClearProps: () => ({
       tabIndex: -1,

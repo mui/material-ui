@@ -1,5 +1,78 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.9
+
+<!-- generated comparing v5.11.8..master -->
+
+_Feb 14, 2023_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 @rangoo94, @sai6855, and @michaldudak fixed a couple of bugs in the Autocomplete component (#36116, #35640, #36076, #36088)
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.11.9`
+
+- [AppBar] Fix joinVars() not handling undefined (#36128) @donaldnevermore
+- [Autocomplete] Fix tag removal regression (#36116) @michaldudak
+- [Autocomplete] Correct padding of filled Autocomplete (#35640) @michaldudak
+- [Grid][Stack] classNames prefixed with Mui (#36167) @sai6855
+
+### `@mui/styled-engine@5.11.9`
+
+- [StyledEngineProvider] Fix issue with cache not being defined (#36162) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.67`
+
+- [Joy] Add order dashboard template (#36081) @siriwatknp
+- [Joy] Remove classes prop from the components that have it (#36159) @hbjORbj
+- [Joy] Miscellaneous fixes (#36163) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.118`
+
+- [base] Override the types of `slotProps` per slot (#35964) @hbjORbj
+- [Select][base] Prevent unnecessary rerendering of Select options (#35946) @michaldudak
+- [Select][base] Update the generated docs (#36183) @michaldudak
+- [useAutocomplete] Pass only valid values for the getOptionLabel prop (#36088) @rangoo94
+- [useAutocomplete] Fix `useAutocomplete` disabled prop not disabling the input (#36076) @sai6855
+- [useInput] Add return value interface (#36036) @Shorifpatwary
+- [UseTabPanel] Add explicit return type (#36053) @Shorifpatwary
+- [useTabsList] Add explicit return type (#36048) @sai6855
+- [Tab] Add explicit return type to useTab (#36046) @sai6855
+
+### `@mui/material-next@6.0.0-alpha.75`
+
+- [Material You] Use `md` as a CSS var prefix (#36177) @siriwatknp
+
+### Docs
+
+- [docs] Fix the prop type regression on the API pages (#36168) @mnajdova
+- [docs] Fix virtualized table column resizing (#36066) @petyosi
+- [docs] Fix react-spring demos (#36023) @oliviertassinari
+- [docs] Fix classname mismatch on Joy docs (#36127) @siriwatknp
+- [docs] Fix typo in the released version of @mui/styled-engine (#36121) @m4theushw
+- [docs] Fix demos showing TypeScript instead of JavaScript (#35850) @mj12albert
+- [docs] Update release instructions (#36113) @mj12albert
+- [docs] Rename `v6-alpha` to `v6-next` in navigation (#36102) @LukasTy
+- [docs] Revise Joy UI "Input" page (#35970) @LadyBluenotes
+- [docs] Revise Joy UI "Typography" page (#35868) @LadyBluenotes
+
+### Examples
+
+- [examples][vitejs] Load Roboto font (#35678) @oliv37
+
+### Core
+
+- [blog] Fix the look and feel of the media description (#36069) @oliviertassinari
+- [core] Add default preview url (#36118) @siriwatknp
+- [core] Migrate all the internals exported by `tests/utils/index.js` to TypeScript (#35382) @flaviendelangle
+- [core] Convert the waterfall module to an internal package (#35323) @michaldudak
+- [website] Fix homepage MD theme demo (#36027) @oliviertassinari
+- [website] Revise the Lead Designer role job ad (#35912) @danilo-leal
+- [POC] Add deploy preview to PR body (#35995) @siriwatknp
+
+All contributors of this release in alphabetical order: @danilo-leal, @donaldnevermore, @flaviendelangle, @hbjORbj, @LadyBluenotes, @LukasTy, @m4theushw, @michaldudak, @mj12albert, @mnajdova, @oliv37, @oliviertassinari, @petyosi, @rangoo94, @sai6855, @Shorifpatwary, @siriwatknp
+
 ## 5.11.8
 
 <!-- generated comparing v5.11.7..master -->
@@ -25,7 +98,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 05 -->[System] Fix nested grid v2 (#35994) @siriwatknp
 
-### `@mui/styled-engine@5.11.1`
+### `@mui/styled-engine@5.11.8`
 
 - &#8203;<!-- 06 -->[styled-engine] Create cache only if `document` is available (#36001) @m4theushw
 
@@ -3441,7 +3514,7 @@ _Feb 1, 2022_
 
 A big thanks to the 22 contributors who made this release possible. Here are some highlights ✨:
 
-- 🛠 @goncalovf added an example project using [MUI with Vite.js](https://github.com/mui/material-ui/tree/master/examples/vitejs) (#28241)
+- 🛠 @goncalovf added an example project using [Material UI with Vite.js](https://github.com/mui/material-ui/tree/master/examples/material-vite) (#28241)
 - Number of 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.4.0`

@@ -11,8 +11,8 @@ import {
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
-import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { PaletteOptions, ColorPaletteProp, Palette, ColorSystem } from './types/colorSystem';
+import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
+import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystemOptions, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
@@ -608,14 +608,20 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   /**
    * Color channels generation
    */
-  function attachColorChannels(palette: Pick<Palette, ColorPaletteProp>) {
+  function attachColorChannels(
+    supportedColorScheme: SupportedColorScheme,
+    palette: Pick<Palette, ColorPaletteProp>,
+  ) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
-        // Need type casting due to module augmentation inside the repo
         main: '500',
         light: '200',
         dark: '800',
       } as const;
+      if (supportedColorScheme === 'dark') {
+        // @ts-ignore internal
+        channelMapping.main = 400;
+      }
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);
       }
@@ -630,10 +636,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   (
     Object.entries(theme.colorSchemes) as Array<
-      [string, { palette: Pick<Palette, ColorPaletteProp> }]
+      [SupportedColorScheme, { palette: Pick<Palette, ColorPaletteProp> }]
     >
-  ).forEach(([, colorSystem]) => {
-    attachColorChannels(colorSystem.palette);
+  ).forEach(([supportedColorScheme, colorSystem]) => {
+    attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
 
   theme.unstable_sxConfig = {
