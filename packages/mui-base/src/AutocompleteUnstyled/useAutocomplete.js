@@ -376,7 +376,11 @@ export default function useAutocomplete(props) {
     //
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
+    if (
+      listboxNode.scrollHeight > listboxNode.clientHeight &&
+      reason !== 'mouse' &&
+      reason !== 'touch'
+    ) {
       const element = option;
 
       const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
@@ -973,7 +977,12 @@ export default function useAutocomplete(props) {
     });
   };
 
-  const handleOptionTouchStart = () => {
+  const handleOptionTouchStart = (event) => {
+    setHighlightedIndex({
+      event,
+      index: Number(event.currentTarget.getAttribute('data-option-index')),
+      reason: 'touch',
+    });
     isTouch.current = true;
   };
 
