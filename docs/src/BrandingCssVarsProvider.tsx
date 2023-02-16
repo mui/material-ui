@@ -11,6 +11,7 @@ import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -61,19 +62,21 @@ const theme = extendTheme({
   ...getThemedComponents(),
 });
 
-const denseTheme = { ...theme, spacing: createSpacing() };
-
 export default function BrandingCssVarsProvider(props: {
   children: React.ReactNode;
   dense?: boolean;
 }) {
   const { children, dense } = props;
+  const { direction } = React.useContext(ThemeOptionsContext);
+  const newTheme = React.useMemo(() => {
+    let value = { ...theme, direction };
+    if (dense) {
+      value = { ...value, spacing: createSpacing() };
+    }
+    return value;
+  }, [direction, dense]);
   return (
-    <CssVarsProvider
-      theme={dense ? denseTheme : theme}
-      defaultMode="system"
-      disableTransitionOnChange
-    >
+    <CssVarsProvider theme={newTheme} defaultMode="system" disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />

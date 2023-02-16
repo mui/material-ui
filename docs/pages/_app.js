@@ -12,13 +12,14 @@ import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
-import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
+import { ThemeOptionsProvider, ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { LicenseInfo } from '@mui/x-data-grid-pro';
 
 // Remove the license warning from demonstration purposes
@@ -127,9 +128,11 @@ Tip: you can access the documentation \`theme\` object directly in the console.
   );
 }
 function AppWrapper(props) {
-  const { children, emotionCache, pageProps } = props;
+  const { children, pageProps } = props;
 
   const { asPathWithoutLang, product, ...router } = useRouterExtra();
+
+  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   React.useEffect(() => {
     loadDependencies();
@@ -178,10 +181,8 @@ function AppWrapper(props) {
         <CodeCopyProvider>
           <CodeVariantProvider>
             <PageContext.Provider value={pageContextValue}>
-              <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                {children}
-                <GoogleAnalytics />
-              </DocsStyledEngineProvider>
+              <ThemeOptionsProvider>{children}</ThemeOptionsProvider>
+              <GoogleAnalytics />
             </PageContext.Provider>
           </CodeVariantProvider>
         </CodeCopyProvider>
@@ -192,7 +193,6 @@ function AppWrapper(props) {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  emotionCache: PropTypes.object.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
 
@@ -206,8 +206,12 @@ export default function MyApp(props) {
   const getLayout = Component.getLayout || defaultGetLayout;
 
   return (
-    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      {getLayout(<Component {...pageProps} />)}
+    <AppWrapper pageProps={pageProps}>
+      {getLayout(
+        <DocsStyledEngineProvider cacheLtr={emotionCache}>
+          <Component {...pageProps} />
+        </DocsStyledEngineProvider>,
+      )}
     </AppWrapper>
   );
 }

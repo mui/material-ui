@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import MaterialToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,7 +22,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 function CssVarsToggleButtonGroup(props) {
   const { mode, setMode } = useColorScheme();
   return (
-    <MaterialToggleButtonGroup
+    <ToggleButtonGroup
       exclusive
       color="primary"
       aria-labelledby="settings-mode"
@@ -98,7 +98,7 @@ function AppSettingsDrawer(props) {
     changeTheme({ direction });
   };
 
-  const ToggleButtonGroup = upperTheme.vars ? CssVarsToggleButtonGroup : MaterialToggleButtonGroup;
+  const ModeToggle = upperTheme.vars ? CssVarsToggleButtonGroup : ToggleButtonGroup;
 
   return (
     <Drawer
@@ -124,7 +124,7 @@ function AppSettingsDrawer(props) {
         <Heading gutterBottom id="settings-mode">
           {t('settings.mode')}
         </Heading>
-        <ToggleButtonGroup
+        <ModeToggle
           exclusive
           value={mode}
           color="primary"
@@ -159,7 +159,7 @@ function AppSettingsDrawer(props) {
             <DarkModeOutlinedIcon fontSize="small" />
             {t('settings.dark')}
           </IconToggleButton>
-        </ToggleButtonGroup>
+        </ModeToggle>
         <Heading gutterBottom id="settings-direction">
           {t('settings.direction')}
         </Heading>
