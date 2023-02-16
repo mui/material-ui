@@ -49,9 +49,9 @@ function NProgressBar(props) {
             right: 0,
             height: 2,
             zIndex: (theme.vars || theme).zIndex.tooltip,
-            backgroundColor: (theme.vars || theme).palette.primary.light,
+            backgroundColor: (theme.vars || theme).palette.primary[200],
             ...theme.applyDarkStyles({
-              backgroundColor: (theme.vars || theme).palette.primary.dark,
+              backgroundColor: (theme.vars || theme).palette.primary[700],
             }),
             '& .nprogress-bar': {
               position: 'fixed',
