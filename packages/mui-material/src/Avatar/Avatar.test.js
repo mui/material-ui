@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, fireEvent, describeConformance } from 'test/utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CancelIcon from '../internal/svg-icons/Cancel';
 
 describe('<Avatar />', () => {
@@ -211,5 +212,29 @@ describe('<Avatar />', () => {
 
       expect(avatar).to.have.class(classes.colorDefault);
     });
+  });
+
+  it('should not error when ownerState is used in styleOverrides', () => {
+    const theme = createTheme({
+      components: {
+        MuiAvatar: {
+          styleOverrides: {
+            root: ({ ownerState }) => ({
+              ...(ownerState.variant === 'rounded' && {
+                color: 'red',
+              }),
+            }),
+          },
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={theme}>
+          <Avatar variant="rounded" />
+        </ThemeProvider>,
+      ),
+    ).not.toErrorDev();
   });
 });
