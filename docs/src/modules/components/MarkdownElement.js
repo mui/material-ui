@@ -187,7 +187,7 @@ const Root = styled('div')(
       borderCollapse: 'collapse',
       marginBottom: '20px',
       borderSpacing: 0,
-      '& .prop-name, & .prop-type, & .prop-default, & .slot-name, & .slot-globalClass, & .slot-default':
+      '& .prop-name, & .prop-type, & .prop-default, & .slot-name, & .slot-defaultClass, & .slot-default':
         {
           fontWeight: 400,
           fontFamily: lightTheme.typography.fontFamilyCode,
@@ -200,7 +200,7 @@ const Root = styled('div')(
       '& .optional': {
         color: '#45529f',
       },
-      '& .prop-type, & .slot-globalClass': {
+      '& .prop-type, & .slot-defaultClass': {
         color: '#932981',
       },
       '& .prop-default, & .slot-default': {
@@ -492,7 +492,7 @@ const Root = styled('div')(
         '& .optional': {
           color: '#a5b3ff',
         },
-        '& .prop-type, & .slot-globalClass': {
+        '& .prop-type, & .slot-defaultClass': {
           color: '#ffb6ec',
         },
         '& .prop-default, & .slot-default': {

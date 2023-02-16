@@ -66,7 +66,7 @@ function SlotsTable(props) {
       <thead>
         <tr>
           <th align="left">{t('api-docs.name')}</th>
-          <th align="left">{t('api-docs.globalClass')}</th>
+          <th align="left">{t('api-docs.defaultClass')}</th>
           <th align="left">{t('api-docs.default')}</th>
           <th align="left">{t('api-docs.description')}</th>
         </tr>
@@ -80,8 +80,8 @@ function SlotsTable(props) {
               </td>
               <td align="left" width="25%">
                 <span
-                  className="slot-globalClass"
-                  dangerouslySetInnerHTML={{ __html: className || 'ADASDASDASDASDASD' }}
+                  className="slot-defaultClass"
+                  dangerouslySetInnerHTML={{ __html: className }}
                 />
               </td>
               <td align="left" width="25%">

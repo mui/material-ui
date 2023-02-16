@@ -9,6 +9,7 @@
     "deprecated": "Deprecated",
     "description": "Description",
     "globalClass": "Global class",
+    "defaultClass": "Default class",
     "hooksPageDescription": "API reference docs for the {{name}} hook. Learn about the input parameters and other APIs of this exported module.",
     "import": "Import",
     "importDifference": "You can learn about the difference by <a href=\"/material-ui/guides/minimizing-bundle-size/\">reading this guide on minimizing bundle size</a>.",
