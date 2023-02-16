@@ -338,7 +338,7 @@ export default function useAutocomplete<
   FreeSolo extends boolean | undefined = false,
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-): UseAutoCompleteReturnValue<T, Multiple, DisableClearable, FreeSolo>
+): UseAutoCompleteReturnValue<T, Multiple, DisableClearable, FreeSolo>;
 
 export interface RenderedOption<T> {
   option: T;
@@ -351,7 +351,6 @@ export interface UseAutoCompleteReturnValue<
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 > {
-  
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
@@ -423,7 +422,7 @@ export interface UseAutoCompleteReturnValue<
   dirty: boolean;
 
   /**
-   * If `true`, the popup is open on the component. 
+   * If `true`, the popup is open on the component.
    * @default false
    */
   popupOpen: boolean;
