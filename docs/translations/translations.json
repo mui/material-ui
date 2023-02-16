@@ -30,7 +30,7 @@
     "ruleName": "Rule name",
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
-    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\"/material-ui/customization/theme-components/#default-props\">default props</a> or <a href=\"/material-ui/customization/theme-components/#global-style-overrides\">style overrides</a> in the theme.",
+    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
     "type": "Type"
   },
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
