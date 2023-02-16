@@ -18,33 +18,7 @@
     }
   },
   "name": "MenuItem",
-  "styles": {
-    "classes": [
-      "root",
-      "vertical",
-      "horizontal",
-      "colorPrimary",
-      "colorNeutral",
-      "colorDanger",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning",
-      "colorContext",
-      "focusVisible",
-      "disabled",
-      "selected",
-      "variantPlain",
-      "variantSoft",
-      "variantOutlined",
-      "variantSolid"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
-    },
-    "name": "MuiMenuItem"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/MenuItem/MenuItem.tsx",

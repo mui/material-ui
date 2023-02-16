@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "inset": {
       "type": {
@@ -22,18 +21,7 @@
     }
   },
   "name": "ListDivider",
-  "styles": {
-    "classes": [
-      "root",
-      "insetGutter",
-      "insetStartDecorator",
-      "insetStartContent",
-      "horizontal",
-      "vertical"
-    ],
-    "globalClasses": {},
-    "name": "MuiListDivider"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/ListDivider/ListDivider.tsx",

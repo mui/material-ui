@@ -8,7 +8,6 @@
     },
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
         "name": "union",
@@ -39,33 +38,7 @@
     }
   },
   "name": "ListItemButton",
-  "styles": {
-    "classes": [
-      "root",
-      "vertical",
-      "horizontal",
-      "colorPrimary",
-      "colorNeutral",
-      "colorDanger",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning",
-      "colorContext",
-      "focusVisible",
-      "disabled",
-      "selected",
-      "variantPlain",
-      "variantSoft",
-      "variantOutlined",
-      "variantSolid"
-    ],
-    "globalClasses": {
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected"
-    },
-    "name": "MuiListItemButton"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ListItemButton/ListItemButton.tsx",

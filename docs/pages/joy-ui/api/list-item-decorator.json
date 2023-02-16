@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "sx": {
       "type": {
@@ -11,7 +10,7 @@
     }
   },
   "name": "ListItemDecorator",
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiListItemDecorator" },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/ListItemDecorator/ListItemDecorator.tsx",

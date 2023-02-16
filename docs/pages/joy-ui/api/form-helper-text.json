@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "sx": {
       "type": {
@@ -11,7 +10,7 @@
     }
   },
   "name": "FormHelperText",
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiFormHelperText" },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormHelperText/FormHelperText.tsx",

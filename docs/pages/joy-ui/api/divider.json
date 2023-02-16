@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "inset": {
       "type": {
@@ -21,11 +20,7 @@
     }
   },
   "name": "Divider",
-  "styles": {
-    "classes": ["root", "horizontal", "vertical", "insetContext", "insetNone"],
-    "globalClasses": {},
-    "name": "MuiDivider"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-joy/src/Divider/Divider.tsx",
