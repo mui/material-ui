@@ -1,9 +1,9 @@
-import { createContext } from 'react';
+import * as React from 'react';
 
 export interface ClientStyleContextData {
   reset: () => void;
 }
 
-export default createContext<ClientStyleContextData>({
+export default React.createContext<ClientStyleContextData>({
   reset: () => {},
 });

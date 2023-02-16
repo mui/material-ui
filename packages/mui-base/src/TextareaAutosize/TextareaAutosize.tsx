@@ -1,18 +1,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { flushSync } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
+import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
-function getStyleValue(computedStyle, property) {
-  return parseInt(computedStyle[property], 10) || 0;
+type State = {
+  outerHeightStyle: number;
+  overflow?: boolean | undefined;
+};
+
+function getStyleValue(value: string) {
+  return parseInt(value, 10) || 0;
 }
 
-const styles = {
+const styles: {
+  shadow: React.CSSProperties;
+} = {
   shadow: {
     // Visibility needed to hide the extra text area on iPads
     visibility: 'hidden',
@@ -28,31 +36,56 @@ const styles = {
   },
 };
 
-function isEmpty(obj) {
-  return obj === undefined || obj === null || Object.keys(obj).length === 0;
+function isEmpty(obj: State) {
+  return (
+    obj === undefined ||
+    obj === null ||
+    Object.keys(obj).length === 0 ||
+    (obj.outerHeightStyle === 0 && !obj.overflow)
+  );
 }
 
-const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea Autosize](https://mui.com/base/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
+ *
+ * API:
+ *
+ * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
+ */
+const TextareaAutosize = React.forwardRef(function TextareaAutosize(
+  props: TextareaAutosizeProps,
+  ref: React.ForwardedRef<Element>,
+) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const inputRef = React.useRef(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const handleRef = useForkRef(ref, inputRef);
-  const shadowRef = React.useRef(null);
+  const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
-  const [state, setState] = React.useState({});
+  const [state, setState] = React.useState<State>({
+    outerHeightStyle: 0,
+  });
 
   const getUpdatedState = React.useCallback(() => {
-    const input = inputRef.current;
+    const input = inputRef.current!;
+
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
 
     // If input's width is shrunk and it's not visible, don't sync height.
     if (computedStyle.width === '0px') {
-      return {};
+      return {
+        outerHeightStyle: 0,
+      };
     }
 
-    const inputShallow = shadowRef.current;
+    const inputShallow = shadowRef.current!;
+
     inputShallow.style.width = computedStyle.width;
     inputShallow.value = input.value || props.placeholder || 'x';
     if (inputShallow.value.slice(-1) === '\n') {
@@ -62,12 +95,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       inputShallow.value += ' ';
     }
 
-    const boxSizing = computedStyle['box-sizing'];
+    const boxSizing = computedStyle.boxSizing;
     const padding =
-      getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');
+      getStyleValue(computedStyle.paddingBottom) + getStyleValue(computedStyle.paddingTop);
     const border =
-      getStyleValue(computedStyle, 'border-bottom-width') +
-      getStyleValue(computedStyle, 'border-top-width');
+      getStyleValue(computedStyle.borderBottomWidth) + getStyleValue(computedStyle.borderTopWidth);
 
     // The height of the inner content
     const innerHeight = inputShallow.scrollHeight;
@@ -94,7 +126,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     return { outerHeightStyle, overflow };
   }, [maxRows, minRows, props.placeholder]);
 
-  const updateState = (prevState, newState) => {
+  const updateState = (prevState: State, newState: State) => {
     const { outerHeightStyle, overflow } = newState;
     // Need a large enough difference to update the height.
     // This prevents infinite rendering loop.
@@ -145,7 +177,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
     // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
     // Related issue - https://github.com/facebook/react/issues/24331
-    flushSync(() => {
+    ReactDOM.flushSync(() => {
       setState((prevState) => {
         return updateState(prevState, newState);
       });
@@ -164,13 +196,16 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         syncHeightWithFlushSycn();
       }
     });
-    const containerWindow = ownerWindow(inputRef.current);
+    let resizeObserver: ResizeObserver;
+
+    const input = inputRef.current!;
+    const containerWindow = ownerWindow(input);
+
     containerWindow.addEventListener('resize', handleResize);
-    let resizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(handleResize);
-      resizeObserver.observe(inputRef.current);
+      resizeObserver.observe(input);
     }
 
     return () => {
@@ -190,7 +225,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     renders.current = 0;
   }, [value]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     renders.current = 0;
 
     if (!isControlled) {
@@ -209,12 +244,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={minRows}
+        rows={minRows as number}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
           // This prevents infinite rendering loop.
-          overflow: state.overflow ? 'hidden' : null,
+          overflow: state.overflow ? 'hidden' : undefined,
           ...style,
         }}
         {...other}
@@ -238,7 +273,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * @ignore
@@ -273,6 +308,6 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export default TextareaAutosize;

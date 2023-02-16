@@ -368,7 +368,7 @@ export default function App() {
 This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 function render() {
