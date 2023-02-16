@@ -410,6 +410,9 @@ export interface CssVarsTheme extends ColorSystem {
   shadows: Theme['shadows'];
   mixins: Theme['mixins'];
   zIndex: Theme['zIndex'];
+  generateCssVars: (
+    colorScheme?: DefaultColorScheme | ExtendedColorScheme,
+  ) => Record<string, string | number>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
 }

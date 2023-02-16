@@ -7,6 +7,7 @@ import {
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
+  unstable_cssVarsParser as cssVarsParser,
   SxProps,
 } from '@mui/system';
 import {
@@ -37,6 +38,10 @@ const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
 }) as Overlays;
 
+export const defaultShouldSkipGeneratingVar = (keys: string[]) =>
+  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
+
 function assignNode(obj: any, keys: string[]) {
   keys.forEach((k) => {
     if (!obj[k]) {
@@ -52,7 +57,12 @@ function setColor(obj: any, key: string, defaultValue: any) {
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'mui',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
@@ -436,16 +446,32 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
-  theme.vars = {
-    shadows: theme.shadows,
-    zIndex: theme.zIndex,
-    opacity: theme.opacity,
-    overlays: theme.overlays,
-    shape: theme.shape,
-    palette: theme.palette,
-    ref: theme.ref,
-    sys: theme.sys,
+  const colorSchemesCss: Record<string, any> = {};
+
+  Object.keys(theme.colorSchemes).forEach((key) => {
+    const { css, vars } = cssVarsParser(theme, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
+    theme.vars = deepmerge(theme.vars, vars);
+    colorSchemesCss[key] = css;
+  });
+
+  // Used in the CssVarsProvider for injecting the CSS variables
+  theme.generateCssVars = (colorScheme) => {
+    if (!colorScheme) {
+      return rootCss;
+    }
+    return colorSchemesCss[colorScheme];
   };
+
+  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
+  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  });
+
+  theme.vars = rootVars as unknown as Theme['vars'];
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

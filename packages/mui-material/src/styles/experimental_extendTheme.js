@@ -51,7 +51,12 @@ export const defaultShouldSkipGeneratingVar = (keys) =>
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 export default function extendTheme(options = {}, ...args) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar, ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'mui',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const { palette: lightPalette, ...muiTheme } = createThemeWithoutVars({
@@ -425,7 +430,7 @@ export default function extendTheme(options = {}, ...args) {
   theme.vars = {
     ...rootVars,
     // This includes palette, opacity etc.
-    ...theme.vars.colorSchemes.light
+    ...theme.vars.colorSchemes.light,
   };
 
   theme.unstable_sxConfig = {
