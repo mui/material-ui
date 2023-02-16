@@ -11,8 +11,6 @@ export function getPopperUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPopper', slot);
 }
 
-const popperUnstyledClasses: PopperUnstyledClasses = generateUtilityClasses('MuiPopper', [
-  'root',
-]);
+const popperUnstyledClasses: PopperUnstyledClasses = generateUtilityClasses('MuiPopper', ['root']);
 
 export default popperUnstyledClasses;
