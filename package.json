@@ -91,7 +91,7 @@
     "@playwright/test": "1.30.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@testing-library/dom": "^8.20.0",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "https://pkg.csb.dev/testing-library/react-testing-library/commit/bfd1db76/@testing-library/react",
     "@types/chai": "^4.3.4",
     "@types/chai-dom": "^1.11.0",
     "@types/enzyme": "^3.10.12",

@@ -2823,10 +2823,9 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/react@^13.4.0":
-  version "13.4.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.4.0.tgz#6a31e3bf5951615593ad984e96b9e5e2d9380966"
-  integrity sha512-sXOGON+WNTh3MLE9rve97ftaZukN3oNf2KjDy7YTx6hcTO2uuLHuCGynMDhFwGw/jYf4OJ2Qk0i4i79qMNNkyw==
+"@testing-library/react@https://pkg.csb.dev/testing-library/react-testing-library/commit/bfd1db76/@testing-library/react":
+  version "0.0.0-semantically-released"
+  resolved "https://pkg.csb.dev/testing-library/react-testing-library/commit/bfd1db76/@testing-library/react#ce282351bee0406e4db400d6508e82d098c0965e"
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^8.5.0"
