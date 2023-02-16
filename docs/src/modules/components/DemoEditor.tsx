@@ -51,12 +51,11 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   '& textarea': {
     outline: 0,
   },
-  '& > textarea, & > pre': {
-    // Override inline-style
-    whiteSpace: 'pre !important',
+  '& [class^=language]': {
+    whiteSpace: 'pre-wrap',
   },
-  '& .no-horizontal-scroll > [class^=language]': {
-    whiteSpace: 'pre-wrap !important',
+  '& .no-wrap > [class^=language]': {
+    whiteSpace: 'pre',
   },
 }));
 
@@ -67,7 +66,7 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   language: string;
   onChange: () => {};
   value: string;
-  noHorizontalScroll?: boolean;
+  wrapLines?: boolean;
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
@@ -78,7 +77,7 @@ export default function DemoEditor(props: DemoEditorProps) {
     copyButtonProps,
     children,
     id,
-    noHorizontalScroll = false,
+    wrapLines = true,
     ...other
   } = props;
   const t = useTranslate();
@@ -125,7 +124,7 @@ export default function DemoEditor(props: DemoEditorProps) {
             id={id}
             value={value}
             onValueChange={onChange}
-            preClassName={noHorizontalScroll ? 'no-horizontal-scroll' : undefined}
+            preClassName={wrapLines ? undefined : 'no-wrap'}
           />
         </div>
         <Box

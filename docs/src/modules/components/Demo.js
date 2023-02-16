@@ -539,7 +539,7 @@ export default function Demo(props) {
                 'data-ga-event-label': demo.gaLabel,
                 'data-ga-event-action': 'copy-click',
               }}
-              noHorizontalScroll={demoOptions.noHorizontalScroll}
+              wrapLines={demoOptions.wrapLines}
             >
               <DemoEditorError>{debouncedError}</DemoEditorError>
             </DemoEditor>
