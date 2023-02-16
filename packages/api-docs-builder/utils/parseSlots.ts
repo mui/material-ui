@@ -23,17 +23,14 @@ export default function parseSlots({
   try {
     const exportedSymbol = project.exports[interfaceName];
     const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
-    // @ts-ignore
     const typeDeclaration = type?.symbol?.declarations?.[0];
     if (!typeDeclaration || !ts.isInterfaceDeclaration(typeDeclaration)) {
       return [];
     }
 
     const slots: Record<string, Slot> = {};
-    // @ts-ignore
     const propertiesOnProject = type.getProperties();
 
-    // @ts-ignore
     propertiesOnProject.forEach((propertySymbol) => {
       const tags = getSymbolJSDocTags(propertySymbol);
       if (tags.ignore) {
