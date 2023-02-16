@@ -617,8 +617,9 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.styles = await parseStyles({ project, componentName: reactApi.name });
   reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+  reactApi.styles = parseStyles({ project, componentName: reactApi.name });
+
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = reactApi.muiName;
   }
