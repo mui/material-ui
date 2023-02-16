@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createPortal } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
@@ -309,7 +309,7 @@ export default function AppSearch() {
         </Shortcut>
       </SearchButton>
       {isOpen &&
-        createPortal(
+        ReactDOM.createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
             appId={'TZGZ85B9TB'}
