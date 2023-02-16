@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { flushSync } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
@@ -177,7 +177,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
     // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
     // Related issue - https://github.com/facebook/react/issues/24331
-    flushSync(() => {
+    ReactDOM.flushSync(() => {
       setState((prevState) => {
         return updateState(prevState, newState);
       });
