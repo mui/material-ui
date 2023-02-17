@@ -114,7 +114,7 @@ describe('useControllableReducer', () => {
       }
 
       render(<TestComponent />);
-      expect(handleChange.getCalls()[0].args[1]).to.equal('b');
+      expect(handleChange.getCalls()[0].args[1]).to.deep.equal(['b']);
       expect(handleHighlightChange.notCalled).to.equal(true);
     });
 
