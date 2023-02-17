@@ -214,7 +214,7 @@ describe('<Avatar />', () => {
     });
   });
 
-  it('should not error when ownerState is used in styleOverrides', () => {
+  it('should not throw error when ownerState is used in styleOverrides', () => {
     const theme = createTheme({
       components: {
         MuiAvatar: {
@@ -235,6 +235,6 @@ describe('<Avatar />', () => {
           <Avatar variant="rounded" />
         </ThemeProvider>,
       ),
-    ).not.toErrorDev();
+    ).not.to.throw();
   });
 });
