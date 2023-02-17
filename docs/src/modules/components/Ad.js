@@ -94,6 +94,12 @@ class AdErrorBoundary extends React.Component {
       eventAction: 'crash',
       eventLabel,
     });
+    window.gtag('send', {
+      hitType: 'event',
+      eventCategory: 'ad',
+      eventAction: 'crash',
+      eventLabel,
+    });
   }
 
   render() {
@@ -192,6 +198,12 @@ function Ad() {
 
     const delay = setTimeout(() => {
       window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'ad',
+        eventAction: 'display',
+        eventLabel,
+      });
+      window.gtag('send', {
         hitType: 'event',
         eventCategory: 'ad',
         eventAction: 'display',

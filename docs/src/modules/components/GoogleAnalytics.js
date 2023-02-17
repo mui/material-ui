@@ -35,6 +35,12 @@ function handleClick(event) {
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
       });
+      window.gtag('send', {
+        hitType: 'event',
+        eventCategory: category,
+        eventAction: element.getAttribute('data-ga-event-action'),
+        eventLabel: element.getAttribute('data-ga-event-label'),
+      });
       break;
     }
 
@@ -47,7 +53,7 @@ let boundDataGaListener = false;
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
-const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
+const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? '' : 'G-5NXDQLC2ZK';
 
 /**
  * basically just a `useAnalytics` hook.
@@ -55,24 +61,14 @@ const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
  * in the same component this "hook" is used.
  */
 function GoogleAnalytics() {
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    // eslint-disable-next-line prefer-rest-params
-    window.dataLayer.push(arguments);
-  }
-  
   React.useEffect(() => {
     loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
-    loadScript(
-      `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`,
-      document.querySelector('head'),
-      );
-      
-      if (!boundDataGaListener) {
-        boundDataGaListener = true;
-        document.addEventListener('click', handleClick);
-        gtag('js', new Date());
-        gtag('config', GOOGLE_ANALYTICS_ID);
+
+    if (!boundDataGaListener) {
+      boundDataGaListener = true;
+      document.addEventListener('click', handleClick);
+      window.gtag('js', new Date());
+      window.gtag('config', GOOGLE_ANALYTICS_ID_V4);
     }
   }, []);
 
@@ -83,18 +79,22 @@ function GoogleAnalytics() {
     setTimeout(() => {
       const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
       window.ga('set', { page: canonicalAsServer });
+      window.gtag('set', { page: canonicalAsServer });
       window.ga('send', { hitType: 'pageview' });
+      window.gtag('send', { hitType: 'pageview' });
     });
   }, [router.route]);
 
   const codeVariant = useNoSsrCodeVariant();
   React.useEffect(() => {
     window.ga('set', 'dimension1', codeVariant);
+    window.gtag('set', 'dimension1', codeVariant);
   }, [codeVariant]);
 
   const userLanguage = useUserLanguage();
   React.useEffect(() => {
     window.ga('set', 'dimension2', userLanguage);
+    window.gtag('set', 'dimension2', userLanguage);
   }, [userLanguage]);
 
   React.useEffect(() => {
@@ -105,6 +105,7 @@ function GoogleAnalytics() {
     function trackDevicePixelRation() {
       const devicePixelRatio = Math.round(window.devicePixelRatio * 10) / 10;
       window.ga('set', 'dimension3', devicePixelRatio);
+      window.gtag('set', 'dimension3', devicePixelRatio);
     }
 
     trackDevicePixelRation();
@@ -128,7 +129,9 @@ function GoogleAnalytics() {
 
   React.useEffect(() => {
     window.ga('set', 'dimension4', colorSchemeOS);
+    window.gtag('set', 'dimension4', colorSchemeOS);
     window.ga('set', 'dimension5', colorScheme);
+    window.gtag('set', 'dimension5', colorScheme);
   }, [colorSchemeOS, colorScheme]);
 
   return null;

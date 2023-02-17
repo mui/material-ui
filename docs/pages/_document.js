@@ -34,6 +34,7 @@ const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
 const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
+const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-5NXDQLC2ZK';
 
 export default class MyDocument extends Document {
   render() {
@@ -158,6 +159,22 @@ export default class MyDocument extends Document {
                   sampleRate: ${PRODUCTION_GA ? 80 : 100},
                 });
               `,
+            }}
+          />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NXDQLC2ZK" />
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){
+                  console.log({a: arguments });
+                  dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+
+                gtag('config', '${GOOGLE_ANALYTICS_ID_V4}');
+                `,
             }}
           />
           <NextScript />

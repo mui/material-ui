@@ -138,7 +138,19 @@ const Icons = React.memo(function Icons(props) {
         eventAction: 'click',
         eventLabel: icon.name,
       });
+      window.gtag('send', {
+        hitType: 'event',
+        eventCategory: 'material-icons',
+        eventAction: 'click',
+        eventLabel: icon.name,
+      });
       window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'material-icons-theme',
+        eventAction: 'click',
+        eventLabel: icon.theme,
+      });
+      window.gtag('send', {
         hitType: 'event',
         eventCategory: 'material-icons-theme',
         eventAction: 'click',
@@ -494,6 +506,12 @@ export default function SearchIcons() {
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
               window.ga('send', {
+                hitType: 'event',
+                eventCategory: 'material-icons',
+                eventAction: 'no-results',
+                eventLabel: value,
+              });
+              window.gtag('send', {
                 hitType: 'event',
                 eventCategory: 'material-icons',
                 eventAction: 'no-results',
