@@ -15,6 +15,6 @@
   },
   "returnValue": {},
   "name": "useMenuItem",
-  "filename": "/packages/mui-base/src/MenuItemUnstyled/useMenuItem.ts",
+  "filename": "/packages/mui-base/src/useMenuItem/useMenuItem.ts",
   "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Unstyled Menu</a></li></ul>"
 }
