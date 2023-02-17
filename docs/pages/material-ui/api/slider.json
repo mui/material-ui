@@ -33,10 +33,7 @@
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
     "marks": {
-      "type": {
-        "name": "union",
-        "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
-      },
+      "type": { "name": "union", "description": "array<br>&#124;&nbsp;bool" },
       "default": "false"
     },
     "max": { "type": { "name": "number" }, "default": "100" },
