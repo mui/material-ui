@@ -57,13 +57,13 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
 export const createVariantStyle = (
   name: string,
   palette: Partial<PaletteRange> | undefined,
-  getCssVar?: (variantVar: keyof PaletteVariant) => string,
+  getCssVar?: (variantVar: keyof PaletteVariant, fallback: string) => string,
 ) => {
   const result: CSSObject = {};
   (Object.entries(palette || {}) as Array<[keyof PaletteVariant, string]>).forEach(
     ([variantVar, value]) => {
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
-        const cssVar = getCssVar ? getCssVar(variantVar) : value;
+        const cssVar = getCssVar ? getCssVar(variantVar, value) : value;
         if (variantVar.includes('Disabled')) {
           result.pointerEvents = 'none';
           result.cursor = 'default';
@@ -115,13 +115,14 @@ export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
         result = {
           ...result,
           [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
-            getCssVar(`palette-${color}-${variantVar}`),
+            getCssVar(`palette-${color}-${variantVar}`, palette[color][variantVar]),
           ),
         };
       }
     });
   }
 
+  // TODO: add defaults for these values
   result.context = createVariantStyle(variant, {
     plainColor: 'var(--variant-plainColor)',
     plainHoverColor: `var(--variant-plainHoverColor)`,
@@ -162,9 +163,16 @@ export const createSoftInversion = (
     getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
   },
 ) => {
-  const getCssVar = createGetCssVar(theme.cssVarPrefix);
+  const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   const result = {} as Record<DefaultColorPalette, CSSObject>;
+
+  const getCssVar = (cssVar: string) => {
+    const tokens = cssVar.split('-');
+    const color = tokens[1];
+    const value = tokens[2];
+    return getCssVarDefault(cssVar, theme.palette[color][value]);
+  }
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
       DefaultColorPalette,
@@ -316,9 +324,17 @@ export const createSoftInversion = (
 };
 
 export const createSolidInversion = (theme: ThemeFragment) => {
-  const getCssVar = createGetCssVar(theme.cssVarPrefix);
+  const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
   const cssVarPrefixVar = createPrefixVar(theme.cssVarPrefix);
   const result = {} as Record<DefaultColorPalette, CSSObject>;
+
+  const getCssVar = (cssVar: string) => {
+    const tokens = cssVar.split('-');
+    const color = tokens[1];
+    const value = tokens[2];
+    return getCssVarDefault(cssVar, theme.palette[color][value]);
+  }
+
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
       DefaultColorPalette,
