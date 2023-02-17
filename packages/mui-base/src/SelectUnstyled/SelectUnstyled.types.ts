@@ -67,6 +67,11 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
   getSerializedValue?: (
     option: SelectValue<SelectOption<TValue>, Multiple>,
   ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
+   * If `true`, selecting multiple values is allowed.
+   *
+   * @default false
+   */
   multiple?: Multiple;
   /**
    * Callback fired when an option is selected.
